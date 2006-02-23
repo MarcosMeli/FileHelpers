@@ -1,0 +1,23 @@
+
+ ------------------------------------------
+  FileHelpers Release Steeps (Memory Help)
+ ------------------------------------------
+
+   - Change the version in all Assembly Info
+   - Change the version in the docs
+        
+   - Compact MDB DataBases
+        
+   - Run Nant script to build 1.1 and 2.0 versions
+   
+   - Generate the Zip File:
+        
+          FileHelpers_x_x_x_bin_doc.zip
+   
+   
+   Now near all task are in the NAnt build file, a big advantage. :)))
+
+   Cheers
+   Marcos Meli
+   
+   

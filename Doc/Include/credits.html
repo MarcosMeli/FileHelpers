@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+
+<style type="text/css">
+<!--
+.style2 {color: #990000}
+.style3 {color: #999999}
+.style4 {color: #666666}
+-->
+</style>
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="mailto:filehelpers-general-request@lists.sourceforge.net?subject=subscribe"><img src="email.gif" width="24" height="24" border="0" alt="Subscribe to the mailing list."></a><a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
+                    &nbsp; </td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="examples.html" class="bar_link">Examples</a> - 
+                            <a href="FAQ.html" class="bar_link">F.A.Q.</a> - 
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td>
+    <h2>Contact and Ideas</h2>
+    <blockquote>
+      <p>If you find that there is a feature that I must include, or you have a new idea (for the API, Source Code or Examples), only let me know, sending an e-mail to <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a> or go to <a href="http://www.MarcosMeli.com.ar">Marcos Meli</a>. </p>
+    </blockquote>
+
+    <h2>Contributors</h2>
+    <blockquote>
+      <p>I, <a href="http://www.MarcosMeli.com.ar">Marcos Meli</a>, work hard to get the library ready and updated, but I can´t do it witout the help of a lot of people.</p>
+      <p><b>Then I want to thank all the people that send to me ideas, errors and suggestions.</b></p>
+      <p>A partial list of the contributores are:</p>
+      <ul>
+        <li>My girlfriend, Patricia ( for her help, love and paaaaaatience<img src="whats.gif" border=0 />) </li>
+        <li>Guillermo Montangie</li>
+        <li><a href="http://www.larkware.com/">Mike Gunderloy</a></li>
+        <li><a href="http://tinyurl.com/capja">Jose Maria Selesan</a></li>
+        <li>Pierre Anderson</li>
+        <li><a href="http://www.mohundro.com/blog/">David Mohundro</a> </li>
+          <li>Margiex Cai</li>
+          <li>Derek Fluker</li>
+          <li>Jack Starke </li>
+        <li>Tim Johnston</li>
+          <li>Rob Trainer </li>
+          <li><a href="http://wagnerblog.com">Thomas Wagner</a></li>
+          <li>Adrian Mok</li>
+          <li>Yuri Astrakhan</li>
+          <li>Hector Sosa</li>
+          <li>Jarbas Ugarte</li>
+          <li><a href="http://www.carlosag.net/">Carlos Aguilar Mares</a></li>
+          <li> Kevin Marchand </li>
+		  <li>Todd Woodhouse</li>
+		  <li>Aleksandar Lalic</li>
+          <li>Nicola Tufarelli</li>
+          <li>Preky</li>
+
+          
+      </ul>
+        <p>If you are in the list and have a home page please send the address to me and I add it.<br />
+            Also if you want to be removed do te same...</p>
+      </blockquote>    
+
+<h2>Credits</h2>
+    <blockquote>
+      <p>I wanna  write this library from a time ago, but with the motivation of the <a href="http://www.larkware.com">Larkware contest</a> I sit down and dedicate the needed time to finish it and want thank Mike for this.</p>
+      <table  border="1" align="center" cellpadding="10" bordercolor="#666666">
+        <tr>
+          <td bordercolor="#999999" bgcolor="#FFFFCC" style="height: 48px"><p align="center">
+            The FileHelpers <span class="style2">won the second prize</span> in the 
+              <br />
+              <a href="http://www.larkware.com/contests/Contest2005Winners.html">Larkware Contest 2005</a>.
+              Now to enjoy the gifts !!&nbsp;</p>
+            </td>
+        </tr>
+      </table>
+      <div align="center"></div>
+      <p>Other important motivation is the <a href="http://www.codeproject.com">Code Project</a> site that is an example of a good and practical site, is easy to find the articles, but more easy yet to post, there is a submition wizard that is fantastic. Congratulations to the creators.<br>
+        <span class="style2">Warning there is an adiction when you begin to post :)</span></p>
+      </blockquote>
+    <h2>Licence</h2>
+    <blockquote>
+      <p>FileHelpers Library is @Copyright 2005 to <a href="http://www.MarcosMeli.com.ar">Marcos Meli</a> but it's source code and the binaries are <strong> free for commercial and non commercial use</strong>.</p>
+        
+        <center>
+        <table border="0" cellpadding="5" cellspacing="0" style="width: 544px">
+            <tr>
+                <td style="width: 26px">
+                    <img src="working.gif" /></td>
+                <td style="width: 529px" align="center">
+                    If you want to support the library...<br />
+                    some .NET books are in the wish list ;)</td>
+                <td align="center">
+                    <img src="gift.gif" /></td>
+            </tr>
+        </table>
+        </center>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+    <hr align="left" />
+    </blockquote>
+      <div >
+<table width="100%" >
+  <tr>
+    <td class="SmallText">
+Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
+Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
+Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
+</td>
+    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" class="SmallText"> <a href="FAQ.html" >Problems ? ... <br />browse the <b>F.A.Q</b>.</a></td><td width="1"><a href="FAQ.html"><img src=help.png border=0 /></a></td>
+  </tr>
+</table>
+</div>
+                    <center>Project Hosted in<br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a></center>
+</td>
+</tr>
+</table>
+
+</BODY></HTML>

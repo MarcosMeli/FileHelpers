@@ -1,0 +1,10 @@
+ALFKI	Alfreds Futterkiste	Sales Representative	Obere Str. 57	Berlin	Germany
+ANATR	Ana Trujillo Emparedados y helados	Owner	Avda. de la Constitución 2222	México D.F.	Mexico
+ANTON	Antonio Moreno Taquería	Owner	Mataderos  2312	México D.F.	Mexico
+AROUT	Around the Horn	Sales Representative	120 Hanover Sq.	London	UK
+BERGS	Berglunds snabbköp	Order Administrator	Berguvsvägen  8	Luleå	Sweden
+BLAUS	Blauer See Delikatessen	Sales Representative	Forsterstr. 57	Mannheim	Germany
+BLONP	Blondesddsl père et fils	Marketing Manager	24, place Kléber	Strasbourg	France
+BOLID	Bólido Comidas preparadas	Owner	C/ Araquil, 67	Madrid	Spain
+BONAP	Bon app'	Owner	12, rue des Bouchers	Marseille	France
+BOTTM	Bottom-Dollar Markets	Accounting Manager	23 Tsawassen Blvd.	Tsawassen	Canada

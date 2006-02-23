@@ -1,0 +1,2 @@
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.WizardApp", "FileHelpers.WizardApp\FileHelpers.WizardApp.csproj", "{8997A588-1D83-4211-980D-28D8BF0CDA8E}"
+EndProject

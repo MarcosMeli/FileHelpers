@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<codeSmith>
+	<propertySet>
+		<property name="Table">
+			<connectionString>Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\TestData.mdb;Mode=Share Deny None;Extended Properties="";Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False</connectionString>
+			<providerType>SchemaExplorer.ADOXSchemaProvider,SchemaExplorer.ADOXSchemaProvider</providerType>
+			<table>
+				<owner />
+				<name>Orders</name>
+			</table>
+		</property>
+		<property name="ClassName">Orders</property>
+		<property name="FixedLength">True</property>
+		<property name="DelimitedChar">|</property>
+	</propertySet>
+</codeSmith>

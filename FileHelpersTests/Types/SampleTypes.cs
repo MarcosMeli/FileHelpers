@@ -1,0 +1,55 @@
+using System;
+using FileHelpers;
+
+namespace FileHelpersTests
+{
+	[FixedLengthRecord]
+	public class SampleType
+	{
+		[FieldFixedLength(8)]
+		[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime Field1;
+
+		[FieldFixedLength(3)]
+		[FieldAlign(AlignMode.Left, ' ')]
+		[FieldTrim(TrimMode.Both)] public string Field2;
+
+		[FieldFixedLength(3)]
+		[FieldAlign(AlignMode.Right, '0')]
+		[FieldTrim(TrimMode.Both)]
+		[FieldConverter(ConverterKind.Int32)] public int Field3;
+	}
+
+
+    [FixedLengthRecord]
+    [IgnoreFirst()]
+    public class SampleTypeIgnoreFirst
+    {
+        [FieldFixedLength(8)]
+        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        public DateTime Field1;
+
+        [FieldFixedLength(3)]
+        [FieldAlign(AlignMode.Left, ' ')]
+        [FieldTrim(TrimMode.Both)]
+        public string Field2;
+
+        [FieldFixedLength(3)]
+        [FieldAlign(AlignMode.Right, '0')]
+        [FieldTrim(TrimMode.Both)]
+        [FieldConverter(ConverterKind.Int32)]
+        public int Field3;
+    }
+
+
+	[FixedLengthRecord]
+	public class SampleTypeInt
+	{
+		[FieldFixedLength(8)] public int Field1;
+
+		[FieldFixedLength(3)]
+		[FieldAlign(AlignMode.Left, ' ')]
+		[FieldTrim(TrimMode.Both)] public int Field2;
+
+	}
+
+}

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="Used for:&#xD;&#xA;File &lt;-&gt; Any DataStorage">
+    <Position X="1.76" Y="0.552" Height="0.354" Width="1.669" />
+  </Comment>
+  <Comment CommentText="Used for:&#xD;&#xA;Any DataStorage &lt;-&gt; Any DataStorage">
+    <Position X="2.167" Y="3.063" Height="0.354" Width="2.273" />
+  </Comment>
+  <Comment CommentText="Used for:&#xD;&#xA;File &lt;-&gt; File (Diferent Format)">
+    <Position X="2.564" Y="4.573" Height="0.354" Width="1.846" />
+  </Comment>
+  <Class Name="FileHelpers.DataLink.FileDataLink">
+    <Position X="0.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <FileName>DataLink\FileDataLink.cs</FileName>
+      <HashCode>AAAAAABAwAEAAEAAAABAAAAAAKAAAAAAAAAAAAIABAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataStorage" />
+    </ShowAsAssociation>
+    <Members>
+      <Field Name="mHelperEngine" Hidden="true" />
+      <Field Name="mLastExtractedRecords" Hidden="true" />
+      <Field Name="mLastInsertedRecords" Hidden="true" />
+      <Field Name="mProvider" Hidden="true" />
+    </Members>
+    <AssociationLine Name="DataStorage" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="1.312" />
+        <Point X="5.188" Y="1.312" />
+        <Point X="5.188" Y="1.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.296" Y="0.513" />
+      </MemberNameLabel>
+    </AssociationLine>
+  </Class>
+  <Class Name="FileHelpers.DataLink.GenericDataLink">
+    <Position X="0.75" Y="3" Width="4" />
+    <TypeIdentifier>
+      <FileName>DataLink\GenericDataLink.cs</FileName>
+      <HashCode>AAAAAAAAAEEAAApAAAAAAAACAAAAAAAAAAAAIAEAAAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataStorage2" />
+      <Property Name="DataStorage1" />
+    </ShowAsAssociation>
+    <Members>
+      <Method Name="GetTransformMethod" Hidden="true" />
+      <Field Name="mConvert1to2" Hidden="true" />
+      <Field Name="mConvert2to1" Hidden="true" />
+      <Field Name="mDataStorage1" Hidden="true" />
+      <Field Name="mDataStorage2" Hidden="true" />
+      <Method Name="ValidateRecordTypes" Hidden="true" />
+    </Members>
+    <AssociationLine Name="DataStorage2" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="4.062" />
+        <Point X="6.062" Y="4.062" />
+        <Point X="6.062" Y="2.259" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.142" Y="1.596" Height="0.16" Width="1.071" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="DataStorage1" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="3.75" />
+        <Point X="5.938" Y="3.75" />
+        <Point X="5.938" Y="2.259" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.067" Y="1.291" Height="0.16" Width="1.007" />
+      </MemberNameLabel>
+    </AssociationLine>
+  </Class>
+  <Class Name="FileHelpers.DataLink.FileTransformDataLink">
+    <Position X="0.75" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <FileName>DataLink\FileTransformDataLink.cs</FileName>
+      <HashCode>AAgAAAAAEAAAAAoEAAAAAAADAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Method Name="GetTransformMethod" Hidden="true" />
+      <Field Name="mConvert1to2" Hidden="true" />
+      <Field Name="mConvert2to1" Hidden="true" />
+      <Field Name="mRecordType1" Hidden="true" />
+      <Field Name="mRecordType2" Hidden="true" />
+      <Method Name="ValidateRecordTypes" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.DataLink.DataStorage" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\DataStorage.cs</FileName>
+      <HashCode>AAAAAAAgAAAAAAAAAAACAAAAAAAAAAAIAAACAAEgAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mErrorManager" Hidden="true" />
+    </Members>
+  </Class>
+</ClassDiagram>

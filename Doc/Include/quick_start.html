@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="mailto:filehelpers-general-request@lists.sourceforge.net?subject=subscribe"><img src="email.gif" width="24" height="24" border="0" alt="Subscribe to the mailing list."></a><a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
+                    &nbsp; </td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="examples.html" class="bar_link">Examples</a> - 
+                            <a href="FAQ.html" class="bar_link">F.A.Q.</a> - 
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><p>
+    <strong>Note: </strong>VB.NET developers browse the <a href="vb_tips.html">Tips for
+        VB.NET</a> first.</p>
+    <h2>
+        Quick Start Guide (easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
+    </h2>
+    <table width="100%"  border="0">
+      <tr>
+        <td height="123" valign="top"><a name="first"></a><img src="1.png" width="16" height="16" align="left"> </td>
+        <td width="97%" valign="top"><p>To start using the FileHelpers Library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get Intellisense support. </p>
+          <blockquote>
+            <p><img src="references.png" width="103" height="53"></p>
+          </blockquote></td>
+      </tr>
+      <tr>
+        <td height="163" valign="top"><a name="two"></a><img src="2.png" width="16" height="16" align="left"></td>
+        <td valign="top">
+          <p> Next you need to define a class that maps to the record in the source/detination file.<br>
+            For this example we use a file with this format delimited by a |:</p>
+          <blockquote>
+            <pre>10248|VINET|04071996|32.38<br>10249|TOMSP|05071996|11.61<br>10250|HANAR|08071996|65.83<br>10251|VICTE|08071996|41.34<br>...............    </pre>
+          </blockquote></td>
+      </tr>
+      <tr>
+        <td height="259" valign="top">&nbsp;</td>
+        <td valign="top"><p>The class that we refer can be like this:</p>
+          <blockquote>
+            <pre>[DelimitedRecord(<span class="cpp-string">&quot;|&quot;</span>)]
+<span class="cs-keyword">public class</span> Orders
+{
+   <span class="cs-comment">// No need Converters for primitive types the library provides them</span>.
+   <span class="cpp-keyword">public int</span> OrderID;
+
+   <span class="cs-keyword">public string</span> CustomerID;
+<br>   [FieldConverter(ConverterKind.Date,<span class="cs-string"> &quot;ddMMyyyy&quot;</span>)]<br>  <span class="cs-keyword"> public DateTime</span> OrderDate;
+
+   <span class="cs-keyword">public decimal</span> Freight;
+}</pre>
+          </blockquote></td>
+      </tr>
+      <tr>
+        <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
+        <td valign="top"><p>Later you must to instantiate a FileHelperEngine and Read/Write files:                        
+            <blockquote>
+              <pre>FileHelperEngine engine = <span class="cpp-keyword">new</span> FileHelperEngine(<span class="cpp-keyword">typeof</span>(Orders));<span class="vb-comment">
+
+/// To Read Use:
+</span>Orders[] res = (Orders[]) engine.ReadFile(@<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+
+<span class="cs-comment">/// To Write Use:</span>
+engine.WriteFile(@<span class="cs-string">&quot;C:\TestOut.txt&quot;</span>, res);</pre>
+          </blockquote></td>
+      </tr>
+      <tr>
+        <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
+        <td valign="top"><p>Finally you can use the res array to access each item in the file, for example: </p>
+          <blockquote>
+            <pre> <span class="cpp-keyword">foreach</span> (Orders order <span class="cpp-keyword">in</span> res)
+ {
+    Console.WriteLine(<span class="cs-string">&quot;Order Info:&quot;</span>);
+    Console.WriteLine(order.CustomerID + <span class="cs-string">&quot; - &quot;</span> +
+                      order.OrderDate.ToString(<span class="cs-string">&quot;dd/MM/yy&quot;</span>));
+ }
+           </pre>
+          </blockquote>
+          </td>
+      </tr>
+    </table>      
+                  
+      <h2>See also </h2>
+      <blockquote>
+        <p></p>
+        <a href="default.html">Introduction</a> - <a href="attributes.html">Attributes List</a> - <a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a>
+        </blockquote>
+
+
+<hr align="left" />
+      <div >
+<table width="100%" >
+  <tr><td class="SmallText">
+Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
+Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
+Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
+</td>
+    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="top" class="SmallText"> <a href="FAQ.html" >Problems ? ... <br />browse the <b>F.A.Q</b>.</a></td><td width="1"><img src=help.png /></td>
+  </tr>
+</table>
+
+</div>
+                    <center>Project Hosted in<br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a></center>
+  </td>
+</tr>
+</table>
+
+</BODY></HTML>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="FileHelpers.EngineBase">
+    <Position X="3.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>EngineBase.cs</FileName>
+      <HashCode>AAAAAAIAEAIAAAAAAAADAAAAoAAAECAAAQCCAAEAAAE=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ErrorManager" />
+    </ShowAsAssociation>
+    <Members>
+      <Field Name="mEncoding" Hidden="true" />
+      <Field Name="mErrorManager" Hidden="true" />
+      <Field Name="mFooterText" Hidden="true" />
+      <Field Name="mHeaderText" Hidden="true" />
+      <Field Name="mLineNum" Hidden="true" />
+      <Field Name="mRecordInfo" Hidden="true" />
+      <Field Name="mRecordType" Hidden="true" />
+      <Field Name="mTotalRecords" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ErrorManager" Type="FileHelpers.ErrorManager">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.11" Y="0.06" Height="0.16" Width="1.282" />
+      </MemberNameLabel>
+    </AssociationLine>
+  </Class>
+  <Class Name="FileHelpers.FileHelperAsyncEngine">
+    <Position X="7.75" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <FileName>FileHelperAsyncEngine.cs</FileName>
+      <HashCode>AAAAIAACDAAAAIAGAAAABAQAACgAAAhAAAggAAIAAQA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mAsyncReader" Hidden="true" />
+      <Field Name="mAsyncWriter" Hidden="true" />
+      <Field Name="mLastRecord" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.FileHelperEngine">
+    <Position X="2.75" Y="5.25" Width="4.25" />
+    <TypeIdentifier>
+      <FileName>FileHelperEngine.cs</FileName>
+      <HashCode>ABAAAAAAAAAAQBAAAgAAAAAAAAAAAQAAAAAACEAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.MasterDetail.MasterDetailEngine">
+    <Position X="2.75" Y="8.5" Width="4.75" />
+    <TypeIdentifier>
+      <FileName>MasterDetail\MasterDetailEngine.cs</FileName>
+      <HashCode>ABAAABAAAABgQBAAAgAAAAAAAAAAAQIAAAAACEAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mMasterInfo" Hidden="true" />
+      <Field Name="mMasterType" Hidden="true" />
+      <Field Name="mRecordSelector" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.ErrorManager">
+    <Position X="7.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>ErrorHandling\ErrorManager.cs</FileName>
+      <HashCode>AEAAAAABABAAAAAAABAAAAAAAAgAAAAEAAAAAAAggEA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mErrorMode" Hidden="true" />
+      <Field Name="mErrorsArray" Hidden="true" />
+    </Members>
+  </Class>
+</ClassDiagram>

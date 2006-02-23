@@ -1,0 +1,63 @@
+<project SchemaVersion="1.3">
+    <assemblies>
+        <assembly location="..\..\Release\DotNet 1.1\FileHelpers.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.xml" />
+        <assembly location="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.xml" />
+    </assemblies>
+    <namespaces>
+        <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 11pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 11pt">FileHelperAsyncEngine</span></b></a><br /></namespace>
+        <namespace name="FileHelpers.DataLink">This namespace contains the data source to/from file engine and helpers.</namespace>
+        <namespace name="FileHelpers.MasterDetail">This namespace contains the classes used for MasterDetail processing.</namespace>
+        <namespace name="FileHelpers.Fields">Contains the classes used to identify a field of the records.</namespace>
+    </namespaces>
+    <documenters>
+        <documenter name="JavaDoc">
+            <property name="OutputDirectory" value=".\doc\" />
+        </documenter>
+        <documenter name="LaTeX">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="TextFileFullName" value="Documentation.tex" />
+            <property name="TexFileBaseName" value="Documentation" />
+            <property name="LatexCompiler" value="latex" />
+            <property name="TexFileFullPath" value=".\doc\Documentation.tex" />
+        </documenter>
+        <documenter name="LinearHtml">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+        </documenter>
+        <documenter name="MSDN">
+            <property name="OutputDirectory" value="..\..\Release\Doc\" />
+            <property name="HtmlHelpName" value="FileHelpers" />
+            <property name="Title" value="FileHelpers General and SDK Documentation" />
+            <property name="ShowVisualBasic" value="True" />
+            <property name="RootPageTOCName" value="Introduction" />
+            <property name="RootPageFileName" value=".\Include\default.html" />
+            <property name="HeaderHtml" value="&lt;/div&gt;&lt;FORM method=GET action=http://www.google.com/custom&gt;		&lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&#xD;&#xA;			&lt;tr&gt;&#xD;&#xA;				&lt;td background=&quot;up_logo_right.png&quot; width=&quot;1&quot; height=&quot;51&quot; nowrap&gt;&lt;a href=&quot;/&quot;&gt;&lt;img src=&quot;up_logo.png&quot; width=&quot;333&quot; height=&quot;51&quot; border=&quot;0&quot;&gt;&lt;/a&gt;&lt;/td&gt;&lt;td background=&quot;up_logo_right.png&quot; nowrap align=right valign=middle&gt;&lt;INPUT TYPE=text name=q size=12 maxlength=200 value=&quot;&quot; style=&quot;BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff&quot;&gt; &lt;INPUT type=submit name=sa VALUE=&quot;Search&quot; style=&quot;BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy&quot;&gt;&#xD;&#xA;                    &lt;INPUT type=hidden name=cof VALUE=&quot;S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;&quot;&gt;&lt;input type=hidden name=domains value=&quot;filehelpers.sourceforge.net&quot;&gt;&lt;input type=hidden name=sitesearch value=&quot;filehelpers.sourceforge.net&quot; checked&gt;&#xD;&#xA;&lt;a href=&quot;mailto:filehelpers-general-request@lists.sourceforge.net?subject=subscribe&quot;&gt;&lt;img src=&quot;email.gif&quot; width=&quot;24&quot; height=&quot;24&quot; border=&quot;0&quot; alt=&quot;Subscribe to the mailing list.&quot;&gt;&lt;/a&gt; &lt;a href=&quot;http://sourceforge.net/export/rss2_projnews.php?group_id=152382&amp;rss_fulltext=1&quot;&gt;&lt;img src=&quot;rss2.png&quot; border=&quot;0&quot; alt=&quot;News RSS feed.&quot;&gt;&lt;/a&gt;&#xD;&#xA;                    &amp;nbsp; &lt;/td&gt;&lt;/tr&gt;&#xD;&#xA;			&lt;tr &gt;&#xD;&#xA;				&lt;td background=&quot;button_bar_back.jpg&quot; height=&quot;26px&quot; nowrap valign=top colspan=2&gt;&#xD;&#xA;				&lt;strong&gt;&#xD;&#xA;                        &lt;span style=&quot;color: white&quot;&gt;&#xD;&#xA;                    &amp;nbsp; &lt;a href=&quot;/&quot; class=&quot;bar_link&quot;&gt;Overview&lt;/a&gt; -&#xD;&#xA;							&lt;a href=&quot;downloads.html&quot; class=&quot;bar_link&quot;&gt;Downloads&lt;/a&gt; -&#xD;&#xA;                            &lt;a href=&quot;examples.html&quot; class=&quot;bar_link&quot;&gt;Examples&lt;/a&gt; - &#xD;&#xA;                            &lt;a href=&quot;FAQ.html&quot; class=&quot;bar_link&quot;&gt;F.A.Q.&lt;/a&gt; - &#xD;&#xA;                            &lt;a href=&quot;http://sourceforge.net/export/rss2_projnews.php?group_id=152382&amp;rss_fulltext=1&quot; class=&quot;bar_link&quot; target=&quot;_blank&quot;&gt;News Feed&lt;/a&gt; -&#xD;&#xA;                            &lt;a href=&quot;credits.html&quot; class=&quot;bar_link&quot;&gt;Contact Info&lt;/a&gt;&#xD;&#xA;                            &lt;/span&gt; &lt;/strong&gt;&#xD;&#xA;                            &lt;/td&gt;&lt;td background=&quot;button_bar_right.png&quot; nowrap style=&quot;height: 26px&quot;&gt;&#xD;&#xA;                                                      &lt;/td&gt;&lt;/tr&gt;&#xD;&#xA;		&lt;/table&gt;&#xD;&#xA;		&lt;/FORM&gt;&lt;/div&gt;&#xD;&#xA;&lt;/div&gt; &lt;div id=&quot;TitleRow&quot;&gt;&lt;br&gt; &lt;h1&gt;%TOPIC_TITLE%&lt;/h1&gt;&lt;div&gt;&#xD;&#xA;&#xD;&#xA;" />
+            <property name="FooterHtml" value="&lt;table &gt;&#xD;&#xA;  &lt;tr&gt;&lt;td width=&quot;330&quot; &gt;&lt;font size=&quot;1&quot;&gt;&#xD;&#xA;Copyright &amp;copy; 2005 to &lt;a href=&quot;http://www.marcosmeli.com.ar&quot; style=&quot;text-decoration:none&quot;&gt;Marcos Meli&lt;/a&gt;&lt;br&gt;&#xD;&#xA;Contact me: &lt;a href=&quot;mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback&quot; style=&quot;text-decoration:none&quot;&gt;marcosdotnet[at]yahoo.com.ar&lt;/a&gt;&lt;br&gt;&#xD;&#xA;Open Source Library. &lt;a href=&quot;http://sourceforge.net/projects/filehelpers&quot; style=&quot;text-decoration:none&quot;&gt;FileHelpers Dev Home&lt;/a&gt;&#xD;&#xA;&lt;/td&gt;&#xD;&#xA;    &lt;td width=&quot;31&quot; valign=&quot;middle&quot;&gt;&lt;font size=&quot;1&quot;&gt;&lt;a href=&quot;http://www.smartsolutions.com.ar&quot; style=&quot;text-decoration:none&quot;&gt;&lt;img src=&quot;smartsolutions.png&quot; width=&quot;31&quot; height=&quot;38&quot; border=&quot;0&quot;&gt;&lt;/a&gt;&lt;/td&gt;&lt;td width=&quot;120&quot; valign=&quot;middle&quot; &gt;&lt;font size=&quot;1&quot;&gt;&lt;a href=&quot;http://www.smartsolutions.com.ar&quot; style=&quot;text-decoration:none&quot;&gt;SmartSolutions &lt;/a&gt;&lt;/td&gt;&lt;td align=&quot;right&quot; valign=&quot;middle&quot; width=180 &gt;&lt;font size=&quot;1&quot;&gt; &lt;a href=&quot;FAQ.html&quot; class=&quot;style2&quot; style=&quot;text-decoration:none&quot;&gt;Problems ... &lt;br /&gt;Browse the &lt;span class=&quot;style3&quot;&gt;&lt;b&gt;F.A.Q&lt;/b&gt;.&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;&lt;td width=&quot;1&quot;&gt;&lt;a href=&quot;FAQ.html&quot;&gt;&lt;img src=help.png border=0 /&gt;&lt;/a&gt;&lt;/td&gt;&#xD;&#xA;  &lt;/tr&gt;&#xD;&#xA;&lt;/table&gt;&#xD;&#xA;&lt;center&gt;Project Hosted in&lt;br /&gt;&lt;a href=&quot;http://sourceforge.net/&quot;&gt;&lt;img src=&quot;http://sflogo.sourceforge.net/sflogo.php?group_id=152382&amp;type=1&quot; width=88 height=31 alt=&quot;Source Forge&quot; border=&quot;0&quot;&gt;&lt;/a&gt;&lt;/center&gt;&#xD;&#xA;&#xD;&#xA;" />
+            <property name="AdditionalContentResourceDirectory" value=".\Include\" />
+            <property name="ShowMissingSummaries" value="True" />
+            <property name="ShowMissingParams" value="True" />
+            <property name="ShowMissingReturns" value="True" />
+            <property name="ShowMissingValues" value="True" />
+            <property name="DocumentInheritedMembers" value="InstanceAndStatic" />
+            <property name="DocumentInheritedFrameworkMembers" value="False" />
+            <property name="DocumentExplicitInterfaceImplementations" value="True" />
+            <property name="DocumentProtected" value="False" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
+            <property name="IncludeDefaultThreadSafety" value="False" />
+        </documenter>
+        <documenter name="MSDN 2003">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="HtmlHelpName" value="FileHelpers" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+            <property name="CleanIntermediates" value="True" />
+        </documenter>
+        <documenter name="VS.NET 2003">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="HtmlHelpName" value="Documentation" />
+            <property name="Title" value="An NDoc documented library" />
+        </documenter>
+        <documenter name="XML">
+            <property name="OutputFile" value=".\doc\doc.xml" />
+        </documenter>
+    </documenters>
+</project>

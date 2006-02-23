@@ -1,0 +1,3 @@
+ALFKI|"Alfreds Futterkiste"|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|"Ana Trujillo Emparedados y helados""|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
+ANTON|"Antonio Moreno Taquería"|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico

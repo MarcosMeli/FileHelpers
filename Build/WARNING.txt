@@ -1,0 +1,13 @@
+
+This NAnt scripts don´t work (for now) for the .NET 2.0 Solution.
+
+Only works in the .NET 1.1 framework.
+
+The problem is that .Net Solutions of the VS2005 don't are
+supported by solutions task of NAnt in the version 0.85rc3.
+
+I know that if use directly the csc task this problem is solved 
+but I don´t have time to do this every time that I add a file to
+the solution and test it, then if somebody want to do so are welcome !!!
+
+Cheers

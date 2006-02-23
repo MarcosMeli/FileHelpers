@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<codeSmith>
+	<propertySet>
+		<property name="Table">
+			<connectionString>Data Source=(local);Initial Catalog=Northwind;Integrated Security=true;Connection Timeout=1;</connectionString>
+			<providerType>SchemaExplorer.SqlSchemaProvider,SchemaExplorer.SqlSchemaProvider</providerType>
+			<view>
+				<owner>dbo</owner>
+				<name>Orders Qry</name>
+			</view>
+		</property>
+		<property name="ClassName">Employees</property>
+	</propertySet>
+</codeSmith>

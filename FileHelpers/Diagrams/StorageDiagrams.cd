@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="FileHelpers.DataLink.DataBaseStorage">
+    <Position X="0.5" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\DataBaseStorage.cs</FileName>
+      <HashCode>AAACAECgAAAAAAEgAAAEAAAAAAAAAABMAAAAAAEEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.DataLink.AccessStorage">
+    <Position X="0.5" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\AccessStorage.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAEAAAAEAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.DataLink.SqlServerStorage">
+    <Position X="3.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\SqlServerStorage.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAGAAAAEAAABAABAAAAAAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <InheritanceLine Type="FileHelpers.DataLink.DataBaseStorage" FixedToPoint="true">
+      <Path>
+        <Point X="1.875" Y="6.758" />
+        <Point X="1.875" Y="7.125" />
+        <Point X="4.875" Y="7.125" />
+        <Point X="4.875" Y="7.5" />
+      </Path>
+    </InheritanceLine>
+  </Class>
+  <Class Name="FileHelpers.DataLink.DataStorage">
+    <Position X="2" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\DataStorage.cs</FileName>
+      <HashCode>AAAAAAAgAAAAAAAAAAACAAAAAAAAAAAIAAACAAEgAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mErrorManager" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.DataLink.FileStorage">
+    <Position X="3.5" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\FileStorage.cs</FileName>
+      <HashCode>AAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAIBAAAABFAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

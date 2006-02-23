@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<doc>
+
+<examples>
+	<FileHelperEngine>
+		<example>
+			This example show the basic use of the library with minimun code:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void ReadExample()
+	{
+		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+
+		SampleType[] records;	
+		
+		records = (SampleType[]) engine.ReadFile(@"C:\source.txt");
+		
+		// Now "records" array contains all the records in the
+		// sourcefile and can be acceded like this:
+		
+		int sum = records[0].Field2 + records[1].Field2;
+	}
+
+	
+	public void WriteExample()
+	{
+		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		
+		SampleType[] records = new SampleType[1];
+
+		records[0] = new SampleType();
+
+		records[0].Field1 = "Hello World";
+		records[0].Field2 = 12;
+
+		engine.WriteFile(@"C:\destination.txt", records);
+		
+		// Now the file contains the created record in this format:
+		// 
+		// Hello World,12
+		
+	}
+
+		</code>
+		</example>
+	</FileHelperEngine>
+
+
+
+
+
+
+	<WriteFile>
+		<example>
+			This example show the basic use of the library with minimun code:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void WriteExample()
+	{
+		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		
+		SampleType[] records = new SampleType[1];
+
+		records[0] = new SampleType();
+
+		records[0].Field1 = "Hello World";
+		records[0].Field2 = 12;
+
+		engine.WriteFile(@"C:\destination.txt", records);
+		
+		// Now the file contains the created record in this format:
+		// 
+		// Hello World,12
+		
+	}
+
+		</code>
+		</example>
+	</WriteFile>
+
+
+
+	<AppendFile>
+		<example>
+			This example show the basic use of the library with minimun code:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void AppendExample()
+	{
+		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		
+		SampleType[] records = new SampleType[1];
+
+		records[0] = new SampleType();
+
+		records[0].Field1 = "Hello World";
+		records[0].Field2 = 12;
+
+		engine.AppendToFile(@"C:\destination.txt", records);
+		
+		// Now the file contains have one more record at the end:
+		// 
+		// Hello World,12
+		
+	}
+
+		</code>
+		</example>
+	</AppendFile>
+
+
+	<ReadFile>
+		<example>
+			This example show the basic use of the library with minimun code:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void ReadExample()
+	{
+		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+
+		SampleType[] records;	
+		
+		records = (SampleType[]) engine.ReadFile(@"C:\source.txt");
+		
+		// Now "records" array contains all the records in the
+		// sourcefile and can be acceded like this:
+		
+		int sum = records[0].Field2 + records[1].Field2;
+	}
+
+		</code>
+		</example>
+	</ReadFile>
+
+
+
+
+
+
+
+
+
+
+
+	<FileHelperAsyncEngine>
+		<example>
+			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void ReadExample()
+	{
+		SampleType record;	
+
+		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+
+	    engine.BeginReadFile(@"C:\source.txt");
+	    
+	    while( engine.ReadNext() != null )
+	    {
+	       record = (SampleType) engine.LastRecord;
+	       
+	       // put your code here !!!!
+	       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
+	    
+	    }
+	    
+	    engine.EndsRead();
+	}
+
+	
+	public void WriteExample()
+	{
+		SampleType record;	
+
+		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+
+	    engine.BeginWriteFile(@"C:\source.txt");
+	    
+	    record.Field1 = "Primer Registro";
+	    record.Field2 = 1;
+	    engine.WriteNext(record);
+	    
+	    record.Field1 = "Segundo Registro";
+	    record.Field2 = 2;
+	    engine.WriteNext(record);
+
+	    engine.EndsWrite();
+	}
+
+		</code>
+		</example>
+	</FileHelperAsyncEngine>
+
+	<WriteAsync>
+		<example>
+			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void WriteExample()
+	{
+		SampleType record;	
+
+		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+
+	    engine.BeginWriteFile(@"C:\source.txt");
+	    
+	    record.Field1 = "Primer Registro";
+	    record.Field2 = 1;
+	    engine.WriteNext(record);
+	    
+	    record.Field1 = "Segundo Registro";
+	    record.Field2 = 2;
+	    engine.WriteNext(record);
+
+	    engine.EndsWrite();
+	}
+
+		</code>
+		</example>
+	</WriteAsync>
+
+
+
+
+
+
+
+	<ReadAsync>
+		<example>
+			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+<code>
+
+	using FileHelpers;
+	
+	// First declare the record class
+		
+	[Delimitedrecord("|")]
+	public class SampleType
+	{
+		public string Field1;
+		public int    Field2;
+	}
+
+
+	public void ReadExample()
+	{
+		SampleType record;	
+
+		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+
+	    engine.BeginReadFile(@"C:\source.txt");
+	    
+	    while( engine.ReadNext() != null )
+	    {
+	       record = (SampleType) engine.LastRecord;
+	       
+	       // put your code here !!!!
+	       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
+	    
+	    }
+	    
+	    engine.EndsRead();
+	}
+
+		</code>
+		</example>
+	</ReadAsync>
+
+
+
+</examples>
+</doc>

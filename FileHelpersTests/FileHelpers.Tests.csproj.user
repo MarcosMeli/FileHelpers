@@ -1,0 +1,48 @@
+<VisualStudioProject>
+    <CSHARP LastOpenVersion = "7.10.3077" >
+        <Build>
+            <Settings ReferencePath = "D:\_Mis Archivos\Personal\Mis Cursos o Post\www.CodeProject.com\FileHelpers\Source\Libs\;C:\Desarrollo\Tools\NUnit\;D:\__Working\Posts\FileHelpers\CurrentSource\Source\Libs\nunit\" >
+                <Config
+                    Name = "Debug"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Program"
+                    StartArguments = '/assemblyName:"TestDriven.TestRunner.Server, Version=2.0.1273.0, Culture=neutral, PublicKeyToken=50ecb853f8c6b8d2" /xmlName:"M:TestDriven.TestRunner.DebugTestRunner.run(System.String,System.String,System.String,System.String,System.String)" /parameter:"tcp://127.0.0.1:1034/4c7e7193-ccb2-4a84-ada6-ef70172124b3" /parameter:"tcp://127.0.0.1:1034/e5782b59-c4b6-4aef-b1d7-a18251bfa20d" /parameter:"D:\__Working\Posts\FileHelpers\CurrentSource\Source\FileHelpersTests\Release\FileHelpers.Tests.dll" /parameter:"M:FileHelpersTests.MasterDetail.CustomerOrdersRead" /parameter'
+                    StartPage = ""
+                    StartProgram = "C:\Program Files\TestDriven.NET 2.0\ProcessInvocation.exe"
+                    StartURL = ""
+                    StartWorkingDirectory = "C:\Program Files\TestDriven.NET 2.0"
+                    StartWithIE = "true"
+                />
+                <Config
+                    Name = "Release"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Project"
+                    StartArguments = ""
+                    StartPage = ""
+                    StartProgram = ""
+                    StartURL = ""
+                    StartWorkingDirectory = ""
+                    StartWithIE = "true"
+                />
+            </Settings>
+        </Build>
+        <OtherProjectSettings
+            CopyProjectDestinationFolder = ""
+            CopyProjectUncPath = ""
+            CopyProjectOption = "0"
+            ProjectView = "ProjectFiles"
+            ProjectTrust = "0"
+        />
+    </CSHARP>
+</VisualStudioProject>
+

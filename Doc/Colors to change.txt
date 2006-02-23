@@ -1,0 +1,10 @@
+En index.html y contents.html cambiar el color
+
+	# 6699CC
+
+por el:
+
+	# 1A40A5
+	
+	
+El ancho cambiarlo a 220

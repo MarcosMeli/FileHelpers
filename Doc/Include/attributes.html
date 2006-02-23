@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="mailto:filehelpers-general-request@lists.sourceforge.net?subject=subscribe"><img src="email.gif" width="24" height="24" border="0" alt="Subscribe to the mailing list."></a><a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
+                    &nbsp; </td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="examples.html" class="bar_link">Examples</a> - 
+                            <a href="FAQ.html" class="bar_link">F.A.Q.</a> - 
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv>
+        <p>
+            <strong>Note:</strong> VB.NET developers browse the <a href="vb_tips.html">Tips for
+                VB.NET</a> first.</p>
+        <h2>Attributes List </h2>
+    <p>
+        <strong>Attributes for the record mapping class</strong></p>
+        <ul>
+          <li><a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecordAttribute</a>: Indicates a fixed length record file.
+            <blockquote>
+              <pre>[FixedLengthRecord] 
+<span class="cpp-keyword">public class</span> OrdersFixed
+{ ...</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecordAttribute</a>: Indicates a delimited record file. 
+            <blockquote>
+              <pre>[DelimitedRecord(<span class="cs-string">"|"</span>)] 
+<span class="cs-keyword">public class</span> OrdersVerticalBar 
+{ ...
+
+</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirstAttribute</a>: Indicates the numbers of lines to be <strong>ignored at the begining</strong> of a file or
+              stream when the engine read it.<blockquote>
+              <pre>[IgnoreFirst(<span class="cs-string">2</span>)] 
+<span class="cs-keyword">public class</span> OrdersVerticalBar 
+{ ...
+
+
+</pre>
+            </blockquote>
+          </li>
+
+          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLastAttribute</a>: Indicates the numbers of lines to be <strong>ignored at the end</strong> of a file or stream
+              when the engine read it.<blockquote>
+              <pre>
+[IgnoreLast(<span class="cs-string">2</span>)] 
+<span class="cs-keyword">public class</span> OrdersVerticalBar 
+{ ...
+
+
+</pre>
+            </blockquote>
+          </li>
+
+        </ul>
+        <p><strong>Attributes for the fields inside the class</strong></p>
+        <ul>
+          <li><a href="FileHelpers.FieldFixedLengthAttribute.html">FieldFlixedLength</a>: Indicates the length of the record (only valid when the class have a <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecordAttribute</a>)
+            <blockquote>
+              <pre>[FieldFixedLength(<span class="cs-literal">12</span>)]
+<span class="cs-keyword">public string</span> CustomerID;</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldDelimiterAttribute.html">FieldDelimiter</a>: Indicates a diferent delimiter for this field (only valid when the class have a <a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecordAttribute</a>)          
+          <blockquote>
+            <pre>[FieldDelimiter(<span class="cs-string">","</span>)]
+<span class="cs-keyword">public string</span> CustomerName;
+            </pre>
+          </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldConverterAttribute.html">FieldConverter</a>: Indicates converter used to to provide string to field type convertion and viceversa. And can add a list of parameters that pass directly to the constructor of the converter, in the example is a string that represents a format of the Date field. 
+            <blockquote>
+              <pre>[FieldConverter(<a href="FileHelpers.ConverterKind.html">ConverterKind</a>.Date, <span class="cs-string">"ddMMyyyy"</span> )]
+<span class="cs-keyword">public DateTime</span> ShippedDate;</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldQuotedAttribute.html">FieldQuoted</a>: Indicates that the field must be read and written like a Quoted String. 
+          <blockquote>
+            <pre>[FieldQuoted()]<span class="cs-keyword">
+public string </span>CustomerName</pre>
+          </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldNullValueAttribute.html">FieldNullValue</a>: Indicates a default value is the field position is empty.
+            <blockquote>
+              <pre>[FieldNullValue(<span class="cs-keyword">typeof</span>(<span class="cs-keyword">DateTime</span>), <span class="cs-string">"2005-1-1"</span> )]
+<span class="cs-keyword">public DateTime</span> ShippedDate
+
+</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldTrimAttribute.html">FieldTrim</a>: Indicates what type of trim must be perfomed later of <strong>read</strong> a field value (see <a href="FileHelpers.TrimMode.html">TrimMode</a>).
+            <blockquote>
+              <pre>[FieldTrim(<a href="FileHelpers.TrimMode.html">TrimMode</a>.Both)]<span class="cs-keyword">
+public string</span> CustomerName</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.FieldAlignAttribute.html">FieldAlign</a>: Indicates what type of aligment and align char that must be used before <strong>write</strong> a field value (see <a href="FileHelpers.AlignMode.html">AlignMode</a>).
+            <blockquote>
+              <pre>[FieldAlign(<a href="FileHelpers.AlignMode.html">AlignMode</a>.Right, <span class="cs-string">'0'</span>)]<span class="cs-keyword">
+public int </span>Going_to_the_Right</pre>
+            </blockquote>
+          </li>
+        <li><a href="FileHelpers.FieldIgnoredAttribute.html">FieldIgnored</a>: Indicates that
+            the target field is ignored by the engine. 
+    <blockquote>
+        <pre>[FieldIgnored()]
+<span class="cs-keyword">public int </span>Why_Ignore_Me</pre>
+</li>
+    </ul>    
+    <br />
+            
+        <hr align="left" />
+      <div >
+<table width="100%" >
+  <tr><td class="SmallText">
+Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
+Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
+Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
+</td>
+    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="middle" class="SmallText"> <a href="FAQ.html" >Problems ? ... <br />browse the <b>F.A.Q</b>.</a></td><td width="1"><a href="FAQ.html"><img src=help.png border=0 /></a></td>
+  </tr>
+</table>
+</div>
+                    <center>Project Hosted in<br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a></center>
+
+</div>
+</tr>
+<tr>
+  <td>
+</tr>
+</table>
+
+</BODY></HTML>

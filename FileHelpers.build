@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<project name="DevFramework" default="release">
+    <property name="BaseDir" value="&quot;.\&quot;" />
+    <property name="LibraryVersion" value="1.3.5" />
+    <property name="LibraryFileVersion" value="1_3_5" />
+
+    <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
+    <property name="Source2005" value="_Source2005" />
+
+    <target name="clean">
+    
+        <delete>
+            <fileset basedir="..\AutoBuild\${LibraryVersion}">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+
+        <delete>
+            <fileset basedir="..\Release">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+    </target>
+    
+    <target name="release" depends="clean">
+        <solution solutionfile="FileHelpers.sln" configuration="Release" verbose="False" />
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
+            <fileset>
+                <include name="*.url" />
+            </fileset>
+        </copy>
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
+            <fileset>
+                <include name="TemplatesCS/**" />
+            </fileset>
+        </copy>
+        <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
+
+        <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\ReleaseDemo" />
+        
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_demo.zip" ziplevel="9">
+            <fileset basedir="..\ReleaseDemo">
+                <include name="*.dll" />
+                <include name="*.mdb" />
+                <include name="*.exe" />
+            </fileset>
+        </zip>
+    </target>
+    <target name="document" depends="release">
+        <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
+        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
+        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
+
+        <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
+        <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
+
+        <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
+        <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />
+
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
+            <fileset basedir="..\Release\Doc">
+                <include name="**/*" />
+                <exclude name=".svn" />
+            </fileset>
+        </zip>
+    </target>
+    
+    <target name="test" depends="release" />
+    
+    <target name="package" depends="release">
+    
+        <exec program="DelTemps.bat" workingdir="." failonerror="false" />
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
+            <fileset basedir=".">
+                <include name="*/**" />
+                <exclude name="FileHelpers.WizardApp/**/*" />
+            </fileset>
+        </zip>
+        
+    </target>
+
+    <target name="genrelease" depends="all">
+
+        <delete>
+            <fileset basedir="..\${Source2005}">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+        <copy todir="..\${Source2005}">
+            <fileset>
+                <include name="*/**" />
+            </fileset>
+        </copy>
+        
+
+
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpersCompact.csdproj&quot; &quot;..\..\Release\DotNet 1.1 PPC&quot; &quot;..\..\Release\DotNet 2.0 PPC&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+
+
+        <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
+
+        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2831" workingdir="Libs" />
+        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 950" workingdir="Libs" />
+
+        <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
+
+        <delete>
+            <fileset basedir="..\${Source2005}\Backup">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+        <delete>
+            <fileset basedir="..\${Source2005}\_UpgradeReport_Files">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+        <delete>
+            <fileset basedir="..\${Source2005}">
+                <include name="UpgradeLog.XML" />
+                <include name="UpgradeLog.XML" />
+            </fileset>
+        </delete>
+
+        <delete>
+            <fileset basedir="..\Release\Wizard">
+                <include name="FileHelpers.xml" />
+            </fileset>
+        </delete>
+
+        <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
+        
+
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
+            <fileset basedir="..\${Source2005}">
+                <include name="*/**" />
+                <exclude name=".svn" />
+            </fileset>
+        </zip>
+        
+        <delete>
+            <fileset basedir="..\${Source2005}">
+                <include name="*/**" />
+            </fileset>
+        </delete>
+
+    </target>
+    <target name="all" depends="document,test,package" />
+</project>

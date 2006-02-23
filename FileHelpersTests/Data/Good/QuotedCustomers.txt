@@ -1,0 +1,10 @@
+ALFKI|"Alfreds Futterkiste"|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|"Ana Trujillo Emparedados y helados"|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
+ANTON|"Antonio Moreno Taquería"|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+AROUT|"Around the Horn"|Thomas Hardy|Sales Representative|120 Hanover Sq.|London|UK
+BERGS|"Berglunds snabbkp"|Christina Berglund|Order Administrator|Berguvsvägen  8|Luleå|Sweden
+BLAUS|"Blauer See Delikatessen"|Hanna Moos|Sales Representative|Forsterstr. 57|Mannheim|Germany
+BLONP|"Blondesddsl père et fils"|Frédérique Citeaux|Marketing Manager|24, place Kléber|Strasbourg|France
+BOLID|"Bólido Comidas preparadas"|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain
+BONAP|"Bon app'"|Laurence Lebihan|Owner|12, rue des Bouchers|Marseille|France
+BOTTM|"Bottom-Dollar Markets"|Elizabeth Lincoln|Accounting Manager|23 Tsawassen Blvd.|Tsawassen|Canada
