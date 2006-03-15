@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 
 namespace FileHelpers
 {
@@ -20,22 +21,22 @@ namespace FileHelpers
 
 		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class. with the specified <see cref="ErrorMode"/>.</summary>
 		/// <param name="mode">Indicates the error behavior of the class.</param>
-		public ErrorManager(ErrorMode mode) : this()
+		public ErrorManager(ErrorMode mode)
 		{
 			mErrorMode = mode;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class. with the specified <see cref="ErrorMode"/> for browse previusly saved errors.</summary>
-		/// <param name="fileName">Indicates the fileName from where the Manager load the errors.</param>
-		public ErrorManager(string fileName) : this()
-		{
-			LoadErrors(fileName);
-		}
-
 		ArrayList mErrorsArray = new ArrayList();
 
-		/// <summary>Is an array of <see cref="ErrorInfo"/> that contains the errors of the last operation in this class.</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Obsolete("This property name is obsolete use Errors instead.")]
 		public ErrorInfo[] LastErrors
+		{
+			get { return Errors; }
+		}
+
+		/// <summary>Is an array of <see cref="ErrorInfo"/> that contains the errors of the last operation in this class.</summary>
+		public ErrorInfo[] Errors
 		{
 			get { return (ErrorInfo[]) mErrorsArray.ToArray(typeof (ErrorInfo)); }
 		}
@@ -79,19 +80,26 @@ namespace FileHelpers
 		/// <param name="fileName">The file that contains the errors.</param>
 		public void SaveErrors(string fileName)
 		{
+			SaveErrors(fileName, "FileHelpers Errors Saved at " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
+		}
+
+		/// <summary>Saves the contained errors to the specified file.</summary>
+		/// <param name="fileName">The file that contains the errors.</param>
+		/// <param name="header">The header line of the errors file.</param>
+		public void SaveErrors(string fileName, string header)
+		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (ErrorInfo));
-			engine.HeaderText = "FileHelper Errors Saved at " + DateTime.Now.ToLongDateString();
-			engine.WriteFile(fileName, LastErrors);
+			engine.HeaderText = header;
+			engine.WriteFile(fileName, Errors);
 
 		}
 
 		/// <summary>Load errors from a file.</summary>
 		/// <param name="fileName">The file that contains the errors.</param>
-		public void LoadErrors(string fileName)
+		public static ErrorInfo[] LoadErrors(string fileName)
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (ErrorInfo));
-			ClearErrors();
-			mErrorsArray.AddRange(engine.ReadFile(fileName));
+			return (ErrorInfo[]) engine.ReadFile(fileName);
 		}
 
 	}

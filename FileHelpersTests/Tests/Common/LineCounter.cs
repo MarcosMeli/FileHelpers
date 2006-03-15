@@ -18,7 +18,7 @@ namespace FileHelpersTests.Common
 			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(5, engine.LineNum);
+			Assert.AreEqual(5, engine.LineNumber);
 		}
 
 
@@ -29,25 +29,25 @@ namespace FileHelpersTests.Common
 
 			SampleType rec1, rec2;
 
-			Assert.AreEqual(0, asyncEngine.LineNum);
+			Assert.AreEqual(0, asyncEngine.LineNumber);
 			TestCommon.BeginReadTest(asyncEngine, @"Good\test1.txt");
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);
-			Assert.AreEqual(1, asyncEngine.LineNum);
+			Assert.AreEqual(1, asyncEngine.LineNumber);
 
 			rec2 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);
-			Assert.AreEqual(2, asyncEngine.LineNum);
+			Assert.AreEqual(2, asyncEngine.LineNumber);
 
 			Assert.IsTrue(rec1 != rec2);
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec2);
-			Assert.AreEqual(3, asyncEngine.LineNum);
+			Assert.AreEqual(3, asyncEngine.LineNumber);
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec2);
-			Assert.AreEqual(4, asyncEngine.LineNum);
+			Assert.AreEqual(4, asyncEngine.LineNumber);
 
 			Assert.IsTrue(rec1 != rec2);
 

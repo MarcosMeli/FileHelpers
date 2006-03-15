@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -9,13 +9,13 @@ using System;
 namespace FileHelpers.DataLink
 {
 	/// <summary>
-	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to run use this feature.</b></para>
-	/// <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
 	/// This class has the responsability to enable the two directional
 	/// transformation.
 	/// <list type="bullet">
 	/// <item> Excel &lt;-> DataStorage</item>
 	/// </list>
+	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
+	/// <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
 	/// </summary>
 	/// <remarks>
 	/// <para>Uses an <see cref="DataStorage"/> to accomplish this task.</para>

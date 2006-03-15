@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -41,7 +41,7 @@ namespace FileHelpers.DataLink
 			e.mLineNumber = lineNumber;
 //			e.mColumnNumber = colNum;
 			e.mExceptionInfo = ex;
-	  	    
+
 			mErrorManager.AddError(e);
 		}
 
@@ -49,6 +49,12 @@ namespace FileHelpers.DataLink
 		protected DataStorage()
 		{
 		}
-
+/// <summary>Creates an instance of the RecordInfo class. This method is used because hte constructor of the record info is internal.</summary>
+/// <param name="recordClass">The class passed to the RecordInfo constructor.</param>
+/// <returns>A RecordInfo instance.</returns>
+		protected static RecordInfo CreateRecordInfo(Type recordClass)
+		{
+			return new RecordInfo(recordClass);
+		}
 	}
 }

@@ -1,64 +1,61 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar"
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar"
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
 #endregion
 
 using System;
-using System.IO;
-using System.Reflection;
 using System.Collections;
+using System.IO;
 
 namespace FileHelpers
 {
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 	public sealed class FileHelperAsyncEngine : EngineBase
-    {
-        #region "  Constructor  "
-        
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+	{
+		#region "  Constructor  "
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
 		public FileHelperAsyncEngine(Type recordType) : base(recordType)
-		{}
+		{
+		}
 
-        #endregion
+		#endregion
 
-        ForwardReader mAsyncReader;
-        TextWriter mAsyncWriter;
-        
-        #region "  LastRecord  "
+		ForwardReader mAsyncReader;
+		TextWriter mAsyncWriter;
 
-        private object mLastRecord;
+		#region "  LastRecord  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
-        public object LastRecord
-        {
-            get { return mLastRecord; }
-        }
+		private object mLastRecord;
 
-        #endregion
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+		public object LastRecord
+		{
+			get { return mLastRecord; }
+		}
 
+		#endregion
 
-        #region "  BeginReadStream"
+		#region "  BeginReadStream"
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
-		public bool BeginReadStream(TextReader reader)
+		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)
 				throw new BadUsageException("The TextReader can´t be null.");
 
-			try
-			{
 				ResetFields();
 				mHeaderText = String.Empty;
-                mFooterText = String.Empty;
+				mFooterText = String.Empty;
 
 				if (mRecordInfo.mIgnoreFirst > 0)
 				{
 					for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
 					{
 						string temp = reader.ReadLine();
-						mLineNum++;
+						mLineNumber++;
 						if (temp != null)
 							mHeaderText += temp + "\r\n";
 						else
@@ -67,184 +64,191 @@ namespace FileHelpers
 				}
 
 				mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
-                mAsyncReader.DiscardForward = true;
+				mAsyncReader.DiscardForward = true;
+		}
 
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-        }
+		#endregion
 
-        #endregion
+		#region "  BeginReadFile  "
 
-        #region "  BeginReadFile  "
-
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
-		public bool BeginReadFile(string fileName)
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
+		public void BeginReadFile(string fileName)
 		{
-			try
-			{
-				return BeginReadStream(new StreamReader(fileName, mEncoding, true));
-			}
-			catch
-			{
-				return false;
-			}
-        }
+			BeginReadStream(new StreamReader(fileName, mEncoding, true));
+		}
 
-        #endregion
+		#endregion
 
-        #region "  ReadNext  "
+		#region "  ReadNext  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
 		public object ReadNext()
 		{
 			if (mAsyncReader == null)
 				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
-            
-            ReadNextRecord();
+
+			ReadNextRecord();
 
 			return mLastRecord;
 		}
 
-        private void ReadNextRecord()
-        {
+		private void ReadNextRecord()
+		{
+			string currentLine = mAsyncReader.ReadNextLine();
+			mLineNumber++;
 
-            string currentLine = mAsyncReader.ReadNextLine();
-            mLineNum++;
+			bool byPass = false;
 
-            if (currentLine != null)
-            {
-                mTotalRecords++;
-                mLastRecord = mRecordInfo.StringToRecord(currentLine);
-            }
-            else
-            {
-                mLastRecord = null;
+			mLastRecord = null;
 
-                if (mRecordInfo.mIgnoreLast > 0)
-                    mFooterText = mAsyncReader.RemainingText;
+			while (true)
+			{
+				if (currentLine != null)
+				{
+					try
+					{
+						mTotalRecords++;
+						mLastRecord = mRecordInfo.StringToRecord(currentLine);
+						byPass = true;
+						return;
+					}
+					catch (Exception ex)
+					{
+						switch (mErrorManager.ErrorMode)
+						{
+							case ErrorMode.ThrowException:
+								byPass = true;
+								throw;
+							case ErrorMode.IgnoreAndContinue:
+								break;
+							case ErrorMode.SaveAndContinue:
+								ErrorInfo err = new ErrorInfo();
+								err.mLineNumber = mLineNumber;
+								err.mExceptionInfo = ex;
+								//							err.mColumnNumber = mColumnNum;
+								err.mRecordString = currentLine;
 
-                try
-                {
-                    mAsyncReader.Close();
-                }
-                catch
-                {
-                }
+								mErrorManager.AddError(err);
+								break;
+						}
+					}
+					finally
+					{
+						if (byPass == false)
+						{
+							currentLine = mAsyncReader.ReadNextLine();
+							mLineNumber++;
+						}
+					}
+				}
+				else
+				{
+					mLastRecord = null;
 
-            }
-        }
+					if (mRecordInfo.mIgnoreLast > 0)
+						mFooterText = mAsyncReader.RemainingText;
+
+					try
+					{
+						mAsyncReader.Close();
+					}
+					catch
+					{
+					}
+
+					return;
+				}
+			}
+		}
 
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
-        public object[] ReadNexts(int numberOfRecords)
-        {
-            if (mAsyncReader == null)
-                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
+		public object[] ReadNexts(int numberOfRecords)
+		{
+			if (mAsyncReader == null)
+				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-            ArrayList arr = new ArrayList(numberOfRecords);
+			ArrayList arr = new ArrayList(numberOfRecords);
 
-            for (int i = 0; i < numberOfRecords; i++)
-            {
-                ReadNextRecord();
-                if (mLastRecord != null)
-                    arr.Add(mLastRecord);
-                else
-                    break;
-            }
+			for (int i = 0; i < numberOfRecords; i++)
+			{
+				ReadNextRecord();
+				if (mLastRecord != null)
+					arr.Add(mLastRecord);
+				else
+					break;
+			}
 
-            return (object[]) arr.ToArray(RecordType);
-        }
+			return (object[]) arr.ToArray(RecordType);
+		}
 
+		#endregion
 
-        #endregion
+		#region "  EndsRead  "
 
-        #region "  EndsRead  "
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
+		public void EndsRead()
+		{
+			try
+			{
+				if (mAsyncReader != null)
+					mAsyncReader.Close();
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
-        public void EndsRead()
-        {
-            try
-            {
-                if (mAsyncReader != null)
-                    mAsyncReader.Close();
-            }
-            catch
-            {
-            }
-        }
+                mAsyncReader = null;
+			}
+			catch
+			{
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region "  BeginWriteStream"
+		#region "  BeginWriteStream"
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
-        public bool BeginWriteStream(TextWriter writer)
-        {
-            try
-            {
-                ResetFields();
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
+		public void BeginWriteStream(TextWriter writer)
+		{
+				ResetFields();
+				mAsyncWriter = writer;
+				WriteHeader();
+		}
 
-                mAsyncWriter = writer;
+		private void WriteHeader()
+		{
+			if (mHeaderText != null && mHeaderText != string.Empty)
+				if (mHeaderText.EndsWith("\r\n"))
+					mAsyncWriter.Write(mHeaderText);
+				else
+					mAsyncWriter.WriteLine(mHeaderText);
+		}
 
-                WriteHeader();
+		#endregion
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+		#region "  BeginWriteFile  "
 
-        private void WriteHeader()
-        {
-            if (mHeaderText != null && mHeaderText != string.Empty)
-                if (mHeaderText.EndsWith("\r\n"))
-                    mAsyncWriter.Write(mHeaderText);
-                else
-                    mAsyncWriter.WriteLine(mHeaderText);
-        }
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
+		public void BeginWriteFile(string fileName)
+		{
+			BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+		}
 
-        #endregion
+		#endregion
 
-        #region "  BeginWriteFile  "
+		#region "  BeginappendToFile  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
-        public bool BeginWriteFile(string fileName)
-        {
-            try
-            {
-                return BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
-            }
-            catch
-            {
-                return false;
-            }
-        }
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
+		public void BeginAppendToFile(string fileName)
+		{
+			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, true);
+			mHeaderText = String.Empty;
+			mFooterText = String.Empty;
+		}
 
-        #endregion
+		#endregion
 
-        #region "  BeginappendToFile  "
+		#region "  WriteNext  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
-        public bool BeginAppendToFile(string fileName)
-        {
-            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, true);
-            mHeaderText = String.Empty;
-            mFooterText = String.Empty;
-
-            return true;
-        }
-
-        #endregion
-
-        #region "  WriteNext  "
-
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
 		public void WriteNext(object record)
 		{
 			if (mAsyncWriter == null)
@@ -256,86 +260,86 @@ namespace FileHelpers
 			if (RecordType.IsAssignableFrom(record.GetType()) == false)
 				throw new BadUsageException("The record must be of type: " + RecordType.Name);
 
-            WriteRecord(record);
+			WriteRecord(record);
 		}
 
-        private void WriteRecord(object record)
-        {
-            string currentLine = null;
-            
-            try
-            {
-                mLineNum++;
-                mTotalRecords++;
+		private void WriteRecord(object record)
+		{
+			string currentLine = null;
 
-                currentLine = mRecordInfo.RecordToString(record);
-                mAsyncWriter.WriteLine(currentLine);
-            }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
-                    case ErrorMode.ThrowException:
-                        throw;
-                    case ErrorMode.IgnoreAndContinue:
-                        break;
-                    case ErrorMode.SaveAndContinue:
-                        ErrorInfo err = new ErrorInfo();
-                        err.mLineNumber = mLineNum;
-                        err.mExceptionInfo = ex;
-                        //							err.mColumnNumber = mColumnNum;
-                        err.mRecordString = currentLine;
-                        mErrorManager.AddError(err);
-                        break;
-                }
-            }
+			try
+			{
+				mLineNumber++;
+				mTotalRecords++;
 
-        }
+				currentLine = mRecordInfo.RecordToString(record);
+				mAsyncWriter.WriteLine(currentLine);
+			}
+			catch (Exception ex)
+			{
+				switch (mErrorManager.ErrorMode)
+				{
+					case ErrorMode.ThrowException:
+						throw;
+					case ErrorMode.IgnoreAndContinue:
+						break;
+					case ErrorMode.SaveAndContinue:
+						ErrorInfo err = new ErrorInfo();
+						err.mLineNumber = mLineNumber;
+						err.mExceptionInfo = ex;
+						//							err.mColumnNumber = mColumnNum;
+						err.mRecordString = currentLine;
+						mErrorManager.AddError(err);
+						break;
+				}
+			}
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
-        public void WriteNexts(object[] records)
-        {
-            if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+		}
 
-            if (records == null)
-                throw new BadUsageException("The record to write can´t be null.");
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
+		public void WriteNexts(object[] records)
+		{
+			if (mAsyncWriter == null)
+				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
-            if (records.Length == 0)
-                return;
+			if (records == null)
+				throw new BadUsageException("The record to write can´t be null.");
 
-            if (RecordType.IsAssignableFrom(records[0].GetType()) == false)
-                throw new BadUsageException("The record must be of type: " + RecordType.Name);
+			if (records.Length == 0)
+				return;
 
-            foreach (object rec in records)
-            {
-                WriteRecord(rec);
-            }
-                        
-        }
+			if (RecordType.IsAssignableFrom(records[0].GetType()) == false)
+				throw new BadUsageException("The record must be of type: " + RecordType.Name);
+
+			foreach (object rec in records)
+			{
+				WriteRecord(rec);
+			}
+
+		}
 
 		#endregion
 
-        #region "  EndsWrite  "
+		#region "  EndsWrite  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsWrite/*'/>
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsWrite/*'/>
 		public void EndsWrite()
 		{
 			try
 			{
-                if (mAsyncWriter != null)
-                {
-                    if (mFooterText != null && mFooterText != string.Empty)
-                        if (mFooterText.EndsWith("\r\n"))
-                            mAsyncWriter.Write(mFooterText);
-                        else
-                            mAsyncWriter.WriteLine(mFooterText);
+				if (mAsyncWriter != null)
+				{
+					if (mFooterText != null && mFooterText != string.Empty)
+						if (mFooterText.EndsWith("\r\n"))
+							mAsyncWriter.Write(mFooterText);
+						else
+							mAsyncWriter.WriteLine(mFooterText);
 
-                    mAsyncWriter.Close();
-                    mAsyncWriter = null;
+					mAsyncWriter.Close();
+					mAsyncWriter = null;
 
-                
-                }
+
+				}
 
 			}
 			catch
@@ -345,6 +349,5 @@ namespace FileHelpers
 		}
 
 		#endregion
-
-    }
+	}
 }

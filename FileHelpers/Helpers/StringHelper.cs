@@ -1,15 +1,17 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Text;
 
 namespace FileHelpers
 {
 	/// <summary>Helper Class to manipulate Strings.</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public sealed class StringHelper
 	{
 		private StringHelper()
@@ -30,11 +32,11 @@ namespace FileHelpers
 
 
 			if (source == null || source.Length == 0)
-				throw new QuotedStringException("An empty String can be parsed like an QuotedString try to use SafeExtractQuotedString");
+				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
 
 
 			if (source[0] != quoteChar)
-				throw new QuotedStringException("the source string not begins with the quote char.", source);
+				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
 
 			index = 0;
 			int i = 1;
@@ -75,8 +77,7 @@ namespace FileHelpers
 				return res.ToString();
 			}
 			else
-				throw new QuotedStringException("The current record has an UnClosed quoted string.", source);
-
+				throw new BadUsageException("The current field has an UnClosed quoted string. Complete line: " + source);
 		}
 
 		#endregion

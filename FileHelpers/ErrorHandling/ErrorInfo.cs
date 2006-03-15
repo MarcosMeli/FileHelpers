@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -14,7 +14,8 @@ namespace FileHelpers
 	public sealed class ErrorInfo
 	{
 		internal ErrorInfo()
-		{}
+		{
+		}
 
 		internal int mLineNumber;
 
@@ -41,8 +42,7 @@ namespace FileHelpers
 			get { return mRecordString; }
 		}
 
-		[FieldConverter(typeof(ExceptionConverter))]
-		internal Exception mExceptionInfo;
+		[FieldConverter(typeof (ExceptionConverter))] internal Exception mExceptionInfo;
 
 		/// <summary>The exception that indicates the error.</summary>
 		public Exception ExceptionInfo
@@ -50,18 +50,17 @@ namespace FileHelpers
 			get { return mExceptionInfo; }
 		}
 
-		internal class ExceptionConverter: ConverterBase
+		internal class ExceptionConverter : ConverterBase
 		{
-
 			public override string FieldToString(object from)
 			{
 				if (from == null)
 					return String.Empty;
 				else
-#if !MINI
-					return ((Exception)from).Message.Replace(Environment.NewLine, " -> ");
+#if ! MINI
+					return ((Exception) from).Message.Replace(Environment.NewLine, " -> ");
 #else
-					return ((Exception)from).Message.Replace("\r\n", " -> ");
+				return ((Exception) from).Message.Replace("\r\n", " -> ");
 #endif
 			}
 

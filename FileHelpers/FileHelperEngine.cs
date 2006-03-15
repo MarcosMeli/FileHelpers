@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -9,12 +9,14 @@ using System.Collections;
 using System.IO;
 using System.Text;
 
+
 namespace FileHelpers
 {
 	/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
 	public sealed class FileHelperEngine : EngineBase
 	{
+
 		#region "  Constructor  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
@@ -52,16 +54,16 @@ namespace FileHelpers
 
 			ResetFields();
 			mHeaderText = String.Empty;
-            mFooterText = String.Empty;
+			mFooterText = String.Empty;
 
 			ArrayList resArray = new ArrayList();
 
-            ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
-            freader.DiscardForward = true;
+			ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
+			freader.DiscardForward = true;
 
-            string currentLine, completeLine;
+			string currentLine, completeLine;
 
-			mLineNum = 1;
+			mLineNumber = 1;
 
 			completeLine = freader.ReadNextLine();
 			currentLine = completeLine;
@@ -72,18 +74,18 @@ namespace FileHelpers
 				{
 					mHeaderText += currentLine + "\r\n";
 					currentLine = freader.ReadNextLine();
-					mLineNum++;
+					mLineNumber++;
 				}
 			}
 
 
 			bool byPass = false;
 
-            while (currentLine != null)
+			while (currentLine != null)
 			{
 				try
 				{
-                    mTotalRecords++;
+					mTotalRecords++;
 					resArray.Add(mRecordInfo.StringToRecord(currentLine));
 				}
 				catch (Exception ex)
@@ -97,7 +99,7 @@ namespace FileHelpers
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNum;
+							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
@@ -112,18 +114,18 @@ namespace FileHelpers
 					{
 						currentLine = freader.ReadNextLine();
 						completeLine = currentLine;
-						mLineNum++;
+						mLineNumber++;
 					}
 				}
 
 			}
 
-            if (mRecordInfo.mIgnoreLast > 0)
-            {
-                mFooterText = freader.RemainingText;
-            }
+			if (mRecordInfo.mIgnoreLast > 0)
+			{
+				mFooterText = freader.RemainingText;
+			}
 
-            return (object[]) resArray.ToArray(RecordType);
+			return (object[]) resArray.ToArray(RecordType);
 		}
 
 		#endregion
@@ -133,10 +135,10 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
 		public object[] ReadString(string source)
 		{
-            StringReader reader = new StringReader(source);
+			StringReader reader = new StringReader(source);
 			object[] res = ReadStream(reader);
-            reader.Close();
-            return res;
+			reader.Close();
+			return res;
 		}
 
 		#endregion
@@ -144,20 +146,18 @@ namespace FileHelpers
 		#region "  WriteFile  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
-		public bool WriteFile(string fileName, object[] records)
+		public void WriteFile(string fileName, object[] records)
 		{
-			return WriteFile(fileName, records, -1);
+			WriteFile(fileName, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
-		public bool WriteFile(string fileName, object[] records, int maxRecords)
+		public void WriteFile(string fileName, object[] records, int maxRecords)
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
 			{
-				bool res;
-				res = WriteStream(fs, records, maxRecords);
+				WriteStream(fs, records, maxRecords);
 				fs.Close();
-				return res;
 			}
 
 		}
@@ -167,19 +167,22 @@ namespace FileHelpers
 		#region "  WriteStream  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
-		public bool WriteStream(TextWriter writer, object[] records)
+		public void WriteStream(TextWriter writer, object[] records)
 		{
-			return WriteStream(writer, records, -1);
+			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
-		public bool WriteStream(TextWriter writer, object[] records, int maxRecords)
+		public void WriteStream(TextWriter writer, object[] records, int maxRecords)
 		{
 			if (writer == null)
 				throw new ArgumentNullException("writer", "The writer of the Stream can be null");
 
 			if (records == null)
 				throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
+
+			if (records.Length > 0 && records[0] != null && mRecordInfo.mRecordType.IsInstanceOfType(records[0]) == false)
+				throw new BadUsageException("This engine works with record of type " + mRecordInfo.mRecordType.Name + " and you use records of type " + records[0].GetType().Name );
 
 			ResetFields();
 
@@ -203,6 +206,9 @@ namespace FileHelpers
 			{
 				try
 				{
+					if (records[i] == null)
+						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
+
 					currentLine = mRecordInfo.RecordToString(records[i]);
 					writer.WriteLine(currentLine);
 				}
@@ -216,7 +222,7 @@ namespace FileHelpers
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNum;
+							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = currentLine;
@@ -229,14 +235,13 @@ namespace FileHelpers
 
 			mTotalRecords = records.Length;
 
-            if (mFooterText != null && mFooterText != string.Empty)
-                if (mFooterText.EndsWith("\r\n"))
-                    writer.Write(mFooterText);
-                else
-                    writer.WriteLine(mFooterText);
+			if (mFooterText != null && mFooterText != string.Empty)
+				if (mFooterText.EndsWith("\r\n"))
+					writer.Write(mFooterText);
+				else
+					writer.WriteLine(mFooterText);
 
-			return true;
-		}
+    	}
 
 		#endregion
 
@@ -254,8 +259,8 @@ namespace FileHelpers
 			StringBuilder sb = new StringBuilder();
 			StringWriter writer = new StringWriter(sb);
 			WriteStream(writer, records, maxRecords);
-            string res = writer.ToString();
-            writer.Close();
+			string res = writer.ToString();
+			writer.Close();
 			return res;
 		}
 
@@ -264,26 +269,38 @@ namespace FileHelpers
 		#region "  AppendToFile  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile1/*'/>
-		public bool AppendToFile(string fileName, object record)
+		public void AppendToFile(string fileName, object record)
 		{
-			return AppendToFile(fileName, new object[] {record});
+			AppendToFile(fileName, new object[] {record});
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
-		public bool AppendToFile(string fileName, object[] records)
+		public void AppendToFile(string fileName, object[] records)
 		{
-			TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false);
+            
+            using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
+            {
+                mHeaderText = String.Empty;
+                mFooterText = String.Empty;
 
-            mHeaderText = String.Empty;
-            mFooterText = String.Empty;
-
-            bool res;
-			res = WriteStream(writer, records);
-			writer.Close();
-
-			return res;
+                WriteStream(writer, records);
+                writer.Close();
+            }
 		}
 
 		#endregion
+
+		//		#if ! MINI
+		//		ProgressMode mProgressMode = ProgressMode.DontNotify;
+		//		#endif
+
+		//		public static int DataTableToCVS(DataTable dt, string fileName)
+		//		{
+		//			FileHelperEngine engine = new FileHelperEngine();
+		//			engine.mRecordInfo = new RecordInfo();
+		//			//engine.mRecordInfo
+		////			mRecordInfo.AddFields(new FieldBase[] {});
+		//		}
+
 	}
 }

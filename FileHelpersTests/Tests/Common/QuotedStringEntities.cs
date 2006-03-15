@@ -9,7 +9,6 @@ namespace FileHelpersTests.Common
 	{
 		FileHelperEngine engine;
 
-
 		[Test]
 		public void OrdersQuoted()
 		{

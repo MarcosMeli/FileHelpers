@@ -43,7 +43,7 @@
 					<h2>History</h2>
 					<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
 						<P>
-							<strong><A href="#v1_3_5">Go to the last changes&nbsp; (1.3.5)</A></strong></P>
+							<strong><A href="#v1_4_0">Go to the last changes&nbsp; (1.4.0)</A></strong></P>
 					</BLOCKQUOTE>
                                     
 					<UL>
@@ -55,6 +55,8 @@
 											Code Project</a> site.
 									</li>
 								</ul>
+                            <p>
+                            </p>
 						</LI>
 						<li>
 							<a name="v1_1_0" /><strong>1.1.0</strong> (11-Nov-2005)
@@ -78,6 +80,8 @@
 										ADD: .NET Compact Framework Support (thanks Pierre)
 									</li>
 								</ul>
+                            <p>
+                            </p>
 						</li>
 						<li>
 							<a name="v1_1_4" /><strong>1.1.4</strong> (26-Nov-2005)
@@ -102,6 +106,8 @@
 										ADD: NAnt build file, for clean, build, test and validate.
 									</li>
 								</ul>
+                            <p>
+                            </p>
 						</li>
 						<LI>
 							<a name="v1_2_0" /><strong>1.2.0</strong> (7-Dec-2005)
@@ -147,6 +153,8 @@
 									ADD: Require a Custom Converter for non system Types.
 									<li>
 										ADD: CustomConverter example in the docs (see advance example).</li></UL>
+                            <p>
+                            </p>
 										</LI>
 						<LI>
                         <a name="v1_3_0rc1" /><strong>1.3.0 RC1</strong> (27-Dec-2005)
@@ -202,6 +210,8 @@
 								ADD: The EndsRead and EndsWrite to ensure that the streams are closed and disposed after use.
 								<LI>
 									ADD: More <A href="testing.html">NUnit tests</A> (now 100+)</LI></UL>
+                            <p>
+                            </p>
                     </LI>
 						<LI>
 							
@@ -234,6 +244,8 @@
                                         converters, with this the DataStorage can browse the properties of each field in
                                         a nice way.</li>
                                     <li>ADD: More <A href="testing.html">NUnit tests</a> (now 122)</li></UL>
+                            <p>
+                            </p>
                                     </LI>
 						<LI>
 					<a name="v1_3_2" /><STRONG>1.3.2</STRONG> (28-Jan-2006)
@@ -268,6 +280,8 @@
 								<LI>Repository (SSH): <a href="tsvn:https://OpenSVN.csie.org/filehelpers/trunk">https://opensvn.csie.org/filehelpers/trunk</a>
 								<LI>Trac : <a href="https://opensvn.csie.org/traccgi/filehelpers/trac.cgi/">https://opensvn.csie.org/traccgi/filehelpers/trac.cgi/</a> (with not so much yet)
 								</UL>
+                                    <p>
+                                    </p>
                                     </UL>
                                     </LI>
 						<LI>
@@ -305,6 +319,32 @@
 								MOD: Refactor... a lot of
                                             refactor to support the IgnoreLast, forward reading and others enhaces.
                             </ul>
+                            <p>
+                            </p>
+                                    </LI>
+                                    
+                                    <LI>
+					 <a name="v1_4_0" /><STRONG>1.4.0</STRONG> (Mar-2006)
+							<UL>
+                                <li>DEL: ConverterKind.Custom was removed bacause was irrelevant to use custom converters now the lib use [FieldConverter(typeof(YouConverter))] </li>
+                                <li>DEL: Some Exceptions trying to simplify the Exception handling and reducing the number of differnt exceptions. The deleted exceptions are <b>NullValueException, QuotedStringException and InternalException all replaced with the BadUsageException</b>.</li>
+								<LI>DEL: Description property to the EngineBase this is really old from the beggining
+                                    of the lib.<li>FIX: The Async engines now uses the ErrorMode in all cases. </li>
+                                    <li>MOD: The MasterDetailEngine now takes the IgnoreFirst and IgnoreLast options from the master record an not for the detail. </li>
+                                <li>MOD: LoadErrors from the ErrorManager class now is static.</li>
+                                <li>MOD: SaveErrors can recieve an header string to write into the file.</li>
+                                <li>MOD: Enhaced exception messages.</li>
+                                    <li>MOD: EngineBase.LineNum and ErrorInfo.LineNum now are <strong>LineNumber</strong>.
+                                    </li>
+                                    <li>MOD: ErrorManager.<strong>LastErrors renamed to </strong>ErrorManager.<strong>Errors</strong></li>
+                                    <li>MOD: All methods in the FileHelpers Engines that returns bool to void because they use error handling with exceptions, this provide a more clear OOD.</li>
+                                <li>ADD: A new parameter to the FieldQuoted attribute to indicate if the Quote is optional (like excel does with CSV) </li>
+								<LI>ADD: The ExcelStorage checks if Excel is installed, if not throws a BadUsageException
+                                </li>
+                                    <li>ADD: The FileHelper Engine now have four static methods for the common operations.
+                                    </li>
+                                <li>ADD: More <A href="testing.html">NUnit tests</a> (more than 180 =) </li>
+                           </ul>
                                     </LI>
  					</UL>
 

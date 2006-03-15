@@ -34,7 +34,7 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void Test4()
 		{
 			int index;
@@ -42,7 +42,7 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void Test5()
 		{
 			int index;
@@ -50,7 +50,7 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void Test6()
 		{
 			int index;
@@ -58,7 +58,7 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void Test7()
 		{
 			int index;

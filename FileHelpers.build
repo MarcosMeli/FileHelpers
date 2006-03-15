@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.3.5" />
-    <property name="LibraryFileVersion" value="1_3_5" />
+    <property name="LibraryVersion" value="1.4.0" />
+    <property name="LibraryFileVersion" value="1_4_0" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     <property name="Source2005" value="_Source2005" />
@@ -50,6 +50,7 @@
         <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
+        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Doc" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
 
         <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />

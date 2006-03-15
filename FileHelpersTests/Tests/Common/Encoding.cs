@@ -17,6 +17,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 			engine.Encoding = enc;
+			Assert.AreEqual(enc, engine.Encoding);
 
 			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, fileName);
 

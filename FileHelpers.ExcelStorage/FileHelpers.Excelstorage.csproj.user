@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP LastOpenVersion = "7.10.3077" >
         <Build>
-            <Settings ReferencePath = "D:\__Working\Posts\FileHelpers\CurrentSource\Source\References\;c:\_Downloads\__fh\Source\References\" >
+            <Settings ReferencePath = "D:\__Working\Posts\FileHelpers\CurrentSource\Source\References\;c:\_Downloads\__fh\Source\References\;c:\__moving\_LastSource\Source\References\" >
                 <Config
                     Name = "Debug"
                     EnableASPDebugging = "false"

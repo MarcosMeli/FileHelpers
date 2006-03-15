@@ -128,6 +128,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "RecordInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\DelimitedRecordAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -253,21 +258,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ErrorHandling\InternalException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ErrorHandling\NullValueException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ErrorHandling\QuotedStringException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Fields\DelimitedField.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -294,11 +284,6 @@
                 />
                 <File
                     RelPath = "Helpers\StringHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Info\RecordInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

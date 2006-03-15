@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -24,6 +24,14 @@ namespace FileHelpers
 			get { return mQuoteChar; }
 		}
 
+		private bool mOptionalQuoted = false;
+
+		/// <summary>Indicates if the Quoted char can be optional (default is false)</summary>
+		public bool OptionalQuoted
+		{
+			get { return mOptionalQuoted; }
+		}
+
 		/// <summary>Indicates that the field must be read and written like a Quoted String. (by default "")</summary>
 		public FieldQuotedAttribute() : this('\"')
 		{
@@ -34,6 +42,15 @@ namespace FileHelpers
 		public FieldQuotedAttribute(char quoteChar)
 		{
 			mQuoteChar = quoteChar;
+		}
+
+		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
+		/// <param name="quoteChar">The char used to quote the string.</param>
+		/// <param name="optionalQuoted">Indicates if the Quoted Char if optional.</param>
+		public FieldQuotedAttribute(char quoteChar, bool optionalQuoted)
+		{
+			mQuoteChar = quoteChar;
+			mOptionalQuoted = optionalQuoted;
 		}
 
 	}

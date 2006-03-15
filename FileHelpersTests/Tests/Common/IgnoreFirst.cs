@@ -121,7 +121,7 @@ namespace FileHelpersTests.Common
             asyncEngine.WriteNexts(res);
             asyncEngine.EndsWrite();
 
-            asyncEngine.HeaderText = "none none";
+            asyncEngine.HeaderText = "none none\r\n";
 
             asyncEngine.BeginReadFile(@"tempo.txt");
 

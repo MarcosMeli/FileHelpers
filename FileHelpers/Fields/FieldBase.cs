@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -7,26 +7,26 @@
 using System;
 using System.Reflection;
 
-namespace FileHelpers.Fields
+namespace FileHelpers
 {
 	/// <summary>Base class for all Field Types. Implements all the basic functionality of a field in a typed file.</summary>
 	internal abstract class FieldBase
 	{
 		#region  "  ExtractInfo Class  "
 
-		protected struct ExtractInfo
+		protected struct ExtractedInfo
 		{
 			public int CharsRemoved;
 			public string ExtractedString;
 			//public string TrailString;
 
-			public ExtractInfo(string extracted)
+			public ExtractedInfo(string extracted)
 			{
 				ExtractedString = extracted;
 				CharsRemoved = extracted.Length;
 			}
 
-			public ExtractInfo(string extracted, int charsRem)
+			public ExtractedInfo(string extracted, int charsRem)
 			{
 				ExtractedString = extracted;
 				CharsRemoved = charsRem;
@@ -83,7 +83,7 @@ namespace FileHelpers.Fields
 
 		#region "  MustOverride (String Handling)  " 
 
-		protected abstract ExtractInfo ExtractFieldString(string from);
+		protected abstract ExtractedInfo ExtractFieldString(string from);
 
 		protected virtual string CreateFieldString(object record)
 		{
@@ -93,7 +93,11 @@ namespace FileHelpers.Fields
 			string res;
 			if (mConvertProvider == null)
 			{
-				res = fieldValue.ToString();
+				if (fieldValue == null)
+					res = string.Empty;
+				else
+					res = fieldValue.ToString();
+
 			}
 			else
 			{
@@ -164,7 +168,7 @@ namespace FileHelpers.Fields
 		{
 			//-> Extraigo la que me corresponde
 
-			ExtractInfo info = ExtractFieldString(buffer);
+			ExtractedInfo info = ExtractFieldString(buffer);
 
 			string fieldString;
 			int discardFrom;
@@ -197,7 +201,7 @@ namespace FileHelpers.Fields
 					if (mNullValue == null)
 					{
 						if (mFieldType.IsValueType)
-							throw new NullValueException(mFieldInfo);
+							throw new BadUsageException("Null Value found for the field " + mFieldInfo.Name + " in the class " + mFieldInfo.FieldType.Name + " you must specify a NullValueAttribute because this is a ValueType and can´t be null.");
 						else
 							val = null;
 					}
@@ -234,7 +238,7 @@ namespace FileHelpers.Fields
 				if (mNullValue == null)
 				{
 					if (mFieldType.IsValueType)
-						throw new NullValueException(mFieldInfo);
+						throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + mFieldInfo.Name + " field of type " + mFieldInfo.FieldType.Name + ", because this is a ValueType.");
 					else
 						val = null;
 				}
@@ -334,8 +338,6 @@ namespace FileHelpers.Fields
 			return fieldString;
 		}
 
-
 		#endregion
-
 	}
 }

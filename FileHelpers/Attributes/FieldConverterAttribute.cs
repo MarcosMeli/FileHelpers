@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -28,27 +28,30 @@ namespace FileHelpers
 		/// <summary>Indicates the <see cref="ConverterKind"/> used for read/write ops. </summary>
 		/// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
 		/// <param name="arg1">The first param pased directly to the Converter Constructor.</param>
-        public FieldConverterAttribute(ConverterKind converter, string arg1):this(converter, new string[] {arg1})
-        {}
+		public FieldConverterAttribute(ConverterKind converter, string arg1) : this(converter, new string[] {arg1})
+		{
+		}
 
-        /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write ops. </summary>
-        /// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
-        /// <param name="arg1">The first param pased directly to the Converter Constructor.</param>
-        /// <param name="arg2">The second param pased directly to the Converter Constructor.</param>
-        public FieldConverterAttribute(ConverterKind converter, string arg1, string arg2)
-            : this(converter, new string[] { arg1, arg2 })
-        { }
+		/// <summary>Indicates the <see cref="ConverterKind"/> used for read/write ops. </summary>
+		/// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
+		/// <param name="arg1">The first param pased directly to the Converter Constructor.</param>
+		/// <param name="arg2">The second param pased directly to the Converter Constructor.</param>
+		public FieldConverterAttribute(ConverterKind converter, string arg1, string arg2)
+			: this(converter, new string[] {arg1, arg2})
+		{
+		}
 
-        /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write ops. </summary>
-        /// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
-        /// <param name="arg1">The first param pased directly to the Converter Constructor.</param>
-        /// <param name="arg2">The second param pased directly to the Converter Constructor.</param>
-        /// <param name="arg3">The third param pased directly to the Converter Constructor.</param>
-        public FieldConverterAttribute(ConverterKind converter, string arg1, string arg2, string arg3)
-            : this(converter, new string[] { arg1, arg2, arg3 })    
-        { }
+		/// <summary>Indicates the <see cref="ConverterKind"/> used for read/write ops. </summary>
+		/// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
+		/// <param name="arg1">The first param pased directly to the Converter Constructor.</param>
+		/// <param name="arg2">The second param pased directly to the Converter Constructor.</param>
+		/// <param name="arg3">The third param pased directly to the Converter Constructor.</param>
+		public FieldConverterAttribute(ConverterKind converter, string arg1, string arg2, string arg3)
+			: this(converter, new string[] {arg1, arg2, arg3})
+		{
+		}
 
-        private FieldConverterAttribute(ConverterKind converter, params string[] args)
+		private FieldConverterAttribute(ConverterKind converter, params string[] args)
 		{
 			Type convType;
 
@@ -93,18 +96,18 @@ namespace FileHelpers
 		}
 
 		/// <summary>Indicates a custom <see cref="ConverterBase"/> implementation.</summary>
-		/// <param name="converterType">The Type of your custom converter.</param>
+		/// <param name="customConverter">The Type of your custom converter.</param>
 		/// <param name="args">A list of params pased directly to your converter constructor.</param>
-		public FieldConverterAttribute(Type converterType, params object[] args)
+		public FieldConverterAttribute(Type customConverter, params object[] args)
 		{
-			CreateConverter(converterType, args);
+			CreateConverter(customConverter, args);
 		}
 
 		/// <summary>Indicates a custom <see cref="ConverterBase"/> implementation.</summary>
-		/// <param name="converterType">The Type of your custom converter.</param>
-		public FieldConverterAttribute(Type converterType)
+		/// <param name="customConverter">The Type of your custom converter.</param>
+		public FieldConverterAttribute(Type customConverter)
 		{
-			CreateConverter(converterType, new object[] {});
+			CreateConverter(customConverter, new object[] {});
 		}
 
 		#endregion
@@ -141,17 +144,18 @@ namespace FileHelpers
 				{
 					throw ex.InnerException;
 				}
-				
+
 			}
 #if ! MINI
-            else if (convType.IsEnum)
-            {
-                mConverter = new EnumConverter(convType);
-            }
+			else if (convType.IsEnum)
+			{
+				mConverter = new EnumConverter(convType);
+			}
 #endif			
-            else
-                throw new BadUsageException("The custom converter must inherit from ConverterBase");
+			else
+				throw new BadUsageException("The custom converter must inherit from ConverterBase");
 		}
+
 		#endregion
 
 		#region "  ArgsToTypes  "
@@ -176,6 +180,5 @@ namespace FileHelpers
 		}
 
 		#endregion
-
 	}
 }

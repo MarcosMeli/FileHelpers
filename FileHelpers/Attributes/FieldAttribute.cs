@@ -1,10 +1,11 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
 #endregion
 
 using System;
+using System.ComponentModel;
 
 namespace FileHelpers
 {
@@ -14,6 +15,7 @@ namespace FileHelpers
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	[AttributeUsage(AttributeTargets.Field)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class FieldAttribute : Attribute
 	{
 		/// <summary>Abstract class, see the inheritors.</summary>

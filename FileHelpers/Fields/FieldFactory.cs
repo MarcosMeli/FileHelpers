@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -6,20 +6,22 @@
 
 using System.Reflection;
 
-namespace FileHelpers.Fields
+namespace FileHelpers
 {
 	internal sealed class FieldFactory
 	{
 		#region "  Avoid Creation  "
+
 		private FieldFactory()
-		{}
+		{
+		}
+
 		#endregion
 
 		public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
 		{
-
 			// If ignored, return null
-			if (fi.IsDefined(typeof(FieldIgnoredAttribute), true))
+			if (fi.IsDefined(typeof (FieldIgnoredAttribute), true))
 				return null;
 
 			FieldBase res = null;
@@ -50,7 +52,7 @@ namespace FileHelpers.Fields
 				if (fieldAttb is FieldFixedLengthAttribute)
 				{
 					if (recordAttribute is DelimitedRecordAttribute)
-						throw new BadUsageException("The FixedLengthAttribute is only for the FixedLengthRecords not for the delimited ones.");
+						throw new BadUsageException("The FieldFixedLengthAttribute is only for the FixedLengthRecords not for the delimited ones.");
 
 
 					FieldFixedLengthAttribute attb = ((FieldFixedLengthAttribute) fieldAttb);
@@ -105,6 +107,7 @@ namespace FileHelpers.Fields
 						throw new BadUsageException("The QuotedAttribute can't be used in FixedLength fields.");
 
 					((DelimitedField) res).mQuoteChar = quotedAttributes[0].QuoteChar;
+					((DelimitedField) res).mQuoteOptional = quotedAttributes[0].OptionalQuoted;
 				}
 
 			}

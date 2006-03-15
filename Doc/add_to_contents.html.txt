@@ -9,10 +9,23 @@
           <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Guide</a>
         </div>
 
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="generics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">.NET 2.0 Generics</a>
+        </div>
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="wizard.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Record Class Wizard</a>
+        </div>
+
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="vb_tips.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Tips for VB.NET</a>
         </div>
+
+
 
 
 	   <div class="treeNode">
@@ -25,23 +38,39 @@
 			  <a href="example_easy.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Easy Sample</a>
 			</div>
 
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_generics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Easy Sample (Generics)</a>
+			</div>
+
           	<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_masterdetail.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Master-Details 1</a>
 			</div>
+			
           	<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_masterdetail2.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Master-Details 2</a>
 			</div>
 
-			<div class="treeNode">
-			  <img src="treenodedot.gif" class="treeNoLinkImage" />
-			  <a href="example_advanced.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Custom Converter Example</a>
-			</div>
+
 			<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_async.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Async Example</a>
 			</div>
+
+         	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_enumconverter.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Enum Converter</a>
+			</div>
+
+
+			<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_customconv.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Decimal Converter</a>
+			</div>
+			
 			<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_datalink.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataLink Example</a>
@@ -59,18 +88,41 @@
 		</div>
 	
 	
+	
+	    <div class="treeNode">
+          <img src="treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)" />
+          <a href="class_diagram.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Class Diagrams</a>
+          <div class="treeSubnodesHidden">
+
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="diagram_engines.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Engines Diagram</a>
+			</div>
+
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="diagram_datastorage.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataStorages Diagram</a>
+			</div>
+
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="diagram_datalinks.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataLinks Diagram</a>
+			</div>
+
+
+			</div>
+		</div>
+
+
+
+
+
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="downloads.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Downloads</a>
+          <a href="downloads.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="download.gif" border=0 /> <b>Downloads</b></a>
         </div>
-
-
-
-        <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="class_diagram.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Class Diagram</a>
-        </div>
-
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
@@ -100,6 +152,4 @@
           <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="http://sourceforge.net/projects/filehelpers" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers DevHome</a>
         </div>
-	
-	
 	

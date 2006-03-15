@@ -16,14 +16,14 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted1()
 		{
 			TestCommon.ReadTest(engine, @"Bad\BadQuoted1.txt");
 		}
 
 		[Test]
-		[ExpectedException(typeof (QuotedStringException))]
+		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted2()
 		{
 			TestCommon.ReadTest(engine, @"Bad\BadQuoted2.txt");

@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -178,7 +178,7 @@ namespace FileHelpers
 
 			public override string FieldToString(object from)
 			{
-				return Convert.ChangeType(from, typeof (Int16), null).ToString( );
+				return Convert.ChangeType(from, typeof (Int16), null).ToString();
 			}
 		}
 

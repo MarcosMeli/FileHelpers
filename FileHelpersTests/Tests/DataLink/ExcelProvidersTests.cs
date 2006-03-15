@@ -5,7 +5,7 @@ using System.IO;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
-namespace FileHelpersTests
+namespace FileHelpersTests.DataLink
 {
 	[TestFixture]
 	public class ExcelDataProviderTest

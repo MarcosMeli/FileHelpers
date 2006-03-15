@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -13,7 +13,7 @@ using Excel;
 namespace FileHelpers.DataLink
 {
 	/// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files.</para>
-	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to run use this feature.</b></para>
+	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
 	/// <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
 	/// </summary>
 	/// <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
@@ -27,7 +27,7 @@ namespace FileHelpers.DataLink
 		public ExcelStorage(Type recordType)
 		{
 			mRecordType = recordType;
-			mRecordInfo = new RecordInfo(recordType);
+			mRecordInfo = DataStorage.CreateRecordInfo(recordType);
 
 			// Temporary
 
@@ -135,7 +135,18 @@ namespace FileHelpers.DataLink
 
 		private void InitExcel()
 		{
-			this.mApp = new ApplicationClass();
+			try
+			{
+				this.mApp = new ApplicationClass();
+			}
+			catch (System.Runtime.InteropServices.COMException ex)
+			{
+				if(ex.Message.IndexOf("00024500-0000-0000-C000-000000000046") >= 0)
+					throw new ExcelBadUsageException("Excel 2000 or newer not installed in this system.");
+				else
+					throw;
+			}
+
 			this.mBook = null;
 			this.mSheet = null;
 			this.mApp.Visible = false;
@@ -232,6 +243,7 @@ namespace FileHelpers.DataLink
 		#endregion
 
 		#region "  CellAsString  "
+
 
 		private string CellAsString(object row, object col)
 		{

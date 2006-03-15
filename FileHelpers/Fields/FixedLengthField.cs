@@ -1,17 +1,15 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
 #endregion
 
-using System;
 using System.Reflection;
 
-namespace FileHelpers.Fields
+namespace FileHelpers
 {
-	internal class FixedLengthField : FieldBase
+	internal sealed class FixedLengthField : FieldBase
 	{
-
 		#region "  Properties  "
 
 		private int mLength;
@@ -43,19 +41,19 @@ namespace FileHelpers.Fields
 
 		#region "  Overrides String Handling  "
 
-		protected override ExtractInfo ExtractFieldString(string from)
+		protected override ExtractedInfo ExtractFieldString(string from)
 		{
-			ExtractInfo res;
+			ExtractedInfo res;
 
 			if (from.Length < this.Length)
 			{
 				if (mIsLast)
-					res = new ExtractInfo(from);
+					res = new ExtractedInfo(from);
 				else
 					throw new FileHelperException("The string for the field " + FieldInfo.Name + ": '" + from + "' don´t match the record length: " + Length);
 			}
 			else
-				res = new ExtractInfo(from.Substring(0, this.mLength));
+				res = new ExtractedInfo(from.Substring(0, this.mLength));
 
 			return res;
 		}
@@ -85,6 +83,5 @@ namespace FileHelpers.Fields
 		}
 
 		#endregion
-
 	}
 }

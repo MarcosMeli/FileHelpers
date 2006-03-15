@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -11,92 +11,93 @@ using System.Text;
 
 namespace FileHelpers.MasterDetail
 {
-    #region "  Delegate  "
 
-    /// <summary>
-    /// Delegate thats determines the Type of the current record (Master, Detail, Skip)
-    /// </summary>
-    /// <param name="recordString">The string of the current record.</param>
-    /// <returns>the action used for the current record (Master, Detail, Skip)</returns>
-    public delegate RecordAction MasterDetailSelector(string recordString);
+	#region "  Delegate  "
 
-    #endregion
+	/// <summary>
+	/// Delegate thats determines the Type of the current record (Master, Detail, Skip)
+	/// </summary>
+	/// <param name="recordString">The string of the current record.</param>
+	/// <returns>the action used for the current record (Master, Detail, Skip)</returns>
+	public delegate RecordAction MasterDetailSelector(string recordString);
 
-    #region "  Common Actions and Selector  "
+	#endregion
 
-    /// <summary>The Action taken when the selector string is found.</summary>
-    public enum CommonActions
-    {
-        /// <summary>Parse the current record as <b>Master</b> if the selector string is found.</summary>
-        MasterIfContains,
-        /// <summary>Parse the current record as <b>Detail</b> if the selector string is found.</summary>
-        DetailIfContains
-    }
+	#region "  Common Actions and Selector  "
 
-    internal class CommonSelector
-    {
-        CommonActions mAction;
-        string mSelector;
-        internal CommonSelector(CommonActions action, string selector)
-        {
-            mAction = action;
-            mSelector = selector;
-        }
+	/// <summary>The Action taken when the selector string is found.</summary>
+	public enum CommonActions
+	{
+		/// <summary>Parse the current record as <b>Master</b> if the selector string is found.</summary>
+		MasterIfContains,
+		/// <summary>Parse the current record as <b>Detail</b> if the selector string is found.</summary>
+		DetailIfContains
+	}
 
-        internal RecordAction CommonSelectorMethod(string recordString)
-        { 
-            if (mAction == CommonActions.DetailIfContains)
-                if (recordString.IndexOf(mSelector) >= 0)
-                    return RecordAction.Detail;
-                else
-                    return RecordAction.Master;
-            else
-                if (recordString.IndexOf(mSelector) >= 0)
-                    return RecordAction.Master;
-                else
-                    return RecordAction.Detail;
+	internal class CommonSelector
+	{
+		CommonActions mAction;
+		string mSelector;
 
-        }
-    }
+		internal CommonSelector(CommonActions action, string selector)
+		{
+			mAction = action;
+			mSelector = selector;
+		}
 
-    #endregion
+		internal RecordAction CommonSelectorMethod(string recordString)
+		{
+			if (mAction == CommonActions.DetailIfContains)
+				if (recordString.IndexOf(mSelector) >= 0)
+					return RecordAction.Detail;
+				else
+					return RecordAction.Master;
+			else if (recordString.IndexOf(mSelector) >= 0)
+				return RecordAction.Master;
+			else
+				return RecordAction.Detail;
 
-    /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
+		}
+	}
+
+	#endregion
+
+	/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
 	public sealed class MasterDetailEngine : EngineBase
 	{
-        private RecordInfo mMasterInfo;
-        private MasterDetailSelector mRecordSelector;
+		private RecordInfo mMasterInfo;
+		private MasterDetailSelector mRecordSelector;
 
 		private Type mMasterType;
 
 		/// <summary>Returns the type of the master records handled by this engine.</summary>
 		public Type MasterType
 		{
-			get {return mMasterType;}
+			get { return mMasterType; }
 		}
 
 		#region "  Constructor  "
 
-        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
-		public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector): base(detailType)
+		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
+		public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector) : base(detailType)
 		{
 			mMasterType = masterType;
-            mMasterInfo = new RecordInfo(masterType);
-            mRecordSelector = recordSelector;
+			mMasterInfo = new RecordInfo(masterType);
+			mRecordSelector = recordSelector;
 		}
 
-        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
-        public MasterDetailEngine(Type masterType, Type detailType, CommonActions action, string selector)
-            : base(detailType)
-        {
-            mMasterInfo = new RecordInfo(masterType);
+		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
+		public MasterDetailEngine(Type masterType, Type detailType, CommonActions action, string selector)
+			: base(detailType)
+		{
+			mMasterInfo = new RecordInfo(masterType);
 
-            CommonSelector sel = new CommonSelector(action, selector);
-            mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
-        }
+			CommonSelector sel = new CommonSelector(action, selector);
+			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
+		}
 
-        #endregion
+		#endregion
 
 		#region "  ReadFile  "
 
@@ -105,7 +106,7 @@ namespace FileHelpers.MasterDetail
 		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
 			{
-                MasterDetails[] tempRes;
+				MasterDetails[] tempRes;
 				tempRes = ReadStream(fs);
 				fs.Close();
 
@@ -119,79 +120,77 @@ namespace FileHelpers.MasterDetail
 		#region "  ReadStream  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/ReadStream/*'/>
-        public MasterDetails[] ReadStream(TextReader reader)
+		public MasterDetails[] ReadStream(TextReader reader)
 		{
 			if (reader == null)
 				throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
 
-            if (mRecordSelector == null)
-                throw new BadUsageException("The Recordselector can´t be null, please pass a not null Selector in the constructor.");
+			if (mRecordSelector == null)
+				throw new BadUsageException("The Recordselector can´t be null, please pass a not null Selector in the constructor.");
 
 			ResetFields();
 			mHeaderText = String.Empty;
-            mFooterText = String.Empty;
+			mFooterText = String.Empty;
 
 			ArrayList resArray = new ArrayList();
 
-            ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
-            freader.DiscardForward = true;
+			ForwardReader freader = new ForwardReader(reader, mMasterInfo.mIgnoreLast);
+			freader.DiscardForward = true;
 
-            string currentLine, completeLine;
+			string currentLine, completeLine;
 
-			mLineNum = 1;
+			mLineNumber = 1;
 
 			completeLine = freader.ReadNextLine();
 			currentLine = completeLine;
 
-			if (mRecordInfo.mIgnoreFirst > 0)
+			if (mMasterInfo.mIgnoreFirst > 0)
 			{
-				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
+				for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
 				{
 					mHeaderText += currentLine + "\r\n";
 					currentLine = freader.ReadNextLine();
-					mLineNum++;
+					mLineNumber++;
 				}
 			}
 
 
 			bool byPass = false;
 
-            MasterDetails record = null;
-            ArrayList tmpDetails = new ArrayList();
-           
-            while (currentLine != null)
+			MasterDetails record = null;
+			ArrayList tmpDetails = new ArrayList();
+
+			while (currentLine != null)
 			{
 				try
 				{
-                    RecordAction action = mRecordSelector(currentLine);
+					RecordAction action = mRecordSelector(currentLine);
 
-                    switch (action)
-                    {
-                        case RecordAction.Master:
-                            if (record != null)
-                            {
-                                record.mDetails = tmpDetails.ToArray();
-                                resArray.Add(record);
-                            }
+					switch (action)
+					{
+						case RecordAction.Master:
+							if (record != null)
+							{
+								record.mDetails = tmpDetails.ToArray();
+								resArray.Add(record);
+							}
 
-                            mTotalRecords++;
-                            record = new MasterDetails();
-                            tmpDetails.Clear();
-                            record.mMaster = mMasterInfo.StringToRecord(currentLine);
+							mTotalRecords++;
+							record = new MasterDetails();
+							tmpDetails.Clear();
+							record.mMaster = mMasterInfo.StringToRecord(currentLine);
 
-                            break;
+							break;
 
-                        case RecordAction.Detail:
-                            tmpDetails.Add(mRecordInfo.StringToRecord(currentLine));
-                            break;
-                        default:
-                            break;
-                    }
+						case RecordAction.Detail:
+							tmpDetails.Add(mRecordInfo.StringToRecord(currentLine));
+							break;
+						default:
+							break;
+					}
 
-                
-                
-                
-                }
+
+				}
 				catch (Exception ex)
 				{
 					switch (mErrorManager.ErrorMode)
@@ -203,7 +202,7 @@ namespace FileHelpers.MasterDetail
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNum;
+							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
@@ -218,24 +217,24 @@ namespace FileHelpers.MasterDetail
 					{
 						currentLine = freader.ReadNextLine();
 						completeLine = currentLine;
-						mLineNum++;
+						mLineNumber++;
 					}
 				}
 
 			}
 
-            if (record != null)
-            {
-                record.mDetails = tmpDetails.ToArray();
-                resArray.Add(record);
-            }
+			if (record != null)
+			{
+				record.mDetails = tmpDetails.ToArray();
+				resArray.Add(record);
+			}
 
-            if (mRecordInfo.mIgnoreLast > 0)
-            {
-                mFooterText = freader.RemainingText;
-            }
+			if (mMasterInfo.mIgnoreLast > 0)
+			{
+				mFooterText = freader.RemainingText;
+			}
 
-            return (MasterDetails[]) resArray.ToArray(typeof(MasterDetails));
+			return (MasterDetails[]) resArray.ToArray(typeof (MasterDetails));
 		}
 
 		#endregion
@@ -243,12 +242,12 @@ namespace FileHelpers.MasterDetail
 		#region "  ReadString  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/ReadString/*'/>
-        public MasterDetails[] ReadString(string source)
+		public MasterDetails[] ReadString(string source)
 		{
-            StringReader reader = new StringReader(source);
-            MasterDetails[] res = ReadStream(reader);
-            reader.Close();
-            return res;
+			StringReader reader = new StringReader(source);
+			MasterDetails[] res = ReadStream(reader);
+			reader.Close();
+			return res;
 		}
 
 		#endregion
@@ -256,20 +255,18 @@ namespace FileHelpers.MasterDetail
 		#region "  WriteFile  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
-		public bool WriteFile(string fileName, MasterDetails[] records)
+		public void WriteFile(string fileName, MasterDetails[] records)
 		{
-			return WriteFile(fileName, records, -1);
+			WriteFile(fileName, records, -1);
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
-        public bool WriteFile(string fileName, MasterDetails[] records, int maxRecords)
+		public void WriteFile(string fileName, MasterDetails[] records, int maxRecords)
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
 			{
-				bool res;
-				res = WriteStream(fs, records, maxRecords);
+				WriteStream(fs, records, maxRecords);
 				fs.Close();
-				return res;
 			}
 
 		}
@@ -279,13 +276,13 @@ namespace FileHelpers.MasterDetail
 		#region "  WriteStream  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteStream/*'/>
-        public bool WriteStream(TextWriter writer, MasterDetails[] records)
+		public void WriteStream(TextWriter writer, MasterDetails[] records)
 		{
-			return WriteStream(writer, records, -1);
+			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteStream2/*'/>
-        public bool WriteStream(TextWriter writer, MasterDetails[] records, int maxRecords)
+		public void WriteStream(TextWriter writer, MasterDetails[] records, int maxRecords)
 		{
 			if (writer == null)
 				throw new ArgumentNullException("writer", "The writer of the Stream can be null");
@@ -315,15 +312,15 @@ namespace FileHelpers.MasterDetail
 			{
 				try
 				{
-                    currentLine = mMasterInfo.RecordToString(records[i].mMaster);
-                    writer.WriteLine(currentLine);
+					currentLine = mMasterInfo.RecordToString(records[i].mMaster);
+					writer.WriteLine(currentLine);
 
-                    if (records[i].mDetails != null)
-                        for (int d = 0; d < records[i].mDetails.Length; d++)
-                        {
-                            currentLine = mRecordInfo.RecordToString(records[i].mDetails[d]);
-                            writer.WriteLine(currentLine);
-                        }
+					if (records[i].mDetails != null)
+						for (int d = 0; d < records[i].mDetails.Length; d++)
+						{
+							currentLine = mRecordInfo.RecordToString(records[i].mDetails[d]);
+							writer.WriteLine(currentLine);
+						}
 				}
 				catch (Exception ex)
 				{
@@ -335,7 +332,7 @@ namespace FileHelpers.MasterDetail
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNum;
+							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = currentLine;
@@ -348,13 +345,12 @@ namespace FileHelpers.MasterDetail
 
 			mTotalRecords = records.Length;
 
-            if (mFooterText != null && mFooterText != string.Empty)
-                if (mFooterText.EndsWith("\r\n"))
-                    writer.Write(mFooterText);
-                else
-                    writer.WriteLine(mFooterText);
+			if (mFooterText != null && mFooterText != string.Empty)
+				if (mFooterText.EndsWith("\r\n"))
+					writer.Write(mFooterText);
+				else
+					writer.WriteLine(mFooterText);
 
-			return true;
 		}
 
 		#endregion
@@ -362,19 +358,19 @@ namespace FileHelpers.MasterDetail
 		#region "  WriteString  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString/*'/>
-        public string WriteString(MasterDetails[] records)
+		public string WriteString(MasterDetails[] records)
 		{
 			return WriteString(records, -1);
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString2/*'/>
-        public string WriteString(MasterDetails[] records, int maxRecords)
+		public string WriteString(MasterDetails[] records, int maxRecords)
 		{
 			StringBuilder sb = new StringBuilder();
 			StringWriter writer = new StringWriter(sb);
 			WriteStream(writer, records, maxRecords);
-            string res = writer.ToString();
-            writer.Close();
+			string res = writer.ToString();
+			writer.Close();
 			return res;
 		}
 
@@ -383,24 +379,23 @@ namespace FileHelpers.MasterDetail
 		#region "  AppendToFile  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile1/*'/>
-        public bool AppendToFile(string fileName, MasterDetails record)
+		public void AppendToFile(string fileName, MasterDetails record)
 		{
-            return AppendToFile(fileName, new MasterDetails[] { record });
+			AppendToFile(fileName, new MasterDetails[] {record});
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile2/*'/>
-        public bool AppendToFile(string fileName, MasterDetails[] records)
+		public void AppendToFile(string fileName, MasterDetails[] records)
 		{
-			TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false);
+			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
+			{
+				mHeaderText = String.Empty;
+				mFooterText = String.Empty;
 
-            mHeaderText = String.Empty;
-            mFooterText = String.Empty;
+				WriteStream(writer, records);
+				writer.Close();
+			}
 
-            bool res;
-			res = WriteStream(writer, records);
-			writer.Close();
-
-			return res;
 		}
 
 		#endregion

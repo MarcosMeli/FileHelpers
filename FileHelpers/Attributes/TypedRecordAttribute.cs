@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -20,31 +20,11 @@ namespace FileHelpers
 		#region "  Constructors  "
 
 		/// <summary>Abstract class, see inheritors.</summary>
-		protected TypedRecordAttribute() : this(String.Empty)
+		protected TypedRecordAttribute()
 		{
-		}
-
-		/// <summary>Abstract class, see inheritors.</summary>
-		protected TypedRecordAttribute(string description)
-		{
-			Description = description;
 		}
 
 		#endregion
 
-		#region "  Description  "
-
-		private string mDescription;
-
-		/// <summary>
-		/// The description of the Record Type.
-		/// </summary>
-		public string Description
-		{
-			get { return mDescription; }
-			set { mDescription = value; }
-		}
-
-		#endregion
 	}
 }

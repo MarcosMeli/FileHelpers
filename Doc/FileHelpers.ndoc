@@ -4,10 +4,9 @@
         <assembly location="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.xml" />
     </assemblies>
     <namespaces>
-        <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 11pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 11pt">FileHelperAsyncEngine</span></b></a><br /></namespace>
+        <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 10pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 10pt">FileHelperAsyncEngine</span></b></a>. You can also check the <a href="FileHelpers.CommonEngine.html"><b><span style="font-size: 10pt">CommonEngine</span></b></a> for shortcuts to the common operations.<br /></namespace>
         <namespace name="FileHelpers.DataLink">This namespace contains the data source to/from file engine and helpers.</namespace>
         <namespace name="FileHelpers.MasterDetail">This namespace contains the classes used for MasterDetail processing.</namespace>
-        <namespace name="FileHelpers.Fields">Contains the classes used to identify a field of the records.</namespace>
     </namespaces>
     <documenters>
         <documenter name="JavaDoc">

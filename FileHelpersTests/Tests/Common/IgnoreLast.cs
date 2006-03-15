@@ -111,7 +111,7 @@ namespace FileHelpersTests.Common
 			engine = new FileHelperEngine(typeof (DiscardLastType1));
 
 			DiscardLastType1[] res = (DiscardLastType1[]) TestCommon.ReadTest(engine, @"Good\DiscardLast1.txt");
-			engine.FooterText = "This is a new Footer....";
+			engine.FooterText = "This is a new Footer....\r\n";
 
 			engine.WriteFile("tempo.txt", res);
 			

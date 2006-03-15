@@ -1,6 +1,6 @@
 
 
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -8,17 +8,15 @@
 
 namespace FileHelpers
 {
-	/// <summary>Indicates the convertion used in the <see cref="T:FileHelpers.ConverterAttribute"/>.</summary>
+	/// <summary>Indicates the convertion used in the <see cref="T:FileHelpers.FieldConverterAttribute"/>.</summary>
 	public enum ConverterKind
 	{
-		/// <summary>Indicates that the library must use your custom <see cref="ConverterBase"/>.</summary>
-		Custom,
 		/// <summary>
 		/// <para>Convert from/to <b>Date</b> values.</para>
 		/// <para>Params: arg1 is the <b>string</b> with the date format.</para>
 		/// </summary>
 		Date,
-		/// <summary>Convert from/to <b>Boolean</b> values.</para></summary>
+		/// <summary>Convert from/to <b>Boolean</b> values.</summary>
 		Boolean,
 		/// <summary>Convert from/to <b>Byte</b> values.</summary>
 		Byte,

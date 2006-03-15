@@ -10,10 +10,10 @@ namespace FileHelpers
 	{
 		internal RecordInfo mRecordInfo;
 
-        #region "  Constructor  "
+		#region "  Constructor  "
 
-        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-		protected EngineBase(Type recordType)
+		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+		internal EngineBase(Type recordType)
 		{
 			if (recordType == null)
 				throw new BadUsageException("The record type can't be null");
@@ -23,47 +23,48 @@ namespace FileHelpers
 			mRecordType = recordType;
 			mRecordInfo = new RecordInfo(recordType);
 			//InitFields();
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  LineNumber"
+		#region "  LineNumber  "
 
-        internal int mLineNum;
+		internal int mLineNumber;
 		internal int mTotalRecords;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
-		public int LineNum
+		public int LineNumber
 		{
-			get { return mLineNum; }
+			get { return mLineNumber; }
 		}
 
-        #endregion
+		#endregion
 
-        #region "  TotalRecords  "
-        /// <include file='FileHelperEngine.docs.xml' path='doc/TotalRecords/*'/>
+		#region "  TotalRecords  "
+
+		/// <include file='FileHelperEngine.docs.xml' path='doc/TotalRecords/*'/>
 		public int TotalRecords
 		{
 			get { return mTotalRecords; }
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  RecordType  "
+		#region "  RecordType  "
 
-        private Type mRecordType;
+		private Type mRecordType;
 
-        /// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
+		/// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
 		public Type RecordType
 		{
 			get { return mRecordType; }
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  HeaderText  "
+		#region "  HeaderText  "
 
-        internal string mHeaderText = String.Empty;
+		internal string mHeaderText = String.Empty;
 
 		/// <summary>The read header in the last read operation. If any.</summary>
 		public string HeaderText
@@ -72,24 +73,24 @@ namespace FileHelpers
 			set { mHeaderText = value; }
 		}
 
-        #endregion
+		#endregion
 
-        #region "  FooterText"
+		#region "  FooterText"
 
-        internal string mFooterText = String.Empty;
+		internal string mFooterText = String.Empty;
 
-        /// <summary>The read footer in the last read operation. If any.</summary>
-        public string FooterText
-        {
-            get { return mFooterText; }
-            set { mFooterText = value; }
-        }
+		/// <summary>The read footer in the last read operation. If any.</summary>
+		public string FooterText
+		{
+			get { return mFooterText; }
+			set { mFooterText = value; }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  Encoding  "
+		#region "  Encoding  "
 
-        internal Encoding mEncoding = Encoding.Default;
+		internal Encoding mEncoding = Encoding.Default;
 
 		/// <summary>The encoding to Read and Write the streams.</summary>
 		/// <remarks>Default is the system's current ANSI code page.</remarks>
@@ -98,13 +99,13 @@ namespace FileHelpers
 		{
 			get { return mEncoding; }
 			set { mEncoding = value; }
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  ErrorManager"
+		#region "  ErrorManager"
 
-        /// <summary>This is a common class that manage the errors of the library.</summary>
+		/// <summary>This is a common class that manage the errors of the library.</summary>
 		protected ErrorManager mErrorManager = new ErrorManager();
 
 		/// <summary>This is a common class that manage the errors of the library.</summary>
@@ -112,20 +113,19 @@ namespace FileHelpers
 		public ErrorManager ErrorManager
 		{
 			get { return mErrorManager; }
-        }
+		}
 
-        #endregion
+		#endregion
 
-        #region "  ResetFields  "
+		#region "  ResetFields  "
 
-        internal void ResetFields()
+		internal void ResetFields()
 		{
-			mLineNum = 0;
+			mLineNumber = 0;
 			mErrorManager.ClearErrors();
 			mTotalRecords = 0;
-        }
+		}
 
-        #endregion
-
-    }
+		#endregion
+	}
 }

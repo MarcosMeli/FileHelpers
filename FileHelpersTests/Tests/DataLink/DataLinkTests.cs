@@ -4,10 +4,10 @@ using System.Data.OleDb;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
-namespace FileHelpersTests
+namespace FileHelpersTests.DataLink
 {
 	[TestFixture]
-	public class DataLink
+	public class DataLinks
 	{
 		FileDataLink mLink;
 

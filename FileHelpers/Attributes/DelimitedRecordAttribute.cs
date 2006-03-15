@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -26,20 +26,14 @@ namespace FileHelpers
 
 		/// <summary>Indicates that this class represents a delimited record. </summary>
 		/// <param name="sep">The separator string used to split the fields of the record.</param>
-		public DelimitedRecordAttribute(string sep) : this(sep, String.Empty)
-		{
-		}
-
-		/// <summary>Indicates that this class represents a delimited record. </summary>
-		/// <param name="sep">The separator string used to split the fields of the record.</param>
-		/// <param name="description">The description of the record. (for future use)</param>
-		public DelimitedRecordAttribute(string sep, string description) : base(description)
+		public DelimitedRecordAttribute(string sep)
 		{
 			if (mSeparator != String.Empty)
 				this.mSeparator = sep;
 			else
 				throw new ArgumentException("sep debe ser <> \"\"");
 		}
+
 
 	}
 }

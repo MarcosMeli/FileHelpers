@@ -104,155 +104,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Data\TestData.mdb"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\UpLoadCustomers.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\UpLoadOrders.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadAdd1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadAdd2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadAll1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadDate1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadDate2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadInt1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadInt2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Bad\BadQuoted1.txt"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "Data\Bad\BadQuoted2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\CustomersFixed.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\CustomersSemiColon.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\CustomersTab.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\CustomersVerticalBar.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DateFormat1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DateFormat2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DiscardFirst0.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DiscardFirst1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DiscardFirst2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\DiscardFirst3.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\EncodingANSI.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\EncodingUnicode.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\EncodingUnicodeBig.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\EncodingUTF8.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\NumberFormat.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\NumberNegative.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\OrdersFixed.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\OrdersSemiColon.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\OrdersTab.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\OrdersVerticalBar.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\QuotedCustomers.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\QuotedCustomers2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\QuotedOrders.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\QuotedOrders2.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\Test1.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Data\Good\TestEmpty.txt"
+                    RelPath = "TODO Tests.txt"
                     BuildAction = "None"
                 />
                 <File
@@ -286,6 +138,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\ExcelCsv.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\FieldAlign.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -307,6 +164,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\LineCounter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\NullValues.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -337,6 +199,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\StringHelpers.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\TransformEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -431,12 +298,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Errors\ErrorModeValidatorAsync.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Errors\OtherErrors.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Tests\Errors\StorageErrorModeValidator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Errors\TransformBad.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

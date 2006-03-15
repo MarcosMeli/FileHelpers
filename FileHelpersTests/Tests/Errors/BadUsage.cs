@@ -102,7 +102,7 @@ namespace FileHelpersTests.Errors
 		[ExpectedException(typeof (BadUsageException))]
 		public void FixedWithOutLength()
 		{
-			new FileHelperEngine(typeof (FixedWithOutLengthClass));
+			new FileHelperEngine(typeof (FixedWithOutLengthClass)); ;
 		}
 
 		#endregion
@@ -337,6 +337,51 @@ namespace FileHelpersTests.Errors
 		}
 
 		#endregion
+
+
+		#region  "  BadRecordTypes  "
+
+		[DelimitedRecord("|")]
+		public class BadRecordTypeClass
+		{
+			public string Field1;
+		}
+
+		[Test]
+		[ExpectedException(typeof (BadUsageException))]
+		public void BadRecordType()
+		{
+			FileHelperEngine engine = new FileHelperEngine(typeof (BadRecordTypeClass));
+			string res = engine.WriteString(new string[] {"hola"});
+			Console.Write(res);
+		}
+
+		#endregion
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void WriteBadUsage()
+		{
+			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
+
+			SampleType[] res = new SampleType[2];
+
+			res[0] = new SampleType();
+
+			res[0].Field1 = DateTime.Now.AddDays(1);
+			res[0].Field2 = "je";
+			res[0].Field3 = 0;
+
+			engine.WriteString(res);
+		}
+
+		[Test]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void WriteBadUsage2()
+		{
+			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
+			engine.WriteString(null);
+		}
 
 
 	}

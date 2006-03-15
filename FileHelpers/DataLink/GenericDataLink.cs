@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -108,17 +108,17 @@ namespace FileHelpers.DataLink
 		private MethodInfo GetTransformMethod(Type sourceType, Type destType)
 		{
 			MethodInfo[] methods = sourceType.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic);
-			foreach (MethodInfo m in methods)
-			{
-				if (m.IsDefined(typeof (TransformToRecordAttribute), false))
-				{
-					TransformToRecordAttribute ta = (TransformToRecordAttribute) m.GetCustomAttributes(typeof (TransformToRecordAttribute), false)[0];
-					if (ta.TargetType == destType)
-					{
-						return m;
-					}
-				}
-			}
+//			foreach (MethodInfo m in methods)
+//			{
+//				if (m.IsDefined(typeof (TransformToRecordAttribute), false))
+//				{
+//					TransformToRecordAttribute ta = (TransformToRecordAttribute) m.GetCustomAttributes(typeof (TransformToRecordAttribute), false)[0];
+//					if (ta.TargetType == destType)
+//					{
+//						return m;
+//					}
+//				}
+//			}
 
 			return null;
 		}

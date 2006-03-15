@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -18,12 +18,6 @@ namespace FileHelpers
 	{
 		/// <summary>Indicates that this class represents a fixed length record.</summary>
 		public FixedLengthRecordAttribute()
-		{
-		}
-
-		/// <summary>Indicates that this class represents a fixed length record.</summary>
-		/// <param name="description">The description of the record. (for future use)</param>
-		public FixedLengthRecordAttribute(string description) : base(description)
 		{
 		}
 

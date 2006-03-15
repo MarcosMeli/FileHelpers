@@ -1,4 +1,4 @@
-#region "  © Copyright 2005 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -28,13 +28,13 @@ namespace FileHelpers
 			mNumberOfLines = numberOfLines;
 		}
 
-        private int mNumberOfLines;
+		private int mNumberOfLines;
 
-        /// <summary>The number of lines to be ignored at end.</summary>
-        public int NumberOfLines
-        {
-            get { return mNumberOfLines; }
-        }
+		/// <summary>The number of lines to be ignored at end.</summary>
+		public int NumberOfLines
+		{
+			get { return mNumberOfLines; }
+		}
 
 	}
 }
