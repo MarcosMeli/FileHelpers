@@ -88,7 +88,7 @@ namespace FileHelpersSamples
 			// 
 			// prog1
 			// 
-			this.prog1.ColorBackGround = System.Drawing.Color.White;
+			this.prog1.ColorBackground = System.Drawing.Color.White;
 			this.prog1.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(170)), ((System.Byte)(240)), ((System.Byte)(170)));
 			this.prog1.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(10)), ((System.Byte)(150)), ((System.Byte)(10)));
 			this.prog1.ColorText = System.Drawing.Color.White;
@@ -109,7 +109,7 @@ namespace FileHelpersSamples
 			// 
 			// prog3
 			// 
-			this.prog3.ColorBackGround = System.Drawing.Color.White;
+			this.prog3.ColorBackground = System.Drawing.Color.White;
 			this.prog3.ColorBarBorder = System.Drawing.Color.Blue;
 			this.prog3.ColorBarCenter = System.Drawing.Color.Navy;
 			this.prog3.ColorText = System.Drawing.Color.Gainsboro;
@@ -129,7 +129,7 @@ namespace FileHelpersSamples
 			// 
 			// prog2
 			// 
-			this.prog2.ColorBackGround = System.Drawing.Color.White;
+			this.prog2.ColorBackground = System.Drawing.Color.White;
 			this.prog2.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(170)), ((System.Byte)(240)), ((System.Byte)(170)));
 			this.prog2.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(10)), ((System.Byte)(150)), ((System.Byte)(10)));
 			this.prog2.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
@@ -151,7 +151,7 @@ namespace FileHelpersSamples
 			// 
 			// prog4
 			// 
-			this.prog4.ColorBackGround = System.Drawing.Color.White;
+			this.prog4.ColorBackground = System.Drawing.Color.White;
 			this.prog4.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(220)));
 			this.prog4.ColorBarCenter = System.Drawing.Color.Olive;
 			this.prog4.ColorText = System.Drawing.Color.WhiteSmoke;
