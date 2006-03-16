@@ -44,6 +44,7 @@
                 <include name="*.dll" />
                 <include name="*.mdb" />
                 <include name="*.exe" />
+                <include name="*.txt" />
             </fileset>
         </copy>
         
