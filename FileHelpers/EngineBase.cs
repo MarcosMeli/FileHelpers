@@ -127,5 +127,35 @@ namespace FileHelpers
 		}
 
 		#endregion
+
+		#if ! MINI
+		
+		/// <summary></summary>
+		protected ProgressMode mProgressMode = ProgressMode.DontNotify;
+
+		/// <summary></summary>
+		protected ProgressChangeHandler mNotifyHandler = null;
+
+		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>
+		/// <param name="handler">The <see cref="ProgressChangeHandler"/></param>
+		public void SetProgressHandler(ProgressChangeHandler handler)
+		{
+			SetProgressHandler(handler, ProgressMode.NotifyRecords);
+		}
+
+		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>
+		/// <param name="handler">Your <see cref="ProgressChangeHandler"/> method.</param>
+		/// <param name="mode">The <see cref="ProgressMode"/> to use.</param>
+		public void SetProgressHandler(ProgressChangeHandler handler, ProgressMode mode)
+		{
+			mNotifyHandler = handler;
+
+			if (mode == ProgressMode.NotifyBytes)
+				throw new NotImplementedException("Not implemented yet. Planed for version 1.4.0");
+
+			mProgressMode = mode;
+		}
+		#endif
+
 	}
 }

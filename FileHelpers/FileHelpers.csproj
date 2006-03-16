@@ -286,6 +286,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Enums\ProgressMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\TrimMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -346,6 +351,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Helpers\ProgressHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Helpers\StreamHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -367,6 +377,11 @@
                 />
                 <File
                     RelPath = "MasterDetail\RecordAccion.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Progress\ProgressChange.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

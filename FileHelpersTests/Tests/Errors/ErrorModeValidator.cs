@@ -52,14 +52,6 @@ namespace FileHelpersTests.Errors
             
             Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
 
-			foreach (ErrorInfo err in engine.ErrorManager.Errors)
-			{
-				ErrorInfo[] errores = ErrorManager.LoadErrors("errors.txt");
-				Console.WriteLine(err.LineNumber);
-				Console.WriteLine(err.RecordString);
-				Console.WriteLine(err.ExceptionInfo.ToString());
-			}
-
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 		}

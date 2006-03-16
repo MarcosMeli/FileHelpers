@@ -57,6 +57,7 @@ namespace FileHelpers
 			mFooterText = String.Empty;
 
 			ArrayList resArray = new ArrayList();
+			int currentRecord = 0;
 
 			ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
 			freader.DiscardForward = true;
@@ -68,6 +69,11 @@ namespace FileHelpers
 			completeLine = freader.ReadNextLine();
 			currentLine = completeLine;
 
+			#if !MINI
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+			#endif
+
+
 			if (mRecordInfo.mIgnoreFirst > 0)
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
@@ -75,8 +81,10 @@ namespace FileHelpers
 					mHeaderText += currentLine + "\r\n";
 					currentLine = freader.ReadNextLine();
 					mLineNumber++;
+				
 				}
 			}
+
 
 
 			bool byPass = false;
@@ -86,6 +94,12 @@ namespace FileHelpers
 				try
 				{
 					mTotalRecords++;
+					currentRecord++; 
+				
+					#if !MINI
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+					#endif
+
 					resArray.Add(mRecordInfo.StringToRecord(currentLine));
 				}
 				catch (Exception ex)
@@ -201,6 +215,9 @@ namespace FileHelpers
 			if (maxRecords >= 0)
 				max = Math.Min(records.Length, maxRecords);
 
+			#if !MINI
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+			#endif
 
 			for (int i = 0; i < max; i++)
 			{
@@ -208,6 +225,10 @@ namespace FileHelpers
 				{
 					if (records[i] == null)
 						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
+					
+					#if !MINI
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
+					#endif
 
 					currentLine = mRecordInfo.RecordToString(records[i]);
 					writer.WriteLine(currentLine);
@@ -290,9 +311,6 @@ namespace FileHelpers
 
 		#endregion
 
-		//		#if ! MINI
-		//		ProgressMode mProgressMode = ProgressMode.DontNotify;
-		//		#endif
 
 		//		public static int DataTableToCVS(DataTable dt, string fileName)
 		//		{

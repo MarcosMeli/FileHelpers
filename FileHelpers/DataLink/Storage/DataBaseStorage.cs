@@ -76,8 +76,16 @@ namespace FileHelpers.DataLink
 				object currentObj;
 				object[] values = new object[reader.FieldCount];
 
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+
+				int recordNumber = 0;
+
 				while (reader.Read())
 				{
+					recordNumber++;
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
+
+
 					reader.GetValues(values);
 					currentObj = FillRecord(values);
 					res.Add(currentObj);
@@ -115,9 +123,15 @@ namespace FileHelpers.DataLink
 					mConn.Open();
 
 				string SQL = String.Empty;
+
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
+				int recordNumber = 0;
+
 				foreach (object record in records)
 				{
 					// Insert Logic Here, must check duplicates
+					recordNumber++;
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 
 					SQL += GetInsertSql(record) + " ";
 

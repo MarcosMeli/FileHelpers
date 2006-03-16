@@ -94,6 +94,11 @@
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "c:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
+                <Reference
+                    Name = "Framework.Controls.ProgressBar"
+                    AssemblyName = "Framework.Controls.ProgressBar"
+                    HintPath = "..\References\Framework.Controls.ProgressBar.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -165,6 +170,16 @@
                 <File
                     RelPath = "frmFather.resx"
                     DependentUpon = "frmFather.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "frmProgressSample.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmProgressSample.resx"
+                    DependentUpon = "frmProgressSample.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

@@ -19,7 +19,6 @@ namespace FileHelpers.DataLink
 	/// <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
 	public sealed class ExcelStorage : DataStorage
 	{
-
 		#region "  Constructors  "
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -56,7 +55,6 @@ namespace FileHelpers.DataLink
 		}
 
 		#endregion
-
 
 		#region "  Private Fields  "
 
@@ -130,7 +128,6 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		
 		#region "  InitExcel  "
 
 		private void InitExcel()
@@ -141,7 +138,7 @@ namespace FileHelpers.DataLink
 			}
 			catch (System.Runtime.InteropServices.COMException ex)
 			{
-				if(ex.Message.IndexOf("00024500-0000-0000-C000-000000000046") >= 0)
+				if (ex.Message.IndexOf("00024500-0000-0000-C000-000000000046") >= 0)
 					throw new ExcelBadUsageException("Excel 2000 or newer not installed in this system.");
 				else
 					throw;
@@ -191,7 +188,7 @@ namespace FileHelpers.DataLink
 			this.mBook = this.mApp.Workbooks.Open(info.FullName, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
 
 			if (this.mSheetName == null || mSheetName == string.Empty)
-                this.mSheet = (Worksheet) this.mBook.ActiveSheet;
+				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
 			else
 			{
 				try
@@ -243,7 +240,6 @@ namespace FileHelpers.DataLink
 		#endregion
 
 		#region "  CellAsString  "
-
 
 		private string CellAsString(object row, object col)
 		{
@@ -317,16 +313,21 @@ namespace FileHelpers.DataLink
 
 			try
 			{
+				int recordNumber = 0;
+				Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 
 				this.InitExcel();
 
 				if (mOverrideFile && File.Exists(mFileName))
 					File.Delete(mFileName);
-				
+
 				this.OpenOrCreateWorkbook(this.mFileName);
 
 				for (int i = 0; i < records.Length; i++)
 				{
+					recordNumber++;
+					Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
+
 					WriteRowValues(RecordToValues(records[i]), mStartRow + i, mStartColumn);
 				}
 
@@ -361,6 +362,9 @@ namespace FileHelpers.DataLink
 			{
 				int cRow = mStartRow;
 
+				int recordNumber = 0;
+				Notify(mNotifyHandler, mProgressMode, 0, -1);
+
 				object[] colValues = new object[mRecordInfo.FieldCount];
 
 				this.InitExcel();
@@ -370,11 +374,13 @@ namespace FileHelpers.DataLink
 				{
 					try
 					{
-						
-					colValues = RowValues(cRow, mStartColumn, mRecordInfo.FieldCount);
+						recordNumber++;
+						Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
 
-					object record = ValuesToRecord(colValues);
-					res.Add(record);
+						colValues = RowValues(cRow, mStartColumn, mRecordInfo.FieldCount);
+
+						object record = ValuesToRecord(colValues);
+						res.Add(record);
 
 					}
 					catch (Exception ex)
@@ -412,7 +418,6 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-
 		#region "  Values <-> Record Convertions "
 
 		private object ValuesToRecord(object[] values)
@@ -426,6 +431,5 @@ namespace FileHelpers.DataLink
 		}
 
 		#endregion
-
 	}
 }

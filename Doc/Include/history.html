@@ -273,6 +273,8 @@
 								<LI>
 								NEWS: Now using <a href="http://www.cenqua.com/">Clover.NET</a> (thanks to Cenqua fo rthe FREE licence for the project !!!) shortly I upload the coverage results.
 
+                                    <p>
+                                    </p>
                                     </UL>
                                     </LI>
 						<LI>
@@ -321,20 +323,20 @@
                                 <li>DEL: Some Exceptions trying to simplify the Exception handling and reducing the number of differnt exceptions. The deleted exceptions are <b>NullValueException, QuotedStringException and InternalException all replaced with the BadUsageException</b>.</li>
 								<LI>DEL: Description property to the EngineBase this is really old from the beggining
                                     of the lib.<li>FIX: The Async engines now uses the ErrorMode in all cases. </li>
-                                    <li>MOD: The MasterDetailEngine now takes the IgnoreFirst and IgnoreLast options from the master record an not for the detail. </li>
+                                    <li>MOD: The MasterDetailEngine now takes the IgnoreFirst and IgnoreLast options from the master record an not from the detail. </li>
                                 <li>MOD: LoadErrors from the ErrorManager class now is static.</li>
-                                <li>MOD: SaveErrors can recieve an header string to write into the file.</li>
+                                <li>MOD: SaveErrors can recieve a header string to write into the file.</li>
                                 <li>MOD: Enhaced exception messages.</li>
                                     <li>MOD: EngineBase.LineNum and ErrorInfo.LineNum now are <strong>LineNumber</strong>.
                                     </li>
                                     <li>MOD: ErrorManager.<strong>LastErrors renamed to </strong>ErrorManager.<strong>Errors</strong></li>
-                                    <li>MOD: All methods in the FileHelpers Engines that returns bool to void because they use error handling with exceptions, this provide a more clear OOD.</li>
+                                    <li>MOD: All methods in the FileHelpers Engines that <b>returns bool changed to void</b> because they was using error handling with exceptions and a bool result is redundant and useless, this provide also a more clear OOD.</li>
                                 <li>ADD: A new parameter to the FieldQuoted attribute to indicate if the Quote is optional (like excel does with CSV) </li>
 								<LI>ADD: The ExcelStorage checks if Excel is installed, if not throws a BadUsageException
                                 </li>
                                     <li>ADD: The FileHelper Engine now have four static methods for the common operations.
                                     </li>
-                                <li>ADD: More <A href="testing.html">NUnit tests</a> (more than 180 =) </li>
+                                <li>ADD: More <A href="testing.html">NUnit tests</a> (more than 190) </li>
                            </ul>
                                     </LI>
  					</UL>

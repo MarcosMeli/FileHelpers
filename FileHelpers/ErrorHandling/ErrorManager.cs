@@ -28,6 +28,7 @@ namespace FileHelpers
 
 		ArrayList mErrorsArray = new ArrayList();
 
+		/// <summary></summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete("This property name is obsolete use Errors instead.")]
 		public ErrorInfo[] LastErrors
