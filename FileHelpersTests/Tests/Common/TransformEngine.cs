@@ -16,22 +16,23 @@ namespace FileHelpersTests.Common
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
 			link.TransformFile1To2(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
 		}
 
 		[DelimitedRecord(",")]
 		private class FromClass
 		{
-			public string Field1;
-			public string Field2;
-			public string Field3;
+			public string CustomerId;
+			public string CompanyName;
+			public string CustomerName;
 
 			[TransformToRecord(typeof(ToClass))]
 			public ToClass Transform()
 			{
 				ToClass res = new ToClass();
-				res.Field1 = Field1;
-				res.Field2 = Field2;
-				res.Field3 = Field3;
+				res.CustomerId = CustomerId;
+				res.CompanyName = CompanyName;
+				res.CustomerName = CustomerName;
 
 				return res;
 			}
@@ -41,11 +42,11 @@ namespace FileHelpersTests.Common
 		private class ToClass
 		{
 			[FieldFixedLength(10)]
-			public string Field1;
+			public string CustomerId;
 			[FieldFixedLength(50)]
-			public string Field2;
+			public string CompanyName;
 			[FieldFixedLength(60)]
-			public string Field3;
+			public string CustomerName;
 		}
 	
 	}

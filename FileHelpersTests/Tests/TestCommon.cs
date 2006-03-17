@@ -21,7 +21,6 @@ namespace FileHelpersTests
 		public static object[] ReadAllAsync(FileHelperAsyncEngine engine, string fileName)
 		{
 			ArrayList arr = new ArrayList();
-			
 			engine.BeginReadFile(@"..\data\" + fileName);
 			while(engine.ReadNext() != null)
 				arr.Add(engine.LastRecord);
