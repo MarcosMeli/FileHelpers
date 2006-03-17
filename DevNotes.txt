@@ -14,7 +14,9 @@
 
   In almost every project there is a need to read/write data from/to a file of a specified format.
 
-  For example for log parsing, data warehouse and OLAP applications, communication between systems, file format transformations (for example from a fixed length to a CSV file).
+  For example for log parsing, data warehouse and OLAP applications, 
+  communication between systems, file format transformations 
+  (for example from a fixed length to a CSV file).
 
   This library aims to provide an easy and reliable way to accomplish this task.
 
@@ -28,25 +30,21 @@
   Licence
 -----------
 
- FileHelpers Library is @ Copyright 2005 to Marcos Meli but it's source code and the binaries are free for commercial and non commercial use.
+ FileHelpers Library is @ Copyright 2005-2006 to Marcos Meli but it's source code and the binaries are free for commercial and non commercial use.
 
 ---------------------
   Contact and Ideas
 ---------------------
 
- If you find that there is a feature that I must include, or you have a new idea (for the API, Source Code or Examples), only let me know, sending an e-mail to marcosdotnet[at]yahoo.com.ar or entering the FileHelpers Project at SourceForge in http://www.sf.net/projects/filehelpers. 
+ If you find that there is a feature that I must include, or you have a new idea 
+ (for the API, Source Code or Examples), only let me know, sending an e-mail 
+ to marcosdotnet@yahoo.com.ar or entering the FileHelpers Forums at
 
- You can also join us in the mailing list. to subscribe simply send a mail to:
- 
-    To:      filehelpers-general-request@lists.sourceforge.net
-    subject: subscribe
- 
- and nothing more, you are in... to send mails:
- 
-    To:      filehelpers-general@lists.sourceforge.net
-    subject: Your subject
+  
+         http://filehelpers.sourceforge.net/forums/
+    
 
- 
+
 ----------------------------
   Full DevPack and Updates
 ----------------------------

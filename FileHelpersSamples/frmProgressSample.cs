@@ -88,11 +88,12 @@ namespace FileHelpersSamples
 			// 
 			// prog1
 			// 
-			this.prog1.ColorBackground = System.Drawing.Color.White;
-			this.prog1.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(170)), ((System.Byte)(240)), ((System.Byte)(170)));
-			this.prog1.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(10)), ((System.Byte)(150)), ((System.Byte)(10)));
-			this.prog1.ColorText = System.Drawing.Color.White;
+			this.prog1.ColorBarBorder = System.Drawing.Color.Blue;
+			this.prog1.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
+			this.prog1.ColorText = System.Drawing.Color.WhiteSmoke;
+			this.prog1.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.prog1.GradientStyle = Framework.Controls.GradientMode.Horizontal;
 			this.prog1.Location = new System.Drawing.Point(8, 64);
 			this.prog1.Name = "prog1";
 			this.prog1.Position = 0;
@@ -101,7 +102,6 @@ namespace FileHelpersSamples
 			this.prog1.Size = new System.Drawing.Size(654, 32);
 			this.prog1.StepDistance = ((System.Byte)(0));
 			this.prog1.StepWidth = ((System.Byte)(3));
-			this.prog1.TabIndex = 9;
 			this.prog1.Text = "CodeProject XpProgressBar";
 			this.prog1.TextShadowAlpha = ((System.Byte)(200));
 			this.prog1.WatermarkAlpha = 255;
@@ -109,9 +109,8 @@ namespace FileHelpersSamples
 			// 
 			// prog3
 			// 
-			this.prog3.ColorBackground = System.Drawing.Color.White;
-			this.prog3.ColorBarBorder = System.Drawing.Color.Blue;
-			this.prog3.ColorBarCenter = System.Drawing.Color.Navy;
+			this.prog3.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(224)), ((System.Byte)(192)));
+			this.prog3.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
 			this.prog3.ColorText = System.Drawing.Color.Gainsboro;
 			this.prog3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.prog3.GradientStyle = Framework.Controls.GradientMode.Vertical;
@@ -122,28 +121,23 @@ namespace FileHelpersSamples
 			this.prog3.PositionMin = 0;
 			this.prog3.Size = new System.Drawing.Size(654, 32);
 			this.prog3.StepDistance = ((System.Byte)(0));
-			this.prog3.StepWidth = ((System.Byte)(2));
-			this.prog3.TabIndex = 10;
+			this.prog3.StepWidth = ((System.Byte)(3));
 			this.prog3.WatermarkAlpha = 255;
 			this.prog3.WatermarkImage = null;
 			// 
 			// prog2
 			// 
-			this.prog2.ColorBackground = System.Drawing.Color.White;
-			this.prog2.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(170)), ((System.Byte)(240)), ((System.Byte)(170)));
-			this.prog2.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(10)), ((System.Byte)(150)), ((System.Byte)(10)));
+			this.prog2.ColorBarBorder = System.Drawing.Color.AliceBlue;
+			this.prog2.ColorBarCenter = System.Drawing.Color.SteelBlue;
 			this.prog2.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
 			this.prog2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.prog2.GradientStyle = Framework.Controls.GradientMode.Horizontal;
+			this.prog2.GradientStyle = Framework.Controls.GradientMode.Diagonal;
 			this.prog2.Location = new System.Drawing.Point(8, 104);
 			this.prog2.Name = "prog2";
 			this.prog2.Position = 0;
 			this.prog2.PositionMax = 100;
 			this.prog2.PositionMin = 0;
-			this.prog2.Size = new System.Drawing.Size(656, 32);
-			this.prog2.StepDistance = ((System.Byte)(1));
-			this.prog2.StepWidth = ((System.Byte)(4));
-			this.prog2.TabIndex = 3;
+			this.prog2.Size = new System.Drawing.Size(654, 32);
 			this.prog2.Text = "Full Customizable";
 			this.prog2.TextShadow = false;
 			this.prog2.WatermarkAlpha = 255;
@@ -151,12 +145,11 @@ namespace FileHelpersSamples
 			// 
 			// prog4
 			// 
-			this.prog4.ColorBackground = System.Drawing.Color.White;
-			this.prog4.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(220)));
-			this.prog4.ColorBarCenter = System.Drawing.Color.Olive;
-			this.prog4.ColorText = System.Drawing.Color.WhiteSmoke;
+			this.prog4.ColorBarBorder = System.Drawing.Color.RoyalBlue;
+			this.prog4.ColorBarCenter = System.Drawing.Color.AliceBlue;
+			this.prog4.ColorText = System.Drawing.Color.Silver;
 			this.prog4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.prog4.GradientStyle = Framework.Controls.GradientMode.Horizontal;
+			this.prog4.GradientStyle = Framework.Controls.GradientMode.HorizontalCenter;
 			this.prog4.Location = new System.Drawing.Point(8, 184);
 			this.prog4.Name = "prog4";
 			this.prog4.Position = 0;
@@ -164,8 +157,7 @@ namespace FileHelpersSamples
 			this.prog4.PositionMin = 0;
 			this.prog4.Size = new System.Drawing.Size(654, 32);
 			this.prog4.StepDistance = ((System.Byte)(0));
-			this.prog4.StepWidth = ((System.Byte)(2));
-			this.prog4.TabIndex = 11;
+			this.prog4.StepWidth = ((System.Byte)(3));
 			this.prog4.WatermarkAlpha = 255;
 			this.prog4.WatermarkImage = null;
 			// 

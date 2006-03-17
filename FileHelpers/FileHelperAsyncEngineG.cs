@@ -4,6 +4,8 @@
 
 #endregion
 
+#if NET_2_0
+
 using System;
 using System.Collections;
 using System.IO;
@@ -351,3 +353,5 @@ namespace FileHelpers
 		#endregion
 	}
 }
+
+#endif

@@ -85,7 +85,7 @@ bgColor=white leftMargin=0 topMargin=0>
             <strong>Remember:</strong> to use the <strong>_</strong> (underscore) when you put
             the definition in the next line.<br />&nbsp;
         </li>
-        <li>The last important difference is the <strong>type convertion</strong> instruction.<br />
+        <li>Other difference is the <strong>type convertion</strong> instruction.<br />
             <br />
             In <strong>C#</strong> the cast is the destination type enclosed between ()<br />
             <br />
@@ -100,7 +100,18 @@ bgColor=white leftMargin=0 topMargin=0>
             Orders())<br />
             <br />
             <strong>Note:</strong> DirectCast has the less performant hit, but CType is more
-            clear.</li>
+            clear.<br /></li>
+            <br />
+        <li>The last difference is about generics<br />
+            <br />
+            In <strong>C#</strong> the generics class are defined:<br />
+            <br />
+            &nbsp; &nbsp; FileHelperEngine&lt;Orders&gt; engine  = new FileHelperEngine&lt;Orders&gt;();<br />
+            <br />
+            In <strong>VB.NET</strong> In this other way:<br />
+            <br />
+            &nbsp; &nbsp; Dim engine As New FileHelperEngine(Of Orders)()<br />
+</li>
     </ol>
     <hr align="left" />
       <div >

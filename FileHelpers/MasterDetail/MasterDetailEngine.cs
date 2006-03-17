@@ -144,6 +144,11 @@ namespace FileHelpers.MasterDetail
 			completeLine = freader.ReadNextLine();
 			currentLine = completeLine;
 
+			#if !MINI
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+			#endif
+			int currentRecord = 0;
+
 			if (mMasterInfo.mIgnoreFirst > 0)
 			{
 				for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
@@ -164,6 +169,13 @@ namespace FileHelpers.MasterDetail
 			{
 				try
 				{
+
+					currentRecord++; 
+
+					#if !MINI
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+					#endif
+
 					RecordAction action = mRecordSelector(currentLine);
 
 					switch (action)
@@ -308,10 +320,21 @@ namespace FileHelpers.MasterDetail
 				max = Math.Min(records.Length, maxRecords);
 
 
+			#if !MINI
+				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+			#endif
+
 			for (int i = 0; i < max; i++)
 			{
 				try
 				{
+					if (records[i] == null)
+						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
+					
+					#if !MINI
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
+					#endif
+
 					currentLine = mMasterInfo.RecordToString(records[i].mMaster);
 					writer.WriteLine(currentLine);
 
