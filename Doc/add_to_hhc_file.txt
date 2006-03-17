@@ -1,13 +1,12 @@
 
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Attributes List">
-		<param name="Local" value="attributes.html">
-		</OBJECT>
-
-
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Quick Start Guide">
 		<param name="Local" value="quick_start.html">
+		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Attributes List">
+		<param name="Local" value="attributes.html">
 		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
@@ -35,6 +34,13 @@
 			<param name="Local" value="example_generics.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Error Handling">
+			<param name="Local" value="example_errorhandling.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+			
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Master-Details 1">
 			<param name="Local" value="example_masterdetail.html">
@@ -50,6 +56,13 @@
 			<param name="Local" value="example_enumconverter.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Common Engine">
+			<param name="Local" value="example_commonengine.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+
 		
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Async Example">
@@ -80,10 +93,11 @@
 			</OBJECT>
 
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="CodeSmith Example">
-			<param name="Local" value="example_codesmith.html">
+			<param name="Name" value="File Transform Engine">
+			<param name="Local" value="example_transform.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
+
 	</UL>
 
 
@@ -92,28 +106,26 @@
 		<param name="Local" value="class_diagram.html">
 		</OBJECT>
 	<UL>
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Engines Diagram">
-		<param name="Local" value="diagram_engines.html">
-		</OBJECT>
-
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="DataStorage Diagram">
-		<param name="Local" value="diagram_datastorage.html">
-		</OBJECT>
-
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="DataLinks Diagram">
-		<param name="Local" value="diagram_datalinks.html">
-		</OBJECT>
-
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Engines Diagram">
+			<param name="Local" value="diagram_engines.html">
+			</OBJECT>
+	
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DataStorage Diagram">
+			<param name="Local" value="diagram_datastorage.html">
+			</OBJECT>
+	
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="DataLinks Diagram">
+			<param name="Local" value="diagram_datalinks.html">
+			</OBJECT>
 	</UL>
 
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Downloads">
 		<param name="Local" value="downloads.html">
 		</OBJECT>
-
 
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Library Testing">
@@ -134,6 +146,11 @@
 		<param name="Name" value="Contact and Credits">
 		<param name="Local" value="credits.html">
         <param name="ImageNumber" value="25">
+		</OBJECT>
+
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Discussion Forums">
+		<param name="Local" value="http://filehelpers.sourceforge.net/forums/">
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">

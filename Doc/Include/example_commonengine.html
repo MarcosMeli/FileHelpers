@@ -3,11 +3,16 @@
 <LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
 href="global.css" type=text/css 
 rel=stylesheet>
-
 <meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
 <meta name="Author"             content="Marcos Meli" />
 <meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
 <meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+
+<style type="text/css">
+<!--
+.style1 {color: #FFFFFF}
+-->
+</style>
 </HEAD>
 <BODY   text=black vLink=purple aLink=red link=blue 
 bgColor=white leftMargin=0 topMargin=0>
@@ -35,15 +40,36 @@ bgColor=white leftMargin=0 topMargin=0>
                                                       </td></tr>
 		</table>
 		</FORM>
-<table width="100%" height="686" cellpadding="5" cellspacing="5">
-<tr><td height="676"><div id=contentdiv>
-          <h2>
-        DataStorage Diagram</h2>
-    <p>
-        <img src="class_diagram_storage.png" >&nbsp;</p>
-    <h2>
-        &nbsp;</h2>
-       <hr align="left" />
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>
+      CommonEngine</h2>
+  <blockquote>
+          <p>
+              You can use this class as a short cut to the common operations, now have only the
+              basic methods but in the feature will contains a full list of common oprations.</p>
+      <p>
+          You can use this class like this</p>
+          <blockquote>
+            <pre>
+<span class="vb-comment">// to Read use:
+</span>Orders[] res = (Orders[]) CommonEngine.ReadFile(<span style="color: #0000ff">
+    typeof</span>(Orders), @<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+
+<span class="cs-comment">// to Write use:</span>
+CommonEngine.WriteFile(<span style="color: #0000ff">typeof</span>(Orders), @<span class="cs-string">"C:\TestIn.txt"</span>, res);
+        </pre>
+          </blockquote>
+  </blockquote>
+
+      <h2>See also </h2>
+      <blockquote>
+        <p></p>
+        <a href="attributes.html"> Attributes List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a>
+        </blockquote>
+
+<hr align="left" />
       <div >
 <table width="100%" >
   <tr><td class="SmallText">
@@ -51,14 +77,14 @@ Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> 
 Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
 Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
 </td>
-    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="middle" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1"><img src=help.png /></td>
+    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="top" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1"><img src=help.png /></td>
   </tr>
 </table>
+
 </div>
                     <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
 </div>
 </tr>
 </table>
-
 
 </BODY></HTML>
