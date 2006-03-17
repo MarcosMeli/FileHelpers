@@ -1,0 +1,38 @@
+
+-------------------------------
+   HoW TO HELP TO THE LIBRARY
+-------------------------------
+
+
+  To work with the library is more and more and I not have 
+  full time for it.
+  
+  Then if you want to help me in the development please contact me
+  at marcosdotnet@yahoo.com.ar and we find some library part that
+  you can mantain or change
+  
+  Another plase where the pending thing is place is in the Forums
+  
+         http://filehelpers.sourceforge.net/forums/
+
+  You can help in any of this topics:
+  
+     -  Development
+     -  Automatization trought NAnt
+     -  Help Translation (almost to english :) because I know that is full of errors)
+     -  Web Site Changes
+     -  Forums Admin
+     -  And if you want you can donate something to the library
+         
+          Via PayPal:  (from 5 to 250 u$s)
+          
+					http://sourceforge.net/donate/index.php?group_id=152382
+          
+          Via Amazon:  (some book is good !!!)
+          
+                     http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9
+          
+  
+------------
+Regards
+Marcos
