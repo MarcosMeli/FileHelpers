@@ -136,6 +136,12 @@
             </fileset>
         </delete>
 
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Wizard">
+            <fileset basedir="..\Release\WIzard">
+                <include name="*\**" />
+            </fileset>
+        </copy>
+
         <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
         
 

@@ -10,8 +10,7 @@ rel=stylesheet>
 
 <style type="text/css">
 <!--
-.style2 {color: #990000}
-.style3 {font-weight: bold}
+.style1 {color: #FFFFFF}
 -->
 </style>
 </HEAD>
@@ -23,7 +22,8 @@ bgColor=white leftMargin=0 topMargin=0>
 			<tr>
 				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
                     <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
-<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9"><img src="giftsmall.gif" width="23" height="24" border="0" alt="Amazon Wish List"></a> <a href="http://filehelpers.sourceforge.net/forums/"><img src="forums.gif" width="24" height="24" border="0" alt="Browse the Forums"></a>  <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1"><img src="rss2.png" border="0" alt="News RSS feed."></a>
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9"><img src="giftsmall.gif" width="23" height="24" border="0" alt="Amazon Wish List"></a> <a href="http://filehelpers.sourceforge.net/forums/"><img src="forums.gif" width="24" height="24" border="0" alt="Browse the Forums"></a> <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
                     &nbsp; </td></tr>
 			<tr >
 				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
@@ -42,36 +42,58 @@ bgColor=white leftMargin=0 topMargin=0>
 		</FORM>
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td valign="top">
-    <h2> FileHelpers Library Downloads </h2>
-    <table width="100%"  border="0" cellpadding="2">
-      <tr>
-        <td width="120" height="185" valign="top"><img src="download.png" width="100" height="100" alt="Download"></td>
-        <td valign="top">
-            Remember to check the <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
-                            <img src="rss2.png" border="0" alt="News RSS feed."></a> <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
-                    Feed</a> to keep updated for new releases.<br />
-            <br />
-          
-          <h2>Download the library from</h2>          
+<tr><td><div id=contentdiv> 
+  <h2>
+      Progress Notification</h2>
+  <blockquote>
+          <p>
+              From the version 1.4.0 you can get notified about the progress of the operations
+              of the engines and DataLinks.</p>
+      <p>
+          The already implemented feature can be used in all cases, for example when you wirte
+          a file the engine knows the total records to be written and the actual record then
+          can be accurate in the notification. However if you read a file the engine only
+          know the current record and not the total then informs -1.</p>
+      <p>
+          The usaje is simple you must to instanciate the engine and before call any operation
+          you must call the SetProgressHandler</p>
           <blockquote>
-            <p>
-            Click on the site from where you want to download the FileHelpers</p>
-              <p>
-                  &nbsp; &nbsp; &nbsp; &nbsp;
- <a href="http://sourceforge.net/project/showfiles.php?group_id=152382&package_id=169468"><img src="sf.gif" width=88 height=31 alt="Source Forge" border="0"></a> &nbsp;
+            <pre>
+    FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
- <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a>
-              </p>
-            </blockquote>          
-          <h2> File Helpers Forums </h2>
-          <blockquote>
-              <p>
-                  Enter the <a href="http://filehelpers.sourceforge.net/forums/"> FileHelpers Forums</a> to keep updated of the progress of the library.</p>
-            </blockquote></td>
-      </tr>
-    </table>    
-    <hr align="left" />
+    <span style="color: firebrick">engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+    </span>
+    engine.ReadFile(<span style="color: silver">... </span></pre>
+          </blockquote>
+          <p>
+              and in your Progress change method:</p><blockquote>
+              <pre>
+    private void ProgressChange(ProgressEventArgs e)
+    {
+        prog1.PositionMax = e.ProgressTotal;
+        prog1.Position = e.ProgressCurrent;
+        prog1.Text = "Record " + e.ProgressCurrent.ToString();
+
+        Application.DoEvents();
+    }
+</pre>
+          </blockquote>
+      <p>
+          Check the demo application for an example that looks like</p>
+      <p>
+          <img src="progress.png" />&nbsp;</p>
+      <p>
+          <strong>Into the distribution you can found My XpProgressBar for using it thogeter with
+              the FileHelpers.</strong></p>
+  </blockquote>
+
+      <h2>See also </h2>
+      <blockquote>
+        <p></p>
+        <a href="attributes.html"> Attributes List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a>
+        </blockquote>
+
+<hr align="left" />
       <div >
 <table width="100%" >
   <tr><td class="SmallText">
@@ -79,13 +101,13 @@ Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> 
 Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
 Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
 </td>
-    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="middle" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1">
-        <a href="FAQ.html"><img src=help.png border=0 /></a></td>
+    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="top" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1"><img src=help.png /></td>
   </tr>
 </table>
+
+</div>
                     <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
 </div>
-</td>
 </tr>
 </table>
 

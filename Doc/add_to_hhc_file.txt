@@ -63,6 +63,12 @@
 			<param name="ImageNumber" value="11">
 			</OBJECT>
 
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Progress Notification">
+			<param name="Local" value="example_progress.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+
 		
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Async Example">

@@ -43,10 +43,16 @@
 						<h2>FileHelpers v 1.4.0 &nbsp;&nbsp;<span style="font-size: 9pt">(</span><a href="history.html"><span
                             style="color: #0066ff"><span style="font-size: 9pt">Browse <span>History</span></span></span></a><span style="font-size: 9pt">)</span></h2>
 						<blockquote>
-							<p>The FileHelpers are an easy to use library to import/export data from fixed 
-								length or delimited files.<br>
+							<p>The FileHelpers are an <strong>easy to use</strong> library to <strong>import/export</strong>
+                                data from <strong>fixed 
+								length or delimited records</strong> in files, strings or
+                                streams.</p>
+                            <p>
 								If you want to start using the library go directly to the <a href="quick_start.html">
 									Quick Start Guide.</a></p>
+                            <p>
+                                The library has a set of Automatic Converters and can be extended with Custom Cunverters.
+                            </p>
                             <p>
                                 Also has support for import/export data from differents data storages like Excel,
                                 Access, SqlServer, etc.</p>
@@ -75,14 +81,14 @@
 							</p>
 							<p><b>Auto Converters:</b> The library has a set of converters for the basic types 
 								and can be easy extended to provide custom converters. (see <a href="FileHelpers.ConverterBase.html">
-                                    ConverterBase</a>)</p>
+                                    ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)</p>
                             <p>
                                 <strong>Master-Detail: </strong>
                                 <img src="new.gif" width="31" height="12">
                                 Yu can read and write records with a master/detail pattern. (see <a href="example_masterdetail2.html">
                                     Example1</a> and <a href="example_masterdetail.html">Example2</a>)</p>
                             <p>
-                                <strong>Ms Excel Storage: <img src="new.gif" width="31" height="12"></strong> Are 
+                                <strong>Ms Excel Storage:&nbsp;</strong> Are 
 								a way to extract / insert records between any source and an excel file. (see <a href="FileHelpers.DataLink.ExcelStorage.html">
                                     ExcelDataStorage</a> and <a href="example_exceldatalink.html">ExcelDataLinkExample</a>)</p>
 							<p><b>DataLinks:</b> Are a way to extract / insert records between a database and a 
@@ -99,15 +105,27 @@
 							<p><b>.NET Compact Framework Support <strong></strong></b>From 
 								the version 1.1 you can use the FileHelpers library for you PocketPC and 
 								WindowsCE developments. (thanks Pierre)</p>
-							<p><b>Code Smith Templates:</b> To generate automatically the Types and DataLinks 
-								from an Access or SqlServer Table.</p>
+							<p><b>File Transform Engine:
+                                <img src="new.gif" width="31" height="12"></b> to convert files in one format to
+                                another (for example a file with CSV to a FixedLength record format) (<a href="example_transform.html">check
+                                    the example</a>)</p>
+                            <p>
+                                <strong>Progress Notification:</strong>
+                                <img src="new.gif" width="31" height="12">
+                                to get notified of the progress in each operation in the library (<a href="example_progress.html">check
+                                    the example</a>)</p>
+                            <p>
+                                <strong>.NET 2.0 Generics:</strong>
+                                <img src="new.gif" width="31" height="12">
+                                the cast less and strong typed version of the engines (<a href="generics.html">check
+                                    the example</a>)</p>
 						</blockquote>
 						<h2>Others Features</h2>
 						<blockquote>
-							<p><b>Files and Stream Support: </b>You can use the library to read/write any 
-								stream, not only files. (see<a href="FileHelpers.FileHelperEngineMethods.html"> FileHelperEngine</a>)</p>
+							<p><b>Files, Stream and String Support: </b>You can use the library to read/write any stream or string, not only files. (see<a href="FileHelpers.FileHelperEngineMethods.html"> FileHelperEngine</a>)</p>
 							<p><b>Different Error Behaviors: </b>You can set the behavior of the library when 
-								an error is found (throw and exception, ignore, save and continue, etc).</p>
+								an error is found (throw and exception, ignore, save and continue, etc) (see the <a
+                                    href="example_errorhandling.html">examples</a>)</p>
 							<p>
 								<strong>Quoted String Support</strong>
 								It allows to indicates that the field must be read and written as&nbsp;Quoted 
@@ -126,9 +144,9 @@
 								with a lot of attributes like the <a href="FileHelpers.FieldAlignAttribute.html">FieldAlignAttribute</a>
 								and the <a href="FileHelpers.FieldTrimAttribute.html">FieldTrimAttribute</a>.</p>
 						</blockquote>
-						<h2>Licence</h2>
+						<h2>Licence (LGPL)</h2>
 						<blockquote>
-							<p>FileHelpers Library is @Copyright 2005 to <a href="http://www.MarcosMeli.com.ar">Marcos 
+							<p>FileHelpers Library is @Copyright 2005-2006 to <a href="http://www.MarcosMeli.com.ar">Marcos 
 									Meli</a> but it's source code and the binaries are <strong>free for commercial 
 									and non commercial use</strong>.</p>
 						</blockquote>
@@ -143,10 +161,15 @@
 						</blockquote>
 						<h2>Contact and Ideas</h2>
 						<blockquote>
-							<p>If you find that there is a feature that I must include, or you have a new idea 
-								(for the API, Source Code or Examples), only let me know, sending an e-mail to <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">
-									marcosdotnet[at]yahoo.com.ar</a> or or entering the FileHelpers Project at 
-								Source Forge in <a href="http://sourceforge.net/projects/filehelpers">www.sf.net/projects/filehelpers</a></p>
+							<p>
+                                The main site of contact of the library are the <a href="http://filehelpers.sourceforge.net/forums/">
+                                    FileHelpers Forums</a>
+                            </p>
+                            <p>
+                                If you find that there is a feature that I must include, or you have a new idea 
+								(for the API, Source Code or Examples), only let me know, entering the forums or
+                                sending an e-mail to <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">
+									marcosdotnet[at]yahoo.com.ar</a></p>
 						</blockquote>
 						<h2>See also
 						</h2>

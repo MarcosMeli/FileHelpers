@@ -78,6 +78,11 @@
 
 			<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_progress.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Progress Notification</a>
+			</div>
+
+			<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_customconv.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Decimal Converter</a>
 			</div>
 			

@@ -113,7 +113,7 @@ namespace FileHelpersSamples
 			this.linkLabel2.Size = new System.Drawing.Size(200, 16);
 			this.linkLabel2.TabIndex = 100;
 			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "(c) Copyright 2005 - Marcos Meli";
+			this.linkLabel2.Text = "(c) 2005-06 to Marcos Meli";
 			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
 			// 
 			// linkLabel1

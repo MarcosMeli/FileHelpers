@@ -228,11 +228,7 @@ BOLID      Bólido Comidas preparadas             Martín Sommer         Owner    
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersFixed));
 
-			StringReader reader = new StringReader(txtData.Text);
-
-			object[] res = engine.ReadStream(reader);
-
-			grid1.SelectedObject = res;
+			grid1.SelectedObject = engine.ReadString(txtData.Text);;
 		}
 	}
 }

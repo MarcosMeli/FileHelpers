@@ -111,7 +111,8 @@ namespace FileHelpersSamples
 			// 
 			this.prog3.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(224)), ((System.Byte)(192)));
 			this.prog3.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
-			this.prog3.ColorText = System.Drawing.Color.Gainsboro;
+			this.prog3.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(115)), ((System.Byte)(50)), ((System.Byte)(0)));
+			this.prog3.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.prog3.GradientStyle = Framework.Controls.GradientMode.Vertical;
 			this.prog3.Location = new System.Drawing.Point(8, 144);
@@ -147,7 +148,8 @@ namespace FileHelpersSamples
 			// 
 			this.prog4.ColorBarBorder = System.Drawing.Color.RoyalBlue;
 			this.prog4.ColorBarCenter = System.Drawing.Color.AliceBlue;
-			this.prog4.ColorText = System.Drawing.Color.Silver;
+			this.prog4.ColorText = System.Drawing.Color.Navy;
+			this.prog4.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.prog4.GradientStyle = Framework.Controls.GradientMode.HorizontalCenter;
 			this.prog4.Location = new System.Drawing.Point(8, 184);
@@ -213,7 +215,7 @@ private void ProgressChange(ProgressEventArgs e)
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmProgressSample";
-			this.Text = "FileHelpers - Easy Example";
+			this.Text = "FileHelpers - Progress Example";
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
 			this.Controls.SetChildIndex(this.prog1, 0);
@@ -257,7 +259,7 @@ private void ProgressChange(ProgressEventArgs e)
 			prog4.Text = e.ProgressCurrent.ToString() + " Of " + e.ProgressTotal.ToString();
 
 			Application.DoEvents();
-			Thread.Sleep(50);
+			Thread.Sleep(90);
 		}
 	}
 

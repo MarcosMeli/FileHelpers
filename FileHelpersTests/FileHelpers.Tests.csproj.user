@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP LastOpenVersion = "7.10.3077" >
         <Build>
-            <Settings ReferencePath = "D:\_Mis Archivos\Personal\Mis Cursos o Post\www.CodeProject.com\FileHelpers\Source\Libs\;C:\Desarrollo\Tools\NUnit\;D:\__Working\Posts\FileHelpers\CurrentSource\Source\Libs\nunit\" >
+            <Settings ReferencePath = "D:\_Mis Archivos\Personal\Mis Cursos o Post\www.CodeProject.com\FileHelpers\Source\Libs\;C:\Desarrollo\Tools\NUnit\;D:\__Working\Posts\FileHelpers\CurrentSource\Source\Libs\nunit\;D:\__Working\Posts\FileHelpers\CurrentSource\Source\trunk\Libs\nunit\" >
                 <Config
                     Name = "Debug"
                     EnableASPDebugging = "false"
