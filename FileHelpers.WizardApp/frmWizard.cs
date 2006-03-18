@@ -1142,7 +1142,7 @@ namespace FileHelpers.WizardApp
             this.MaximizeBox = false;
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FileHelpers - Record Class Wizard";
+            this.Text = "FileHelpers - Record Class Wizard v1.1";
             this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();

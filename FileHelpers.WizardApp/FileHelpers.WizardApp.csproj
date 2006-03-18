@@ -89,19 +89,19 @@
   <ItemGroup>
     <Reference Include="Fireball.CodeEditor, Version=1.0.0.1, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\dotnetfireball.org\Fireball Framework\bin\Fireball.CodeEditor.dll</HintPath>
+      <HintPath>..\References\Fireball\Fireball.CodeEditor.dll</HintPath>
     </Reference>
     <Reference Include="Fireball.CodeEditor.SyntaxFiles, Version=1.0.0.2, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\dotnetfireball.org\Fireball Framework\bin\Fireball.CodeEditor.SyntaxFiles.dll</HintPath>
+      <HintPath>..\References\Fireball\Fireball.CodeEditor.SyntaxFiles.dll</HintPath>
     </Reference>
     <Reference Include="Fireball.SyntaxDocument, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\dotnetfireball.org\Fireball Framework\bin\Fireball.SyntaxDocument.dll</HintPath>
+      <HintPath>..\References\Fireball\Fireball.SyntaxDocument.dll</HintPath>
     </Reference>
     <Reference Include="Fireball.Windows.Forms, Version=1.9.0.0, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\dotnetfireball.org\Fireball Framework\bin\Fireball.Windows.Forms.dll</HintPath>
+      <HintPath>..\References\Fireball\Fireball.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
