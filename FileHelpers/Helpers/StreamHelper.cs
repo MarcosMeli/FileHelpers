@@ -31,20 +31,25 @@ namespace FileHelpers
 				try
 				{
 					fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-					fs.Seek(-2, SeekOrigin.End);
 
-					if (fs.ReadByte() == 13 && fs.ReadByte() == 10)
+					if (fs.Length >= 2)
 					{
-						int nowRead;
-						do
-						{
-							fs.Seek(-2, SeekOrigin.Current);
-							nowRead = fs.ReadByte();
-						} while (nowRead == 13 || nowRead == 10);
-					}
+						fs.Seek(-2, SeekOrigin.End);
 
-					fs.WriteByte(13);
-					fs.WriteByte(10);
+						if (fs.ReadByte() == 13 && fs.ReadByte() == 10)
+						{
+							int nowRead;
+							do
+							{
+								fs.Seek(-2, SeekOrigin.Current);
+								nowRead = fs.ReadByte();
+							} while (nowRead == 13 || nowRead == 10);
+						}
+
+						fs.WriteByte(13);
+						fs.WriteByte(10);
+
+					}
 
 					res = new StreamWriter(fs, encode);
 

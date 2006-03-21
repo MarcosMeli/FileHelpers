@@ -113,6 +113,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\AppendWriters.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\CustomConverter1.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
