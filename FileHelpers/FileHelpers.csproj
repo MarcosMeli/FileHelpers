@@ -259,6 +259,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\MultiRecordEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\AlignMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

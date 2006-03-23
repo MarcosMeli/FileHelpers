@@ -173,6 +173,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\MultiRecord.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\NullValues.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
