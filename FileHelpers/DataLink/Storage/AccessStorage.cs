@@ -20,7 +20,7 @@ namespace FileHelpers.DataLink
 		/// <returns>An Abstract Connection Object.</returns>
 		protected sealed override IDbConnection CreateConnection()
 		{
-			string conString = DataBaseHelper.GetAccessConnection(MdbFileName);
+            string conString = DataBaseHelper.GetAccessConnection(MdbFileName, MdbPassword);
 			return new OleDbConnection(conString);
 		}
 
@@ -37,6 +37,12 @@ namespace FileHelpers.DataLink
 
 		/// <summary>The complete path to the access database.</summary>
 		public abstract string MdbFileName { get; }
+
+        /// <summary>The password to the access database.</summary>
+        public virtual string MdbPassword
+        {
+        	get{ return ""; }
+        }
 
 		#endregion
 	}
