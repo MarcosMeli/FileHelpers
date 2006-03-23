@@ -108,31 +108,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "EngineBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "FileHelperAsyncEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "FileHelperEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ForwardReader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "RecordInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Attributes\DelimitedRecordAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -213,6 +188,34 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\CommonEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\EngineBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\FileHelperAsyncEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\FileHelperAsyncEngineG.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\FileHelperEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\FileHelperEngineG.cs"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\AlignMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -274,6 +277,16 @@
                 />
                 <File
                     RelPath = "Fields\FixedLengthField.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Helpers\ForwardReader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Helpers\RecordInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
