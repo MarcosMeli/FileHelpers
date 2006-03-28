@@ -109,10 +109,8 @@ namespace FileHelpersTests.Common
 		public void AppendToEmptyAsync()
 		{
 
-			File.Copy(TestCommon.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
 			
 			FileHelperEngine engineOld = new FileHelperEngine(typeof (SampleType));
-
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof (SampleType));
 
 			SampleType rec = new SampleType();
@@ -120,6 +118,8 @@ namespace FileHelpersTests.Common
 			rec.Field1 = DateTime.Now.AddDays(1).Date;
 			rec.Field2 = "je";
 			rec.Field3 = 0;
+
+			File.Copy(TestCommon.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
 
 			engine.BeginAppendToFile(@"tempEmpty.txt");
 			engine.WriteNext(rec);

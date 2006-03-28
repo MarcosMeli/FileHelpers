@@ -239,7 +239,7 @@ namespace FileHelpers
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
 		public void BeginAppendToFile(string fileName)
 		{
-			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, true);
+			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 		}
@@ -342,8 +342,9 @@ namespace FileHelpers
 				}
 
 			}
-			catch
+			catch (Exception ex)
 			{
+				Console.WriteLine(ex);
 			}
 
 		}
