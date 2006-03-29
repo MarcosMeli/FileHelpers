@@ -34,5 +34,10 @@ namespace FileHelpers
 			else
 				return from.ToString();
 		}
+
+		protected internal virtual bool CustomNullHandling
+		{
+			get { return false; }
+		}
 	}
 }

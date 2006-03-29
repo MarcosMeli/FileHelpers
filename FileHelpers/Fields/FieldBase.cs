@@ -153,7 +153,7 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  FieldType" 
+		#region "  FieldType  " 
 
 		public Type FieldType
 		{
@@ -195,32 +195,54 @@ namespace FileHelpers
 				val = fieldString;
 			else
 			{
-				fieldString = fieldString.Trim();
-				if (fieldString == String.Empty)
+				if (mConvertProvider != null)
 				{
-					if (mNullValue == null)
+					if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty )
 					{
-						if (mFieldType.IsValueType)
-							throw new BadUsageException("Null Value found for the field " + mFieldInfo.Name + " in the class " + mFieldInfo.DeclaringType.Name + ". You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
-						else
-							val = null;
+						val = GetNullValue();
 					}
 					else
 					{
-						val = mNullValue;
-					}
-				}
-				else
-				{
-					if (mConvertProvider == null)
-						val = Convert.ChangeType(fieldString, mFieldType, null);
-					else
 						val = mConvertProvider.StringToField(fieldString);
+
+						if (val == null)
+							val = GetNullValue();
+					}
 				}
-			}
+				else 
+				{
+					// Trim it to use Convert.ChangeType
+					fieldString = fieldString.Trim();
 
+					if (fieldString == String.Empty)
+					{
+						// Empty stand for null
+						val = GetNullValue();
+					}
+					else
+					{
+						val = Convert.ChangeType(fieldString, mFieldType, null);
+					}
+				}
+			}	
+			
 			mFieldInfo.SetValue(record, val);
+			
+		}
 
+		private object GetNullValue()
+		{
+			object val;
+			if (mNullValue == null)
+			{
+				if (mFieldType.IsValueType)
+					throw new BadUsageException("Null Value found for the field " + mFieldInfo.Name + " in the class " + mFieldInfo.DeclaringType.Name + ". You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
+				else
+					val = null;
+			}
+			else
+				val = mNullValue;
+			return val;
 		}
 
 		#endregion

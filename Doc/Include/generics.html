@@ -56,15 +56,15 @@ bgColor=white leftMargin=0 topMargin=0>
         <p>
             <strong>C# 2.0</strong></p>
         <pre>
-<span style="text-decoration: underline">Standard Way </span>FileHelperEngine engine = new FileHelperEngine(<strong>
-    typeof(Customers)</strong>);
+<span style="text-decoration: underline">Standard Way </span>
+FileHelperEngine engine = new FileHelperEngine(<strong>typeof(Customers)</strong>);
 
 <span style="text-decoration: underline">Generics Way</span>
-<br />FileHelperEngine engine = new FileHelperEngine<strong>&lt;Customers&gt;</strong>();</pre>
+<br />FileHelperEngine<strong>&lt;Customers&gt;</strong> engine = new FileHelperEngine<strong>&lt;Customers&gt;</strong>();</pre>
         <p>
             <strong>VB.NET 2.0</strong></p><pre>
-<span style="text-decoration: underline">Standard Way </span>Dim engine As New FileHelperEngine(<strong>
-    GetType(Customers)</strong>)
+<span style="text-decoration: underline">Standard Way</span>
+Dim engine As New FileHelperEngine(<strong>GetType(Customers)</strong>)
 
 <span style="text-decoration: underline">Generics Way</span>
 Dim engine As New FileHelperEngine(<strong>Of Customers</strong>)();</pre>
