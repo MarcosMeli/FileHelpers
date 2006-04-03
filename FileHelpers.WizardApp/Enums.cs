@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FileHelpers.WizardApp
 {
-    public enum NetLenguage
+    public enum NetLanguage
     {
         VbNet,
         CSharp
@@ -26,11 +26,11 @@ namespace FileHelpers.WizardApp
 
     public class EnumHelper
     {
-        public static string GetVisibility(NetLenguage leng, NetVisibility visi)
+        public static string GetVisibility(NetLanguage leng, NetVisibility visi)
         {
             switch (leng)
             {
-                case NetLenguage.VbNet:
+                case NetLanguage.VbNet:
                     switch (visi)
                     {
                         case NetVisibility.Private:
@@ -43,7 +43,7 @@ namespace FileHelpers.WizardApp
                             return "Friend";
                     }
                     break;
-                case NetLenguage.CSharp:
+                case NetLanguage.CSharp:
                     switch (visi)
                     {
                         case NetVisibility.Private:

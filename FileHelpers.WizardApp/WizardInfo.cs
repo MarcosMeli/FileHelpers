@@ -101,13 +101,13 @@ namespace FileHelpers.WizardApp
             get { return mFields; }
         }
 
-        public string WizardOutput(NetLenguage leng)
+        public string WizardOutput(NetLanguage leng)
         {
             StringBuilder sb = new StringBuilder(500);
 
             switch (leng)
             {
-                case NetLenguage.VbNet:
+                case NetLanguage.VbNet:
                     if (RecordKind == RecordKind.FixedLength)
                         sb.AppendLine("<FixedLengthRecord()> _");
                     else
@@ -128,7 +128,7 @@ namespace FileHelpers.WizardApp
                     sb.AppendLine();
                     break;
                 
-                case NetLenguage.CSharp:
+                case NetLanguage.CSharp:
                     if (RecordKind == RecordKind.FixedLength)
                         sb.AppendLine("[FixedLengthRecord()]");
                     else
@@ -162,10 +162,10 @@ namespace FileHelpers.WizardApp
 
             switch (leng)
             {
-                case NetLenguage.VbNet:
+                case NetLanguage.VbNet:
                     sb.AppendLine("End Class");
                     break;
-                case NetLenguage.CSharp:
+                case NetLanguage.CSharp:
                     sb.AppendLine("}");
                     break;
                 default:

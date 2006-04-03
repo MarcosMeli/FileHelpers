@@ -60,17 +60,17 @@ namespace FileHelpers.WizardApp
         }
 
 
-        protected abstract void AddAttributes(NetLenguage leng, StringBuilder sb);
+        protected abstract void AddAttributes(NetLanguage leng, StringBuilder sb);
 
 
-        private void AddMainAttributes(NetLenguage leng, StringBuilder sb)
+        private void AddMainAttributes(NetLanguage leng, StringBuilder sb)
         {
            AddAttributes(leng, sb);
         }
 
 
 
-        public void FillFieldDefinition(NetLenguage leng, StringBuilder sb)
+        public void FillFieldDefinition(NetLanguage leng, StringBuilder sb)
         {
             AddMainAttributes(leng, sb);
 
@@ -78,11 +78,11 @@ namespace FileHelpers.WizardApp
             {
                 switch (leng)
                 {
-                    case NetLenguage.VbNet:
+                    case NetLanguage.VbNet:
                         sb.Append(IndentString);
                         sb.Append("<FieldTrim(TrimMode." + TrimMode.ToString() + ")> ");
                         break;
-                    case NetLenguage.CSharp:
+                    case NetLanguage.CSharp:
                         sb.Append(IndentString);
                         sb.AppendLine("[FieldTrim(TrimMode." + TrimMode.ToString() + ")]");
                         break;
@@ -100,10 +100,10 @@ namespace FileHelpers.WizardApp
 
             switch (leng)
             {
-                case NetLenguage.VbNet:
+                case NetLanguage.VbNet:
                     sb.AppendLine( visi + " " + this.Name + " As " + this.Type );
                     break;
-                case NetLenguage.CSharp:
+                case NetLanguage.CSharp:
                     sb.AppendLine( visi + " " + this.Type + " " + this.Name + ";");
                     break;
                 default:

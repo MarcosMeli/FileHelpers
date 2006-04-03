@@ -1,7 +1,7 @@
 
 Dim record As ${ClassName}()
 
-Dim engine As New FileHelperAsyncEngine(${ClassName})
+Dim engine As New FileHelperAsyncEngine(GetType(${ClassName}))
 
 engine.BeginReadFile("YourFile.txt")
 

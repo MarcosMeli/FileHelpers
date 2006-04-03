@@ -57,7 +57,7 @@ namespace FileHelpers.WizardApp
         private Button cmdSaveToFile;
         private Button cmdToClipboard;
         private Label label3;
-        private ComboBox cboLenguage;
+        private ComboBox cboLanguage;
         private Label label4;
         private SaveFileDialog dlgSaveToFile;
         private PictureBox pictureBox5;
@@ -149,7 +149,7 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut = new Fireball.Windows.Forms.CodeEditorControl();
             this.sdTemplOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.cboTemplate = new System.Windows.Forms.ComboBox();
-            this.cboLenguage = new System.Windows.Forms.ComboBox();
+            this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmdSaveToFile = new System.Windows.Forms.Button();
@@ -461,7 +461,7 @@ namespace FileHelpers.WizardApp
             this.panStep3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep3.Controls.Add(this.txtTemplOut);
             this.panStep3.Controls.Add(this.cboTemplate);
-            this.panStep3.Controls.Add(this.cboLenguage);
+            this.panStep3.Controls.Add(this.cboLanguage);
             this.panStep3.Controls.Add(this.label4);
             this.panStep3.Controls.Add(this.label3);
             this.panStep3.Controls.Add(this.cmdSaveToFile);
@@ -525,18 +525,18 @@ namespace FileHelpers.WizardApp
             this.cboTemplate.TabIndex = 0;
             this.cboTemplate.SelectedIndexChanged += new System.EventHandler(this.cboTemplate_SelectedIndexChanged);
             // 
-            // cboLenguage
+            // cboLanguage
             // 
-            this.cboLenguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboLenguage.FormattingEnabled = true;
-            this.cboLenguage.Items.AddRange(new object[] {
+            this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLanguage.FormattingEnabled = true;
+            this.cboLanguage.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboLenguage.Location = new System.Drawing.Point(309, 43);
-            this.cboLenguage.Name = "cboLenguage";
-            this.cboLenguage.Size = new System.Drawing.Size(77, 21);
-            this.cboLenguage.TabIndex = 1;
-            this.cboLenguage.SelectedIndexChanged += new System.EventHandler(this.cboLenguage_SelectedIndexChanged);
+            this.cboLanguage.Location = new System.Drawing.Point(309, 43);
+            this.cboLanguage.Name = "cboLanguage";
+            this.cboLanguage.Size = new System.Drawing.Size(77, 21);
+            this.cboLanguage.TabIndex = 1;
+            this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -545,7 +545,7 @@ namespace FileHelpers.WizardApp
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Lenguage";
+            this.label4.Text = "Language";
             // 
             // label3
             // 
@@ -910,7 +910,7 @@ namespace FileHelpers.WizardApp
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
-            this.label7.Text = "Lenguage";
+            this.label7.Text = "Language";
             // 
             // pictureBox4
             // 
@@ -1403,7 +1403,7 @@ namespace FileHelpers.WizardApp
 
         private bool ProcessStep2()
         {
-            cboLenguage.SelectedIndex = 0;
+            cboLanguage.SelectedIndex = 0;
 
             ReloadTemplates();
             return true;
@@ -1416,7 +1416,7 @@ namespace FileHelpers.WizardApp
         {
             mLoading = true;
 
-            if (cboLenguage.SelectedIndex == 0)
+            if (cboLanguage.SelectedIndex == 0)
             {
                 CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.VBNET);
                 CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.CSharp);
@@ -1429,7 +1429,7 @@ namespace FileHelpers.WizardApp
 
             string lengPrefix;
 
-            switch (cboLenguage.SelectedIndex)
+            switch (cboLanguage.SelectedIndex)
             {
                 case 0:
                     lengPrefix = "CS -";
@@ -1573,13 +1573,13 @@ namespace FileHelpers.WizardApp
                     case 0:
                         CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
                         CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
-                        sdClassOut.Text = mWizardInfo.WizardOutput(NetLenguage.CSharp);
+                        sdClassOut.Text = mWizardInfo.WizardOutput(NetLanguage.CSharp);
                         break;
 
                     case 1:
                         CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
                         CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
-                        sdClassOut.Text = mWizardInfo.WizardOutput(NetLenguage.VbNet);
+                        sdClassOut.Text = mWizardInfo.WizardOutput(NetLanguage.VbNet);
                         break;
 
                     default:
@@ -1619,7 +1619,7 @@ namespace FileHelpers.WizardApp
             
         }
 
-        private void cboLenguage_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReloadTemplates();
         }
@@ -1631,7 +1631,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
         {
-            dlgSaveToFile.FilterIndex = cboLenguage.SelectedIndex + 1;
+            dlgSaveToFile.FilterIndex = cboLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = "TemplateOur";
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)

@@ -1,7 +1,7 @@
 
 ${ClassName}[] record;
 
-FileHelperAsyncEngine engine = new FileHelperAsyncEngine(${ClassName});
+FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(${ClassName}));
 
 engine.BeginReadFile(@"YourFile.txt");
 

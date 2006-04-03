@@ -1,5 +1,5 @@
 
-Dim engine As New FileHelperEngine(${ClassName})
+Dim engine As New FileHelperEngine(GetType(${ClassName}))
 
 Dim res As ${ClassName}() = DirectCast(engine.ReadFile("YourFile.txt"), ${ClassName}())
 

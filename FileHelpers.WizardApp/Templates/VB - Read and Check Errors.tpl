@@ -1,5 +1,5 @@
 
-Dim engine As New FileHelperEngine(${ClassName})
+Dim engine As New FileHelperEngine(GetType(${ClassName}))
 
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue
 

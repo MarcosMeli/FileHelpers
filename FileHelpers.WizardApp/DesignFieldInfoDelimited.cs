@@ -8,7 +8,7 @@ namespace FileHelpers.WizardApp
     public class DesignFieldInfoDelimited: DesignFieldInfoBase
     {
 
-        protected override void AddAttributes(NetLenguage leng, StringBuilder sb)
+        protected override void AddAttributes(NetLanguage leng, StringBuilder sb)
         {
             if (string.IsNullOrEmpty(QuotedChar) == false)
             {
@@ -16,10 +16,10 @@ namespace FileHelpers.WizardApp
 
                 switch (leng)
                 {
-                    case NetLenguage.VbNet:
+                    case NetLanguage.VbNet:
                         sb.Append("<FieldQuoted(\"" + QuotedChar + "\")> ");
                         break;
-                    case NetLenguage.CSharp:
+                    case NetLanguage.CSharp:
                         sb.AppendLine("[FieldQuoted(\"" + QuotedChar + "\")]");
                         break;
                     default:

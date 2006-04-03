@@ -24,16 +24,16 @@ namespace FileHelpers.WizardApp
             set { mLength = value; }
         }
 
-        protected override void AddAttributes(NetLenguage leng, StringBuilder sb)
+        protected override void AddAttributes(NetLanguage leng, StringBuilder sb)
         {
             sb.Append(IndentString);
 
             switch (leng)
             {
-                case NetLenguage.VbNet:
+                case NetLanguage.VbNet:
                     sb.Append("<FieldFixedLength(" + this.FieldLength.ToString() + ")> ");
                     break;
-                case NetLenguage.CSharp:
+                case NetLanguage.CSharp:
                     sb.AppendLine("[FieldFixedLength(" + this.FieldLength.ToString() + ")]");
                     break;
                 default:
