@@ -73,7 +73,6 @@ namespace FileHelpers
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
 			#endif
 
-
 			if (mRecordInfo.mIgnoreFirst > 0)
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
@@ -84,8 +83,6 @@ namespace FileHelpers
 				
 				}
 			}
-
-
 
 			bool byPass = false;
 

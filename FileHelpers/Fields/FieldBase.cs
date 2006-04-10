@@ -166,7 +166,7 @@ namespace FileHelpers
 
 		internal string ExtractAndAssignFromString(string buffer, object record)
 		{
-			//-> Extraigo la que me corresponde
+			//-> extract only what I need
 
 			ExtractedInfo info = ExtractFieldString(buffer);
 
@@ -178,7 +178,7 @@ namespace FileHelpers
 
 			AssignFromString(fieldString, record);
 
-			//-> Descarto lo leído
+			//-> discard the part that I use
 			return buffer.Substring(discardFrom + CharsToDiscard());
 
 		}

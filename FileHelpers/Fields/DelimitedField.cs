@@ -4,6 +4,7 @@
 
 #endregion
 
+using System;
 using System.Reflection;
 
 namespace FileHelpers
@@ -151,8 +152,18 @@ namespace FileHelpers
 
 			if (mQuoteChar != '\0')
 			{
-				if (mQuoteOptional == false || res.IndexOf(mSeparator) >= 0)
-					res = StringHelper.CreateQuotedString(res, mQuoteChar);
+				// Add Quotes If:
+				//     -  optional == false
+				//     -  is optional and contains the separator 
+				//     -  is optional and contains a new line
+
+				#if ! MINI
+					if (mQuoteOptional == false || res.IndexOf(mSeparator) >= 0 || res.IndexOf(Environment.) >= 0)
+						res = StringHelper.CreateQuotedString(res, mQuoteChar);
+				#else
+					if (mQuoteOptional == false || res.IndexOf(mSeparator) >= 0 || res.IndexOf("\r\n") >= 0)
+						res = StringHelper.CreateQuotedString(res, mQuoteChar);
+				#endif
 			}
 
 			if (mIsLast == false)
