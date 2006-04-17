@@ -18,9 +18,9 @@ namespace FileHelpersTests
 
             object[] res = engine.ReadFile(TestCommon.TestPath(@"Good\MultiRecord1.txt"));
 
-            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(12, res.Length);
 
-            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(12, engine.TotalRecords);
 
 		}
 

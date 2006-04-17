@@ -119,6 +119,7 @@ namespace FileHelpers
 				try
 				{
 
+					mTotalRecords++;
 					currentRecord++; 
 
 					#if !MINI
