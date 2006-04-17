@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<doc>
+	<FileHelperEngine>
+		<summary>
+			<para><b>One of the main classes of the library.</b></para>
+			<para>This engine is responsable to Read/Write the records <b>at once</b> from/to files or streams.</para>
+		</summary>
+		<remarks>
+		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can retrive them with the <see cref="ErrorManager.LastErrors"/> property.</para>
+		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the <a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
+		 <para>Or you can browse the <a href="examples.html">Examples Seccion</a> for more code.</para>
+		</remarks>
+		<seealso href="quick_start.html">Quick Start Guide</seealso>
+		<seealso href="class_diagram.html">Class Diagram</seealso>
+		<seealso href="examples.html">Examples of Use</seealso>
+		<seealso href="attributes.html">Attributes List</seealso>
+	</FileHelperEngine>
+
+
+	<FileHelperEngineCtr>
+		<summary>
+			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
+		</summary>
+		<param name="recordType">The record mapping class.</param>
+	</FileHelperEngineCtr>
+
+	<FileHelperEngineCtrG>
+		<summary>
+			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
+		</summary>
+	</FileHelperEngineCtrG>
+
+	<ReadFile>
+		<summary>
+		Read a file and return an array of the contained records.
+		</summary>
+		<remarks>
+		This method open, read and close the file (don't open or close the file before or after to call this method)
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
+		<param name="fileName">The file path to be read.</param>
+		<returns>An array of the records in the file</returns>
+	</ReadFile>
+
+	<ReadStream>
+		<summary>
+		Read a Stream and return an array of the contained records.
+		</summary>
+		<remarks>
+		This method only uses the stream and dont close them after use it, you must do it.
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
+		<param name="reader">The reader of the source stream.</param>
+		<returns>An array of the records in the Stream</returns>
+	</ReadStream>
+
+	<ReadString>
+		<summary>
+		Read a String and return an array of the contained records.
+		</summary>
+		<param name="source">The string that contains the records.</param>
+		<returns>An array of the records in the String.</returns>
+	</ReadString>
+
+	<AppendToFile1>
+		<summary>
+		Append a record to the specified file.
+		</summary>
+		<remarks>
+		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/AppendFile/*'/>
+		<param name="fileName">The file path to be written at end.</param>
+		<param name="record">The record to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</AppendToFile1>
+
+	<AppendToFile2>
+		<summary>
+		Append an array of records to the specified file.
+		</summary>
+		<remarks>
+		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/AppendFile/*'/>
+	
+		<param name="fileName">The file path to be written at end.</param>
+		<param name="records">The array of records to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</AppendToFile2>
+
+	<WriteFile>
+		<summary>
+		Write an array of records to the specified file.
+		</summary>
+		<remarks>
+		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
+		<para>This method overrides existing files.</para>
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
+		<param name="fileName">The file path to be write.</param>
+		<param name="records">The array of records to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</WriteFile>
+
+	<WriteFile2>
+		<summary>
+		Write the specified number of records from the array to a file.
+		</summary>
+		<remarks>
+		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
+		<para>This method overrides existing files.</para>
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
+		<param name="fileName">The file path to be write.</param>
+		<param name="records">The array of records to write.</param>
+		<param name="maxRecords">The max number of array elements to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</WriteFile2>
+
+	<WriteStream>
+		<summary>
+		Write an array of records to the specified Stream.
+		</summary>
+		<remarks>
+		This method only uses the stream and don't close them after use it, you must do it.
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
+		<param name="writer">The writer of the source stream.</param>
+		<param name="records">The array of records to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</WriteStream>
+
+	<WriteStream2>
+		<summary>
+		Write the specified number of records in the array to the Stream.
+		</summary>
+		<remarks>
+		This method only uses the stream and don't close them after use it, you must do it.
+		</remarks>
+		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
+		<param name="writer">The writer of the source stream.</param>
+		<param name="records">The array of records to write.</param>
+		<param name="maxRecords">The max number of array elements to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</WriteStream2>
+
+	<WriteString>
+		<summary>
+		Write an array of records to an String and return it.
+		</summary>
+		<param name="records">The array of records to write.</param>
+		<returns>The resulting string after write the records.</returns>
+	</WriteString>
+
+	<WriteString2>
+		<summary>
+		Write an array of records to an String and return it.
+		</summary>
+		<param name="records">The array of records to write.</param>
+		<returns>The resulting string after write the records.</returns>
+		<param name="maxRecords">The max number of array elements to write.</param>
+		<returns>True if the operation is successful. False otherwise.</returns>
+	</WriteString2>
+
+	<LineNum>
+		<summary>The current line number.</summary>
+	</LineNum>
+
+	<ColumnNum>
+		<summary>The current column number.</summary>
+	</ColumnNum>
+
+	<TotalRecords>
+		<summary>The total numbers of records in the last read/written file (only works with whole read/write).</summary>
+	</TotalRecords>
+
+	<RecordType>
+		<summary>Returns the type of records handled by this engine.</summary>
+	</RecordType>
+
+</doc>
