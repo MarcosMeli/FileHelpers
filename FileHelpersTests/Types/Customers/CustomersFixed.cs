@@ -17,6 +17,6 @@ namespace FileHelpersTests
 
 		[FieldFixedLength(169 - 151)] public string City;
 
-		[FieldFixedLength(200 - 169)] public string Country;
+		[FieldFixedLength(15)] public string Country;
 	}
 }

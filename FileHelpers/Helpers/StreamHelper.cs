@@ -36,15 +36,20 @@ namespace FileHelpers
 					{
 						fs.Seek(-2, SeekOrigin.End);
 
-						if (fs.ReadByte() == 13 && fs.ReadByte() == 10)
+						if (fs.ReadByte() == 13)
 						{
-							int nowRead;
-							do
+							if (fs.ReadByte() == 10)
 							{
-								fs.Seek(-2, SeekOrigin.Current);
-								nowRead = fs.ReadByte();
-							} while (nowRead == 13 || nowRead == 10);
+								int nowRead;
+								do
+								{
+									fs.Seek(-2, SeekOrigin.Current);
+									nowRead = fs.ReadByte();
+								} while (nowRead == 13 || nowRead == 10);
+							}
 						}
+						else
+							fs.ReadByte();
 
 						fs.WriteByte(13);
 						fs.WriteByte(10);

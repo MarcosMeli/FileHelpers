@@ -1,0 +1,8 @@
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative
+ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
+AROUT|Around the Horn|Thomas Hardy|Sales Representative
+BERGS|Berglunds snabbköp|Christina Berglund|Order Administrator
+BLAUS|Blauer See Delikatessen|Hanna Moos|Owner
+BLONP|Blondesddsl père et fils|Frédérique Citeaux|Marketing Manager
+BOLID|Bólido Comidas preparadas|Martín Sommer|Owner

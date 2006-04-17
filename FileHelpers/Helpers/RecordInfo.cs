@@ -83,14 +83,22 @@ namespace FileHelpers
 		{
 			FieldBase curField;
 			ArrayList arr = new ArrayList();
+			bool someOptional = false;
 			for (int i = 0; i < fields.Length; i++)
 			{
 				FieldInfo fieldInfo = fields[i];
 
-				curField = FieldFactory.CreateField(fieldInfo, recordAttribute);
+				curField = FieldFactory.CreateField(fieldInfo, recordAttribute, someOptional);
 
 				if (curField != null)
+				{
+					someOptional = curField.mIsOptional;
+
 					arr.Add(curField);
+					if (arr.Count > 1)
+						((FieldBase)arr[arr.Count-2]).mNextIsOptional = ((FieldBase)arr[arr.Count-1]).IsOptional;
+					
+				}
 			}
 
 			if (arr.Count > 0)

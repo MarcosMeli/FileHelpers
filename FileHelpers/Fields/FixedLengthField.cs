@@ -43,15 +43,13 @@ namespace FileHelpers
 
 		protected override ExtractedInfo ExtractFieldString(string from)
 		{
+			if (mIsOptional && from.Length == 0 )
+				return ExtractedInfo.Empty;
+
 			ExtractedInfo res;
 
 			if (from.Length < this.Length)
-			{
-				if (mIsLast)
-					res = new ExtractedInfo(from);
-				else
-					throw new FileHelperException("The string for the field " + FieldInfo.Name + ": '" + from + "' don´t match the record length: " + Length);
-			}
+				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") for the field " + FieldInfo.Name + " don´t match the record length: " + Length.ToString());
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 

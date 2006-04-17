@@ -32,6 +32,7 @@ namespace FileHelpers
 				CharsRemoved = charsRem;
 			}
 
+			internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
 		}
 
 		#endregion
@@ -45,6 +46,8 @@ namespace FileHelpers
 
 		internal TrimMode mTrimMode = TrimMode.None;
 		internal Char[] mTrimChars = null;
+		internal bool mIsOptional = false;
+		internal bool mNextIsOptional = false;
 
 		internal bool mIsLast = false;
 
@@ -153,6 +156,25 @@ namespace FileHelpers
 
 		#endregion
 
+		#region "  IsOptional  " 
+
+		public bool IsOptional
+		{
+			get { return mIsOptional; }
+		}
+
+		#endregion
+
+		#region "  NextIsOptional  " 
+
+		public bool NextIsOptional
+		{
+			get { return mNextIsOptional; }
+		}
+
+		#endregion
+
+
 		#region "  FieldType  " 
 
 		public Type FieldType
@@ -170,16 +192,17 @@ namespace FileHelpers
 
 			ExtractedInfo info = ExtractFieldString(buffer);
 
-			string fieldString;
-			int discardFrom;
-
-			fieldString = info.ExtractedString;
-			discardFrom = info.CharsRemoved;
-
-			AssignFromString(fieldString, record);
+			AssignFromString(info.ExtractedString, record);
 
 			//-> discard the part that I use
-			return buffer.Substring(discardFrom + CharsToDiscard());
+			
+			int total;
+			if (info.CharsRemoved == buffer.Length)
+				total = info.CharsRemoved;
+			else
+				total = info.CharsRemoved + CharsToDiscard();
+
+			return buffer.Substring(total);
 
 		}
 

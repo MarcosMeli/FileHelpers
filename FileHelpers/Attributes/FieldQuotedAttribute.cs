@@ -5,6 +5,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 
 namespace FileHelpers
 {
@@ -24,16 +25,22 @@ namespace FileHelpers
 			get { return mQuoteChar; }
 		}
 
-		private bool mOptionalQuoted = false;
+		private QuoteMode mQuoteMode = QuoteMode.Allways;
 
 		/// <summary>Indicates if the Quoted char can be optional (default is false)</summary>
-		public bool OptionalQuoted
+		public QuoteMode QuoteMode
 		{
-			get { return mOptionalQuoted; }
+			get { return mQuoteMode; }
 		}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String. (by default "")</summary>
 		public FieldQuotedAttribute() : this('\"')
+		{
+		}
+
+		/// <summary>Indicates that the field must be read and written like a "Quoted String"  (that can be optional).</summary>
+		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
+		public FieldQuotedAttribute(QuoteMode mode) : this('\"', mode)
 		{
 		}
 
@@ -46,11 +53,22 @@ namespace FileHelpers
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
-		/// <param name="optionalQuoted">Indicates if the Quoted Char if optional.</param>
-		public FieldQuotedAttribute(char quoteChar, bool optionalQuoted)
+		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
+		public FieldQuotedAttribute(char quoteChar, QuoteMode mode)
 		{
 			mQuoteChar = quoteChar;
-			mOptionalQuoted = optionalQuoted;
+			mQuoteMode = mode;
+		}
+
+		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
+		/// <param name="quoteChar">The char used to quote the string.</param>
+		[Obsolete("You must use the constructor with the new QuoteMode Enum")]
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public FieldQuotedAttribute(char quoteChar, bool optional)
+		{
+			mQuoteChar = quoteChar;
+			if (optional)
+				mQuoteMode = QuoteMode.OptionalBoth;
 		}
 
 	}

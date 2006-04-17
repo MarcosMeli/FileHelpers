@@ -51,11 +51,11 @@ namespace FileHelpers
 
 		#region "  QuoteOptional  "
 
-		internal bool mQuoteOptional = false;
+		internal QuoteMode mQuoteMode;
 
-		public bool QuoteOptional
+		public QuoteMode QuoteMode
 		{
-			get { return mQuoteOptional; }
+			get { return mQuoteMode; }
 		}
 
 		#endregion
@@ -72,9 +72,11 @@ namespace FileHelpers
 
 		protected override ExtractedInfo ExtractFieldString(string from)
 		{
-			ExtractedInfo res;
 
-			//from.StartsWith(mQuoteChar.ToString()) == false)
+			if (mIsOptional && from.Length == 0 )
+				return ExtractedInfo.Empty;
+
+			ExtractedInfo res;
 
 			if (mQuoteChar == '\0')
 			{
@@ -85,7 +87,12 @@ namespace FileHelpers
 					int sepPos = from.IndexOf(this.mSeparator);
 
 					if (sepPos == -1)
-						throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields or the separator is wrong).");
+					{
+						if (this.mNextIsOptional == false)
+							throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+						else
+							sepPos = from.Length;
+					}
 
 					res = new ExtractedInfo(from.Substring(0, sepPos));
 				}
@@ -118,7 +125,7 @@ namespace FileHelpers
 				}
 				else
 				{
-					if (mQuoteOptional == true)
+					if (mQuoteMode == QuoteMode.OptionalBoth || mQuoteMode == QuoteMode.OptionalRead)
 					{
 						if (mIsLast)
 							res = new ExtractedInfo(from);
@@ -127,7 +134,12 @@ namespace FileHelpers
 							int sepPos = from.IndexOf(this.mSeparator);
 
 							if (sepPos == -1)
-								throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields or the separator is wrong).");
+							{
+								if (this.mNextIsOptional == false)
+									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+								else
+									sepPos = from.Length;
+							}
 
 							res = new ExtractedInfo(from.Substring(0, sepPos));
 						}
@@ -158,10 +170,10 @@ namespace FileHelpers
 				//     -  is optional and contains a new line
 
 				#if ! MINI
-					if (mQuoteOptional == false || res.IndexOf(mSeparator) >= 0 || res.IndexOf(Environment.) >= 0)
+					if (mQuoteMode == QuoteMode.Allways || mQuoteMode == QuoteMode.OptionalRead || res.IndexOf(mSeparator) >= 0 || res.IndexOf(Environment.NewLine) >= 0)
 						res = StringHelper.CreateQuotedString(res, mQuoteChar);
 				#else
-					if (mQuoteOptional == false || res.IndexOf(mSeparator) >= 0 || res.IndexOf("\r\n") >= 0)
+					if (mQuoteMode == QuoteMode.Allways || mQuoteMode == QuoteMode.OptionalRead || res.IndexOf(mSeparator) >= 0 || res.IndexOf("\r\n") >= 0)
 						res = StringHelper.CreateQuotedString(res, mQuoteChar);
 				#endif
 			}

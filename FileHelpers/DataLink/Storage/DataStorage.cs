@@ -47,7 +47,7 @@ namespace FileHelpers.DataLink
 			mNotifyHandler = handler;
 
 			if (mode == ProgressMode.NotifyBytes)
-				throw new NotImplementedException("Not implemented yet. Planed for version 1.4.0");
+				throw new NotImplementedException("Not implemented yet. Planed for version 1.5.0");
 
 			mProgressMode = mode;
 		}

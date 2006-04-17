@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyDescription("The test fixtures for the library.")]
 
 
-[assembly : AssemblyVersion("1.4.0.0")]
+[assembly : AssemblyVersion("1.4.2.0")]
 
 
 [assembly : AssemblyCompany("Marcos Meli")]

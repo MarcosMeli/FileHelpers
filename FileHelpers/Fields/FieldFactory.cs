@@ -18,7 +18,7 @@ namespace FileHelpers
 
 		#endregion
 
-		public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
+		public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute, bool someOptional)
 		{
 			// If ignored, return null
 			if (fi.IsDefined(typeof (FieldIgnoredAttribute), true))
@@ -86,20 +86,13 @@ namespace FileHelpers
 
 			if (res != null)
 			{
-				object[] trim = fi.GetCustomAttributes(typeof (FieldTrimAttribute), true);
+				FieldTrimAttribute[] trim = (FieldTrimAttribute[]) fi.GetCustomAttributes(typeof (FieldTrimAttribute), true);
 				if (trim.Length > 0)
 				{
-//					if (res.FieldType != typeof(string))
-//						throw new BadUsageException("Trim attribute can only be applied to a string or date.")
-
-					res.mTrimMode = ((FieldTrimAttribute) trim[0]).TrimMode;
-					res.mTrimChars = ((FieldTrimAttribute) trim[0]).TrimChars;
+					res.mTrimMode = trim[0].TrimMode;
+					res.mTrimChars = trim[0].TrimChars;
 				}
 
-			}
-
-			if (res != null)
-			{
 				FieldQuotedAttribute[] quotedAttributes = (FieldQuotedAttribute[]) fi.GetCustomAttributes(typeof (FieldQuotedAttribute), true);
 				if (quotedAttributes.Length > 0)
 				{
@@ -107,10 +100,17 @@ namespace FileHelpers
 						throw new BadUsageException("The QuotedAttribute can't be used in FixedLength fields.");
 
 					((DelimitedField) res).mQuoteChar = quotedAttributes[0].QuoteChar;
-					((DelimitedField) res).mQuoteOptional = quotedAttributes[0].OptionalQuoted;
+					((DelimitedField) res).mQuoteMode = quotedAttributes[0].QuoteMode;
 				}
 
+				FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[]) fi.GetCustomAttributes(typeof (FieldOptionalAttribute), true);
+
+				if (optionalAttribs.Length > 0)
+					res.mIsOptional	= true;
+				else if (someOptional)
+					throw new BadUsageException("When you define a field as FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + res.FieldInfo.Name + " )");
 			}
+
 
 			return res;
 		}

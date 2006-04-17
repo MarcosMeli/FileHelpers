@@ -183,6 +183,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\Optional.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\Orders.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -294,6 +299,11 @@
                 />
                 <File
                     RelPath = "Tests\Errors\BadFormat.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Errors\BadOptional.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
