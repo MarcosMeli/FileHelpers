@@ -148,6 +148,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Attributes\FieldOptionalAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\FieldQuotedAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -188,11 +193,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Engines\CommonEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Engines\EngineBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -204,6 +204,7 @@
                 />
                 <File
                     RelPath = "Engines\FileHelperAsyncEngineG.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -213,6 +214,7 @@
                 />
                 <File
                     RelPath = "Engines\FileHelperEngineG.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -227,6 +229,11 @@
                 />
                 <File
                     RelPath = "Enums\ErrorMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums\QuoteMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

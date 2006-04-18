@@ -79,6 +79,38 @@ namespace FileHelpers
 			return Transform(sourceFile, destFile, mRecordType2, mRecordType1, mConvert2to1);
 		}
 
+		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (more faster and use less memory, best choice for big files)</summary>
+		/// <param name="sourceFile">The source file.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The number of transformed records.</returns>
+		public int TransformFile1To2Async(string sourceFile, string destFile)
+		{
+			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
+			ErrorHelper.CheckNullParam(destFile, "destFile");
+			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+
+			if (mConvert1to2 == null)
+				throw new BadUsageException("You must define a method in the class " + RecordType1.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType2.Name + "))] that return an object of type " + RecordType2.Name);
+
+			return TransformAsync(sourceFile, destFile, mRecordType1, mRecordType2, mConvert1to2);
+		}
+
+		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (more faster and use less memory, best choice for big files)</summary>
+		/// <param name="sourceFile">The source file.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The number of transformed records.</returns>
+		public int  TransformFile2To1Async(string sourceFile, string destFile)
+		{
+			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
+			ErrorHelper.CheckNullParam(destFile, "destFile");
+			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+
+			if (mConvert2to1 == null)
+				throw new BadUsageException("You must define a method in the class " + RecordType2.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType1.Name + "))]");
+
+			return TransformAsync(sourceFile, destFile, mRecordType2, mRecordType1, mConvert2to1);
+		}
+
 		private static object[] mEmptyArray = new object[]{};
 
 		private object[] Transform(string sourceFile, string destFile, Type sourceType, Type destType, MethodInfo method)
@@ -89,15 +121,35 @@ namespace FileHelpers
 			object[] res = sourceEngine.ReadFile(sourceFile);
 
 			ArrayList arr = new ArrayList(res.Length);
-			foreach (object rec in res)
+			for (int i = 0; i < res.Length; i++)
 			{
-				arr.Add(method.Invoke(rec, mEmptyArray));
+				arr.Add(method.Invoke(res[i], mEmptyArray));
 			}
 
 			destEngine.WriteFile(destFile, arr.ToArray());
 
+
 			return res;
 			
+		}
+
+		private int TransformAsync(string sourceFile, string destFile, Type sourceType, Type destType, MethodInfo method)
+		{
+			FileHelperAsyncEngine sourceEngine = new FileHelperAsyncEngine(sourceType);
+			FileHelperAsyncEngine destEngine = new FileHelperAsyncEngine(destType);
+
+			sourceEngine.BeginReadFile(sourceFile);
+			destEngine.BeginWriteFile(destFile);
+
+			while (sourceEngine.ReadNext() != null)
+			{
+				destEngine.WriteNext(method.Invoke(sourceEngine.LastRecord, mEmptyArray));
+			}
+
+			sourceEngine.EndsRead();
+			destEngine.EndsWrite();
+
+			return sourceEngine.TotalRecords;
 		}
 
 		MethodInfo mConvert1to2 = null;

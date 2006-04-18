@@ -12,14 +12,14 @@ using System.Text;
 
 namespace FileHelpers
 {
-	/// <summary>This class only have <b>static methods</b> to work with files and strings in the common way.</summary>
+	/// <summary>This class only have <b>static methods</b> to work with files and strings (the most common of them)</summary>
 	public sealed class CommonEngine
 	{
 		// No instanciate
 		private CommonEngine()
 		{}
 
-		#region "  Static Members  "
+		#region "  FileHelperEngine  "
 
 		/// <summary>
 		/// Used to read a file without instanciate the engine.<br />
@@ -74,5 +74,30 @@ namespace FileHelpers
 		}
 
 		#endregion
+
+		/// <summary><b>Faster way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile.</summary>
+		/// <param name="sourceType">The Type of the records in the source File.</param>
+		/// <param name="destType">The Type of the records in the dest File.</param>
+		/// <param name="sourceFile">The file with records to be transformed</param>
+		/// <param name="destFile">The destination file with the transformed records</param>
+		/// <returns>The number of transformed records</returns>
+		public static int TransformFileAsync(string sourceFile, Type sourceType, string destFile, Type destType)
+		{
+			FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
+			return engine.TransformFile1To2Async(sourceFile, destFile);
+		}
+
+		/// <summary></b>A more slow way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records)</summary>
+		/// <param name="sourceType">The Type of the records in the source File.</param>
+		/// <param name="destType">The Type of the records in the dest File.</param>
+		/// <param name="sourceFile">The file with records to be transformed</param>
+		/// <param name="destFile">The destination file with the transformed records</param>
+		/// <returns>The transformed records.</returns>
+		public static object[] TransformFile(string sourceFile, Type sourceType, string destFile, Type destType)
+		{
+			FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
+			return engine.TransformFile1To2(sourceFile, destFile);
+		}
+
 	}
 }

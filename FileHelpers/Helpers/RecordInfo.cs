@@ -9,12 +9,16 @@ using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
 
+#if ! MINI
+using System.Data;
+#endif
+
 namespace FileHelpers
 {
 	/// <summary>An internal class used to store information about the Record Type.</summary>
 	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public class RecordInfo
+	public sealed class RecordInfo
 	{
 		internal Type mRecordType;
 
@@ -198,6 +202,33 @@ namespace FileHelpers
 			}
 		}
 
+		#if ! MINI
+
+		internal DataTable RecordsToDataTable(object[] data)
+		{
+			DataTable res = new DataTable();
+			res.BeginLoadData();
+
+			foreach (FieldBase f in mFields)
+			{
+				DataColumn column1;
+
+				column1 = res.Columns.Add(f.FieldInfo.Name, f.FieldInfo.FieldType);
+				column1.ReadOnly = true;
+			}
+
+			res.MinimumCapacity = data.Length;
+
+			for (int r = 0; r < data.Length; r++)
+			{
+				res.Rows.Add(RecordToValues(data[r]));
+			}
+
+			res.EndLoadData();
+			return res;
+		}
+
+		#endif
 
 	}
 

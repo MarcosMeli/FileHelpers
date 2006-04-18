@@ -6,8 +6,14 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Text;
+
+#if ! MINI
+using System.Data;
+#endif
 
 
 namespace FileHelpers
@@ -39,7 +45,6 @@ namespace FileHelpers
 
 				return tempRes;
 			}
-
 		}
 
 		#endregion
@@ -47,6 +52,7 @@ namespace FileHelpers
 		#region "  ReadStream  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public object[] ReadStream(TextReader reader)
 		{
 			if (reader == null)
@@ -178,12 +184,14 @@ namespace FileHelpers
 		#region "  WriteStream  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void WriteStream(TextWriter writer, object[] records)
 		{
 			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void WriteStream(TextWriter writer, object[] records, int maxRecords)
 		{
 			if (writer == null)
@@ -305,6 +313,29 @@ namespace FileHelpers
                 writer.Close();
             }
 		}
+
+		#endregion
+
+		#region "  DataTable Ops  "
+
+		#if ! MINI
+
+		public DataTable ReadFileAsDT(string fileName)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadFile(fileName));
+		}
+
+		public DataTable ReadStringAsDT(string source)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadString(source));
+		}
+
+		public DataTable ReadStreamAsDT(TextReader reader)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadStream(reader));
+		}
+
+		#endif
 
 		#endregion
 

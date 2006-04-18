@@ -18,8 +18,7 @@ namespace FileHelpers
 	{
 		/// <summary>Indicates that this class represents a fixed length record.</summary>
 		public FixedLengthRecordAttribute()
-		{
-		}
+		{}
 
 	}
 }

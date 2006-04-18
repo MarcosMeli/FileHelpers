@@ -6,14 +6,13 @@
 
 using System;
 using System.ComponentModel;
+using System.Data;
 
 namespace FileHelpers.DataLink
 {
 	/// <summary>Base class for all the Storage classes of the library or the custom Storage classes.</summary>
 	public abstract class DataStorage
 	{
-
-
 
 		/// <summary>For internal Use.</summary>
 		/// <param name="handler"></param>
@@ -59,6 +58,14 @@ namespace FileHelpers.DataLink
 		/// <returns>The extracted records.</returns>
 		public abstract object[] ExtractRecords();
 
+		/// <summary>Must Return the records from the DataSource (DB, Excel, etc)</summary>
+		/// <returns>The extracted records.</returns>
+		public DataTable ExtractRecordsAsDT()
+		{
+			RecordInfo ri = new RecordInfo(RecordType);
+			return ri.RecordsToDataTable(ExtractRecords());
+		}
+
 		/// <summary>Must Insert the records in a DataSource (DB, Excel, etc)</summary>
 		/// <param name="records">The records to insert.</param>
 		public abstract void InsertRecords(object[] records);
@@ -93,6 +100,7 @@ namespace FileHelpers.DataLink
 /// <summary>Creates an instance of the RecordInfo class. This method is used because hte constructor of the record info is internal.</summary>
 /// <param name="recordClass">The class passed to the RecordInfo constructor.</param>
 /// <returns>A RecordInfo instance.</returns>
+
 		protected static RecordInfo CreateRecordInfo(Type recordClass)
 		{
 			return new RecordInfo(recordClass);

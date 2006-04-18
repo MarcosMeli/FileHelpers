@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.IO;
 using FileHelpers;
 using NUnit.Framework;
@@ -209,6 +210,30 @@ namespace FileHelpersTests.Common
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(0, engine.TotalRecords);
 			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+		}
+
+		
+		[Test]
+		public void ReadFileAsDataTable()
+		{
+			engine = new FileHelperEngine(typeof (SampleType));
+
+			DataTable res;
+
+			res = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, res.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+			Assert.AreEqual(new DateTime(1314, 12, 11), res.Rows[0]["Field1"]);
+			Assert.AreEqual("901", res.Rows[0]["Field2"]);
+			Assert.AreEqual(234, res.Rows[0]["Field3"]);
+
+			Assert.AreEqual(new DateTime(1314, 11, 10), res.Rows[1]["Field1"]);
+			Assert.AreEqual("012", res.Rows[1]["Field2"]);
+			Assert.AreEqual(345, res.Rows[1]["Field3"]);
 
 		}
 
