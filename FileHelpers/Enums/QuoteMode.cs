@@ -1,4 +1,4 @@
-
+using System;
 
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
@@ -11,9 +11,9 @@ namespace FileHelpers
 	/// <summary>Indicates the behavior of quoted fields.</summary>
 	public enum QuoteMode
 	{
-		Allways = 0,
-		OptionalRead,
-		OptionalWrite,
-		OptionalBoth
+		AlwaysQuoted = 0,
+		OptionalForRead,
+		OptionalForWrite,
+		OptionalForBoth
 	}
 }

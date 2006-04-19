@@ -153,7 +153,7 @@ namespace FileHelpers.MasterDetail
 			{
 				for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
 				{
-					mHeaderText += currentLine + "\r\n";
+					mHeaderText += currentLine + StringHelper.NewLine;
 					currentLine = freader.ReadNextLine();
 					mLineNumber++;
 				}
@@ -169,7 +169,6 @@ namespace FileHelpers.MasterDetail
 			{
 				try
 				{
-
 					currentRecord++; 
 
 					#if !MINI
@@ -190,12 +189,12 @@ namespace FileHelpers.MasterDetail
 							mTotalRecords++;
 							record = new MasterDetails();
 							tmpDetails.Clear();
-							record.mMaster = mMasterInfo.StringToRecord(currentLine);
+							record.mMaster = mMasterInfo.StringToRecord(currentLine, freader);
 
 							break;
 
 						case RecordAction.Detail:
-							tmpDetails.Add(mRecordInfo.StringToRecord(currentLine));
+							tmpDetails.Add(mRecordInfo.StringToRecord(currentLine, freader));
 							break;
 						default:
 							break;
@@ -229,7 +228,7 @@ namespace FileHelpers.MasterDetail
 					{
 						currentLine = freader.ReadNextLine();
 						completeLine = currentLine;
-						mLineNumber++;
+						mLineNumber = freader.LineNumber;
 					}
 				}
 
@@ -305,7 +304,7 @@ namespace FileHelpers.MasterDetail
 			ResetFields();
 
 			if (mHeaderText != null && mHeaderText.Length != 0)
-				if (mHeaderText.EndsWith("\r\n"))
+				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					writer.Write(mHeaderText);
 				else
 					writer.WriteLine(mHeaderText);
@@ -369,7 +368,7 @@ namespace FileHelpers.MasterDetail
 			mTotalRecords = records.Length;
 
 			if (mFooterText != null && mFooterText != string.Empty)
-				if (mFooterText.EndsWith("\r\n"))
+				if (mFooterText.EndsWith(StringHelper.NewLine))
 					writer.Write(mFooterText);
 				else
 					writer.WriteLine(mFooterText);

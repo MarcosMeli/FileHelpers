@@ -16,16 +16,28 @@ namespace FileHelpers
 		{
 			get { return mRemaingLines; }
 		}
+		
+		private int mLineNumber = 0;
 
+		public int LineNumber
+		{
+			get {return mLineNumber - 1;}
+		}
+		
 		internal ForwardReader(TextReader reader)
-			: this(reader, 0)
+			: this(reader, 0, 0)
 		{
 		}
 
-		internal ForwardReader(TextReader reader, int forwardLines)
+		internal ForwardReader(TextReader reader, int forwardLines): this(reader, forwardLines, 0)
+		{
+		}
+
+		internal ForwardReader(TextReader reader, int forwardLines, int startLine)
 		{
 			mReader = reader;
 			mFowardLines = forwardLines;
+			mLineNumber = startLine;
 
 			mFowardStrings = new string[mFowardLines + 1];
 			mRemaingLines = mFowardLines + 1;
@@ -33,6 +45,7 @@ namespace FileHelpers
 			for (int i = 0; i < mFowardLines + 1; i++)
 			{
 				mFowardStrings[i] = reader.ReadLine();
+				mLineNumber++;
 				if (mFowardStrings[i] == null)
 				{
 					mRemaingLines = i;
@@ -68,6 +81,7 @@ namespace FileHelpers
 				if (mRemaingLines == (mFowardLines + 1))
 				{
 					mFowardStrings[mForwardIndex] = mReader.ReadLine();
+					mLineNumber++;
 
 					if (mFowardStrings[mForwardIndex] == null)
 					{
@@ -98,7 +112,7 @@ namespace FileHelpers
 
 				for (int i = 0; i < mRemaingLines + 1; i++)
 				{
-					sb.Append(mFowardStrings[(mForwardIndex + i)%(mFowardLines + 1)] + "\r\n");
+					sb.Append(mFowardStrings[(mForwardIndex + i)%(mFowardLines + 1)] + StringHelper.NewLine);
 				}
 
 				return sb.ToString();

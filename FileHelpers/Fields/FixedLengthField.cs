@@ -41,7 +41,7 @@ namespace FileHelpers
 
 		#region "  Overrides String Handling  "
 
-		protected override ExtractedInfo ExtractFieldString(string from)
+		protected override ExtractedInfo ExtractFieldString(string from, ForwardReader reader)
 		{
 			if (mIsOptional && from.Length == 0 )
 				return ExtractedInfo.Empty;

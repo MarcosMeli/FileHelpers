@@ -9,34 +9,41 @@ using System.Reflection;
 
 namespace FileHelpers
 {
+
+	#region  "  ExtractInfo Class  "
+
+	internal struct ExtractedInfo
+			  {
+				  public int CharsRemoved;
+				  public string ExtractedString;
+				  public int ExtraLines;
+		 		  public string NewRestOfLine;
+		//public string TrailString;
+
+				  public ExtractedInfo(string extracted)
+				  {
+					  ExtractedString = extracted;
+					  CharsRemoved = extracted.Length;
+					  ExtraLines = 0;
+					  NewRestOfLine = null;
+				  }
+
+				  public ExtractedInfo(string extracted, int charsRem, int lines)
+				  {
+					  ExtractedString = extracted;
+					  CharsRemoved = charsRem;
+					  ExtraLines = lines;
+					  NewRestOfLine = null;
+				  }
+
+				  internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
+			  }
+
+	#endregion
+
 	/// <summary>Base class for all Field Types. Implements all the basic functionality of a field in a typed file.</summary>
 	internal abstract class FieldBase
 	{
-		#region  "  ExtractInfo Class  "
-
-		protected struct ExtractedInfo
-		{
-			public int CharsRemoved;
-			public string ExtractedString;
-			//public string TrailString;
-
-			public ExtractedInfo(string extracted)
-			{
-				ExtractedString = extracted;
-				CharsRemoved = extracted.Length;
-			}
-
-			public ExtractedInfo(string extracted, int charsRem)
-			{
-				ExtractedString = extracted;
-				CharsRemoved = charsRem;
-			}
-
-			internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
-		}
-
-		#endregion
-
 		#region "  Private & Internal Fields  "
 
 		private static Type strType = typeof (string);
@@ -86,7 +93,7 @@ namespace FileHelpers
 
 		#region "  MustOverride (String Handling)  " 
 
-		protected abstract ExtractedInfo ExtractFieldString(string from);
+		protected abstract ExtractedInfo ExtractFieldString(string from, ForwardReader reader); 
 
 		protected virtual string CreateFieldString(object record)
 		{
@@ -186,23 +193,34 @@ namespace FileHelpers
 
 		#region "  ExtractAndAssignFromString  " 
 
-		internal string ExtractAndAssignFromString(string buffer, object record)
+		internal string ExtractAndAssignFromString(string buffer, object record, ForwardReader reader)
 		{
 			//-> extract only what I need
 
-			ExtractedInfo info = ExtractFieldString(buffer);
+			ExtractedInfo info = ExtractFieldString(buffer, reader);
 
 			AssignFromString(info.ExtractedString, record);
 
 			//-> discard the part that I use
 			
-			int total;
-			if (info.CharsRemoved == buffer.Length)
-				total = info.CharsRemoved;
-			else
-				total = info.CharsRemoved + CharsToDiscard();
 
-			return buffer.Substring(total);
+			if (info.NewRestOfLine != null)
+			{
+				if (info.NewRestOfLine.Length < CharsToDiscard())
+					return info.NewRestOfLine;
+				else
+					return info.NewRestOfLine.Substring(CharsToDiscard());
+			}
+			else
+			{
+				int total;
+				if (info.CharsRemoved >= buffer.Length)
+					total = buffer.Length;
+				else
+					total = info.CharsRemoved + CharsToDiscard();
+
+				return buffer.Substring(total);
+			}
 
 		}
 

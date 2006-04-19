@@ -1,3 +1,4 @@
+using System;
 using FileHelpers;
 
 namespace FileHelpersSamples
@@ -6,9 +7,12 @@ namespace FileHelpersSamples
 	{
 		public static void Main()
 		{
+
 			frmSamples frm = new frmSamples();
 			frm.ShowDialog();
 			frm.Dispose();
 		}
+
+
 	}
 }

@@ -54,12 +54,20 @@ namespace FileHelpersTests.Common
 		public void Test6()
 		{
 			int index;
-			StringHelper.ExtractQuotedString(null, '\"', out index);
+			StringHelper.ExtractQuotedString((string) null, '\"', out index);
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void Test7()
+		{
+			int index;
+			StringHelper.ExtractQuotedString("", '\"', out index);
+		}
+
+		[Test]
+		[ExpectedException(typeof (BadUsageException))]
+		public void TestMultiline()
 		{
 			int index;
 			StringHelper.ExtractQuotedString("", '\"', out index);

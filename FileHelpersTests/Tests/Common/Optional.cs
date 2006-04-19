@@ -192,7 +192,7 @@ namespace FileHelpersTests.Common
 		{
 			public string CustomerID;
 			public string CompanyName;
-			[FieldQuoted(QuoteMode.OptionalBoth)]
+			[FieldQuoted(QuoteMode.OptionalForBoth)]
 			public string ContactName;
 			[FieldOptional()]
 			public string ContactTitle;
@@ -203,7 +203,7 @@ namespace FileHelpersTests.Common
 		{
 			public string CustomerID;
 			public string CompanyName;
-			[FieldQuoted(QuoteMode.OptionalBoth)]
+			[FieldQuoted(QuoteMode.OptionalForBoth)]
 			public string ContactName;
 			[FieldOptional()]
 			public string ContactTitle;
@@ -214,15 +214,15 @@ namespace FileHelpersTests.Common
 		public sealed class OptionalFull
 		{
 			public string PLT_OrganizationID;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string PartnerTier;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string EngagementType;
 			public string MOSBFlag;
 			public string MCEFlag;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string PAM;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			[FieldOptional()]
 			public string PAMAlias;
 		}
@@ -232,15 +232,15 @@ namespace FileHelpersTests.Common
 		public sealed class OptionalFull2
 		{
 			public string PLT_OrganizationID;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string PartnerTier;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string EngagementType;
 			public string MOSBFlag;
 			public string MCEFlag;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			public string PAM;
-			[FieldQuoted('"', QuoteMode.OptionalBoth)]
+			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			[FieldOptional()]
 			public string PAMAlias;
 			[FieldIgnored()]

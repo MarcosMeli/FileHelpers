@@ -173,6 +173,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\MultiLine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\MultiRecord.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -208,17 +213,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Tests\Common\QuotedStringsHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Tests\Common\Readers.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Tests\Common\StringHelpers.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

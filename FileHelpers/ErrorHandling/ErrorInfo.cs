@@ -57,11 +57,7 @@ namespace FileHelpers
 				if (from == null)
 					return String.Empty;
 				else
-#if ! MINI
-					return ((Exception) from).Message.Replace(Environment.NewLine, " -> ");
-#else
-				return ((Exception) from).Message.Replace("\r\n", " -> ");
-#endif
+					return ((Exception) from).Message.Replace(StringHelper.NewLine, " -> ");
 			}
 
 			public override object StringToField(string from)

@@ -25,7 +25,7 @@ namespace FileHelpers
 			get { return mQuoteChar; }
 		}
 
-		private QuoteMode mQuoteMode = QuoteMode.Allways;
+		private QuoteMode mQuoteMode = QuoteMode.AlwaysQuoted;
 
 		/// <summary>Indicates if the Quoted char can be optional (default is false)</summary>
 		public QuoteMode QuoteMode
@@ -33,8 +33,20 @@ namespace FileHelpers
 			get { return mQuoteMode; }
 		}
 
+		private bool mQuoteAllowMultiline;
+
+		/// <summary>The char used to quote the string.</summary>
+		public bool QuoteAllowMultiline
+		{
+			get { return mQuoteAllowMultiline; }
+		}
+
 		/// <summary>Indicates that the field must be read and written like a Quoted String. (by default "")</summary>
 		public FieldQuotedAttribute() : this('\"')
+		{
+		}
+
+		public FieldQuotedAttribute(bool allowMultiline) : this('\"', QuoteMode.AlwaysQuoted, allowMultiline)
 		{
 		}
 
@@ -46,18 +58,25 @@ namespace FileHelpers
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String.</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
-		public FieldQuotedAttribute(char quoteChar)
+		public FieldQuotedAttribute(char quoteChar):this(quoteChar, QuoteMode.AlwaysQuoted, false) 
 		{
-			mQuoteChar = quoteChar;
 		}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
-		public FieldQuotedAttribute(char quoteChar, QuoteMode mode)
+		public FieldQuotedAttribute(char quoteChar, QuoteMode mode):this(quoteChar, mode, false) 
+		{
+		}
+
+		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
+		/// <param name="quoteChar">The char used to quote the string.</param>
+		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
+		public FieldQuotedAttribute(char quoteChar, QuoteMode mode, bool allowMultiline)
 		{
 			mQuoteChar = quoteChar;
 			mQuoteMode = mode;
+			mQuoteAllowMultiline = allowMultiline;
 		}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
@@ -68,7 +87,7 @@ namespace FileHelpers
 		{
 			mQuoteChar = quoteChar;
 			if (optional)
-				mQuoteMode = QuoteMode.OptionalBoth;
+				mQuoteMode = QuoteMode.OptionalForBoth;
 		}
 
 	}

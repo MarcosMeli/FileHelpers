@@ -49,13 +49,24 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  QuoteOptional  "
+		#region "  QuoteMode  "
 
 		internal QuoteMode mQuoteMode;
 
 		public QuoteMode QuoteMode
 		{
 			get { return mQuoteMode; }
+		}
+
+		#endregion
+
+		#region "  QuoteAllowMultiline "
+
+		internal bool mQuoteAllowMultiline;
+
+		public bool QuoteAllowMultiline
+		{
+			get { return mQuoteAllowMultiline; }
 		}
 
 		#endregion
@@ -70,7 +81,7 @@ namespace FileHelpers
 				return mSeparatorLength;
 		}
 
-		protected override ExtractedInfo ExtractFieldString(string from)
+		protected override ExtractedInfo ExtractFieldString(string from, ForwardReader reader)
 		{
 
 			if (mIsOptional && from.Length == 0 )
@@ -112,20 +123,27 @@ namespace FileHelpers
 
 				if (from2.StartsWith(quotedStr))
 				{
-					int index;
-					res.ExtractedString = StringHelper.ExtractQuotedString(from2, mQuoteChar, out index);
-					res.CharsRemoved += index;
+					if (mQuoteAllowMultiline)
+					{
+						ExtractedInfo ei = StringHelper.ExtractQuotedString(from2, reader, mQuoteChar);
+						res.ExtractedString = ei.ExtractedString;
+						res.CharsRemoved += ei.CharsRemoved;
+						res.ExtraLines = ei.ExtraLines;
+						res.NewRestOfLine = ei.NewRestOfLine;
+					}
+					else
+					{
+						int index = 0;
+						
+						res.ExtractedString = StringHelper.ExtractQuotedString(from2, mQuoteChar, out index);
+						res.CharsRemoved += index;
+					}
 
-//					if ((mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Right))
-//					{
-//						string from2 = from.Substring(res.CharsRemoved).TrimStart(mTrimChars);
-//						res.CharsRemoved += from2.Length - from.Length;
-//					}
 
 				}
 				else
 				{
-					if (mQuoteMode == QuoteMode.OptionalBoth || mQuoteMode == QuoteMode.OptionalRead)
+					if (mQuoteMode == QuoteMode.OptionalForBoth || mQuoteMode == QuoteMode.OptionalForRead)
 					{
 						if (mIsLast)
 							res = new ExtractedInfo(from);
@@ -162,6 +180,11 @@ namespace FileHelpers
 
 			res = base.CreateFieldString(record);
 
+			bool hasNewLine = res.IndexOf(StringHelper.NewLine) >= 0;
+
+			if (hasNewLine && mQuoteAllowMultiline == false)
+				throw new BadUsageException("One value for the field " + this.FieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
+
 			if (mQuoteChar != '\0')
 			{
 				// Add Quotes If:
@@ -169,13 +192,8 @@ namespace FileHelpers
 				//     -  is optional and contains the separator 
 				//     -  is optional and contains a new line
 
-				#if ! MINI
-					if (mQuoteMode == QuoteMode.Allways || mQuoteMode == QuoteMode.OptionalRead || res.IndexOf(mSeparator) >= 0 || res.IndexOf(Environment.NewLine) >= 0)
+				if (mQuoteMode == QuoteMode.AlwaysQuoted || ((mQuoteMode == QuoteMode.OptionalForWrite|| mQuoteMode == QuoteMode.OptionalForBoth)  && res.IndexOf(mSeparator) >= 0) || hasNewLine)
 						res = StringHelper.CreateQuotedString(res, mQuoteChar);
-				#else
-					if (mQuoteMode == QuoteMode.Allways || mQuoteMode == QuoteMode.OptionalRead || res.IndexOf(mSeparator) >= 0 || res.IndexOf("\r\n") >= 0)
-						res = StringHelper.CreateQuotedString(res, mQuoteChar);
-				#endif
 			}
 
 			if (mIsLast == false)

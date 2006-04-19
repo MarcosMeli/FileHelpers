@@ -101,6 +101,7 @@ namespace FileHelpers
 
 					((DelimitedField) res).mQuoteChar = quotedAttributes[0].QuoteChar;
 					((DelimitedField) res).mQuoteMode = quotedAttributes[0].QuoteMode;
+					((DelimitedField) res).mQuoteAllowMultiline = quotedAttributes[0].QuoteAllowMultiline;
 				}
 
 				FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[]) fi.GetCustomAttributes(typeof (FieldOptionalAttribute), true);

@@ -130,13 +130,13 @@ namespace FileHelpers
 		/// <summary>Internal.</summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
-		protected internal object StringToRecord(string line)
+		internal object StringToRecord(string line, ForwardReader reader)
 		{
 			object record = mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				line = mFields[i].ExtractAndAssignFromString(line, record);
+				line = mFields[i].ExtractAndAssignFromString(line, record, reader);
 			}
 
 			return record;
@@ -202,9 +202,11 @@ namespace FileHelpers
 			}
 		}
 
-		#if ! MINI
 
-		internal DataTable RecordsToDataTable(object[] data)
+		
+#if ! MINI
+
+		internal DataTable RecordsToDataTable(ICollection records)
 		{
 			DataTable res = new DataTable();
 			res.BeginLoadData();
@@ -217,12 +219,10 @@ namespace FileHelpers
 				column1.ReadOnly = true;
 			}
 
-			res.MinimumCapacity = data.Length;
+			res.MinimumCapacity = records.Count;
 
-			for (int r = 0; r < data.Length; r++)
-			{
-				res.Rows.Add(RecordToValues(data[r]));
-			}
+			foreach (object r in records)
+				res.Rows.Add(RecordToValues(r));
 
 			res.EndLoadData();
 			return res;

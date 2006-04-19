@@ -12,8 +12,16 @@ namespace FileHelpers
 {
 	/// <summary>Helper Class to manipulate Strings.</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public sealed class StringHelper
+	internal sealed class StringHelper
 	{
+
+		#if ! MINI
+			public static readonly string NewLine = Environment.NewLine;
+		#else
+			public static readonly string NewLine = "\r\n";
+		#endif
+
+
 		private StringHelper()
 		{
 		}
@@ -25,59 +33,76 @@ namespace FileHelpers
 		/// <param name="quoteChar">The quoted char.</param>
 		/// <param name="index">An output parameter of the index of the end of the string.</param>
 		/// <returns>The estracted string</returns>
-		public static string ExtractQuotedString(string source, char quoteChar, out int index)
+		internal static ExtractedInfo ExtractQuotedString(string source, ForwardReader reader, char quoteChar)
 		{
 			StringBuilder res = new StringBuilder(32);
+			int lines = 0;
+
 			bool beginEscape = false;
 
+			if (reader == null)
+				throw new BadUsageException("The reader can´t be null");
 
-			if (source == null || source.Length == 0)
+			if (source ==null || source.Length == 0)
 				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
 
 
 			if (source[0] != quoteChar)
 				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
 
-			index = 0;
 			int i = 1;
-			while (i < source.Length)
+			bool mustContinue = true;
+
+			while (mustContinue && source != null)
 			{
-				if (source[i] == quoteChar)
+				while (i < source.Length)
 				{
-					if (beginEscape == true)
+					if (source[i] == quoteChar)
 					{
-						beginEscape = false;
-						res.Append(quoteChar);
+						if (beginEscape == true)
+						{
+							beginEscape = false;
+							res.Append(quoteChar);
+						}
+						else
+						{
+							beginEscape = true;
+						}
 					}
 					else
 					{
-						beginEscape = true;
+						if (beginEscape)
+						{
+							// End of the String
+							ExtractedInfo ei = new ExtractedInfo(res.ToString(), i, lines);
+							if (lines != 0)
+								ei.NewRestOfLine = source.Substring(i);
+							return ei;
+
+						}
+						else
+						{
+							res.Append(source[i]);
+						}
 					}
+					i++;
+				}
+
+
+				if (beginEscape)
+				{
+					return new ExtractedInfo(res.ToString(), i+1, lines);
 				}
 				else
 				{
-					if (beginEscape)
-					{
-						// End of the String
-						index = i;
-						return res.ToString();
-					}
-					else
-					{
-						res.Append(source[i]);
-					}
-
+					source = reader.ReadNextLine();
+					res.Append(StringHelper.NewLine);
+					lines++;
+					i = 0;
 				}
+			}
 
-				i++;
-			}
-			if (beginEscape)
-			{
-				index = i;
-				return res.ToString();
-			}
-			else
-				throw new BadUsageException("The current field has an UnClosed quoted string. Complete line: " + source);
+			throw new BadUsageException("The current field has an UnClosed quoted string. Complete Filed String: " + res.ToString());
 		}
 
 		#endregion
@@ -132,5 +157,73 @@ namespace FileHelpers
 		}
 
 		#endregion
+
+		#region "  ExtractQuotedString  "
+
+		/// <summary>Used to extract a quoted string and de-escape the quote char.</summary>
+		/// <param name="source">Source string</param>
+		/// <param name="quoteChar">The quoted char.</param>
+		/// <param name="index">An output parameter of the index of the end of the string.</param>
+		/// <returns>The estracted string</returns>
+		public static string ExtractQuotedString(string source, char quoteChar, out int index)
+		{
+			StringBuilder res = new StringBuilder(32);
+			bool beginEscape = false;
+
+
+
+
+			if (source == null || source.Length == 0)
+
+
+				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
+
+
+			if (source[0] != quoteChar)
+				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
+
+			index = 0;
+			int i = 1;
+			while (i < source.Length)
+			{
+				if (source[i] == quoteChar)
+				{
+					if (beginEscape == true)
+					{
+						beginEscape = false;
+						res.Append(quoteChar);
+					}
+					else
+					{
+						beginEscape = true;
+					}
+				}
+				else
+				{
+					if (beginEscape)
+					{
+						// End of the String
+						index = i;
+						return res.ToString();
+					}
+					else
+					{
+						res.Append(source[i]);
+					}
+				}
+
+				i++;
+			}
+			if (beginEscape)
+			{
+				index = i;
+				return res.ToString();
+			}
+			else
+				throw new BadUsageException("The current field has an UnClosed quoted string. Complete line: " + source);
+		}
+
+		#endregion
+
 	}
 }
