@@ -4,19 +4,25 @@
 
 #endregion
 
-#if NET_2_0
-
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
+#if ! MINI
+using System.Data;
+#endif
+
+
+#if NET_2_0
 
 namespace FileHelpers
 {
 	/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
-	public sealed class FileHelperEngine<T> : EngineBase
+	public sealed class FileHelperEngine<T>: EngineBase
 	{
 
 		#region "  Constructor  "
@@ -41,7 +47,6 @@ namespace FileHelpers
 
 				return tempRes;
 			}
-
 		}
 
 		#endregion
@@ -49,6 +54,7 @@ namespace FileHelpers
 		#region "  ReadStream  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T[] ReadStream(TextReader reader)
 		{
 			if (reader == null)
@@ -75,19 +81,16 @@ namespace FileHelpers
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
 			#endif
 
-
 			if (mRecordInfo.mIgnoreFirst > 0)
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
 				{
-					mHeaderText += currentLine + "\r\n";
+					mHeaderText += currentLine + StringHelper.NewLine;
 					currentLine = freader.ReadNextLine();
 					mLineNumber++;
 				
 				}
 			}
-
-
 
 			bool byPass = false;
 
@@ -102,7 +105,7 @@ namespace FileHelpers
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 					#endif
 
-					resArray.Add(mRecordInfo.StringToRecord(currentLine));
+					resArray.Add(mRecordInfo.StringToRecord(currentLine, freader));
 				}
 				catch (Exception ex)
 				{
@@ -115,7 +118,7 @@ namespace FileHelpers
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNumber;
+							err.mLineNumber = freader.LineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
@@ -183,12 +186,14 @@ namespace FileHelpers
 		#region "  WriteStream  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void WriteStream(TextWriter writer, T[] records)
 		{
 			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void WriteStream(TextWriter writer, T[] records, int maxRecords)
 		{
 			if (writer == null)
@@ -203,7 +208,7 @@ namespace FileHelpers
 			ResetFields();
 
 			if (mHeaderText != null && mHeaderText.Length != 0)
-				if (mHeaderText.EndsWith("\r\n"))
+				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					writer.Write(mHeaderText);
 				else
 					writer.WriteLine(mHeaderText);
@@ -259,7 +264,7 @@ namespace FileHelpers
 			mTotalRecords = records.Length;
 
 			if (mFooterText != null && mFooterText != string.Empty)
-				if (mFooterText.EndsWith("\r\n"))
+				if (mFooterText.EndsWith(StringHelper.NewLine))
 					writer.Write(mFooterText);
 				else
 					writer.WriteLine(mFooterText);
@@ -310,6 +315,29 @@ namespace FileHelpers
                 writer.Close();
             }
 		}
+
+		#endregion
+
+		#region "  DataTable Ops  "
+
+		#if ! MINI
+
+		public DataTable ReadFileAsDT(string fileName)
+		{
+			return mRecordInfo.RecordsToDataTable((object[]) ReadFile(fileName));
+		}
+
+		public DataTable ReadStringAsDT(string source)
+		{
+            return mRecordInfo.RecordsToDataTable((object[])ReadString(source));
+		}
+
+		public DataTable ReadStreamAsDT(TextReader reader)
+		{
+            return mRecordInfo.RecordsToDataTable((object[]) ReadStream(reader));
+		}
+
+		#endif
 
 		#endregion
 

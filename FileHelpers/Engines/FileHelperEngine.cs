@@ -83,7 +83,7 @@ namespace FileHelpers
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
 				{
-					mHeaderText += currentLine + "\r\n";
+					mHeaderText += currentLine + StringHelper.NewLine;
 					currentLine = freader.ReadNextLine();
 					mLineNumber++;
 				
@@ -103,7 +103,7 @@ namespace FileHelpers
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 					#endif
 
-					resArray.Add(mRecordInfo.StringToRecord(currentLine));
+					resArray.Add(mRecordInfo.StringToRecord(currentLine, freader));
 				}
 				catch (Exception ex)
 				{
@@ -116,7 +116,7 @@ namespace FileHelpers
 							break;
 						case ErrorMode.SaveAndContinue:
 							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = mLineNumber;
+							err.mLineNumber = freader.LineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
@@ -206,7 +206,7 @@ namespace FileHelpers
 			ResetFields();
 
 			if (mHeaderText != null && mHeaderText.Length != 0)
-				if (mHeaderText.EndsWith("\r\n"))
+				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					writer.Write(mHeaderText);
 				else
 					writer.WriteLine(mHeaderText);
@@ -262,7 +262,7 @@ namespace FileHelpers
 			mTotalRecords = records.Length;
 
 			if (mFooterText != null && mFooterText != string.Empty)
-				if (mFooterText.EndsWith("\r\n"))
+				if (mFooterText.EndsWith(StringHelper.NewLine))
 					writer.Write(mFooterText);
 				else
 					writer.WriteLine(mFooterText);

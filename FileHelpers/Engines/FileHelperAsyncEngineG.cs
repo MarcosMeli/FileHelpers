@@ -4,11 +4,11 @@
 
 #endregion
 
-#if NET_2_0
-
 using System;
 using System.Collections;
 using System.IO;
+
+#if NET_2_0
 
 namespace FileHelpers
 {
@@ -59,13 +59,13 @@ namespace FileHelpers
 						string temp = reader.ReadLine();
 						mLineNumber++;
 						if (temp != null)
-							mHeaderText += temp + "\r\n";
+							mHeaderText += temp + StringHelper.NewLine;
 						else
 							break;
 					}
 				}
 
-				mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
+				mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
 				mAsyncReader.DiscardForward = true;
 		}
 
@@ -110,7 +110,7 @@ namespace FileHelpers
 					try
 					{
 						mTotalRecords++;
-						mLastRecord = (T) mRecordInfo.StringToRecord(currentLine);
+						mLastRecord = (T) mRecordInfo.StringToRecord(currentLine, mAsyncReader);
 						byPass = true;
 						return;
 					}
@@ -125,7 +125,7 @@ namespace FileHelpers
 								break;
 							case ErrorMode.SaveAndContinue:
 								ErrorInfo err = new ErrorInfo();
-								err.mLineNumber = mLineNumber;
+								err.mLineNumber = mAsyncReader.LineNumber;
 								err.mExceptionInfo = ex;
 								//							err.mColumnNumber = mColumnNum;
 								err.mRecordString = currentLine;
@@ -139,7 +139,7 @@ namespace FileHelpers
 						if (byPass == false)
 						{
 							currentLine = mAsyncReader.ReadNextLine();
-							mLineNumber++;
+							mLineNumber = mAsyncReader.LineNumber;
 						}
 					}
 				}
@@ -218,7 +218,7 @@ namespace FileHelpers
 		private void WriteHeader()
 		{
 			if (mHeaderText != null && mHeaderText != string.Empty)
-				if (mHeaderText.EndsWith("\r\n"))
+				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					mAsyncWriter.Write(mHeaderText);
 				else
 					mAsyncWriter.WriteLine(mHeaderText);
@@ -241,7 +241,7 @@ namespace FileHelpers
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
 		public void BeginAppendToFile(string fileName)
 		{
-			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, true);
+			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 		}
@@ -332,7 +332,7 @@ namespace FileHelpers
 				if (mAsyncWriter != null)
 				{
 					if (mFooterText != null && mFooterText != string.Empty)
-						if (mFooterText.EndsWith("\r\n"))
+						if (mFooterText.EndsWith(StringHelper.NewLine))
 							mAsyncWriter.Write(mFooterText);
 						else
 							mAsyncWriter.WriteLine(mFooterText);
@@ -344,8 +344,9 @@ namespace FileHelpers
 				}
 
 			}
-			catch
+			catch (Exception ex)
 			{
+				Console.WriteLine(ex);
 			}
 
 		}
