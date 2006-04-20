@@ -324,17 +324,17 @@ namespace FileHelpers
 
 		public DataTable ReadFileAsDT(string fileName)
 		{
-			return mRecordInfo.RecordsToDataTable((object[]) ReadFile(fileName));
+			return mRecordInfo.RecordsToDataTable(ReadFile(fileName));
 		}
 
 		public DataTable ReadStringAsDT(string source)
 		{
-            return mRecordInfo.RecordsToDataTable((object[])ReadString(source));
+            return mRecordInfo.RecordsToDataTable(ReadString(source));
 		}
 
 		public DataTable ReadStreamAsDT(TextReader reader)
 		{
-            return mRecordInfo.RecordsToDataTable((object[]) ReadStream(reader));
+            return mRecordInfo.RecordsToDataTable(ReadStream(reader));
 		}
 
 		#endif
