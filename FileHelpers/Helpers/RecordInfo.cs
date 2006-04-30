@@ -127,6 +127,19 @@ namespace FileHelpers
 			get { return mFieldCount; }
 		}
 
+
+		internal FieldInfo GetFieldInfo(string name)
+		{
+			foreach (FieldBase field in mFields)
+			{
+				if (field.FieldInfo.Name.ToLower() == name.ToLower())
+					return field.FieldInfo;
+			}
+
+			return null;
+		}
+
+
 		/// <summary>Internal.</summary>
 		/// <param name="line"></param>
 		/// <returns></returns>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.4.2" />
-    <property name="LibraryFileVersion" value="1_4_2" />
+    <property name="LibraryVersion" value="1.4.5" />
+    <property name="LibraryFileVersion" value="1_4_5" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     <property name="Source2005" value="_Source2005" />
@@ -58,6 +58,7 @@
 
         <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
         <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
+        <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
 
         <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
         <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />

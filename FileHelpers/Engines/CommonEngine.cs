@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 
@@ -98,6 +99,77 @@ namespace FileHelpers
 			FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
 			return engine.TransformFile1To2(sourceFile, destFile);
 		}
+
+		public static object[] ReadFileSorted(Type recordClass, string fileName)
+		{
+			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)
+				throw new BadUsageException("The record class must implement the interface IComparer to use the Sort feature.");
+
+			FileHelperEngine engine = new FileHelperEngine(recordClass);
+			object[] res = engine.ReadFile(fileName);
+
+			if (res.Length == 0)
+				return res;
+
+			IComparer comparer = res[0] as IComparer;
+			Array.Sort(res, comparer);
+			return res;
+		}
+
+		public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
+		{
+			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)
+				throw new BadUsageException("The record class must implement the interface IComparer to use the Sort feature.");
+
+			FileHelperEngine engine = new FileHelperEngine(recordClass);
+			object[] res = engine.ReadFile(sourceFile);
+
+			if (res.Length == 0)
+				engine.WriteFile(sortedFile, res);
+
+            IComparer comparer = res[0] as IComparer;
+			Array.Sort(res, comparer);
+			engine.WriteFile(sortedFile, res);
+		}
+
+		public static void SortFileByField(Type recordClass, string fieldName, bool asc, string sourceFile, string sortedFile)
+		{
+
+			FileHelperEngine engine = new FileHelperEngine(recordClass);
+			FieldInfo fi = engine.mRecordInfo.GetFieldInfo(fieldName);
+
+			if (fi == null)
+				throw new BadUsageException("The record class not cointain the field " + fieldName);
+
+			object[] res = engine.ReadFile(sourceFile);
+
+			IComparer comparer = new FieldComparer(fi, asc);
+			Array.Sort(res, comparer);
+
+			engine.WriteFile(sortedFile, res);
+		}
+
+		internal class FieldComparer : IComparer
+		{
+			FieldInfo mFieldInfo;
+			int mAscending;
+			
+			public FieldComparer(FieldInfo fi, bool asc)
+			{
+				mFieldInfo = fi;
+				mAscending = asc ? 1 : -1;
+				if (typeof(IComparable).IsAssignableFrom(mFieldInfo.FieldType) == false)
+					throw new BadUsageException("The field " + mFieldInfo.Name + " need to implement the interface IComparable");
+
+			}
+
+			public int Compare(object x, object y)
+			{
+				IComparable xv = mFieldInfo.GetValue(x) as IComparable;
+				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
+			}
+		}
+
 
 	}
 }
