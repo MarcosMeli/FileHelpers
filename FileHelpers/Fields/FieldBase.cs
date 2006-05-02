@@ -48,8 +48,8 @@ namespace FileHelpers
 
 		private static Type strType = typeof (string);
 
-		private Type mFieldType;
-		private FieldInfo mFieldInfo;
+		internal Type mFieldType;
+		internal FieldInfo mFieldInfo;
 
 		internal TrimMode mTrimMode = TrimMode.None;
 		internal Char[] mTrimChars = null;
@@ -59,7 +59,7 @@ namespace FileHelpers
 
 		internal bool mIsLast = false;
 
-		private object mNullValue = null;
+		internal object mNullValue = null;
 
 		#endregion
 
@@ -125,82 +125,76 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  Convert Handlers  " 
+//		#region "  Convert Handlers  " 
 
-		private ConverterBase mConvertProvider;
+		internal ConverterBase mConvertProvider;
 
-		public ConverterBase ConvertProvider
-		{
-			get { return mConvertProvider; }
-			set { mConvertProvider = value; }
-		}
-
-		#endregion
-
-		#region "  FieldInfo  " 
-
-		public FieldInfo FieldInfo
-		{
-			get { return mFieldInfo; }
-		}
-
-		#endregion
-
-		#region "  TrimMode  " 
-
-		public TrimMode TrimMode
-		{
-			get { return mTrimMode; }
-		}
-
-		#endregion
-
-		#region "  TrimChars  " 
-
-		public char[] TrimChars
-		{
-			get { return mTrimChars; }
-		}
-
-		#endregion
-
-		#region "  IsOptional  " 
-
-		public bool IsOptional
-		{
-			get { return mIsOptional; }
-		}
-
-		#endregion
-
-		#region "  NextIsOptional  " 
-
-		public bool NextIsOptional
-		{
-			get { return mNextIsOptional; }
-		}
-
-		#endregion
-
-		#region "  InNewLine  " 
-
-		public bool InNewLine
-		{
-			get { return mInNewLine; }
-		}
-
-		#endregion
+//		public ConverterBase ConvertProvider
+//		{
+//			get { return mConvertProvider; }
+//			set { mConvertProvider = value; }
+//		}
+//
+//		#endregion
 
 
 
-		#region "  FieldType  " 
+//		#region "  TrimMode  " 
+//
+//		public TrimMode TrimMode
+//		{
+//			get { return mTrimMode; }
+//		}
+//
+//		#endregion
+//
+//		#region "  TrimChars  " 
+//
+//		public char[] TrimChars
+//		{
+//			get { return mTrimChars; }
+//		}
+//
+//		#endregion
+//
+//		#region "  IsOptional  " 
+//
+//		public bool IsOptional
+//		{
+//			get { return mIsOptional; }
+//		}
+//
+//		#endregion
+//
+//		#region "  NextIsOptional  " 
+//
+//		internal bool NextIsOptional
+//		{
+//			get { return mNextIsOptional; }
+//			set { mNextIsOptional = value; }
+//		}
+//
+//		#endregion
 
-		public Type FieldType
-		{
-			get { return mFieldType; }
-		}
+//		#region "  InNewLine  " 
 
-		#endregion
+//		public bool InNewLine
+//		{
+//			get { return mInNewLine; }
+//		}
+//
+//		#endregion
+//
+//
+
+//		#region "  FieldType  " 
+//
+//		public Type FieldType
+//		{
+//			get { return mFieldType; }
+//		}
+//
+//		#endregion
 
 		#region "  ExtractAndAssignFromString  " 
 
@@ -385,41 +379,14 @@ namespace FileHelpers
 
 		internal string AssignToString(object record)
 		{
-//			switch(TrimMode)
-//			{
-//				case TrimMode.None:
-//					break;
-//
-//				case TrimMode.Both:
-//					fieldString = fieldString.Trim(TrimChars);
-//					break;
-//
-//				case TrimMode.Left:
-//					fieldString = fieldString.TrimStart(TrimChars);
-//					break;
-//
-//				case TrimMode.Right:
-//					fieldString = fieldString.TrimEnd(TrimChars);
-//					break;
-//			}
 
-			string fieldString = CreateFieldString(record);
+			string fieldString = string.Empty;
 
-//			if (ConvertHandler == null)
-//			{
-//				if (mFieldType == strType)
-//					val = fieldString;
-//				else
-//					val = Convert.ChangeType(fieldString, mFieldType);
-//			}
-//			else
-//			{
-//				val = ConvertHandler(fieldString);
-//			}
+			if (this.mInNewLine == true)
+				fieldString = StringHelper.NewLine;
 
-			//mFieldInfo.SetValue(record, val);
+			fieldString += CreateFieldString(record);
 
-			//-> Descarto lo leído
 			return fieldString;
 		}
 
