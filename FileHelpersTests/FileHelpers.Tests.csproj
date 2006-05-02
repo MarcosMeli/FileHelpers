@@ -168,6 +168,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\InNewLine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\LineCounter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -209,6 +214,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\QuotedStringEntities.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\QuoteMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

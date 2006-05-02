@@ -110,6 +110,12 @@ namespace FileHelpers
 					res.mIsOptional	= true;
 				else if (someOptional)
 					throw new BadUsageException("When you define a field as FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + res.FieldInfo.Name + " )");
+
+				
+				FieldInNewLine[] inNewLine = (FieldInNewLine[]) fi.GetCustomAttributes(typeof (FieldInNewLine), true);
+
+				if (inNewLine.Length > 0)
+					res.mInNewLine = true;
 			}
 
 

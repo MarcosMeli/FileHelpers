@@ -55,6 +55,7 @@ namespace FileHelpers
 		internal Char[] mTrimChars = null;
 		internal bool mIsOptional = false;
 		internal bool mNextIsOptional = false;
+		internal bool mInNewLine = false;
 
 		internal bool mIsLast = false;
 
@@ -181,6 +182,16 @@ namespace FileHelpers
 
 		#endregion
 
+		#region "  InNewLine  " 
+
+		public bool InNewLine
+		{
+			get { return mInNewLine; }
+		}
+
+		#endregion
+
+
 
 		#region "  FieldType  " 
 
@@ -196,6 +207,17 @@ namespace FileHelpers
 		internal string ExtractAndAssignFromString(string buffer, object record, ForwardReader reader)
 		{
 			//-> extract only what I need
+
+			if (this.mInNewLine == true)
+			{
+				if (buffer.Trim() != String.Empty)
+					throw new BadUsageException("Text '" + buffer +"' found before the new line of the field: " + mFieldInfo.Name + " (this is not allowed when you use [FieldInNewLine])");
+
+				buffer = reader.ReadNextLine();
+
+				if (buffer == null)
+					throw new BadUsageException("End of stream found parsing the field " + mFieldInfo.Name + ". Please check the class record.");
+			}
 
 			ExtractedInfo info = ExtractFieldString(buffer, reader);
 

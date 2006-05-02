@@ -448,6 +448,9 @@ namespace FileHelpers
 						extra = " There are more chars than in the format string.";
 					else if (from.Length < mFormat.Length)
 						extra = " There are less chars than in the format string.";
+					else
+						extra = " Using the format: '" + mFormat + "'";
+
 
 					throw new ConvertException(from, typeof (DateTime), extra);
 				}
