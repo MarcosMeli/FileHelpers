@@ -83,11 +83,11 @@ bgColor=white leftMargin=0 topMargin=0>
             <blockquote>
               <pre>FileHelperEngine engine = <span class="cpp-keyword">new</span> FileHelperEngine(<span class="cpp-keyword">typeof</span>(Orders));<span class="vb-comment">
 
-/// To Read Use:
-</span>Orders[] res = (Orders[]) engine.ReadFile(@<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+// To Read Use:
+</span>Orders[] res = engine.ReadFile(<span class="cs-string">&quot;FileIn.txt&quot;</span>) as Orders[];
 
-<span class="cs-comment">/// To Write Use:</span>
-engine.WriteFile(@<span class="cs-string">&quot;C:\TestOut.txt&quot;</span>, res);</pre>
+<span class="cs-comment">// To Write Use:</span>
+engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res);</pre>
           </blockquote></td>
       </tr>
       <tr>

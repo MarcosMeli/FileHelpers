@@ -165,7 +165,7 @@ namespace FileHelpers
 					else if (from.Trim().StartsWith(quotedStr))
 						throw new BadUsageException("The field '" + this.FieldInfo.Name + "' has spaces before the QuotedChar in the data use the TrimAttribute to by pass this error. Field String: " + from);
 					else
-						throw new BadUsageException("The field '" + this.FieldInfo.Name + "' not begin with the QuotedChar in the data. You can use and FieldQuoted(.., true) to allow optional quote.. Field String: " + from);
+						throw new BadUsageException("The field '" + this.FieldInfo.Name + "' not begin with the QuotedChar in the data. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
 				}
 
 			}
@@ -192,7 +192,7 @@ namespace FileHelpers
 				//     -  is optional and contains the separator 
 				//     -  is optional and contains a new line
 
-				if (mQuoteMode == QuoteMode.AlwaysQuoted || ((mQuoteMode == QuoteMode.OptionalForWrite|| mQuoteMode == QuoteMode.OptionalForBoth)  && res.IndexOf(mSeparator) >= 0) || hasNewLine)
+				if (mQuoteMode == QuoteMode.AlwaysQuoted || mQuoteMode == QuoteMode.OptionalForRead || ((mQuoteMode == QuoteMode.OptionalForWrite|| mQuoteMode == QuoteMode.OptionalForBoth)  && res.IndexOf(mSeparator) >= 0) || hasNewLine)
 						res = StringHelper.CreateQuotedString(res, mQuoteChar);
 			}
 
