@@ -100,7 +100,7 @@ namespace FileHelpers
 
 					arr.Add(curField);
 					if (arr.Count > 1)
-						((FieldBase)arr[arr.Count-2]).mNextIsOptional = ((FieldBase)arr[arr.Count-1]).IsOptional;
+						((FieldBase)arr[arr.Count-2]).mNextIsOptional = ((FieldBase)arr[arr.Count-1]).mIsOptional;
 					
 				}
 			}
@@ -132,8 +132,8 @@ namespace FileHelpers
 		{
 			foreach (FieldBase field in mFields)
 			{
-				if (field.FieldInfo.Name.ToLower() == name.ToLower())
-					return field.FieldInfo;
+				if (field.mFieldInfo.Name.ToLower() == name.ToLower())
+					return field.mFieldInfo;
 			}
 
 			return null;
@@ -194,7 +194,7 @@ namespace FileHelpers
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				res[i] = mFields[i].FieldInfo.GetValue(record);
+				res[i] = mFields[i].mFieldInfo.GetValue(record);
 			}
 
 			return res;
@@ -208,7 +208,7 @@ namespace FileHelpers
 			{
 				foreach (FieldBase field in mFields)
 				{
-					if (field.FieldType == typeof (DateTime))
+					if (field.mFieldType == typeof (DateTime))
 						return true;
 				}
 				return false;
@@ -228,7 +228,7 @@ namespace FileHelpers
 			{
 				DataColumn column1;
 
-				column1 = res.Columns.Add(f.FieldInfo.Name, f.FieldInfo.FieldType);
+				column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
 				column1.ReadOnly = true;
 			}
 

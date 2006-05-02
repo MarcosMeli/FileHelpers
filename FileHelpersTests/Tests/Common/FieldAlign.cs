@@ -14,10 +14,11 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (AlignClass));
 			AlignClass[] resTemp = (AlignClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
-			engine.WriteFile(@"testAlign.txt", resTemp);
+
+			string tmp = engine.WriteString(resTemp);
 
 			engine = new FileHelperEngine(typeof (AlignClass2));
-			res = (AlignClass2[]) engine.ReadFile(@"testAlign.txt");
+			res = (AlignClass2[]) engine.ReadString(tmp);
 		}
 
 		[Test]

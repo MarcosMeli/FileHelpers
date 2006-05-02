@@ -12,18 +12,8 @@ namespace FileHelpers
 	{
 		#region "  Properties  "
 
-		private int mLength;
-		private FieldAlignAttribute mAlign = new FieldAlignAttribute(AlignMode.Left, ' ');
-
-		public int Length
-		{
-			get { return mLength; }
-		}
-
-		public FieldAlignAttribute Align
-		{
-			get { return mAlign; }
-		}
+		internal int mLength;
+		internal FieldAlignAttribute mAlign = new FieldAlignAttribute(AlignMode.Left, ' ');
 
 		#endregion
 
@@ -48,8 +38,8 @@ namespace FileHelpers
 
 			ExtractedInfo res;
 
-			if (from.Length < this.Length)
-				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") for the field " + FieldInfo.Name + " don´t match the record length: " + Length.ToString());
+			if (from.Length < this.mLength)
+				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") for the field " + mFieldInfo.Name + " don´t match the record length: " + mLength.ToString());
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 

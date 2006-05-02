@@ -82,9 +82,8 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(typeof (ExcelCsv1Type));
 
-			engine.WriteFile("tempCSV.txt", arr.ToArray());
-			ExcelCsv1Type[] res = (ExcelCsv1Type[]) engine.ReadFile("tempCSV.txt");
-			if (File.Exists("tempCSV.txt")) File.Delete("tempCSV.txt");
+			string tmp = engine.WriteString(arr.ToArray());
+			ExcelCsv1Type[] res = (ExcelCsv1Type[]) engine.ReadString(tmp);
             
 			Assert.AreEqual(4, res.Length);
 
@@ -128,9 +127,8 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(typeof (ExcelCsv2Type));
 
-			engine.WriteFile("tempCSV.txt", arr.ToArray());
-			ExcelCsv2Type[] res = (ExcelCsv2Type[]) engine.ReadFile("tempCSV.txt");
-			if (File.Exists("tempCSV.txt")) File.Delete("tempCSV.txt");
+			string tmp = engine.WriteString(arr.ToArray());
+			ExcelCsv2Type[] res = (ExcelCsv2Type[]) engine.ReadString(tmp);
             
 			Assert.AreEqual(4, res.Length);
 

@@ -23,51 +23,12 @@ namespace FileHelpers
 
 		#region "  Properties  "
 
-		private string mSeparator;
-		private int mSeparatorLength;
-
-		public int SeparatorLength
-		{
-			get { return mSeparatorLength; }
-		}
-
-		public string Separator
-		{
-			get { return mSeparator; }
-		}
-
-		#endregion
-
-		#region "  QuoteChar  "
+		internal string mSeparator;
+		internal int mSeparatorLength;
 
 		internal char mQuoteChar = '\0';
-
-		public char QuoteChar
-		{
-			get { return mQuoteChar; }
-		}
-
-		#endregion
-
-		#region "  QuoteMode  "
-
 		internal QuoteMode mQuoteMode;
-
-		public QuoteMode QuoteMode
-		{
-			get { return mQuoteMode; }
-		}
-
-		#endregion
-
-		#region "  QuoteAllowMultiline "
-
 		internal bool mQuoteAllowMultiline;
-
-		public bool QuoteAllowMultiline
-		{
-			get { return mQuoteAllowMultiline; }
-		}
 
 		#endregion
 
@@ -100,7 +61,7 @@ namespace FileHelpers
 					if (sepPos == -1)
 					{
 						if (this.mNextIsOptional == false)
-							throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+							throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
 						else
 							sepPos = from.Length;
 					}
@@ -154,7 +115,7 @@ namespace FileHelpers
 							if (sepPos == -1)
 							{
 								if (this.mNextIsOptional == false)
-									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.FieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
 								else
 									sepPos = from.Length;
 							}
@@ -163,9 +124,9 @@ namespace FileHelpers
 						}
 					}
 					else if (from.Trim().StartsWith(quotedStr))
-						throw new BadUsageException("The field '" + this.FieldInfo.Name + "' has spaces before the QuotedChar in the data use the TrimAttribute to by pass this error. Field String: " + from);
+						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar in the data use the TrimAttribute to by pass this error. Field String: " + from);
 					else
-						throw new BadUsageException("The field '" + this.FieldInfo.Name + "' not begin with the QuotedChar in the data. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
+						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar in the data. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
 				}
 
 			}
@@ -183,7 +144,7 @@ namespace FileHelpers
 			bool hasNewLine = res.IndexOf(StringHelper.NewLine) >= 0;
 
 			if (hasNewLine && mQuoteAllowMultiline == false)
-				throw new BadUsageException("One value for the field " + this.FieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
+				throw new BadUsageException("One value for the field " + this.mFieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
 
 			if (mQuoteChar != '\0')
 			{
