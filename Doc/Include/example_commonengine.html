@@ -54,11 +54,11 @@ bgColor=white leftMargin=0 topMargin=0>
           <blockquote>
             <pre>
 <span class="vb-comment">// to Read use:
-</span>Orders[] res = (Orders[]) CommonEngine.ReadFile(<span style="color: #0000ff">
-    typeof</span>(Orders), @<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+</span>Orders[] res = CommonEngine.ReadFile(<span style="color: #0000ff">
+    typeof</span>(Orders), <span class="cs-string">&quot;TestIn.txt&quot;</span>) as Orders[];
 
 <span class="cs-comment">// to Write use:</span>
-CommonEngine.WriteFile(<span style="color: #0000ff">typeof</span>(Orders), @<span class="cs-string">"C:\TestIn.txt"</span>, res);
+CommonEngine.WriteFile(<span style="color: #0000ff">typeof</span>(Orders), <span class="cs-string">"TestOut.txt"</span>, res);
         </pre>
           </blockquote>
   </blockquote>

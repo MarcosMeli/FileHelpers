@@ -69,10 +69,10 @@ bgColor=white leftMargin=0 topMargin=0>
             <pre>FileHelperEngine engine = <span class="cs-keyword">new</span> FileHelperEngine(<span class="cs-keyword">typeof</span>(Orders));<span class="vb-comment">
 
 // to Read use:
-</span>Orders[] res = (Orders[]) engine.ReadFile(@<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+</span>Orders[] res = engine.ReadFile(<span class="cs-string">&quot;TestIn.txt&quot;</span>) as Orders[];
 
 <span class="cs-comment">// to Write use:</span>
-engine.WriteFile(@<span class="cpp-string">&quot;C:\TestOut.txt&quot;</span>, res);
+engine.WriteFile(<span class="cpp-string">&quot;TestOut.txt&quot;</span>, res);
         </pre>
           </blockquote>
           <p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>

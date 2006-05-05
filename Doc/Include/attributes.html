@@ -142,11 +142,21 @@ public int </span>Going_to_the_Right</pre>
             </blockquote>
           </li>
         <li><a href="FileHelpers.FieldIgnoredAttribute.html">FieldIgnored</a>: Indicates that
-            the target field is ignored by the engine. 
+            the target field is ignored by the engine. (the engine completely ignore it !!). Is useful when you need to add a field to your record class but it is not relevant for the mapping. 
     <blockquote>
         <pre>[FieldIgnored()]
 <span class="cs-keyword">public int </span>Why_Ignore_Me</pre>
+    </blockquote>
 </li>
+
+        <li><a href="FileHelpers.FieldOptionalAttribute.html">FieldOptional</a>: Indicates that
+            the target field can stay or not in the file.<br /><b>When you apply this attribute to a field, you must apply it to the following ones.</b>
+    <blockquote>
+        <pre>[FieldOptional()]
+<span class="cs-keyword">public string </span>Maybe_I_be_there</pre>
+    </blockquote>
+</li>
+
     </ul>    
     <br />
             

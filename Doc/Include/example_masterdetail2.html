@@ -98,10 +98,10 @@ MaterDetailEngine engine = <span class="cs-keyword">new</span> MaterDetailEngine
     style="color: #0000ff">typeof</span>(Customers), <span class="cs-keyword">typeof</span>(Orders), CommonActions.MasterIfContains, "@");<span class="vb-comment">
 
 // to Read use:
-</span>MasterDetail[] res = engine.ReadFile(@<span class="cs-string">&quot;C:\TestIn.txt&quot;</span>);
+</span>MasterDetail[] res = engine.ReadFile(<span class="cs-string">&quot;TestIn.txt&quot;</span>);
 
 <span class="cs-comment">// to Write use:</span>
-engine.WriteFile(@<span class="cpp-string">&quot;C:\TestOut.txt&quot;</span>, res);
+engine.WriteFile(<span class="cpp-string">&quot;TestOut.txt&quot;</span>, res);
         </pre>
           </blockquote>
           <p>Now you have a MasterDetails array named <span class="cs-literal">res</span> where every item in the array is a MasterDetails object.<br />
