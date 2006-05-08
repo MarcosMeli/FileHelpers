@@ -17,6 +17,7 @@ namespace FileHelpersSamples
 		private Panel panel1;
 		private LinkLabel linkLabel1;
 		private LinkLabel linkLabel2;
+		protected System.Windows.Forms.PictureBox pictureBox3;
 
 		/// <summary>
 		/// Required designer variable.
@@ -64,6 +65,7 @@ namespace FileHelpersSamples
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -84,9 +86,9 @@ namespace FileHelpersSamples
 			this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(416, 0);
+			this.pictureBox2.Location = new System.Drawing.Point(456, 0);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(216, 51);
+			this.pictureBox2.Size = new System.Drawing.Size(176, 51);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 1;
 			this.pictureBox2.TabStop = false;
@@ -130,10 +132,23 @@ namespace FileHelpersSamples
 			this.linkLabel1.Text = "filehelpers.sourceforge.net";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+			this.pictureBox3.Location = new System.Drawing.Point(488, 8);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(88, 32);
+			this.pictureBox3.TabIndex = 3;
+			this.pictureBox3.TabStop = false;
+			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+			// 
 			// frmFather
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(592, 382);
+			this.Controls.Add(this.pictureBox3);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.pictureBox2);
@@ -188,6 +203,14 @@ namespace FileHelpersSamples
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
 			Process.Start("explorer", "\"http://filehelpers.sourceforge.net\"");
+		}
+
+		private void pictureBox3_Click(object sender, System.EventArgs e)
+		{
+			ProcessStartInfo info = new ProcessStartInfo("\"http://sourceforge.net/donate/index.php?group_id=152382\"");
+			info.CreateNoWindow = false;
+			info.UseShellExecute = true;
+			Process.Start(info);
 		}
 	}
 }

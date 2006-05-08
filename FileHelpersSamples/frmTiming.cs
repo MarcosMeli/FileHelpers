@@ -74,7 +74,7 @@ namespace FileHelpersSamples
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.lblTimeAsync = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize) (this.txtRecords)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.txtRecords)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
@@ -82,10 +82,15 @@ namespace FileHelpersSamples
 			this.pictureBox2.Location = new System.Drawing.Point(328, 0);
 			this.pictureBox2.Name = "pictureBox2";
 			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Location = new System.Drawing.Point(368, 8);
+			this.pictureBox3.Name = "pictureBox3";
+			// 
 			// cmdCreateFile
 			// 
-			this.cmdCreateFile.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)), ((System.Byte) (0)), ((System.Byte) (192)));
-			this.cmdCreateFile.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.cmdCreateFile.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdCreateFile.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdCreateFile.ForeColor = System.Drawing.Color.White;
 			this.cmdCreateFile.Location = new System.Drawing.Point(288, 72);
 			this.cmdCreateFile.Name = "cmdCreateFile";
@@ -97,7 +102,7 @@ namespace FileHelpersSamples
 			// button1
 			// 
 			this.button1.BackColor = System.Drawing.Color.Navy;
-			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.White;
 			this.button1.Location = new System.Drawing.Point(128, 232);
 			this.button1.Name = "button1";
@@ -108,9 +113,9 @@ namespace FileHelpersSamples
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)), ((System.Byte) (0)), ((System.Byte) (192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
 			this.cmdRun.Enabled = false;
-			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdRun.ForeColor = System.Drawing.Color.White;
 			this.cmdRun.Location = new System.Drawing.Point(288, 160);
 			this.cmdRun.Name = "cmdRun";
@@ -121,40 +126,34 @@ namespace FileHelpersSamples
 			// 
 			// txtRecords
 			// 
-			this.txtRecords.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
-			this.txtRecords.Increment = new System.Decimal(new int[]
-				{
-					1000,
-					0,
-					0,
-					0
-				});
+			this.txtRecords.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.txtRecords.Increment = new System.Decimal(new int[] {
+																		 1000,
+																		 0,
+																		 0,
+																		 0});
 			this.txtRecords.Location = new System.Drawing.Point(184, 77);
-			this.txtRecords.Maximum = new System.Decimal(new int[]
-				{
-					10000000,
-					0,
-					0,
-					0
-				});
+			this.txtRecords.Maximum = new System.Decimal(new int[] {
+																	   10000000,
+																	   0,
+																	   0,
+																	   0});
 			this.txtRecords.Name = "txtRecords";
 			this.txtRecords.Size = new System.Drawing.Size(88, 23);
 			this.txtRecords.TabIndex = 8;
 			this.txtRecords.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.txtRecords.Value = new System.Decimal(new int[]
-				{
-					10000,
-					0,
-					0,
-					0
-				});
+			this.txtRecords.Value = new System.Decimal(new int[] {
+																	 10000,
+																	 0,
+																	 0,
+																	 0});
 			this.txtRecords.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRecords_KeyDown);
 			this.txtRecords.ValueChanged += new System.EventHandler(this.txtRecords_ValueChanged);
 			// 
 			// label2
 			// 
 			this.label2.BackColor = System.Drawing.Color.Transparent;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
 			this.label2.Location = new System.Drawing.Point(16, 80);
 			this.label2.Name = "label2";
@@ -165,7 +164,7 @@ namespace FileHelpersSamples
 			// label1
 			// 
 			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
 			this.label1.Location = new System.Drawing.Point(16, 112);
 			this.label1.Name = "label1";
@@ -176,7 +175,7 @@ namespace FileHelpersSamples
 			// lblSize
 			// 
 			this.lblSize.BackColor = System.Drawing.Color.Transparent;
-			this.lblSize.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.lblSize.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSize.ForeColor = System.Drawing.Color.White;
 			this.lblSize.Location = new System.Drawing.Point(152, 112);
 			this.lblSize.Name = "lblSize";
@@ -187,7 +186,7 @@ namespace FileHelpersSamples
 			// lblTime
 			// 
 			this.lblTime.BackColor = System.Drawing.Color.Transparent;
-			this.lblTime.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.lblTime.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTime.ForeColor = System.Drawing.Color.White;
 			this.lblTime.Location = new System.Drawing.Point(136, 168);
 			this.lblTime.Name = "lblTime";
@@ -198,7 +197,7 @@ namespace FileHelpersSamples
 			// label4
 			// 
 			this.label4.BackColor = System.Drawing.Color.Transparent;
-			this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label4.ForeColor = System.Drawing.Color.White;
 			this.label4.Location = new System.Drawing.Point(8, 168);
 			this.label4.Name = "label4";
@@ -209,7 +208,7 @@ namespace FileHelpersSamples
 			// label3
 			// 
 			this.label3.BackColor = System.Drawing.Color.Transparent;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.White;
 			this.label3.Location = new System.Drawing.Point(8, 192);
 			this.label3.Name = "label3";
@@ -220,7 +219,7 @@ namespace FileHelpersSamples
 			// lblTimeAsync
 			// 
 			this.lblTimeAsync.BackColor = System.Drawing.Color.Transparent;
-			this.lblTimeAsync.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.lblTimeAsync.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTimeAsync.ForeColor = System.Drawing.Color.White;
 			this.lblTimeAsync.Location = new System.Drawing.Point(128, 192);
 			this.lblTimeAsync.Name = "lblTimeAsync";
@@ -250,6 +249,7 @@ namespace FileHelpersSamples
 			this.Load += new System.EventHandler(this.frmTimming_Load);
 			this.Closed += new System.EventHandler(this.frmTimming_Closed);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
+			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdCreateFile, 0);
 			this.Controls.SetChildIndex(this.button1, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
@@ -261,7 +261,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.lblTime, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.lblTimeAsync, 0);
-			((System.ComponentModel.ISupportInitialize) (this.txtRecords)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.txtRecords)).EndInit();
 			this.ResumeLayout(false);
 
 		}

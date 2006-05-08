@@ -18,6 +18,8 @@ namespace FileHelpersSamples
 		private Label label2;
 		private Label label1;
 		private Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBox1;
 
 		/// <summary>
 		/// Required designer variable.
@@ -66,6 +68,8 @@ namespace FileHelpersSamples
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
@@ -73,21 +77,22 @@ namespace FileHelpersSamples
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(312, 51);
 			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Location = new System.Drawing.Point(576, 8);
+			this.pictureBox3.Name = "pictureBox3";
+			// 
 			// txtClass
 			// 
-			this.txtClass.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
-			this.txtClass.Location = new System.Drawing.Point(8, 71);
+			this.txtClass.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.txtClass.Location = new System.Drawing.Point(8, 136);
 			this.txtClass.Multiline = true;
 			this.txtClass.Name = "txtClass";
 			this.txtClass.ReadOnly = true;
 			this.txtClass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.txtClass.Size = new System.Drawing.Size(328, 232);
+			this.txtClass.Size = new System.Drawing.Size(328, 160);
 			this.txtClass.TabIndex = 0;
-			this.txtClass.Text = @"using System;
-
-namespace FileHelpers.Tests
-{
-	[DelimitedRecord(""|"")]
+			this.txtClass.Text = @"	[DelimitedRecord(""|"")]
 	public class CustomersVerticalBar
 	{
 		public string CustomerID;
@@ -97,13 +102,12 @@ namespace FileHelpers.Tests
 		public string Address;
 		public string City;
 		public string Country;
-	}
-}";
+	}";
 			this.txtClass.WordWrap = false;
 			// 
 			// txtData
 			// 
-			this.txtData.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.txtData.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.txtData.Location = new System.Drawing.Point(8, 320);
 			this.txtData.Multiline = true;
 			this.txtData.Name = "txtData";
@@ -127,10 +131,10 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			this.grid1.HelpVisible = false;
 			this.grid1.LargeButtons = false;
 			this.grid1.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.grid1.Location = new System.Drawing.Point(344, 71);
+			this.grid1.Location = new System.Drawing.Point(344, 136);
 			this.grid1.Name = "grid1";
 			this.grid1.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
-			this.grid1.Size = new System.Drawing.Size(320, 232);
+			this.grid1.Size = new System.Drawing.Size(320, 160);
 			this.grid1.TabIndex = 2;
 			this.grid1.Text = "propertyGrid1";
 			this.grid1.ToolbarVisible = false;
@@ -139,8 +143,8 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)), ((System.Byte) (0)), ((System.Byte) (192)));
-			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdRun.ForeColor = System.Drawing.Color.White;
 			this.cmdRun.Location = new System.Drawing.Point(304, 8);
 			this.cmdRun.Name = "cmdRun";
@@ -152,9 +156,9 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			// label2
 			// 
 			this.label2.BackColor = System.Drawing.Color.Transparent;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(8, 55);
+			this.label2.Location = new System.Drawing.Point(8, 120);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(216, 16);
 			this.label2.TabIndex = 7;
@@ -163,9 +167,9 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			// label1
 			// 
 			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(344, 55);
+			this.label1.Location = new System.Drawing.Point(344, 120);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(216, 16);
 			this.label1.TabIndex = 8;
@@ -174,7 +178,7 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			// label3
 			// 
 			this.label3.BackColor = System.Drawing.Color.Transparent;
-			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label3.ForeColor = System.Drawing.Color.White;
 			this.label3.Location = new System.Drawing.Point(8, 304);
 			this.label3.Name = "label3";
@@ -182,10 +186,36 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			this.label3.TabIndex = 9;
 			this.label3.Text = "Input Data to the FileHelperEngine";
 			// 
+			// label4
+			// 
+			this.label4.BackColor = System.Drawing.Color.Transparent;
+			this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label4.ForeColor = System.Drawing.Color.White;
+			this.label4.Location = new System.Drawing.Point(8, 56);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(152, 16);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Code To Read The File";
+			// 
+			// textBox1
+			// 
+			this.textBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.textBox1.Location = new System.Drawing.Point(8, 72);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+			this.textBox1.Size = new System.Drawing.Size(656, 40);
+			this.textBox1.TabIndex = 11;
+			this.textBox1.Text = "FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));\r\n " +
+				"...  = engine.ReadFile(\"infile.txt\")";
+			this.textBox1.WordWrap = false;
+			// 
 			// frmEasySampleDelimited
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(680, 496);
+			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.cmdRun);
@@ -197,14 +227,17 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			this.MaximizeBox = false;
 			this.Name = "frmEasySampleDelimited";
 			this.Text = "FileHelpers - Easy Example";
-			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
+			this.Controls.SetChildIndex(this.pictureBox3, 0);
+			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.txtClass, 0);
 			this.Controls.SetChildIndex(this.txtData, 0);
 			this.Controls.SetChildIndex(this.grid1, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
 			this.Controls.SetChildIndex(this.label2, 0);
 			this.Controls.SetChildIndex(this.label1, 0);
+			this.Controls.SetChildIndex(this.label4, 0);
+			this.Controls.SetChildIndex(this.textBox1, 0);
 			this.ResumeLayout(false);
 
 		}

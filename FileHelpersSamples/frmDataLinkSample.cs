@@ -72,10 +72,15 @@ namespace FileHelpersSamples
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(400, 51);
 			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Location = new System.Drawing.Point(672, 8);
+			this.pictureBox3.Name = "pictureBox3";
+			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)), ((System.Byte) (0)), ((System.Byte) (192)));
-			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdRun.ForeColor = System.Drawing.Color.White;
 			this.cmdRun.Location = new System.Drawing.Point(312, 8);
 			this.cmdRun.Name = "cmdRun";
@@ -143,75 +148,75 @@ namespace FileHelpersSamples
 				"\\cf2\\insrsid1600206 class}{\n\\f2\\fs20\\insrsid1600206  CustomersVerticalBarLinkPro" +
 				"vider : AccessDataLinkProvider\n\\par \\tab \\{\n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsi" +
 				"d1600206 private}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 string}" +
-				"{\\f2\\fs20\\insrsid1600206  mAccessFileName = @\"..\\\\..\\\\FileHelpersTests\\\\data\\\\Tes" +
-				"tData.mdb\";\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #region}{\\f2\\fs20" +
-				"\\insrsid1600206  \"  Constructors  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1" +
-				"600206 public}{\\f2\\fs20\\insrsid1600206  CustomersVerticalBarLinkProvider()\n\\par " +
-				"\\tab \\tab \\{\n\\par \\tab \\tab \\}\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid160020" +
-				"6 public}{\\f2\\fs20\\insrsid1600206  CustomersVerticalBarLinkProvider(}{\\f2\\fs20\\c" +
-				"f2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206  fileName)\n\\par \\tab \\tab \\{\n\\" +
-				"par \\tab \\tab \\tab mAccessFileName = fileName;\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\f" +
-				"2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab #region}{\\f2" +
-				"\\fs20\\insrsid1600206  \"  RecordType  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrs" +
-				"id1600206 public}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 overrid" +
-				"e}{\\f2\\fs20\\insrsid1600206  Type RecordType\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\ta" +
-				"b }{\\f2\\fs20\\cf2\\insrsid1600206 get}{\\f2\\fs20\\insrsid1600206  \\{ }{\\f2\\fs20\\cf2\\" +
-				"insrsid1600206 return}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 ty" +
-				"peof}{\\f2\\fs20\\insrsid1600206  (CustomersVerticalBar); \\}\n\\par \\tab \\tab \\}\n\\par" +
-				" \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab #" +
-				"region}{\\f2\\fs20\\insrsid1600206  \"  FillRecord  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs2" +
-				"0\\cf2\\insrsid1600206 protected}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1" +
-				"600206 override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 object}{" +
-				"\\f2\\fs20\\insrsid1600206  FillRecord(}{\\f2\\fs20\\cf2\\insrsid1600206 object}{\n\\f2\\f" +
-				"s20\\insrsid1600206 [] fields)\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab CustomersVer" +
-				"ticalBar record = }{\\f2\\fs20\\cf2\\insrsid1600206 new}{\\f2\\fs20\\insrsid1600206  Cu" +
-				"stomersVerticalBar();\n\\par \n\\par \\tab \\tab \\tab record.CustomerID = (}{\\f2\\fs20\\" +
-				"cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[0];\n\\par \\tab \\tab \\" +
-				"tab record.CompanyName = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid" +
-				"1600206 ) fields[1];\n\\par \\tab \\tab \\tab record.ContactName = (}{\\f2\\fs20\\cf2\\in" +
-				"srsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[2];\n\\par \\tab \\tab \\tab re" +
-				"cord.ContactTitle = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid16002" +
-				"06 ) fields[3];\n\\par \\tab \\tab \\tab record.Address = (}{\\f2\\fs20\\cf2\\insrsid1600" +
-				"206 string}{\\f2\\fs20\\insrsid1600206 ) fields[4];\n\\par \\tab \\tab \\tab record.City" +
-				" = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[5];\n\\" +
-				"par \\tab \\tab \\tab record.Country = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\f" +
-				"s20\\insrsid1600206 ) fields[6];\n\\par \n\\par \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid" +
-				"1600206 return}{\\f2\\fs20\\insrsid1600206  record;\n\\par \\tab \\tab \\}\n\\par \n\\par }{" +
-				"\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab #region}{\\" +
-				"f2\\fs20\\insrsid1600206  \"  GetSelectSql  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\i" +
-				"nsrsid1600206 protected}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 " +
-				"override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs2" +
-				"0\\insrsid1600206  GetSelectSql()\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab }{\\f2\\fs2" +
-				"0\\cf2\\insrsid1600206 return}{\\f2\\fs20\\insrsid1600206  \"SELECT * FROM Customers\";" +
-				"\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion" +
-				"\n\\par \n\\par \\tab \\tab #region}{\\f2\\fs20\\insrsid1600206  \"  GetInsertSql  \"\n\\par " +
-				"\n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1600206 protected}{\\f2\\fs20\\insrsid1600206" +
-				"  }{\\f2\\fs20\\cf2\\insrsid1600206 override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf" +
-				"2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206  GetInsertSql(}{\\f2\\fs20\\cf2\\in" +
-				"srsid1600206 object}{\n\\f2\\fs20\\insrsid1600206  record)\n\\par \\tab \\tab \\{\n\\par \\t" +
-				"ab \\tab \\tab CustomersVerticalBar obj = (CustomersVerticalBar) record;\n\\par \n\\pa" +
-				"r \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1600206 return}{\\f2\\fs20\\insrsid1600206  " +
-				"String.Format(\"INSERT INTO Customers (Address, City, CompanyName, ContactName, C" +
-				"ontactTitle, Country, CustomerID) \" + \n\\par \\tab \\tab \\tab \\tab \" VALUES ( \\\\\"\\{" +
-				"0\\}\\\\\" , \\\\\"\\{1\\}\\\\\" , \\\\\"\\{2\\}\\\\\" , \\\\\"\\{3\\}\\\\\" , \\\\\"\\{4\\}\\\\\" , \\\\\"\\{5\\}\\\\\" , \\" +
-				"\\\"\\{6\\}\\\\\"  ); \",\n\\par \\tab \\tab \\tab \\tab obj.Address,\n\\par \\tab \\tab \\tab \\tab" +
-				" obj.City,\n\\par \\tab \\tab \\tab \\tab obj.CompanyName,\n\\par \\tab \\tab \\tab \\tab ob" +
-				"j.ContactName,\n\\par \\tab \\tab \\tab \\tab obj.ContactTitle,\n\\par \\tab \\tab \\tab \\t" +
-				"ab obj.Country,\n\\par \\tab \\tab \\tab \\tab obj.CustomerID\n\\par \\tab \\tab \\tab \\tab" +
-				" );\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endreg" +
-				"ion\n\\par \n\\par }{\\f2\\fs20\\insrsid1600206 \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1600206" +
-				" public}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 override}{\\f2\\fs" +
-				"20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206" +
-				"  MdbFileName\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid160020" +
-				"6 get}{\\f2\\fs20\\insrsid1600206  \\{ }{\\f2\\fs20\\cf2\\insrsid1600206 return}{\\f2\\fs2" +
-				"0\\insrsid1600206  mAccessFileName; \\}\n\\par \\tab \\tab \\}\n\\par }\\pard \\ql \\li0\\ri0" +
-				"\\widctlpar\\aspalpha\\aspnum\\faauto\\adjustright\\rin0\\lin0\\itap0\\pararsid1600206 {\\" +
-				"f2\\fs20\\insrsid1600206 \\tab \\}}{\\insrsid1600206 \n\\par }}";
+				"{\\f2\\fs20\\insrsid1600206  mAccessFileName = @\"..\\\\..\\\\FileHelpersTests\\\\data\\\\Te" +
+				"stData.mdb\";\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #region}{\\f2\\fs2" +
+				"0\\insrsid1600206  \"  Constructors  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid" +
+				"1600206 public}{\\f2\\fs20\\insrsid1600206  CustomersVerticalBarLinkProvider()\n\\par" +
+				" \\tab \\tab \\{\n\\par \\tab \\tab \\}\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid16002" +
+				"06 public}{\\f2\\fs20\\insrsid1600206  CustomersVerticalBarLinkProvider(}{\\f2\\fs20\\" +
+				"cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206  fileName)\n\\par \\tab \\tab \\{\n" +
+				"\\par \\tab \\tab \\tab mAccessFileName = fileName;\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\" +
+				"f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab #region}{\\f" +
+				"2\\fs20\\insrsid1600206  \"  RecordType  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insr" +
+				"sid1600206 public}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 overri" +
+				"de}{\\f2\\fs20\\insrsid1600206  Type RecordType\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\t" +
+				"ab }{\\f2\\fs20\\cf2\\insrsid1600206 get}{\\f2\\fs20\\insrsid1600206  \\{ }{\\f2\\fs20\\cf2" +
+				"\\insrsid1600206 return}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 t" +
+				"ypeof}{\\f2\\fs20\\insrsid1600206  (CustomersVerticalBar); \\}\n\\par \\tab \\tab \\}\n\\pa" +
+				"r \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab " +
+				"#region}{\\f2\\fs20\\insrsid1600206  \"  FillRecord  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs" +
+				"20\\cf2\\insrsid1600206 protected}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid" +
+				"1600206 override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 object}" +
+				"{\\f2\\fs20\\insrsid1600206  FillRecord(}{\\f2\\fs20\\cf2\\insrsid1600206 object}{\n\\f2\\" +
+				"fs20\\insrsid1600206 [] fields)\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab CustomersVe" +
+				"rticalBar record = }{\\f2\\fs20\\cf2\\insrsid1600206 new}{\\f2\\fs20\\insrsid1600206  C" +
+				"ustomersVerticalBar();\n\\par \n\\par \\tab \\tab \\tab record.CustomerID = (}{\\f2\\fs20" +
+				"\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[0];\n\\par \\tab \\tab " +
+				"\\tab record.CompanyName = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsi" +
+				"d1600206 ) fields[1];\n\\par \\tab \\tab \\tab record.ContactName = (}{\\f2\\fs20\\cf2\\i" +
+				"nsrsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[2];\n\\par \\tab \\tab \\tab r" +
+				"ecord.ContactTitle = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600" +
+				"206 ) fields[3];\n\\par \\tab \\tab \\tab record.Address = (}{\\f2\\fs20\\cf2\\insrsid160" +
+				"0206 string}{\\f2\\fs20\\insrsid1600206 ) fields[4];\n\\par \\tab \\tab \\tab record.Cit" +
+				"y = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206 ) fields[5];\n" +
+				"\\par \\tab \\tab \\tab record.Country = (}{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\" +
+				"fs20\\insrsid1600206 ) fields[6];\n\\par \n\\par \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsi" +
+				"d1600206 return}{\\f2\\fs20\\insrsid1600206  record;\n\\par \\tab \\tab \\}\n\\par \n\\par }" +
+				"{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregion\n\\par \n\\par \\tab \\tab #region}{" +
+				"\\f2\\fs20\\insrsid1600206  \"  GetSelectSql  \"\n\\par \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\" +
+				"insrsid1600206 protected}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206" +
+				" override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs" +
+				"20\\insrsid1600206  GetSelectSql()\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab }{\\f2\\fs" +
+				"20\\cf2\\insrsid1600206 return}{\\f2\\fs20\\insrsid1600206  \"SELECT * FROM Customers\"" +
+				";\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endregio" +
+				"n\n\\par \n\\par \\tab \\tab #region}{\\f2\\fs20\\insrsid1600206  \"  GetInsertSql  \"\n\\par" +
+				" \n\\par \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1600206 protected}{\\f2\\fs20\\insrsid160020" +
+				"6  }{\\f2\\fs20\\cf2\\insrsid1600206 override}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\c" +
+				"f2\\insrsid1600206 string}{\\f2\\fs20\\insrsid1600206  GetInsertSql(}{\\f2\\fs20\\cf2\\i" +
+				"nsrsid1600206 object}{\n\\f2\\fs20\\insrsid1600206  record)\n\\par \\tab \\tab \\{\n\\par \\" +
+				"tab \\tab \\tab CustomersVerticalBar obj = (CustomersVerticalBar) record;\n\\par \n\\p" +
+				"ar \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid1600206 return}{\\f2\\fs20\\insrsid1600206 " +
+				" String.Format(\"INSERT INTO Customers (Address, City, CompanyName, ContactName, " +
+				"ContactTitle, Country, CustomerID) \" + \n\\par \\tab \\tab \\tab \\tab \" VALUES ( \\\\\"\\" +
+				"{0\\}\\\\\" , \\\\\"\\{1\\}\\\\\" , \\\\\"\\{2\\}\\\\\" , \\\\\"\\{3\\}\\\\\" , \\\\\"\\{4\\}\\\\\" , \\\\\"\\{5\\}\\\\\" , " +
+				"\\\\\"\\{6\\}\\\\\"  ); \",\n\\par \\tab \\tab \\tab \\tab obj.Address,\n\\par \\tab \\tab \\tab \\ta" +
+				"b obj.City,\n\\par \\tab \\tab \\tab \\tab obj.CompanyName,\n\\par \\tab \\tab \\tab \\tab o" +
+				"bj.ContactName,\n\\par \\tab \\tab \\tab \\tab obj.ContactTitle,\n\\par \\tab \\tab \\tab \\" +
+				"tab obj.Country,\n\\par \\tab \\tab \\tab \\tab obj.CustomerID\n\\par \\tab \\tab \\tab \\ta" +
+				"b );\n\\par \\tab \\tab \\}\n\\par \n\\par }{\\f2\\fs20\\cf2\\insrsid1600206 \\tab \\tab #endre" +
+				"gion\n\\par \n\\par }{\\f2\\fs20\\insrsid1600206 \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid160020" +
+				"6 public}{\\f2\\fs20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 override}{\\f2\\f" +
+				"s20\\insrsid1600206  }{\\f2\\fs20\\cf2\\insrsid1600206 string}{\\f2\\fs20\\insrsid160020" +
+				"6  MdbFileName\n\\par \\tab \\tab \\{\n\\par \\tab \\tab \\tab }{\\f2\\fs20\\cf2\\insrsid16002" +
+				"06 get}{\\f2\\fs20\\insrsid1600206  \\{ }{\\f2\\fs20\\cf2\\insrsid1600206 return}{\\f2\\fs" +
+				"20\\insrsid1600206  mAccessFileName; \\}\n\\par \\tab \\tab \\}\n\\par }\\pard \\ql \\li0\\ri" +
+				"0\\widctlpar\\aspalpha\\aspnum\\faauto\\adjustright\\rin0\\lin0\\itap0\\pararsid1600206 {" +
+				"\\f2\\fs20\\insrsid1600206 \\tab \\}}{\\insrsid1600206 \n\\par }}";
 			// 
 			// label1
 			// 
 			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
 			this.label1.Location = new System.Drawing.Point(8, 216);
 			this.label1.Name = "label1";
@@ -222,7 +227,7 @@ namespace FileHelpersSamples
 			// label2
 			// 
 			this.label2.BackColor = System.Drawing.Color.Transparent;
-			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
 			this.label2.Location = new System.Drawing.Point(8, 54);
 			this.label2.Name = "label2";
@@ -266,43 +271,43 @@ namespace FileHelpersSamples
 				"i0\\widctlpar\\aspalpha\\aspnum\\faauto\\adjustright\\rin0\\lin0\\itap0 \\fs20\\lang1024\\l" +
 				"angfe1024\\cgrid\\langnp1024\\langfenp1024 \\snext11 \\ssemihidden Normal Table;}}{\\*" +
 				"\\latentstyles\\lsdstimax156\\lsdlockeddef0}{\\*\\rsidtbl \\rsid11826382}{\\*\\generator" +
-				" Micr\nosoft Word 11.0.5604;}{\\info{\\title DataLinkEngine mLinkEngine = new DataL" +
-				"inkEngine(new CustomersVerticalBarLinkProvider());}{\\author Marcos}{\\operator Ma" +
-				"rcos}{\\creatim\\yr2005\\mo9\\dy27\\hr23\\min34}{\\revtim\\yr2005\\mo9\\dy27\\hr23\\min36}{\\" +
-				"version1}{\\edmins1}\n{\\nofpages1}{\\nofwords38}{\\nofchars217}{\\*\\company Yo}{\\nofc" +
-				"harsws254}{\\vern24689}}\\widowctrl\\ftnbj\\aenddoc\\noxlattoyen\\expshrtn\\noultrlspc\\" +
-				"dntblnsbdb\\nospaceforul\\formshade\\horzdoc\\dgmargin\\dghspace180\\dgvspace180\\dghor" +
-				"igin1800\\dgvorigin1440\\dghshow1\n\\dgvshow1\\jexpand\\viewkind1\\viewscale100\\pgbrdrh" +
-				"ead\\pgbrdrfoot\\splytwnine\\ftnlytwnine\\htmautsp\\nolnhtadjtbl\\useltbaln\\alntblind\\" +
-				"lytcalctblwd\\lyttblrtgr\\lnbrkrule\\nobrkwrptbl\\snaptogridincell\\allowfieldendsel\\" +
-				"wrppunct\n\\asianbrkrule\\rsidroot11826382\\newtblstyruls\\nogrowautofit \\fet0\\sectd " +
-				"\\linex0\\sectdefaultcl\\sectrsid9600568\\sftnbj {\\*\\pnseclvl1\\pnucrm\\pnstart1\\pnind" +
-				"ent720\\pnhang {\\pntxta .}}{\\*\\pnseclvl2\\pnucltr\\pnstart1\\pnindent720\\pnhang {\\pn" +
-				"txta .}}{\\*\\pnseclvl3\n\\pndec\\pnstart1\\pnindent720\\pnhang {\\pntxta .}}{\\*\\pnseclv" +
-				"l4\\pnlcltr\\pnstart1\\pnindent720\\pnhang {\\pntxta )}}{\\*\\pnseclvl5\\pndec\\pnstart1\\" +
-				"pnindent720\\pnhang {\\pntxtb (}{\\pntxta )}}{\\*\\pnseclvl6\\pnlcltr\\pnstart1\\pninden" +
-				"t720\\pnhang {\\pntxtb (}{\\pntxta )}}\n{\\*\\pnseclvl7\\pnlcrm\\pnstart1\\pnindent720\\pn" +
-				"hang {\\pntxtb (}{\\pntxta )}}{\\*\\pnseclvl8\\pnlcltr\\pnstart1\\pnindent720\\pnhang {\\" +
-				"pntxtb (}{\\pntxta )}}{\\*\\pnseclvl9\\pnlcrm\\pnstart1\\pnindent720\\pnhang {\\pntxtb (" +
-				"}{\\pntxta )}}\\pard\\plain \n\\ql \\li0\\ri0\\widctlpar\\faauto\\rin0\\lin0\\itap0\\pararsid" +
-				"11826382 \\fs24\\lang1033\\langfe1033\\cgrid\\langnp1033\\langfenp1033 {\\f2\\fs20\\insrs" +
-				"id11826382 DataLinkEngine mLinkEngine = }{\\f2\\fs20\\cf2\\insrsid11826382 new}{\\f2\\" +
-				"fs20\\insrsid11826382  DataLinkEngine(}{\n\\f2\\fs20\\cf2\\insrsid11826382 new}{\\f2\\fs" +
-				"20\\insrsid11826382  CustomersVerticalBarLinkProvider());\n\\par \n\\par }{\\f2\\fs20\\c" +
-				"f11\\insrsid11826382 // Db -> File\n\\par }{\\f2\\fs20\\insrsid11826382 mLinkEngine.Ex" +
-				"tractToFile(@\"..\\\\..\\\\FileHelpersTests\\\\data\\\\temp.txt\");\n\\par }{\\f2\\fs20\\insrsid" +
-				"11826382 \n\\par }{\\f2\\fs20\\cf11\\insrsid11826382 // File -> }{\\f2\\fs20\\cf11\\insrsi" +
-				"d11826382 D}{\\f2\\fs20\\cf11\\insrsid11826382 b}{\\f2\\fs20\\cf11\\insrsid11826382 \n\\pa" +
-				"r }{\\f2\\fs20\\insrsid11826382 mLinkEngine.InsertFromFile(@\"..\\\\..\\\\FileHelpersTest" +
-				"s\\\\data\\\\temp.txt\");}{\\f2\\fs20\\cf11\\insrsid11826382\\charrsid11826382 \n\\par }\\par" +
-				"d \\ql \\li0\\ri0\\widctlpar\\aspalpha\\aspnum\\faauto\\adjustright\\rin0\\lin0\\itap0 {\\in" +
-				"srsid11826382 \n\\par }}";
+				" Micr\nosoft Word 11.0.5604;}{\\info{\\title FileDataLink mLinkEngine = new FileDat" +
+				"aLink(new CustomersVerticalBarLinkProvider());}{\\author Marcos}{\\operator Marcos" +
+				"}{\\creatim\\yr2005\\mo9\\dy27\\hr23\\min34}{\\revtim\\yr2005\\mo9\\dy27\\hr23\\min36}{\\vers" +
+				"ion1}{\\edmins1}\n{\\nofpages1}{\\nofwords38}{\\nofchars217}{\\*\\company Yo}{\\nofchars" +
+				"ws254}{\\vern24689}}\\widowctrl\\ftnbj\\aenddoc\\noxlattoyen\\expshrtn\\noultrlspc\\dntb" +
+				"lnsbdb\\nospaceforul\\formshade\\horzdoc\\dgmargin\\dghspace180\\dgvspace180\\dghorigin" +
+				"1800\\dgvorigin1440\\dghshow1\n\\dgvshow1\\jexpand\\viewkind1\\viewscale100\\pgbrdrhead\\" +
+				"pgbrdrfoot\\splytwnine\\ftnlytwnine\\htmautsp\\nolnhtadjtbl\\useltbaln\\alntblind\\lytc" +
+				"alctblwd\\lyttblrtgr\\lnbrkrule\\nobrkwrptbl\\snaptogridincell\\allowfieldendsel\\wrpp" +
+				"unct\n\\asianbrkrule\\rsidroot11826382\\newtblstyruls\\nogrowautofit \\fet0\\sectd \\lin" +
+				"ex0\\sectdefaultcl\\sectrsid9600568\\sftnbj {\\*\\pnseclvl1\\pnucrm\\pnstart1\\pnindent7" +
+				"20\\pnhang {\\pntxta .}}{\\*\\pnseclvl2\\pnucltr\\pnstart1\\pnindent720\\pnhang {\\pntxta" +
+				" .}}{\\*\\pnseclvl3\n\\pndec\\pnstart1\\pnindent720\\pnhang {\\pntxta .}}{\\*\\pnseclvl4\\p" +
+				"nlcltr\\pnstart1\\pnindent720\\pnhang {\\pntxta )}}{\\*\\pnseclvl5\\pndec\\pnstart1\\pnin" +
+				"dent720\\pnhang {\\pntxtb (}{\\pntxta )}}{\\*\\pnseclvl6\\pnlcltr\\pnstart1\\pnindent720" +
+				"\\pnhang {\\pntxtb (}{\\pntxta )}}\n{\\*\\pnseclvl7\\pnlcrm\\pnstart1\\pnindent720\\pnhang" +
+				" {\\pntxtb (}{\\pntxta )}}{\\*\\pnseclvl8\\pnlcltr\\pnstart1\\pnindent720\\pnhang {\\pntx" +
+				"tb (}{\\pntxta )}}{\\*\\pnseclvl9\\pnlcrm\\pnstart1\\pnindent720\\pnhang {\\pntxtb (}{\\p" +
+				"ntxta )}}\\pard\\plain \n\\ql \\li0\\ri0\\widctlpar\\faauto\\rin0\\lin0\\itap0\\pararsid1182" +
+				"6382 \\fs24\\lang1033\\langfe1033\\cgrid\\langnp1033\\langfenp1033 {\\f2\\fs20\\insrsid11" +
+				"826382 FileDataLink mLinkEngine = }{\\f2\\fs20\\cf2\\insrsid11826382 new }{\\f2\\fs20\\" +
+				"insrsid11826382 FileDataLink(}{\n\\f2\\fs20\\cf2\\insrsid11826382 new}{\\f2\\fs20\\insrs" +
+				"id11826382  CustomersVerticalBarLinkProvider());\n\\par \n\\par }{\\f2\\fs20\\cf11\\insr" +
+				"sid11826382 // Db -> File\n\\par }{\\f2\\fs20\\insrsid11826382 mLinkEngine.ExtractToF" +
+				"ile(@\"..\\\\..\\\\FileHelpersTests\\\\data\\\\temp.txt\");\n\\par }{\\f2\\fs20\\insrsid1182638" +
+				"2 \n\\par }{\\f2\\fs20\\cf11\\insrsid11826382 // File -> }{\\f2\\fs20\\cf11\\insrsid118263" +
+				"82 D}{\\f2\\fs20\\cf11\\insrsid11826382 b}{\\f2\\fs20\\cf11\\insrsid11826382 \n\\par }{\\f2" +
+				"\\fs20\\insrsid11826382 mLinkEngine.InsertFromFile(@\"..\\\\..\\\\FileHelpersTests\\\\dat" +
+				"a\\\\temp.txt\");}{\\f2\\fs20\\cf11\\insrsid11826382\\charrsid11826382 \n\\par }\\pard \\ql " +
+				"\\li0\\ri0\\widctlpar\\aspalpha\\aspnum\\faauto\\adjustright\\rin0\\lin0\\itap0 {\\insrsid1" +
+				"1826382 \n\\par }}";
 			this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
 			// 
 			// lblStatus
 			// 
 			this.lblStatus.BackColor = System.Drawing.Color.Transparent;
-			this.lblStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (0)));
+			this.lblStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblStatus.ForeColor = System.Drawing.Color.White;
 			this.lblStatus.Location = new System.Drawing.Point(232, 54);
 			this.lblStatus.Name = "lblStatus";
@@ -325,6 +330,7 @@ namespace FileHelpersSamples
 			this.Text = "Example of the DataLink Feature";
 			this.Load += new System.EventHandler(this.frmDataLinkSample_Load);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
+			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
 			this.Controls.SetChildIndex(this.richTextBox1, 0);

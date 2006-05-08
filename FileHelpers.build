@@ -80,6 +80,7 @@
             <fileset basedir=".">
                 <include name="*/**" />
                 <exclude name="FileHelpers.WizardApp/**/*" />
+                <exclude name="References/Fireball/**/*" />
             </fileset>
         </zip>
         

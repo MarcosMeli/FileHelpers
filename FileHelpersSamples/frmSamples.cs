@@ -15,7 +15,7 @@ namespace FileHelpersSamples
 		private Button cmdEasy2;
 		private Button cmdLibrary;
 		private System.Windows.Forms.Button cmdProgress;
-		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.PictureBox pictureBox4;
 
 		/// <summary>
 		/// Required designer variable.
@@ -64,13 +64,18 @@ namespace FileHelpersSamples
 			this.cmdEasy2 = new System.Windows.Forms.Button();
 			this.cmdLibrary = new System.Windows.Forms.Button();
 			this.cmdProgress = new System.Windows.Forms.Button();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
 			// 
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(64, 51);
+			this.pictureBox2.Size = new System.Drawing.Size(56, 51);
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Location = new System.Drawing.Point(288, 8);
+			this.pictureBox3.Name = "pictureBox3";
 			// 
 			// cmdEasy
 			// 
@@ -144,34 +149,35 @@ namespace FileHelpersSamples
 			this.cmdProgress.Text = "Progress Notification ->";
 			this.cmdProgress.Click += new System.EventHandler(this.cmdProgress_Click);
 			// 
-			// pictureBox3
+			// pictureBox4
 			// 
-			this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-			this.pictureBox3.Location = new System.Drawing.Point(320, 304);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(62, 24);
-			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox3.TabIndex = 6;
-			this.pictureBox3.TabStop = false;
+			this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+			this.pictureBox4.Location = new System.Drawing.Point(320, 304);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(62, 24);
+			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox4.TabIndex = 6;
+			this.pictureBox4.TabStop = false;
 			// 
 			// frmSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(394, 448);
+			this.ClientSize = new System.Drawing.Size(386, 448);
 			this.Controls.Add(this.cmdProgress);
 			this.Controls.Add(this.cmdLibrary);
 			this.Controls.Add(this.cmdEasy2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cmdDataLink);
 			this.Controls.Add(this.cmdEasy);
-			this.Controls.Add(this.pictureBox3);
+			this.Controls.Add(this.pictureBox4);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
-			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
+			this.Controls.SetChildIndex(this.pictureBox3, 0);
+			this.Controls.SetChildIndex(this.pictureBox4, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
 			this.Controls.SetChildIndex(this.cmdDataLink, 0);
 			this.Controls.SetChildIndex(this.button1, 0);
