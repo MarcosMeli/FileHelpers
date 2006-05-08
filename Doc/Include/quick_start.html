@@ -63,7 +63,7 @@ bgColor=white leftMargin=0 topMargin=0>
       <tr>
         <td height="259" valign="top">&nbsp;</td>
         <td valign="top"><p>The class that we refer can be like this:</p>
-          <blockquote>
+          <blockquote> <b>C#</b>
             <pre>[DelimitedRecord(<span class="cpp-string">&quot;|&quot;</span>)]
 <span class="cs-keyword">public class</span> Orders
 {
@@ -75,12 +75,26 @@ bgColor=white leftMargin=0 topMargin=0>
 
    <span class="cs-keyword">public decimal</span> Freight;
 }</pre>
-          </blockquote></td>
+          </blockquote>
+                    <blockquote> <b>VB.NET</b>
+            <pre>&lt;DelimitedRecord(<span class="cpp-string">&quot;|&quot;</span>)> _
+<span class="cs-keyword">Public Class</span> Orders
+
+   <span class="cs-comment">' No need Converters for primitive types the library provides them</span>.
+   <span class="cpp-keyword">Public</span> OrderID As Integer;
+
+   <span class="cs-keyword">Public</span> CustomerID As String;
+<br>   &lt;FieldConverter(ConverterKind.Date,<span class="cs-string"> &quot;ddMMyyyy&quot;</span>)> _<br>  <span class="cs-keyword"> Public</span> OrderDate As DateTime;
+
+   <span class="cs-keyword">Public</span> Freight As Decimal;
+<span class="cs-keyword">End Class</span></pre>
+          </blockquote>
+          </td>
       </tr>
       <tr>
         <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
         <td valign="top"><p>Later you must to instantiate a FileHelperEngine and Read/Write files:                        
-            <blockquote>
+            <blockquote><b>C#</b>
               <pre>FileHelperEngine engine = <span class="cpp-keyword">new</span> FileHelperEngine(<span class="cpp-keyword">typeof</span>(Orders));<span class="vb-comment">
 
 // To Read Use:
@@ -88,18 +102,37 @@ bgColor=white leftMargin=0 topMargin=0>
 
 <span class="cs-comment">// To Write Use:</span>
 engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res);</pre>
-          </blockquote></td>
+          </blockquote>
+            <blockquote><b>VB.NET</b>
+              <pre>Dim engine As <span class="cpp-keyword">New</span> FileHelperEngine(<span class="cpp-keyword">GetType</span>(Orders))<span class="vb-comment">
+
+' To Read Use:
+</span>Dim res As Orders() = DirectCast(engine.ReadFile(<span class="cs-string">&quot;FileIn.txt&quot;</span>), Orders())
+
+<span class="cs-comment">' To Write Use:</span>
+engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res)</pre>
+          </blockquote>
+                    </td>
       </tr>
       <tr>
         <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
         <td valign="top"><p>Finally you can use the res array to access each item in the file, for example: </p>
-          <blockquote>
+          <blockquote><b>C#</b>
             <pre> <span class="cpp-keyword">foreach</span> (Orders order <span class="cpp-keyword">in</span> res)
  {
     Console.WriteLine(<span class="cs-string">&quot;Order Info:&quot;</span>);
     Console.WriteLine(order.CustomerID + <span class="cs-string">&quot; - &quot;</span> +
                       order.OrderDate.ToString(<span class="cs-string">&quot;dd/MM/yy&quot;</span>));
  }
+           </pre>
+          </blockquote>
+          <blockquote><b>VB.NET</b>
+            <pre> <span class="cpp-keyword">For Each</span> order As Orders <span class="cpp-keyword">In</span> res)
+ 
+    Console.WriteLine(<span class="cs-string">&quot;Order Info:&quot;</span>)
+    Console.WriteLine(order.CustomerID + <span class="cs-string">&quot; - &quot;</span> + _
+                      order.OrderDate.ToString(<span class="cs-string">&quot;dd/MM/yy&quot;</span>))
+ <span class="cpp-keyword">Next</span>
            </pre>
           </blockquote>
           </td>
