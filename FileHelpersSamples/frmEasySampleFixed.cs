@@ -113,7 +113,7 @@ namespace FileHelpersSamples
 		[FieldFixedLength(18)]
 		public string City;
 
-		[FieldFixedLength(31)]
+		[FieldFixedLength(10)]
 		public string Country;
 	}";
 			this.txtClass.WordWrap = false;
@@ -128,14 +128,14 @@ namespace FileHelpersSamples
 			this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtData.Size = new System.Drawing.Size(664, 144);
 			this.txtData.TabIndex = 1;
-			this.txtData.Text = @"ALFKI      Alfreds Futterkiste                   Maria Anders          Sales Representative                  Obere Str. 57                            Berlin            Germany	    
-ANATR      Ana Trujillo Emparedados y helados    Ana Trujillo          Owner                                 Avda. de la Constitución 2222            México D.F.       Mexico
-ANTON      Antonio Moreno Taquería               Antonio Moreno        Owner                                 Mataderos  2312                          México D.F.       Mexico
-AROUT      Around the Horn                       Thomas Hardy          Sales Representative                  120 Hanover Sq.                          London            UK
-BERGS      Berglunds snabbköp                    Christina Berglund    Order Administrator                   Berguvsvägen  8                          Luleå             Sweden
-BLAUS      Blauer See Delikatessen               Hanna Moos            Sales Representative                  Forsterstr. 57                           Mannheim          Germany
-BLONP      Blondesddsl père et fils              Frédérique Citeaux    Marketing Manager                     24, place Kléber                         Strasbourg        France
-BOLID      Bólido Comidas preparadas             Martín Sommer         Owner                                 C/ Araquil, 67                           Madrid            Spain";
+			this.txtData.Text = @"ALFKI      Alfreds Futterkiste                   Maria Anders          Sales Representative                  Obere Str. 57                            Berlin            Germany   
+ANATR      Ana Trujillo Emparedados y helados    Ana Trujillo          Owner                                 Avda. de la Constitución 2222            México D.F.       Mexico    
+ANTON      Antonio Moreno Taquería               Antonio Moreno        Owner                                 Mataderos  2312                          México D.F.       Mexico    
+AROUT      Around the Horn                       Thomas Hardy          Sales Representative                  120 Hanover Sq.                          London            UK        
+BERGS      Berglunds snabbköp                    Christina Berglund    Order Administrator                   Berguvsvägen  8                          Luleå             Sweden    
+BLAUS      Blauer See Delikatessen               Hanna Moos            Sales Representative                  Forsterstr. 57                           Mannheim          Germany   
+BLONP      Blondesddsl père et fils              Frédérique Citeaux    Marketing Manager                     24, place Kléber                         Strasbourg        France    
+BOLID      Bólido Comidas preparadas             Martín Sommer         Owner                                 C/ Araquil, 67                           Madrid            Spain     ";
 			this.txtData.WordWrap = false;
 			// 
 			// grid1

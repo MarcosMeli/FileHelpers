@@ -19,7 +19,7 @@ namespace FileHelpersSamples
 
 		[FieldFixedLength(18)] public string mCity;
 
-		[FieldFixedLength(31)] public string mCountry;
+		[FieldFixedLength(10)] public string mCountry;
 
 		public string CustomerID
 		{
