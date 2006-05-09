@@ -198,6 +198,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "frmTimingAdvanced.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmTimingAdvanced.resx"
+                    DependentUpon = "frmTimingAdvanced.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Main.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

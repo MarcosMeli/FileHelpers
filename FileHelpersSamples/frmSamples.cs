@@ -16,6 +16,8 @@ namespace FileHelpersSamples
 		private Button cmdLibrary;
 		private System.Windows.Forms.Button cmdProgress;
 		private System.Windows.Forms.PictureBox pictureBox4;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.PictureBox pictureBox5;
 
 		/// <summary>
 		/// Required designer variable.
@@ -65,6 +67,8 @@ namespace FileHelpersSamples
 			this.cmdLibrary = new System.Windows.Forms.Button();
 			this.cmdProgress = new System.Windows.Forms.Button();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
@@ -94,7 +98,7 @@ namespace FileHelpersSamples
 			this.cmdDataLink.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
 			this.cmdDataLink.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdDataLink.ForeColor = System.Drawing.Color.White;
-			this.cmdDataLink.Location = new System.Drawing.Point(80, 184);
+			this.cmdDataLink.Location = new System.Drawing.Point(80, 168);
 			this.cmdDataLink.Name = "cmdDataLink";
 			this.cmdDataLink.Size = new System.Drawing.Size(240, 43);
 			this.cmdDataLink.TabIndex = 2;
@@ -106,7 +110,7 @@ namespace FileHelpersSamples
 			this.button1.BackColor = System.Drawing.Color.Navy;
 			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.White;
-			this.button1.Location = new System.Drawing.Point(80, 362);
+			this.button1.Location = new System.Drawing.Point(80, 384);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(240, 43);
 			this.button1.TabIndex = 4;
@@ -118,7 +122,7 @@ namespace FileHelpersSamples
 			this.cmdEasy2.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
 			this.cmdEasy2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdEasy2.ForeColor = System.Drawing.Color.White;
-			this.cmdEasy2.Location = new System.Drawing.Point(80, 128);
+			this.cmdEasy2.Location = new System.Drawing.Point(80, 120);
 			this.cmdEasy2.Name = "cmdEasy2";
 			this.cmdEasy2.Size = new System.Drawing.Size(240, 43);
 			this.cmdEasy2.TabIndex = 1;
@@ -130,7 +134,7 @@ namespace FileHelpersSamples
 			this.cmdLibrary.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
 			this.cmdLibrary.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdLibrary.ForeColor = System.Drawing.Color.White;
-			this.cmdLibrary.Location = new System.Drawing.Point(80, 240);
+			this.cmdLibrary.Location = new System.Drawing.Point(80, 224);
 			this.cmdLibrary.Name = "cmdLibrary";
 			this.cmdLibrary.Size = new System.Drawing.Size(240, 43);
 			this.cmdLibrary.TabIndex = 3;
@@ -142,7 +146,7 @@ namespace FileHelpersSamples
 			this.cmdProgress.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
 			this.cmdProgress.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdProgress.ForeColor = System.Drawing.Color.White;
-			this.cmdProgress.Location = new System.Drawing.Point(80, 296);
+			this.cmdProgress.Location = new System.Drawing.Point(80, 328);
 			this.cmdProgress.Name = "cmdProgress";
 			this.cmdProgress.Size = new System.Drawing.Size(240, 43);
 			this.cmdProgress.TabIndex = 5;
@@ -153,17 +157,42 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(320, 304);
+			this.pictureBox4.Location = new System.Drawing.Point(320, 344);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(62, 24);
 			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox4.TabIndex = 6;
 			this.pictureBox4.TabStop = false;
 			// 
+			// button2
+			// 
+			this.button2.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.button2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.button2.ForeColor = System.Drawing.Color.White;
+			this.button2.Location = new System.Drawing.Point(80, 272);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(240, 43);
+			this.button2.TabIndex = 7;
+			this.button2.Text = "Multi Time Test ->";
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+			this.pictureBox5.Location = new System.Drawing.Point(320, 282);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(62, 24);
+			this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox5.TabIndex = 8;
+			this.pictureBox5.TabStop = false;
+			// 
 			// frmSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(386, 448);
+			this.ClientSize = new System.Drawing.Size(386, 463);
+			this.Controls.Add(this.pictureBox5);
+			this.Controls.Add(this.button2);
 			this.Controls.Add(this.cmdProgress);
 			this.Controls.Add(this.cmdLibrary);
 			this.Controls.Add(this.cmdEasy2);
@@ -184,6 +213,8 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.cmdEasy2, 0);
 			this.Controls.SetChildIndex(this.cmdLibrary, 0);
 			this.Controls.SetChildIndex(this.cmdProgress, 0);
+			this.Controls.SetChildIndex(this.button2, 0);
+			this.Controls.SetChildIndex(this.pictureBox5, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -227,6 +258,13 @@ namespace FileHelpersSamples
 		private void cmdProgress_Click(object sender, System.EventArgs e)
 		{
 			frmProgressSample frm = new frmProgressSample();
+			frm.ShowDialog();
+			frm.Dispose();
+		}
+
+		private void button2_Click(object sender, System.EventArgs e)
+		{
+			frmTimmingAdvanced frm = new frmTimmingAdvanced();
 			frm.ShowDialog();
 			frm.Dispose();
 		}
