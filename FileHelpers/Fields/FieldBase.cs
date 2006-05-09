@@ -58,6 +58,7 @@ namespace FileHelpers
 		internal bool mInNewLine = false;
 
 		internal bool mIsLast = false;
+		internal bool mTrailingArray = false;
 
 		internal object mNullValue = null;
 

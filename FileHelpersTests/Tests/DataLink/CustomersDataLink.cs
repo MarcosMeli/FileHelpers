@@ -32,7 +32,7 @@ namespace FileHelpersTests
 		#endregion
 
 		#region "  FillRecord  "
-
+"SELECT * FROM Customers"
 		protected override object FillRecord(object[] fields)
 		{
 			CustomersVerticalBar record = new CustomersVerticalBar();

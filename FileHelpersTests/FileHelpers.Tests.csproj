@@ -263,16 +263,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Tests\DataLink\CustomersDataLink.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Tests\DataLink\CustomersTempDataLink.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Tests\DataLink\DataLinkTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -289,16 +279,6 @@
                 />
                 <File
                     RelPath = "Tests\DataLink\ExcelProvidersTests.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Tests\DataLink\OrdersDataLink.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Tests\DataLink\OrdersTempDataLink.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

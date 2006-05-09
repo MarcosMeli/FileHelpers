@@ -1,5 +1,6 @@
 #if ! MINI
 
+using System;
 using System.Data.OleDb;
 using FileHelpers.DataLink;
 using NUnit.Framework;
@@ -11,10 +12,39 @@ namespace FileHelpersTests.DataLink
 	{
 		FileDataLink mLink;
 
+
+		#region "  FillRecordOrders  "
+
+		
+		protected object FillRecordOrders(object[] fields)
+		{
+			OrdersFixed record = new OrdersFixed();
+
+			record.OrderID = (int) fields[0];
+			record.CustomerID = (string) fields[1];
+			record.EmployeeID = (int) fields[2];
+			record.OrderDate = (DateTime) fields[3];
+			record.RequiredDate = (DateTime) fields[4];
+			if (fields[5] != DBNull.Value)
+				record.ShippedDate = (DateTime) fields[5];
+			else
+				record.ShippedDate = DateTime.MinValue;
+			record.ShipVia = (int) fields[6];
+			record.Freight = (decimal) fields[7];
+
+			return record;
+		}
+
+		#endregion
+
 		[Test]
 		public void OrdersDbToFile()
 		{
-			mLink = new FileDataLink(new OrdersLinkProvider());
+			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			storage.SelectSql = "SELECT * FROM Orders";
+			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
+
+			mLink = new FileDataLink(storage);
 			mLink.ExtractToFile(@"..\data\temp.txt");
 			int extractNum = mLink.LastExtractedRecords.Length;
 
@@ -23,10 +53,30 @@ namespace FileHelpersTests.DataLink
 			Assert.AreEqual(extractNum, records.Length);
 		}
 
+		
+		private object FillRecordCustomers(object[] fields)
+		{
+			CustomersVerticalBar record = new CustomersVerticalBar();
+
+			record.CustomerID = (string) fields[0];
+			record.CompanyName = (string) fields[1];
+			record.ContactName = (string) fields[2];
+			record.ContactTitle = (string) fields[3];
+			record.Address = (string) fields[4];
+			record.City = (string) fields[5];
+			record.Country = (string) fields[6];
+
+			return record;
+		}
+
 		[Test]
 		public void CustomersDbToFile()
 		{
-			mLink = new FileDataLink(new CustomersDataSotrage());
+			AccessStorage storage = new AccessStorage(typeof (CustomersVerticalBar), @"..\data\TestData.mdb");
+			storage.SelectSql =  "SELECT * FROM Customers";
+			storage.FillRecordCallback = new FillRecordHandler(FillRecordCustomers);
+
+			mLink = new FileDataLink(storage);
 			mLink.ExtractToFile(@"..\data\temp.txt");
 			int extractNum = mLink.LastExtractedRecords.Length;
 
@@ -35,38 +85,127 @@ namespace FileHelpersTests.DataLink
 			Assert.AreEqual(extractNum, records.Length);
 		}
 
+		private object FillRecord(object[] fields)
+		{
+			CustomersVerticalBar record = new CustomersVerticalBar();
+
+			record.CustomerID = (string) fields[0];
+			record.CompanyName = (string) fields[1];
+			record.ContactName = (string) fields[2];
+			record.ContactTitle = (string) fields[3];
+			record.Address = (string) fields[4];
+			record.City = (string) fields[5];
+			record.Country = (string) fields[6];
+
+			return record;
+		}
+
+
+
+		#region "  GetInsertSql  "
+
+		protected string GetInsertSqlCust(object record)
+		{
+			CustomersVerticalBar obj = (CustomersVerticalBar) record;
+
+			return String.Format("INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
+				" VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\"  ); ",
+				obj.Address,
+				obj.City,
+				obj.CompanyName,
+				obj.ContactName,
+				obj.ContactTitle,
+				obj.Country,
+				obj.CustomerID
+				);
+
+		}
+
+		#endregion
+
 		[Test]
 		public void CustomersFileToDb()
 		{
-			mLink = new FileDataLink(new CustomersTempLinkProvider());
-			ClearData(((AccessStorage) mLink.DataStorage).MdbFileName, "CustomersTemp");
+			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSqlCust);
 
-			int count = Count(((AccessStorage) mLink.DataStorage).MdbFileName, "CustomersTemp");
+			mLink = new FileDataLink(storage);
+			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "CustomersTemp");
+
+			int count = Count(((AccessStorage) mLink.DataStorage).AccessFileName, "CustomersTemp");
 			Assert.AreEqual(0, count);
 
 			mLink.InsertFromFile(@"..\data\UpLoadCustomers.txt");
 
-			count = Count(((AccessStorage) mLink.DataStorage).MdbFileName, "CustomersTemp");
+			count = Count(((AccessStorage) mLink.DataStorage).AccessFileName, "CustomersTemp");
 			Assert.AreEqual(91, count);
 
-			ClearData(((AccessStorage) mLink.DataStorage).MdbFileName, "CustomersTemp");
+			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "CustomersTemp");
 		}
+
+
+			
+		protected object FillRecordOrder(object[] fields)
+		{
+			OrdersFixed record = new OrdersFixed();
+
+			record.OrderID = (int) fields[0];
+			record.CustomerID = (string) fields[1];
+			record.EmployeeID = (int) fields[2];
+			record.OrderDate = (DateTime) fields[3];
+			record.RequiredDate = (DateTime) fields[4];
+			if (fields[5] != DBNull.Value)
+				record.ShippedDate = (DateTime) fields[5];
+			else
+				record.ShippedDate = DateTime.MinValue;
+			record.ShipVia = (int) fields[6];
+			record.Freight = (decimal) fields[7];
+
+			return record;
+		}
+
+		
+		#region "  GetInsertSql  "
+
+		protected string GetInsertSqlOrder(object record)
+		{
+			OrdersFixed obj = (OrdersFixed) record;
+
+			return String.Format("INSERT INTO OrdersTemp (CustomerID, EmployeeID, Freight, OrderDate, OrderID, RequiredDate, ShippedDate, ShipVia) " +
+				" VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\" , \"{7}\"  ) ",
+				obj.CustomerID,
+				obj.EmployeeID,
+				obj.Freight,
+				obj.OrderDate,
+				obj.OrderID,
+				obj.RequiredDate,
+				obj.ShippedDate,
+				obj.ShipVia
+				);
+
+		}
+
+		#endregion
 
 		[Test]
 		public void OrdersFileToDb()
 		{
-			mLink = new FileDataLink(new OrdersTempLinkProvider());
-			ClearData(((AccessStorage) mLink.DataStorage).MdbFileName, "OrdersTemp");
 
-			int count = Count(((AccessStorage) mLink.DataStorage).MdbFileName, "OrdersTemp");
+			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSqlOrder);
+
+			mLink = new FileDataLink(storage);
+			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
+
+			int count = Count(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
 			Assert.AreEqual(0, count);
 
 			mLink.InsertFromFile(@"..\data\UpLoadOrders.txt");
 
-			count = Count(((AccessStorage) mLink.DataStorage).MdbFileName, "OrdersTemp");
+			count = Count(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
 			Assert.AreEqual(830, count);
 
-			ClearData(((AccessStorage) mLink.DataStorage).MdbFileName, "OrdersTemp");
+			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
 		}
 
 		private const string AccessConnStr = @"Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Registry Path=;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Database Password=;Data Source=""<BASE>"";Password=;Jet OLEDB:Engine Type=5;Jet OLEDB:Global Bulk Transactions=1;Provider=""Microsoft.Jet.OLEDB.4.0"";Jet OLEDB:System database=;Jet OLEDB:SFP=False;Extended Properties=;Mode=Share Deny None;Jet OLEDB:New Database Password=;Jet OLEDB:Create System Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;User ID=Admin;Jet OLEDB:Encrypt Database=False";
@@ -79,7 +218,7 @@ namespace FileHelpersTests.DataLink
 			conn.Open();
 			cmd.ExecuteNonQuery();
 			conn.Close();
-			int count = Count(((AccessStorage) mLink.DataStorage).MdbFileName, "OrdersTemp");
+			int count = Count(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
 		}
 
 		public int Count(string fileName, string table)

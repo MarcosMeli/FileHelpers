@@ -343,12 +343,54 @@ namespace FileHelpersSamples
 
 		#endregion
 
+		
+		private object FillRecord(object[] fields)
+		{
+			CustomersVerticalBar record = new CustomersVerticalBar();
+
+			record.CustomerID = (string) fields[0];
+			record.CompanyName = (string) fields[1];
+			record.ContactName = (string) fields[2];
+			record.ContactTitle = (string) fields[3];
+			record.Address = (string) fields[4];
+			record.City = (string) fields[5];
+			record.Country = (string) fields[6];
+
+			return record;
+		}
+		
+		private string GetInsertSql(object record)
+		{
+			CustomersVerticalBar obj = (CustomersVerticalBar) record;
+
+			return String.Format("INSERT INTO Customers (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
+				" VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\"  ); ",
+				obj.Address,
+				obj.City,
+				obj.CompanyName,
+				obj.ContactName,
+				obj.ContactTitle,
+				obj.Country,
+				obj.CustomerID
+				);
+
+		}
+
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			try
 			{
 				lblStatus.Text = "Creating the DataLinkEngine";
-				FileDataLink mLink = new FileDataLink(new CustomersVerticalBarLinkProvider());
+
+				AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), "TestData.mdb");
+				
+				storage.FillRecordCallback = new FillRecordHandler(FillRecord);
+				storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSql);
+
+				storage.SelectSql = "SELECT * FROM Customers";
+
+				FileDataLink mLink = new FileDataLink(storage);
+
 				Application.DoEvents();
 				Thread.Sleep(800);
 
