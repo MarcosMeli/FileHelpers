@@ -4,14 +4,14 @@
 -------------------------------
 
 
-  To work with the library is more and more and I not have 
+  Work for the library is more and more time consuming and I not have 
   full time for it.
   
   Then if you want to help me in the development please contact me
-  at marcosdotnet@yahoo.com.ar and we find some library part that
+  at marcosdotnet@yahoo.com.ar and we will find some library part that
   you can mantain or change
   
-  Another plase where the pending thing is place is in the Forums
+  Another place where you can found the pending things is in the forums
   
          http://filehelpers.sourceforge.net/forums/
 
@@ -22,7 +22,7 @@
      -  Help Translation (almost to english :) because I know that is full of errors)
      -  Web Site Changes
      -  Forums Admin
-     -  And if you want you can donate something to the library
+     -  And if you want you can donate something to the library you are welcome at
          
           Via PayPal:  (from 5 to 250 u$s)
           

@@ -3,9 +3,9 @@
    THANKS !!
 ------------------
 
-  Hi to all the developers that help in make this library better !!!
+  Hi to all the developers that help to make this library better !!!
 
-  I can do anything without your help !!
+  I can´t do anything without your help !!
 
 ----------------------------------------
    IMPORTANT LINKS FOR DEVELOPERS
@@ -30,6 +30,18 @@
   - NUnit
   - NDoc
   - FxCop
+
+-------------------------------
+   Contact and how to help
+-------------------------------
+
+I love to hear feedback so feel free to contact me at 
+
+   marcosdotnet@yahoo.com.ar
+   
+and tell me wherever do you want, if you want to help, 
+drop me a line with the parts of the library in wich you want
+to contribute.
 
 ---
 Regards
