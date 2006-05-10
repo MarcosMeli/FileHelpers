@@ -29,11 +29,6 @@
                 <include name="*.url" />
             </fileset>
         </copy>
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
-            <fileset>
-                <include name="TemplatesCS/**" />
-            </fileset>
-        </copy>
         <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
 
         <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\ReleaseDemo" />
