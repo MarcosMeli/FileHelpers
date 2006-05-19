@@ -58,6 +58,9 @@ namespace FileHelpers.WizardApp
             "Int16",
             "Int32",
             "Int64",
+            "Decimal",
+            "Double",
+            "Single",
             "Bool"});
             this.txtType.Location = new System.Drawing.Point(186, 5);
             this.txtType.MaxDropDownItems = 15;
