@@ -16,7 +16,7 @@ namespace FileHelpersTests.Common
 		public void Transform1()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass1), typeof(ToClass1));
-			link.TransformFile1To2("a","b");
+			link.TransformFile("a","b");
 		}
 
 		[Test]
@@ -24,7 +24,7 @@ namespace FileHelpersTests.Common
 		public void Transform2()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass2), typeof(ToClass1));
-			link.TransformFile1To2("a","b");
+			link.TransformFile("a","b");
 		}
 
 		[Test]
@@ -32,7 +32,7 @@ namespace FileHelpersTests.Common
 		public void Transform3()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass3), typeof(ToClass2));
-			link.TransformFile1To2("a","b");
+			link.TransformFile("a","b");
 		}
 
 		[Test]
@@ -40,7 +40,7 @@ namespace FileHelpersTests.Common
 		public void Transform4()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass4), typeof(ToClass1));
-			link.TransformFile1To2("a","b");
+			link.TransformFile("a","b");
 		}
 
 		[DelimitedRecord(",")]

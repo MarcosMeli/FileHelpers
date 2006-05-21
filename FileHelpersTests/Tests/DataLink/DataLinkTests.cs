@@ -191,7 +191,7 @@ namespace FileHelpersTests.DataLink
 		public void OrdersFileToDb()
 		{
 
-			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSqlOrder);
 
 			mLink = new FileDataLink(storage);

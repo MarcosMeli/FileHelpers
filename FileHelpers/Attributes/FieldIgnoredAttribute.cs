@@ -8,7 +8,7 @@ using System;
 
 namespace FileHelpers
 {
-	/// <summary>Indicates the the target field is ignored by the Engine AND NOT IS IN THE FILE.</summary>
+	/// <summary>Indicates that the target field is completely ignored by the Engine (i.e. This field don´t exists for the library).</summary>
 	/// <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more clear info and examples of each one.</remarks>
 	/// <seealso href="attributes.html">Attributes List</seealso>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
@@ -16,7 +16,7 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldIgnoredAttribute : FieldAttribute
 	{
-		/// <summary>Indicates the the target field is ignored by the Engine AND NOT IS IN THE FILE.</summary>
+		/// <summary>Indicates that the target field is ignored by the Engine AND NOT IS IN THE FILE.</summary>
 		public FieldIgnoredAttribute()
 		{}
 	}

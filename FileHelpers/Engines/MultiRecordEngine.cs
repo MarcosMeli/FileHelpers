@@ -24,6 +24,15 @@ namespace FileHelpers
 
 	#endregion
 
+	/// <summary>This engine allows you to parse and write files that contain
+	/// records of different types and that are in a linear relationship
+	/// (for Master-Detail check the <see cref="MasterDetailEngine"/>
+	/// </summary>
+	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
+	/// <seealso href="class_diagram.html">Class Diagram</seealso>
+	/// <seealso href="examples.html">Examples of Use</seealso>
+	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
+	/// <seealso href="attributes.html">Attributes List</seealso>
 	public sealed class MultiRecordEngine : EngineBase
 	{
 		private RecordInfo[] mMultiRecordInfo;

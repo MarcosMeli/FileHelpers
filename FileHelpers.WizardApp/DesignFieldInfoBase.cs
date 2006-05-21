@@ -12,8 +12,7 @@ namespace FileHelpers.WizardApp
         protected string IndentString = "  ";
 
         public DesignFieldInfoBase()
-        {
-        }
+        {}
 
         public DesignFieldInfoBase(string name)
         {
@@ -43,6 +42,9 @@ namespace FileHelpers.WizardApp
             return this.Name;
         }
 
+        private bool mIsOptional = false;
+        
+        
         private NetVisibility mVisibility;
 
         public NetVisibility Visibility
@@ -57,6 +59,12 @@ namespace FileHelpers.WizardApp
         {
             get { return mTrimMode; }
             set { mTrimMode = value; }
+        }
+
+        public bool IsOptional
+        {
+            get { return mIsOptional; }
+            set { mIsOptional = value; }
         }
 
 
@@ -80,7 +88,7 @@ namespace FileHelpers.WizardApp
                 {
                     case NetLanguage.VbNet:
                         sb.Append(IndentString);
-                        sb.Append("<FieldTrim(TrimMode." + TrimMode.ToString() + ")> ");
+                        sb.AppendLine("<FieldTrim(TrimMode." + TrimMode.ToString() + ")> ");
                         break;
                     case NetLanguage.CSharp:
                         sb.Append(IndentString);
@@ -91,6 +99,23 @@ namespace FileHelpers.WizardApp
                 }
             }
 
+            if (mIsOptional == true)
+            {
+                switch (leng)
+                {
+                    case NetLanguage.VbNet:
+                        sb.Append(IndentString);
+                        sb.AppendLine("<FieldOptional()> _");
+                        break;
+                    case NetLanguage.CSharp:
+                        sb.Append(IndentString);
+                        sb.AppendLine("[FieldOptional()]");
+                        break;
+                    default:
+                        break;
+                }
+            }
+                
             if (sb.ToString(sb.Length - 2, 2) != Environment.NewLine)
                 sb.AppendLine();
             sb.Append(IndentString);

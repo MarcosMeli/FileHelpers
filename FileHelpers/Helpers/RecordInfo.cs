@@ -140,9 +140,6 @@ namespace FileHelpers
 		}
 
 
-		/// <summary>Internal.</summary>
-		/// <param name="line"></param>
-		/// <returns></returns>
 		internal object StringToRecord(string line, ForwardReader reader)
 		{
 			object record = mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);

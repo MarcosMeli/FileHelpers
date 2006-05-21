@@ -85,7 +85,7 @@ namespace FileHelpers
 		public static int TransformFileAsync(string sourceFile, Type sourceType, string destFile, Type destType)
 		{
 			FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
-			return engine.TransformFile1To2Async(sourceFile, destFile);
+			return engine.TransformFileAsync(sourceFile, destFile);
 		}
 
 		/// <summary></b>A more slow way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records)</summary>
@@ -97,8 +97,9 @@ namespace FileHelpers
 		public static object[] TransformFile(string sourceFile, Type sourceType, string destFile, Type destType)
 		{
 			FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
-			return engine.TransformFile1To2(sourceFile, destFile);
+			return engine.TransformFile(sourceFile, destFile);
 		}
+
 
 		public static object[] ReadFileSorted(Type recordClass, string fileName)
 		{
@@ -116,6 +117,12 @@ namespace FileHelpers
 			return res;
 		}
 
+		/// <summary>
+		/// Sort the contents of the source file and write them to the destination file. 
+		/// </summary>
+		/// <param name="recordClass">Record Class (remember that need to implement the IComparer interface, or you can use SortFileByfield)</param>
+		/// <param name="sourceFile"></param>
+		/// <param name="sortedFile"></param>
 		public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
 		{
 			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)

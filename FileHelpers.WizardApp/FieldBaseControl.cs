@@ -160,6 +160,15 @@ namespace FileHelpers.WizardApp
             }
         }
 
+        private void chkOptional_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mInit == false)
+            {
+                mFieldInfo.IsOptional = chkOptional.Checked;
+                OnInfoChanged();
+            }
+        }
+
 
 
     }

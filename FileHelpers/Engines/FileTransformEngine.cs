@@ -7,15 +7,12 @@
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Text;
 
 namespace FileHelpers
 {
 	/// <summary>
-	/// This class has the responsability to enable the bidirectional
-	/// transformation.
-	/// <list type="bullet">
-	/// <item> File &lt;-> File  (with different record class)</item>
-	/// </list>
+	/// This class allow you to convert the records of a file to a different record format.
 	/// </summary>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
@@ -36,79 +33,51 @@ namespace FileHelpers
 			ErrorHelper.CheckNullParam(destType, "destType");
 			ErrorHelper.CheckDifferentsParams(sourceType, "sourceType", destType, "destType");
 
-			mRecordType1 = sourceType;
-			mRecordType2 = destType;
+			mSourceType = sourceType;
+			mDestinationType = destType;
 
 			ValidateRecordTypes();
 		}
 
 		#endregion
 
-		private Type mRecordType1;
-		private Type mRecordType2;
+		private Type mSourceType;
+		private Type mDestinationType;
 
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile.</summary>
+		private Encoding mSourceEncoding = Encoding.Default;
+		private Encoding mDestinationEncoding = Encoding.Default;
+
+		/// <summary>Transform the contents of the sourceFile and write them to the destFile.(use only if you need the array of the transformed records, TransformFileAsync is faster)</summary>
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The transformed records in the destFile.</returns>
-		public object[] TransformFile1To2(string sourceFile, string destFile)
+		public object[] TransformFile(string sourceFile, string destFile)
 		{
 			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
 			ErrorHelper.CheckNullParam(destFile, "destFile");
 			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
 			if (mConvert1to2 == null)
-			   throw new BadUsageException("You must define a method in the class " + RecordType1.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType2.Name + "))] that return an object of type " + RecordType2.Name);
+			   throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
 
-			return Transform(sourceFile, destFile, mRecordType1, mRecordType2, mConvert1to2);
+			return Transform(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
 		}
 
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile.</summary>
-		/// <param name="sourceFile">The source file.</param>
-		/// <param name="destFile">The destination file.</param>
-		/// <returns>The transformed records in the destFile.</returns>
-		public object[] TransformFile2To1(string sourceFile, string destFile)
-		{
-			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
-			ErrorHelper.CheckNullParam(destFile, "destFile");
-			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
-			if (mConvert2to1 == null)
-				throw new BadUsageException("You must define a method in the class " + RecordType2.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType1.Name + "))]");
-
-			return Transform(sourceFile, destFile, mRecordType2, mRecordType1, mConvert2to1);
-		}
-
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (more faster and use less memory, best choice for big files)</summary>
+		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The number of transformed records.</returns>
-		public int TransformFile1To2Async(string sourceFile, string destFile)
+		public int TransformFileAsync(string sourceFile, string destFile)
 		{
 			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
 			ErrorHelper.CheckNullParam(destFile, "destFile");
 			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
 			if (mConvert1to2 == null)
-				throw new BadUsageException("You must define a method in the class " + RecordType1.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType2.Name + "))] that return an object of type " + RecordType2.Name);
+				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
 
-			return TransformAsync(sourceFile, destFile, mRecordType1, mRecordType2, mConvert1to2);
-		}
-
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (more faster and use less memory, best choice for big files)</summary>
-		/// <param name="sourceFile">The source file.</param>
-		/// <param name="destFile">The destination file.</param>
-		/// <returns>The number of transformed records.</returns>
-		public int  TransformFile2To1Async(string sourceFile, string destFile)
-		{
-			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
-			ErrorHelper.CheckNullParam(destFile, "destFile");
-			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
-
-			if (mConvert2to1 == null)
-				throw new BadUsageException("You must define a method in the class " + RecordType2.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType1.Name + "))]");
-
-			return TransformAsync(sourceFile, destFile, mRecordType2, mRecordType1, mConvert2to1);
+			return TransformAsync(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
 		}
 
 		private static object[] mEmptyArray = new object[]{};
@@ -118,6 +87,9 @@ namespace FileHelpers
 			FileHelperEngine sourceEngine = new FileHelperEngine(sourceType);
 			FileHelperEngine destEngine = new FileHelperEngine(destType);
 
+			sourceEngine.Encoding = mSourceEncoding;
+			destEngine.Encoding = mDestinationEncoding;
+			
 			object[] res = sourceEngine.ReadFile(sourceFile);
 
 			ArrayList arr = new ArrayList(res.Length);
@@ -138,6 +110,9 @@ namespace FileHelpers
 			FileHelperAsyncEngine sourceEngine = new FileHelperAsyncEngine(sourceType);
 			FileHelperAsyncEngine destEngine = new FileHelperAsyncEngine(destType);
 
+			sourceEngine.Encoding = mSourceEncoding;
+			destEngine.Encoding = mDestinationEncoding;
+
 			sourceEngine.BeginReadFile(sourceFile);
 			destEngine.BeginWriteFile(destFile);
 
@@ -153,24 +128,38 @@ namespace FileHelpers
 		}
 
 		MethodInfo mConvert1to2 = null;
-		MethodInfo mConvert2to1 = null;
+		//MethodInfo mConvert2to1 = null;
 
 		/// <summary>The source record Type.</summary>
-		public Type RecordType1
+		public Type SourceType
 		{
-			get { return mRecordType1; }
+			get { return mSourceType; }
 		}
 
 		/// <summary>The destination record Type.</summary>
-		public Type RecordType2
+		public Type DestinationType
 		{
-			get { return mRecordType2; }
+			get { return mDestinationType; }
+		}
+
+		/// <summary>The Encoding of the Source File.</summary>
+		public Encoding SourceEncoding
+		{
+			get { return mSourceEncoding; }
+			set { mSourceEncoding = value; }
+		}
+
+		/// <summary>The Encoding of the Destination File.</summary>
+		public Encoding DestinationEncoding
+		{
+			get { return mDestinationEncoding; }
+			set { mDestinationEncoding = value; }
 		}
 
 		private void ValidateRecordTypes()
 		{
-			mConvert1to2 = GetTransformMethod(RecordType1, RecordType2);
-			mConvert2to1 = GetTransformMethod(RecordType2, RecordType1);
+			mConvert1to2 = GetTransformMethod(SourceType, DestinationType);
+//			mConvert2to1 = GetTransformMethod(DestinationType, SourceType);
 
 //			if (mConvert2to1 == null)
 //				throw new BadUsageException("You must define a method in the class " + RecordType2.Name + " with the attribute [TransfortToRecord(typeof(" + RecordType2.Name + "))]");

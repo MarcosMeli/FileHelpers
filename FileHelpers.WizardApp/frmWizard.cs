@@ -94,6 +94,7 @@ namespace FileHelpers.WizardApp
         private Fireball.Syntax.SyntaxDocument sdTemplOut;
         private Fireball.Windows.Forms.CodeEditorControl txtOutput;
         private Fireball.Syntax.SyntaxDocument sdClassOut;
+        private ToolTip toolTip1;
         private OpenFileDialog dlgOpenWizard;
 
 		public frmWizard()
@@ -124,7 +125,7 @@ namespace FileHelpers.WizardApp
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -203,6 +204,7 @@ namespace FileHelpers.WizardApp
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panStep1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -364,6 +366,7 @@ namespace FileHelpers.WizardApp
             this.cboClassVisibility.Name = "cboClassVisibility";
             this.cboClassVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboClassVisibility.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.cboClassVisibility, "Set de visibility of your record class. ");
             this.cboClassVisibility.SelectedIndexChanged += new System.EventHandler(this.cboClassVisibility_SelectedIndexChanged);
             // 
             // label8
@@ -405,6 +408,7 @@ namespace FileHelpers.WizardApp
             "Single",
             "Bool"});
             this.txtDefaultType.Location = new System.Drawing.Point(144, 84);
+            this.txtDefaultType.MaxDropDownItems = 20;
             this.txtDefaultType.Name = "txtDefaultType";
             this.txtDefaultType.Size = new System.Drawing.Size(84, 21);
             this.txtDefaultType.TabIndex = 1;
@@ -493,8 +497,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -976,7 +980,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            this.txtOutput.LineMarginRender = lineMarginRender2;
+            this.txtOutput.LineMarginRender = lineMarginRender1;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";

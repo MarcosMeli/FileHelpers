@@ -28,11 +28,6 @@ namespace FileHelpers
 
 		#region "  ExtractQuotedString  "
 
-		/// <summary>Used to extract a quoted string and de-escape the quote char.</summary>
-		/// <param name="source">Source string</param>
-		/// <param name="quoteChar">The quoted char.</param>
-		/// <param name="index">An output parameter of the index of the end of the string.</param>
-		/// <returns>The estracted string</returns>
 		internal static ExtractedInfo ExtractQuotedString(string source, ForwardReader reader, char quoteChar)
 		{
 			StringBuilder res = new StringBuilder(32);

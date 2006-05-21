@@ -15,7 +15,7 @@ namespace FileHelpersTests.Common
 		public void CsvToVerticalDelimited()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
-			link.TransformFile1To2(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+			link.TransformFile(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
 			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
 		}
 
