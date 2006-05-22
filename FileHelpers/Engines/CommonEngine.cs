@@ -88,7 +88,7 @@ namespace FileHelpers
 			return engine.TransformFileAsync(sourceFile, destFile);
 		}
 
-		/// <summary></b>A more slow way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records)</summary>
+		/// <summary>Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records) WARNING: this is a slower method that the TransformFileAssync.</summary>
 		/// <param name="sourceType">The Type of the records in the source File.</param>
 		/// <param name="destType">The Type of the records in the dest File.</param>
 		/// <param name="sourceFile">The file with records to be transformed</param>
@@ -101,7 +101,12 @@ namespace FileHelpers
 		}
 
 
-		public static object[] ReadFileSorted(Type recordClass, string fileName)
+		/// <summary>
+		/// Read the contents of a file and sort the records.
+		/// </summary>
+		/// <param name="recordClass">Record Class (remember that need to implement the IComparer interface, or you can use SortFileByfield)</param>
+		/// <param name="fileName">The file to read.</param>
+		public static object[] ReadSortedFile(Type recordClass, string fileName)
 		{
 			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)
 				throw new BadUsageException("The record class must implement the interface IComparer to use the Sort feature.");
