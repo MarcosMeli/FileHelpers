@@ -15,12 +15,14 @@ namespace FileHelpers.DataLink
 	public sealed class SqlServerStorage : DatabaseStorage
 	{
 
+		#region "  Constructors  "
+
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
 		/// <param name="recordType">The type of the record class.</param>
 		public SqlServerStorage(Type recordType): base(recordType)
 		{}
 
-		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
+		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses windows auth)</summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="server">The server name or IP of the sqlserver</param>
 		/// <param name="database">The database name into the server.</param>
@@ -30,11 +32,19 @@ namespace FileHelpers.DataLink
 			mDatabaseName = database;
 		}
 
+		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses SqlServer auth)</summary>
+		/// <param name="recordType">The type of the record class.</param>
+		/// <param name="server">The server name or IP of the sqlserver</param>
+		/// <param name="database">The database name into the server.</param>
+		/// <param name="user">The sql username to login into the server.</param>
+		/// <param name="pass">The pass of the sql username to login into the server.</param>
 		public SqlServerStorage(Type recordType, string server, string database, string user, string pass): this(recordType, server, database)
 		{
 			mUserName = user;
 			mUserPass = pass;
 		}
+
+		#endregion
 
 		#region "  Create Connection and Command  "
 
@@ -55,7 +65,7 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		internal override bool ExecuteInBatch
+		protected override bool ExecuteInBatch
 		{
 			get { return true; }
 		}
