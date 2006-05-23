@@ -204,7 +204,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DataLink\Storage\DataBaseStorage.cs"
+                    RelPath = "DataLink\Storage\DatabaseStorage.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

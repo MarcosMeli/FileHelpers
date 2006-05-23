@@ -34,38 +34,38 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  StaticFields  "
+//		#region "  StaticFields  "
+//
+//		public static string DbServer = String.Empty;
+//		public static string DbName = String.Empty;
+//		public static string DbUser = String.Empty;
+//		public static string DbPass = String.Empty;
+//
+//		#endregion
 
-		public static string DbServer = String.Empty;
-		public static string DbName = String.Empty;
-		public static string DbUser = String.Empty;
-		public static string DbPass = String.Empty;
+//		#region "  TraerDataTable  "
+//
+//		public static DataTable TraerDataTable(string sql)
+//		{
+//			SqlConnection connect = new SqlConnection(ConnectionString());
+//			SqlDataAdapter adapter = new SqlDataAdapter(sql, connect);
+//			DataTable resDt = new DataTable();
+//
+//			adapter.Fill(resDt);
+//
+//			return resDt;
+//		}
+//
+//		#endregion
 
-		#endregion
-
-		#region "  TraerDataTable  "
-
-		public static DataTable TraerDataTable(string sql)
-		{
-			SqlConnection connect = new SqlConnection(ConnectionString());
-			SqlDataAdapter adapter = new SqlDataAdapter(sql, connect);
-			DataTable resDt = new DataTable();
-
-			adapter.Fill(resDt);
-
-			return resDt;
-		}
-
-		#endregion
-
-		#region "  ConnectionString  "
-
-		static string ConnectionString()
-		{
-			return SqlConnectionString(DbServer, DbName, DbUser, DbPass);
-		}
-
-		#endregion
+//		#region "  ConnectionString  "
+//
+//		static string ConnectionString()
+//		{
+//			return SqlConnectionString(DbServer, DbName, DbUser, DbPass);
+//		}
+//
+//		#endregion
 
 		#region "  SqlConnectionString  "
 

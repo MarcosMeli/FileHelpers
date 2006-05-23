@@ -228,7 +228,7 @@ private string GetInsertSql(object record)
 				storage.SelectSql = "SELECT * FROM Customers";
 				
 				storage.FillRecordCallback = new FillRecordHandler(FillRecord);
-				storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSql);
+				storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSql);
 
 				FileDataLink mLink = new FileDataLink(storage);
 

@@ -35,6 +35,7 @@ namespace FileHelpers
 				return from.ToString();
 		}
 
+		/// <summary>If the class retures false the engines don´t pass null values to the converter. If true the engines pass all the values to the converter.</summary>
 		protected internal virtual bool CustomNullHandling
 		{
 			get { return false; }

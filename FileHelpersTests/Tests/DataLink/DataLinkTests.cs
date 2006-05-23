@@ -127,7 +127,7 @@ namespace FileHelpersTests.DataLink
 		public void CustomersFileToDb()
 		{
 			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
-			storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSqlCust);
+			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
 			mLink = new FileDataLink(storage);
 			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "CustomersTemp");
@@ -192,7 +192,7 @@ namespace FileHelpersTests.DataLink
 		{
 
 			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
-			storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSqlOrder);
+			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlOrder);
 
 			mLink = new FileDataLink(storage);
 			ClearData(((AccessStorage) mLink.DataStorage).AccessFileName, "OrdersTemp");
