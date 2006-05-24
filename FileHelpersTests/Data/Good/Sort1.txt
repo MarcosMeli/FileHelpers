@@ -1,0 +1,8 @@
+VAFFE|Vaffeljernet|Palle Ibsen|Sales Manager|Smagsloget 45|Århus|Denmark
+LAMAI|La maison d'Asie|Annette Roulet|Sales Manager|1 rue Alsace-Lorraine|Toulouse|France
+WHITC|White Clover Markets|Karl Jablonski|Owner|305 - 14th Ave. S. Suite 3B|Seattle|USA
+WOLZA|Wolski  Zajazd|Zbyszek Piestrzeniewicz|Owner|ul. Filtrowa 68|Warszawa|Poland
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+TORTU|Tortuga Restaurante|Miguel Angel Paolino|Owner|Avda. Azteca 123|México D.F.|Mexico
+VINET|Vins et alcools Chevalier|Paul Henriot|Accounting Manager|59 rue de l'Abbaye|Reims|France
+WELLI|Wellington Importadora|Paula Parente|Sales Manager|Rua do Mercado, 12|Resende|Brazil
