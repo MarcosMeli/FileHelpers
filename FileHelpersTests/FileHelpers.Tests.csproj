@@ -228,6 +228,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\Sort.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\TransformEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

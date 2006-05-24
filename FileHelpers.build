@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.4.5" />
-    <property name="LibraryFileVersion" value="1_4_5" />
+    <property name="LibraryVersion" value="1.4.9" />
+    <property name="LibraryFileVersion" value="1_4_9" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     <property name="Source2005" value="_Source2005" />

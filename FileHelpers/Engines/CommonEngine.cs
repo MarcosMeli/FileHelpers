@@ -108,8 +108,8 @@ namespace FileHelpers
 		/// <param name="fileName">The file to read.</param>
 		public static object[] ReadSortedFile(Type recordClass, string fileName)
 		{
-			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)
-				throw new BadUsageException("The record class must implement the interface IComparer to use the Sort feature.");
+			if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
+				throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
 
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
 			object[] res = engine.ReadFile(fileName);
@@ -117,8 +117,7 @@ namespace FileHelpers
 			if (res.Length == 0)
 				return res;
 
-			IComparer comparer = res[0] as IComparer;
-			Array.Sort(res, comparer);
+			Array.Sort(res);
 			return res;
 		}
 
@@ -130,8 +129,8 @@ namespace FileHelpers
 		/// <param name="sortedFile"></param>
 		public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
 		{
-			if (typeof(IComparer).IsAssignableFrom(recordClass) == false)
-				throw new BadUsageException("The record class must implement the interface IComparer to use the Sort feature.");
+			if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
+				throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
 
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
 			object[] res = engine.ReadFile(sourceFile);
@@ -139,8 +138,7 @@ namespace FileHelpers
 			if (res.Length == 0)
 				engine.WriteFile(sortedFile, res);
 
-            IComparer comparer = res[0] as IComparer;
-			Array.Sort(res, comparer);
+			Array.Sort(res);
 			engine.WriteFile(sortedFile, res);
 		}
 
@@ -151,7 +149,7 @@ namespace FileHelpers
 			FieldInfo fi = engine.mRecordInfo.GetFieldInfo(fieldName);
 
 			if (fi == null)
-				throw new BadUsageException("The record class not cointain the field " + fieldName);
+				throw new BadUsageException("The record class not contains the field " + fieldName);
 
 			object[] res = engine.ReadFile(sourceFile);
 
@@ -159,6 +157,39 @@ namespace FileHelpers
 			Array.Sort(res, comparer);
 
 			engine.WriteFile(sortedFile, res);
+		}
+
+		public static void SortRecordsByField(object[] records, string fieldName)
+		{
+			SortRecordsByField(records, fieldName, true);
+		}
+
+		public static void SortRecordsByField(object[] records, string fieldName, bool asc)
+		{
+			if (records.Length > 0 && records[0] != null)
+			{
+				FileHelperEngine engine = new FileHelperEngine(records[0].GetType());
+				FieldInfo fi = engine.mRecordInfo.GetFieldInfo(fieldName);
+
+				if (fi == null)
+					throw new BadUsageException("The record class not contains the field " + fieldName);
+
+				IComparer comparer = new FieldComparer(fi, asc);
+				Array.Sort(records, comparer);
+			}
+		}
+
+		public static void SortRecords(object[] records)
+		{
+			if (records.Length > 0 && records[0] != null)
+			{
+				Type recordClass = records[0].GetType();
+
+				if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
+					throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
+
+				Array.Sort(records);
+			}
 		}
 
 		internal class FieldComparer : IComparer

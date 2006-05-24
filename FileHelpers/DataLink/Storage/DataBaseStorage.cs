@@ -167,12 +167,11 @@ namespace FileHelpers.DataLink
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 				int recordNumber = 0;
 
-				int i = 1;
 				foreach (object record in records)
 				{
 					// Insert Logic Here, must check duplicates
 					recordNumber++;
-					ProgressHelper.Notify(mNotifyHandler, mProgressMode, i, records.Length);
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
 
 					SQL += GetInsertSql(record) + " ";
 
@@ -189,7 +188,6 @@ namespace FileHelpers.DataLink
 						ExecuteAndLeaveOpen(SQL);
 						SQL = String.Empty;
 					}
-					i++;
 
 				}
 				if (SQL != null && SQL.Length != 0)
