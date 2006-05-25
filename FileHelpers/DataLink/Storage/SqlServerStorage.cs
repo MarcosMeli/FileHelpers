@@ -52,6 +52,12 @@ namespace FileHelpers.DataLink
 		/// <returns>An Abstract Connection Object.</returns>
 		protected sealed override IDbConnection CreateConnection()
 		{
+			if (mServerName == null || mServerName == string.Empty)
+				throw new BadUsageException("The ServerName can´t be null or empty.");
+
+			if (mDatabaseName == null || mDatabaseName == string.Empty)
+				throw new BadUsageException("The DatabaseName can´t be null or empty.");
+
 			string conString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
 			return new SqlConnection(conString);
 		}

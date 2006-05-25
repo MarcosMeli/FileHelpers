@@ -139,7 +139,8 @@ namespace FileHelpers.DataLink
 					mConn.Close();
 			}
 
-			return res.ToArray();
+			return (object[]) res.ToArray(mRecordType);
+			
 		}
 
 		#endregion

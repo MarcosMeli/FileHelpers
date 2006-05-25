@@ -12,7 +12,7 @@ namespace FileHelpersTests.DataLink
 		[Test]
 		public void OrdersProvider()
 		{
-			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 

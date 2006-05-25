@@ -20,6 +20,10 @@ namespace FileHelpers.DataLink
 		private string mAccessFile = string.Empty;
 		private string mAccessPassword = string.Empty;
 
+		
+		public AccessStorage(Type recordType):base(recordType)
+		{}
+
 		public AccessStorage(Type recordType, string accessFile):base(recordType)
 		{
 			AccessFileName = accessFile;
@@ -31,6 +35,11 @@ namespace FileHelpers.DataLink
 		/// <returns>An Abstract Connection Object.</returns>
 		protected sealed override IDbConnection CreateConnection()
 		{
+			if (mAccessFile == null || mAccessFile == string.Empty)
+				throw new BadUsageException("The AccessFileName can´t be null or empty.");
+
+			if (mAccessPassword == null) mAccessPassword = string.Empty;
+
             string conString = DataBaseHelper.GetAccessConnection(AccessFileName, AccessFilePassword);
 			return new OleDbConnection(conString);
 		}
