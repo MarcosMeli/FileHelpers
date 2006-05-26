@@ -67,12 +67,13 @@ bgColor=white leftMargin=0 topMargin=0>
           <blockquote>
             <pre>Orders ord;
 
+FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders));
 
 engine.BeginReadFile(<span class="cs-string">&quot;TestIn.txt&quot;</span>);
 
 <span class="cs-keyword">while</span>(engine.ReadNext() != <span class="cs-keyword">null</span>)
 {
-   ord = (Orders) engineLastRecord;
+   ord = (Orders) engine.LastRecord;
 
    <span class="cs-comment">// your code here</span>
    Console.WriteLine(ord.CustomerID);
