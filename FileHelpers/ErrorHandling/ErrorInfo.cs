@@ -25,15 +25,6 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
-//		internal int mColumnNumber;
-//
-//		/// <summary>the column number of the error. (not full working)</summary>
-//		public int ColumnNumber
-//		{
-//			get { return mColumnNumber; }
-//		}
-
-
 		internal string mRecordString;
 
 		/// <summary>The string of the record of the error.</summary>

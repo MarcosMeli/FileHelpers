@@ -84,6 +84,18 @@ namespace FileHelpersTests.Common
 			Assert.AreEqual("Tortuga Restaurante", res[2].CompanyName);
 		}
 
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void Sort5()
+		{
+			engine = new FileHelperEngine(typeof (CustomersSort));
+
+			CustomersSort[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersSort[];
+			Assert.AreEqual(8, res.Length);
+
+			CommonEngine.SortRecordsByField(res, "CompanyNameNoExistHere");
+		}
+
 		[DelimitedRecord("|")]
 		private class CustomersSort: IComparable
 		{

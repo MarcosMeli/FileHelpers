@@ -107,21 +107,61 @@ namespace FileHelpersTests.Errors
 
 		#endregion
 
-		#region  "  NoRecords "
+		#region  "  NoFields "
 
 		[FixedLengthRecord]
-		public class NoRecordsClass
+		public class NoFieldsClass
 		{
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
-		public void NoRecords()
+		public void NoFields()
 		{
-			new FileHelperEngine(typeof (NoRecordsClass));
+			new FileHelperEngine(typeof (NoFieldsClass));
 		}
 
 		#endregion
+
+		#region  "  NoFields2"
+
+		[DelimitedRecord(",")]
+		public class NoFieldsClass2
+		{
+			[FieldIgnored]
+			public string MyField;
+		}
+
+		[Test]
+		[ExpectedException(typeof (BadUsageException))]
+		public void NoFields2()
+		{
+			new FileHelperEngine(typeof (NoFieldsClass2));
+		}
+
+		#endregion
+
+		#region  "  NoFields3  "
+
+		[DelimitedRecord(",")]
+			public class NoFieldsClass3
+		{
+			[FieldIgnored]
+			public string MyField;
+
+			[FieldIgnored]
+			public string MyField2;
+		}
+
+		[Test]
+		[ExpectedException(typeof (BadUsageException))]
+		public void NoFields3()
+		{
+			new FileHelperEngine(typeof (NoFieldsClass3));
+		}
+
+		#endregion
+
 
 		#region  "  NoConstructor  "
 

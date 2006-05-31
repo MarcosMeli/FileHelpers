@@ -75,11 +75,12 @@ namespace FileHelpers
 			FieldInfo[] fields;
 			fields = mRecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-			if (fields.Length == 0)
-				throw new BadUsageException("The record class don't have records.");
-
 			mFields = CreateFields(fields, recordAttribute);
 			mFieldCount = mFields.Length;
+
+			if (mFieldCount == 0)
+				throw new BadUsageException("The record class don't contains any field.");
+
 		}
 
 
