@@ -71,6 +71,86 @@ namespace FileHelpersTests.Common
 		}
 
 
+
+
+
+
+
+		[Test]
+		public void AsyncCsvToFixedLength()
+		{
+			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+			link.TransformFileAsync(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
+			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+		[Test]
+		public void AsyncCsvToFixedLength2()
+		{
+			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+			link.TransformFileAsync(TestCommon.TestPath("Good\\Transform2.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
+			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(@"c:\Prueba1\anda ?                                 ", res[0].CompanyName);
+			Assert.AreEqual("\"D:\\Glossaries\\O12\"                               ", res[1].CompanyName);
+			Assert.AreEqual(@"\\s\\                                             ", res[2].CompanyName);
+		}
+
+
+		[Test]
+		public void AsyncCsvToDelimited()
+		{
+			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+			link.TransformFileAsync(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
+			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+		[Test]
+		public void AsyncCsvToDelimited2()
+		{
+			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+			link.TransformFileAsync(TestCommon.TestPath("Good\\Transform2.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
+			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(@"c:\Prueba1\anda ?", res[0].CompanyName);
+			Assert.AreEqual("\"D:\\Glossaries\\O12\"", res[1].CompanyName);
+			Assert.AreEqual(@"\\s\\", res[2].CompanyName);
+		}
+
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void TransformBad()
+		{
+			FileTransformEngine link = new FileTransformEngine(typeof(ToClass), typeof(FromClass));
+			link.TransformFile(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+		}
+
+		[Test]
+		public void TransformBad2()
+		{
+			new FileTransformEngine(typeof(ToClass), typeof(FromClass));
+		}
+
+
 		[DelimitedRecord(",")]
 		private class FromClass
 		{

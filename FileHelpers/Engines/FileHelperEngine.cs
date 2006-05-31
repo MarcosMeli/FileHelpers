@@ -152,6 +152,9 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
 		public object[] ReadString(string source)
 		{
+			if (source == null)
+				source = string.Empty;
+
 			StringReader reader = new StringReader(source);
 			object[] res = ReadStream(reader);
 			reader.Close();

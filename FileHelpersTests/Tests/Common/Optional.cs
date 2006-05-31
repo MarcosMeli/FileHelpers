@@ -58,10 +58,36 @@ namespace FileHelpersTests.Common
 
 
 		[Test]
+		public void Delimited1Quoted()
+		{
+			engine = new FileHelperEngine(typeof (OptionalDelimited1Quoted));
+			OptionalDelimited1Quoted[] res = (OptionalDelimited1Quoted[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited1Quoted.txt");
+
+			Assert.AreEqual(ExpectedRecords, res.Length);
+			Assert.AreEqual("", res[2].ContactTitle);
+			Assert.AreEqual("", res[5].ContactTitle);
+		}
+
+
+		[Test]
 		public void Delimited2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited2));
 			OptionalDelimited2[] res = (OptionalDelimited2[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited2.txt");
+
+			Assert.AreEqual(ExpectedRecords, res.Length);
+			Assert.AreEqual("", res[2].ContactTitle);
+			Assert.AreEqual("", res[2].ContactName);
+			Assert.AreEqual("", res[7].ContactTitle);
+			Assert.AreEqual("", res[7].ContactName);
+
+		}
+
+		[Test]
+		public void Delimited2Quoted()
+		{
+			engine = new FileHelperEngine(typeof (OptionalDelimited2Quoted));
+			OptionalDelimited2Quoted[] res = (OptionalDelimited2Quoted[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited2Quoted.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -160,6 +186,30 @@ namespace FileHelpersTests.Common
 		{
 			public string CustomerID;
 			public string CompanyName;
+			public string ContactName;
+			[FieldOptional()]
+			public string ContactTitle;
+		}
+
+		[DelimitedRecord("|")]
+		private class OptionalDelimited1Quoted
+		{
+			public string CustomerID;
+			public string CompanyName;
+			[FieldQuoted(QuoteMode.AlwaysQuoted)]
+			public string ContactName;
+			[FieldOptional()]
+			public string ContactTitle;
+		}
+
+
+		[DelimitedRecord("|")]
+		private class OptionalDelimited2Quoted
+		{
+			public string CustomerID;
+			public string CompanyName;
+			[FieldQuoted(QuoteMode.AlwaysQuoted)]
+			[FieldOptional()]
 			public string ContactName;
 			[FieldOptional()]
 			public string ContactTitle;

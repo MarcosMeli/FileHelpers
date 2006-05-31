@@ -44,7 +44,7 @@ namespace FileHelpers
 		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)
-				throw new BadUsageException("The TextReader can´t be null.");
+				throw new ArgumentNullException("The TextReader can´t be null.");
 
 				ResetFields();
 				mHeaderText = String.Empty;
@@ -75,6 +75,15 @@ namespace FileHelpers
 		public void BeginReadFile(string fileName)
 		{
 			BeginReadStream(new StreamReader(fileName, mEncoding, true));
+		}
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
+		public void BeginReadString(string sourceData)
+		{
+			if (sourceData == null)
+				sourceData = String.Empty;
+
+			BeginReadStream(new StringReader(sourceData));
 		}
 
 		#endregion
@@ -208,6 +217,9 @@ namespace FileHelpers
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
 		public void BeginWriteStream(TextWriter writer)
 		{
+			if (writer == null)
+				throw new ArgumentException("writer", "The TextWriter can´t be null.");
+
 				ResetFields();
 				mAsyncWriter = writer;
 				WriteHeader();
@@ -233,6 +245,7 @@ namespace FileHelpers
 		}
 
 		#endregion
+
 
 		#region "  BeginappendToFile  "
 
@@ -303,7 +316,7 @@ namespace FileHelpers
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
 			if (records == null)
-				throw new BadUsageException("The record to write can´t be null.");
+				throw new ArgumentNullException("The record to write can´t be null.");
 
 			if (records.Length == 0)
 				return;

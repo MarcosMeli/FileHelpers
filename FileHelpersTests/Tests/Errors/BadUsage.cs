@@ -396,6 +396,13 @@ namespace FileHelpersTests.Errors
 			Console.Write(res);
 		}
 
+		[Test]
+		[ExpectedException(typeof (BadUsageException))]
+		public void NullRecordType()
+		{
+			new FileHelperEngine(null);
+		}
+
 		#endregion
 
 		[Test]
