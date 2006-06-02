@@ -97,25 +97,25 @@ namespace FileHelpers.DataLink
 		/// </summary>
 		/// <param name="fileName">The files where the records be written.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
-		public bool ExtractToFile(string fileName)
+		public object[] ExtractToFile(string fileName)
 		{
 			mLastExtractedRecords = mProvider.ExtractRecords();
 			FileHelperEngine.WriteFile(fileName, mLastExtractedRecords);
 
-			return true;
+			return mLastExtractedRecords;
 		}
 
 		/// <summary>
 		/// Extract records from the data source and insert them to the specified stream using the DataLinkProvider <see cref="DataLink.DataStorage.ExtractRecords"/> method.
 		/// </summary>
 		/// <param name="writer">The stream where the records be written.</param>
-		/// <returns>True if the operation is successful. False otherwise.</returns>
-		public bool ExtractToStream(StreamWriter writer)
+		/// <returns>The extracted records</returns>
+		public object[] ExtractToStream(StreamWriter writer)
 		{
 			mLastExtractedRecords = mProvider.ExtractRecords();
 			FileHelperEngine.WriteStream(writer, mLastExtractedRecords);
 
-			return true;
+			return mLastExtractedRecords;
 		}
 
 		#endregion
@@ -125,25 +125,38 @@ namespace FileHelpers.DataLink
 		/// <summary>Extract records from a file and insert them to the data source using the DataLinkProvider <see cref="DataLink.DataStorage.InsertRecords"/> method.</summary>
 		/// <param name="fileName">The file with the source records.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
-		public bool InsertFromFile(string fileName)
+		public object[] InsertFromFile(string fileName)
 		{
 			mLastInsertedRecords = FileHelperEngine.ReadFile(fileName);
 			mProvider.InsertRecords(mLastInsertedRecords);
 
-
-			return true;
+			return mLastInsertedRecords;
 		}
 
 		/// <summary>Extract records from a stream and insert them to the data source using the DataLinkProvider <see cref="DataLink.DataStorage.InsertRecords"/> method.</summary>
 		/// <param name="reader">The stream with the source records.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
-		public bool InsertFromStream(StreamReader reader)
+		public object[] InsertFromStream(StreamReader reader)
 		{
 			mLastInsertedRecords = FileHelperEngine.ReadStream(reader);
 			mProvider.InsertRecords(mLastInsertedRecords);
-			return true;
+			
+			return mLastInsertedRecords ;
 		}
 
 		#endregion
+
+		public static object[] EasyExtractToFile(DataStorage provider, string filename)
+		{
+			FileDataLink link = new FileDataLink(provider);
+			return link.ExtractToFile(filename);
+		}
+
+		public static object[] EasyInsertFromFile(DataStorage provider, string filename)
+		{
+			FileDataLink link = new FileDataLink(provider);
+			return link.InsertFromFile(filename);
+		}
+
 	}
 }

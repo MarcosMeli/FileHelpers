@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
@@ -11,12 +12,43 @@ namespace FileHelpersTests.DataLink
 		[Test]
 		public void OrdersExtract()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
+			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
+			storage.ServerName = "NEON-64";
+			storage.DatabaseName = "Northwind";
+
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
-			OrdersVerticalBar[] res = (OrdersVerticalBar[]) storage.ExtractRecords();
+			OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
+
+			Assert.AreEqual(830, res.Length);
+
+			Assert.AreEqual("VINET", res[0].CustomerID);
+			Assert.AreEqual("TOMSP", res[1].CustomerID);
+			Assert.AreEqual("HANAR", res[2].CustomerID);
+		}
+
+		[Test]
+		public void OrdersExtractToFile()
+		{
+			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			
+			storage.ServerName = "NEON-64";
+			storage.DatabaseName = "Northwind";
+
+			storage.SelectSql = "SELECT * FROM Orders";
+			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
+
+			FileDataLink.EasyExtractToFile(storage, "tempord.txt");
+
+
+			FileDataLink link = new FileDataLink(storage);
+			link.ExtractToFile("tempord.txt");
+
+			OrdersVerticalBar[] res = CommonEngine.ReadFile(typeof(OrdersVerticalBar), "tempord.txt") as OrdersVerticalBar[];
+
+			if (File.Exists("tempord.txt")) File.Delete("tempord.txt");
 
 			Assert.AreEqual(830, res.Length);
 
