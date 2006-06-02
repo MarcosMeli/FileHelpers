@@ -87,10 +87,25 @@
 			<param name="ImageNumber" value="11">
 
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="DataLink Example">
+			<param name="Name" value="AccessStorage Example">
 			<param name="Local" value="example_datalink.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="SqlServerStorage ExtractRecords Example">
+			<param name="Local" value="example_sqlstorage_extract.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="SqlServerStorage InsertRecords Example">
+			<param name="Local" value="example_sqlstorage_insert.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+
+
 
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="ExcelStorage Example">

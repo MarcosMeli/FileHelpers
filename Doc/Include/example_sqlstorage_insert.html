@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+		<LINK href="/favicon.ico" rel="SHORTCUT ICON">
+			<LINK href="global.css" type="text/css" rel="stylesheet">
+				<meta NAME="Description" content="FileHelpers are an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources.">
+				<meta name="Author" content="Marcos Meli">
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+				<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+	</HEAD>
+	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
+		topMargin="0">
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9"><img src="giftsmall.gif" width="23" height="24" border="0" alt="Amazon Wish List"></a> <a href="http://filehelpers.sourceforge.net/forums/"><img src="forums.gif" width="24" height="24" border="0" alt="Browse the Forums"></a> <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
+                    &nbsp; </td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="http://filehelpers.sourceforge.net/forums/" class="bar_link">Browse Forums </a> - <a  href="examples.html" class="bar_link">Examples</a> - 
+                            
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+
+		<table width="100%" cellpadding="5" cellspacing="5">
+			<tr>
+				<td><div id="contentdiv">
+						<h2>
+                            SqlServerStorage InsertRecords Example
+						</h2>
+						<blockquote>
+							<p>This example shows how to write records to an sql server storage and later
+                                to a file.
+							</p>
+						</blockquote>
+						<h2>The Problem
+						</h2>
+						<blockquote>
+							<p>For example if you have the following table (from the Northwind DB)</p>
+							<p><img src="orders1.png" width="652" height="374"></p>
+							<p>&nbsp;</p>
+						</blockquote>
+						<h2>
+							To use Delimited Format</h2>
+						<blockquote>
+							<p>You must define:</p>
+							<blockquote>
+								<pre>[DelimitedRecord(<span class="cpp-string">"|"</span>)]<br><span class="cs-keyword">public class</span> OrdersVerticalBar<br>{
+    <span class="cs-keyword">public int</span> OrderID;
+    <span class="cs-keyword">public string</span> CustomerID;
+   <span class="cs-keyword"> public int</span> EmployeeID; 
+    <span class="cs-keyword">public DateTime</span> OrderDate;
+    <span class="cs-keyword">public DateTime</span> RequiredDate;
+    
+    [FieldNullValue(<span class="cs-keyword">typeof</span>(DateTime), <span class="cs-string">"2005-1-1"</span>)]
+    <span class="cs-keyword">public DateTime</span> ShippedDate; 
+    <span class="cs-keyword">public int</span> ShipVia; 
+    <span class="cs-keyword">public decimal </span>Freight;
+ }</pre>
+							</blockquote></blockquote>
+						<h2>
+                            The SqlServerStorage</h2>
+                            <blockquote>
+						<p>
+                            The idea is a lot simple you create the SqlServerStorage with your record class</p>
+                    <p><pre>   SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			
+   storage.ServerName = "NEON-64";
+   storage.DatabaseName = "Northwind";
+
+   // Comment this for Windows Auth
+   storage.UserName = "Marcos";
+   storage.UserPass = "private :)";   
+                    </pre>
+                    
+                    						<p>
+After this limes if you want to get the records from the Db you need this lines:
+                    <pre>   storage.SelectSql = "SELECT * FROM Orders";
+
+   storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);  
+   
+   OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
+                     </pre>
+                                And to write the method that fill the record based on the the values of the fields:
+                    						<p>
+After this limes if you want to get the records from the Db you need this lines:
+                    <pre> protected object FillRecordOrder(object[] fields)
+ {
+	OrdersVerticalBar record = new OrdersVerticalBar();
+
+	record.OrderID = (int) fields[0];
+	record.CustomerID = (string) fields[1];
+	record.EmployeeID = (int) fields[2];
+	record.OrderDate = (DateTime) fields[3];
+	record.RequiredDate = (DateTime) fields[4];
+
+	if (fields[5] != DBNull.Value)
+		record.ShippedDate = (DateTime) fields[5];
+	else
+		record.ShippedDate = DateTime.MinValue;
+	record.ShipVia = (int) fields[6];
+	record.Freight = (decimal) fields[7];
+
+	return record;
+ }
+                     </pre>
+</blockquote>                     
+                    <h2>
+                        Write the results direct to a File</h2>
+                    &nbsp; &nbsp;&nbsp; You need this code for that task:<br />
+                    
+<blockquote>
+  <pre>   
+    FileDataLink.EasyExtractToFile(storage, "outfile.txt");
+
+   // or
+
+    FileDataLink link = new FileDataLink(storage); 
+    link.ExtractToFile("outfile.txt");     
+                     </pre>
+</blockquote>
+                    <br />
+                    <blockquote>
+						<h2>See also
+						</h2>
+						<blockquote>
+							<p></p>
+							<a href="attributes.html">Attributes List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">
+								Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a></blockquote>
+						<hr align="left">
+						<div>
+							<table width="100%">
+								<tr>
+									<td class="SmallText">
+										Copyright © 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
+										<br>
+										Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">
+											marcosdotnet[at]yahoo.com.ar</a><br>
+										Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers 
+											Dev Home</a>
+									</td>
+									<td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td>
+									<td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions
+										</a>
+									</td>
+									<td align="right" valign="top" class="SmallText">
+										<a href="http://filehelpers.sourceforge.net/forums/" class="style2">Problems ? ... browse the
+											<span class="style3"><strong>Forums</strong>.</span></a></td>
+								</tr>
+							</table>
+						</div>
+                    <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
+					</div>
+				</td>
+                <tr>
+                    <td>
+                    </td>
+                </tr>
+		</table>
+	
+	</BODY>
+</HTML>
