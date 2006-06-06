@@ -78,7 +78,7 @@ namespace FileHelpers.WizardApp
 
 
 
-        public void FillFieldDefinition(NetLanguage leng, StringBuilder sb)
+        public void FillFieldDefinition(NetLanguage leng, StringBuilder sb, bool properties)
         {
             AddMainAttributes(leng, sb);
 
@@ -123,17 +123,78 @@ namespace FileHelpers.WizardApp
 
             string visi = EnumHelper.GetVisibility(leng, mVisibility);
 
+            string usedname;
+                usedname = this.Name;
+
+            if (properties)
+            {
+                usedname = "m" + this.Name;
+                visi = EnumHelper.GetVisibility(leng, NetVisibility.Private);
+            }
+
+            switch (leng)
+                {
+                    case NetLanguage.VbNet:
+                        sb.AppendLine(visi + " " + usedname + " As " + this.Type);
+                        break;
+                    case NetLanguage.CSharp:
+                        sb.AppendLine(visi + " " + this.Type + " " + usedname + ";");
+                        break;
+                    default:
+                        break;
+                }
+
+                sb.AppendLine();
+
+        }
+        
+
+        
+        public void CreateProperty(NetLanguage leng, StringBuilder sb)
+        {
+
             switch (leng)
             {
                 case NetLanguage.VbNet:
-                    sb.AppendLine( visi + " " + this.Name + " As " + this.Type );
+                    sb.Append(IndentString);
+                    sb.AppendLine("Public Property " + this.Name + " As " + this.Type);
+                    sb.Append(IndentString);
+                    sb.AppendLine("Get");
+                    sb.Append(IndentString);
+                    sb.Append(IndentString);
+                    sb.AppendLine("Return m" + this.Name);
+                    sb.Append(IndentString);
+                    sb.AppendLine("End Get");
+                    sb.Append(IndentString);
+                    sb.AppendLine("Set(Value As " + this.Type + ")");
+                    sb.Append(IndentString);
+                    sb.Append(IndentString);
+                    sb.AppendLine("m" + this.Name + " = Value");
+                    sb.Append(IndentString);
+                    sb.AppendLine("End Set");
+                    sb.Append(IndentString);
+                    sb.AppendLine("End Property");
                     break;
                 case NetLanguage.CSharp:
-                    sb.AppendLine( visi + " " + this.Type + " " + this.Name + ";");
+                    sb.Append(IndentString);
+                    sb.AppendLine("public " + this.Type + " " + this.Name);
+                    sb.Append(IndentString);
+                    sb.AppendLine("{");
+                    sb.Append(IndentString);
+                    sb.Append(IndentString);
+                    sb.AppendLine("get { return m" + this.Name + ";}");
+                    sb.Append(IndentString);
+                    sb.Append(IndentString);
+                    sb.AppendLine("set { m" + this.Name + " = value;}");
+                    sb.Append(IndentString);
+                    sb.AppendLine("}");
                     break;
                 default:
                     break;
             }
+
+            sb.AppendLine();
+            
         }
 
 

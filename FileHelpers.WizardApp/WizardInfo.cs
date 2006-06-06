@@ -75,7 +75,13 @@ namespace FileHelpers.WizardApp
             set { mIgnoreLast = value; }
         }
 
-
+        private bool mUseProperties = false;
+        
+        public bool UseProperties
+        {
+            get { return mUseProperties; }
+            set { mUseProperties = value; }
+        }
 
         private RecordKind mRecordKind;
 
@@ -154,8 +160,10 @@ namespace FileHelpers.WizardApp
 
             foreach (DesignFieldInfoBase info in mFields)
             {
-                info.FillFieldDefinition(leng, sb);
-                sb.AppendLine();
+                info.FillFieldDefinition(leng, sb, mUseProperties);
+
+                if (mUseProperties)
+                    info.CreateProperty(leng, sb);
             }
 
             // Append End
@@ -183,8 +191,6 @@ namespace FileHelpers.WizardApp
             get { return mDefaultType; }
             set { mDefaultType = value; }
         }
-
-
 
 
     }

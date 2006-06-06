@@ -95,6 +95,7 @@ namespace FileHelpers.WizardApp
         private Fireball.Windows.Forms.CodeEditorControl txtOutput;
         private Fireball.Syntax.SyntaxDocument sdClassOut;
         private ToolTip toolTip1;
+        private CheckBox chkProperties;
         private OpenFileDialog dlgOpenWizard;
 
 		public frmWizard()
@@ -125,8 +126,9 @@ namespace FileHelpers.WizardApp
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -205,6 +207,7 @@ namespace FileHelpers.WizardApp
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkProperties = new System.Windows.Forms.CheckBox();
             this.panStep1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -497,8 +500,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender2;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -890,6 +893,7 @@ namespace FileHelpers.WizardApp
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.chkProperties);
             this.panel3.Controls.Add(this.cboClassLeng);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.pictureBox4);
@@ -899,7 +903,7 @@ namespace FileHelpers.WizardApp
             this.panel3.Controls.Add(this.txtOutput);
             this.panel3.Location = new System.Drawing.Point(568, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(229, 419);
+            this.panel3.Size = new System.Drawing.Size(264, 419);
             this.panel3.TabIndex = 1002;
             // 
             // cboClassLeng
@@ -909,16 +913,16 @@ namespace FileHelpers.WizardApp
             this.cboClassLeng.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(146, 31);
+            this.cboClassLeng.Location = new System.Drawing.Point(199, 31);
             this.cboClassLeng.Name = "cboClassLeng";
-            this.cboClassLeng.Size = new System.Drawing.Size(77, 21);
+            this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
             this.cboClassLeng.TabIndex = 1004;
             this.cboClassLeng.SelectedIndexChanged += new System.EventHandler(this.cboClassLeng_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(94, 35);
+            this.label7.Location = new System.Drawing.Point(145, 36);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -927,7 +931,7 @@ namespace FileHelpers.WizardApp
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(5, 4);
+            this.pictureBox4.Location = new System.Drawing.Point(7, 0);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -980,7 +984,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            this.txtOutput.LineMarginRender = lineMarginRender1;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender3;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -990,7 +995,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.ShowGutterMargin = false;
             this.txtOutput.ShowLineNumbers = false;
             this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(220, 312);
+            this.txtOutput.Size = new System.Drawing.Size(256, 312);
             this.txtOutput.SmoothScroll = false;
             this.txtOutput.SplitView = false;
             this.txtOutput.SplitviewH = -4;
@@ -1138,10 +1143,23 @@ namespace FileHelpers.WizardApp
             this.dlgOpenWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
             this.dlgOpenWizard.Title = "Load a Previous Record info";
             // 
+            // chkProperties
+            // 
+            this.chkProperties.AutoSize = true;
+            this.chkProperties.Checked = true;
+            this.chkProperties.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkProperties.Location = new System.Drawing.Point(4, 35);
+            this.chkProperties.Name = "chkProperties";
+            this.chkProperties.Size = new System.Drawing.Size(96, 17);
+            this.chkProperties.TabIndex = 1007;
+            this.chkProperties.Text = "Use Properties";
+            this.chkProperties.UseVisualStyleBackColor = true;
+            this.chkProperties.CheckedChanged += new System.EventHandler(this.chkProperties_CheckedChanged);
+            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(567, 408);
+            this.ClientSize = new System.Drawing.Size(568, 408);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -1822,6 +1840,12 @@ namespace FileHelpers.WizardApp
         private void txtIgnoreLast_ValueChanged(object sender, EventArgs e)
         {
             mWizardInfo.IgnoreLast = (int)txtIgnoreLast.Value;
+            ReLoadPreview();
+        }
+
+        private void chkProperties_CheckedChanged(object sender, EventArgs e)
+        {
+            mWizardInfo.UseProperties = chkProperties.Checked;
             ReLoadPreview();
         }
 
