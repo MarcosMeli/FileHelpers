@@ -2,7 +2,7 @@
 <HTML>
 	<HEAD>
 		<TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
-		<LINK href="/favicon.ico" rel="SHORTCUT ICON">
+		<LINK href="/favicon.ico" rel="SHORTCUT ICON" />
 			<LINK href="global.css" type="text/css" rel="stylesheet">
 				<style type="text/css"> .style2 { COLOR: #000000 }
 	.style3 { COLOR: #000099 }
@@ -63,12 +63,12 @@
 								<ul>
 									<li>
 									MOD: The Decimal, Double and Single converters now are Culture less and discard 
-									all the blanks before convert the number to allow (" - 10.3", " - 13. ", etc)
+									all the blanks before convert the number to allow (" - 10.3", " - 13. ", etc)</li>
 									<li>
 									MOD: The default Encoding of the FileHelperEngine changed from UTF8 to Default 
-									(ANSI).
+									(ANSI).</li>
 									<li>
-									ADD: FileHelperEngine.AppendToFile Method. (thanks Pierre)
+									ADD: FileHelperEngine.AppendToFile Method. (thanks Pierre)</li>
 									<li>
 									ADD: IgnoreFirstAttribute to discard the n first lines of the files. (thanks 
 									Sam)
@@ -317,7 +317,7 @@
                                     </LI>
                                     
                                     <LI>
-					 <a name="v1_4_0" /><STRONG>1.4.0</STRONG> (17-Mar-2006)After a lot of work I release it <br />
+					 <a name="v1_4_0" /><STRONG>1.4.0</STRONG> (17-Mar-2006) After a lot of work here is the new release<br />
 					 <b>Mayor changes:</b>
 							<UL>
                                 <li>DEL: ConverterKind.Custom was removed bacause was irrelevant to use custom converters now the lib use [FieldConverter(typeof(YouConverter))] </li>
@@ -338,7 +338,7 @@
 							</UL>
 					 <b>Minor changes:</b>
 							<UL>
-								<LI>DEL: Description property to the FieldBase this is really old (from the beggining of the lib.)
+								<LI>DEL: Description property to the FieldBase this is really old (from the beggining of the lib.)</LI>
                                     <li>DEL: Demo zip file now is merged into the binary zip.</li>
                                     <li>MOD: EngineBase.LineNum and ErrorInfo.LineNum now are <strong>LineNumber</strong>.
                                 <li>MOD: Enhaced exception messages.</li>
@@ -349,7 +349,7 @@
                                 <li>ADD: A lot of new <a href="examples.html">Usage Examples</a></li>.
                                 <li>ADD: A new form in the demo app that shows how to use the <a href="example_progress.html">
                                     ProgressNotification</a>. </li>
-                                        <li>ADD: Wizard: now use the the <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">FireBall CodeEditor</a> for syntax highlight. </li>
+                                        <li>ADD: Wizard: now use the <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">FireBall CodeEditor</a> for syntax highlight. </li>
                                         <li>ADD: Wizard: a lot of new templates and fix in others.</li>
                                     </UL>
                             <p>
@@ -358,18 +358,74 @@
 
 
                                     <LI>
-					 <a name="v1_5_0" /><STRONG>1.5.0</STRONG> (May-2006)<br />
-					 <b>Breaking changes:</b>
+					 <a name="v1_5_0" /><STRONG>1.5.0</STRONG> (Jun-2006)
+                                        <br />
+                                        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; With some delays but the library is always moving
+                                        forward thanks to a hard work and the help of all you.<br />
+					 <b>
+                         <br />
+                         Breaking changes:</b>
 							<UL>
-                                <li>Both DataStorages: SqlServerStorage and AccessStorage completely changed, from now you don´t need to override this classes you can use this as client and provide the callbacks for the Insert and Fill record methods.</li>
+                                <li>Both DataStorages: SqlServerStorage and AccessStorage completely changed, from now you don´t need to override this classes (in fact you can´t because are sealed)<br />
+                                    You can use these classes as client and provide the callbacks for the Insert and Fill record methods.</li><li>The FieldQuoted attribute was completely rewritten to support
+              optional quote for read, write or both.&nbsp;<br />
+              So you need to use now the QuoteMode enum and not only a boolean. (For Excel generated
+              CSV files you must use the QuoteMode.OptionalForBoth value)</li>
+                                <li>MOD: DataBaseStorage to DatabaseStorage (Case change)&nbsp;</li>
+                                <li>MOD: Extract and Insert Records now returns the inserted records or extracted records</li>
+                                <li></li>
 							</UL>
-					 <b>Minor changes:</b>
+					 <b>Mayor changes: </b>
+                         <UL>
+                             <li>ADD: New <strong>FielOptional</strong> that alow that the n last fields of the records
+                                 to be optional.</li>
+                             <li>ADD: Multiline Quoted Field support (with this we finish the support for Excel generated
+                                 CSV files)</li>
+                             <li>ADD: Multiline Records supports via the FieldInNewLine attribute to allow records
+                                 to span multiple lines</li>
+                             <li>ADD: OleDbStorage thanks to Permjeet Pandha to use with any Data Storage that supports
+                                 OleDb access. </li>
+                             <li>ADD: The ReadMethods of the FileHelperEngine can return the data as a <strong>DataTable</strong>
+                                 the sufix of this methods are <strong>AsDT</strong></li>
+                             <li>ADD: New <strong>MultiRecordEngine</strong> that can parse files with different
+                                 record types (some delimited with a <strong>|</strong> others with a <strong>;</strong>
+                                 others with fixed length)</li>
+                             <li>ADD: CommonEngine.<strong>SortFile </strong>and<strong> SortRecords </strong>by
+                                 field or using the IComparable intercafe if the records implement one.</li>
+                             <li>MOD: A lot of refactoring in the source code and changes in the the folder layout.</li>
+                             <li></li>
+                         </ul>
+                         <br />
+                        <b> Minor changes:</b>
 							<UL>
-								<LI></LI>
+								<LI>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 230) based
+                                    in the coverage of <a href="http://www.cenqua.com">clover.net</a>&nbsp;</LI><li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. </li>
+                                <li>ADD: Now the Wizard Supports FieldOptional and can generate the Properties that
+                                    maps to the fields usefull to Data Binding the RecordClass to any binding aware
+                                    control (VS2005)</li>
+                                <li>ADD: Encoding support for source and destination in the transformation engine.</li>
+                                <li>FIX: IO Exception when appending to an empty file. </li>
+                                <li>FIX: The AsyncEngine could close the File in the BeginWriteFile under some conditions.</li>
+                                <li>FIX: Syntax in some samples and in the Wizard Templates.</li>
+                                <li>FIX: The notify progress in the DatabaseStorage now works fine.</li>
+                                <li>FIX: A little issue in the DatabaseStorage that can throws InvalidaCastException
+                                    in the constructor.&nbsp;</li>
+                                <li>ADD: A new feature for the custom converters to allow them to handle the null values</li>
+                                <li>ADD: More features in the CommonEngine: TransformFile and the fast TransformFileAsync</li>
+                                <li>MOD: A lot of doc corrections and adds (my english is now a bit better. I learn
+                                    english with the write and fix schema =)</li>
+                                <li>MOD: Demo App rewritten to show some new features and show the syntax changes in
+                                    the old ones.</li>
+                                <li>DEL: A lot of properties in the internal classes were deleted (aiming to reduce
+                                    the dll size and library performance, much better for Compact Framework)</li>
+                                <li>DEL: The obsolete LastErrors of the ErrorManager. Now is mandatory to use Errors.</li>
+                                <li>ADD: two Easy methods to export/import data to/from a file.</li>
+                                <li>MOD: Wizard: now use the Beta2 of the excellent <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">
+                                    FireBall CodeEditor</a>. </li>
                             </ul>
                       </LI>
  					</UL>
- 					</UL>
+ 					
 
 					<H2 dir="ltr">See also
 					</H2>
@@ -402,6 +458,10 @@
                     <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
 					</div>
 				</td>
+                <tr>
+                    <td>
+                    </td>
+                </tr>
 		</table>
 	</BODY>
 </HTML>
