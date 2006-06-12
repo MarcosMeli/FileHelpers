@@ -124,9 +124,9 @@ namespace FileHelpers
 		/// <summary>
 		/// Sort the contents of the source file and write them to the destination file. 
 		/// </summary>
-		/// <param name="recordClass">Record Class (remember that need to implement the IComparer interface, or you can use SortFileByfield)</param>
-		/// <param name="sourceFile"></param>
-		/// <param name="sortedFile"></param>
+		/// <param name="recordClass">Record Class (remember that need to implement the IComparable interface or use the SortFileByfield instead)</param>
+		/// <param name="sourceFile">The source file.</param>
+		/// <param name="sortedFile">The destination File.</param>
 		public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
 		{
 			if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
@@ -142,6 +142,14 @@ namespace FileHelpers
 			engine.WriteFile(sortedFile, res);
 		}
 
+		/// <summary>
+		/// Sort the content of a File using the field name provided
+		/// </summary>
+		/// <param name="recordClass">The class for each record of the file.</param>
+		/// <param name="fieldName">The name of the field used to sort the file.</param>
+		/// <param name="asc">The sort direction.</param>
+		/// <param name="sourceFile">The source file.</param>
+		/// <param name="sortedFile">The destination File.</param>
 		public static void SortFileByField(Type recordClass, string fieldName, bool asc, string sourceFile, string sortedFile)
 		{
 
@@ -159,11 +167,22 @@ namespace FileHelpers
 			engine.WriteFile(sortedFile, res);
 		}
 
+		/// <summary>
+		/// Sort the Record Array based in the field name provided. (for advanced sorting use SortRecords)
+		/// </summary>
+		/// <param name="fieldName">The field name.</param>
+		/// <param name="records">The records Array.</param>
 		public static void SortRecordsByField(object[] records, string fieldName)
 		{
 			SortRecordsByField(records, fieldName, true);
 		}
 
+		/// <summary>
+		/// Sort the Record Array based in the field name provided. (for advanced sorting use SortRecords)
+		/// </summary>
+		/// <param name="fieldName">The field name.</param>
+		/// <param name="records">The records Array.</param>
+		/// <param name="asc">The direction of the sort. True means Ascending.</param>
 		public static void SortRecordsByField(object[] records, string fieldName, bool asc)
 		{
 			if (records.Length > 0 && records[0] != null)
@@ -179,6 +198,10 @@ namespace FileHelpers
 			}
 		}
 
+		/// <summary>
+		/// Sort the Record Array. The records must be of a Type that implements the IComparable interface.
+		/// </summary>
+		/// <param name="records">The records Array.</param>
 		public static void SortRecords(object[] records)
 		{
 			if (records.Length > 0 && records[0] != null)
@@ -191,6 +214,8 @@ namespace FileHelpers
 				Array.Sort(records);
 			}
 		}
+
+		#region "  FieldComparer  "
 
 		internal class FieldComparer : IComparer
 		{
@@ -212,6 +237,8 @@ namespace FileHelpers
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
 			}
 		}
+
+		#endregion
 
 
 	}

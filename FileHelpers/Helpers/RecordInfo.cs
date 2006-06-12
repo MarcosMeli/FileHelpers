@@ -156,7 +156,7 @@ namespace FileHelpers
 		/// <summary>Internal.</summary>
 		/// <param name="record"></param>
 		/// <returns></returns>
-		protected internal string RecordToString(object record)
+		internal string RecordToString(object record)
 		{
 			string res = String.Empty;
 

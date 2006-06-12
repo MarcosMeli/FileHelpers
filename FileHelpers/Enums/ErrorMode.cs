@@ -13,7 +13,7 @@ namespace FileHelpers
 	{
 		/// <summary>Default value, this simple Rethrow the original exception.</summary>
 		ThrowException = 0,
-		/// <summary>Add an <see cref="ErrorInfo"/> to the array of <see cref="ErrorManager.LastErrors"/>.</summary>
+		/// <summary>Add an <see cref="ErrorInfo"/> to the array of <see cref="ErrorManager.Errors"/>.</summary>
 		SaveAndContinue,
 		/// <summary>Simply ignores the exception an continue.</summary>
 		IgnoreAndContinue

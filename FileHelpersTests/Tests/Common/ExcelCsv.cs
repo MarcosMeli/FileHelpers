@@ -160,10 +160,10 @@ namespace FileHelpersTests.Common
 
 		public int Id;
 	
-		[FieldQuoted('"', true)]
+		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 		public string OrganizationName;
 
-		[FieldQuoted('"', true)]
+		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 		public string TestField;
 
 	} 
@@ -172,10 +172,10 @@ namespace FileHelpersTests.Common
 	public sealed class ExcelCsv2Type
 	{
 
-		[FieldQuoted('"', true)]
+		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 		public string OrganizationName;
 
-		[FieldQuoted('"', true)]
+		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 		public string TestField;
 
 	} 

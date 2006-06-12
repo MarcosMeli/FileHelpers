@@ -322,17 +322,32 @@ namespace FileHelpers
 		#region "  DataTable Ops  "
 
 		#if ! MINI
-
+	
+		/// <summary>
+		/// Read the records of the file and fill a DataTable with them
+		/// </summary>
+		/// <param name="fileName">The file name.</param>
+		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadFileAsDT(string fileName)
 		{
 			return mRecordInfo.RecordsToDataTable(ReadFile(fileName));
 		}
 
+		/// <summary>
+		/// Read the records of a string and fill a DataTable with them.
+		/// </summary>
+		/// <param name="source">The source string with the records.</param>
+		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStringAsDT(string source)
 		{
 			return mRecordInfo.RecordsToDataTable(ReadString(source));
 		}
 
+		/// <summary>
+		/// Read the records of the stream and fill a DataTable with them
+		/// </summary>
+		/// <param name="reader">The stream with the source records.</param>
+		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStreamAsDT(TextReader reader)
 		{
 			return mRecordInfo.RecordsToDataTable(ReadStream(reader));

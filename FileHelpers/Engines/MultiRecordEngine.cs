@@ -42,6 +42,11 @@ namespace FileHelpers
 		private Type[] mTypes;
 		#region "  Constructor  "
 
+		/// <summary>
+		/// Create a new instance of the MultiRecordEngine
+		/// </summary>
+		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
+		/// <param name="recordSelector">The selector that indicates to the engine what Type to use in each line.</param>
 		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(recordTypes[0])
 		{
 			mTypes = recordTypes;
@@ -59,7 +64,11 @@ namespace FileHelpers
 
 		#region "  ReadFile  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/ReadFile/*'/>
+		/// <summary>
+		/// Read a File and returns the records.
+		/// </summary>
+		/// <param name="fileName">The file with the records.</param>
+		/// <returns>The read records.</returns>
 		public object[] ReadFile(string fileName)
 		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
@@ -202,13 +211,13 @@ namespace FileHelpers
 		#region "  WriteFile  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
-		public void WriteFile(string fileName, MasterDetails[] records)
+		public void WriteFile(string fileName, object[] records)
 		{
 			WriteFile(fileName, records, -1);
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
-		public void WriteFile(string fileName, MasterDetails[] records, int maxRecords)
+		public void WriteFile(string fileName, object[] records, int maxRecords)
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
 			{
@@ -222,6 +231,11 @@ namespace FileHelpers
 
 		#region "  WriteStream  "
 
+		/// <summary>
+		/// Write the records to a file
+		/// </summary>
+		/// <param name="writer"></param>
+		/// <param name="records"></param>
 		public void WriteStream(TextWriter writer, object[] records)
 		{
 			WriteStream(writer, records, -1);
