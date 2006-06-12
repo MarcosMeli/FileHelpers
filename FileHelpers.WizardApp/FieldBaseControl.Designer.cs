@@ -99,7 +99,7 @@ namespace FileHelpers.WizardApp
             this.lblUp.AutoSize = true;
             this.lblUp.BackColor = System.Drawing.Color.Transparent;
             this.lblUp.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUp.Location = new System.Drawing.Point(283, 55);
+            this.lblUp.Location = new System.Drawing.Point(283, 48);
             this.lblUp.Name = "lblUp";
             this.lblUp.Size = new System.Drawing.Size(22, 13);
             this.lblUp.TabIndex = 1000;
@@ -113,7 +113,7 @@ namespace FileHelpers.WizardApp
             this.lblDown.AutoSize = true;
             this.lblDown.BackColor = System.Drawing.Color.Transparent;
             this.lblDown.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDown.Location = new System.Drawing.Point(308, 55);
+            this.lblDown.Location = new System.Drawing.Point(308, 48);
             this.lblDown.Name = "lblDown";
             this.lblDown.Size = new System.Drawing.Size(38, 13);
             this.lblDown.TabIndex = 1001;
@@ -127,7 +127,7 @@ namespace FileHelpers.WizardApp
             this.lblDelete.AutoSize = true;
             this.lblDelete.BackColor = System.Drawing.Color.Transparent;
             this.lblDelete.LinkColor = System.Drawing.Color.Maroon;
-            this.lblDelete.Location = new System.Drawing.Point(242, 55);
+            this.lblDelete.Location = new System.Drawing.Point(242, 48);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(38, 13);
             this.lblDelete.TabIndex = 1003;
@@ -166,7 +166,7 @@ namespace FileHelpers.WizardApp
             // 
             this.chkOptional.AutoSize = true;
             this.chkOptional.BackColor = System.Drawing.Color.Transparent;
-            this.chkOptional.Location = new System.Drawing.Point(254, 32);
+            this.chkOptional.Location = new System.Drawing.Point(261, 31);
             this.chkOptional.Name = "chkOptional";
             this.chkOptional.Size = new System.Drawing.Size(91, 17);
             this.chkOptional.TabIndex = 1006;
@@ -190,7 +190,7 @@ namespace FileHelpers.WizardApp
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FieldBaseControl";
-            this.Size = new System.Drawing.Size(348, 71);
+            this.Size = new System.Drawing.Size(348, 64);
             this.ResumeLayout(false);
             this.PerformLayout();
 

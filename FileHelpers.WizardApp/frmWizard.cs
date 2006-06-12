@@ -68,7 +68,7 @@ namespace FileHelpers.WizardApp
         private Button cmdBack;
         private Button cmdPreview;
         private Panel panel2;
-        private Panel panel3;
+        private Panel panPreview;
         private Button cmdSaveClass;
         private Button cmdCopyClass;
         private Label label5;
@@ -126,9 +126,9 @@ namespace FileHelpers.WizardApp
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -185,7 +185,8 @@ namespace FileHelpers.WizardApp
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panPreview = new System.Windows.Forms.Panel();
+            this.chkProperties = new System.Windows.Forms.CheckBox();
             this.cboClassLeng = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -207,7 +208,6 @@ namespace FileHelpers.WizardApp
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chkProperties = new System.Windows.Forms.CheckBox();
             this.panStep1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -222,7 +222,7 @@ namespace FileHelpers.WizardApp
             this.gbxDelimitedBy.SuspendLayout();
             this.panStep2.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
@@ -500,8 +500,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender2;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender3;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -524,8 +524,7 @@ namespace FileHelpers.WizardApp
             // sdTemplOut
             // 
             this.sdTemplOut.Lines = new string[] {
-        "ghj\r",
-        "gfjh"};
+        " "};
             this.sdTemplOut.MaxUndoBufferSize = 1;
             this.sdTemplOut.Modified = false;
             this.sdTemplOut.UndoStep = 0;
@@ -579,7 +578,7 @@ namespace FileHelpers.WizardApp
             this.cmdSaveToFile.Size = new System.Drawing.Size(122, 25);
             this.cmdSaveToFile.TabIndex = 3;
             this.cmdSaveToFile.Text = "Save to File ...";
-            this.cmdSaveToFile.UseVisualStyleBackColor = false;
+            this.cmdSaveToFile.UseVisualStyleBackColor = true;
             this.cmdSaveToFile.Click += new System.EventHandler(this.cmdSaveToFile_Click);
             // 
             // cmdToClipboard
@@ -591,7 +590,7 @@ namespace FileHelpers.WizardApp
             this.cmdToClipboard.Size = new System.Drawing.Size(157, 25);
             this.cmdToClipboard.TabIndex = 2;
             this.cmdToClipboard.Text = "Copy All to Clipboard";
-            this.cmdToClipboard.UseVisualStyleBackColor = false;
+            this.cmdToClipboard.UseVisualStyleBackColor = true;
             this.cmdToClipboard.Click += new System.EventHandler(this.cmdToClipboard_Click);
             // 
             // label2
@@ -792,7 +791,7 @@ namespace FileHelpers.WizardApp
             this.cmdAddField.Size = new System.Drawing.Size(101, 25);
             this.cmdAddField.TabIndex = 4;
             this.cmdAddField.Text = "Add Field";
-            this.cmdAddField.UseVisualStyleBackColor = false;
+            this.cmdAddField.UseVisualStyleBackColor = true;
             this.cmdAddField.Click += new System.EventHandler(this.cmdAddField_Click);
             // 
             // label15
@@ -890,30 +889,42 @@ namespace FileHelpers.WizardApp
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
-            // panel3
+            // panPreview
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.chkProperties);
-            this.panel3.Controls.Add(this.cboClassLeng);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.pictureBox4);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.cmdSaveClass);
-            this.panel3.Controls.Add(this.cmdCopyClass);
-            this.panel3.Controls.Add(this.txtOutput);
-            this.panel3.Location = new System.Drawing.Point(568, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(264, 419);
-            this.panel3.TabIndex = 1002;
+            this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panPreview.Controls.Add(this.chkProperties);
+            this.panPreview.Controls.Add(this.cboClassLeng);
+            this.panPreview.Controls.Add(this.label7);
+            this.panPreview.Controls.Add(this.pictureBox4);
+            this.panPreview.Controls.Add(this.label5);
+            this.panPreview.Controls.Add(this.cmdSaveClass);
+            this.panPreview.Controls.Add(this.cmdCopyClass);
+            this.panPreview.Controls.Add(this.txtOutput);
+            this.panPreview.Location = new System.Drawing.Point(568, 0);
+            this.panPreview.Name = "panPreview";
+            this.panPreview.Size = new System.Drawing.Size(252, 412);
+            this.panPreview.TabIndex = 1002;
+            // 
+            // chkProperties
+            // 
+            this.chkProperties.AutoSize = true;
+            this.chkProperties.Location = new System.Drawing.Point(6, 33);
+            this.chkProperties.Name = "chkProperties";
+            this.chkProperties.Size = new System.Drawing.Size(96, 17);
+            this.chkProperties.TabIndex = 1007;
+            this.chkProperties.Text = "Use Properties";
+            this.chkProperties.UseVisualStyleBackColor = true;
+            this.chkProperties.CheckedChanged += new System.EventHandler(this.chkProperties_CheckedChanged);
             // 
             // cboClassLeng
             // 
+            this.cboClassLeng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboClassLeng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClassLeng.FormattingEnabled = true;
             this.cboClassLeng.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(199, 31);
+            this.cboClassLeng.Location = new System.Drawing.Point(186, 30);
             this.cboClassLeng.Name = "cboClassLeng";
             this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
             this.cboClassLeng.TabIndex = 1004;
@@ -921,8 +932,9 @@ namespace FileHelpers.WizardApp
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(145, 36);
+            this.label7.Location = new System.Drawing.Point(132, 35);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -931,7 +943,7 @@ namespace FileHelpers.WizardApp
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(7, 0);
+            this.pictureBox4.Location = new System.Drawing.Point(5, -1);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -942,11 +954,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(43, 4);
+            this.label5.Location = new System.Drawing.Point(51, 6);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(147, 16);
+            this.label5.Size = new System.Drawing.Size(184, 19);
             this.label5.TabIndex = 1002;
             this.label5.Text = "Record Class Preview";
             // 
@@ -963,17 +975,19 @@ namespace FileHelpers.WizardApp
             // cmdCopyClass
             // 
             this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdCopyClass.Location = new System.Drawing.Point(140, 375);
+            this.cmdCopyClass.Location = new System.Drawing.Point(109, 375);
             this.cmdCopyClass.Name = "cmdCopyClass";
-            this.cmdCopyClass.Size = new System.Drawing.Size(83, 25);
+            this.cmdCopyClass.Size = new System.Drawing.Size(90, 25);
             this.cmdCopyClass.TabIndex = 11;
-            this.cmdCopyClass.Text = "Copy All";
+            this.cmdCopyClass.Text = "Copy Class";
             this.cmdCopyClass.UseVisualStyleBackColor = true;
             this.cmdCopyClass.Click += new System.EventHandler(this.cmdCopyClass_Click);
             // 
             // txtOutput
             // 
             this.txtOutput.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
+            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOutput.AutoListPosition = null;
             this.txtOutput.AutoListSelectedText = "a123";
             this.txtOutput.AutoListVisible = false;
@@ -984,8 +998,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender3;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender1;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -995,20 +1009,19 @@ namespace FileHelpers.WizardApp
             this.txtOutput.ShowGutterMargin = false;
             this.txtOutput.ShowLineNumbers = false;
             this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(256, 312);
+            this.txtOutput.Size = new System.Drawing.Size(244, 312);
             this.txtOutput.SmoothScroll = false;
             this.txtOutput.SplitView = false;
             this.txtOutput.SplitviewH = -4;
             this.txtOutput.SplitviewV = -4;
             this.txtOutput.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(234)))));
             this.txtOutput.TabIndex = 1006;
-            this.txtOutput.Text = "codeEditorControl1";
             this.txtOutput.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
             // 
             // sdClassOut
             // 
             this.sdClassOut.Lines = new string[] {
-        "gfhj"};
+        " "};
             this.sdClassOut.MaxUndoBufferSize = 1;
             this.sdClassOut.Modified = false;
             this.sdClassOut.UndoStep = 0;
@@ -1143,37 +1156,26 @@ namespace FileHelpers.WizardApp
             this.dlgOpenWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
             this.dlgOpenWizard.Title = "Load a Previous Record info";
             // 
-            // chkProperties
-            // 
-            this.chkProperties.AutoSize = true;
-            this.chkProperties.Checked = true;
-            this.chkProperties.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkProperties.Location = new System.Drawing.Point(4, 35);
-            this.chkProperties.Name = "chkProperties";
-            this.chkProperties.Size = new System.Drawing.Size(96, 17);
-            this.chkProperties.TabIndex = 1007;
-            this.chkProperties.Text = "Use Properties";
-            this.chkProperties.UseVisualStyleBackColor = true;
-            this.chkProperties.CheckedChanged += new System.EventHandler(this.chkProperties_CheckedChanged);
-            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(568, 408);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(568, 406);
+            this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panStep1);
             this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
             this.Controls.Add(this.panStep0);
+            this.Controls.Add(this.panStep1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(50, 120);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1024, 440);
+            this.MinimumSize = new System.Drawing.Size(573, 440);
             this.Name = "frmWizard";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FileHelpers - Record Class Wizard v1.1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "FileHelpers - Record Class Wizard v1.2";
             this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();
@@ -1199,8 +1201,8 @@ namespace FileHelpers.WizardApp
             this.panStep2.ResumeLayout(false);
             this.panStep2.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panPreview.ResumeLayout(false);
+            this.panPreview.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1571,7 +1573,8 @@ namespace FileHelpers.WizardApp
 
             if (mExpanded)
             {
-                this.Width -= 225;
+                panPreview.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                this.Width = panStep1.Right - 1;
                 mExpanded = false;
                 cmdPreview.Text = "&Preview >>";
             }
@@ -1585,11 +1588,13 @@ namespace FileHelpers.WizardApp
         {
             if (mExpanded == false)
             {
-                this.Width += 225;
+                this.Width = panPreview.Right + 7;
                 mExpanded = true;
                 cmdPreview.Text = "<< &Preview";
                 if (cboClassLeng.SelectedIndex == -1)
                     cboClassLeng.SelectedIndex = 0;
+
+                panPreview.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             }
 
             ReLoadPreview();
@@ -1621,6 +1626,7 @@ namespace FileHelpers.WizardApp
 
         private void radDelimited_CheckedChanged(object sender, EventArgs e)
         {
+            
             gbxDelimitedBy.Enabled = radDelimited.Checked;
         }
 
