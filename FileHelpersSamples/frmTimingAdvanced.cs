@@ -19,6 +19,8 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private Framework.Controls.XpProgressBar pb;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
 
 		/// <summary>
 		/// Required designer variable.
@@ -67,6 +69,8 @@ namespace FileHelpersSamples
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.pb = new Framework.Controls.XpProgressBar();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
@@ -84,7 +88,7 @@ namespace FileHelpersSamples
 			this.button1.BackColor = System.Drawing.Color.Navy;
 			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.White;
-			this.button1.Location = new System.Drawing.Point(104, 408);
+			this.button1.Location = new System.Drawing.Point(136, 416);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(192, 32);
 			this.button1.TabIndex = 6;
@@ -105,7 +109,9 @@ namespace FileHelpersSamples
 			// 
 			// lstView
 			// 
+			this.lstView.BackColor = System.Drawing.Color.Ivory;
 			this.lstView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+																					  this.columnHeader5,
 																					  this.columnHeader1,
 																					  this.columnHeader2,
 																					  this.columnHeader3,
@@ -113,37 +119,61 @@ namespace FileHelpersSamples
 			this.lstView.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lstView.FullRowSelect = true;
 			this.lstView.GridLines = true;
-			this.lstView.Location = new System.Drawing.Point(16, 96);
+			this.lstView.Location = new System.Drawing.Point(16, 125);
 			this.lstView.Name = "lstView";
-			this.lstView.Size = new System.Drawing.Size(432, 304);
+			this.lstView.Size = new System.Drawing.Size(432, 280);
 			this.lstView.TabIndex = 16;
 			this.lstView.View = System.Windows.Forms.View.Details;
 			// 
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Records";
-			this.columnHeader1.Width = 100;
+			this.columnHeader1.Width = 84;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "FileSize";
 			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader2.Width = 109;
+			this.columnHeader2.Width = 81;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Time Sync";
-			this.columnHeader3.Width = 104;
+			this.columnHeader3.Width = 94;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Time Async";
-			this.columnHeader4.Width = 114;
+			this.columnHeader4.Width = 109;
+			// 
+			// pb
+			// 
+			this.pb.ColorBarBorder = System.Drawing.Color.RoyalBlue;
+			this.pb.ColorBarCenter = System.Drawing.Color.AliceBlue;
+			this.pb.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(50)));
+			this.pb.ColorTextShadow = System.Drawing.Color.DimGray;
+			this.pb.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.pb.GradientStyle = Framework.Controls.GradientMode.HorizontalCenter;
+			this.pb.Location = new System.Drawing.Point(16, 94);
+			this.pb.Name = "pb";
+			this.pb.Position = 0;
+			this.pb.PositionMax = 100;
+			this.pb.PositionMin = 0;
+			this.pb.Size = new System.Drawing.Size(430, 24);
+			this.pb.StepDistance = ((System.Byte)(1));
+			this.pb.StepWidth = ((System.Byte)(3));
+			this.pb.WatermarkAlpha = 255;
+			this.pb.WatermarkImage = null;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Test Nº";
 			// 
 			// frmTimmingAdvanced
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(466, 471);
+			this.ClientSize = new System.Drawing.Size(466, 480);
+			this.Controls.Add(this.pb);
 			this.Controls.Add(this.lstView);
 			this.Controls.Add(this.cmdRun);
 			this.Controls.Add(this.button1);
@@ -158,6 +188,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.button1, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
 			this.Controls.SetChildIndex(this.lstView, 0);
+			this.Controls.SetChildIndex(this.pb, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -235,21 +266,45 @@ namespace FileHelpersSamples
 
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
+			cmdRun.Enabled = false;
+
+			pb.PositionMax = 10;
+			pb.Position = 0;
 
 			RunTestFor(10);
 			lstView.Items.Clear();
 
 			RunTestFor(10);
+			AdvanceProgress();
 			RunTestFor(100);
+			AdvanceProgress();
 			RunTestFor(500);
+			AdvanceProgress();
 			RunTestFor(1000);
+			AdvanceProgress();
 			RunTestFor(5000);
+			AdvanceProgress();
 			RunTestFor(10000);
+			AdvanceProgress();
+			RunTestFor(30000);
+			AdvanceProgress();
 			RunTestFor(50000);
+			AdvanceProgress();
+			RunTestFor(80000);
+			AdvanceProgress();
 			RunTestFor(100000);
+			AdvanceProgress();
 			//RunTestFor(500000);
 			//RunTestFor(1000000);
 
+			cmdRun.Enabled = true;
+		}
+
+		void AdvanceProgress()
+		{
+			pb.Position++;
+			pb.Text = "Test " + pb.Position.ToString() + " de " + pb.PositionMax.ToString();
+			Application.DoEvents();
 		}
 
 		FileHelperAsyncEngine mAsyncEngine = new FileHelperAsyncEngine(typeof (OrdersVerticalBar));
@@ -258,7 +313,8 @@ namespace FileHelpersSamples
 		private void RunTest(int records, long size)
 		{
 
-			ListViewItem item = new ListViewItem(records.ToString());
+			ListViewItem item = new ListViewItem("Test " + (pb.Position + 1).ToString());
+			item.SubItems.Add(records.ToString());
 			//item.SubItems[0].Font = new Font(lstView.Font, FontStyle.Bold);
 
 			item.SubItems.Add((size/1024).ToString() + " Kb");

@@ -221,6 +221,8 @@ private string GetInsertSql(object record)
 		{
 			try
 			{
+				cmdRun.Enabled = false;
+
 				lblStatus.Text = "Creating the DataLinkEngine";
 
 				AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), "TestData.mdb");
@@ -258,6 +260,10 @@ private string GetInsertSql(object record)
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString(), "Unexpected Error !!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			finally
+			{
+				cmdRun.Enabled = true;
 			}
 
 		}

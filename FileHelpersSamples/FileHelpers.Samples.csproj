@@ -188,6 +188,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "frmSort.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmSort.resx"
+                    DependentUpon = "frmSort.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "frmTiming.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

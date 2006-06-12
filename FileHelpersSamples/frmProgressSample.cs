@@ -238,6 +238,7 @@ private void ProgressChange(ProgressEventArgs e)
 
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
+			cmdRun.Enabled = false;
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 			object[] records = engine.ReadFile("Customers.txt");
 
@@ -245,7 +246,7 @@ private void ProgressChange(ProgressEventArgs e)
 
 			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
 			engine.WriteString(records);
-
+			cmdRun.Enabled = true;
 		}
 
 
