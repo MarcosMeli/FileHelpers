@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <doc>
-
 <examples>
+
 	<FileHelperEngine>
 		<example>
 			This example show the basic use of the library with minimun code:
@@ -25,7 +25,7 @@
 
 		SampleType[] records;	
 		
-		records = (SampleType[]) engine.ReadFile(@"C:\source.txt");
+		records = (SampleType[]) engine.ReadFile("source.txt");
 		
 		// Now "records" array contains all the records in the
 		// sourcefile and can be acceded like this:
@@ -45,7 +45,7 @@
 		records[0].Field1 = "Hello World";
 		records[0].Field2 = 12;
 
-		engine.WriteFile(@"C:\destination.txt", records);
+		engine.WriteFile("destination.txt", records);
 		
 		// Now the file contains the created record in this format:
 		// 
@@ -90,7 +90,7 @@
 		records[0].Field1 = "Hello World";
 		records[0].Field2 = 12;
 
-		engine.WriteFile(@"C:\destination.txt", records);
+		engine.WriteFile("destination.txt", records);
 		
 		// Now the file contains the created record in this format:
 		// 
@@ -132,7 +132,7 @@
 		records[0].Field1 = "Hello World";
 		records[0].Field2 = 12;
 
-		engine.AppendToFile(@"C:\destination.txt", records);
+		engine.AppendToFile("destination.txt", records);
 		
 		// Now the file contains have one more record at the end:
 		// 
@@ -168,7 +168,7 @@
 
 		SampleType[] records;	
 		
-		records = (SampleType[]) engine.ReadFile(@"C:\source.txt");
+		records = (SampleType[]) engine.ReadFile("source.txt");
 		
 		// Now "records" array contains all the records in the
 		// sourcefile and can be acceded like this:
@@ -213,7 +213,7 @@
 
 		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
 
-	    engine.BeginReadFile(@"C:\source.txt");
+	    engine.BeginReadFile("source.txt");
 	    
 	    while( engine.ReadNext() != null )
 	    {
@@ -234,7 +234,7 @@
 
 		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
 
-	    engine.BeginWriteFile(@"C:\source.txt");
+	    engine.BeginWriteFile("source.txt");
 	    
 	    record.Field1 = "Primer Registro";
 	    record.Field2 = 1;
@@ -274,7 +274,7 @@
 
 		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
 
-	    engine.BeginWriteFile(@"C:\source.txt");
+	    engine.BeginWriteFile("source.txt");
 	    
 	    record.Field1 = "Primer Registro";
 	    record.Field2 = 1;
@@ -320,7 +320,7 @@
 
 		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
 
-	    engine.BeginReadFile(@"C:\source.txt");
+	    engine.BeginReadFile("source.txt");
 	    
 	    while( engine.ReadNext() != null )
 	    {

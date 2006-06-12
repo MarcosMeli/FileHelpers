@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<doc>
+<examples>
+
+	<MasterDetail>
+		<example>
+You need to define a Selector Method too:
+
+		<code>
+RecordAction ExampleSelector(string record)
+{
+   if (Char.IsLetter(record[0]))
+      return RecordAction.Master;
+    else
+      return RecordAction.Detail;
+}
+                      
+		</code>
+Finally you must to instanciate a MasterDetailEngine and Read/Write files:
+
+		<code>
+MaterDetailEngine engine = new MaterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
+
+// to Read use:
+MasterDetail[] res = engine.ReadFile("TestIn.txt");
+
+// to Write use:
+engine.WriteFile("TestOut.txt", res);
+
+		</code>
+		</example>
+	</MasterDetail>
+
+
+
+</examples>
+</doc>

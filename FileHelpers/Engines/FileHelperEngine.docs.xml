@@ -6,7 +6,7 @@
 			<para>This engine is responsable to Read/Write the records <b>at once</b> from/to files or streams.</para>
 		</summary>
 		<remarks>
-		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can retrive them with the <see cref="ErrorManager.LastErrors"/> property.</para>
+		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can retrive them with the <see cref="ErrorManager.Errors"/> property.</para>
 		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the <a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
 		 <para>Or you can browse the <a href="examples.html">Examples Seccion</a> for more code.</para>
 		</remarks>
