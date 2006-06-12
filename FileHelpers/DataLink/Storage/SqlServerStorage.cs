@@ -14,7 +14,7 @@ namespace FileHelpers.DataLink
 	/// <summary>This is a base class that implements the <see cref="DataStorage"/> for Microsoft SqlServer.</summary>
 	public sealed class SqlServerStorage : DatabaseStorage
 	{
-
+		
 		#region "  Constructors  "
 
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
@@ -71,13 +71,7 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		protected override bool ExecuteInBatch
-		{
-			get { return true; }
-		}
-
-
-		#region "  Connection Properties  "
+		#region "  ServerName  "
 
 		private string mServerName = string.Empty;
 
@@ -88,6 +82,10 @@ namespace FileHelpers.DataLink
 			set { mServerName = value; }
 		}
 
+		#endregion
+
+		#region "  DatabaseName  "
+
 		private string mDatabaseName = string.Empty;
 		/// <summary> The name of the database. </summary> 
 		public string DatabaseName
@@ -95,6 +93,10 @@ namespace FileHelpers.DataLink
 			get { return mDatabaseName; }
 			set { mDatabaseName = value; }
 		}
+
+		#endregion
+
+		#region "  UserName  "
 
 		private string mUserName = string.Empty;
 		/// <summary> The user name used to logon into the SqlServer. (leave empty for WindowsAuth)</summary>
@@ -104,15 +106,30 @@ namespace FileHelpers.DataLink
 			set { mUserName = value; }
 		}
 
-		private string mUserPass = string.Empty;
+		#endregion
 
+		#region "  UserPass  "
+
+		private string mUserPass = string.Empty;
 		/// <summary> The user pass used to logon into the SqlServer. (leave empty for WindowsAuth)</summary>
 		public string UserPass
 		{
 			get { return mUserPass; }
 			set { mUserPass = value; }
 		}
+
 		#endregion
+
+		#region "  ExecuteInBatch  "
+
+		/// <summary></summary>
+		protected override bool ExecuteInBatch
+		{
+			get { return true; }
+		}
+
+		#endregion
+
 	}
 }
 

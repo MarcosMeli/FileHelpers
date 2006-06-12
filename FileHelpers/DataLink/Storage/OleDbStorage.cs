@@ -17,18 +17,19 @@ namespace FileHelpers.DataLink
 	public sealed class OleDbStorage : DatabaseStorage
 	{
 
-		private string mConnectionString = string.Empty;
+		#region "  Constructors  "
 
-		public string ConnectionString
-		{
-			get { return mConnectionString; }
-			set { mConnectionString = value; }
-		}
-
+		/// <summary>
+		/// Create a new OleDbStorage based in the record type and in the connection string.
+		/// </summary>
+		/// <param name="recordType">The Type of the records.</param>
+		/// <param name="oleDbConnString">The conection string used to create the OleDbConnection.</param>
 		public OleDbStorage(Type recordType, string oleDbConnString):base(recordType)
 		{
-			ConnectionString = oleDbConnString;
+			mConnectionString = oleDbConnString;
 		}
+
+		#endregion
 
 		#region "  Create Connection and Command  "
 
@@ -50,9 +51,20 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		#region "  ConnectionString  "
+
+		private string mConnectionString = string.Empty;
+
+		/// <summary>The conection string used to create the OleDbConnection.</summary>
+		public string ConnectionString
+		{
+			get { return mConnectionString; }
+			set { mConnectionString = value; }
+		}
+
+		#endregion
 
 	}
-
 }
 
 #endif

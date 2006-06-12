@@ -12,8 +12,14 @@ using System.Data;
 namespace FileHelpers.DataLink
 {
 
+	#region "  Delegates  "
+
+	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to get the SQL for the insert or update statement.</summary>
 	public delegate string InsertSqlHandler(object record);
+	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to fill the values of a new record from the db.</summary>
 	public delegate object FillRecordHandler(object[] fieldValues);
+
+	#endregion
 
 
 	/// <summary>This class implements the <see cref="DataStorage"/> and is the base class for Data Base storages.</summary>
@@ -21,20 +27,28 @@ namespace FileHelpers.DataLink
 	public abstract class DatabaseStorage : DataStorage
 	{
 
-		private Type mRecordType;
+		#region Constructors
 
-		public DatabaseStorage(Type recordType)
+		/// <summary>Default constructor.</summary>
+		/// <param name="recordType">The Record Type.</param>
+		protected DatabaseStorage(Type recordType)
 		{
 			mRecordType = recordType;
 		}
+		#endregion
 
+		#region RecordType
+
+		private Type mRecordType;
 		/// <summary>Returns the class that represent the records in the file.</summary>
 		public sealed override Type RecordType
 		{
 			get{ return mRecordType; }
 		}
 
+		#endregion
 
+		#region FillRecord
 		/// <summary>This method recives the fields values as an array and must return a record object.</summary>
 		/// <param name="fieldValues">The record fields values.</param>
 		/// <returns>The record object.</returns>
@@ -43,8 +57,11 @@ namespace FileHelpers.DataLink
 			if (FillRecordCallback == null)
 				throw new BadUsageException("You can´t extract records a null FillRecordCallback. Check the docs for help.");
 
-			return FillRecordCallback(fieldValues);		}
+			return FillRecordCallback(fieldValues);
+		}
+		#endregion
 
+		#region SelectSql
 		/// <summary>Must return the Select Sql used to Fetch the records to Extract.</summary>
 		/// <returns>The SQL statement.</returns>
 		private string GetSelectSql()
@@ -57,11 +74,16 @@ namespace FileHelpers.DataLink
 
 		private string mSelectSql = string.Empty;
 
+		/// <summary>Indicates the Sql statment used to get the records.</summary>
 		public string SelectSql
 		{
 			get { return mSelectSql; }
 			set { mSelectSql = value; }
 		}
+
+		#endregion
+
+		#region GetInsertSql
 
 		/// <summary>Must return a SQL string with the insert statement for the records.</summary>
 		/// <param name="record">The record to insert.</param>
@@ -74,6 +96,10 @@ namespace FileHelpers.DataLink
 			return mInsertSqlCallback(record);
 		}
 
+		#endregion
+
+		#region MustOverride Methods
+		
 		/// <summary>Must create an abstract connection object.</summary>
 		/// <returns>An Abstract Connection Object.</returns>
 		protected abstract IDbConnection CreateConnection();
@@ -81,6 +107,10 @@ namespace FileHelpers.DataLink
 		/// <summary>Must create an abstract command object.</summary>
 		/// <returns>An Abstract Command Object.</returns>
 		protected abstract IDbCommand CreateCommand();
+		
+		#endregion
+
+		#region Connections
 
 		private IDbConnection mConn;
 
@@ -91,6 +121,8 @@ namespace FileHelpers.DataLink
 				mConn = CreateConnection();
 			}
 		}
+
+		#endregion
 
 		#region "  SelectRecords  "
 
@@ -145,10 +177,15 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		#region ExecuteInBatch
+
+		/// <summary>Indicates if the underlaying Conexion allow more than one instruction per execute.</summary>
 		protected virtual bool ExecuteInBatch
 		{
 			get { return false; }
 		}
+
+		#endregion
 
 		#region "  InsertRecords  "
 
@@ -167,21 +204,24 @@ namespace FileHelpers.DataLink
 
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 				int recordNumber = 0;
+				int batchCount = 0;
 
-				foreach (object record in records)
+                foreach (object record in records)
 				{
 					// Insert Logic Here, must check duplicates
 					recordNumber++;
+					batchCount++;
 					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
 
 					SQL += GetInsertSql(record) + " ";
 
 					if (ExecuteInBatch)
 					{
-						if (SQL.Length > 16000)
+						if (batchCount >= mExecuteInBatchSize)
 						{
 							ExecuteAndLeaveOpen(SQL);
 							SQL = String.Empty;
+							batchCount = 0;
 						}
 					}
 					else
@@ -248,20 +288,48 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		#region InsertSqlCallback
+
 		private InsertSqlHandler mInsertSqlCallback;
 
+		/// <summary>Delegate used to get the SQL for the insert or update statement.</summary>
 		public InsertSqlHandler InsertSqlCallback
 		{
 			get { return mInsertSqlCallback; }
 			set { mInsertSqlCallback = value; }
 		}
 
+		#endregion
+
+		#region FillRecordCallback
+
 		private FillRecordHandler mFillRecordCallback;
+		/// <summary>Delegate used to fill the values of a new record from the db.</summary>
 		public FillRecordHandler FillRecordCallback
 		{
 			get { return mFillRecordCallback; }
 			set { mFillRecordCallback = value; }
 		}
+
+		#endregion
+
+		#region ExecuteInBatchSize
+
+		private int mExecuteInBatchSize = 100;
+
+		/// <summary>Indicates the max number of instruction of each execution. High numbers help reduce the round trips to the db and so help tp improve performance.</summary>
+		public int ExecuteInBatchSize
+		{
+			get { return mExecuteInBatchSize; }
+			set
+			{
+				if (value < 1)
+					throw new ArgumentException("ExecuteInBatchSize","ExecuteInBatchSize must be >= 1");
+
+				mExecuteInBatchSize = value;
+			}
+		}
+		#endregion
 
 	}
 }

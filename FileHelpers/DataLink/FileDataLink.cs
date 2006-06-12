@@ -146,15 +146,24 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		public static object[] EasyExtractToFile(DataStorage provider, string filename)
+
+		/// <summary>The short way to Extract the records from a DataStorage to a file</summary>
+		/// <param name="storage">The DataStorage from where get the records</param>
+		/// <param name="filename">The file where to write the records to.</param>
+		/// <returns>The Extracted records.</returns>
+		public static object[] EasyExtractToFile(DataStorage storage, string filename)
 		{
-			FileDataLink link = new FileDataLink(provider);
+			FileDataLink link = new FileDataLink(storage);
 			return link.ExtractToFile(filename);
 		}
 
-		public static object[] EasyInsertFromFile(DataStorage provider, string filename)
+		/// <summary>The short way to Insert Records from a file to a DataStorage</summary>
+		/// <param name="storage">The DataStorage where store the records.</param>
+		/// <param name="filename">The file with the SourceRecords</param>
+		/// <returns>The Inserted records</returns>
+		public static object[] EasyInsertFromFile(DataStorage storage, string filename)
 		{
-			FileDataLink link = new FileDataLink(provider);
+			FileDataLink link = new FileDataLink(storage);
 			return link.InsertFromFile(filename);
 		}
 

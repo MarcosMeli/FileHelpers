@@ -17,17 +17,22 @@ namespace FileHelpers.DataLink
 	public sealed class AccessStorage : DatabaseStorage
 	{
 
-		private string mAccessFile = string.Empty;
-		private string mAccessPassword = string.Empty;
-
+		#region "  Constructors  "
 		
+		/// <summary>Creates a new AccessStorage.</summary>
+		/// <param name="recordType">The Type of the Records</param>
 		public AccessStorage(Type recordType):base(recordType)
 		{}
 
+		/// <summary>Creates a new AccessStorage using the indicated file.</summary>
+		/// <param name="recordType">The Type of the Records</param>
+		/// <param name="accessFile">The MS Access file.</param>
 		public AccessStorage(Type recordType, string accessFile):base(recordType)
 		{
 			AccessFileName = accessFile;
 		}
+
+		#endregion
 
 		#region "  Create Connection and Command  "
 
@@ -53,14 +58,9 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-        /// <summary>The password to the access database.</summary>
-        public string AccessFilePassword
-        {
-        	get{ return mAccessPassword; }
-			set{ mAccessPassword = value; }
-		}
+		#region "  AccessFileName  "
 
-
+		private string mAccessFile = string.Empty;
 		/// <summary>The file full path of the Microsoft Access File.</summary>
 		public string AccessFileName
 		{
@@ -68,6 +68,19 @@ namespace FileHelpers.DataLink
 			set { mAccessFile = value; }
 		}
 
+		#endregion
+
+		#region "  AccessFilePassword  "
+
+		private string mAccessPassword = string.Empty;
+		/// <summary>The password to the access database.</summary>
+		public string AccessFilePassword
+		{
+			get{ return mAccessPassword; }
+			set{ mAccessPassword = value; }
+		}
+
+		#endregion
 
 	}
 
