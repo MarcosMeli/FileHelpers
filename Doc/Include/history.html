@@ -350,7 +350,9 @@
                                 <li>ADD: A new form in the demo app that shows how to use the <a href="example_progress.html">
                                     ProgressNotification</a>. </li>
                                         <li>ADD: Wizard: now use the <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">FireBall CodeEditor</a> for syntax highlight. </li>
-                                        <li>ADD: Wizard: a lot of new templates and fix in others.</li>
+                                        <li>ADD: Wizard: a lot of new templates and fix in others.
+                                            <br />
+                                        </li>
                                     </UL>
                             <p>
                             </p>
@@ -373,8 +375,9 @@
               CSV files you must use the QuoteMode.OptionalForBoth value)</li>
                                 <li>MOD: DataBaseStorage to DatabaseStorage (Case change)&nbsp;</li>
                                 <li>MOD: Extract and Insert Records now returns the inserted records or extracted records</li>
-                                <li></li>
 							</UL>
+                                        <p>
+                                        </p>
 					 <b>Mayor changes: </b>
                          <UL>
                              <li>ADD: New <strong>FielOptional</strong> that alow that the n last fields of the records
@@ -393,37 +396,38 @@
                              <li>ADD: CommonEngine.<strong>SortFile </strong>and<strong> SortRecords </strong>by
                                  field or using the IComparable intercafe if the records implement one.</li>
                              <li>MOD: A lot of refactoring in the source code and changes in the the folder layout.</li>
-                             <li></li>
                          </ul>
-                         <br />
-                        <b> Minor changes:</b>
+                             <p>
+                        <b> Minor changes:</b></p>
+                      </LI>
 							<UL>
-								<LI>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 230) based
-                                    in the coverage of <a href="http://www.cenqua.com">clover.net</a>&nbsp;</LI><li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. </li>
-                                <li>ADD: Now the Wizard Supports FieldOptional and can generate the Properties that
-                                    maps to the fields usefull to Data Binding the RecordClass to any binding aware
-                                    control (VS2005)</li>
-                                <li>ADD: Encoding support for source and destination in the transformation engine.</li>
-                                <li>FIX: IO Exception when appending to an empty file. </li>
+								<LI>FIX: IO Exception when appending to an empty file. </li>
                                 <li>FIX: The AsyncEngine could close the File in the BeginWriteFile under some conditions.</li>
                                 <li>FIX: Syntax in some samples and in the Wizard Templates.</li>
                                 <li>FIX: The notify progress in the DatabaseStorage now works fine.</li>
                                 <li>FIX: A little issue in the DatabaseStorage that can throws InvalidaCastException
-                                    in the constructor.&nbsp;</li>
+                                    in the constructor.&nbsp;</li><LI>DEL: A lot of properties in the internal classes were deleted (aiming to reduce
+                                    the dll size and library performance, much better for Compact Framework) </li>
+                                <li>DEL: The obsolete LastErrors of the ErrorManager. Now is mandatory to use Errors.</li>
+                                <li>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 240) based
+                                    in the coverage of <a href="http://www.cenqua.com">clover.net</a>&nbsp;</li>
+                                <li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. </li>
+                                <li>ADD: Now the Wizard Supports FieldOptional and can generate the Properties that
+                                    maps to the fields usefull to Data Binding the RecordClass to any binding aware
+                                    control (VS2005)</li>
+                                <li>ADD: Encoding support for source and destination in the transformation engine.</li>
                                 <li>ADD: A new feature for the custom converters to allow them to handle the null values</li>
                                 <li>ADD: More features in the CommonEngine: TransformFile and the fast TransformFileAsync</li>
-                                <li>MOD: A lot of doc corrections and adds (my english is now a bit better. I learn
-                                    english with the write and fix schema =)</li>
-                                <li>MOD: Demo App rewritten to show some new features and show the syntax changes in
-                                    the old ones.</li>
-                                <li>DEL: A lot of properties in the internal classes were deleted (aiming to reduce
-                                    the dll size and library performance, much better for Compact Framework)</li>
-                                <li>DEL: The obsolete LastErrors of the ErrorManager. Now is mandatory to use Errors.</li>
-                                <li>ADD: two Easy methods to export/import data to/from a file.</li>
+                                <li>ADD: two Easy methods to export/import data to/from a file. </li>
                                 <li>MOD: Wizard: now use the Beta2 of the excellent <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">
                                     FireBall CodeEditor</a>. </li>
+                                <li>MOD: A lot of doc corrections and adds (my english is now a bit better. I learn
+                                    english with the write and fix schema =) </li>
+                                <li>MOD: Demo App rewritten to show some new features and show the syntax changes in
+                                    the old ones.</li>
                             </ul>
-                      </LI>
+                                <p></p>
+                                <p></p>
  					</UL>
  					
 
