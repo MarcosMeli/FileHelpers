@@ -3,6 +3,8 @@
 <LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
 href="global.css" type=text/css 
 rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
 <meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
 <meta name="Author"             content="Marcos Meli" />
 <meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
@@ -41,17 +43,19 @@ bgColor=white leftMargin=0 topMargin=0>
         <blockquote>
           <p>If you like to parse a file with a field that has different parsing rules you can define a CustomConverter, for example if you have this source file:</p>
           <blockquote>
-            <pre>
+
+<textarea name="code" class="c#:nogutter:nocontrols">
 Argentina|Meli, Marcos|25
 Argentina|Meli, Luciano|25
 Argentina|Perez, Juan|25
 Chile|Salas, Marcelo|25
+</textarea>
 
-</pre>
           </blockquote>
           <p>The solution is to define a class for the Name part:</p>
           <blockquote>
-            <pre> public class NameField
+<textarea name="code" class="c#">
+public class NameField
  {
      public string FirstName;
      public string LastName;
@@ -60,11 +64,13 @@ Chile|Salas, Marcelo|25
      {
          return LastName + &quot;, &quot; + FirstName;
      }
-}</pre>
+}
+</textarea>
           </blockquote>
           <p>Later define your record class:</p>
           <blockquote>
-            <pre>[DelimitedRecord(&quot;|&quot;)]
+<textarea name="code" class="c#">
+[DelimitedRecord(&quot;|&quot;)]
 public class CustomConvClass
 {
    public string Country;
@@ -74,10 +80,13 @@ public class CustomConvClass
 
    public int Age;
 }</pre>
+</textarea>
+
           </blockquote>
           <p>The big step is to define the converter you must inherit from the <a href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
           <blockquote>
-            <pre>public class NameConverter: ConverterBase
+<textarea name="code" class="c#">
+public class NameConverter: ConverterBase
 {
    public override object StringToField(string from)
    {
@@ -89,11 +98,13 @@ public class CustomConvClass
 
        return res;
    }
-}</pre>
+}
+</textarea>
+
           </blockquote>
           <p>Done !! you can actually parse the file with.</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 FileHelperEngine  engine = new FileHelperEngine(typeof(CustomConvClass));
 
 CustomConvClass[] res = (CustomConvClass[]) engine.ReadFile("NameTest.txt");
@@ -103,7 +114,9 @@ CustomConvClass[] res = (CustomConvClass[]) engine.ReadFile("NameTest.txt");
   res[0].Country
   res[0].Names.LastName
   res[i].Names.FirstName
-  res[i].Age</pre>
+  res[i].Age
+</textarea>
+  
           </blockquote>
         </blockquote>
 
@@ -130,5 +143,9 @@ Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileH
 </div>
 </tr>
 </table>
+<script class="javascript" src="shCore.js"></script>
+<script class="javascript" src="shBrushCSharp.js"></script>
+<script class="javascript" src="shBrushVb.js"></script>
+<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script>
 
 </BODY></HTML>

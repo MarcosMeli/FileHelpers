@@ -3,6 +3,8 @@
 <LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
 href="global.css" type=text/css 
 rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
 <meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
 <meta name="Author"             content="Marcos Meli" />
 <meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
@@ -57,37 +59,52 @@ bgColor=white leftMargin=0 topMargin=0>
           <p> Next you need to define a class that maps to the record in the source/detination file.<br>
             For this example we use a file with this format delimited by a |:</p>
           <blockquote>
-            <pre>10248|VINET|04071996|32.38<br>10249|TOMSP|05071996|11.61<br>10250|HANAR|08071996|65.83<br>10251|VICTE|08071996|41.34<br>...............    </pre>
+<textarea name="code" class="c#:nogutter:nocontrols">
+10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|08071996|41.34
+...............    
+</textarea>
           </blockquote></td>
       </tr>
       <tr>
         <td height="259" valign="top">&nbsp;</td>
         <td valign="top"><p>The class that we refer can be like this:</p>
           <blockquote> <b>C#</b>
-            <pre>[DelimitedRecord(<span class="cpp-string">&quot;|&quot;</span>)]
-<span class="cs-keyword">public class</span> Orders
+<textarea name="code" class="c#">
+[DelimitedRecord(&quot;|&quot;)]
+public class Orders
 {
-   <span class="cs-comment">// No need Converters for primitive types the library provides them</span>.
-   <span class="cpp-keyword">public int</span> OrderID;
+   //No need Converters for primitive types the library provides them</span>.
+   public int OrderID;
 
-   <span class="cs-keyword">public string</span> CustomerID;
-<br>   [FieldConverter(ConverterKind.Date,<span class="cs-string"> &quot;ddMMyyyy&quot;</span>)]<br>  <span class="cs-keyword"> public DateTime</span> OrderDate;
+   public string CustomerID;
+   
+   [FieldConverter(ConverterKind.Date,&quot;ddMMyyyy&quot;)]
+   public DateTime OrderDate;
 
-   <span class="cs-keyword">public decimal</span> Freight;
-}</pre>
+   public decimal Freight;
+}
+</textarea>
           </blockquote>
                     <blockquote> <b>VB.NET</b>
-            <pre>&lt;DelimitedRecord(<span class="cpp-string">&quot;|&quot;</span>)> _
-<span class="cs-keyword">Public Class</span> Orders
+<textarea name="code" class="vb">
+DelimitedRecord(&quot;|&quot;)> _
+Public Class Orders
 
-   <span class="cs-comment">' No need Converters for primitive types the library provides them</span>.
-   <span class="cpp-keyword">Public</span> OrderID As Integer;
+   ' No need Converters for primitive types the library provides them.
+   Public OrderID As Integer;
 
-   <span class="cs-keyword">Public</span> CustomerID As String;
-<br>   &lt;FieldConverter(ConverterKind.Date,<span class="cs-string"> &quot;ddMMyyyy&quot;</span>)> _<br>  <span class="cs-keyword"> Public</span> OrderDate As DateTime;
+   Public CustomerID As String;
 
-   <span class="cs-keyword">Public</span> Freight As Decimal;
-<span class="cs-keyword">End Class</span></pre>
+   &lt;FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)> _
+   Public OrderDate As DateTime;
+
+   Public Freight As Decimal;
+   
+End Class
+</textarea>
           </blockquote>
           </td>
       </tr>
@@ -95,22 +112,26 @@ bgColor=white leftMargin=0 topMargin=0>
         <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
         <td valign="top"><p>Later you must to instantiate a FileHelperEngine and Read/Write files:                        
             <blockquote><b>C#</b>
-              <pre>FileHelperEngine engine = <span class="cpp-keyword">new</span> FileHelperEngine(<span class="cpp-keyword">typeof</span>(Orders));<span class="vb-comment">
+<textarea name="code" class="c#">
+FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
 // To Read Use:
-</span>Orders[] res = engine.ReadFile(<span class="cs-string">&quot;FileIn.txt&quot;</span>) as Orders[];
+Orders[] res = engine.ReadFile(&quot;FileIn.txt&quot;) as Orders[];
 
-<span class="cs-comment">// To Write Use:</span>
-engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res);</pre>
+// To Write Use:
+engine.WriteFile(&quot;FileOut.txt&quot;, res);
+</textarea>
           </blockquote>
             <blockquote><b>VB.NET</b>
-              <pre>Dim engine As <span class="cpp-keyword">New</span> FileHelperEngine(<span class="cpp-keyword">GetType</span>(Orders))<span class="vb-comment">
+<textarea name="code" class="vb">
+Dim engine As New FileHelperEngine(GetType(Orders))
 
 ' To Read Use:
-</span>Dim res As Orders() = DirectCast(engine.ReadFile(<span class="cs-string">&quot;FileIn.txt&quot;</span>), Orders())
+Dim res As Orders() = DirectCast(engine.ReadFile(&quot;FileIn.txt&quot;), Orders())
 
-<span class="cs-comment">' To Write Use:</span>
-engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res)</pre>
+' To Write Use:
+engine.WriteFile(&quot;FileOut.txt&quot;, res)
+</textarea>
           </blockquote>
                     </td>
       </tr>
@@ -118,22 +139,24 @@ engine.WriteFile(<span class="cs-string">&quot;FileOut.txt&quot;</span>, res)</p
         <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
         <td valign="top"><p>Finally you can use the res array to access each item in the file, for example: </p>
           <blockquote><b>C#</b>
-            <pre> <span class="cpp-keyword">foreach</span> (Orders order <span class="cpp-keyword">in</span> res)
+<textarea name="code" class="c#">
+foreach (Orders order in res)
  {
-    Console.WriteLine(<span class="cs-string">&quot;Order Info:&quot;</span>);
-    Console.WriteLine(order.CustomerID + <span class="cs-string">&quot; - &quot;</span> +
-                      order.OrderDate.ToString(<span class="cs-string">&quot;dd/MM/yy&quot;</span>));
+    Console.WriteLine(&quot;Order Info:&quot;);
+    Console.WriteLine(order.CustomerID + &quot; - &quot; +
+                      order.OrderDate.ToString(&quot;dd/MM/yy&quot;));
  }
-           </pre>
+</textarea>
           </blockquote>
           <blockquote><b>VB.NET</b>
-            <pre> <span class="cpp-keyword">For Each</span> order As Orders <span class="cpp-keyword">In</span> res)
+<textarea name="code" class="vb">
+For Each order As Orders In res)
  
-    Console.WriteLine(<span class="cs-string">&quot;Order Info:&quot;</span>)
-    Console.WriteLine(order.CustomerID + <span class="cs-string">&quot; - &quot;</span> + _
-                      order.OrderDate.ToString(<span class="cs-string">&quot;dd/MM/yy&quot;</span>))
- <span class="cpp-keyword">Next</span>
-           </pre>
+    Console.WriteLine(&quot;Order Info:&quot;)
+    Console.WriteLine(order.CustomerID + &quot; - &quot; + _
+                      order.OrderDate.ToString(&quot;dd/MM/yy&quot;))
+Next
+</textarea>
           </blockquote>
           </td>
       </tr>
@@ -164,4 +187,8 @@ Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileH
 </tr>
 </table>
 
+<script class="javascript" src="shCore.js"></script>
+<script class="javascript" src="shBrushCSharp.js"></script>
+<script class="javascript" src="shBrushVb.js"></script>
+<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script>
 </BODY></HTML>
