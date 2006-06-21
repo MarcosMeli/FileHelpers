@@ -44,14 +44,17 @@ bgColor=white leftMargin=0 topMargin=0>
         <p>In the FixedLength records when you need to read decimal info you don´t have the decimal bacause this is don´t needed. This example explain how to read that.</p>
           <p>If you like to parse a file with a field that has different parsing rules you can define a CustomConverter, for example if you have this source file:</p>
           <blockquote>
-            <pre>0001250001458800013025
+<textarea name="code" class="c#:nogutter:nocontrols">
+0001250001458800013025
 0001260012345600234567
 0001270123456702345678
-0001280087654300123456</pre>
+0001280087654300123456
+</textarea>
           </blockquote>
           <p>This is a FixedLength record file with 6 chars for the Producto Id and 8 places for each Price (6.2) the record class must be like this:</p>
           <blockquote>
-            <pre>[FixedLengthRecord]
+<textarea name="code" class="c#">
+[FixedLengthRecord]
 public class PriceRecord
 {
     [FieldFixedLength(6)]
@@ -64,23 +67,28 @@ public class PriceRecord
     [FieldFixedLength(8)]
     [FieldConverter(typeof(MoneyConverter))]
     public decimal PriceOnePay;
-}</pre>
+}
+</textarea>
           </blockquote>
           <p>The last step is to define the converter, you must inherit from the <a href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
           <blockquote>
-            <pre>public class MoneyConverter : ConverterBase
+<textarea name="code" class="c#">
+public class MoneyConverter : ConverterBase
 {
     public override object StringToField(string from)
     {
        return decimal.Parse(from) / 100;
     }
-}</pre>
+}
+</textarea>
           </blockquote>
           <p>Done !! you can actually parse the file with.</p>
           <blockquote>
-            <pre>FileHelperEngine  engine = new FileHelperEngine(typeof(PriceRecord));
+<textarea name="code" class="c#">
+FileHelperEngine  engine = new FileHelperEngine(typeof(PriceRecord));
 
-PriceRecord[] res = (PriceRecord[]) engine.ReadFile(&quot;NameTest.txt&quot;);</pre>
+PriceRecord[] res = (PriceRecord[]) engine.ReadFile(&quot;NameTest.txt&quot;);
+</textarea>
 			
           </blockquote>
         </blockquote>

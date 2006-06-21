@@ -1,6 +1,4 @@
 
-/* Main style for the table */
-
 .dp-highlighter {
 	width: 100%;
 	overflow: auto;
@@ -12,7 +10,7 @@
 	width: 100%;
 	margin: 2px 0px 2px 0px;
 	border-collapse: collapse;
-	border-bottom: 2px solid #eee;
+	border-bottom: 1px solid #eee;
 	background-color: #fff;
 }
 
@@ -33,11 +31,12 @@
 }
 
 .dp-highlighter .tools {
-	background-color: #eee;
+	background-color: #c4d4e9;
 	padding: 3px 8px 3px 10px;
+	border: 1px solid #AAA;
 	border-bottom: 1px solid gray;
 	font: 9px Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: silver;
+	color: #777;
 }
 
 .dp-highlighter .tools-corner {
@@ -46,12 +45,12 @@
 
 .dp-highlighter .tools a {
 	font-size: 9px;
-	color: gray;
+	color: #555;
 	text-decoration: none;
 }
 
 .dp-highlighter .tools a:hover {
-	color: red;
+	color: #000044;
 	text-decoration: underline;
 }
 
@@ -77,7 +76,7 @@
 }
 
 .dp-highlighter .line2 {
-	background-color: #F7F7F7;
+	background-color: #FAFAFA;
 }
 
 /* About dialog styles */
@@ -129,37 +128,37 @@
 
 /* Language specific styles */
 
-.dp-c {  }
-.dp-c .comment { color: green; }
-.dp-c .string { color: blue; }
+.dp-c {}
+.dp-c .comment { color: #228822; }
+.dp-c .string { color: #3333FF; }
 .dp-c .preprocessor { color: gray; }
-.dp-c .keyword { color: blue; }
+.dp-c .keyword { color: #0000BB; }
 .dp-c .vars { color: #d00; }
 
 .dp-vb {}
-.dp-vb .comment { color: green; }
-.dp-vb .string { color: blue; }
+.dp-vb .comment { color: #228822; }
+.dp-vb .string { color: #3333FF; }
 .dp-vb .preprocessor { color: gray; }
-.dp-vb .keyword { color: blue; }
+.dp-vb .keyword { color: #0000AA; }
 
 .dp-sql {}
-.dp-sql .comment { color: green; }
+.dp-sql .comment { color: #228822; }
 .dp-sql .string { color: red; }
-.dp-sql .keyword { color: blue; }
+.dp-sql .keyword { color: #0000BB; }
 .dp-sql .func { color: #ff1493; }
 .dp-sql .op { color: #808080; }
 
 .dp-xml {}
 .dp-xml .cdata { color: #ff1493; }
 .dp-xml .comments { color: green; }
-.dp-xml .tag { color: blue; }
+.dp-xml .tag { color: #0000BB; }
 .dp-xml .tag-name { color: black; font-weight: bold; }
 .dp-xml .attribute { color: red; }
 .dp-xml .attribute-value { color: blue; }
 
 .dp-delphi {}
 .dp-delphi .comment { color: #008200; font-style: italic; }
-.dp-delphi .string { color: blue; }
+.dp-delphi .string { color: #6633FF; }
 .dp-delphi .number { color: blue; }
 .dp-delphi .directive { color: #008284; }
 .dp-delphi .keyword { font-weight: bold; color: navy; }

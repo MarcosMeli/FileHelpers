@@ -53,7 +53,7 @@ bgColor=white leftMargin=0 topMargin=0>
       <p>
           In the standard mode you can catch the exceptions when something fail.</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 try
 {
   records = engine.Read...
@@ -62,7 +62,7 @@ catch(Exception ex)
 {
   Console.WriteLine(ex.ToString());
 }
-</pre>
+</textarea>
           </blockquote>
           <p>
               This approach not is bad but you lose some info about the current record and you
@@ -71,7 +71,7 @@ catch(Exception ex)
           A more intelligent way is usign the <a href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
           of the ErrorManager:</p>
       <blockquote>
-          <pre>
+<textarea name="code" class="c#">
 
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
@@ -85,7 +85,7 @@ if (engine.ErrorManager.ErrorCount &gt; 0)
       Console.WriteLine(err.ExceptionInfo.ToString());`
    }
  
-       </pre>
+</textarea>
           </blockquote>
           <p>
               Using the engine like this you have the good records in the records array and in
@@ -93,11 +93,11 @@ if (engine.ErrorManager.ErrorCount &gt; 0)
       <p>
           Another option is to ignore the errors and continue how is showed in this example</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
 
 records = engine.ReadFile(...
-        </pre>
+</textarea>
           </blockquote>
           <p>
               In the records array you only have the good records.</p>
@@ -109,21 +109,24 @@ records = engine.ReadFile(...
             One intersting feature is the method in the ErrorManager to save the errors to a
             file files, you can do this</p>
         <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
 records = engine.ReadFile(...
 
 if (engine.ErrorManager.ErrorCount &gt; 0)
-   engine.ErrorManager<span style="color: crimson">.SaveErrors("errors.txt"); </span>       </pre>
+   engine.ErrorManager.SaveErrors("errors.txt"); 
+</textarea>
         </blockquote>
         <p>
             To load a file with errors you can use the static method
         </p>
         <blockquote>
-            <pre>
-<span style="color: crimson"><span style="color: #000000">ErrorInfo[] errores = ErrorManager<span
-    style="color: crimson">.LoadErrors("errors.txt");</span></span> </span>       </pre>
+<textarea name="code" class="c#">
+   
+   ErrorInfo[] errores = ErrorManager.LoadErrors("errors.txt");
+
+</textarea>
         </blockquote>
     </blockquote>
 

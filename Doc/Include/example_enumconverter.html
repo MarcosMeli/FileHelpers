@@ -51,25 +51,27 @@ bgColor=white leftMargin=0 topMargin=0>
             <p>
                 The customer file is an excelent sample:</p>
           <blockquote>
-            <pre>ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
+<textarea name="code" class="c#:nogutter:nocontrols">
+ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-
-</pre>
+</textarea>
           </blockquote>
           <p>The enum is:</p>
           <blockquote>
-            <pre> public enum CustomerTitle
+<textarea name="code" class="c#">
+public enum CustomerTitle
  {
     Owner,
     SalesRepresentative,
     MarketingManager
-}</pre>
+}
+</textarea>
           </blockquote>
           <p>Later define your record class:</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 [DelimitedRecord(&quot;|&quot;)]
 public class Customers
 {
@@ -77,21 +79,22 @@ public class Customers
    public string CompanyName;
    public string ContactName;
    public CustomerTitle ContactTitle;
-}</pre>
+}
+</textarea>
           </blockquote>
           <p>Done !! you can actually parse the file with.</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
 
 Customers[] res = (Customers[]) engine.ReadFile("NameTest.txt");
 
 // You can access your enum value
 
-  if (res[0].ContactTitle == CustomerTitle.Owner)
+if (res[0].ContactTitle == CustomerTitle.Owner)
     // SomeAction
-
-</pre>
+    
+</textarea>
           </blockquote>
         </blockquote>
       <blockquote>

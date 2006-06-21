@@ -53,41 +53,50 @@ bgColor=white leftMargin=0 topMargin=0>
               change a CSV file
           </p>
           <blockquote>
-            <pre>ALFKI,Alfreds Futterkiste,Maria Anders
+<textarea name="code" class="c#">
+
+ALFKI,Alfreds Futterkiste,Maria Anders
 ANATR,Ana Trujillo Emparedados y helados,Ana Trujillo
 ANTON,Antonio Moreno Taquería,Antonio Moreno
 AROUT,Around the Horn,Thomas Hardy
-...</pre>
+...
+
+</textarea>
           </blockquote>
           <p>
               to this fixed length format</p><blockquote>
-              <pre>ALFKI     Alfreds Futterkiste                               Maria Anders                                                
+<textarea name="code" class="c#">
+
+ALFKI     Alfreds Futterkiste                               Maria Anders                                                
 ANATR     Ana Trujillo Emparedados y helados                Ana Trujillo                                                
 ANTON     Antonio Moreno Taquería                           Antonio Moreno                                              
 AROUT     Around the Horn                                   Thomas Hardy                                                
-...</pre>
+...
+
+</textarea>
           </blockquote>
       <p>
           You must define this two classes (see the TransformToRecord attribute):</p>
           <blockquote>
-            <pre>   [DelimitedRecord(",")]
+<textarea name="code" class="c#">
+
+    [DelimitedRecord(",")]
     private class FromClass
     {
         public string CustomerId;
         public string CompanyName;
         public string CustomerName;
 
-       <span style="color: #cc0000"> [TransformToRecord(typeof(ToClass))]
-</span>      <span
-           style="color: #000099">  public ToClass Transform()
+        [TransformToRecord(typeof(ToClass))]
+        public ToClass Transform()
         {
             ToClass res = new ToClass();
             res.CustomerId = CustomerId;
             res.CompanyName = CompanyName;
             res.CustomerName = CustomerName;
             return res;
-	}
-</span>    }
+        }
+    }
 	
     [FixedLengthRecord()]
     private class ToClass
@@ -102,16 +111,16 @@ AROUT     Around the Horn                                   Thomas Hardy
         public string CustomerName;
     }
 
-        </pre>
+</textarea>
           </blockquote>
           <p>Finally the code to transform the file</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
 
 FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
 
 link.TransformFile1To2("source.txt", "dest.txt");
-        </pre>
+</textarea>
           </blockquote>
           <p>
               What more simple ??</p>

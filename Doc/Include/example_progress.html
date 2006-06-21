@@ -60,16 +60,19 @@ bgColor=white leftMargin=0 topMargin=0>
           The usaje is simple you must to instanciate the engine and before call any operation
           you must call the SetProgressHandler</p>
           <blockquote>
-            <pre>
+<textarea name="code" class="c#">
+
     FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
-    <span style="color: firebrick">engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
-    </span>
-    engine.ReadFile(<span style="color: silver">... </span></pre>
+    engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+    
+    engine.ReadFile(... 
+</textarea>
           </blockquote>
           <p>
               and in your Progress change method:</p><blockquote>
-              <pre>
+<textarea name="code" class="c#">
+
     private void ProgressChange(ProgressEventArgs e)
     {
         prog1.PositionMax = e.ProgressTotal;
@@ -78,7 +81,7 @@ bgColor=white leftMargin=0 topMargin=0>
 
         Application.DoEvents();
     }
-</pre>
+</textarea>
           </blockquote>
       <p>
           Check the demo application for an example that looks like</p>

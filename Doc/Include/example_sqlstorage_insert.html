@@ -61,25 +61,33 @@
 						<blockquote>
 							<p>You must define:</p>
 							<blockquote>
-								<pre>[DelimitedRecord(<span class="cpp-string">"|"</span>)]<br><span class="cs-keyword">public class</span> OrdersVerticalBar<br>{
-    <span class="cs-keyword">public int</span> OrderID;
-    <span class="cs-keyword">public string</span> CustomerID;
-   <span class="cs-keyword"> public int</span> EmployeeID; 
-    <span class="cs-keyword">public DateTime</span> OrderDate;
-    <span class="cs-keyword">public DateTime</span> RequiredDate;
+<textarea name="code" class="c#">
+
+[DelimitedRecord("|")]
+public class OrdersVerticalBar
+{
+    public int OrderID;
+    public string CustomerID;
+    public int EmployeeID; 
+    public DateTime OrderDate;
+    public DateTime RequiredDate;
     
-    [FieldNullValue(<span class="cs-keyword">typeof</span>(DateTime), <span class="cs-string">"2005-1-1"</span>)]
-    <span class="cs-keyword">public DateTime</span> ShippedDate; 
-    <span class="cs-keyword">public int</span> ShipVia; 
-    <span class="cs-keyword">public decimal </span>Freight;
- }</pre>
+    [FieldNullValue(typeof(DateTime), "2005-1-1")]
+    public DateTime ShippedDate; 
+    public int ShipVia; 
+    public decimal Freight;
+}
+</textarea>
 							</blockquote></blockquote>
 						<h2>
                             The SqlServerStorage</h2>
                             <blockquote>
 						<p>
                             The idea is a lot simple you create the SqlServerStorage with your record class</p>
-                    <p><pre>   SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+                    <p>
+<textarea name="code" class="c#">
+
+   SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
    storage.ServerName = "NEON-64";
    storage.DatabaseName = "Northwind";
@@ -87,21 +95,25 @@
    // Comment this for Windows Auth
    storage.UserName = "Marcos";
    storage.UserPass = "private :)";   
-                    </pre>
+</textarea>
                     
                     						<p>
 After this limes if you want to get the records from the Db you need this lines:
-                    <pre>   storage.SelectSql = "SELECT * FROM Orders";
+<textarea name="code" class="c#">
+
+   storage.SelectSql = "SELECT * FROM Orders";
 
    storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);  
    
    OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
-                     </pre>
+</textarea>
                                 And to write the method that fill the record based on the the values of the fields:
                     						<p>
 After this limes if you want to get the records from the Db you need this lines:
-                    <pre> protected object FillRecordOrder(object[] fields)
- {
+<textarea name="code" class="c#">
+
+protected object FillRecordOrder(object[] fields)
+{
 	OrdersVerticalBar record = new OrdersVerticalBar();
 
 	record.OrderID = (int) fields[0];
@@ -111,29 +123,32 @@ After this limes if you want to get the records from the Db you need this lines:
 	record.RequiredDate = (DateTime) fields[4];
 
 	if (fields[5] != DBNull.Value)
-		record.ShippedDate = (DateTime) fields[5];
+		 record.ShippedDate = (DateTime) fields[5];
 	else
-		record.ShippedDate = DateTime.MinValue;
+	 	 record.ShippedDate = DateTime.MinValue;
+	
 	record.ShipVia = (int) fields[6];
 	record.Freight = (decimal) fields[7];
 
 	return record;
- }
-                     </pre>
+}
+</textarea>
 </blockquote>                     
                     <h2>
                         Write the results direct to a File</h2>
                     &nbsp; &nbsp;&nbsp; You need this code for that task:<br />
                     
 <blockquote>
-  <pre>   
-    FileDataLink.EasyExtractToFile(storage, "outfile.txt");
+<textarea name="code" class="c#">
+    
+  FileDataLink.EasyExtractToFile(storage, "outfile.txt");
 
-   // or
+  // or
 
-    FileDataLink link = new FileDataLink(storage); 
-    link.ExtractToFile("outfile.txt");     
-                     </pre>
+  FileDataLink link = new FileDataLink(storage); 
+  link.ExtractToFile("outfile.txt");     
+</textarea>
+
 </blockquote>
                     <br />
                     <blockquote>

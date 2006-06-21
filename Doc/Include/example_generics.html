@@ -49,36 +49,46 @@ bgColor=white leftMargin=0 topMargin=0>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
           <blockquote>
-            <pre>10248|VINET|04071996|32.38<br>10249|TOMSP|05071996|11.61<br>10250|HANAR|08071996|65.83<br>10251|VICTE|08071996|41.34<br>...............</pre>
+<textarea name="code" class="c#">
+10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|08071996|41.34
+...............
+</textarea>
           </blockquote>
           <p>You must declare a Record Mapping Class:</p>
           <blockquote>
-            <pre>[DelimitedRecord(<span class="vb-string">&quot;|&quot;</span>)]
-<span class="cs-keyword">public class</span> Orders
+<textarea name="code" class="c#">
+[DelimitedRecord(&quot;|&quot;)]
+public class Orders
 {
-   <span class="cs-keyword">public int</span> OrderID;
+   public int OrderID;
 
-   <span class="cs-keyword">public string</span> CustomerID;
-<br>   [FieldConverter(ConverterKind.Date, <span class="cs-string">&quot;ddMMyyyy&quot;</span>)]<br>   <span class="cs-keyword">public DateTime</span> OrderDate;
+   public string CustomerID;
 
-   <span class="cs-keyword">public decimal</span> Freight;
+   [FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)]
+   public DateTime OrderDate;
+
+   public decimal Freight;
 }
 
-        </pre>
+</textarea>
           </blockquote>
           <p>Finally you must to instanciate a FileHelperEngine and Read/Write files:</p>
           <blockquote>
-            <pre>
-FileHelperEngine engine = <span class="cs-keyword">new</span> FileHelperEngine&lt;Orders&gt;();<span class="vb-comment">
+<textarea name="code" class="c#">
+
+FileHelperEngine engine = new FileHelperEngine&lt;Orders&gt;();
 
 // to Read use:
-</span>Orders[] res = engine.ReadFile(<span class="cs-string">&quot;TestIn.txt&quot;</span>);
+Orders[] res = engine.ReadFile(&quot;TestIn.txt&quot;);
 
-<span class="cs-comment">// to Write use:</span>
-engine.WriteFile(<span class="cpp-string">&quot;TestOut.txt&quot;</span>, res);
-        </pre>
+// to Write use:
+engine.WriteFile(&quot;TestOut.txt&quot;, res);
+</textarea>
           </blockquote>
-          <p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>
+          <p>Now you have an Orders array named res where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>
           <blockquote>
             <blockquote>
               <p><img src="vs_orders.png" width="165" height="93"></p>

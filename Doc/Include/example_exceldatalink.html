@@ -61,44 +61,45 @@
 						</blockquote>
 						<h2>
 							To use Delimited Format</h2>
-						<blockquote>
 							<p>You must define:</p>
 							<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
-								<pre>	[DelimitedRecord("|")]
-	<FONT color=#000099>public class</FONT> CustomersVerticalBar
+<textarea name="code" class="c#">
+
+	[DelimitedRecord("|")]
+	public class CustomersVerticalBar
 	{
-		<FONT color=#0000ff>public string</FONT> CustomerID;
+		public string CustomerID;
 
-		<FONT color=#0000ff>public string</FONT> CompanyName;
+		public string CompanyName;
 
-		<FONT color=#0000ff>public string</FONT> ContactName;
+		public string ContactName;
 
-		<FONT color=#0000ff>public string</FONT> ContactTitle;
+		public string ContactTitle;
 
-		<FONT color=#0000ff>public string</FONT> Address;
+		public string Address;
 
-		<FONT color=#0000ff>public string</FONT> City;
+		public string City;
 
-		<FONT color=#0000ff>public string</FONT> Country;
+		public string Country;
 	}
-</pre>
-							</BLOCKQUOTE></blockquote>
+</textarea>
+							</blockquote>
 						<h2>The Solution</h2>
 						<p>&nbsp;&nbsp; Finally use the ExcelDataStorage to Read the records.&nbsp;</p>
 						<blockquote>
-							<pre>
+<textarea name="code" class="c#">
 							
    ExcelStorage provider = new ExcelStorage(typeof(CustomersVerticalBar));
    
    provider.StartRow = 3;
    provider.StartColumn = 2;
 			
-   provider.FileName = @"..\data\Customers.xls";
+   provider.FileName = "Customers.xls";
    
    CustomerVerticalBar[] res = (CustomerVerticalBar[]) provider.ExtractRecords();
 
+</textarea>
 
-</pre>
 						</blockquote>
 						<h2>See also
 						</h2>
