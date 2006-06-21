@@ -71,8 +71,8 @@ Dim engine As New FileHelperEngine(<strong>Of Customers</strong>)();</pre>
         <p>
             <strong>The main diference is that you don´t need to cast the engine results:</strong></p>
         <pre>
-<span style="text-decoration: underline">Standard Way </span>Customers[] res = <strong>
-    (Customers[])</strong> engine.ReadFile("File.txt");
+<span style="text-decoration: underline">Standard Way </span>
+Customers[] res = <strong>(Customers[])</strong> engine.ReadFile("File.txt");
 
 <span style="text-decoration: underline">Generics Way</span>
 Customers[] res = engine.ReadFile("File.txt");</pre>
