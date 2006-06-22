@@ -1,3 +1,7 @@
+#define GENERICS
+
+#if NET_2_0
+
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar"
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
@@ -8,18 +12,24 @@ using System;
 using System.Collections;
 using System.IO;
 
-#if NET_2_0
-
 namespace FileHelpers
 {
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
+#if ! GENERICS
+ 	public sealed class FileHelperAsyncEngine : EngineBase
+#else
 	public sealed class FileHelperAsyncEngine<T> : EngineBase
+#endif
 	{
 		#region "  Constructor  "
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+#if ! GENERICS
+		public FileHelperAsyncEngine(Type recordType) : base(recordType)
+#else
 		public FileHelperAsyncEngine() : base(typeof(T))
+#endif
 		{
 		}
 
@@ -30,6 +40,14 @@ namespace FileHelpers
 
 		#region "  LastRecord  "
 
+#if ! GENERICS
+		private object mLastRecord;
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+		public object LastRecord
+		{
+			get { return mLastRecord; }
+		}
+#else
 		private T mLastRecord;
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
@@ -37,6 +55,7 @@ namespace FileHelpers
 		{
 			get { return mLastRecord; }
 		}
+#endif
 
 		#endregion
 
@@ -46,7 +65,7 @@ namespace FileHelpers
 		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)
-				throw new BadUsageException("The TextReader can´t be null.");
+				throw new ArgumentNullException("The TextReader can´t be null.");
 
 				ResetFields();
 				mHeaderText = String.Empty;
@@ -79,12 +98,25 @@ namespace FileHelpers
 			BeginReadStream(new StreamReader(fileName, mEncoding, true));
 		}
 
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
+		public void BeginReadString(string sourceData)
+		{
+			if (sourceData == null)
+				sourceData = String.Empty;
+
+			BeginReadStream(new StringReader(sourceData));
+		}
+
 		#endregion
 
 		#region "  ReadNext  "
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
+#if ! GENERICS
+		public object ReadNext()
+#else
 		public T ReadNext()
+#endif
 		{
 			if (mAsyncReader == null)
 				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
@@ -101,8 +133,11 @@ namespace FileHelpers
 
 			bool byPass = false;
 
+#if ! GENERICS
+			mLastRecord = null;
+#else
 			mLastRecord = default(T);
-
+#endif
 			while (true)
 			{
 				if (currentLine != null)
@@ -110,9 +145,18 @@ namespace FileHelpers
 					try
 					{
 						mTotalRecords++;
+
+#if ! GENERICS
+						mLastRecord = mRecordInfo.StringToRecord(currentLine, mAsyncReader);
+#else
 						mLastRecord = (T) mRecordInfo.StringToRecord(currentLine, mAsyncReader);
-						byPass = true;
-						return;
+#endif
+
+						if (mLastRecord != null)
+						{
+							byPass = true;
+							return;
+						}
 					}
 					catch (Exception ex)
 					{
@@ -145,7 +189,12 @@ namespace FileHelpers
 				}
 				else
 				{
+#if ! GENERICS
+					mLastRecord = null;
+#else
 					mLastRecord = default(T);
+#endif
+
 
 					if (mRecordInfo.mIgnoreLast > 0)
 						mFooterText = mAsyncReader.RemainingText;
@@ -165,7 +214,11 @@ namespace FileHelpers
 
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
+#if ! GENERICS
+		public object[] ReadNexts(int numberOfRecords)
+#else
 		public T[] ReadNexts(int numberOfRecords)
+#endif
 		{
 			if (mAsyncReader == null)
 				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
@@ -180,8 +233,12 @@ namespace FileHelpers
 				else
 					break;
 			}
-
-			return (T[]) arr.ToArray(RecordType);
+#if ! GENERICS
+			return (object[])
+#else
+			return (T[])
+#endif
+							arr.ToArray(RecordType);
 		}
 
 		#endregion
@@ -210,6 +267,9 @@ namespace FileHelpers
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
 		public void BeginWriteStream(TextWriter writer)
 		{
+			if (writer == null)
+				throw new ArgumentException("writer", "The TextWriter can´t be null.");
+
 				ResetFields();
 				mAsyncWriter = writer;
 				WriteHeader();
@@ -236,6 +296,7 @@ namespace FileHelpers
 
 		#endregion
 
+
 		#region "  BeginappendToFile  "
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
@@ -251,7 +312,11 @@ namespace FileHelpers
 		#region "  WriteNext  "
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
+#if ! GENERICS
+		public void WriteNext(object record)
+#else
 		public void WriteNext(T record)
+#endif
 		{
 			if (mAsyncWriter == null)
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
@@ -265,7 +330,11 @@ namespace FileHelpers
 			WriteRecord(record);
 		}
 
+#if ! GENERICS
+		private void WriteRecord(object record)
+#else
 		private void WriteRecord(T record)
+#endif
 		{
 			string currentLine = null;
 
@@ -299,13 +368,17 @@ namespace FileHelpers
 		}
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
+#if ! GENERICS
+		public void WriteNexts(object[] records)
+#else
 		public void WriteNexts(T[] records)
+#endif
 		{
 			if (mAsyncWriter == null)
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
 			if (records == null)
-				throw new BadUsageException("The record to write can´t be null.");
+				throw new ArgumentNullException("The record to write can´t be null.");
 
 			if (records.Length == 0)
 				return;
@@ -313,7 +386,11 @@ namespace FileHelpers
 			if (RecordType.IsAssignableFrom(records[0].GetType()) == false)
 				throw new BadUsageException("The record must be of type: " + RecordType.Name);
 
+#if ! GENERICS
+			foreach (object rec in records)
+#else
 			foreach (T rec in records)
+#endif
 			{
 				WriteRecord(rec);
 			}
