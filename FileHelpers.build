@@ -5,10 +5,15 @@
     <property name="LibraryFileVersion" value="1_4_9" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
-    <property name="Source2005" value="_Source2005" />
+    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+    <property name="Source2005" value="FileHelpers_Vs2005" />
+    <property name="Source2003" value="FileHelpers_Vs2003" />
+
+    <property name="nant.settings.currentframework" value="net-1.1" />
+
 
     <target name="clean">
-    
+     
         <delete>
             <fileset basedir="..\AutoBuild\${LibraryVersion}">
                 <include name="*/**" />
@@ -23,7 +28,9 @@
     </target>
     
     <target name="release" depends="clean">
-        <solution solutionfile="FileHelpers.sln" configuration="Release" verbose="False" />
+        
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="false" />
+
         <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
             <fileset>
                 <include name="*.url" />
@@ -71,17 +78,38 @@
     <target name="package" depends="release">
     
         <exec program="DelTemps.bat" workingdir="." failonerror="false" />
-        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
-            <fileset basedir=".">
+        
+        <delete>
+            <fileset basedir="..\${Source2003}">
                 <include name="*/**" />
-                <exclude name="FileHelpers.WizardApp/**/*" />
-                <exclude name="References/Fireball/**/*" />
+            </fileset>
+        </delete>
+        <copy todir="..\${Source2003}">
+            <fileset>
+                <include name="*/**" />
+            </fileset>
+        </copy>
+
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
+            <fileset basedir="..">
+                <include name="${Source2003}/**/*" />
+                <exclude name="${Source2003}/FileHelpers.WizardApp/**/*" />
+                <exclude name="${Source2003}/References/Fireball/**/*" />
+      					<exclude name=".svn" />
             </fileset>
         </zip>
+
+        <delete>
+            <fileset basedir="..\${Source2003}">
+                <include name="*/**" />
+            </fileset>
+        </delete>
         
     </target>
 
     <target name="genrelease" depends="all">
+
+
 
         <delete>
             <fileset basedir="..\${Source2005}">
@@ -139,12 +167,40 @@
             </fileset>
         </copy>
 
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1">
+            <fileset basedir="..\Release\DotNet 1.1">
+                <include name="*\**" />
+            </fileset>
+        </copy>
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1 PPC">
+            <fileset basedir="..\Release\DotNet 1.1 PPC">
+                <include name="*\**" />
+            </fileset>
+        </copy>
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0">
+            <fileset basedir="..\Release\DotNet 2.0">
+                <include name="*\**" />
+            </fileset>
+        </copy>
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0 PPC">
+            <fileset basedir="..\Release\DotNet 2.0 PPC">
+                <include name="*\**" />
+            </fileset>
+        </copy>
+
+        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_bin_doc_wizard.zip" ziplevel="9">
+            <fileset basedir="..\AutoBuild\${LibraryVersion}">
+                <include name="FileHelpers/**" />
+            </fileset>
+        </zip>
+
+
         <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
-        
+       
 
         <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
-            <fileset basedir="..\${Source2005}">
-                <include name="*/**" />
+            <fileset basedir="..">
+                <include name="${Source2005}/**/*" />
                 <exclude name=".svn" />
             </fileset>
         </zip>
