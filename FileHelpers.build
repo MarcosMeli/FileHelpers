@@ -29,7 +29,7 @@
     
     <target name="release" depends="clean">
         
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="false" />
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="true" />
 
         <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
             <fileset>
@@ -50,7 +50,11 @@
             </fileset>
         </copy>
         
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
+        
     </target>
+    
     <target name="document" depends="release">
         <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
@@ -62,6 +66,13 @@
         <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
         <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
 
+        <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
+            <fileset basedir="FileHelpers.CodeExamples\Release">
+                <include name="**/*" />
+                <exclude name=".svn" />
+            </fileset>
+        </zip>
+
         <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
         <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />
 
@@ -71,6 +82,8 @@
                 <exclude name=".svn" />
             </fileset>
         </zip>
+        
+
     </target>
     
     <target name="test" depends="release" />
@@ -136,7 +149,7 @@
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 237" workingdir="Libs" />
 
-        <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
+        <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
 
         <delete>
             <fileset basedir="..\${Source2005}\Backup">
