@@ -57,6 +57,8 @@
             <fileset basedir="FileHelpers.CodeExamples">
                 <include name="**/*" />
                 <exclude name=".svn" />
+                <exclude name="**/*.suo" />
+                <exclude name="**/*.resharperoptions" />
                 <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
                 <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
                 <exclude name="Release/**"  />
@@ -85,6 +87,8 @@
             <fileset basedir="FileHelpers.CodeExamples">
                 <include name="**/*" />
                 <exclude name=".svn" />
+                <exclude name="**/*.suo" />
+                <exclude name="**/*.resharperoptions" />
                 <exclude name="FileHelpers.CodeExamples\Example CSharp\obj"  />
                 <exclude name="FileHelpers.CodeExamples\Example VbNet\obj"  />
             </fileset>
