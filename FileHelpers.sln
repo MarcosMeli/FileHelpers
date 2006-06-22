@@ -19,10 +19,6 @@ Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "FileHelpersCompact", "FileH
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.DB2Storage", "FileHelpers.DB2Storage\FileHelpers.DB2Storage.csproj", "{6DA5CCC6-688B-4290-8258-01AA945B191C}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -51,10 +47,6 @@ Global
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Release.ActiveCfg = Release|Windows CE
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Release.Build.0 = Release|Windows CE
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Release.Deploy.0 = Release|Windows CE
-		{6DA5CCC6-688B-4290-8258-01AA945B191C}.Debug.ActiveCfg = Debug|.NET
-		{6DA5CCC6-688B-4290-8258-01AA945B191C}.Debug.Build.0 = Debug|.NET
-		{6DA5CCC6-688B-4290-8258-01AA945B191C}.Release.ActiveCfg = Release|.NET
-		{6DA5CCC6-688B-4290-8258-01AA945B191C}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		DeveloperStuff\Readme for Developers.txt = DeveloperStuff\Readme for Developers.txt

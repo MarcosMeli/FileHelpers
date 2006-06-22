@@ -116,7 +116,7 @@ namespace Examples
 			Console.WriteLine();
 
 			FileTransformEngine engine = new FileTransformEngine(typeof(Customer), typeof(Customer2));
-			engine.TransformFile1To2(@"..\Data\CustomersDelimited.txt", "temp.txt");
+			engine.TransformFile(@"..\Data\CustomersDelimited.txt", "temp.txt");
 
 
 			Console.WriteLine("Format Transformation Successful");

@@ -121,7 +121,7 @@ Module MainModule
 
 
         Dim engine As FileTransformEngine = New FileTransformEngine(GetType(Customer), GetType(Customer2))
-        engine.TransformFile1To2("..\Data\CustomersDelimited.txt", "temp.txt")
+        engine.TransformFile("..\Data\CustomersDelimited.txt", "temp.txt")
 
 
         Console.WriteLine("Format Transformation Successful !!!")

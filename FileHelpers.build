@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.4.9" />
-    <property name="LibraryFileVersion" value="1_4_9" />
+    <property name="LibraryVersion" value="1.5.0" />
+    <property name="LibraryFileVersion" value="1_5_0" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
-    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+    <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
+    
     <property name="Source2005" value="FileHelpers_Vs2005" />
     <property name="Source2003" value="FileHelpers_Vs2003" />
 
@@ -31,6 +32,8 @@
         
         <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="true" />
 
+        <copy file="..\Release\DotNet 1.1\FileHelpers.dll" todir="FileHelpers.CodeExamples\References" />
+
         <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
             <fileset>
                 <include name="*.url" />
@@ -50,9 +53,21 @@
             </fileset>
         </copy>
         
+        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Examples">
+            <fileset basedir="FileHelpers.CodeExamples">
+                <include name="**/*" />
+                <exclude name=".svn" />
+                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
+                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
+                <exclude name="Release/**"  />
+                
+            </fileset>
+        </copy>
+
         <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
         <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
-        
+
+       
     </target>
     
     <target name="document" depends="release">
@@ -67,9 +82,11 @@
         <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
 
         <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
-            <fileset basedir="FileHelpers.CodeExamples\Release">
+            <fileset basedir="FileHelpers.CodeExamples">
                 <include name="**/*" />
                 <exclude name=".svn" />
+                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj"  />
+                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj"  />
             </fileset>
         </zip>
 
@@ -108,7 +125,8 @@
                 <include name="${Source2003}/**/*" />
                 <exclude name="${Source2003}/FileHelpers.WizardApp/**/*" />
                 <exclude name="${Source2003}/References/Fireball/**/*" />
-      					<exclude name=".svn" />
+                <exclude name="${Source2003}/FileHelpers.DB2Storage/**/*" />
+                <exclude name=".svn" />
             </fileset>
         </zip>
 
@@ -214,6 +232,7 @@
         <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
             <fileset basedir="..">
                 <include name="${Source2005}/**/*" />
+                <exclude name="${Source2005}/FileHelpers.DB2Storage/**/*" />
                 <exclude name=".svn" />
             </fileset>
         </zip>
