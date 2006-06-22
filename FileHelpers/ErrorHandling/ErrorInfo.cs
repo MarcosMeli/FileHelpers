@@ -10,7 +10,7 @@ namespace FileHelpers
 {
 	/// <summary>Contains error information of the <see cref="FileHelperEngine"/> class.</summary>
 	[DelimitedRecord("|")]
-	[IgnoreFirst(1)]
+	[IgnoreFirst(2)]
 	public sealed class ErrorInfo
 	{
 		internal ErrorInfo()

@@ -73,7 +73,16 @@ namespace FileHelpers
 		/// <param name="fileName">The file that contains the errors.</param>
 		public void SaveErrors(string fileName)
 		{
-			SaveErrors(fileName, "FileHelpers Errors Saved at " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
+			string header;
+			if (ErrorCount > 0)
+				header = "FileHelpers - Errors Saved ";
+			else
+				header = "FileHelpers - NO Errors Found ";
+
+			header += "at " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+			header += StringHelper.NewLine + "LineNumber | LineString |ErrorDescription";
+
+			SaveErrors(fileName, header);
 		}
 
 		/// <summary>Saves the contained errors to the specified file.</summary>
@@ -82,6 +91,10 @@ namespace FileHelpers
 		public void SaveErrors(string fileName, string header)
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (ErrorInfo));
+
+			if (header.IndexOf(StringHelper.NewLine) == header.LastIndexOf(StringHelper.NewLine))
+				header +=  StringHelper.NewLine;
+
 			engine.HeaderText = header;
 			engine.WriteFile(fileName, Errors);
 

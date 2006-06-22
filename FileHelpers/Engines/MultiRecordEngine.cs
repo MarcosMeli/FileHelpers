@@ -149,7 +149,11 @@ namespace FileHelpers
 					if (currType != null)
 					{
 						RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
-						resArray.Add(info.StringToRecord(currentLine, freader));
+
+						object record = info.StringToRecord(currentLine, freader);
+
+						if (record != null)
+							resArray.Add(record);
 					}
 
 				}

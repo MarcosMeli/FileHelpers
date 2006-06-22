@@ -16,28 +16,35 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldNullValueAttribute : Attribute
 	{
-		private object mNullValue;
+		internal object NullValue;
+//		internal bool NullValueOnWrite = false;
 
-		/// <summary>The null value used when the file has a null string in the record position. </summary>
-		public object NullValue
-		{
-			get { return mNullValue; }
-		}
-
+		
 		/// <summary>Indicates directly the null value.</summary>
 		/// <param name="nullValue">The value to assign in the "NULL" case.</param>
 		public FieldNullValueAttribute(object nullValue)
 		{
-			mNullValue = nullValue;
+			NullValue = nullValue;
+//			NullValueOnWrite = useOnWrite;
 		}
+
+//		/// <summary>Indicates directly the null value.</summary>
+//		/// <param name="nullValue">The value to assign in the "NULL" case.</param>
+//		public FieldNullValueAttribute(object nullValue): this(nullValue, false)
+//		{}
+
+//		/// <summary>Indicates a type and a string to be converted to that type.</summary>
+//		/// <param name="type">The type of the null value.</param>
+//		/// <param name="nullValue">The string to be converted to the specified type.</param>
+//		/// <param name="useOnWrite">Indicates that if the field has that value when the library writes, then the engine use an empty string.</param>
+//		public FieldNullValueAttribute(Type type, string nullValue, bool useOnWrite):this(Convert.ChangeType(nullValue, type, null), useOnWrite)
+//		{}
 
 		/// <summary>Indicates a type and a string to be converted to that type.</summary>
 		/// <param name="type">The type of the null value.</param>
 		/// <param name="nullValue">The string to be converted to the specified type.</param>
-		public FieldNullValueAttribute(Type type, string nullValue)
-		{
-			mNullValue = Convert.ChangeType(nullValue, type, null);
-		}
+		public FieldNullValueAttribute(Type type, string nullValue):this(Convert.ChangeType(nullValue, type, null))
+		{}
 
 	}
 }

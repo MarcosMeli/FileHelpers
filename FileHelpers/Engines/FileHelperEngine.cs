@@ -103,7 +103,10 @@ namespace FileHelpers
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 					#endif
 
-					resArray.Add(mRecordInfo.StringToRecord(currentLine, freader));
+					object record = mRecordInfo.StringToRecord(currentLine, freader);
+
+					if (record != null)
+						resArray.Add(record);
 				}
 				catch (Exception ex)
 				{

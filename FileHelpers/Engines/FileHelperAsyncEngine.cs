@@ -118,8 +118,12 @@ namespace FileHelpers
 					{
 						mTotalRecords++;
 						mLastRecord = mRecordInfo.StringToRecord(currentLine, mAsyncReader);
-						byPass = true;
-						return;
+
+						if (mLastRecord != null)
+						{
+							byPass = true;
+							return;
+						}
 					}
 					catch (Exception ex)
 					{

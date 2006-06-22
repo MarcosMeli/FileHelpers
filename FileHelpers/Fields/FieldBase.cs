@@ -61,6 +61,7 @@ namespace FileHelpers
 		internal bool mTrailingArray = false;
 
 		internal object mNullValue = null;
+		//internal bool mNullValueOnWrite = false;
 
 		#endregion
 
@@ -82,6 +83,8 @@ namespace FileHelpers
 			if (attribs.Length > 0)
 			{
 				mNullValue = ((FieldNullValueAttribute) attribs[0]).NullValue;
+//				mNullValueOnWrite = ((FieldNullValueAttribute) attribs[0]).NullValueOnWrite;
+
 				if (mNullValue != null)
 				{
 					if (! mFieldType.IsAssignableFrom(mNullValue.GetType()))
@@ -107,9 +110,10 @@ namespace FileHelpers
 			{
 				if (fieldValue == null)
 					res = string.Empty;
+//				else if (mNullValueOnWrite && fieldValue.Equals(mNullValue))
+//					res = string.Empty;
 				else
 					res = fieldValue.ToString();
-
 			}
 			else
 			{

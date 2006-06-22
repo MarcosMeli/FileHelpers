@@ -67,6 +67,9 @@ namespace FileHelpers
 			if (mRecordType.IsDefined(typeof (IgnoreLastAttribute), false))
 				mIgnoreLast = ((IgnoreLastAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreLastAttribute), false)[0]).NumberOfLines;
 
+			if (mRecordType.IsDefined(typeof (IgnoreEmptyLinesAttribute), false))
+				mIgnoreEmptyLines = true;
+
 			mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {});
 
 
@@ -117,6 +120,7 @@ namespace FileHelpers
 		private int mFieldCount;
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
+		internal bool mIgnoreEmptyLines = false;
 
 		internal static readonly object[] mEmptyObjectArr = new object[] {};
 		internal static readonly Type[] mEmptyTypeArr = new Type[] {};
@@ -143,6 +147,9 @@ namespace FileHelpers
 
 		internal object StringToRecord(string line, ForwardReader reader)
 		{
+			if (line == string.Empty && mIgnoreEmptyLines)
+				return null;
+
 			object record = mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
 
 			for (int i = 0; i < mFieldCount; i++)

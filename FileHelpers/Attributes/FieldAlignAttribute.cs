@@ -29,34 +29,16 @@ namespace FileHelpers
 		/// <param name="alignChar">The character used to align.</param>
 		public FieldAlignAttribute(AlignMode align, char alignChar)
 		{
-			mAlign = align;
-			mAlignChar = alignChar;
+			Align = align;
+			AlignChar = alignChar;
 		}
 
 		#endregion
-
-		#region "  Align  "
-
-		private AlignMode mAlign;
 
 		/// <summary>The position of the alignment.</summary>
-		public AlignMode Align
-		{
-			get { return mAlign; }
-		}
-
-		#endregion
-
-		#region "  AlignChar  "
-
-		private char mAlignChar;
+		internal AlignMode Align;
 
 		/// <summary>The character used to align.</summary>
-		public char AlignChar
-		{
-			get { return mAlignChar; }
-		}
-
-		#endregion
+		internal char AlignChar;
 	}
 }

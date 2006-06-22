@@ -189,13 +189,20 @@ namespace FileHelpers.MasterDetail
 							mTotalRecords++;
 							record = new MasterDetails();
 							tmpDetails.Clear();
-							record.mMaster = mMasterInfo.StringToRecord(currentLine, freader);
+							object lastMaster = mMasterInfo.StringToRecord(currentLine, freader);
+
+							if (lastMaster != null)
+								record.mMaster = mMasterInfo.StringToRecord(currentLine, freader);
 
 							break;
 
 						case RecordAction.Detail:
-							tmpDetails.Add(mRecordInfo.StringToRecord(currentLine, freader));
+							object lastChild = mRecordInfo.StringToRecord(currentLine, freader);
+
+							if (lastChild != null)
+								tmpDetails.Add(lastChild);
 							break;
+
 						default:
 							break;
 					}

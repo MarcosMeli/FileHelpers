@@ -145,7 +145,6 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void ReadExcelCsv3()
 		{
 			engine = new FileHelperEngine(typeof (ExcelCsv3Type));

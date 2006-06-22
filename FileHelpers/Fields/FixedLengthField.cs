@@ -39,7 +39,7 @@ namespace FileHelpers
 			ExtractedInfo res;
 
 			if (from.Length < this.mLength)
-				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") for the field " + mFieldInfo.Name + " don´t match the record length: " + mLength.ToString());
+				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") don´t match the length of the field " + mFieldInfo.Name + " (" + mLength.ToString() + ")");
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 
