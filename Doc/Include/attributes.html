@@ -45,14 +45,14 @@ bgColor=white leftMargin=0 topMargin=0>
     <p>
         <strong>Attributes for the record mapping class</strong></p>
         <ul>
-          <li><a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecordAttribute</a>: Indicates a fixed length record file.
+          <li><a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>: Indicates a fixed length record file.
             <blockquote>
               <pre>[FixedLengthRecord] 
 <span class="cpp-keyword">public class</span> OrdersFixed
 { ...</pre>
             </blockquote>
           </li>
-          <li><a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecordAttribute</a>: Indicates a delimited record file. 
+          <li><a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecord</a>: Indicates a delimited record file. 
             <blockquote>
               <pre>[DelimitedRecord(<span class="cs-string">"|"</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
@@ -61,39 +61,48 @@ bgColor=white leftMargin=0 topMargin=0>
 </pre>
             </blockquote>
           </li>
-          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirstAttribute</a>: Indicates the numbers of lines to be <strong>ignored at the begining</strong> of a file or
+          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirst</a>: Indicates the numbers of lines to be <strong>ignored at the begining</strong> of a file or
               stream when the engine read it.<blockquote>
               <pre>[IgnoreFirst(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
 { ...
 
-
 </pre>
             </blockquote>
           </li>
 
-          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLastAttribute</a>: Indicates the numbers of lines to be <strong>ignored at the end</strong> of a file or stream
+          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLast</a>: Indicates the numbers of lines to be <strong>ignored at the end</strong> of a file or stream
               when the engine read it.<blockquote>
               <pre>
 [IgnoreLast(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
 { ...
 
+</pre>
+            </blockquote>
+          </li>
+          <li><a href="FileHelpers.IgnoreEmptyLinesAttribute.html">IgnoreEmptyLines</a>: Indicates that the empty lines (only contains a NewLine)  must be ignored by the engine.<blockquote>
+              <pre>
+[IgnoreEmptyLines()] 
+<span class="cs-keyword">public class</span> NotEmptyPlease
+{ ...
 
 </pre>
             </blockquote>
           </li>
 
         </ul>
-        <p><strong>Attributes for the fields inside the class</strong></p>
+        <p><strong>Attributes for the fields inside the class</strong><br/>
+        All the attributes for the Fields begin with [Field.. then you can easy found all of them.
+        </p>
         <ul>
-          <li><a href="FileHelpers.FieldFixedLengthAttribute.html">FieldFlixedLength</a>: Indicates the length of the record (only valid when the class have a <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecordAttribute</a>)
+          <li><a href="FileHelpers.FieldFixedLengthAttribute.html">FieldFlixedLength</a>: Indicates the length of the record (only valid when the class have a <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>)
             <blockquote>
               <pre>[FieldFixedLength(<span class="cs-literal">12</span>)]
 <span class="cs-keyword">public string</span> CustomerID;</pre>
             </blockquote>
           </li>
-          <li><a href="FileHelpers.FieldDelimiterAttribute.html">FieldDelimiter</a>: Indicates a diferent delimiter for this field (only valid when the class have a <a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecordAttribute</a>)          
+          <li><a href="FileHelpers.FieldDelimiterAttribute.html">FieldDelimiter</a>: Indicates a diferent delimiter for this field (only valid when the class have a <a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecord</a>)          
           <blockquote>
             <pre>[FieldDelimiter(<span class="cs-string">","</span>)]
 <span class="cs-keyword">public string</span> CustomerName;
@@ -115,8 +124,12 @@ bgColor=white leftMargin=0 topMargin=0>
 [FieldQuoted('[')] // Quoted between [brakets]
 <span class="cs-keyword">public string </span>CustomerName
 
-[FieldQuoted('"', true)] // Optional quoted, only if the CustomerName string contains the delimiter of the fields
-<span class="cs-keyword">public string </span>CustomerName</pre>
+[FieldQuoted('"', <a href="FileHelpers.QuoteMode.html">QuoteMode</a>.OptionalForBoth)] // Optional quoted when read or write
+<span class="cs-keyword">public string </span>CustomerName
+
+[FieldQuoted('"', <a href="FileHelpers.MultilineMode.html">MultilineMode</a>.AllowForBoth)] // Indicates that the quoted string can span multiple lines
+<span class="cs-keyword">public string </span>CustomerName
+</pre>
 
           </blockquote>
           
@@ -149,6 +162,14 @@ public int </span>Going_to_the_Right</pre>
     </blockquote>
 </li>
 
+        <li><a href="FileHelpers.FieldInNewLineAttribute.html">FieldInNewLine</a>: Indicates that
+            before the field value is a New Line.<br /><b>If you use this attribute the library request that new line that not is optional.</b>
+    <blockquote>
+        <pre>[FieldInNewLine()]
+<span class="cs-keyword">public string </span>I_Wanna_Stay_Alone</pre>
+    </blockquote>
+</li>
+
         <li><a href="FileHelpers.FieldOptionalAttribute.html">FieldOptional</a>: Indicates that
             the target field can stay or not in the file.<br /><b>When you apply this attribute to a field, you must apply it to the following ones.</b>
     <blockquote>
@@ -168,7 +189,7 @@ Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> 
 Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
 Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
 </td>
-    <td width="31" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar"><img src="smartsolutions.png" width="31" height="38" border="0"></a></td><td width="101" valign="middle" class="SmallText"><a href="http://www.smartsolutions.com.ar">SmartSolutions </a></td><td align="right" valign="middle" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1"><a href="FAQ.html"><img src=help.png border=0 /></a></td>
+    <td valign="middle" > <a href="http://filehelpers.sourceforge.net/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /></a></td><td align="right" valign="middle" class="SmallText"> <a href="http://filehelpers.sourceforge.net/forums/" >Problems ? ... <br />browse the <b>Forums</b>.</a></td><td width="1"><a href="FAQ.html"><img src=help.png border=0 /></a></td>
   </tr>
 </table>
 </div>
