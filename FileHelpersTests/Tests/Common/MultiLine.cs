@@ -83,13 +83,13 @@ namespace FileHelpersTests.Common
 			[FieldTrim(TrimMode.Both),FieldQuoted()]
 			public String WebSite;
 
-			[FieldTrim(TrimMode.Both),FieldQuoted(true)]
+			[FieldTrim(TrimMode.Both),FieldQuoted(MultilineMode.AllowForBoth)]
 			public String GeneralNotes;
 
-			[FieldTrim(TrimMode.Both),FieldQuoted(true)]
+			[FieldTrim(TrimMode.Both),FieldQuoted(MultilineMode.AllowForRead)]
 			public String TechNotes;
 
-			[FieldTrim(TrimMode.Both),FieldQuoted(true)]
+			[FieldTrim(TrimMode.Both),FieldQuoted(MultilineMode.AllowForBoth)]
 			public String PopupNotes;
 
 		}

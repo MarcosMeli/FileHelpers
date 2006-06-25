@@ -115,7 +115,8 @@ namespace FileHelpersTests.Common
 		public int EmployeeID;
 		public DateTime OrderDate;
 		public DateTime RequiredDate;
-		[FieldNullValue(typeof (DateTime), "2005-1-1")] public DateTime ShippedDate;
+		[FieldNullValue(typeof (DateTime), "2005-1-1")]
+		public DateTime ShippedDate;
 		public int ShipVia;
 		public decimal Freight;
 	}
@@ -124,7 +125,8 @@ namespace FileHelpersTests.Common
 	public class CustomersQuotedType
 	{
 		public string CustomerID;
-		[FieldQuoted()] public string CompanyName;
+		[FieldQuoted(QuoteMode.AlwaysQuoted, MultilineMode.NotAllow)]
+		public string CompanyName;
 		public string ContactName;
 		public string ContactTitle;
 		public string Address;

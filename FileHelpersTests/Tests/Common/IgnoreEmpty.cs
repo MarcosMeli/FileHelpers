@@ -19,7 +19,29 @@ namespace FileHelpersTests.Common
 			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty1.txt");
 
 			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(7, engine.LineNumber);
+			Assert.AreEqual(8, engine.LineNumber);
+		}
+
+		[Test]
+		public void IgnoreEmpty2()
+		{
+			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+
+			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty2.txt");
+
+			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(8, engine.LineNumber);
+		}
+
+		[Test]
+		public void IgnoreEmpty3()
+		{
+			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+
+			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty3.txt");
+
+			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(8, engine.LineNumber);
 		}
 
 		[Test]
@@ -28,6 +50,17 @@ namespace FileHelpersTests.Common
 			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
 
 			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty1.txt");
+
+			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(8, asyncEngine.LineNumber);
+		}
+
+		[Test]
+		public void IgnoreEmpty3Async()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
+
+			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, asyncEngine.LineNumber);
