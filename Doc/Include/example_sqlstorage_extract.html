@@ -113,9 +113,9 @@ After this limes if you want to get the records from the Db you need this lines:
 After this limes if you want to get the records from the Db you need this lines:
 <textarea name="code" class="c#">
 
-protected object FillRecordOrder(object[] fields)
+protected void FillRecordOrder(object rec, object[] fields)
 {
-	OrdersVerticalBar record = new OrdersVerticalBar();
+	OrdersVerticalBar record = (OrdersVerticalBar) rec;
 
 	record.OrderID = (int) fields[0];
 	record.CustomerID = (string) fields[1];
@@ -130,8 +130,6 @@ protected object FillRecordOrder(object[] fields)
 
 	record.ShipVia = (int) fields[6];
 	record.Freight = (decimal) fields[7];
-
-	return record;
 }
 </textarea>
 </blockquote>                     

@@ -16,8 +16,8 @@ namespace FileHelpers.DataLink
 
 	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to get the SQL for the insert or update statement.</summary>
 	public delegate string InsertSqlHandler(object record);
-	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to fill the values of a new record from the db.</summary>
-	public delegate object FillRecordHandler(object[] fieldValues);
+	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to fill the values of a new record from the db (you only need to assing hte values.</summary>
+	public delegate void FillRecordHandler(object record, object[] fieldValues);
 
 	#endregion
 
@@ -27,6 +27,7 @@ namespace FileHelpers.DataLink
 	public abstract class DatabaseStorage : DataStorage
 	{
 
+		RecordInfo mRecordInfo;
 		#region Constructors
 
 		/// <summary>Default constructor.</summary>
@@ -34,6 +35,7 @@ namespace FileHelpers.DataLink
 		protected DatabaseStorage(Type recordType)
 		{
 			mRecordType = recordType;
+			mRecordInfo = new RecordInfo(recordType);
 		}
 		#endregion
 
@@ -57,7 +59,9 @@ namespace FileHelpers.DataLink
 			if (FillRecordCallback == null)
 				throw new BadUsageException("You can´t extract records a null FillRecordCallback. Check the docs for help.");
 
-			return FillRecordCallback(fieldValues);
+			object res = mRecordInfo.CreateRecordObject();
+			FillRecordCallback(res, fieldValues);
+			return res;
 		}
 		#endregion
 

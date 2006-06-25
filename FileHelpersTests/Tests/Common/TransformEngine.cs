@@ -26,6 +26,33 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
+		public void CsvToFixedLengthCommon()
+		{
+			CommonEngine.TransformFile(TestCommon.TestPath("Good\\Transform1.txt"), typeof(FromClass), TestCommon.TestPath("Good\\transformout.txt"), typeof(ToClass));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
+			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+		[Test]
+		public void CsvToFixedLengthCommonAsync()
+		{
+			CommonEngine.TransformFileAsync(TestCommon.TestPath("Good\\Transform1.txt"), typeof(FromClass), TestCommon.TestPath("Good\\transformout.txt"), typeof(ToClass));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
+			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+
+		[Test]
 		public void CsvToFixedLength2()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
@@ -46,6 +73,32 @@ namespace FileHelpersTests.Common
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
 			link.TransformFile(TestCommon.TestPath("Good\\Transform1.txt"), TestCommon.TestPath("Good\\transformout.txt"));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
+			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+		[Test]
+		public void CsvToDelimitedCommon()
+		{
+			CommonEngine.TransformFile(TestCommon.TestPath("Good\\Transform1.txt"), typeof(FromClass), TestCommon.TestPath("Good\\transformout.txt"), typeof(ToClass2));
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
+			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));
+
+			if (File.Exists(TestCommon.TestPath("Good\\transformout.txt"))) File.Delete(TestCommon.TestPath("Good\\transformout.txt"));
+
+			Assert.AreEqual(6, res.Length);
+		}
+
+		[Test]
+		public void CsvToDelimitedCommonAsync()
+		{
+			CommonEngine.TransformFileAsync(TestCommon.TestPath("Good\\Transform1.txt"), typeof(FromClass), TestCommon.TestPath("Good\\transformout.txt"), typeof(ToClass2));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
 			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.TestPath("Good\\transformout.txt"));

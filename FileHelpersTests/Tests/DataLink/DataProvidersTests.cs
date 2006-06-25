@@ -24,9 +24,9 @@ namespace FileHelpersTests.DataLink
 		}
 
 		
-		protected object FillRecordOrder(object[] fields)
+		protected void FillRecordOrder(object rec, object[] fields)
 		{
-			OrdersFixed record = new OrdersFixed();
+			OrdersFixed record = (OrdersFixed) rec;
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -40,12 +40,11 @@ namespace FileHelpersTests.DataLink
 			record.ShipVia = (int) fields[6];
 			record.Freight = (decimal) fields[7];
 
-			return record;
 		}
 
-		private object FillRecordCust(object[] fields)
+		private void FillRecordCust(object rec, object[] fields)
 		{
-			CustomersVerticalBar record = new CustomersVerticalBar();
+			CustomersVerticalBar record = (CustomersVerticalBar) rec;
 
 			record.CustomerID = (string) fields[0];
 			record.CompanyName = (string) fields[1];
@@ -54,8 +53,6 @@ namespace FileHelpersTests.DataLink
 			record.Address = (string) fields[4];
 			record.City = (string) fields[5];
 			record.Country = (string) fields[6];
-
-			return record;
 		}
 
 		[Test]

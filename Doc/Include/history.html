@@ -391,9 +391,6 @@
                              <li>ADD: The ReadMethods of the FileHelperEngine can return the data as a <strong>DataTable</strong>
                                  the sufix of this methods are <strong>AsDT</strong>. That is perfect to load sample data into your NUnit test (examples comming soon)</li>
                              <li>ADD: New <strong>IgnoreEmptyLines</strong> that allows you to mark a record with it to ignore empty lines in the source data.</li>
-                             <li>ADD: New <strong>MultiRecordEngine</strong> that can parse files with different
-                                 record types (some delimited with a <strong>|</strong> others with a <strong>;</strong>
-                                 others with fixed length)</li>
                              <li>ADD: CommonEngine.<strong>SortFile </strong>and<strong> SortRecords </strong>by
                                  field or using the IComparable intercafe if the records implement one.</li>
                              <li>ADD: New demo code in a Console Application project to make easy to newbies play with the library.</li>
@@ -402,7 +399,6 @@
                          </ul>
                              <p>
                         <b> Minor changes:</b></p>
-                      </LI>
 							<UL>
 								<LI>FIX: IO Exception when appending to an empty file. </li>
                                 <li>FIX: The AsyncEngine could close the File in the BeginWriteFile under some conditions.</li>
@@ -415,9 +411,9 @@
                                 <li>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 240) based
                                     in the coverage of <a href="http://www.cenqua.com">clover.net</a>&nbsp;</li>
                                 <li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. </li>
-                                <li>ADD: Now the Wizard Supports FieldOptional and can generate the Properties that
-                                    maps to the fields usefull to Data Binding the RecordClass to any binding aware
-                                    control (VS2005)</li>
+                                <li>ADD: Now the Wizard Supports FieldOptional and IgnoreEmptyLines, also you can generate the Properties that
+                                    maps to the fields (useful for Data Binding the RecordClass to any binding aware
+                                    control in VS2005) </li>
                                 <li>ADD: Encoding support for source and destination in the transformation engine.</li>
                                 <li>ADD: A new feature for the custom converters to allow them to handle the null values</li>
                                 <li>ADD: More features in the CommonEngine: TransformFile and the fast TransformFileAsync</li>
@@ -431,6 +427,7 @@
                             </ul>
                                 <p></p>
                                 <p></p>
+                      </LI>
  					</UL>
  					
 

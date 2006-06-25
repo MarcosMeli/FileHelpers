@@ -132,9 +132,9 @@ namespace FileHelpersTests.DataLink
 			storage.ExtractRecords();
 		}
 
-		protected object FillRecordOrder(object[] fields)
+		protected void FillRecordOrder(object rec, object[] fields)
 		{
-			OrdersVerticalBar record = new OrdersVerticalBar();
+			OrdersVerticalBar record = (OrdersVerticalBar) rec;
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -147,8 +147,6 @@ namespace FileHelpersTests.DataLink
 				record.ShippedDate = DateTime.MinValue;
 			record.ShipVia = (int) fields[6];
 			record.Freight = (decimal) fields[7];
-
-			return record;
 		}
 
 	}

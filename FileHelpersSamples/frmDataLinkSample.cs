@@ -116,9 +116,9 @@ namespace FileHelpersSamples
 	storage.GetInsertSqlCallback = new GetInsertSqlHandler(GetInsertSql);
 }
 
-private object FillRecord(object[] fields)
+private void FillRecord(object rec, object[] fields)
 {
-	CustomersVerticalBar record = new CustomersVerticalBar();
+	CustomersVerticalBar record = (CustomersVerticalBar) rec;
 
 	record.CustomerID = (string) fields[0];
 	record.CompanyName = (string) fields[1];
@@ -127,8 +127,6 @@ private object FillRecord(object[] fields)
 	record.Address = (string) fields[4];
 	record.City = (string) fields[5];
 	record.Country = (string) fields[6];
-
-	return record;
 }
 
 private string GetInsertSql(object record)
@@ -146,7 +144,6 @@ private string GetInsertSql(object record)
 		);
 
 }
-
 ";
 			// 
 			// lblStatus
@@ -185,9 +182,9 @@ private string GetInsertSql(object record)
 		#endregion
 
 		
-		private object FillRecord(object[] fields)
+		private void FillRecord(object rec, object[] fields)
 		{
-			CustomersVerticalBar record = new CustomersVerticalBar();
+			CustomersVerticalBar record = (CustomersVerticalBar) rec;
 
 			record.CustomerID = (string) fields[0];
 			record.CompanyName = (string) fields[1];
@@ -196,8 +193,6 @@ private string GetInsertSql(object record)
 			record.Address = (string) fields[4];
 			record.City = (string) fields[5];
 			record.Country = (string) fields[6];
-
-			return record;
 		}
 		
 		private string GetInsertSql(object record)

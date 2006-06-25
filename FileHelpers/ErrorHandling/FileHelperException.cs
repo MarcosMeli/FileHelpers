@@ -17,12 +17,12 @@ namespace FileHelpers
 		{
 		}
 
-		/// <summary>Basic constructor of the exception.</summary>
-		/// <param name="message">Message of the exception.</param>
-		/// <param name="innerEx">The inner Exception.</param>
-		protected internal FileHelperException(string message, Exception innerEx) : base(message, innerEx)
-		{
-		}
+//		/// <summary>Basic constructor of the exception.</summary>
+//		/// <param name="message">Message of the exception.</param>
+//		/// <param name="innerEx">The inner Exception.</param>
+//		protected internal FileHelperException(string message, Exception innerEx) : base(message, innerEx)
+//		{
+//		}
 
 	}
 }

@@ -17,12 +17,12 @@ namespace FileHelpers
 		{
 		}
 
-		/// <summary>Creates an instance of an BadUsageException.</summary>
-		/// <param name="message">The exception Message</param>
-		/// <param name="innerEx">The inner exception.</param>
-		protected internal BadUsageException(string message, Exception innerEx) : base(message, innerEx)
-		{
-		}
+//		/// <summary>Creates an instance of an BadUsageException.</summary>
+//		/// <param name="message">The exception Message</param>
+//		/// <param name="innerEx">The inner exception.</param>
+//		protected internal BadUsageException(string message, Exception innerEx) : base(message, innerEx)
+//		{
+//		}
 
 	}
 }

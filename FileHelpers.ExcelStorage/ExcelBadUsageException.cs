@@ -17,12 +17,12 @@ namespace FileHelpers.DataLink
 		{
 		}
 
-		/// <summary>Creates an instance of an ExcelBadUsageException.</summary>
-		/// <param name="message">The exception Message</param>
-		/// <param name="innerEx">The inner Exception.</param>
-		internal ExcelBadUsageException(string message, Exception innerEx) : base(message, innerEx)
-		{
-		}
+//		/// <summary>Creates an instance of an ExcelBadUsageException.</summary>
+//		/// <param name="message">The exception Message</param>
+//		/// <param name="innerEx">The inner Exception.</param>
+//		internal ExcelBadUsageException(string message, Exception innerEx) : base(message, innerEx)
+//		{
+//		}
 
 	}
 }

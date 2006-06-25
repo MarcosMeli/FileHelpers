@@ -150,7 +150,7 @@ namespace FileHelpers
 			if (line == string.Empty && mIgnoreEmptyLines)
 				return null;
 
-			object record = mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
+			object record = CreateRecordObject();
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
@@ -158,6 +158,11 @@ namespace FileHelpers
 			}
 
 			return record;
+		}
+
+		internal object CreateRecordObject()
+		{
+			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
 		}
 
 		/// <summary>Internal.</summary>
