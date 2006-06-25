@@ -58,6 +58,14 @@ namespace FileHelpers.WizardApp
             set { mMarkAsSealed = value; }
         }
 
+        private bool mIgnoreEmptyLines = false;
+
+        public bool IgnoreEmptyLines
+        {
+            get { return mIgnoreEmptyLines; }
+            set { mIgnoreEmptyLines = value; }
+        }
+
 
         private int mIgnoreFirst;
 
@@ -125,6 +133,9 @@ namespace FileHelpers.WizardApp
                     if (IgnoreLast > 0)
                         sb.AppendLine("<IgnoreLast(" + IgnoreLast.ToString() + ")> _");
 
+                    if (IgnoreEmptyLines)
+                        sb.AppendLine("<IgnoreEmptyLines()> _");
+
                     sb.Append(EnumHelper.GetVisibility(leng, mClassVisibility));
 
                     if (mMarkAsSealed)
@@ -140,6 +151,9 @@ namespace FileHelpers.WizardApp
                     else
                         sb.AppendLine("[DelimitedRecord(\"" + Delimiter + "\")]");
 
+                    if (IgnoreEmptyLines)
+                        sb.AppendLine("[IgnoreEmptyLines()]");
+                    
                     if (IgnoreFirst > 0)
                         sb.AppendLine("[IgnoreFirst("+ IgnoreFirst.ToString() + ")]");
 
