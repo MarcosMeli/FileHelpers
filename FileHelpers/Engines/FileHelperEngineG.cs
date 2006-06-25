@@ -39,7 +39,7 @@ namespace FileHelpers
 #if ! GENERICS
 		public FileHelperEngine(Type recordType) : base(recordType)
 #else
-		public FileHelperEngine() : base(base(typeof(T)))
+		public FileHelperEngine() : base(typeof(T))
 #endif
 		{}
 

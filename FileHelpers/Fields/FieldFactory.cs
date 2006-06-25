@@ -101,7 +101,7 @@ namespace FileHelpers
 
 					((DelimitedField) res).mQuoteChar = quotedAttributes[0].QuoteChar;
 					((DelimitedField) res).mQuoteMode = quotedAttributes[0].QuoteMode;
-					((DelimitedField) res).mQuoteAllowMultiline = quotedAttributes[0].QuoteAllowMultiline;
+					((DelimitedField) res).mQuoteMultiline = quotedAttributes[0].QuoteMultiline;
 				}
 
 				FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[]) fi.GetCustomAttributes(typeof (FieldOptionalAttribute), true);
@@ -112,10 +112,7 @@ namespace FileHelpers
 					throw new BadUsageException("When you define a field as FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + res.mFieldInfo.Name + " )");
 
 				
-				FieldInNewLine[] inNewLine = (FieldInNewLine[]) fi.GetCustomAttributes(typeof (FieldInNewLine), true);
-
-				if (inNewLine.Length > 0)
-					res.mInNewLine = true;
+				res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), true);
 			}
 
 

@@ -143,8 +143,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Attributes\FieldInNewLine.cs"
-                    SubType = "Code"
+                    RelPath = "Attributes\FieldInNewLineAttribute.cs"
                     BuildAction = "Compile"
                 />
                 <File
@@ -173,8 +172,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Attributes\IgnoreEmptyLines.cs"
-                    SubType = "Code"
+                    RelPath = "Attributes\IgnoreEmptyLinesAttribute.cs"
                     BuildAction = "Compile"
                 />
                 <File
@@ -239,6 +237,11 @@
                 />
                 <File
                     RelPath = "Enums\ErrorMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums\MultilineMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

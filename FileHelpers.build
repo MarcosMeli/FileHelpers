@@ -5,7 +5,10 @@
     <property name="LibraryFileVersion" value="1_5_0" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
+    
     <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
+    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+
     
     <property name="Source2005" value="FileHelpers_Vs2005" />
     <property name="Source2003" value="FileHelpers_Vs2003" />

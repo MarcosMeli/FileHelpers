@@ -28,7 +28,7 @@ namespace FileHelpers
 
 		internal char mQuoteChar = '\0';
 		internal QuoteMode mQuoteMode;
-		internal bool mQuoteAllowMultiline;
+		internal MultilineMode  mQuoteMultiline = MultilineMode.AllowForBoth;
 
 		#endregion
 
@@ -76,7 +76,7 @@ namespace FileHelpers
 				res.CharsRemoved = 0;
 
 				string from2 = from;
-				if ((mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left))
+				if (mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left)
 				{
 					from2 = from.TrimStart(mTrimChars);
 					res.CharsRemoved = from2.Length - from.Length;
@@ -84,7 +84,7 @@ namespace FileHelpers
 
 				if (from2.StartsWith(quotedStr))
 				{
-					if (mQuoteAllowMultiline)
+					if (mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead)
 					{
 						ExtractedInfo ei = StringHelper.ExtractQuotedString(from2, reader, mQuoteChar);
 						res.ExtractedString = ei.ExtractedString;
@@ -143,7 +143,10 @@ namespace FileHelpers
 
 			bool hasNewLine = res.IndexOf(StringHelper.NewLine) >= 0;
 
-			if (hasNewLine && mQuoteAllowMultiline == false)
+			// If have a new line and this is not allowed throw an exception
+			if (hasNewLine &&
+				(mQuoteMultiline == MultilineMode.AllowForRead || 
+				 mQuoteMultiline == MultilineMode.NotAllow))
 				throw new BadUsageException("One value for the field " + this.mFieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
 
 			if (mQuoteChar != '\0')

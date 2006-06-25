@@ -33,12 +33,12 @@ namespace FileHelpers
 			get { return mQuoteMode; }
 		}
 
-		private bool mQuoteAllowMultiline;
+		private MultilineMode mQuoteMultiline = MultilineMode.AllowForBoth;
 
 		/// <summary>The char used to quote the string.</summary>
-		public bool QuoteAllowMultiline
+		public MultilineMode QuoteMultiline
 		{
-			get { return mQuoteAllowMultiline; }
+			get { return mQuoteMultiline; }
 		}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
@@ -48,13 +48,13 @@ namespace FileHelpers
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String with the specified char.</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
-		public FieldQuotedAttribute(char quoteChar):this(quoteChar, QuoteMode.OptionalForRead, false) 
+		public FieldQuotedAttribute(char quoteChar):this(quoteChar, QuoteMode.OptionalForRead, MultilineMode.AllowForBoth) 
 		{
 		}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
-		/// <param name="allowMultiline">Indicates if the field can span multiple lines.</param>
-		public FieldQuotedAttribute(bool allowMultiline) : this('\"', QuoteMode.OptionalForRead, allowMultiline)
+		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
+		public FieldQuotedAttribute(MultilineMode multiline) : this('\"', QuoteMode.OptionalForRead, multiline)
 		{}
 
 		/// <summary>Indicates that the field must be read and written like a "Quoted String"  (that can be optional depending of the mode).</summary>
@@ -66,37 +66,26 @@ namespace FileHelpers
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
-		public FieldQuotedAttribute(char quoteChar, QuoteMode mode):this(quoteChar, mode, false) 
+		public FieldQuotedAttribute(char quoteChar, QuoteMode mode):this(quoteChar, mode, MultilineMode.AllowForBoth) 
 		{}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
-		/// <param name="allowMultiline">Indicates if the field can span multiple lines.</param>
-		public FieldQuotedAttribute(QuoteMode mode, bool allowMultiline):this('"', mode, allowMultiline)
+		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
+		public FieldQuotedAttribute(QuoteMode mode,MultilineMode multiline):this('"', mode, multiline)
 		{}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
-		/// <param name="allowMultiline">Indicates if the field can span multiple lines.</param>
-		public FieldQuotedAttribute(char quoteChar, QuoteMode mode, bool allowMultiline)
+		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
+		public FieldQuotedAttribute(char quoteChar, QuoteMode mode, MultilineMode multiline)
 		{
 			mQuoteChar = quoteChar;
 			mQuoteMode = mode;
-			mQuoteAllowMultiline = allowMultiline;
+			mQuoteMultiline = multiline;
 		}
 
-		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
-		/// <param name="quoteChar">Use the QuoteMode instead.</param>
-		///	<param name="optional">Use the QuoteMode instead.</param>
-		[Obsolete("You must use the constructor with the new QuoteMode Enum")]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public FieldQuotedAttribute(char quoteChar, bool optional)
-		{
-			mQuoteChar = quoteChar;
-			if (optional)
-				mQuoteMode = QuoteMode.OptionalForBoth;
-		}
 
 	}
 }
