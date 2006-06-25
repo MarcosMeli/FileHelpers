@@ -5,16 +5,13 @@
     <Position X="1.76" Y="0.552" Height="0.354" Width="1.669" />
   </Comment>
   <Comment CommentText="Used for:&#xD;&#xA;Any DataStorage &lt;-&gt; Any DataStorage">
-    <Position X="2.167" Y="3.063" Height="0.354" Width="2.273" />
-  </Comment>
-  <Comment CommentText="Used for:&#xD;&#xA;File &lt;-&gt; File (Diferent Format)">
-    <Position X="2.564" Y="4.573" Height="0.354" Width="1.846" />
+    <Position X="2.115" Y="3.584" Height="0.354" Width="2.273" />
   </Comment>
   <Class Name="FileHelpers.DataLink.FileDataLink">
     <Position X="0.75" Y="0.5" Width="3" />
     <TypeIdentifier>
       <FileName>DataLink\FileDataLink.cs</FileName>
-      <HashCode>AAAAAABAwAEAAEAAAABAAAAAAKAAAAAAAAAAAAIABAA=</HashCode>
+      <HashCode>AAAAAABAwAEAAEAAAABAAAAAAKAAAAAAAAAAgAIABAA=</HashCode>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="DataStorage" />
@@ -37,14 +34,14 @@
     </AssociationLine>
   </Class>
   <Class Name="FileHelpers.DataLink.GenericDataLink">
-    <Position X="0.75" Y="3" Width="4" />
+    <Position X="0.75" Y="3.5" Width="4" />
     <TypeIdentifier>
       <FileName>DataLink\GenericDataLink.cs</FileName>
       <HashCode>AAAAAAAAAEEAAApAAAAAAAACAAAAAAAAAAAAIAEAAAA=</HashCode>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="DataStorage2" />
       <Property Name="DataStorage1" />
+      <Property Name="DataStorage2" />
     </ShowAsAssociation>
     <Members>
       <Method Name="GetTransformMethod" Hidden="true" />
@@ -54,50 +51,32 @@
       <Field Name="mDataStorage2" Hidden="true" />
       <Method Name="ValidateRecordTypes" Hidden="true" />
     </Members>
-    <AssociationLine Name="DataStorage2" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="4.75" Y="4.062" />
-        <Point X="6.062" Y="4.062" />
-        <Point X="6.062" Y="2.259" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.142" Y="1.596" Height="0.16" Width="1.071" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="DataStorage1" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.75" Y="3.75" />
-        <Point X="5.938" Y="3.75" />
+        <Point X="4.75" Y="4.25" />
+        <Point X="5.938" Y="4.25" />
         <Point X="5.938" Y="2.259" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.067" Y="1.291" Height="0.16" Width="1.007" />
+        <Position X="0.088" Y="1.791" Height="0.16" Width="1.007" />
       </MemberNameLabel>
     </AssociationLine>
-  </Class>
-  <Class Name="FileHelpers.DataLink.FileTransformDataLink">
-    <Position X="0.75" Y="4.5" Width="4" />
-    <TypeIdentifier>
-      <FileName>DataLink\FileTransformDataLink.cs</FileName>
-      <HashCode>AAgAAAAAEAAAAAoEAAAAAAADAAAAAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-    <Members>
-      <Method Name="GetTransformMethod" Hidden="true" />
-      <Field Name="mConvert1to2" Hidden="true" />
-      <Field Name="mConvert2to1" Hidden="true" />
-      <Field Name="mRecordType1" Hidden="true" />
-      <Field Name="mRecordType2" Hidden="true" />
-      <Method Name="ValidateRecordTypes" Hidden="true" />
-    </Members>
+    <AssociationLine Name="DataStorage2" Type="FileHelpers.DataLink.DataStorage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="4.562" />
+        <Point X="6.062" Y="4.562" />
+        <Point X="6.062" Y="2.259" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.152" Y="2.106" Height="0.16" Width="1.071" />
+      </MemberNameLabel>
+    </AssociationLine>
   </Class>
   <Class Name="FileHelpers.DataLink.DataStorage" Collapsed="true">
     <Position X="4.25" Y="1.75" Width="2" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\DataStorage.cs</FileName>
-      <HashCode>AAAAAAAgAAAAAAAAAAACAAAAAAAAAAAIAAACAAEgAAA=</HashCode>
+      <HashCode>AACAAAAgAAAAAAEAAQACAAQAAAAAAABMAAACAAEgAAA=</HashCode>
     </TypeIdentifier>
-    <Members>
-      <Field Name="mErrorManager" Hidden="true" />
-    </Members>
   </Class>
 </ClassDiagram>

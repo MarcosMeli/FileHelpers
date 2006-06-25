@@ -1,50 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Font Name="Tahoma" Size="8.25" />
-  <Class Name="FileHelpers.DataLink.DataBaseStorage">
-    <Position X="0.5" Y="3.25" Width="2.75" />
-    <TypeIdentifier>
-      <FileName>DataLink\Storage\DataBaseStorage.cs</FileName>
-      <HashCode>AAACAECgAAAAAAEgAAAEAAAAAAAAAABMAAAAAAEEAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
   <Class Name="FileHelpers.DataLink.AccessStorage">
-    <Position X="0.5" Y="7.5" Width="2.5" />
+    <Position X="1" Y="6" Width="2.75" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\AccessStorage.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAEAAAAEAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="FileHelpers.DataLink.SqlServerStorage">
-    <Position X="3.75" Y="7.5" Width="2.5" />
-    <TypeIdentifier>
-      <FileName>DataLink\Storage\SqlServerStorage.cs</FileName>
-      <HashCode>AAACAAAAAAAAAAGAAAAEAAABAABAAAAAAQAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-    <InheritanceLine Type="FileHelpers.DataLink.DataBaseStorage" FixedToPoint="true">
-      <Path>
-        <Point X="1.875" Y="6.758" />
-        <Point X="1.875" Y="7.125" />
-        <Point X="4.875" Y="7.125" />
-        <Point X="4.875" Y="7.5" />
-      </Path>
-    </InheritanceLine>
-  </Class>
-  <Class Name="FileHelpers.DataLink.DataStorage">
-    <Position X="2" Y="0.5" Width="3" />
-    <TypeIdentifier>
-      <FileName>DataLink\Storage\DataStorage.cs</FileName>
-      <HashCode>AAAAAAAgAAAAAAAAAAACAAAAAAAAAAAIAAACAAEgAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAEAABAEQAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
     </TypeIdentifier>
     <Members>
+      <Method Name="CreateCommand" Hidden="true" />
+      <Method Name="CreateConnection" Hidden="true" />
+      <Field Name="mAccessFile" Hidden="true" />
+      <Field Name="mAccessPassword" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.DataLink.SqlServerStorage">
+    <Position X="4" Y="6" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\SqlServerStorage.cs</FileName>
+      <HashCode>AAACAAAAgAAAAAGAAAAFAAAAAABAAAAAAQAAEAABAIA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Method Name="CreateCommand" Hidden="true" />
+      <Method Name="CreateConnection" Hidden="true" />
+      <Field Name="mDatabaseName" Hidden="true" />
+      <Field Name="mServerName" Hidden="true" />
+      <Field Name="mUserName" Hidden="true" />
+      <Field Name="mUserPass" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.DataLink.DataStorage">
+    <Position X="1.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\DataStorage.cs</FileName>
+      <HashCode>AACAAAAgAAAAAAEAAQACAAQAAAAAAABMAAACAAEgAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Method Name="AddError" Hidden="true" />
+      <Method Name="CreateRecordInfo" Hidden="true" />
+      <Method Name="DataStorage" Hidden="true" />
       <Field Name="mErrorManager" Hidden="true" />
+      <Field Name="mNotifyHandler" Hidden="true" />
+      <Field Name="mProgressMode" Hidden="true" />
+      <Method Name="Notify" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.DataLink.FileStorage">
-    <Position X="3.5" Y="3.25" Width="2.75" />
+    <Position X="4.5" Y="3.25" Width="2.75" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\FileStorage.cs</FileName>
       <HashCode>AAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAIBAAAABFAAAA=</HashCode>
     </TypeIdentifier>
+    <Members>
+      <Field Name="mEngine" Hidden="true" />
+      <Field Name="mFileName" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="FileHelpers.DataLink.DatabaseStorage">
+    <Position X="1" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>DataLink\Storage\DatabaseStorage.cs</FileName>
+      <HashCode>AABCEEKgEBEAABEkIABEAAAAAAAAAABMAAAAAAEEAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Method Name="CreateCommand" Hidden="true" />
+      <Method Name="CreateConnection" Hidden="true" />
+      <Method Name="DatabaseStorage" Hidden="true" />
+      <Method Name="ExecuteAndClose" Hidden="true" />
+      <Method Name="ExecuteAndLeaveOpen" Hidden="true" />
+      <Method Name="FillRecord" Hidden="true" />
+      <Method Name="GetInsertSql" Hidden="true" />
+      <Method Name="GetSelectSql" Hidden="true" />
+      <Method Name="InitConnection" Hidden="true" />
+      <Field Name="mConn" Hidden="true" />
+      <Field Name="mExecuteInBatchSize" Hidden="true" />
+      <Field Name="mFillRecordCallback" Hidden="true" />
+      <Field Name="mInsertSqlCallback" Hidden="true" />
+      <Field Name="mRecordInfo" Hidden="true" />
+      <Field Name="mRecordType" Hidden="true" />
+      <Field Name="mSelectSql" Hidden="true" />
+    </Members>
   </Class>
 </ClassDiagram>
