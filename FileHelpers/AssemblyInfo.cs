@@ -19,7 +19,7 @@ using System.Security.Permissions;
 [assembly : AssemblyProduct("FileHelpersPPC   http://filehelpers.sf.net")]
 #endif
 
-[assembly : AssemblyVersion("1.4.9.0")]
+[assembly : AssemblyVersion("1.5.0.0")]
 [assembly : AssemblyCompany("Marcos Meli")]
 [assembly : AssemblyCopyright("Copyright 2005. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]

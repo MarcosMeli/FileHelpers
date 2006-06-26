@@ -1189,7 +1189,7 @@ namespace FileHelpers.WizardApp
             this.MinimumSize = new System.Drawing.Size(573, 440);
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FileHelpers - Record Class Wizard v1.2";
+            this.Text = "FileHelpers - Record Class Wizard v1.3";
             this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();

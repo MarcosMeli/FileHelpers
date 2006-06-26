@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 
-[assembly: AssemblyVersion("1.3.5.0")]
+[assembly: AssemblyVersion("1.5.0.0")]
 
 //
 // General Information about an assembly is controlled through the following 
