@@ -374,14 +374,14 @@
               So you need to use now the QuoteMode enum and not only a boolean. (For Excel generated
               CSV files you must use the QuoteMode.OptionalForBoth value) (<a href="examples.html">check
                                             the examples</a>)</li><li>MOD: DataBaseStorage to DatabaseStorage (Case change)&nbsp;</li>
-                                <li>MOD: Extract and Insert Records now returns the inserted records or extracted records</li>
+                                <li>MOD: Extract and Insert Records now returns the inserted or extracted records</li>
 							</UL>
                                         <p>
                                         </p>
 					 <b>Mayor changes: </b>
                          <UL>
-                             <li>ADD: New <strong>FielOptional</strong> that alow that the n last fields of the records
-                                 to be optional.</li>
+                             <li>ADD: New <strong>FielOptional</strong> that allows that the n last fields of a record
+                                 be optional.</li>
                              <li>ADD: Multiline Quoted Field support (with this we finish the support for Excel generated
                                  CSV files)</li>
                              <li>ADD: Multiline Records supports via the FieldInNewLine attribute to allow records
@@ -392,17 +392,17 @@
                                  the sufix of this methods are <strong>AsDT</strong>. That is perfect to load sample data into your NUnit test (examples comming soon)</li>
                              <li>ADD: New <strong>IgnoreEmptyLines</strong> that allows you to mark a record with it to ignore empty lines in the source data.</li>
                              <li>ADD: CommonEngine.<strong>SortFile </strong>and<strong> SortRecords </strong>by
-                                 field or using the IComparable intercafe if the records implement one.</li>
+                                 field or using the IComparable interface if the records implement it. </li>
                              <li>ADD: New demo code in a Console Application project to make easy to newbies play with the library. (<a href="examples.html">download it from the examples</a>)</li><li>MOD: A lot of refactoring in the source code and changes in the the folder layout.</li>
                              <li>MOD: Code in the Docs now highlighted with the excellent <a href="http://www.dreamprojections.com/syntaxhighlighter/?ref=filehelpers" target="_blank">dp.SyntaxHighlighter</a> from Alex Gorbatchev</li>
                          </ul>
                              <p>
                         <b> Minor changes:</b></p>
 							<UL>
-								<LI>FIX: IO Exception when appending to an empty file. </li>
                                 <li>FIX: The AsyncEngine could close the File in the BeginWriteFile under some conditions.</li>
-                                <li>FIX: Syntax in some samples and in the Wizard Templates.</li>
-                                <li>FIX: The notify progress in the DatabaseStorage now works fine.</li>
+                                <li>FIX: IO Exception when appending to an empty file. </li>
+                                <li>FIX: Syntax in some samples and in the Wizard Templates. </li>
+                                <li>FIX: The notify progress in the DatabaseStorage working fine and tested. </li>
                                 <li>FIX: A little issue in the DatabaseStorage that can throws InvalidaCastException
                                     in the constructor.&nbsp;</li><LI>DEL: A lot of properties in the internal classes were deleted (aiming to reduce
                                     the dll size and library performance, much better for Compact Framework) </li>
