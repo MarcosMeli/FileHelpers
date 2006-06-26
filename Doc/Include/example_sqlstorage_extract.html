@@ -45,14 +45,15 @@
                             SqlServerStorage ExtractRecords Example
 						</h2>
 						<blockquote>
-							<p>This example shows how to read and write records to an sql server storage and later
+							<p>This example shows how to read records from a sql server storage and later write
+                                it
                                 to a file.
 							</p>
 						</blockquote>
 						<h2>The Problem
 						</h2>
 						<blockquote>
-							<p>For example if you have the following table (from the Northwind DB)</p>
+							<p>For example if you want to extract the records of the Orders table of the Northwind DB</p>
 							<p><img src="orders1.png" width="652" height="374"></p>
 							<p>&nbsp;</p>
 						</blockquote>
@@ -98,20 +99,16 @@ public class OrdersVerticalBar
 
 </textarea>                    
                     						<p>
-After this limes if you want to get the records from the Db you need this lines:
+After these lines if you want to get the records from the Db you need this lines:
 <textarea name="code" class="c#">
   
-   storage.SelectSql = "SELECT * FROM Orders";
-
    storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);  
    
    OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
 </textarea>
-
-                                And to write the method that fill the record based on the the values of the fields:
                     						<p>
-After this limes if you want to get the records from the Db you need this lines:
-<textarea name="code" class="c#">
+                                                The FillRecord method is somethig like that:
+                                                <textarea name="code" class="c#" id="TEXTAREA1" onclick="return TEXTAREA1_onclick()">
 
 protected void FillRecordOrder(object rec, object[] fields)
 {
@@ -184,7 +181,9 @@ protected void FillRecordOrder(object rec, object[] fields)
 <script class="javascript" src="shCore.js"></script>
 <script class="javascript" src="shBrushCSharp.js"></script>
 <script class="javascript" src="shBrushVb.js"></script>
-<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script>
+<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');
+
+</script>
 	
 	</BODY>
 </HTML>
