@@ -29,6 +29,7 @@ namespace FileHelpersTests.DataLink
 			Assert.AreEqual("HANAR", res[2].CustomerID);
 		}
 
+
 		[Test]
 		public void OrdersExtractToFile()
 		{
@@ -148,6 +149,56 @@ namespace FileHelpersTests.DataLink
 			record.ShipVia = (int) fields[6];
 			record.Freight = (decimal) fields[7];
 		}
+
+		[Test]
+		public void OrdersInsert()
+		{
+			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
+			
+			storage.ServerName = "NEON-64";
+			storage.DatabaseName = "Northwind";
+
+			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
+
+			storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), TestCommon.TestPath(@"Good\CustomersVerticalBar.txt")));
+
+		}
+
+		[Test]
+		public void OrdersInsertEasy()
+		{
+			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
+			
+			storage.ServerName = "NEON-64";
+			storage.DatabaseName = "Northwind";
+
+			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
+
+			FileDataLink.EasyInsertFromFile(storage, TestCommon.TestPath(@"Good\CustomersVerticalBar.txt"));
+		}
+
+
+		#region "  GetInsertSql  "
+
+		protected string GetInsertSqlCust(object record)
+		{
+			CustomersVerticalBar obj = (CustomersVerticalBar) record;
+
+			return String.Format("INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
+				" VALUES ( '{0}' , '{1}' , '{2}' , '{3}' , '{4}' , '{5}' , '{6}'  ); ",
+				obj.Address.Replace("'", "\""),
+				obj.City.Replace("'", "\""),
+				obj.CompanyName.Replace("'", "\""),
+				obj.ContactName.Replace("'", "\""),
+				obj.ContactTitle.Replace("'", "\""),
+				obj.Country.Replace("'", "\""),
+				obj.CustomerID
+				);
+
+		}
+
+		#endregion
+
 
 	}
 
