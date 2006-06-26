@@ -363,17 +363,17 @@
 					 <a name="v1_5_0" /><STRONG>1.5.0</STRONG> (Jun-2006)
                                         <br />
                                         &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; With some delays but the library is always moving
-                                        forward thanks to a hard work and the big help of all you.<br />
+                                        forward thanks to a hard work and the help of all you.<br />
 					 <b>
                          <br />
                          Breaking changes:</b>
 							<UL>
                                 <li>Both DataStorages: SqlServerStorage and AccessStorage completely changed, from now you don´t need to override this classes (in fact you can´t because are sealed)<br />
-                                    You can use these classes as client and provide the callbacks for the Insert and Fill record methods.</li><li>The FieldQuoted attribute was completely rewritten to support
+                                    You can use these classes as client and provide the callbacks for the Insert and Fill record methods.(<a href="examples.html">check the examples</a>)</li><li>The FieldQuoted attribute was completely rewritten to support
               optional quote for read, write or both.&nbsp;<br />
               So you need to use now the QuoteMode enum and not only a boolean. (For Excel generated
-              CSV files you must use the QuoteMode.OptionalForBoth value)</li>
-                                <li>MOD: DataBaseStorage to DatabaseStorage (Case change)&nbsp;</li>
+              CSV files you must use the QuoteMode.OptionalForBoth value) (<a href="examples.html">check
+                                            the examples</a>)</li><li>MOD: DataBaseStorage to DatabaseStorage (Case change)&nbsp;</li>
                                 <li>MOD: Extract and Insert Records now returns the inserted records or extracted records</li>
 							</UL>
                                         <p>
@@ -393,8 +393,7 @@
                              <li>ADD: New <strong>IgnoreEmptyLines</strong> that allows you to mark a record with it to ignore empty lines in the source data.</li>
                              <li>ADD: CommonEngine.<strong>SortFile </strong>and<strong> SortRecords </strong>by
                                  field or using the IComparable intercafe if the records implement one.</li>
-                             <li>ADD: New demo code in a Console Application project to make easy to newbies play with the library.</li>
-                             <li>MOD: A lot of refactoring in the source code and changes in the the folder layout.</li>
+                             <li>ADD: New demo code in a Console Application project to make easy to newbies play with the library. (<a href="examples.html">download it from the examples</a>)</li><li>MOD: A lot of refactoring in the source code and changes in the the folder layout.</li>
                              <li>MOD: Code in the Docs now highlighted with the excellent <a href="http://www.dreamprojections.com/syntaxhighlighter/?ref=filehelpers" target="_blank">dp.SyntaxHighlighter</a> from Alex Gorbatchev</li>
                          </ul>
                              <p>
@@ -408,7 +407,7 @@
                                     in the constructor.&nbsp;</li><LI>DEL: A lot of properties in the internal classes were deleted (aiming to reduce
                                     the dll size and library performance, much better for Compact Framework) </li>
                                 <li>DEL: The obsolete LastErrors of the ErrorManager. Now is mandatory to use Errors.</li>
-                                <li>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 240) based
+                                <li>ADD: More and enhaced <A href="testing.html">NUnit tests</a> (more than 260) based
                                     in the coverage of <a href="http://www.cenqua.com">clover.net</a>&nbsp;</li>
                                 <li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. </li>
                                 <li>ADD: Now the Wizard Supports FieldOptional and IgnoreEmptyLines, also you can generate the Properties that

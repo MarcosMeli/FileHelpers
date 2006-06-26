@@ -90,6 +90,19 @@
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_datalink.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataLink Example</a>
 			</div>
+
+
+			<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_sqlstorage_extract.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">SqlServerStorage ExtractRecords</a>
+			</div>
+
+			<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_sqlstorage_insert.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">SqlServerStorage InsertRecords</a>
+			</div>
+
+
 			<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="example_exceldatalink.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">ExcelStorage Example</a>

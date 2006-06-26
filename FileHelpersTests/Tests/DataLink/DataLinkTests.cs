@@ -2,6 +2,7 @@
 
 using System;
 using System.Data.OleDb;
+using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
@@ -48,6 +49,23 @@ namespace FileHelpersTests.DataLink
 			int extractNum = mLink.LastExtractedRecords.Length;
 
 			OrdersFixed[] records = (OrdersFixed[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
+
+			Assert.AreEqual(extractNum, records.Length);
+		}
+
+
+		[Test]
+		public void OrdersDbToFileEasy()
+		{
+			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			storage.SelectSql = "SELECT * FROM Orders";
+			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
+
+			OrdersFixed[] records = (OrdersFixed[]) FileDataLink.EasyExtractToFile(storage,@"..\data\temp.txt");
+			
+			int extractNum = records.Length;
+
+			records = (OrdersFixed[]) CommonEngine.ReadFile(typeof(OrdersFixed), @"..\data\temp.txt");
 
 			Assert.AreEqual(extractNum, records.Length);
 		}

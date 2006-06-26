@@ -51,13 +51,24 @@ bgColor=white leftMargin=0 topMargin=0>
           <blockquote>
 <textarea name="code" class="c#">
 
-// to Read use:
+// to read use:
 Orders[] res = CommonEngine.ReadFile(typeof(Orders),&quot;TestIn.txt&quot;) as Orders[];
 
-// to Write use:
+// to write use:
 CommonEngine.WriteFile(typeof(Orders), "TestOut.txt", res);
+
+// to transform a file:
+CommonEngine.TransformFile("in.txt"), typeof(FromClass), "our.txt"), typeof(ToClass));
+
+// or the faster:
+CommonEngine.TransformFileAsync("in.txt"), typeof(FromClass), "our.txt"), typeof(ToClass));
+
+// sorting records:
+CommonEngine.SortRecordsByField(customers, "CustomerName");
+
 </textarea>
           </blockquote>
+          <b>Remember that you lose functionality if you use this engine, for example encoding, error handling and others.</b>
   </blockquote>
 
       <h2>See also </h2>
