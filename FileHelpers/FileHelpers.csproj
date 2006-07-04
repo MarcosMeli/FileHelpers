@@ -301,6 +301,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Enums\NetLenguage.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\ProgressMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -412,6 +417,11 @@
                 />
                 <File
                     RelPath = "Progress\ProgressChange.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RunTime\ClassBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
