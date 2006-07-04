@@ -56,7 +56,6 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFile()
 		{
-			
 			Type t = ClassBuilder.ClassFromString(mClass);
 
 			engine = new FileHelperEngine(t);
@@ -210,7 +209,8 @@ namespace FileHelpersTests.Common
 		{
 			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleClass.vb"), NetLenguage.VbNet);
 
-			engine = new FileHelperEngine(t);
+
+            engine = new FileHelperEngine(t);
 
 			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
 
@@ -227,5 +227,57 @@ namespace FileHelpersTests.Common
 			Assert.AreEqual(345, dt.Rows[1][2]);
 		}
 
+		[Test]
+		public void FullClassBuilding()
+		{
+			DelimitedClassBuilder cb = new DelimitedClassBuilder("MyCustomers", ",");
+			cb.IgnoreFirstLines = 2;
+			cb.IgnoreEmptyLines = true;
+
+			cb.AddField("Field1", typeof(DateTime));
+			cb.LastField.TrimMode = TrimMode.Both;
+
+			cb.AddField("Field2", typeof(string));
+			cb.LastField.FieldQuoted = true;
+			cb.LastField.QuoteChar = '"';
+
+
+			cb.AddField("Field3", typeof(int));
+			cb.LastField.AlignMode = AlignMode.Right;
+			
+			engine = new FileHelperEngine(cb.CreateType());
+
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+		}
+
+		[Test]
+		public void FullClassBuildingFixed()
+		{
+			FixedClassBuilder cb = new FixedClassBuilder("MyCustomers");
+			cb.IgnoreFirstLines = 2;
+			cb.IgnoreEmptyLines = true;
+
+			cb.AddField("Field1", 8, typeof(DateTime));
+			cb.LastField.TrimMode = TrimMode.Both;
+
+			cb.AddField("Field2", 3, typeof(string));
+
+			cb.AddField("Field3", 3, typeof(int));
+			cb.LastField.AlignMode = AlignMode.Right;
+			
+			engine = new FileHelperEngine(cb.CreateType());
+
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+		}
 	}
 }
