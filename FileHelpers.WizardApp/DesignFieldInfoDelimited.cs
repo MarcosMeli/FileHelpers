@@ -17,7 +17,7 @@ namespace FileHelpers.WizardApp
                 switch (leng)
                 {
                     case NetLanguage.VbNet:
-                        sb.Append("<FieldQuoted(\"" + QuotedChar + "\")> ");
+                        sb.Append("<FieldQuoted(\"" + QuotedChar + "\")> _");
                         break;
                     case NetLanguage.CSharp:
                         sb.AppendLine("[FieldQuoted(\"" + QuotedChar + "\")]");

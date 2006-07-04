@@ -125,7 +125,7 @@ namespace FileHelpers.WizardApp
                     if (RecordKind == RecordKind.FixedLength)
                         sb.AppendLine("<FixedLengthRecord()> _");
                     else
-                        sb.AppendLine("<DelimitedRecord(\"" + Delimiter + "\") >_");
+                        sb.AppendLine("<DelimitedRecord(\"" + Delimiter + "\") > _");
 
                     if (IgnoreFirst > 0)
                         sb.AppendLine("<IgnoreFirst(" + IgnoreFirst.ToString() + ")> _");
@@ -139,7 +139,7 @@ namespace FileHelpers.WizardApp
                     sb.Append(EnumHelper.GetVisibility(leng, mClassVisibility));
 
                     if (mMarkAsSealed)
-                        sb.Append(" Not Inheritable");
+                        sb.Append(" NotInheritable");
 
                     sb.AppendLine(" Class " + this.mClassName);
                     sb.AppendLine();

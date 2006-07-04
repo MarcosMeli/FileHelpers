@@ -88,9 +88,13 @@ namespace FileHelpers
 			{
 				Type[] ts = cr.CompiledAssembly.GetTypes();
 				if (ts.Length > 0)
-					return ts[0];
-				else
-					throw new BadUsageException("The Compiled assembly don´t have any Type inside.");
+					foreach (Type t in ts)
+					{
+						if (t.FullName.StartsWith("My.My") == false)
+							return t;
+					}
+
+				throw new BadUsageException("The Compiled assembly don´t have any Type inside.");
 			}
 		}
 

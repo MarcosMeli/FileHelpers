@@ -6,8 +6,9 @@ namespace FileHelpers.WizardApp
 {
     public enum NetLanguage
     {
-        VbNet,
-        CSharp
+        CSharp,
+        VbNet
+
     }
 
     public enum NetVisibility

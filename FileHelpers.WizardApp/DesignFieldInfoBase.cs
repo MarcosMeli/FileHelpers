@@ -88,7 +88,7 @@ namespace FileHelpers.WizardApp
                 {
                     case NetLanguage.VbNet:
                         sb.Append(IndentString);
-                        sb.AppendLine("<FieldTrim(TrimMode." + TrimMode.ToString() + ")> ");
+                        sb.AppendLine("<FieldTrim(TrimMode." + TrimMode.ToString() + ")> _");
                         break;
                     case NetLanguage.CSharp:
                         sb.Append(IndentString);

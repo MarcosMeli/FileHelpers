@@ -31,7 +31,7 @@ namespace FileHelpers.WizardApp
             switch (leng)
             {
                 case NetLanguage.VbNet:
-                    sb.Append("<FieldFixedLength(" + this.FieldLength.ToString() + ")> ");
+                    sb.Append("<FieldFixedLength(" + this.FieldLength.ToString() + ")> _");
                     break;
                 case NetLanguage.CSharp:
                     sb.AppendLine("[FieldFixedLength(" + this.FieldLength.ToString() + ")]");
