@@ -161,9 +161,9 @@ namespace FileHelpersTests.Common
 		}
 
 		[Test]
-		public void ReadFileEnc()
+		public void ReadFileClassInFileEnc()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath("SampleBinaryClass.fhc"));
+			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleBinaryClass.fhc"));
 
 			engine = new FileHelperEngine(t);
 
@@ -183,6 +183,49 @@ namespace FileHelpersTests.Common
 
 		}
 
+		[Test]
+		public void ReadFileClassInFile()
+		{
+			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleClass.cs"));
+
+			engine = new FileHelperEngine(t);
+
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+			Assert.AreEqual("901", dt.Rows[0][1]);
+			Assert.AreEqual(234, dt.Rows[0][2]);
+
+			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+			Assert.AreEqual("012", dt.Rows[1][1]);
+			Assert.AreEqual(345, dt.Rows[1][2]);
+		}
+
+		[Test]
+		public void ReadFileClassInFileVbNet()
+		{
+			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleClass.vb"), NetLenguage.VbNet);
+
+			engine = new FileHelperEngine(t);
+
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+			Assert.AreEqual("901", dt.Rows[0][1]);
+			Assert.AreEqual(234, dt.Rows[0][2]);
+
+			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+			Assert.AreEqual("012", dt.Rows[1][1]);
+			Assert.AreEqual(345, dt.Rows[1][2]);
+		}
 
 	}
 }
