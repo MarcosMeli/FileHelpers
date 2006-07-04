@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
@@ -8,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace FileHelpers
 {
-    public sealed class ClassBuilder
+    public abstract class ClassBuilder
     {
 		#region LoadFromString
 
@@ -161,20 +162,9 @@ namespace FileHelpers
 
 		#endregion
 
-    	#region TrimMode
-
-		private TrimMode mTrimMode = TrimMode.None;
-
-		public TrimMode TrimMode
-		{
-			get { return mTrimMode; }
-			set { mTrimMode = value; }
-		}
-		#endregion
-
     	private string mClassName;
     	
-    	public ClassBuilder(string className)
+    	internal ClassBuilder(string className)
 		{
     		mClassName = className;
 		}
@@ -184,9 +174,49 @@ namespace FileHelpers
     		StringBuilder sb = new StringBuilder();
     		return ClassFromString(sb.ToString());
     	}
-    	
-    	
-		#region "  EncDec  "	
+
+    	private int mIgnoreFirstLines = 0;
+
+    	public int IgnoreFirstLines
+    	{
+    		get { return mIgnoreFirstLines; }
+    		set { mIgnoreFirstLines = value; }
+    	}
+
+		private int mIgnoreLastLines = 0;
+
+    	public int IgnoreLastLines
+    	{
+    		get { return mIgnoreLastLines; }
+    		set { mIgnoreLastLines = value; }
+    	}
+
+		private bool mIgnoreEmptyLines = false;
+
+    	public bool IgnoreEmptyLines
+    	{
+    		get { return mIgnoreEmptyLines; }
+    		set { mIgnoreEmptyLines = value; }
+    	}
+
+		protected ArrayList mFields = new ArrayList();
+
+		protected void AddFieldInternal(FieldBuilder field)
+		{
+			field.mFieldIndex = mFields.Add(field);
+		}
+
+		public FieldBuilder[] Fields
+		{
+			get { return (FieldBuilder[]) mFields.ToArray(typeof(FieldBuilder)); }
+		}
+
+		public FieldBuilder FieldByIndex(int index)
+		{
+			return (FieldBuilder) mFields[index];
+		}
+
+    	#region "  EncDec  "	
 		
     	private class EncDec 
 		{
