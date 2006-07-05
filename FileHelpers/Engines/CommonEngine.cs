@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.Data;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -240,6 +241,40 @@ namespace FileHelpers
 
 		#endregion
 
+		
+#if ! MINI
+		/// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
+		/// <param name="records">The records to be converted to a DataTable</param>
+		/// <returns>The datatable containing the records as DataRows</returns>
+		public DataTable RecordsToDataTable(ICollection records)
+		{
+
+			RecordInfo ri = null;
+			foreach (object obj in records)
+			{
+				if (obj != null)
+				{
+                    ri = new RecordInfo(obj.GetType());
+				}
+			}
+
+			if (ri == null)
+				return new DataTable();
+
+			return ri.RecordsToDataTable(records);
+		}
+
+		/// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
+		/// <param name="records">The records to be converted to a DataTable</param>
+		/// <returns>The datatable containing the records as DataRows</returns>
+		public DataTable RecordsToDataTable(ICollection records, Type t)
+		{
+
+			RecordInfo ri = new RecordInfo(t);
+			return ri.RecordsToDataTable(records);
+		}
+
+#endif
 
 	}
 }

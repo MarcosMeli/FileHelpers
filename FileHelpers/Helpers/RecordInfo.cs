@@ -227,7 +227,7 @@ namespace FileHelpers
 
 
 		
-#if ! MINI
+	#if ! MINI
 
 		internal DataTable RecordsToDataTable(ICollection records)
 		{
