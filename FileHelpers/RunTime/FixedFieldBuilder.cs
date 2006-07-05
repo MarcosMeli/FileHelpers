@@ -5,7 +5,6 @@ namespace FileHelpers
 {
 	public sealed class FixedFieldBuilder: FieldBuilder
 	{
-
 		private int mLength;
 
 		public FixedFieldBuilder(string fieldName, int length, Type fieldType): base(fieldName, fieldType)
@@ -18,18 +17,38 @@ namespace FileHelpers
 			get { return mLength; }
 		}
 
-		internal string GetFieldDef(NetLenguage leng)
+
+		private AlignMode mAlignMode = AlignMode.Left;
+
+		public AlignMode AlignMode
 		{
-			StringBuilder sb = new StringBuilder(100);
-			switch(leng)
+			get { return mAlignMode; }
+			set { mAlignMode = value; }
+		}
+
+		private char mAlignChar = ' ';
+		public char AlignChar
+		{
+			get { return mAlignChar; }
+			set { mAlignChar = value; }
+		}
+		
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+		{
+			if (mLength <= 0)
+				throw new BadUsageException("The Length of each field must be grater than 0");
+			else
+				attbs.AddAttribute("FieldFixedLength("+ mLength.ToString() +")");
+
+			if (mAlignMode != AlignMode.Left)
 			{
-				case NetLenguage.CSharp:
+				if (leng == NetLanguage.CSharp)
+					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", '"+ mAlignChar.ToString() +"')");
 
-					break;
-
+				else if (leng == NetLanguage.VbNet)
+					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", \""+ mAlignChar.ToString() +"\"c)");
 			}
 
-			return sb.ToString();
 		}
 	}
 }

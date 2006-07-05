@@ -301,7 +301,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Enums\NetLenguage.cs"
+                    RelPath = "Enums\NetLanguage.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -421,7 +421,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "RunTime\AttributesBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RunTime\ClassBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RunTime\ConverterBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

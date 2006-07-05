@@ -11,6 +11,9 @@ namespace FileHelpers
 	/// <summary>Indicates the convertion used in the <see cref="T:FileHelpers.FieldConverterAttribute"/>.</summary>
 	public enum ConverterKind
 	{
+
+		/// <summary>Null Converter.</summary>
+		None = 0,
 		/// <summary>
 		/// <para>Convert from/to <b>Date</b> values.</para>
 		/// <para>Params: arg1 is the <b>string</b> with the date format.</para>

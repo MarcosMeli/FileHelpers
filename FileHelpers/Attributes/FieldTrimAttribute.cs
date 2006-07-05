@@ -57,6 +57,15 @@ namespace FileHelpers
 			mTrimChars = chars;
 		}
 
+		/// <summary>Indicates the <see cref="TrimMode"/> used after read to truncate the field. </summary>
+		/// <param name="mode">The <see cref="TrimMode"/> used after read.</param>
+		/// <param name="trimChars">A string of chars used to trim.</param>
+		public FieldTrimAttribute(TrimMode mode, string trimChars)
+		{
+			mTrimMode = mode;
+			mTrimChars = trimChars.ToCharArray();
+		}
+
 		#endregion
 	}
 }

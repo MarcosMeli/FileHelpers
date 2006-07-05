@@ -27,5 +27,10 @@ namespace FileHelpers
 					return (FixedFieldBuilder) mFields[mFields.Count -1];
 			}
 		}
+
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+		{
+			attbs.AddAttribute("FixedLengthRecord()");
+		}
 	}
 }

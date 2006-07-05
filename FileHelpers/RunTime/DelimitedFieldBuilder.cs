@@ -7,8 +7,7 @@ namespace FileHelpers
 	{
 
 		public DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
-		{
-		}
+		{}
 
 		private bool mFieldQuoted = false;
 
@@ -42,18 +41,18 @@ namespace FileHelpers
 			set { mQuoteMultiline = value; }
 		}
 
-		internal string GetFieldDef(NetLenguage leng)
+
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
 		{
-			StringBuilder sb = new StringBuilder(100);
-			switch(leng)
+			
+			if (mFieldQuoted == true)
 			{
-				case NetLenguage.CSharp:
-
-					break;
-
+				if (leng == NetLanguage.CSharp)
+					attbs.AddAttribute("FieldQuoted('" + mQuoteChar.ToString() + "', QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+				else if (leng == NetLanguage.VbNet)
+					attbs.AddAttribute("FieldQuoted(\"" + mQuoteChar.ToString() + "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
 			}
-
-			return sb.ToString();
+			
 		}
 	}
 }

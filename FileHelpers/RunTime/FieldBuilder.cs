@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel;
 using System.Text;
 
 namespace FileHelpers
 {
-	public class FieldBuilder
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public abstract class FieldBuilder
 	{
 		private string mFieldName;
 		private Type mFieldType;
@@ -23,15 +25,19 @@ namespace FileHelpers
 			get { return mTrimMode; }
 			set { mTrimMode = value; }
 		}
+		
+		private string mTrimChars = " \t";
+		
+		public string TrimChars
+		{
+			get { return mTrimChars; }
+			set { mTrimChars = value; }
+		}
+
 		#endregion
 
-		private AlignMode mAlignMode = AlignMode.Left;
-
-		public AlignMode AlignMode
-		{
-			get { return mAlignMode; }
-			set { mAlignMode = value; }
-		}
+		
+		
 
 
 		internal int mFieldIndex = -1;
@@ -65,19 +71,97 @@ namespace FileHelpers
 			set { mFieldOptional = value; }
 		}
 
+		public ConverterBuilder Converter
+		{
+			get { return mConverter; }
+		}
 
-		internal string GetFieldDef(NetLenguage leng)
+		public string FieldName
+		{
+			get { return mFieldName; }
+		}
+
+		public Type FieldType
+		{
+			get { return mFieldType; }
+		}
+
+		private object mFieldNullValue = null;
+
+		public object FieldNullValue
+		{
+			get { return mFieldNullValue; }
+			set { mFieldNullValue = value; }
+		}
+
+
+		private ConverterBuilder mConverter = new ConverterBuilder();
+		
+		internal string GetFieldCode(NetLanguage leng)
 		{
 			StringBuilder sb = new StringBuilder(100);
-			switch(leng)
+			
+			AttributesBuilder attbs = new AttributesBuilder(leng);
+			
+			AddAttributesInternal(attbs, leng);
+			AddAttributesCode(attbs, leng);
+			
+			sb.Append(attbs.GetAttributesCode());
+			
+			switch (leng)
 			{
-				case NetLenguage.CSharp:
-
+				case NetLanguage.VbNet:
+					sb.Append("Public " + mFieldName + " As " + mFieldType.FullName);
 					break;
-
+				case NetLanguage.CSharp:
+					sb.Append("public " + mFieldType.FullName + " " + mFieldName+ ";");
+					break;
+				default:
+					break;
 			}
 
+			sb.Append(StringHelper.NewLine);
+			
 			return sb.ToString();
 		}
+		
+		
+		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng);
+
+		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage leng)
+		{
+
+			if (mFieldOptional == true)
+				attbs.AddAttribute("FieldOptional()");
+
+			if (mFieldIgnored == true)
+				attbs.AddAttribute("FieldIgnored()");
+
+			if (mFieldInNewLine == true)
+				attbs.AddAttribute("FieldInNewLine()");
+
+
+			if (mFieldNullValue != null)
+			{
+				string t = mFieldNullValue.GetType().FullName;
+				string gt = string.Empty;
+				if (leng == NetLanguage.CSharp)
+					gt = "typeof(" + t + ")";
+				else if (leng == NetLanguage.VbNet)
+					gt = "GetType(" + t + ")";
+
+				attbs.AddAttribute("FieldNullValue("+ gt +", \""+ mFieldNullValue.ToString() +"\")");
+			}
+
+			
+		
+			attbs.AddAttribute(mConverter.GetConverterCode(leng));
+			
+			if (mTrimMode != TrimMode.None)
+			{
+				attbs.AddAttribute("FieldTrim(TrimMode."+ mTrimMode.ToString()+", \""+ mTrimChars.ToString() +"\")");
+			}
+		}
+		
 	}
 }

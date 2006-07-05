@@ -2,7 +2,7 @@ using System;
 
 namespace FileHelpers
 {
-	public enum NetLenguage
+	public enum NetLanguage
 	{
 		CSharp,
 		VbNet

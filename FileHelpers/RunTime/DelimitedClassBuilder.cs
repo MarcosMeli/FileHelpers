@@ -40,5 +40,14 @@ namespace FileHelpers
 					return (DelimitedFieldBuilder) mFields[mFields.Count -1];
 			}
 		}
+
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+		{
+			if (mDelimiter == string.Empty)
+				throw new BadUsageException("The Delimiter of the DelimiterClassBuilder can't be null or empty.");
+			else
+				attbs.AddAttribute("DelimitedRecord(\""+ mDelimiter +"\")");
+			
+		}
 	}
 }

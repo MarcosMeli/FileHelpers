@@ -9,36 +9,43 @@ using System.Security.Cryptography;
 
 namespace FileHelpers
 {
+	
+	//-> ADD: Sealed !!!
+	//-> ADD: Visibility !!!
+	
     public abstract class ClassBuilder
     {
-		#region LoadFromString
+		//---------------------
+		//->  STATIC METHODS
+
+    	#region LoadFromString
 
 		public static Type ClassFromString(string classStr)
 		{
 			return ClassFromString(classStr, string.Empty);
 		}
 
-		public static Type ClassFromString(string classStr, NetLenguage leng)
+		public static Type ClassFromString(string classStr, NetLanguage leng)
 		{
 			return ClassFromString(classStr, string.Empty, leng);
 		}
 
 		public static Type ClassFromString(string classStr, string className)
 		{
-			return ClassFromString(classStr, className, NetLenguage.CSharp);
+			return ClassFromString(classStr, className, NetLanguage.CSharp);
 		}
 		
-		public static Type ClassFromString(string classStr, string className, NetLenguage leng)
+		public static Type ClassFromString(string classStr, string className, NetLanguage leng)
 		{
 			ICodeCompiler comp = null;
 
 			switch(leng)
 			{
-				case NetLenguage.CSharp:
+				case NetLanguage.CSharp:
 					comp = (new CSharpCodeProvider()).CreateCompiler();
 					break;
 
-				case NetLenguage.VbNet:
+				case NetLanguage.VbNet:
 					comp = (new VBCodeProvider()).CreateCompiler();
 					break;
 			}
@@ -54,13 +61,13 @@ namespace FileHelpers
 
 			switch(leng)
 			{
-				case NetLenguage.CSharp:
+				case NetLanguage.CSharp:
 					code.Append("using System; \n");
 					code.Append("using FileHelpers; \n");
 					code.Append("using System.Data; \n\n");
 					break;
 
-				case NetLenguage.VbNet:
+				case NetLanguage.VbNet:
 					code.Append("Imports System \n");
 					code.Append("Imports FileHelpers \n");
 					code.Append("Imports System.Data \n\n");
@@ -77,7 +84,7 @@ namespace FileHelpers
 				error.Append("Error Compiling Expression: ");
 				foreach (CompilerError err in cr.Errors)
 				{
-					error.AppendFormat("{0}\n", err.ErrorText);
+					error.AppendFormat("Line {0}: {1}\n", err.Line, err.ErrorText);
 				}
 				throw new Exception("Error Compiling Expression: " + error.ToString());
 			}
@@ -103,7 +110,7 @@ namespace FileHelpers
 
 		#region CreateFromFile
 
-		public static Type ClassFromFile(string filename, string className, NetLenguage leng)
+		public static Type ClassFromSourceFile(string filename, string className, NetLanguage leng)
 		{
 			StreamReader reader = new StreamReader(filename);
 			string classDef = reader.ReadToEnd();
@@ -112,33 +119,33 @@ namespace FileHelpers
 			return ClassFromString(classDef, className, leng);
 		}
 
-		public static Type ClassFromFile(string filename, string className)
+		public static Type ClassFromSourceFile(string filename, string className)
 		{
-			return ClassFromFile(filename, className, NetLenguage.CSharp);
+			return ClassFromSourceFile(filename, className, NetLanguage.CSharp);
 		}
 
-		public static Type ClassFromFile(string filename)
+		public static Type ClassFromSourceFile(string filename)
 		{
-			return ClassFromFile(filename, string.Empty);
+			return ClassFromSourceFile(filename, string.Empty);
 		}
 
-		public static Type ClassFromFile(string filename, NetLenguage leng)
+		public static Type ClassFromSourceFile(string filename, NetLanguage leng)
 		{
-			return ClassFromFile(filename, string.Empty, leng);
+			return ClassFromSourceFile(filename, string.Empty, leng);
 		}
 
 
 		public static Type ClassFromBinaryFile(string filename)
 		{
-			return ClassFromBinaryFile(filename, string.Empty, NetLenguage.CSharp);
+			return ClassFromBinaryFile(filename, string.Empty, NetLanguage.CSharp);
 		}
 
-		public static Type ClassFromBinaryFile(string filename, NetLenguage leng)
+		public static Type ClassFromBinaryFile(string filename, NetLanguage leng)
 		{
 			return ClassFromBinaryFile(filename, string.Empty, leng);
 		}
     	
-		public static Type ClassFromBinaryFile(string filename, string className, NetLenguage leng)
+		public static Type ClassFromBinaryFile(string filename, string className, NetLanguage leng)
 		{
 			
 			StreamReader reader = new StreamReader(filename);
@@ -162,8 +169,33 @@ namespace FileHelpers
 
 		#endregion
 
-    	private string mClassName;
-    	
+		public void SaveToSourceFile(string filename)
+		{
+			SaveToSourceFile(filename, NetLanguage.CSharp);
+		}
+
+    	public void SaveToSourceFile(string filename, NetLanguage leng)
+    	{
+    		StreamWriter writer = new StreamWriter(filename);
+    		writer.Write(GetClassCode(leng));
+    		writer.Close();
+    	}
+
+		public void SaveToBinaryFile(string filename)
+		{
+			SaveToBinaryFile(filename, NetLanguage.CSharp);
+		}
+
+		public void SaveToBinaryFile(string filename, NetLanguage leng)
+		{
+			StreamWriter writer = new StreamWriter(filename);
+
+			string classDef = GetClassCode(leng);
+			classDef = EncDec.Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+			writer.Write(classDef);
+			writer.Close();
+		}
+
     	internal ClassBuilder(string className)
 		{
     		mClassName = className;
@@ -171,34 +203,16 @@ namespace FileHelpers
     	
     	public Type CreateType()
     	{
-    		StringBuilder sb = new StringBuilder();
-    		return ClassFromString(sb.ToString());
+    		string classCode = GetClassCode(NetLanguage.CSharp);
+    		return ClassFromString(classCode, NetLanguage.CSharp);
     	}
 
-    	private int mIgnoreFirstLines = 0;
+    	   	
+		//--------------
+		//->  Fields 
 
-    	public int IgnoreFirstLines
-    	{
-    		get { return mIgnoreFirstLines; }
-    		set { mIgnoreFirstLines = value; }
-    	}
-
-		private int mIgnoreLastLines = 0;
-
-    	public int IgnoreLastLines
-    	{
-    		get { return mIgnoreLastLines; }
-    		set { mIgnoreLastLines = value; }
-    	}
-
-		private bool mIgnoreEmptyLines = false;
-
-    	public bool IgnoreEmptyLines
-    	{
-    		get { return mIgnoreEmptyLines; }
-    		set { mIgnoreEmptyLines = value; }
-    	}
-
+		#region Fiields
+    	
 		protected ArrayList mFields = new ArrayList();
 
 		protected void AddFieldInternal(FieldBuilder field)
@@ -211,15 +225,80 @@ namespace FileHelpers
 			get { return (FieldBuilder[]) mFields.ToArray(typeof(FieldBuilder)); }
 		}
 
+		public int FieldCount
+		{
+			get
+			{
+				return mFields.Count;
+			}
+		}
+
+
 		public FieldBuilder FieldByIndex(int index)
 		{
 			return (FieldBuilder) mFields[index];
 		}
 
+		#endregion
+    	
+		#region ClassName
+		
+    	private string mClassName;
+		public string ClassName
+		{
+			get { return mClassName; }
+		}
+		
+    	#endregion
+
+   	
+    	//----------------------------
+    	//->  ATTRIBUTE MAPPING
+    	
+		#region IgnoreFirstLines
+    	
+		private int mIgnoreFirstLines = 0;
+
+		public int IgnoreFirstLines
+		{
+			get { return mIgnoreFirstLines; }
+			set { mIgnoreFirstLines = value; }
+		}
+		
+    	#endregion
+
+		#region IgnoreLastLines
+    	
+		private int mIgnoreLastLines = 0;
+
+		public int IgnoreLastLines
+		{
+			get { return mIgnoreLastLines; }
+			set { mIgnoreLastLines = value; }
+		}
+
+		#endregion
+    	
+		#region IgnoreEmptyLines
+    	
+		private bool mIgnoreEmptyLines = false;
+
+		public bool IgnoreEmptyLines
+		{
+			get { return mIgnoreEmptyLines; }
+			set { mIgnoreEmptyLines = value; }
+		}
+
+    	#endregion
+
+    	
     	#region "  EncDec  "	
 		
-    	private class EncDec 
+    	private sealed class EncDec 
 		{
+    		private EncDec()
+    		{}
+    		
 			public static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV) 
 			{ 
 				MemoryStream ms = new MemoryStream(); 
@@ -246,54 +325,6 @@ namespace FileHelpers
 				return Convert.ToBase64String(encryptedData); 
 			}
     
-			public static byte[] Encrypt(byte[] clearData, string Password) 
-			{ 
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-								   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-
-				return Encrypt(clearData, pdb.GetBytes(32), pdb.GetBytes(16)); 
-
-			}
-
-			public static void Encrypt(string fileIn, 
-				string fileOut, string Password) 
-			{ 
-
-				FileStream fsIn = new FileStream(fileIn, 
-					FileMode.Open, FileAccess.Read); 
-				FileStream fsOut = new FileStream(fileOut, 
-					FileMode.OpenOrCreate, FileAccess.Write); 
-
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-								   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-
-				Rijndael alg = Rijndael.Create(); 
-				alg.Key = pdb.GetBytes(32); 
-				alg.IV = pdb.GetBytes(16); 
-
-				CryptoStream cs = new CryptoStream(fsOut, 
-					alg.CreateEncryptor(), CryptoStreamMode.Write); 
-				int bufferLen = 4096; 
-				byte[] buffer = new byte[bufferLen]; 
-				int bytesRead; 
-
-				do 
-				{ 
-					// read a chunk of data from the input file 
-					bytesRead = fsIn.Read(buffer, 0, bufferLen); 
-
-					// encrypt it 
-					cs.Write(buffer, 0, bytesRead); 
-				} while(bytesRead != 0); 
-
-				// close everything 
-
-				// this will also close the unrelying fsOut stream
-				cs.Close(); 
-				fsIn.Close();     
-			} 
 
 			// Decrypt a byte array into a byte array using a key and an IV 
 			public static byte[] Decrypt(byte[] cipherData, 
@@ -323,59 +354,82 @@ namespace FileHelpers
 								   0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
 				byte[] decryptedData = Decrypt(cipherBytes, 
 					pdb.GetBytes(32), pdb.GetBytes(16)); 
-				return System.Text.Encoding.Unicode.GetString(decryptedData); 
+				return Encoding.Unicode.GetString(decryptedData); 
 			}
 
-			public static byte[] Decrypt(byte[] cipherData, string Password) 
-			{ 
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-								   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-				return Decrypt(cipherData, pdb.GetBytes(32), pdb.GetBytes(16)); 
-			}
-
-			// Decrypt a file into another file using a password 
-			public static void Decrypt(string fileIn, 
-				string fileOut, string Password) 
-			{ 
-    
-				// First we are going to open the file streams 
-				FileStream fsIn = new FileStream(fileIn,
-					FileMode.Open, FileAccess.Read); 
-				FileStream fsOut = new FileStream(fileOut,
-					FileMode.OpenOrCreate, FileAccess.Write); 
-
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-								   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-				Rijndael alg = Rijndael.Create(); 
-
-				alg.Key = pdb.GetBytes(32); 
-				alg.IV = pdb.GetBytes(16); 
-
-				CryptoStream cs = new CryptoStream(fsOut, 
-					alg.CreateDecryptor(), CryptoStreamMode.Write); 
-
-				int bufferLen = 4096; 
-				byte[] buffer = new byte[bufferLen]; 
-				int bytesRead; 
-
-				do 
-				{ 
-					// read a chunk of data from the input file 
-					bytesRead = fsIn.Read(buffer, 0, bufferLen); 
-
-					// Decrypt it 
-					cs.Write(buffer, 0, bytesRead); 
-
-				} while(bytesRead != 0); 
-
-				cs.Close(); // this will also close the unrelying fsOut stream 
-				fsIn.Close();     
-			}
 		}
     	
 		
     	#endregion
+    	
+		internal string GetClassCode(NetLanguage leng)
+		{
+			StringBuilder sb = new StringBuilder(100);
+			
+			AttributesBuilder attbs = new AttributesBuilder(leng);
+			
+			AddAttributesInternal(attbs, leng);
+			AddAttributesCode(attbs, leng);
+			
+			sb.Append(attbs.GetAttributesCode());
+			
+			switch (leng)
+			{
+				case NetLanguage.VbNet:
+					sb.Append("Public NotInheritable Class " + mClassName);
+					sb.Append(StringHelper.NewLine);
+					break;
+				case NetLanguage.CSharp:
+					sb.Append("public sealed class " + mClassName);
+					sb.Append(StringHelper.NewLine);
+					sb.Append("{");
+					break;
+			}
+
+			sb.Append(StringHelper.NewLine);
+
+
+			foreach (FieldBuilder field in mFields)
+			{
+				sb.Append(field.GetFieldCode(leng));
+			}
+			
+			
+			sb.Append(StringHelper.NewLine);
+			
+			switch (leng)
+			{
+				case NetLanguage.VbNet:
+					sb.Append("End Class");
+					break;
+				case NetLanguage.CSharp:
+					sb.Append("}");
+					break;
+			}
+
+			sb.Append(StringHelper.NewLine);
+			return sb.ToString();
+			
+		}
+    	
+		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng);
+
+		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage leng)
+		{
+
+			if (mIgnoreFirstLines != 0)
+				attbs.AddAttribute("IgnoreFirst("+ mIgnoreFirstLines.ToString() +")");
+
+			if (mIgnoreFirstLines != 0)
+				attbs.AddAttribute("IgnoreLast("+ mIgnoreLastLines.ToString() +")");
+
+			if (mIgnoreEmptyLines == true)
+				attbs.AddAttribute("IgnoreEmptyLines()");
+
+		
+		}
+    	
+		
+    	
     }
 }
