@@ -9,9 +9,9 @@ namespace FileHelpers
 		StringBuilder mSb = new StringBuilder(250);
 		NetLanguage mLeng;
 		
-		public AttributesBuilder(NetLanguage leng)
+		public AttributesBuilder(NetLanguage lang)
 		{
-			mLeng = leng;
+			mLeng = lang;
 		}
 		
 		private bool mFirst = true;

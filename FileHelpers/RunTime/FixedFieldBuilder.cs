@@ -33,7 +33,7 @@ namespace FileHelpers
 			set { mAlignChar = value; }
 		}
 		
-		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
 			if (mLength <= 0)
 				throw new BadUsageException("The Length of each field must be grater than 0");
@@ -42,10 +42,10 @@ namespace FileHelpers
 
 			if (mAlignMode != AlignMode.Left)
 			{
-				if (leng == NetLanguage.CSharp)
+				if (lang == NetLanguage.CSharp)
 					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", '"+ mAlignChar.ToString() +"')");
 
-				else if (leng == NetLanguage.VbNet)
+				else if (lang == NetLanguage.VbNet)
 					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", \""+ mAlignChar.ToString() +"\"c)");
 			}
 
