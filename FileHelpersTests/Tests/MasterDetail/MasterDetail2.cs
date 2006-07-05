@@ -16,7 +16,7 @@ namespace FileHelpersTests.MasterDetail
 		{
             engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonActions.DetailIfContains, "@");
 
-            MasterDetails[] res = TestCommon.ReadTest(engine, @"Good\MasterDetail2.txt");
+            MasterDetails[] res = Common.ReadTest(engine, @"Good\MasterDetail2.txt");
 
             Assert.AreEqual(4, res.Length);
 
@@ -51,7 +51,7 @@ namespace FileHelpersTests.MasterDetail
         {
             engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonActions.MasterIfContains, "@");
 
-            MasterDetails[] res = TestCommon.ReadTest(engine, @"Good\MasterDetail3.txt");
+            MasterDetails[] res = Common.ReadTest(engine, @"Good\MasterDetail3.txt");
 
             Assert.AreEqual(4, res.Length);
 

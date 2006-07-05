@@ -6,7 +6,7 @@ using System.Collections;
 namespace FileHelpersTests
 {
 	// this class only adds the relative path to the saple files.
-	public sealed class TestCommon
+	public sealed class Common
 	{
 		public static string TestPath(string fileName)
 		{
@@ -41,8 +41,7 @@ namespace FileHelpersTests
 		}
 
 
-		private TestCommon()
-		{
-		}
+		private Common()
+		{}
 	}
 }

@@ -4,7 +4,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class Readers
@@ -18,7 +18,7 @@ namespace FileHelpersTests.Common
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) Common.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -39,7 +39,7 @@ namespace FileHelpersTests.Common
 		public void ReadFileStatic()
 		{
 			SampleType[] res;
-			res = (SampleType[]) CommonEngine.ReadFile(typeof (SampleType), TestCommon.TestPath(@"Good\test1.txt"));
+			res = (SampleType[]) CommonEngine.ReadFile(typeof (SampleType), Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, res.Length);
 
@@ -61,7 +61,7 @@ namespace FileHelpersTests.Common
 
 			SampleType rec1, rec2;
 
-			TestCommon.BeginReadTest(asyncEngine, @"Good\test1.txt");
+			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);
@@ -88,7 +88,7 @@ namespace FileHelpersTests.Common
 
 			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
 
-			TestCommon.BeginReadTest(asyncEngine, @"Good\test1.txt");
+			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
 			int lineAnt = asyncEngine.LineNumber;
 			while (asyncEngine.ReadNext() != null)
 			{
@@ -205,7 +205,7 @@ namespace FileHelpersTests.Common
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\TestEmpty.txt");
+			res = (SampleType[]) Common.ReadTest(engine, @"Good\TestEmpty.txt");
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(0, engine.TotalRecords);
@@ -221,7 +221,7 @@ namespace FileHelpersTests.Common
 
 			DataTable res;
 
-			res = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			res = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, res.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);

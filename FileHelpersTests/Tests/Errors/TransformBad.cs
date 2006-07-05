@@ -6,7 +6,7 @@ using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class TransformBad

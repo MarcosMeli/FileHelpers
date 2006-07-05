@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class LineCounter
@@ -15,7 +15,7 @@ namespace FileHelpersTests.Common
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) Common.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(5, engine.LineNumber);
@@ -30,7 +30,7 @@ namespace FileHelpersTests.Common
 			SampleType rec1, rec2;
 
 			Assert.AreEqual(0, asyncEngine.LineNumber);
-			TestCommon.BeginReadTest(asyncEngine, @"Good\test1.txt");
+			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);

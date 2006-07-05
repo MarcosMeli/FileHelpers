@@ -4,7 +4,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class SortRecords
@@ -16,7 +16,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 
-			CustomersVerticalBar[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
+			CustomersVerticalBar[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -34,7 +34,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -53,7 +53,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 
-			CustomersVerticalBar[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
+			CustomersVerticalBar[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -71,7 +71,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -90,7 +90,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.TestPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersSort[];
 			Assert.AreEqual(8, res.Length);
 
 			CommonEngine.SortRecordsByField(res, "CompanyNameNoExistHere");

@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class OptionalFields
@@ -15,7 +15,7 @@ namespace FileHelpersTests.Common
 		public void Fixed0()
 		{
 			engine = new FileHelperEngine(typeof (OptionalFixed1));
-			OptionalFixed1[] res = (OptionalFixed1[]) TestCommon.ReadTest(engine, @"Good\OptionalFixed0.txt");
+			OptionalFixed1[] res = (OptionalFixed1[]) Common.ReadTest(engine, @"Good\OptionalFixed0.txt");
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
 
@@ -24,7 +24,7 @@ namespace FileHelpersTests.Common
 		public void Fixed1()
 		{
 			engine = new FileHelperEngine(typeof (OptionalFixed1));
-			OptionalFixed1[] res = (OptionalFixed1[]) TestCommon.ReadTest(engine, @"Good\OptionalFixed1.txt");
+			OptionalFixed1[] res = (OptionalFixed1[]) Common.ReadTest(engine, @"Good\OptionalFixed1.txt");
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
 
@@ -32,7 +32,7 @@ namespace FileHelpersTests.Common
 		public void Fixed2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalFixed2));
-			OptionalFixed2[] res = (OptionalFixed2[]) TestCommon.ReadTest(engine, @"Good\OptionalFixed2.txt");
+			OptionalFixed2[] res = (OptionalFixed2[]) Common.ReadTest(engine, @"Good\OptionalFixed2.txt");
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
 
@@ -40,7 +40,7 @@ namespace FileHelpersTests.Common
 		public void Delimited0()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited1));
-			OptionalDelimited1[] res = (OptionalDelimited1[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited0.txt");
+			OptionalDelimited1[] res = (OptionalDelimited1[]) Common.ReadTest(engine, @"Good\OptionalDelimited0.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
@@ -49,7 +49,7 @@ namespace FileHelpersTests.Common
 		public void Delimited1()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited1));
-			OptionalDelimited1[] res = (OptionalDelimited1[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited1.txt");
+			OptionalDelimited1[] res = (OptionalDelimited1[]) Common.ReadTest(engine, @"Good\OptionalDelimited1.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -61,7 +61,7 @@ namespace FileHelpersTests.Common
 		public void Delimited1Quoted()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited1Quoted));
-			OptionalDelimited1Quoted[] res = (OptionalDelimited1Quoted[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited1Quoted.txt");
+			OptionalDelimited1Quoted[] res = (OptionalDelimited1Quoted[]) Common.ReadTest(engine, @"Good\OptionalDelimited1Quoted.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -73,7 +73,7 @@ namespace FileHelpersTests.Common
 		public void Delimited2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited2));
-			OptionalDelimited2[] res = (OptionalDelimited2[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited2.txt");
+			OptionalDelimited2[] res = (OptionalDelimited2[]) Common.ReadTest(engine, @"Good\OptionalDelimited2.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -87,7 +87,7 @@ namespace FileHelpersTests.Common
 		public void Delimited2Quoted()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited2Quoted));
-			OptionalDelimited2Quoted[] res = (OptionalDelimited2Quoted[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited2Quoted.txt");
+			OptionalDelimited2Quoted[] res = (OptionalDelimited2Quoted[]) Common.ReadTest(engine, @"Good\OptionalDelimited2Quoted.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -101,7 +101,7 @@ namespace FileHelpersTests.Common
 		public void Delimited3()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited3));
-			OptionalDelimited3[] res = (OptionalDelimited3[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited3.txt");
+			OptionalDelimited3[] res = (OptionalDelimited3[]) Common.ReadTest(engine, @"Good\OptionalDelimited3.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -112,7 +112,7 @@ namespace FileHelpersTests.Common
 		public void Delimited4()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited4));
-			OptionalDelimited4[] res = (OptionalDelimited4[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited4.txt");
+			OptionalDelimited4[] res = (OptionalDelimited4[]) Common.ReadTest(engine, @"Good\OptionalDelimited4.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -124,7 +124,7 @@ namespace FileHelpersTests.Common
 		public void Delimited5()
 		{
 			engine = new FileHelperEngine(typeof (OptionalDelimited5));
-			OptionalDelimited5[] res = (OptionalDelimited5[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimited5.txt");
+			OptionalDelimited5[] res = (OptionalDelimited5[]) Common.ReadTest(engine, @"Good\OptionalDelimited5.txt");
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual("", res[2].ContactTitle);
@@ -136,7 +136,7 @@ namespace FileHelpersTests.Common
 		public void DelimitedFull()
 		{
 			engine = new FileHelperEngine(typeof (OptionalFull));
-			OptionalFull[] res = (OptionalFull[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimitedFull.txt");
+			OptionalFull[] res = (OptionalFull[]) Common.ReadTest(engine, @"Good\OptionalDelimitedFull.txt");
 
 			Assert.AreEqual(8, res.Length);
 		}
@@ -145,7 +145,7 @@ namespace FileHelpersTests.Common
 		public void DelimitedFull2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalFull2));
-			OptionalFull2[] res = (OptionalFull2[]) TestCommon.ReadTest(engine, @"Good\OptionalDelimitedFull.txt");
+			OptionalFull2[] res = (OptionalFull2[]) Common.ReadTest(engine, @"Good\OptionalDelimitedFull.txt");
 
 			Assert.AreEqual(8, res.Length);
 		}

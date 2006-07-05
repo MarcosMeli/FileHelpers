@@ -4,7 +4,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class RunTimeClass
@@ -60,7 +60,7 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -83,7 +83,7 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -107,7 +107,7 @@ namespace FileHelpersTests.Common
 
 			asyncEngine = new FileHelperAsyncEngine(t);
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\test1.txt");
+			object[] res = Common.ReadAllAsync(asyncEngine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -123,7 +123,7 @@ namespace FileHelpersTests.Common
 
 			asyncEngine = new FileHelperAsyncEngine(t);
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\test1.txt");
+			object[] res = Common.ReadAllAsync(asyncEngine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -143,7 +143,7 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -162,11 +162,11 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileClassInFileEnc()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleBinaryClass.fhc"));
+			Type t = ClassBuilder.ClassFromBinaryFile(Common.TestPath(@"Classes\SampleBinaryClass.fhc"));
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -185,11 +185,11 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileClassInFile()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.TestPath(@"Classes\SampleClass.cs"));
+			Type t = ClassBuilder.ClassFromSourceFile(Common.TestPath(@"Classes\SampleClass.cs"));
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -207,11 +207,11 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileClassInFileVbNet()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.TestPath(@"Classes\SampleClass.vb"), NetLanguage.VbNet);
+			Type t = ClassBuilder.ClassFromSourceFile(Common.TestPath(@"Classes\SampleClass.vb"), NetLanguage.VbNet);
 
             engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -246,7 +246,7 @@ namespace FileHelpersTests.Common
 			
 			engine = new FileHelperEngine(cb.CreateType());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test2.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test2.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -269,7 +269,6 @@ namespace FileHelpersTests.Common
 			
 			
 			cb.AddField("Field2", 3, typeof(string));
-			
 			cb.LastField.AlignMode = AlignMode.Right;
 			cb.LastField.AlignChar = ' ';
 			
@@ -281,7 +280,7 @@ namespace FileHelpersTests.Common
 			
 			engine = new FileHelperEngine(cb.CreateType());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -316,7 +315,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);

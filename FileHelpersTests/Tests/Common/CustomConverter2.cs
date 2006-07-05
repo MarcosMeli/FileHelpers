@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	// SPECIAL FIELD
 	public class AddressField
@@ -54,7 +54,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (AddressConvClass));
 
-			AddressConvClass[] res = (AddressConvClass[]) TestCommon.ReadTest(engine, @"Good\CustomConverter2.txt");
+			AddressConvClass[] res = (AddressConvClass[]) Common.ReadTest(engine, @"Good\CustomConverter2.txt");
 
 			Assert.AreEqual(4, res.Length);
 

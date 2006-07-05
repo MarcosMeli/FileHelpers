@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class Trimming
@@ -13,7 +13,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) Common.ReadTest(engine, @"Good\Trim1.txt");
 
 			Assert.AreEqual(6, res.Length);
 			Assert.AreEqual("ALFKI      ", res[0].CustomerID);
@@ -29,7 +29,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) Common.ReadTest(engine, @"Good\Trim1.txt");
 
 			Assert.AreEqual(6, res.Length);
 			Assert.AreEqual("Alfreds Futterkiste", res[0].CompanyName);
@@ -45,7 +45,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) Common.ReadTest(engine, @"Good\Trim1.txt");
 
 			Assert.AreEqual(6, res.Length);
 			Assert.AreEqual("Maria Anders", res[0].ContactName);
@@ -61,7 +61,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) Common.ReadTest(engine, @"Good\Trim1.txt");
 
 			Assert.AreEqual(6, res.Length);
 			Assert.AreEqual("Sales Representative                  ", res[0].ContactTitle);

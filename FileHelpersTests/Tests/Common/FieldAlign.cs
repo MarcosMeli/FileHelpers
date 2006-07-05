@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class FieldAligment
@@ -13,7 +13,7 @@ namespace FileHelpersTests.Common
 		private void RunAlignTest()
 		{
 			engine = new FileHelperEngine(typeof (AlignClass));
-			AlignClass[] resTemp = (AlignClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			AlignClass[] resTemp = (AlignClass[]) Common.ReadTest(engine, @"Good\Trim1.txt");
 
 			string tmp = engine.WriteString(resTemp);
 

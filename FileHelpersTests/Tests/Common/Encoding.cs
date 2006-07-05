@@ -3,7 +3,7 @@ using System.Text;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class FileEncoding
@@ -19,7 +19,7 @@ namespace FileHelpersTests.Common
 			engine.Encoding = enc;
 			Assert.AreEqual(enc, engine.Encoding);
 
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, fileName);
+			CustomersVerticalBar[] res = (CustomersVerticalBar[]) Common.ReadTest(engine, fileName);
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
@@ -40,7 +40,7 @@ namespace FileHelpersTests.Common
 
 			ArrayList arr = new ArrayList();
 
-			TestCommon.BeginReadTest(asyncEngine, fileName);
+			Common.BeginReadTest(asyncEngine, fileName);
 
 			while (asyncEngine.ReadNext() != null)
 			{

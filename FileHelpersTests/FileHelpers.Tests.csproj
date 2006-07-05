@@ -108,7 +108,7 @@
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "Tests\TestCommon.cs"
+                    RelPath = "Tests\Common.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

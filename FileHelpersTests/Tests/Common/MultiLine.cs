@@ -4,7 +4,7 @@ using FileHelpers.MasterDetail;
 using NUnit.Framework;
 using System.IO;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class MultiLine
@@ -16,7 +16,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof(FHClient));
 
-            object[] res = engine.ReadFile(TestCommon.TestPath(@"Good\MultilineFull.txt"));
+            object[] res = engine.ReadFile(Common.TestPath(@"Good\MultilineFull.txt"));
 
             Assert.AreEqual(16, res.Length);
             Assert.AreEqual(16, engine.TotalRecords);

@@ -160,7 +160,7 @@ namespace FileHelpersTests.DataLink
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
-			storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), TestCommon.TestPath(@"Good\CustomersVerticalBar.txt")));
+			storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), Common.TestPath(@"Good\CustomersVerticalBar.txt")));
 
 		}
 
@@ -174,7 +174,7 @@ namespace FileHelpersTests.DataLink
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
-			FileDataLink.EasyInsertFromFile(storage, TestCommon.TestPath(@"Good\CustomersVerticalBar.txt"));
+			FileDataLink.EasyInsertFromFile(storage, Common.TestPath(@"Good\CustomersVerticalBar.txt"));
 		}
 
 

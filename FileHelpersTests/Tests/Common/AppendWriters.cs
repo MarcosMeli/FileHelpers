@@ -4,7 +4,7 @@ using System.Text;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class AppendWriters
@@ -81,7 +81,7 @@ namespace FileHelpersTests.Common
 		public void AppendToEmpty()
 		{
 
-			File.Copy(TestCommon.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
+			File.Copy(Common.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
 			
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -119,7 +119,7 @@ namespace FileHelpersTests.Common
 			rec.Field2 = "je";
 			rec.Field3 = 0;
 
-			File.Copy(TestCommon.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
+			File.Copy(Common.TestPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
 
 			engine.BeginAppendToFile(@"tempEmpty.txt");
 			engine.WriteNext(rec);

@@ -3,7 +3,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class IgnoreEmpties
@@ -16,7 +16,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
 
-			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty1.txt");
+			object[] res = Common.ReadTest(engine, @"Good\IgnoreEmpty1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -27,7 +27,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
 
-			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty2.txt");
+			object[] res = Common.ReadTest(engine, @"Good\IgnoreEmpty2.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -38,7 +38,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
 
-			object[] res = TestCommon.ReadTest(engine, @"Good\IgnoreEmpty3.txt");
+			object[] res = Common.ReadTest(engine, @"Good\IgnoreEmpty3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -49,7 +49,7 @@ namespace FileHelpersTests.Common
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty1.txt");
+			object[] res = Common.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, asyncEngine.LineNumber);
@@ -60,7 +60,7 @@ namespace FileHelpersTests.Common
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty3.txt");
+			object[] res = Common.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, asyncEngine.LineNumber);

@@ -3,7 +3,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class Progress
@@ -20,7 +20,7 @@ namespace FileHelpersTests.Common
 			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) Common.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

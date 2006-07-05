@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class Orders
@@ -15,7 +15,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(type);
 
-			object[] res = TestCommon.ReadTest(engine, fileName);
+			object[] res = Common.ReadTest(engine, fileName);
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}

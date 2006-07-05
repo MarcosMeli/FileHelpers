@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	// SPECIAL FIELD
     [FixedLengthRecord]
@@ -40,7 +40,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (PriceRecord));
 
-			PriceRecord[] res = (PriceRecord[]) TestCommon.ReadTest(engine, @"Good\PriceConverter.txt");
+			PriceRecord[] res = (PriceRecord[]) Common.ReadTest(engine, @"Good\PriceConverter.txt");
 
 			Assert.AreEqual(4, res.Length);
 

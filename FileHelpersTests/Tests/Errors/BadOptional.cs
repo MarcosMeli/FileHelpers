@@ -21,7 +21,7 @@ namespace FileHelpersTests.Errors
 		public void DelimitedBad2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalBad2));
-			TestCommon.ReadTest(engine, @"Bad\OptionalBad1.txt");
+			Common.ReadTest(engine, @"Bad\OptionalBad1.txt");
 		}
 
 

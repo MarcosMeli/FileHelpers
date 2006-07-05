@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class FieldIgnored
@@ -14,7 +14,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersTabIgnored3));
 			
-			CustomersTabIgnored3[] res = (CustomersTabIgnored3[]) TestCommon.ReadTest(engine, @"Good\CustomersTabIgnoreFirst.txt");
+			CustomersTabIgnored3[] res = (CustomersTabIgnored3[]) Common.ReadTest(engine, @"Good\CustomersTabIgnoreFirst.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored3 record in res)
@@ -30,7 +30,7 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(typeof (CustomersTabIgnored2));
 			
-			CustomersTabIgnored2[] res = (CustomersTabIgnored2[]) TestCommon.ReadTest(engine, @"Good\CustomersTabIgnoreMiddle.txt");
+			CustomersTabIgnored2[] res = (CustomersTabIgnored2[]) Common.ReadTest(engine, @"Good\CustomersTabIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored2 record in res)
@@ -44,7 +44,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (CustomersTabIgnored));
 			
-			CustomersTabIgnored[] res = (CustomersTabIgnored[]) TestCommon.ReadTest(engine, @"Good\CustomersTabIgnoreLast.txt");
+			CustomersTabIgnored[] res = (CustomersTabIgnored[]) Common.ReadTest(engine, @"Good\CustomersTabIgnoreLast.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored record in res)
@@ -59,7 +59,7 @@ namespace FileHelpersTests.Common
 
 			engine = new FileHelperEngine(typeof (OrdersFixedIgnore));
 			
-			OrdersFixedIgnore[] res = (OrdersFixedIgnore[]) TestCommon.ReadTest(engine, @"Good\OrdersFixedIgnoreMiddle.txt");
+			OrdersFixedIgnore[] res = (OrdersFixedIgnore[]) Common.ReadTest(engine, @"Good\OrdersFixedIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (OrdersFixedIgnore record in res)

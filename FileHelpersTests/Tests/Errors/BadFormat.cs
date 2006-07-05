@@ -18,28 +18,28 @@ namespace FileHelpersTests.Errors
 		[ExpectedException(typeof (ConvertException))]
 		public void BadDate1()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadDate1.txt");
+			Common.ReadTest(engine, @"Bad\BadDate1.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (ConvertException))]
 		public void BadDate2()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadDate2.txt");
+			Common.ReadTest(engine, @"Bad\BadDate2.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (ConvertException))]
 		public void BadInt1()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadInt1.txt");
+			Common.ReadTest(engine, @"Bad\BadInt1.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (ConvertException))]
 		public void BadInt2()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadInt2.txt");
+			Common.ReadTest(engine, @"Bad\BadInt2.txt");
 		}
 
 		[Test]
@@ -47,7 +47,7 @@ namespace FileHelpersTests.Errors
 		public void BadInt3()
 		{
 			engine = new FileHelperEngine(typeof (SampleTypeInt));
-			TestCommon.ReadTest(engine, @"Bad\BadInt3.txt");
+			Common.ReadTest(engine, @"Bad\BadInt3.txt");
 		}
 
 		[Test]
@@ -55,7 +55,7 @@ namespace FileHelpersTests.Errors
 		public void BadInt4()
 		{
 			engine = new FileHelperEngine(typeof (SampleTypeInt));
-			TestCommon.ReadTest(engine, @"Bad\BadInt4.txt");
+			Common.ReadTest(engine, @"Bad\BadInt4.txt");
 		}
 
 	}

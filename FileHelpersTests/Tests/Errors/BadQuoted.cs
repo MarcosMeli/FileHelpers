@@ -1,5 +1,5 @@
 using FileHelpers;
-using FileHelpersTests.Common;
+using FileHelpersTests.CommonTests;
 using NUnit.Framework;
 
 namespace FileHelpersTests.Errors
@@ -21,42 +21,42 @@ namespace FileHelpersTests.Errors
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted1()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadQuoted1.txt");
+			Common.ReadTest(engine, @"Bad\BadQuoted1.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted2()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadQuoted2.txt");
+			Common.ReadTest(engine, @"Bad\BadQuoted2.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted3()
 		{
-			TestCommon.ReadTest(engine, @"Bad\BadQuoted3.txt");
+			Common.ReadTest(engine, @"Bad\BadQuoted3.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted1Async()
 		{
-			TestCommon.ReadAllAsync(engineAsync, @"Bad\BadQuoted1.txt");
+			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted1.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted2Async()
 		{
-			TestCommon.ReadAllAsync(engineAsync, @"Bad\BadQuoted2.txt");
+			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted2.txt");
 		}
 
 		[Test]
 		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted3Async()
 		{
-			TestCommon.ReadAllAsync(engineAsync, @"Bad\BadQuoted3.txt");
+			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted3.txt");
 		}
 
 

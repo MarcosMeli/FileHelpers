@@ -47,7 +47,7 @@ namespace FileHelpersTests.DataLink
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof(OrdersExcelType));
 
-			OrdersExcelType[] resFile = (OrdersExcelType[]) TestCommon.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
+			OrdersExcelType[] resFile = (OrdersExcelType[]) Common.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
 
 			ExcelStorage provider = new ExcelStorage(typeof (OrdersExcelType));
 			provider.StartRow = 1;

@@ -3,7 +3,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class QuoteModeTests
@@ -31,7 +31,7 @@ namespace FileHelpersTests.Common
 		public void ReadOptionalRead()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
+			QuoteMode1[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
 			ValidateData(res);
 		}
 
@@ -40,7 +40,7 @@ namespace FileHelpersTests.Common
 		public void ReadOptionalWrite()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode2));
-			QuoteMode2[] res = TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode2[];
+			QuoteMode2[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode2[];
 			ValidateData(res);
 		}
 
@@ -48,7 +48,7 @@ namespace FileHelpersTests.Common
 		public void WriteOptionalRead()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
+			QuoteMode1[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
 
 			engine.WriteFile("quotetemp1.txt",res);
 

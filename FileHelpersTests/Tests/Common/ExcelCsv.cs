@@ -4,7 +4,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class ExcelCsv
@@ -17,7 +17,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (ExcelCsv1Type));
 
-			ExcelCsv1Type[] res = (ExcelCsv1Type[]) TestCommon.ReadTest(engine, @"Good\ExcelCsv1.txt");
+			ExcelCsv1Type[] res = (ExcelCsv1Type[]) Common.ReadTest(engine, @"Good\ExcelCsv1.txt");
 
 			Assert.AreEqual(4, res.Length);
 
@@ -38,7 +38,7 @@ namespace FileHelpersTests.Common
 		{
 			engine = new FileHelperEngine(typeof (ExcelCsv2Type));
 
-			ExcelCsv2Type[] res = (ExcelCsv2Type[]) TestCommon.ReadTest(engine, @"Good\ExcelCsv2.txt");
+			ExcelCsv2Type[] res = (ExcelCsv2Type[]) Common.ReadTest(engine, @"Good\ExcelCsv2.txt");
 
 			Assert.AreEqual(4, res.Length);
 
@@ -148,7 +148,7 @@ namespace FileHelpersTests.Common
 		public void ReadExcelCsv3()
 		{
 			engine = new FileHelperEngine(typeof (ExcelCsv3Type));
-			TestCommon.ReadTest(engine, @"Good\ExcelCsv2.txt");
+			Common.ReadTest(engine, @"Good\ExcelCsv2.txt");
 		}
 
 	}

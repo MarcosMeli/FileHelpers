@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Common
+namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
 	public class Performance
@@ -17,7 +17,7 @@ namespace FileHelpersTests.Common
 
 			a = DateTime.Now.Ticks;
 
-			TestCommon.ReadTest(engine, @"Good\OrdersVerticalBar.txt");
+			Common.ReadTest(engine, @"Good\OrdersVerticalBar.txt");
 
 			b = DateTime.Now.Ticks;
 
