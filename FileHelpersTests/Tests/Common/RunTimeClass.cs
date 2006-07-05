@@ -79,7 +79,7 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileVbNet()
 		{
-			Type t = ClassBuilder.ClassFromString(mClassVbNet, NetLenguage.VbNet);
+			Type t = ClassBuilder.ClassFromString(mClassVbNet, NetLanguage.VbNet);
 
 			engine = new FileHelperEngine(t);
 
@@ -119,7 +119,7 @@ namespace FileHelpersTests.Common
 		public void ReadFileAsyncVbNet()
 		{
 			
-			Type t = ClassBuilder.ClassFromString(mClassVbNet, "SampleType", NetLenguage.VbNet);
+			Type t = ClassBuilder.ClassFromString(mClassVbNet, "SampleType", NetLanguage.VbNet);
 
 			asyncEngine = new FileHelperAsyncEngine(t);
 
@@ -185,7 +185,7 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileClassInFile()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleClass.cs"));
+			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.TestPath(@"Classes\SampleClass.cs"));
 
 			engine = new FileHelperEngine(t);
 
@@ -207,8 +207,7 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void ReadFileClassInFileVbNet()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.TestPath(@"Classes\SampleClass.vb"), NetLenguage.VbNet);
-
+			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.TestPath(@"Classes\SampleClass.vb"), NetLanguage.VbNet);
 
             engine = new FileHelperEngine(t);
 
@@ -230,45 +229,55 @@ namespace FileHelpersTests.Common
 		[Test]
 		public void FullClassBuilding()
 		{
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("MyCustomers", ",");
-			cb.IgnoreFirstLines = 2;
+			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			cb.IgnoreFirstLines = 1;
 			cb.IgnoreEmptyLines = true;
-
+			
 			cb.AddField("Field1", typeof(DateTime));
 			cb.LastField.TrimMode = TrimMode.Both;
+			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+			cb.LastField.FieldNullValue = DateTime.Today;
 
 			cb.AddField("Field2", typeof(string));
 			cb.LastField.FieldQuoted = true;
 			cb.LastField.QuoteChar = '"';
 
-
 			cb.AddField("Field3", typeof(int));
-			cb.LastField.AlignMode = AlignMode.Right;
 			
 			engine = new FileHelperEngine(cb.CreateType());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test2.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
 			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-
+			
+			Assert.AreEqual("Hola", dt.Rows[0][1]);
+			Assert.AreEqual(DateTime.Today, dt.Rows[2][0]);
+			
 		}
 
 		[Test]
 		public void FullClassBuildingFixed()
 		{
-			FixedClassBuilder cb = new FixedClassBuilder("MyCustomers");
-			cb.IgnoreFirstLines = 2;
-			cb.IgnoreEmptyLines = true;
+			FixedClassBuilder cb = new FixedClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
-			cb.LastField.TrimMode = TrimMode.Both;
-
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			cb.LastField.FieldNullValue = DateTime.Now;
+			
+			
 			cb.AddField("Field2", 3, typeof(string));
-
-			cb.AddField("Field3", 3, typeof(int));
+			
 			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = ' ';
+			
+			cb.AddField("Field3", 3, typeof(int));
+			 
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = '0';
+			cb.LastField.TrimMode = TrimMode.Both;
 			
 			engine = new FileHelperEngine(cb.CreateType());
 
@@ -277,7 +286,75 @@ namespace FileHelpersTests.Common
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
 			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-
 		}
+
+		public ClassBuilder CommonCreate()
+		{
+			FixedClassBuilder cb = new FixedClassBuilder("Customers");
+
+			cb.AddField("Field1", 8, typeof(DateTime));
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			cb.LastField.FieldNullValue = DateTime.Now;
+			
+			cb.AddField("Field2", 3, typeof(string));
+			
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = ' ';
+			
+			cb.AddField("Field3", 3, typeof(int));
+			 
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = '0';
+			cb.LastField.TrimMode = TrimMode.Both;
+			
+			return cb;
+		}
+
+	
+		private void ValidateType(Type t)
+		{
+			engine = new FileHelperEngine(t);
+
+			DataTable dt = engine.ReadFileAsDT(TestCommon.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+		}
+
+		[Test]
+		public void SaveLoadSourceFile()
+		{
+			ClassBuilder cb = CommonCreate();
+			cb.SaveToSourceFile("tempclass.cs");
+			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs"));
+		}
+
+		[Test]
+		public void SaveLoadSourceFileVbNet()
+		{
+			ClassBuilder cb = CommonCreate();
+			cb.SaveToSourceFile("tempclass.cs", NetLanguage.VbNet);
+			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs", NetLanguage.VbNet));
+		}
+
+		[Test]
+		public void SaveLoadBinaryFile()
+		{
+			ClassBuilder cb = CommonCreate();
+			cb.SaveToSourceFile("tempclass.cs");
+			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs"));
+		}
+
+		[Test]
+		public void SaveLoadBinaryFileVbNet()
+		{
+			ClassBuilder cb = CommonCreate();
+			cb.SaveToBinaryFile("tempclass.cs", NetLanguage.VbNet);
+			ValidateType(ClassBuilder.ClassFromBinaryFile("tempclass.cs", NetLanguage.VbNet));
+		}
+
+		
 	}
 }

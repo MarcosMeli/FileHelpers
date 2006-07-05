@@ -3,7 +3,7 @@ public class SampleType
 {
 
 	[FieldFixedLength(8)]
-	[FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
+	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
 	public DateTime Field1;
 
 	[FieldFixedLength(3)]
