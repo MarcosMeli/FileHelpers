@@ -4,12 +4,7 @@ using System.Text;
 
 namespace FileHelpers.WizardApp
 {
-    public enum NetLanguage
-    {
-        CSharp,
-        VbNet
 
-    }
 
     public enum NetVisibility
     {

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.IO;
+using FileHelpers.RunTime;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
 
@@ -1926,11 +1927,11 @@ namespace FileHelpers.WizardApp
                 {
                     case 0:
                         classStr = mWizardInfo.WizardOutput(NetLanguage.CSharp);
-                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLenguage.CSharp);
+                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLanguage.CSharp);
                         break;
                     case 1:
                         classStr = mWizardInfo.WizardOutput(NetLanguage.VbNet);
-                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLenguage.VbNet);
+                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLanguage.VbNet);
                         break;
                 }
 
