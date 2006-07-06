@@ -19,7 +19,7 @@ dp.sh.Strings = {
 	ExpandCode : '+ Expand Code',
 	ViewPlain : 'View Plain',
 	Print : 'Print',
-	CopyToClipboard : 'Copy to Clipboard',
+	CopyToClipboard : '<b>Copy to Clipboard</b>',
 	About : '?',
 	
 	CopiedToClipboard : 'Code in your clipboard now =)'
@@ -359,11 +359,11 @@ dp.sh.Highlighter.prototype.SwitchToTable = function()
 			cell.innerHTML += '<span><b>' + UtilHref('Expand', dp.sh.Strings.ExpandCode) + '</b>' + pipe + '</span>';
 		}
 
-		cell.innerHTML += UtilHref('ViewSource', dp.sh.Strings.ViewPlain) + pipe + UtilHref('PrintSource', dp.sh.Strings.Print);
-		
 		// IE has this clipboard object which is easy enough to use
 		if(window.clipboardData)
-			cell.innerHTML += pipe + UtilHref('ToClipboard', dp.sh.Strings.CopyToClipboard);
+			cell.innerHTML += UtilHref('ToClipboard', dp.sh.Strings.CopyToClipboard) + pipe;
+
+		cell.innerHTML += UtilHref('ViewSource', dp.sh.Strings.ViewPlain) + pipe + UtilHref('PrintSource', dp.sh.Strings.Print);
 		
 		cell.innerHTML += pipe + UtilHref('About', dp.sh.Strings.About);
 	}
