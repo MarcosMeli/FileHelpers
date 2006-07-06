@@ -7,7 +7,7 @@ using Microsoft.CSharp;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
 
-namespace FileHelpers
+namespace FileHelpers.RunTime
 {
 	
 	//-> ADD: Sealed !!!
@@ -169,7 +169,7 @@ namespace FileHelpers
 			string classDef = reader.ReadToEnd();
 			reader.Close();
 			
-			classDef = EncDec.Decrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+			classDef = Decrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
 
 			return ClassFromString(classDef, className, lang);
 		}
@@ -177,7 +177,7 @@ namespace FileHelpers
 		public static void ClassToBinaryFile(string filename, string classDef)
 		{
 
-			classDef = EncDec.Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+			classDef = Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
 			
 			StreamWriter writer = new StreamWriter(filename);
 			writer.Write(classDef);
@@ -218,7 +218,7 @@ namespace FileHelpers
 			StreamWriter writer = new StreamWriter(filename);
 
 			string classDef = GetClassCode(lang);
-			classDef = EncDec.Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+			classDef = Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
 			writer.Write(classDef);
 			writer.Close();
 		}
@@ -321,12 +321,7 @@ namespace FileHelpers
     	
     	#region "  EncDec  "	
 		
-    	private sealed class EncDec 
-		{
-    		private EncDec()
-    		{}
-    		
-			public static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV) 
+			private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV) 
 			{ 
 				MemoryStream ms = new MemoryStream(); 
 				Rijndael alg = Rijndael.Create(); 
@@ -340,7 +335,7 @@ namespace FileHelpers
 				return encryptedData; 
 			} 
 
-			public static string Encrypt(string clearText, string Password) 
+			private static string Encrypt(string clearText, string Password) 
 			{ 
 				byte[] clearBytes = Encoding.Unicode.GetBytes(clearText); 
 
@@ -354,7 +349,7 @@ namespace FileHelpers
     
 
 			// Decrypt a byte array into a byte array using a key and an IV 
-			public static byte[] Decrypt(byte[] cipherData, 
+			private static byte[] Decrypt(byte[] cipherData, 
 				byte[] Key, byte[] IV) 
 			{ 
 				MemoryStream ms = new MemoryStream(); 
@@ -373,7 +368,7 @@ namespace FileHelpers
 				return decryptedData; 
 			}
 
-			public static string Decrypt(string cipherText, string Password) 
+			private static string Decrypt(string cipherText, string Password) 
 			{ 
 				byte[] cipherBytes = Convert.FromBase64String(cipherText); 
 				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
@@ -384,7 +379,6 @@ namespace FileHelpers
 				return Encoding.Unicode.GetString(decryptedData); 
 			}
 
-		}
     	
 		
     	#endregion

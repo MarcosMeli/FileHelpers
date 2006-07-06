@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.RunTime
 {
 	public sealed class DelimitedFieldBuilder: FieldBuilder
 	{

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.RunTime
 {
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public sealed class ConverterBuilder

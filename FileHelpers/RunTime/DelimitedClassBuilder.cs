@@ -1,6 +1,6 @@
 using System;
 
-namespace FileHelpers
+namespace FileHelpers.RunTime
 {
 	public sealed class DelimitedClassBuilder: ClassBuilder
 	{

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.RunTime
 {
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class FieldBuilder
@@ -37,8 +37,6 @@ namespace FileHelpers
 		#endregion
 
 		
-		
-
 
 		internal int mFieldIndex = -1;
 
