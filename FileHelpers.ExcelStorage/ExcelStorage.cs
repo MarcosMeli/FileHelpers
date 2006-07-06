@@ -23,14 +23,11 @@ namespace FileHelpers.DataLink
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
 		/// <param name="recordType">The type of records.</param>
-		public ExcelStorage(Type recordType)
+		public ExcelStorage(Type recordType):base(recordType)
 		{
-			mRecordType = recordType;
-			mRecordInfo = DataStorage.CreateRecordInfo(recordType);
-
 			// Temporary
 
-			if (mRecordInfo.HasDateFields)
+			if (RecordHasDateFields())
 				throw new NotImplementedException("For now the ExcelStorage don´t work with DateTime fields, sorry for the problems.");
 		}
 
@@ -69,18 +66,12 @@ namespace FileHelpers.DataLink
 		private ApplicationClass mApp;
 		private Workbook mBook;
 		private Worksheet mSheet;
-		private Type mRecordType;
-		private RecordInfo mRecordInfo;
+		//private RecordInfo mRecordInfo;
 
 		#endregion
 
 		#region "  Public Properties  "
 
-		/// <summary>Returns the class that represent the records in the Excel file.</summary>
-		public override Type RecordType
-		{
-			get { return mRecordType; }
-		}
 
 		/// <summary>The Start Row where is the data. Starting at 1.</summary>
 		public int StartRow
@@ -365,7 +356,7 @@ namespace FileHelpers.DataLink
 				int recordNumber = 0;
 				Notify(mNotifyHandler, mProgressMode, 0, -1);
 
-				object[] colValues = new object[mRecordInfo.FieldCount];
+				object[] colValues = new object[RecordFieldCount];
 
 				this.InitExcel();
 				this.OpenWorkbook(this.mFileName);
@@ -377,7 +368,7 @@ namespace FileHelpers.DataLink
 						recordNumber++;
 						Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
 
-						colValues = RowValues(cRow, mStartColumn, mRecordInfo.FieldCount);
+						colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
 
 						object record = ValuesToRecord(colValues);
 						res.Add(record);
@@ -418,18 +409,5 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		#region "  Values <-> Record Convertions "
-
-		private object ValuesToRecord(object[] values)
-		{
-			return mRecordInfo.ValuesToRecord(values);
-		}
-
-		private object[] RecordToValues(object record)
-		{
-			return mRecordInfo.RecordToValues(record);
-		}
-
-		#endregion
 	}
 }
