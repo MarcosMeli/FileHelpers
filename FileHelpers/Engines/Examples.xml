@@ -6,6 +6,7 @@
 		<example>
 			This example show the basic use of the library with minimun code:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -53,8 +54,8 @@
 		
 	}
 
-		</code>
-		</example>
+</textarea>
+</code>		</example>
 	</FileHelperEngine>
 
 
@@ -66,6 +67,7 @@
 		<example>
 			This example show the basic use of the library with minimun code:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -98,6 +100,7 @@
 		
 	}
 
+</textarea>
 		</code>
 		</example>
 	</WriteFile>
@@ -108,6 +111,7 @@
 		<example>
 			This example show the basic use of the library with minimun code:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -140,6 +144,7 @@
 		
 	}
 
+</textarea>
 		</code>
 		</example>
 	</AppendFile>
@@ -149,6 +154,7 @@
 		<example>
 			This example show the basic use of the library with minimun code:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -176,6 +182,7 @@
 		int sum = records[0].Field2 + records[1].Field2;
 	}
 
+</textarea>
 		</code>
 		</example>
 	</ReadFile>
@@ -194,6 +201,7 @@
 		<example>
 			This example show the basic use of the async methods in the FileHelperAsymcEngine:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -247,6 +255,7 @@
 	    engine.EndsWrite();
 	}
 
+</textarea>
 		</code>
 		</example>
 	</FileHelperAsyncEngine>
@@ -255,6 +264,7 @@
 		<example>
 			This example show the basic use of the async methods in the FileHelperAsymcEngine:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -287,6 +297,7 @@
 	    engine.EndsWrite();
 	}
 
+</textarea>
 		</code>
 		</example>
 	</WriteAsync>
@@ -301,6 +312,7 @@
 		<example>
 			This example show the basic use of the async methods in the FileHelperAsymcEngine:
 <code>
+<textarea name="code" class="c#">
 
 	using FileHelpers;
 	
@@ -334,6 +346,7 @@
 	    engine.EndsRead();
 	}
 
+</textarea>
 		</code>
 		</example>
 	</ReadAsync>
