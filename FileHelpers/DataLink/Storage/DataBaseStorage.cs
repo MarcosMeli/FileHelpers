@@ -27,27 +27,13 @@ namespace FileHelpers.DataLink
 	public abstract class DatabaseStorage : DataStorage
 	{
 
-		RecordInfo mRecordInfo;
 		#region Constructors
 
 		/// <summary>Default constructor.</summary>
 		/// <param name="recordType">The Record Type.</param>
-		protected DatabaseStorage(Type recordType)
-		{
-			mRecordType = recordType;
-			mRecordInfo = new RecordInfo(recordType);
-		}
-		#endregion
-
-		#region RecordType
-
-		private Type mRecordType;
-		/// <summary>Returns the class that represent the records in the file.</summary>
-		public sealed override Type RecordType
-		{
-			get{ return mRecordType; }
-		}
-
+		protected DatabaseStorage(Type recordType):base(recordType)
+		{}
+		
 		#endregion
 
 		#region FillRecord
@@ -175,7 +161,7 @@ namespace FileHelpers.DataLink
 					mConn.Close();
 			}
 
-			return (object[]) res.ToArray(mRecordType);
+			return (object[]) res.ToArray(RecordType);
 			
 		}
 

@@ -130,76 +130,9 @@ namespace FileHelpers
 
 		#endregion
 
-//		#region "  Convert Handlers  " 
 
 		internal ConverterBase mConvertProvider;
 
-//		public ConverterBase ConvertProvider
-//		{
-//			get { return mConvertProvider; }
-//			set { mConvertProvider = value; }
-//		}
-//
-//		#endregion
-
-
-
-//		#region "  TrimMode  " 
-//
-//		public TrimMode TrimMode
-//		{
-//			get { return mTrimMode; }
-//		}
-//
-//		#endregion
-//
-//		#region "  TrimChars  " 
-//
-//		public char[] TrimChars
-//		{
-//			get { return mTrimChars; }
-//		}
-//
-//		#endregion
-//
-//		#region "  IsOptional  " 
-//
-//		public bool IsOptional
-//		{
-//			get { return mIsOptional; }
-//		}
-//
-//		#endregion
-//
-//		#region "  NextIsOptional  " 
-//
-//		internal bool NextIsOptional
-//		{
-//			get { return mNextIsOptional; }
-//			set { mNextIsOptional = value; }
-//		}
-//
-//		#endregion
-
-//		#region "  InNewLine  " 
-
-//		public bool InNewLine
-//		{
-//			get { return mInNewLine; }
-//		}
-//
-//		#endregion
-//
-//
-
-//		#region "  FieldType  " 
-//
-//		public Type FieldType
-//		{
-//			get { return mFieldType; }
-//		}
-//
-//		#endregion
 
 		#region "  ExtractAndAssignFromString  " 
 

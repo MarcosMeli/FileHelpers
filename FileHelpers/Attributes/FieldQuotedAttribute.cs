@@ -17,29 +17,11 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldQuotedAttribute : Attribute
 	{
-		private char mQuoteChar;
+		internal char QuoteChar;
 
-		/// <summary>The char used to quote the string.</summary>
-		public char QuoteChar
-		{
-			get { return mQuoteChar; }
-		}
+		internal QuoteMode QuoteMode = QuoteMode.AlwaysQuoted;
 
-		private QuoteMode mQuoteMode = QuoteMode.AlwaysQuoted;
-
-		/// <summary>Indicates if the Quoted char can be optional (default is false)</summary>
-		public QuoteMode QuoteMode
-		{
-			get { return mQuoteMode; }
-		}
-
-		private MultilineMode mQuoteMultiline = MultilineMode.AllowForBoth;
-
-		/// <summary>The char used to quote the string.</summary>
-		public MultilineMode QuoteMultiline
-		{
-			get { return mQuoteMultiline; }
-		}
+		internal MultilineMode QuoteMultiline = MultilineMode.AllowForBoth;
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
 		public FieldQuotedAttribute() : this('\"')
@@ -81,9 +63,9 @@ namespace FileHelpers
 		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
 		public FieldQuotedAttribute(char quoteChar, QuoteMode mode, MultilineMode multiline)
 		{
-			mQuoteChar = quoteChar;
-			mQuoteMode = mode;
-			mQuoteMultiline = multiline;
+			QuoteChar = quoteChar;
+			QuoteMode = mode;
+			QuoteMultiline = multiline;
 		}
 
 

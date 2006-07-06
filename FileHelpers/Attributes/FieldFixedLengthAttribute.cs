@@ -16,20 +16,15 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldFixedLengthAttribute : FieldAttribute
 	{
-		private int mLength;
+		internal int Length;
 
-		/// <summary>The String Length of the record defined inside a class with the <see cref="FixedLengthRecordAttribute"/>. </summary>
-		public int Length
-		{
-			get { return mLength; }
-		}
 
 		/// <summary>Indicates the length of a FixedLength field.</summary>
 		/// <param name="length">The length of the field.</param>
 		public FieldFixedLengthAttribute(int length)
 		{
 			if (length > 0)
-				this.mLength = length;
+				this.Length = length;
 			else
 				throw new BadUsageException("The length parameter debe ser > 0");
 		}

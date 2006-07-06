@@ -51,8 +51,17 @@ namespace FileHelpers.DataLink
 			mProgressMode = mode;
 		}
 
+		private Type mRecordType;
+		internal RecordInfo mRecordInfo;
+		
 		/// <summary>Returns the class that represent the records in the file.</summary>
-		public abstract Type RecordType { get; }
+		public Type RecordType
+		{
+			get
+			{
+				return mRecordType;
+			}
+		}
 
 		/// <summary>Must Return the records from the DataSource (DB, Excel, etc)</summary>
 		/// <returns>The extracted records.</returns>
@@ -94,16 +103,40 @@ namespace FileHelpers.DataLink
 		}
 
 		/// <summary>Creates an instance of this class.</summary>
-		protected DataStorage()
+		protected DataStorage(Type recordClass)
 		{
+			mRecordType = recordClass;
+			mRecordInfo = new RecordInfo(recordClass);
+			
 		}
-/// <summary>Creates an instance of the RecordInfo class. This method is used because hte constructor of the record info is internal.</summary>
-/// <param name="recordClass">The class passed to the RecordInfo constructor.</param>
-/// <returns>A RecordInfo instance.</returns>
-
-		protected static RecordInfo CreateRecordInfo(Type recordClass)
+		
+		/// <summary>Indicates if the record class contains a DateTime field.</summary>
+		/// <returns>True if the record class contains a DateTime field</returns>
+		protected bool RecordHasDateFields()
 		{
-			return new RecordInfo(recordClass);
+			return mRecordInfo.HasDateFields;
+		}
+
+		#region "  Values <-> Record Convertions "
+
+		protected object ValuesToRecord(object[] values)
+		{
+			return mRecordInfo.ValuesToRecord(values);
+		}
+
+		protected object[] RecordToValues(object record)
+		{
+			return mRecordInfo.RecordToValues(record);
+		}
+
+		#endregion
+
+		protected int RecordFieldCount
+		{
+			get
+			{
+				return mRecordInfo.mFieldCount;
+			}
 		}
 	}
 }

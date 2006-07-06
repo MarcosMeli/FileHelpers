@@ -11,8 +11,7 @@ namespace FileHelpers
 	internal sealed class ProgressHelper
 	{
 		private ProgressHelper()
-		{
-		}
+		{}
 
 		public static void Notify(ProgressChangeHandler handler, ProgressMode mode, int current, int total)
 		{

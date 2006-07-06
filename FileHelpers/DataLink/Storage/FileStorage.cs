@@ -17,7 +17,7 @@ namespace FileHelpers.DataLink
 		/// <summary>Create an instance of this class to work with the specified type.</summary>
 		/// <param name="type">The record class.</param>
 		/// <param name="fileName">The target filename.</param>
-		public FileStorage(Type type, string fileName)
+		public FileStorage(Type type, string fileName):base(type)
 		{
 			if (type == null)
 				throw new BadUsageException("You need to pass a not null Type to the FileStorage.");
@@ -28,11 +28,6 @@ namespace FileHelpers.DataLink
 			mFileName = fileName;
 		}
 
-		/// <summary>Returns the class that represent the records in the file.</summary>
-		public override Type RecordType
-		{
-			get { return mEngine.RecordType; }
-		}
 
 		#region "  SelectRecords  "
 

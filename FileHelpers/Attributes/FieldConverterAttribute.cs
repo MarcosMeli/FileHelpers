@@ -114,13 +114,7 @@ namespace FileHelpers
 
 		#region "  Converter  "
 
-		ConverterBase mConverter;
-
-		/// <summary> The <see cref="ConverterBase"/> used to performs the string to records and record to string operations. </summary>
-		public ConverterBase Converter
-		{
-			get { return mConverter; }
-		}
+		internal ConverterBase Converter;
 
 		#endregion
 
@@ -138,7 +132,7 @@ namespace FileHelpers
 
 				try
 				{
-					mConverter = (ConverterBase) constructor.Invoke(args);
+					Converter = (ConverterBase) constructor.Invoke(args);
 				}
 				catch (TargetInvocationException ex)
 				{
@@ -149,7 +143,7 @@ namespace FileHelpers
 #if ! MINI
 			else if (convType.IsEnum)
 			{
-				mConverter = new EnumConverter(convType);
+				Converter = new EnumConverter(convType);
 			}
 #endif			
 			else

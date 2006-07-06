@@ -18,10 +18,26 @@ namespace FileHelpers
 	/// <summary>An internal class used to store information about the Record Type.</summary>
 	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public sealed class RecordInfo
+	internal sealed class RecordInfo
 	{
+		
+		#region Internal Fields
+		
 		internal Type mRecordType;
+		internal FieldBase[] mFields;
+		internal int mIgnoreFirst = 0;
+		internal int mIgnoreLast = 0;
+		internal bool mIgnoreEmptyLines = false;
+		internal int mFieldCount;
+		
+		private ConstructorInfo mRecordConstructor;
 
+		private static readonly object[] mEmptyObjectArr = new object[] {};
+		private readonly Type[] mEmptyTypeArr = new Type[] {};
+		
+		#endregion
+		
+		#region Constructor
 		/// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
 		/// <param name="recordType">The Type of the record class.</param>
 		internal RecordInfo(Type recordType)
@@ -29,19 +45,9 @@ namespace FileHelpers
 			mRecordType = recordType;
 			InitFields();
 		}
+		#endregion
 
-//		#region " TESTING "
-//
-//		internal RecordInfo()
-//		{
-//		}
-//
-//		internal void AddFields(FieldBase[] fields)
-//		{
-//			mFields = fields;
-//		}
-//
-//		#endregion
+		#region InitFields
 
 		private void InitFields()
 		{
@@ -73,7 +79,7 @@ namespace FileHelpers
 			mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {});
 
 
-// Create fields
+			// Create fields
 
 			FieldInfo[] fields;
 			fields = mRecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -85,7 +91,9 @@ namespace FileHelpers
 				throw new BadUsageException("The record class don't contains any field.");
 
 		}
+		#endregion
 
+		#region CreateFields
 
 		private static FieldBase[] CreateFields(FieldInfo[] fields, TypedRecordAttribute recordAttribute)
 		{
@@ -115,24 +123,9 @@ namespace FileHelpers
 			return (FieldBase[]) arr.ToArray(typeof (FieldBase));
 
 		}
+		#endregion
 
-		internal FieldBase[] mFields;
-		private int mFieldCount;
-		internal int mIgnoreFirst = 0;
-		internal int mIgnoreLast = 0;
-		internal bool mIgnoreEmptyLines = false;
-
-		internal static readonly object[] mEmptyObjectArr = new object[] {};
-		internal static readonly Type[] mEmptyTypeArr = new Type[] {};
-		ConstructorInfo mRecordConstructor;
-
-		/// <summary>The Number of no ignored fields in the record class.</summary>
-		public int FieldCount
-		{
-			get { return mFieldCount; }
-		}
-
-
+		#region GetFieldInfo
 		internal FieldInfo GetFieldInfo(string name)
 		{
 			foreach (FieldBase field in mFields)
@@ -143,8 +136,18 @@ namespace FileHelpers
 
 			return null;
 		}
+		#endregion
 
+		#region CreateRecordObject
+		//TODO: Profile and optimize it !!!
+		//      Something like to catch the constructor and use a delagate or something like Emit.
+		internal object CreateRecordObject()
+		{
+			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
+		}
+		#endregion
 
+		#region StringToRecord
 		internal object StringToRecord(string line, ForwardReader reader)
 		{
 			if (line == string.Empty && mIgnoreEmptyLines)
@@ -159,12 +162,9 @@ namespace FileHelpers
 
 			return record;
 		}
+		#endregion
 
-		internal object CreateRecordObject()
-		{
-			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
-		}
-
+		#region RecordToString
 		/// <summary>Internal.</summary>
 		/// <param name="record"></param>
 		/// <returns></returns>
@@ -179,7 +179,9 @@ namespace FileHelpers
 			return res;
 
 		}
+		#endregion
 
+		#region ValuesToRecord
 		/// <summary>Returns a record formed with the passed values.</summary>
 		/// <param name="values">The source Values.</param>
 		/// <returns>A record formed with the passed values.</returns>
@@ -194,7 +196,9 @@ namespace FileHelpers
 
 			return record;
 		}
+		#endregion
 
+		#region RecordToValues
 		/// <summary>Get an object[] of the values in the fields of the passed record.</summary>
 		/// <param name="record">The source record.</param>
 		/// <returns>An object[] of the values in the fields.</returns>
@@ -209,7 +213,10 @@ namespace FileHelpers
 
 			return res;
 		}
+		#endregion
 
+		#region HasDateFields
+		
 		/// <summary>Indicates if the Record Info has fields of type Date</summary>
 		/// <remarks>This is used externally by the ExcelStorage.</remarks>
 		public bool HasDateFields
@@ -224,11 +231,14 @@ namespace FileHelpers
 				return false;
 			}
 		}
-
+		
+		#endregion
 
 		
 	#if ! MINI
 
+		#region RecordsToDataTable
+		
 		internal DataTable RecordsToDataTable(ICollection records)
 		{
 			DataTable res = new DataTable();
@@ -250,8 +260,10 @@ namespace FileHelpers
 			res.EndLoadData();
 			return res;
 		}
+		
+		#endregion
 
-		#endif
+	#endif
 
 	}
 

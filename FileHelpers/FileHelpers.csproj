@@ -76,8 +76,8 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "c:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                    AssemblyName = "System.XML"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
             </References>
         </Build>

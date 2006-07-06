@@ -34,42 +34,9 @@ namespace FileHelpers
 
 		#endregion
 
-//		#region "  StaticFields  "
-//
-//		public static string DbServer = String.Empty;
-//		public static string DbName = String.Empty;
-//		public static string DbUser = String.Empty;
-//		public static string DbPass = String.Empty;
-//
-//		#endregion
-
-//		#region "  TraerDataTable  "
-//
-//		public static DataTable TraerDataTable(string sql)
-//		{
-//			SqlConnection connect = new SqlConnection(ConnectionString());
-//			SqlDataAdapter adapter = new SqlDataAdapter(sql, connect);
-//			DataTable resDt = new DataTable();
-//
-//			adapter.Fill(resDt);
-//
-//			return resDt;
-//		}
-//
-//		#endregion
-
-//		#region "  ConnectionString  "
-//
-//		static string ConnectionString()
-//		{
-//			return SqlConnectionString(DbServer, DbName, DbUser, DbPass);
-//		}
-//
-//		#endregion
-
 		#region "  SqlConnectionString  "
 
-		private static string AppName = "FileHelpers"; //<- For the SqlServer
+		private static string AppName = "FileHelpers"; //<- For display in SqlServer
 
 		static public string SqlConnectionString(string server, string dbName)
 		{

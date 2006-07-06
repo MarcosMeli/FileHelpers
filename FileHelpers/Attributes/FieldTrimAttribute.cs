@@ -16,29 +16,9 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldTrimAttribute : Attribute
 	{
-		#region "  TrimChars  "
 
-		private Char[] mTrimChars;
-
-		/// <summary>The chars to Trim.</summary>
-		public char[] TrimChars
-		{
-			get { return mTrimChars; }
-		}
-
-		#endregion
-
-		#region "  TrimMode  "
-
-		private TrimMode mTrimMode;
-
-		/// <summary>The Trim behavior.</summary>
-		public TrimMode TrimMode
-		{
-			get { return mTrimMode; }
-		}
-
-		#endregion
+		internal Char[] TrimChars;
+		internal TrimMode TrimMode;
 
 		#region "  Constructors  "
 
@@ -53,8 +33,8 @@ namespace FileHelpers
 		/// <param name="chars">A list of chars used to trim.</param>
 		public FieldTrimAttribute(TrimMode mode, params char[] chars)
 		{
-			mTrimMode = mode;
-			mTrimChars = chars;
+			TrimMode = mode;
+			TrimChars = chars;
 		}
 
 		/// <summary>Indicates the <see cref="TrimMode"/> used after read to truncate the field. </summary>
@@ -62,8 +42,8 @@ namespace FileHelpers
 		/// <param name="trimChars">A string of chars used to trim.</param>
 		public FieldTrimAttribute(TrimMode mode, string trimChars)
 		{
-			mTrimMode = mode;
-			mTrimChars = trimChars.ToCharArray();
+			TrimMode = mode;
+			TrimChars = trimChars.ToCharArray();
 		}
 
 		#endregion

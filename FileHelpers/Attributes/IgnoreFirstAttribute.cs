@@ -16,24 +16,19 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class IgnoreFirstAttribute : Attribute
 	{
+		internal int NumberOfLines;
+
+
 		/// <summary>Indicates that the first line must be discarded.</summary>
 		public IgnoreFirstAttribute() : this(1)
 		{
-		}
-
-		private int mNumberOfLines;
-
-		/// <summary>The number of first lines to be ignored.</summary>
-		public int NumberOfLines
-		{
-			get { return mNumberOfLines; }
 		}
 
 		/// <summary>Indicates the number of first lines to be ignored.</summary>
 		/// <param name="numberOfLines">The number of first lines to be discarded.</param>
 		public IgnoreFirstAttribute(int numberOfLines)
 		{
-			mNumberOfLines = numberOfLines;
+			NumberOfLines = numberOfLines;
 		}
 	}
 }
