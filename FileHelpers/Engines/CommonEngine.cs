@@ -183,8 +183,8 @@ namespace FileHelpers
 		/// </summary>
 		/// <param name="fieldName">The field name.</param>
 		/// <param name="records">The records Array.</param>
-		/// <param name="asc">The direction of the sort. True means Ascending.</param>
-		public static void SortRecordsByField(object[] records, string fieldName, bool asc)
+		/// <param name="ascending">The direction of the sort. True means Ascending.</param>
+		public static void SortRecordsByField(object[] records, string fieldName, bool ascending)
 		{
 			if (records.Length > 0 && records[0] != null)
 			{
@@ -194,7 +194,7 @@ namespace FileHelpers
 				if (fi == null)
 					throw new BadUsageException("The record class not contains the field " + fieldName);
 
-				IComparer comparer = new FieldComparer(fi, asc);
+				IComparer comparer = new FieldComparer(fi, ascending);
 				Array.Sort(records, comparer);
 			}
 		}
@@ -275,6 +275,81 @@ namespace FileHelpers
 		}
 
 #endif
+
+		public void MergeFilesFast(Type recordType, string file1, string file2, string destinationFile)
+		{
+			FileHelperAsyncEngine engineRead= new FileHelperAsyncEngine(recordType);
+			FileHelperAsyncEngine engineWrite = new FileHelperAsyncEngine(recordType);
+			
+			engineWrite.BeginWriteFile(destinationFile);
+
+			object[] readRecords;
+
+			// Read FILE 1
+			engineRead.BeginReadFile(file1);
+			
+			readRecords = engineRead.ReadNexts(50);
+			while(readRecords.Length > 0)
+			{
+				engineWrite.WriteNexts(readRecords);
+				readRecords = engineRead.ReadNexts(50);
+			}
+			engineRead.EndsRead();
+
+			// Read FILE 2
+			engineRead.BeginReadFile(file2);
+
+			readRecords = engineRead.ReadNexts(50);
+			while(readRecords.Length > 0)
+			{
+				engineWrite.WriteNexts(readRecords);
+				readRecords = engineRead.ReadNexts(50);
+			}
+			engineRead.EndsRead();
+			
+			engineWrite.EndsWrite();
+		} 
+
+		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
+		{
+			return MergeAndSortFile(recordType, file1, file2, destFile, field, true);
+		}
+
+		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destinationFile, string field, bool ascending)
+		{
+			FileHelperEngine engine = new FileHelperEngine(recordType);
+
+			ArrayList arr = new ArrayList();
+
+			arr.AddRange(engine.ReadFile(file1));
+			arr.AddRange(engine.ReadFile(file2));
+            
+			object[] res = (object[]) arr.ToArray(recordType);
+			arr = null; // <- better performance (memory)
+
+			CommonEngine.SortRecordsByField(res, field, ascending);
+
+			return res;
+		}	
+
+		public object[] MergeAndSortFile(Type recordType,string file1, string file2, string destinationFile)
+		{
+			FileHelperEngine engine = new FileHelperEngine(recordType);
+
+			ArrayList arr = new ArrayList();
+
+			arr.AddRange(engine.ReadFile(file1));
+			arr.AddRange(engine.ReadFile(file2));
+            
+			object[] res = (object[]) arr.ToArray(recordType);
+			arr = null; // <- better performance (memory)
+			
+			CommonEngine.SortRecords(res);
+
+			return res;
+		}	
+
+
 
 	}
 }

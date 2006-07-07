@@ -82,6 +82,28 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		public void AsyncReadMoreAndMore()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
+
+			SampleType rec1, rec2;
+
+			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
+
+			rec1 = (SampleType) asyncEngine.ReadNext();
+			rec1 = (SampleType) asyncEngine.ReadNext();
+			rec1 = (SampleType) asyncEngine.ReadNext();
+			rec1 = (SampleType) asyncEngine.ReadNext();
+			rec1 = (SampleType) asyncEngine.ReadNext();
+
+			Assert.IsTrue(rec1 == null);
+
+			rec1 = (SampleType) asyncEngine.ReadNext();
+			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
+		}
+
+
+		[Test]
 		public void AsyncRead2()
 		{
 			SampleType rec1;
