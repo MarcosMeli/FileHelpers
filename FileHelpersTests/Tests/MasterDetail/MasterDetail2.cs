@@ -14,7 +14,7 @@ namespace FileHelpersTests.MasterDetail
 		[Test]
 		public void CustomerOrdersRead()
 		{
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonActions.DetailIfContains, "@");
+            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.DetailIfContains, "@");
 
             MasterDetails[] res = Common.ReadTest(engine, @"Good\MasterDetail2.txt");
 
@@ -49,7 +49,7 @@ namespace FileHelpersTests.MasterDetail
         [Test]
         public void CustomerOrdersRead2()
         {
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonActions.MasterIfContains, "@");
+            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.MasterIfContains, "@");
 
             MasterDetails[] res = Common.ReadTest(engine, @"Good\MasterDetail3.txt");
 

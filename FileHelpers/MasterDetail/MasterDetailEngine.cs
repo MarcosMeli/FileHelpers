@@ -26,39 +26,26 @@ namespace FileHelpers.MasterDetail
 	#region "  Common Actions and Selector  "
 
 	/// <summary>The Action taken when the selector string is found.</summary>
-	public enum CommonActions
+	public enum CommonSelector
 	{
 		/// <summary>Parse the current record as <b>Master</b> if the selector string is found.</summary>
 		MasterIfContains,
+		/// <summary>Parse the current record as <b>Master</b> if the record starts with some string.</summary>
+		MasterIfBegins,
+		/// <summary>Parse the current record as <b>Master</b> if the record ends with some string.</summary>
+		MasterIfEnds,
+		/// <summary>Parse the current record as <b>Master</b> if the record begins and ends with some string.</summary>
+		MasterIfEnclosed,
 		/// <summary>Parse the current record as <b>Detail</b> if the selector string is found.</summary>
-		DetailIfContains
-	}
+		DetailIfContains,
+		/// <summary>Parse the current record as <b>Detail</b> if the record starts with some string.</summary>
+		DetailIfBegins,
+		/// <summary>Parse the current record as <b>Detail</b> if the record ends with some string.</summary>
+		DetailIfEnds,
+		/// <summary>Parse the current record as <b>Detail</b> if the record begins and ends with some string.</summary>
+		DetailIfEnclosed
+    }   
 
-	internal class CommonSelector
-	{
-		CommonActions mAction;
-		string mSelector;
-
-		internal CommonSelector(CommonActions action, string selector)
-		{
-			mAction = action;
-			mSelector = selector;
-		}
-
-		internal RecordAction CommonSelectorMethod(string recordString)
-		{
-			if (mAction == CommonActions.DetailIfContains)
-				if (recordString.IndexOf(mSelector) >= 0)
-					return RecordAction.Detail;
-				else
-					return RecordAction.Master;
-			else if (recordString.IndexOf(mSelector) >= 0)
-				return RecordAction.Master;
-			else
-				return RecordAction.Detail;
-
-		}
-	}
 
 	#endregion
 
@@ -66,6 +53,86 @@ namespace FileHelpers.MasterDetail
 	/// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
 	public sealed class MasterDetailEngine : EngineBase
 	{
+
+		#region CommonSelectorInternal
+
+		private class CommonSelectorInternal
+		{
+			CommonSelector mAction;
+			string mSelector;
+			bool mIgnoreEmpty = false;
+
+
+			internal CommonSelectorInternal(CommonSelector action, string selector, bool ignoreEmpty)
+			{
+				mAction = action;
+				mSelector = selector;
+				mIgnoreEmpty = ignoreEmpty;
+			}
+
+			internal RecordAction CommonSelectorMethod(string recordString)
+			{
+				if (mIgnoreEmpty && recordString == string.Empty)
+					return RecordAction.Skip;
+
+				switch(mAction)
+				{
+					case CommonSelector.DetailIfContains:
+						if (recordString.IndexOf(mSelector) >= 0)
+							return RecordAction.Detail;
+						else
+							return RecordAction.Master;
+
+					case CommonSelector.MasterIfContains:
+						if (recordString.IndexOf(mSelector) >= 0)
+							return RecordAction.Master;
+						else
+							return RecordAction.Detail;
+
+					case CommonSelector.DetailIfBegins:
+						if (recordString.StartsWith(mSelector))
+							return RecordAction.Detail;
+						else
+							return RecordAction.Master;
+					
+					case CommonSelector.MasterIfBegins:
+						if (recordString.StartsWith(mSelector))
+							return RecordAction.Master;
+						else
+							return RecordAction.Detail;
+
+					case CommonSelector.DetailIfEnds:
+						if (recordString.EndsWith(mSelector))
+							return RecordAction.Detail;
+						else
+							return RecordAction.Master;
+
+					case CommonSelector.MasterIfEnds:
+						if (recordString.EndsWith(mSelector))
+							return RecordAction.Master;
+						else
+							return RecordAction.Detail;
+
+					case CommonSelector.DetailIfEnclosed:
+						if (recordString.StartsWith(mSelector) && recordString.EndsWith(mSelector))
+							return RecordAction.Detail;
+						else
+							return RecordAction.Master;
+
+					case CommonSelector.MasterIfEnclosed:
+						if (recordString.StartsWith(mSelector) && recordString.EndsWith(mSelector))
+							return RecordAction.Master;
+						else
+							return RecordAction.Detail;
+
+				}
+
+				return RecordAction.Skip;
+			}
+		}
+
+		#endregion 
+
 		private RecordInfo mMasterInfo;
 		private MasterDetailSelector mRecordSelector;
 
@@ -88,12 +155,12 @@ namespace FileHelpers.MasterDetail
 		}
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
-		public MasterDetailEngine(Type masterType, Type detailType, CommonActions action, string selector)
+		public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
 			: base(detailType)
 		{
 			mMasterInfo = new RecordInfo(masterType);
 
-			CommonSelector sel = new CommonSelector(action, selector);
+			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
 			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
