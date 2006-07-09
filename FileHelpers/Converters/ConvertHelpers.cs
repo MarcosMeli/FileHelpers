@@ -33,11 +33,11 @@ namespace FileHelpers
 
 		#region "  CreateCulture  "
 
-		static CultureInfo CreateCulture(Char decimalSep)
+		static CultureInfo CreateCulture(string decimalSep)
 		{
 			CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
 
-			if (decimalSep == '.')
+			if (decimalSep == ".")
 			{
 				ci.NumberFormat.NumberDecimalSeparator = ".";
 				ci.NumberFormat.NumberGroupSeparator = ",";
@@ -243,10 +243,10 @@ namespace FileHelpers
 		/// <returns>The <see cref="ConverterBase"/> that performs the convertion.</returns>
 		public static ConverterBase ToDecimal()
 		{
-			return ToDecimal('.');
+			return ToDecimal(".");
 		}
 
-		public static ConverterBase ToDecimal(Char decimalSeparator)
+		public static ConverterBase ToDecimal(string decimalSeparator)
 		{
 			return new DecimalConverter(decimalSeparator);
 		}
@@ -257,10 +257,10 @@ namespace FileHelpers
 		/// <returns>The <see cref="ConverterBase"/> that performs the convertion.</returns>
 		public static ConverterBase ToSingle()
 		{
-			return ToSingle('.');
+			return ToSingle(".");
 		}
 
-		public static ConverterBase ToSingle(Char decimalSeparator)
+		public static ConverterBase ToSingle(string decimalSeparator)
 		{
 			return new SingleConverter(decimalSeparator);
 		}
@@ -271,10 +271,10 @@ namespace FileHelpers
 		/// <returns>The <see cref="ConverterBase"/> that performs the convertion.</returns>
 		public static ConverterBase ToDouble()
 		{
-			return ToDouble('.');
+			return ToDouble(".");
 		}
 
-		public static ConverterBase ToDouble(Char decimalSeparator)
+		public static ConverterBase ToDouble(string decimalSeparator)
 		{
 			return new DoubleConverter(decimalSeparator);
 		}
@@ -287,7 +287,7 @@ namespace FileHelpers
 		{
 			CultureInfo ci;
 
-			public DecimalConverter(Char decimalSep)
+			public DecimalConverter(string decimalSep)
 			{
 				ci = CreateCulture(decimalSep);
 			}
@@ -317,7 +317,7 @@ namespace FileHelpers
 		{
 			CultureInfo ci;
 
-			public SingleConverter(Char decimalSep)
+			public SingleConverter(string decimalSep)
 			{
 				ci = CreateCulture(decimalSep);
 			}
@@ -348,7 +348,7 @@ namespace FileHelpers
 		{
 			CultureInfo ci;
 
-			public DoubleConverter(Char decimalSep)
+			public DoubleConverter(string decimalSep)
 			{
 				ci = CreateCulture(decimalSep);
 			}

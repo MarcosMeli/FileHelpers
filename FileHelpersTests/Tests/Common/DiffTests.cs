@@ -33,12 +33,19 @@ namespace FileHelpersTests.CommonTests
 		public void SmallDiff()
 		{
 			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
-			DiffOrdersFixed[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\CustomersVerticalBar.txt")) as DiffOrdersFixed[];
+			DiffOrdersFixed[] res = engine.OnlyNewRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+			Assert.AreEqual(5, res.Length);
+			
+			res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersNew.txt"), Common.TestPath(@"good\DiffOrdersOld.txt")) as DiffOrdersFixed[];
+			Assert.AreEqual(5, res.Length);
+		}
 
-			Assert.AreEqual(10, res.Length);
-			Assert.AreEqual("BLAUS", res[0].CustomerID);
-			Assert.AreEqual("BLONP", res[1].CustomerID);
-
+		[Test]
+		public void SmallDiff2()
+		{
+			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
+			DiffOrdersFixed[] res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+			Assert.AreEqual(2, res.Length);
 		}
 
 		[FixedLengthRecord]

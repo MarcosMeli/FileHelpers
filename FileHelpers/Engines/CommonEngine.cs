@@ -348,8 +348,50 @@ namespace FileHelpers
 
 			return res;
 		}	
+		
+		/// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+		/// <param name="dt">The source Data Table</param>
+		/// <param name="filename">The destination file.</param>
+		public static void DataTableToCSV(DataTable dt, string filename)
+		{
+			DataTableToCSV(dt, filename, ",");
+		}
 
 
+		/// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
+		/// <param name="dt">The source Data Table</param>
+		/// <param name="filename">The destination file.</param>
+		/// <param name="delimiter">The delimiter used to write the file</param>
+		public static void DataTableToCSV(DataTable dt, string filename, string delimiter)
+		{
+			using (StreamWriter fs = new StreamWriter(filename, false))
+			{
+				foreach (DataRow dr in dt.Rows)
+				{
+					object[] fields = dr.ItemArray;
+					
+					for(int i = 0; i < fields.Length; i++)
+					{
+						if (i > 0)
+							fs.Write(delimiter);
+						
+						fs.Write(ObjectString(fields[i]));
+					}
+					fs.Write(StringHelper.NewLine);
+				}
+				fs.Close();
+			}
+		}
+
+		private static string ObjectString(object o)
+		{
+			if (o == null)
+				return string.Empty;
+			else
+				return o.ToString();
+		}
+
+	
 
 	}
 }
