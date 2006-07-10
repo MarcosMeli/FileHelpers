@@ -445,9 +445,9 @@ namespace FileHelpers
 				{
 					string extra = String.Empty;
 					if (from.Length > mFormat.Length)
-						extra = " There are more chars than in the format string.";
+						extra = " There are more chars than in the format string: '" + mFormat + "'";
 					else if (from.Length < mFormat.Length)
-						extra = " There are less chars than in the format string.";
+						extra = " There are less chars than in the format string: '" + mFormat + "'";
 					else
 						extra = " Using the format: '" + mFormat + "'";
 
@@ -486,12 +486,45 @@ namespace FileHelpers
 
 		internal class BooleanConverter : ConverterBase
 		{
+			private string mTrueString = null;
+			private string mFalseString = null;
+
+			public BooleanConverter()
+			{
+			}
+
+			public BooleanConverter(string trueStr, string falseStr) 
+			{
+				mTrueString = trueStr.ToLower();
+				mFalseString = falseStr.ToLower();
+			}
+
 			public override object StringToField(string from)
 			{
 				object val;
 				try
 				{
-					val = Boolean.Parse(from);
+					string testTo = from.ToLower();
+					
+					if (mTrueString == null)
+					{
+						testTo = testTo.Trim();
+						if (testTo == "true" || testTo == "1")
+							val = true;
+						else if (testTo == "false" || testTo == "0" || testTo == "")
+							val = false;
+						else
+							throw new Exception();
+					}
+					else
+					{
+						if (testTo == mTrueString || testTo.Trim() == mTrueString)
+							val = true;
+						else if (testTo == mFalseString || testTo.Trim() == mFalseString)
+							val = false;
+						else
+							throw new Exception();
+					}
 				}
 				catch
 				{
