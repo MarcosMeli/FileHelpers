@@ -30,7 +30,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void SmallDiff()
+		public void OnlyNewRecords()
 		{
 			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
 			DiffOrdersFixed[] res = engine.OnlyNewRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
@@ -41,12 +41,41 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void SmallDiff2()
+		public void MissingRecords()
 		{
 			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
 			DiffOrdersFixed[] res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
 			Assert.AreEqual(2, res.Length);
 		}
+
+		[Test]
+		public void OnlyNoDuplicatedRecords()
+		{
+			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
+			DiffOrdersFixed[] res = engine.OnlyNoDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+			Assert.AreEqual(7, res.Length);
+		}
+
+		[Test]
+		public void OnlyDuplicatedRecords()
+		{
+			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
+			DiffOrdersFixed[] res = engine.OnlyDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+			Assert.AreEqual(10, res.Length);
+		}
+
+		[Test]
+		public void RemoveDuplicatedRecords()
+		{
+			FileHelperEngine eng = new FileHelperEngine(typeof (DiffOrdersFixed));
+			
+			DiffOrdersFixed[] res = (DiffOrdersFixed[]) Common.ReadTest(eng, @"good\DiffOrdersDup.txt");
+
+			Assert.AreEqual(14, res.Length);
+			res = (DiffOrdersFixed[]) CommonEngine.RemoveDuplicateRecords(res);
+			Assert.AreEqual(4, res.Length);
+		}
+
 
 		[FixedLengthRecord]
 		private class DiffOrdersFixed: IComparableRecord

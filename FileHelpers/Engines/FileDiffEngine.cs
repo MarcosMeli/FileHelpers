@@ -4,10 +4,14 @@ using System.Collections;
 namespace FileHelpers
 {
 
+	#region " IComparableRecord "
+
 	public interface IComparableRecord
 	{
 		bool IsEqualRecord(object record);
 	}
+
+	#endregion
 
 	public sealed class FileDiffEngine: EngineBase
 	{
@@ -24,31 +28,15 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyNewRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo.mRecordType);
+			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
             
 			ArrayList news = new ArrayList();
-			foreach (IComparableRecord current in currents)
-			{
-				bool isNew = true; 
-				
-				foreach (IComparableRecord old in olds)
-				{
-					if (current.IsEqualRecord(old))
-					{
-						isNew = false;
-						break;
-					}
-				}
-
-				if (isNew) 
-					news.Add(current); 
-			}
+			ApplyDiffOnlyIn1(currents, olds, news);
 
 			return (object[]) news.ToArray(mRecordInfo.mRecordType);
-    
 		} 
 
 		
@@ -58,33 +46,83 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyMissingRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo.mRecordType);
+			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
             
 			ArrayList news = new ArrayList();
 
-			foreach (IComparableRecord old in olds)
-			{
-				bool isNew = true; 
-				
-				foreach (IComparableRecord current in currents)
-				{
-					if (old.IsEqualRecord(current))
-					{
-						isNew = false;
-						break;
-					}
-				}
-
-				if (isNew) 
-					news.Add(old); 
-			}
+			ApplyDiffOnlyIn1(olds, currents, news);
 
 			return (object[]) news.ToArray(mRecordInfo.mRecordType);
 		} 
 
 		
+		public object[] OnlyDuplicatedRecords(string sourceFile, string newFile)
+		{
+			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			
+			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+            
+			ArrayList news = new ArrayList();
+
+			ApplyDiffInBoth(currents, olds, news);
+
+			return (object[]) news.ToArray(mRecordInfo.mRecordType);
+    
+		}
+
+		#region "  ApplyDiff  "
+		private static void ApplyDiffInBoth(IComparableRecord[] col1, IComparableRecord[] col2, ArrayList arr)
+		{
+			ApplyDiff(col1, col2, arr, true);
+		}
+
+		private static void ApplyDiffOnlyIn1(IComparableRecord[] col1, IComparableRecord[] col2, ArrayList arr)
+		{
+			ApplyDiff(col1, col2, arr, false);
+		}
+
+		private static void ApplyDiff(IComparableRecord[] col1, IComparableRecord[] col2, ArrayList arr, bool addIfIn1)
+		{
+			foreach (IComparableRecord current in col1)
+			{
+				bool isNew = false; 
+				
+				foreach (IComparableRecord old in col2)
+				{
+					if (current.IsEqualRecord(old))
+					{
+						isNew = true;
+						break;
+					}
+				}
+
+				if (isNew == addIfIn1) arr.Add(current); 
+			}
+		}
+
+		#endregion
+
+		public object[] OnlyNoDuplicatedRecords(string sourceFile, string newFile)
+		{
+			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			
+			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+            
+			ArrayList news = new ArrayList();
+
+			ApplyDiffOnlyIn1(currents, olds, news);
+
+			ApplyDiffOnlyIn1(olds, currents, news);
+
+			return (object[]) news.ToArray(mRecordInfo.mRecordType);
+    
+		} 
+
+
 	}
 }

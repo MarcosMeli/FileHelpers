@@ -392,6 +392,37 @@ namespace FileHelpers
 		}
 
 	
+		#region "  RemoveDuplicateRecords  "
+
+		public static IComparableRecord[] RemoveDuplicateRecords(IComparableRecord[] arr)
+		{
+			if (arr == null || arr.Length == 0)
+				return arr;
+
+			ArrayList nodup = new ArrayList();
+
+			for(int i = 0; i < arr.Length; i++)
+			{
+				bool isUnique = true; 
+				
+				for(int j = i+1; j < arr.Length; j++)
+				{
+					if (arr[i].IsEqualRecord(arr[j]))
+					{
+						isUnique = false;
+						break;
+					}
+				}
+
+				if (isUnique) nodup.Add(arr[i]); 
+			}
+
+			return (IComparableRecord[]) nodup.ToArray(arr[1].GetType());
+    
+		}
+
+		#endregion
+
 
 	}
 }

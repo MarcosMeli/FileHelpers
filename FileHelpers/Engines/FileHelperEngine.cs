@@ -42,6 +42,10 @@ namespace FileHelpers
 #endif
 		{}
 
+		internal FileHelperEngine(RecordInfo ri) : base(ri)
+		{}
+
+
 		#endregion
 
 		#region "  ReadFile  "

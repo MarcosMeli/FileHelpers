@@ -23,9 +23,16 @@ namespace FileHelpers
 
 			mRecordType = recordType;
 			mRecordInfo = new RecordInfo(recordType);
-			//InitFields();
 		}
 
+		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+		internal EngineBase(RecordInfo ri)
+		{
+			mRecordType = ri.mRecordType;
+			mRecordInfo = ri;
+		}
+
+		
 		#endregion
 
 		#region "  LineNumber  "
