@@ -69,18 +69,6 @@ namespace FileHelpersTests.CommonTests
 		}
 
 
-		[Test]
-		public void AdvanceIgnore()
-		{
-			engine = new FileHelperEngine(typeof (SOXLog));
-			
-			SOXLog[] res = (SOXLog[]) Common.ReadTest(engine, @"Good\FieldIgnoredAdvanced.txt");
-			Assert.AreEqual(5, res.Length);
-
-			Assert.AreEqual(ActionEnum.Deleted, res[0].ActionType);	
-			Assert.AreEqual(ActionEnum.Created, res[2].ActionType);	
-			Assert.AreEqual("6/3/2006 5:18:18 AM", res[0].TimeStamp);	
-		}
 
 
 		[DelimitedRecord("\t")]
@@ -146,25 +134,6 @@ namespace FileHelpersTests.CommonTests
 			[FieldFixedLength(10)] public decimal Freight;
 		}
 
-		[DelimitedRecord(" - ")] 
-		private class SOXLog 
-		{ 
-			[FieldDelimiter(": ")] 
-			private String DummyField; 
-			public ActionEnum ActionType; 
-			public String TimeStamp; 
-			public String FileName; 
-		} 
-
-		/// <summary> 
-		/// Enumeration of the types of Actions permitted. 
-		/// </summary> 
-		private enum ActionEnum 
-		{ 
-			Created, 
-			Deleted, 
-			Changed 
-		} 
 
 
 	}

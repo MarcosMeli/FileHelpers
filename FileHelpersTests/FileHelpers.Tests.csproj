@@ -89,6 +89,11 @@
                     AssemblyName = "nunit.framework"
                     HintPath = "..\Libs\nunit\nunit.framework.dll"
                 />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.XML"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -154,6 +159,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\FieldAlign.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\FieldDelimited.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
