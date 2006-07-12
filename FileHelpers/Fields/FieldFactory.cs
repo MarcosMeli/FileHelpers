@@ -70,7 +70,7 @@ namespace FileHelpers
 					if (recordAttribute is FixedLengthRecordAttribute)
 						throw new BadUsageException("The DelimitedAttribute is only for DelimitedRecords not for the fixed ones.");
 
-					res = new DelimitedField(fi, ((FieldDelimiterAttribute) fieldAttb).Separator);
+					res = new DelimitedField(fi, ((FieldDelimiterAttribute) fieldAttb).mSeparator);
 
 				}
 				else

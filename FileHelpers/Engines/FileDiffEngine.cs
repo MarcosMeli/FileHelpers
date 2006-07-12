@@ -87,20 +87,39 @@ namespace FileHelpers
 
 		private static void ApplyDiff(IComparableRecord[] col1, IComparableRecord[] col2, ArrayList arr, bool addIfIn1)
 		{
-			foreach (IComparableRecord current in col1)
+			for(int i = 0; i < col1.Length; i++)
 			{
 				bool isNew = false; 
 				
-				foreach (IComparableRecord old in col2)
+				//OPT: aca podemos hacer algo asi que para cada nuevo 
+				//     que encuentra no empieze en j = i sino en j = i - nuevos =)
+				//     Otra idea de guille es agrear un window y usar el Max de las dos
+
+				IComparableRecord current = col1[i];
+				for(int j = i; j < col2.Length; j++)
 				{
-					if (current.IsEqualRecord(old))
+					if (current.IsEqualRecord(col2[j]))
 					{
 						isNew = true;
 						break;
 					}
 				}
 
+				
+				if (isNew == false)
+				{
+					for(int j = 0; j < Math.Min(i, col2.Length); j++)
+					{
+						if (current.IsEqualRecord(col2[j]))
+						{
+							isNew = true;
+							break;
+						}
+					}
+				}
+
 				if (isNew == addIfIn1) arr.Add(current); 
+
 			}
 		}
 
@@ -123,6 +142,13 @@ namespace FileHelpers
     
 		} 
 
+		public object[] WriteNewRecords(string sourceFile, string newFile, string destFile)
+		{
+			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			object[] res = OnlyNewRecords(sourceFile, newFile);
+			engine.WriteFile(destFile, res);
+			return res;
+		}
 
 	}
 }

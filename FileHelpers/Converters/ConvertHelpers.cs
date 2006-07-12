@@ -536,7 +536,18 @@ namespace FileHelpers
 
 			public override string FieldToString(object from)
 			{
-				return Convert.ToBoolean(from).ToString();
+				bool b = Convert.ToBoolean(from);
+				if (b)
+					if (mTrueString == null)
+						return "True";
+					else
+						return mTrueString;
+				else 
+					if (mFalseString == null)
+						return "False";
+					else
+						return mFalseString;
+
 			}
 		}
 

@@ -21,6 +21,29 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual("BLONP", res[1].CustomerID);
 		}
 
+		[Test]
+		public void DiffCustomersAllEquals()
+		{
+			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt")) as CustomersVerticalBar[];
+			Assert.AreEqual(0, res.Length);
+		}
+
+		[Test]
+		public void DiffEmptyOld()
+		{
+			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\EmptyFile.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt")) as CustomersVerticalBar[];
+			Assert.AreEqual(81, res.Length);
+		}
+
+		[Test]
+		public void DiffEmptyNews()
+		{
+			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\EmptyFile.txt")) as CustomersVerticalBar[];
+			Assert.AreEqual(0, res.Length);
+		}
 
 		[Test]
 		[ExpectedException(typeof(BadUsageException))]

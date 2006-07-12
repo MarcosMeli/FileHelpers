@@ -130,7 +130,7 @@ namespace FileHelpers.DataLink
 			catch (System.Runtime.InteropServices.COMException ex)
 			{
 				if (ex.Message.IndexOf("00024500-0000-0000-C000-000000000046") >= 0)
-					throw new ExcelBadUsageException("Excel 2000 or newer not installed in this system.");
+					throw new ExcelBadUsageException("Excel 2000 or newer is not installed in this system.");
 				else
 					throw;
 			}
