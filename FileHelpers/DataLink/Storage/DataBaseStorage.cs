@@ -229,8 +229,12 @@ namespace FileHelpers.DataLink
 			}
 			finally
 			{
-				if (mConn.State != ConnectionState.Closed)
-					mConn.Close();
+//				try
+//				{
+//					mConn.Dispose();
+//					mConn = null;
+//				}
+//				catch{}
 			}
 
 		}

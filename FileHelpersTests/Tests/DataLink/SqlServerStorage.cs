@@ -151,7 +151,7 @@ namespace FileHelpersTests.DataLink
 		}
 
 		[Test]
-		public void OrdersInsert()
+		public void CustomerInsert()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
 			
@@ -165,7 +165,7 @@ namespace FileHelpersTests.DataLink
 		}
 
 		[Test]
-		public void OrdersInsertEasy()
+		public void CustomersInsertEasy()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
 			
@@ -175,6 +175,24 @@ namespace FileHelpersTests.DataLink
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
 			FileDataLink.EasyInsertFromFile(storage, Common.TestPath(@"Good\CustomersVerticalBar.txt"));
+		}
+
+		[Test]
+		public void OrdersInsertBad()
+		{
+			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			
+			storage.ServerName = "NEON-64";
+			storage.DatabaseName = "Northwind";
+
+			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlOrder);
+			OrdersVerticalBar[] res = (OrdersVerticalBar[]) CommonEngine.ReadFile(typeof(OrdersVerticalBar), Common.TestPath(@"Good\OrdersVerticalBar.txt"));
+			OrdersVerticalBar[] res2 = new OrdersVerticalBar[1];
+			res2[0] = res[0];
+
+			storage.ExecuteInBatchSize
+			res2[0].OrderDate = new DateTime(1750, 10, 10);
+			storage.InsertRecords(res2);
 		}
 
 
@@ -197,6 +215,19 @@ namespace FileHelpersTests.DataLink
 
 		}
 
+		
+		protected string GetInsertSqlOrder(object record)
+		{
+			OrdersVerticalBar obj = (OrdersVerticalBar) record;
+
+			return String.Format("INSERT INTO OrdersTemp (OrderId, CustomerId, OrderDate) " +
+				" VALUES ( {0} , '{1}' , '{2}'); ",
+				obj.OrderID,
+				obj.CustomerID,
+				obj.OrderDate.ToShortDateString()
+				);
+
+		}
 		#endregion
 
 
