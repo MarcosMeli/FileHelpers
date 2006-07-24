@@ -1714,7 +1714,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdToClipboard_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(txtTemplOut.Text);
+            Clipboard.SetText(sdTemplOut.Text);
         }
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
@@ -1723,13 +1723,13 @@ namespace FileHelpers.WizardApp
             dlgSaveToFile.FileName = "TemplateOur";
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
-                File.WriteAllText(dlgSaveToFile.FileName, txtTemplOut.Text);
+                File.WriteAllText(dlgSaveToFile.FileName, sdTemplOut.Text);
 
         }
 
         private void cmdCopyClass_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(txtOutput.Text);
+            Clipboard.SetText(sdClassOut.Text);
         }
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
@@ -1738,7 +1738,7 @@ namespace FileHelpers.WizardApp
             dlgSaveToFile.FileName = txtClassName.Text;
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
-                File.WriteAllText(dlgSaveToFile.FileName, txtOutput.Text);
+                File.WriteAllText(dlgSaveToFile.FileName, sdClassOut.Text);
         }
 
         private void cboClassLeng_SelectedIndexChanged(object sender, EventArgs e)
