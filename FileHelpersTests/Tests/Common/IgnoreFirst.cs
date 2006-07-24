@@ -83,6 +83,49 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(new DateTime(1314, 12, 11), res.Field1);
 		}
 
+		[Test]
+		public void DiscardFirst7()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardType3));
+
+			Common.BeginReadTest(asyncEngine, @"Good\DiscardFirst2.txt");
+
+			object res = asyncEngine.ReadNext();
+
+			Assert.AreEqual(null, res);
+		}
+
+		[Test]
+		public void DiscardFirst8()
+		{
+			engine = new FileHelperEngine(typeof (DiscardType3));
+
+			object[] res = Common.ReadTest(engine, @"Good\DiscardFirst2.txt");
+
+			Assert.AreEqual(0, res.Length);
+		}
+
+		[Test]
+		public void DiscardFirst9()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardType4));
+
+			Common.BeginReadTest(asyncEngine, @"Good\DiscardFirst2.txt");
+
+			object res = asyncEngine.ReadNext();
+
+			Assert.AreEqual(null, res);
+		}
+
+		[Test]
+		public void DiscardFirstA()
+		{
+			engine = new FileHelperEngine(typeof (DiscardType4));
+
+			object[] res = Common.ReadTest(engine, @"Good\DiscardFirst2.txt");
+
+			Assert.AreEqual(0, res.Length);
+		}
 
 		[Test]
 		public void DiscardWriteRead()
@@ -198,6 +241,34 @@ namespace FileHelpersTests.CommonTests
 		[FieldFixedLength(3)]
 		[FieldConverter(ConverterKind.Int32)] public int Field3;
 
+	}
+
+	
+	[FixedLengthRecord]
+	[IgnoreFirst(800000)]
+	[IgnoreLast()]
+	public class DiscardType3
+	{
+		[FieldFixedLength(8)]
+		[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime Field1;
+
+		[FieldFixedLength(3)] public string Field2;
+
+		[FieldFixedLength(3)]
+		[FieldConverter(ConverterKind.Int32)] public int Field3;
+	}
+
+	[FixedLengthRecord]
+	[IgnoreLast(38000)]
+	public class DiscardType4
+	{
+		[FieldFixedLength(8)]
+		[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime Field1;
+
+		[FieldFixedLength(3)] public string Field2;
+
+		[FieldFixedLength(3)]
+		[FieldConverter(ConverterKind.Int32)] public int Field3;
 	}
 
 }

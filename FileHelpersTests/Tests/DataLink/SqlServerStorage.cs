@@ -190,8 +190,8 @@ namespace FileHelpersTests.DataLink
 			OrdersVerticalBar[] res2 = new OrdersVerticalBar[1];
 			res2[0] = res[0];
 
-			storage.ExecuteInBatchSize
-			res2[0].OrderDate = new DateTime(1750, 10, 10);
+			//storage.ExecuteInBatchSize
+			//res2[0].OrderDate = new DateTime(1750, 10, 10);
 			storage.InsertRecords(res2);
 		}
 

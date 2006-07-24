@@ -20,12 +20,11 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(ActionEnum.Deleted, res[0].ActionType);	
 			Assert.AreEqual(ActionEnum.Created, res[2].ActionType);	
 			Assert.AreEqual("6/3/2006 5:18:18 AM", res[0].TimeStamp);	
-		
 		}
 
 
 		[DelimitedRecord(" - ")] 
-			private class SOXLog 
+		private class SOXLog 
 		{ 
 			[FieldDelimiter(": ")] 
 			private String DummyField; 
