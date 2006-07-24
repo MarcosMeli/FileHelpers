@@ -10,8 +10,8 @@ using System.ComponentModel;
 
 namespace FileHelpers
 {
-	/// <summary>This is the class that handles the errors of the library process.</summary>
-	/// <remarks>This is shared by the FileHelper Engine and all the DataStorage.</remarks>
+	/// <summary>This is the class that handles the errors of the engines process.</summary>
+	/// <remarks>All the engines and DataStorages contains a ErrorManager.</remarks>
 	public sealed class ErrorManager
 	{
 		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class.</summary>
@@ -62,6 +62,12 @@ namespace FileHelpers
 		internal void AddError(ErrorInfo error)
 		{
 			mErrorsArray.Add(error);
+		}
+
+		/// <summary>Add the specified ErrorInfo to the contained collection.</summary>
+		internal void AddErrors(ErrorManager errors)
+		{
+			mErrorsArray.AddRange(errors.mErrorsArray);
 		}
 
 //		public void ProcessError(Exception ex, string line)

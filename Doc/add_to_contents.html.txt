@@ -173,7 +173,7 @@
         </div>
         
         <div class="treeNode">
-          <a href="http://filehelpers.sourceforge.net" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
+          <a href="http://filehelpers.sourceforge.net/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
         </div>
 
 

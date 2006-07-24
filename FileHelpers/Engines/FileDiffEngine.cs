@@ -28,10 +28,12 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyNewRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			FileHelperEngine engine = InitEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
 			ApplyDiffOnlyIn1(currents, olds, news);
@@ -46,25 +48,41 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyMissingRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
-			
+			FileHelperEngine engine = InitEngineAndClearErrors();
+
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
+
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
 
 			ApplyDiffOnlyIn1(olds, currents, news);
 
 			return (object[]) news.ToArray(mRecordInfo.mRecordType);
-		} 
+		}
 
-		
-		public object[] OnlyDuplicatedRecords(string sourceFile, string newFile)
+		private FileHelperEngine InitEngineAndClearErrors()
 		{
 			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			engine.Encoding = this.Encoding;
+
+			this.ErrorManager.ClearErrors();
+			engine.ErrorManager.ErrorMode = this.ErrorManager.ErrorMode;
+			
+			return engine;
+		}
+
+
+		public object[] OnlyDuplicatedRecords(string sourceFile, string newFile)
+		{
+			FileHelperEngine engine = InitEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
 
@@ -127,10 +145,12 @@ namespace FileHelpers
 
 		public object[] OnlyNoDuplicatedRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			FileHelperEngine engine = InitEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
 			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
 
@@ -144,9 +164,10 @@ namespace FileHelpers
 
 		public object[] WriteNewRecords(string sourceFile, string newFile, string destFile)
 		{
-			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
+			FileHelperEngine engine = InitEngineAndClearErrors();
 			object[] res = OnlyNewRecords(sourceFile, newFile);
 			engine.WriteFile(destFile, res);
+			this.ErrorManager.AddErrors(engine.ErrorManager);
 			return res;
 		}
 
