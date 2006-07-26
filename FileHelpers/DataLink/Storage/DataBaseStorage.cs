@@ -229,12 +229,13 @@ namespace FileHelpers.DataLink
 			}
 			finally
 			{
-//				try
-//				{
-//					mConn.Dispose();
-//					mConn = null;
-//				}
-//				catch{}
+				try
+				{
+					mConn.Close();
+					mConn.Dispose();
+					mConn = null;
+				}
+				catch{}
 			}
 
 		}

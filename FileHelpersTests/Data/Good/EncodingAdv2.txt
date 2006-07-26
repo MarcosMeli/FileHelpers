@@ -1,0 +1,43 @@
+DENRTPMSW
+MOUNTAIN STATES WEATHER SERVICES
+FORT COLLINS, COLORADO (OFFICE 970 484-9463)
+REGIONAL TEMPERATURE/PRECIPITATION TABLE, 0800, THU, JUL 20, 2006
+==========================================================================
+LOCATION                  COUNTY      ELEV  HI  LO   PCPN SNOW SNDPT MONTH
+==========================================================================
+AKRON 11NNE               WASHINGTON  4393  107 66   0.03  0.0   0   1.11
+BRUSH 2SW                 MORGAN      4231  102 64   0.10  0.0   0   1.68
+BUCKHORN MTN 1E           LARIMER     7400  88  62   0.00  0.0   0   1.66
+BUCKHORN MTN 21/2S        LARIMER     6600  93  61   0.07  0.0   0   1.87
+BURNS 8NNE                LARAMIE     5490  96  63   0.00  0.0   0   1.43
+BUSHNELL 15S              KIMBALL     5200  99  65   0.00  0.0   0   0.84
+CASTLE ROCK 4NE           DOUGLAS     6500  92  61   0.00  0.0   0   3.31
+EATON 5ENE                WELD        4880  100 69   0.00  0.0   0   0.57
+ESTES PARK 1SSE           LARIMER     7785  87  55   0.12  0.0   0   3.80
+FORT COLLINS 4E           LARIMER     4920  98  61   0.00  0.0   0   0.63
+GILL 3NW                  WELD        4830  106 67   0.00  0.0   0   0.55
+GREELEY 4NW               WELD        4810  99  58   0.00  0.0   0   0.87
+HAXTUN 4E                 PHILLIPS    4028  101 66   0.00  0.0   0   2.54
+HEREFORD                  WELD        5200  102 67   0.00  0.0   0   0.54
+HOHNHOLZ RANCH            LARIMER     7800  86  53   0.07  0.0   0   1.17
+HOLYOKE 4SE               PHILLIPS    3730  105 64   0.00  0.0   0   0.51
+HORSETOOTH INLET BAY      LARIMER     5366  100 67   T     0.0   0   1.31
+HOURGLASS LAKE            LARIMER     9520  78  51   T     0.0   0   2.19
+HUDSON 4NW                WELD        4900  104 64   0.02  0.0   0   1.75
+KARVAL 7NE                LINCOLN     5700  106 61   0.00  0.0   0   2.41
+LIMON 9N                  LINCOLN     5700  92  66   0.00  0.0   0   2.87
+LIVERMORE 101/2WSW        LARIMER     7480  87  62   0.00  0.0   0   1.80
+NEW RAYMER 21N            WELD        5200  99  62   0.00  0.0   0   1.11
+PARKER                    DOUGLAS     6200  94  71   0.00  0.0   0   3.72
+PINE BLUFFS 10NW          LARAMIE     5330  97  67   0.00  0.0   0   1.00
+PINEWOOD LAKE             LARIMER     7040  88  63   T     0.0   0   2.85
+RAWLINS 1NW               CARBON      6820  91  60   0.00  0.0   0   0.22
+STERLING 15WNW            LOGAN       4450  105 64   0.02  0.0   0   0.81
+STRASBURG 1N              ADAMS       5350  95  68   0.00  0.0   0   2.83
+VIRGINIA DALE 7ENE        LARIMER     7010  89  59   0.01  0.0   0   2.34
+WELLINGTON                LARIMER     5201  101 66   T     0.0   0   0.79
+WELLINGTON 1SE            LARIMER     5150  102 64   T     0.0   0   1.42
+FOR MORE PRECIPITATION DATA GO TO:
+http://ccc.atmos.colostate.edu/~hail/
+WIRSHBORN
+END OF REPORT

@@ -20,7 +20,7 @@ namespace FileHelpers
 	/// </summary>
 	/// <param name="recordString">The string of the current record.</param>
 	/// <returns>the action used for the current record (Master, Detail, Skip)</returns>
-	public delegate Type RecordTypeSelector(string recordString);
+	public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 
 	#endregion
 
@@ -42,18 +42,21 @@ namespace FileHelpers
 		private Type[] mTypes;
 		#region "  Constructor  "
 
-		/// <summary>
-		/// Create a new instance of the MultiRecordEngine
-		/// </summary>
+		/// <summary>Create a new instance of the MultiRecordEngine</summary>
 		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
 		/// <param name="recordSelector">The selector that indicates to the engine what Type to use in each line.</param>
 		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(recordTypes[0])
 		{
+			ErrorHelper.CheckNullParam(recordSelector, "recordSelector");
+
 			mTypes = recordTypes;
 			mMultiRecordInfo = new RecordInfo[mTypes.Length];
 			mRecordInfoHash = new Hashtable(mTypes.Length);
 			for(int i=0; i < mTypes.Length; i++)
 			{
+				if (mTypes[i] == null)
+					throw new BadUsageException("The type at index "+i.ToString() + " is null.");
+
 				mMultiRecordInfo[i] = new RecordInfo(mTypes[i]); 
 				mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
 			}
@@ -68,7 +71,7 @@ namespace FileHelpers
 		/// Read a File and returns the records.
 		/// </summary>
 		/// <param name="fileName">The file with the records.</param>
-		/// <returns>The read records.</returns>
+		/// <returns>The read records of the differents types all mixed.</returns>
 		public object[] ReadFile(string fileName)
 		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
@@ -144,7 +147,7 @@ namespace FileHelpers
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 					#endif
 
-					Type currType = mRecordSelector(currentLine);
+					Type currType = mRecordSelector(this, currentLine);
 
 					if (currType != null)
 					{
@@ -288,6 +291,9 @@ namespace FileHelpers
 					#endif
 
 					RecordInfo info = (RecordInfo) mRecordInfoHash[records[i].GetType()];
+
+					if (info == null)
+						throw new BadUsageException("The record at index " + i.ToString() + " is of type '"+records[i].GetType().Name+"' and you don't add it in the constructor.");
 
 					currentLine = info.RecordToString(records[i]);
 					writer.WriteLine(currentLine);

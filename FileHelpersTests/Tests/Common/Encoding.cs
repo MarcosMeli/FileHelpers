@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using FileHelpers;
@@ -107,6 +108,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			RunTests(@"Good\EncodingUnicodeBig.txt", Encoding.BigEndianUnicode);
 		}
+
 
 
 	}

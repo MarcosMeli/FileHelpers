@@ -12,6 +12,7 @@ namespace FileHelpersTests.CommonTests
 		FileHelperEngine engine;
 
 		[Test]
+		[Ignore("Not Implemented yet")]
 		public void DiffCustomers()
 		{
 			engine = new FileHelperEngine(typeof (ArrayType1));
