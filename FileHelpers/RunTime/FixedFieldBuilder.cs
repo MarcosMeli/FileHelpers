@@ -5,16 +5,17 @@ namespace FileHelpers.RunTime
 {
 	public sealed class FixedFieldBuilder: FieldBuilder
 	{
-		private int mLength;
+		private int mFiledLength;
 
 		public FixedFieldBuilder(string fieldName, int length, Type fieldType): base(fieldName, fieldType)
 		{
-			mLength = length;
+			mFiledLength = length;
 		}
 
-		public int Length
+		public int FieldLength
 		{
-			get { return mLength; }
+			get { return mFiledLength; }
+			set { mFiledLength = value; }
 		}
 
 
@@ -35,10 +36,10 @@ namespace FileHelpers.RunTime
 		
 		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
-			if (mLength <= 0)
+			if (mFiledLength <= 0)
 				throw new BadUsageException("The Length of each field must be grater than 0");
 			else
-				attbs.AddAttribute("FieldFixedLength("+ mLength.ToString() +")");
+				attbs.AddAttribute("FieldFixedLength("+ mFiledLength.ToString() +")");
 
 			if (mAlignMode != AlignMode.Left)
 			{

@@ -38,8 +38,8 @@ namespace FileHelpers
 		private RecordInfo[] mMultiRecordInfo;
 		private Hashtable mRecordInfoHash;
 		private RecordTypeSelector mRecordSelector;
-
 		private Type[] mTypes;
+		
 		#region "  Constructor  "
 
 		/// <summary>Create a new instance of the MultiRecordEngine</summary>

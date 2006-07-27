@@ -8,9 +8,15 @@ namespace FileHelpers.RunTime
 	public abstract class FieldBuilder
 	{
 		private string mFieldName;
-		private Type mFieldType;
+		private string mFieldType;
 
 		internal FieldBuilder(string fieldName, Type fieldType)
+		{
+			mFieldName = fieldName;
+			mFieldType = fieldType.FullName;
+		}
+
+		internal FieldBuilder(string fieldName, string fieldType)
 		{
 			mFieldName = fieldName;
 			mFieldType = fieldType;
@@ -77,11 +83,13 @@ namespace FileHelpers.RunTime
 		public string FieldName
 		{
 			get { return mFieldName; }
+			set { mFieldName = value; }
 		}
 
-		public Type FieldType
+		public string FieldType
 		{
 			get { return mFieldType; }
+			set { mFieldType = value; }
 		}
 
 		private object mFieldNullValue = null;
@@ -95,24 +103,24 @@ namespace FileHelpers.RunTime
 
 		private ConverterBuilder mConverter = new ConverterBuilder();
 		
-		internal string GetFieldCode(NetLanguage leng)
+		internal string GetFieldCode(NetLanguage lang)
 		{
 			StringBuilder sb = new StringBuilder(100);
 			
-			AttributesBuilder attbs = new AttributesBuilder(leng);
+			AttributesBuilder attbs = new AttributesBuilder(lang);
 			
-			AddAttributesInternal(attbs, leng);
-			AddAttributesCode(attbs, leng);
+			AddAttributesInternal(attbs, lang);
+			AddAttributesCode(attbs, lang);
 			
 			sb.Append(attbs.GetAttributesCode());
 			
-			switch (leng)
+			switch (lang)
 			{
 				case NetLanguage.VbNet:
-					sb.Append("Public " + mFieldName + " As " + mFieldType.FullName);
+					sb.Append(ClassBuilder.GetVisibility(lang, mVisibility) + mFieldName + " As " + mFieldType);
 					break;
 				case NetLanguage.CSharp:
-					sb.Append("public " + mFieldType.FullName + " " + mFieldName+ ";");
+					sb.Append(ClassBuilder.GetVisibility(lang, mVisibility) + mFieldType + " " + mFieldName+ ";");
 					break;
 				default:
 					break;
@@ -161,5 +169,13 @@ namespace FileHelpers.RunTime
 			}
 		}
 		
+		private NetVisibility mVisibility = NetVisibility.Public;
+
+		public NetVisibility Visibility
+		{
+			get { return mVisibility; }
+			set { mVisibility = value; }
+		}
+
 	}
 }

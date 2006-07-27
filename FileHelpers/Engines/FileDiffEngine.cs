@@ -28,7 +28,7 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyNewRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = InitEngineAndClearErrors();
+			FileHelperEngine engine = CreateEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
@@ -48,7 +48,7 @@ namespace FileHelpers
 		/// <returns>The records in newFile that not are in the sourceFile</returns>
 		public object[] OnlyMissingRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = InitEngineAndClearErrors();
+			FileHelperEngine engine = CreateEngineAndClearErrors();
 
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
@@ -63,7 +63,7 @@ namespace FileHelpers
 			return (object[]) news.ToArray(mRecordInfo.mRecordType);
 		}
 
-		private FileHelperEngine InitEngineAndClearErrors()
+		private FileHelperEngine CreateEngineAndClearErrors()
 		{
 			FileHelperEngine engine = new FileHelperEngine(mRecordInfo);
 			engine.Encoding = this.Encoding;
@@ -77,7 +77,7 @@ namespace FileHelpers
 
 		public object[] OnlyDuplicatedRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = InitEngineAndClearErrors();
+			FileHelperEngine engine = CreateEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
@@ -145,7 +145,7 @@ namespace FileHelpers
 
 		public object[] OnlyNoDuplicatedRecords(string sourceFile, string newFile)
 		{
-			FileHelperEngine engine = InitEngineAndClearErrors();
+			FileHelperEngine engine = CreateEngineAndClearErrors();
 			
 			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
@@ -164,7 +164,7 @@ namespace FileHelpers
 
 		public object[] WriteNewRecords(string sourceFile, string newFile, string destFile)
 		{
-			FileHelperEngine engine = InitEngineAndClearErrors();
+			FileHelperEngine engine = CreateEngineAndClearErrors();
 			object[] res = OnlyNewRecords(sourceFile, newFile);
 			engine.WriteFile(destFile, res);
 			this.ErrorManager.AddErrors(engine.ErrorManager);

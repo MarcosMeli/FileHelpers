@@ -238,7 +238,7 @@ namespace FileHelpers.RunTime
 		//--------------
 		//->  Fields 
 
-		#region Fiields
+		#region Fields
     	
 		protected ArrayList mFields = new ArrayList();
 
@@ -274,6 +274,7 @@ namespace FileHelpers.RunTime
 		public string ClassName
 		{
 			get { return mClassName; }
+			set { mClassName = value; }
 		}
 		
     	#endregion
@@ -387,6 +388,8 @@ namespace FileHelpers.RunTime
 		{
 			StringBuilder sb = new StringBuilder(100);
 			
+			BeginNamespace(lang, sb);
+			
 			AttributesBuilder attbs = new AttributesBuilder(lang);
 			
 			AddAttributesInternal(attbs, lang);
@@ -397,11 +400,11 @@ namespace FileHelpers.RunTime
 			switch (lang)
 			{
 				case NetLanguage.VbNet:
-					sb.Append("Public NotInheritable Class " + mClassName);
+					sb.Append(GetVisibility(lang, mVisibility) + GetSealed(lang) + "Class " + mClassName);
 					sb.Append(StringHelper.NewLine);
 					break;
 				case NetLanguage.CSharp:
-					sb.Append("public sealed class " + mClassName);
+					sb.Append(GetVisibility(lang, mVisibility) + GetSealed(lang) + "class " + mClassName);
 					sb.Append(StringHelper.NewLine);
 					sb.Append("{");
 					break;
@@ -428,11 +431,13 @@ namespace FileHelpers.RunTime
 					break;
 			}
 
-			sb.Append(StringHelper.NewLine);
+			EndNamespace(lang, sb);
+			
 			return sb.ToString();
 			
 		}
-    	
+
+
 		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang);
 
 		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage lang)
@@ -451,6 +456,125 @@ namespace FileHelpers.RunTime
 		}
     	
 		
-    	
-    }
+		private NetVisibility mVisibility = NetVisibility.Public;
+
+		public NetVisibility Visibility
+		{
+			get { return mVisibility; }
+			set { mVisibility = value; }
+		}
+
+		private bool mSealedClass = true;
+
+		public bool SealedClass
+		{
+			get { return mSealedClass; }
+			set { mSealedClass = value; }
+		}
+
+		private string mNameSpace = string.Empty;
+
+		public string NameSpace
+		{
+			get { return mNameSpace; }
+			set { mNameSpace = value; }
+		}
+
+		internal static string GetVisibility(NetLanguage lang, NetVisibility visibility)
+		{
+			switch(lang)
+			{
+				case NetLanguage.CSharp:
+					switch(visibility)
+					{
+						case NetVisibility.Public:
+							return "public ";
+						case NetVisibility.Private:
+							return "private ";
+						case NetVisibility.Internal:
+							return "internal ";
+						case NetVisibility.Protected:
+							return "protected ";
+					}
+					break;
+
+				case NetLanguage.VbNet:
+					switch(visibility)
+					{
+						case NetVisibility.Public:
+							return "Public ";
+						case NetVisibility.Private:
+							return "Private ";
+						case NetVisibility.Internal:
+							return "Friend ";
+						case NetVisibility.Protected:
+							return "Protected ";
+					}
+					break;
+			}
+			
+			return string.Empty;
+		}
+
+		private string GetSealed(NetLanguage lang)
+		{
+			if (mSealedClass)
+				return string.Empty;
+			
+			switch(lang)
+			{
+				case NetLanguage.CSharp:
+					return "sealed ";
+
+				case NetLanguage.VbNet:
+					return "NotInheritable ";
+			}
+			
+			return string.Empty;
+		}
+
+		private void BeginNamespace(NetLanguage lang, StringBuilder sb)
+		{
+			if (mNameSpace == string.Empty)
+				return;
+			
+			switch(lang)
+			{
+				case NetLanguage.CSharp:
+					sb.Append("namespace ");
+					sb.Append(mNameSpace);
+					sb.Append(StringHelper.NewLine);
+					sb.Append("{");
+					break;
+
+				case NetLanguage.VbNet:
+					sb.Append("Namespace ");
+					sb.Append(mNameSpace);
+					sb.Append(StringHelper.NewLine);
+					break;
+			}		
+
+			sb.Append(StringHelper.NewLine);
+		}
+
+		private void EndNamespace(NetLanguage lang, StringBuilder sb)
+		{
+			if (mNameSpace == string.Empty)
+				return;
+			
+			sb.Append(StringHelper.NewLine);
+
+			switch(lang)
+			{
+				case NetLanguage.CSharp:
+					sb.Append("}");
+					break;
+
+				case NetLanguage.VbNet:
+					sb.Append("End Namespace");
+					break;
+			}		
+		}
+
+	}
 }
