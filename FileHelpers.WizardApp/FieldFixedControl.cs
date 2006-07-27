@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using FileHelpers.RunTime;
 
 namespace FileHelpers.WizardApp
 {
@@ -15,11 +16,11 @@ namespace FileHelpers.WizardApp
             InitializeComponent();
         }
 
-        private DesignFieldInfoFixed CastedFieldInfo
+        private FixedFieldBuilder CastedFieldInfo
         {
             get
             {
-                return (DesignFieldInfoFixed)FieldInfo;
+                return (FixedFieldBuilder)FieldInfo;
             }
         }
         private void LabelControlsClick(object sender, EventArgs e)

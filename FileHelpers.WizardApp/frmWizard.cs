@@ -1386,13 +1386,13 @@ namespace FileHelpers.WizardApp
             if (radFixed.Checked)
             {
                 mControlType = typeof(FieldFixedControl);
-                mFieldType = typeof(DesignFieldInfoFixed);
+                mFieldType = typeof(FixedFieldBuilder);
                 mWizardInfo.RecordKind = RecordKind.FixedLength;
             }
             else
             {
                 mControlType = typeof(FieldDelimitedControl);
-                mFieldType = typeof(DesignFieldInfoDelimited);
+                mFieldType = typeof(FixedFieldBuilder);
 
                 if (radDelCustom.Checked)
                     mWizardInfo.Delimiter = txtDelimiter.Text;
@@ -1425,10 +1425,10 @@ namespace FileHelpers.WizardApp
         {
             mWizardInfo.DefaultType = txtDefaultType.Text;
 
-            if (mWizardInfo.Fields.Count == 0)
+            if (mWizardInfo.ClassBuilder.FieldCount == 0)
             {
                 for (int i = 0; i < txtNumberOfFields.Value; i++)
-                    mWizardInfo.Fields.Add(CreateFieldInfo());
+                    mWizardInfo.ClassBuilder.Add(CreateFieldInfo());
 
                 txtNumberOfFields.Enabled = false;
                 txtDefaultType.Enabled = false;
@@ -1437,7 +1437,7 @@ namespace FileHelpers.WizardApp
             panFields.SuspendLayout();
             panFields.Controls.Clear();
 
-            foreach (DesignFieldInfoBase info in mWizardInfo.Fields)
+            foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
             {
                 panFields.Controls.Add(CreateFieldControlFromInfo(info));
             }
@@ -1452,12 +1452,12 @@ namespace FileHelpers.WizardApp
             return true;
         }
 
-        private DesignFieldInfoBase CreateFieldInfo()
+        private FieldBuilder CreateFieldInfo()
         {
-            DesignFieldInfoBase info = (DesignFieldInfoBase)mFieldType.InvokeMember("new", System.Reflection.BindingFlags.CreateInstance, null, null, null);
+            FieldBuilder info = (FieldBuilder)mFieldType.InvokeMember("new", System.Reflection.BindingFlags.CreateInstance, null, null, null);
 
-            info.Name = "Field" + (mWizardInfo.Fields.Count + 1).ToString();
-            info.Type = mWizardInfo.DefaultType;
+            info.FieldName = "Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString();
+            info.FieldType = mWizardInfo.DefaultType;
             info.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
 
             return info;
@@ -1468,7 +1468,7 @@ namespace FileHelpers.WizardApp
             return CreateFieldControlFromInfo(CreateFieldInfo());
         }
 
-        private FieldBaseControl CreateFieldControlFromInfo(DesignFieldInfoBase info)
+        private FieldBaseControl CreateFieldControlFromInfo(FieldBuilder info)
         {
             FieldBaseControl ctrl = (FieldBaseControl)mControlType.InvokeMember("new", System.Reflection.BindingFlags.CreateInstance, null, null, null);
             ctrl.FieldInfo = info;
@@ -1786,7 +1786,7 @@ namespace FileHelpers.WizardApp
                 txtClassName.Text = mWizardInfo.ClassName;
 
                 txtDefaultType.Text = mWizardInfo.DefaultType;
-                txtNumberOfFields.Value = mWizardInfo.Fields.Count;
+                txtNumberOfFields.Value = mWizardInfo.ClassBuilder.FieldCount;
 
                 txtDefaultType.Enabled = false;
                 txtNumberOfFields.Enabled = false;
@@ -1802,14 +1802,14 @@ namespace FileHelpers.WizardApp
                 {
                     radFixed.Checked = true;
                     mControlType = typeof(FieldFixedControl);
-                    mFieldType = typeof(DesignFieldInfoFixed);
+                    mFieldType = typeof(FixedFieldBuilder);
                 }
                 else
                 {
                     radDelimited.Checked = true;
 
                     mControlType = typeof(FieldDelimitedControl);
-                    mFieldType = typeof(DesignFieldInfoDelimited);
+                    mFieldType = typeof(DelimitedFieldBuilder);
 
                     txtDelimiter.Text = "";
 
@@ -1832,7 +1832,7 @@ namespace FileHelpers.WizardApp
                 panFields.SuspendLayout();
                 panFields.Controls.Clear();
 
-                foreach (DesignFieldInfoBase info in mWizardInfo.Fields)
+                foreach (FieldBuilder info in mWizardInfo.Fields)
                 {
                     panFields.Controls.Add(CreateFieldControlFromInfo(info));
                 }
@@ -1858,7 +1858,7 @@ namespace FileHelpers.WizardApp
             {
                 mWizardInfo.FieldVisibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
                 if (mWizardInfo.Fields.Count > 0)
-                    foreach (DesignFieldInfoBase info in mWizardInfo.Fields)
+                    foreach (FieldBuilder info in mWizardInfo.Fields)
                         info.Visibility = mWizardInfo.FieldVisibility;
 
                 ReLoadPreview();
@@ -1923,19 +1923,7 @@ namespace FileHelpers.WizardApp
                 string classStr = string.Empty;
                 Type t = null;
 
-                switch (cboClassLeng.SelectedIndex)
-                {
-                    case 0:
-                        classStr = mWizardInfo.WizardOutput(NetLanguage.CSharp);
-                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLanguage.CSharp);
-                        break;
-                    case 1:
-                        classStr = mWizardInfo.WizardOutput(NetLanguage.VbNet);
-                        t = ClassBuilder.ClassFromString(classStr, FileHelpers.NetLanguage.VbNet);
-                        break;
-                }
-
-                
+                t = mWizardInfo.ClassBuilder.CreateType();
 
                 FileHelperEngine engine = new FileHelperEngine(t);
 

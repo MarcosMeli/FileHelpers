@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using FileHelpers.RunTime;
 
 namespace FileHelpers.WizardApp
 {
@@ -20,26 +21,34 @@ namespace FileHelpers.WizardApp
             this.Focus();
         }
 
-        private  DesignFieldInfoDelimited CastedFieldInfo
+        private  DelimitedFieldBuilder CastedFieldInfo
         {
             get
             {
-                return (DesignFieldInfoDelimited) this.FieldInfo;
+                return (DelimitedFieldBuilder)this.FieldInfo;
             }
         }
 
         private void txtQuoted_TextChanged(object sender, EventArgs e)
         {
+            if (txtQuoted.Text == string.Empty)
+                CastedFieldInfo.FieldQuoted = false;
+            else
+            {
+                CastedFieldInfo.FieldQuoted = true;
+                CastedFieldInfo.QuoteChar = txtQuoted.Text[0];
+            }
 
-            CastedFieldInfo.QuotedChar = txtQuoted.Text;
             OnInfoChanged();
         }
 
         public override void FieldInfoReload()
         {
             base.FieldInfoReload();
-
-            txtQuoted.Text = CastedFieldInfo.QuotedChar;
+            if (CastedFieldInfo.FieldQuoted)
+                txtQuoted.Text = "";
+            else
+                txtQuoted.Text = CastedFieldInfo.QuoteChar.ToString();
         }
 
     }

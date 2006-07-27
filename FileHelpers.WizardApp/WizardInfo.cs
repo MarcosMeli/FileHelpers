@@ -4,12 +4,13 @@ using System.Text;
 using System.Collections;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using FileHelpers.RunTime;
 
 namespace FileHelpers.WizardApp
 {
     
-    [XmlInclude(typeof(DesignFieldInfoDelimited))]
-    [XmlInclude(typeof(DesignFieldInfoFixed))]
+    [XmlInclude(typeof(DelimitedFieldBuilder))]
+    [XmlInclude(typeof(FixedFieldBuilder))]
     public class WizardInfo
     {
 
@@ -21,6 +22,14 @@ namespace FileHelpers.WizardApp
             {
                 mFields.Add(ctrl.FieldInfo);
             }
+        }
+
+        private ClassBuilder mClassBuilder = new ClassBuilder();
+
+        public ClassBuilder ClassBuilder
+        {
+            get { return mClassBuilder; }
+            set { mClassBuilder = value; }
         }
 
 
@@ -99,103 +108,13 @@ namespace FileHelpers.WizardApp
             set { mRecordKind = value; }
         }
 
-        private string mDelimiter = string.Empty;
-
-        public string Delimiter
-        {
-            get { return mDelimiter; }
-            set { mDelimiter = value; }
-        }
 
 
-        ArrayList mFields = new ArrayList();
 
-        public ArrayList Fields
-        { 
-            get { return mFields; }
-        }
 
         public string WizardOutput(NetLanguage leng)
         {
-            StringBuilder sb = new StringBuilder(500);
-
-            switch (leng)
-            {
-                case NetLanguage.VbNet:
-                    if (RecordKind == RecordKind.FixedLength)
-                        sb.AppendLine("<FixedLengthRecord()> _");
-                    else
-                        sb.AppendLine("<DelimitedRecord(\"" + Delimiter + "\") > _");
-
-                    if (IgnoreFirst > 0)
-                        sb.AppendLine("<IgnoreFirst(" + IgnoreFirst.ToString() + ")> _");
-
-                    if (IgnoreLast > 0)
-                        sb.AppendLine("<IgnoreLast(" + IgnoreLast.ToString() + ")> _");
-
-                    if (IgnoreEmptyLines)
-                        sb.AppendLine("<IgnoreEmptyLines()> _");
-
-                    sb.Append(EnumHelper.GetVisibility(leng, mClassVisibility));
-
-                    if (mMarkAsSealed)
-                        sb.Append(" NotInheritable");
-
-                    sb.AppendLine(" Class " + this.mClassName);
-                    sb.AppendLine();
-                    break;
-                
-                case NetLanguage.CSharp:
-                    if (RecordKind == RecordKind.FixedLength)
-                        sb.AppendLine("[FixedLengthRecord()]");
-                    else
-                        sb.AppendLine("[DelimitedRecord(\"" + Delimiter + "\")]");
-
-                    if (IgnoreEmptyLines)
-                        sb.AppendLine("[IgnoreEmptyLines()]");
-                    
-                    if (IgnoreFirst > 0)
-                        sb.AppendLine("[IgnoreFirst("+ IgnoreFirst.ToString() + ")]");
-
-                    if (IgnoreLast > 0)
-                        sb.AppendLine("[IgnoreLast(" + IgnoreLast.ToString() + ")]");
-
-                    sb.Append(EnumHelper.GetVisibility(leng, mClassVisibility));
-
-                    if (mMarkAsSealed)
-                        sb.Append(" sealed");
-
-                    sb.AppendLine(" class " + this.mClassName);
-                    sb.AppendLine("{");
-                    break;
-                default:
-                    break;
-            }
-
-            foreach (DesignFieldInfoBase info in mFields)
-            {
-                info.FillFieldDefinition(leng, sb, mUseProperties);
-
-                if (mUseProperties)
-                    info.CreateProperty(leng, sb);
-            }
-
-            // Append End
-
-            switch (leng)
-            {
-                case NetLanguage.VbNet:
-                    sb.AppendLine("End Class");
-                    break;
-                case NetLanguage.CSharp:
-                    sb.AppendLine("}");
-                    break;
-                default:
-                    break;
-            }   
-
-
-            return sb.ToString();
+            return mClassBuilder.GetSourceCode();
         }
 
         private string mDefaultType;

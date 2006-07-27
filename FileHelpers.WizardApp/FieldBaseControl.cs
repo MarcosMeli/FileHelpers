@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using FileHelpers.RunTime;
 
 namespace FileHelpers.WizardApp
 {
@@ -62,21 +63,21 @@ namespace FileHelpers.WizardApp
 
         private int mNumber;
 
-        private DesignFieldInfoBase mFieldInfo;
+        private FieldBuilder mFieldInfo;
 
         public virtual void FieldInfoReload()
         {
             if (mFieldInfo != null)
             {
-                txtName.Text = mFieldInfo.Name;
+                txtName.Text = mFieldInfo.FieldName;
                 txtName.SelectAll();
-                txtType.Text = mFieldInfo.Type;
+                txtType.Text = mFieldInfo.FieldType;
                 cboTrim.SelectedItem = mFieldInfo.TrimMode;
             }
 
         }
 
-        internal DesignFieldInfoBase FieldInfo
+        internal FieldBuilder FieldInfo
         {
             get { return mFieldInfo; }
             set 
@@ -89,19 +90,19 @@ namespace FileHelpers.WizardApp
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            mFieldInfo.Name = txtName.Text;
+            mFieldInfo.FieldName = txtName.Text;
             OnInfoChanged();
         }
 
         private void txtType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mFieldInfo.Type = txtType.Text;
+            mFieldInfo.FieldType = txtType.Text;
             OnInfoChanged();
         }
 
         private void txtType_TextChanged(object sender, EventArgs e)
         {
-            mFieldInfo.Type = txtType.Text;
+            mFieldInfo.FieldType = txtType.Text;
             OnInfoChanged();
         }
 
@@ -164,7 +165,7 @@ namespace FileHelpers.WizardApp
         {
             if (mInit == false)
             {
-                mFieldInfo.IsOptional = chkOptional.Checked;
+                mFieldInfo.FieldOptional = chkOptional.Checked;
                 OnInfoChanged();
             }
         }

@@ -6,13 +6,13 @@ namespace FileHelpers.WizardApp
 {
 
 
-    public enum NetVisibility
-    {
-        Private,
-        Protected,
-        Public,
-        Internal
-    }
+    //public enum NetVisibility
+    //{
+    //    Private,
+    //    Protected,
+    //    Public,
+    //    Internal
+    //}
 
     public enum RecordKind
     {
