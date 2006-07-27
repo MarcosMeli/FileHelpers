@@ -75,10 +75,26 @@ public class PriceRecord
 <textarea name="code" class="c#">
 public class MoneyConverter : ConverterBase
 {
+    private int mDecimals = 2;
+    
     public override object StringToField(string from)
     {
-       return decimal.Parse(from) / 100;
+       return Convert.ToDecimal(Decimal.Parse(from) / (10 ^ mDecimals));
     }
+
+
+    public override string FieldToString(object fieldValue)
+    {
+        Decimal v = Convert.ToDecimal(val);
+
+		// ugly but works =)
+        string res = Decimal.Truncate(v).ToUInt32(v).ToString();
+        res += Decimal.Round(Decimal.Remainder(v, 1), mDecimals)
+			   .ToString(".##").Replace(",", "").Replace(".", "").PadLeft(mDecimals, "0"c)
+
+        return res;
+    }
+    
 }
 </textarea>
           </blockquote>

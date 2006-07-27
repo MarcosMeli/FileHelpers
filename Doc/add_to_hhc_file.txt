@@ -4,9 +4,19 @@
 		<param name="Local" value="quick_start.html">
 		</OBJECT>
 
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RunTime Records">
+		<param name="Local" value="runtime_classes.html">
+		</OBJECT>
+
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Attributes List">
 		<param name="Local" value="attributes.html">
+		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Converters Arguments">
+		<param name="Local" value="converter_args.html">
 		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
@@ -42,6 +52,12 @@
 			</OBJECT>
 			
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="RunTime Records">
+			<param name="Local" value="runtime_classes.html">
+			<param name="ImageNumber" value="11">
+		</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Master-Details 1">
 			<param name="Local" value="example_masterdetail.html">
 			<param name="ImageNumber" value="11">
@@ -51,6 +67,13 @@
 			<param name="Local" value="example_masterdetail2.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="MultiRecordEngine">
+			<param name="Local" value="example_multirecords.html">
+			<param name="ImageNumber" value="11">
+		</OBJECT>
+
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Enum Converter">
 			<param name="Local" value="example_enumconverter.html">
