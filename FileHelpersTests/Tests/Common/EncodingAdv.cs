@@ -58,7 +58,8 @@ namespace FileHelpersTests.CommonTests
 					string dataString = encoding.GetString(data);
 					res = (MSWSDailyReportRecord[]) engine.ReadString(dataString);
 				}
-				Assert.AreEqual(res.Length, 28);
+				
+				Assert.AreEqual(res.Length, 32);
 			}
 
 			[Test]
@@ -75,7 +76,7 @@ namespace FileHelpersTests.CommonTests
 						res = (MSWSDailyReportRecord[]) engine.ReadFile("tempotemp.txt");
 					}
 
-				Assert.AreEqual(res.Length, 28);
+				Assert.AreEqual(res.Length, 32);
 			}
 
 			[Test]
@@ -94,7 +95,7 @@ namespace FileHelpersTests.CommonTests
 				{
 					webReq = (HttpWebRequest)HttpWebRequest.Create(url);
 					webResp = (HttpWebResponse)webReq.GetResponse();
-					System.Text.Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
+					Encoding encode = Encoding.GetEncoding("utf-8");
 					reader = new StreamReader(webResp.GetResponseStream(), encode);
 					res = (MSWSDailyReportRecord[]) engine.ReadStream(reader);
 				}
@@ -109,7 +110,7 @@ namespace FileHelpersTests.CommonTests
 					if (reader != null) reader.Close();
 				}
                         
-				Assert.AreEqual(res.Length, 28);
+				Assert.AreEqual(res.Length, 32);
 			}
 
 		}
@@ -118,7 +119,7 @@ namespace FileHelpersTests.CommonTests
 
 	[FixedLengthRecordAttribute()]
 	[IgnoreFirst(7)]
-	[IgnoreLast(4)]
+	[IgnoreLast(5)]
 	public sealed class MSWSDailyReportRecord
 	{
 		[FieldFixedLength(26)]
