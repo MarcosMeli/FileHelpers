@@ -38,6 +38,7 @@ namespace FileHelpersTests
 //
 //		}
 
+
 //			protected override object[] RecordToValues(object record)
 //			{
 //				CustomersVerticalBar rec = (CustomersVerticalBar) record;

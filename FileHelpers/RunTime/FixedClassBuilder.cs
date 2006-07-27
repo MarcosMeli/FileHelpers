@@ -2,6 +2,7 @@ using System;
 
 namespace FileHelpers.RunTime
 {
+	/// <summary>Used to create classes that maps to Fixed Length records.</summary>
 	public sealed class FixedClassBuilder: ClassBuilder
 	{
 
@@ -10,6 +11,11 @@ namespace FileHelpers.RunTime
 		}
 
 
+		/// <summary>Adds a new Fixed Length field.</summary>
+		/// <param name="fieldName">The name of the field.</param>
+		/// <param name="length">The length of the field.</param>
+		/// <param name="fieldType">The Type of the field.</param>
+		/// <returns>The just created field.</returns>
 		public FixedFieldBuilder AddField(string fieldName, int length, Type fieldType)
 		{
 			FixedFieldBuilder fb = new FixedFieldBuilder(fieldName, length, fieldType);
@@ -17,6 +23,7 @@ namespace FileHelpers.RunTime
 			return fb;
 		}
 
+		/// <summary>Return the last added field. (use it reduce casts and code)</summary>
 		public FixedFieldBuilder LastField
 		{
 			get

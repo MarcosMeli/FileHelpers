@@ -86,7 +86,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
 
-			SampleType rec1, rec2;
+			SampleType rec1;
 
 			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
 

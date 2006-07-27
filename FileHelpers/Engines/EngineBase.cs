@@ -25,7 +25,6 @@ namespace FileHelpers
 			mRecordInfo = new RecordInfo(recordType);
 		}
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 		internal EngineBase(RecordInfo ri)
 		{
 			mRecordType = ri.mRecordType;

@@ -19,6 +19,7 @@ namespace FileHelpers
 	/// Delegate thats determines the Type of the current record (Master, Detail, Skip)
 	/// </summary>
 	/// <param name="recordString">The string of the current record.</param>
+	/// <param name="engine">The engine that calls the selector.</param>
 	/// <returns>the action used for the current record (Master, Detail, Skip)</returns>
 	public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 

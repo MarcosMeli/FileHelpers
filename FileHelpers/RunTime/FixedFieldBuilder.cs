@@ -3,24 +3,26 @@ using System.Text;
 
 namespace FileHelpers.RunTime
 {
+	/// <summary>Used to create Fixed Length fields and set their properties.</summary>
 	public sealed class FixedFieldBuilder: FieldBuilder
 	{
-		private int mFiledLength;
+		private int mFieldLength;
 
 		public FixedFieldBuilder(string fieldName, int length, Type fieldType): base(fieldName, fieldType)
 		{
-			mFiledLength = length;
+			mFieldLength = length;
 		}
 
+		/// <summary>The fixed length of the field.</summary>
 		public int FieldLength
 		{
-			get { return mFiledLength; }
-			set { mFiledLength = value; }
+			get { return mFieldLength; }
 		}
 
 
 		private AlignMode mAlignMode = AlignMode.Left;
 
+		/// <summary>The align of the field used for write operations.</summary>
 		public AlignMode AlignMode
 		{
 			get { return mAlignMode; }
@@ -28,6 +30,7 @@ namespace FileHelpers.RunTime
 		}
 
 		private char mAlignChar = ' ';
+		/// <summary>The align char of the field used for write operations.</summary>
 		public char AlignChar
 		{
 			get { return mAlignChar; }
@@ -36,10 +39,10 @@ namespace FileHelpers.RunTime
 		
 		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
-			if (mFiledLength <= 0)
+			if (mFieldLength <= 0)
 				throw new BadUsageException("The Length of each field must be grater than 0");
 			else
-				attbs.AddAttribute("FieldFixedLength("+ mFiledLength.ToString() +")");
+				attbs.AddAttribute("FieldFixedLength("+ mFieldLength.ToString() +")");
 
 			if (mAlignMode != AlignMode.Left)
 			{

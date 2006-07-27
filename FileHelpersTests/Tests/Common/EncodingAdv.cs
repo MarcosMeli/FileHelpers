@@ -1,9 +1,7 @@
 using System;
-//using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using FileHelpers;
-//using Cocorahs.Website.Admin.Interop.Import;
 using System.Net;
 using System.IO;
 
@@ -15,12 +13,6 @@ namespace FileHelpersTests.CommonTests
 		{
 			private const string MSWSDataUrl_Format = "http://data.msws.net/temp_precip/temp_precip{0}.txt";//http://data.msws.net/temp_precip/temp_precip7-20-06.txt
 			private const string MSWSDataURL_DateFormat = "M-d-yy";
-
-			[SetUp]
-			protected void SetUp()
-			{
-            
-			}
 
 			[Test]
 			public void GetMSWSReportsFromFile_20060709_28Records()
@@ -114,8 +106,6 @@ namespace FileHelpersTests.CommonTests
 			}
 
 		}
-
-
 
 	[FixedLengthRecordAttribute()]
 	[IgnoreFirst(7)]

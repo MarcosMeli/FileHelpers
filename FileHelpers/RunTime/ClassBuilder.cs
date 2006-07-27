@@ -13,7 +13,9 @@ namespace FileHelpers.RunTime
 	//-> ADD: Sealed !!!
 	//-> ADD: Visibility !!!
 	
-	/// <summary>The Main class to work with runtime defined records.</summary>
+	//-> REGIONS !!!!
+
+	/// <summary>The MAIN class to work with runtime defined records.</summary>
     public abstract class ClassBuilder
     {
 		//---------------------
@@ -199,7 +201,7 @@ namespace FileHelpers.RunTime
 		public void SaveToSourceFile(string filename, NetLanguage lang)
     	{
     		StreamWriter writer = new StreamWriter(filename);
-    		writer.Write(GetClassCode(lang));
+    		writer.Write(GetClassSourceCode(lang));
     		writer.Close();
     	}
 
@@ -216,10 +218,7 @@ namespace FileHelpers.RunTime
 		public void SaveToBinaryFile(string filename, NetLanguage lang)
 		{
 			StreamWriter writer = new StreamWriter(filename);
-
-			string classDef = GetClassCode(lang);
-			classDef = Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
-			writer.Write(classDef);
+			writer.Write(GetClassBinaryCode(lang));
 			writer.Close();
 		}
 
@@ -228,9 +227,11 @@ namespace FileHelpers.RunTime
     		mClassName = className;
 		}
     	
-    	public Type CreateType()
+		/// <summary>Generate the runtime record class to be used by the engines.</summary>
+		/// <returns>The generated record class</returns>
+    	public Type CreateRecordClass()
     	{
-    		string classCode = GetClassCode(NetLanguage.CSharp);
+    		string classCode = GetClassSourceCode(NetLanguage.CSharp);
     		return ClassFromString(classCode, NetLanguage.CSharp);
     	}
 
@@ -238,20 +239,25 @@ namespace FileHelpers.RunTime
 		//--------------
 		//->  Fields 
 
-		#region Fields
+		#region Fiields
     	
+		/// <summary></summary>
 		protected ArrayList mFields = new ArrayList();
 
+		/// <summary></summary>
+		/// <param name="field"></param>
 		protected void AddFieldInternal(FieldBuilder field)
 		{
 			field.mFieldIndex = mFields.Add(field);
 		}
 
+		/// <summary>Returns the current fields of the class.</summary>
 		public FieldBuilder[] Fields
 		{
 			get { return (FieldBuilder[]) mFields.ToArray(typeof(FieldBuilder)); }
 		}
 
+		/// <summary>Returns the current number of fields.</summary>
 		public int FieldCount
 		{
 			get
@@ -261,6 +267,9 @@ namespace FileHelpers.RunTime
 		}
 
 
+		/// <summary>Return the field at the specified index.</summary>
+		/// <param name="index">The index of the field.</param>
+		/// <returns>The field at the specified index.</returns>
 		public FieldBuilder FieldByIndex(int index)
 		{
 			return (FieldBuilder) mFields[index];
@@ -271,10 +280,10 @@ namespace FileHelpers.RunTime
 		#region ClassName
 		
     	private string mClassName;
+		/// <summary>The name of the Class.</summary>
 		public string ClassName
 		{
 			get { return mClassName; }
-			set { mClassName = value; }
 		}
 		
     	#endregion
@@ -287,6 +296,7 @@ namespace FileHelpers.RunTime
     	
 		private int mIgnoreFirstLines = 0;
 
+		/// <summary>Indicates the number of FIRST LINES to be ignored by the engines.</summary>
 		public int IgnoreFirstLines
 		{
 			get { return mIgnoreFirstLines; }
@@ -299,6 +309,7 @@ namespace FileHelpers.RunTime
     	
 		private int mIgnoreLastLines = 0;
 
+		/// <summary>Indicates the number of LAST LINES to be ignored by the engines.</summary>
 		public int IgnoreLastLines
 		{
 			get { return mIgnoreLastLines; }
@@ -311,6 +322,7 @@ namespace FileHelpers.RunTime
     	
 		private bool mIgnoreEmptyLines = false;
 
+		/// <summary>Indicates that the engines must ignore the empty lines in the files.</summary>
 		public bool IgnoreEmptyLines
 		{
 			get { return mIgnoreEmptyLines; }
@@ -320,71 +332,22 @@ namespace FileHelpers.RunTime
     	#endregion
 
     	
-    	#region "  EncDec  "	
-		
-			private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV) 
-			{ 
-				MemoryStream ms = new MemoryStream(); 
-				Rijndael alg = Rijndael.Create(); 
-				alg.Key = Key; 
-				alg.IV = IV; 
-				CryptoStream cs = new CryptoStream(ms, 
-					alg.CreateEncryptor(), CryptoStreamMode.Write); 
-				cs.Write(clearData, 0, clearData.Length); 
-				cs.Close(); 
-				byte[] encryptedData = ms.ToArray();
-				return encryptedData; 
-			} 
+		/// <summary>
+		/// Returns the ENCRIPTED code for the current class in the specified language.
+		/// </summary>
+		/// <param name="lang">The language for the return code.</param>
+		/// <returns>The ENCRIPTED code for the class that are currently building.</returns>
+		public string GetClassBinaryCode(NetLanguage lang)
+		{
+			return Encrypt(GetClassSourceCode(lang), "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+		}
 
-			private static string Encrypt(string clearText, string Password) 
-			{ 
-				byte[] clearBytes = Encoding.Unicode.GetBytes(clearText); 
-
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-								   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-				byte[] encryptedData = Encrypt(clearBytes, 
-					pdb.GetBytes(32), pdb.GetBytes(16)); 
-				return Convert.ToBase64String(encryptedData); 
-			}
-    
-
-			// Decrypt a byte array into a byte array using a key and an IV 
-			private static byte[] Decrypt(byte[] cipherData, 
-				byte[] Key, byte[] IV) 
-			{ 
-				MemoryStream ms = new MemoryStream(); 
-				Rijndael alg = Rijndael.Create(); 
-				alg.Key = Key; 
-				alg.IV = IV; 
-
-				CryptoStream cs = new CryptoStream(ms, 
-					alg.CreateDecryptor(), CryptoStreamMode.Write); 
-
-				cs.Write(cipherData, 0, cipherData.Length); 
-				cs.Close(); 
-
-				byte[] decryptedData = ms.ToArray(); 
-
-				return decryptedData; 
-			}
-
-			private static string Decrypt(string cipherText, string Password) 
-			{ 
-				byte[] cipherBytes = Convert.FromBase64String(cipherText); 
-				PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
-					new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 
-								   0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
-				byte[] decryptedData = Decrypt(cipherBytes, 
-					pdb.GetBytes(32), pdb.GetBytes(16)); 
-				return Encoding.Unicode.GetString(decryptedData); 
-			}
-
-    	
-		
-    	#endregion
-    	
-		internal string GetClassCode(NetLanguage lang)
+		/// <summary>
+		/// Returns the source code for the current class in the specified language.
+		/// </summary>
+		/// <param name="lang">The language for the return code.</param>
+		/// <returns>The Source Code for the class that are currently building.</returns>
+		public string GetClassSourceCode(NetLanguage lang)
 		{
 			StringBuilder sb = new StringBuilder(100);
 			
@@ -435,9 +398,9 @@ namespace FileHelpers.RunTime
 			
 			return sb.ToString();
 			
+		
 		}
-
-
+    	
 		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang);
 
 		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage lang)
@@ -455,6 +418,72 @@ namespace FileHelpers.RunTime
 		
 		}
     	
+		
+		#region "  EncDec  "	
+		
+		private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV) 
+		{ 
+			MemoryStream ms = new MemoryStream(); 
+			Rijndael alg = Rijndael.Create(); 
+			alg.Key = Key; 
+			alg.IV = IV; 
+			CryptoStream cs = new CryptoStream(ms, 
+				alg.CreateEncryptor(), CryptoStreamMode.Write); 
+			cs.Write(clearData, 0, clearData.Length); 
+			cs.Close(); 
+			byte[] encryptedData = ms.ToArray();
+			return encryptedData; 
+		} 
+
+		private static string Encrypt(string clearText, string Password) 
+		{ 
+			byte[] clearBytes = Encoding.Unicode.GetBytes(clearText); 
+
+			PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
+				new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
+							   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
+			byte[] encryptedData = Encrypt(clearBytes, 
+				pdb.GetBytes(32), pdb.GetBytes(16)); 
+			return Convert.ToBase64String(encryptedData); 
+		}
+    
+
+		// Decrypt a byte array into a byte array using a key and an IV 
+		private static byte[] Decrypt(byte[] cipherData, 
+			byte[] Key, byte[] IV) 
+		{ 
+			MemoryStream ms = new MemoryStream(); 
+			Rijndael alg = Rijndael.Create(); 
+			alg.Key = Key; 
+			alg.IV = IV; 
+
+			CryptoStream cs = new CryptoStream(ms, 
+				alg.CreateDecryptor(), CryptoStreamMode.Write); 
+
+			cs.Write(cipherData, 0, cipherData.Length); 
+			cs.Close(); 
+
+			byte[] decryptedData = ms.ToArray(); 
+
+			return decryptedData; 
+		}
+
+		private static string Decrypt(string cipherText, string Password) 
+		{ 
+			byte[] cipherBytes = Convert.FromBase64String(cipherText); 
+			PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, 
+				new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 
+							   0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
+			byte[] decryptedData = Decrypt(cipherBytes, 
+				pdb.GetBytes(32), pdb.GetBytes(16)); 
+			return Encoding.Unicode.GetString(decryptedData); 
+		}
+
+    	
+		
+		#endregion
+    	
+
 		
 		private NetVisibility mVisibility = NetVisibility.Public;
 
@@ -576,5 +605,5 @@ namespace FileHelpers.RunTime
 			}		
 		}
 
-	}
+    }
 }

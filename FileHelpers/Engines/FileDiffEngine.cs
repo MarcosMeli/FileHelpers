@@ -6,6 +6,7 @@ namespace FileHelpers
 
 	#region " IComparableRecord "
 
+	/// <summary>Used by the FileDiffEngine to compare records. Your record class must implement this interface if you like to work with it.</summary>
 	public interface IComparableRecord
 	{
 		bool IsEqualRecord(object record);

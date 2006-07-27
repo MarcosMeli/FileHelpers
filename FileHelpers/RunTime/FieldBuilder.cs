@@ -4,6 +4,7 @@ using System.Text;
 
 namespace FileHelpers.RunTime
 {
+	/// <summary>Base class for the field converters</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class FieldBuilder
 	{
@@ -26,6 +27,7 @@ namespace FileHelpers.RunTime
 
 		private TrimMode mTrimMode = TrimMode.None;
 
+		/// <summary>Indicates the TrimMode for the field.</summary>
 		public TrimMode TrimMode
 		{
 			get { return mTrimMode; }
@@ -34,6 +36,7 @@ namespace FileHelpers.RunTime
 		
 		private string mTrimChars = " \t";
 		
+		/// <summary>Indicates the trim chars used if TrimMode is set.</summary>
 		public string TrimChars
 		{
 			get { return mTrimChars; }
@@ -46,6 +49,7 @@ namespace FileHelpers.RunTime
 
 		internal int mFieldIndex = -1;
 
+		/// <summary>The position index inside the class.</summary>
 		public int FieldIndex
 		{
 			get { return mFieldIndex; }
@@ -53,6 +57,7 @@ namespace FileHelpers.RunTime
 
 		private bool mFieldInNewLine = false;
 
+		/// <summary>Indicates that this field is at the begging of a new line.</summary>
 		public bool FieldInNewLine
 		{
 			get { return mFieldInNewLine; }
@@ -61,6 +66,7 @@ namespace FileHelpers.RunTime
 
 		private bool mFieldIgnored = false;
 
+		/// <summary>Indicates that this field must be ignored by the engine.</summary>
 		public bool FieldIgnored
 		{
 			get { return mFieldIgnored; }
@@ -69,23 +75,27 @@ namespace FileHelpers.RunTime
 
 		private bool mFieldOptional = false;
 
+		/// <summary>Indicates that this field is optional.</summary>
 		public bool FieldOptional
 		{
 			get { return mFieldOptional; }
 			set { mFieldOptional = value; }
 		}
 
+		/// <summary>Uset to create the converter for the current field.</summary>
 		public ConverterBuilder Converter
 		{
 			get { return mConverter; }
 		}
 
+		/// <summary>The name of the field.</summary>
 		public string FieldName
 		{
 			get { return mFieldName; }
 			set { mFieldName = value; }
 		}
 
+		/// <summary>The Type of the field</summary>
 		public string FieldType
 		{
 			get { return mFieldType; }
@@ -94,6 +104,7 @@ namespace FileHelpers.RunTime
 
 		private object mFieldNullValue = null;
 
+		/// <summary>The null value of the field when their value not is in the file.</summary>
 		public object FieldNullValue
 		{
 			get { return mFieldNullValue; }
@@ -103,24 +114,24 @@ namespace FileHelpers.RunTime
 
 		private ConverterBuilder mConverter = new ConverterBuilder();
 		
-		internal string GetFieldCode(NetLanguage lang)
+		internal string GetFieldCode(NetLanguage leng)
 		{
 			StringBuilder sb = new StringBuilder(100);
 			
-			AttributesBuilder attbs = new AttributesBuilder(lang);
+			AttributesBuilder attbs = new AttributesBuilder(leng);
 			
-			AddAttributesInternal(attbs, lang);
-			AddAttributesCode(attbs, lang);
+			AddAttributesInternal(attbs, leng);
+			AddAttributesCode(attbs, leng);
 			
 			sb.Append(attbs.GetAttributesCode());
 			
-			switch (lang)
+			switch (leng)
 			{
 				case NetLanguage.VbNet:
-					sb.Append(ClassBuilder.GetVisibility(lang, mVisibility) + mFieldName + " As " + mFieldType);
+					sb.Append("Public " + mFieldName + " As " + mFieldType);
 					break;
 				case NetLanguage.CSharp:
-					sb.Append(ClassBuilder.GetVisibility(lang, mVisibility) + mFieldType + " " + mFieldName+ ";");
+					sb.Append("public " + mFieldType + " " + mFieldName+ ";");
 					break;
 				default:
 					break;
@@ -168,7 +179,7 @@ namespace FileHelpers.RunTime
 				attbs.AddAttribute("FieldTrim(TrimMode."+ mTrimMode.ToString()+", \""+ mTrimChars.ToString() +"\")");
 			}
 		}
-		
+
 		private NetVisibility mVisibility = NetVisibility.Public;
 
 		public NetVisibility Visibility
@@ -176,6 +187,6 @@ namespace FileHelpers.RunTime
 			get { return mVisibility; }
 			set { mVisibility = value; }
 		}
-
+		
 	}
 }

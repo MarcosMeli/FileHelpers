@@ -267,16 +267,19 @@ namespace FileHelpers
 		/// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
 		/// <param name="records">The records to be converted to a DataTable</param>
 		/// <returns>The datatable containing the records as DataRows</returns>
-		public DataTable RecordsToDataTable(ICollection records, Type t)
+		/// <param name="recordType">The type of the inner records.</param>
+		public DataTable RecordsToDataTable(ICollection records, Type recordType)
 		{
-
-			RecordInfo ri = new RecordInfo(t);
+			RecordInfo ri = new RecordInfo(recordType);
 			return ri.RecordsToDataTable(records);
 		}
 
 #endif
 
-		public void MergeFilesFast(Type recordType, string file1, string file2, string destinationFile)
+		/// <summary>
+		/// Reads the file1 and file2 using the recordType and write it to destinationFile
+		/// </summary>
+		public void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
 		{
 			FileHelperAsyncEngine engineRead= new FileHelperAsyncEngine(recordType);
 			FileHelperAsyncEngine engineWrite = new FileHelperAsyncEngine(recordType);
@@ -310,6 +313,15 @@ namespace FileHelpers
 			engineWrite.EndsWrite();
 		} 
 
+		/// <summary>
+		/// Reads the file1 and file2 using the recordType and write it to destFile sorting it using the specified field.
+		/// </summary>
+		/// <param name="recordType"></param>
+		/// <param name="file1"></param>
+		/// <param name="file2"></param>
+		/// <param name="destFile"></param>
+		/// <param name="field"></param>
+		/// <returns></returns>
 		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
 		{
 			return MergeAndSortFile(recordType, file1, file2, destFile, field, true);

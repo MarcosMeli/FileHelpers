@@ -14,7 +14,7 @@ namespace FileHelpersTests
 		[Test]
 		public void MultpleRecordsFile()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(Test1Selector));
+			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
 
             object[] res = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
 
@@ -30,7 +30,7 @@ namespace FileHelpersTests
 		[Test]
 		public void MultpleRecordsFileRW()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(Test1Selector));
+			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
 
 			object[] res2 = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
 
@@ -71,10 +71,10 @@ namespace FileHelpersTests
 		[ExpectedException(typeof(BadUsageException))]
 		public void NullTypes()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(CustomersVerticalBar), null} ,new RecordTypeSelector(Test1Selector));
+			engine = new MultiRecordEngine(new Type[] {typeof(CustomersVerticalBar), null} ,new RecordTypeSelector(CustomSelector));
 		}
 
-        Type Test1Selector(MultiRecordEngine engine, string record)
+        Type CustomSelector(MultiRecordEngine engine, string record)
         {
             if (Char.IsLetter(record[0]))
                 return typeof(CustomersSemiColon);

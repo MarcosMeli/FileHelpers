@@ -119,6 +119,17 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		private string mTemplateFile = string.Empty;
+
+		/// <summary>
+		/// Indicates the source xls file to be used as template when write data.
+		/// </summary>
+		public string TemplateFile
+		{
+			get { return mTemplateFile; }
+			set { mTemplateFile = value; }
+		}
+
 		#region "  InitExcel  "
 
 		private void InitExcel()
@@ -312,6 +323,14 @@ namespace FileHelpers.DataLink
 				if (mOverrideFile && File.Exists(mFileName))
 					File.Delete(mFileName);
 
+				if (mTemplateFile != string.Empty)
+				{
+					if (File.Exists(mTemplateFile) == false)
+						throw new ExcelBadUsageException("Template file not found: " + mTemplateFile);
+
+					File.Copy(mTemplateFile, mFileName, true);
+				}
+				
 				this.OpenOrCreateWorkbook(this.mFileName);
 
 				for (int i = 0; i < records.Length; i++)

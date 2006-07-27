@@ -245,7 +245,7 @@ namespace FileHelpersTests.CommonTests
 
 			cb.AddField("Field3", typeof(int));
 			
-			engine = new FileHelperEngine(cb.CreateType());
+			engine = new FileHelperEngine(cb.CreateRecordClass());
 
 			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test2.txt"));
 
@@ -279,7 +279,7 @@ namespace FileHelpersTests.CommonTests
 			cb.LastField.AlignChar = '0';
 			cb.LastField.TrimMode = TrimMode.Both;
 			
-			engine = new FileHelperEngine(cb.CreateType());
+			engine = new FileHelperEngine(cb.CreateRecordClass());
 
 			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
 
