@@ -3,7 +3,7 @@ using System;
 namespace FileHelpers.RunTime
 {
 	/// <summary>Used to create classes that maps to Delimited records.</summary>
-	public sealed class DelimitedClassBuilder: ClassBuilder
+	public class DelimitedClassBuilder: ClassBuilder
 	{
 		private string mDelimiter = string.Empty;
 
@@ -33,11 +33,20 @@ namespace FileHelpers.RunTime
 		/// <param name="fieldName">The Name of the field.</param>
 		/// <param name="fieldType">The Type of the field.</param>
 		/// <returns>The just created field.</returns>
-		public DelimitedFieldBuilder AddField(string fieldName, Type fieldType)
+		public DelimitedFieldBuilder AddField(string fieldName, string fieldType)
 		{
 			DelimitedFieldBuilder fb = new DelimitedFieldBuilder(fieldName, fieldType);
 			AddFieldInternal(fb);
 			return fb;
+		}
+
+		/// <summary>Add a new Delimited field to the current class.</summary>
+		/// <param name="fieldName">The Name of the field.</param>
+		/// <param name="fieldType">The Type of the field.</param>
+		/// <returns>The just created field.</returns>
+		public DelimitedFieldBuilder AddField(string fieldName, Type fieldType)
+		{
+			return AddField(fieldName, fieldType.FullName);
 		}
 
 		/// <summary>Return the last added field. (use it reduce casts and code)</summary>

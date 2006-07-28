@@ -118,7 +118,10 @@ namespace FileHelpers
 			}
 
 			if (arr.Count > 0)
+			{
+				((FieldBase) arr[0]).mIsFirst = true;
 				((FieldBase) arr[arr.Count - 1]).mIsLast = true;
+			}
 
 			return (FieldBase[]) arr.ToArray(typeof (FieldBase));
 

@@ -8,7 +8,10 @@ namespace FileHelpers.RunTime
 	{
 		private int mFieldLength;
 
-		internal FixedFieldBuilder(string fieldName, int length, Type fieldType): base(fieldName, fieldType)
+		internal FixedFieldBuilder(string fieldName, int length, Type fieldType): this(fieldName, length, fieldType.FullName)
+		{}
+
+		internal FixedFieldBuilder(string fieldName, int length, string fieldType): base(fieldName, fieldType)
 		{
 			mFieldLength = length;
 		}

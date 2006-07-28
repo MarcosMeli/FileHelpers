@@ -101,12 +101,12 @@ namespace FileHelpers.RunTime
 			if (cr.Errors.HasErrors)
 			{
 				StringBuilder error = new StringBuilder();
-				error.Append("Error Compiling Expression: ");
+				error.Append("Error Compiling Expression: " + StringHelper.NewLine);
 				foreach (CompilerError err in cr.Errors)
 				{
 					error.AppendFormat("Line {0}: {1}\n", err.Line, err.ErrorText);
 				}
-				throw new Exception("Error Compiling Expression: " + error.ToString());
+				throw new RunTimeCompilationException(error.ToString(), classStr, cr.Errors);
 			}
             
 			//            Assembly.Load(cr.CompiledAssembly.);

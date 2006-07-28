@@ -7,6 +7,9 @@ namespace FileHelpers.RunTime
 	public sealed class DelimitedFieldBuilder: FieldBuilder
 	{
 
+		internal DelimitedFieldBuilder(string fieldName, string fieldType): base(fieldName, fieldType)
+		{}
+
 		internal DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
 		{}
 

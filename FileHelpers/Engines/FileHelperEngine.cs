@@ -29,7 +29,7 @@ namespace FileHelpers
 	/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
 #if ! GENERICS
-	public sealed class FileHelperEngine : EngineBase
+	public class FileHelperEngine : EngineBase
 #else
 	public sealed class FileHelperEngine<T>: EngineBase
 #endif

@@ -251,6 +251,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\CsvEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\EngineBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -361,6 +366,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ErrorHandling\RunTimeCompilationException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Events\Delegates.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -462,6 +472,11 @@
                 />
                 <File
                     RelPath = "RunTime\ConverterBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RunTime\CsvClassBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

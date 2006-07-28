@@ -118,12 +118,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Tests\Common\ArrayFields.cs"
+                    RelPath = "Tests\Common\Converters.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Tests\Common\Converters.cs"
+                    RelPath = "Tests\Common\CsvEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

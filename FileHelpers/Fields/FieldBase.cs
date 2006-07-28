@@ -57,6 +57,7 @@ namespace FileHelpers
 		internal bool mNextIsOptional = false;
 		internal bool mInNewLine = false;
 
+		internal bool mIsFirst = false;
 		internal bool mIsLast = false;
 		internal bool mTrailingArray = false;
 

@@ -61,7 +61,17 @@ namespace FileHelpers
 					if (sepPos == -1)
 					{
 						if (this.mNextIsOptional == false)
-							throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+						{
+							string msg = null;
+
+							if (mIsFirst && from.Trim() == string.Empty)
+								msg = "The line " + reader.LineNumber.ToString() + " is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
+							else
+								msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
+							
+							throw new FileHelperException(msg);
+
+						}
 						else
 							sepPos = from.Length;
 					}

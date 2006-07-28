@@ -435,6 +435,32 @@ namespace FileHelpers
 
 		#endregion
 
+		public static string RawReadAllFile(string file)
+		{
+			StreamReader reader = new StreamReader(file);
+			string res = reader.ReadToEnd();
+			reader.Close();
+			return res;
+		}
+
+		public static string RawReadFirstLines(string file, int lines)
+		{
+			StringBuilder sb = new StringBuilder(Math.Min(lines * 50, 10000));
+
+			StreamReader reader = new StreamReader(file);
+
+			string line;
+			for(int i = 0; i < lines; i++)
+			{
+				line = reader.ReadLine();
+				if (line != null)
+					sb.Append(line + StringHelper.NewLine);
+			}
+			reader.Close();
+
+			return sb.ToString();
+		}
+
 
 	}
 }
