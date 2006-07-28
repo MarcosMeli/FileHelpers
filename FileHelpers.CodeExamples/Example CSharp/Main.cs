@@ -16,6 +16,9 @@ namespace Examples
 			ErrorHandling();
 
 			FormatTransformation();
+
+			EventHandling();
+
 		}
 
 		#region "  Delimited  "
@@ -23,13 +26,12 @@ namespace Examples
 		static void Delimited()
 		{
 
-			Console.WriteLine("Reading Delimited File...");
+            Console.WriteLine("Reading Delimited File...");
 			Console.WriteLine();
 
 			// Estas dos lineas son el uso de la librería
 			FileHelperEngine engine = new FileHelperEngine(typeof(Customer));
 			Customer[] customers = (Customer[]) engine.ReadFile(@"..\Data\CustomersDelimited.txt");
-
 
 			// A partir de la versión 1.4.0 se puede
 			// inclusive escribir en una sola línea:
@@ -170,5 +172,62 @@ namespace Examples
 
 		#endregion
 
+		#region "  Delimited  "
+
+		static void EventHandling()
+		{
+
+			Console.WriteLine("Reading Using EventHandlers ...");
+			Console.WriteLine();
+
+			// Estas dos lineas son el uso de la librería
+			FileHelperEngine engine = new FileHelperEngine(typeof(Customer));
+
+			engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeReadRecord);
+			engine.AfterWriteRecord +=new AfterWriteRecordHandler(AfterWriteRecord);
+
+			Customer[] customers = (Customer[]) engine.ReadFile(@"..\Data\CustomersDelimited.txt");
+
+			// A partir de la versión 1.4.0 se puede
+			// inclusive escribir en una sola línea:
+
+			// Cliente[] clientes = (Cliente[]) CommonEngine.ReadFile(typeof(Cliente), @"..\Data\ClientesDelimitados.txt");
+
+			// Aqui es donde ustedes agregan su código
+			foreach (Customer cli in customers)
+			{
+				Console.WriteLine("Customer: " + cli.CustId.ToString() + " - " + cli.Name);
+			}
+
+			Console.ReadLine();
+			Console.WriteLine("Writing data to a delimited file...");
+			Console.WriteLine();
+
+			// write the data to a file
+			engine.WriteFile("temp.txt", customers);
+
+			Console.WriteLine("Data successful written !!!");
+			Console.ReadLine();
+
+			if (File.Exists("temp.txt")) File.Delete("temp.txt");
+		}
+
+		#endregion
+
+		private static void BeforeReadRecord(EngineBase engine, BeforeReadRecordEventArgs e)
+		{
+			Console.WriteLine("--> Before read line: " + e.RecordLine); 
+
+			if (e.LineNumber == 2)
+			{
+				e.SkipThisRecord = true;
+				Console.WriteLine("-->   skiping line 2"); 
+			}
+		}
+
+		private static void AfterWriteRecord(EngineBase engine, AfterWriteRecordEventArgs e)
+		{
+			Console.WriteLine("--> After write record: " + e.RecordLine); 
+		}
 	}
 }
