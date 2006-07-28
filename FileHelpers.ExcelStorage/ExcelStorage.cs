@@ -68,6 +68,8 @@ namespace FileHelpers.DataLink
 		private Worksheet mSheet;
 		//private RecordInfo mRecordInfo;
 
+		private string mTemplateFile = string.Empty;
+
 		#endregion
 
 		#region "  Public Properties  "
@@ -117,10 +119,6 @@ namespace FileHelpers.DataLink
 			set { mOverrideFile = value; }
 		}
 
-		#endregion
-
-		private string mTemplateFile = string.Empty;
-
 		/// <summary>
 		/// Indicates the source xls file to be used as template when write data.
 		/// </summary>
@@ -129,6 +127,10 @@ namespace FileHelpers.DataLink
 			get { return mTemplateFile; }
 			set { mTemplateFile = value; }
 		}
+
+		#endregion
+
+
 
 		#region "  InitExcel  "
 
@@ -166,7 +168,7 @@ namespace FileHelpers.DataLink
 
 			if (this.mBook != null)
 			{
-				this.mBook.Close(false, Missing.Value, Missing.Value);
+				this.mBook.Close(false, mv, mv);
 				this.mBook = null;
 			}
 			if (this.mApp != null)
@@ -179,6 +181,8 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		private readonly Missing mv = Missing.Value;
+
 		#region "  OpenWorkbook  "
 
 		private void OpenWorkbook(string filename)
@@ -187,7 +191,7 @@ namespace FileHelpers.DataLink
 			if (info.Exists == false)
 				throw new FileNotFoundException("Excel File '" + filename + "' not found.", filename);
 
-			this.mBook = this.mApp.Workbooks.Open(info.FullName, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+			this.mBook = this.mApp.Workbooks.Open(info.FullName, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
 			if (this.mSheetName == null || mSheetName == string.Empty)
 				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
@@ -219,7 +223,7 @@ namespace FileHelpers.DataLink
 
 		private void CreateWorkbook()
 		{
-			this.mBook = this.mApp.Workbooks.Add(Missing.Value);
+			this.mBook = this.mApp.Workbooks.Add(mv);
 			this.mSheet = (Worksheet) this.mBook.ActiveSheet;
 		}
 
@@ -236,7 +240,7 @@ namespace FileHelpers.DataLink
 		private void SaveWorkbook(string filename)
 		{
 			if (this.mBook != null)
-				this.mBook.SaveAs(filename, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+				this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
 		}
 
 		#endregion
@@ -326,9 +330,10 @@ namespace FileHelpers.DataLink
 				if (mTemplateFile != string.Empty)
 				{
 					if (File.Exists(mTemplateFile) == false)
-						throw new ExcelBadUsageException("Template file not found: " + mTemplateFile);
+						throw new ExcelBadUsageException("Template file not found: '" + mTemplateFile + "'");
 
-					File.Copy(mTemplateFile, mFileName, true);
+					if (mTemplateFile != mFileName)
+						File.Copy(mTemplateFile, mFileName, true);
 				}
 				
 				this.OpenOrCreateWorkbook(this.mFileName);
