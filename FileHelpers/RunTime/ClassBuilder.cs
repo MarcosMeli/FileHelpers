@@ -489,6 +489,7 @@ namespace FileHelpers.RunTime
 		
 		private NetVisibility mVisibility = NetVisibility.Public;
 
+		/// <summary>The Visibility for the class.</summary>
 		public NetVisibility Visibility
 		{
 			get { return mVisibility; }
@@ -497,6 +498,7 @@ namespace FileHelpers.RunTime
 
 		private bool mSealedClass = true;
 
+		/// <summary>Indicates if the generated class must be sealed.</summary>
 		public bool SealedClass
 		{
 			get { return mSealedClass; }
@@ -505,6 +507,7 @@ namespace FileHelpers.RunTime
 
 		private string mNamespace = string.Empty;
 
+		/// <summary>The namespace used when creating the class.</summary>
 		public string Namespace
 		{
 			get { return mNamespace; }
@@ -608,8 +611,31 @@ namespace FileHelpers.RunTime
 		}
 
 		
+
+		/// <summary>
+		/// Loads and return a ClassBuilder inheritor that has been saved with the SaveToXml method
+		/// </summary>
+		/// <param name="filename">A file name with the ClassBuilder difinition.</param>
+		/// <returns>A new instance of a ClassBuilder inheritor.</returns>
+		public static ClassBuilder LoadFromXml(string filename)
+		{
+			XmlHelper reader = new XmlHelper();
+			reader.BeginReadFile(filename);
+
+			reader.mReader.ReadStartElement();
+			string classtype = reader.mReader.Value;
+			classtype = reader.mReader.ReadString();
+
+
+			return null;
+
+		}
+
 		
-		
+		/// <summary>
+		/// Creates a custom serialization of the current ClassBuilder
+		/// </summary>
+		/// <param name="filename">A file name to write to.</param>
 		public void SaveToXml(string filename)
 		{
 			XmlHelper writer = new XmlHelper();
@@ -619,13 +645,13 @@ namespace FileHelpers.RunTime
 			WriteHeaderElement(writer);
 			
 			writer.WriteElement("ClassName", ClassName);
-			writer.WriteElement("Namespace", this.Namespace);
-			writer.WriteElement("SealedClass", this.SealedClass.ToString());
-			writer.WriteElement("Visibility", this.Visibility.ToString());
+			writer.WriteElement("Namespace", this.Namespace, string.Empty);
+			writer.WriteElement("SealedClass", this.SealedClass.ToString(), "True");
+			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
 
-			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines.ToString());
-			writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString());
-			writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString());
+			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines.ToString(), "False");
+			writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
+			writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
 
 			WriteExtraElements(writer);
 

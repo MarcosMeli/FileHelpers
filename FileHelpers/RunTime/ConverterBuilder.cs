@@ -4,6 +4,7 @@ using System.Text;
 
 namespace FileHelpers.RunTime
 {
+	/// <summary>Used to build the ConverterAttribute for the run time classes.</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public sealed class ConverterBuilder
 	{
@@ -12,6 +13,7 @@ namespace FileHelpers.RunTime
 
 		private ConverterKind mKind = ConverterKind.None;
 
+		/// <summary>The ConverterKind to be used , like the one in the FieldConverterAttribute.</summary>
 		public ConverterKind Kind
 		{
 			get { return mKind; }
@@ -20,6 +22,7 @@ namespace FileHelpers.RunTime
 
 		private string mTypeName = string.Empty;
 
+		/// <summary>The type name of your custom converter.</summary>
 		public string TypeName
 		{
 			get { return mTypeName; }
@@ -27,46 +30,34 @@ namespace FileHelpers.RunTime
 		}
 
 
-		public object Arg1
+		private string mArg1;
+		private string mArg2;
+		private string mArg3;
+
+		/// <summary>The first argument pased to the converter.</summary>
+		public string Arg1
 		{
 			get { return mArg1; }
 			set { mArg1 = value; }
 		}
 
-		private object mArg1;
-
-		public object Arg2
+		/// <summary>The first argument pased to the converter.</summary>
+		public string Arg2
 		{
 			get { return mArg2; }
 			set { mArg2 = value; }
 		}
 
-		private object mArg2;
 		
-		public object Arg3
+		/// <summary>The first argument pased to the converter.</summary>
+		public string Arg3
 		{
 			get { return mArg3; }
 			set { mArg3 = value; }
 		}
 
-		private object mArg3;
-		
-		
-		internal string GetFieldDef(NetLanguage leng)
-		{
-			StringBuilder sb = new StringBuilder(100);
-			switch(leng)
-			{
-				case NetLanguage.CSharp:
-
-					break;
-
-			}
-
-			return sb.ToString();
-		}
-		
-		public string GetConverterCode(NetLanguage leng)
+	
+		internal string GetConverterCode(NetLanguage leng)
 		{
 			StringBuilder sb = new StringBuilder();
 			
@@ -84,28 +75,17 @@ namespace FileHelpers.RunTime
 			
 			if (mArg1 != null)
 			{
-				if (mArg1 is string)
-					sb.Append(", \"" + mArg1.ToString() + "\"");
-				else
-					sb.Append(", " + mArg1.ToString());
+				sb.Append(", \"" + mArg1 + "\"");
 
 				if (mArg2 != null)
 				{
-					if (mArg2 is string)
-						sb.Append(", \"" + mArg2.ToString() + "\"");
-					else
-						sb.Append(", " + mArg2.ToString());
+					sb.Append(", \"" + mArg2 + "\"");
 					
 					if (mArg3 != null)
 					{
-						if (mArg3 is string)
-							sb.Append(", \"" + mArg3.ToString() + "\"");
-						else
-							sb.Append(", " + mArg3.ToString());
-					
+						sb.Append(", \"" + mArg3 + "\"");
 					}
 				}
-
 			}
 			
 			sb.Append(")");

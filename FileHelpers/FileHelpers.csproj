@@ -361,6 +361,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Events\Delegates.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\ReadEventArgs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Events\WriteEventArgs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Fields\DelimitedField.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

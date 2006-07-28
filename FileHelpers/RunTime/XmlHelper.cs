@@ -10,6 +10,7 @@ namespace FileHelpers.RunTime
 		{}
 		
 		internal XmlTextWriter mWriter;
+		internal XmlTextReader mReader;
 		
 		public void BeginWriteFile(string filename)
 		{
@@ -17,7 +18,12 @@ namespace FileHelpers.RunTime
 			mWriter.Formatting = Formatting.Indented;
 			mWriter.Indentation = 4;
 		}
-		
+
+		public void BeginReadFile(string filename)
+		{
+			mReader = new XmlTextReader(new StreamReader(filename));
+		}
+
 		public void WriteElement(string element, string valueStr)
 		{
 			mWriter.WriteStartElement(element);
@@ -25,9 +31,16 @@ namespace FileHelpers.RunTime
 			mWriter.WriteEndElement();
 		}
 
+		public void WriteElement(string element, string valueStr, string defaultVal)
+		{
+			if (valueStr != defaultVal)
+				WriteElement(element, valueStr);
+		}
+
 		public void EndWrite()
 		{
 			mWriter.Close();
+			mWriter = null;
 		}
 
 		

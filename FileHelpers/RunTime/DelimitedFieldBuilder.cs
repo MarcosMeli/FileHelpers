@@ -3,14 +3,16 @@ using System.Text;
 
 namespace FileHelpers.RunTime
 {
+	/// <summary>Used to create fields that are part of a dilimited record class.</summary>
 	public sealed class DelimitedFieldBuilder: FieldBuilder
 	{
 
-		public DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
+		internal DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
 		{}
 
 		private bool mFieldQuoted = false;
 
+		/// <summary>Indicates if the field is quoted with some char. (works with QuoteMode and QuoteChar)</summary>
 		public bool FieldQuoted
 		{
 			get { return mFieldQuoted; }
@@ -19,6 +21,7 @@ namespace FileHelpers.RunTime
 
 		private char mQuoteChar = '"';
 
+		/// <summary>Indicates the char used to quote this field. (only used when FieldQuoted is true)</summary>
 		public char QuoteChar
 		{
 			get { return mQuoteChar; }
@@ -27,6 +30,7 @@ namespace FileHelpers.RunTime
 
 		private QuoteMode mQuoteMode = QuoteMode.OptionalForRead;
 
+		/// <summary>Indicates the QuoteMode for this field. (only used when FieldQuoted is true)</summary>
 		public QuoteMode QuoteMode
 		{
 			get { return mQuoteMode; }
@@ -35,6 +39,7 @@ namespace FileHelpers.RunTime
 
 		private MultilineMode mQuoteMultiline = MultilineMode.AllowForRead;
 
+		/// <summary>Indicates if this quoted field can span multiple lines. (only used when FieldQuoted is true)</summary>
 		public MultilineMode QuoteMultiline
 		{
 			get { return mQuoteMultiline; }

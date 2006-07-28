@@ -204,12 +204,12 @@ namespace FileHelpers.RunTime
 			writer.mWriter.WriteEndAttribute();
 			WriteHeaderAttributes(writer);
 
-			writer.WriteElement("Visibility", this.Visibility.ToString());
-			writer.WriteElement("FieldIgnored", this.FieldIgnored.ToString());
-			writer.WriteElement("FieldOptional", this.FieldOptional.ToString());
-			writer.WriteElement("FieldInNewLine", this.FieldInNewLine.ToString());
-			writer.WriteElement("TrimChars", this.TrimChars);
-			writer.WriteElement("TrimMode", this.TrimMode.ToString());
+			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
+			writer.WriteElement("FieldIgnored", this.FieldIgnored.ToString(), "False");
+			writer.WriteElement("FieldOptional", this.FieldOptional.ToString(), "False");
+			writer.WriteElement("FieldInNewLine", this.FieldInNewLine.ToString(), "False");
+			writer.WriteElement("TrimChars", this.TrimChars, " \t");
+			writer.WriteElement("TrimMode", this.TrimMode.ToString(), "None");
 
 			if (FieldNullValue != null)
 			{
@@ -223,9 +223,7 @@ namespace FileHelpers.RunTime
 				writer.mWriter.WriteEndElement();				
 			}
 
-
 			WriteExtraElements(writer);
-			
 			writer.mWriter.WriteEndElement();
 
 		}

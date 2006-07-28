@@ -6,6 +6,8 @@ namespace FileHelpers.RunTime
 	public sealed class FixedLengthClassBuilder: ClassBuilder
 	{
 
+		/// <summary>Used to create classes that maps to Fixed Length records.</summary>
+		/// <param name="className">A valid class name.</param>
 		public FixedLengthClassBuilder(string className): base(className)
 		{
 		}

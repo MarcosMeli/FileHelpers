@@ -357,9 +357,34 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		public void SaveLoadXmlFile()
+		public void SaveLoadXmlFileFixed()
 		{
 			ClassBuilder cb = CommonCreate();
+			cb.SaveToXml(@"c:\runtime.xml");
+
+			FixedLengthClassBuilder cb2 = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
+
+
+		}
+
+		[Test]
+		public void SaveLoadXmlFileDelimited()
+		{
+			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			cb.IgnoreFirstLines = 1;
+			cb.IgnoreEmptyLines = true;
+			
+			cb.AddField("Field1", typeof(DateTime));
+			cb.LastField.TrimMode = TrimMode.Both;
+			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+			cb.LastField.FieldNullValue = DateTime.Today;
+
+			cb.AddField("Field2", typeof(string));
+			cb.LastField.FieldQuoted = true;
+			cb.LastField.QuoteChar = '"';
+
+			cb.AddField("Field3", typeof(int));
+
 			cb.SaveToXml(@"c:\runtime.xml");
 		}
 
