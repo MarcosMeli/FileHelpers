@@ -407,7 +407,7 @@ namespace FileHelpers.DataLink
 							case ErrorMode.IgnoreAndContinue:
 								break;
 							case ErrorMode.SaveAndContinue:
-								AddError(cRow, ex);
+								AddError(cRow, ex, ColumnsToValues(colValues));
 								break;
 						}
 					}
@@ -433,5 +433,24 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		private string ColumnsToValues(object[] values)
+		{
+			if (values == null || values.Length == 0)
+				return string.Empty;
+
+			string res = string.Empty;
+			if (values[0] != null)
+				res = values[0].ToString();
+
+			for(int i = 1; i < values.Length; i++)
+			{
+				if (values[i] == null)
+					res += ",";
+				else
+					res += "," + values[i].ToString();
+			}
+			
+			return res;
+		}
 	}
 }

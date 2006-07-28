@@ -67,7 +67,7 @@ namespace FileHelpersTests.Converters
 
 			Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
 			Assert.AreEqual(3, engine.ErrorManager.Errors[0].LineNumber);
-			Assert.AreEqual(typeof(ArgumentException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+			Assert.AreEqual(typeof(ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 
 			Assert.AreEqual(4, res.Length);
 

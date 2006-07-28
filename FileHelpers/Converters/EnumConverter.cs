@@ -16,7 +16,15 @@ namespace FileHelpers
 
 		public override object StringToField(string from)
 		{
-			return Enum.Parse(mEnumType, from.Trim(), true);
+			try
+			{
+				return Enum.Parse(mEnumType, from.Trim(), true);
+			}
+			catch (ArgumentException)
+			{
+				throw new ConvertException(from, mEnumType, "The value don't is on the Enum.");
+			}
 		}
+		
 	}
 }

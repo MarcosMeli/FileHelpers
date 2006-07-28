@@ -25,7 +25,7 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
-		internal string mRecordString;
+		internal string mRecordString = string.Empty;
 
 		/// <summary>The string of the record of the error.</summary>
 		public string RecordString

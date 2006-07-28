@@ -89,6 +89,19 @@ namespace FileHelpersTests.DataLink
 			public decimal Freight;
 		}
 
+		[DelimitedRecord("\t")]
+		private class SmallEnumType
+		{
+			public NetVisibility Visibility;
+
+			public SmallEnumType()
+			{}
+
+			public SmallEnumType(NetVisibility v)
+			{
+				Visibility = v;
+			}
+		}
 
 		[Test]
 		public void OrdersReadWithErrors()
@@ -172,6 +185,40 @@ namespace FileHelpersTests.DataLink
 
 		}
 
+		[Test]
+		public void EnumConverter()
+		{
+			ExcelStorage provider = new ExcelStorage(typeof(SmallEnumType), 1, 1);
+
+			provider.FileName = @"..\data\Excel\OneColumnEnum.xls";
+
+			SmallEnumType[] res = (SmallEnumType[]) provider.ExtractRecords();
+
+			Assert.AreEqual(10, res.Length);
+			Assert.AreEqual(NetVisibility.Public, res[0].Visibility);
+			Assert.AreEqual(NetVisibility.Private, res[1].Visibility);
+			Assert.AreEqual(NetVisibility.Protected, res[9].Visibility);
+		}
+
+		[Test]
+		public void EnumConverterBad()
+		{
+			ExcelStorage provider = new ExcelStorage(typeof(SmallEnumType), 4, 2);
+			provider.FileName = @"..\data\Excel\OneColumnEnumBad.xls";
+			provider.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            
+			SmallEnumType[] res = (SmallEnumType[]) provider.ExtractRecords();
+
+			Assert.AreEqual(9, res.Length);
+			Assert.AreEqual(NetVisibility.Public, res[0].Visibility);
+			Assert.AreEqual(NetVisibility.Private, res[1].Visibility);
+			Assert.AreEqual(NetVisibility.Protected, res[8].Visibility);
+
+			Assert.AreEqual(1, provider.ErrorManager.ErrorCount);
+			Assert.AreEqual(8, provider.ErrorManager.Errors[0].LineNumber);
+			Assert.AreEqual("BadValue", provider.ErrorManager.Errors[0].RecordString);
+
+		}
 
 
 	}
