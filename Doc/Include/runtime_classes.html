@@ -67,7 +67,7 @@ And now some examples of the basic methods:
 <h2>Using the CodeBuilder (FixedLength)</h2>
 <blockquote>
 <textarea name="code" class="c#">
-		FixedClassBuilder cb = new FixedClassBuilder("Customers");
+		FixedClassBuilder cb = new FixedLengthClassBuilder("Customers");
 
 		cb.AddField("BirthDate", 8, typeof(DateTime));
 		cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -94,7 +94,6 @@ And now some examples of the basic methods:
 		
 		cb.AddField("BirthDate", typeof(DateTime));
 		cb.LastField.TrimMode = TrimMode.Both;
-		cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
 		cb.LastField.FieldNullValue = DateTime.Today;
 
 		cb.AddField("Name", typeof(string));
