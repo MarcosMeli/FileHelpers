@@ -466,12 +466,17 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "RunTime\FixedClassBuilder.cs"
+                    RelPath = "RunTime\FixedFieldBuilder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "RunTime\FixedFieldBuilder.cs"
+                    RelPath = "RunTime\FixedLengthClassBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RunTime\XmlHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

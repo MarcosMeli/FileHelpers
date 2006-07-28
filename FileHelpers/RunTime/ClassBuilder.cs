@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
+using System.Xml;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
@@ -284,6 +285,7 @@ namespace FileHelpers.RunTime
 		public string ClassName
 		{
 			get { return mClassName; }
+			set { mClassName = value; }
 		}
 		
     	#endregion
@@ -501,12 +503,12 @@ namespace FileHelpers.RunTime
 			set { mSealedClass = value; }
 		}
 
-		private string mNameSpace = string.Empty;
+		private string mNamespace = string.Empty;
 
-		public string NameSpace
+		public string Namespace
 		{
-			get { return mNameSpace; }
-			set { mNameSpace = value; }
+			get { return mNamespace; }
+			set { mNamespace = value; }
 		}
 
 		internal static string GetVisibility(NetLanguage lang, NetVisibility visibility)
@@ -564,21 +566,21 @@ namespace FileHelpers.RunTime
 
 		private void BeginNamespace(NetLanguage lang, StringBuilder sb)
 		{
-			if (mNameSpace == string.Empty)
+			if (mNamespace == string.Empty)
 				return;
 			
 			switch(lang)
 			{
 				case NetLanguage.CSharp:
 					sb.Append("namespace ");
-					sb.Append(mNameSpace);
+					sb.Append(mNamespace);
 					sb.Append(StringHelper.NewLine);
 					sb.Append("{");
 					break;
 
 				case NetLanguage.VbNet:
 					sb.Append("Namespace ");
-					sb.Append(mNameSpace);
+					sb.Append(mNamespace);
 					sb.Append(StringHelper.NewLine);
 					break;
 			}		
@@ -588,7 +590,7 @@ namespace FileHelpers.RunTime
 
 		private void EndNamespace(NetLanguage lang, StringBuilder sb)
 		{
-			if (mNameSpace == string.Empty)
+			if (mNamespace == string.Empty)
 				return;
 			
 			sb.Append(StringHelper.NewLine);
@@ -605,5 +607,40 @@ namespace FileHelpers.RunTime
 			}		
 		}
 
-    }
+		
+		
+		
+		public void SaveToXml(string filename)
+		{
+			XmlHelper writer = new XmlHelper();
+			
+			writer.BeginWriteFile(filename);
+			
+			WriteHeaderElement(writer);
+			
+			writer.WriteElement("ClassName", ClassName);
+			writer.WriteElement("Namespace", this.Namespace);
+			writer.WriteElement("SealedClass", this.SealedClass.ToString());
+			writer.WriteElement("Visibility", this.Visibility.ToString());
+
+			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines.ToString());
+			writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString());
+			writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString());
+
+			WriteExtraElements(writer);
+
+			writer.mWriter.WriteStartElement("Fields");
+			
+			for(int i = 0; i < mFields.Count; i++)
+				((FieldBuilder) mFields[i]).SaveToXml(writer);
+			
+			writer.mWriter.WriteEndElement();
+			
+			writer.mWriter.WriteEndElement();
+			writer.EndWrite();
+		}
+		
+		internal abstract void WriteHeaderElement(XmlHelper writer);
+		internal abstract void WriteExtraElements(XmlHelper writer);
+	}
 }

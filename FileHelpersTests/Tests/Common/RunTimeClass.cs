@@ -261,7 +261,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void FullClassBuildingFixed()
 		{
-			FixedClassBuilder cb = new FixedClassBuilder("Customers");
+			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -290,7 +290,7 @@ namespace FileHelpersTests.CommonTests
 
 		public ClassBuilder CommonCreate()
 		{
-			FixedClassBuilder cb = new FixedClassBuilder("Customers");
+			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -355,6 +355,13 @@ namespace FileHelpersTests.CommonTests
 			ValidateType(ClassBuilder.ClassFromBinaryFile("tempclass.cs", NetLanguage.VbNet));
 		}
 
-		
+
+		[Test]
+		public void SaveLoadXmlFile()
+		{
+			ClassBuilder cb = CommonCreate();
+			cb.SaveToXml(@"c:\runtime.xml");
+		}
+
 	}
 }

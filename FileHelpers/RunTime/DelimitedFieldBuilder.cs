@@ -54,5 +54,13 @@ namespace FileHelpers.RunTime
 			}
 			
 		}
+
+		internal override void WriteHeaderAttributes(XmlHelper writer)
+		{
+		}
+
+		internal override void WriteExtraElements(XmlHelper writer)
+		{
+		}
 	}
 }

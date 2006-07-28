@@ -14,17 +14,17 @@ namespace FileHelpers.WizardApp
     public class WizardInfo
     {
 
-        public void LoadFields(Control.ControlCollection col)
-        {
-            mFields = new ArrayList(col.Count);
+        //public void LoadFields(Control.ControlCollection col)
+        //{
+        //    mFields = new ArrayList(col.Count);
 
-            foreach (FieldBaseControl ctrl in col)
-            {
-                mFields.Add(ctrl.FieldInfo);
-            }
-        }
+        //    foreach (FieldBaseControl ctrl in col)
+        //    {
+        //        mFields.Add(ctrl.FieldInfo);
+        //    }
+        //}
 
-        private ClassBuilder mClassBuilder = new ClassBuilder();
+        private ClassBuilder mClassBuilder;
 
         public ClassBuilder ClassBuilder
         {
@@ -50,48 +50,6 @@ namespace FileHelpers.WizardApp
         }
 
 
-        private string mClassName;
-
-        public string ClassName
-        {
-            get { return mClassName; }
-            set { mClassName = value; }
-        }
-
-
-        private bool mMarkAsSealed = true;
-
-        public bool MarkAsSealed
-        {
-            get { return mMarkAsSealed; }
-            set { mMarkAsSealed = value; }
-        }
-
-        private bool mIgnoreEmptyLines = false;
-
-        public bool IgnoreEmptyLines
-        {
-            get { return mIgnoreEmptyLines; }
-            set { mIgnoreEmptyLines = value; }
-        }
-
-
-        private int mIgnoreFirst;
-
-        public int IgnoreFirst
-        {
-            get { return mIgnoreFirst; }
-            set { mIgnoreFirst = value; }
-        }
-
-        private int mIgnoreLast;
-
-        public int IgnoreLast
-        {
-            get { return mIgnoreLast; }
-            set { mIgnoreLast = value; }
-        }
-
         private bool mUseProperties = false;
         
         public bool UseProperties
@@ -100,21 +58,10 @@ namespace FileHelpers.WizardApp
             set { mUseProperties = value; }
         }
 
-        private RecordKind mRecordKind;
 
-        public RecordKind RecordKind
+        public string WizardOutput(NetLanguage lang)
         {
-            get { return mRecordKind; }
-            set { mRecordKind = value; }
-        }
-
-
-
-
-
-        public string WizardOutput(NetLanguage leng)
-        {
-            return mClassBuilder.GetSourceCode();
+            return mClassBuilder.GetClassSourceCode(lang);
         }
 
         private string mDefaultType;

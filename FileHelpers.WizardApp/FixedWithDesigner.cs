@@ -115,7 +115,7 @@ namespace FileHelpers.WizardApp
             int width;
             int left = mTextLeft;
             int rulesTop = mTextTop - 2;
-            int rulesNumberTop = rulesTop - 13;
+            int rulesNumberTop = rulesTop - 15;
 
             bool even = true;
 

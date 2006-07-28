@@ -131,9 +131,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -521,8 +521,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender3;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -1019,8 +1019,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1085,7 +1085,6 @@ namespace FileHelpers.WizardApp
             this.button1.TabIndex = 1009;
             this.button1.Text = "FileMaster";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // picCurrStep
@@ -1381,31 +1380,35 @@ namespace FileHelpers.WizardApp
             if (mWizardInfo == null)
                 mWizardInfo = new WizardInfo();
 
-            mWizardInfo.ClassName = txtClassName.Text;
+            mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
 
             if (radFixed.Checked)
             {
+                mWizardInfo.ClassBuilder = new FixedLengthClassBuilder(txtClassName.Text);
+
                 mControlType = typeof(FieldFixedControl);
                 mFieldType = typeof(FixedFieldBuilder);
-                mWizardInfo.RecordKind = RecordKind.FixedLength;
             }
             else
             {
                 mControlType = typeof(FieldDelimitedControl);
                 mFieldType = typeof(FixedFieldBuilder);
 
-                if (radDelCustom.Checked)
-                    mWizardInfo.Delimiter = txtDelimiter.Text;
-                else if (radDelComma.Checked)
-                    mWizardInfo.Delimiter = ",";
-                else if (radDelSemiCol.Checked)
-                    mWizardInfo.Delimiter = ";";
-                else if (radDelTabs.Checked)
-                    mWizardInfo.Delimiter = "\t";
-                else if (radDelVertBar.Checked)
-                    mWizardInfo.Delimiter = "|";
+                string delimiter = string.Empty;
 
-                mWizardInfo.RecordKind = RecordKind.Delimited;
+                if (radDelCustom.Checked)
+                    delimiter = txtDelimiter.Text;
+                else if (radDelComma.Checked)
+                    delimiter = ",";
+                else if (radDelSemiCol.Checked)
+                    delimiter = ";";
+                else if (radDelTabs.Checked)
+                    delimiter = "\t";
+                else if (radDelVertBar.Checked)
+                    delimiter = "|";
+
+                mWizardInfo.ClassBuilder = new DelimitedClassBuilder(txtClassName.Text, delimiter);
+
             }
 
             cboFieldVisibility.DataSource = Enum.GetNames(typeof(NetVisibility));
@@ -1427,8 +1430,9 @@ namespace FileHelpers.WizardApp
 
             if (mWizardInfo.ClassBuilder.FieldCount == 0)
             {
-                for (int i = 0; i < txtNumberOfFields.Value; i++)
-                    mWizardInfo.ClassBuilder.Add(CreateFieldInfo());
+                //CLEAR: dsd
+                //for (int i = 0; i < txtNumberOfFields.Value; i++)
+                  //  mWizardInfo.ClassBuilder.Add(CreateFieldInfo());
 
                 txtNumberOfFields.Enabled = false;
                 txtDefaultType.Enabled = false;
@@ -1567,7 +1571,8 @@ namespace FileHelpers.WizardApp
 
         void FieldControlOrderChange(object sender, EventArgs e)
         {
-            mWizardInfo.LoadFields(panFields.Controls);
+            // CLEAR: JEJEJ
+            //mWizardInfo.LoadFields(panFields.Controls);
             ExpandAndShowPreview();
         }
 
@@ -1698,7 +1703,7 @@ namespace FileHelpers.WizardApp
             else
             {
                 string res = templ.TemplateBody;
-                res = res.Replace("${ClassName}", mWizardInfo.ClassName);
+                res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
 
                 sdTemplOut.Text = res;
                 //txtTemplOut.Text = res;
@@ -1749,7 +1754,9 @@ namespace FileHelpers.WizardApp
         private void cmdAddField_Click(object sender, EventArgs e)
         {
             FieldBaseControl ctrl = CreateFieldControl();
-            mWizardInfo.Fields.Add(ctrl.FieldInfo);
+
+            //CLEAR:dsds
+            //mWizardInfo.Fields.Add(ctrl.FieldInfo);
             panFields.Controls.Add(ctrl);
 
             ReLoadPreview();
@@ -1760,9 +1767,7 @@ namespace FileHelpers.WizardApp
             dlgSaveWizard.FileName = txtClassName.Text;
             if (dlgSaveWizard.ShowDialog() == DialogResult.OK)
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardInfo));
-                StreamWriter sw = new StreamWriter(dlgSaveWizard.FileName);
-                serializer.Serialize(sw, mWizardInfo);
+                mWizardInfo.ClassBuilder.SaveToXml(dlgSaveWizard.FileName);
             }
         }
 
@@ -1773,17 +1778,13 @@ namespace FileHelpers.WizardApp
             if (dlgOpenWizard.ShowDialog() == DialogResult.OK)
             {
                 mLoadingFile = true;
+                Application.DoEvents();
+
+                //mWizardInfo.ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
 
                 Application.DoEvents();
 
-                XmlSerializer serializer = new XmlSerializer(typeof(WizardInfo));
-                StreamReader sr = new StreamReader(dlgOpenWizard.FileName);
-
-                mWizardInfo = (WizardInfo)serializer.Deserialize(sr);
-
-                Application.DoEvents();
-
-                txtClassName.Text = mWizardInfo.ClassName;
+                txtClassName.Text = mWizardInfo.ClassBuilder.ClassName;
 
                 txtDefaultType.Text = mWizardInfo.DefaultType;
                 txtNumberOfFields.Value = mWizardInfo.ClassBuilder.FieldCount;
@@ -1791,14 +1792,14 @@ namespace FileHelpers.WizardApp
                 txtDefaultType.Enabled = false;
                 txtNumberOfFields.Enabled = false;
 
-                txtIgnoreFirst.Value = mWizardInfo.IgnoreFirst;
-                txtIgnoreLast.Value = mWizardInfo.IgnoreLast;
+                txtIgnoreFirst.Value = mWizardInfo.ClassBuilder.IgnoreFirstLines;
+                txtIgnoreLast.Value = mWizardInfo.ClassBuilder.IgnoreLastLines;
                 cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility.ToString();
 
 
                 Application.DoEvents();
 
-                if (mWizardInfo.RecordKind == RecordKind.FixedLength)
+                if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder)
                 {
                     radFixed.Checked = true;
                     mControlType = typeof(FieldFixedControl);
@@ -1812,19 +1813,20 @@ namespace FileHelpers.WizardApp
                     mFieldType = typeof(DelimitedFieldBuilder);
 
                     txtDelimiter.Text = "";
+                    string delimiter = ((DelimitedClassBuilder)mWizardInfo.ClassBuilder).Delimiter;
 
-                    if (mWizardInfo.Delimiter == "|")
+                    if (delimiter == "|")
                         radDelVertBar.Checked = true;
-                    else if (mWizardInfo.Delimiter == ",")
+                    else if (delimiter  == ",")
                         radDelComma.Checked = true;
-                    else if (mWizardInfo.Delimiter == ";")
+                    else if (delimiter == ";")
                         radDelSemiCol.Checked = true;
-                    else if (mWizardInfo.Delimiter == "\t")
+                    else if (delimiter == "\t")
                         radDelTabs.Checked = true;
                     else
                     {
                         radDelCustom.Checked = true;
-                        txtDelimiter.Text = mWizardInfo.Delimiter;
+                        txtDelimiter.Text = delimiter;
                     }
                 }
 
@@ -1832,7 +1834,7 @@ namespace FileHelpers.WizardApp
                 panFields.SuspendLayout();
                 panFields.Controls.Clear();
 
-                foreach (FieldBuilder info in mWizardInfo.Fields)
+                foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
                 {
                     panFields.Controls.Add(CreateFieldControlFromInfo(info));
                 }
@@ -1857,8 +1859,8 @@ namespace FileHelpers.WizardApp
             if (mMoving == false)
             {
                 mWizardInfo.FieldVisibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
-                if (mWizardInfo.Fields.Count > 0)
-                    foreach (FieldBuilder info in mWizardInfo.Fields)
+                if (mWizardInfo.ClassBuilder.FieldCount > 0)
+                    foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
                         info.Visibility = mWizardInfo.FieldVisibility;
 
                 ReLoadPreview();
@@ -1867,7 +1869,7 @@ namespace FileHelpers.WizardApp
 
         private void txtClassName_TextChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassName = txtClassName.Text;
+            mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
             ReLoadPreview();
 
         }
@@ -1884,19 +1886,19 @@ namespace FileHelpers.WizardApp
 
         private void chkSealed_CheckedChanged(object sender, EventArgs e)
         {
-            mWizardInfo.MarkAsSealed = chkSealed.Checked;
+            mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
             ReLoadPreview();
         }
 
         private void txtIgnoreFirst_ValueChanged(object sender, EventArgs e)
         {
-            mWizardInfo.IgnoreFirst = (int)txtIgnoreFirst.Value;
+            mWizardInfo.ClassBuilder.IgnoreFirstLines = (int)txtIgnoreFirst.Value;
             ReLoadPreview();
         }
 
         private void txtIgnoreLast_ValueChanged(object sender, EventArgs e)
         {
-            mWizardInfo.IgnoreLast = (int)txtIgnoreLast.Value;
+            mWizardInfo.ClassBuilder.IgnoreLastLines = (int)txtIgnoreLast.Value;
             ReLoadPreview();
         }
 
@@ -1908,7 +1910,7 @@ namespace FileHelpers.WizardApp
 
         private void chkIgnoreEmpty_CheckedChanged(object sender, EventArgs e)
         {
-            mWizardInfo.IgnoreEmptyLines = chkIgnoreEmpty.Checked;
+            mWizardInfo.ClassBuilder.IgnoreEmptyLines = chkIgnoreEmpty.Checked;
             ReLoadPreview();
         }
 
@@ -1923,7 +1925,7 @@ namespace FileHelpers.WizardApp
                 string classStr = string.Empty;
                 Type t = null;
 
-                t = mWizardInfo.ClassBuilder.CreateType();
+                t = mWizardInfo.ClassBuilder.CreateRecordClass();
 
                 FileHelperEngine engine = new FileHelperEngine(t);
 

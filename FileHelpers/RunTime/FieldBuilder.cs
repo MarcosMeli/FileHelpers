@@ -160,14 +160,19 @@ namespace FileHelpers.RunTime
 
 			if (mFieldNullValue != null)
 			{
-				string t = mFieldNullValue.GetType().FullName;
-				string gt = string.Empty;
-				if (leng == NetLanguage.CSharp)
-					gt = "typeof(" + t + ")";
-				else if (leng == NetLanguage.VbNet)
-					gt = "GetType(" + t + ")";
+				if (mFieldNullValue is string)
+					attbs.AddAttribute("FieldNullValue(\"" + mFieldNullValue.ToString() + "\"");
+				else
+				{
+					string t = mFieldNullValue.GetType().FullName;
+					string gt = string.Empty;
+					if (leng == NetLanguage.CSharp)
+						gt = "typeof(" + t + ")";
+					else if (leng == NetLanguage.VbNet)
+						gt = "GetType(" + t + ")";
 
-				attbs.AddAttribute("FieldNullValue("+ gt +", \""+ mFieldNullValue.ToString() +"\")");
+					attbs.AddAttribute("FieldNullValue("+ gt +", \""+ mFieldNullValue.ToString() +"\")");
+				}
 			}
 
 			
@@ -187,6 +192,46 @@ namespace FileHelpers.RunTime
 			get { return mVisibility; }
 			set { mVisibility = value; }
 		}
-		
+
+		internal void SaveToXml(XmlHelper writer)
+		{
+			writer.mWriter.WriteStartElement("Field");
+			writer.mWriter.WriteStartAttribute("Name", "");
+			writer.mWriter.WriteString(mFieldName);
+			writer.mWriter.WriteEndAttribute();
+			writer.mWriter.WriteStartAttribute("Type", "");
+			writer.mWriter.WriteString(mFieldType);
+			writer.mWriter.WriteEndAttribute();
+			WriteHeaderAttributes(writer);
+
+			writer.WriteElement("Visibility", this.Visibility.ToString());
+			writer.WriteElement("FieldIgnored", this.FieldIgnored.ToString());
+			writer.WriteElement("FieldOptional", this.FieldOptional.ToString());
+			writer.WriteElement("FieldInNewLine", this.FieldInNewLine.ToString());
+			writer.WriteElement("TrimChars", this.TrimChars);
+			writer.WriteElement("TrimMode", this.TrimMode.ToString());
+
+			if (FieldNullValue != null)
+			{
+				writer.mWriter.WriteStartElement("FieldNullValue");
+				writer.mWriter.WriteStartAttribute("Type", "");
+				writer.mWriter.WriteString(mFieldNullValue.GetType().FullName);
+				writer.mWriter.WriteEndAttribute();
+				
+				writer.mWriter.WriteString(mFieldNullValue.ToString());
+
+				writer.mWriter.WriteEndElement();				
+			}
+
+
+			WriteExtraElements(writer);
+			
+			writer.mWriter.WriteEndElement();
+
+		}
+
+		internal abstract void WriteHeaderAttributes(XmlHelper writer);
+		internal abstract void WriteExtraElements(XmlHelper writer);
+
 	}
 }

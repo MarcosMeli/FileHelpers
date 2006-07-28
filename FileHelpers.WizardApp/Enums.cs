@@ -14,11 +14,11 @@ namespace FileHelpers.WizardApp
     //    Internal
     //}
 
-    public enum RecordKind
-    {
-        FixedLength,
-        Delimited
-    }
+    //public enum RecordKind
+    //{
+    //    FixedLength,
+    //    Delimited
+    //}
 
     public class EnumHelper
     {

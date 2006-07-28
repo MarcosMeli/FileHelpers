@@ -3,10 +3,10 @@ using System;
 namespace FileHelpers.RunTime
 {
 	/// <summary>Used to create classes that maps to Fixed Length records.</summary>
-	public sealed class FixedClassBuilder: ClassBuilder
+	public sealed class FixedLengthClassBuilder: ClassBuilder
 	{
 
-		public FixedClassBuilder(string className): base(className)
+		public FixedLengthClassBuilder(string className): base(className)
 		{
 		}
 
@@ -39,5 +39,15 @@ namespace FileHelpers.RunTime
 		{
 			attbs.AddAttribute("FixedLengthRecord()");
 		}
+		
+		internal override void WriteHeaderElement(XmlHelper writer)
+		{
+			writer.mWriter.WriteStartElement("FixedLengthClass");
+		}
+
+		internal override void WriteExtraElements(XmlHelper writer)
+		{
+		}
+
 	}
 }

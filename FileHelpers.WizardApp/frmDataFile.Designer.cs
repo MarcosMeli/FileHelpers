@@ -28,8 +28,9 @@ namespace FileHelpers.WizardApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataFile));
             this.rulerControl2 = new MyControls.RulerControl();
-            this.txtData = new FileHelpers.WizardApp.FileBrowser();
+            this.txtData = new FileHelpers.WizardApp.FixedWithDesigner();
             this.rulerControl1 = new MyControls.RulerControl();
             this.SuspendLayout();
             // 
@@ -62,15 +63,12 @@ namespace FileHelpers.WizardApp
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtData.AutoScroll = true;
             this.txtData.FontSize = 12;
-            this.txtData.Location = new System.Drawing.Point(13, 32);
+            this.txtData.Location = new System.Drawing.Point(12, 32);
             this.txtData.Name = "txtData";
-            this.txtData.Size = new System.Drawing.Size(621, 278);
+            this.txtData.Size = new System.Drawing.Size(620, 278);
             this.txtData.TabIndex = 2;
-            this.txtData.Text = "ALFKI      Alfreds Futterkiste                   Maria Anders          Sales Repr" +
-                "esentative                  Obere Str. 57                            Berlin     " +
-                "       Germany        ";
-            this.txtData.TextLeft = 10;
-            this.txtData.TextTop = 15;
+            this.txtData.TextLeft = 0;
+            this.txtData.TextTop = 18;
             this.txtData.Click += new System.EventHandler(this.txtData_Click);
             // 
             // rulerControl1
@@ -104,8 +102,9 @@ namespace FileHelpers.WizardApp
             this.Controls.Add(this.txtData);
             this.Controls.Add(this.rulerControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDataFile";
-            this.Text = "Your Sample Data File";
+            this.Text = "Fixed Length Record Designer";
             this.ResumeLayout(false);
 
         }
@@ -114,6 +113,6 @@ namespace FileHelpers.WizardApp
 
         private MyControls.RulerControl rulerControl1;
         private MyControls.RulerControl rulerControl2;
-        private FileBrowser txtData;
+        private FixedWithDesigner txtData;
     }
 }

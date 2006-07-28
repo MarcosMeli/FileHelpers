@@ -60,5 +60,18 @@ namespace FileHelpers.RunTime
 				attbs.AddAttribute("DelimitedRecord(\""+ mDelimiter +"\")");
 			
 		}
+
+		internal override void WriteHeaderElement(XmlHelper writer)
+		{
+			writer.mWriter.WriteStartElement("DelimitedClass");
+			writer.mWriter.WriteStartAttribute("Delimiter", "");
+			writer.mWriter.WriteString(this.Delimiter);
+			writer.mWriter.WriteEndAttribute();
+		}
+
+		internal override void WriteExtraElements(XmlHelper writer)
+		{
+		}
+
 	}
 }

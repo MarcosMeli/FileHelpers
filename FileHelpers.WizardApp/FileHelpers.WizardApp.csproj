@@ -196,8 +196,11 @@
     <Compile Include="FieldFixedControl.Designer.cs">
       <DependentUpon>FieldFixedControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileBrowser.cs">
-      <SubType>Component</SubType>
+    <Compile Include="FixedWithDesigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FixedWithDesigner.Designer.cs">
+      <DependentUpon>FixedWithDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDataFile.cs">
       <SubType>Form</SubType>

@@ -17,6 +17,7 @@ namespace FileHelpers.RunTime
 		public int FieldLength
 		{
 			get { return mFieldLength; }
+			set { mFieldLength = value; }
 		}
 
 
@@ -53,6 +54,17 @@ namespace FileHelpers.RunTime
 					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", \""+ mAlignChar.ToString() +"\"c)");
 			}
 
+		}
+
+		internal override void WriteHeaderAttributes(XmlHelper writer)
+		{
+			writer.mWriter.WriteStartAttribute("Length", "");
+			writer.mWriter.WriteString(mFieldLength.ToString());
+			writer.mWriter.WriteEndAttribute();
+		}
+
+		internal override void WriteExtraElements(XmlHelper writer)
+		{
 		}
 	}
 }
