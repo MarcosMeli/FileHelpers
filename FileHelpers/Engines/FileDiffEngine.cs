@@ -9,13 +9,25 @@ namespace FileHelpers
 	/// <summary>Used by the FileDiffEngine to compare records. Your record class must implement this interface if you like to work with it.</summary>
 	public interface IComparableRecord
 	{
+		/// <summary>
+		/// Compare two records and return true if are equal.
+		/// </summary>
+		/// <param name="record">The other record.</param>
+		/// <returns>Returns true only if the records are equals.</returns>
 		bool IsEqualRecord(object record);
 	}
 
 	#endregion
 
+	/// <summary>
+	/// Engine used to create diff files based on the <see cref="IComparableRecord"/> interface.
+	/// </summary>
 	public sealed class FileDiffEngine: EngineBase
 	{
+		/// <summary>
+		/// Creates a new <see cref="FileDiffEngine"/>
+		/// </summary>
+		/// <param name="recordType">The record type class that implements the <see cref="IComparableRecord"/> interface.</param>
 		public FileDiffEngine(Type recordType):base(recordType)
 		{
 			if (typeof(IComparableRecord).IsAssignableFrom(recordType) == false)
@@ -76,13 +88,19 @@ namespace FileHelpers
 		}
 
 
-		public object[] OnlyDuplicatedRecords(string sourceFile, string newFile)
+		/// <summary>
+		/// Returns the duplicated records in both files.
+		/// </summary>
+		/// <param name="file1">A file with record.</param>
+		/// <param name="file2">A file with record.</param>
+		/// <returns>The records that appear in both files.</returns>
+		public object[] OnlyDuplicatedRecords(string file1, string file2)
 		{
 			FileHelperEngine engine = CreateEngineAndClearErrors();
 			
-			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(file1);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
-			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(file2);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
@@ -144,13 +162,19 @@ namespace FileHelpers
 
 		#endregion
 
-		public object[] OnlyNoDuplicatedRecords(string sourceFile, string newFile)
+		/// <summary>
+		/// Returns the NON duplicated records in both files.
+		/// </summary>
+		/// <param name="file1">A file with record.</param>
+		/// <param name="file2">A file with record.</param>
+		/// <returns>The records that NOT appear in both files.</returns>
+		public object[] OnlyNoDuplicatedRecords(string file1, string file2)
 		{
 			FileHelperEngine engine = CreateEngineAndClearErrors();
 			
-			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(sourceFile);
+			IComparableRecord[] olds = (IComparableRecord[]) engine.ReadFile(file1);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
-			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(newFile);
+			IComparableRecord[] currents = (IComparableRecord[]) engine.ReadFile(file2);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
             
 			ArrayList news = new ArrayList();
@@ -163,6 +187,11 @@ namespace FileHelpers
     
 		} 
 
+		/// <summary>Read the source file, the new file, get the new records and write them to a destination file.</summary>
+		/// <param name="sourceFile">The file with the source records.</param>
+		/// <param name="newFile">The file with the new records.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The new records on the new file.</returns>
 		public object[] WriteNewRecords(string sourceFile, string newFile, string destFile)
 		{
 			FileHelperEngine engine = CreateEngineAndClearErrors();

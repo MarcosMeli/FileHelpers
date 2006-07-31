@@ -11,6 +11,7 @@ using System.Reflection;
 
 #if ! MINI
 using System.Data;
+using System.Text;
 #endif
 
 namespace FileHelpers
@@ -168,19 +169,24 @@ namespace FileHelpers
 		#endregion
 
 		#region RecordToString
+
+		private int _BigSize = 50;
 		/// <summary>Internal.</summary>
 		/// <param name="record"></param>
 		/// <returns></returns>
 		internal string RecordToString(object record)
 		{
-			string res = String.Empty;
+			StringBuilder sb = new StringBuilder(_BigSize);
+			//string res = String.Empty;
 
 			for (int f = 0; f < mFieldCount; f++)
 			{
-				res += mFields[f].AssignToString(record);
+				sb.Append(mFields[f].AssignToString(record));
 			}
-			return res;
 
+			_BigSize = Math.Max(_BigSize, sb.Length);
+
+			return sb.ToString();
 		}
 		#endregion
 

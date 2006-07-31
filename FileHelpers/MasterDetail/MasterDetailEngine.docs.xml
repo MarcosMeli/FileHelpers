@@ -32,8 +32,8 @@
 		</summary>
 		<param name="masterType">The master record class.</param>
 		<param name="detailType">The detail record class.</param>
-		<param name="action">The <see cref="CommonActions" /> used by the engine.</param>
-		<param name="selector">The string selector used by the engine.</param>
+		<param name="action">The <see cref="CommonSelector" /> used by the engine.</param>
+		<param name="selector">The string passed to the selector.</param>
 	</MasterDetailEngineCtr2>
 
 	<ReadFile>

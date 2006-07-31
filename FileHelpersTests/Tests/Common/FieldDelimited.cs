@@ -27,7 +27,7 @@ namespace FileHelpersTests.CommonTests
 		private class SOXLog 
 		{ 
 			[FieldDelimiter(": ")] 
-			private String DummyField; 
+			internal String DummyField; 
 			public ActionEnum ActionType; 
 			public String TimeStamp; 
 			public String FileName; 

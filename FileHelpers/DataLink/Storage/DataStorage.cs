@@ -121,11 +121,17 @@ namespace FileHelpers.DataLink
 
 		#region "  Values <-> Record Convertions "
 
+		/// <summary>Returns a record created from an Array of values</summary>
+		/// <param name="values">The values used to created the record.</param>
+		/// <returns>The just created record.</returns>
 		protected object ValuesToRecord(object[] values)
 		{
 			return mRecordInfo.ValuesToRecord(values);
 		}
 
+		/// <summary>Returns an array of value based on a record.</summary>
+		/// <param name="record">The source record.</param>
+		/// <returns>An array with the values of each field</returns>
 		protected object[] RecordToValues(object record)
 		{
 			return mRecordInfo.RecordToValues(record);
@@ -133,6 +139,7 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
+		/// <summary>The number of fields in the record class.</summary>
 		protected int RecordFieldCount
 		{
 			get
@@ -140,5 +147,8 @@ namespace FileHelpers.DataLink
 				return mRecordInfo.mFieldCount;
 			}
 		}
+
+
+
 	}
 }

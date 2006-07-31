@@ -314,20 +314,30 @@ namespace FileHelpers
 		} 
 
 		/// <summary>
-		/// Reads the file1 and file2 using the recordType and write it to destFile sorting it using the specified field.
+		/// Merge the contents of 2 files and write them sorted to a destination file.
 		/// </summary>
-		/// <param name="recordType"></param>
-		/// <param name="file1"></param>
-		/// <param name="file2"></param>
-		/// <param name="destFile"></param>
-		/// <param name="field"></param>
-		/// <returns></returns>
+		/// <param name="recordType">The record Type.</param>
+		/// <param name="file1">File with contents to be merged.</param>
+		/// <param name="file2">File with contents to be merged.</param>
+		/// <param name="field">The name of the field used to sort the records.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The merged and sorted records.</returns>
 		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
 		{
 			return MergeAndSortFile(recordType, file1, file2, destFile, field, true);
 		}
 
-		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destinationFile, string field, bool ascending)
+		/// <summary>
+		/// Merge the contents of 2 files and write them sorted to a destination file.
+		/// </summary>
+		/// <param name="recordType">The record Type.</param>
+		/// <param name="file1">File with contents to be merged.</param>
+		/// <param name="file2">File with contents to be merged.</param>
+		/// <param name="field">The name of the field used to sort the records.</param>
+		/// <param name="ascending">Indicate the order of sort.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The merged and sorted records.</returns>
+		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field, bool ascending)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordType);
 
@@ -341,10 +351,20 @@ namespace FileHelpers
 
 			CommonEngine.SortRecordsByField(res, field, ascending);
 
+			engine.WriteFile(destFile, res);
+
 			return res;
 		}	
 
-		public object[] MergeAndSortFile(Type recordType,string file1, string file2, string destinationFile)
+		/// <summary>
+		/// Merge the contents of 2 files and write them sorted to a destination file.
+		/// </summary>
+		/// <param name="recordType">The record Type.</param>
+		/// <param name="file1">File with contents to be merged.</param>
+		/// <param name="file2">File with contents to be merged.</param>
+		/// <param name="destFile">The destination file.</param>
+		/// <returns>The merged and sorted records.</returns>
+		public object[] MergeAndSortFile(Type recordType,string file1, string file2, string destFile)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordType);
 
@@ -354,10 +374,11 @@ namespace FileHelpers
 			arr.AddRange(engine.ReadFile(file2));
             
 			object[] res = (object[]) arr.ToArray(recordType);
-			arr = null; // <- better performance (memory)
+			arr = null; // <- better performance (allow the GC to collect it)
 			
 			CommonEngine.SortRecords(res);
 
+			engine.WriteFile(destFile, res);
 			return res;
 		}	
 		
@@ -406,6 +427,11 @@ namespace FileHelpers
 	
 		#region "  RemoveDuplicateRecords  "
 
+		/// <summary>
+		/// This method allow to remove the duplicated records from an array.
+		/// </summary>
+		/// <param name="arr">The array with the records to be checked.</param>
+		/// <returns>An array with the result of remove the duplicate records from the source array.</returns>
 		public static IComparableRecord[] RemoveDuplicateRecords(IComparableRecord[] arr)
 		{
 			if (arr == null || arr.Length == 0)
@@ -435,6 +461,13 @@ namespace FileHelpers
 
 		#endregion
 
+#if NET_1_1
+
+		/// <summary>
+		/// Shortcut method to read all the text in a file.
+		/// </summary>
+		/// <param name="file">The file name</param>
+		/// <returns>The contents of the files</returns>
 		public static string RawReadAllFile(string file)
 		{
 			StreamReader reader = new StreamReader(file);
@@ -443,6 +476,14 @@ namespace FileHelpers
 			return res;
 		}
 
+#endif
+
+		/// <summary>
+		/// Shortcut method to read the first n lines of a text file.
+		/// </summary>
+		/// <param name="file">The file name</param>
+		/// <param name="lines">The number of lines to read.</param>
+		/// <returns>The first n lines of the file.</returns>
 		public static string RawReadFirstLines(string file, int lines)
 		{
 			StringBuilder sb = new StringBuilder(Math.Min(lines * 50, 10000));

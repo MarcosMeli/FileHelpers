@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace FileHelpers
 {
 
+	/// <summary> </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	/// <summary></summary>
 	public abstract class ReadRecordEventArgs: EventArgs
 	{
 		internal ReadRecordEventArgs(string line, int lineNumber)

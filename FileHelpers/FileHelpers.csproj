@@ -336,6 +336,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Enums\TransactionMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\TrimMode.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

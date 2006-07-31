@@ -9,10 +9,13 @@ using System.CodeDom.Compiler;
 
 namespace FileHelpers.RunTime
 {
-	public class RunTimeCompilationException : FileHelperException
+	/// <summary>
+	/// Exception with error information of the run time compilation.
+	/// </summary>
+	public sealed class RunTimeCompilationException : FileHelperException
 	{
 
-		protected internal RunTimeCompilationException(string message, string sourceCode, CompilerErrorCollection errors) : base(message)
+		internal RunTimeCompilationException(string message, string sourceCode, CompilerErrorCollection errors) : base(message)
 		{
 			mSourceCode = sourceCode;
 			mCompilerErrors = errors;
@@ -20,6 +23,9 @@ namespace FileHelpers.RunTime
 
 		private string mSourceCode;
 
+		/// <summary>
+		/// The source code that generates the Exception
+		/// </summary>
 		public string SourceCode
 		{
 			get { return mSourceCode; }
@@ -27,6 +33,9 @@ namespace FileHelpers.RunTime
 
 		private CompilerErrorCollection mCompilerErrors;
 
+		/// <summary>
+		/// The errors returned from the compiler.
+		/// </summary>
 		public CompilerErrorCollection CompilerErrors
 		{
 			get { return mCompilerErrors; }

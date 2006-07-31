@@ -183,6 +183,8 @@ namespace FileHelpers.DataLink
 		/// <param name="records">The records to insert.</param>
 		public override void InsertRecords(object[] records)
 		{
+			IDbTransaction trans = null;
+
 			try
 			{
 				InitConnection();
@@ -191,6 +193,8 @@ namespace FileHelpers.DataLink
 					mConn.Open();
 
 				string SQL = String.Empty;
+
+				trans = InitTransaction(mConn);
 
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 				int recordNumber = 0;
@@ -226,6 +230,14 @@ namespace FileHelpers.DataLink
 					ExecuteAndLeaveOpen(SQL);
 					SQL = String.Empty;
 				}
+
+				CommitTransaction(trans);
+
+			}
+			catch
+			{
+				RollBackTransaction(trans);
+				throw;
 			}
 			finally
 			{
@@ -323,8 +335,57 @@ namespace FileHelpers.DataLink
 
 				mExecuteInBatchSize = value;
 			}
+
 		}
 		#endregion
 
+
+		private TransactionMode mTransactionMode = FileHelpers.TransactionMode.NoTransaction;
+
+		public TransactionMode TransactionMode
+		{
+			get { return mTransactionMode; }
+			set { mTransactionMode = value; }
+		}
+
+		private IDbTransaction InitTransaction(IDbConnection conn)
+		{
+			if (mTransactionMode == FileHelpers.TransactionMode.NoTransaction) return null;
+
+			switch(mTransactionMode)
+			{
+				case FileHelpers.TransactionMode.UseDefault:
+					return conn.BeginTransaction();
+				
+				case FileHelpers.TransactionMode.UseChaosLevel:
+					return conn.BeginTransaction(IsolationLevel.Chaos);
+				
+				case FileHelpers.TransactionMode.UseReadCommitted:
+					return conn.BeginTransaction(IsolationLevel.ReadCommitted);
+				
+				case FileHelpers.TransactionMode.UseReadUnCommitted:
+					return conn.BeginTransaction(IsolationLevel.ReadUncommitted);
+
+				case FileHelpers.TransactionMode.UseRepeatableRead:
+					return conn.BeginTransaction(IsolationLevel.RepeatableRead);
+
+				case FileHelpers.TransactionMode.UseSerializable:
+					return conn.BeginTransaction(IsolationLevel.Serializable);
+			}
+
+			return null;
+		}
+
+		private void CommitTransaction(IDbTransaction trans)
+		{
+			if (trans == null) return;
+			trans.Commit();
+		}
+
+		private void RollBackTransaction(IDbTransaction trans)
+		{
+			if (trans == null) return;
+			trans.Rollback();
+		}
 	}
 }

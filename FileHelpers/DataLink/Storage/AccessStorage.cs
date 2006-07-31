@@ -56,6 +56,7 @@ namespace FileHelpers.DataLink
 			return new OleDbCommand();
 		}
 
+
 		#endregion
 
 		#region "  AccessFileName  "
@@ -81,7 +82,6 @@ namespace FileHelpers.DataLink
 		}
 
 		#endregion
-
 	}
 
 }

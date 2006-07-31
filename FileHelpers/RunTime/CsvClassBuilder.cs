@@ -72,11 +72,20 @@ namespace FileHelpers.RunTime
 			return AddField(fieldName, "System.String");
 		}
 
+		/// <summary>
+		/// Adds to the class the specified number of fileds.
+		/// </summary>
+		/// <param name="number">The number of fileds to add.</param>
 		public void AddFields(int number)
 		{
 			AddFields(number, "Field");
 		}
 
+		/// <summary>
+		/// Adds to the class the specified number of fileds.
+		/// </summary>
+		/// <param name="prefix">The prefix used for the fields.</param>
+		/// <param name="number">The number of fileds to add.</param>
 		public void AddFields(int number, string prefix)
 		{
 			int initFields = mFields.Count;

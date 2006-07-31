@@ -153,7 +153,7 @@ namespace FileHelpers.MasterDetail
 			mMasterInfo = new RecordInfo(masterType);
 			mRecordSelector = recordSelector;
 		}
-
+ 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
 		public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
 			: base(detailType)

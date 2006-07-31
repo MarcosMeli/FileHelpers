@@ -2,7 +2,6 @@
 //#define GENERICS
 //#if NET_2_0
 
-
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
@@ -26,16 +25,18 @@ using System.Data;
 namespace FileHelpers
 {
 
+	/// <summary>A class to read generic CSV files delimited for any char.</summary>
 	public sealed class CsvEngine : FileHelperEngine
 	{
 
-		private string mFileName;
+		//private string mFileName;
+
 		#region "  Constructor  "
 
 
 		public CsvEngine(string filename, char delimiter, char delimiterHdr, string className): base(GetMappingClass(filename, delimiter, delimiterHdr, className))
 		{
-			mFileName = filename;
+			//mFileName = filename;
 		}
 
 		public CsvEngine(string filename, char delimiter, string className): this(filename, delimiter,  delimiter, className)

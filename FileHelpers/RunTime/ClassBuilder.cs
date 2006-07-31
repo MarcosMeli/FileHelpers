@@ -130,6 +130,45 @@ namespace FileHelpers.RunTime
 
 		#region CreateFromFile
 
+		/// <summary>
+		/// Create a class from a source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <returns>The compiled class.</returns>
+		public static Type ClassFromSourceFile(string filename)
+		{
+			return ClassFromSourceFile(filename, string.Empty);
+		}
+
+		/// <summary>
+		/// Create a class from a source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <param name="lang">The languaje used to compile the class.</param>
+		/// <returns>The compiled class.</returns>
+		public static Type ClassFromSourceFile(string filename, NetLanguage lang)
+		{
+			return ClassFromSourceFile(filename, string.Empty, lang);
+		}
+
+		/// <summary>
+		/// Create a class from a source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <param name="className">The name of the class to return.</param>
+		/// <returns>The compiled class.</returns>
+		public static Type ClassFromSourceFile(string filename, string className)
+		{
+			return ClassFromSourceFile(filename, className, NetLanguage.CSharp);
+		}
+
+		/// <summary>
+		/// Create a class from a source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <param name="className">The name of the class to return.</param>
+		/// <param name="lang">The languaje used to compile the class.</param>
+		/// <returns>The compiled class.</returns>
 		public static Type ClassFromSourceFile(string filename, string className, NetLanguage lang)
 		{
 			StreamReader reader = new StreamReader(filename);
@@ -139,32 +178,36 @@ namespace FileHelpers.RunTime
 			return ClassFromString(classDef, className, lang);
 		}
 
-		public static Type ClassFromSourceFile(string filename, string className)
-		{
-			return ClassFromSourceFile(filename, className, NetLanguage.CSharp);
-		}
-
-		public static Type ClassFromSourceFile(string filename)
-		{
-			return ClassFromSourceFile(filename, string.Empty);
-		}
-
-		public static Type ClassFromSourceFile(string filename, NetLanguage lang)
-		{
-			return ClassFromSourceFile(filename, string.Empty, lang);
-		}
 
 
+		/// <summary>
+		/// Create a class from a encripted source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <returns>The compiled class.</returns>
 		public static Type ClassFromBinaryFile(string filename)
 		{
 			return ClassFromBinaryFile(filename, string.Empty, NetLanguage.CSharp);
 		}
 
+		/// <summary>
+		/// Create a class from a encripted source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <param name="lang">The languaje used to compile the class.</param>
+		/// <returns>The compiled class.</returns>
 		public static Type ClassFromBinaryFile(string filename, NetLanguage lang)
 		{
 			return ClassFromBinaryFile(filename, string.Empty, lang);
 		}
     	
+		/// <summary>
+		/// Create a class from a encripted source file.
+		/// </summary>
+		/// <param name="filename">The filename with the source of the class.</param>
+		/// <param name="lang">The languaje used to compile the class.</param>
+		/// <param name="className">The name of the class to return.</param>
+		/// <returns>The compiled class.</returns>
 		public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang)
 		{
 			
@@ -177,17 +220,24 @@ namespace FileHelpers.RunTime
 			return ClassFromString(classDef, className, lang);
 		}
 
-		public static void ClassToBinaryFile(string filename, string classDef)
+		/// <summary>
+		/// Encript the class source code and write it to a file.
+		/// </summary>
+		/// <param name="filename">The file name to write to.</param>
+		/// <param name="classSource">The source code for the class.</param>
+		public static void ClassToBinaryFile(string filename, string classSource)
 		{
-
-			classDef = Encrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+			classSource = Encrypt(classSource, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
 			
 			StreamWriter writer = new StreamWriter(filename);
-			writer.Write(classDef);
+			writer.Write(classSource);
 			writer.Close();
 		}
 
 		#endregion
+
+		#region SaveToFile
+
 
 		/// <summary>Write the source code of the current class to a file. (In C#)</summary>
 		/// <param name="filename">The file to write to.</param>
@@ -222,6 +272,8 @@ namespace FileHelpers.RunTime
 			writer.Write(GetClassBinaryCode(lang));
 			writer.Close();
 		}
+
+		#endregion
 
     	internal ClassBuilder(string className)
 		{

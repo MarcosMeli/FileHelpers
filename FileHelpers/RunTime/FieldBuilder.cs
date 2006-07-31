@@ -175,8 +175,7 @@ namespace FileHelpers.RunTime
 				}
 			}
 
-			
-		
+
 			attbs.AddAttribute(mConverter.GetConverterCode(leng));
 			
 			if (mTrimMode != TrimMode.None)
@@ -187,6 +186,9 @@ namespace FileHelpers.RunTime
 
 		private NetVisibility mVisibility = NetVisibility.Public;
 
+		/// <summary>
+		/// Gets or sets the visibility of the field.
+		/// </summary>
 		public NetVisibility Visibility
 		{
 			get { return mVisibility; }
