@@ -46,7 +46,7 @@ bgColor=white leftMargin=0 topMargin=0>
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td>
     <h2>Links to articles about the FileHelpers</h2>
-    <blockquote>
+    <p></p>
 
     <h2>Articles that I write</h2>
     <blockquote>
@@ -54,7 +54,7 @@ bgColor=white leftMargin=0 topMargin=0>
     <UL>
     
     <li>
-    <a href="http://www.levelextreme.net/wconnect/wc.dll?10,7,10,52" target="_blank">
+    <a href="http://www.codeproject.com/useritems/filehelpers.asp" target="_blank">
     <b>CodeProject Article of the FileHelpers</b>
     </a><br />
          
@@ -74,31 +74,121 @@ bgColor=white leftMargin=0 topMargin=0>
     
     </blockquote>
     
-    <h2>Community articles or posts</h2>
+   
+        <h2>Community thoughts</h2>
     <blockquote>
 
     <UL>
-    
-    <li>
-    <a href="http://www.mohundro.com/blog/PermaLink,guid,78c670c2-8cd1-4430-8d40-c559fa315149.aspx" target="_blank">
-    <b>David Mohundro - The FileHelpers library ROCKS!</b>
-    </a><br />
-         
-           Take a look and left a vote if you like the library.
 
-    <br/><br/>
-    <li>
-    <a href="http://www.levelextreme.net/wconnect/wc.dll?10,7,10,52" target="_blank">
-    <b>Strong Type your flat file with two lines of code</b>
-    </a><br />
-         
-           An articicle that I write for the Level Extreme .NET Magazine.
+    <li><EM>
+    <b>FileHelpers 1.4</b><br />
+Update to this nice framework for moving delimited and fixed-length data in and out of .NET projects. Now it handles Excel CSV data perfectly, which is just what I needed for a big project we were working on. 
+
+(<a href="http://www.larkware.com/dg5/TheDailyGrind843.html" 
+    target="_blank" >link</a>)</EM> 
+    
+    <BR /><b>
+Mike Gunderloy
+    </b></li><br /><br />
         
-    <br/><br/>
+    
+    <li><EM>
+    <b>The FileHelpers library ROCKS!</b><br />
+    Wow, do I wish I had known about this earlier. This thing is great! With a few easy attributes, you can use a business object as a layout for fixed-length files...
+    <br />
+If you deal with fixed-length or delimited files on a regular basis, this library might be a great option for you.
+
+(<a href="http://www.mohundro.com/blog/PermaLink,guid,78c670c2-8cd1-4430-8d40-c559fa315149.aspx" 
+    target="_blank" >link</a>)</EM> 
+    
+    <BR /><b>
+David Mohundro
+    </b></li><br /><br />
+    
+    
+    
+    
+    <li><EM>
+    <b>FileHelpers 1.5 Released</b><br />
+    The very cool (wait, I called it "very cool" last time... this time I should call it uber cool? Nifty? Rad? The best thing since self adhesive postage stamps? Heck you get the point... :) FileHelpers project has released 1.5...
+
+(<a href="http://coolthingoftheday.blogspot.com/2006/06/filehelpers-15-released.html" 
+    target="_blank" >link</a>)</EM> 
+    
+    <BR /><b>
+    Greg Duncan     
+    </b></li><br /><br />
+
+    <li><EM>
+	Very cool, very nicely documented, looks very polished. 
+    (<a href="http://bloggingabout.net/blogs/mischa/archive/2006/06/27/12771.aspx"
+    target="_blank" >link</a>)</EM> 
+       
+    <BR /><b>
+    Mischa Kroon
+    </b></li><br /><br />
+
+    <li><EM>
+My first reaction was:  “Whoa!  This would be awesome for unit testing database or databound code!”<br /><br />
+
+More than once I've found myself writing custom I/O code to get some test data into a unit test suite, and it's always a pain.  FileHelpers would allow me to seamlessly import a sample of test data as say, an array and use that to write tests against.  It won't totally absolve me of the need to write setup/teardown code, but it will go a long way to cutting back some of the tedium!
+    (<a href="http://coolthingoftheday.blogspot.com/2006/06/filehelpers-15-released.html" 
+    target="_blank" >link</a>)</EM> 
+    <BR /><b>
+    Greg Duncan
+    
+    </b></li><br /><br />
+
+    <li><EM>
+If you need to import/export data from text files in .Net Framework this cool library is the solution.
+    (<a href="http://weblogs.shockbyte.com.ar/rodolfof/archive/2006/06/30/7518.aspx" 
+    target="_blank" >link</a>)</EM> 
+    <BR /><b>
+    Rodolfo Finochietti 
+    
+    </b></li><br /><br />
+
+
+
+
+    <li><EM>
+I haven't found a good, simple, robust way of reading data from delimited files in .NET. I've just the simple technique of reading the line and splittingon the delimiter character and reading it in through an ODBC connection depending on the complexity of the data. But both approaches have their disadvantages. Here's something I need to look into more the next time I need to read from a CSV or tab (or whatever) delimited file.
+    (<a href="http://www.mjberger.com/archives/2006/06/filehelpers.html"
+    target="_blank" >link</a>)</EM> 
+    <BR /><b>
+    Mikel Berger
+    
+    </b></li><br /><br />
+
+
+
+    <li><EM>
+Thanks for all the good feedback.
+<br/>
+After thinking about it more I've realized that it's not the actual breaking up the data that's hard (although CSV does have alot of edge cases) it's the tedium of specifiying the format and then translating the strings you get into more appropriate data types/structures afterwards.
+<br/>
+So a GUI file layout editor would help with the first part and a nice string to other data type parsing would cover the second. It sounds like FileHelper covers most of those bases, at the very least the layout is pretty easy to specify using annotations.
+<br/>
+I'm suprised though that there aren't many "pay for" products for this market out there, FileHelper looks to be a piece of software that could generate some revenue if marketed a bit. 
+    (<a href="http://discuss.joelonsoftware.com/default.asp?joel.3.313606.23#discussTopic314395"
+    target="_blank" >link</a>)</EM> 
+    <BR /><b>
+    XML? All my clients want flat files! (Joel on Software Discussion Group)
+   
+    </b></li><br /><br />
+
+
+
+
+
+
+
+
 
     </UL>
     
     </blockquote>
+
 
 <h2>Applications or projects using the FileHelpers lib</h2>
 
@@ -107,7 +197,7 @@ bgColor=white leftMargin=0 topMargin=0>
     </blockquote>
     
       <p>
-          If you found another article send to me the link and I´ll add it to the list: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a></p>
+          If you found or write another article send to me the link and I´ll add it to the list: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a></p>
     </blockquote>
 
         <center>
