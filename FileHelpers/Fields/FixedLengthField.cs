@@ -33,13 +33,23 @@ namespace FileHelpers
 
 		protected override ExtractedInfo ExtractFieldString(string from, ForwardReader reader)
 		{
-			if (mIsOptional && from.Length == 0 )
-				return ExtractedInfo.Empty;
-
+			if (from.Length == 0)
+			{
+				if (mIsOptional)
+					return ExtractedInfo.Empty;
+				else
+					throw new BadUsageException("Empty string found for the field: " + mFieldInfo.Name + " (You need to mark it as [FieldOptional] if you want to avoid this exception)");
+			}
+			
 			ExtractedInfo res;
 
 			if (from.Length < this.mLength)
-				throw new FileHelperException("The string '" + from + "' (length " + from.Length.ToString() + ") don´t match the length of the field " + mFieldInfo.Name + " (" + mLength.ToString() + ")");
+				if (mAllowVariableSize)
+					res = new ExtractedInfo(from);
+				else
+					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") don´t match the length of the field " + mFieldInfo.Name + " (" + mLength.ToString() + ")");
+			else if (mIsLast && mAllowVariableSize == false && from.Length > mLength)
+				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ") you must use the [FixedLengthRecord(true)] to allow variable length records.");
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 

@@ -19,11 +19,11 @@ namespace FileHelpers
 		internal string Separator;
 
 	/// <summary>Indicates that this class represents a delimited record. </summary>
-		/// <param name="sep">The separator string used to split the fields of the record.</param>
-		public DelimitedRecordAttribute(string sep)
+		/// <param name="delimiter">The separator string used to split the fields of the record.</param>
+		public DelimitedRecordAttribute(string delimiter)
 		{
 			if (Separator != String.Empty)
-				this.Separator = sep;
+				this.Separator = delimiter;
 			else
 				throw new ArgumentException("sep debe ser <> \"\"");
 		}

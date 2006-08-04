@@ -61,6 +61,8 @@ namespace FileHelpers
 		internal bool mIsLast = false;
 		internal bool mTrailingArray = false;
 
+		internal bool mAllowVariableSize = false;
+
 		internal object mNullValue = null;
 		//internal bool mNullValueOnWrite = false;
 

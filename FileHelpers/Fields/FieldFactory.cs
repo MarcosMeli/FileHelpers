@@ -54,7 +54,6 @@ namespace FileHelpers
 					if (recordAttribute is DelimitedRecordAttribute)
 						throw new BadUsageException("The FieldFixedLengthAttribute is only for the FixedLengthRecords not for the delimited ones.");
 
-
 					FieldFixedLengthAttribute attb = ((FieldFixedLengthAttribute) fieldAttb);
 
 					FieldAlignAttribute[] alignAttbs = (FieldAlignAttribute[]) fi.GetCustomAttributes(typeof (FieldAlignAttribute), true);
@@ -64,6 +63,7 @@ namespace FileHelpers
 						align = alignAttbs[0];
 
 					res = new FixedLengthField(fi, attb.Length, align);
+					res.mAllowVariableSize = ((FixedLengthRecordAttribute)recordAttribute).mVariableRecordLength;
 				}
 				else if (fieldAttb is FieldDelimiterAttribute)
 				{

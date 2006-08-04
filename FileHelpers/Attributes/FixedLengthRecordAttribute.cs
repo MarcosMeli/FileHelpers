@@ -16,9 +16,18 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class FixedLengthRecordAttribute : TypedRecordAttribute
 	{
+		internal bool mVariableRecordLength = false;
+
 		/// <summary>Indicates that this class represents a fixed length record.</summary>
 		public FixedLengthRecordAttribute()
 		{}
+
+		/// <summary>Indicates that this class represents a fixed length record.</summary>
+		/// <param name="variableRecordLength">Indicates if the engines allow the last record to contain more or less chars.</param>
+		public FixedLengthRecordAttribute(bool variableRecordLength)
+		{
+			mVariableRecordLength = variableRecordLength;
+		}
 
 	}
 }
