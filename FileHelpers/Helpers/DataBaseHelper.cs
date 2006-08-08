@@ -37,6 +37,7 @@ namespace FileHelpers
 		#region "  SqlConnectionString  "
 
 		private static string AppName = "FileHelpers"; //<- For display in SqlServer
+		
 
 		static public string SqlConnectionString(string server, string dbName)
 		{
@@ -46,7 +47,7 @@ namespace FileHelpers
 		static public string SqlConnectionString(string server, string dbName, string user, string pass)
 		{
 			StringBuilder sCadena = new StringBuilder(300);
-			if (user.Length == 0 & pass.Length == 0)
+			if (user.Length == 0 && pass.Length == 0)
 			{
 				sCadena = new StringBuilder("data source=<SERVER>;persist security info=True;" + "initial catalog=<BASE>;integrated security=SSPI;" + "packet size=4096;Connection Timeout=10;Application Name=" + AppName);
 			}

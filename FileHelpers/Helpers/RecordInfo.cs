@@ -8,10 +8,10 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
+using System.Text;
 
 #if ! MINI
 using System.Data;
-using System.Text;
 #endif
 
 namespace FileHelpers

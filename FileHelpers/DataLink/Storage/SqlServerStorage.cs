@@ -22,6 +22,14 @@ namespace FileHelpers.DataLink
 		public SqlServerStorage(Type recordType): base(recordType)
 		{}
 
+		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
+		/// <param name="recordType">The type of the record class.</param>
+		/// <param name="connectionStr">The full conection string used to connect to the sql server.</param>
+		public SqlServerStorage(Type recordType, string connectionStr): base(recordType)
+		{
+			mConnectionString = connectionStr;
+		}
+
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses windows auth)</summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="server">The server name or IP of the sqlserver</param>
@@ -52,25 +60,42 @@ namespace FileHelpers.DataLink
 		/// <returns>An Abstract Connection Object.</returns>
 		protected sealed override IDbConnection CreateConnection()
 		{
-			if (mServerName == null || mServerName == string.Empty)
-				throw new BadUsageException("The ServerName can´t be null or empty.");
+			string conString;
+			if (mConnectionString == string.Empty)
+			{
+				if (mServerName == null || mServerName == string.Empty)
+					throw new BadUsageException("The ServerName can´t be null or empty.");
 
-			if (mDatabaseName == null || mDatabaseName == string.Empty)
-				throw new BadUsageException("The DatabaseName can´t be null or empty.");
+				if (mDatabaseName == null || mDatabaseName == string.Empty)
+					throw new BadUsageException("The DatabaseName can´t be null or empty.");
 
-			string conString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+				conString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+			}
+			else
+			{
+				conString = mConnectionString;
+			}
+
 			return new SqlConnection(conString);
 		}
 
 		/// <summary>Must create an abstract command object.</summary>
 		/// <returns>An Abstract Command Object.</returns>
-		protected sealed override IDbCommand CreateCommand()
+		protected override IDbCommand CreateCommand()
 		{
 			return new SqlCommand();
 		}
 
 		#endregion
 
+		private string mConnectionString = string.Empty;
+		
+		public string ConnectionString
+		{
+			get { return mConnectionString; }
+			set { mConnectionString = value; }
+		}
+		
 		#region "  ServerName  "
 
 		private string mServerName = string.Empty;
@@ -127,6 +152,7 @@ namespace FileHelpers.DataLink
 		{
 			get { return true; }
 		}
+
 
 		#endregion
 
