@@ -1,4 +1,4 @@
-
+using System;
 
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
@@ -40,5 +40,18 @@ namespace FileHelpers
 		{
 			get { return false; }
 		}
+
+		internal Type mDestinationType;
+
+		/// <summary>
+		/// Thorws a ConvertException with the passed values
+		/// </summary>
+		/// <param name="from">The source string.</param>
+		/// <param name="errorMsg">The custom error msg.</param>
+		protected void ThrowConvertException(string from, string errorMsg)
+		{
+			throw new ConvertException(from, mDestinationType, errorMsg);
+		}
+
 	}
 }

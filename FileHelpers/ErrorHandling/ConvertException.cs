@@ -11,9 +11,10 @@ namespace FileHelpers
 	/// <summary>
 	/// Indicates that a string value can't be converted to a dest type.
 	/// </summary>
-	public class ConvertException : FileHelperException
+	public sealed class ConvertException : FileHelperException
 	{
-		private string mStringValue;
+		private string mFieldName = string.Empty;
+		private string mStringValue = string.Empty;
 		private Type mType;
 
 		/// <summary>The destination type.</summary>
@@ -26,6 +27,13 @@ namespace FileHelpers
 		public string StringValue
 		{
 			get { return mStringValue; }
+		}
+
+		/// <summary>The name of the field related to the exception.</summary>
+		public string FieldName
+		{
+			get { return mFieldName; }
+			set { mFieldName = value; }
 		}
 
 		internal ConvertException(string origValue, Type destType) : this(origValue, destType, "")

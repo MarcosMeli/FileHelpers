@@ -76,10 +76,14 @@ namespace FileHelpers
 			mFieldType = mFieldInfo.FieldType;
 
 			object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
+			
 			if (attribs.Length > 0)
 				mConvertProvider = ((FieldConverterAttribute) attribs[0]).Converter;
 			else
 				mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
+
+			if (mConvertProvider != null)
+				mConvertProvider.mDestinationType = fi.FieldType;
 
 			attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
@@ -201,10 +205,19 @@ namespace FileHelpers
 					}
 					else
 					{
-						val = mConvertProvider.StringToField(fieldString);
+						
+						try
+						{
+							val = mConvertProvider.StringToField(fieldString);
 
-						if (val == null)
-							val = GetNullValue();
+							if (val == null)
+								val = GetNullValue();
+						}
+						catch (ConvertException ex)
+						{
+							ex.FieldName = this.mFieldInfo.Name;
+							throw ex;
+						}
 					}
 				}
 				else 

@@ -51,7 +51,12 @@ namespace FileHelpers
 				if (from == null)
 					return String.Empty;
 				else
-					return ((Exception) from).Message.Replace(StringHelper.NewLine, " -> ");
+				{
+					if (from is ConvertException)
+						return "In the field '" + ((ConvertException) from).FieldName + "': " + ((ConvertException) from).Message.Replace(StringHelper.NewLine, " -> ");
+					else
+						return ((Exception) from).Message.Replace(StringHelper.NewLine, " -> ");
+				}
 			}
 
 			public override object StringToField(string from)
