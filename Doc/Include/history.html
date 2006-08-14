@@ -434,28 +434,49 @@
 
 					 <a name="v1_6_0" /><STRONG>1.6.0</STRONG> (Jul-2006)
                                         <br />
-                                        &nbsp;&nbsp; Yes, the RunTime records and the diff engine are here. Enjoy it !!<br />
+                                        &nbsp;&nbsp; Yes, the <a href="runtime_classes.html">RunTime Records</a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!<br />
                                         I think that this version is something like the 2.0 version because the RunTime Records were one of the most requested features and were one od the most hard to implement features,
-                                        A lot of effort was put in the usability and in a clear API, if you have any suggest please post it in the forums =)
-                           
+                                        A lot of effort was put in the usability and in a clear API, if you have any suggestion please post it in the forums =)
 					 <b>
                          <br />
                          Breaking changes:</b>
 							<UL>
-                                <li>MOD: Extract and Insert Records now returns the inserted or extracted records</li>
+                                <li>MOD: CommonActions renamed to CommonSelector in the MasterDetailEngine</li>
 							</UL>
                                         <p>
                                         </p>
 					 <b>Mayor changes: </b>
                          <UL>
-                             <li>ADD: The awaited RunTimeRecords </li>
-                             <li>ADD: New <strong>FielOptional</strong> that allows that the n last fields of a record
-                                 be optional.</li>
+                             <li>ADD: The awaited RunTime Records thanks to the suggestion of Gerhardt Scriven to use RunTime Compilation.
+								Supports for classes written in C# and VB.NET<br />
+								There are a lot of features inside this new feature, <a href="runtime_classes.html">so take a look at the docs</a>
+								</li>
+                             <li>MOD: The <strong>Record Wizard</strong> was near completely rewritten to use the run time records
+                             and now has a lot of options to check the classes the you are building and in the feature to help you to
+                             discover the record class based on a sample file
+                             </li>
+                             <li> Generic Csv files are now supported (for example Excel generated ones)<br />
+Was a hard work but worth it because it can be used with any engine. <br />
+In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from  Sébastien Lorion for standalone CSV processing.</li>
+                             <li>MOD: The decimal, double, and single converters now recieve an string param to set the decimal delimiter (by default is ".")</li>
+                             <li>ADD: FileDiffEngine to compare files with the same record layout.</li>
+                             <li>ADD: MultiRecordEngine to read files with different record layouts.</li>
+                             <li>MOD: Improved docs in the SDK, the general help and examples. (Thanks Antoine)</li>
+                             <li>ADD: DataTableToCsv, RecordsToDataTable, RemoveDuplicateRecords and other methods to the CommonEngine</li>
+                             <lI>ADD: Template support in ExcelStorage</li>
                          </ul>
                              <p></p>
                         <b> Minor changes:</b>
 							<UL>
-                                <li>FIX: The AsyncEngine could close the File in the BeginWriteFile under some conditions.</li>
+							 <li>FIX: FieldDelimiter don´t work very well after the refactor of the previous version.<li>
+							 <li>FIX: Bug when copy or saving to file in the Wizard</li>
+                             <li>MOD: A lot of internal refactor and enhaces</li>
+                             <li>DEL: more and more properties of the internal classes, this enhance both the performance and the dll size.</li>
+                             <li>ADD: RecordsToDataTable in the CommonEngine</li>
+                             <li>ADD: A lot of options to CommonSelector like: MasterIfBegins, MasterIfEnds,  MasterIfEnclosed and the details counterparts</li>
+                             <li>ADD: BooleanConverter can recieve two arguments for the true or false values</li>
+                             <li>MOD: ExcelStorage now return the cells values when using ErrorMode.SaveAndContinue</li>
+                             <li>ADD: New constructor to the SqlServerStorage to direct pass the ConnectionString. Thanks to Anatoly Kleyman</li>
                             </ul>
                                 <p></p>
 
