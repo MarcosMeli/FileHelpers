@@ -25,6 +25,7 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
+		[FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal string mRecordString = string.Empty;
 
 		/// <summary>The string of the record of the error.</summary>
@@ -33,7 +34,9 @@ namespace FileHelpers
 			get { return mRecordString; }
 		}
 
-		[FieldConverter(typeof (ExceptionConverter))] internal Exception mExceptionInfo;
+		[FieldConverter(typeof (ExceptionConverter))] 
+		[FieldQuoted(QuoteMode.OptionalForBoth)]
+		internal Exception mExceptionInfo;
 
 		/// <summary>The exception that indicates the error.</summary>
 		public Exception ExceptionInfo

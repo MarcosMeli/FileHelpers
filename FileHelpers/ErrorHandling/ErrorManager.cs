@@ -50,6 +50,11 @@ namespace FileHelpers
 			get { return mErrorsArray.Count; }
 		}
 
+		/// <summary>Indicates if contains one or more errors.</summary>
+		public bool HasErrors
+		{
+			get { return mErrorsArray.Count > 0; }
+		}
 
 		/// <summary>Clears the error collection.</summary>
 		public void ClearErrors()

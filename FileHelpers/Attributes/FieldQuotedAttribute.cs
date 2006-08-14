@@ -34,27 +34,21 @@ namespace FileHelpers
 		{
 		}
 
-		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
-		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
-		public FieldQuotedAttribute(MultilineMode multiline) : this('\"', QuoteMode.OptionalForRead, multiline)
-		{}
-
 		/// <summary>Indicates that the field must be read and written like a "Quoted String"  (that can be optional depending of the mode).</summary>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
 		public FieldQuotedAttribute(QuoteMode mode) : this('\"', mode)
 		{}
 
+		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
+		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
+		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
+		public FieldQuotedAttribute(QuoteMode mode, MultilineMode multiline):this('"', mode, multiline)
+		{}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
 		public FieldQuotedAttribute(char quoteChar, QuoteMode mode):this(quoteChar, mode, MultilineMode.AllowForBoth) 
-		{}
-
-		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
-		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
-		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
-		public FieldQuotedAttribute(QuoteMode mode,MultilineMode multiline):this('"', mode, multiline)
 		{}
 
 		/// <summary>Indicates that the field must be read and written like a Quoted String (that can be optional).</summary>
@@ -67,6 +61,14 @@ namespace FileHelpers
 			QuoteMode = mode;
 			QuoteMultiline = multiline;
 		}
+
+		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
+		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
+		public FieldQuotedAttribute(MultilineMode multiline) : this('\"', QuoteMode.OptionalForRead, multiline)
+		{}
+
+
+
 
 
 	}
