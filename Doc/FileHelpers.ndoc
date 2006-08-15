@@ -4,11 +4,14 @@
         <assembly location="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.xml" />
     </assemblies>
     <namespaces>
-        <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 10pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 10pt">FileHelperAsyncEngine</span></b></a>. You can also check the <a href="FileHelpers.CommonEngine.html"><b><span style="font-size: 10pt">CommonEngine</span></b></a> for shortcuts to the common operations.<br /><br />Engines Diagram:<br />
+        <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 10pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 10pt">FileHelperAsyncEngine</span></b></a>. You can also check the <a href="FileHelpers.CommonEngine.html"><b><span style="font-size: 10pt">CommonEngine</span></b></a> for shortcuts to the common operations.<br /><br />You can also check the advanced engines <a href="FileHelpers.MultiRecordEngine.html"><b><span style="font-size: 10pt">MultiRecordEngine</span></b></a>, <a href="FileHelpers.FileTransformationEngine.html"><b><span style="font-size: 10pt">FileTransformationEngine</span></b></a>, the <a href="FileHelpers.FileDiffEngine.html"><b><span style="font-size: 10pt">FileDiffEngine</span></b></a>. <br />Engines Diagram:<br />
 <center><img src="diag_engines.gif" /></center>
 </namespace>
-        <namespace name="FileHelpers.DataLink">This namespace contains the data source to/from file engine and helpers.</namespace>
+        <namespace name="FileHelpers.DataLink">This namespace contains the data source to/from file engine and helpers.<br />DataStorages Diagram:<br />
+<center><img src="class_diagram_storage.png" /></center></namespace>
         <namespace name="FileHelpers.MasterDetail">This namespace contains the classes used for MasterDetail processing.</namespace>
+        <namespace name="FileHelpers.RunTime">This namespace contains the classes to create record mapping classes at run time.<br /><br /><a href="runtime_classes.html" >Check the examples here</a><br /><br />Run Time Records Diagram:<br />
+<center><img src="class_diagram_runtime.png" /></center></namespace>
     </namespaces>
     <documenters>
         <documenter name="JavaDoc">

@@ -242,6 +242,10 @@
                     BuildAction = "None"
                 />
                 <File
+                    RelPath = "Diagrams\EnginesDiagramCompact.cd"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "Diagrams\StorageDiagrams.cd"
                     BuildAction = "None"
                 />

@@ -4,6 +4,11 @@
 		<param name="Local" value="quick_start.html">
 		</OBJECT>
 
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileHelpers on the Web">
+		<param name="Local" value="community.html">
+		</OBJECT>
+
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="RunTime Records">
 		<param name="Local" value="runtime_classes.html">
@@ -163,6 +168,10 @@
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="DataLinks Diagram">
 			<param name="Local" value="diagram_datalinks.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="RunTime Records Diagram">
+			<param name="Local" value="diagram_runtime.html">
 			</OBJECT>
 	</UL>
 

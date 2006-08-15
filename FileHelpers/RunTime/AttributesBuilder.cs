@@ -39,7 +39,8 @@ namespace FileHelpers.RunTime
 				switch(mLeng)
 				{
 					case NetLanguage.VbNet:
-						mSb.Append(", ");
+						mSb.Append(", _");
+						mSb.Append(StringHelper.NewLine);
 						break;
 					case NetLanguage.CSharp:
 						mSb.Append("[");
@@ -53,13 +54,12 @@ namespace FileHelpers.RunTime
 			{
 				case NetLanguage.CSharp:
 					mSb.Append("]");
+					mSb.Append(StringHelper.NewLine);
 					break;
 				case NetLanguage.VbNet:
-					mSb.Append(" _");
 					break;
 			}
 
-			mSb.Append(StringHelper.NewLine);
 
 		}
 		
@@ -71,7 +71,7 @@ namespace FileHelpers.RunTime
 			switch(mLeng)
 			{
 				case NetLanguage.VbNet:
-					mSb.Append(" > _");
+					mSb.Append("> _");
 					mSb.Append(StringHelper.NewLine);
 					break;
 			}

@@ -292,7 +292,7 @@ namespace FileHelpers.RunTime
 		//--------------
 		//->  Fields 
 
-		#region Fiields
+		#region Fields
     	
 		/// <summary></summary>
 		protected ArrayList mFields = new ArrayList();
@@ -302,6 +302,7 @@ namespace FileHelpers.RunTime
 		protected void AddFieldInternal(FieldBuilder field)
 		{
 			field.mFieldIndex = mFields.Add(field);
+			field.mClassBuilder = this;
 		}
 
 		/// <summary>Returns the current fields of the class.</summary>
@@ -373,7 +374,7 @@ namespace FileHelpers.RunTime
 		#endregion
     	
 		#region IgnoreEmptyLines
-    	
+
 		private bool mIgnoreEmptyLines = false;
 
 		/// <summary>Indicates that the engines must ignore the empty lines in the files.</summary>
@@ -385,7 +386,16 @@ namespace FileHelpers.RunTime
 
     	#endregion
 
-    	
+		private bool mGenerateProperties = false;
+
+		/// <summary>Indicates if this ClassBuilder generates also the property accessors (Perfect for DataBinding)</summary>
+		public bool GenerateProperties
+		{
+			get { return mGenerateProperties; }
+			set { mGenerateProperties = value; }
+		}
+
+		
 		/// <summary>
 		/// Returns the ENCRIPTED code for the current class in the specified language.
 		/// </summary>
@@ -433,6 +443,7 @@ namespace FileHelpers.RunTime
 			foreach (FieldBuilder field in mFields)
 			{
 				sb.Append(field.GetFieldCode(lang));
+				sb.Append(StringHelper.NewLine);
 			}
 			
 			
@@ -565,6 +576,7 @@ namespace FileHelpers.RunTime
 			get { return mNamespace; }
 			set { mNamespace = value; }
 		}
+
 
 		internal static string GetVisibility(NetLanguage lang, NetVisibility visibility)
 		{

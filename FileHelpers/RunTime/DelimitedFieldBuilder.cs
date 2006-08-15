@@ -56,9 +56,19 @@ namespace FileHelpers.RunTime
 			if (mFieldQuoted == true)
 			{
 				if (leng == NetLanguage.CSharp)
-					attbs.AddAttribute("FieldQuoted('" + mQuoteChar.ToString() + "', QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+				{
+					string quoteStr = mQuoteChar.ToString();
+					if (mQuoteChar == '\'') quoteStr = @"\'";
+
+					attbs.AddAttribute("FieldQuoted('" + quoteStr + "', QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+				}
 				else if (leng == NetLanguage.VbNet)
-					attbs.AddAttribute("FieldQuoted(\"" + mQuoteChar.ToString() + "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+				{
+					string quoteStr = mQuoteChar.ToString();
+					if (mQuoteChar == '"') quoteStr = "\"\"";
+
+					attbs.AddAttribute("FieldQuoted(\"" + quoteStr+ "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+				}
 			}
 			
 		}

@@ -15,8 +15,12 @@ namespace FileHelpers.DataLink
 	#region "  Delegates  "
 
 	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to get the SQL for the insert or update statement.</summary>
+	/// <param name="record">The record to insert</param>
+	/// <return>The Sql string to insert the record.</return>
 	public delegate string InsertSqlHandler(object record);
 	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to fill the values of a new record from the db (you only need to assing hte values.</summary>
+	/// <param name="record">The record to fill.</param>
+	/// <param name="fieldValues">The values read from the database, you need to use these to fill the record.</param>
 	public delegate void FillRecordHandler(object record, object[] fieldValues);
 
 	#endregion
@@ -340,8 +344,11 @@ namespace FileHelpers.DataLink
 		#endregion
 
 
-		private TransactionMode mTransactionMode = FileHelpers.TransactionMode.NoTransaction;
+		private TransactionMode mTransactionMode = TransactionMode.NoTransaction;
 
+		/// <summary>
+		/// Define the Transaction Level used when inserting records.
+		/// </summary>
 		public TransactionMode TransactionMode
 		{
 			get { return mTransactionMode; }
@@ -350,26 +357,26 @@ namespace FileHelpers.DataLink
 
 		private IDbTransaction InitTransaction(IDbConnection conn)
 		{
-			if (mTransactionMode == FileHelpers.TransactionMode.NoTransaction) return null;
+			if (mTransactionMode == TransactionMode.NoTransaction) return null;
 
 			switch(mTransactionMode)
 			{
-				case FileHelpers.TransactionMode.UseDefault:
+				case TransactionMode.UseDefault:
 					return conn.BeginTransaction();
 				
-				case FileHelpers.TransactionMode.UseChaosLevel:
+				case TransactionMode.UseChaosLevel:
 					return conn.BeginTransaction(IsolationLevel.Chaos);
 				
-				case FileHelpers.TransactionMode.UseReadCommitted:
+				case TransactionMode.UseReadCommitted:
 					return conn.BeginTransaction(IsolationLevel.ReadCommitted);
 				
-				case FileHelpers.TransactionMode.UseReadUnCommitted:
+				case TransactionMode.UseReadUnCommitted:
 					return conn.BeginTransaction(IsolationLevel.ReadUncommitted);
 
-				case FileHelpers.TransactionMode.UseRepeatableRead:
+				case TransactionMode.UseRepeatableRead:
 					return conn.BeginTransaction(IsolationLevel.RepeatableRead);
 
-				case FileHelpers.TransactionMode.UseSerializable:
+				case TransactionMode.UseSerializable:
 					return conn.BeginTransaction(IsolationLevel.Serializable);
 			}
 

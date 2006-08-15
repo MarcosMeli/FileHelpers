@@ -54,10 +54,20 @@ namespace FileHelpers.WizardApp
             0,
             0,
             0});
+            this.txtLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(50, 21);
             this.txtLength.TabIndex = 10;
             this.txtLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLength.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.txtLength.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // FieldFixedControl

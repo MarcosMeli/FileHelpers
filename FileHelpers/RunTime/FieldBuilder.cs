@@ -45,8 +45,6 @@ namespace FileHelpers.RunTime
 
 		#endregion
 
-		
-
 		internal int mFieldIndex = -1;
 
 		/// <summary>The position index inside the class.</summary>
@@ -114,30 +112,81 @@ namespace FileHelpers.RunTime
 
 		private ConverterBuilder mConverter = new ConverterBuilder();
 		
-		internal string GetFieldCode(NetLanguage leng)
+		internal string GetFieldCode(NetLanguage lang)
 		{
 			StringBuilder sb = new StringBuilder(100);
 			
-			AttributesBuilder attbs = new AttributesBuilder(leng);
+			AttributesBuilder attbs = new AttributesBuilder(lang);
 			
-			AddAttributesInternal(attbs, leng);
-			AddAttributesCode(attbs, leng);
+			AddAttributesInternal(attbs, lang);
+			AddAttributesCode(attbs, lang);
 			
 			sb.Append(attbs.GetAttributesCode());
 			
-			switch (leng)
+			NetVisibility visi = mVisibility;
+			string currentName = mFieldName;
+			
+			if (mClassBuilder.GenerateProperties)
+			{
+				visi = NetVisibility.Private;
+				currentName = "m" + mFieldName;
+			}
+			
+			switch (lang)
 			{
 				case NetLanguage.VbNet:
-					sb.Append("Public " + mFieldName + " As " + mFieldType);
+					sb.Append(ClassBuilder.GetVisibility(lang, visi) + currentName + " As " + mFieldType);
 					break;
 				case NetLanguage.CSharp:
-					sb.Append("public " + mFieldType + " " + mFieldName+ ";");
+					sb.Append(ClassBuilder.GetVisibility(lang, visi) + mFieldType + " " + currentName+ ";");
 					break;
 				default:
 					break;
 			}
 
 			sb.Append(StringHelper.NewLine);
+			
+			if (mClassBuilder.GenerateProperties)
+			{
+				sb.Append(StringHelper.NewLine);
+				
+				switch (lang)
+				{
+					case NetLanguage.VbNet:
+						sb.Append("Public Property " + mFieldName + " As " + mFieldType);
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   Get");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("      Return m" + mFieldName);
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   End Get");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   Set (value As " + mFieldType + ")");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("      m" + mFieldName + " = value");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   End Set");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("End Property");
+						break;
+					case NetLanguage.CSharp:
+						sb.Append("public " + mFieldType + " " + mFieldName);
+						sb.Append(StringHelper.NewLine);
+						sb.Append("{");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   get { return m" + mFieldName + "; }");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("   set { m" + mFieldName + " = value; }");
+						sb.Append(StringHelper.NewLine);
+						sb.Append("}");
+						break;
+					default:
+						break;
+				}
+
+				sb.Append(StringHelper.NewLine);
+				sb.Append(StringHelper.NewLine);
+			}
 			
 			return sb.ToString();
 		}
@@ -184,6 +233,8 @@ namespace FileHelpers.RunTime
 			}
 		}
 
+		internal ClassBuilder mClassBuilder;
+		
 		private NetVisibility mVisibility = NetVisibility.Public;
 
 		/// <summary>

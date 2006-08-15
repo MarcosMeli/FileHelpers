@@ -49,6 +49,15 @@ namespace FileHelpers.RunTime
 			return AddField(fieldName, fieldType.FullName);
 		}
 
+		/// <summary>Add a new Delimited field to the current class.</summary>
+		/// <param name="field">The field definition.</param>
+		/// <returns>The just added field.</returns>
+		public DelimitedFieldBuilder AddField(DelimitedFieldBuilder field)
+		{
+			AddFieldInternal(field);
+			return field;
+		}
+
 		/// <summary>Return the last added field. (use it reduce casts and code)</summary>
 		public DelimitedFieldBuilder LastField
 		{

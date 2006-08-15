@@ -90,9 +90,16 @@ namespace FileHelpers.DataLink
 
 		private string mConnectionString = string.Empty;
 		
+		/// <summary> The full connection string used to connect to the SqlServer </summary>
 		public string ConnectionString
 		{
-			get { return mConnectionString; }
+			get 
+			{
+				if (mConnectionString != string.Empty)
+                    return mConnectionString;
+				else
+					return DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+			}
 			set { mConnectionString = value; }
 		}
 		

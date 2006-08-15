@@ -6,6 +6,11 @@
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers on the Web</a>
+        </div>
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records</a>
         </div>
 
@@ -161,6 +166,10 @@
 			  <a href="diagram_datalinks.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataLinks Diagram</a>
 			</div>
 
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="diagram_runtime.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records Diagram</a>
+			</div>
 
 			</div>
 		</div>

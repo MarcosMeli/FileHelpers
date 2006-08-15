@@ -2,7 +2,7 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Font Name="Tahoma" Size="8.25" />
   <Class Name="FileHelpers.DataLink.AccessStorage">
-    <Position X="1" Y="6" Width="2.75" />
+    <Position X="4.75" Y="6.25" Width="2.75" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\AccessStorage.cs</FileName>
       <HashCode>AAAAAAAAAIAAAAEAABAEQAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
@@ -15,14 +15,15 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.DataLink.SqlServerStorage">
-    <Position X="4" Y="6" Width="3.25" />
+    <Position X="0.5" Y="6.25" Width="4" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\SqlServerStorage.cs</FileName>
-      <HashCode>AAACAAAAgAAAAAGAAAAFAAAAAABAAAAAAQAAEAABAIA=</HashCode>
+      <HashCode>AAACAAAAgAAAAAGAACAFAAAAAABAAAAAASAAEAABAIA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="CreateCommand" Hidden="true" />
       <Method Name="CreateConnection" Hidden="true" />
+      <Field Name="mConnectionString" Hidden="true" />
       <Field Name="mDatabaseName" Hidden="true" />
       <Field Name="mServerName" Hidden="true" />
       <Field Name="mUserName" Hidden="true" />
@@ -30,26 +31,30 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.DataLink.DataStorage">
-    <Position X="1.25" Y="0.5" Width="3" />
+    <Position X="2.5" Y="0.5" Width="3" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\DataStorage.cs</FileName>
-      <HashCode>AACAAAAgAAAAAAEAAQACAAQAAAAAAABMAAACAAEgAAA=</HashCode>
+      <HashCode>AACAAAIgEIAAAAEAAUACAAAAAAAgAABMAAAGAAEgAAA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="AddError" Hidden="true" />
-      <Method Name="CreateRecordInfo" Hidden="true" />
       <Method Name="DataStorage" Hidden="true" />
       <Field Name="mErrorManager" Hidden="true" />
       <Field Name="mNotifyHandler" Hidden="true" />
       <Field Name="mProgressMode" Hidden="true" />
+      <Field Name="mRecordInfo" Hidden="true" />
+      <Field Name="mRecordType" Hidden="true" />
       <Method Name="Notify" Hidden="true" />
+      <Method Name="RecordHasDateFields" Hidden="true" />
+      <Method Name="RecordToValues" Hidden="true" />
+      <Method Name="ValuesToRecord" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.DataLink.FileStorage">
-    <Position X="4.5" Y="3.25" Width="2.75" />
+    <Position X="4.25" Y="3.25" Width="2.75" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\FileStorage.cs</FileName>
-      <HashCode>AAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAIBAAAABFAAAA=</HashCode>
+      <HashCode>AAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAIBAAAABBAAAA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Field Name="mEngine" Hidden="true" />
@@ -57,12 +62,13 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.DataLink.DatabaseStorage">
-    <Position X="1" Y="3.25" Width="3.25" />
+    <Position X="0.5" Y="3" Width="3.25" />
     <TypeIdentifier>
       <FileName>DataLink\Storage\DatabaseStorage.cs</FileName>
-      <HashCode>AABCEEKgEBEAABEkIABEAAAAAAAAAABMAAAAAAEEAAA=</HashCode>
+      <HashCode>BABCEECgIBEAADEkIAhEAAQAAAAAAABMAAAAAAAEAAA=</HashCode>
     </TypeIdentifier>
     <Members>
+      <Method Name="CommitTransaction" Hidden="true" />
       <Method Name="CreateCommand" Hidden="true" />
       <Method Name="CreateConnection" Hidden="true" />
       <Method Name="DatabaseStorage" Hidden="true" />
@@ -72,13 +78,14 @@
       <Method Name="GetInsertSql" Hidden="true" />
       <Method Name="GetSelectSql" Hidden="true" />
       <Method Name="InitConnection" Hidden="true" />
+      <Method Name="InitTransaction" Hidden="true" />
       <Field Name="mConn" Hidden="true" />
       <Field Name="mExecuteInBatchSize" Hidden="true" />
       <Field Name="mFillRecordCallback" Hidden="true" />
       <Field Name="mInsertSqlCallback" Hidden="true" />
-      <Field Name="mRecordInfo" Hidden="true" />
-      <Field Name="mRecordType" Hidden="true" />
       <Field Name="mSelectSql" Hidden="true" />
+      <Field Name="mTransactionMode" Hidden="true" />
+      <Method Name="RollBackTransaction" Hidden="true" />
     </Members>
   </Class>
 </ClassDiagram>

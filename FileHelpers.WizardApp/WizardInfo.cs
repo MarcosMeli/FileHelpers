@@ -32,6 +32,27 @@ namespace FileHelpers.WizardApp
             set { mClassBuilder = value; }
         }
 
+        public DelimitedClassBuilder DelimitedBuilder
+        {
+            get 
+            {
+                if (mClassBuilder is DelimitedClassBuilder)
+                    return (DelimitedClassBuilder) mClassBuilder;
+                else
+                    return null;
+            }
+        }
+
+        public FixedLengthClassBuilder FixedLengthBuilder
+        {
+            get
+            {
+                if (mClassBuilder is FixedLengthClassBuilder)
+                    return (FixedLengthClassBuilder) mClassBuilder;
+                else
+                    return null;
+            }
+        }
 
         private NetVisibility mFieldVisibility = NetVisibility.Public;
 
@@ -47,15 +68,6 @@ namespace FileHelpers.WizardApp
         {
             get { return mClassVisibility; }
             set { mClassVisibility = value; }
-        }
-
-
-        private bool mUseProperties = false;
-        
-        public bool UseProperties
-        {
-            get { return mUseProperties; }
-            set { mUseProperties = value; }
         }
 
 
