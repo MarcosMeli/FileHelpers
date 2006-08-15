@@ -63,7 +63,7 @@ namespace FileHelpers
 						align = alignAttbs[0];
 
 					res = new FixedLengthField(fi, attb.Length, align);
-					res.mAllowVariableSize = ((FixedLengthRecordAttribute)recordAttribute).mVariableRecordLength;
+					res.mFixedMode = ((FixedLengthRecordAttribute)recordAttribute).mFixedMode;
 				}
 				else if (fieldAttb is FieldDelimiterAttribute)
 				{

@@ -44,12 +44,12 @@ namespace FileHelpers
 			ExtractedInfo res;
 
 			if (from.Length < this.mLength)
-				if (mAllowVariableSize)
+				if (mFixedMode == FixedMode.AllowLessChars || mFixedMode == FixedMode.AllowVariableLength)
 					res = new ExtractedInfo(from);
 				else
-					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") don´t match the length of the field " + mFieldInfo.Name + " (" + mLength.ToString() + ")");
-			else if (mIsLast && mAllowVariableSize == false && from.Length > mLength)
-				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ") you must use the [FixedLengthRecord(true)] to allow variable length records.");
+					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has less chars than the defined for " + mFieldInfo.Name + " (" + mLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
+			else if (mIsLast && from.Length > mLength && mFixedMode != FixedMode.AllowMoreChars && mFixedMode != FixedMode.AllowVariableLength)
+				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 

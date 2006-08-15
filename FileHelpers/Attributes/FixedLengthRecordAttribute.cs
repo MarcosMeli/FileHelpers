@@ -16,18 +16,18 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class FixedLengthRecordAttribute : TypedRecordAttribute
 	{
-		internal bool mVariableRecordLength = false;
+		internal FixedMode mFixedMode = FixedMode.ExactLength;
 
-		/// <summary>Indicates that this class represents a fixed length record.</summary>
+		/// <summary>Indicates that this class represents a fixed length record. By default requieres that the records has the length equals to the sum of each field length.</summary>
 		public FixedLengthRecordAttribute()
 		{}
 
-		/// <summary>Indicates that this class represents a fixed length record.</summary>
-		/// <param name="variableRecordLength">Indicates if the engines allow the last record to contain more or less chars.</param>
-		public FixedLengthRecordAttribute(bool variableRecordLength)
+		/// <summary>Indicates that this class represents a fixed length record with the specified variable record behavior.</summary>
+		/// <param name="mode">The <see cref="FixedMode"/> used for variable length records.</param>
+		public FixedLengthRecordAttribute(FixedMode mode)
 		{
-			mVariableRecordLength = variableRecordLength;
+			mFixedMode = mode;
 		}
-
+		
 	}
 }

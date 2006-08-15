@@ -58,7 +58,7 @@ namespace FileHelpers
 			TypedRecordAttribute recordAttribute = null;
 
 			if (mRecordType.IsDefined(typeof (TypedRecordAttribute), true) == false)
-				throw new BadUsageException("The class " + mRecordType.Name + " must be marked with the DelimitedRecord or FixedLengthRecord Attribute.");
+				throw new BadUsageException("The class " + mRecordType.Name + " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
 			else
 			{
 				object[] attbs = mRecordType.GetCustomAttributes(typeof (TypedRecordAttribute), true);
@@ -78,7 +78,6 @@ namespace FileHelpers
 				mIgnoreEmptyLines = true;
 
 			mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {});
-
 
 			// Create fields
 
