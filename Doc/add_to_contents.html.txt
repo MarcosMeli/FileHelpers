@@ -175,12 +175,13 @@
 		</div>
 
 
-
         <div class="treeNode">
           <a href="downloads.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="download.gif" border=0 /> <b>Downloads</b></a>
         </div>
 
-
+        <div class="treeNode">
+          <a href="statistics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="download.gif" border=0 /> <b>Library Statistics</b></a>
+        </div>
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />

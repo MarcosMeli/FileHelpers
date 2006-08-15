@@ -180,6 +180,11 @@
 		<param name="Local" value="downloads.html">
 		</OBJECT>
 
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Library Statistics">
+		<param name="Local" value="statistics.html">
+		</OBJECT>
+		
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Library Testing">
 		<param name="Local" value="testing.html">
