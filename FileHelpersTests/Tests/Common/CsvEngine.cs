@@ -49,7 +49,7 @@ namespace FileHelpersTests.CommonTests
 			string file = Common.TestPath(@"Good\RealCsvVerticalBar2.txt");
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
-			char delimiterHdr = '|';
+			char delimiterHdr = ',';
 
 			RunTest(file, delimiter, delimiterHdr, classname);
 		}
@@ -60,10 +60,9 @@ namespace FileHelpersTests.CommonTests
 			string file = Common.TestPath(@"Good\RealCsvVerticalBar2.txt");
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
-			char delimiterHdr = '|';
 
-			CsvEngine engine = new CsvEngine(file, delimiter, delimiterHdr, classname);
-			CsvEngine engine2 = new CsvEngine(file, delimiter, delimiterHdr, classname);
+			CsvEngine engine = new CsvEngine(classname, delimiter, file);
+			CsvEngine engine2 = new CsvEngine(classname, delimiter, file);
 
 		}
 
@@ -74,7 +73,9 @@ namespace FileHelpersTests.CommonTests
 
 		private void RunTest(string file, char delimiter, char delimiterHdr, string classname)
 		{
-			CsvEngine engine = new CsvEngine(file, delimiter, delimiterHdr, classname);
+			CsvOptions options = new CsvOptions(classname, delimiter, file);
+			options.HeaderDelimiter = delimiterHdr;
+			CsvEngine engine = new CsvEngine(options);
 	
 			Assert.AreEqual(classname, engine.RecordType.Name);
 	
@@ -92,12 +93,25 @@ namespace FileHelpersTests.CommonTests
 		{
 			try
 			{
-				CsvEngine engine = new CsvEngine(Common.TestPath(@"Good\RealCsvVerticalBar1.txt"), '|', "Ops, somerrors");
+				CsvEngine engine = new CsvEngine("Ops, somerrors", '|', Common.TestPath(@"Good\RealCsvVerticalBar1.txt"));
 			}
 			catch(RunTimeCompilationException e)
 			{
 				Assert.AreEqual(2, e.CompilerErrors.Count);
 			}
+		}
+
+		[Test]
+		public void ReadWithCommon()
+		{
+			string file = Common.TestPath(@"Good\RealCsvComma1.txt");
+			string classname = "CustomerComma";
+			char delimiter = ',';
+
+			DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter);
+			Assert.AreEqual(20, dt.Rows.Count);
+
+			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
 		}
 
 	}

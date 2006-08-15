@@ -8,7 +8,7 @@
 
 namespace FileHelpers
 {
-	/// <summary>Indicates the behavior when variable length records are found in a [<see cref="FixedLengthRecord"/>]. (Note: nothing in common with [FieldOptional])</summary>
+	/// <summary>Indicates the behavior when variable length records are found in a [<see cref="FixedLengthRecordAttribute"/>]. (Note: nothing in common with [FieldOptional])</summary>
 	public enum FixedMode
 	{
 		/// <summary>The records must have the length equals to the sum of each field length.</summary>

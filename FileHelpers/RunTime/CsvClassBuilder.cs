@@ -2,37 +2,51 @@ using System;
 
 namespace FileHelpers.RunTime
 {
-	/// <summary>Used to create classes that maps to CSV records (can be quoted, multipleline quoted, etc).</summary>
+	/// <summary>Used to create classes that maps to CSV records (can be quoted, multiplelined quoted, etc).</summary>
 	public sealed class CsvClassBuilder: DelimitedClassBuilder
 	{
-
-		/// <summary>Creates a new DelimitedClassBuilder.</summary>
-		/// <param name="className">The valid class name.</param>
-		public CsvClassBuilder(string className): this(className, ",")
-		{}
-
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
 		/// <param name="className">The valid class name.</param>
 		/// <param name="delimiter">The delimiter for that class.</param>
-		public CsvClassBuilder(string className, string delimiter): this(className, delimiter, 0)
-		{}
-
-		/// <summary>Creates a new DelimitedClassBuilder.</summary>
-		/// <param name="className">The valid class name.</param>
-		/// <param name="delimiter">The delimiter for that class.</param>
-		/// <param name="numberOfFields">The number of fields in each record.</param>
-		public CsvClassBuilder(string className, string delimiter, int numberOfFields): this(className, delimiter,  numberOfFields, "Field")
+		/// <param name="sampleFile">A sample file from where to read the field names and number</param>
+		public CsvClassBuilder(string className, char delimiter, string sampleFile): this(new CsvOptions(className, delimiter, sampleFile))
 		{}
 
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
 		/// <param name="className">The valid class name.</param>
 		/// <param name="delimiter">The delimiter for that class.</param>
 		/// <param name="numberOfFields">The number of fields in each record.</param>
-		/// <param name="fieldPrefix">The prefix for the automatic created fields.</param>
-		public CsvClassBuilder(string className, string delimiter, int numberOfFields, string fieldPrefix): base(className, delimiter)
+		public CsvClassBuilder(string className, char delimiter, int numberOfFields): this(new CsvOptions(className, delimiter, numberOfFields))
+		{}
+
+		/// <summary>Creates a new DelimitedClassBuilder.</summary>
+		/// <param name="options">The specifications for the Csv file.</param>
+		public CsvClassBuilder(CsvOptions options): base(options.RecordClassName, options.Delimiter.ToString())
 		{
 			IgnoreFirstLines = 1;
-			AddFields(numberOfFields, fieldPrefix);
+
+			if (options.SampleFileName != string.Empty)
+			{
+				string firstLine = CommonEngine.RawReadFirstLines(options.SampleFileName, 1);
+
+				if (options.HeaderLines > 0)
+					foreach (string header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
+						AddField(header.Replace(" ", "_").Replace(".", "_").Replace(",", "_"));
+				else
+				{
+					int fieldsNbr = firstLine.Split(options.Delimiter).Length;
+					for(int i = 0; i < fieldsNbr; i++)
+						AddField(options.FieldsPrefix + i.ToString());
+				}
+
+			}
+			else if (options.NumberOfFields > 0)
+			{
+				AddFields(options.NumberOfFields, options.FieldsPrefix);
+			}
+			else
+				throw new BadUsageException("You must provide a SampleFileName or a NumberOfFields to parse a genric CSV file.");
+
 		}
 
 
