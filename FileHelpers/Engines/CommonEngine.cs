@@ -381,13 +381,15 @@ namespace FileHelpers
 			engine.WriteFile(destFile, res);
 			return res;
 		}	
-		
+
+
+						
 		/// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
 		public static void DataTableToCsv(DataTable dt, string filename)
 		{
-			DataTableToCsv(dt, filename, ",");
+			CsvEngine.DataTableToCsv(dt, filename);
 		}
 
 
@@ -397,35 +399,42 @@ namespace FileHelpers
 		/// <param name="delimiter">The delimiter used to write the file</param>
 		public static void DataTableToCsv(DataTable dt, string filename, string delimiter)
 		{
-			using (StreamWriter fs = new StreamWriter(filename, false))
-			{
-				foreach (DataRow dr in dt.Rows)
-				{
-					object[] fields = dr.ItemArray;
-					
-					for(int i = 0; i < fields.Length; i++)
-					{
-						if (i > 0)
-							fs.Write(delimiter);
-						
-						fs.Write(ObjectString(fields[i]));
-					}
-					fs.Write(StringHelper.NewLine);
-				}
-				fs.Close();
-			}
+			CsvEngine.DataTableToCsv(dt, filename, delimiter);
 		}
-
-
-		private static string ObjectString(object o)
-		{
-			if (o == null)
-				return string.Empty;
-			else
-				return o.ToString();
-		}
-
 	
+
+
+		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+		/// <param name="classname">The name of the record class</param>
+		/// <param name="delimiter">The delimiter for each field</param>
+		/// <param name="filename">The file to read.</param>
+		/// <returns>The contents of the file as a DataTable</returns>
+		public static DataTable CsvToDataTable(string filename, string classname, char delimiter)
+		{
+			return CsvEngine.CsvToDataTable(filename, classname, delimiter);
+		}
+
+
+		/// <summary>Reads a Csv File and return their contents as DataTable</summary>
+		/// <param name="classname">The name of the record class</param>
+		/// <param name="delimiter">The delimiter for each field</param>
+		/// <param name="filename">The file to read.</param>
+		/// <param name="hasHeader">Indicates if the file contains a header with the field names.</param>
+		/// <returns>The contents of the file as a DataTable</returns>
+		public static DataTable CsvToDataTable(string filename, string classname, char delimiter, bool hasHeader)
+		{
+			return CsvEngine.CsvToDataTable(filename, classname, delimiter, hasHeader);
+		}
+
+		/// <summary>Reads a Csv File and return their contents as DataTable</summary>
+		/// <param name="filename">The file to read.</param>
+		/// <param name="options">The options used to create the record mapping class.</param>
+		/// <returns>The contents of the file as a DataTable</returns>
+		public static DataTable CsvToDataTable(string filename, CsvOptions options)
+		{
+			return CsvEngine.CsvToDataTable(filename, options);
+		}
+
 		#region "  RemoveDuplicateRecords  "
 
 		/// <summary>
