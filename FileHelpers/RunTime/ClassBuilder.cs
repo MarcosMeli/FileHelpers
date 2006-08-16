@@ -220,6 +220,18 @@ namespace FileHelpers.RunTime
 			return ClassFromString(classDef, className, lang);
 		}
 
+
+		/// <summary>
+		/// Create a class from a Xml file generated with the Wizard or saved using the SaveToXml Method.
+		/// </summary>
+		/// <param name="filename">The filename with the Xml definition.</param>
+		/// <returns>The compiled class.</returns>
+		public static Type ClassFromXmlFile(string filename)
+		{
+			ClassBuilder cb = LoadFromXml(filename);
+			return cb.CreateRecordClass();
+		}
+
 		/// <summary>
 		/// Encript the class source code and write it to a file.
 		/// </summary>
@@ -233,6 +245,7 @@ namespace FileHelpers.RunTime
 			writer.Write(classSource);
 			writer.Close();
 		}
+
 
 		#endregion
 

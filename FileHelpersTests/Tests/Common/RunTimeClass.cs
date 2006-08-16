@@ -376,9 +376,9 @@ namespace FileHelpersTests.CommonTests
 			cb.LastField.AlignChar = '0';
 			cb.LastField.TrimMode = TrimMode.Both;
 			
-			cb.SaveToXml(@"c:\runtime.xml");
+			cb.SaveToXml(@"runtime.xml");
 
-			FixedLengthClassBuilder loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
+			FixedLengthClassBuilder loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
 
 			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
 			Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
@@ -393,6 +393,35 @@ namespace FileHelpersTests.CommonTests
 			
 			Assert.AreEqual(AlignMode.Right, loaded.FieldByIndex(1).AlignMode);
 			Assert.AreEqual(' ', loaded.FieldByIndex(1).AlignChar);
+		}
+
+		[Test]
+		public void SaveLoadXmlFileFixed2()
+		{
+			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+
+			cb.AddField("Field1", 8, typeof(DateTime));
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			cb.LastField.FieldNullValue = DateTime.Now;
+			
+			cb.AddField("FieldSecond", 3, typeof(string));
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = ' ';
+			
+			cb.AddField("Field33", 3, typeof(int));
+			 
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = '0';
+			cb.LastField.TrimMode = TrimMode.Both;
+			
+			cb.SaveToXml(@"runtime.xml");
+
+			engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+
+			Assert.AreEqual("Customers", engine.RecordType.Name);
+			Assert.AreEqual(3, engine.RecordType.GetFields().Length);
+			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
 		}
 
 		[Test]
@@ -413,9 +442,9 @@ namespace FileHelpersTests.CommonTests
 
 			cb.AddField("Field333", typeof(int));
 
-			cb.SaveToXml(@"c:\runtime.xml");
+			cb.SaveToXml(@"runtime.xml");
 			
-			DelimitedClassBuilder loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
+			DelimitedClassBuilder loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
 			
 			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
 			Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
@@ -430,6 +459,34 @@ namespace FileHelpersTests.CommonTests
 			
 			Assert.AreEqual('"', loaded.FieldByIndex(1).QuoteChar);
 			Assert.AreEqual(true, loaded.FieldByIndex(1).FieldQuoted);
+		}
+
+		
+		[Test]
+		public void SaveLoadXmlFileDelimited2()
+		{
+			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			cb.IgnoreFirstLines = 1;
+			cb.IgnoreEmptyLines = true;
+			
+			cb.AddField("Field1", typeof(DateTime));
+			cb.LastField.TrimMode = TrimMode.Both;
+			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+			cb.LastField.FieldNullValue = DateTime.Today;
+
+			cb.AddField("FieldTwo", typeof(string));
+			cb.LastField.FieldQuoted = true;
+			cb.LastField.QuoteChar = '"';
+
+			cb.AddField("Field333", typeof(int));
+
+			cb.SaveToXml(@"runtime.xml");
+			
+			engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+
+			Assert.AreEqual("Customers", engine.RecordType.Name);
+			Assert.AreEqual(3, engine.RecordType.GetFields().Length);
+			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
 		}
 
 	}

@@ -46,7 +46,7 @@ namespace FileHelpers
 		/// <summary>Create a new instance of the MultiRecordEngine</summary>
 		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
 		/// <param name="recordSelector">The selector that indicates to the engine what Type to use in each line.</param>
-		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(recordTypes[0])
+		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(GetFirstType(recordTypes))
 		{
 			ErrorHelper.CheckNullParam(recordSelector, "recordSelector");
 
@@ -377,5 +377,15 @@ namespace FileHelpers
 		}
 
 		#endregion
+
+		private static Type GetFirstType(Type[] types)
+		{
+			if (types == null)
+				throw new ArgumentNullException("A null Type[] is not valid for the MultiRecordEngine.");
+			else if (types.Length == 0)
+				throw new ArgumentException("An empty Type[] is not valid for the MultiRecordEngine.");
+			else
+				return types[0];
+		}
 	}
 }

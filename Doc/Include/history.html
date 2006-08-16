@@ -434,15 +434,16 @@
 
 					 <a name="v1_6_0" /><STRONG>1.6.0</STRONG> (Ago-2006)
                                         <br />
-                                        &nbsp;&nbsp; Yes, the <a href="runtime_classes.html">RunTime Records</a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!<br />
+                                        &nbsp;&nbsp; The <a href="runtime_classes.html"><b>RunTime Records</b></a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!<br />
                                         I think that this version is something like the 2.0 version because the RunTime Records were one of the most requested features and were one of the most hard to implement features,
                                         A lot of effort was put in the usability and in a clear API, if you have any suggestion please post it in the forums =)<br />
-                                        Other important news are the CsvReader (for generic Csv files), the FileDIffEngine, the MultiRecordEngine,..
-					 <b>
+                                        Other important news are the CsvEngine (for generic Csv files), the FileDiffEngine, the MultiRecordEngine,..
+<br />
+					 
                          <br />
-                         Breaking changes:</b>
+                         <b>Breaking changes:</b>
 							<UL>
-                                <li>MOD: <b>Now the FixedLengthRecords must contain the exact number of chars</b>. You can pass an extra parameter in the FixedLengthRecord attribute to allow the pass flexible behavior.</li>
+                                <li>MOD: <b>Now the FixedLengthRecords must contain the exact number of chars</b>. You can pass an extra parameter in the [FixedLengthRecord] attribute to allow a different behavior.</li>
                                 <li>MOD: CommonActions renamed to CommonSelector in the MasterDetailEngine</li>
 							</UL>
                                         <p>
@@ -459,27 +460,31 @@
                              </li>
                              <li>ADD: Generic Csv files are now supported (for example Excel generated ones)<br />
 Was a hard work but worth it because it can be used with any engine. <br />
-In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from  Sébastien Lorion for standalone CSV processing.</li>
+In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from <b>Sébastien Lorion</b> for standalone CSV processing.</li>
+							 <li>ADD: <b>Event support</b> !! from this version the FileHelperEngine has 4 events 2 for read operations and 2 for write that are throw before and after process each record.
                              <li>MOD: The decimal, double, and single converters now recieve an string param to set the decimal delimiter (by default is ".")</li>
                              <li>MOD: Improved docs in the SDK, the general help and examples. (Thanks Antoine)</li>
                              <li>ADD: FileDiffEngine to compare files with the same record layout.</li>
                              <li>ADD: MultiRecordEngine to read files with different record layouts.</li>
-                             <li>ADD: DataTableToCsv, RecordsToDataTable, RemoveDuplicateRecords and other methods to the CommonEngine</li>
+                             <li>ADD: DataTableToCsv, CsvToDataTable, RecordsToDataTable, RemoveDuplicateRecords and other methods to the CommonEngine</li>
                              <li>ADD: FixedMode Enum for fixed length records, used to provide better validations in Fixed Length Files</li>
                              <lI>ADD: Template support in ExcelStorage</li>
+                             
                          </ul>
                              <p></p>
                         <b> Minor changes:</b>
 							<UL>
-							 <li>FIX: FieldDelimiter don´t work very well after the refactor of the previous version.<li>
+							 <li>FIX: FieldDelimiter don´t work very well after the refactor of the previous version.</li>
 							 <li>FIX: Bug when copy or saving to file in the Wizard</li>
                              <li>DEL: more and more properties of the internal classes, this enhance both the performance and the dll size.</li>
                              <li>MOD: A lot of internal refactor and enhaces</li>
                              <li>MOD: ExcelStorage now return the cells values when using ErrorMode.SaveAndContinue</li>
+                             <li>ADD: <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">These excellents <b>VB.NET - C# comparison cheat sheets</b></a></li> (to avoid translate the examples)
                              <li>ADD: RecordsToDataTable in the CommonEngine</li>
                              <li>ADD: A lot of options to CommonSelector like: MasterIfBegins, MasterIfEnds,  MasterIfEnclosed and the details counterparts</li>
                              <li>ADD: BooleanConverter can recieve two arguments for the true or false values</li>
                              <li>ADD: New constructor to the SqlServerStorage to direct pass the ConnectionString. Thanks to Anatoly Kleyman</li>
+                             <li>ADD: Again a lot of new <A href="testing.html">NUnit tests</a> near the 320 (wow I never think in write so much)
                             </ul>
                                 <p></p>
 

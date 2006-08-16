@@ -53,12 +53,17 @@ namespace FileHelpersTests
 		
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
-		[Ignore("Not implemented, at this time throws IndexOutOfRange.")]
 		public void NoTypes()
 		{
 			engine = new MultiRecordEngine(new Type[] {}, null);
 		}
 
+		[Test]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void NullTypeArray()
+		{
+			engine = new MultiRecordEngine(null, null);
+		}
 				
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]

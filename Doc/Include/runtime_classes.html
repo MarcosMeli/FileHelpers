@@ -52,15 +52,24 @@ bgColor=white leftMargin=0 topMargin=0>
 <p>The most importat is that you have a lot of ways to create or load your record class at runtime:</p>
 
 <ul>
-<li>The best of all: using the <b>ClassBuilder</b></li>
+<li>The best of all: using the <b>ClassBuilder</b> !!</li>
+<li>From an XML file generated with the <a href="wizard.html">Wizard</a> or saved with the SaveXml method of the ClassBuilder</li>
 <li>From a string with the source of the class</li>
 <li>From a file with the source of the class</li>
 <li>From a encripted file with the source of the class</li>
-<li>From a assebly loaded at runtime that contains the class</li>
+<li>From a assebly loaded at runtime that contains the class (next version)</li>
 </ul>
 
 <blockquote>
 And now some examples of the basic methods:
+<br /><br />
+<table width="500" align="center" class="note">
+	<td valign="middle" class="note">
+        Note: Your need to import the namespace <b>FileHelpers.RunTime</b>
+	</td>
+	</tr>
+</table>
+
 
 </blockquote>
 
@@ -107,6 +116,21 @@ And now some examples of the basic methods:
 		DataTable dt = engine.ReadFileAsDT("testCustomers.txt");
 		
 </textarea>
+</blockquote>
+
+<h2>Form an Xml File generated with the Wizard or saved from a ClassBuilder</h2>
+<blockquote>
+<textarea name="code" class="c#">
+		
+		ClassBuilder cd = ClassBuilder.LoadXml("Customers.fhw");
+		engine = new FileHelperEngine(cb.CreateRecordClass());
+
+		// Or
+		engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("Customers.fhw"));
+
+		// Use it
+		DataTable dt = engine.ReadFileAsDT("customers.txt");
+	</textarea>
 </blockquote>
 
 <h2>Form a string with the source of the record class.</h2>
