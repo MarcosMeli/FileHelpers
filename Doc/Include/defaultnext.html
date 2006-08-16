@@ -1,0 +1,213 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+		<LINK href="/favicon.ico" rel="SHORTCUT ICON">
+			<LINK href="global.css" type="text/css" rel="stylesheet">
+				<meta NAME="Description" content="FileHelpers are an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources.">
+				<meta name="Author" content="Marcos Meli">
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+				<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+				<style type="text/css"> 
+	--></style>
+	</HEAD>
+	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
+		topMargin="0">
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" height="51" valign=top nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9"><img src="giftsmall.gif" width="23" height="24" border="0" alt="Amazon Wish List"></a> <a href="http://filehelpers.sourceforge.net/forums/"><img src="forums.gif" width="24" height="24" border="0" alt="Browse the Forums"></a> <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1"><img src="rss2.png" border="0" alt="News RSS feed."></a>
+&nbsp;</td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="http://filehelpers.sourceforge.net/forums/" class="bar_link">Browse Forums</a> - <a  href="examples.html" class="bar_link">Examples</a> - 
+                            
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+		<table width="100%" cellpadding="5" cellspacing="5">
+			<tr>
+				<td><div id="contentdiv">
+						<h2>FileHelpers v 1.6.0 &nbsp;&nbsp;<span style="font-size: 9pt">(</span><a href="history.html#v1_6_0"><span
+                            style="color: #0066ff"><span style="font-size: 9pt">Browse <span>History</span></span></span></a><span style="font-size: 9pt">)</span></h2>
+						<blockquote>
+                            <table border=0>
+                            <tr><td>
+							<p>The FileHelpers are an <strong>easy to use</strong> library to <strong>import/export</strong>
+                                data from <strong>fixed 
+								length or delimited records</strong> in files, strings or
+                                streams.</p><p>
+								If you want to start using the library go directly to the <a href="quick_start.html">
+									<b>Quick Start Guide</b>.</a></p>
+                            <p>
+                                The library has a set of Automatic Converters and can be extended with Custom Converters.
+                            </p>
+                            <p>
+                                Also has support for import/export data from differents data storages like Excel,
+                                Access, SqlServer, etc.</p>
+</td><td width="400" >						<script language="JavaScript" src="http://itde.vccs.edu/rss2js/feed2js.php?src=http%3A%2F%2Ffilehelpers.sourceforge.net%2Fforums%2Frss.php&chan=n&num=6&desc=0&date=n&targ=y" type="text/javascript"></script>
+
+<noscript>
+<a href="http://itde.vccs.edu/rss2js/feed2js.php?src=http%3A%2F%2Ffilehelpers.sourceforge.net%2Fforums%2Frss.php&chan=n&num=10&desc=0&date=n&targ=y&html=y">View RSS feed</a>
+</noscript>
+</td></tr></table>
+
+						</blockquote>
+						<h2>Basic Uses of the Library</h2>
+						<blockquote>
+							<p><img src="use_case1.png" width="598" height="300"></p>
+							<p><img src="use_case2.png" width="598" height="300"></p>
+						</blockquote>
+						<h2>Who needs the File Helpers Library ?
+						</h2>
+						<blockquote>
+							<p>In almost every project there is a need to read/write data from/to a file of a 
+								specified format.</p>
+							<p>
+								For example for log parsing, data warehouse and OLAP applications, 
+								communication between systems, file format transformations (for example from a 
+								fixed length to a CSV file).</p>
+							<p>
+								This library aims to provide an easy and reliable way to accomplish this task.</p>
+						</blockquote>
+						<h2>Main Features</h2>
+						<blockquote>
+							<p><b>Easy to use:</b> The FileHelpers Lib is straight forward to learn and use. 
+								(see <a href="example_easy.html">EasyExample</a>)
+							</p>
+							<p><b>Auto Converters:</b> The library has a set of converters for the basic types 
+								and can be easy extended to provide custom converters. (see <a href="FileHelpers.ConverterBase.html">
+                                    ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)</p>
+                            <p>
+                                <strong>Master-Detail: </strong>
+                                <img src="new.gif" width="31" height="12">
+                                Yu can read and write records with a master/detail pattern. (see <a href="example_masterdetail2.html">
+                                    Example1</a> and <a href="example_masterdetail.html">Example2</a>)</p>
+                            <p>
+                                <strong>Ms Excel Storage:&nbsp;</strong> Are 
+								a way to extract / insert records between any source and an excel file. (see <a href="FileHelpers.DataLink.ExcelStorage.html">
+                                    ExcelDataStorage</a> and <a href="example_exceldatalink.html">ExcelDataLinkExample</a>)</p>
+							<p><b>DataLinks:</b> Are a way to extract / insert records between a database and a 
+								file. (see <a href="FileHelpers.DataLink.DataStorage.html">DataStorage</a> and
+								<a href="example_datalink.html">FileDataLinkExample</a>)</p>
+							<P><STRONG>GenericDataLink:</STRONG> &nbsp;Now 
+								you can&nbsp;to copy records&nbsp;between
+                                two Data Storages (see&nbsp;<A href="FileHelpers.DataLink.GenericDataLink.html">GenericDataLink</A>
+								and <A href="FileHelpers.DataLink.DataStorage.html">DataStorage</A>)</P>
+							<p><b>Asynchronous Mode: </b>You can use the library to read line by line and not 
+								the whole file. (see <a href="FileHelpers.FileHelperAsyncEngine.BeginReadFile.html">Async 
+									Methods</a>)
+							</p>
+							<p><b>.NET Compact Framework Support <strong></strong></b>From 
+								the version 1.1 you can use the FileHelpers library for you PocketPC and 
+								WindowsCE developments. (thanks Pierre)</p>
+							<p><b>File Transform Engine:
+                                <img src="new.gif" width="31" height="12"></b> to convert files in one format to
+                                another (for example a file with CSV to a FixedLength record format) (<a href="example_transform.html">check
+                                    the example</a>)</p>
+                            <p>
+                                <strong>Progress Notification:</strong>
+                                <img src="new.gif" width="31" height="12">
+                                to get notified of the progress in each operation in the library (<a href="example_progress.html">check
+                                    the example</a>)</p>
+                            <p>
+                                <strong>.NET 2.0 Generics:</strong>
+                                <img src="new.gif" width="31" height="12">
+                                the cast less and strong typed version of the engines (<a href="generics.html">check
+                                    the example</a>)</p>
+						</blockquote>
+						<h2>Others Features</h2>
+						<blockquote>
+							<p><b>Files, Stream and String Support: </b>You can use the library to read/write any stream or string, not only files. (see<a href="FileHelpers.FileHelperEngineMethods.html"> FileHelperEngine</a>)</p>
+							<p><b>Different Error Behaviors: </b>You can set the behavior of the library when 
+								an error is found (throw and exception, ignore, save and continue, etc) (see the <a
+                                    href="example_errorhandling.html">examples</a>)</p>
+							<p>
+								<strong>Quoted String Support</strong>
+								It allows to indicates that the field must be read and written as&nbsp;Quoted 
+								String, like Excel CSV. (see<a href="FileHelpers.FieldQuotedAttribute.html"> FieldQuotedAttribute
+								</a>)&nbsp;
+							</p>
+							<p><b>Encoding Aware : </b>You can define the encoding used to read and write files 
+								or streams. (see<a href="FileHelpers.EngineBase.Encoding.html"> BaseEngine.Encoding</a>)
+							</p>
+							<p><b>NullValues :</b> The library identifies the null values in the files and 
+								assign an adequate value. (see <a href="FileHelpers.FieldNullValueAttribute.html">FieldNullValueAttribute</a>)
+							</p>
+							<p><b>Good Documentation :</b> The library is fully documented, al least is the 
+								intention =) and with a lot of <a href="examples.html">Examples of Use</a>.</p>
+							<p><b>Align and Trimming:</b> You can set the processing mode of the in/out strings 
+								with a lot of attributes like the <a href="FileHelpers.FieldAlignAttribute.html">FieldAlignAttribute</a>
+								and the <a href="FileHelpers.FieldTrimAttribute.html">FieldTrimAttribute</a>.</p>
+						</blockquote>
+						<h2>Licence (LGPL)</h2>
+						<blockquote>
+							<p>FileHelpers Library is @Copyright 2005-2006 to <a href="http://www.MarcosMeli.com.ar">Marcos 
+									Meli</a> but it's source code and the binaries are <strong>free for commercial 
+									and non commercial use</strong>.</p>
+						</blockquote>
+						<h2>References</h2>
+						<blockquote>
+							<p>One of the best references that makes the work of programming this library more 
+								easy are the <a href="http://msdn.microsoft.com/netframework/programming/classlibraries/">
+									Designing .NET Class Libraries</a>, a complete guide for design and 
+								programming of libraries and controls using the techniques of the creators and 
+								gurus of .NET.
+							</p>
+						</blockquote>
+						<h2>Contact and Ideas</h2>
+						<blockquote>
+							<p>
+                                The main site of contact of the library are the <a href="http://filehelpers.sourceforge.net/forums/">
+                                    FileHelpers Forums</a>
+                            </p>
+                            <p>
+                                If you find that there is a feature that I must include, or you have a new idea 
+								(for the API, Source Code or Examples), only let me know, entering the forums or
+                                sending an e-mail to <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">
+									marcosdotnet[at]yahoo.com.ar</a></p>
+						</blockquote>
+						<h2>See also
+						</h2>
+						<blockquote>
+							<p></p>
+							<a href="quick_start.html">Quick Start Guide</a> -<a href="attributes.html"> Attributes 
+								List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of 
+								Use</a> - <a href="credits.html">Contacts &amp; Credits </a></blockquote>
+						<hr align="left">
+						<div>
+							<table width="100%">
+								<tr>
+									<td class="SmallText">
+										Copyright © 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
+										<br>
+										Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">
+											marcosdotnet[at]yahoo.com.ar</a><br>
+										Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers 
+											Dev Home</a>
+									</td>
+									<td valign="middle">  <a href="http://filehelpers.sourceforge.net/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /> </a> 
+
+									</td>
+<td><a href="http://filehelpers.sourceforge.net/forums/"><img src="forumsb.gif" width="189" height="40" border="0" alt="Browse the Forums"></a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+                    <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
+                    </td>
+		</table>
+	</BODY>
+</HTML>
