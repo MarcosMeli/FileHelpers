@@ -53,11 +53,11 @@ bgColor=white leftMargin=0 topMargin=0>
 </table>
 <br />
     <h2>
-        Quick Start for </b>Delimited</b> files (easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
+        Quick Start for Fixed Length files(easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
     </h2>
     
     <blockquote>
-    Or check the <a href="quick_start_fixed.html">Fixed Length File Example</a><br /><br />
+    Or check the <a href="quick_start.html">Delimited File Example</a><br /><br />
     </blockquote>
 
     <table width="100%"  border="0">
@@ -71,14 +71,14 @@ bgColor=white leftMargin=0 topMargin=0>
       <tr>
         <td height="163" valign="top"><a name="two"></a><img src="2.png" width="16" height="16" align="left"></td>
         <td valign="top">
-          <p> Next you need to define a class that maps to the record in the source/detination file.<br>
-            For this example we use a file with this format delimited by a ',':</p>
+          <p>Next you need to define a class that maps to the record in the source/detination file.<br>
+            For this example we use a file with this format:</p>
           <blockquote>
 <textarea name="code" class="c#:nogutter:nocontrols">
-1732,Juan Perez,435.00,11-05-2002
-554,Pedro Gomez,12342.30,06-02-2004
-112,Ramiro Politti,0.00,01-02-2000
-924,Pablo Ramirez,3321.30,24-11-2002
+01732Juan Perez           004350011052002
+00554Pedro Gomez          123423006022004
+00112Ramiro Politti       000000001022000
+00924Pablo Ramirez        033213024112002
 ...............    
 </textarea>
           </blockquote></td>
@@ -88,37 +88,84 @@ bgColor=white leftMargin=0 topMargin=0>
         <td valign="top"><p>So you must write this class:</p>
           <blockquote> <b>C#</b>
 <textarea name="code" class="c#">
-	[DelimitedRecord(&quot;,")]
-	public class Customer
+	[FixedLengthRecord()]
+	public class Customer2
 	{
+		[FieldFixedLength(5)]
 		public int CustId;
 		
+		[FieldFixedLength(20)]
+		[FieldTrim(TrimMode.Right)]
 		public string Name;
 
+		[FieldFixedLength(8)]
+		[FieldConverter(typeof(TwoDecimalConverter))]
 		public decimal Balance;
 
-		[FieldConverter(ConverterKind.Date, &quot;dd-MM-yyyy&quot;)]
+		[FieldFixedLength(8)]
+		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
 		public DateTime AddedDate;
 
-	}
+        // A custom converter
+		internal class TwoDecimalConverter: ConverterBase
+		{
+			public override object StringToField(string from)
+			{
+				decimal res = Convert.ToDecimal(from);
+				return res / 100;
+			}
+	
+			public override string FieldToString(object from)
+			{
+				decimal d = (decimal) from;
+				return Math.Round(d * 100).ToString();
+			}
+		
+		}
+    }
+
 
 </textarea>
           </blockquote>
                     <blockquote> <b>VB.NET</b>
 <textarea name="code" class="vb">
-&lt;DelimitedRecord(",")&gt; _
-Public Class Customer
+&lt;FixedLengthRecord()> _
+Public Class Customer2
 
+    &lt;FieldFixedLength(5)> _
     Public CustId As Integer
-    
+
+    &lt;FieldFixedLength(20), _
+     FieldTrimAttribute(TrimMode.Right)> _
     Public Name As String
-    
+
+    &lt;FieldFixedLength(8), _
+     FieldConverter(GetType(TwoDecimalConverter))> _
     Public Balance As Decimal
-    
-    &lt;FieldConverter(ConverterKind.Date, "dd-MM-yyyy")&gt; _
+
+    &lt;FieldFixedLength(8), _
+    FieldConverter(ConverterKind.Date, "ddMMyyyy")> _
     Public AddedDate As DateTime
-  
+
+    '-> Custom Converter
+	Friend Class TwoDecimalConverter
+		Inherits ConverterBase
+	
+		Public Overrides Function StringToField(ByVal from As String) As Object
+			Dim res As Decimal = Convert.ToDecimal(from)
+			Return res / 100
+		End Function
+	
+		Public Overrides Function FieldToString(ByVal from As Object) As String
+			Dim d As Decimal = CType(from, Decimal)
+			Return Math.Round(d * 100).ToString()
+		End Function
+	
+	End Class
+
 End Class
+
+
 </textarea>
           </blockquote>
           </td>

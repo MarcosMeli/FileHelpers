@@ -2,7 +2,12 @@
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Guide</a>
+          <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Delimited</a>
+        </div>
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="quick_start_fixed.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Fixed Length</a>
         </div>
 
         <div class="treeNode">

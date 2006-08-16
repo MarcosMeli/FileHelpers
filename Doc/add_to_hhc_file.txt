@@ -1,7 +1,12 @@
 
     <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Quick Start Guide">
+		<param name="Name" value="Quick Start Delimited">
 		<param name="Local" value="quick_start.html">
+		</OBJECT>
+
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Quick Start Fixed Length">
+		<param name="Local" value="quick_start_fixed.html">
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
