@@ -55,7 +55,6 @@ namespace FileHelpersTests.CommonTests
 
 
 
-
 		
 		[Test]
 		public void WriteFileNotifyPercent()
