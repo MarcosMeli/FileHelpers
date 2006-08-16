@@ -35,6 +35,11 @@
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="How to Help">
+		<param name="Local" value="howhelp.html">
+		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Examples">
 		<param name="Local" value="examples.html">
 		</OBJECT>
@@ -189,6 +194,7 @@
 		<param name="Name" value="Library Testing">
 		<param name="Local" value="testing.html">
 		</OBJECT>
+
 
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="History">

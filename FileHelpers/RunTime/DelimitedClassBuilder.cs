@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -14,6 +15,23 @@ namespace FileHelpers.RunTime
 			set { mDelimiter = value; }
 		}
 
+		
+		
+		/// <summary>Return the field at the specified index.</summary>
+		/// <param name="index">The index of the field.</param>
+		/// <returns>The field at the specified index.</returns>
+		public new DelimitedFieldBuilder FieldByIndex(int index)
+		{
+			return (DelimitedFieldBuilder) base.FieldByIndex(index);
+		}
+
+		/// <summary>Returns the current fields of the class.</summary>
+		public new DelimitedFieldBuilder[] Fields
+		{
+			get { return (DelimitedFieldBuilder[]) mFields.ToArray(typeof(DelimitedFieldBuilder)); }
+		}
+		
+		
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
 		/// <param name="className">The valid class name.</param>
 		/// <param name="delimiter">The delimiter for that class.</param>
@@ -89,7 +107,34 @@ namespace FileHelpers.RunTime
 
 		internal override void WriteExtraElements(XmlHelper writer)
 		{
+
 		}
 
+		internal static DelimitedClassBuilder LoadXmlInternal(XmlDocument document)
+		{
+			DelimitedClassBuilder res;
+			string del = document.ChildNodes[0].Attributes[0].Value;
+			
+			string className = document.ChildNodes.Item(0).SelectNodes("/DelimitedClass/ClassName").Item(0).InnerText;
+			
+			res = new DelimitedClassBuilder(className, del);
+//			
+//			while(reader.mReader.EOF == false)
+//			{
+//				reader.ReadToNextElement();
+////				if (reader.mReader.LocalName == "IgnoreEmptyLines")
+//			}
+			
+			
+			return res;
+		}
+
+		internal override void ReadClassElements(XmlDocument document)
+		{}
+
+		internal override void ReadField(XmlNode node)
+		{
+			AddField(node.Attributes.Item(0).InnerText, node.Attributes.Item(1).InnerText).ReadField(node);
+		}
 	}
 }

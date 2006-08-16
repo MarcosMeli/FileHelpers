@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -50,6 +51,7 @@ namespace FileHelpers.RunTime
 		}
 
 
+
 		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
 		{
 			
@@ -67,7 +69,7 @@ namespace FileHelpers.RunTime
 					string quoteStr = mQuoteChar.ToString();
 					if (mQuoteChar == '"') quoteStr = "\"\"";
 
-					attbs.AddAttribute("FieldQuoted(\"" + quoteStr+ "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
+					attbs.AddAttribute("FieldQuoted(\"" + quoteStr + "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
 				}
 			}
 			
@@ -79,6 +81,27 @@ namespace FileHelpers.RunTime
 
 		internal override void WriteExtraElements(XmlHelper writer)
 		{
+			writer.WriteElement("FieldQuoted", this.FieldQuoted);
+			writer.WriteElement("QuoteChar", this.QuoteChar.ToString(), "\"");
+			writer.WriteElement("QuoteMode", this.QuoteMode.ToString(), "OptionalForRead");
+			writer.WriteElement("QuoteMultiline", this.QuoteMultiline.ToString(), "AllowForRead");
+		}
+
+		protected override void ReadFieldInternal(XmlNode node)
+		{
+			XmlNode ele;
+			
+			FieldQuoted = node["FieldQuoted"] != null;
+			
+			ele = node["QuoteChar"];
+			if (ele != null) QuoteChar = ele.InnerText[0];
+
+			ele = node["QuoteMode"];
+			if (ele != null) QuoteMode = (QuoteMode) Enum.Parse(typeof(QuoteMode), ele.InnerText);
+
+			ele = node["QuoteMultiline"];
+			if (ele != null) QuoteMultiline = (MultilineMode) Enum.Parse(typeof(MultilineMode), ele.InnerText);
+
 		}
 	}
 }

@@ -37,10 +37,39 @@ namespace FileHelpers.RunTime
 				WriteElement(element, valueStr);
 		}
 
+		public void WriteElement(string element, bool valueStr)
+		{
+			if (valueStr)
+			{
+				mWriter.WriteStartElement(element);
+				mWriter.WriteEndElement();
+			}
+		}
+
+		public void WriteAttribute(string attb, string valueStr, string defaultVal)
+		{
+			if (valueStr != defaultVal)
+				WriteAttribute(attb, valueStr);
+		}
+
+		public void WriteAttribute(string attb, string valueStr)
+		{
+			mWriter.WriteStartAttribute(attb, string.Empty);
+			mWriter.WriteString(valueStr);
+			mWriter.WriteEndAttribute();
+		}
+
 		public void EndWrite()
 		{
 			mWriter.Close();
 			mWriter = null;
+		}
+		
+		public void ReadToNextElement()
+		{
+			while(mReader.Read())
+				if (mReader.NodeType == XmlNodeType.Element)
+					return;
 		}
 
 		

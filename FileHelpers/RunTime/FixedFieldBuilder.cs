@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -68,6 +69,21 @@ namespace FileHelpers.RunTime
 
 		internal override void WriteExtraElements(XmlHelper writer)
 		{
+			writer.WriteElement("AlignMode", this.AlignMode.ToString(), "Left");
+			writer.WriteElement("AlignChar", this.AlignChar.ToString(), " ");
 		}
+
+		protected override void ReadFieldInternal(XmlNode node)
+		{
+			XmlNode ele;
+			
+			ele = node["AlignChar"];
+			if (ele != null) AlignChar = ele.InnerText[0];
+
+			ele = node["AlignMode"];
+			if (ele != null) AlignMode = (AlignMode) Enum.Parse(typeof(AlignMode), ele.InnerText);
+		}
+		
+		
 	}
 }

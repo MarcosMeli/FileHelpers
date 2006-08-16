@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -257,10 +258,12 @@ namespace FileHelpers.RunTime
 			writer.mWriter.WriteEndAttribute();
 			WriteHeaderAttributes(writer);
 
+			Converter.WriteXml(writer);
+
 			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
-			writer.WriteElement("FieldIgnored", this.FieldIgnored.ToString(), "False");
-			writer.WriteElement("FieldOptional", this.FieldOptional.ToString(), "False");
-			writer.WriteElement("FieldInNewLine", this.FieldInNewLine.ToString(), "False");
+			writer.WriteElement("FieldIgnored", this.FieldIgnored);
+			writer.WriteElement("FieldOptional", this.FieldOptional);
+			writer.WriteElement("FieldInNewLine", this.FieldInNewLine);
 			writer.WriteElement("TrimChars", this.TrimChars, " \t");
 			writer.WriteElement("TrimMode", this.TrimMode.ToString(), "None");
 
@@ -283,6 +286,35 @@ namespace FileHelpers.RunTime
 
 		internal abstract void WriteHeaderAttributes(XmlHelper writer);
 		internal abstract void WriteExtraElements(XmlHelper writer);
+
+		internal void ReadField(XmlNode node)
+		{
+			XmlNode ele;
+			
+			ele = node["Visibility"];
+			if (ele != null) Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), ele.InnerText);
+
+			FieldIgnored = node["FieldIgnored"] != null;
+			FieldOptional = node["FieldOptional"] != null;
+			FieldInNewLine = node["FieldInNewLine"] != null;
+			
+			ele = node["TrimChars"];
+			if (ele != null) TrimChars = ele.InnerText;
+
+			ele = node["TrimMode"];
+			if (ele != null) TrimMode = (TrimMode) Enum.Parse(typeof(TrimMode), ele.InnerText);
+			
+			ele = node["FieldNullValue"];
+			if (ele != null) FieldNullValue = Convert.ChangeType(ele.InnerText, Type.GetType(ele.Attributes["Type"].InnerText));
+
+			ele = node["Converter"];
+			if (ele != null) Converter.LoadXml(ele);
+
+			
+			ReadFieldInternal(node);
+		}
+
+		protected abstract void ReadFieldInternal(XmlNode node);
 
 	}
 }

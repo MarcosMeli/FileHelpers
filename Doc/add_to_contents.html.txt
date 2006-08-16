@@ -1,4 +1,5 @@
 
+
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Guide</a>
@@ -39,7 +40,10 @@
           <a href="vb_tips.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Tips for VB.NET</a>
         </div>
 
-
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="howhelp.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>How to Help</b></a>
+        </div>
 
 
 	   <div class="treeNode">
@@ -187,6 +191,7 @@
           <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="testing.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Library Testing</a>
         </div>
+
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />

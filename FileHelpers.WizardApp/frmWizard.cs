@@ -103,6 +103,8 @@ namespace FileHelpers.WizardApp
         private Button button1;
         private NumericUpDown txtFieldLength;
         private Label label11;
+        private Label label12;
+        private ComboBox cboFixedMode;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -133,9 +135,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -148,6 +150,10 @@ namespace FileHelpers.WizardApp
             this.label17 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtFieldLength = new System.Windows.Forms.NumericUpDown();
+            this.cboFixedMode = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.cboClassVisibility = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboFieldVisibility = new System.Windows.Forms.ComboBox();
@@ -219,14 +225,13 @@ namespace FileHelpers.WizardApp
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtFieldLength = new System.Windows.Forms.NumericUpDown();
             this.panStep1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreLast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreFirst)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).BeginInit();
             this.panStep3.SuspendLayout();
             this.panStep0.SuspendLayout();
@@ -243,7 +248,6 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).BeginInit();
             this.SuspendLayout();
             // 
             // panStep1
@@ -264,9 +268,9 @@ namespace FileHelpers.WizardApp
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.chkSealed);
-            this.groupBox3.Location = new System.Drawing.Point(19, 310);
+            this.groupBox3.Location = new System.Drawing.Point(19, 313);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(366, 42);
+            this.groupBox3.Size = new System.Drawing.Size(366, 46);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Extra Options";
@@ -276,7 +280,7 @@ namespace FileHelpers.WizardApp
             this.chkSealed.AutoSize = true;
             this.chkSealed.Checked = true;
             this.chkSealed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSealed.Location = new System.Drawing.Point(38, 20);
+            this.chkSealed.Location = new System.Drawing.Point(58, 20);
             this.chkSealed.Name = "chkSealed";
             this.chkSealed.Size = new System.Drawing.Size(247, 17);
             this.chkSealed.TabIndex = 0;
@@ -295,7 +299,7 @@ namespace FileHelpers.WizardApp
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Location = new System.Drawing.Point(19, 212);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(368, 95);
+            this.groupBox1.Size = new System.Drawing.Size(368, 100);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ignore Lines";
@@ -303,7 +307,7 @@ namespace FileHelpers.WizardApp
             // chkIgnoreEmpty
             // 
             this.chkIgnoreEmpty.AutoSize = true;
-            this.chkIgnoreEmpty.Location = new System.Drawing.Point(40, 72);
+            this.chkIgnoreEmpty.Location = new System.Drawing.Point(58, 71);
             this.chkIgnoreEmpty.Name = "chkIgnoreEmpty";
             this.chkIgnoreEmpty.Size = new System.Drawing.Size(210, 17);
             this.chkIgnoreEmpty.TabIndex = 1;
@@ -332,7 +336,7 @@ namespace FileHelpers.WizardApp
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(37, 48);
+            this.label16.Location = new System.Drawing.Point(55, 45);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(81, 13);
             this.label16.TabIndex = 10;
@@ -359,7 +363,7 @@ namespace FileHelpers.WizardApp
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(37, 24);
+            this.label20.Location = new System.Drawing.Point(54, 22);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(82, 13);
             this.label20.TabIndex = 7;
@@ -367,7 +371,9 @@ namespace FileHelpers.WizardApp
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.txtFieldLength);
+            this.groupBox2.Controls.Add(this.cboFixedMode);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.cboClassVisibility);
             this.groupBox2.Controls.Add(this.label8);
@@ -377,12 +383,71 @@ namespace FileHelpers.WizardApp
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(18, 60);
+            this.groupBox2.Location = new System.Drawing.Point(18, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(368, 148);
+            this.groupBox2.Size = new System.Drawing.Size(368, 158);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fileds in the Records";
+            this.groupBox2.Text = "Fields Options";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(55, 137);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(88, 13);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "FixedMode Value";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // txtFieldLength
+            // 
+            this.txtFieldLength.Location = new System.Drawing.Point(146, 62);
+            this.txtFieldLength.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtFieldLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtFieldLength.Name = "txtFieldLength";
+            this.txtFieldLength.Size = new System.Drawing.Size(84, 21);
+            this.txtFieldLength.TabIndex = 10;
+            this.txtFieldLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFieldLength.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // cboFixedMode
+            // 
+            this.cboFixedMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFixedMode.FormattingEnabled = true;
+            this.cboFixedMode.Items.AddRange(new object[] {
+            "public",
+            "private",
+            "internal",
+            "protected"});
+            this.cboFixedMode.Location = new System.Drawing.Point(146, 133);
+            this.cboFixedMode.Name = "cboFixedMode";
+            this.cboFixedMode.Size = new System.Drawing.Size(84, 21);
+            this.cboFixedMode.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.cboFixedMode, "Set de visibility of your record class. ");
+            this.cboFixedMode.SelectedIndexChanged += new System.EventHandler(this.cboFixedMode_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 66);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 13);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "Default Field Length";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cboClassVisibility
             // 
@@ -393,7 +458,7 @@ namespace FileHelpers.WizardApp
             "private",
             "internal",
             "protected"});
-            this.cboClassVisibility.Location = new System.Drawing.Point(144, 20);
+            this.cboClassVisibility.Location = new System.Drawing.Point(146, 14);
             this.cboClassVisibility.Name = "cboClassVisibility";
             this.cboClassVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboClassVisibility.TabIndex = 6;
@@ -403,11 +468,12 @@ namespace FileHelpers.WizardApp
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(36, 24);
+            this.label8.Location = new System.Drawing.Point(34, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(109, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Record Class Visibility";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cboFieldVisibility
             // 
@@ -418,7 +484,7 @@ namespace FileHelpers.WizardApp
             "private",
             "internal",
             "protected"});
-            this.cboFieldVisibility.Location = new System.Drawing.Point(144, 121);
+            this.cboFieldVisibility.Location = new System.Drawing.Point(146, 110);
             this.cboFieldVisibility.Name = "cboFieldVisibility";
             this.cboFieldVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboFieldVisibility.TabIndex = 2;
@@ -438,7 +504,7 @@ namespace FileHelpers.WizardApp
             "Double",
             "Single",
             "Bool"});
-            this.txtDefaultType.Location = new System.Drawing.Point(144, 97);
+            this.txtDefaultType.Location = new System.Drawing.Point(146, 86);
             this.txtDefaultType.MaxDropDownItems = 20;
             this.txtDefaultType.Name = "txtDefaultType";
             this.txtDefaultType.Size = new System.Drawing.Size(84, 21);
@@ -447,7 +513,7 @@ namespace FileHelpers.WizardApp
             // 
             // txtNumberOfFields
             // 
-            this.txtNumberOfFields.Location = new System.Drawing.Point(144, 47);
+            this.txtNumberOfFields.Location = new System.Drawing.Point(146, 38);
             this.txtNumberOfFields.Name = "txtNumberOfFields";
             this.txtNumberOfFields.Size = new System.Drawing.Size(84, 21);
             this.txtNumberOfFields.TabIndex = 0;
@@ -461,29 +527,32 @@ namespace FileHelpers.WizardApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 124);
+            this.label10.Location = new System.Drawing.Point(74, 114);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 5;
             this.label10.Text = "Field Visibility";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(36, 100);
+            this.label9.Location = new System.Drawing.Point(49, 90);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 13);
             this.label9.TabIndex = 3;
             this.label9.Text = "Default Field Type";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(36, 49);
+            this.label6.Location = new System.Drawing.Point(56, 43);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 13);
             this.label6.TabIndex = 1;
             this.label6.Text = "Number of Fields";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label1
             // 
@@ -528,8 +597,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender3;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -1026,8 +1095,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1092,6 +1161,7 @@ namespace FileHelpers.WizardApp
             this.button1.TabIndex = 1009;
             this.button1.Text = "FileMaster";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // picCurrStep
@@ -1213,38 +1283,6 @@ namespace FileHelpers.WizardApp
             this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
             this.dlgOpenTest.Title = "Load a Test File";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(37, 77);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 13);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "Default Field Length";
-            // 
-            // txtFieldLength
-            // 
-            this.txtFieldLength.Location = new System.Drawing.Point(144, 72);
-            this.txtFieldLength.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.txtFieldLength.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.txtFieldLength.Name = "txtFieldLength";
-            this.txtFieldLength.Size = new System.Drawing.Size(84, 21);
-            this.txtFieldLength.TabIndex = 10;
-            this.txtFieldLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtFieldLength.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
@@ -1276,6 +1314,7 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreFirst)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).EndInit();
             this.panStep3.ResumeLayout(false);
             this.panStep3.PerformLayout();
@@ -1300,7 +1339,6 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1331,6 +1369,7 @@ namespace FileHelpers.WizardApp
         private void frmWizard_Load(object sender, EventArgs e)
         {
             txtClassName.SelectAll();
+            cboFixedMode.DataSource = Enum.GetValues(typeof(FixedMode));
         }
 
 
@@ -1428,6 +1467,7 @@ namespace FileHelpers.WizardApp
                 mFieldType = typeof(FixedFieldBuilder);
 
                 txtFieldLength.Enabled = true;
+                cboFixedMode.Enabled = true;
             }
             else
             {
@@ -1435,6 +1475,7 @@ namespace FileHelpers.WizardApp
                 mFieldType = typeof(FixedFieldBuilder);
 
                 txtFieldLength.Enabled = false;
+                cboFixedMode.Enabled = false;
 
                 string delimiter = string.Empty;
 
@@ -1453,11 +1494,11 @@ namespace FileHelpers.WizardApp
 
             }
 
-            cboFieldVisibility.DataSource = Enum.GetNames(typeof(NetVisibility));
-            cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility.ToString();
+            cboFieldVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
+            cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility;
 
-            cboClassVisibility.DataSource = Enum.GetNames(typeof(NetVisibility));
-            cboClassVisibility.SelectedItem = mWizardInfo.ClassVisibility.ToString();
+            cboClassVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
+            cboClassVisibility.SelectedItem = mWizardInfo.ClassBuilder.Visibility;
 
             return true;
         }
@@ -1632,8 +1673,22 @@ namespace FileHelpers.WizardApp
         void FieldControlOrderChange(object sender, EventArgs e)
         {
             // CLEAR: JEJEJ
-            //mWizardInfo.LoadFields(panFields.Controls);
+            // mWizardInfo.LoadFields(panFields.Controls);
+            ReloadFields();
             ExpandAndShowPreview();
+        }
+
+        private void ReloadFields()
+        {
+            mWizardInfo.ClassBuilder.ClearFields();
+
+            foreach (FieldBaseControl ctrl in panFields.Controls)
+            {
+                if (mWizardInfo.DelimitedBuilder != null)
+                    mWizardInfo.DelimitedBuilder.AddField((DelimitedFieldBuilder) ctrl.FieldInfo);
+                else
+                    mWizardInfo.FixedLengthBuilder.AddField((FixedFieldBuilder) ctrl.FieldInfo);
+            }
         }
 
         private void cmdBack_Click(object sender, EventArgs e)
@@ -1915,7 +1970,6 @@ namespace FileHelpers.WizardApp
 
         private void cboFieldVisibility_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (mMoving == false)
             {
                 mWizardInfo.FieldVisibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
@@ -1938,7 +1992,7 @@ namespace FileHelpers.WizardApp
         {
             if (mMoving == false)
             {
-                mWizardInfo.ClassVisibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboClassVisibility.Text);
+                mWizardInfo.ClassBuilder.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboClassVisibility.Text);
                 ReLoadPreview();
             }
 
@@ -2006,6 +2060,15 @@ namespace FileHelpers.WizardApp
                 return;
 
             frmDataFile.ShowData(System.IO.File.ReadAllText(dlgOpenTest.FileName));
+        }
+
+        private void cboFixedMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mWizardInfo.FixedLengthBuilder != null)
+            {
+                mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode) cboFixedMode.SelectedItem;
+                ReLoadPreview();
+            }
         }
 
     }

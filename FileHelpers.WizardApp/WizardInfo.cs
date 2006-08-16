@@ -62,13 +62,13 @@ namespace FileHelpers.WizardApp
             set { mFieldVisibility = value; }
         }
 
-        private NetVisibility mClassVisibility = NetVisibility.Public;
+        //private NetVisibility mClassVisibility = NetVisibility.Public;
 
-        public NetVisibility ClassVisibility
-        {
-            get { return mClassVisibility; }
-            set { mClassVisibility = value; }
-        }
+        //public NetVisibility ClassVisibility
+        //{
+        //    get { return mClassVisibility; }
+        //    set { mClassVisibility = value; }
+        //}
 
 
         public string WizardOutput(NetLanguage lang)

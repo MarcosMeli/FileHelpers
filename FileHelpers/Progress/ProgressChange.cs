@@ -42,6 +42,7 @@ namespace FileHelpers
 	}
 
 	/// <summary>Delegate used to notify progress to the user.</summary>
+	/// <param name="e">The Event args with information about the progress.</param>
 	public delegate void ProgressChangeHandler(ProgressEventArgs e);
 
 #endif

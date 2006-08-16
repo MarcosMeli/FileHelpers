@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -29,10 +30,9 @@ namespace FileHelpers.RunTime
 			set { mTypeName = value; }
 		}
 
-
-		private string mArg1;
-		private string mArg2;
-		private string mArg3;
+		private string mArg1 = string.Empty;
+		private string mArg2 = string.Empty;
+		private string mArg3 = string.Empty;
 
 		/// <summary>The first argument pased to the converter.</summary>
 		public string Arg1
@@ -56,6 +56,50 @@ namespace FileHelpers.RunTime
 			set { mArg3 = value; }
 		}
 
+		
+		
+		internal void WriteXml(XmlHelper writer)
+		{
+			if (mKind == ConverterKind.None && mTypeName == string.Empty) return;
+			
+			writer.mWriter.WriteStartElement("Converter");
+			
+			writer.WriteAttribute("Kind", Kind.ToString(), "None");
+			writer.WriteAttribute("TypeName", mTypeName.ToString(), string.Empty);
+
+			writer.WriteAttribute("Arg1", Arg1, string.Empty);
+			writer.WriteAttribute("Arg2", Arg2, string.Empty);
+			writer.WriteAttribute("Arg3", Arg3, string.Empty);
+			
+			writer.mWriter.WriteEndElement();
+
+		}
+
+		internal void LoadXml(XmlNode node)
+		{
+
+			XmlAttribute attb = node.Attributes["Kind"];
+			if (attb != null) Kind = (ConverterKind) Enum.Parse(typeof(ConverterKind), attb.InnerText);
+			
+			attb = node.Attributes["TypeName"];
+			if (attb != null) TypeName = attb.InnerText;
+			
+			attb = node.Attributes["Arg1"];
+			if (attb != null) Arg1 = attb.InnerText;
+
+			attb = node.Attributes["Arg2"];
+			if (attb != null) Arg2 = attb.InnerText;
+
+			attb = node.Attributes["Arg3"];
+			if (attb != null) Arg3 = attb.InnerText;
+
+		}
+		
+		
+		
+		
+		
+		
 	
 		internal string GetConverterCode(NetLanguage leng)
 		{
@@ -73,15 +117,15 @@ namespace FileHelpers.RunTime
 			else
 				return string.Empty;
 			
-			if (mArg1 != null)
+			if (mArg1 != null && mArg1 != string.Empty)
 			{
 				sb.Append(", \"" + mArg1 + "\"");
 
-				if (mArg2 != null)
+				if (mArg2 != null && mArg2 != string.Empty)
 				{
 					sb.Append(", \"" + mArg2 + "\"");
 					
-					if (mArg3 != null)
+					if (mArg3 != null && mArg3 != string.Empty)
 					{
 						sb.Append(", \"" + mArg3 + "\"");
 					}

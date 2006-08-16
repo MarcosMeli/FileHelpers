@@ -294,6 +294,12 @@ namespace FileHelpers.RunTime
 
 		#region Fields
     	
+		/// <summary>Removes all the Fields of the current class.</summary>
+		public void ClearFields()
+		{
+			mFields.Clear();
+		}
+		
 		/// <summary></summary>
 		protected ArrayList mFields = new ArrayList();
 
@@ -438,7 +444,7 @@ namespace FileHelpers.RunTime
 			}
 
 			sb.Append(StringHelper.NewLine);
-
+			sb.Append(StringHelper.NewLine);
 
 			foreach (FieldBuilder field in mFields)
 			{
@@ -474,7 +480,7 @@ namespace FileHelpers.RunTime
 			if (mIgnoreFirstLines != 0)
 				attbs.AddAttribute("IgnoreFirst("+ mIgnoreFirstLines.ToString() +")");
 
-			if (mIgnoreFirstLines != 0)
+			if (mIgnoreLastLines != 0)
 				attbs.AddAttribute("IgnoreLast("+ mIgnoreLastLines.ToString() +")");
 
 			if (mIgnoreEmptyLines == true)
@@ -683,15 +689,52 @@ namespace FileHelpers.RunTime
 		/// <returns>A new instance of a ClassBuilder inheritor.</returns>
 		public static ClassBuilder LoadFromXml(string filename)
 		{
-			XmlHelper reader = new XmlHelper();
-			reader.BeginReadFile(filename);
+			ClassBuilder res = null;
+			
+			XmlDocument document = new XmlDocument();
+			document.Load(filename);
+			
+			string classtype = document.ChildNodes[0].LocalName;
+			
+			if (classtype == "DelimitedClass")
+				res = DelimitedClassBuilder.LoadXmlInternal(document);
+			else
+				res = FixedLengthClassBuilder.LoadXmlInternal(document);
+			
+			XmlNode node = document.ChildNodes.Item(0)["IgnoreLastLines"];
+			if (node != null) res.IgnoreLastLines = int.Parse(node.InnerText);
+			
+			node = document.ChildNodes.Item(0)["IgnoreFirstLines"];
+			if (node != null) res.IgnoreFirstLines = int.Parse(node.InnerText);
 
-			reader.mReader.ReadStartElement();
-			string classtype = reader.mReader.Value;
-			classtype = reader.mReader.ReadString();
+			node = document.ChildNodes.Item(0)["IgnoreEmptyLines"];
+			if (node != null) res.IgnoreEmptyLines = true;
 
+			node = document.ChildNodes.Item(0)["SealedClass"];
+			if (node != null) res.SealedClass = true;
 
-			return null;
+			node = document.ChildNodes.Item(0)["Namespace"];
+			if (node != null) res.Namespace = node.InnerText;
+
+			node = document.ChildNodes.Item(0)["Visibility"];
+			if (node != null) res.Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), node.InnerText);;
+
+			res.ReadClassElements(document);
+			
+			node = document.ChildNodes.Item(0)["Fields"];
+			XmlNodeList nodes ;
+				
+			if (classtype == "DelimitedClass")
+				nodes = node.SelectNodes("/DelimitedClass/Fields/Field");
+			else
+				nodes = node.SelectNodes("/FixedLengthClass/Fields/Field");
+
+			foreach (XmlNode n in nodes)
+			{
+				res.ReadField(n);
+			}
+		
+			return res;
 
 		}
 
@@ -710,10 +753,10 @@ namespace FileHelpers.RunTime
 			
 			writer.WriteElement("ClassName", ClassName);
 			writer.WriteElement("Namespace", this.Namespace, string.Empty);
-			writer.WriteElement("SealedClass", this.SealedClass.ToString(), "True");
+			writer.WriteElement("SealedClass", this.SealedClass);
 			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
 
-			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines.ToString(), "False");
+			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines);
 			writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
 			writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
 
@@ -732,5 +775,8 @@ namespace FileHelpers.RunTime
 		
 		internal abstract void WriteHeaderElement(XmlHelper writer);
 		internal abstract void WriteExtraElements(XmlHelper writer);
+
+		internal abstract void ReadClassElements(XmlDocument document);
+		internal abstract void ReadField(XmlNode node);
 	}
 }

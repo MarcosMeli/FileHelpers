@@ -359,12 +359,40 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void SaveLoadXmlFileFixed()
 		{
-			ClassBuilder cb = CommonCreate();
+			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+
+			cb.AddField("Field1", 8, typeof(DateTime));
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			cb.LastField.FieldNullValue = DateTime.Now;
+			
+			cb.AddField("FieldSecond", 3, typeof(string));
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = ' ';
+			
+			cb.AddField("Field33", 3, typeof(int));
+			 
+			cb.LastField.AlignMode = AlignMode.Right;
+			cb.LastField.AlignChar = '0';
+			cb.LastField.TrimMode = TrimMode.Both;
+			
 			cb.SaveToXml(@"c:\runtime.xml");
 
-			FixedLengthClassBuilder cb2 = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
+			FixedLengthClassBuilder loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
 
-
+			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
+			Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
+			Assert.AreEqual("Field33", loaded.FieldByIndex(2).FieldName);
+			
+			Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
+			Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
+			Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
+			
+			Assert.AreEqual(ConverterKind.Date, loaded.FieldByIndex(0).Converter.Kind);
+			Assert.AreEqual("ddMMyyyy", loaded.FieldByIndex(0).Converter.Arg1);
+			
+			Assert.AreEqual(AlignMode.Right, loaded.FieldByIndex(1).AlignMode);
+			Assert.AreEqual(' ', loaded.FieldByIndex(1).AlignChar);
 		}
 
 		[Test]
@@ -379,13 +407,29 @@ namespace FileHelpersTests.CommonTests
 			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
 			cb.LastField.FieldNullValue = DateTime.Today;
 
-			cb.AddField("Field2", typeof(string));
+			cb.AddField("FieldTwo", typeof(string));
 			cb.LastField.FieldQuoted = true;
 			cb.LastField.QuoteChar = '"';
 
-			cb.AddField("Field3", typeof(int));
+			cb.AddField("Field333", typeof(int));
 
 			cb.SaveToXml(@"c:\runtime.xml");
+			
+			DelimitedClassBuilder loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"c:\runtime.xml");
+			
+			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
+			Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
+			Assert.AreEqual("Field333", loaded.FieldByIndex(2).FieldName);
+			
+			Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
+			Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
+			Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
+			
+			Assert.AreEqual(QuoteMode.AlwaysQuoted, loaded.FieldByIndex(0).QuoteMode);
+			Assert.AreEqual(false, loaded.FieldByIndex(0).FieldQuoted);
+			
+			Assert.AreEqual('"', loaded.FieldByIndex(1).QuoteChar);
+			Assert.AreEqual(true, loaded.FieldByIndex(1).FieldQuoted);
 		}
 
 	}

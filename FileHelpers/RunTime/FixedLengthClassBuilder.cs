@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 
 namespace FileHelpers.RunTime
 {
@@ -6,12 +7,34 @@ namespace FileHelpers.RunTime
 	public sealed class FixedLengthClassBuilder: ClassBuilder
 	{
 
+		
+		/// <summary>Return the field at the specified index.</summary>
+		/// <param name="index">The index of the field.</param>
+		/// <returns>The field at the specified index.</returns>
+		public new FixedFieldBuilder FieldByIndex(int index)
+		{
+			return (FixedFieldBuilder) base.FieldByIndex(index);
+		}
+
+		/// <summary>Returns the current fields of the class.</summary>
+		public new FixedFieldBuilder[] Fields
+		{
+			get { return (FixedFieldBuilder[]) mFields.ToArray(typeof(FixedFieldBuilder)); }
+		}
+		
 		/// <summary>Used to create classes that maps to Fixed Length records.</summary>
 		/// <param name="className">A valid class name.</param>
 		public FixedLengthClassBuilder(string className): base(className)
 		{
 		}
 
+		/// <summary>Used to create classes that maps to Fixed Length records.</summary>
+		/// <param name="className">A valid class name.</param>
+		/// <param name="mode">Indicates the behavior when variable length records are found.</param>
+		public FixedLengthClassBuilder(string className, FixedMode mode): base(className)
+		{
+			mFixedMode = mode;
+		}
 
 		/// <summary>Adds a new Fixed Length field.</summary>
 		/// <param name="fieldName">The name of the field.</param>
@@ -56,19 +79,58 @@ namespace FileHelpers.RunTime
 			}
 		}
 
+
 		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
 		{
-			attbs.AddAttribute("FixedLengthRecord()");
+			attbs.AddAttribute("FixedLengthRecord(FixedMode."+ mFixedMode.ToString()+ ")");
 		}
 		
 		internal override void WriteHeaderElement(XmlHelper writer)
 		{
 			writer.mWriter.WriteStartElement("FixedLengthClass");
+			writer.mWriter.WriteStartAttribute("FixedMode", "");
+			writer.mWriter.WriteString(mFixedMode.ToString());
+			writer.mWriter.WriteEndAttribute();			
 		}
 
 		internal override void WriteExtraElements(XmlHelper writer)
+		{}
+
+		private FixedMode mFixedMode = FixedMode.ExactLength;
+
+		/// <summary>Indicates the behavior when variable length records are found </summary>
+		public FixedMode FixedMode
+		{
+			get { return mFixedMode; }
+			set { mFixedMode = value; }
+		}
+
+		internal override void ReadClassElements(XmlDocument document)
 		{
 		}
 
+		internal override void ReadField(XmlNode node)
+		{
+			AddField(node.Attributes.Item(0).InnerText, int.Parse(node.Attributes.Item(2).InnerText), node.Attributes.Item(1).InnerText).ReadField(node);
+		}	
+		
+		internal static FixedLengthClassBuilder LoadXmlInternal(XmlDocument document)
+		{
+			FixedLengthClassBuilder res;
+			FixedMode mode = (FixedMode) Enum.Parse(typeof(FixedMode), document.ChildNodes[0].Attributes[0].Value);
+			
+			string className = document.ChildNodes.Item(0).SelectNodes("/FixedLengthClass/ClassName").Item(0).InnerText;
+			
+			res = new FixedLengthClassBuilder(className, mode);
+			//			
+			//			while(reader.mReader.EOF == false)
+			//			{
+			//				reader.ReadToNextElement();
+			////				if (reader.mReader.LocalName == "IgnoreEmptyLines")
+			//			}
+			
+			
+			return res;
+		}
 	}
 }
