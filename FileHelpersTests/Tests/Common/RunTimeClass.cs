@@ -5,10 +5,10 @@ using FileHelpers;
 using FileHelpers.RunTime;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpersTests
 {
 	[TestFixture]
-	public class RunTimeClass
+	public class RunTimeClasses
 	{
 		FileHelperEngine engine;
 		FileHelperAsyncEngine asyncEngine;

@@ -27,6 +27,11 @@
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="events.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Event Support</a>
+        </div>
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="generics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">.NET 2.0 Generics</a>
         </div>
 
@@ -202,11 +207,7 @@
           <a href="roadmap.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RoadMap</a>
         </div>
 
-        <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Contact and Credits</a>
-        </div>
-        
+       
         <div class="treeNode">
           <a href="http://filehelpers.sourceforge.net/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
         </div>
@@ -214,11 +215,15 @@
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="http://sourceforge.net/projects/filehelpers" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers DevHome</a>
+        </div>
+	
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="FAQ.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">F.A.Q.</a>
         </div>
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="http://sourceforge.net/projects/filehelpers" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers DevHome</a>
+          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>Contact and Credits</b></a>
         </div>
-	

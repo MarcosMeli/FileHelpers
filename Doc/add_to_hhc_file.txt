@@ -25,6 +25,11 @@
 		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Event Support">
+		<param name="Local" value="events.html">
+		</OBJECT>
+
+    <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value=".NET 2.0 Generics">
 		<param name="Local" value="generics.html">
 		</OBJECT>
@@ -206,15 +211,14 @@
 		<param name="Local" value="roadmap.html">
 		</OBJECT>
 
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Contact and Credits">
-		<param name="Local" value="credits.html">
-        <param name="ImageNumber" value="25">
-		</OBJECT>
-
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Discussion Forums">
 		<param name="Local" value="http://filehelpers.sourceforge.net/forums/">
+		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileHelpers DevHome">
+		<param name="Local" value="http://sourceforge.net/projects/filehelpers">
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
@@ -223,6 +227,7 @@
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="FileHelpers DevHome">
-		<param name="Local" value="http://sourceforge.net/projects/filehelpers">
+		<param name="Name" value="Contact and Credits">
+		<param name="Local" value="credits.html">
+        <param name="ImageNumber" value="25">
 		</OBJECT>

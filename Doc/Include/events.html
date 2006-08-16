@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Copyright 2005-2006 to Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-2006 to Marcos Meli, All Rights Reserved.">
+
+<style type="text/css">
+<!--
+.style1 {color: #FFFFFF}
+-->
+</style>
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+     <FORM method=GET action=http://www.google.com/custom>
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
+                    <INPUT type=hidden name=cof VALUE="S:http://filehelpers.sourceforge.net;AH:center;LH:64;L:http://filehelpers.sourceforge.net/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="filehelpers.sourceforge.net"><input type=hidden name=sitesearch value="filehelpers.sourceforge.net" checked>
+<a href="mailto:filehelpers-general-request@lists.sourceforge.net?subject=subscribe"><img src="email.gif" width="24" height="24" border="0" alt="Subscribe to the mailing list."></a><a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
+                        <img src="rss2.png" border="0" alt="News RSS feed."></a>
+                    &nbsp; </td></tr>
+			<tr >
+				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
+				<strong>
+                        <span style="color: white">
+                    &nbsp; <a href="/" class="bar_link">Overview</a> -
+							<a href="downloads.html" class="bar_link">Downloads</a> -
+                            <a href="examples.html" class="bar_link">Examples</a> - 
+                            <a href="FAQ.html" class="bar_link">F.A.Q.</a> - 
+                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
+                            <a href="credits.html" class="bar_link">Contact Info</a>
+                            </span> </strong>
+                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
+                                                      </td></tr>
+		</table>
+		</FORM>
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>Events Architecture</h2>
+  <blockquote>
+          <p>Some time you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
+
+          <p>To solve these problems I´ve add a event architecture in the FileHelperEngine (in the future in all the others) </p>
+
+          <p>The events are 4 (2 for read and 2 for write ops):</p>
+          
+          <blockquote>
+          <ul>
+			<li>BeforeReadRecord
+			<li>AfterReadRecord
+			<li>BeforeWriteRecord
+			<li>AfterWriteRecord			
+          </ul>
+
+          </blockquote>
+          <p>The names said all right ?</p>
+            </blockquote>
+
+<h2>The Example</h2>
+            <blockquote>
+          <p>Supose that you need to parse a txt report from a legacy system with these format</p>
+            <blockquote>
+<textarea name="code" class="c#:nogutter:nocontrols">
+-----------------------------------------------------
+              XXX Enterprise
+-----------------------------------------------------
+10249   TOMSP  05071996      11.61
+10250   HANAR  08071996      65.83
+10251   VICTE  08071996      41.34
+...............          
+                                       Page 1
+-----------------------------------------------------
+              XXX Enterprise
+-----------------------------------------------------
+10269   TOMSP  05071996      11.61
+10230   HANAR  08071996      65.83
+10151   VICTE  08071996      41.34
+...............          
+                                       Page 2
+And so on !!                                       
+</textarea>
+</blockquote>
+          <p>You must declare a Record Mapping Class for the main record:</p>
+          <blockquote>
+<textarea name="code" class="c#">
+[FixedLengthRecord(FixedMode.AllowVariableLength)]
+								
+ [FixedLengthRecord]
+ public class OrdersFixed
+ {
+   [FieldFixedLength(7)]
+   public int OrderID;
+   
+   [FieldFixedLength(8)]
+   public string CustomerID;
+
+   [FieldFixedLength(8)]
+   public DateTime OrderDate;
+
+   [FieldFixedLength(11)]
+   public decimal Freight;
+ }
+</textarea>
+          </blockquote>
+          <p>So now is the time where we instanciate the engine and hook to the events.</p>
+          <blockquote>
+<textarea name="code" class="c#">
+FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent);
+
+Orders[] res = engine.ReadFile("report.txt") as Orders[];
+
+</textarea>
+          
+    </blockquote>
+          
+          <p>So in the event method we ignore the lines with spaces and -</p>
+          <blockquote>
+<textarea name="code" class="c#">
+		private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
+		{
+			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
+				e.SkipThisRecord = true;
+		}
+</textarea>
+
+    </blockquote>
+          
+<table width="500" align="center" class="note">
+	<td valign="middle" align="center" class="note">
+        <b>Note: if you change the RecordLine the engine use the changed value<br/>This can be useful in some cases but you must be carefull</b>
+	</td>
+	</tr>
+</table>          
+
+  </blockquote>
+
+      <h2>See also </h2>
+      <blockquote>
+        <p></p>
+        <a href="attributes.html"> Attributes List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a>
+        </blockquote>
+
+<hr align="left" />
+      <div >
+<table width="100%" >
+  <tr><td class="SmallText">
+Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
+Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
+Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
+</td>
+    <td valign="middle" > <a href="http://filehelpers.sourceforge.net/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /></a></td><td><a href="http://filehelpers.sourceforge.net/forums/"><img src="forumsb.gif" width="189" height="40" border="0" alt="Browse the Forums"></a></td>
+  </tr>
+</table>
+
+</div>
+                    <center>Project Hosted in<br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a></center>
+</div>
+</tr>
+</table>
+<script class="javascript" src="shCore.js"></script>
+<script class="javascript" src="shBrushCSharp.js"></script>
+<script class="javascript" src="shBrushVb.js"></script>
+
+<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script>
+
+</BODY></HTML>
