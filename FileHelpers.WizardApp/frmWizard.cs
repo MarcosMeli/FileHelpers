@@ -1895,7 +1895,7 @@ namespace FileHelpers.WizardApp
                 mLoadingFile = true;
                 Application.DoEvents();
 
-                //mWizardInfo.ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
+                mWizardInfo.ClassBuilder = ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
 
                 Application.DoEvents();
 
@@ -2030,6 +2030,8 @@ namespace FileHelpers.WizardApp
 
         private void cmdTestClass_Click(object sender, EventArgs e)
         {
+
+            dlgOpenTest.FileName = "";
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;
