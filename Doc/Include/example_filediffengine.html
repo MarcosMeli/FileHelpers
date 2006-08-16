@@ -3,6 +3,8 @@
 <LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
 href="global.css" type=text/css 
 rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
 <meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
 <meta name="Author"             content="Marcos Meli" />
 <meta NAME="keywords" Content="FileHelpers,free source code,C#,Programming,File Helpers,Marcos Meli,CSV,Delimited Files,Impor/Export">
@@ -10,9 +12,7 @@ rel=stylesheet>
 
 <style type="text/css">
 <!--
-.style2 {color: #990000}
-.style3 {color: #999999}
-.style4 {color: #666666}
+.style1 {color: #FFFFFF}
 -->
 </style>
 </HEAD>
@@ -44,82 +44,97 @@ bgColor=white leftMargin=0 topMargin=0>
 		</FORM>
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td>
-    
-<h2>Lines of Code - Cenqua Fisheye</h2>
+<tr><td><div id=contentdiv> 
+  <h2>FileDiffEngine Example </h2>
+  <blockquote>
+          <p>The idea of this engine is to parse files with the same record layout and do some diff over the records.</p>
 
-<p align="center">
-     <a href="http://fisheye3.cenqua.com/browse/filehelpers" /><img src="http://fisheye3.cenqua.com/browse/filehelpers/?linegraph" alt="line history graph" width="300" height="220" border="0"/></a>
-</p>
+      <p>
+          To work with the DiffEngine your record must implement the interface <a href="FielHelpers.IComparableRecord.html">IComparableRecord</a> </p>
+          <blockquote>
+<textarea name="code" class="c#">
 
-<h2>Subversion Last 12 Months</h2>
+	[DelimitedRecord("|")]
+	public class Customers: IComparableRecord
+	{
+		public string CustomerID;
+		public string CompanyName;
+		public string ContactName;
+		public string ContactTitle;
+		public string Address;
+		public string City;
+		public string Country;
 
-  <p align="center"><img src="http://sourceforge.net/project/stats/graph/detail-graph.php?group_id=152382&ugn=filehelpers&type=svn&mode=12months&graph=1" width="650" height="350" alt="Subversion Activity - Month Resolution"></p>
+		public bool IsEqualRecord(object record)
+		{
+			Customers rec = (Customers) record;
+			return this.CustomerID == rec.CustomerID;
+		}
+	}
+		
+</textarea>
 
+          </blockquote>
+      <p>
+          <b>For example if you want to get the new customers based on two customers files you can use:</b></p>
+          <blockquote>
+<textarea name="code" class="c#">
 
-<h2>Source Forge Statistics (Last Week)</h2>
- 
+		engine = new FileDiffEngine(typeof (Customers));
 
-<p align="center">
-<table align="center">
-<tr>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&type=prweb"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prweb&mode=7day"  width="290" height="200" alt="Project Web Graph"></a></td>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&&type=prdownload"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prdownload&mode=7day" width="290" height="200" alt="Downloads Graph"></a></td>
-</tr>
-</table>
-</p>
+		Customers[] res = engine.OnlyNewRecords("customersold.txt", "customernew.txt") as Customers[];
+		
+</textarea>
 
+          </blockquote>
+          <p>
+              In the res array you have all the records in the file customersnew.txt that dont exists in the customersold.txt file</p>
 
-<h2>Source Forge Statistics (Last 60 Days)</h2>
- 
+      <p>
+          <b>Now you may need to extract the records that apeer in both files:</b></p>
+          <blockquote>
+<textarea name="code" class="c#">
 
-<p align="center">
-<table align="center">
-<tr>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&type=prweb"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prweb&mode=60day"  width="290" height="200" alt="Project Web Graph"></a></td>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&&type=prdownload"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prdownload&mode=60day" width="290" height="200" alt="Downloads Graph"></a></td>
-</tr>
-</table>
-</p>
+		engine = new FileDiffEngine(typeof (Customers));
 
+		Customers[] res = engine.OnlyDuplicatedRecords("customersold.txt", "customernew.txt") as Customers[];
+		
+</textarea>
 
-<h2>Source Forge Statistics (All Time)</h2>
+          </blockquote>
+          <p>
+              In the res array you have all the records in the file customersnew.txt that exists in the customersold.txt file</p>
+       
 
-<p align="center">
-<table align="center">
-<tr>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&type=prweb"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prweb&mode=alltime"  width="290" height="200" alt="Project Web Graph"></a></td>
-<td><a href="http://sourceforge.net/project/stats/detail.php?group_id=152382&ugn=filehelpers&mode=alltime&&type=prdownload"><img border="0" src="http://sourceforge.net/project/stats/graph/index-graph.php?group_id=152382&ugn=filehelpers&graph=prdownload&mode=alltime" width="290" height="200" alt="Downloads Graph"></a></td>
-</tr>
-</table>
-</p>
+      <p>
+          <b>And how many lines you need to write the diff to other file... you are right one line !!</b></p>
+          <blockquote>
+<textarea name="code" class="c#">
 
-      <p align="center">
-          Nice to see the community growing =)</p>
+		engine = new FileDiffEngine(typeof (Customers));
 
-        <center>
-        <table border="0" cellpadding="5" cellspacing="0" style="width: 544px">
-            <tr>
-                <td style="width: 26px; height: 72px;">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9">
-                    <img src="working.gif" border=0 /></a></td>
-                <td style="width: 529px; height: 72px;" align="center">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9">
-                    If you want to support the library...<br />
-                    some .NET books are in the <strong>Amazon Wish List</strong> ;)</a></td>
-                <td align="center" style="height: 72px">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9">
-                    <img src="gift.gif" border=0 /></a></td>
-            </tr>
-        </table>
-        </center>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-    <hr align="left" />
-    </blockquote>
+		engine.WriteNewRecords("customersold.txt", "customernew.txt", "onlynews.txt");
+		
+</textarea>
+
+          </blockquote>
+          </blockquote>
+          
+          
+      <p>
+         <b>Enjoy it !!!</b></p>
+  </blockquote>
+
+      <h2>See also </h2>
+      <blockquote>
+        <p></p>
+        <a href="attributes.html"> Attributes List </a>-<a href="FAQ.html"> F.A.Q. </a>- <a href="examples.html">Examples of Use</a> - <a href="credits.html">Contacts &amp; Credits </a>
+        </blockquote>
+
+<hr align="left" />
       <div >
 <table width="100%" >
-  <tr>
-    <td class="SmallText">
+  <tr><td class="SmallText">
 Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
 Contact me: <a href="mailto:marcosdotnet [at] yahoo.com.ar?subject=FileHelpersFeedback">marcosdotnet[at]yahoo.com.ar</a><br>
 Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
@@ -127,10 +142,16 @@ Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileH
     <td valign="middle" > <a href="http://filehelpers.sourceforge.net/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /></a></td><td><a href="http://filehelpers.sourceforge.net/forums/"><img src="forumsb.gif" width="189" height="40" border="0" alt="Browse the Forums"></a></td>
   </tr>
 </table>
+
 </div>
                     <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
-</td>
+</div>
 </tr>
 </table>
+
+<script class="javascript" src="shCore.js"></script>
+<script class="javascript" src="shBrushCSharp.js"></script>
+<script class="javascript" src="shBrushVb.js"></script>
+<script class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script>
 
 </BODY></HTML>

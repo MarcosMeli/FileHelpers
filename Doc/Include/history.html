@@ -433,11 +433,17 @@
                                     <LI>
 
 					 <a name="v1_6_0" /><STRONG>1.6.0</STRONG> (Ago-2006)
-                                        <br />
-                                        &nbsp;&nbsp; The <a href="runtime_classes.html"><b>RunTime Records</b></a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!<br />
-                                        I think that this version is something like the 2.0 version because the RunTime Records were one of the most requested features and were one of the most hard to implement features,
+					 <br /><br />
+<table width="80%" align="center" class="note">
+	<td valign="middle" class="note">
+                                        The <a href="runtime_classes.html"><b>RunTime Records</b></a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!<br />
+                                        <b>I think that this version is something like the 2.0 version</b> because the RunTime Records were one of the most requested features and were one of the most hard to implement features,
                                         A lot of effort was put in the usability and in a clear API, if you have any suggestion please post it in the forums =)<br />
-                                        Other important news are the CsvEngine (for generic Csv files), the FileDiffEngine, the MultiRecordEngine,..
+                                        Other important news are the <a href="FileHelpers.CsvEngine.html">CsvEngine</a> (for generic Csv files), the <a href="example_filediffengine.html">FileDiffEngine</a>, the <a href="example_multirecords.html" >MultiRecordEngine</a>,..
+	</td>
+	</tr>
+</table>
+                                 
 <br />
 					 
                          <br />
@@ -461,7 +467,7 @@
                              <li>ADD: Generic Csv files are now supported (for example Excel generated ones)<br />
 Was a hard work but worth it because it can be used with any engine. <br />
 In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from <b>Sébastien Lorion</b> for standalone CSV processing.</li>
-							 <li>ADD: <b>Event support</b> !! from this version the FileHelperEngine has 4 events 2 for read operations and 2 for write that are throw before and after process each record.
+							 <li>ADD: <a href="events.html">Event support</a> !! from this version the FileHelperEngine has 4 events 2 for read operations and 2 for write that are throw before and after process each record.
                              <li>MOD: The decimal, double, and single converters now recieve an string param to set the decimal delimiter (by default is ".")</li>
                              <li>MOD: Improved docs in the SDK, the general help and examples. (Thanks Antoine)</li>
                              <li>ADD: FileDiffEngine to compare files with the same record layout.</li>
@@ -469,6 +475,7 @@ In the next version I´ll add the Excellent <a href="http://www.codeproject.com/c
                              <li>ADD: DataTableToCsv, CsvToDataTable, RecordsToDataTable, RemoveDuplicateRecords and other methods to the CommonEngine</li>
                              <li>ADD: FixedMode Enum for fixed length records, used to provide better validations in Fixed Length Files</li>
                              <lI>ADD: Template support in ExcelStorage</li>
+                             <li>ADD: <a href="examples.html">A lot of new examples check it out !!</a>
                              
                          </ul>
                              <p></p>
@@ -479,7 +486,7 @@ In the next version I´ll add the Excellent <a href="http://www.codeproject.com/c
                              <li>DEL: more and more properties of the internal classes, this enhance both the performance and the dll size.</li>
                              <li>MOD: A lot of internal refactor and enhaces</li>
                              <li>MOD: ExcelStorage now return the cells values when using ErrorMode.SaveAndContinue</li>
-                             <li>ADD: <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">These excellents <b>VB.NET - C# comparison cheat sheets</b></a></li> (to avoid translate the examples)
+                             <li>ADD: <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">These excellents <b>VB.NET - C# comparison cheat sheets</b></a> (to avoid translate the examples)
                              <li>ADD: RecordsToDataTable in the CommonEngine</li>
                              <li>ADD: A lot of options to CommonSelector like: MasterIfBegins, MasterIfEnds,  MasterIfEnclosed and the details counterparts</li>
                              <li>ADD: BooleanConverter can recieve two arguments for the true or false values</li>
