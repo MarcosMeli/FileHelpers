@@ -405,6 +405,15 @@ namespace FileHelpers
 
 
 		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+		/// <param name="delimiter">The delimiter for each field</param>
+		/// <param name="filename">The file to read.</param>
+		/// <returns>The contents of the file as a DataTable</returns>
+		public static DataTable CsvToDataTable(string filename, char delimiter)
+		{
+			return CsvEngine.CsvToDataTable(filename, delimiter);
+		}
+
+		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
 		/// <param name="classname">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="filename">The file to read.</param>
