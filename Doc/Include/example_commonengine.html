@@ -54,6 +54,9 @@ bgColor=white leftMargin=0 topMargin=0>
 // to read use:
 Orders[] res = CommonEngine.ReadFile(typeof(Orders),&quot;TestIn.txt&quot;) as Orders[];
 
+// to read sorted:
+Orders[] res = CommonEngine.ReadSortedFile(typeof(Orders),&quot;TestIn.txt&quot;) as Orders[];
+
 // to write use:
 CommonEngine.WriteFile(typeof(Orders), "TestOut.txt", res);
 
@@ -65,6 +68,14 @@ CommonEngine.TransformFileAsync("in.txt"), typeof(FromClass), "our.txt"), typeof
 
 // sorting records:
 CommonEngine.SortRecordsByField(customers, "CustomerName");
+
+// generic CsvFiles ops:
+
+CommonEngine.CsvToDataTable("customers.csv", ',');
+CommonEngine.DataTableToCsv(dt, "customers.csv", ',');
+
+// remove duplicates:
+Customers[] distinct = CommonEngine.RemoveDuplicateRecords(customersArray);
 
 </textarea>
           </blockquote>
