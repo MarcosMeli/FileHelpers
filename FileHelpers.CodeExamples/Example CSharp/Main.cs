@@ -1,6 +1,8 @@
 using System;
+using System.Data;
 using System.IO;
 using FileHelpers;
+using FileHelpers.RunTime;
 
 namespace Examples
 {
@@ -18,6 +20,10 @@ namespace Examples
 			FormatTransformation();
 
 			EventHandling();
+
+			RunTimeRecords();
+
+			RunTimeRecordsFixed();
 
 		}
 
@@ -172,7 +178,7 @@ namespace Examples
 
 		#endregion
 
-		#region "  Delimited  "
+		#region "  EventHandling  "
 
 		static void EventHandling()
 		{
@@ -212,8 +218,6 @@ namespace Examples
 			if (File.Exists("temp.txt")) File.Delete("temp.txt");
 		}
 
-		#endregion
-
 		private static void BeforeReadRecord(EngineBase engine, BeforeReadRecordEventArgs e)
 		{
 			Console.WriteLine("--> Before read line: " + e.RecordLine); 
@@ -229,5 +233,68 @@ namespace Examples
 		{
 			Console.WriteLine("--> After write record: " + e.RecordLine); 
 		}
+		
+		#endregion
+
+
+		#region "  RunTimeRecords  "
+
+		static void RunTimeRecords()
+		{
+
+			Console.WriteLine("Run Time Records now =) ...");
+			Console.WriteLine();
+
+			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customer", ",");
+			cb.AddField("CustId", typeof(Int32));
+			cb.AddField("Name", typeof(string));
+			cb.AddField("Balance", typeof(Decimal));
+			cb.AddField("AddedDate", typeof(DateTime));
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			
+			
+			// Estas dos lineas son el uso de la librería
+			FileHelperEngine engine = new FileHelperEngine(cb.CreateRecordClass());
+
+			DataTable dt = engine.ReadFileAsDT(@"..\Data\CustomersDelimited.txt");
+
+			// Aqui es donde ustedes agregan su código
+			foreach (DataRow dr in dt.Rows)
+			{
+				Console.WriteLine("Customer: " + dr[0].ToString() + " - " + dr[1].ToString());
+			}
+
+		}
+
+		static void RunTimeRecordsFixed()
+		{
+
+			Console.WriteLine("Run Time Records now =) ...");
+			Console.WriteLine();
+
+			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customer", FixedMode.ExactLength);
+			cb.AddField("CustId", 5, typeof(Int32));
+			cb.AddField("Name", 20, typeof(string));
+			cb.AddField("Balance", 8, typeof(Decimal));
+			cb.AddField("AddedDate", 8, typeof(DateTime));
+			cb.LastField.Converter.Kind = ConverterKind.Date;
+			cb.LastField.Converter.Arg1 = "ddMMyyyy";
+			
+			
+			// Estas dos lineas son el uso de la librería
+			FileHelperEngine engine = new FileHelperEngine(cb.CreateRecordClass());
+
+			DataTable dt = engine.ReadFileAsDT(@"..\Data\CustomersFixedLength.txt");
+
+			// Aqui es donde ustedes agregan su código
+			foreach (DataRow dr in dt.Rows)
+			{
+				Console.WriteLine("Customer: " + dr[0].ToString() + " - " + dr[1].ToString());
+			}
+
+		}
+		#endregion
+
 	}
 }

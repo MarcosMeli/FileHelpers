@@ -14,7 +14,7 @@ namespace FileHelpersTests
 		FileHelperAsyncEngine asyncEngine;
 
 		public string mClass = 
-		@"	[FixedLengthRecord]
+		@"	[FixedLengthRecord(FixedMode.AllowVariableLength)]
 			public class SampleType
 			{
 				[FieldFixedLength(8)]
@@ -34,7 +34,7 @@ namespace FileHelpersTests
 		";
 
 		public string mClassVbNet = 
-			@"	<FixedLengthRecord> _
+			@"	<FixedLengthRecord(FixedMode.AllowVariableLength)> _
 			Public Class SampleType
 			
 				<FieldFixedLength(8), _
@@ -361,6 +361,8 @@ namespace FileHelpersTests
 		{
 			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
 
+			cb.FixedMode = FixedMode.ExactLength;
+			
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
 			cb.LastField.Converter.Arg1 = "ddMMyyyy";
@@ -393,6 +395,8 @@ namespace FileHelpersTests
 			
 			Assert.AreEqual(AlignMode.Right, loaded.FieldByIndex(1).AlignMode);
 			Assert.AreEqual(' ', loaded.FieldByIndex(1).AlignChar);
+
+			Assert.AreEqual(FixedMode.ExactLength, loaded.FixedMode);
 		}
 
 		[Test]

@@ -28,25 +28,31 @@ namespace FileHelpers.WizardApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataPreview));
             this.dgbPreview = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgbPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // dgbPreview
             // 
+            this.dgbPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgbPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbPreview.Location = new System.Drawing.Point(12, 12);
             this.dgbPreview.Name = "dgbPreview";
-            this.dgbPreview.Size = new System.Drawing.Size(486, 411);
+            this.dgbPreview.Size = new System.Drawing.Size(640, 315);
             this.dgbPreview.TabIndex = 0;
             // 
             // frmDataPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 435);
+            this.ClientSize = new System.Drawing.Size(663, 337);
             this.Controls.Add(this.dgbPreview);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDataPreview";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Read Data Preview";
             ((System.ComponentModel.ISupportInitialize)(this.dgbPreview)).EndInit();
             this.ResumeLayout(false);

@@ -85,6 +85,7 @@
         <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
         <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
         <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
+        <copy file="Doc\tree.css" todir="..\Release\Doc" overwrite="True" />
 
         <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
             <fileset basedir="FileHelpers.CodeExamples">
