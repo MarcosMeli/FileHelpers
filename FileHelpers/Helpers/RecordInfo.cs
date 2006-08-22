@@ -66,7 +66,7 @@ namespace FileHelpers
 			}
 
 			if (mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {}) == null)
-				throw new BadUsageException("The record class don't have a default constructor.");
+				throw new BadUsageException("The record class " + mRecordType.Name + " need a constructor with no args (public or private)");
 
 			if (mRecordType.IsDefined(typeof (IgnoreFirstAttribute), false))
 				mIgnoreFirst = ((IgnoreFirstAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreFirstAttribute), false)[0]).NumberOfLines;
@@ -88,7 +88,7 @@ namespace FileHelpers
 			mFieldCount = mFields.Length;
 
 			if (mFieldCount == 0)
-				throw new BadUsageException("The record class don't contains any field.");
+				throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
 
 		}
 		#endregion

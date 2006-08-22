@@ -6,8 +6,8 @@
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     
-    <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
     <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+    <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
 
     
     <property name="Source2005" value="FileHelpers_Vs2005" />
@@ -93,8 +93,8 @@
                 <exclude name=".svn" />
                 <exclude name="**/*.suo" />
                 <exclude name="**/*.resharperoptions" />
-                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj"  />
-                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj"  />
+                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
+                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
             </fileset>
         </zip>
 
