@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyVersion("1.6.0.0")]
 
 
-[assembly : AssemblyTitle("FileHelpers ExcelStorage http://filehelpers.sf.net")]
+[assembly : AssemblyTitle("FileHelpers ExcelStorage http://www.filehelpers.com")]
 [assembly : AssemblyDescription("An extension to the FileHelpers Lib to support Excel Read/write operations.")]
 [assembly : AssemblyProduct("FileHelpers ExcelStorage")]
 [assembly : AssemblyCompany("Marcos Meli")]

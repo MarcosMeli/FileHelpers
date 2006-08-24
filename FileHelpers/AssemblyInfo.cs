@@ -8,15 +8,15 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 #if ! MINI
-[assembly : AssemblyTitle("FileHelpers Lib   http://filehelpers.sf.net")]
+[assembly : AssemblyTitle("FileHelpers Lib   http://www.filehelpers.com")]
 [assembly : AssemblyDescription("A simple to use file library for .NET that supports automatic formated file read/write operations.")]
-[assembly : AssemblyProduct("FileHelpers   http://filehelpers.sf.net")]
+[assembly : AssemblyProduct("FileHelpers   http://www.filehelpers.com")]
 [assembly : ReflectionPermission(SecurityAction.RequestMinimum, ReflectionEmit = true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, SerializationFormatter = true)]
 #else
-[assembly : AssemblyTitle("FileHelpers Lib (Pocket PC)  http://filehelpers.sf.net")]
+[assembly : AssemblyTitle("FileHelpers Lib (Pocket PC)  http://www.filehelpers.com")]
 [assembly : AssemblyDescription("A simple to use file library for .NET Compact Framework that supports automatic formated file read/write operations.")]
-[assembly : AssemblyProduct("FileHelpersPPC   http://filehelpers.sf.net")]
+[assembly : AssemblyProduct("FileHelpersPPC   http://www.filehelpers.com")]
 #endif
 
 [assembly : AssemblyVersion("1.6.0.0")]
