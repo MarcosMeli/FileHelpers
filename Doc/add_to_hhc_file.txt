@@ -218,7 +218,7 @@
 
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Discussion Forums">
-		<param name="Local" value="http://filehelpers.sourceforge.net/forums/">
+		<param name="Local" value="http://www.filehelpers.com/forums/">
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">

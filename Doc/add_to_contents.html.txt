@@ -214,7 +214,7 @@
 
        
         <div class="treeNode">
-          <a href="http://filehelpers.sourceforge.net/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
+          <a href="http://www.filehelpers.com/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
         </div>
 
 

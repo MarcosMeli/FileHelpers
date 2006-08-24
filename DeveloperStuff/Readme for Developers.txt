@@ -18,7 +18,7 @@
 
   FileHelpers Forums:
    
-         http://filehelpers.sourceforge.net/forums/
+         http://www.filehelpers.com/forums/
     
 
 -------------------------------

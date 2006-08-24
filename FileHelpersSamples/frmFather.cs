@@ -129,7 +129,7 @@ namespace FileHelpersSamples
 			this.linkLabel1.Size = new System.Drawing.Size(168, 16);
 			this.linkLabel1.TabIndex = 101;
 			this.linkLabel1.TabStop = true;
-			this.linkLabel1.Text = "filehelpers.sourceforge.net";
+			this.linkLabel1.Text = "www.filehelpers.com";
 			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
 			// pictureBox3
@@ -189,7 +189,7 @@ namespace FileHelpersSamples
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Process.Start("explorer", "\"http://filehelpers.sourceforge.net\"");
+			Process.Start("explorer", "\"http://www.filehelpers.com\"");
 		}
 
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -202,7 +202,7 @@ namespace FileHelpersSamples
 
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
-			Process.Start("explorer", "\"http://filehelpers.sourceforge.net\"");
+			Process.Start("explorer", "\"http://www.filehelpers.com\"");
 		}
 
 		private void pictureBox3_Click(object sender, System.EventArgs e)
