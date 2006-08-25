@@ -113,7 +113,6 @@ namespace FileHelpers
 					arr.Add(curField);
 					if (arr.Count > 1)
 						((FieldBase)arr[arr.Count-2]).mNextIsOptional = ((FieldBase)arr[arr.Count-1]).mIsOptional;
-					
 				}
 			}
 

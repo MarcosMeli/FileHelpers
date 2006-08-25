@@ -6,6 +6,7 @@
 
 using System;
 using System.Reflection;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -151,10 +152,15 @@ namespace FileHelpers
 			if (typeof (ConverterBase).IsAssignableFrom(convType))
 			{
 				ConstructorInfo constructor;
-				constructor = convType.GetConstructor(ArgsToTypes(args));
+				constructor = convType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, ArgsToTypes(args), null);
 
 				if (constructor == null)
-					throw new BadUsageException("Constructor with " + args.Length.ToString() + " arguments of type " + convType.Name + " not found !!");
+				{
+					if (args.Length == 0)
+						throw new BadUsageException("Empty constructor for converter: " + convType.Name + " was not found. You must add a constructor without args (can be public or private)");
+					else
+						throw new BadUsageException("Constructor for converter: " + convType.Name + " with these arguments: (" + ArgsDesc(args) + ") was not found. You must add a constructor with this signature (can be public or private)");
+				}
 
 				try
 				{
@@ -197,6 +203,16 @@ namespace FileHelpers
 
 			return res;
 
+		}
+
+		private string ArgsDesc(object[] args)
+		{
+			string res = args[0].GetType().Name;
+
+			for(int i = 1; i < args.Length; i++)
+				res += ", " + args[i].GetType().Name;
+
+			return res;
 		}
 
 		#endregion
