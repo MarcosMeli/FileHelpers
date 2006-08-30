@@ -260,6 +260,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\DelimitedFileEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\EngineBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

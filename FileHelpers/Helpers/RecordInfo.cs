@@ -84,6 +84,19 @@ namespace FileHelpers
 			FieldInfo[] fields;
 			fields = mRecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
+			// Add the inherited fields at the end 
+			ArrayList curFields = new ArrayList(fields.Length);
+			ArrayList inheritFields = new ArrayList(fields.Length);
+			for(int i = 0; i < fields.Length; i++)
+				if (fields[i].DeclaringType == mRecordType)
+					curFields.Add(fields[i]);
+				else
+					inheritFields.Add(fields[i]);
+			
+			inheritFields.AddRange(curFields);
+
+			fields = (FieldInfo[]) inheritFields.ToArray(typeof (FieldInfo));
+			
 			mFields = CreateFields(fields, recordAttribute);
 			mFieldCount = mFields.Length;
 
