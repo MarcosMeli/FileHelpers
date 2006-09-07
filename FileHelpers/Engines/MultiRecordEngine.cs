@@ -66,6 +66,69 @@ namespace FileHelpers
 
 		#endregion
 
+        #if ! MINI
+
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public event BeforeReadRecordHandler BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public event AfterReadRecordHandler AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public event BeforeWriteRecordHandler BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public event AfterWriteRecordHandler AfterWriteRecord;
+
+        private bool OnBeforeProcessRecord(string line)
+        {
+            if (BeforeReadRecord != null)
+            {
+                BeforeReadRecordEventArgs e = null;
+                e = new BeforeReadRecordEventArgs(line, LineNumber);
+                BeforeReadRecord(this, e);
+
+                return e.SkipThisRecord;
+            }
+
+            return false;
+        }
+
+        private void OnAfterProcessRecord(string line, object record)
+        {
+            if (AfterReadRecord != null)
+            {
+                AfterReadRecordEventArgs e = null;
+                e = new AfterReadRecordEventArgs(line, record, LineNumber);
+                AfterReadRecord(this, e);
+            }
+        }
+
+        private bool OnBeforeWriteRecord(object record)
+        {
+            if (BeforeWriteRecord != null)
+            {
+                BeforeWriteRecordEventArgs e = null;
+                e = new BeforeWriteRecordEventArgs(record, LineNumber);
+                BeforeWriteRecord(this, e);
+
+                return e.SkipThisRecord;
+            }
+
+            return false;
+        }
+
+        private string OnAfterWriteRecord(string line, object record)
+        {
+            if (AfterWriteRecord != null)
+            {
+                AfterWriteRecordEventArgs e = null;
+                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+                AfterWriteRecord(this, e);
+                return e.RecordLine;
+            }
+            return line;
+        }
+
+        #endif
+
 		#region "  ReadFile  "
 
 		/// <summary>
@@ -142,10 +205,12 @@ namespace FileHelpers
 				{
 
 					mTotalRecords++;
-					currentRecord++; 
+					currentRecord++;
 
+                    bool skip = false;
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+                        skip = OnBeforeProcessRecord(currentLine);
 					#endif
 
 					Type currType = mRecordSelector(this, currentLine);
@@ -154,10 +219,18 @@ namespace FileHelpers
 					{
 						RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
 
-						object record = info.StringToRecord(currentLine, freader);
+                        if (skip == false)
+                        {
+                            object record = info.StringToRecord(currentLine, freader);
 
-						if (record != null)
-							resArray.Add(record);
+
+                            if (record != null)
+                                resArray.Add(record);
+#if !MINI
+                            OnAfterProcessRecord(currentLine, record);
+#endif
+                        }
+
 					}
 
 				}
@@ -278,6 +351,7 @@ namespace FileHelpers
 
 			#if !MINI
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+                
 			#endif
 
 			for (int i = 0; i < max; i++)
@@ -286,9 +360,11 @@ namespace FileHelpers
 				{
 					if (records[i] == null)
 						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
-					
+
+                    bool skip = false;
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
+                        skip = OnBeforeWriteRecord(records[i]);
 					#endif
 
 					RecordInfo info = (RecordInfo) mRecordInfoHash[records[i].GetType()];
@@ -296,8 +372,14 @@ namespace FileHelpers
 					if (info == null)
 						throw new BadUsageException("The record at index " + i.ToString() + " is of type '"+records[i].GetType().Name+"' and you don't add it in the constructor.");
 
-					currentLine = info.RecordToString(records[i]);
-					writer.WriteLine(currentLine);
+                    if (skip == false)
+                    {
+                        currentLine = info.RecordToString(records[i]);
+#if !MINI
+                        currentLine = OnAfterWriteRecord(currentLine, records[i]);
+#endif
+                        writer.WriteLine(currentLine);
+                    }
 
 				}
 				catch (Exception ex)
