@@ -207,14 +207,24 @@ namespace FileHelpers
 
 		private string ArgsDesc(object[] args)
 		{
-			string res = args[0].GetType().Name;
+			
+			string res = DisplayType(args[0]);
 
 			for(int i = 1; i < args.Length; i++)
-				res += ", " + args[i].GetType().Name;
+				res += ", " + DisplayType(args[i]);
 
 			return res;
 		}
 
+		private string DisplayType(object o)
+		{
+			if (o == null)
+				return "Object";
+			else
+				return o.GetType().Name;
+		}
+
 		#endregion
+
 	}
 }

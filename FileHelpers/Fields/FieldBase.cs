@@ -193,12 +193,8 @@ namespace FileHelpers
 
 			fieldString = ApplyTrim(fieldString);
 
-			if (mFieldType == strType)
-				val = fieldString;
-			else
+			if (mConvertProvider != null)
 			{
-				if (mConvertProvider != null)
-				{
 					if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty )
 					{
 						val = GetNullValue();
@@ -222,19 +218,23 @@ namespace FileHelpers
 				}
 				else 
 				{
-					// Trim it to use Convert.ChangeType
-					fieldString = fieldString.Trim();
-
-					if (fieldString == String.Empty)
-					{
-						// Empty stand for null
-						val = GetNullValue();
-					}
+					if (mFieldType == strType)
+						val = fieldString;
 					else
 					{
-						val = Convert.ChangeType(fieldString, mFieldType, null);
+						// Trim it to use Convert.ChangeType
+						fieldString = fieldString.Trim();
+
+						if (fieldString == String.Empty)
+						{
+							// Empty stand for null
+							val = GetNullValue();
+						}
+						else
+						{
+							val = Convert.ChangeType(fieldString, mFieldType, null);
+						}
 					}
-				}
 			}	
 			
 			mFieldInfo.SetValue(record, val);
