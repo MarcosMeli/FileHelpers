@@ -6,6 +6,8 @@
 @rmdir /S /Q "FileHelpersSamples\obj"
 @rmdir /S /Q "FileHelpers.CodeExamples\Example CSharp\obj"
 @rmdir /S /Q "FileHelpers.CodeExamples\Example VbNet\obj"
+@rmdir /S /Q "FileHelpers.CodeExamples\Example CSharp - VS 2005\obj"
+@rmdir /S /Q "FileHelpers.CodeExamples\Example VbNet - VS 2005\obj"
 @rmdir /S /Q "FileHelpers.CodeExamples\Release"
 @rmdir /S /Q "FileHelpers.ExcelStorage\bin"
 @rmdir /S /Q "FileHelpers.ExcelStorage\obj"
@@ -21,3 +23,4 @@
 @del /F /Q "FileHelpers\FileHelpersPPC.xml"
 @del /F /Q FileHelpers.resharperoptions
 @del /F /Q FileHelpers.Wizard.resharper.user 
+@del /F /Q "FileHelpers.CodeExamples\*.suo"
