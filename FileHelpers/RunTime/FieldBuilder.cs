@@ -211,7 +211,7 @@ namespace FileHelpers.RunTime
 			if (mFieldNullValue != null)
 			{
 				if (mFieldNullValue is string)
-					attbs.AddAttribute("FieldNullValue(\"" + mFieldNullValue.ToString() + "\"");
+					attbs.AddAttribute("FieldNullValue(\"" + mFieldNullValue.ToString() + "\")");
 				else
 				{
 					string t = mFieldNullValue.GetType().FullName;
