@@ -263,8 +263,16 @@ namespace FileHelpers.DataLink
 
 		string ColLeter(int col)
 		{
-			return ((char) ('A' + col - 1)).ToString();
-
+            string prefix = "";
+            int div = 0;
+            if (col > 26)
+            {
+                div = col / 26;
+                prefix = ((char)('A' + (div - 1))).ToString();
+            }
+            int index = col - (div * 26);
+            string postFix = ((char)('A' + index - 1)).ToString();
+            return prefix + postFix;
 		}
 
 		#endregion
