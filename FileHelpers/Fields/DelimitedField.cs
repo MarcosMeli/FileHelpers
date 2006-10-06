@@ -67,7 +67,7 @@ namespace FileHelpers
 							if (mIsFirst && from.Trim() == string.Empty)
 								msg = "The line " + reader.LineNumber.ToString() + " is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
 							else
-								msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
+								msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ reader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
 							
 							throw new FileHelperException(msg);
 
@@ -125,7 +125,7 @@ namespace FileHelpers
 							if (sepPos == -1)
 							{
 								if (this.mNextIsOptional == false)
-									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ reader.LineNumber.ToString() + " (the record has less fields, the separator is wrong or the next field must be marked as optional).");
 								else
 									sepPos = from.Length;
 							}
@@ -134,9 +134,9 @@ namespace FileHelpers
 						}
 					}
 					else if (from.Trim().StartsWith(quotedStr))
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar in the data use the TrimAttribute to by pass this error. Field String: " + from);
+						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar at line "+ reader.LineNumber.ToString() + ". Use the TrimAttribute to by pass this error. Field String: " + from);
 					else
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar in the data. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
+						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar at line "+ reader.LineNumber.ToString() + ". You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
 				}
 
 			}

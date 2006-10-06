@@ -397,12 +397,20 @@ namespace FileHelpers
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
 		/// <param name="delimiter">The delimiter used to write the file</param>
-		public static void DataTableToCsv(DataTable dt, string filename, string delimiter)
+		public static void DataTableToCsv(DataTable dt, string filename, char delimiter)
 		{
-			CsvEngine.DataTableToCsv(dt, filename, delimiter);
+			CsvEngine.DataTableToCsv(dt, filename, new CsvOptions("Tempo", delimiter, dt.Columns.Count));
 		}
 	
 
+		/// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
+		/// <param name="dt">The source Data Table</param>
+		/// <param name="filename">The destination file.</param>
+		/// <param name="options">The options used to write the file</param>
+		public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
+		{
+			CsvEngine.DataTableToCsv(dt, filename, options);
+		}
 
 		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
 		/// <param name="delimiter">The delimiter for each field</param>

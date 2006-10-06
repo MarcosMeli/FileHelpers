@@ -5,7 +5,6 @@ namespace FileHelpers
 	/// <summary>A class to read generic CSV files delimited for any char.</summary>
 	public sealed class DelimitedFileEngine : FileHelperEngine
 	{
-
 		#region "  Constructor  "
 
 		public DelimitedFileEngine(Type recordType): base(recordType)
@@ -16,6 +15,7 @@ namespace FileHelpers
 
 		#endregion
 
+		/// <summary>The Delimiter used by this class.</summary>
 		public string Delimiter
 		{
 			get

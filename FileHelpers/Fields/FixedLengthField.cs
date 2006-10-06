@@ -38,7 +38,7 @@ namespace FileHelpers
 				if (mIsOptional)
 					return ExtractedInfo.Empty;
 				else
-					throw new BadUsageException("Empty string found for the field: " + mFieldInfo.Name + " (You need to mark it as [FieldOptional] if you want to avoid this exception)");
+					throw new BadUsageException("End Of Line found processing the field: " + mFieldInfo.Name + " at line "+ reader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
 			}
 			
 			ExtractedInfo res;
@@ -47,9 +47,9 @@ namespace FileHelpers
 				if (mFixedMode == FixedMode.AllowLessChars || mFixedMode == FixedMode.AllowVariableLength)
 					res = new ExtractedInfo(from);
 				else
-					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has less chars than the defined for " + mFieldInfo.Name + " (" + mLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
+					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") at line "+ reader.LineNumber.ToString() + " has less chars than the defined for " + mFieldInfo.Name + " (" + mLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
 			else if (mIsLast && from.Length > mLength && mFixedMode != FixedMode.AllowMoreChars && mFixedMode != FixedMode.AllowVariableLength)
-				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
+				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") at line "+ reader.LineNumber.ToString() + " has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
 			else
 				res = new ExtractedInfo(from.Substring(0, this.mLength));
 

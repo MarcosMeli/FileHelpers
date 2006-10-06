@@ -82,15 +82,15 @@ namespace FileHelpers
 		/// <param name="filename">The destination file.</param>
 		public static void DataTableToCsv(DataTable dt, string filename)
 		{
-			DataTableToCsv(dt, filename, ",");
+			DataTableToCsv(dt, filename, new CsvOptions("Tempo1", ',', dt.Columns.Count));
 		}
 
 
 		/// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
-		/// <param name="delimiter">The delimiter used to write the file</param>
-		public static void DataTableToCsv(DataTable dt, string filename, string delimiter)
+		/// <param name="options">The options used to write the file</param>
+		public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
 		{
 			using (StreamWriter fs = new StreamWriter(filename, false))
 			{
@@ -101,9 +101,9 @@ namespace FileHelpers
 					for(int i = 0; i < fields.Length; i++)
 					{
 						if (i > 0)
-							fs.Write(delimiter);
+							fs.Write(options.Delimiter);
 						
-						fs.Write(ObjectString(fields[i]));
+						fs.Write(options.ValueToString(fields[i]));
 					}
 					fs.Write(StringHelper.NewLine);
 				}
@@ -111,13 +111,9 @@ namespace FileHelpers
 			}
 		}
 
-		private static string ObjectString(object o)
-		{
-			if (o == null)
-				return string.Empty;
-			else
-				return o.ToString();
-		}
+//		private static string ObjectString(CsvOptions options, object o)
+//		{
+//		}
 
 		#endregion
 
@@ -152,89 +148,7 @@ namespace FileHelpers
 		}
 	}
 
-	/// <summary>Class used to pass information to the <see cref="FileHelpers.RunTime.CsvClassBuilder"/> and the <see cref="CsvEngine"/></summary>
-	public sealed class CsvOptions
-	{
 
-		/// <summary>Create a Csv Wrapper using the specified number of fields.</summary>
-		/// <param name="className">The name of the record class</param>
-		/// <param name="delimiter">The delimiter for each field</param>
-		/// <param name="numberOfFields">The number of fields of each record</param>
-		public CsvOptions(string className, char delimiter, int numberOfFields)
-		{
-			mRecordClassName = className;
-			mDelimiter = delimiter;
-			mNumberOfFields = numberOfFields;
-		}
-
-		/// <summary>Create a Csv Wrapper using the specified sample file with their headers.</summary>
-		/// <param name="className">The name of the record class</param>
-		/// <param name="delimiter">The delimiter for each field</param>
-		/// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
-		public CsvOptions(string className, char delimiter, string sampleFile)
-		{
-			mRecordClassName = className;
-			mDelimiter = delimiter;
-            mSampleFileName = sampleFile;
-		}
-
-		private string mSampleFileName = string.Empty;
-		private char mDelimiter = ',';
-		private char mHeaderDelimiter = char.MinValue;
-		private int mHeaderLines = 1;
-		private string mRecordClassName = string.Empty;
-		private int mNumberOfFields = -1;
-		private string mFieldsPrefix = "Field_";
-
-		/// <summary>A sample file from where to read the field names and number.</summary>
-		public string SampleFileName
-		{
-			get { return mSampleFileName; }
-			set { mSampleFileName = value; }
-		}
-
-		/// <summary>The delimiter for each field.</summary>
-		public char Delimiter
-		{
-			get { return mDelimiter; }
-			set { mDelimiter = value; }
-		}
-
-		/// <summary>The delimiter for each fiel name in the header.</summary>
-		public char HeaderDelimiter
-		{
-			get { return mHeaderDelimiter; }
-			set { mHeaderDelimiter = value; }
-		}
-
-		/// <summary>The name used for the record class (a valid .NET class).</summary>
-		public string RecordClassName
-		{
-			get { return mRecordClassName; }
-			set { mRecordClassName = value; }
-		}
-
-		/// <summary>The prefix used when you only specified the number of fields</summary>
-		public string FieldsPrefix
-		{
-			get { return mFieldsPrefix; }
-			set { mFieldsPrefix = value; }
-		}
-
-		/// <summary>The number of fields that the file contains.</summary>
-		public int NumberOfFields
-		{
-			get { return mNumberOfFields; }
-			set { mNumberOfFields = value; }
-		}
-
-		/// <summary>The number of header lines</summary>
-		public int HeaderLines
-		{
-			get { return mHeaderLines; }
-			set { mHeaderLines = value; }
-		}
-	}
 }
 
 //#endif
