@@ -58,5 +58,13 @@ namespace FileHelpersTests.Errors
 			Common.ReadTest(engine, @"Bad\BadInt4.txt");
 		}
 
+		[Test]
+		//[ExpectedException(typeof (ConvertException))]
+		public void NoPendingNullValue()
+		{
+			engine = new FileHelperEngine(typeof (SampleType));
+			Common.ReadTest(engine, @"Bad\NoBadNullValue.txt");
+		}
+
 	}
 }
