@@ -3,6 +3,8 @@ using System.Data;
 
 namespace FileHelpers.DataLink
 {
+#if NET_20
+
     public sealed class GenericDatabaseStorage<T, U> : DatabaseStorage
         where T : IDbConnection, new( )
         where U : IDbCommand, new( )
@@ -63,4 +65,5 @@ namespace FileHelpers.DataLink
 
         #endregion
     }
+#endif
 }
