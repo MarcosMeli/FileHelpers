@@ -29,6 +29,10 @@ namespace FileHelpers
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
 		internal bool mIgnoreEmptyLines = false;
+
+		internal bool mNotifyRead;
+		internal bool mNotifyWrite;
+
 		internal int mFieldCount;
 		
 		private ConstructorInfo mRecordConstructor;
@@ -76,6 +80,15 @@ namespace FileHelpers
 
 			if (mRecordType.IsDefined(typeof (IgnoreEmptyLinesAttribute), false))
 				mIgnoreEmptyLines = true;
+
+#if ! MINI
+			if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
+				mNotifyRead = true;
+
+			if (typeof(INotifyWrite).IsAssignableFrom(mRecordType))
+				mNotifyWrite = true;
+#endif
+
 
 			mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {});
 
@@ -183,6 +196,7 @@ namespace FileHelpers
 		#region RecordToString
 
 		private int _BigSize = 50;
+
 		/// <summary>Internal.</summary>
 		/// <param name="record"></param>
 		/// <returns></returns>

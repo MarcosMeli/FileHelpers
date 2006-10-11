@@ -77,7 +77,7 @@ namespace FileHelpers
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
         public event AfterWriteRecordHandler AfterWriteRecord;
 
-        private bool OnBeforeProcessRecord(string line)
+        private bool OnBeforeReadRecord(string line)
         {
             if (BeforeReadRecord != null)
             {
@@ -91,8 +91,11 @@ namespace FileHelpers
             return false;
         }
 
-        private void OnAfterProcessRecord(string line, object record)
+        private void OnAfterReadRecord(string line, object record)
         {
+			if (mRecordInfo.mNotifyRead)
+				((INotifyRead)record).AfterRead(this, line);
+
             if (AfterReadRecord != null)
             {
                 AfterReadRecordEventArgs e = null;
@@ -103,7 +106,10 @@ namespace FileHelpers
 
         private bool OnBeforeWriteRecord(object record)
         {
-            if (BeforeWriteRecord != null)
+			if (mRecordInfo.mNotifyWrite)
+				((INotifyWrite)record).BeforeWrite(this);
+			
+			if (BeforeWriteRecord != null)
             {
                 BeforeWriteRecordEventArgs e = null;
                 e = new BeforeWriteRecordEventArgs(record, LineNumber);
@@ -210,7 +216,7 @@ namespace FileHelpers
                     bool skip = false;
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-                        skip = OnBeforeProcessRecord(currentLine);
+                        skip = OnBeforeReadRecord(currentLine);
 					#endif
 
 					Type currType = mRecordSelector(this, currentLine);
@@ -227,7 +233,7 @@ namespace FileHelpers
                             if (record != null)
                                 resArray.Add(record);
 #if !MINI
-                            OnAfterProcessRecord(currentLine, record);
+                        	OnAfterReadRecord(currentLine, record);
 #endif
                         }
 

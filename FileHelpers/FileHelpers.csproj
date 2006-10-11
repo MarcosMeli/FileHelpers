@@ -480,6 +480,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Interfaces\IComparableRecord.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Interfaces\INotificableRecord.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MasterDetail\MasterDetailEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
