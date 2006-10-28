@@ -2053,9 +2053,11 @@ namespace FileHelpers.WizardApp
 
         private void txtClassName_TextChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
-            ReLoadPreview();
-
+            if  (mWizardInfo.ClassBuilder != null)
+            {
+				mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
+				ReLoadPreview();
+            }
         }
 
         private void cboClassVisibility_SelectedIndexChanged(object sender, EventArgs e)
