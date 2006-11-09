@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.6.0" />
-    <property name="LibraryFileVersion" value="1_6_0" />
+    <property name="LibraryVersion" value="1.6.4" />
+    <property name="LibraryFileVersion" value="1_6_4" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     
-    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
     <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
+    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
 
     
     <property name="Source2005" value="FileHelpers_Vs2005" />
@@ -69,8 +69,8 @@
             </fileset>
         </copy>
 
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
+        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
 
        
     </target>

@@ -17,7 +17,7 @@ namespace FileHelpersSamples
 		public void ReadWrite()
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (Orders));
-
+ 
 			// to Read use:
 			Orders[] res = (Orders[]) engine.ReadFile(@"C:\TestIn.txt");
 

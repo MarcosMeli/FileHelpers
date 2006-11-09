@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -37,6 +38,8 @@ namespace FileHelpers
 		private string mFieldsPrefix = "Field_";
 		private string mDateFormat= "dd/MM/yyyy";
 		private string mDecimalSeparator = ".";
+		private Encoding mEncoding = Encoding.Default;
+		
 
 		/// <summary>A sample file from where to read the field names and number.</summary>
 		public string SampleFileName
@@ -99,6 +102,12 @@ namespace FileHelpers
 		{
 			get { return mDecimalSeparator; }
 			set { mDecimalSeparator = value; }
+		}
+
+		public Encoding Encoding
+		{
+			get { return mEncoding; }
+			set { mEncoding = value; }
 		}
 
 		ConvertHelpers.DecimalConverter mDecimalConv;

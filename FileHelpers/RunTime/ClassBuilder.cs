@@ -635,7 +635,7 @@ namespace FileHelpers.RunTime
 
 		private string GetSealed(NetLanguage lang)
 		{
-			if (mSealedClass)
+			if (mSealedClass == false)
 				return string.Empty;
 			
 			switch(lang)

@@ -17,7 +17,7 @@
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records</a>
+          <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records <img src="new.gif" width="31" height="12" border=0 ></a>
         </div>
 
         <div class="treeNode">

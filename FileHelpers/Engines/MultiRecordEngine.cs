@@ -475,5 +475,215 @@ namespace FileHelpers
 			else
 				return types[0];
 		}
+		
+
+		//      ASYNC METHODS !!!!!!!
+		
+		ForwardReader mAsyncReader;
+
+		#region "  LastRecord  "
+
+		private object mLastRecord;
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+		public object LastRecord
+		{
+			get { return mLastRecord; }
+		}
+
+		#endregion
+
+		#region "  BeginReadStream"
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
+		public void BeginReadStream(TextReader reader)
+		{
+			if (reader == null)
+				throw new ArgumentNullException("The TextReader can´t be null.");
+
+			ResetFields();
+			mHeaderText = String.Empty;
+			mFooterText = String.Empty;
+
+			if (mRecordInfo.mIgnoreFirst > 0)
+			{
+				for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
+				{
+					string temp = reader.ReadLine();
+					mLineNumber++;
+					if (temp != null)
+						mHeaderText += temp + StringHelper.NewLine;
+					else
+						break;
+				}
+			}
+
+			mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
+			mAsyncReader.DiscardForward = true;
+		}
+
+		#endregion
+
+		#region "  BeginReadFile  "
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
+		public void BeginReadFile(string fileName)
+		{
+			BeginReadStream(new StreamReader(fileName, mEncoding, true));
+		}
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
+		public void BeginReadString(string sourceData)
+		{
+			if (sourceData == null)
+				sourceData = String.Empty;
+
+			BeginReadStream(new StringReader(sourceData));
+		}
+
+		#endregion
+		
+		#region "  EndsRead  "
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
+		public void EndsRead()
+		{
+			try
+			{
+				if (mAsyncReader != null)
+					mAsyncReader.Close();
+
+				mAsyncReader = null;
+			}
+			catch
+			{
+			}
+		}
+
+		#endregion
+		
+		
+// DIFFERENT FROM THE ASYNC ENGINE
+		
+		#region "  ReadNext  "
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
+		public object ReadNext()
+		{
+			if (mAsyncReader == null)
+				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+
+			ReadNextRecord();
+
+			return mLastRecord;
+		}
+
+		private void ReadNextRecord()
+		{
+
+			string currentLine = mAsyncReader.ReadNextLine();
+			mLineNumber++;
+
+			bool byPass = false;
+
+			mLastRecord = null;
+
+			while (true)
+			{
+				if (currentLine != null)
+				{
+					try
+					{
+						mTotalRecords++;
+
+						Type currType = mRecordSelector(this, currentLine);
+
+						if (currType != null)
+						{
+							RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
+							mLastRecord = info.StringToRecord(currentLine, mAsyncReader);
+
+							if (mLastRecord != null)
+							{
+								byPass = true;
+								return;
+							}
+						}
+
+					}
+					catch (Exception ex)
+					{
+						switch (mErrorManager.ErrorMode)
+						{
+							case ErrorMode.ThrowException:
+								byPass = true;
+								throw;
+							case ErrorMode.IgnoreAndContinue:
+								break;
+							case ErrorMode.SaveAndContinue:
+								ErrorInfo err = new ErrorInfo();
+								err.mLineNumber = mAsyncReader.LineNumber;
+								err.mExceptionInfo = ex;
+								//							err.mColumnNumber = mColumnNum;
+								err.mRecordString = currentLine;
+
+								mErrorManager.AddError(err);
+								break;
+						}
+					}
+					finally
+					{
+						if (byPass == false)
+						{
+							currentLine = mAsyncReader.ReadNextLine();
+							mLineNumber = mAsyncReader.LineNumber;
+						}
+					}
+				}
+				else
+				{
+					mLastRecord = null;
+
+
+					if (mRecordInfo.mIgnoreLast > 0)
+						mFooterText = mAsyncReader.RemainingText;
+
+					try
+					{
+						mAsyncReader.Close();
+					}
+					catch
+					{
+					}
+
+					return;
+				}
+			}
+		}
+
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
+		public object[] ReadNexts(int numberOfRecords)
+		{
+			if (mAsyncReader == null)
+				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+
+			ArrayList arr = new ArrayList(numberOfRecords);
+
+			for (int i = 0; i < numberOfRecords; i++)
+			{
+				ReadNextRecord();
+				if (mLastRecord != null)
+					arr.Add(mLastRecord);
+				else
+					break;
+			}
+			return (object[])  arr.ToArray(RecordType);
+		}
+
+		#endregion
+		
+		
+		
 	}
 }
