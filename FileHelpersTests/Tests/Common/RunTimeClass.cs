@@ -78,6 +78,34 @@ namespace FileHelpersTests
 		}
 
 		[Test]
+		public void ReadFileDiffDir()
+		{
+			string oldDir = Environment.CurrentDirectory;
+			Environment.CurrentDirectory = @"C:\";
+			
+			Type t = ClassBuilder.ClassFromString(mClass);
+			Environment.CurrentDirectory = oldDir;
+
+			engine = new FileHelperEngine(t);
+
+			DataTable dt = engine.ReadFileAsDT(Common.TestPath(@"Good\test1.txt"));
+
+			Assert.AreEqual(4, dt.Rows.Count);
+			Assert.AreEqual(4, engine.TotalRecords);
+			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+			Assert.AreEqual("901", dt.Rows[0][1]);
+			Assert.AreEqual(234, dt.Rows[0][2]);
+
+			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+			Assert.AreEqual("012", dt.Rows[1][1]);
+			Assert.AreEqual(345, dt.Rows[1][2]);
+
+		}
+		
+		
+		[Test]
 		public void ReadFileVbNet()
 		{
 			Type t = ClassBuilder.ClassFromString(mClassVbNet, NetLanguage.VbNet);

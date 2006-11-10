@@ -73,7 +73,7 @@ namespace FileHelpers.RunTime
 			CompilerParameters cp = new CompilerParameters();
 			cp.ReferencedAssemblies.Add("system.dll");
 			cp.ReferencedAssemblies.Add("system.data.dll");
-			cp.ReferencedAssemblies.Add("filehelpers.dll");
+			cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
 			cp.GenerateExecutable = false;
 			cp.GenerateInMemory = true;
 

@@ -1,6 +1,7 @@
 using FileHelpers;
 using FileHelpers.MasterDetail;
 using System.Collections;
+using System.IO;
 
 
 namespace FileHelpersTests
@@ -12,6 +13,11 @@ namespace FileHelpersTests
 		{
 			return @"..\data\" + fileName;
 		}
+
+//		public static string FullTestPath(string fileName)
+//		{
+//			return Path.GetDirectoryName(typeof(Common).Assembly.GetModules()[0].FullyQualifiedName) + @"\..\data\" + fileName;
+//		}
 
 		public static object[] ReadTest(FileHelperEngine engine, string fileName)
 		{
