@@ -91,7 +91,7 @@ namespace FileHelpers
             return false;
         }
 
-        private void OnAfterReadRecord(string line, object record)
+        private bool OnAfterReadRecord(string line, object record)
         {
 			if (mRecordInfo.mNotifyRead)
 				((INotifyRead)record).AfterRead(this, line);
@@ -101,7 +101,10 @@ namespace FileHelpers
                 AfterReadRecordEventArgs e = null;
                 e = new AfterReadRecordEventArgs(line, record, LineNumber);
                 AfterReadRecord(this, e);
+            	
+            	return e.SkipThisRecord;
             }
+        	return false;
         }
 
         private bool OnBeforeWriteRecord(object record)
@@ -229,12 +232,13 @@ namespace FileHelpers
                         {
                             object record = info.StringToRecord(currentLine, freader);
 
-
-                            if (record != null)
-                                resArray.Add(record);
 #if !MINI
-                        	OnAfterReadRecord(currentLine, record);
+							skip = OnAfterReadRecord(currentLine, record);
 #endif
+                        	
+							if (skip == false && record != null)
+								resArray.Add(record);
+
                         }
 
 					}

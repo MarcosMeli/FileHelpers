@@ -24,7 +24,7 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
-		/// <summary>The just read read record line.</summary>
+		/// <summary>The just read record line.</summary>
 		public string RecordLine
 		{
 			get { return mRecordLine; }
@@ -43,7 +43,7 @@ namespace FileHelpers
 
 		private bool mSkipThisRecord = false;
 
-		/// <summary>Set this property to true if you want want to bypass the current line.</summary>
+		/// <summary>Set this property to true if you want to bypass the current line.</summary>
 		public bool SkipThisRecord
 		{
 			get { return mSkipThisRecord; }
@@ -70,6 +70,15 @@ namespace FileHelpers
 		{
 			get { return mRecord; }
 			set { mRecord = value; }
+		}
+
+		private bool mSkipThisRecord = false;
+
+		/// <summary>Set this property to true if you want to bypass the current record.</summary>
+		public bool SkipThisRecord
+		{
+			get { return mSkipThisRecord; }
+			set { mSkipThisRecord = value; }
 		}
 
 	}

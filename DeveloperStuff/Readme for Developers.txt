@@ -44,5 +44,5 @@ drop me a line with the parts of the library in wich you want
 to contribute.
 
 ---
-Regards
+Cheers
 Marcos Meli

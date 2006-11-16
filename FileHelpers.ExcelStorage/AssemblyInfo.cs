@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly : AssemblyVersion("1.6.0.0")]
+[assembly : AssemblyVersion("1.6.5.0")]
 
 
 [assembly : AssemblyTitle("FileHelpers ExcelStorage http://www.filehelpers.com")]

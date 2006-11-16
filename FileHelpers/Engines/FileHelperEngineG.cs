@@ -1,6 +1,7 @@
+//#undef GENERICS
 #define GENERICS
-
 #if NET_2_0
+
 
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
@@ -132,19 +133,20 @@ namespace FileHelpers
 					bool skip = false;
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-						skip = OnBeforeProcessRecord(currentLine);
+						skip = OnBeforeReadRecord(currentLine);
 					#endif
 
 					if (skip == false)
 					{
 						object record = mRecordInfo.StringToRecord(currentLine, freader);
 
-						if (record != null)
+						#if !MINI
+							skip = OnAfterReadRecord(currentLine, record);
+						#endif
+						
+						if (skip == false && record != null)
 							resArray.Add(record);
 
-						#if !MINI
-							OnAfterProcessRecord(currentLine, record);
-						#endif
 					}
 				}
 				catch (Exception ex)
@@ -468,8 +470,9 @@ namespace FileHelpers
 	/// <summary>Called in write operations just after the record was converted to a string.</summary>
 	public event AfterWriteRecordHandler AfterWriteRecord;
 
-		private bool OnBeforeProcessRecord(string line)
+		private bool OnBeforeReadRecord(string line)
 		{
+
 			if (BeforeReadRecord != null)
 			{
 				BeforeReadRecordEventArgs e = null;
@@ -482,19 +485,28 @@ namespace FileHelpers
 			return false;
 		}
 
-		private void OnAfterProcessRecord(string line, object record)
+		private bool OnAfterReadRecord(string line, object record)
 		{
-			if (AfterReadRecord != null)
+			if (mRecordInfo.mNotifyRead)
+				((INotifyRead)record).AfterRead(this, line);
+
+		    if (AfterReadRecord != null)
 			{
 				AfterReadRecordEventArgs e = null;
 				e = new AfterReadRecordEventArgs(line, record, LineNumber);
 				AfterReadRecord(this, e);
+				return e.SkipThisRecord;
 			}
+			
+			return false;
 		}
 
 		private bool OnBeforeWriteRecord(object record)
 		{
-			if (BeforeWriteRecord != null)
+			if (mRecordInfo.mNotifyWrite)
+				((INotifyWrite)record).BeforeWrite(this);
+
+		    if (BeforeWriteRecord != null)
 			{
 				BeforeWriteRecordEventArgs e = null;
 				e = new BeforeWriteRecordEventArgs(record, LineNumber);
@@ -508,6 +520,7 @@ namespace FileHelpers
 
 		private string OnAfterWriteRecord(string line, object record)
 		{
+
 			if (AfterWriteRecord != null)
 			{
 				AfterWriteRecordEventArgs e = null;

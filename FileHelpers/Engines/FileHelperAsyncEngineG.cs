@@ -1,5 +1,5 @@
+//#undef GENERICS
 #define GENERICS
-
 #if NET_2_0
 
 #region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar"

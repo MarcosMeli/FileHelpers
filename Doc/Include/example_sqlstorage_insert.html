@@ -97,7 +97,12 @@ After these lines if you want to insert records to your db you need these lines:
 
 	storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
-	CustomersVerticalBar[] res = storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt")) as CustomerVerticalBar[];
+CustomersVerticalBar[] res = CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt") as CustomerVerticalBar[];
+storage.InsertRecords(res);
+
+// or directly:
+
+storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt"));
    
 </textarea>
                     						<p>
