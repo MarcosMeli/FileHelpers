@@ -490,6 +490,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Mapping\DataMapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MasterDetail\MasterDetailEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

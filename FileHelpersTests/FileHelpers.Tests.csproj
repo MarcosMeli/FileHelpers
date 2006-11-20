@@ -388,6 +388,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Mapping\Mapping.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\MasterDetail\MasterDetail.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

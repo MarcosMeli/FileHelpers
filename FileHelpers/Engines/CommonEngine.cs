@@ -246,7 +246,7 @@ namespace FileHelpers
 		/// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
 		/// <param name="records">The records to be converted to a DataTable</param>
 		/// <returns>The datatable containing the records as DataRows</returns>
-		public DataTable RecordsToDataTable(ICollection records)
+		public static DataTable RecordsToDataTable(ICollection records)
 		{
 
 			RecordInfo ri = null;
@@ -268,7 +268,7 @@ namespace FileHelpers
 		/// <param name="records">The records to be converted to a DataTable</param>
 		/// <returns>The datatable containing the records as DataRows</returns>
 		/// <param name="recordType">The type of the inner records.</param>
-		public DataTable RecordsToDataTable(ICollection records, Type recordType)
+		public static DataTable RecordsToDataTable(ICollection records, Type recordType)
 		{
 			RecordInfo ri = new RecordInfo(recordType);
 			return ri.RecordsToDataTable(records);
@@ -279,7 +279,7 @@ namespace FileHelpers
 		/// <summary>
 		/// Reads the file1 and file2 using the recordType and write it to destinationFile
 		/// </summary>
-		public void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
+		public static void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
 		{
 			FileHelperAsyncEngine engineRead= new FileHelperAsyncEngine(recordType);
 			FileHelperAsyncEngine engineWrite = new FileHelperAsyncEngine(recordType);
@@ -322,7 +322,7 @@ namespace FileHelpers
 		/// <param name="field">The name of the field used to sort the records.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The merged and sorted records.</returns>
-		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
+		public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
 		{
 			return MergeAndSortFile(recordType, file1, file2, destFile, field, true);
 		}
@@ -337,7 +337,7 @@ namespace FileHelpers
 		/// <param name="ascending">Indicate the order of sort.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The merged and sorted records.</returns>
-		public object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field, bool ascending)
+		public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field, bool ascending)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordType);
 
@@ -364,7 +364,7 @@ namespace FileHelpers
 		/// <param name="file2">File with contents to be merged.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The merged and sorted records.</returns>
-		public object[] MergeAndSortFile(Type recordType,string file1, string file2, string destFile)
+		public static object[] MergeAndSortFile(Type recordType,string file1, string file2, string destFile)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordType);
 
