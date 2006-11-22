@@ -88,10 +88,9 @@ public class MoneyConverter : ConverterBase
         Decimal v = Convert.ToDecimal(val);
 
 		// ugly but works =)
-        string res = Decimal.Truncate(v).ToUInt32(v).ToString();
-        res += Decimal.Round(Decimal.Remainder(v, 1), mDecimals)
-			   .ToString(".##").Replace(",", "").Replace(".", "").PadLeft(mDecimals, "0"c)
-
+		string res = Decimal.ToUInt32(Decimal.Truncate(v)).ToString(); 
+        res += Decimal.Round(Decimal.Remainder(v, 1), mDecimals) 
+                   .ToString(".##").Replace(",", "").Replace(".", "").PadLeft(mDecimals, '0'); 
         return res;
     }
     
