@@ -91,7 +91,11 @@ public class MoneyConverter : ConverterBase
 		string res = Decimal.ToUInt32(Decimal.Truncate(v)).ToString(); 
         res += Decimal.Round(Decimal.Remainder(v, 1), mDecimals) 
                    .ToString(".##").Replace(",", "").Replace(".", "").PadLeft(mDecimals, '0'); 
+                   
         return res;
+        
+        // a more elegant option that also works
+        // return Convert.ToInt32(Convert.ToDecimal(fieldValue) * (10 ^ mDecimals)).ToString(); 
     }
     
 }

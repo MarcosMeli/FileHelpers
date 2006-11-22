@@ -12,7 +12,11 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyTrademark("FileHelpers")]
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyConfiguration("")]
-[assembly : AssemblyDelaySign(false)]
-[assembly : AssemblyKeyFile("")]
-[assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
+
+[assembly : AssemblyDelaySign(false)]
+[assembly : AssemblyKeyName("")]
+
+#if STRONG_NAME
+[assembly: AssemblyKeyFile(@"..\FileHelpers\FileHelpers.snk")]
+#endif
