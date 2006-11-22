@@ -200,6 +200,7 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.cmdRun);
 			this.Controls.Add(this.grid2);
 			this.Controls.Add(this.grid1);
+			this.MaximizeBox = false;
 			this.Name = "frmSort";
 			this.Load += new System.EventHandler(this.frmSort_Load);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
