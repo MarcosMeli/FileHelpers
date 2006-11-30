@@ -6,6 +6,7 @@ namespace FileHelpers
 
 	/// <summary></summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
+#if NET_1_1
 	public abstract class WriteRecordEventArgs: EventArgs
 	{
 		internal WriteRecordEventArgs(object record, int lineNumber)
@@ -13,7 +14,18 @@ namespace FileHelpers
 			mRecord = record;
 			mLineNumber = lineNumber;
 		}
+#else
+	public abstract class WriteRecordEventArgs<T>: EventArgs
+	{
+		internal WriteRecordEventArgs(T record, int lineNumber)
+		{
+			mRecord = record;
+			mLineNumber = lineNumber;
+		}
+#endif
 
+
+#if NET_1_1
 		private object mRecord;
 
 		/// <summary>The current record.</summary>
@@ -21,6 +33,16 @@ namespace FileHelpers
 		{
 			get { return mRecord; }
 		}
+#else
+		private T mRecord;
+
+		/// <summary>The current record.</summary>
+		public T Record
+		{
+			get { return mRecord; }
+		}
+#endif
+			
 
 
 		private int mLineNumber;
@@ -34,10 +56,17 @@ namespace FileHelpers
 	}
 
 	/// <summary>Arguments for the <see cref="BeforeWriteRecordHandler"/></summary>
+
+#if NET_1_1
 	public sealed class BeforeWriteRecordEventArgs: WriteRecordEventArgs
 	{
-
-		internal BeforeWriteRecordEventArgs(object record, int lineNumber): base(record, lineNumber)
+		internal BeforeWriteRecordEventArgs(object record, int lineNumber)
+#else
+	public sealed class BeforeWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
+	{
+		internal BeforeWriteRecordEventArgs(T record, int lineNumber)
+#endif
+			: base(record, lineNumber)
 		{}
 
 		private bool mSkipThisRecord = false;
@@ -51,10 +80,15 @@ namespace FileHelpers
 	}
 
 	/// <summary>Arguments for the <see cref="AfterWriteRecordHandler"/></summary>
+#if NET_1_1
 	public sealed class AfterWriteRecordEventArgs: WriteRecordEventArgs
 	{
-
-		internal AfterWriteRecordEventArgs(object record, int lineNumber, string line): base(line, lineNumber)
+		internal AfterWriteRecordEventArgs(object record, int lineNumber, string line): base(record, lineNumber)
+#else
+	public sealed class AfterWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
+	{
+		internal AfterWriteRecordEventArgs(T record, int lineNumber, string line): base(record, lineNumber)
+#endif
 		{
 			mRecordLine = line;
 		}

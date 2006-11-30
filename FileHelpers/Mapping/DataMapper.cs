@@ -131,9 +131,17 @@ namespace FileHelpers.Mapping
 		{
 			if (mDataColumnIndex == -1)
 			{
-				mDataColumnIndex = row.Table.Columns[mDataColumnName].Ordinal;
-				if (mDataColumnIndex == -1)
+				try
+				{
+					mDataColumnIndex = row.Table.Columns[mDataColumnName].Ordinal;
+					if (mDataColumnIndex == -1)
+						throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
+				}
+				catch (Exception ex)
+				{
 					throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
+				}
+				
 			}
 			
 		}
@@ -143,22 +151,34 @@ namespace FileHelpers.Mapping
 		
 		public void DataToField(DataRow row, object record) // TypedReference t)
 		{
-			GetColumnIndex(row);
-			
-			if (mCheckTypeFlag == 0)
+			try
 			{
-				mColumnType = row.Table.Columns[mDataColumnIndex].DataType;
-				if (mColumnType == mField.FieldType)
-					mCheckTypeFlag = 1;
-				else
-					
-					mCheckTypeFlag = 2;
-			}
+				GetColumnIndex(row);
 			
-			if (mCheckTypeFlag == 1)
-				mField.SetValue(record, row[mDataColumnIndex]);
-			else
-				mField.SetValue(record, Convert.ChangeType(row[mDataColumnIndex], mField.FieldType));
+				if (mCheckTypeFlag == 0)
+				{
+					mColumnType = row.Table.Columns[mDataColumnIndex].DataType;
+					if (mColumnType == mField.FieldType)
+						mCheckTypeFlag = 1;
+					else
+						mCheckTypeFlag = 2;
+				}
+			
+				if (mCheckTypeFlag == 1)
+					mField.SetValue(record, row[mDataColumnIndex]);
+				else if (row[mDataColumnIndex] != DBNull.Value)
+					mField.SetValue(record, Convert.ChangeType(row[mDataColumnIndex], mField.FieldType));
+				else // IS DB NULl
+				{
+					if (mColumnType == typeof(string))
+						mField.SetValue(record, string.Empty);
+				}
+				
+			}
+			catch(Exception ex)
+			{
+				throw new FileHelperException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", row[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
+			}
 			
 		}
 	}

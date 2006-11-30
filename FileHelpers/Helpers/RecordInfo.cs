@@ -273,8 +273,13 @@ namespace FileHelpers
 	#if ! MINI
 
 		#region RecordsToDataTable
-		
+
 		internal DataTable RecordsToDataTable(ICollection records)
+		{
+			return RecordsToDataTable(records, -1);
+		}
+		
+		internal DataTable RecordsToDataTable(ICollection records, int maxRecords)
 		{
 			DataTable res = new DataTable();
 			res.BeginLoadData();
@@ -289,8 +294,24 @@ namespace FileHelpers
 
 			res.MinimumCapacity = records.Count;
 
-			foreach (object r in records)
-				res.Rows.Add(RecordToValues(r));
+			if (maxRecords == -1)
+			{
+				foreach (object r in records)
+					res.Rows.Add(RecordToValues(r));
+			}
+			else
+			{
+				int i = 0;
+				foreach (object r in records)
+				{
+					if (i == maxRecords)
+						break;
+
+					res.Rows.Add(RecordToValues(r));
+					i++;
+				}
+
+			}
 
 			res.EndLoadData();
 			return res;

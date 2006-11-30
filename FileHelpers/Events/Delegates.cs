@@ -6,6 +6,8 @@ namespace FileHelpers
 
 	// ----  Read Operations  ----
 
+	#if NET_1_1
+	
 	/// <summary>
 	/// Called in read operations just before the record string is translated to a record.
 	/// </summary>
@@ -38,6 +40,6 @@ namespace FileHelpers
 	/// <param name="e">The event data.</param>
 	public delegate void AfterWriteRecordHandler(EngineBase engine, AfterWriteRecordEventArgs e);
 
-
+	#endif
 
 }

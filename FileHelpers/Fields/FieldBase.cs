@@ -195,50 +195,48 @@ namespace FileHelpers
 
 			if (mConvertProvider != null)
 			{
-					if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty )
+				if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty)
+				{
+					val = GetNullValue();
+				}
+				else
+				{
+					try
 					{
+						val = mConvertProvider.StringToField(fieldString);
+
+						if (val == null)
+							val = GetNullValue();
+					}
+					catch (ConvertException ex)
+					{
+						ex.FieldName = this.mFieldInfo.Name;
+						throw ex;
+					}
+				}
+			}
+			else
+			{
+				if (mFieldType == strType)
+					val = fieldString;
+				else
+				{
+					// Trim it to use Convert.ChangeType
+					fieldString = fieldString.Trim();
+
+					if (fieldString == String.Empty)
+					{
+						// Empty stand for null
 						val = GetNullValue();
 					}
 					else
 					{
-						
-						try
-						{
-							val = mConvertProvider.StringToField(fieldString);
-
-							if (val == null)
-								val = GetNullValue();
-						}
-						catch (ConvertException ex)
-						{
-							ex.FieldName = this.mFieldInfo.Name;
-							throw ex;
-						}
+						val = Convert.ChangeType(fieldString, mFieldType, null);
 					}
 				}
-				else 
-				{
-					if (mFieldType == strType)
-						val = fieldString;
-					else
-					{
-						// Trim it to use Convert.ChangeType
-						fieldString = fieldString.Trim();
+			}
 
-						if (fieldString == String.Empty)
-						{
-							// Empty stand for null
-							val = GetNullValue();
-						}
-						else
-						{
-							val = Convert.ChangeType(fieldString, mFieldType, null);
-						}
-					}
-			}	
-			
 			mFieldInfo.SetValue(record, val);
-			
 		}
 
 		private object GetNullValue()
@@ -247,7 +245,9 @@ namespace FileHelpers
 			if (mNullValue == null)
 			{
 				if (mFieldType.IsValueType)
-					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" + mFieldInfo.DeclaringType.Name + "'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
+					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
+					                            mFieldInfo.DeclaringType.Name +
+					                            "'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
 				else
 					val = null;
 			}

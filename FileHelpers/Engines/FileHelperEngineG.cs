@@ -141,7 +141,11 @@ namespace FileHelpers
 						object record = mRecordInfo.StringToRecord(currentLine, freader);
 
 						#if !MINI
-							skip = OnAfterReadRecord(currentLine, record);
+							#if NET_1_1
+								skip = OnAfterReadRecord(currentLine, record);
+							#else
+								skip = OnAfterReadRecord(currentLine, (T) record);
+							#endif
 						#endif
 						
 						if (skip == false && record != null)
@@ -461,6 +465,9 @@ namespace FileHelpers
 #if ! MINI
 
 
+#if ! GENERICS
+
+#if NET_1_1
 	/// <summary>Called in read operations just before the record string is translated to a record.</summary>
 	public event BeforeReadRecordHandler BeforeReadRecord;
 	/// <summary>Called in read operations just after the record was created from a record string.</summary>
@@ -470,6 +477,19 @@ namespace FileHelpers
 	/// <summary>Called in write operations just after the record was converted to a string.</summary>
 	public event AfterWriteRecordHandler AfterWriteRecord;
 
+#else
+
+		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
+		public event EventHandler<BeforeReadRecordEventArgs<object>> BeforeReadRecord;
+		/// <summary>Called in read operations just after the record was created from a record string.</summary>
+		public event EventHandler<AfterReadRecordEventArgs<object>> AfterReadRecord;
+		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+		public event EventHandler<BeforeWriteRecordEventArgs<object>> BeforeWriteRecord;
+		/// <summary>Called in write operations just after the record was converted to a string.</summary>
+		public event EventHandler<AfterWriteRecordEventArgs<object>> AfterWriteRecord;
+
+#endif
+		
 		private bool OnBeforeReadRecord(string line)
 		{
 
@@ -530,6 +550,80 @@ namespace FileHelpers
 			}
 			return line;
 		}
+
+#else
+		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
+		public event EventHandler<BeforeReadRecordEventArgs<T>> BeforeReadRecord;
+		/// <summary>Called in read operations just after the record was created from a record string.</summary>
+		public event EventHandler<AfterReadRecordEventArgs<T>> AfterReadRecord;
+		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+		public event EventHandler<BeforeWriteRecordEventArgs<T>> BeforeWriteRecord;
+		/// <summary>Called in write operations just after the record was converted to a string.</summary>
+		public event EventHandler<AfterWriteRecordEventArgs<T>> AfterWriteRecord;
+
+		private bool OnBeforeReadRecord(string line)
+		{
+
+			if (BeforeReadRecord != null)
+			{
+				BeforeReadRecordEventArgs<T> e = null;
+				e = new BeforeReadRecordEventArgs<T>(line, LineNumber);
+				BeforeReadRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private bool OnAfterReadRecord(string line, T record)
+		{
+			if (mRecordInfo.mNotifyRead)
+				((INotifyRead)record).AfterRead(this, line);
+
+		    if (AfterReadRecord != null)
+			{
+				AfterReadRecordEventArgs<T> e = null;
+				e = new AfterReadRecordEventArgs<T>(line, record, LineNumber);
+				AfterReadRecord(this, e);
+				return e.SkipThisRecord;
+			}
+			
+			return false;
+		}
+
+		private bool OnBeforeWriteRecord(T record)
+		{
+			if (mRecordInfo.mNotifyWrite)
+				((INotifyWrite)record).BeforeWrite(this);
+
+		    if (BeforeWriteRecord != null)
+			{
+				BeforeWriteRecordEventArgs<T> e = null;
+                e = new BeforeWriteRecordEventArgs<T>(record, LineNumber);
+				BeforeWriteRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private string OnAfterWriteRecord(string line, T record)
+		{
+
+			if (AfterWriteRecord != null)
+			{
+                AfterWriteRecordEventArgs<T> e = null;
+                e = new AfterWriteRecordEventArgs<T>(record, LineNumber, line);
+                AfterWriteRecord(this, e);
+				return e.RecordLine;
+			}
+			return line;
+		}
+
+#endif
+
 #endif
 
 
