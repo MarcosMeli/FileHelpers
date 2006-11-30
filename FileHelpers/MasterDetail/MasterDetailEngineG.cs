@@ -1,6 +1,6 @@
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 #region "   Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
@@ -69,7 +69,7 @@ namespace FileHelpers.MasterDetail
 			mMasterType = typeof(M);
 			mMasterInfo = new RecordInfo(mMasterType);
 
-            MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
+			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
 			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
@@ -79,7 +79,6 @@ namespace FileHelpers.MasterDetail
 
 		#region CommonSelectorInternal
 
-#if ! GENERICS
 		private class CommonSelectorInternal
 		{
 			CommonSelector mAction;
@@ -154,7 +153,7 @@ namespace FileHelpers.MasterDetail
 				return RecordAction.Skip;
 			}
 		}
-#endif
+
 		#endregion 
 
 		private RecordInfo mMasterInfo;
@@ -606,4 +605,4 @@ namespace FileHelpers.MasterDetail
 	}
 }
 
-//#endif
+#endif

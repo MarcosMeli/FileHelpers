@@ -1,6 +1,6 @@
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 namespace FileHelpers.MasterDetail
 {
@@ -105,4 +105,4 @@ namespace FileHelpers.MasterDetail
 	}
 }
 
-//#endif
+#endif

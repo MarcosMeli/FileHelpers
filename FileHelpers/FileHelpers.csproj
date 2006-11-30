@@ -495,12 +495,27 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MasterDetail\Common.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MasterDetail\MasterDetailEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MasterDetail\MasterDetailEngineG.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MasterDetail\MasterDetails.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterDetail\MasterDetailsG.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

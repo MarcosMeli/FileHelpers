@@ -1,9 +1,9 @@
-//#undef GENERICS
+//////////#undef GENERICS
 #define GENERICS
 #if NET_2_0
 
 
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "   Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -87,7 +87,7 @@ namespace FileHelpers
 #endif
 		{
 			if (reader == null)
-				throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+				throw new ArgumentNullException("reader", "The reader of the Stream cant be null");
 
 			ResetFields();
 			mHeaderText = String.Empty;
@@ -141,7 +141,7 @@ namespace FileHelpers
 						object record = mRecordInfo.StringToRecord(currentLine, freader);
 
 						#if !MINI
-							#if NET_1_1
+							#if ! GENERICS
 								skip = OnAfterReadRecord(currentLine, record);
 							#else
 								skip = OnAfterReadRecord(currentLine, (T) record);
@@ -462,10 +462,10 @@ namespace FileHelpers
 
 		#endregion
 
+
+		#region "  Event Handling  "
+
 #if ! MINI
-
-
-#if ! GENERICS
 
 #if NET_1_1
 	/// <summary>Called in read operations just before the record string is translated to a record.</summary>
@@ -477,19 +477,7 @@ namespace FileHelpers
 	/// <summary>Called in write operations just after the record was converted to a string.</summary>
 	public event AfterWriteRecordHandler AfterWriteRecord;
 
-#else
-
-		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-		public event EventHandler<BeforeReadRecordEventArgs<object>> BeforeReadRecord;
-		/// <summary>Called in read operations just after the record was created from a record string.</summary>
-		public event EventHandler<AfterReadRecordEventArgs<object>> AfterReadRecord;
-		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-		public event EventHandler<BeforeWriteRecordEventArgs<object>> BeforeWriteRecord;
-		/// <summary>Called in write operations just after the record was converted to a string.</summary>
-		public event EventHandler<AfterWriteRecordEventArgs<object>> AfterWriteRecord;
-
-#endif
-		
+			
 		private bool OnBeforeReadRecord(string line)
 		{
 
@@ -550,6 +538,81 @@ namespace FileHelpers
 			}
 			return line;
 		}
+
+#else
+
+#if ! GENERICS
+
+		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
+		public event EventHandler<BeforeReadRecordEventArgs<object>> BeforeReadRecord;
+		/// <summary>Called in read operations just after the record was created from a record string.</summary>
+		public event EventHandler<AfterReadRecordEventArgs<object>> AfterReadRecord;
+		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+		public event EventHandler<BeforeWriteRecordEventArgs<object>> BeforeWriteRecord;
+		/// <summary>Called in write operations just after the record was converted to a string.</summary>
+		public event EventHandler<AfterWriteRecordEventArgs<object>> AfterWriteRecord;
+
+		private bool OnBeforeReadRecord(string line)
+		{
+
+			if (BeforeReadRecord != null)
+			{
+				BeforeReadRecordEventArgs<object> e = null;
+				e = new BeforeReadRecordEventArgs<object>(line, LineNumber);
+				BeforeReadRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private bool OnAfterReadRecord(string line, object record)
+		{
+			if (mRecordInfo.mNotifyRead)
+				((INotifyRead)record).AfterRead(this, line);
+
+		    if (AfterReadRecord != null)
+			{
+				AfterReadRecordEventArgs<object> e = null;
+                e = new AfterReadRecordEventArgs<object>(line, record, LineNumber);
+				AfterReadRecord(this, e);
+				return e.SkipThisRecord;
+			}
+			
+			return false;
+		}
+
+		private bool OnBeforeWriteRecord(object record)
+		{
+			if (mRecordInfo.mNotifyWrite)
+				((INotifyWrite)record).BeforeWrite(this);
+
+		    if (BeforeWriteRecord != null)
+			{
+                BeforeWriteRecordEventArgs<object> e = null;
+                e = new BeforeWriteRecordEventArgs<object>(record, LineNumber);
+				BeforeWriteRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private string OnAfterWriteRecord(string line, object record)
+		{
+
+			if (AfterWriteRecord != null)
+			{
+                AfterWriteRecordEventArgs<object> e = null;
+                e = new AfterWriteRecordEventArgs<object>(record, LineNumber, line);
+				AfterWriteRecord(this, e);
+				return e.RecordLine;
+			}
+			return line;
+		}
+
 
 #else
 		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
@@ -625,6 +688,10 @@ namespace FileHelpers
 #endif
 
 #endif
+
+#endif
+
+		#endregion
 
 
 	}

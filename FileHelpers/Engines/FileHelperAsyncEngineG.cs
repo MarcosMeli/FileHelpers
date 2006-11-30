@@ -1,8 +1,8 @@
-//#undef GENERICS
+//////////#undef GENERICS
 #define GENERICS
 #if NET_2_0
 
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar"
+#region "   Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar"
 
 // Errors, suggestions, contributions, send a mail to: marcosdotnet[at]yahoo.com.ar.
 
@@ -65,7 +65,7 @@ namespace FileHelpers
 		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)
-				throw new ArgumentNullException("The TextReader can´t be null.");
+				throw new ArgumentNullException("The TextReader cant be null.");
 
 				ResetFields();
 				mHeaderText = String.Empty;
@@ -268,7 +268,7 @@ namespace FileHelpers
 		public void BeginWriteStream(TextWriter writer)
 		{
 			if (writer == null)
-				throw new ArgumentException("writer", "The TextWriter can´t be null.");
+				throw new ArgumentException("writer", "The TextWriter cant be null.");
 
 				ResetFields();
 				mAsyncWriter = writer;
@@ -322,7 +322,7 @@ namespace FileHelpers
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
 			if (record == null)
-				throw new BadUsageException("The record to write can´t be null.");
+				throw new BadUsageException("The record to write cant be null.");
 
 			if (RecordType.IsAssignableFrom(record.GetType()) == false)
 				throw new BadUsageException("The record must be of type: " + RecordType.Name);
@@ -378,7 +378,7 @@ namespace FileHelpers
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
 			if (records == null)
-				throw new ArgumentNullException("The record to write can´t be null.");
+				throw new ArgumentNullException("The record to write cant be null.");
 
 			if (records.Length == 0)
 				return;
