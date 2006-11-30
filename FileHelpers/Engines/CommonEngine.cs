@@ -243,10 +243,20 @@ namespace FileHelpers
 
 		
 #if ! MINI
+
 		/// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
 		/// <param name="records">The records to be converted to a DataTable</param>
 		/// <returns>The datatable containing the records as DataRows</returns>
 		public static DataTable RecordsToDataTable(ICollection records)
+		{
+			return RecordsToDataTable(records, -1);
+		}
+
+		/// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
+		/// <param name="records">The records to be converted to a DataTable</param>
+		/// <param name="maxRecords">The max number of records to add to the datatable. -1 for all.</param>
+		/// <returns>The datatable containing the records as DataRows</returns>
+		public static DataTable RecordsToDataTable(ICollection records, int maxRecords)
 		{
 
 			RecordInfo ri = null;
@@ -254,7 +264,8 @@ namespace FileHelpers
 			{
 				if (obj != null)
 				{
-                    ri = new RecordInfo(obj.GetType());
+					ri = new RecordInfo(obj.GetType());
+					break;
 				}
 			}
 
@@ -270,8 +281,18 @@ namespace FileHelpers
 		/// <param name="recordType">The type of the inner records.</param>
 		public static DataTable RecordsToDataTable(ICollection records, Type recordType)
 		{
+			return RecordsToDataTable(records, recordType, -1);
+		}
+
+		/// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
+		/// <param name="records">The records to be converted to a DataTable</param>
+		/// <returns>The datatable containing the records as DataRows</returns>
+		/// <param name="maxRecords">The max number of records to add to the datatable. -1 for all.</param>
+		/// <param name="recordType">The type of the inner records.</param>
+		public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
+		{
 			RecordInfo ri = new RecordInfo(recordType);
-			return ri.RecordsToDataTable(records);
+			return ri.RecordsToDataTable(records, maxRecords);
 		}
 
 #endif

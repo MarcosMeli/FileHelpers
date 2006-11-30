@@ -521,5 +521,21 @@ namespace FileHelpersTests
 			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
 		}
 
+		[Test]
+		public void LoopingFields()
+		{
+			DelimitedClassBuilder  cb = new DelimitedClassBuilder("MyClass", ",");
+			 
+			string[] lst = { "fieldOne", "fieldTwo", "fieldThree" }; 
+
+			for (int i = 0; i < lst.Length; i++) 
+			{ 
+				cb.AddField(lst[i].ToString(), typeof(string)); 
+			} 
+
+			FileHelperEngine engineTemp = new FileHelperEngine(cb.CreateRecordClass()); 
+			
+		}
+
 	}
 }
