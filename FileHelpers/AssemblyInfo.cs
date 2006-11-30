@@ -19,7 +19,7 @@ using System.Security.Permissions;
 [assembly : AssemblyProduct("FileHelpersPPC   http://www.filehelpers.com")]
 #endif
 
-[assembly : AssemblyVersion("1.6.5.0")]
+[assembly : AssemblyVersion("1.7.0.0")]
 [assembly : AssemblyCompany("Marcos Meli")]
 [assembly : AssemblyCopyright("Copyright 2005-06. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]
@@ -30,6 +30,6 @@ using System.Security.Permissions;
 [assembly : AssemblyDelaySign(false)]
 [assembly : AssemblyKeyName("")]
 
-#if STRONG_NAME
+//#if STRONG_NAME
 [assembly: AssemblyKeyFile(@"..\..\FileHelpers.snk")]
-#endif
+//#endif

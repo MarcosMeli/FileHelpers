@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
     <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.6.5" />
-    <property name="LibraryFileVersion" value="1_6_5" />
+    <property name="LibraryVersion" value="1.7.0" />
+    <property name="LibraryFileVersion" value="1_7_0" />
 
     <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
     
@@ -169,6 +169,7 @@
 
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
 
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeReadRecordEventArgs&quot; &quot;BeforeReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
 
         <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
 
