@@ -45,7 +45,7 @@ bgColor=white leftMargin=0 topMargin=0>
   <blockquote>
           <p>
               You can use this class as a short cut to the common operations, now have only the
-              basic methods but in the feature will contains a full list of common oprations.</p>
+              basic methods but in the feature will contains a full list of common operations.</p>
       <p>
           You can use this class like this</p>
           <blockquote>
@@ -76,6 +76,13 @@ CommonEngine.DataTableToCsv(dt, "customers.csv", ',');
 
 // remove duplicates:
 Customers[] distinct = CommonEngine.RemoveDuplicateRecords(customersArray);
+
+
+// Records to DataTable
+DataTable dt = CommonEngine.RecordsToDataTable(records);
+
+// only 25 records
+DataTable dt = CommonEngine.RecordsToDataTable(records, 25); 
 
 </textarea>
           </blockquote>
