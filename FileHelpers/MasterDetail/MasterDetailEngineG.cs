@@ -69,7 +69,7 @@ namespace FileHelpers.MasterDetail
 			mMasterType = typeof(M);
 			mMasterInfo = new RecordInfo(mMasterType);
 
-			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
+            MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
 			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
@@ -79,7 +79,8 @@ namespace FileHelpers.MasterDetail
 
 		#region CommonSelectorInternal
 
-		private class CommonSelectorInternal
+#if ! GENERICS
+		internal class CommonSelectorInternal
 		{
 			CommonSelector mAction;
 			string mSelector;
@@ -153,7 +154,7 @@ namespace FileHelpers.MasterDetail
 				return RecordAction.Skip;
 			}
 		}
-
+#endif
 		#endregion 
 
 		private RecordInfo mMasterInfo;

@@ -200,7 +200,11 @@
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-        
+
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordHandler&quot; &quot;EventHandler&lt;BeforeReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;EventHandler&lt;AfterReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordHandler&quot; &quot;EventHandler&lt;BeforeWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordHandler&quot; &quot;EventHandler&lt;AfterWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
 
         <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
 

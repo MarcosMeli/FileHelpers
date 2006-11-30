@@ -1,4 +1,4 @@
-//////////#undef GENERICS
+//////////////#undef GENERICS
 #define GENERICS
 #if NET_2_0
 

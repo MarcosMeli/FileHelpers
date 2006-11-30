@@ -80,7 +80,7 @@ namespace FileHelpers.MasterDetail
 		#region CommonSelectorInternal
 
 #if ! GENERICS
-		private class CommonSelectorInternal
+		internal class CommonSelectorInternal
 		{
 			CommonSelector mAction;
 			string mSelector;
