@@ -36,11 +36,22 @@ namespace FileHelpers
 			set { mFieldName = value; }
 		}
 
-		internal ConvertException(string origValue, Type destType) : this(origValue, destType, "")
+		/// <summary>
+		/// Create a new ConvertException object
+		/// </summary>
+		/// <param name="origValue">The value to convert.</param>
+		/// <param name="destType">The destination Type.</param>
+		public ConvertException(string origValue, Type destType) : this(origValue, destType, "")
 		{
 		}
 
-		internal ConvertException(string origValue, Type destType, string extraInfo) : base("Error Converting '" + origValue + "' to type: '" + destType.Name + "'." + extraInfo)
+		/// <summary>
+		/// Create a new ConvertException object
+		/// </summary>
+		/// <param name="origValue">The value to convert.</param>
+		/// <param name="destType">The destination Type.</param>
+		/// <param name="extraInfo">Aditional info of the error.</param>
+		public ConvertException(string origValue, Type destType, string extraInfo) : base("Error Converting '" + origValue + "' to type: '" + destType.Name + "'." + extraInfo)
 		{
 			mStringValue = origValue;
 			mType = destType;
