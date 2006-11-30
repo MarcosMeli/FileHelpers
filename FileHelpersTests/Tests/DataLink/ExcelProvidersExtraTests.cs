@@ -220,6 +220,34 @@ namespace FileHelpersTests.DataLink
 
 		}
 
+	
+		[DelimitedRecord("\t")]
+		public class OrdersDateExcelType
+		{
+			public int OrderID;
+
+			public string CustomerID;
+
+			public DateTime OrderDate;
+		}
+
+		[Test]
+		public void OrdersDateRead()
+		{
+			ExcelStorage provider = new ExcelStorage(typeof (OrdersDateExcelType), 1, 1);
+			provider.FileName = @"..\data\Excel\OrdersDate.xls";
+
+			OrdersDateExcelType[] res = (OrdersDateExcelType[]) provider.ExtractRecords();
+
+			Assert.AreEqual(830, res.Length);
+			Assert.AreEqual(new DateTime(2006, 1, 1), res[0].OrderDate);
+			Assert.AreEqual(new DateTime(2006, 3, 21), res[79].OrderDate);
+			Assert.AreEqual(new DateTime(2007, 2, 4), res[399].OrderDate);
+			Assert.AreEqual(new DateTime(2009, 4, 9), res[839].OrderDate);
+		
+			
+		}
+
 
 	}
 

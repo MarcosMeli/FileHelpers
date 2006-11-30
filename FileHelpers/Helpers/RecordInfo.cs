@@ -226,11 +226,28 @@ namespace FileHelpers
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				mFields[i].AssignFromValue(values[i], record);
+				if (mFields[i].mFieldType == typeof(DateTime) && values[i] is double)
+					mFields[i].AssignFromValue(DoubleToDate((int)(double)values[i]), record);
+				else
+					mFields[i].AssignFromValue(values[i], record);
 			}
 
 			return record;
 		}
+
+		private DateTime DoubleToDate(int serialNumber)
+		{
+		
+			if (serialNumber < 59) 
+			{ 
+				// Because of the 29-02-1900 bug, any serial date 
+				// under 60 is one off... Compensate. 
+				serialNumber++; 
+			} 
+
+			return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600)); 
+		}
+
 		#endregion
 
 		#region RecordToValues

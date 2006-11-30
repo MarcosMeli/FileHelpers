@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using Excel;
 
 namespace FileHelpers.DataLink
@@ -27,8 +28,8 @@ namespace FileHelpers.DataLink
 		{
 			// Temporary
 
-			if (RecordHasDateFields())
-				throw new NotImplementedException("For now the ExcelStorage don´t work with DateTime fields, sorry for the problems.");
+//			if (RecordHasDateFields())
+//				throw new NotImplementedException("For now the ExcelStorage don´t work with DateTime fields, sorry for the problems.");
 		}
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -164,19 +165,35 @@ namespace FileHelpers.DataLink
 
 		private void CloseAndCleanUp()
 		{
-			this.mSheet = null;
+			if (this.mSheet != null)
+			{
+				DisposeCOMObject(mSheet);
+				mSheet = null;
+			}
 
 			if (this.mBook != null)
 			{
 				this.mBook.Close(false, mv, mv);
+				DisposeCOMObject(mBook);
 				this.mBook = null;
 			}
+			
+			//Thread.Sleep(100);
+			
 			if (this.mApp != null)
 			{
+				//this.mApp.Interactive = true;
 				this.mApp.Quit();
+				DisposeCOMObject(mApp);
 				this.mApp = null;
 			}
-
+			
+			GC.Collect();
+		}
+		private void DisposeCOMObject(object comObject)
+		{
+			while (System.Runtime.InteropServices.Marshal.ReleaseComObject(comObject) > 1)
+			{}
 		}
 
 		#endregion
@@ -253,7 +270,10 @@ namespace FileHelpers.DataLink
 			{
 				return null;
 			}
-			object res = ((Range) this.mSheet.Cells[row, col]).Value;
+			Range r;
+			r = (Range) this.mSheet.Cells[row, col];
+			object res = r.Value;
+			DisposeCOMObject(r);
 			return Convert.ToString(res);
 		}
 
@@ -287,11 +307,19 @@ namespace FileHelpers.DataLink
 			}
 			object[] res;
 
+			Range r;
 			if (numberOfCols == 1)
-				res = new object[] {this.mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString()).Value};
+			{
+				r = mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString());
+				res = new object[] {r.Value};
+				DisposeCOMObject(r);
+			}
 			else
 			{
-				object[,] resTemp = (object[,]) this.mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString()).Value2;
+				r = mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString());
+				object[,] resTemp = (object[,]) r.Value2;
+				DisposeCOMObject(r);
+
 				res = new object[numberOfCols];
 
 				for (int i = 1; i <= numberOfCols; i++)

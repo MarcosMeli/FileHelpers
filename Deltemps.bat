@@ -24,3 +24,4 @@
 @del /F /Q FileHelpers.resharperoptions
 @del /F /Q FileHelpers.Wizard.resharper.user 
 @del /F /Q "FileHelpers.CodeExamples\*.suo"
+@del /F /Q "Doc\Include\Thumbs.db"
