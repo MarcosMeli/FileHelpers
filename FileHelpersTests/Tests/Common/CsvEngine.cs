@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace FileHelpersTests.CommonTests
 {
 	[TestFixture]
-	public class CsvEngineValidation
+	public class CsvEngineTests
 	{
 
 		[Test]
@@ -89,16 +89,10 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		[ExpectedException(typeof(FileHelperException))]
 		public void BadName()
 		{
-			try
-			{
-				CsvEngine engine = new CsvEngine("Ops, somerrors", '|', Common.TestPath(@"Good\RealCsvVerticalBar1.txt"));
-			}
-			catch(RunTimeCompilationException e)
-			{
-				Assert.AreEqual(2, e.CompilerErrors.Count);
-			}
+			new CsvEngine("Ops, somerrors", '|', Common.TestPath(@"Good\RealCsvVerticalBar1.txt"));
 		}
 
 		[Test]

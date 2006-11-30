@@ -290,6 +290,10 @@ namespace FileHelpers.RunTime
 
     	internal ClassBuilder(string className)
 		{
+    		className = className.Trim();
+    		if (ValidIdentifier(className) == false)
+    			throw new FileHelperException(string.Format(sInvalidIdentifier, className));
+    		
     		mClassName = className;
 		}
     	
@@ -791,5 +795,24 @@ namespace FileHelpers.RunTime
 
 		internal abstract void ReadClassElements(XmlDocument document);
 		internal abstract void ReadField(XmlNode node);
+		
+		internal static bool ValidIdentifier(string id)
+		{
+			if (id == null || id.Length == 0)
+				return false;
+			
+			if (Char.IsLetter(id[0]) == false && id[0] != '_')
+				return false;
+
+			for(int i=1; i < id.Length;i++)
+			{
+				if (id[i] != '_' && Char.IsLetterOrDigit(id[i]) == false)
+					return false;
+			}
+			
+			return true;
+		}
+		
+		internal const string sInvalidIdentifier = "The string '{0}' NOT IS a valid .NET identifier.";
 	}
 }

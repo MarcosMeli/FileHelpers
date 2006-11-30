@@ -534,8 +534,53 @@ namespace FileHelpersTests
 			} 
 
 			FileHelperEngine engineTemp = new FileHelperEngine(cb.CreateRecordClass()); 
-			
+		}
+		
+		[Test]
+		public void GotchClassName1()
+		{
+			new DelimitedClassBuilder(" MyClass", ",");
 		}
 
+		[Test]
+		public void GotchClassName2()
+		{
+			new DelimitedClassBuilder(" MyClass  ", ",");
+		}
+
+		[Test]
+		public void GotchClassName3()
+		{
+			new DelimitedClassBuilder("MyClass  ", ",");
+		}
+
+		[Test]
+		public void GotchClassName4()
+		{
+			new DelimitedClassBuilder("_MyClass2", ",");
+		}
+
+		[Test]
+		[ExpectedException(typeof(FileHelperException))]
+		public void BadClassName1()
+		{
+			new DelimitedClassBuilder("2yClass", ",");
+		}
+
+		[Test]
+		[ExpectedException(typeof(FileHelperException))]
+		public void BadClassName2()
+		{
+			new DelimitedClassBuilder("My Class", ",");
+		}
+
+		[Test]
+		[ExpectedException(typeof(FileHelperException))]
+		public void BadClassName3()
+		{
+			new DelimitedClassBuilder("", ",");
+		}
+
+		
 	}
 }

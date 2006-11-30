@@ -14,12 +14,22 @@ namespace FileHelpers.RunTime
 
 		internal FieldBuilder(string fieldName, Type fieldType)
 		{
+			fieldName = fieldName.Trim();
+			
+			if (ClassBuilder.ValidIdentifier(fieldName) == false)
+				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+			
 			mFieldName = fieldName;
 			mFieldType = fieldType.FullName;
 		}
 
 		internal FieldBuilder(string fieldName, string fieldType)
 		{
+			fieldName = fieldName.Trim();
+
+			if (ClassBuilder.ValidIdentifier(fieldName) == false)
+				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+
 			mFieldName = fieldName;
 			mFieldType = fieldType;
 		}
