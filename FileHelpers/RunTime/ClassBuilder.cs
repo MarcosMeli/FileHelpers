@@ -795,8 +795,13 @@ namespace FileHelpers.RunTime
 
 		internal abstract void ReadClassElements(XmlDocument document);
 		internal abstract void ReadField(XmlNode node);
-		
+
 		internal static bool ValidIdentifier(string id)
+		{
+			return ValidIdentifier(id, false);
+		}
+
+		internal static bool ValidIdentifier(string id, bool isType)
 		{
 			if (id == null || id.Length == 0)
 				return false;
@@ -806,6 +811,9 @@ namespace FileHelpers.RunTime
 
 			for(int i=1; i < id.Length;i++)
 			{
+				if (isType && id[i] == '.')
+					continue;
+				
 				if (id[i] != '_' && Char.IsLetterOrDigit(id[i]) == false)
 					return false;
 			}

@@ -117,7 +117,6 @@ namespace FileHelpersTests.DataLink
 
 
 		[Test]
-		[ExpectedException(typeof(NotImplementedException))]
 		public void OrdersWithDate()
 		{
 			ExcelStorage provider = new ExcelStorage(typeof (OrdersExcelWithDate), 1, 1);
@@ -243,7 +242,7 @@ namespace FileHelpersTests.DataLink
 			Assert.AreEqual(new DateTime(2006, 1, 1), res[0].OrderDate);
 			Assert.AreEqual(new DateTime(2006, 3, 21), res[79].OrderDate);
 			Assert.AreEqual(new DateTime(2007, 2, 4), res[399].OrderDate);
-			Assert.AreEqual(new DateTime(2009, 4, 9), res[839].OrderDate);
+			Assert.AreEqual(new DateTime(2008, 4, 9), res[829].OrderDate);
 		
 			
 		}

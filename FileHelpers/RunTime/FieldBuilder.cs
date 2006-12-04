@@ -30,7 +30,7 @@ namespace FileHelpers.RunTime
 			if (ClassBuilder.ValidIdentifier(fieldName) == false)
 				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 
-			if (ClassBuilder.ValidIdentifier(fieldType) == false)
+			if (ClassBuilder.ValidIdentifier(fieldType, true) == false)
 				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldType));
 
 			mFieldName = fieldName;

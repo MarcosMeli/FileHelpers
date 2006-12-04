@@ -281,20 +281,24 @@ namespace FileHelpers.DataLink
 
 		#region "  ColLeter  "
 
-		string ColLeter(int col)
-		{
-            string prefix = "";
-            int div = 0;
-            if (col > 26)
-            {
-                div = col / 26;
-                prefix = ((char)('A' + (div - 1))).ToString();
-            }
-            int index = col - (div * 26);
-            string postFix = ((char)('A' + index - 1)).ToString();
-            return prefix + postFix;
-		}
-
+		string _ColLetter(int col /* 0 origin */) 
+		{ 
+			// col = [0...25] 
+			if (col >= 0 && col <= 25) 
+				return ((char)('A' + col)).ToString(); 
+			return ""; 
+		} 
+		string ColLetter(int col /* 1 Origin */) 
+		{ 
+			if (col < 1 || col > 256) 
+				throw new ExcelBadUsageException("Column out of range; must be between 1 and 256"); // Excel limits 
+			col--; // make 0 origin 
+			// good up to col ZZ 
+			int col2 = (col / 26)-1; 
+			int col1 = (col % 26); 
+			return _ColLetter(col2) + _ColLetter(col1); 
+		} 
+		
 		#endregion
 
 		#region "  RowValues  "
@@ -310,13 +314,13 @@ namespace FileHelpers.DataLink
 			Range r;
 			if (numberOfCols == 1)
 			{
-				r = mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString());
+				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
 				res = new object[] {r.Value};
 				DisposeCOMObject(r);
 			}
 			else
 			{
-				r = mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + numberOfCols - 1) + row.ToString());
+				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
 				object[,] resTemp = (object[,]) r.Value2;
 				DisposeCOMObject(r);
 
@@ -337,7 +341,7 @@ namespace FileHelpers.DataLink
 			if (this.mSheet == null)
 				return;
 
-			Range r = this.mSheet.get_Range(ColLeter(startCol) + row.ToString(), ColLeter(startCol + values.Length - 1) + row.ToString());
+			Range r = this.mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + values.Length - 1) + row.ToString());
 
 			r.Value2 = values;
 		}
