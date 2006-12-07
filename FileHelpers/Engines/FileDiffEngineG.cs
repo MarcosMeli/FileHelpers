@@ -1,6 +1,6 @@
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 
 using System;
@@ -320,4 +320,4 @@ namespace FileHelpers
 
 	}
 }
-//#endif
+#endif

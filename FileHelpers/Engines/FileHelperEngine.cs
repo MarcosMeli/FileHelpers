@@ -15,6 +15,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
+#if GENERICS
+using System.Collections.Generic;
+#endif
 
 #if ! MINI
 using System.Data;
@@ -229,9 +232,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
 #if ! GENERICS
-		public void WriteFile(string fileName, object[] records)
+		public void WriteFile(string fileName, IList records)
 #else
-		public void WriteFile(string fileName, T[] records)
+		public void WriteFile(string fileName, IList<T> records)
 #endif
 		{
 			WriteFile(fileName, records, -1);
@@ -239,9 +242,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
 #if ! GENERICS
-		public void WriteFile(string fileName, object[] records, int maxRecords)
+		public void WriteFile(string fileName, IList records, int maxRecords)
 #else
-		public void WriteFile(string fileName, T[] records, int maxRecords)
+		public void WriteFile(string fileName, IList<T> records, int maxRecords)
 #endif
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
@@ -259,9 +262,9 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
-		public void WriteStream(TextWriter writer, object[] records)
+		public void WriteStream(TextWriter writer, IList records)
 #else
-		public void WriteStream(TextWriter writer, T[] records)
+		public void WriteStream(TextWriter writer, IList<T> records)
 #endif
 		{
 			WriteStream(writer, records, -1);
@@ -270,9 +273,9 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
-		public void WriteStream(TextWriter writer, object[] records, int maxRecords)
+		public void WriteStream(TextWriter writer, IList records, int maxRecords)
 #else
-		public void WriteStream(TextWriter writer, T[] records, int maxRecords)
+		public void WriteStream(TextWriter writer, IList<T> records, int maxRecords)
 #endif
 		{
 			if (writer == null)
@@ -281,7 +284,7 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
 
-			if (records.Length > 0 && records[0] != null && mRecordInfo.mRecordType.IsInstanceOfType(records[0]) == false)
+			if (records.Count > 0 && records[0] != null && mRecordInfo.mRecordType.IsInstanceOfType(records[0]) == false)
 				throw new BadUsageException("This engine works with record of type " + mRecordInfo.mRecordType.Name + " and you use records of type " + records[0].GetType().Name );
 
 			ResetFields();
@@ -296,10 +299,10 @@ namespace FileHelpers
 			string currentLine = null;
 
 			//ConstructorInfo constr = mType.GetConstructor(new Type[] {});
-			int max = records.Length;
+			int max = records.Count;
 
 			if (maxRecords >= 0)
-				max = Math.Min(records.Length, maxRecords);
+				max = Math.Min(records.Count, maxRecords);
 
 			#if !MINI
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
@@ -348,7 +351,7 @@ namespace FileHelpers
 
 			}
 
-			mTotalRecords = records.Length;
+			mTotalRecords = records.Count;
 
 			if (mFooterText != null && mFooterText != string.Empty)
 				if (mFooterText.EndsWith(StringHelper.NewLine))
@@ -364,9 +367,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString/*'/>
 #if ! GENERICS
-		public string WriteString(object[] records)
+		public string WriteString(IList records)
 #else
-		public string WriteString(T[] records)
+		public string WriteString(IList<T> records)
 #endif
 		{
 			return WriteString(records, -1);
@@ -374,9 +377,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString2/*'/>
 #if ! GENERICS
-		public string WriteString(object[] records, int maxRecords)
+		public string WriteString(IList records, int maxRecords)
 #else
-		public string WriteString(T[] records, int maxRecords)
+		public string WriteString(IList<T> records, int maxRecords)
 #endif
 		{
 			StringBuilder sb = new StringBuilder();
@@ -406,9 +409,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
 #if ! GENERICS
-		public void AppendToFile(string fileName, object[] records)
+		public void AppendToFile(string fileName, IList records)
 #else
-		public void AppendToFile(string fileName, T[] records)
+		public void AppendToFile(string fileName, IList<T> records)
 #endif
 		{
             

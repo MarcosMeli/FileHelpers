@@ -11,6 +11,9 @@
 using System;
 using System.Collections;
 using System.IO;
+#if GENERICS
+using System.Collections.Generic;
+#endif
 
 namespace FileHelpers
 {
@@ -369,9 +372,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
 #if ! GENERICS
-		public void WriteNexts(object[] records)
+		public void WriteNexts(IList records)
 #else
-		public void WriteNexts(T[] records)
+		public void WriteNexts(IList<T> records)
 #endif
 		{
 			if (mAsyncWriter == null)
@@ -380,7 +383,7 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("The record to write can´t be null.");
 
-			if (records.Length == 0)
+			if (records.Count == 0)
 				return;
 
 			if (RecordType.IsAssignableFrom(records[0].GetType()) == false)

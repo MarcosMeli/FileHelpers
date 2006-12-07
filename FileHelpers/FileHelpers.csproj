@@ -290,6 +290,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\FileDiffEngineG.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\FileHelperAsyncEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

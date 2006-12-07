@@ -35,6 +35,7 @@
         
         <copy file="FileHelpers\Engines\FileHelperEngine.cs" tofile="FileHelpers\Engines\FileHelperEngineG.cs" />
         <copy file="FileHelpers\Engines\FileHelperAsyncEngine.cs" tofile="FileHelpers\Engines\FileHelperAsyncEngineG.cs" />
+        <copy file="FileHelpers\Engines\FileDiffEngine.cs" tofile="FileHelpers\Engines\FileDiffEngineG.cs" />
         <copy file="FileHelpers\MasterDetail\MasterDetailEngine.cs" tofile="FileHelpers\MasterDetail\MasterDetailEngineG.cs" />
         <copy file="FileHelpers\MasterDetail\MasterDetails.cs" tofile="FileHelpers\MasterDetail\MasterDetailsG.cs" />
         
@@ -47,7 +48,12 @@
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-        
+
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
+
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
@@ -200,12 +206,12 @@
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-
+<!--
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordHandler&quot; &quot;EventHandler&lt;BeforeReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;EventHandler&lt;AfterReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordHandler&quot; &quot;EventHandler&lt;BeforeWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
         <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordHandler&quot; &quot;EventHandler&lt;AfterWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
-
+-->
         <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
 
         <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
