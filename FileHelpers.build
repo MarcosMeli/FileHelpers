@@ -1,298 +1,307 @@
 <?xml version="1.0"?>
 <project name="DevFramework" default="release">
-    <property name="BaseDir" value="&quot;.\&quot;" />
-    <property name="LibraryVersion" value="1.7.0" />
-    <property name="LibraryFileVersion" value="1_7_0" />
+   <property name="BaseDir" value="&quot;.\&quot;" />
+   <property name="LibraryVersion" value="1.7.0" />
+   <property name="LibraryFileVersion" value="1_7_0" />
 
-    <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
+   <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
+   
+   <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
+   <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+
+   
+   <property name="Source2005" value="FileHelpers_Vs2005" />
+   <property name="Source2003" value="FileHelpers_Vs2003" />
+
+   <property name="nant.settings.currentframework" value="net-1.1" />
+
+
+   <target name="clean">
     
-    <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
-    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
+       <delete>
+           <fileset basedir="..\AutoBuild\${LibraryVersion}">
+               <include name="*/**" />
+           </fileset>
+       </delete>
 
-    
-    <property name="Source2005" value="FileHelpers_Vs2005" />
-    <property name="Source2003" value="FileHelpers_Vs2003" />
-
-    <property name="nant.settings.currentframework" value="net-1.1" />
-
-
-    <target name="clean">
-     
-        <delete>
-            <fileset basedir="..\AutoBuild\${LibraryVersion}">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-
-        <delete>
-            <fileset basedir="..\Release">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-    </target>
-    
-    <target name="release" depends="clean">
-        
-        <copy file="FileHelpers\Engines\FileHelperEngine.cs" tofile="FileHelpers\Engines\FileHelperEngineG.cs" />
-        <copy file="FileHelpers\Engines\FileHelperAsyncEngine.cs" tofile="FileHelpers\Engines\FileHelperAsyncEngineG.cs" />
-        <copy file="FileHelpers\Engines\FileDiffEngine.cs" tofile="FileHelpers\Engines\FileDiffEngineG.cs" />
-        <copy file="FileHelpers\MasterDetail\MasterDetailEngine.cs" tofile="FileHelpers\MasterDetail\MasterDetailEngineG.cs" />
-        <copy file="FileHelpers\MasterDetail\MasterDetails.cs" tofile="FileHelpers\MasterDetail\MasterDetailsG.cs" />
-        
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-        
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
-
-
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="true" />
-
-        <copy file="..\Release\DotNet 1.1\FileHelpers.dll" todir="FileHelpers.CodeExamples\References" />
-
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
-            <fileset>
-                <include name="*.url" />
-            </fileset>
-        </copy>
-        <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
-
-        <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\ReleaseDemo" />
-        <copy file="FileHelpersTests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\ReleaseDemo\Customers.txt" />
-
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Demo">
-            <fileset basedir="..\ReleaseDemo">
-                <include name="*.dll" />
-                <include name="*.mdb" />
-                <include name="*.exe" />
-                <include name="*.txt" />
-            </fileset>
-        </copy>
-        
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Examples">
-            <fileset basedir="FileHelpers.CodeExamples">
-                <include name="**/*" />
-                <exclude name=".svn" />
-                <exclude name="**/*.suo" />
-                <exclude name="**/*.resharperoptions" />
-                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
-                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
-                <exclude name="Release/**"  />
-                
-            </fileset>
-        </copy>
-
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
-        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
-
+       <delete>
+           <fileset basedir="..\Release">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+   </target>
+   
+   <target name="release" depends="clean">
        
-    </target>
-    
-    <target name="document" depends="release">
-        <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
-        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
-        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
-        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Doc" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
+       <delete file="FileHelpers\Engines\FileHelperEngineG.cs" />
+       <copy file="FileHelpers\Engines\FileHelperEngine.cs" tofile="FileHelpers\Engines\FileHelperEngineG.cs" />
 
-        <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
-        <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
-        <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
-        <copy file="Doc\tree.css" todir="..\Release\Doc" overwrite="True" />
+       <delete file="FileHelpers\Engines\FileHelperAsyncEngineG.cs" />
+       <copy file="FileHelpers\Engines\FileHelperAsyncEngine.cs" tofile="FileHelpers\Engines\FileHelperAsyncEngineG.cs"  />
 
-        <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
-            <fileset basedir="FileHelpers.CodeExamples">
-                <include name="**/*" />
-                <exclude name=".svn" />
-                <exclude name="**/*.suo" />
-                <exclude name="**/*.resharperoptions" />
-                <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
-                <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
-            </fileset>
-        </zip>
+       <delete file="FileHelpers\Engines\FileDiffEngineG.cs" />
+       <copy file="FileHelpers\Engines\FileDiffEngine.cs" tofile="FileHelpers\Engines\FileDiffEngineG.cs"  />
 
-        <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
-        <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />
+       <delete file="FileHelpers\MasterDetail\MasterDetailEngineG.cs" />
+       <copy file="FileHelpers\MasterDetail\MasterDetailEngine.cs" tofile="FileHelpers\MasterDetail\MasterDetailEngineG.cs"  />
 
-        <zip zipfile="..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
-            <fileset basedir="..\Release\Doc">
-                <include name="**/*" />
-                <exclude name=".svn" />
-            </fileset>
-        </zip>
-        
+       <delete file="FileHelpers\MasterDetail\MasterDetailsG.cs" />
+       <copy file="FileHelpers\MasterDetail\MasterDetails.cs" tofile="FileHelpers\MasterDetail\MasterDetailsG.cs" />
+       
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
-    </target>
-    
-    <target name="test" depends="release" />
-    
-    <target name="package" depends="release">
-    
-        <exec program="DelTemps.bat" workingdir="." failonerror="false" />
-        
-        <delete>
-            <fileset basedir="..\${Source2003}">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-        <copy todir="..\${Source2003}">
-            <fileset>
-                <include name="*/**" />
-            </fileset>
-        </copy>
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
-        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
-            <fileset basedir="..">
-                <include name="${Source2003}/**/*" />
-                <exclude name="${Source2003}/FileHelpers.WizardApp/**/*" />
-                <exclude name="${Source2003}/References/Fireball/**/*" />
-                <exclude name="${Source2003}/FileHelpers.DB2Storage/**/*" />
-                <exclude name=".svn" />
-            </fileset>
-        </zip>
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
-        <delete>
-            <fileset basedir="..\${Source2003}">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-        
-    </target>
-
-    <target name="genrelease" depends="all">
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
+       
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
 
+       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="true" />
+
+       <copy file="..\Release\DotNet 1.1\FileHelpers.dll" todir="FileHelpers.CodeExamples\References" />
+
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers">
+           <fileset>
+               <include name="*.url" />
+           </fileset>
+       </copy>
+       <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
+
+       <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\ReleaseDemo" />
+       <copy file="FileHelpersTests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\ReleaseDemo\Customers.txt" />
+
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Demo">
+           <fileset basedir="..\ReleaseDemo">
+               <include name="*.dll" />
+               <include name="*.mdb" />
+               <include name="*.exe" />
+               <include name="*.txt" />
+           </fileset>
+       </copy>
+       
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Examples">
+           <fileset basedir="FileHelpers.CodeExamples">
+               <include name="**/*" />
+               <exclude name=".svn" />
+               <exclude name="**/*.suo" />
+               <exclude name="**/*.resharperoptions" />
+               <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
+               <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
+               <exclude name="Release/**"  />
+               
+           </fileset>
+       </copy>
+
+       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet.sln&quot;" workingdir="." failonerror="true" />
+       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp.sln&quot;" workingdir="." failonerror="true" />
+
+      
+   </target>
+   
+   <target name="document" depends="release">
+       <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Doc" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
+
+       <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
+       <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
+       <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
+       <copy file="Doc\tree.css" todir="..\Release\Doc" overwrite="True" />
+
+       <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
+           <fileset basedir="FileHelpers.CodeExamples">
+               <include name="**/*" />
+               <exclude name=".svn" />
+               <exclude name="**/*.suo" />
+               <exclude name="**/*.resharperoptions" />
+               <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
+               <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
+           </fileset>
+       </zip>
+
+       <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
+       <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />
+
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
+           <fileset basedir="..\Release\Doc">
+               <include name="**/*" />
+               <exclude name=".svn" />
+           </fileset>
+       </zip>
+       
+
+   </target>
+   
+   <target name="test" depends="release" />
+   
+   <target name="package" depends="release">
+   
+       <exec program="DelTemps.bat" workingdir="." failonerror="false" />
+       
+       <delete>
+           <fileset basedir="..\${Source2003}">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+       <copy todir="..\${Source2003}">
+           <fileset>
+               <include name="*/**" />
+           </fileset>
+       </copy>
+
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
+           <fileset basedir="..">
+               <include name="${Source2003}/**/*" />
+               <exclude name="${Source2003}/FileHelpers.WizardApp/**/*" />
+               <exclude name="${Source2003}/References/Fireball/**/*" />
+               <exclude name="${Source2003}/FileHelpers.DB2Storage/**/*" />
+               <exclude name=".svn" />
+           </fileset>
+       </zip>
+
+       <delete>
+           <fileset basedir="..\${Source2003}">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+       
+   </target>
+
+   <target name="genrelease" depends="all">
 
 
-        <delete>
-            <fileset basedir="..\${Source2005}">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-        <copy todir="..\${Source2005}">
-            <fileset>
-                <include name="*/**" />
-            </fileset>
-        </copy>
-        
 
 
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpersCompact.csdproj&quot; &quot;..\..\Release\DotNet 1.1 PPC&quot; &quot;..\..\Release\DotNet 2.0 PPC&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+       <delete>
+           <fileset basedir="..\${Source2005}">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+       <copy todir="..\${Source2005}">
+           <fileset>
+               <include name="*/**" />
+           </fileset>
+       </copy>
+       
 
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
 
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeReadRecordEventArgs&quot; &quot;BeforeReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpersCompact.csdproj&quot; &quot;..\..\Release\DotNet 1.1 PPC&quot; &quot;..\..\Release\DotNet 2.0 PPC&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeReadRecordEventArgs&quot; &quot;BeforeReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
 <!--
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordHandler&quot; &quot;EventHandler&lt;BeforeReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;EventHandler&lt;AfterReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordHandler&quot; &quot;EventHandler&lt;BeforeWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
-        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordHandler&quot; &quot;EventHandler&lt;AfterWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordHandler&quot; &quot;EventHandler&lt;BeforeReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;EventHandler&lt;AfterReadRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordHandler&quot; &quot;EventHandler&lt;BeforeWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordHandler&quot; &quot;EventHandler&lt;AfterWriteRecordEventArgs&lt;object&gt;&gt;&quot;" workingdir="Libs" failonerror="false" />
 -->
-        <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
+       <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
 
-        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
-        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 237" workingdir="Libs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 237" workingdir="Libs" />
 
-        <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
+       <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
 
-        <delete>
-            <fileset basedir="..\${Source2005}\Backup">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-        <delete>
-            <fileset basedir="..\${Source2005}\_UpgradeReport_Files">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-        <delete>
-            <fileset basedir="..\${Source2005}">
-                <include name="UpgradeLog.XML" />
-                <include name="UpgradeLog.XML" />
-            </fileset>
-        </delete>
+       <delete>
+           <fileset basedir="..\${Source2005}\Backup">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+       <delete>
+           <fileset basedir="..\${Source2005}\_UpgradeReport_Files">
+               <include name="*/**" />
+           </fileset>
+       </delete>
+       <delete>
+           <fileset basedir="..\${Source2005}">
+               <include name="UpgradeLog.XML" />
+               <include name="UpgradeLog.XML" />
+           </fileset>
+       </delete>
 
-        <delete>
-            <fileset basedir="..\Release\Wizard">
-                <include name="FileHelpers.xml" />
-            </fileset>
-        </delete>
+       <delete>
+           <fileset basedir="..\Release\Wizard">
+               <include name="FileHelpers.xml" />
+           </fileset>
+       </delete>
 
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Wizard">
-            <fileset basedir="..\Release\WIzard">
-                <include name="*\**" />
-            </fileset>
-        </copy>
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Wizard">
+           <fileset basedir="..\Release\WIzard">
+               <include name="*\**" />
+           </fileset>
+       </copy>
 
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1">
-            <fileset basedir="..\Release\DotNet 1.1">
-                <include name="*\**" />
-            </fileset>
-        </copy>
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1 PPC">
-            <fileset basedir="..\Release\DotNet 1.1 PPC">
-                <include name="*\**" />
-            </fileset>
-        </copy>
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0">
-            <fileset basedir="..\Release\DotNet 2.0">
-                <include name="*\**" />
-            </fileset>
-        </copy>
-        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0 PPC">
-            <fileset basedir="..\Release\DotNet 2.0 PPC">
-                <include name="*\**" />
-            </fileset>
-        </copy>
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1">
+           <fileset basedir="..\Release\DotNet 1.1">
+               <include name="*\**" />
+           </fileset>
+       </copy>
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1 PPC">
+           <fileset basedir="..\Release\DotNet 1.1 PPC">
+               <include name="*\**" />
+           </fileset>
+       </copy>
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0">
+           <fileset basedir="..\Release\DotNet 2.0">
+               <include name="*\**" />
+           </fileset>
+       </copy>
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0 PPC">
+           <fileset basedir="..\Release\DotNet 2.0 PPC">
+               <include name="*\**" />
+           </fileset>
+       </copy>
 
-        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_bin_doc_wizard.zip" ziplevel="9">
-            <fileset basedir="..\AutoBuild\${LibraryVersion}">
-                <include name="FileHelpers/**" />
-            </fileset>
-        </zip>
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_bin_doc_wizard.zip" ziplevel="9">
+           <fileset basedir="..\AutoBuild\${LibraryVersion}">
+               <include name="FileHelpers/**" />
+           </fileset>
+       </zip>
 
 
-        <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
+       <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
+      
+
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
+           <fileset basedir="..">
+               <include name="${Source2005}/**/*" />
+               <exclude name="${Source2005}/FileHelpers.DB2Storage/**/*" />
+               <exclude name=".svn" />
+           </fileset>
+       </zip>
        
+       <delete>
+           <fileset basedir="..\${Source2005}">
+               <include name="*/**" />
+           </fileset>
+       </delete>
 
-        <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
-            <fileset basedir="..">
-                <include name="${Source2005}/**/*" />
-                <exclude name="${Source2005}/FileHelpers.DB2Storage/**/*" />
-                <exclude name=".svn" />
-            </fileset>
-        </zip>
-        
-        <delete>
-            <fileset basedir="..\${Source2005}">
-                <include name="*/**" />
-            </fileset>
-        </delete>
-
-    </target>
-    <target name="all" depends="document,test,package" />
+   </target>
+   <target name="all" depends="document,test,package" />
 </project>
