@@ -51,7 +51,7 @@ namespace FileHelpers.RunTime
 		/// <param name="fieldName">The Name of the field.</param>
 		/// <param name="fieldType">The Type of the field.</param>
 		/// <returns>The just created field.</returns>
-		public DelimitedFieldBuilder AddField(string fieldName, string fieldType)
+		public virtual DelimitedFieldBuilder AddField(string fieldName, string fieldType)
 		{
 			DelimitedFieldBuilder fb = new DelimitedFieldBuilder(fieldName, fieldType);
 			AddFieldInternal(fb);
@@ -65,6 +65,14 @@ namespace FileHelpers.RunTime
 		public DelimitedFieldBuilder AddField(string fieldName, Type fieldType)
 		{
 			return AddField(fieldName, fieldType.FullName);
+		}
+
+		/// <summary>Add a new Delimited string field to the current class.</summary>
+		/// <param name="fieldName">The Name of the string field.</param>
+		/// <returns>The just created field.</returns>
+		public virtual DelimitedFieldBuilder AddField(string fieldName)
+		{
+			return AddField(fieldName, "System.String");
 		}
 
 		/// <summary>Add a new Delimited field to the current class.</summary>

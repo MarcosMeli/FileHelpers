@@ -189,6 +189,7 @@ namespace FileHelpers.DataLink
 			}
 			
 			GC.Collect();
+			GC.WaitForPendingFinalizers();
 		}
 		private void DisposeCOMObject(object comObject)
 		{
@@ -316,13 +317,13 @@ namespace FileHelpers.DataLink
 			{
 				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
 				res = new object[] {r.Value};
-				DisposeCOMObject(r);
+				//DisposeCOMObject(r);
 			}
 			else
 			{
 				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
 				object[,] resTemp = (object[,]) r.Value2;
-				DisposeCOMObject(r);
+				//DisposeCOMObject(r);
 
 				res = new object[numberOfCols];
 

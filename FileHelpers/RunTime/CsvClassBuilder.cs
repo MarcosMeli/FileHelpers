@@ -50,41 +50,26 @@ namespace FileHelpers.RunTime
 		}
 
 
-		/// <summary>Add a new Delimited field to the current class.</summary>
-		/// <param name="fieldName">The Name of the field.</param>
-		/// <param name="fieldType">The Type of the field.</param>
-		/// <returns>The just created field.</returns>
-		public new DelimitedFieldBuilder AddField(string fieldName, Type fieldType)
-		{
-			return AddField(fieldName, fieldType);
-		}
 
 		/// <summary>Add a new Delimited field to the current class.</summary>
 		/// <param name="fieldName">The Name of the field.</param>
 		/// <param name="fieldType">The Type of the field.</param>
 		/// <returns>The just created field.</returns>
-		public new DelimitedFieldBuilder AddField(string fieldName, string fieldType)
+		public override DelimitedFieldBuilder AddField(string fieldName, string fieldType)
 		{
-			DelimitedFieldBuilder fb = new DelimitedFieldBuilder(fieldName, fieldType);
+			base.AddField(fieldName, fieldType);
+
 			if (mFields.Count > 1)
 			{
-				fb.FieldOptional = true;
-				fb.FieldQuoted = true;
-				fb.QuoteMode = QuoteMode.OptionalForBoth;
-				fb.QuoteMultiline = MultilineMode.AllowForBoth;
+				LastField.FieldOptional = true;
+				LastField.FieldQuoted = true;
+				LastField.QuoteMode = QuoteMode.OptionalForBoth;
+				LastField.QuoteMultiline = MultilineMode.AllowForBoth;
 			}
 
-			AddFieldInternal(fb);
-			return fb;
+			return LastField;
 		}
 
-		/// <summary>Add a new Delimited field to the current class.</summary>
-		/// <param name="fieldName">The Name of the field.</param>
-		/// <returns>The just created field.</returns>
-		public DelimitedFieldBuilder AddField(string fieldName)
-		{
-			return AddField(fieldName, "System.String");
-		}
 
 		/// <summary>
 		/// Adds to the class the specified number of fileds.
@@ -108,9 +93,6 @@ namespace FileHelpers.RunTime
 			{
 				int current = i + initFields + 1;
 				AddField(prefix + (current).ToString());
-				DelimitedFieldBuilder fb = new DelimitedFieldBuilder(prefix + (current).ToString(), "System.String");
-
-				AddFieldInternal(fb);
 			}
 		}
 
