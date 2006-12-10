@@ -1,3 +1,8 @@
+The FileHelpers are licensed under the GNU LESSER GENERAL PUBLIC LICENSE
+
+That allow commercial and non commercial developments under this terms:
+-----------------------------------------------------------------------
+
 		  GNU LESSER GENERAL PUBLIC LICENSE
 		       Version 2.1, February 1999
 
