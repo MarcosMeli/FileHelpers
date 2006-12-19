@@ -214,6 +214,12 @@
     <Compile Include="frmDataPreview.Designer.cs">
       <DependentUpon>frmDataPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDonate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFather.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,14 @@
     <EmbeddedResource Include="frmDataPreview.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmDataPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDonate.resx">
+      <DependentUpon>frmDonate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFather.resx">
+      <DependentUpon>frmFather.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWizard.resx">
       <DependentUpon>frmWizard.cs</DependentUpon>

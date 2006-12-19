@@ -8,6 +8,7 @@ using System.IO;
 using FileHelpers.RunTime;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
+using System.Diagnostics;
 
 namespace FileHelpers.WizardApp
 {
@@ -105,6 +106,8 @@ namespace FileHelpers.WizardApp
         private Label label11;
         private Label label12;
         private ComboBox cboFixedMode;
+        private PictureBox picDonate;
+        private Label linkHome;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -211,6 +214,7 @@ namespace FileHelpers.WizardApp
             this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.chkProperties = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkHome = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.picCurrStep = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -221,6 +225,7 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picDonate = new System.Windows.Forms.PictureBox();
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -248,6 +253,7 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
             this.SuspendLayout();
             // 
             // panStep1
@@ -992,7 +998,7 @@ namespace FileHelpers.WizardApp
             this.panPreview.Controls.Add(this.chkProperties);
             this.panPreview.Location = new System.Drawing.Point(568, 0);
             this.panPreview.Name = "panPreview";
-            this.panPreview.Size = new System.Drawing.Size(1, 412);
+            this.panPreview.Size = new System.Drawing.Size(2, 412);
             this.panPreview.TabIndex = 1002;
             // 
             // cmdTestClass
@@ -1013,7 +1019,7 @@ namespace FileHelpers.WizardApp
             this.cboClassLeng.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(-62, 30);
+            this.cboClassLeng.Location = new System.Drawing.Point(-61, 30);
             this.cboClassLeng.Name = "cboClassLeng";
             this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
             this.cboClassLeng.TabIndex = 1004;
@@ -1023,7 +1029,7 @@ namespace FileHelpers.WizardApp
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-114, 34);
+            this.label7.Location = new System.Drawing.Point(-113, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -1098,7 +1104,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.ShowGutterMargin = false;
             this.txtOutput.ShowLineNumbers = false;
             this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(0, 312);
+            this.txtOutput.Size = new System.Drawing.Size(1, 312);
             this.txtOutput.SmoothScroll = false;
             this.txtOutput.SplitView = false;
             this.txtOutput.SplitviewH = -4;
@@ -1130,6 +1136,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.linkHome);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.pictureBox5);
@@ -1145,6 +1152,15 @@ namespace FileHelpers.WizardApp
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
             // 
+            // linkHome
+            // 
+            this.linkHome.BackColor = System.Drawing.Color.Transparent;
+            this.linkHome.Location = new System.Drawing.Point(-1, -1);
+            this.linkHome.Name = "linkHome";
+            this.linkHome.Size = new System.Drawing.Size(165, 68);
+            this.linkHome.TabIndex = 1010;
+            this.linkHome.Click += new System.EventHandler(this.linkHome_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(32, 183);
@@ -1153,7 +1169,6 @@ namespace FileHelpers.WizardApp
             this.button1.TabIndex = 1009;
             this.button1.Text = "FileMaster";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // picCurrStep
@@ -1255,6 +1270,20 @@ namespace FileHelpers.WizardApp
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
+            // picDonate
+            // 
+            this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
+            this.picDonate.Location = new System.Drawing.Point(-1, 330);
+            this.picDonate.Name = "picDonate";
+            this.picDonate.Size = new System.Drawing.Size(100, 36);
+            this.picDonate.TabIndex = 1010;
+            this.picDonate.TabStop = false;
+            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to know a little about\r\nabo" +
+                    "ut what you can donate to the project.\r\n\r\nSome money will keep FileHelpers alive" +
+                    "\r\n\r\nThanks");
+            this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
+            // 
             // dlgSaveWizard
             // 
             this.dlgSaveWizard.DefaultExt = "fhw";
@@ -1268,6 +1297,17 @@ namespace FileHelpers.WizardApp
             this.dlgOpenWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
             this.dlgOpenWizard.Title = "Load a Previous Record info";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 250;
+            this.toolTip1.AutoPopDelay = 10000;
+            this.toolTip1.InitialDelay = 200;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ReshowDelay = 250;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Donate to the Project";
+            // 
             // dlgOpenTest
             // 
             this.dlgOpenTest.DefaultExt = "txt";
@@ -1279,6 +1319,7 @@ namespace FileHelpers.WizardApp
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(569, 406);
+            this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -1293,7 +1334,7 @@ namespace FileHelpers.WizardApp
             this.MinimumSize = new System.Drawing.Size(573, 440);
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FileHelpers - Record Class Wizard v1.3";
+            this.Text = "FileHelpers - Record Class Wizard v1.4";
             this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();
@@ -1330,6 +1371,7 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2154,6 +2196,22 @@ namespace FileHelpers.WizardApp
                 ReLoadPreview();
             }
         }
+
+        private void picDonate_Click(object sender, EventArgs e)
+        {
+            frmDonate frm = new frmDonate();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void linkHome_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.com\"");
+            info.CreateNoWindow = false;
+            info.UseShellExecute = true;
+            Process.Start(info);
+        }
+
 
 
     }
