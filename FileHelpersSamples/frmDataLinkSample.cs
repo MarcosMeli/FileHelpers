@@ -70,7 +70,7 @@ namespace FileHelpersSamples
 			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.Location = new System.Drawing.Point(672, 8);
+			this.pictureBox3.Location = new System.Drawing.Point(664, 8);
 			this.pictureBox3.Name = "pictureBox3";
 			// 
 			// cmdRun

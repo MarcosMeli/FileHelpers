@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using FileHelpers;
@@ -248,7 +250,11 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
  
-			grid1.SelectedObject = engine.ReadString(txtData.Text);
+			CustomersVerticalBar[] res = (CustomersVerticalBar[]) engine.ReadString(txtData.Text);
+			grid1.SelectedObject = res;
+	
+		}
+		
+	
 		}
 	}
-}

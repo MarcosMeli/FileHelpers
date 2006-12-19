@@ -137,9 +137,10 @@ namespace FileHelpersSamples
 			this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-			this.pictureBox3.Location = new System.Drawing.Point(488, 8);
+			this.pictureBox3.Location = new System.Drawing.Point(472, 7);
 			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(88, 32);
+			this.pictureBox3.Size = new System.Drawing.Size(100, 36);
+			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.pictureBox3.TabIndex = 3;
 			this.pictureBox3.TabStop = false;
 			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
@@ -153,6 +154,7 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.pictureBox2);
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "frmFather";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -207,10 +209,9 @@ namespace FileHelpersSamples
 
 		private void pictureBox3_Click(object sender, System.EventArgs e)
 		{
-			ProcessStartInfo info = new ProcessStartInfo("\"http://sourceforge.net/donate/index.php?group_id=152382\"");
-			info.CreateNoWindow = false;
-			info.UseShellExecute = true;
-			Process.Start(info);
+			frmDonate frm = new frmDonate();
+			frm.ShowDialog();
+			frm.Dispose();
 		}
 	}
 }

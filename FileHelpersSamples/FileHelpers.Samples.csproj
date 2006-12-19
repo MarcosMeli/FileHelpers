@@ -94,6 +94,11 @@
                     AssemblyName = "Framework.Controls.ProgressBar"
                     HintPath = "..\References\Framework.Controls.ProgressBar.dll"
                 />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
             </References>
         </Build>
         <Files>
@@ -130,6 +135,16 @@
                 <File
                     RelPath = "frmDataLinkSample.resx"
                     DependentUpon = "frmDataLinkSample.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "frmDonate.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmDonate.resx"
+                    DependentUpon = "frmDonate.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
@@ -224,6 +239,11 @@
                 />
                 <File
                     RelPath = "SampleType.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TestData.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
