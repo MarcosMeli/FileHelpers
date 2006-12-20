@@ -20,7 +20,7 @@ namespace FileHelpers
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 #if ! GENERICS
- 	public sealed class FileHelperAsyncEngine : EngineBase
+ 	public sealed class FileHelperAsyncEngine : EngineBase, IEnumerable
 #else
 	public sealed class FileHelperAsyncEngine<T> : EngineBase
 #endif
@@ -205,6 +205,7 @@ namespace FileHelpers
 					try
 					{
 						mAsyncReader.Close();
+						mAsyncReader = null;
 					}
 					catch
 					{
@@ -432,6 +433,49 @@ namespace FileHelpers
 		}
 
 		#endregion
+
+ 		public IEnumerator GetEnumerator()
+ 		{
+ 			return new AsyncEnumerator(this);
+ 		}
+ 		
+		private class AsyncEnumerator : IEnumerator
+		{
+			FileHelperAsyncEngine mEngine;
+
+			public AsyncEnumerator(FileHelperAsyncEngine engine)
+			{
+				mEngine = engine;
+			}
+
+			public bool MoveNext()
+			{
+				object res = mEngine.ReadNext();
+				
+				if (res == null)
+				{
+					mEngine.EndsRead();
+					return false;
+				}
+
+				return true;
+
+			}
+
+			public object Current
+			{
+				get
+				{
+					return mEngine.mLastRecord;
+				}
+			}
+
+			public void Reset()
+			{
+				// No needed
+			}
+		}
+
 	}
 }
 
