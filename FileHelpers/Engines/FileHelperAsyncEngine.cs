@@ -205,7 +205,7 @@ namespace FileHelpers
 					try
 					{
 						mAsyncReader.Close();
-						mAsyncReader = null;
+						//mAsyncReader = null;
 					}
 					catch
 					{
