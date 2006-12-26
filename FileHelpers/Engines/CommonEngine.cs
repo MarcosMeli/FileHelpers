@@ -365,7 +365,7 @@ namespace FileHelpers
 				engineWrite.WriteNexts(readRecords);
 				readRecords = engineRead.ReadNexts(50);
 			}
-			engineRead.EndsRead();
+			engineRead.Close();
 
 			// Read FILE 2
 			engineRead.BeginReadFile(file2);
@@ -376,9 +376,9 @@ namespace FileHelpers
 				engineWrite.WriteNexts(readRecords);
 				readRecords = engineRead.ReadNexts(50);
 			}
-			engineRead.EndsRead();
+			engineRead.Close();
 			
-			engineWrite.EndsWrite();
+			engineWrite.Close();
 		} 
 
 		/// <summary>

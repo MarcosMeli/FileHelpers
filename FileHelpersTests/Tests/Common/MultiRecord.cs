@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
@@ -27,6 +28,38 @@ namespace FileHelpersTests
 			Assert.AreEqual(typeof(SampleType), res[5].GetType());
 		}
 
+		[Test]
+		public void MultpleRecordsFileAsync()
+		{
+			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+
+			ArrayList res = new ArrayList();
+			engine.BeginReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+			foreach (object o in engine)
+			{
+				res.Add(o);
+			}
+
+			Assert.AreEqual(12, res.Count);
+			Assert.AreEqual(12, engine.TotalRecords);
+
+			Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+			Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+			Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+			Assert.AreEqual(typeof(SampleType), res[5].GetType());
+		}
+
+		[Test]
+		[ExpectedException(typeof(FileHelperException))]
+		public void MultpleRecordsFileAsyncBad()
+		{
+			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+			foreach (object o in engine)
+			{
+				o.ToString();
+			}
+		}
+		
 		[Test]
 		public void MultpleRecordsFileRW()
 		{

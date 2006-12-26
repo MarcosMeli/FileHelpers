@@ -137,7 +137,7 @@ namespace FileHelpers.Mapping
 					if (mDataColumnIndex == -1)
 						throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
 				}
-				catch (Exception ex)
+				catch
 				{
 					throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
 				}
@@ -175,7 +175,7 @@ namespace FileHelpers.Mapping
 				}
 				
 			}
-			catch(Exception ex)
+			catch
 			{
 				throw new FileHelperException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", row[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
 			}

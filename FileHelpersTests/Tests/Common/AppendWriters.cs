@@ -123,7 +123,7 @@ namespace FileHelpersTests.CommonTests
 
 			engine.BeginAppendToFile(@"tempEmpty.txt");
 			engine.WriteNext(rec);
-			engine.EndsWrite();
+			engine.Close();
 
 			SampleType[] res2 = (SampleType[]) engineOld.ReadFile(@"tempEmpty.txt");
 

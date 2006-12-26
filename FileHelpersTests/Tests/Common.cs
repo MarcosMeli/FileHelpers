@@ -30,7 +30,7 @@ namespace FileHelpersTests
 			engine.BeginReadFile(@"..\data\" + fileName);
 			while(engine.ReadNext() != null)
 				arr.Add(engine.LastRecord);
-			engine.EndsRead();
+			engine.Close();
 
 			return arr.ToArray();
 

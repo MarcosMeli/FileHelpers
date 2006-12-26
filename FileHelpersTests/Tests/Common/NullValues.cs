@@ -45,11 +45,11 @@ namespace FileHelpersTests.CommonTests
 			asyncEngine.WriteNext(new SampleType());
 			asyncEngine.WriteNext(new SampleType());
 
-			asyncEngine.EndsWrite();
+			asyncEngine.Close();
 
 			asyncEngine.BeginReadFile("tempNull.txt");
 			SampleType[] res = (SampleType[]) asyncEngine.ReadNexts(5000);
-			asyncEngine.EndsRead();
+			asyncEngine.Close();
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, asyncEngine.TotalRecords);

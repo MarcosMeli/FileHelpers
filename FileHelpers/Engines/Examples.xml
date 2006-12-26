@@ -232,7 +232,7 @@
 	    
 	    }
 	    
-	    engine.EndsRead();
+	    engine.Close();
 	}
 
 	
@@ -343,7 +343,7 @@
 	    
 	    }
 	    
-	    engine.EndsRead();
+	    engine.Close();
 	}
 
 </textarea>

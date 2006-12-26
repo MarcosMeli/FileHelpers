@@ -43,7 +43,7 @@
 		<remarks>
 		<para>This method only open the file.</para>
 		<para>To read record by record use <b><see cref="ReadNext" /></b> method.</para>
-		<para>When you stop to read the file you must call <b><see cref="EndsRead" /></b> method.</para>
+		<para>When you stop to read the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="fileName">The file path to be read.</param>
 		<returns>True if the file is succefully opened. False otherway.</returns>
@@ -57,7 +57,7 @@
 		<remarks>
 		<para>This method only seek to the first record.</para>
 		<para>To read record by record use <b><see cref="ReadNext" /></b> method.</para>
-		<para>When you stop to read the file you must call <b><see cref="EndsRead" /></b> method.</para>
+		<para>When you stop to read the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="reader">The TextReader of the stream.</param>
 		<returns>True if the stream is succefully opened. False otherway.</returns>
@@ -88,26 +88,15 @@
 		<returns>The nexts records of the opened file or stream.</returns>
 	</ReadNexts>
 
-	<EndsRead>
+	<Close>
 		<summary>
-			If any, close all opened stream readers.
+			Close all opened stream readers and writters (if any).
 		</summary>
 		<remarks>
 		<para>This method must be called when you finish to process a file to dispose the opened streams.</para>
   	    </remarks>
 		<include file='Examples.xml' path='doc/examples/ReadAsync/*'/>
-	</EndsRead>
-
-
-	<EndsWrite>
-		<summary>
-			If any, close all opened stream writers.
-		</summary>
-		<remarks>
-		<para>This method must be called when you finish to process a file to dispose the opened streams.</para>
-  	    </remarks>
-		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
-	</EndsWrite>
+	</Close>
 
 
 	<BeginAppendToFile>

@@ -121,8 +121,8 @@ namespace FileHelpers
 				destEngine.WriteNext(method.Invoke(sourceEngine.LastRecord, mEmptyArray));
 			}
 
-			sourceEngine.EndsRead();
-			destEngine.EndsWrite();
+			sourceEngine.Close();
+			destEngine.Close();
 
 			return sourceEngine.TotalRecords;
 		}

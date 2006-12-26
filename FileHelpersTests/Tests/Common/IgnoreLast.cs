@@ -142,7 +142,7 @@ namespace FileHelpersTests.CommonTests
 
             asyncEngine.BeginWriteFile("temp.txt");
             asyncEngine.WriteNexts(res);
-            asyncEngine.EndsWrite();
+            asyncEngine.Close();
 
             asyncEngine.FooterText = "none none";
 
@@ -154,7 +154,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
             Assert.AreEqual("This is a new Footer....\r\n", asyncEngine.FooterText);
 
-            asyncEngine.EndsRead();
+            asyncEngine.Close();
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
             Assert.AreEqual("This is a new Footer....\r\n", asyncEngine.FooterText);

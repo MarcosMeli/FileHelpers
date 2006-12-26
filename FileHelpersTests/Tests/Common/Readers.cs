@@ -147,6 +147,18 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		[ExpectedException(typeof(FileHelperException))]
+		public void AsyncReadEnumerableBad()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
+
+			foreach (SampleType rec1 in asyncEngine)
+			{
+				rec1.ToString();
+			}
+		}
+
+		[Test]
 		public void AsyncReadEnumerable2()
 		{
 			using(asyncEngine = new FileHelperAsyncEngine(typeof (SampleType)))

@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using FileHelpers.MasterDetail;
@@ -583,7 +584,7 @@ namespace FileHelpers
 
 		#region "  BeginReadStream"
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)
@@ -614,7 +615,6 @@ namespace FileHelpers
 
 		#region "  BeginReadFile  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
 		public void BeginReadFile(string fileName)
 		{
 			BeginReadStream(new StreamReader(fileName, mEncoding, true));
@@ -633,8 +633,7 @@ namespace FileHelpers
 		
 		#region "  EndsRead  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
-		public void EndsRead()
+		public void Close()
 		{
 			try
 			{
@@ -775,6 +774,9 @@ namespace FileHelpers
  		
 		IEnumerator IEnumerable.GetEnumerator()
 		{
+			if (mAsyncReader == null)
+				throw new FileHelperException("You must call BeginRead before use the engine in a foreach loop.");
+
 			return new AsyncEnumerator(this);
 		}
  		
@@ -793,7 +795,7 @@ namespace FileHelpers
 				
 				if (res == null)
 				{
-					mEngine.EndsRead();
+					mEngine.Close();
 					return false;
 				}
 
@@ -822,7 +824,7 @@ namespace FileHelpers
 		
 		void IDisposable.Dispose()
 		{
-			EndsRead();
+			Close();
 			GC.SuppressFinalize(this);
 		}
  		
@@ -833,7 +835,7 @@ namespace FileHelpers
 		~FileHelperAsyncEngine<T>
 #endif
 		{
-			EndsRead();
+			Close();
 		}
 
 		#endregion

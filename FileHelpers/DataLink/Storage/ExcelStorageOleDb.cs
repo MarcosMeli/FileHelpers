@@ -140,7 +140,7 @@ namespace FileHelpers.DataLink
                 mDtExcel = new DataTable();
 
 			}
-			catch (Exception ex)
+			catch
 			{
                 throw;
 			}
@@ -485,19 +485,6 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		#region "  Values <-> Record Convertions "
-
-		private object ValuesToRecord(object[] values)
-		{
-			return mRecordInfo.ValuesToRecord(values);
-		}
-
-		private object[] RecordToValues(object record)
-		{
-			return mRecordInfo.RecordToValues(record);
-		}
-
-		#endregion
 
         #region Validation
         private void ValidatePropertiesForExtract()

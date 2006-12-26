@@ -104,6 +104,10 @@ namespace FileHelpers
 			set { mDecimalSeparator = value; }
 		}
 
+		
+		/// <summary>
+		/// Encoding used when handling the CSV files.
+		/// </summary>
 		public Encoding Encoding
 		{
 			get { return mEncoding; }

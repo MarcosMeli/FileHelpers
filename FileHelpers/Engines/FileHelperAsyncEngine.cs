@@ -249,21 +249,40 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  EndsRead  "
+		#region "  Close  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
-		public void EndsRead()
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
+		public void Close()
 		{
 			try
 			{
 				if (mAsyncReader != null)
 					mAsyncReader.Close();
 
-                mAsyncReader = null;
+				mAsyncReader = null;
 			}
 			catch
+			{}
+			
+			try
 			{
+				if (mAsyncWriter != null)
+				{
+					if (mFooterText != null && mFooterText != string.Empty)
+						if (mFooterText.EndsWith(StringHelper.NewLine))
+							mAsyncWriter.Write(mFooterText);
+						else
+							mAsyncWriter.WriteLine(mFooterText);
+
+					mAsyncWriter.Close();
+					mAsyncWriter = null;
+
+
+				}
+
 			}
+			catch
+			{}
 		}
 
 		#endregion
@@ -405,41 +424,14 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  EndsWrite  "
-
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsWrite/*'/>
-		public void EndsWrite()
-		{
-			try
-			{
-				if (mAsyncWriter != null)
-				{
-					if (mFooterText != null && mFooterText != string.Empty)
-						if (mFooterText.EndsWith(StringHelper.NewLine))
-							mAsyncWriter.Write(mFooterText);
-						else
-							mAsyncWriter.WriteLine(mFooterText);
-
-					mAsyncWriter.Close();
-					mAsyncWriter = null;
-
-
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-			}
-
-		}
-
-		#endregion
 
 		#region "  IEnumerable implementation  "
  		
  		IEnumerator IEnumerable.GetEnumerator()
  		{
+ 			if (mAsyncReader == null)
+ 				throw new FileHelperException("You must call BeginRead before use the engine in a for each loop.");
+ 			
  			return new AsyncEnumerator(this);
  		}
  		
@@ -458,7 +450,7 @@ namespace FileHelpers
 				
 				if (res == null)
 				{
-					mEngine.EndsRead();
+					mEngine.Close();
 					return false;
 				}
 
@@ -487,8 +479,7 @@ namespace FileHelpers
 		
  		void IDisposable.Dispose()
  		{
- 			EndsRead();
- 			EndsWrite();
+			Close();
  			GC.SuppressFinalize(this);
  		}
  		
@@ -499,8 +490,7 @@ namespace FileHelpers
 		~FileHelperAsyncEngine<T>
 #endif
  		{
-			EndsRead();
-			EndsWrite();
+			Close();
  		}
 
 		#endregion

@@ -162,7 +162,7 @@ namespace FileHelpersTests.CommonTests
 
             asyncEngine.BeginWriteFile("tempo.txt");
             asyncEngine.WriteNexts(res);
-            asyncEngine.EndsWrite();
+            asyncEngine.Close();
 
             asyncEngine.HeaderText = "none none\r\n";
 
@@ -174,7 +174,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
             Assert.AreEqual("This is a new header....\r\n", asyncEngine.HeaderText);
 
-            asyncEngine.EndsRead();
+            asyncEngine.Close();
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
             Assert.AreEqual("This is a new header....\r\n", asyncEngine.HeaderText);
