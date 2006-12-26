@@ -20,9 +20,11 @@ namespace FileHelpers
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 #if ! GENERICS
- 	public sealed class FileHelperAsyncEngine : EngineBase
+ 	public sealed class FileHelperAsyncEngine : 
+ 		EngineBase, IEnumerable, IDisposable
 #else
-	public sealed class FileHelperAsyncEngine<T> : EngineBase
+	public sealed class FileHelperAsyncEngine<T> : 
+		EngineBase, IEnumerable, IDisposable
 #endif
 	{
 		#region "  Constructor  "
@@ -205,6 +207,7 @@ namespace FileHelpers
 					try
 					{
 						mAsyncReader.Close();
+						//mAsyncReader = null;
 					}
 					catch
 					{
@@ -246,21 +249,40 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  EndsRead  "
+		#region "  Close  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsRead/*'/>
-		public void EndsRead()
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
+		public void Close()
 		{
 			try
 			{
 				if (mAsyncReader != null)
 					mAsyncReader.Close();
 
-                mAsyncReader = null;
+				mAsyncReader = null;
 			}
 			catch
+			{}
+			
+			try
 			{
+				if (mAsyncWriter != null)
+				{
+					if (mFooterText != null && mFooterText != string.Empty)
+						if (mFooterText.EndsWith(StringHelper.NewLine))
+							mAsyncWriter.Write(mFooterText);
+						else
+							mAsyncWriter.WriteLine(mFooterText);
+
+					mAsyncWriter.Close();
+					mAsyncWriter = null;
+
+
+				}
+
 			}
+			catch
+			{}
 		}
 
 		#endregion
@@ -402,36 +424,77 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  EndsWrite  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/EndsWrite/*'/>
-		public void EndsWrite()
+		#region "  IEnumerable implementation  "
+ 		
+ 		IEnumerator IEnumerable.GetEnumerator()
+ 		{
+ 			if (mAsyncReader == null)
+ 				throw new FileHelperException("You must call BeginRead before use the engine in a for each loop.");
+ 			
+ 			return new AsyncEnumerator(this);
+ 		}
+ 		
+		private class AsyncEnumerator : IEnumerator
 		{
-			try
+			FileHelperAsyncEngine mEngine;
+
+			public AsyncEnumerator(FileHelperAsyncEngine engine)
 			{
-				if (mAsyncWriter != null)
+				mEngine = engine;
+			}
+
+			public bool MoveNext()
+			{
+				object res = mEngine.ReadNext();
+				
+				if (res == null)
 				{
-					if (mFooterText != null && mFooterText != string.Empty)
-						if (mFooterText.EndsWith(StringHelper.NewLine))
-							mAsyncWriter.Write(mFooterText);
-						else
-							mAsyncWriter.WriteLine(mFooterText);
-
-					mAsyncWriter.Close();
-					mAsyncWriter = null;
-
-
+					mEngine.Close();
+					return false;
 				}
 
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
+				return true;
+
 			}
 
+			public object Current
+			{
+				get
+				{
+					return mEngine.mLastRecord;
+				}
+			}
+
+			public void Reset()
+			{
+				// No needed
+			}
 		}
 
+ 		
+ 		#endregion
+
+		#region "  IDisposable implementation  "
+		
+ 		void IDisposable.Dispose()
+ 		{
+			Close();
+ 			GC.SuppressFinalize(this);
+ 		}
+ 		
+ 		/// <summary>Destructor</summary>
+#if ! GENERICS
+		~FileHelperAsyncEngine()
+#else
+		~FileHelperAsyncEngine<T>
+#endif
+ 		{
+			Close();
+ 		}
+
 		#endregion
+
 	}
 }
 

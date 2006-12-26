@@ -13,4 +13,4 @@ While Not engine.ReadNext() is Nothing
 
 End While
 
-engine.EndsRead()
+engine.Close()

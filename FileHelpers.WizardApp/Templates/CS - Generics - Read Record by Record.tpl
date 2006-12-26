@@ -12,4 +12,4 @@ while(engine.ReadNext() != null)
 	// Your Code Here
 }
 
-engine.EndsRead();
+engine.Close();

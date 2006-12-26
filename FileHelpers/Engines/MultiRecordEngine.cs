@@ -631,7 +631,7 @@ namespace FileHelpers
 
 		#endregion
 		
-		#region "  EndsRead  "
+		#region "  Close  "
 
 		public void Close()
 		{
