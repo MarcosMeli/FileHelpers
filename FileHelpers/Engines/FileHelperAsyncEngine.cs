@@ -20,9 +20,11 @@ namespace FileHelpers
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 #if ! GENERICS
- 	public sealed class FileHelperAsyncEngine : EngineBase, IEnumerable
+ 	public sealed class FileHelperAsyncEngine : 
+ 		EngineBase, IEnumerable, IDisposable
 #else
-	public sealed class FileHelperAsyncEngine<T> : EngineBase
+	public sealed class FileHelperAsyncEngine<T> : 
+		EngineBase, IEnumerable, IDisposable
 #endif
 	{
 		#region "  Constructor  "
@@ -434,7 +436,9 @@ namespace FileHelpers
 
 		#endregion
 
- 		public IEnumerator GetEnumerator()
+		#region "  IEnumerable implementation  "
+ 		
+ 		IEnumerator IEnumerable.GetEnumerator()
  		{
  			return new AsyncEnumerator(this);
  		}
@@ -475,6 +479,31 @@ namespace FileHelpers
 				// No needed
 			}
 		}
+
+ 		
+ 		#endregion
+
+		#region "  IDisposable implementation  "
+		
+ 		void IDisposable.Dispose()
+ 		{
+ 			EndsRead();
+ 			EndsWrite();
+ 			GC.SuppressFinalize(this);
+ 		}
+ 		
+ 		/// <summary>Destructor</summary>
+#if ! GENERICS
+		~FileHelperAsyncEngine()
+#else
+		~FileHelperAsyncEngine<T>
+#endif
+ 		{
+			EndsRead();
+			EndsWrite();
+ 		}
+
+		#endregion
 
 	}
 }

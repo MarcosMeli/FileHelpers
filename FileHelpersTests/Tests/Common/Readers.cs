@@ -147,6 +147,37 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		public void AsyncReadEnumerable2()
+		{
+			using(asyncEngine = new FileHelperAsyncEngine(typeof (SampleType)))
+			{
+				Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
+				int lineAnt = asyncEngine.LineNumber;
+			
+				foreach (SampleType rec1 in asyncEngine)
+				{
+					Assert.IsNotNull(rec1);
+					Assert.AreEqual(lineAnt + 1, asyncEngine.LineNumber);
+					lineAnt = asyncEngine.LineNumber;
+				}
+				
+			}
+
+			Assert.AreEqual(4, asyncEngine.TotalRecords);
+			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
+		}
+
+		[Test]
+		public void AsyncReadEnumerableAutoDispose()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
+			Common.BeginReadTest(asyncEngine, @"Good\test1.txt");
+			
+			asyncEngine.ReadNext();
+			asyncEngine.ReadNext();
+		}
+		
+		[Test]
 		public void ReadStream()
 		{
 			string data = "11121314901234" + Environment.NewLine +

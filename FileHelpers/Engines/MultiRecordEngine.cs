@@ -39,9 +39,11 @@ namespace FileHelpers
 	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
 #if ! GENERICS
-	public sealed class MultiRecordEngine : EngineBase
+	public sealed class MultiRecordEngine : 
+		EngineBase, IEnumerable, IDisposable
 #else
-	public sealed class MultiRecordEngine<M,D> : EngineBase
+	public sealed class MultiRecordEngine<M,D> : 
+		EngineBase, IEnumerable, IDisposable
 #endif
 	{
 		private RecordInfo[] mMultiRecordInfo;
@@ -769,8 +771,73 @@ namespace FileHelpers
 
 		#endregion
 		
+		#region "  IEnumerable implementation  "
+ 		
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return new AsyncEnumerator(this);
+		}
+ 		
+		private class AsyncEnumerator : IEnumerator
+		{
+			MultiRecordEngine mEngine;
+
+			public AsyncEnumerator(MultiRecordEngine engine)
+			{
+				mEngine = engine;
+			}
+
+			public bool MoveNext()
+			{
+				object res = mEngine.ReadNext();
+				
+				if (res == null)
+				{
+					mEngine.EndsRead();
+					return false;
+				}
+
+				return true;
+
+			}
+
+			public object Current
+			{
+				get
+				{
+					return mEngine.mLastRecord;
+				}
+			}
+
+			public void Reset()
+			{
+				// No needed
+			}
+		}
+
+ 		
+		#endregion
+
+		#region "  IDisposable implementation  "
 		
-		
+		void IDisposable.Dispose()
+		{
+			EndsRead();
+			GC.SuppressFinalize(this);
+		}
+ 		
+		/// <summary>Destructor</summary>
+#if ! GENERICS
+		~MultiRecordEngine()
+#else
+		~FileHelperAsyncEngine<T>
+#endif
+		{
+			EndsRead();
+		}
+
+		#endregion
+
 	}
 }
 
