@@ -252,7 +252,7 @@
 	    record.Field2 = 2;
 	    engine.WriteNext(record);
 
-	    engine.EndsWrite();
+	    engine.Close();
 	}
 
 </textarea>
@@ -294,7 +294,7 @@
 	    record.Field2 = 2;
 	    engine.WriteNext(record);
 
-	    engine.EndsWrite();
+	    engine.Close();
 	}
 
 </textarea>
