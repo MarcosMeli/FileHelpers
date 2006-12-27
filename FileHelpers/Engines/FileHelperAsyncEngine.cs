@@ -432,14 +432,24 @@ namespace FileHelpers
  			if (mAsyncReader == null)
  				throw new FileHelperException("You must call BeginRead before use the engine in a for each loop.");
  			
- 			return new AsyncEnumerator(this);
+#if ! GENERICS
+			return new AsyncEnumerator(this);
+#else
+				return new AsyncEnumerator<T>(this);
+#endif
  		}
  		
+#if ! GENERICS
 		private class AsyncEnumerator : IEnumerator
 		{
 			FileHelperAsyncEngine mEngine;
-
 			public AsyncEnumerator(FileHelperAsyncEngine engine)
+#else
+		private class AsyncEnumerator<X> : IEnumerator
+		{
+			FileHelperAsyncEngine<X> mEngine;
+			public AsyncEnumerator(FileHelperAsyncEngine<X> engine)
+#endif
 			{
 				mEngine = engine;
 			}
@@ -484,11 +494,7 @@ namespace FileHelpers
  		}
  		
  		/// <summary>Destructor</summary>
-#if ! GENERICS
 		~FileHelperAsyncEngine()
-#else
-		~FileHelperAsyncEngine<T>
-#endif
  		{
 			Close();
  		}

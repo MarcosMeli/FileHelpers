@@ -138,9 +138,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -554,10 +554,10 @@ namespace FileHelpers.WizardApp
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 9);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 23);
+            this.label1.Size = new System.Drawing.Size(263, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "2. Record and Fields Properties";
             // 
@@ -593,8 +593,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender2;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -690,10 +690,10 @@ namespace FileHelpers.WizardApp
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 9);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(11, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(289, 23);
+            this.label2.Size = new System.Drawing.Size(249, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "4. Save and Usage Templates";
             // 
@@ -702,9 +702,9 @@ namespace FileHelpers.WizardApp
             this.panFields.AutoScroll = true;
             this.panFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.panFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panFields.Location = new System.Drawing.Point(18, 38);
+            this.panFields.Location = new System.Drawing.Point(18, 43);
             this.panFields.Name = "panFields";
-            this.panFields.Size = new System.Drawing.Size(374, 293);
+            this.panFields.Size = new System.Drawing.Size(374, 288);
             this.panFields.TabIndex = 0;
             this.panFields.TabStop = true;
             // 
@@ -854,10 +854,10 @@ namespace FileHelpers.WizardApp
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.White;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(11, 9);
+            this.label18.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(11, 14);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(254, 23);
+            this.label18.Size = new System.Drawing.Size(218, 19);
             this.label18.TabIndex = 0;
             this.label18.Text = "1. Select the Record Type";
             // 
@@ -891,10 +891,10 @@ namespace FileHelpers.WizardApp
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(11, 9);
+            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(11, 14);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(253, 23);
+            this.label15.Size = new System.Drawing.Size(215, 19);
             this.label15.TabIndex = 0;
             this.label15.Text = "3. Record Fields Designer";
             // 
@@ -1093,8 +1093,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender2;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender3;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1169,6 +1169,7 @@ namespace FileHelpers.WizardApp
             this.button1.TabIndex = 1009;
             this.button1.Text = "FileMaster";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // picCurrStep
@@ -1274,7 +1275,7 @@ namespace FileHelpers.WizardApp
             // 
             this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
-            this.picDonate.Location = new System.Drawing.Point(-1, 330);
+            this.picDonate.Location = new System.Drawing.Point(470, 1);
             this.picDonate.Name = "picDonate";
             this.picDonate.Size = new System.Drawing.Size(100, 36);
             this.picDonate.TabIndex = 1010;
@@ -1303,8 +1304,7 @@ namespace FileHelpers.WizardApp
             this.toolTip1.AutoPopDelay = 10000;
             this.toolTip1.InitialDelay = 200;
             this.toolTip1.IsBalloon = true;
-            this.toolTip1.ReshowDelay = 250;
-            this.toolTip1.ShowAlways = true;
+            this.toolTip1.ReshowDelay = 300;
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Donate to the Project";
             // 

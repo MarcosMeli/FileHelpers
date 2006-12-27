@@ -36,7 +36,7 @@ namespace FileHelpersTests.CommonTests
 			after = 0;
 
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.BeforeWriteRecord +=new BeforeWriteRecordHandler(engine_BeforeWriteRecord);
+			engine.BeforeWriteRecord += new BeforeWriteRecordHandler(engine_BeforeWriteRecord);
 			engine.AfterWriteRecord += new AfterWriteRecordHandler(engine_AfterWriteRecord);
 
 			SampleType[] res = new SampleType[2];

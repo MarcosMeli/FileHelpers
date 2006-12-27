@@ -546,14 +546,14 @@ namespace FileHelpers
 
 #if ! GENERICS
 
-		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-		public event EventHandler<BeforeReadRecordEventArgs<object>> BeforeReadRecord;
-		/// <summary>Called in read operations just after the record was created from a record string.</summary>
-		public event EventHandler<AfterReadRecordEventArgs<object>> AfterReadRecord;
-		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-		public event EventHandler<BeforeWriteRecordEventArgs<object>> BeforeWriteRecord;
-		/// <summary>Called in write operations just after the record was converted to a string.</summary>
-		public event EventHandler<AfterWriteRecordEventArgs<object>> AfterWriteRecord;
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public event BeforeReadRecordHandler<object> BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public event AfterReadRecordHandler<object> AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public event BeforeWriteRecordHandler<object> BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public event AfterWriteRecordHandler<object> AfterWriteRecord;
 
 		private bool OnBeforeReadRecord(string line)
 		{
@@ -618,14 +618,14 @@ namespace FileHelpers
 
 
 #else
-		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-		public event EventHandler<BeforeReadRecordEventArgs<T>> BeforeReadRecord;
-		/// <summary>Called in read operations just after the record was created from a record string.</summary>
-		public event EventHandler<AfterReadRecordEventArgs<T>> AfterReadRecord;
-		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-		public event EventHandler<BeforeWriteRecordEventArgs<T>> BeforeWriteRecord;
-		/// <summary>Called in write operations just after the record was converted to a string.</summary>
-		public event EventHandler<AfterWriteRecordEventArgs<T>> AfterWriteRecord;
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public event BeforeReadRecordHandler<T> BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public event AfterReadRecordHandler<T> AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public event BeforeWriteRecordHandler<T> BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public event AfterWriteRecordHandler<T> AfterWriteRecord;
 
 		private bool OnBeforeReadRecord(string line)
 		{
