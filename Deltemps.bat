@@ -17,6 +17,7 @@
 @rmdir /S /Q "CloverReport"
 @rmdir /S /Q "Release"
 @rmdir /S /Q "ReleaseDemo"
+@rmdir /S /Q "_ReSharper.FileHelpers"
 @del /AH /Q "FileHelpers.suo"
 @del /F /Q "FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.xml"
 @del /F /Q "FileHelpers\FileHelpers.xml"
