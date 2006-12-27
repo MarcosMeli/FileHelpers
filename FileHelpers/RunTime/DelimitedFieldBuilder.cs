@@ -87,7 +87,7 @@ namespace FileHelpers.RunTime
 			writer.WriteElement("QuoteMultiline", this.QuoteMultiline.ToString(), "AllowForRead");
 		}
 
-		protected override void ReadFieldInternal(XmlNode node)
+		internal override void ReadFieldInternal(XmlNode node)
 		{
 			XmlNode ele;
 			

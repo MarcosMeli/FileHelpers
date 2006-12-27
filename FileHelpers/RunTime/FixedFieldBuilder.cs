@@ -73,7 +73,7 @@ namespace FileHelpers.RunTime
 			writer.WriteElement("AlignChar", this.AlignChar.ToString(), " ");
 		}
 
-		protected override void ReadFieldInternal(XmlNode node)
+		internal override void ReadFieldInternal(XmlNode node)
 		{
 			XmlNode ele;
 			

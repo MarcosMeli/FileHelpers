@@ -247,7 +247,7 @@ namespace FileHelpers
 
 		#region "  ReadStream  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/ReadStream/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/ReadStream/*'/>
 		public object[] ReadStream(TextReader reader)
 		{
 			if (reader == null)
@@ -373,7 +373,7 @@ namespace FileHelpers
 
 		#region "  ReadString  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/ReadString/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/ReadString/*'/>
 		public object[] ReadString(string source)
 		{
 			StringReader reader = new StringReader(source);
@@ -386,13 +386,13 @@ namespace FileHelpers
 
 		#region "  WriteFile  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile/*'/>
 		public void WriteFile(string fileName, object[] records)
 		{
 			WriteFile(fileName, records, -1);
 		}
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, object[] records, int maxRecords)
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
@@ -417,7 +417,7 @@ namespace FileHelpers
 			WriteStream(writer, records, -1);
 		}
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteStream2/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteStream2/*'/>
 		public void WriteStream(TextWriter writer, object[] records, int maxRecords)
 		{
 			if (writer == null)
@@ -512,13 +512,13 @@ namespace FileHelpers
 
 		#region "  WriteString  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteString/*'/>
 		public string WriteString(object[] records)
 		{
 			return WriteString(records, -1);
 		}
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString2/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteString2/*'/>
 		public string WriteString(object[] records, int maxRecords)
 		{
 			StringBuilder sb = new StringBuilder();
@@ -533,13 +533,13 @@ namespace FileHelpers
 
 		#region "  AppendToFile  "
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile1/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile1/*'/>
 		public void AppendToFile(string fileName, object record)
 		{
 			AppendToFile(fileName, new object[] {record});
 		}
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile2/*'/>
+		/// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
 		public void AppendToFile(string fileName, object[] records)
 		{
 			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
@@ -584,6 +584,11 @@ namespace FileHelpers
 
 		#region "  BeginReadStream"
 
+
+		/// <summary>
+		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+		/// </summary>
+		/// <param name="reader">The source Reader.</param>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public void BeginReadStream(TextReader reader)
 		{
@@ -615,12 +620,19 @@ namespace FileHelpers
 
 		#region "  BeginReadFile  "
 
+		/// <summary>
+		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+		/// </summary>
+		/// <param name="fileName">The source file.</param>
 		public void BeginReadFile(string fileName)
 		{
 			BeginReadStream(new StreamReader(fileName, mEncoding, true));
 		}
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
+		/// <summary>
+		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+		/// </summary>
+		/// <param name="sourceData">The source String</param>
 		public void BeginReadString(string sourceData)
 		{
 			if (sourceData == null)
@@ -632,7 +644,9 @@ namespace FileHelpers
 		#endregion
 		
 		#region "  Close  "
-
+		/// <summary>
+		/// Close the underlining Readers and Writers. (if any)
+		/// </summary>
 		public void Close()
 		{
 			try

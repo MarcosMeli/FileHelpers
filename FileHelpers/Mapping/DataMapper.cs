@@ -6,10 +6,17 @@ using System.Reflection;
 namespace FileHelpers.Mapping
 {
 
-	public class DataMapper
+	/// <summary>
+	/// A class to provide Record-DataTable operations.
+	/// </summary>
+	public sealed class DataMapper
 	{
 		RecordInfo mRecordInfo;
 		
+		/// <summary>
+		/// Create a new Mapping for the record Type 't'.
+		/// </summary>
+		/// <param name="t">The record class.</param>
 		public DataMapper(Type t)
 		{
 			mRecordInfo = new RecordInfo(t);
@@ -17,29 +24,47 @@ namespace FileHelpers.Mapping
 
 		private int mGlobalOffset = 0;
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public int GlobalOffset
 		{
 			get { return mGlobalOffset; }
 			set { mGlobalOffset = value; }
 		}
 
-		public void AddMapping(int columnIndex, string field)
+		/// <summary>
+		/// Add a new mapping between column at <paramref>columnIndex</paramref> and the fieldName with the specified <paramref>fieldName</paramref> name.
+		/// </summary>
+		/// <param name="columnIndex">The index in the Datatable</param>
+		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
+		public void AddMapping(int columnIndex, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, field);
+			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, fieldName);
 			map.mDataColumnIndex = columnIndex + mGlobalOffset;
 			mMappings.Add(map);
 		}
 		
-		public void AddMapping(string columnName, string field)
+		/// <summary>
+		/// Add a new mapping between column with <paramref>columnName</paramref> and the fieldName with the specified <paramref>fieldName</paramref> name.
+		/// </summary>
+		/// <param name="columnName">The name of the Column</param>
+		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
+		public void AddMapping(string columnName, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, field);
+			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, fieldName);
 			map.mDataColumnName = columnName;
 			mMappings.Add(map);
 		}
 		
 		private ArrayList mMappings  = new ArrayList();
 		
-		public object[] MapRecords(DataTable dt)
+		/// <summary>
+		/// For each row in the datatable create a record.
+		/// </summary>
+		/// <param name="dt">The source Datatable</param>
+		/// <returns>The mapped records contained in the DataTable</returns>
+		public object[] MapDataTable2Records(DataTable dt)
 		{
 			mMappings.TrimToSize();
 			
@@ -62,8 +87,13 @@ namespace FileHelpers.Mapping
 		}
 
 
-		
-		public object[] MapRecordsByIndex(DataTable dt)
+		/// <summary>
+		/// Create an automatic mapping for each column in the dt and each record field 
+		/// (the mapping is made by Index)
+		/// </summary>
+		/// <param name="dt">The source Datatable</param>
+		/// <returns>The mapped records contained in the DataTable</returns>
+		public object[] AutoMapDataTable2RecordsByIndex(DataTable dt)
 		{
 			//mMappings.TrimToSize();
 
@@ -116,7 +146,7 @@ namespace FileHelpers.Mapping
 			mField = fi;
 		}
 
-		public string mRecordField;
+		//public string mRecordField;
 		public string mDataColumnName = null;
 		public int mDataColumnIndex = -1;
 		

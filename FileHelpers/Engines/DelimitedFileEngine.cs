@@ -7,6 +7,13 @@ namespace FileHelpers
 	{
 		#region "  Constructor  "
 
+		/// <summary>
+		/// A FileHelperEngine with delimiters that can be changed at RinTime
+		/// </summary>
+		/// <remarks>
+		/// Useful when you need to export the same info with 2 or more different delimieters.
+		/// </remarks>
+		/// <param name="recordType">The record mapping class.</param>
 		public DelimitedFileEngine(Type recordType): base(recordType)
 		{
 			if (mRecordInfo.mFields[0] is DelimitedField == false)

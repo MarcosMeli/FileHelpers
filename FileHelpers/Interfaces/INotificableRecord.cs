@@ -4,7 +4,7 @@ namespace FileHelpers
 {
 
 	/// <summary>
-	/// Interface used to provide <b>In record notification of read operations.</b>
+	/// Interface used to provide In record notification of read operations.
 	/// </summary>
 	/// <example>
 	/// private class SampleType: INotifyRead, INotifyWrite
@@ -14,7 +14,6 @@ namespace FileHelpers
 	///		{
 	///			// Your Code Here
 	///		}
-
 	///		public void BeforeWrite(EngineBase engine)
 	///		{
 	/// 		// Your Code Here
@@ -43,7 +42,6 @@ namespace FileHelpers
 	///		{
 	///			// Your Code Here
 	///		}
-
 	///		public void BeforeWrite(EngineBase engine)
 	///		{
 	/// 		// Your Code Here

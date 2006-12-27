@@ -327,7 +327,7 @@ namespace FileHelpers.RunTime
 			ReadFieldInternal(node);
 		}
 
-		protected abstract void ReadFieldInternal(XmlNode node);
+		internal abstract void ReadFieldInternal(XmlNode node);
 
 	}
 }

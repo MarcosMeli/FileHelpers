@@ -30,7 +30,7 @@ namespace FileHelpersTests.Mapping
 			dt.Rows.Add(new object[] { new DateTime(2006,6,1), 10, (short)11 });
 			dt.Rows.Add(new object[] { new DateTime(2006,9,1), 20, (short)21 });
 			
-			OrdersMap[] res = (OrdersMap[]) mapper.MapRecords(dt);
+			OrdersMap[] res = (OrdersMap[]) mapper.MapDataTable2Records(dt);
 			
 			Assert.AreEqual(3, res[0].OrderID);
 			Assert.AreEqual(1, res[0].EmployeeID);
