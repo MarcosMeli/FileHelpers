@@ -29,16 +29,21 @@ namespace FileHelpers
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
 		internal bool mIgnoreEmptyLines = false;
-
+		internal bool mIgnoreEmptySpaces = false;
+		
+		internal string mCommentString = null;
+		internal bool mCommentAtFirstColumn = true;
+		
+#if ! MINI
 		internal bool mNotifyRead;
 		internal bool mNotifyWrite;
-
+#endif
 		internal int mFieldCount;
 		
 		private ConstructorInfo mRecordConstructor;
 
 		private static readonly object[] mEmptyObjectArr = new object[] {};
-		private readonly Type[] mEmptyTypeArr = new Type[] {};
+		private static readonly Type[] mEmptyTypeArr = new Type[] {};
 		
 		#endregion
 		
@@ -79,7 +84,19 @@ namespace FileHelpers
 				mIgnoreLast = ((IgnoreLastAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreLastAttribute), false)[0]).NumberOfLines;
 
 			if (mRecordType.IsDefined(typeof (IgnoreEmptyLinesAttribute), false))
+			{
 				mIgnoreEmptyLines = true;
+				mIgnoreEmptySpaces = ((IgnoreEmptyLinesAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreEmptyLinesAttribute), false)[0]).
+						mIgnoreSpaces;
+			}
+
+			if (mRecordType.IsDefined(typeof (IgnoreCommentedLinesAttribute), false))
+			{
+				IgnoreCommentedLinesAttribute ignoreComments =
+					(IgnoreCommentedLinesAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreCommentedLinesAttribute), false)[0];
+					mCommentString = ignoreComments.mCommentMarker;
+					mCommentAtFirstColumn = ignoreComments.mAtFirstColumn;
+			}
 
 #if ! MINI
 			if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
@@ -179,7 +196,7 @@ namespace FileHelpers
 		#region StringToRecord
 		internal object StringToRecord(string line, ForwardReader reader)
 		{
-			if (line == string.Empty && mIgnoreEmptyLines)
+			if (MustIgnoreLine(line))
 				return null;
 
 			object record = CreateRecordObject();
@@ -191,6 +208,23 @@ namespace FileHelpers
 
 			return record;
 		}
+
+		private bool MustIgnoreLine(string line)
+		{
+			if (mIgnoreEmptyLines)
+				if ((mIgnoreEmptySpaces && line.TrimStart().Length == 0) || 
+				     line.Length == 0) 
+						return true;
+		
+		
+			if (mCommentString != null)
+				if ( (mCommentAtFirstColumn == false && line.TrimStart().StartsWith(mCommentString)) ||
+				     line.StartsWith(mCommentString))
+						return true;
+			
+			return false;
+		}
+
 		#endregion
 
 		#region RecordToString

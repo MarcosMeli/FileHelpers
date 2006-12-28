@@ -173,6 +173,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Attributes\IgnoreCommentedLinesAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\IgnoreEmptyLinesAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
