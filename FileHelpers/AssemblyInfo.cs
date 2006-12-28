@@ -30,6 +30,6 @@ using System.Security.Permissions;
 [assembly : AssemblyDelaySign(false)]
 [assembly : AssemblyKeyName("")]
 
-//#if STRONG_NAME
+#if ! NET_2_0
 [assembly: AssemblyKeyFile(@"..\..\FileHelpers.snk")]
-//#endif
+#endif

@@ -231,6 +231,8 @@
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 237" workingdir="Libs" />
 
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;&lt;AssemblyName&gt;FileHelpers&lt;/AssemblyName&gt;&quot; &quot;&lt;AssemblyName&gt;FileHelpers&lt;/AssemblyName&gt;  &lt;AssemblyOriginatorKeyFile&gt;FileHelpers.snk&lt;/AssemblyOriginatorKeyFile&gt;&quot;" workingdir="Libs" failonerror="false" />
+
        <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
 
        <delete>

@@ -89,6 +89,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FileHelpers.snk"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "Attributes\DelimitedRecordAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
