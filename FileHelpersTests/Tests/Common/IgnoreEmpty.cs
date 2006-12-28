@@ -113,6 +113,15 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		public void IgnoreComment1Async()
+		{
+			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreCommentsType));
+			object[] res = Common.ReadAllAsync(asyncEngine, @"Good\IgnoreComments1.txt");
+			
+			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(7, asyncEngine.LineNumber);
+		}
+		[Test]
 		public void IgnoreComment2()
 		{
 			engine = new FileHelperEngine(typeof (IgnoreCommentsType));
