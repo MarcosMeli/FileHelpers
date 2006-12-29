@@ -488,6 +488,8 @@ namespace FileHelpers
 		{
 			private string mTrueString = null;
 			private string mFalseString = null;
+			private string mTrueStringLower = null;
+			private string mFalseStringLower = null;
 
 			public BooleanConverter()
 			{
@@ -495,8 +497,10 @@ namespace FileHelpers
 
 			public BooleanConverter(string trueStr, string falseStr) 
 			{
-				mTrueString = trueStr.ToLower();
-				mFalseString = falseStr.ToLower();
+				mTrueString = trueStr;
+				mFalseString = falseStr;
+				mTrueStringLower = trueStr.ToLower();
+				mFalseStringLower = falseStr.ToLower();
 			}
 
 			public override object StringToField(string from)
@@ -518,12 +522,12 @@ namespace FileHelpers
 					}
 					else
 					{
-						if (testTo == mTrueString || testTo.Trim() == mTrueString)
+						if (testTo == mTrueStringLower || testTo.Trim() == mTrueStringLower)
 							val = true;
-						else if (testTo == mFalseString || testTo.Trim() == mFalseString)
+						else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)
 							val = false;
 						else
-							throw new Exception();
+							throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
 					}
 				}
 				catch
