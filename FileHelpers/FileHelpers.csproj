@@ -93,6 +93,11 @@
                     BuildAction = "None"
                 />
                 <File
+                    RelPath = "Attributes\ConditionalRecordAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\DelimitedRecordAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -454,6 +459,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Helpers\ConditionHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Helpers\CsvOptions.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -597,5 +607,4 @@
         </Files>
     </CSHARP>
 </VisualStudioProject>
-
 

@@ -12,6 +12,7 @@ using System.Text;
 
 #if ! MINI
 using System.Data;
+using System.Text.RegularExpressions;
 #endif
 
 namespace FileHelpers
@@ -21,22 +22,25 @@ namespace FileHelpers
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	internal sealed class RecordInfo
 	{
-		
 		#region Internal Fields
 		
 		internal Type mRecordType;
 		internal FieldBase[] mFields;
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
-		internal bool mIgnoreEmptyLines = false;
-		internal bool mIgnoreEmptySpaces = false;
+		public bool mIgnoreEmptyLines = false;
+		private bool mIgnoreEmptySpaces = false;
 		
-		internal string mCommentString = null;
-		internal bool mCommentAtFirstColumn = true;
+		private string mCommentString = null;
+		private bool mCommentAtFirstColumn = true;
+
+		private RecordCondition mCondition = RecordCondition.None;
+		private string mConditionSelector = null;
 		
 #if ! MINI
 		internal bool mNotifyRead;
 		internal bool mNotifyWrite;
+		private Regex mConditionRegEx = null;
 #endif
 		internal int mFieldCount;
 		
@@ -97,6 +101,26 @@ namespace FileHelpers
 					mCommentString = ignoreComments.mCommentMarker;
 					mCommentAtFirstColumn = ignoreComments.mAtFirstColumn;
 			}
+
+			if (mRecordType.IsDefined(typeof (ConditionalRecordAttribute), false))
+			{
+				ConditionalRecordAttribute conditional =
+					(ConditionalRecordAttribute) mRecordType.GetCustomAttributes(typeof (ConditionalRecordAttribute), false)[0];
+
+				mCondition = conditional.mCondition;
+				mConditionSelector = conditional.mConditionSelector;
+
+				#if ! MINI
+
+				if (mCondition == RecordCondition.ExcludeIfMatchRegex ||
+					mCondition == RecordCondition.IncludeIfMatchRegex)
+				{
+					mConditionRegEx = new Regex(mConditionSelector, RegexOptions.Compiled | RegexOptions.CultureInvariant |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+				}
+				#endif
+			}
+
+
 
 #if ! MINI
 			if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
@@ -213,14 +237,51 @@ namespace FileHelpers
 		{
 			if (mIgnoreEmptyLines)
 				if ((mIgnoreEmptySpaces && line.TrimStart().Length == 0) || 
-				     line.Length == 0) 
-						return true;
+					line.Length == 0) 
+					return true;
 		
 		
 			if (mCommentString != null)
 				if ( (mCommentAtFirstColumn == false && line.TrimStart().StartsWith(mCommentString)) ||
-				     line.StartsWith(mCommentString))
-						return true;
+					line.StartsWith(mCommentString))
+					return true;
+			
+
+
+			if (mCondition != RecordCondition.None)
+			{
+				switch (mCondition)
+				{
+					case RecordCondition.ExcludeIfBegins:
+						return ConditionHelper.BeginsWith(line, mConditionSelector);
+					case RecordCondition.IncludeIfBegins:
+						return ! ConditionHelper.BeginsWith(line, mConditionSelector);
+
+					case RecordCondition.ExcludeIfContains:
+						return ConditionHelper.Contains(line, mConditionSelector);
+					case RecordCondition.IncludeIfContains:
+						return ConditionHelper.Contains(line, mConditionSelector);
+
+
+					case RecordCondition.ExcludeIfEnclosed:
+						return ConditionHelper.Enclosed(line, mConditionSelector);
+					case RecordCondition.IncludeIfEnclosed:
+						return ! ConditionHelper.Enclosed(line, mConditionSelector);
+					
+					case RecordCondition.ExcludeIfEnds:
+						return ConditionHelper.EndsWith(line, mConditionSelector);
+					case RecordCondition.IncludeIfEnds:
+						return ! ConditionHelper.EndsWith(line, mConditionSelector);
+
+				#if ! MINI
+					case RecordCondition.ExcludeIfMatchRegex:
+						return mConditionRegEx.IsMatch(line);
+					case RecordCondition.IncludeIfMatchRegex:
+						return ! mConditionRegEx.IsMatch(line);
+				#endif
+
+				}
+			}
 			
 			return false;
 		}
@@ -301,26 +362,7 @@ namespace FileHelpers
 		}
 		#endregion
 
-		#region HasDateFields
-		
-		/// <summary>Indicates if the Record Info has fields of type Date</summary>
-		/// <remarks>This is used externally by the ExcelStorage.</remarks>
-		public bool HasDateFields
-		{
-			get
-			{
-				foreach (FieldBase field in mFields)
-				{
-					if (field.mFieldType == typeof (DateTime))
-						return true;
-				}
-				return false;
-			}
-		}
-		
-		#endregion
-
-		
+	
 	#if ! MINI
 
 		#region RecordsToDataTable

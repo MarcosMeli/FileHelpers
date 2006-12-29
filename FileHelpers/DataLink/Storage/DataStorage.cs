@@ -112,12 +112,6 @@ namespace FileHelpers.DataLink
 			
 		}
 		
-		/// <summary>Indicates if the record class contains a DateTime field.</summary>
-		/// <returns>True if the record class contains a DateTime field</returns>
-		protected bool RecordHasDateFields()
-		{
-			return mRecordInfo.HasDateFields;
-		}
 
 		#region "  Values <-> Record Convertions "
 

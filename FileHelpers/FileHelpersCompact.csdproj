@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <ECSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "1.0"
         ProjectGuid = "{ECE16BAD-F7BF-4556-B817-F27C9352BED9}"
     >
@@ -69,6 +69,12 @@
                     Private = "False"
                 />
                 <Reference
+                    Platform = "Windows CE"
+                    Name = "System.XML"
+                    AssemblyName = "System.XML"
+                    HintPath = "C:\Archivos de programa\Microsoft Visual Studio .NET 2003\CompactFrameworkSDK\v1.0.5000\Windows CE\System.XML.dll"
+                />
+                <Reference
                     Platform = "Windows CE-Designer"
                     Name = "System.CF.Design"
                     AssemblyName = "System.CF.Design"
@@ -104,6 +110,11 @@
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Attributes\ConditionalRecordAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -309,6 +320,11 @@
                 />
                 <File
                     RelPath = "Fields\FixedLengthField.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Helpers\ConditionHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

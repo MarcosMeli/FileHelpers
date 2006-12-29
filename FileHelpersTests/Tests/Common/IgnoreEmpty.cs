@@ -153,87 +153,88 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(7, engine.LineNumber);
 		}
 
-	}
+	
 
 	
-	[FixedLengthRecord]
-	[IgnoreCommentedLines("//")]
-	public class IgnoreCommentsType
-	{
-		[FieldFixedLength(8)]
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-		public DateTime Field1;
+		[FixedLengthRecord]
+			[IgnoreCommentedLines("//")]
+			public class IgnoreCommentsType
+		{
+			[FieldFixedLength(8)]
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			public DateTime Field1;
 
-		[FieldFixedLength(3)]
-		public string Field2;
+			[FieldFixedLength(3)]
+			public string Field2;
 
-		[FieldFixedLength(3)]
-		[FieldConverter(ConverterKind.Int32)]
-		public int Field3;
-	}
+			[FieldFixedLength(3)]
+			[FieldConverter(ConverterKind.Int32)]
+			public int Field3;
+		}
 
-	[FixedLengthRecord]
-	[IgnoreCommentedLines("//", true)]
-	public class IgnoreCommentsType2
-	{
-		[FieldFixedLength(8)]
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-		public DateTime Field1;
+		[FixedLengthRecord]
+			[IgnoreCommentedLines("//", true)]
+			public class IgnoreCommentsType2
+		{
+			[FieldFixedLength(8)]
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			public DateTime Field1;
 
-		[FieldFixedLength(3)]
-		public string Field2;
+			[FieldFixedLength(3)]
+			public string Field2;
 
-		[FieldFixedLength(3)]
-		[FieldConverter(ConverterKind.Int32)]
-		public int Field3;
-	}
-
-	
-	
-	[FixedLengthRecord]
-	[IgnoreEmptyLines()]
-	public class IgnoreEmptyType1
-	{
-		[FieldFixedLength(8)]
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-		public DateTime Field1;
-
-		[FieldFixedLength(3)]
-		public string Field2;
-
-		[FieldFixedLength(3)]
-		[FieldConverter(ConverterKind.Int32)]
-		public int Field3;
-	}
-
-	[FixedLengthRecord]
-	[IgnoreEmptyLines(true)]
-	public class IgnoreEmptyType1Spaces
-	{
-		[FieldFixedLength(8)]
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-		public DateTime Field1;
-
-		[FieldFixedLength(3)]
-		public string Field2;
-
-		[FieldFixedLength(3)]
-		[FieldConverter(ConverterKind.Int32)]
-		public int Field3;
-	}
+			[FieldFixedLength(3)]
+			[FieldConverter(ConverterKind.Int32)]
+			public int Field3;
+		}
 
 	
-	[DelimitedRecord("|")]
-	[IgnoreEmptyLines()]
-	public class IgnoreEmptyType2
-	{
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-		public DateTime Field1;
+	
+		[FixedLengthRecord]
+			[IgnoreEmptyLines()]
+			public class IgnoreEmptyType1
+		{
+			[FieldFixedLength(8)]
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			public DateTime Field1;
 
-		[FieldFixedLength(3)]
-		public string Field2;
+			[FieldFixedLength(3)]
+			public string Field2;
 
-		public int Field3;
+			[FieldFixedLength(3)]
+			[FieldConverter(ConverterKind.Int32)]
+			public int Field3;
+		}
+
+		[FixedLengthRecord]
+			[IgnoreEmptyLines(true)]
+			public class IgnoreEmptyType1Spaces
+		{
+			[FieldFixedLength(8)]
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			
+			public DateTime Field1;
+
+			[FieldFixedLength(3)]
+			public string Field2;
+
+			[FieldFixedLength(3)]
+			[FieldConverter(ConverterKind.Int32)]
+			public int Field3;
+		}
+
+	
+		[DelimitedRecord("|")]
+			[IgnoreEmptyLines()]
+			public class IgnoreEmptyType2
+		{
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			public DateTime Field1;
+
+			[FieldFixedLength(3)]
+			public string Field2;
+
+			public int Field3;
+		}
 	}
-
 }
