@@ -34,26 +34,4 @@ namespace FileHelpers
 
 	}
 
-	/// <summary>The condition used to include or exclude each record.</summary>
-	public enum RecordCondition
-	{
-		None = 0,
-
-		IncludeIfContains,
-		IncludeIfBegins,
-		IncludeIfEnds,
-		IncludeIfEnclosed,
-#if ! MINI
-		IncludeIfMatchRegex,
-#endif
-
-		ExcludeIfContains,
-		ExcludeIfBegins,
-		ExcludeIfEnds,
-		ExcludeIfEnclosed
-#if ! MINI
-		, ExcludeIfMatchRegex
-#endif
-	
-	}
 }
