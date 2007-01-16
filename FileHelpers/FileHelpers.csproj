@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
     >
@@ -380,6 +380,11 @@
                 />
                 <File
                     RelPath = "Enums\QuoteMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums\RecordCondition.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

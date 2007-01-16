@@ -49,6 +49,7 @@ namespace FileHelpers
 		private static Type strType = typeof (string);
 
 		internal Type mFieldType;
+		internal bool mIsStringField;
 		internal FieldInfo mFieldInfo;
 
 		internal TrimMode mTrimMode = TrimMode.None;
@@ -74,6 +75,7 @@ namespace FileHelpers
 		{
 			mFieldInfo = fi;
 			mFieldType = mFieldInfo.FieldType;
+			mIsStringField = mFieldType == strType;
 
 			object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
 			
@@ -189,11 +191,33 @@ namespace FileHelpers
 
 		internal void AssignFromString(string fieldString, object record)
 		{
-			object val = null;
+			object val;
 
-			fieldString = ApplyTrim(fieldString);
+			if (mTrimMode != TrimMode.None)
+				fieldString = ApplyTrim(fieldString);
 
-			if (mConvertProvider != null)
+			if (mConvertProvider == null)
+			{
+				if (mIsStringField)
+					val = fieldString;
+				else
+				{
+					// Trim it to use Convert.ChangeType
+					fieldString = fieldString.Trim();
+
+					if (fieldString == String.Empty)
+					{
+						// Empty stand for null
+						val = GetNullValue();
+					}
+					else
+					{
+						val = Convert.ChangeType(fieldString, mFieldType, null);
+					}
+				}
+			}
+
+			else			
 			{
 				if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty)
 				{
@@ -215,27 +239,7 @@ namespace FileHelpers
 					}
 				}
 			}
-			else
-			{
-				if (mFieldType == strType)
-					val = fieldString;
-				else
-				{
-					// Trim it to use Convert.ChangeType
-					fieldString = fieldString.Trim();
-
-					if (fieldString == String.Empty)
-					{
-						// Empty stand for null
-						val = GetNullValue();
-					}
-					else
-					{
-						val = Convert.ChangeType(fieldString, mFieldType, null);
-					}
-				}
-			}
-
+			
 			mFieldInfo.SetValue(record, val);
 		}
 
@@ -307,14 +311,11 @@ namespace FileHelpers
 
 		private string ApplyTrim(string fieldString)
 		{
-			if (fieldString == null)
-				return string.Empty;
+//			if (fieldString == null)
+//				return string.Empty;
 
 			switch (mTrimMode)
 			{
-				case TrimMode.None:
-					return fieldString;
-
 				case TrimMode.Both:
 					return fieldString.Trim(mTrimChars);
 

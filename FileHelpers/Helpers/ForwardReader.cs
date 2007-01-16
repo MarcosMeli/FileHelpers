@@ -1,14 +1,18 @@
+using System;
 using System.IO;
 using System.Text;
 
 namespace FileHelpers
 {
-	internal class ForwardReader
+	internal sealed class ForwardReader
 	{
 		TextReader mReader;
 
 		private string[] mFowardStrings;
 		private int mForwardIndex = 0;
+		
+		internal char[] mEOF = StringHelper.NewLine.ToCharArray();
+		internal int mCapacityHint = 64;
 
 		private int mRemaingLines = 0;
 
@@ -44,7 +48,7 @@ namespace FileHelpers
 
 			for (int i = 0; i < mFowardLines + 1; i++)
 			{
-				mFowardStrings[i] = reader.ReadLine();
+				mFowardStrings[i] = mReader.ReadLine();
 				mLineNumber++;
 				if (mFowardStrings[i] == null)
 				{
@@ -54,6 +58,24 @@ namespace FileHelpers
 			}
 
 		}
+
+		
+//		private string ReadLine()
+//		{
+//			StringBuilder builder = new StringBuilder(mCapacityHint);
+//
+//			while (true)
+//			{
+//				//mReader.Read()
+//				
+//			}
+//			
+//			if (builder.Length > 0)
+//			{
+//				return builder.ToString();
+//			}
+//			return null;
+//		}
 
 		private bool mDiscardForward = false;
 

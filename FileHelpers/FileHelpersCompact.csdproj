@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <ECSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "1.0"
         ProjectGuid = "{ECE16BAD-F7BF-4556-B817-F27C9352BED9}"
     >
@@ -71,8 +71,7 @@
                 <Reference
                     Platform = "Windows CE"
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
-                    HintPath = "C:\Archivos de programa\Microsoft Visual Studio .NET 2003\CompactFrameworkSDK\v1.0.5000\Windows CE\System.XML.dll"
+                    AssemblyName = "System.Xml"
                 />
                 <Reference
                     Platform = "Windows CE-Designer"
@@ -270,6 +269,11 @@
                 />
                 <File
                     RelPath = "Enums\QuoteMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums\RecordCondition.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -5,6 +5,7 @@
 #endregion
 
 using System;
+using System.Globalization;
 using System.Reflection;
 
 namespace FileHelpers
@@ -17,10 +18,13 @@ namespace FileHelpers
 		{
 			this.mSeparator = sep;
 			this.mSeparatorLength = mSeparator.Length;
+
 		}
 
 		#endregion
 
+		private static CompareInfo mCompare = CultureInfo.InvariantCulture.CompareInfo;
+		
 		#region "  Properties  "
 
 		internal string mSeparator;
@@ -56,7 +60,10 @@ namespace FileHelpers
 					res = new ExtractedInfo(from);
 				else
 				{
-					int sepPos = from.IndexOf(this.mSeparator);
+					
+					int sepPos ;
+					
+					sepPos = mCompare.IndexOf(from, mSeparator, CompareOptions.IgnoreCase);
 
 					if (sepPos == -1)
 					{
