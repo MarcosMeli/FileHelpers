@@ -53,5 +53,14 @@ namespace FileHelpers
 			throw new ConvertException(from, mDestinationType, errorMsg);
 		}
 
+		internal object mDefaultValue;
+		protected object DefaultValueFromField
+		{
+			get
+			{
+				return mDefaultValue;
+			}
+		}
+
 	}
 }
