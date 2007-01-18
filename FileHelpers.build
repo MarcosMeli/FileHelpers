@@ -206,7 +206,7 @@
 
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.Demo\FileHelpers.Demo.csproj&quot; &quot;DotNet 1.1&quot; &quot;DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.Demos\FileHelpers.Demos.csproj&quot; &quot;DotNet 1.1&quot; &quot;DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpersCompact.csdproj&quot; &quot;..\..\Release\DotNet 1.1 PPC&quot; &quot;..\..\Release\DotNet 2.0 PPC&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
 
