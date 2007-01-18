@@ -15,10 +15,10 @@
     </namespaces>
     <documenters>
         <documenter name="JavaDoc">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value=".\Docs\" />
         </documenter>
         <documenter name="LaTeX">
-            <property name="OutputDirectory" value=".\doc\" />
+            <property name="OutputDirectory" value=".\Docs\" />
             <property name="TextFileFullName" value="Documentation.tex" />
             <property name="TexFileBaseName" value="Documentation" />
             <property name="LatexCompiler" value="latex" />
@@ -29,7 +29,7 @@
             <property name="Title" value="An NDoc Documented Class Library" />
         </documenter>
         <documenter name="MSDN">
-            <property name="OutputDirectory" value="..\..\Release\Doc\" />
+            <property name="OutputDirectory" value="..\..\Release\Docs\" />
             <property name="HtmlHelpName" value="FileHelpers" />
             <property name="Title" value="FileHelpers General and SDK Documentation" />
             <property name="ShowVisualBasic" value="True" />

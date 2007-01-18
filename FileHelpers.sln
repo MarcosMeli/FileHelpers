@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Tests", "FileHe
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Samples", "FileHelpersSamples\FileHelpers.Samples.csproj", "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Demo", "FileHelpers.Demo\FileHelpers.Demo.csproj", "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

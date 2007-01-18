@@ -85,8 +85,8 @@
        </copy>
        <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
 
-       <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\ReleaseDemo" />
-       <copy file="FileHelpersTests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\ReleaseDemo\Customers.txt" />
+       <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\Release\Demos" />
+       <copy file="FileHelpersTests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\Release\Demos\Customers.txt" />
 
        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Demo">
            <fileset basedir="..\ReleaseDemo">
@@ -117,18 +117,18 @@
    </target>
    
    <target name="document" depends="release">
-       <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Doc" />
-       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
-       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
-       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Doc" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Doc\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
+       <exec program="Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="Docs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Docs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Docs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Docs" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Docs" />
 
-       <copy file="Doc\index.html" todir="..\Release\Doc" overwrite="True" />
-       <copy file="Doc\MSDN.css" todir="..\Release\Doc" overwrite="True" />
-       <copy file="Doc\tree.js" todir="..\Release\Doc" overwrite="True" />
-       <copy file="Doc\tree.css" todir="..\Release\Doc" overwrite="True" />
+       <copy file="Doc\index.html" todir="..\Release\Docs" overwrite="True" />
+       <copy file="Doc\MSDN.css" todir="..\Release\Docs" overwrite="True" />
+       <copy file="Doc\tree.js" todir="..\Release\Docs" overwrite="True" />
+       <copy file="Doc\tree.css" todir="..\Release\Docs" overwrite="True" />
 
-       <zip zipfile="..\Release\Doc\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
+       <zip zipfile="..\Release\Docs\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
            <fileset basedir="FileHelpers.CodeExamples">
                <include name="**/*" />
                <exclude name=".svn" />
@@ -139,11 +139,11 @@
            </fileset>
        </zip>
 
-       <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Doc\FileHelpers.hhp&quot;" workingdir="." failonerror="False" />
-       <move file="..\Release\Doc\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc" overwrite="True" />
+       <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Docs\FileHelpers.hhp&quot;" workingdir="." failonerror="True" />
+       <move file="..\Release\Docs\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Docs" overwrite="True" />
 
        <zip zipfile="..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
-           <fileset basedir="..\Release\Doc">
+           <fileset basedir="..\Release\Docs">
                <include name="**/*" />
                <exclude name=".svn" />
            </fileset>
@@ -206,6 +206,7 @@
 
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.Demo\FileHelpers.Demo.csproj&quot; &quot;DotNet 1.1&quot; &quot;DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpersCompact.csdproj&quot; &quot;..\..\Release\DotNet 1.1 PPC&quot; &quot;..\..\Release\DotNet 2.0 PPC&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
 
@@ -257,6 +258,8 @@
                <include name="FileHelpers.xml" />
            </fileset>
        </delete>
+       
+       <copy file="FileHelpers.WizardApp\Readme.txt" todir="..\Release\Wizard" overwrite="True" />
 
        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Wizard">
            <fileset basedir="..\Release\WIzard">
@@ -264,22 +267,22 @@
            </fileset>
        </copy>
 
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 1.1">
            <fileset basedir="..\Release\DotNet 1.1">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 1.1 PPC">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 1.1 PPC">
            <fileset basedir="..\Release\DotNet 1.1 PPC">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 2.0">
            <fileset basedir="..\Release\DotNet 2.0">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\DotNet 2.0 PPC">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 2.0 PPC">
            <fileset basedir="..\Release\DotNet 2.0 PPC">
                <include name="*\**" />
            </fileset>
