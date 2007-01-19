@@ -19,12 +19,18 @@ namespace FileHelpers
 
 		internal Char[] TrimChars;
 		internal TrimMode TrimMode;
+		private static char[] WhitespaceChars = new char[] 
+			 { 
+				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
+				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
+			 };
 
 		#region "  Constructors  "
 
 		/// <summary>Indicates the <see cref="TrimMode"/> used after read to truncate the field. By default trims the blank spaces and tabs.</summary>
 		/// <param name="mode">The <see cref="TrimMode"/> used after read.</param>
-		public FieldTrimAttribute(TrimMode mode) : this(mode, new char[] {' ', '\t'})
+		public FieldTrimAttribute(TrimMode mode) 
+			: this(mode, WhitespaceChars)
 		{
 		}
 
@@ -34,6 +40,7 @@ namespace FileHelpers
 		public FieldTrimAttribute(TrimMode mode, params char[] chars)
 		{
 			TrimMode = mode;
+			Array.Sort(chars);
 			TrimChars = chars;
 		}
 
@@ -41,9 +48,8 @@ namespace FileHelpers
 		/// <param name="mode">The <see cref="TrimMode"/> used after read.</param>
 		/// <param name="trimChars">A string of chars used to trim.</param>
 		public FieldTrimAttribute(TrimMode mode, string trimChars)
+				:this(mode, trimChars.ToCharArray())
 		{
-			TrimMode = mode;
-			TrimChars = trimChars.ToCharArray();
 		}
 
 		#endregion

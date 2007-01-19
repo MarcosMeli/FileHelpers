@@ -293,6 +293,9 @@ namespace FileHelpers
 //			MasterDetails record = null;
 			ArrayList tmpDetails = new ArrayList();
 
+			LineInfo line = new LineInfo(currentLine);
+			line.mReader = freader;
+			
 			while (currentLine != null)
 			{
 				try
@@ -300,6 +303,8 @@ namespace FileHelpers
 
 					mTotalRecords++;
 					currentRecord++;
+					
+					line.ReLoad(currentLine);
 
                     bool skip = false;
 					#if !MINI
@@ -315,7 +320,7 @@ namespace FileHelpers
 
                         if (skip == false)
                         {
-                            object record = info.StringToRecord(currentLine, freader);
+                            object record = info.StringToRecord(line);
 
 #if !MINI
 							skip = OnAfterReadRecord(currentLine, record);
@@ -689,6 +694,10 @@ namespace FileHelpers
 
 			mLastRecord = null;
 
+			LineInfo line = new LineInfo(currentLine);
+			line.mReader = mAsyncReader;
+			
+		
 			while (true)
 			{
 				if (currentLine != null)
@@ -698,11 +707,13 @@ namespace FileHelpers
 						mTotalRecords++;
 
 						Type currType = mRecordSelector(this, currentLine);
+						
+						line.ReLoad(currentLine);
 
 						if (currType != null)
 						{
 							RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
-							mLastRecord = info.StringToRecord(currentLine, mAsyncReader);
+							mLastRecord = info.StringToRecord(line);
 
 							if (mLastRecord != null)
 							{

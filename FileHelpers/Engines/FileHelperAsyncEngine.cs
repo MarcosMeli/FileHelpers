@@ -143,6 +143,11 @@ namespace FileHelpers
 #else
 			mLastRecord = default(T);
 #endif
+			
+			
+			LineInfo line = new LineInfo(string.Empty);
+			line.mReader = mAsyncReader;
+			
 			while (true)
 			{
 				if (currentLine != null)
@@ -150,11 +155,12 @@ namespace FileHelpers
 					try
 					{
 						mTotalRecords++;
+						line.ReLoad(currentLine);
 
 #if ! GENERICS
-						mLastRecord = mRecordInfo.StringToRecord(currentLine, mAsyncReader);
+						mLastRecord = mRecordInfo.StringToRecord(line);
 #else
-						mLastRecord = (T) mRecordInfo.StringToRecord(currentLine, mAsyncReader);
+						mLastRecord = (T) mRecordInfo.StringToRecord(line);
 #endif
 
 						if (mLastRecord != null)

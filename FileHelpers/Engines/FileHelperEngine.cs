@@ -126,6 +126,10 @@ namespace FileHelpers
 
 			bool byPass = false;
 
+				
+			LineInfo line = new LineInfo(currentLine);
+			line.mReader = freader;
+			
 			while (currentLine != null)
 			{
 				try
@@ -133,6 +137,8 @@ namespace FileHelpers
 					mTotalRecords++;
 					currentRecord++; 
 				
+					line.ReLoad(currentLine);
+					
 					bool skip = false;
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
@@ -141,7 +147,7 @@ namespace FileHelpers
 
 					if (skip == false)
 					{
-						object record = mRecordInfo.StringToRecord(currentLine, freader);
+						object record = mRecordInfo.StringToRecord(line);
 
 						#if !MINI
 							#if ! GENERICS

@@ -35,6 +35,7 @@ namespace FileHelpers
 		}
 
 		private ErrorMode mErrorMode = ErrorMode.ThrowException;
+		
 
 		/// <summary>Indicates the behavior of the <see cref="FileHelperEngine"/> when it found an error.</summary>
 		public ErrorMode ErrorMode
