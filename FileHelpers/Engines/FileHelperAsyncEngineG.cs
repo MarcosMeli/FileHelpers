@@ -145,7 +145,7 @@ namespace FileHelpers
 #endif
 			
 			
-			LineInfo line = new LineInfo(currentLine);
+			LineInfo line = new LineInfo(string.Empty);
 			line.mReader = mAsyncReader;
 			
 			while (true)
@@ -155,8 +155,7 @@ namespace FileHelpers
 					try
 					{
 						mTotalRecords++;
-						line.mLine = currentLine;
-						line.mCurrentPos = 0;
+						line.ReLoad(currentLine);
 
 #if ! GENERICS
 						mLastRecord = mRecordInfo.StringToRecord(line);

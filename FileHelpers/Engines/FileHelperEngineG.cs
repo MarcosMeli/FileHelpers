@@ -137,8 +137,7 @@ namespace FileHelpers
 					mTotalRecords++;
 					currentRecord++; 
 				
-					line.mLine = currentLine;
-					line.mCurrentPos = 0;
+					line.ReLoad(currentLine);
 					
 					bool skip = false;
 					#if !MINI

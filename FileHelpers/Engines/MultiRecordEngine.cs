@@ -59,7 +59,7 @@ namespace FileHelpers
 		/// <param name="recordSelector">The selector that indicates to the engine what Type to use in each line.</param>
 		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(GetFirstType(recordTypes))
 		{
-			ErrorHelper.CheckNullParam(recordSelector, "recordSelector");
+			ExHelper.CheckNullParam(recordSelector, "recordSelector");
 
 			mTypes = recordTypes;
 			mMultiRecordInfo = new RecordInfo[mTypes.Length];

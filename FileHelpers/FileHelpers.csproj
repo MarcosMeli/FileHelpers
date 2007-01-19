@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
     >
@@ -204,6 +204,16 @@
                 />
                 <File
                     RelPath = "Converters\EnumConverter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\ExtractInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\LineInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -479,7 +489,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Helpers\ErrorHelper.cs"
+                    RelPath = "Helpers\ExHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

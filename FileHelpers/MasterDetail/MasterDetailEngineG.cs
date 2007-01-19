@@ -267,8 +267,7 @@ namespace FileHelpers.MasterDetail
 				{
 					currentRecord++; 
 
-					line.mLine = currentLine;
-					line.mCurrentPos = 0;
+					line.ReLoad(currentLine);
 					
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);

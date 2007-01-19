@@ -29,9 +29,9 @@ namespace FileHelpers
 		public FileTransformEngine(Type sourceType, Type destType)
 		{
 			//throw new NotImplementedException("This feature is not ready yet. In the next release maybe work =)");
-			ErrorHelper.CheckNullParam(sourceType, "sourceType");
-			ErrorHelper.CheckNullParam(destType, "destType");
-			ErrorHelper.CheckDifferentsParams(sourceType, "sourceType", destType, "destType");
+			ExHelper.CheckNullParam(sourceType, "sourceType");
+			ExHelper.CheckNullParam(destType, "destType");
+			ExHelper.CheckDifferentsParams(sourceType, "sourceType", destType, "destType");
 
 			mSourceType = sourceType;
 			mDestinationType = destType;
@@ -53,9 +53,9 @@ namespace FileHelpers
 		/// <returns>The transformed records in the destFile.</returns>
 		public object[] TransformFile(string sourceFile, string destFile)
 		{
-			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
-			ErrorHelper.CheckNullParam(destFile, "destFile");
-			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+			ExHelper.CheckNullParam(sourceFile, "sourceFile");
+			ExHelper.CheckNullParam(destFile, "destFile");
+			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
 			if (mConvert1to2 == null)
 			   throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
@@ -70,9 +70,9 @@ namespace FileHelpers
 		/// <returns>The number of transformed records.</returns>
 		public int TransformFileAsync(string sourceFile, string destFile)
 		{
-			ErrorHelper.CheckNullParam(sourceFile, "sourceFile");
-			ErrorHelper.CheckNullParam(destFile, "destFile");
-			ErrorHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+			ExHelper.CheckNullParam(sourceFile, "sourceFile");
+			ExHelper.CheckNullParam(destFile, "destFile");
+			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
 			if (mConvert1to2 == null)
 				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);

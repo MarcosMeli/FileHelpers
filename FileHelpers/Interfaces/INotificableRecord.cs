@@ -52,7 +52,7 @@ namespace FileHelpers
 	public interface INotifyWrite
 	{
 		/// <summary>
-		/// Method called by the engines before write a record to the destination.
+		/// Method called by the engines before write a record to the destination stream.
 		/// </summary>
 		/// <param name="engine">The engine that makes the call.</param>
 		void BeforeWrite(EngineBase engine);

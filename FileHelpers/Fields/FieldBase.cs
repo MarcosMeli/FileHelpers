@@ -10,111 +10,6 @@ using System.Reflection;
 namespace FileHelpers
 {
 
-	#region  "  ExtractInfo Class  "
-
-	internal sealed class ExtractedInfo
-	{
-		public int CharsRemoved;
-
-
-		//public string ExtractedString;
-
-		public string ExtractedString()
-		{
-			return new string(mLine.mLine, ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
-			//			return new string(mLine,  .mLine.Substring(ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
-
-		}
-
-		public int Length
-		{
-			get { return ExtractedTo - ExtractedFrom + 1;}
-		}
-
-		public LineInfo mLine;
-		public int ExtractedFrom;
-		public int ExtractedTo;
-
-		public int ExtraLines;
-		public string NewRestOfLine;
-		//public string TrailString;
-
-		public ExtractedInfo(LineInfo line)
-		{
-			mLine = line;
-			ExtractedFrom = line.mCurrentPos;
-			ExtractedTo = line.mLine.Length - 1;
-			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
-			ExtraLines = 0;
-			NewRestOfLine = null;
-		}
-
-		public ExtractedInfo(LineInfo line, int extractTo)
-		{
-			mLine = line;
-			ExtractedFrom = line.mCurrentPos;
-			ExtractedTo = extractTo - 1;
-			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
-			ExtraLines = 0;
-			NewRestOfLine = null;
-		}
-		
-		
-		public void TrimStart(char[] sortedToTrim)
-		{
-			while(ExtractedFrom < ExtractedTo&& Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
-			{
-				ExtractedFrom++;
-			}
-		}
-
-		public void TrimEnd(char[] sortedToTrim)
-		{
-			while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
-			{
-				ExtractedTo--;
-			}
-		}
-
-		public void TrimBoth(char[] sortedToTrim)
-		{
-			while(ExtractedFrom < ExtractedTo&& Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
-			{
-				ExtractedFrom++;
-			}
-			
-			while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
-			{
-				ExtractedTo--;
-			}
-		}
-
-//
-//				  public ExtractedInfo(string extracted, int charsRem, int lines)
-//				  {
-//					  ExtractedString = extracted;
-//					  CharsRemoved = charsRem;
-//					  ExtraLines = lines;
-//					  NewRestOfLine = null;
-//				  }
-
-		internal static readonly ExtractedInfo Empty = new ExtractedInfo(new LineInfo(string.Empty));
-
-		public bool HasOnlyThis(char[] sortedArray)
-		{
-			// Chek if the chars at pos or right are empty ones
-
-			int pos = ExtractedFrom;
-			while(pos < ExtractedTo && Array.BinarySearch(sortedArray, mLine.mLine[pos]) >= 0)
-			{
-				pos++;
-			}
-			
-			return pos > ExtractedTo;
-		}
-	}
-
-	#endregion
 
 	/// <summary>Base class for all Field Types. Implements all the basic functionality of a field in a typed file.</summary>
 	internal abstract class FieldBase
@@ -159,9 +54,6 @@ namespace FileHelpers
 			else
 				mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
 
-			if (mConvertProvider != null)
-				mConvertProvider.mDestinationType = fi.FieldType;
-
 			attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
 			if (attribs.Length > 0)
@@ -177,6 +69,12 @@ namespace FileHelpers
 						                            mFieldType.Name);
 				}
 			}
+			if (mConvertProvider != null)
+			{
+				mConvertProvider.mDestinationType = fi.FieldType;
+				mConvertProvider.mDefaultValue = GetNullValue();
+			}
+
 		}
 
 		#endregion
@@ -351,19 +249,21 @@ namespace FileHelpers
 
 		private object GetNullValue()
 		{
-			object val;
 			if (mNullValue == null)
 			{
+				if (mFieldType == strType)
+					return string.Empty;
+
 				if (mFieldType.IsValueType)
 					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
 					                            mFieldInfo.DeclaringType.Name +
 					                            "'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
-				else
-					val = null;
+
+				return null;
 			}
 			else
-				val = mNullValue;
-			return val;
+				return mNullValue;
+			
 		}
 
 		#endregion
@@ -376,7 +276,7 @@ namespace FileHelpers
 
 			//fieldString = ApplyTrim(fieldString);
 
-			if (fieldValue == null)
+			if (fieldValue == null || fieldValue == DBNull.Value)
 			{
 				if (mNullValue == null)
 				{
@@ -391,8 +291,6 @@ namespace FileHelpers
 					val = mNullValue;
 				}
 			}
-			else if (mFieldType == fieldValue)
-				val = fieldValue;
 			else
 			{
 				if (mConvertProvider == null)
