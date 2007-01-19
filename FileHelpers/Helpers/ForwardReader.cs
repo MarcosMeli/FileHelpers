@@ -29,11 +29,11 @@ namespace FileHelpers
 			get {return mLineNumber - 1;}
 		}
 		
-		
-		int mPos = 0;
-		int MaxRecordSize = 1024 * 8;
-		char[] mBuffer;
-		
+//		
+//		int mPos = 0;
+//		int MaxRecordSize = 1024 * 8;
+//		char[] mBuffer;
+//		
 		internal ForwardReader(TextReader reader)
 			: this(reader, 0, 0)
 		{

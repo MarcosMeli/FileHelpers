@@ -195,9 +195,10 @@ namespace FileHelpersSamples
 					return;
 				
 				string amount = lstAmount.Text.Substring(lstAmount.Text.LastIndexOf(" ")).Trim();
-				ProcessStartInfo info = new ProcessStartInfo("\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
-				info.CreateNoWindow = false;
-				info.UseShellExecute = true;
+
+				ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
+				//info.CreateNoWindow = false;
+				//info.UseShellExecute = true;
 				Process.Start(info);
 				cmdDonate.Enabled = false;
 				cmdClose.Focus();

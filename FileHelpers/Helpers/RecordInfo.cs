@@ -9,7 +9,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Security.Permissions;
 using System.Security.Policy;
 using System.Text;
@@ -18,6 +17,7 @@ using System.Text;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Reflection.Emit;
 #endif
 
 namespace FileHelpers
@@ -318,13 +318,13 @@ namespace FileHelpers
 			}
 
 			
-#if NET_1_1
+#if NET_1_1 || MINI
 			object record = CreateRecordObject();
-			TypedReference tr = __makeref(record);
+			//TypedReference tr = __makeref(record);
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				mFields[i].mFieldInfo.SetValueDirect(tr, mValues[i]);
-			//	mFields[i].mFieldInfo.SetValue(record, mValues[i]);
+				//mFields[i].mFieldInfo.SetValueDirect(tr, mValues[i]);
+				mFields[i].mFieldInfo.SetValue(record, mValues[i]);
 			}
 			
 			return record;

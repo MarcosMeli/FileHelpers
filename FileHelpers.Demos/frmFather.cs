@@ -191,7 +191,7 @@ namespace FileHelpersSamples
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.com\"");
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
 			info.CreateNoWindow = false;
 			info.UseShellExecute = true;
 			Process.Start(info);
@@ -200,8 +200,9 @@ namespace FileHelpersSamples
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 
-			ProcessStartInfo info = new ProcessStartInfo("\"mailto:marcosdotnet@yahoo.com.ar?subject=FileHelpersFeedback\"");
-			info.CreateNoWindow = false;
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"mailto:marcosdotnet@yahoo.com.ar?subject=FileHelpersFeedback\"");
+			
+			info.CreateNoWindow = true;
 			info.UseShellExecute = true;
 			Process.Start(info);
 		}

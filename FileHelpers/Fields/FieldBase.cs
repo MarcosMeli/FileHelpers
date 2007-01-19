@@ -54,6 +54,9 @@ namespace FileHelpers
 			else
 				mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
 
+			if (mConvertProvider != null)
+				mConvertProvider.mDestinationType = fi.FieldType;
+
 			attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
 			if (attribs.Length > 0)
@@ -69,12 +72,6 @@ namespace FileHelpers
 						                            mFieldType.Name);
 				}
 			}
-			if (mConvertProvider != null)
-			{
-				mConvertProvider.mDestinationType = fi.FieldType;
-				mConvertProvider.mDefaultValue = GetNullValue();
-			}
-
 		}
 
 		#endregion
@@ -249,21 +246,19 @@ namespace FileHelpers
 
 		private object GetNullValue()
 		{
+			object val;
 			if (mNullValue == null)
 			{
-				if (mFieldType == strType)
-					return string.Empty;
-
 				if (mFieldType.IsValueType)
 					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
 					                            mFieldInfo.DeclaringType.Name +
 					                            "'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
-
-				return null;
+				else
+					val = null;
 			}
 			else
-				return mNullValue;
-			
+				val = mNullValue;
+			return val;
 		}
 
 		#endregion
@@ -276,7 +271,7 @@ namespace FileHelpers
 
 			//fieldString = ApplyTrim(fieldString);
 
-			if (fieldValue == null || fieldValue == DBNull.Value)
+			if (fieldValue == null)
 			{
 				if (mNullValue == null)
 				{
@@ -291,6 +286,8 @@ namespace FileHelpers
 					val = mNullValue;
 				}
 			}
+			else if (mFieldType == fieldValue)
+				val = fieldValue;
 			else
 			{
 				if (mConvertProvider == null)
