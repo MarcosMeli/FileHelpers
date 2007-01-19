@@ -7,16 +7,24 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Security.Permissions;
+using System.Security.Policy;
 using System.Text;
 
 #if ! MINI
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Threading;
 #endif
 
 namespace FileHelpers
 {
+	
+	
+
 	/// <summary>An internal class used to store information about the Record Type.</summary>
 	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -58,9 +66,76 @@ namespace FileHelpers
 		{
 			mRecordType = recordType;
 			InitFields();
+			mValues = new object[mFieldCount];
+			
+#if NET_2_0
+			CreateAssingMethods();
+#endif
 		}
 		#endregion
 
+		#region "  CreateAssingMethods  "
+
+#if NET_2_0
+
+        private delegate object CreateAndAssign(object[] values);
+        private CreateAndAssign mCreateHandler;
+
+		private void CreateAssingMethods()
+		{
+				DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
+				//dm.InitLocals = false;
+
+			
+    ILGenerator generator = dm.GetILGenerator();
+    
+    generator.DeclareLocal(mRecordType);
+    generator.DeclareLocal(typeof(object));
+    generator.Emit(OpCodes.Newobj, mRecordConstructor);
+    generator.Emit(OpCodes.Stloc_0);
+
+    for (int i = 0; i < mFieldCount; i++)
+    {
+        FieldBase field = mFields[i];
+
+        generator.Emit(OpCodes.Ldloc_0);
+        generator.Emit(OpCodes.Ldarg_0);
+        generator.Emit(OpCodes.Ldc_I4, i);
+        generator.Emit(OpCodes.Ldelem_Ref);
+
+
+        if (field.mFieldType.IsValueType)
+        {
+            generator.Emit(OpCodes.Unbox, field.mFieldType);
+        }
+        else
+        {
+            generator.Emit(OpCodes.Castclass, field.mFieldType);
+        }
+
+        generator.Emit(OpCodes.Stfld, field.mFieldInfo);
+        //generator.EmitCall();
+
+    }
+
+    // return the value
+    generator.Emit(OpCodes.Ldloc_0);
+    generator.Emit(OpCodes.Stloc_1);
+
+    Label l = generator.DefineLabel();
+    generator.Emit(OpCodes.Br_S, l);
+    generator.MarkLabel(l);
+    generator.Emit(OpCodes.Ldloc_1);
+    generator.Emit(OpCodes.Ret);
+
+    mCreateHandler = (CreateAndAssign)dm.CreateDelegate(typeof(CreateAndAssign));
+
+		}
+
+	#endif
+		#endregion
+
+		
 		#region InitFields
 
 		private void InitFields()
@@ -153,6 +228,15 @@ namespace FileHelpers
 			
 			mFields = CreateFields(fields, recordAttribute);
 			mFieldCount = mFields.Length;
+			
+			if (recordAttribute is FixedLengthRecordAttribute)
+			{
+				//Defines the initial size of the StringBuilder
+				mSizeHint = 0;
+				for(int i = 0; i < mFieldCount; i++)
+					mSizeHint += ((FixedLengthField) mFields[i]).mFieldLength;
+			}
+					
 
 			if (mFieldCount == 0)
 				throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
@@ -217,22 +301,51 @@ namespace FileHelpers
 		}
 		#endregion
 
+
+		object[] mValues;
+		
 		#region StringToRecord
-		internal object StringToRecord(string line, ForwardReader reader)
+		internal object StringToRecord(LineInfo line)
 		{
-			if (MustIgnoreLine(line))
+			if (MustIgnoreLine(line.mLineStr))
 				return null;
 
-			object record = CreateRecordObject();
-
+			// array that holds the fields values
+			
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				line = mFields[i].ExtractAndAssignFromString(line, record, reader);
+				mValues[i] = mFields[i].ExtractValue(line);
 			}
 
+			
+#if NET_1_1
+			object record = CreateRecordObject();
+			TypedReference tr = __makeref(record);
+			for (int i = 0; i < mFieldCount; i++)
+			{
+				mFields[i].mFieldInfo.SetValueDirect(tr, mValues[i]);
+			//	mFields[i].mFieldInfo.SetValue(record, mValues[i]);
+			}
+			
 			return record;
+#else
+			// Asign all values via dinamic method that creates an object and assign values
+			return mCreateHandler(mValues);;
+#endif
 		}
 
+		
+		
+//		private static ErrorManager CreateAndAssign(object[] values)
+//		{
+//			ErrorManager record = new ErrorManager();
+//			record.mErrorMode = (ErrorMode) values[0];
+//			record.temp = (string) values[1];
+//			
+//			return record;
+//		}
+		
+		
 		private bool MustIgnoreLine(string line)
 		{
 			if (mIgnoreEmptyLines)
@@ -290,14 +403,11 @@ namespace FileHelpers
 
 		#region RecordToString
 
-		private int _BigSize = 50;
+		internal int mSizeHint = 32;
 
-		/// <summary>Internal.</summary>
-		/// <param name="record"></param>
-		/// <returns></returns>
 		internal string RecordToString(object record)
 		{
-			StringBuilder sb = new StringBuilder(_BigSize);
+			StringBuilder sb = new StringBuilder(mSizeHint);
 			//string res = String.Empty;
 
 			for (int f = 0; f < mFieldCount; f++)
@@ -305,7 +415,8 @@ namespace FileHelpers
 				sb.Append(mFields[f].AssignToString(record));
 			}
 
-			_BigSize = Math.Max(_BigSize, sb.Length);
+			//writer.WriteLine();
+			//_BigSize = Math.Max(_BigSize, sb.Length);
 
 			return sb.ToString();
 		}
@@ -414,7 +525,8 @@ namespace FileHelpers
 
 	#endif
 
-	}
 
+	}
+	
 
 }

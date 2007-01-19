@@ -258,12 +258,17 @@ namespace FileHelpers.MasterDetail
 #endif
 			ArrayList tmpDetails = new ArrayList();
 
+			LineInfo line = new LineInfo(currentLine);
+			line.mReader = freader;
+			
 			while (currentLine != null)
 			{
 				try
 				{
 					currentRecord++; 
 
+					line.ReLoad(currentLine);
+					
 					#if !MINI
 						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 					#endif
@@ -291,9 +296,9 @@ namespace FileHelpers.MasterDetail
 #endif
 							tmpDetails.Clear();
 #if ! GENERICS
-							object lastMaster = mMasterInfo.StringToRecord(currentLine, freader);
+							object lastMaster = mMasterInfo.StringToRecord(line);
 #else
-							M lastMaster = (M)mMasterInfo.StringToRecord(currentLine, freader);
+							M lastMaster = (M)mMasterInfo.StringToRecord(line);
 #endif
 
 							if (lastMaster != null)
@@ -303,9 +308,9 @@ namespace FileHelpers.MasterDetail
 
 						case RecordAction.Detail:
 #if ! GENERICS
-							object lastChild = mRecordInfo.StringToRecord(currentLine, freader);
+							object lastChild = mRecordInfo.StringToRecord(line);
 #else
-							D lastChild = (D) mRecordInfo.StringToRecord(currentLine, freader);
+							D lastChild = (D) mRecordInfo.StringToRecord(line);
 #endif
 
 							if (lastChild != null)

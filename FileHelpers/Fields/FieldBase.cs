@@ -12,32 +12,107 @@ namespace FileHelpers
 
 	#region  "  ExtractInfo Class  "
 
-	internal struct ExtractedInfo
-			  {
-				  public int CharsRemoved;
-				  public string ExtractedString;
-				  public int ExtraLines;
-		 		  public string NewRestOfLine;
+	internal sealed class ExtractedInfo
+	{
+		public int CharsRemoved;
+
+
+		//public string ExtractedString;
+
+		public string ExtractedString()
+		{
+			return new string(mLine.mLine, ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
+			//			return new string(mLine,  .mLine.Substring(ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
+
+		}
+
+		public int Length
+		{
+			get { return ExtractedTo - ExtractedFrom + 1;}
+		}
+
+		public LineInfo mLine;
+		public int ExtractedFrom;
+		public int ExtractedTo;
+
+		public int ExtraLines;
+		public string NewRestOfLine;
 		//public string TrailString;
 
-				  public ExtractedInfo(string extracted)
-				  {
-					  ExtractedString = extracted;
-					  CharsRemoved = extracted.Length;
-					  ExtraLines = 0;
-					  NewRestOfLine = null;
-				  }
+		public ExtractedInfo(LineInfo line)
+		{
+			mLine = line;
+			ExtractedFrom = line.mCurrentPos;
+			ExtractedTo = line.mLine.Length - 1;
+			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
+			ExtraLines = 0;
+			NewRestOfLine = null;
+		}
 
-				  public ExtractedInfo(string extracted, int charsRem, int lines)
-				  {
-					  ExtractedString = extracted;
-					  CharsRemoved = charsRem;
-					  ExtraLines = lines;
-					  NewRestOfLine = null;
-				  }
+		public ExtractedInfo(LineInfo line, int extractTo)
+		{
+			mLine = line;
+			ExtractedFrom = line.mCurrentPos;
+			ExtractedTo = extractTo - 1;
+			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
+			ExtraLines = 0;
+			NewRestOfLine = null;
+		}
+		
+		
+		public void TrimStart(char[] sortedToTrim)
+		{
+			while(ExtractedFrom < ExtractedTo&& Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
+			{
+				ExtractedFrom++;
+			}
+		}
 
-				  internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
-			  }
+		public void TrimEnd(char[] sortedToTrim)
+		{
+			while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+			{
+				ExtractedTo--;
+			}
+		}
+
+		public void TrimBoth(char[] sortedToTrim)
+		{
+			while(ExtractedFrom < ExtractedTo&& Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
+			{
+				ExtractedFrom++;
+			}
+			
+			while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+			{
+				ExtractedTo--;
+			}
+		}
+
+//
+//				  public ExtractedInfo(string extracted, int charsRem, int lines)
+//				  {
+//					  ExtractedString = extracted;
+//					  CharsRemoved = charsRem;
+//					  ExtraLines = lines;
+//					  NewRestOfLine = null;
+//				  }
+
+		internal static readonly ExtractedInfo Empty = new ExtractedInfo(new LineInfo(string.Empty));
+
+		public bool HasOnlyThis(char[] sortedArray)
+		{
+			// Chek if the chars at pos or right are empty ones
+
+			int pos = ExtractedFrom;
+			while(pos < ExtractedTo && Array.BinarySearch(sortedArray, mLine.mLine[pos]) >= 0)
+			{
+				pos++;
+			}
+			
+			return pos > ExtractedTo;
+		}
+	}
 
 	#endregion
 
@@ -78,7 +153,7 @@ namespace FileHelpers
 			mIsStringField = mFieldType == strType;
 
 			object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
-			
+
 			if (attribs.Length > 0)
 				mConvertProvider = ((FieldConverterAttribute) attribs[0]).Converter;
 			else
@@ -97,17 +172,24 @@ namespace FileHelpers
 				if (mNullValue != null)
 				{
 					if (! mFieldType.IsAssignableFrom(mNullValue.GetType()))
-						throw new BadUsageException("The NullValue is of type: " + mNullValue.GetType().Name + " that is not asignable to the field " + mFieldInfo.Name + " of type: " + mFieldType.Name);
+						throw new BadUsageException("The NullValue is of type: " + mNullValue.GetType().Name +
+						                            " that is not asignable to the field " + mFieldInfo.Name + " of type: " +
+						                            mFieldType.Name);
 				}
 			}
-
 		}
 
 		#endregion
 
+		private static char[] WhitespaceChars = new char[] 
+			 { 
+				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
+				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
+			 };
+
 		#region "  MustOverride (String Handling)  " 
 
-		protected abstract ExtractedInfo ExtractFieldString(string from, ForwardReader reader); 
+		protected abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
 		protected virtual string CreateFieldString(object record)
 		{
@@ -139,73 +221,95 @@ namespace FileHelpers
 
 		#endregion
 
-
 		internal ConverterBase mConvertProvider;
 
+		#region "  ExtractValue  " 
 
-		#region "  ExtractAndAssignFromString  " 
-
-		internal string ExtractAndAssignFromString(string buffer, object record, ForwardReader reader)
+// object[] values, int index, ForwardReader reader
+		internal object ExtractValue(LineInfo line)
 		{
 			//-> extract only what I need
 
 			if (this.mInNewLine == true)
 			{
-				if (buffer.Trim() != String.Empty)
-					throw new BadUsageException("Text '" + buffer +"' found before the new line of the field: " + mFieldInfo.Name + " (this is not allowed when you use [FieldInNewLine])");
+				if (line.EmptyFromPos() == false)
+					throw new BadUsageException("Text '" + line.CurrentString +
+					                            "' found before the new line of the field: " + mFieldInfo.Name +
+					                            " (this is not allowed when you use [FieldInNewLine])");
 
-				buffer = reader.ReadNextLine();
+				line.ReLoad(line.mReader.ReadNextLine());
 
-				if (buffer == null)
-					throw new BadUsageException("End of stream found parsing the field " + mFieldInfo.Name + ". Please check the class record.");
+				if (line.mLine == null)
+					throw new BadUsageException("End of stream found parsing the field " + mFieldInfo.Name +
+					                            ". Please check the class record.");
 			}
 
-			ExtractedInfo info = ExtractFieldString(buffer, reader);
+			ExtractedInfo info = ExtractFieldString(line);
 
-			AssignFromString(info.ExtractedString, record);
+			object val = AssignFromString(info);
 
 			//-> discard the part that I use
-			
 
-			if (info.NewRestOfLine != null)
-			{
-				if (info.NewRestOfLine.Length < CharsToDiscard())
-					return info.NewRestOfLine;
-				else
-					return info.NewRestOfLine.Substring(CharsToDiscard());
-			}
-			else
-			{
+
+			//TODO: Uncoment this for Quoted Handling
+//			if (info.NewRestOfLine != null)
+//			{
+//				if (info.NewRestOfLine.Length < CharsToDiscard())
+//					return info.NewRestOfLine;
+//				else
+//					return info.NewRestOfLine.Substring(CharsToDiscard());
+//			}
+//			else
+//			{
 				int total;
-				if (info.CharsRemoved >= buffer.Length)
-					total = buffer.Length;
+				if (info.CharsRemoved >= line.mLine.Length)
+					total = line.mLine.Length;
 				else
 					total = info.CharsRemoved + CharsToDiscard();
 
-				return buffer.Substring(total);
-			}
+				line.mCurrentPos += total;
+				//return buffer.Substring(total);
+//			}
 
+
+			return val;
 		}
 
 		#region "  AssignFromString  " 
 
-		internal void AssignFromString(string fieldString, object record)
+		internal object AssignFromString(ExtractedInfo fieldString)
 		{
 			object val;
 
-			if (mTrimMode != TrimMode.None)
-				fieldString = ApplyTrim(fieldString);
+			
+				switch (mTrimMode)
+				{
+					case TrimMode.None:
+						break;
+
+					case TrimMode.Both:
+						fieldString.TrimBoth(mTrimChars);
+						break;
+
+					case TrimMode.Left:
+						fieldString.TrimStart(mTrimChars);
+						break;
+
+					case TrimMode.Right:
+						fieldString.TrimEnd(mTrimChars);
+						break;
+				}
 
 			if (mConvertProvider == null)
 			{
 				if (mIsStringField)
-					val = fieldString;
+					val = fieldString.ExtractedString();
 				else
 				{
 					// Trim it to use Convert.ChangeType
-					fieldString = fieldString.Trim();
+					fieldString.TrimBoth(WhitespaceChars);
 
-					if (fieldString == String.Empty)
+					if (fieldString.Length == 0)
 					{
 						// Empty stand for null
 						val = GetNullValue();
@@ -217,9 +321,10 @@ namespace FileHelpers
 				}
 			}
 
-			else			
+			else
 			{
-				if (mConvertProvider.CustomNullHandling == false && fieldString.Trim() == String.Empty)
+				if (mConvertProvider.CustomNullHandling == false && 
+				    fieldString.HasOnlyThis(WhitespaceChars))
 				{
 					val = GetNullValue();
 				}
@@ -227,7 +332,7 @@ namespace FileHelpers
 				{
 					try
 					{
-						val = mConvertProvider.StringToField(fieldString);
+						val = mConvertProvider.StringToField(fieldString.ExtractedString());
 
 						if (val == null)
 							val = GetNullValue();
@@ -239,8 +344,9 @@ namespace FileHelpers
 					}
 				}
 			}
-			
-			mFieldInfo.SetValue(record, val);
+
+			return val;
+			//mFieldInfo.SetValue(record, val);
 		}
 
 		private object GetNullValue()
@@ -275,7 +381,8 @@ namespace FileHelpers
 				if (mNullValue == null)
 				{
 					if (mFieldType.IsValueType)
-						throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + mFieldInfo.Name + " field of type " + mFieldInfo.FieldType.Name + ", because this is a ValueType.");
+						throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + mFieldInfo.Name +
+						                            " field of type " + mFieldInfo.FieldType.Name + ", because this is a ValueType.");
 					else
 						val = null;
 				}
@@ -304,29 +411,28 @@ namespace FileHelpers
 			}
 
 			mFieldInfo.SetValue(record, val);
-
 		}
 
 		#endregion
 
-		private string ApplyTrim(string fieldString)
-		{
-//			if (fieldString == null)
-//				return string.Empty;
-
-			switch (mTrimMode)
-			{
-				case TrimMode.Both:
-					return fieldString.Trim(mTrimChars);
-
-				case TrimMode.Left:
-					return fieldString.TrimStart(mTrimChars);
-
-				case TrimMode.Right:
-					return fieldString.TrimEnd(mTrimChars);
-			}
-			return fieldString;
-		}
+//		private string ApplyTrim(string fieldString)
+//		{
+////			if (fieldString == null)
+////				return string.Empty;
+//
+//			switch (mTrimMode)
+//			{
+//				case TrimMode.Both:
+//					return fieldString.Trim(mTrimChars);
+//
+//				case TrimMode.Left:
+//					return fieldString.TrimStart(mTrimChars);
+//
+//				case TrimMode.Right:
+//					return fieldString.TrimEnd(mTrimChars);
+//			}
+//			return fieldString;
+//		}
 
 		#endregion
 
@@ -334,7 +440,6 @@ namespace FileHelpers
 
 		internal string AssignToString(object record)
 		{
-
 			string fieldString = string.Empty;
 
 			if (this.mInNewLine == true)

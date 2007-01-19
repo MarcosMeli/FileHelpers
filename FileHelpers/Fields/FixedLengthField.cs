@@ -12,7 +12,7 @@ namespace FileHelpers
 	{
 		#region "  Properties  "
 
-		internal int mLength;
+		internal int mFieldLength;
 		internal FieldAlignAttribute mAlign = new FieldAlignAttribute(AlignMode.Left, ' ');
 
 		#endregion
@@ -21,7 +21,7 @@ namespace FileHelpers
 
 		internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align) : base(fi)
 		{
-			this.mLength = length;
+			this.mFieldLength = length;
 
 			if (align != null)
 				this.mAlign = align;
@@ -31,27 +31,27 @@ namespace FileHelpers
 
 		#region "  Overrides String Handling  "
 
-		protected override ExtractedInfo ExtractFieldString(string from, ForwardReader reader)
+		protected override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
-			if (from.Length == 0)
+			if (line.CurrentLength == 0)
 			{
 				if (mIsOptional)
 					return ExtractedInfo.Empty;
 				else
-					throw new BadUsageException("End Of Line found processing the field: " + mFieldInfo.Name + " at line "+ reader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
+					throw new BadUsageException("End Of Line found processing the field: " + mFieldInfo.Name + " at line "+ line.mReader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
 			}
 			
 			ExtractedInfo res;
 
-			if (from.Length < this.mLength)
+			if (line.CurrentLength < this.mFieldLength)
 				if (mFixedMode == FixedMode.AllowLessChars || mFixedMode == FixedMode.AllowVariableLength)
-					res = new ExtractedInfo(from);
+					res = new ExtractedInfo(line);
 				else
-					throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") at line "+ reader.LineNumber.ToString() + " has less chars than the defined for " + mFieldInfo.Name + " (" + mLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
-			else if (mIsLast && from.Length > mLength && mFixedMode != FixedMode.AllowMoreChars && mFixedMode != FixedMode.AllowVariableLength)
-				throw new BadUsageException("The string '" + from + "' (length " + from.Length.ToString() + ") at line "+ reader.LineNumber.ToString() + " has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
+					throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has less chars than the defined for " + mFieldInfo.Name + " (" + mFieldLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
+			else if (mIsLast && line.CurrentLength > mFieldLength && mFixedMode != FixedMode.AllowMoreChars && mFixedMode != FixedMode.AllowVariableLength)
+				throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mFieldLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
 			else
-				res = new ExtractedInfo(from.Substring(0, this.mLength));
+				res = new ExtractedInfo(line, line.mCurrentPos + mFieldLength);
 
 			return res;
 		}
@@ -61,20 +61,20 @@ namespace FileHelpers
 			string res;
 			res = base.CreateFieldString(record);
 
-			if (res.Length > this.mLength)
+			if (res.Length > this.mFieldLength)
 			{
-				res = res.Substring(0, this.mLength);
+				res = res.Substring(0, this.mFieldLength);
 			}
 
 			if (mAlign.Align == AlignMode.Left)
-				res = res.PadRight(mLength, mAlign.AlignChar);
+				res = res.PadRight(mFieldLength, mAlign.AlignChar);
 			else if (mAlign.Align == AlignMode.Right)
-				res = res.PadLeft(mLength, mAlign.AlignChar);
+				res = res.PadLeft(mFieldLength, mAlign.AlignChar);
 			else
 			{
-				int middle = (mLength - res.Length)/2;
+				int middle = (mFieldLength - res.Length)/2;
 				if (middle > 0)
-					res = res.PadLeft(mLength - middle, mAlign.AlignChar).PadRight(mLength, mAlign.AlignChar);
+					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
 			}
 
 			return res;

@@ -28,78 +28,78 @@ namespace FileHelpers
 
 		#region "  ExtractQuotedString  "
 
-		internal static ExtractedInfo ExtractQuotedString(string source, ForwardReader reader, char quoteChar)
-		{
-			StringBuilder res = new StringBuilder(32);
-			int lines = 0;
-
-			bool beginEscape = false;
-
-			if (reader == null)
-				throw new BadUsageException("The reader can´t be null");
-
-			if (source ==null || source.Length == 0)
-				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
-
-
-			if (source[0] != quoteChar)
-				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
-
-			int i = 1;
-			bool mustContinue = true;
-
-			while (mustContinue && source != null)
-			{
-				while (i < source.Length)
-				{
-					if (source[i] == quoteChar)
-					{
-						if (beginEscape == true)
-						{
-							beginEscape = false;
-							res.Append(quoteChar);
-						}
-						else
-						{
-							beginEscape = true;
-						}
-					}
-					else
-					{
-						if (beginEscape)
-						{
-							// End of the String
-							ExtractedInfo ei = new ExtractedInfo(res.ToString(), i, lines);
-							if (lines != 0)
-								ei.NewRestOfLine = source.Substring(i);
-							return ei;
-
-						}
-						else
-						{
-							res.Append(source[i]);
-						}
-					}
-					i++;
-				}
-
-
-				if (beginEscape)
-				{
-					return new ExtractedInfo(res.ToString(), i+1, lines);
-				}
-				else
-				{
-					source = reader.ReadNextLine();
-					res.Append(StringHelper.NewLine);
-					lines++;
-					i = 0;
-				}
-			}
-
-			throw new BadUsageException("The current field has an UnClosed quoted string. Complete Filed String: " + res.ToString());
-		}
-
+//		internal static ExtractedInfo ExtractQuotedString(LineInfo line, char quoteChar)
+//		{
+//			StringBuilder res = new StringBuilder(32);
+//			int lines = 0;
+//
+//			bool beginEscape = false;
+//
+//			if (line.mReader == null)
+//				throw new BadUsageException("The reader can´t be null");
+//
+//			if (line.mLine == null || line.CurrentLength == 0)
+//				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
+//
+//
+//			if (line.mLine[line.mCurrentPos] != quoteChar)
+//				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
+//
+//			int i = line.mCurrentPos + 1;
+//			bool mustContinue = true;
+//
+//			while (mustContinue && line.mLine != null)
+//			{
+//				while (i < line.mLine.Length)
+//				{
+//					if (line.mLine[i] == quoteChar)
+//					{
+//						if (beginEscape == true)
+//						{
+//							beginEscape = false;
+//							res.Append(quoteChar);
+//						}
+//						else
+//						{
+//							beginEscape = true;
+//						}
+//					}
+//					else
+//					{
+//						if (beginEscape)
+//						{
+//							// End of the String
+//							ExtractedInfo ei = new ExtractedInfo(res.ToString(), i, lines);
+//							if (lines != 0)
+//								ei.NewRestOfLine = line.mLine.Substring(i);
+//							return ei;
+//
+//						}
+//						else
+//						{
+//							res.Append(line.mLine[i]);
+//						}
+//					}
+//					i++;
+//				}
+//
+//
+//				if (beginEscape)
+//				{
+//					return new ExtractedInfo(res.ToString(), i+1, lines);
+//				}
+//				else
+//				{
+//					line.ReadNextLine();
+//					res.Append(StringHelper.NewLine);
+//					lines++;
+//					i = 0;
+//				}
+//			}
+//
+//			throw new BadUsageException("The current field has an UnClosed quoted string. Complete Filed String: " + res.ToString());
+//		}
+//
 		#endregion
 
 		#region "  CreateQuotedString  "

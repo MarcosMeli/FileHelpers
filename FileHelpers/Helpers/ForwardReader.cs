@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -28,18 +29,25 @@ namespace FileHelpers
 			get {return mLineNumber - 1;}
 		}
 		
+		
+		int mPos = 0;
+		int MaxRecordSize = 1024 * 8;
+		char[] mBuffer;
+		
 		internal ForwardReader(TextReader reader)
 			: this(reader, 0, 0)
 		{
 		}
 
-		internal ForwardReader(TextReader reader, int forwardLines): this(reader, forwardLines, 0)
+		internal ForwardReader(TextReader reader, int forwardLines): 
+			this(reader, forwardLines, 0)
 		{
 		}
 
 		internal ForwardReader(TextReader reader, int forwardLines, int startLine)
 		{
 			mReader = reader;
+			
 			mFowardLines = forwardLines;
 			mLineNumber = startLine;
 
@@ -60,15 +68,20 @@ namespace FileHelpers
 		}
 
 		
-//		private string ReadLine()
+//		public string ReadToDelimiter(string del)
 //		{
-//			StringBuilder builder = new StringBuilder(mCapacityHint);
+//			//StringBuilder builder = new StringBuilder(mCapacityHint);
 //
+//			int right = mPos;
 //			while (true)
 //			{
+//				mReader.
+//				
 //				//mReader.Read()
 //				
 //			}
+//			
+//			
 //			
 //			if (builder.Length > 0)
 //			{
@@ -147,5 +160,141 @@ namespace FileHelpers
 			mReader.Close();
 		}
 
+	}
+
+	internal sealed class LineInfo
+	{
+		//internal string  mLine;
+		internal char[] mLine;
+		internal string mLineStr;
+		internal ForwardReader mReader;
+		internal int mCurrentPos;
+		
+		private static char[] WhitespaceChars = new char[] 
+			 { 
+				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
+				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
+			 };
+		
+		public string CurrentString
+		{
+			get
+			{
+				return new string(mLine, mCurrentPos, mLine.Length - mCurrentPos);
+			}
+		}
+		
+		public LineInfo(string line)
+		{
+			mLineStr = line;
+			mLine = mLineStr.ToCharArray();
+			mCurrentPos = 0;
+		}
+
+		public bool IsEOL()
+		{
+			return mCurrentPos == mLine.Length;
+		}
+
+		public int CurrentLength
+		{
+			get
+			{
+				return mLine.Length - mCurrentPos;
+			}
+		}
+
+		public bool EmptyFromPos()
+		{
+			// Chek if the chars at pos or right are empty ones
+			int length = mLine.Length;
+			int pos = mCurrentPos;
+			while(pos < length && Array.BinarySearch(WhitespaceChars, mLine[pos]) >= 0)
+			{
+				pos++;
+			}
+			
+			return pos >= length;
+		}
+
+		public void TrimStart()
+		{
+			TrimStartSorted(WhitespaceChars);
+		}
+
+		public void TrimStart(char[] toTrim)
+		{
+			Array.Sort(toTrim);
+			TrimStartSorted(toTrim);
+		}
+
+		private void TrimStartSorted(char[] toTrim)
+		{
+			// Move the pointer to the first non to Trim char
+			int length = mLine.Length;
+			
+			while(mCurrentPos < length && Array.BinarySearch(toTrim, mLine[mCurrentPos]) >= 0)
+			{
+				mCurrentPos++;
+			}
+		}
+		
+		public bool StartsWith(string str)
+		{
+			// Returns true if the string begin with str
+			return mCompare.Compare(mLineStr, mCurrentPos, str, 0, CompareOptions.IgnoreCase) == 0;
+		}
+
+		public bool StartsWithTrim(string str)
+		{
+			int length = mLine.Length;
+			int pos = mCurrentPos;
+
+			while(pos < length && Array.BinarySearch(WhitespaceChars, mLine[pos]) >= 0)
+			{
+				pos++;
+			}
+			
+			return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.IgnoreCase) == 0;
+		}
+
+		public void ReadNextLine()
+		{
+			mLineStr = mReader.ReadNextLine();
+			mLine = mLineStr.ToCharArray();
+			
+			mCurrentPos = 0;
+		}
+		
+		private static CompareInfo mCompare = CultureInfo.InvariantCulture.CompareInfo;
+
+		
+		public int IndexOf(string foundThis)
+		{
+//			if (foundThis.Length == 1)
+//			{
+//				char delimiter = foundThis[0];
+//				int pos = mCurrentPos;
+//				int length = mLine.Length;
+//			
+//				while (pos < length)
+//				{
+//					if (mLine[pos] == delimiter)
+//						return pos;
+//				
+//					pos++;
+//				}
+//				return -1;
+//			}
+//			else
+				return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.IgnoreCase);
+		}
+
+		internal void ReLoad(string line)
+		{
+			mLine = line.ToCharArray();
+			mLineStr = line;
+			mCurrentPos = 0;
+		}
 	}
 }

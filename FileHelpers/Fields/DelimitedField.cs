@@ -46,24 +46,24 @@ namespace FileHelpers
 				return mSeparatorLength;
 		}
 
-		protected override ExtractedInfo ExtractFieldString(string from, ForwardReader reader)
+		protected override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
 
-			if (mIsOptional && from.Length == 0 )
+			if (mIsOptional && line.mLine.Length == 0 )
 				return ExtractedInfo.Empty;
 
-			ExtractedInfo res;
+			ExtractedInfo res = null;
 
 			if (mQuoteChar == '\0')
 			{
+				//TODO: Check this, dont allow random data at the end of the file.
 				if (mIsLast)
-					res = new ExtractedInfo(from);
+					res = new ExtractedInfo(line);
 				else
 				{
-					
 					int sepPos ;
 					
-					sepPos = mCompare.IndexOf(from, mSeparator, CompareOptions.IgnoreCase);
+					sepPos = line.IndexOf(mSeparator);
 
 					if (sepPos == -1)
 					{
@@ -71,81 +71,91 @@ namespace FileHelpers
 						{
 							string msg = null;
 
-							if (mIsFirst && from.Trim() == string.Empty)
-								msg = "The line " + reader.LineNumber.ToString() + " is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
+							if (mIsFirst && line.EmptyFromPos())
+								msg = "The line " + line.mReader.LineNumber.ToString() + " is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
 							else
-								msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ reader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
+								msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ line.mReader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
 							
 							throw new FileHelperException(msg);
 
 						}
 						else
-							sepPos = from.Length;
+							sepPos = line.mLine.Length - 1;
 					}
 
-					res = new ExtractedInfo(from.Substring(0, sepPos));
+					res = new ExtractedInfo(line, sepPos);
 				}
+				
+				return res; 
 			}
 			else
 			{
-				string quotedStr = mQuoteChar.ToString();
-				res = new ExtractedInfo();
-				res.CharsRemoved = 0;
+				#region "  UNIMPLEMENTED QUOTED  "
+				
+				// TODO: UnComment and Fix
 
-				string from2 = from;
-				if (mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left)
-				{
-					from2 = from.TrimStart(mTrimChars);
-					res.CharsRemoved = from2.Length - from.Length;
-				}
-
-				if (from2.StartsWith(quotedStr))
-				{
-					if (mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead)
-					{
-						ExtractedInfo ei = StringHelper.ExtractQuotedString(from2, reader, mQuoteChar);
-						res.ExtractedString = ei.ExtractedString;
-						res.CharsRemoved += ei.CharsRemoved;
-						res.ExtraLines = ei.ExtraLines;
-						res.NewRestOfLine = ei.NewRestOfLine;
-					}
-					else
-					{
-						int index = 0;
-						
-						res.ExtractedString = StringHelper.ExtractQuotedString(from2, mQuoteChar, out index);
-						res.CharsRemoved += index;
-					}
-
-
-				}
-				else
-				{
-					if (mQuoteMode == QuoteMode.OptionalForBoth || mQuoteMode == QuoteMode.OptionalForRead)
-					{
-						if (mIsLast)
-							res = new ExtractedInfo(from);
-						else
-						{
-							int sepPos = from.IndexOf(this.mSeparator);
-
-							if (sepPos == -1)
-							{
-								if (this.mNextIsOptional == false)
-									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ reader.LineNumber.ToString() + " (the record has less fields, the separator is wrong or the next field must be marked as optional).");
-								else
-									sepPos = from.Length;
-							}
-
-							res = new ExtractedInfo(from.Substring(0, sepPos));
-						}
-					}
-					else if (from.Trim().StartsWith(quotedStr))
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar at line "+ reader.LineNumber.ToString() + ". Use the TrimAttribute to by pass this error. Field String: " + from);
-					else
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar at line "+ reader.LineNumber.ToString() + ". You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + from);
-				}
-
+//				string quotedStr = mQuoteChar.ToString();
+//				res = new ExtractedInfo();
+//				res.CharsRemoved = 0;
+//
+//			//	string from2 = from;
+//				if (mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left)
+//				{
+//					int pos = line.mCurrentPos;
+//					line.TrimStart(mTrimChars);
+////					from2 = from.TrimStart(mTrimChars);
+//					res.CharsRemoved = line.mCurrentPos - pos;
+//				}
+//
+//				if (line.StartsWith(quotedStr))
+//				{
+//					if (mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead)
+//					{
+//						ExtractedInfo ei = StringHelper.ExtractQuotedString(line, mQuoteChar);
+//						res.ExtractedString = ei.ExtractedString;
+//						res.CharsRemoved += ei.CharsRemoved;
+//						res.ExtraLines = ei.ExtraLines;
+//						res.NewRestOfLine = ei.NewRestOfLine;
+//					}
+//					else
+//					{
+//						int index = 0;
+//						
+//						res.ExtractedString = StringHelper.ExtractQuotedString(from2, mQuoteChar, out index);
+//						res.CharsRemoved += index;
+//					}
+//
+//
+//				}
+//				else
+//				{
+//					if (mQuoteMode == QuoteMode.OptionalForBoth || mQuoteMode == QuoteMode.OptionalForRead)
+//					{
+//						// TODO: Validate this, try to validate the last field too.
+//						if (mIsLast)
+//							res = new ExtractedInfo(line);
+//						else
+//						{
+//							int sepPos = line.IndexOf(mSeparator);
+//
+//							if (sepPos == -1)
+//							{
+//								if (this.mNextIsOptional == false)
+//									throw new FileHelperException("The separator '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line "+ line.mReader.LineNumber.ToString() + " (the record has less fields, the separator is wrong or the next field must be marked as optional).");
+//								else
+//									sepPos = line.CurrentLength - 1;
+//							}
+//
+//							res = new ExtractedInfo(line, sepPos);
+//						}
+//					}
+//					else if (line.StartsWithTrim(quotedStr))
+//						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar at line "+ line.mReader.LineNumber.ToString() + ". Use the TrimAttribute to by pass this error. Field String: " + line.CurrentString);
+//					else
+//						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar at line "+ line.mReader.LineNumber.ToString() + ". You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + line.CurrentString);
+//				}
+//
+				#endregion
 			}
 
 
