@@ -8,9 +8,9 @@ using System;
 
 namespace FileHelpers
 {
-	internal sealed class ErrorHelper
+	internal sealed class ExHelper
 	{
-		private ErrorHelper()
+		private ExHelper()
 		{
 		}
 
