@@ -43,7 +43,7 @@ namespace FileHelpersTests.CommonTests
 
 		[Test]
 		public void AppendOneToFile()
-		{
+		{ 
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res = new SampleType[2];
