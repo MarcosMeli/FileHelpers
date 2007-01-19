@@ -5,6 +5,7 @@ namespace FileHelpersSamples
 {
 	public class MainClass
 	{
+		
 		public static void Main()
 		{
 			frmDonate frmDon = new frmDonate();
@@ -16,6 +17,8 @@ namespace FileHelpersSamples
 			frm.Dispose();
 		}
 
+		public const string GlobalTestFile = @"..\Customers.txt";
+		public const string GlobalTestMdb = @"..\TestData.mdb";
 
 	}
 }

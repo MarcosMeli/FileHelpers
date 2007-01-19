@@ -113,7 +113,7 @@ namespace FileHelpersSamples
 			this.cmdDonate.Location = new System.Drawing.Point(184, 240);
 			this.cmdDonate.Name = "cmdDonate";
 			this.cmdDonate.Size = new System.Drawing.Size(136, 32);
-			this.cmdDonate.TabIndex = 7;
+			this.cmdDonate.TabIndex = 0;
 			this.cmdDonate.Text = "Donate >>";
 			this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click);
 			// 
@@ -189,11 +189,19 @@ namespace FileHelpersSamples
 
 		private void cmdDonate_Click(object sender, System.EventArgs e)
 		{
-			string amount = lstAmount.Text.Substring(lstAmount.Text.LastIndexOf(" ")).Trim();
-			ProcessStartInfo info = new ProcessStartInfo("\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
-			info.CreateNoWindow = false;
-			info.UseShellExecute = true;
-			Process.Start(info);
+			lock(this)
+			{
+				if (cmdDonate.Enabled == false)
+					return;
+				
+				string amount = lstAmount.Text.Substring(lstAmount.Text.LastIndexOf(" ")).Trim();
+				ProcessStartInfo info = new ProcessStartInfo("\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
+				info.CreateNoWindow = false;
+				info.UseShellExecute = true;
+				Process.Start(info);
+				cmdDonate.Enabled = false;
+				cmdClose.Focus();
+			}
 
 		}
 

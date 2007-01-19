@@ -4,8 +4,7 @@ namespace FileHelpers.Benchmarks
 {
 
 	[DelimitedRecord(",")]
-	[IgnoreFirst(2)]
-	internal class TestRecord
+	public class TestRecord
 	{
 		public string OrderID;
 		public string CustomerID;

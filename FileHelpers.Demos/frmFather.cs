@@ -191,20 +191,33 @@ namespace FileHelpersSamples
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Process.Start("explorer", "\"http://www.filehelpers.com\"");
+			ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.com\"");
+			info.CreateNoWindow = false;
+			info.UseShellExecute = true;
+			Process.Start(info);
 		}
 
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
+
 			ProcessStartInfo info = new ProcessStartInfo("\"mailto:marcosdotnet@yahoo.com.ar?subject=FileHelpersFeedback\"");
 			info.CreateNoWindow = false;
 			info.UseShellExecute = true;
 			Process.Start(info);
 		}
 
+		
+		private DateTime mLastOpen = DateTime.Today.AddDays(-1);
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
-			Process.Start("explorer", "\"http://www.filehelpers.com\"");
+			
+			if (DateTime.Now > mLastOpen.AddSeconds(10))
+			{
+				Process.Start("explorer", "\"http://www.filehelpers.com\"");
+				mLastOpen = DateTime.Now;
+			}
+			
+			
 		}
 
 		private void pictureBox3_Click(object sender, System.EventArgs e)

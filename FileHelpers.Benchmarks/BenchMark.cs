@@ -21,5 +21,14 @@ namespace FileHelpers.Benchmarks
 			
 			engine.Close();
 		}
+
+		
 	}
+	
+	internal interface IRecordAssigner
+			{
+				object CreateAndAssign(object[] values);
+			}
+	
+	
 }

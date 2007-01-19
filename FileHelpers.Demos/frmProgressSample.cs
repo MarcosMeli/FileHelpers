@@ -240,7 +240,7 @@ private void ProgressChange(ProgressEventArgs e)
 		{
 			cmdRun.Enabled = false;
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
-			object[] records = engine.ReadFile("Customers.txt");
+			object[] records = engine.ReadFile(MainClass.GlobalTestFile);
 
 			Application.DoEvents();
 

@@ -108,7 +108,7 @@ namespace FileHelpersSamples
 			this.richTextBox2.TabIndex = 7;
 			this.richTextBox2.Text = @"private void Run()
 {
-	AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), ""TestData.mdb"");
+	AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), MainClass.GlobalTestMdb);
 
 	storage.SelectSql = ""SELECT * FROM Customers"";
 				
@@ -220,7 +220,7 @@ private string GetInsertSql(object record)
 
 				lblStatus.Text = "Creating the DataLinkEngine";
 
-				AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), "TestData.mdb");
+				AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), MainClass.GlobalTestMdb);
 
 				storage.SelectSql = "SELECT * FROM Customers";
 				

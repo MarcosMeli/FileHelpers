@@ -116,7 +116,7 @@ namespace FileHelpers.WizardApp
 			this.linkLabel2.TabIndex = 100;
 			this.linkLabel2.TabStop = true;
 			this.linkLabel2.Text = "(c) 2005-06 to Marcos Meli";
-			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(linkLabel2_LinkClicked);
 			// 
 			// linkLabel1
 			// 
