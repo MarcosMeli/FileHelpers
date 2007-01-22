@@ -218,6 +218,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Core\ExtractInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\LineInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\DelimitedFileEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\EngineBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -239,6 +254,11 @@
                 />
                 <File
                     RelPath = "Engines\FileHelperEngineG.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Engines\FixedFileEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -333,6 +353,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Helpers\ExHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Helpers\ForwardReader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -349,6 +374,21 @@
                 />
                 <File
                     RelPath = "Helpers\StringHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\DelimitedRecordOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\FixedRecordOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\RecordOptions.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

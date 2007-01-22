@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
     >
@@ -344,6 +344,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\FixedFileEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\MultiRecordEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -560,6 +565,21 @@
                 />
                 <File
                     RelPath = "MasterDetail\RecordAccion.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\DelimitedRecordOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\FixedRecordOptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Options\RecordOptions.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
