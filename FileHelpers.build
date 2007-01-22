@@ -4,7 +4,7 @@
    <property name="LibraryVersion" value="2.0.0" />
    <property name="LibraryFileVersion" value="2_0_0" />
 
-   <property name="Vs9Path" value="C:\Microsoft Visual Studio 8\Common7\IDE" />
+   <property name="Vs9Path" value="D:\Program Files\Microsoft Visual Studio 8\Common7\IDE" />
    
    <property name="Vs8Path" value="c:\Archivos de programa\Microsoft Visual Studio .NET 2003\Common7\IDE"  />
    <property name="Vs8Path" value="D:\Microsoft Visual Studio .NET 2003\Common7\IDE" />
@@ -220,14 +220,14 @@
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent2)&quot; &quot;BeforeEvent2&quot;" workingdir="Libs" failonerror="false" />
 
 
-       <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="false" />
+       <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln  " workingdir="." failonerror="false" />
 
-       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 2122" workingdir="Libs" />
+       <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_1.txt&quot; 1792" workingdir="Libs" />
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.sln&quot; &quot;..\Build\add_2005_2.txt&quot; 237" workingdir="Libs" />
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;&lt;AssemblyName&gt;FileHelpers&lt;/AssemblyName&gt;&quot; &quot;&lt;AssemblyName&gt;FileHelpers&lt;/AssemblyName&gt;  &lt;AssemblyOriginatorKeyFile&gt;FileHelpers.snk&lt;/AssemblyOriginatorKeyFile&gt;&quot;" workingdir="Libs" failonerror="false" />
 
-       <exec program="${Vs9Path}\devenv.exe " commandline=" /REBUILD Release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
+       <exec program="${Vs9Path}\devenv.exe " commandline=" /rebuild release &quot;..\${Source2005}\FileHelpers.sln" workingdir="." failonerror="true" />
 
        <delete>
            <fileset basedir="..\${Source2005}\Backup">

@@ -156,9 +156,9 @@ BOLID      Bólido Comidas preparadas             Martín Sommer         Owner    
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdRun.ForeColor = System.Drawing.Color.White;
+			this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdRun.Location = new System.Drawing.Point(304, 8);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(152, 32);
@@ -221,7 +221,7 @@ BOLID      Bólido Comidas preparadas             Martín Sommer         Owner    
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(152, 16);
 			this.label4.TabIndex = 12;
-			this.label4.Text = "Code To Read The File";
+			this.label4.Text = "Code to Read the File";
 			// 
 			// frmEasySampleFixed
 			// 
@@ -236,7 +236,6 @@ BOLID      Bólido Comidas preparadas             Martín Sommer         Owner    
 			this.Controls.Add(this.txtClass);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBox1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmEasySampleFixed";
 			this.Text = "FileHelpers - Easy Fixed Length Example";

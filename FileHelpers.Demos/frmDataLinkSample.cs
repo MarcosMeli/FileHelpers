@@ -75,9 +75,9 @@ namespace FileHelpersSamples
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdRun.ForeColor = System.Drawing.Color.White;
+			this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdRun.Location = new System.Drawing.Point(312, 8);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(152, 32);
@@ -164,7 +164,6 @@ private string GetInsertSql(object record)
 			this.Controls.Add(this.richTextBox2);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.cmdRun);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmDataLinkSample";
 			this.Text = "Example of the DataLink Feature";

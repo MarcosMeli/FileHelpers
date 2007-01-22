@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
     >
@@ -145,6 +145,16 @@
                 <File
                     RelPath = "frmDonate.resx"
                     DependentUpon = "frmDonate.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "frmEasyMultiDelimited.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmEasyMultiDelimited.resx"
+                    DependentUpon = "frmEasyMultiDelimited.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

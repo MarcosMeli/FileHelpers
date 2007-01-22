@@ -319,7 +319,7 @@ namespace FileHelpers
 			if (ri == null)
 				return new DataTable();
 
-			return ri.RecordsToDataTable(records);
+			return ri.RecordsToDataTable(records, maxRecords);
 		}
 
 		/// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>

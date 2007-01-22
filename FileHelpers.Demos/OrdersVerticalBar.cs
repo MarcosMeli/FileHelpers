@@ -4,23 +4,40 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	[DelimitedRecord("|")]
-	public class OrdersVerticalBar
+	public sealed class OrdersVerticalBar
 	{
-		public int OrderID;
+		public string OrderID;
 
 		public string CustomerID;
 
-		public int EmployeeID;
+		public string EmployeeID;
 
-		public DateTime OrderDate;
+		public string OrderDate;
 
-		public DateTime RequiredDate;
+		public string RequiredDate;
 
-		[FieldNullValue(typeof (DateTime), "2005-1-1")] public DateTime ShippedDate;
+		public string ShippedDate;
 
-		public int ShipVia;
+		public string ShipVia;
 
-		public decimal Freight;
+		public string Freight;
+		
+		
+		public string OrderID2;
+
+		public string CustomerID2;
+
+		public string EmployeeID2;
+
+		public string OrderDate2;
+
+		public string RequiredDate2;
+
+		public string ShippedDate2;
+
+		public string ShipVia2;
+
+		public string Freight2;
 	}
 
 

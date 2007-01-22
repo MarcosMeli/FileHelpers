@@ -105,9 +105,9 @@ namespace FileHelpersSamples
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdRun.ForeColor = System.Drawing.Color.White;
+			this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdRun.Location = new System.Drawing.Point(248, 224);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(160, 34);
@@ -117,9 +117,9 @@ namespace FileHelpersSamples
 			// 
 			// button1
 			// 
-			this.button1.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.button1.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.White;
+			this.button1.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button1.Location = new System.Drawing.Point(248, 80);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(160, 34);
@@ -129,9 +129,9 @@ namespace FileHelpersSamples
 			// 
 			// button2
 			// 
-			this.button2.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.button2.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button2.ForeColor = System.Drawing.Color.White;
+			this.button2.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button2.Location = new System.Drawing.Point(248, 128);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(160, 34);
@@ -141,9 +141,9 @@ namespace FileHelpersSamples
 			// 
 			// button3
 			// 
-			this.button3.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.button3.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button3.ForeColor = System.Drawing.Color.White;
+			this.button3.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button3.Location = new System.Drawing.Point(248, 176);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(160, 34);
@@ -153,9 +153,9 @@ namespace FileHelpersSamples
 			// 
 			// button4
 			// 
-			this.button4.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.button4.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button4.ForeColor = System.Drawing.Color.White;
+			this.button4.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button4.Location = new System.Drawing.Point(248, 272);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(160, 34);

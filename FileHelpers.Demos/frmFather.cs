@@ -36,6 +36,7 @@ namespace FileHelpersSamples
 			//
 		}
 
+
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -166,12 +167,15 @@ namespace FileHelpersSamples
 
 		#endregion
 
+		private Color mColor1 = Color.FromArgb(30, 110, 175);
+		private Color mColor2 = Color.FromArgb(20, 50, 130);
+		
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			LinearGradientBrush b = new LinearGradientBrush(this.ClientRectangle,
-			                                                Color.FromArgb(120, 180, 250),
-			                                                Color.FromArgb(10, 35, 100),
-			                                                LinearGradientMode.ForwardDiagonal);
+//			        Color.FromArgb(120, 180, 250), Color.FromArgb(10, 35, 100), LinearGradientMode.ForwardDiagonal);
+			        Color1, Color2, LinearGradientMode.BackwardDiagonal);
+			
 			e.Graphics.FillRectangle(b, e.ClipRectangle);
 			b.Dispose();
 
@@ -227,5 +231,45 @@ namespace FileHelpersSamples
 			frm.ShowDialog();
 			frm.Dispose();
 		}
+
+		private bool mExitOnEsc = true;
+
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (mExitOnEsc && keyData == Keys.Escape)
+			{
+				this.Close();
+				return true;
+			}
+			
+			return base.ProcessCmdKey (ref msg, keyData);
+		}
+
+		public bool ExitOnEsc
+		{
+			get { return mExitOnEsc; }
+			set { mExitOnEsc = value; }
+		}
+
+		public Color Color1
+		{
+			get { return mColor1; }
+			set
+			{
+				mColor1 = value;
+				this.Invalidate();
+			}
+		}
+
+		public Color Color2
+		{
+			get { return mColor2; }
+			set
+			{
+				 mColor2 = value;
+	 			 this.Invalidate();
+			}
+		}
+
 	}
 }

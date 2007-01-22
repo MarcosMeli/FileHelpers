@@ -42,14 +42,29 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 #if ! GENERICS
-		public FileHelperEngine(Type recordType) : base(recordType)
+		public FileHelperEngine(Type recordType)
+			: base(recordType)
 #else
-		public FileHelperEngine() : base(typeof(T))
+		public FileHelperEngine() 
+			: base(typeof(T))
 #endif
-		{}
+		{
+			CreateRecordOptions();
+		}
 
-		internal FileHelperEngine(RecordInfo ri) : base(ri)
-		{}
+		private void CreateRecordOptions()
+		{
+			if (mRecordInfo.IsDelimited)
+				mOptions = new DelimitedRecordOptions(mRecordInfo);
+			else
+				mOptions = new FixedRecordOptions(mRecordInfo);
+		}
+
+		internal FileHelperEngine(RecordInfo ri)
+			: base(ri)
+		{
+			CreateRecordOptions();
+		}
 
 
 		#endregion
@@ -702,8 +717,18 @@ namespace FileHelpers
 
 		#endregion
 
+		internal RecordOptions mOptions;
+
+		public RecordOptions Options
+		{
+			get { return mOptions; }
+			set { mOptions = value; }
+		}
 
 	}
+
 }
+
+
 
 #endif

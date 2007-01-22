@@ -9,12 +9,19 @@ using System.Text;
 
 namespace FileHelpers
 {
+
+#if NET_1_1 || MINI
+
 	internal sealed class StreamHelper
 	{
 		private StreamHelper()
 		{
 		}
 
+#else
+	internal static class StreamHelper
+	{
+#endif
 		internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd)
 		{
 			return CreateFileAppender(fileName, encode, correctEnd, true);

@@ -36,14 +36,14 @@ namespace FileHelpers
 		internal FieldBase[] mFields;
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
-		public bool mIgnoreEmptyLines = false;
+		internal bool mIgnoreEmptyLines = false;
 		private bool mIgnoreEmptySpaces = false;
 		
 		private string mCommentString = null;
 		private bool mCommentAtFirstColumn = true;
 
-		private RecordCondition mCondition = RecordCondition.None;
-		private string mConditionSelector = null;
+		internal RecordCondition mRecordCondition = RecordCondition.None;
+		internal string mRecordConditionSelector = null;
 		
 #if ! MINI
 		internal bool mNotifyRead;
@@ -72,6 +72,12 @@ namespace FileHelpers
 			CreateAssingMethods();
 #endif
 		}
+
+		internal bool IsDelimited
+		{
+			get { return mFields[0] is DelimitedField; }
+		}
+
 		#endregion
 
 		#region "  CreateAssingMethods  "
@@ -90,7 +96,7 @@ namespace FileHelpers
     ILGenerator generator = dm.GetILGenerator();
     
     generator.DeclareLocal(mRecordType);
-    generator.DeclareLocal(typeof(object));
+    //generator.DeclareLocal(typeof(object));
     generator.Emit(OpCodes.Newobj, mRecordConstructor);
     generator.Emit(OpCodes.Stloc_0);
 
@@ -106,7 +112,7 @@ namespace FileHelpers
 
         if (field.mFieldType.IsValueType)
         {
-            generator.Emit(OpCodes.Unbox, field.mFieldType);
+            generator.Emit(OpCodes.Unbox_Any, field.mFieldType);
         }
         else
         {
@@ -120,12 +126,6 @@ namespace FileHelpers
 
     // return the value
     generator.Emit(OpCodes.Ldloc_0);
-    generator.Emit(OpCodes.Stloc_1);
-
-    Label l = generator.DefineLabel();
-    generator.Emit(OpCodes.Br_S, l);
-    generator.MarkLabel(l);
-    generator.Emit(OpCodes.Ldloc_1);
     generator.Emit(OpCodes.Ret);
 
     mCreateHandler = (CreateAndAssign)dm.CreateDelegate(typeof(CreateAndAssign));
@@ -182,15 +182,15 @@ namespace FileHelpers
 				ConditionalRecordAttribute conditional =
 					(ConditionalRecordAttribute) mRecordType.GetCustomAttributes(typeof (ConditionalRecordAttribute), false)[0];
 
-				mCondition = conditional.mCondition;
-				mConditionSelector = conditional.mConditionSelector;
+				mRecordCondition = conditional.mCondition;
+				mRecordConditionSelector = conditional.mConditionSelector;
 
 				#if ! MINI
 
-				if (mCondition == RecordCondition.ExcludeIfMatchRegex ||
-					mCondition == RecordCondition.IncludeIfMatchRegex)
+				if (mRecordCondition == RecordCondition.ExcludeIfMatchRegex ||
+					mRecordCondition == RecordCondition.IncludeIfMatchRegex)
 				{
-					mConditionRegEx = new Regex(mConditionSelector, RegexOptions.Compiled | RegexOptions.CultureInvariant |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+					mConditionRegEx = new Regex(mRecordConditionSelector, RegexOptions.Compiled | RegexOptions.CultureInvariant |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
 				}
 				#endif
 			}
@@ -361,30 +361,30 @@ namespace FileHelpers
 			
 
 
-			if (mCondition != RecordCondition.None)
+			if (mRecordCondition != RecordCondition.None)
 			{
-				switch (mCondition)
+				switch (mRecordCondition)
 				{
 					case RecordCondition.ExcludeIfBegins:
-						return ConditionHelper.BeginsWith(line, mConditionSelector);
+						return ConditionHelper.BeginsWith(line, mRecordConditionSelector);
 					case RecordCondition.IncludeIfBegins:
-						return ! ConditionHelper.BeginsWith(line, mConditionSelector);
+						return ! ConditionHelper.BeginsWith(line, mRecordConditionSelector);
 
 					case RecordCondition.ExcludeIfContains:
-						return ConditionHelper.Contains(line, mConditionSelector);
+						return ConditionHelper.Contains(line, mRecordConditionSelector);
 					case RecordCondition.IncludeIfContains:
-						return ConditionHelper.Contains(line, mConditionSelector);
+						return ConditionHelper.Contains(line, mRecordConditionSelector);
 
 
 					case RecordCondition.ExcludeIfEnclosed:
-						return ConditionHelper.Enclosed(line, mConditionSelector);
+						return ConditionHelper.Enclosed(line, mRecordConditionSelector);
 					case RecordCondition.IncludeIfEnclosed:
-						return ! ConditionHelper.Enclosed(line, mConditionSelector);
+						return ! ConditionHelper.Enclosed(line, mRecordConditionSelector);
 					
 					case RecordCondition.ExcludeIfEnds:
-						return ConditionHelper.EndsWith(line, mConditionSelector);
+						return ConditionHelper.EndsWith(line, mRecordConditionSelector);
 					case RecordCondition.IncludeIfEnds:
-						return ! ConditionHelper.EndsWith(line, mConditionSelector);
+						return ! ConditionHelper.EndsWith(line, mRecordConditionSelector);
 
 				#if ! MINI
 					case RecordCondition.ExcludeIfMatchRegex:

@@ -85,9 +85,9 @@ namespace FileHelpersSamples
 			// 
 			// button1
 			// 
-			this.button1.BackColor = System.Drawing.Color.Navy;
+			this.button1.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.White;
+			this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
 			this.button1.Location = new System.Drawing.Point(136, 416);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(192, 32);
@@ -97,9 +97,9 @@ namespace FileHelpersSamples
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdRun.ForeColor = System.Drawing.Color.White;
+			this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdRun.Location = new System.Drawing.Point(280, 56);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(168, 32);
@@ -132,6 +132,7 @@ namespace FileHelpersSamples
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Records";
+			this.columnHeader1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.columnHeader1.Width = 84;
 			// 
 			// columnHeader2
@@ -143,11 +144,13 @@ namespace FileHelpersSamples
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Time Sync";
+			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.columnHeader3.Width = 94;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Time Async";
+			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.columnHeader4.Width = 109;
 			// 
 			// pb
@@ -177,7 +180,6 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.lstView);
 			this.Controls.Add(this.cmdRun);
 			this.Controls.Add(this.button1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmTimmingAdvanced";
 			this.Text = "FileHelpers Library - Time And Stress Tests";
@@ -236,11 +238,13 @@ namespace FileHelpersSamples
 			AdvanceProgress();
 			RunTestFor(10000);
 			AdvanceProgress();
+			RunTestFor(20000);
+			AdvanceProgress();
 			RunTestFor(30000);
 			AdvanceProgress();
 			RunTestFor(50000);
 			AdvanceProgress();
-			RunTestFor(80000);
+			RunTestFor(75000);
 			AdvanceProgress();
 			RunTestFor(100000);
 			AdvanceProgress();
@@ -283,7 +287,7 @@ namespace FileHelpersSamples
 
 			TimeSpan span1, span2;
 			span1 = new TimeSpan(end1 - start1);
-			item.SubItems.Add(Math.Round(span1.TotalSeconds, 4).ToString() + " sec");
+			item.SubItems.Add(string.Format("{0:F4}", span1.TotalSeconds) + " sec");
 
 			Application.DoEvents();
 
@@ -302,7 +306,7 @@ namespace FileHelpersSamples
 
 			span2 = new TimeSpan(end2 - start2);
 
-			item.SubItems.Add(Math.Round(span2.TotalSeconds, 4).ToString() + " sec");
+			item.SubItems.Add(string.Format("{0:F4}", span2.TotalSeconds) + " sec");
 
 			Application.DoEvents();
 		}

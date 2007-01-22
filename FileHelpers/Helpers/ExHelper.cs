@@ -14,6 +14,12 @@ namespace FileHelpers
 		{
 		}
 
+		public static void CheckNullOrEmpty(string val)
+		{
+			if (val == null || val.Length == 0)
+				throw new ArgumentNullException("Value can´t be null or empty");
+		}
+
 		public static void CheckNullParam(string param, string paramName)
 		{
 			if (param == null || param.Length == 0)
@@ -32,5 +38,10 @@ namespace FileHelpers
 				throw new ArgumentException(param1Name + " can´t be the same that " + param2Name, param1Name + " and " + param2Name);
 		}
 
+		public static void PositiveValue(int val)
+		{
+			if (val < 0 )
+				throw new ArgumentException("The value must be greater or equal than 0.");
+		}
 	}
 }

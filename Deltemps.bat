@@ -2,8 +2,8 @@
 @rmdir /S /Q "FileHelpers\obj"
 @rmdir /S /Q "FileHelpersTests\obj" 
 @rmdir /S /Q "FileHelpersTests\Release" 
-@rmdir /S /Q "FileHelpers.Demo\Release"
-@rmdir /S /Q "FileHelpers.Demo\obj"
+@rmdir /S /Q "FileHelpers.Demos\Release"
+@rmdir /S /Q "FileHelpers.Demos\obj"
 @rmdir /S /Q "FileHelpers.Benchmarks\obj"
 @rmdir /S /Q "FileHelpers.CodeExamples\Example CSharp\obj"
 @rmdir /S /Q "FileHelpers.CodeExamples\Example VbNet\obj"
@@ -19,11 +19,14 @@
 @rmdir /S /Q "Release"
 @rmdir /S /Q "ReleaseDemo"
 @rmdir /S /Q "_ReSharper.FileHelpers"
-@del /AH /Q "FileHelpers.suo"
+@del /F /AH /Q "FileHelpers.suo"
+@del /F /AH /Q "FileHelpers.Wizard.suo"
 @del /F /Q "FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.xml"
 @del /F /Q "FileHelpers\FileHelpers.xml"
+@del /F /Q "FileHelpers.Wizard.resharper"
 @del /F /Q "FileHelpers\FileHelpersPPC.xml"
 @del /F /Q FileHelpers.resharperoptions
+@del /F /Q FileHelpers.resharper.user
 @del /F /Q FileHelpers.Wizard.resharper.user 
 @del /F /Q "FileHelpers.CodeExamples\*.suo"
 @del /F /Q "Doc\Include\Thumbs.db"

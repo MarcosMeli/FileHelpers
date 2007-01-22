@@ -90,9 +90,9 @@ namespace FileHelpersSamples
 			// 
 			// cmdCreateFile
 			// 
-			this.cmdCreateFile.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdCreateFile.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdCreateFile.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdCreateFile.ForeColor = System.Drawing.Color.White;
+			this.cmdCreateFile.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdCreateFile.Location = new System.Drawing.Point(288, 72);
 			this.cmdCreateFile.Name = "cmdCreateFile";
 			this.cmdCreateFile.Size = new System.Drawing.Size(168, 32);
@@ -102,9 +102,9 @@ namespace FileHelpersSamples
 			// 
 			// button1
 			// 
-			this.button1.BackColor = System.Drawing.Color.Navy;
+			this.button1.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.White;
+			this.button1.ForeColor = System.Drawing.Color.Gainsboro;
 			this.button1.Location = new System.Drawing.Point(128, 232);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(192, 32);
@@ -114,10 +114,10 @@ namespace FileHelpersSamples
 			// 
 			// cmdRun
 			// 
-			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(192)));
+			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Enabled = false;
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdRun.ForeColor = System.Drawing.Color.White;
+			this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdRun.Location = new System.Drawing.Point(288, 160);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(168, 32);
@@ -243,7 +243,6 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.cmdRun);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cmdCreateFile);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "frmTimming";
 			this.Text = "FileHelpers Library - Time And Stress Tests";

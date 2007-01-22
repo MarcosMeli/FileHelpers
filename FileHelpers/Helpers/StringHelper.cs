@@ -10,10 +10,19 @@ using System.Text;
 
 namespace FileHelpers
 {
-	/// <summary>Helper Class to manipulate Strings.</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
+
+#if NET_1_1 || MINI
+
 	internal sealed class StringHelper
 	{
+		private StringHelper()
+		{
+		}
+
+#else
+	internal static class StringHelper
+	{
+#endif
 
 		#if ! MINI
 			public static readonly string NewLine = Environment.NewLine;
@@ -22,9 +31,6 @@ namespace FileHelpers
 		#endif
 
 
-		private StringHelper()
-		{
-		}
 
 		#region "  ExtractQuotedString  "
 
