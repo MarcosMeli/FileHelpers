@@ -77,21 +77,36 @@ public class Orders
 <p>Finally you can do a record by record procesing:</p>
 <blockquote>
 <textarea name="code" class="c#">
-Orders ord;
 
 FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders));
 
 engine.BeginReadFile(&quot;TestIn.txt&quot;);
 
-while(engine.ReadNext() != null)
+// The engine is IEnumerable 
+foreach(Orders ord in engine)
 {
-   ord = (Orders) engine.LastRecord;
-
    // your code here
    Console.WriteLine(ord.CustomerID);
 }
 
 engine.Close();
+
+</textarea>
+</blockquote>
+<p>The Async can be used like an IDIsposable object with the using directive:</p>
+<blockquote>
+<textarea name="code" class="c#">
+
+using(FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders)))
+{
+	engine.BeginReadFile(&quot;TestIn.txt&quot;);
+
+	foreach(Orders ord in engine)
+	{
+	   // your code here
+	}
+} // Auto Closed
+
 </textarea>
 </blockquote>
 <blockquote><blockquote>&nbsp;</blockquote>

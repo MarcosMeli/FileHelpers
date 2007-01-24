@@ -118,10 +118,10 @@ RecordAction ExampleSelector(string record)
           <blockquote>
 <textarea name="code" class="c#">
 
-MaterDetailEngine engine = new MaterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
+MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
 
 // to Read use:
-MasterDetail[] res = engine.ReadFile(&quot;TestIn.txt&quot;);
+MasterDetails[] res = engine.ReadFile(&quot;TestIn.txt&quot;);
 
 // to Write use:
 engine.WriteFile(&quot;TestOut.txt&quot;, res);
