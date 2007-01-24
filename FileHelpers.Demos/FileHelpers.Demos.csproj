@@ -158,6 +158,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "frmEasySampleAsync.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmEasySampleAsync.resx"
+                    DependentUpon = "frmEasySampleAsync.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "frmEasySampleDelimited.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -185,6 +195,16 @@
                 <File
                     RelPath = "frmFather.resx"
                     DependentUpon = "frmFather.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "frmMasterDetail.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmMasterDetail.resx"
+                    DependentUpon = "frmMasterDetail.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

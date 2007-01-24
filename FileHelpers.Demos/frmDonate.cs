@@ -139,9 +139,9 @@ namespace FileHelpersSamples
 			this.cmdClose.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
-			this.cmdClose.Location = new System.Drawing.Point(152, 304);
+			this.cmdClose.Location = new System.Drawing.Point(152, 293);
 			this.cmdClose.Name = "cmdClose";
-			this.cmdClose.Size = new System.Drawing.Size(168, 29);
+			this.cmdClose.Size = new System.Drawing.Size(168, 40);
 			this.cmdClose.TabIndex = 9;
 			this.cmdClose.Text = "Maybe next time :P ";
 			this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);

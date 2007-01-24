@@ -9,6 +9,15 @@ namespace FileHelpersSamples
 	public class TestData
 	{
 		
+		public static string mCustomersTest = @"ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany" + "\r\n" +
+			@"ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico" + "\r\n" +
+			@"ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico" + "\r\n" +
+			@"AROUT|Around the Horn|Thomas Hardy|Sales Representative|120 Hanover Sq.|London|UK" + "\r\n" +
+			@"BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden" + "\r\n" +
+			@"BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany" + "\r\n" +
+			@"BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbourg|France" + "\r\n" +
+			@"BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain" + "\r\n";
+		
 		static string mTestData = "10248|VINET|5|04071996|01081996|16071996|3|32.38|101248|VINET|5|04071996|01081996|16071996|3|352.38" + Environment.NewLine +
 		"10249|TOMSP|6|05071996|16081996|10071996|1|111.61|102348|VINET|5|04071996|01081996|16071996|3|3432.38" + Environment.NewLine +
 		"10250|HANAR|4|08071996|05081996|12071996|2|125.83|1043248|VINET|5|04071996|01081996|16071996|3|3422.38" + Environment.NewLine +

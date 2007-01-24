@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel;
+using System.Net;
 using System.Windows.Forms;
+using FileHelpers;
 
 namespace FileHelpersSamples
 {
@@ -15,10 +17,17 @@ namespace FileHelpersSamples
 		private Button cmdEasy2;
 		private Button cmdLibrary;
 		private System.Windows.Forms.Button cmdProgress;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.PictureBox pictureBox5;
 		private System.Windows.Forms.Button cmdSort;
-		private System.Windows.Forms.Button cmdMiltipleDeli;
+		private System.Windows.Forms.Button cmdAsync;
+		private System.Windows.Forms.Button cmdMasterDetail;
+		private System.Windows.Forms.PictureBox pictureBox7;
+		private System.Windows.Forms.PictureBox picCurrent;
+		private System.Windows.Forms.PictureBox picNewVersion;
+		private System.Windows.Forms.Button cmdMultipleDeli;
+		private System.Windows.Forms.Button cmdMultiTimming;
+		private System.Windows.Forms.PictureBox pictureBox5;
+		private System.Windows.Forms.PictureBox pictureBox6;
+		private System.Windows.Forms.PictureBox pictureBox4;
 
 		/// <summary>
 		/// Required designer variable.
@@ -67,10 +76,17 @@ namespace FileHelpersSamples
 			this.cmdEasy2 = new System.Windows.Forms.Button();
 			this.cmdLibrary = new System.Windows.Forms.Button();
 			this.cmdProgress = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.cmdMultiTimming = new System.Windows.Forms.Button();
 			this.cmdSort = new System.Windows.Forms.Button();
-			this.cmdMiltipleDeli = new System.Windows.Forms.Button();
+			this.cmdMultipleDeli = new System.Windows.Forms.Button();
+			this.cmdAsync = new System.Windows.Forms.Button();
+			this.cmdMasterDetail = new System.Windows.Forms.Button();
+			this.pictureBox7 = new System.Windows.Forms.PictureBox();
+			this.picCurrent = new System.Windows.Forms.PictureBox();
+			this.picNewVersion = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox6 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
 			// pictureBox2
@@ -89,11 +105,13 @@ namespace FileHelpersSamples
 			this.cmdEasy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdEasy.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdEasy.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdEasy.Image = ((System.Drawing.Image)(resources.GetObject("cmdEasy.Image")));
+			this.cmdEasy.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdEasy.Location = new System.Drawing.Point(16, 64);
 			this.cmdEasy.Name = "cmdEasy";
 			this.cmdEasy.Size = new System.Drawing.Size(240, 40);
 			this.cmdEasy.TabIndex = 0;
-			this.cmdEasy.Text = "Easy Delimited ->";
+			this.cmdEasy.Text = "Easy Delimited";
 			this.cmdEasy.Click += new System.EventHandler(this.cmdEasy_Click);
 			// 
 			// cmdDataLink
@@ -102,11 +120,12 @@ namespace FileHelpersSamples
 			this.cmdDataLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdDataLink.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdDataLink.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdDataLink.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdDataLink.Location = new System.Drawing.Point(320, 64);
 			this.cmdDataLink.Name = "cmdDataLink";
 			this.cmdDataLink.Size = new System.Drawing.Size(240, 40);
 			this.cmdDataLink.TabIndex = 2;
-			this.cmdDataLink.Text = "Access DataLink ->";
+			this.cmdDataLink.Text = "Access DataLink";
 			this.cmdDataLink.Click += new System.EventHandler(this.cmdDataLink_Click);
 			// 
 			// button1
@@ -115,7 +134,7 @@ namespace FileHelpersSamples
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button1.Location = new System.Drawing.Point(184, 320);
+			this.button1.Location = new System.Drawing.Point(176, 312);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(240, 40);
 			this.button1.TabIndex = 4;
@@ -128,11 +147,12 @@ namespace FileHelpersSamples
 			this.cmdEasy2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdEasy2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdEasy2.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdEasy2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdEasy2.Location = new System.Drawing.Point(16, 112);
 			this.cmdEasy2.Name = "cmdEasy2";
 			this.cmdEasy2.Size = new System.Drawing.Size(240, 40);
 			this.cmdEasy2.TabIndex = 1;
-			this.cmdEasy2.Text = "Easy Fixed ->";
+			this.cmdEasy2.Text = "Easy Fixed";
 			this.cmdEasy2.Click += new System.EventHandler(this.cmdEasy2_Click);
 			// 
 			// cmdLibrary
@@ -141,11 +161,12 @@ namespace FileHelpersSamples
 			this.cmdLibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdLibrary.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdLibrary.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdLibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdLibrary.Location = new System.Drawing.Point(320, 208);
 			this.cmdLibrary.Name = "cmdLibrary";
 			this.cmdLibrary.Size = new System.Drawing.Size(240, 40);
 			this.cmdLibrary.TabIndex = 3;
-			this.cmdLibrary.Text = "Time Testing ->";
+			this.cmdLibrary.Text = "Time Testing";
 			this.cmdLibrary.Click += new System.EventHandler(this.cmdLibrary_Click);
 			// 
 			// cmdProgress
@@ -154,36 +175,27 @@ namespace FileHelpersSamples
 			this.cmdProgress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdProgress.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdProgress.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdProgress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdProgress.Location = new System.Drawing.Point(320, 112);
 			this.cmdProgress.Name = "cmdProgress";
 			this.cmdProgress.Size = new System.Drawing.Size(240, 40);
 			this.cmdProgress.TabIndex = 5;
-			this.cmdProgress.Text = "Progress Notification ->";
+			this.cmdProgress.Text = "Progress Notification";
 			this.cmdProgress.Click += new System.EventHandler(this.cmdProgress_Click);
 			// 
-			// button2
+			// cmdMultiTimming
 			// 
-			this.button2.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.button2.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button2.Location = new System.Drawing.Point(320, 256);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(240, 40);
-			this.button2.TabIndex = 7;
-			this.button2.Text = "Multiple time Sampling ->";
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// pictureBox5
-			// 
-			this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-			this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-			this.pictureBox5.Location = new System.Drawing.Point(256, 176);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(48, 18);
-			this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox5.TabIndex = 8;
-			this.pictureBox5.TabStop = false;
+			this.cmdMultiTimming.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdMultiTimming.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdMultiTimming.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdMultiTimming.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdMultiTimming.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdMultiTimming.Location = new System.Drawing.Point(320, 256);
+			this.cmdMultiTimming.Name = "cmdMultiTimming";
+			this.cmdMultiTimming.Size = new System.Drawing.Size(240, 40);
+			this.cmdMultiTimming.TabIndex = 7;
+			this.cmdMultiTimming.Text = "Multiple time Sampling";
+			this.cmdMultiTimming.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// cmdSort
 			// 
@@ -191,44 +203,154 @@ namespace FileHelpersSamples
 			this.cmdSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdSort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdSort.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdSort.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.cmdSort.Location = new System.Drawing.Point(320, 160);
 			this.cmdSort.Name = "cmdSort";
 			this.cmdSort.Size = new System.Drawing.Size(240, 40);
 			this.cmdSort.TabIndex = 9;
-			this.cmdSort.Text = "Sorting ->";
+			this.cmdSort.Text = "Sorting";
 			this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
 			// 
-			// cmdMiltipleDeli
+			// cmdMultipleDeli
 			// 
-			this.cmdMiltipleDeli.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
-			this.cmdMiltipleDeli.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.cmdMiltipleDeli.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdMiltipleDeli.ForeColor = System.Drawing.Color.Gainsboro;
-			this.cmdMiltipleDeli.Location = new System.Drawing.Point(16, 160);
-			this.cmdMiltipleDeli.Name = "cmdMiltipleDeli";
-			this.cmdMiltipleDeli.Size = new System.Drawing.Size(240, 40);
-			this.cmdMiltipleDeli.TabIndex = 11;
-			this.cmdMiltipleDeli.Text = "Multiple Delimiters ->";
-			this.cmdMiltipleDeli.Click += new System.EventHandler(this.cmdMiltipleDeli_Click);
+			this.cmdMultipleDeli.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdMultipleDeli.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdMultipleDeli.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdMultipleDeli.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdMultipleDeli.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdMultipleDeli.Location = new System.Drawing.Point(16, 208);
+			this.cmdMultipleDeli.Name = "cmdMultipleDeli";
+			this.cmdMultipleDeli.Size = new System.Drawing.Size(240, 40);
+			this.cmdMultipleDeli.TabIndex = 11;
+			this.cmdMultipleDeli.Text = "Multiple Delimiters";
+			this.cmdMultipleDeli.Click += new System.EventHandler(this.cmdMiltipleDeli_Click);
+			// 
+			// cmdAsync
+			// 
+			this.cmdAsync.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdAsync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdAsync.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdAsync.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdAsync.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdAsync.Location = new System.Drawing.Point(16, 160);
+			this.cmdAsync.Name = "cmdAsync";
+			this.cmdAsync.Size = new System.Drawing.Size(240, 40);
+			this.cmdAsync.TabIndex = 12;
+			this.cmdAsync.Text = "Async Engine";
+			this.cmdAsync.Click += new System.EventHandler(this.cmdAsync_Click);
+			// 
+			// cmdMasterDetail
+			// 
+			this.cmdMasterDetail.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdMasterDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdMasterDetail.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdMasterDetail.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdMasterDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdMasterDetail.Location = new System.Drawing.Point(16, 256);
+			this.cmdMasterDetail.Name = "cmdMasterDetail";
+			this.cmdMasterDetail.Size = new System.Drawing.Size(240, 40);
+			this.cmdMasterDetail.TabIndex = 15;
+			this.cmdMasterDetail.Text = "Master Detail";
+			this.cmdMasterDetail.Click += new System.EventHandler(this.cmdMasterDetail_Click);
+			// 
+			// pictureBox7
+			// 
+			this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+			this.pictureBox7.Location = new System.Drawing.Point(256, 264);
+			this.pictureBox7.Name = "pictureBox7";
+			this.pictureBox7.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox7.TabIndex = 16;
+			this.pictureBox7.TabStop = false;
+			// 
+			// picCurrent
+			// 
+			this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.picCurrent.BackColor = System.Drawing.Color.Transparent;
+			this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
+			this.picCurrent.Location = new System.Drawing.Point(465, 315);
+			this.picCurrent.Name = "picCurrent";
+			this.picCurrent.Size = new System.Drawing.Size(146, 53);
+			this.picCurrent.TabIndex = 17;
+			this.picCurrent.TabStop = false;
+			this.picCurrent.Visible = false;
+			// 
+			// picNewVersion
+			// 
+			this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
+			this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
+			this.picNewVersion.Location = new System.Drawing.Point(465, 315);
+			this.picNewVersion.Name = "picNewVersion";
+			this.picNewVersion.Size = new System.Drawing.Size(146, 53);
+			this.picNewVersion.TabIndex = 18;
+			this.picNewVersion.TabStop = false;
+			this.picNewVersion.Visible = false;
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+			this.pictureBox5.Location = new System.Drawing.Point(256, 168);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox5.TabIndex = 19;
+			this.pictureBox5.TabStop = false;
+			// 
+			// pictureBox6
+			// 
+			this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+			this.pictureBox6.Location = new System.Drawing.Point(256, 216);
+			this.pictureBox6.Name = "pictureBox6";
+			this.pictureBox6.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox6.TabIndex = 20;
+			this.pictureBox6.TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+			this.pictureBox4.Location = new System.Drawing.Point(560, 264);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox4.TabIndex = 21;
+			this.pictureBox4.TabStop = false;
 			// 
 			// frmSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(610, 392);
-			this.Controls.Add(this.cmdMiltipleDeli);
-			this.Controls.Add(this.cmdSort);
+			this.Controls.Add(this.pictureBox6);
 			this.Controls.Add(this.pictureBox5);
-			this.Controls.Add(this.button2);
+			this.Controls.Add(this.cmdMasterDetail);
+			this.Controls.Add(this.cmdAsync);
+			this.Controls.Add(this.cmdMultipleDeli);
+			this.Controls.Add(this.cmdSort);
+			this.Controls.Add(this.cmdMultiTimming);
 			this.Controls.Add(this.cmdProgress);
 			this.Controls.Add(this.cmdLibrary);
 			this.Controls.Add(this.cmdEasy2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cmdDataLink);
 			this.Controls.Add(this.cmdEasy);
+			this.Controls.Add(this.picCurrent);
+			this.Controls.Add(this.picNewVersion);
+			this.Controls.Add(this.pictureBox7);
+			this.Controls.Add(this.pictureBox4);
 			this.ExitOnEsc = false;
 			this.MaximizeBox = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
+			this.Load += new System.EventHandler(this.frmSamples_Load);
+			this.Controls.SetChildIndex(this.pictureBox4, 0);
+			this.Controls.SetChildIndex(this.pictureBox7, 0);
+			this.Controls.SetChildIndex(this.picNewVersion, 0);
+			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
@@ -237,10 +359,13 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.cmdEasy2, 0);
 			this.Controls.SetChildIndex(this.cmdLibrary, 0);
 			this.Controls.SetChildIndex(this.cmdProgress, 0);
-			this.Controls.SetChildIndex(this.button2, 0);
-			this.Controls.SetChildIndex(this.pictureBox5, 0);
+			this.Controls.SetChildIndex(this.cmdMultiTimming, 0);
 			this.Controls.SetChildIndex(this.cmdSort, 0);
-			this.Controls.SetChildIndex(this.cmdMiltipleDeli, 0);
+			this.Controls.SetChildIndex(this.cmdMultipleDeli, 0);
+			this.Controls.SetChildIndex(this.cmdAsync, 0);
+			this.Controls.SetChildIndex(this.cmdMasterDetail, 0);
+			this.Controls.SetChildIndex(this.pictureBox5, 0);
+			this.Controls.SetChildIndex(this.pictureBox6, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -309,6 +434,111 @@ namespace FileHelpersSamples
 			frm.Dispose();	
 		}
 
+		private void cmdAsync_Click(object sender, System.EventArgs e)
+		{
+			frmEasySampleAsync frm = new frmEasySampleAsync();
+			frm.ShowDialog();
+			frm.Dispose();
+		}
 
+		private void cmdMasterDetail_Click(object sender, System.EventArgs e)
+		{
+			frmMasterDetail frm = new frmMasterDetail();
+			frm.ShowDialog();
+			frm.Dispose();
+		}
+
+	
+		private void frmSamples_Load(object sender, System.EventArgs e)
+		{
+
+			
+			cmdEasy2.Image = cmdEasy.Image;
+			cmdAsync.Image = cmdEasy.Image;
+			cmdMultipleDeli.Image = cmdEasy.Image;
+			cmdMasterDetail.Image = cmdEasy.Image;
+			cmdProgress.Image = cmdEasy.Image;
+			cmdDataLink.Image = cmdEasy.Image;
+			cmdSort.Image = cmdEasy.Image;
+			cmdLibrary.Image = cmdEasy.Image;
+			cmdMultiTimming.Image = cmdEasy.Image;
+
+			try
+			{
+				string ver = typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
+
+				string dataString;
+				using (WebClient webClient = new WebClient())
+				{
+					byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
+				
+					dataString = System.Text.Encoding.Default.GetString(data);
+				}
+			
+				VersionData[] versions = null;            
+				FileHelperEngine engine = new FileHelperEngine(typeof(VersionData));
+				versions = (VersionData[]) engine.ReadString(dataString);
+
+				foreach (VersionData version in versions)
+				{
+					Console.WriteLine(version.Description);
+				}
+		
+				string verLast = versions[versions.Length - 1].Version;
+				if (CompararVersiones(ver, verLast) == 0)
+					picCurrent.Visible = true;
+				else
+					picNewVersion.Visible = true;
+			}			
+			catch
+			{
+			}
+		}
+
+		[DelimitedRecord("|")]
+		private class VersionData
+		{
+			public string Version;
+			
+			[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
+			public DateTime ReleaseDate;
+
+			public string DownloadUrl;
+			
+			[FieldInNewLine()]
+			[FieldQuoted(MultilineMode.AllowForBoth)]
+			public string Description;
+			
+			[FieldQuoted(MultilineMode.AllowForBoth)]
+			public string History;
+		}
+
+		public static int CompararVersiones(string ver1, string ver2)
+		{
+			string[] ver1A = ver1.Split('.');
+			string[] ver2A = ver2.Split('.');
+			if (ver1A.Length > 0 & ver2A.Length > 0)
+			{
+				if (int.Parse(ver1A[0]) != int.Parse(ver2A[0]))
+				{
+					return int.Parse(ver1A[0]) - int.Parse(ver2A[0]);
+				}
+			}
+			if (ver1A.Length > 1 & ver2A.Length > 1)
+			{
+				if (int.Parse(ver1A[1]) != int.Parse(ver2A[1]))
+				{
+					return int.Parse(ver1A[1]) - int.Parse(ver2A[1]);
+				}
+			}
+			if (ver1A.Length > 2 & ver2A.Length > 2)
+			{
+				if (int.Parse(ver1A[2]) != int.Parse(ver2A[2]))
+				{
+					return int.Parse(ver1A[2]) - int.Parse(ver2A[2]);
+				}
+			}
+			return 0;
+		}
 	}
 }
