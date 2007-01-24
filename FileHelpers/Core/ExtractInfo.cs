@@ -6,8 +6,6 @@ namespace FileHelpers
 	internal sealed class ExtractedInfo
 	{
 		public int CharsRemoved;
-
-
 		//public string ExtractedString;
 
 		public string ExtractedString()
@@ -27,7 +25,7 @@ namespace FileHelpers
 		public int ExtractedTo;
 
 		public int ExtraLines;
-		public string NewRestOfLine;
+		//public string NewRestOfLine;
 		//public string TrailString;
 
 		public ExtractedInfo(LineInfo line)
@@ -37,7 +35,7 @@ namespace FileHelpers
 			ExtractedTo = line.mLine.Length - 1;
 			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
 			ExtraLines = 0;
-			NewRestOfLine = null;
+		//	NewRestOfLine = null;
 		}
 
 		public ExtractedInfo(LineInfo line, int extractTo)
@@ -47,7 +45,7 @@ namespace FileHelpers
 			ExtractedTo = extractTo - 1;
 			CharsRemoved = ExtractedTo - ExtractedFrom + 1;
 			ExtraLines = 0;
-			NewRestOfLine = null;
+		//	NewRestOfLine = null;
 		}
 		
 		
@@ -91,7 +89,7 @@ namespace FileHelpers
 
 		internal static readonly ExtractedInfo Empty = new ExtractedInfo(new LineInfo(string.Empty));
 
-		public bool HasOnlyThis(char[] sortedArray)
+		public bool HasOnlyThisChars(char[] sortedArray)
 		{
 			// Chek if the chars at pos or right are empty ones
 

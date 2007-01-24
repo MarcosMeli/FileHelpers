@@ -223,7 +223,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Core\ForwardReader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Core\LineInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\RecordInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -354,16 +364,6 @@
                 />
                 <File
                     RelPath = "Helpers\ExHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Helpers\ForwardReader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Helpers\RecordInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

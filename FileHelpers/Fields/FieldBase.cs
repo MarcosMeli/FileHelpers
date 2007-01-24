@@ -219,7 +219,7 @@ namespace FileHelpers
 			else
 			{
 				if (mConvertProvider.CustomNullHandling == false && 
-				    fieldString.HasOnlyThis(WhitespaceChars))
+				    fieldString.HasOnlyThisChars(WhitespaceChars))
 				{
 					val = GetNullValue();
 				}

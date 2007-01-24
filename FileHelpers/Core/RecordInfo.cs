@@ -27,7 +27,6 @@ namespace FileHelpers
 
 	/// <summary>An internal class used to store information about the Record Type.</summary>
 	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	internal sealed class RecordInfo
 	{
 		#region Internal Fields
@@ -87,9 +86,10 @@ namespace FileHelpers
         private delegate object CreateAndAssign(object[] values);
         private CreateAndAssign mCreateHandler;
 
+
 		private void CreateAssingMethods()
 		{
-				DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
+				DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
 				//dm.InitLocals = false;
 
 			
@@ -131,6 +131,25 @@ namespace FileHelpers
     mCreateHandler = (CreateAndAssign)dm.CreateDelegate(typeof(CreateAndAssign));
 
 		}
+
+        private delegate object CreateNewObject();
+        private CreateNewObject mFastConstructor;
+
+
+		private void CreateAssingMethods()
+		{
+			DynamicMethod dm = new DynamicMethod("_CreateRecordFast_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
+			
+		    ILGenerator generator = dm.GetILGenerator();
+    
+//			generator.DeclareLocal(mRecordType);
+		    generator.Emit(OpCodes.Newobj, mRecordConstructor);
+			generator.Emit(OpCodes.Ret);
+
+			mFastConstructor = (CreateNewObject)dm.CreateDelegate(typeof(CreateNewObject));
+
+		}
+
 
 	#endif
 		#endregion
@@ -297,7 +316,14 @@ namespace FileHelpers
 		//      Something like to catch the constructor and use a delagate or something like Emit.
 		internal object CreateRecordObject()
 		{
+#if NET_2_0
+			if (mFastConstructor == null)
+				CreateFastConstructor();
+
+			return mFastConstructor();
+#else
 			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
+#endif
 		}
 		#endregion
 
