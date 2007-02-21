@@ -34,7 +34,7 @@ namespace FileHelpers
 #if ! GENERICS
 	public class FileHelperEngine : EngineBase
 #else
-	public sealed class FileHelperEngine<T>: EngineBase
+	public class FileHelperEngine<T>: EngineBase
 #endif
 	{
 
