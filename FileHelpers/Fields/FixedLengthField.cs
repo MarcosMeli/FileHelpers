@@ -5,6 +5,7 @@
 #endregion
 
 using System.Reflection;
+using System;
 
 namespace FileHelpers
 {
@@ -25,6 +26,22 @@ namespace FileHelpers
 
 			if (align != null)
 				this.mAlign = align;
+			else
+			{
+				if (fi.FieldType == typeof(Int16) ||
+					fi.FieldType == typeof(Int32) ||
+					fi.FieldType == typeof(Int64) ||
+					fi.FieldType == typeof(UInt16) ||
+					fi.FieldType == typeof(UInt32) ||
+					fi.FieldType == typeof(UInt64) ||
+					fi.FieldType == typeof(byte) ||
+					fi.FieldType == typeof(sbyte) ||
+					fi.FieldType == typeof(decimal) ||
+					fi.FieldType == typeof(float) ||
+					fi.FieldType == typeof(double))
+
+					mAlign = new FieldAlignAttribute(AlignMode.Right, ' ');
+			}
 		}
 
 		#endregion
