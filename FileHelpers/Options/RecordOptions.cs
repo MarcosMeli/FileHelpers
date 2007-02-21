@@ -2,6 +2,10 @@ using System;
 
 namespace FileHelpers
 {
+	/// <summary>
+	/// This class allows you to set some options of the records but at runtime.
+	/// With this options the library is more flexible than never.
+	/// </summary>
 	public abstract class RecordOptions
 	{
 		
@@ -12,8 +16,6 @@ namespace FileHelpers
 			mRecordInfo = info;
 		}
 		
-		private int mIgnoreFirstLines;
-
 		public int IgnoreFirstLines
 		{
 			get { return mRecordInfo.mIgnoreFirst; }

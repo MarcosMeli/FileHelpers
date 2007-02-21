@@ -72,20 +72,24 @@ namespace FileHelpers.Mapping
 
 			foreach (DataRow row in dt.Rows)
 			{
-				object record = mRecordInfo.CreateRecordObject();
-				//TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
-				
-				for(int i = 0; i < mMappings.Count; i++)
-				{
-					((MappingInfo) mMappings[i]).DataToField(row, record);
-				}
-				
-				arr.Add(record);
+				arr.Add(MapRow2Record(row));
 			}
 			
 			return (object[]) arr.ToArray(mRecordInfo.mRecordType);
 		}
 
+		public object MapRow2Record(DataRow dr)
+		{
+			object record = mRecordInfo.CreateRecordObject();
+			//TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
+				
+			for(int i = 0; i < mMappings.Count; i++)
+			{
+				((MappingInfo) mMappings[i]).DataToField(dr, record);
+			}
+
+			return record;
+		}
 
 		/// <summary>
 		/// Create an automatic mapping for each column in the dt and each record field 
