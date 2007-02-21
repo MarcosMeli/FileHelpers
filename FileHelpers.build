@@ -273,22 +273,22 @@
            </fileset>
        </copy>
 
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 1.1">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 1.1">
            <fileset basedir="..\Release\DotNet 1.1">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 1.1 PPC">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 1.1 PPC">
            <fileset basedir="..\Release\DotNet 1.1 PPC">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 2.0">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 2.0">
            <fileset basedir="..\Release\DotNet 2.0">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Library Release\DotNet 2.0 PPC">
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 2.0 PPC">
            <fileset basedir="..\Release\DotNet 2.0 PPC">
                <include name="*\**" />
            </fileset>

@@ -8,6 +8,7 @@ namespace FileHelpersSamples
 		
 		public static void Main()
 		{
+
 			frmDonate frmDon = new frmDonate();
 			frmDon.ShowDialog();
 			frmDon.Dispose();

@@ -17,6 +17,7 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.Button cmdDonate;
 		private System.Windows.Forms.Button cmdClose;
 		private System.Windows.Forms.Panel panText;
+		private System.Windows.Forms.CheckBox checkBox1;
 		private System.ComponentModel.IContainer components = null;
 
 		public frmDonate()
@@ -57,6 +58,7 @@ namespace FileHelpersSamples
 			this.lstAmount = new System.Windows.Forms.ListBox();
 			this.cmdClose = new System.Windows.Forms.Button();
 			this.panText = new System.Windows.Forms.Panel();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.panText.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -97,7 +99,7 @@ namespace FileHelpersSamples
 			// 
 			// pictureBox4
 			// 
-			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
 			this.pictureBox4.Location = new System.Drawing.Point(304, 8);
 			this.pictureBox4.Name = "pictureBox4";
@@ -156,10 +158,22 @@ namespace FileHelpersSamples
 			this.panText.TabIndex = 10;
 			this.panText.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.BackColor = System.Drawing.Color.Transparent;
+			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.checkBox1.ForeColor = System.Drawing.Color.White;
+			this.checkBox1.Location = new System.Drawing.Point(16, 344);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(360, 16);
+			this.checkBox1.TabIndex = 11;
+			this.checkBox1.Text = "I never want to see this annoying popup anymore";
+			// 
 			// frmDonate
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(386, 368);
+			this.ClientSize = new System.Drawing.Size(386, 392);
+			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.panText);
 			this.Controls.Add(this.cmdClose);
 			this.Controls.Add(this.lstAmount);
@@ -176,6 +190,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.lstAmount, 0);
 			this.Controls.SetChildIndex(this.cmdClose, 0);
 			this.Controls.SetChildIndex(this.panText, 0);
+			this.Controls.SetChildIndex(this.checkBox1, 0);
 			this.panText.ResumeLayout(false);
 			this.ResumeLayout(false);
 

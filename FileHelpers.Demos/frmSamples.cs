@@ -222,7 +222,7 @@ namespace FileHelpersSamples
 			this.cmdMultipleDeli.Name = "cmdMultipleDeli";
 			this.cmdMultipleDeli.Size = new System.Drawing.Size(240, 40);
 			this.cmdMultipleDeli.TabIndex = 11;
-			this.cmdMultipleDeli.Text = "Multiple Delimiters";
+			this.cmdMultipleDeli.Text = "Changing Delimiters";
 			this.cmdMultipleDeli.Click += new System.EventHandler(this.cmdMiltipleDeli_Click);
 			// 
 			// cmdAsync
@@ -236,7 +236,7 @@ namespace FileHelpersSamples
 			this.cmdAsync.Name = "cmdAsync";
 			this.cmdAsync.Size = new System.Drawing.Size(240, 40);
 			this.cmdAsync.TabIndex = 12;
-			this.cmdAsync.Text = "Async Engine";
+			this.cmdAsync.Text = "Record by Record";
 			this.cmdAsync.Click += new System.EventHandler(this.cmdAsync_Click);
 			// 
 			// cmdMasterDetail
@@ -496,7 +496,7 @@ namespace FileHelpersSamples
 		}
 
 		[DelimitedRecord("|")]
-		private class VersionData
+		public class VersionData
 		{
 			public string Version;
 			
