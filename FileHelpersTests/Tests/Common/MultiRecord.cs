@@ -15,7 +15,7 @@ namespace FileHelpersTests
 		[Test]
 		public void MultpleRecordsFile()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
             object[] res = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
 
@@ -31,7 +31,7 @@ namespace FileHelpersTests
 		[Test]
 		public void MultpleRecordsFileAsync()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
 			ArrayList res = new ArrayList();
 			engine.BeginReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
@@ -53,7 +53,9 @@ namespace FileHelpersTests
 		[ExpectedException(typeof(FileHelperException))]
 		public void MultpleRecordsFileAsyncBad()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
+			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+
 			foreach (object o in engine)
 			{
 				o.ToString();
@@ -63,7 +65,8 @@ namespace FileHelpersTests
 		[Test]
 		public void MultpleRecordsFileRW()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, new RecordTypeSelector(CustomSelector));
+			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
+			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
 			object[] res2 = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
 
@@ -88,28 +91,28 @@ namespace FileHelpersTests
 		[ExpectedException(typeof(ArgumentException))]
 		public void NoTypes()
 		{
-			engine = new MultiRecordEngine(new Type[] {}, null);
+			engine = new MultiRecordEngine(new Type[] {});
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void NullTypeArray()
 		{
-			engine = new MultiRecordEngine(null, null);
+			engine = new MultiRecordEngine((Type[])null);
 		}
 				
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void NoSelector()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(CustomersVerticalBar)}, null);
+			engine = new MultiRecordEngine(typeof(CustomersVerticalBar));
 		}
 
 		[Test]
 		[ExpectedException(typeof(BadUsageException))]
 		public void NullTypes()
 		{
-			engine = new MultiRecordEngine(new Type[] {typeof(CustomersVerticalBar), null} ,new RecordTypeSelector(CustomSelector));
+			engine = new MultiRecordEngine(typeof(CustomersVerticalBar), null);
+			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 		}
 
         Type CustomSelector(MultiRecordEngine engine, string record)
