@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Xml;
 
 namespace FileHelpers.RunTime
@@ -44,6 +45,18 @@ namespace FileHelpers.RunTime
 		/// <param name="className">The valid class name.</param>
 		public DelimitedClassBuilder(string className): this(className, string.Empty)
 		{
+		}
+
+		/// <summary>Creates a new DelimitedClassBuilder with the same structure than a DataTable.</summary>
+		/// <param name="className">The valid class name.</param>
+		/// <param name="delimiter">The delimiter for that class.</param>
+		/// <param name="dt">The DataTable from where to get the field names and types</param>
+		public DelimitedClassBuilder(string className, string delimiter, DataTable dt): this(className, delimiter)
+		{
+			foreach(DataColumn dc in dt.Columns)
+			{
+				AddField(StringToIdentifier(dc.ColumnName), dc.DataType);
+			}
 		}
 
 

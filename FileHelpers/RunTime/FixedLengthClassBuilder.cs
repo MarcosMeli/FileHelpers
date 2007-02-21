@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Xml;
 
 namespace FileHelpers.RunTime
@@ -6,8 +7,7 @@ namespace FileHelpers.RunTime
 	/// <summary>Used to create classes that maps to Fixed Length records.</summary>
 	public sealed class FixedLengthClassBuilder: ClassBuilder
 	{
-
-		
+	
 		/// <summary>Return the field at the specified index.</summary>
 		/// <param name="index">The index of the field.</param>
 		/// <returns>The field at the specified index.</returns>
@@ -26,6 +26,27 @@ namespace FileHelpers.RunTime
 		/// <param name="className">A valid class name.</param>
 		public FixedLengthClassBuilder(string className): base(className)
 		{
+		}
+
+		/// <summary>Used to create classes that maps to Fixed Length records and automatic instanciate many string fields as values are passed in the lengths arg. </summary>
+		/// <param name="className">A valid class name.</param>
+		/// <param name="lengths">The lengths of the fields (one string field will be create for each length)</param>
+		public FixedLengthClassBuilder(string className, params int[] lengths): base(className)
+		{
+			for(int i = 0; i < lengths.Length; i++)
+				AddField("Field"+((i+1).ToString()), lengths[i], typeof(string));
+		}
+
+		/// <summary>Used to create classes that maps to Fixed Length records with the same structure than a DataTable.</summary>
+		/// <param name="className">A valid class name.</param>
+		/// <param name="dt">The DataTable from where to get the field names and types</param>
+		/// <param name="defaultLength">The initial length of all fields</param>
+		public FixedLengthClassBuilder(string className, DataTable dt, int defaultLength): this(className)
+		{
+			foreach(DataColumn dc in dt.Columns)
+			{
+				AddField(StringToIdentifier(dc.ColumnName), defaultLength, dc.DataType);
+			}
 		}
 
 		/// <summary>Used to create classes that maps to Fixed Length records.</summary>
@@ -95,6 +116,19 @@ namespace FileHelpers.RunTime
 
 		internal override void WriteExtraElements(XmlHelper writer)
 		{}
+
+		/// <summary>
+		/// Set the length of each field at once.
+		/// </summary>
+		/// <param name="lengths">The length of each field, must be the same that the number of fields.</param>
+		public void SetFieldsLength(params int[] lengths)
+		{
+			if (lengths.Length != mFields.Count)
+				throw new BadUsageException(string.Format("The number of elements is {0} and you pass {1}. This method require the same number of values than fields", mFields.Count, lengths.Length));
+
+			for(int i = 0; i < mFields.Count; i++)
+				FieldByIndex(i).FieldLength = lengths[i];
+		}
 
 		private FixedMode mFixedMode = FixedMode.ExactLength;
 
