@@ -136,7 +136,7 @@ namespace FileHelpers
         private CreateNewObject mFastConstructor;
 
 
-		private void CreateAssingMethods()
+		private void CreateFastConstructor()
 		{
 			DynamicMethod dm = new DynamicMethod("_CreateRecordFast_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
 			

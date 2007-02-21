@@ -2,6 +2,9 @@
 #define GENERICS
 #if NET_2_0
 
+using System.ComponentModel;
+//using System.ComponentModel.TypeConverter;
+
 namespace FileHelpers.MasterDetail
 {
 	/// <summary>
@@ -9,6 +12,7 @@ namespace FileHelpers.MasterDetail
 	/// <para>This class is used for the Read and Write operations of the <see cref="MasterDetailEngine"/>.</para>
 	/// </summary>
 #if ! GENERICS
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public class MasterDetails
 	{
 
@@ -47,6 +51,7 @@ namespace FileHelpers.MasterDetail
 		internal object[] mDetails;
 
 		/// <summary>An Array with the Detail records.</summary>
+		[TypeConverter(typeof(ArrayConverter))]
 		public object[] Details
 		{
 			get { return mDetails; }

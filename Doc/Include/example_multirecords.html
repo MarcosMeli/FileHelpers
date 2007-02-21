@@ -74,11 +74,11 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;
 <textarea name="code" class="c#">
 
 			MultiRecordEngine engine;
-			engine = new MultiRecordEngine(new Type[] {
-			                typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType)}, 
-			                new RecordTypeSelector(CustomSelector));
 
-            object[] res = engine.ReadFile("MultiRecords.txt");
+			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
+			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+
+			object[] res = engine.ReadFile("MultiRecords.txt");
 </textarea>
 
           <p>

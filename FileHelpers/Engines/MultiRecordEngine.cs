@@ -50,17 +50,31 @@ namespace FileHelpers
 		private RecordInfo[] mMultiRecordInfo;
 		private Hashtable mRecordInfoHash;
 		private RecordTypeSelector mRecordSelector;
+
+		/// <summary>
+		/// The Selector used by the engine in Read operations to determine the Type to use.
+		/// </summary>
+		public RecordTypeSelector RecordSelector
+		{
+			get { return mRecordSelector; }
+			set { mRecordSelector = value; }
+		}
+
 		private Type[] mTypes;
 		
 		#region "  Constructor  "
 
 		/// <summary>Create a new instance of the MultiRecordEngine</summary>
 		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
-		/// <param name="recordSelector">The selector that indicates to the engine what Type to use in each line.</param>
-		public MultiRecordEngine(Type[] recordTypes, RecordTypeSelector recordSelector) : base(GetFirstType(recordTypes))
+		public MultiRecordEngine(params Type[] recordTypes) : this(null, recordTypes)
 		{
-			ExHelper.CheckNullParam(recordSelector, "recordSelector");
+		}
 
+		/// <summary>Create a new instance of the MultiRecordEngine</summary>
+		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
+		/// <param name="recordSelector">Used only in read operations. The selector indicates to the engine what Type to use in each read line.</param>
+		public MultiRecordEngine(RecordTypeSelector recordSelector, params Type[] recordTypes) : base(GetFirstType(recordTypes))
+		{
 			mTypes = recordTypes;
 			mMultiRecordInfo = new RecordInfo[mTypes.Length];
 			mRecordInfoHash = new Hashtable(mTypes.Length);
@@ -566,6 +580,8 @@ namespace FileHelpers
 				throw new ArgumentNullException("A null Type[] is not valid for the MultiRecordEngine.");
 			else if (types.Length == 0)
 				throw new ArgumentException("An empty Type[] is not valid for the MultiRecordEngine.");
+			else if (types.Length == 1)
+				throw new ArgumentException("A Type[] of one element to use with the MultiRecordEngine. You need 2 or more types, for one type you can use the FileHelperEngine.");
 			else
 				return types[0];
 		}
