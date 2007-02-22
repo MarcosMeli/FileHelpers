@@ -21,8 +21,8 @@ namespace FileHelpersTests.CommonTests
 			res[1] = new SampleType();
 			res[2] = new SampleType();
 
-			engine.WriteFile("tempNull.txt", res);
-			res = (SampleType[]) engine.ReadFile("tempNull.txt");
+			string tempo = engine.WriteString(res);
+			res = (SampleType[]) engine.ReadString(tempo);
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -31,7 +31,7 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(DateTime.MinValue, res[0].Field1);
 			Assert.AreEqual("", res[0].Field2);
 			Assert.AreEqual(0, res[0].Field3);
-			if (File.Exists("tempNull.txt")) File.Delete("tempNull.txt");
+
 		}
 
 		[Test]

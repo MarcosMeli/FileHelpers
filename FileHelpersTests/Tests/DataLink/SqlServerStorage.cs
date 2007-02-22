@@ -3,6 +3,7 @@ using System.IO;
 using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
+using System.Data.SqlClient;
 
 namespace FileHelpersTests.DataLink
 {
@@ -20,7 +21,22 @@ namespace FileHelpersTests.DataLink
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
-			OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
+			OrdersVerticalBar[] res = null;
+
+			try
+			{
+				res = storage.ExtractRecords() as OrdersVerticalBar[];
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
 
 			Assert.AreEqual(830, res.Length);
 
@@ -41,7 +57,20 @@ namespace FileHelpersTests.DataLink
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
-			FileDataLink.EasyExtractToFile(storage, "tempord.txt");
+			try
+			{
+				FileDataLink.EasyExtractToFile(storage, "tempord.txt");
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
 
 
 			FileDataLink link = new FileDataLink(storage);
@@ -67,7 +96,21 @@ namespace FileHelpersTests.DataLink
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
-			OrdersVerticalBar[] res = (OrdersVerticalBar[]) storage.ExtractRecords();
+			OrdersVerticalBar[] res = null;
+			try
+			{
+				 res = (OrdersVerticalBar[]) storage.ExtractRecords();
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
 
 			Assert.AreEqual(100, res.Length);
 
@@ -108,7 +151,20 @@ namespace FileHelpersTests.DataLink
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
-			storage.ExtractRecords();
+			try
+			{
+				storage.ExtractRecords();
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
 		}
 
 		[Test]
@@ -160,7 +216,21 @@ namespace FileHelpersTests.DataLink
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
-			storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), Common.TestPath(@"Good\CustomersVerticalBar.txt")));
+			try
+			{
+				storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), Common.TestPath(@"Good\CustomersVerticalBar.txt")));
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
+
 
 		}
 
@@ -174,7 +244,20 @@ namespace FileHelpersTests.DataLink
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
-			FileDataLink.EasyInsertFromFile(storage, Common.TestPath(@"Good\CustomersVerticalBar.txt"));
+			try
+			{
+				FileDataLink.EasyInsertFromFile(storage, Common.TestPath(@"Good\CustomersVerticalBar.txt"));
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
 		}
 
 		[Test]
@@ -192,7 +275,21 @@ namespace FileHelpersTests.DataLink
 
 			//storage.ExecuteInBatchSize
 			//res2[0].OrderDate = new DateTime(1750, 10, 10);
-			storage.InsertRecords(res2);
+			try
+			{
+				storage.InsertRecords(res2);
+			}
+			catch(SqlException ex)
+			{
+				if (ex.Number == 208)
+					Assert.Ignore("You dont have this tables in your SqlServer");
+
+				if (ex.Number == 6)
+					Assert.Ignore("SqlServer not found, skipping this test.");
+
+				Assert.Ignore(ex.ToString());
+			}
+
 		}
 
 

@@ -98,11 +98,13 @@ namespace FileHelpersTests.CommonTests
 	public class OrdersQuotedType
 	{
 		public int OrderID;
-		[FieldQuoted()] public string CustomerID;
+		[FieldQuoted()]
+		public string CustomerID;
 		public int EmployeeID;
 		public DateTime OrderDate;
 		public DateTime RequiredDate;
-		[FieldNullValue(typeof (DateTime), "2005-1-1")] public DateTime ShippedDate;
+		[FieldNullValue(typeof (DateTime), "2005-1-1")] 
+		public DateTime ShippedDate;
 		public int ShipVia;
 		public decimal Freight;
 	}

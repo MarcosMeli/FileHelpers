@@ -88,14 +88,14 @@ namespace FileHelpersTests
 
 		
 		[Test]
-		[ExpectedException(typeof(ArgumentException))]
+		[ExpectedException(typeof(BadUsageException))]
 		public void NoTypes()
 		{
 			engine = new MultiRecordEngine(new Type[] {});
 		}
 
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
+		[ExpectedException(typeof(BadUsageException))]
 		public void NullTypeArray()
 		{
 			engine = new MultiRecordEngine((Type[])null);
@@ -103,6 +103,20 @@ namespace FileHelpersTests
 				
 		[Test]
 		public void NoSelector()
+		{
+			engine = new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersTab));
+		}
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void TwiceSameType()
+		{
+			engine = new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersVerticalBar));
+		}
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void OneType()
 		{
 			engine = new MultiRecordEngine(typeof(CustomersVerticalBar));
 		}
