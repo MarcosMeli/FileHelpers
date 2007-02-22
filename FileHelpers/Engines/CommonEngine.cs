@@ -35,8 +35,21 @@ namespace FileHelpers
 		/// <returns>The read records.</returns>
 		public static object[] ReadFile(Type recordClass, string fileName)
 		{
+			return ReadFile(recordClass, fileName, int.MaxValue);
+		}
+
+		/// <summary>
+		/// Used to read a file without instanciate the engine.<br />
+		/// <b>This is feature limited method try to use the non static methods.</b>
+		/// </summary>
+		/// <param name="recordClass">The record class.</param>
+		/// <param name="fileName">The file name</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The read records.</returns>
+		public static object[] ReadFile(Type recordClass, string fileName, int maxRecords)
+		{
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
-			return engine.ReadFile(fileName);
+			return engine.ReadFile(fileName, maxRecords);
 		}
 
 #if NET_2_0
@@ -49,9 +62,23 @@ namespace FileHelpers
 		/// <returns>The read records.</returns>
 		public static T[] ReadFile<T>(string fileName)
 		{
-			FileHelperEngine<T> engine = new FileHelperEngine<T>();
-			return engine.ReadFile(fileName);
+			return ReadFile(fileName, int.MaxValue);
 		}
+
+		/// <summary>
+		/// Used to read a file without instanciate the engine.<br />
+		/// <b>This is feature limited method try to use the non static methods.</b>
+		/// </summary>
+		/// <param name="recordClass">The record class.</param>
+		/// <param name="fileName">The file name</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The read records.</returns>
+		public static T[] ReadFile<T>(string fileName, int maxRecords)
+		{
+			FileHelperEngine<T> engine = new FileHelperEngine<T>();
+			return engine.ReadFile(fileName, maxRecords);
+		}
+
 #endif
 		
 		/// <summary>

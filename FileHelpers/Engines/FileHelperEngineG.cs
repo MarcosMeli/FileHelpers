@@ -78,6 +78,17 @@ namespace FileHelpers
 		public T[] ReadFile(string fileName)
 #endif
 		{
+			return ReadFile(fileName, int.MaxValue);
+		}
+
+		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+#if ! GENERICS
+		public object[] ReadFile(string fileName, int maxRecords)
+#else
+		public T[] ReadFile(string fileName, int maxRecords)
+#endif
+		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
 			{
 #if ! GENERICS
@@ -85,7 +96,7 @@ namespace FileHelpers
 #else
 				T[] tempRes;
 #endif
-				tempRes = ReadStream(fs);
+				tempRes = ReadStream(fs, maxRecords);
 				fs.Close();
 
 				return tempRes;
@@ -94,14 +105,26 @@ namespace FileHelpers
 
 		#endregion
 
+
 		#region "  ReadStream  "
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
 		public object[] ReadStream(TextReader reader)
 #else
 		public T[] ReadStream(TextReader reader)
+#endif
+		{
+			return ReadStream(reader, int.MaxValue);
+		}
+
+		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+#if ! GENERICS
+		public object[] ReadStream(TextReader reader, int maxRecords)
+#else
+		public T[] ReadStream(TextReader reader, int maxRecords)
 #endif
 		{
 			if (reader == null)
@@ -141,11 +164,13 @@ namespace FileHelpers
 
 			bool byPass = false;
 
-				
+			if (maxRecords < 0)
+				maxRecords = int.MaxValue;
+
 			LineInfo line = new LineInfo(currentLine);
 			line.mReader = freader;
 			
-			while (currentLine != null)
+			while (currentLine != null && currentRecord < maxRecords)
 			{
 				try
 				{
@@ -224,6 +249,8 @@ namespace FileHelpers
 
 		#endregion
 
+		
+		
 		#region "  ReadString  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
@@ -231,6 +258,17 @@ namespace FileHelpers
 		public object[] ReadString(string source)
 #else
 		public T[] ReadString(string source)
+#endif
+		{
+			return ReadString(source, int.MaxValue);
+		}
+
+		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+#if ! GENERICS
+		public object[] ReadString(string source, int maxRecords)
+#else
+		public T[] ReadString(string source, int maxRecords)
 #endif
 		{
 			if (source == null)
@@ -242,7 +280,7 @@ namespace FileHelpers
 #else
 			T[] res;
 #endif
-			res= ReadStream(reader);
+			res= ReadStream(reader, maxRecords);
 			reader.Close();
 			return res;
 		}
@@ -719,6 +757,9 @@ namespace FileHelpers
 
 		internal RecordOptions mOptions;
 
+		/// <summary>
+		/// Allows to change some record layout options at runtime
+		/// </summary>
 		public RecordOptions Options
 		{
 			get { return mOptions; }
