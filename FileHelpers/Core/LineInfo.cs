@@ -14,10 +14,12 @@ namespace FileHelpers
 	{
 		#region "  Constructor  "
 
+		static char[] mEmptyChars = new char[] {};
+
 		public LineInfo(string line)
 		{
 			mLineStr = line;
-			mLine = mLineStr.ToCharArray();
+			mLine = line == null ? mEmptyChars : line.ToCharArray();
 			mCurrentPos = 0;
 		}
 
@@ -49,7 +51,7 @@ namespace FileHelpers
 		
 		public bool IsEOL()
 		{
-			return mCurrentPos == mLine.Length;
+			return mCurrentPos >= mLine.Length;
 		}
 
 		public int CurrentLength
@@ -98,7 +100,7 @@ namespace FileHelpers
 		public bool StartsWith(string str)
 		{
 			// Returns true if the string begin with str
-			return mCompare.Compare(mLineStr, mCurrentPos, str, 0, CompareOptions.IgnoreCase) == 0;
+			return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.IgnoreCase) == 0;
 		}
 
 		public bool StartsWithTrim(string str)
@@ -144,12 +146,15 @@ namespace FileHelpers
 			//				return -1;
 			//			}
 			//			else
-			return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.IgnoreCase);
+//			if (mLineStr == null)
+//				return -1;
+//			else
+				return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.IgnoreCase);
 		}
 
 		internal void ReLoad(string line)
 		{
-			mLine = line.ToCharArray();
+			mLine = line == null ? mEmptyChars : line.ToCharArray();
 			mLineStr = line;
 			mCurrentPos = 0;
 		}

@@ -6,6 +6,7 @@
 
 using System.Reflection;
 using System;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -73,28 +74,34 @@ namespace FileHelpers
 			return res;
 		}
 
-		protected override string CreateFieldString(object record)
+		protected override void CreateFieldString(StringBuilder sb, object record)
 		{
-			string res;
-			res = base.CreateFieldString(record);
+			string field = base.BaseFieldString(record);
 
-			if (res.Length > this.mFieldLength)
-			{
-				res = res.Substring(0, this.mFieldLength);
-			}
+			if (field.Length > mFieldLength)
+				field = field.Substring(0, mFieldLength);
+				//sb.Length = length + this.mFieldLength;
 
 			if (mAlign.Align == AlignMode.Left)
-				res = res.PadRight(mFieldLength, mAlign.AlignChar);
+			{
+				sb.Append(field);
+				sb.Append(mAlign.AlignChar, mFieldLength - field.Length);
+			}
 			else if (mAlign.Align == AlignMode.Right)
-				res = res.PadLeft(mFieldLength, mAlign.AlignChar);
+			{
+				sb.Append(mAlign.AlignChar, mFieldLength - field.Length);
+				sb.Append(field);
+			}
 			else
 			{
-				int middle = (mFieldLength - res.Length)/2;
-				if (middle > 0)
-					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
-			}
+				int middle = (mFieldLength - field.Length) / 2;
 
-			return res;
+				sb.Append(mAlign.AlignChar, middle);
+				sb.Append(field);
+				sb.Append(mAlign.AlignChar,  mFieldLength - field.Length - middle);
+//				if (middle > 0)
+//					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
+			}
 		}
 
 		#endregion

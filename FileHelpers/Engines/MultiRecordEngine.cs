@@ -81,7 +81,10 @@ namespace FileHelpers
 			for(int i=0; i < mTypes.Length; i++)
 			{
 				if (mTypes[i] == null)
-					throw new BadUsageException("The type at index "+i.ToString() + " is null.");
+					throw new BadUsageException("The type at index "+ i.ToString() + " is null.");
+
+				if (mRecordInfoHash.Contains(mTypes[i]))
+					throw new BadUsageException("The type '"+ mTypes[i].Name + " is already in the engine. You can't pass the same type twice to the constructor.");
 
 				mMultiRecordInfo[i] = new RecordInfo(mTypes[i]); 
 				mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
@@ -577,11 +580,11 @@ namespace FileHelpers
 		private static Type GetFirstType(Type[] types)
 		{
 			if (types == null)
-				throw new ArgumentNullException("A null Type[] is not valid for the MultiRecordEngine.");
+				throw new BadUsageException("A null Type[] is not valid for the MultiRecordEngine.");
 			else if (types.Length == 0)
-				throw new ArgumentException("An empty Type[] is not valid for the MultiRecordEngine.");
+				throw new BadUsageException("An empty Type[] is not valid for the MultiRecordEngine.");
 			else if (types.Length == 1)
-				throw new ArgumentException("A Type[] of one element to use with the MultiRecordEngine. You need 2 or more types, for one type you can use the FileHelperEngine.");
+				throw new BadUsageException("You only provide one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
 			else
 				return types[0];
 		}

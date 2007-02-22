@@ -29,7 +29,7 @@ namespace FileHelpers
 	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
 	internal sealed class RecordInfo
 	{
-		#region Internal Fields
+		#region "  Internal Fields  "
 		
 		internal Type mRecordType;
 		internal FieldBase[] mFields;
@@ -58,7 +58,8 @@ namespace FileHelpers
 		
 		#endregion
 		
-		#region Constructor
+		#region "  Constructor  "
+
 		/// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
 		/// <param name="recordType">The Type of the record class.</param>
 		internal RecordInfo(Type recordType)
@@ -312,8 +313,6 @@ namespace FileHelpers
 		#endregion
 
 		#region CreateRecordObject
-		//TODO: Profile and optimize it !!!
-		//      Something like to catch the constructor and use a delagate or something like Emit.
 		internal object CreateRecordObject()
 		{
 #if NET_2_0
@@ -438,7 +437,7 @@ namespace FileHelpers
 
 			for (int f = 0; f < mFieldCount; f++)
 			{
-				sb.Append(mFields[f].AssignToString(record));
+				mFields[f].AssignToString(sb, record);
 			}
 
 			//writer.WriteLine();

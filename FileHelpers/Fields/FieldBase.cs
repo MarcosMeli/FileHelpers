@@ -6,6 +6,7 @@
 
 using System;
 using System.Reflection;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -76,43 +77,42 @@ namespace FileHelpers
 
 		#endregion
 
+
 		private static char[] WhitespaceChars = new char[] 
 			 { 
 				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
 				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
 			 };
 
+
 		#region "  MustOverride (String Handling)  " 
 
 		protected abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
-		protected virtual string CreateFieldString(object record)
+		protected abstract void CreateFieldString(StringBuilder sb, object record);
+
+		protected string BaseFieldString(object record)
 		{
 			object fieldValue = mFieldInfo.GetValue(record);
-			// Default implementation
 
-			string res;
 			if (mConvertProvider == null)
 			{
 				if (fieldValue == null)
-					res = string.Empty;
+					return string.Empty;
+				else
+					return fieldValue.ToString();
+
 //				else if (mNullValueOnWrite && fieldValue.Equals(mNullValue))
 //					res = string.Empty;
-				else
-					res = fieldValue.ToString();
+
 			}
 			else
 			{
-				res = mConvertProvider.FieldToString(fieldValue);
+				return mConvertProvider.FieldToString(fieldValue);
 			}
-
-			return res;
 		}
 
-		protected virtual int CharsToDiscard()
-		{
-			return 0;
-		}
+		protected int mCharsToDiscard = 0;
 
 		#endregion
 
@@ -134,14 +134,19 @@ namespace FileHelpers
 
 				line.ReLoad(line.mReader.ReadNextLine());
 
-				if (line.mLine == null)
+				if (line.mLineStr == null)
 					throw new BadUsageException("End of stream found parsing the field " + mFieldInfo.Name +
 					                            ". Please check the class record.");
 			}
 
 			ExtractedInfo info = ExtractFieldString(line);
+			if (info.mCustomExtractedString == null)
+				line.mCurrentPos = info.ExtractedTo + 1;
 
-			object val = AssignFromString(info);
+			line.mCurrentPos += mCharsToDiscard; //total;
+
+			return AssignFromString(info);
+
 
 			//-> discard the part that I use
 
@@ -156,18 +161,16 @@ namespace FileHelpers
 //			}
 //			else
 //			{
-				int total;
-				if (info.CharsRemoved >= line.mLine.Length)
-					total = line.mLine.Length;
-				else
-					total = info.CharsRemoved + CharsToDiscard();
+//				int total;
+//				if (info.CharsRemoved >= line.mLine.Length)
+//					total = line.mLine.Length;
+//				else
+//					total = info.CharsRemoved + CharsToDiscard();
 
-				line.mCurrentPos += total;
 				//return buffer.Substring(total);
 //			}
 
 
-			return val;
 		}
 
 		#region "  AssignFromString  " 
@@ -176,7 +179,6 @@ namespace FileHelpers
 		{
 			object val;
 
-			
 				switch (mTrimMode)
 				{
 					case TrimMode.None:
@@ -211,7 +213,7 @@ namespace FileHelpers
 					}
 					else
 					{
-						val = Convert.ChangeType(fieldString, mFieldType, null);
+						val = Convert.ChangeType(fieldString.ExtractedString(), mFieldType, null);
 					}
 				}
 			}
@@ -269,8 +271,6 @@ namespace FileHelpers
 		{
 			object val = null;
 
-			//fieldString = ApplyTrim(fieldString);
-
 			if (fieldValue == null)
 			{
 				if (mNullValue == null)
@@ -310,39 +310,17 @@ namespace FileHelpers
 
 		#endregion
 
-//		private string ApplyTrim(string fieldString)
-//		{
-////			if (fieldString == null)
-////				return string.Empty;
-//
-//			switch (mTrimMode)
-//			{
-//				case TrimMode.Both:
-//					return fieldString.Trim(mTrimChars);
-//
-//				case TrimMode.Left:
-//					return fieldString.TrimStart(mTrimChars);
-//
-//				case TrimMode.Right:
-//					return fieldString.TrimEnd(mTrimChars);
-//			}
-//			return fieldString;
-//		}
 
 		#endregion
 
 		#region "  AssignToString  " 
 
-		internal string AssignToString(object record)
+		internal void AssignToString(StringBuilder sb, object record)
 		{
-			string fieldString = string.Empty;
-
 			if (this.mInNewLine == true)
-				fieldString = StringHelper.NewLine;
+				sb.Append(StringHelper.NewLine);
 
-			fieldString += CreateFieldString(record);
-
-			return fieldString;
+			CreateFieldString(sb, record);
 		}
 
 		#endregion
