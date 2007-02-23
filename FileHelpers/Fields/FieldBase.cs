@@ -89,12 +89,10 @@ namespace FileHelpers
 
 		protected abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
-		protected abstract void CreateFieldString(StringBuilder sb, object record);
+		protected abstract void CreateFieldString(StringBuilder sb, object fieldValue);
 
-		protected string BaseFieldString(object record)
+		protected string BaseFieldString(object fieldValue)
 		{
-			object fieldValue = mFieldInfo.GetValue(record);
-
 			if (mConvertProvider == null)
 			{
 				if (fieldValue == null)
@@ -315,12 +313,12 @@ namespace FileHelpers
 
 		#region "  AssignToString  " 
 
-		internal void AssignToString(StringBuilder sb, object record)
+		internal void AssignToString(StringBuilder sb, object fieldValue)
 		{
 			if (this.mInNewLine == true)
 				sb.Append(StringHelper.NewLine);
 
-			CreateFieldString(sb, record);
+			CreateFieldString(sb, fieldValue);
 		}
 
 		#endregion

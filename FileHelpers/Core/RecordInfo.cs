@@ -66,11 +66,7 @@ namespace FileHelpers
 		{
 			mRecordType = recordType;
 			InitFields();
-			mValues = new object[mFieldCount];
-			
-#if NET_2_0
-			CreateAssingMethods();
-#endif
+		
 		}
 
 		internal bool IsDelimited
@@ -84,16 +80,80 @@ namespace FileHelpers
 
 #if NET_2_0
 
-        private delegate object CreateAndAssign(object[] values);
-        private CreateAndAssign mCreateHandler;
+        private delegate object[] GetAllValuesCallback(object record);
+        private GetAllValuesCallback mGetAllValuesHandler;
+
+        private void CreateGetAllMethod()
+		{
+			if (mGetAllValuesHandler != null)
+				return;
+
+				DynamicMethod dm = new DynamicMethod("_GetAllValues_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,	CallingConventions.Standard, typeof(object[]), new Type[] { typeof(object) }, mRecordType, true);
+
+    ILGenerator generator = dm.GetILGenerator();
+    
+        generator.DeclareLocal(typeof(object[]));
+        generator.DeclareLocal(mRecordType);
+
+        generator.Emit(OpCodes.Ldc_I4, mFieldCount);
+        generator.Emit(OpCodes.Newarr, typeof(object));
+        generator.Emit(OpCodes.Stloc_0);
+
+        generator.Emit(OpCodes.Ldarg_0);
+        generator.Emit(OpCodes.Castclass, mRecordType);
+        generator.Emit(OpCodes.Stloc_1);
+
+
+    for (int i = 0; i < mFieldCount; i++)
+    {
+        FieldBase field = mFields[i];
+
+        generator.Emit(OpCodes.Ldloc_0);
+        generator.Emit(OpCodes.Ldc_I4, i);
+        generator.Emit(OpCodes.Ldloc_1);
+
+        generator.Emit(OpCodes.Ldfld, field.mFieldInfo);
+
+
+        if (field.mFieldType.IsValueType)
+        {
+            generator.Emit(OpCodes.Box, field.mFieldType);
+        }
+
+        generator.Emit(OpCodes.Stelem_Ref);
+        //generator.EmitCall();
+
+    }
+
+    // return the value
+    generator.Emit(OpCodes.Ldloc_0);
+    generator.Emit(OpCodes.Ret);
+
+    mGetAllValuesHandler = (GetAllValuesCallback)dm.CreateDelegate(typeof(GetAllValuesCallback));
+
+		}
+
+
+
+
+
+
+
+
+        private delegate object CreateAndAssignCallback(object[] values);
+        private CreateAndAssignCallback mCreateHandler;
+
+
 
 
 		private void CreateAssingMethods()
 		{
+			if (mCreateHandler != null)
+				return;
+
 				DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
 				//dm.InitLocals = false;
 
-			
     ILGenerator generator = dm.GetILGenerator();
     
     generator.DeclareLocal(mRecordType);
@@ -129,7 +189,7 @@ namespace FileHelpers
     generator.Emit(OpCodes.Ldloc_0);
     generator.Emit(OpCodes.Ret);
 
-    mCreateHandler = (CreateAndAssign)dm.CreateDelegate(typeof(CreateAndAssign));
+    mCreateHandler = (CreateAndAssignCallback)dm.CreateDelegate(typeof(CreateAndAssignCallback));
 
 		}
 
@@ -139,6 +199,9 @@ namespace FileHelpers
 
 		private void CreateFastConstructor()
 		{
+			if (mFastConstructor != null)
+				return;
+
 			DynamicMethod dm = new DynamicMethod("_CreateRecordFast_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
 			
 		    ILGenerator generator = dm.GetILGenerator();
@@ -316,6 +379,8 @@ namespace FileHelpers
 		internal object CreateRecordObject()
 		{
 #if NET_2_0
+			CreateFastConstructor();
+
 			if (mFastConstructor == null)
 				CreateFastConstructor();
 
@@ -327,13 +392,14 @@ namespace FileHelpers
 		#endregion
 
 
-		object[] mValues;
-		
 		#region StringToRecord
 		internal object StringToRecord(LineInfo line)
 		{
 			if (MustIgnoreLine(line.mLineStr))
 				return null;
+
+
+			object[] mValues = new object[mFieldCount];
 
 			// array that holds the fields values
 			
@@ -354,8 +420,10 @@ namespace FileHelpers
 			
 			return record;
 #else
+			CreateAssingMethods();
+
 			// Asign all values via dinamic method that creates an object and assign values
-			return mCreateHandler(mValues);;
+			return mCreateHandler(mValues);
 #endif
 		}
 
@@ -435,12 +503,26 @@ namespace FileHelpers
 			StringBuilder sb = new StringBuilder(mSizeHint);
 			//string res = String.Empty;
 
-			for (int f = 0; f < mFieldCount; f++)
+
+#if NET_1_1 || MINI
+			object[] mValues = new object[mFieldCount];
+			for (int i = 0; i < mFieldCount; i++)
 			{
-				mFields[f].AssignToString(sb, record);
+				mValues[i] = mFields[i].mFieldInfo.GetValue(record);
 			}
 
-			//writer.WriteLine();
+#else
+			CreateGetAllMethod();
+
+			object[] mValues = mGetAllValuesHandler(record);
+#endif
+			 
+
+			for (int f = 0; f < mFieldCount; f++)
+			{
+				mFields[f].AssignToString(sb, mValues[f]);
+			}
+
 			//_BigSize = Math.Max(_BigSize, sb.Length);
 
 			return sb.ToString();

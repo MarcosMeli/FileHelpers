@@ -74,9 +74,9 @@ namespace FileHelpers
 			return res;
 		}
 
-		protected override void CreateFieldString(StringBuilder sb, object record)
+		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
-			string field = base.BaseFieldString(record);
+			string field = base.BaseFieldString(fieldValue);
 
 			if (field.Length > mFieldLength)
 				field = field.Substring(0, mFieldLength);

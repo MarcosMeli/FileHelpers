@@ -147,9 +147,9 @@ namespace FileHelpers
 			return res;
 		}
 
-		protected override void CreateFieldString(StringBuilder sb, object record)
+		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
-			string field = base.BaseFieldString(record);
+			string field = base.BaseFieldString(fieldValue);
 
 			bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine) >= 0;
 

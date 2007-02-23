@@ -100,7 +100,10 @@ namespace FileHelpers
 		public bool StartsWith(string str)
 		{
 			// Returns true if the string begin with str
-			return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.IgnoreCase) == 0;
+			if (mCurrentPos >= mLineStr.Length)
+				return false;
+			else
+				return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.IgnoreCase) == 0;
 		}
 
 		public bool StartsWithTrim(string str)
