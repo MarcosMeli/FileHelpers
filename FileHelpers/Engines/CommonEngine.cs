@@ -62,7 +62,7 @@ namespace FileHelpers
 		/// <returns>The read records.</returns>
 		public static T[] ReadFile<T>(string fileName)
 		{
-			return ReadFile(fileName, int.MaxValue);
+			return ReadFile<T>(fileName, int.MaxValue);
 		}
 
 		/// <summary>
