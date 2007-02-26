@@ -503,14 +503,15 @@ namespace FileHelpersSamples
 			[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
 			public DateTime ReleaseDate;
 
-			public string DownloadUrl;
-			
-			[FieldInNewLine()]
 			[FieldQuoted(MultilineMode.AllowForBoth)]
 			public string Description;
 			
 			[FieldQuoted(MultilineMode.AllowForBoth)]
 			public string History;
+
+			[FieldOptional]
+			public string DownloadUrl;
+
 		}
 
 		public static int CompararVersiones(string ver1, string ver2)

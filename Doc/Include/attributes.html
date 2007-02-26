@@ -37,13 +37,14 @@ bgColor=white leftMargin=0 topMargin=0>
 		</table>
 		</FORM>
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv>
+<tr><td>
         <p>
             <strong>Note:</strong> VB.NET developers browse the <a href="vb_tips.html">Tips for
                 VB.NET</a> first.</p>
         <h2>Attributes List </h2>
     <p>
-        <strong>Attributes for the record mapping class</strong></p>
+        <strong><span style="font-size: 14px">Attributes for the record mapping class</span></strong></p>
+        <div>
         <ul>
           <li><a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>: Indicates a fixed length record file.
             <blockquote>
@@ -61,7 +62,11 @@ bgColor=white leftMargin=0 topMargin=0>
 </pre>
             </blockquote>
           </li>
-          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirst</a>: Indicates the numbers of lines to be <strong>ignored at the begining</strong> of a file or
+        </ul>
+
+</div><ul>
+    <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirst</a>: Indicates the <strong>
+        numbers of lines to be ignored at the begining</strong> of a file or
               stream when the engine read it.<blockquote>
               <pre>[IgnoreFirst(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
@@ -69,12 +74,12 @@ bgColor=white leftMargin=0 topMargin=0>
 
 </pre>
             </blockquote>
-          </li>
+    </li>
 
-          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLast</a>: Indicates the numbers of lines to be <strong>ignored at the end</strong> of a file or stream
+          <li><a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLast</a>: Indicates the <strong>
+        numbers of lines to be ignored at the end</strong> of a file or stream
               when the engine read it.<blockquote>
-              <pre>
-[IgnoreLast(<span class="cs-string">2</span>)] 
+              <pre>[IgnoreLast(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
 { ...
 
@@ -82,19 +87,38 @@ bgColor=white leftMargin=0 topMargin=0>
             </blockquote>
           </li>
           <li><a href="FileHelpers.IgnoreEmptyLinesAttribute.html">IgnoreEmptyLines</a>: Indicates that the empty lines (only contains a NewLine)  must be ignored by the engine.<blockquote>
-              <pre>
-[IgnoreEmptyLines()] 
+              <pre>[IgnoreEmptyLines()] 
 <span class="cs-keyword">public class</span> NotEmptyPlease
 { ...
 
 </pre>
             </blockquote>
+          </li><li><a href="FileHelpers.ConditionalRecordAttribute.html">ConditionalRecord</a>: <img src="new.gif" border="0" /> &nbsp;&nbsp;Allow you to add some conditions to tell the library what records to
+              process or not in a declarative way. using one of the <a href="FileHelpers.RecordCondition.html">
+                  RecordCondition</a> Enum and a string selector. Useful to ignore commented or
+              similar files.<blockquote>
+                  <pre>
+[DelimitedRecord(",")] 
+[ConditionalRecord(<span style="color: #006699">RecordCondition.ExcludeIfBegins</span>, "//")] 
+<span style="color: #000099">public class </span>ConditionalType1 
+{ 
+<span style="color: #006600">// Regular Expressions </span>[DelimitedRecord(",")]
+[ConditionalRecord(<span style="color: #336699">RecordCondition.IncludeIfMatchRegex</span>, ".*abc??")]
+<span style="color: #000099">public class</span> ConditionalType3
+{ 
+
+</pre>
+              </blockquote>
           </li>
 
         </ul>
-        <p><strong>Attributes for the fields inside the class</strong><br/>
-        All the attributes for the Fields begin with [Field.. then you can easy found all of them.
+        <p>
+            <span style="font-size: 14px"><strong>Attributes for the fields inside the class</strong><br/>
+            </span>
         </p>
+    <p>
+        All the attributes for the Fields begin with [Field.. then you can easy found all of them.
+    </p>
         <ul>
           <li><a href="FileHelpers.FieldFixedLengthAttribute.html">FieldFlixedLength</a>: Indicates the length of the record (only valid when the class have a <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>)
             <blockquote>
@@ -125,8 +149,7 @@ You can see also the <a href="example_customconv.html">Custom Converter Example<
           </li>
           <li><a href="FileHelpers.FieldQuotedAttribute.html">FieldQuoted</a>: Indicates that the field must be read and written like a Quoted String. (you can pass the quote char and can set if the quote is optional like the Excel CSV format)
           <blockquote>
-            <pre>
-[FieldQuoted()] // Quoted with "
+            <pre>[FieldQuoted()] // Quoted with "
 <span class="cs-keyword">public string </span>CustomerName
 
 [FieldQuoted('[')] // Quoted between [brakets]
@@ -202,8 +225,6 @@ Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileH
 </table>
 </div>
                     <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
-
-</div>
 </tr>
 <tr>
   <td>

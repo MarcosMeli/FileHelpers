@@ -14,6 +14,8 @@ namespace FileHelpers
 		{
 		}
 
+
+		/// <summary>Indicates the behavior when variable length records are found in a [<see cref="FixedLengthRecordAttribute"/>]. (Note: nothing in common with [FieldOptional])</summary>
 		public FixedMode FixedMode
 		{
 			get

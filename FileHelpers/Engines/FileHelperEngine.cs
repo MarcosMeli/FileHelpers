@@ -108,6 +108,7 @@ namespace FileHelpers
 
 		#region "  ReadStream  "
 
+		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
 		public object[] ReadStream(TextReader reader)

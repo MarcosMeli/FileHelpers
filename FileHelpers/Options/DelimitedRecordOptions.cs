@@ -14,6 +14,9 @@ namespace FileHelpers
 		{
 	}
 		
+		/// <summary>
+		/// The delimiter used to identify each field in the data.
+		/// </summary>
 		public string Delimiter
 		{
 			get

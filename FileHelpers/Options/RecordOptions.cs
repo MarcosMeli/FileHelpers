@@ -16,6 +16,7 @@ namespace FileHelpers
 			mRecordInfo = info;
 		}
 		
+		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines
 		{
 			get { return mRecordInfo.mIgnoreFirst; }
@@ -26,6 +27,7 @@ namespace FileHelpers
 			}
 		}
 
+		/// <summary>Indicates the number of lines at the end of file to be discarded.</summary>
 		public int IgnoreLastLines
 		{
 			get { return mRecordInfo.mIgnoreLast; }
@@ -37,11 +39,14 @@ namespace FileHelpers
 		}
 
 		
+		/// <summary>Indicates that the engine must ignore the empty lines while reading.</summary>
 		public bool IgnoreEmptyLines
 		{
 			get { return mRecordInfo.mIgnoreEmptyLines; }
 			set { mRecordInfo.mIgnoreEmptyLines= value; }
 		}
+
+
 
 		public RecordCondition RecordCondition
 		{

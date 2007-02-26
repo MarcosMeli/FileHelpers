@@ -78,6 +78,12 @@ namespace FileHelpers.Mapping
 			return (object[]) arr.ToArray(mRecordInfo.mRecordType);
 		}
 
+
+		/// <summary>
+		/// Map row to a record.
+		/// </summary>
+		/// <param name="dr">The source DataRow</param>
+		/// <returns>The mapped record contained the values DataRow</returns>
 		public object MapRow2Record(DataRow dr)
 		{
 			object record = mRecordInfo.CreateRecordObject();
