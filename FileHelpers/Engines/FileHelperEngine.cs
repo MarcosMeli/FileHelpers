@@ -498,9 +498,22 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadFileAsDT(string fileName)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadFile(fileName));
+			return ReadFileAsDT(fileName, -1);
 		}
 
+		/// <summary>
+		/// Read the records of the file and fill a DataTable with them
+		/// </summary>
+		/// <param name="fileName">The file name.</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The DataTable with the read records.</returns>
+		public DataTable ReadFileAsDT(string fileName, int maxRecords)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadFile(fileName, maxRecords));
+		}
+
+		
+		
 		/// <summary>
 		/// Read the records of a string and fill a DataTable with them.
 		/// </summary>
@@ -508,7 +521,18 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStringAsDT(string source)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadString(source));
+			return ReadStringAsDT(source, -1);
+		}
+
+		/// <summary>
+		/// Read the records of a string and fill a DataTable with them.
+		/// </summary>
+		/// <param name="source">The source string with the records.</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The DataTable with the read records.</returns>
+		public DataTable ReadStringAsDT(string source, int maxRecords)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadString(source, maxRecords));
 		}
 
 		/// <summary>
@@ -518,7 +542,18 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStreamAsDT(TextReader reader)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadStream(reader));
+			return ReadStreamAsDT(reader, -1);
+		}
+
+		/// <summary>
+		/// Read the records of the stream and fill a DataTable with them
+		/// </summary>
+		/// <param name="reader">The stream with the source records.</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The DataTable with the read records.</returns>
+		public DataTable ReadStreamAsDT(TextReader reader, int maxRecords)
+		{
+			return mRecordInfo.RecordsToDataTable(ReadStream(reader, maxRecords));
 		}
 
 		#endif

@@ -52,6 +52,38 @@ namespace FileHelpers
 			return engine.ReadFile(fileName, maxRecords);
 		}
 
+
+
+
+
+
+		/// <summary>
+		/// Used to read a file as a DataTable without instanciate the engine.<br />
+		/// <b>This is feature limited method try to use the non static methods.</b>
+		/// </summary>
+		/// <param name="recordClass">The record class.</param>
+		/// <param name="fileName">The file name</param>
+		/// <returns>The datatable representing all the read records.</returns>
+		public static DataTable ReadFileAsDT(Type recordClass, string fileName)
+		{
+			return ReadFileAsDT(recordClass, fileName, -1);
+		}
+
+		/// <summary>
+		/// Used to read a file as a DataTable without instanciate the engine.<br />
+		/// <b>This is feature limited method try to use the non static methods.</b>
+		/// </summary>
+		/// <param name="recordClass">The record class.</param>
+		/// <param name="fileName">The file name</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The datatable representing all the read records.</returns>
+		public static DataTable ReadFileAsDT(Type recordClass, string fileName, int maxRecords)
+		{
+			FileHelperEngine engine = new FileHelperEngine(recordClass);
+			return engine.ReadFileAsDT(fileName, maxRecords);
+		}
+
+
 #if NET_2_0
 		/// <summary>
 		/// Used to read a file without instanciate the engine.<br />
@@ -90,8 +122,21 @@ namespace FileHelpers
 		/// <returns>The read records.</returns>
 		public static object[] ReadString(Type recordClass, string input)
 		{
+			return ReadString(recordClass, input, -1);
+		}
+
+		/// <summary>
+		/// Used to read a string without instanciate the engine.<br />
+		/// <b>This is feature limited method try to use the non static methods.</b>
+		/// </summary>
+		/// <param name="recordClass">The record class.</param>
+		/// <param name="input">The input string.</param>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		/// <returns>The read records.</returns>
+		public static object[] ReadString(Type recordClass, string input, int maxRecords)
+		{
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
-			return engine.ReadString(input);
+			return engine.ReadString(input, maxRecords);
 		}
 
 #if NET_2_0
