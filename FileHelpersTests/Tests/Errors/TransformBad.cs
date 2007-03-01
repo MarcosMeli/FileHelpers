@@ -28,11 +28,11 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
+		[ExpectedException(typeof(FileNotFoundException))]
 		public void Transform3()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass3), typeof(ToClass2));
-			link.TransformFile("a","b");
+			link.TransformFile("aaskdhaklhdla","baskdkalsd");
 		}
 
 		[Test]

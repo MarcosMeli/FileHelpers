@@ -48,12 +48,14 @@ namespace FileHelpers
 
 
 
+		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
 		public RecordCondition RecordCondition
 		{
 			get { return mRecordInfo.mRecordCondition; }
 			set { mRecordInfo.mRecordCondition = value; }
 		}
 
+		/// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
 		public string RecordConditionSelector
 		{
 			get { return mRecordInfo.mRecordConditionSelector; }

@@ -67,6 +67,17 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(@"\\s\\                                             ", res[2].CompanyName);
 		}
 
+		[Test]
+		public void TransformRecords()
+		{
+			FileTransformEngine engine = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+			ToClass[] res = (ToClass[]) engine.ReadAndTransformRecords(Common.TestPath("Good\\Transform2.txt"));
+
+			Assert.AreEqual(@"c:\Prueba1\anda ?", res[0].CompanyName);
+			Assert.AreEqual("\"D:\\Glossaries\\O12\"", res[1].CompanyName);
+			Assert.AreEqual(@"\\s\\", res[2].CompanyName);
+		}
+
 
 		[Test]
 		public void CsvToDelimited()
