@@ -13,8 +13,10 @@ namespace FileHelpers
 
 		#region "  Constructor  "
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-		internal EngineBase(Type recordType)
+		internal EngineBase(Type recordType):this(recordType, Encoding.Default)
+		{}
+
+		internal EngineBase(Type recordType, Encoding encoding)
 		{
 			if (recordType == null)
 				throw new BadUsageException("The record type can't be null");
@@ -23,6 +25,7 @@ namespace FileHelpers
 
 			mRecordType = recordType;
 			mRecordInfo = new RecordInfo(recordType);
+			mEncoding = encoding;
 		}
 
 		internal EngineBase(RecordInfo ri)

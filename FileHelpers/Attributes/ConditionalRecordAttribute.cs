@@ -9,7 +9,7 @@ using System;
 namespace FileHelpers
 {
 
-	/// <summary>Allow to declarative show what records must be included or excluded</summary>
+	/// <summary>Allow to declarative set what records must be included or excluded when reading.</summary>
 	/// <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more clear info and examples of each one.</remarks>
 	/// <seealso href="attributes.html">Attributes List</seealso>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>

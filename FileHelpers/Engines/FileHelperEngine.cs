@@ -43,14 +43,27 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 #if ! GENERICS
 		public FileHelperEngine(Type recordType)
-			: base(recordType)
+			: this(recordType, Encoding.Default)
 #else
-		public FileHelperEngine() 
-			: base(typeof(T))
+			public FileHelperEngine() 
+				: this(Encoding.Default)
+
+#endif
+		{}
+
+		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+		/// <param name="encoding">The Encoding used by the engine.</param>
+#if ! GENERICS
+		public FileHelperEngine(Type recordType, Encoding encoding)
+			: base(recordType, encoding)
+#else
+		public FileHelperEngine(Encoding encoding) 
+			: base(typeof(T), encoding)
 #endif
 		{
 			CreateRecordOptions();
 		}
+
 
 		private void CreateRecordOptions()
 		{
