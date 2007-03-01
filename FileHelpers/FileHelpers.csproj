@@ -354,6 +354,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Engines\FileTransformEngineG.cs"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Engines\FixedFileEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

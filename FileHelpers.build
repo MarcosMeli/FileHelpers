@@ -47,6 +47,9 @@
 
        <delete file="FileHelpers\MasterDetail\MasterDetailsG.cs" />
        <copy file="FileHelpers\MasterDetail\MasterDetails.cs" tofile="FileHelpers\MasterDetail\MasterDetailsG.cs" />
+
+       <delete file="FileHelpers\Engines\FileTransformEngineG.cs" />
+       <copy file="FileHelpers\Engines\FileTransformEngine.cs" tofile="FileHelpers\Engines\FileTransformEngineG.cs" />
        
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
@@ -73,6 +76,11 @@
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
+
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="Libs" failonerror="false" />
 
        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.sln" workingdir="." failonerror="true" />
 

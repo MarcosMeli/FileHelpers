@@ -11,6 +11,8 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Text;
+
 #if GENERICS
 using System.Collections.Generic;
 #endif
@@ -34,6 +36,16 @@ namespace FileHelpers
 		public FileHelperAsyncEngine(Type recordType) : base(recordType)
 #else
 		public FileHelperAsyncEngine() : base(typeof(T))
+#endif
+		{
+		}
+
+		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+		/// <param name="encoding">The encoding used by the Engine.</param>
+#if ! GENERICS
+		public FileHelperAsyncEngine(Type recordType, Encoding encoding) : base(recordType, encoding)
+#else
+		public FileHelperAsyncEngine() : base(typeof(T), encoding)
 #endif
 		{
 		}
