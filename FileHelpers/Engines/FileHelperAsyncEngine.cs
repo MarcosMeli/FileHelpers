@@ -33,9 +33,11 @@ namespace FileHelpers
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
 #if ! GENERICS
-		public FileHelperAsyncEngine(Type recordType) : base(recordType)
+		public FileHelperAsyncEngine(Type recordType) 
+			: base(recordType)
 #else
-		public FileHelperAsyncEngine() : base(typeof(T))
+		public FileHelperAsyncEngine() 
+			: base(typeof(T))
 #endif
 		{
 		}
@@ -43,9 +45,11 @@ namespace FileHelpers
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
 		/// <param name="encoding">The encoding used by the Engine.</param>
 #if ! GENERICS
-		public FileHelperAsyncEngine(Type recordType, Encoding encoding) : base(recordType, encoding)
+		public FileHelperAsyncEngine(Type recordType, Encoding encoding)
+			: base(recordType, encoding)
 #else
-		public FileHelperAsyncEngine() : base(typeof(T), encoding)
+		public FileHelperAsyncEngine(Encoding encoding)
+			: base(typeof(T), encoding)
 #endif
 		{
 		}

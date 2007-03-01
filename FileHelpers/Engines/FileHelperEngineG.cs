@@ -45,8 +45,8 @@ namespace FileHelpers
 		public FileHelperEngine(Type recordType)
 			: this(recordType, Encoding.Default)
 #else
-			public FileHelperEngine() 
-				: this(Encoding.Default)
+		public FileHelperEngine() 
+			: this(Encoding.Default)
 
 #endif
 		{}

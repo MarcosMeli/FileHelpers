@@ -42,7 +42,7 @@ namespace FileHelpers
 		public FileTransformEngine(Type sourceType, Type destType)
 		{
 #else
-		public FileTransformEngine<Source, Destination>()
+		public FileTransformEngine()
 		{
 			Type sourceType = typeof(Source);
 			Type destType = typeof(Destination);
@@ -159,7 +159,11 @@ namespace FileHelpers
 			ArrayList res = new ArrayList();
 
 			engine.BeginReadFile(sourceFile);
+#if ! GENERICS
 			foreach (object record in engine)
+#else
+			foreach (Source record in engine)
+#endif
 			{
 				res.Add(CoreTransformOneRecord(record, mConvert1to2));
 			}
@@ -174,23 +178,25 @@ namespace FileHelpers
 
 		#region "  Transform Internal Methods  "
 
-#if ! GENERICS
-		private object[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
-#else
-		private Destination[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
-#endif
-		{
-			FileHelperEngine sourceEngine = new FileHelperEngine(sourceType);
-			FileHelperEngine destEngine = new FileHelperEngine(destType);
 
-			sourceEngine.Encoding = mSourceEncoding;
-			destEngine.Encoding = mDestinationEncoding;
 			
 #if ! GENERICS
-			object[] source = sourceEngine.ReadStream(sourceFile);
+        private object[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
+		{
+
+            FileHelperEngine sourceEngine = new FileHelperEngine(sourceType, mSourceEncoding);
+			FileHelperEngine destEngine = new FileHelperEngine(destType, mDestinationEncoding);
+
+            object[] source = sourceEngine.ReadStream(sourceFile);
 			object[] transformed = CoreTransformRecords(source, method);
 #else
-			Source[] source = sourceEngine.ReadStream(sourceFile);
+        private Destination[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
+        {
+
+            FileHelperEngine<Source> sourceEngine = new FileHelperEngine<Source>(mSourceEncoding);
+            FileHelperEngine<Destination> destEngine = new FileHelperEngine<Destination>(mDestinationEncoding);
+
+            Source[] source = sourceEngine.ReadStream(sourceFile);
 			Destination[] transformed = CoreTransformRecords(source, method);
 #endif 
 
