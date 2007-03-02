@@ -98,14 +98,14 @@ namespace FileHelpers
 
 #if NET_1_1
 		
-        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public event BeforeReadRecordHandler BeforeReadRecord;
-        /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public event AfterReadRecordHandler AfterReadRecord;
-        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public event BeforeWriteRecordHandler BeforeWriteRecord;
-        /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public event AfterWriteRecordHandler AfterWriteRecord;
+		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
+		public event BeforeReadRecordHandler BeforeReadRecord;
+		/// <summary>Called in read operations just after the record was created from a record string.</summary>
+		public event AfterReadRecordHandler AfterReadRecord;
+		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+		public event BeforeWriteRecordHandler BeforeWriteRecord;
+		/// <summary>Called in write operations just after the record was converted to a string.</summary>
+		public event AfterWriteRecordHandler AfterWriteRecord;
 
 		private bool OnBeforeReadRecord(string line)
 		{
@@ -289,9 +289,9 @@ namespace FileHelpers
 			completeLine = freader.ReadNextLine();
 			currentLine = completeLine;
 
-			#if !MINI
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
-			#endif
+#if !MINI
+			ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+#endif
 			int currentRecord = 0;
 
 			if (mMultiRecordInfo[0].mIgnoreFirst > 0)
@@ -307,7 +307,7 @@ namespace FileHelpers
 
 			bool byPass = false;
 
-//			MasterDetails record = null;
+			//			MasterDetails record = null;
 			ArrayList tmpDetails = new ArrayList();
 
 			LineInfo line = new LineInfo(currentLine);
@@ -323,11 +323,11 @@ namespace FileHelpers
 					
 					line.ReLoad(currentLine);
 
-                    bool skip = false;
-					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-                        skip = OnBeforeReadRecord(currentLine);
-					#endif
+					bool skip = false;
+#if !MINI
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+					skip = OnBeforeReadRecord(currentLine);
+#endif
 
 					Type currType = mRecordSelector(this, currentLine);
 
@@ -335,9 +335,9 @@ namespace FileHelpers
 					{
 						RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
 
-                        if (skip == false)
-                        {
-                            object record = info.StringToRecord(line);
+						if (skip == false)
+						{
+							object record = info.StringToRecord(line);
 
 #if !MINI
 							skip = OnAfterReadRecord(currentLine, record);
@@ -346,7 +346,7 @@ namespace FileHelpers
 							if (skip == false && record != null)
 								resArray.Add(record);
 
-                        }
+						}
 
 					}
 
@@ -364,7 +364,7 @@ namespace FileHelpers
 							ErrorInfo err = new ErrorInfo();
 							err.mLineNumber = freader.LineNumber;
 							err.mExceptionInfo = ex;
-//							err.mColumnNumber = mColumnNum;
+							//							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
 
 							mErrorManager.AddError(err);
@@ -466,10 +466,10 @@ namespace FileHelpers
 				max = Math.Min(records.Length, maxRecords);
 
 
-			#if !MINI
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+#if !MINI
+			ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
                 
-			#endif
+#endif
 
 			for (int i = 0; i < max; i++)
 			{
@@ -478,25 +478,25 @@ namespace FileHelpers
 					if (records[i] == null)
 						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
 
-                    bool skip = false;
-					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
-                        skip = OnBeforeWriteRecord(records[i]);
-					#endif
+					bool skip = false;
+#if !MINI
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
+					skip = OnBeforeWriteRecord(records[i]);
+#endif
 
 					RecordInfo info = (RecordInfo) mRecordInfoHash[records[i].GetType()];
 
 					if (info == null)
-						throw new BadUsageException("The record at index " + i.ToString() + " is of type '"+records[i].GetType().Name+"' and you don't add it in the constructor.");
+						throw new BadUsageException("The record at index " + i.ToString() + " is of type '"+records[i].GetType().Name+"' and the engine dont handle this type. You can add it to the constructor.");
 
-                    if (skip == false)
-                    {
-                        currentLine = info.RecordToString(records[i]);
+					if (skip == false)
+					{
+						currentLine = info.RecordToString(records[i]);
 #if !MINI
-                        currentLine = OnAfterWriteRecord(currentLine, records[i]);
+						currentLine = OnAfterWriteRecord(currentLine, records[i]);
 #endif
-                        writer.WriteLine(currentLine);
-                    }
+						writer.WriteLine(currentLine);
+					}
 
 				}
 				catch (Exception ex)
@@ -511,7 +511,7 @@ namespace FileHelpers
 							ErrorInfo err = new ErrorInfo();
 							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
-//							err.mColumnNumber = mColumnNum;
+							//							err.mColumnNumber = mColumnNum;
 							err.mRecordString = currentLine;
 							mErrorManager.AddError(err);
 							break;
@@ -593,6 +593,7 @@ namespace FileHelpers
 		//      ASYNC METHODS !!!!!!!
 		
 		ForwardReader mAsyncReader;
+		TextWriter mAsyncWriter;
 
 		#region "  LastRecord  "
 
@@ -681,14 +682,32 @@ namespace FileHelpers
 				mAsyncReader = null;
 			}
 			catch
+			{}
+
+			try
 			{
+				if (mAsyncWriter != null)
+				{
+					if (mFooterText != null && mFooterText != string.Empty)
+						if (mFooterText.EndsWith(StringHelper.NewLine))
+							mAsyncWriter.Write(mFooterText);
+						else
+							mAsyncWriter.WriteLine(mFooterText);
+
+					mAsyncWriter.Close();
+					mAsyncWriter = null;
+				}
+
 			}
+			catch
+			{}
+
 		}
 
 		#endregion
 		
 		
-// DIFFERENT FROM THE ASYNC ENGINE
+		// DIFFERENT FROM THE ASYNC ENGINE
 		
 		#region "  ReadNext  "
 
@@ -873,13 +892,189 @@ namespace FileHelpers
 		}
  		
 		/// <summary>Destructor</summary>
-#if ! GENERICS
 		~MultiRecordEngine()
-#else
-		~FileHelperAsyncEngine<T>
-#endif
 		{
 			Close();
+		}
+
+		#endregion
+
+
+		#region "  WriteNext  "
+		/// <summary>Write the next record to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.</summary>
+		/// <param name="record">The record to write.</param>
+		public void WriteNext(object record)
+		{
+			if (mAsyncWriter == null)
+				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+
+			if (record == null)
+				throw new BadUsageException("The record to write can´t be null.");
+
+			WriteRecord(record);
+		}
+		
+		/// <summary>Write the nexts records to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.</summary>
+		/// <param name="records">The records to write.</param>
+		public void WriteNexts(IList records)
+		{
+			if (mAsyncWriter == null)
+				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+
+			if (records == null)
+				throw new ArgumentNullException("The record to write can´t be null.");
+
+			if (records.Count == 0)
+				return;
+
+			int nro = 0;
+			
+			foreach (object rec in records)
+			{
+				nro++;
+
+				if (rec == null)
+					throw new BadUsageException("The record at index " + nro.ToString() + " is null.");
+
+				WriteRecord(rec);
+			}
+		}
+
+
+
+
+
+
+
+		private void WriteRecord(object record)
+		{
+			string currentLine = null;
+
+			try
+			{
+				bool skip = false;
+//#if !MINI
+//				ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
+//				skip = OnBeforeWriteRecord(records[i]);
+//#endif
+
+				RecordInfo info = (RecordInfo) mRecordInfoHash[record.GetType()];
+
+				if (info == null)
+					throw new BadUsageException("A record is of type '" + record.GetType().Name+ "' and the engine dont handle this type. You can add it to the constructor.");
+
+				if (skip == false)
+				{
+					currentLine = info.RecordToString(record);
+					mAsyncWriter.WriteLine(currentLine);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				switch (mErrorManager.ErrorMode)
+				{
+					case ErrorMode.ThrowException:
+						throw;
+					case ErrorMode.IgnoreAndContinue:
+						break;
+					case ErrorMode.SaveAndContinue:
+						ErrorInfo err = new ErrorInfo();
+						err.mLineNumber = mLineNumber;
+						err.mExceptionInfo = ex;
+						//							err.mColumnNumber = mColumnNum;
+						err.mRecordString = currentLine;
+						mErrorManager.AddError(err);
+						break;
+				}
+			}
+
+
+
+			try
+			{
+				mLineNumber++;
+				mTotalRecords++;
+
+				currentLine = mRecordInfo.RecordToString(record);
+				mAsyncWriter.WriteLine(currentLine);
+			}
+			catch (Exception ex)
+			{
+				switch (mErrorManager.ErrorMode)
+				{
+					case ErrorMode.ThrowException:
+						throw;
+					case ErrorMode.IgnoreAndContinue:
+						break;
+					case ErrorMode.SaveAndContinue:
+						ErrorInfo err = new ErrorInfo();
+						err.mLineNumber = mLineNumber;
+						err.mExceptionInfo = ex;
+						//							err.mColumnNumber = mColumnNum;
+						err.mRecordString = currentLine;
+						mErrorManager.AddError(err);
+						break;
+				}
+			}
+
+		}
+
+		#endregion
+
+
+
+
+		#region "  BeginWriteStream"
+
+		///	<summary>Set the stream to be used in the <see cref="WriteNext" /> operation.</summary>
+		///	<remarks><para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		///	<param name="writer">To stream to writes to.</param>
+		public void BeginWriteStream(TextWriter writer)
+		{
+			if (writer == null)
+				throw new ArgumentException("writer", "The TextWriter can´t be null.");
+
+			ResetFields();
+			mAsyncWriter = writer;
+			WriteHeader();
+		}
+
+		private void WriteHeader()
+		{
+			if (mHeaderText != null && mHeaderText != string.Empty)
+				if (mHeaderText.EndsWith(StringHelper.NewLine))
+					mAsyncWriter.Write(mHeaderText);
+				else
+					mAsyncWriter.WriteLine(mHeaderText);
+		}
+
+		#endregion
+
+		#region "  BeginWriteFile  "
+
+		///	<summary>Open a file for write operations. If exist the engine override it. You can use <see cref="WriteNext"/> or <see cref="WriteNexts"/> to write records.</summary>
+		///	<remarks><para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		/// <param name="fileName">The file path to be opened for write.</param>
+		public void BeginWriteFile(string fileName)
+		{
+			BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+		}
+
+		#endregion
+
+
+		#region "  BeginappendToFile  "
+
+		///	<summary>Open a file to be appended at the end.</summary>
+		///	<remarks><para>This method open and seek to the end the file.</para>
+		///	<para>When you finish to append to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		///	<param name="fileName">The file path to be opened to write at the end.</param>
+		public void BeginAppendToFile(string fileName)
+		{
+			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
+			mHeaderText = String.Empty;
+			mFooterText = String.Empty;
 		}
 
 		#endregion

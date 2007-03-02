@@ -60,7 +60,6 @@
 		<para>When you stop to read the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="reader">The TextReader of the stream.</param>
-		<returns>True if the stream is succefully opened. False otherway.</returns>
 		<include file='Examples.xml' path='doc/examples/ReadAsync/*'/>
 	</BeginReadStream>
 
@@ -108,18 +107,16 @@
 		<para>When you finish to append to the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="fileName">The file path to be opened to write at the end.</param>
-		<returns>True if the operation is successful. False otherwise.</returns>
 	</BeginAppendToFile>
 
 	<BeginWriteFile>
 		<summary>
-		Open a file to write it. If exist override it.
+		Open a file to write it. If exist the engine override it
 		</summary>
 		<remarks>
 		<para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="fileName">The file path to be opened to write.</param>
-		<returns>True if the operation is successful. False otherwise.</returns>
 		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
 	</BeginWriteFile>
 
@@ -131,7 +128,6 @@
 		<para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="writer">To stream to writes to.</param>
-		<returns>True if the operation is successful. False otherwise.</returns>
 		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
 	</BeginWriteStream>
 
