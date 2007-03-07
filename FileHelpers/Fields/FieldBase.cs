@@ -38,6 +38,9 @@ namespace FileHelpers
 		internal object mNullValue = null;
 		//internal bool mNullValueOnWrite = false;
 
+#if NET_2_0
+		private bool mIsNullableType = false;
+#endif
 		#endregion
 
 		#region "  Constructor  " 
@@ -73,6 +76,13 @@ namespace FileHelpers
 						                            mFieldType.Name);
 				}
 			}
+
+
+#if NET_2_0
+			mIsNullableType = mFieldType.IsValueType &&
+									mFieldType.IsGenericType && 
+									mFieldType.GetGenericTypeDefinition() == typeof(Nullable<>);
+#endif
 		}
 
 		#endregion
@@ -253,8 +263,7 @@ namespace FileHelpers
 				{
 
 #if NET_2_0
-				   if ( mFieldType.IsGenericType && 
-						mFieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
+				   if ( mIsNullable )
 						return null;
 						
 					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
