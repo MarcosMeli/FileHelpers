@@ -52,7 +52,7 @@ namespace FileHelpers.DataLink
 		private string mSheetName = String.Empty;
 		private string mFileName = String.Empty;
 
-        private string mConnectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source={0};Extended Properties=\"Excel 8.0;Hdr=YES;\"";
+        private static string mConnectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source={0};Extended Properties=\"Excel 8.0;Hdr=YES;\"";
 
 		private int mStartRow = 1;
 		private int mStartColumn = 1;
@@ -178,19 +178,10 @@ namespace FileHelpers.DataLink
 			if (this.mSheetName == null || this.mSheetName == string.Empty)
             {
 
-#if NET_2_0
-                DataTable dt = mCnExcel.GetSchema("Tables");
-#else
-                DataTable dt = mCnExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-#endif
-                
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    this.mSheetName = dt.Rows[0]["TABLE_NAME"].ToString();
-                }
-                else
-                    throw new BadUsageException("A Valid sheet was not found in the workbook.");
-            }
+string sheet;
+            	sheet = GetFirstSheet(mCnExcel);
+            	this.mSheetName = sheet;
+			}
 
 			try
 			{
@@ -207,6 +198,20 @@ namespace FileHelpers.DataLink
 				throw new BadUsageException("The sheet '" + mSheetName + "' was not found in the workbook.");
 			}
 
+		}
+
+		private static string GetFirstSheet(OleDbConnection conn)
+		{
+#if NET_2_0
+			DataTable dt = conn.GetSchema("Tables");
+#else
+			DataTable dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+#endif
+	
+			if (dt != null && dt.Rows.Count > 0)
+				return dt.Rows[0]["TABLE_NAME"].ToString();
+			else
+				throw new BadUsageException("A Valid sheet was not found in the workbook.");
 		}
 
 		#endregion
@@ -526,5 +531,31 @@ namespace FileHelpers.DataLink
         }
 
         #endregion
+
+
+		public static DataTable ExtractDataTable(string file, int row, int col)
+		{
+
+			OleDbConnection connExcel;
+			//private OleDbDataAdapter mDaExcel;
+				
+			connExcel= new OleDbConnection(String.Format(mConnectionString, file));
+			connExcel.Open();
+			DataTable res = new DataTable();
+
+			string sheetName = GetFirstSheet(connExcel);
+
+			string sheet = sheetName + (sheetName.EndsWith("$") ? "" : "$") ;
+			string command = String.Format("SELECT * FROM [{0}]", sheet);
+
+			OleDbCommand cm = new OleDbCommand(command, connExcel);
+			OleDbDataAdapter da = new OleDbDataAdapter(cm);
+			da.Fill(res);
+
+			connExcel.Close();
+			return res;
+
+		}
+
     }
 }

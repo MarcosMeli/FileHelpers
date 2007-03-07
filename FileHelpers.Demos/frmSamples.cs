@@ -490,8 +490,9 @@ namespace FileHelpersSamples
 				else
 					picNewVersion.Visible = true;
 			}			
-			catch
+			catch(Exception ex)
 			{
+				MessageBox.Show(ex.ToString());
 			}
 		}
 
@@ -503,14 +504,15 @@ namespace FileHelpersSamples
 			[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
 			public DateTime ReleaseDate;
 
+			public string DownloadUrl;
+
+			[FieldInNewLine]
 			[FieldQuoted(MultilineMode.AllowForBoth)]
 			public string Description;
 			
 			[FieldQuoted(MultilineMode.AllowForBoth)]
 			public string History;
 
-			[FieldOptional]
-			public string DownloadUrl;
 
 		}
 
