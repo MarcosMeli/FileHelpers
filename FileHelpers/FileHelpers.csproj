@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
     >
@@ -355,6 +355,7 @@
                 />
                 <File
                     RelPath = "Engines\FileTransformEngineG.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
@@ -469,6 +470,16 @@
                 />
                 <File
                     RelPath = "Events\WriteEventArgs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Excel\ExcelHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Excel\ExcelReader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

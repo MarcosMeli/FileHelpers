@@ -250,9 +250,24 @@ namespace FileHelpers
 			if (mNullValue == null)
 			{
 				if (mFieldType.IsValueType)
+				{
+
+#if NET_2_0
+				   if ( mFieldType.IsGenericType && 
+						mFieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
+						return null;
+						
 					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
-					                            mFieldInfo.DeclaringType.Name +
-					                            "'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
+						mFieldInfo.DeclaringType.Name +
+						"'. You must specify a FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
+#else
+					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
+						mFieldInfo.DeclaringType.Name +
+						"'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
+						
+#endif
+
+				}
 				else
 					val = null;
 			}
