@@ -256,14 +256,13 @@ namespace FileHelpers
 
 		private object GetNullValue()
 		{
-			object val;
 			if (mNullValue == null)
 			{
 				if (mFieldType.IsValueType)
 				{
 
 #if NET_2_0
-				   if ( mIsNullable )
+				   if ( mIsNullableType )
 						return null;
 						
 					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
@@ -278,11 +277,10 @@ namespace FileHelpers
 
 				}
 				else
-					val = null;
+					return null;
 			}
 			else
-				val = mNullValue;
-			return val;
+				return mNullValue;
 		}
 
 		#endregion

@@ -668,6 +668,18 @@ namespace FileHelpers
 
 		#endregion
 		
+
+		/// <summary>
+		/// Save all the buffered data for write to the disk. 
+		/// Useful to long opened async engines that wants to save pending values or for engines used for logging.
+		/// </summary>
+		public void Flush()
+		{
+			if (mAsyncWriter != null)
+				mAsyncWriter.Flush();
+		}
+
+
 		#region "  Close  "
 		/// <summary>
 		/// Close the underlining Readers and Writers. (if any)

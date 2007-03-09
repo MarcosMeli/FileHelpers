@@ -189,7 +189,7 @@
        
    </target>
 
-   <target name="genrelease" depends="all">
+   <target name="genrelease" depends="package">
 
 
 
@@ -212,6 +212,7 @@
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\FileHelpers.Tests.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent)&quot; &quot;BeforeEvent&quot;" workingdir="Libs" failonerror="false" />
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new AfterReadRecordHandler(AfterEvent)&quot; &quot;AfterEvent&quot;" workingdir="Libs" failonerror="false" />
