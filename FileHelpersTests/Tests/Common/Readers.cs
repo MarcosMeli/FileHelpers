@@ -80,6 +80,7 @@ namespace FileHelpersTests.CommonTests
 
 			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
 
+			asyncEngine.Close();
 		}
 
 		[Test]
@@ -101,6 +102,8 @@ namespace FileHelpersTests.CommonTests
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
+
+			asyncEngine.Close();
 		}
 
 
@@ -124,6 +127,8 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(4, asyncEngine.TotalRecords);
 			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
 
+			asyncEngine.Close();
+
 		}
 
 		[Test]
@@ -144,6 +149,7 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(4, asyncEngine.TotalRecords);
 			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
 
+			asyncEngine.Close();
 		}
 
 		[Test]
@@ -156,6 +162,7 @@ namespace FileHelpersTests.CommonTests
 			{
 				rec1.ToString();
 			}
+			asyncEngine.Close();
 		}
 
 		[Test]
@@ -177,6 +184,7 @@ namespace FileHelpersTests.CommonTests
 
 			Assert.AreEqual(4, asyncEngine.TotalRecords);
 			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
+			asyncEngine.Close();
 		}
 
 		[Test]
@@ -187,6 +195,8 @@ namespace FileHelpersTests.CommonTests
 			
 			asyncEngine.ReadNext();
 			asyncEngine.ReadNext();
+
+			asyncEngine.Close();
 		}
 		
 		[Test]

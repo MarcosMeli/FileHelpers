@@ -228,6 +228,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\InheritedTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\InNewLine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -294,6 +299,7 @@
                 />
                 <File
                     RelPath = "Tests\Common\ReadersGeneric.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File

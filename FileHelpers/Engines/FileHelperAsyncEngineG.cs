@@ -273,6 +273,16 @@ namespace FileHelpers
 
 		#region "  Close  "
 
+		/// <summary>
+		/// Save all the buffered data for write to the disk. 
+		/// Useful to long opened async engines that wants to save pending values or for engines used for logging.
+		/// </summary>
+		public void Flush()
+		{
+			if (mAsyncWriter != null)
+				mAsyncWriter.Flush();
+		}
+		
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
 		public void Close()
 		{

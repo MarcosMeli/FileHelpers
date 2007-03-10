@@ -16,7 +16,6 @@ using System.Text;
 namespace FileHelpers.MasterDetail
 {
 
-
 	/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
 #if ! GENERICS

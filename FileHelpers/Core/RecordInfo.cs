@@ -293,28 +293,15 @@ namespace FileHelpers
 
 			// Create fields
 
-			FieldInfo[] fields;
-			fields = mRecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			ArrayList fields = new ArrayList();
+			RecursiveGetFields(fields, mRecordType, recordAttribute);
 
-			// Add the inherited fields at the end 
-			ArrayList curFields = new ArrayList(fields.Length);
-			ArrayList inheritFields = new ArrayList(fields.Length);
-			for(int i = 0; i < fields.Length; i++)
-				if (fields[i].DeclaringType == mRecordType)
-					curFields.Add(fields[i]);
-				else
-					inheritFields.Add(fields[i]);
-			
-			inheritFields.AddRange(curFields);
-
-			fields = (FieldInfo[]) inheritFields.ToArray(typeof (FieldInfo));
-			
-			mFields = CreateFields(fields, recordAttribute);
+			mFields = CreateCoreFields(fields, recordAttribute);
 			mFieldCount = mFields.Length;
 			
 			if (recordAttribute is FixedLengthRecordAttribute)
 			{
-				//Defines the initial size of the StringBuilder
+				// Defines the initial size of the StringBuilder
 				mSizeHint = 0;
 				for(int i = 0; i < mFieldCount; i++)
 					mSizeHint += ((FixedLengthField) mFields[i]).mFieldLength;
@@ -325,18 +312,27 @@ namespace FileHelpers
 				throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
 
 		}
+
+		private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
+		{
+			if (currentType.BaseType != null)
+				RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
+
+			fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+		}
+
 		#endregion
 
 		#region CreateFields
 
-		private static FieldBase[] CreateFields(FieldInfo[] fields, TypedRecordAttribute recordAttribute)
+		private static FieldBase[] CreateCoreFields(ArrayList fields, TypedRecordAttribute recordAttribute)
 		{
 			FieldBase curField;
 			ArrayList arr = new ArrayList();
 			bool someOptional = false;
-			for (int i = 0; i < fields.Length; i++)
+			for (int i = 0; i < fields.Count; i++)
 			{
-				FieldInfo fieldInfo = fields[i];
+				FieldInfo fieldInfo = (FieldInfo) fields[i];
 
 				curField = FieldFactory.CreateField(fieldInfo, recordAttribute, someOptional);
 
