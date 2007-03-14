@@ -196,7 +196,7 @@ namespace FileHelpers.WizardApp
 
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"mailto:marcosdotnet@yahoo.com.ar?subject=FileHelpersFeedback\"");
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"mailto:marcos@filehelpers.com?subject=FileHelpersFeedback\"");
 			//info.CreateNoWindow = false;
 			//info.UseShellExecute = true;
 			Process.Start(info);

@@ -37,7 +37,7 @@
 
 I love to hear feedback so feel free to contact me at 
 
-   marcosdotnet@yahoo.com.ar
+   marcos@filehelpers.com
    
 and tell me wherever do you want, if you want to help, 
 drop me a line with the parts of the library in wich you want

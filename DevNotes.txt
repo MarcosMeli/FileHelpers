@@ -38,7 +38,7 @@
 
  If you find that there is a feature that I must include, or you have a new idea 
  (for the API, Source Code or Examples), only let me know, sending an e-mail 
- to marcosdotnet@yahoo.com.ar or entering the FileHelpers Forums at
+ to marcos@filehelpers.com or entering the FileHelpers Forums at
 
   
          http://www.filehelpers.com/forums/
