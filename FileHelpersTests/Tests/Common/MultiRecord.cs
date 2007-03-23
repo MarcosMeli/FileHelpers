@@ -49,6 +49,35 @@ namespace FileHelpersTests
 			Assert.AreEqual(typeof(SampleType), res[5].GetType());
 		}
 
+
+		[Test]
+		public void MultpleRecordsWriteAsync()
+		{
+			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
+
+			object[] records = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+
+			engine.BeginWriteFile("tempoMulti.txt");
+			foreach (object o in records)
+			{
+				engine.WriteNext(o);
+			}
+			engine.Close();
+			File.Delete("tempoMulti.txt");
+
+
+			object[] res = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+
+			Assert.AreEqual(12, res.Length);
+			Assert.AreEqual(12, engine.TotalRecords);
+
+			Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+			Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+			Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+			Assert.AreEqual(typeof(SampleType), res[5].GetType());
+		}
+
+
 		[Test]
 		[ExpectedException(typeof(FileHelperException))]
 		public void MultpleRecordsFileAsyncBad()

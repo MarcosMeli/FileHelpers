@@ -970,6 +970,9 @@ namespace FileHelpers
 //				skip = OnBeforeWriteRecord(records[i]);
 //#endif
 
+				mLineNumber++;
+				mTotalRecords++;
+
 				RecordInfo info = (RecordInfo) mRecordInfoHash[record.GetType()];
 
 				if (info == null)
@@ -1001,34 +1004,6 @@ namespace FileHelpers
 				}
 			}
 
-
-
-			try
-			{
-				mLineNumber++;
-				mTotalRecords++;
-
-				currentLine = mRecordInfo.RecordToString(record);
-				mAsyncWriter.WriteLine(currentLine);
-			}
-			catch (Exception ex)
-			{
-				switch (mErrorManager.ErrorMode)
-				{
-					case ErrorMode.ThrowException:
-						throw;
-					case ErrorMode.IgnoreAndContinue:
-						break;
-					case ErrorMode.SaveAndContinue:
-						ErrorInfo err = new ErrorInfo();
-						err.mLineNumber = mLineNumber;
-						err.mExceptionInfo = ex;
-						//							err.mColumnNumber = mColumnNum;
-						err.mRecordString = currentLine;
-						mErrorManager.AddError(err);
-						break;
-				}
-			}
 
 		}
 

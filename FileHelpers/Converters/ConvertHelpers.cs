@@ -146,7 +146,7 @@ namespace FileHelpers
 
 		#region "  Convert Classes  "
 
-		internal class SByteConverter : ConverterBase
+		internal sealed class SByteConverter : ConverterBase
 		{
 			public override object StringToField(string from)
 			{
@@ -169,7 +169,7 @@ namespace FileHelpers
 			}
 		}
 
-		internal class Int16Converter : ConverterBase
+		internal sealed class Int16Converter : ConverterBase
 		{
 			public override object StringToField(string from)
 			{
@@ -192,7 +192,7 @@ namespace FileHelpers
 			}
 		}
 
-		internal class Int32Converter : ConverterBase
+		internal sealed class Int32Converter : ConverterBase
 		{
 			public override object StringToField(string from)
 			{
@@ -216,7 +216,7 @@ namespace FileHelpers
 		}
 
 
-		internal class Int64Converter : ConverterBase
+		internal sealed class Int64Converter : ConverterBase
 		{
 			public override object StringToField(string from)
 			{
@@ -293,7 +293,7 @@ namespace FileHelpers
 
 		#region "  Convert Classes  "
 
-		internal class DecimalConverter : ConverterBase
+		internal sealed class DecimalConverter : ConverterBase
 		{
 			CultureInfo ci;
 
@@ -323,10 +323,12 @@ namespace FileHelpers
 			}
 		}
 
-		internal class SingleConverter : ConverterBase
+		internal sealed class SingleConverter : ConverterBase
 		{
 			CultureInfo ci;
 
+
+			
 			public SingleConverter(string decimalSep)
 			{
 				ci = CreateCulture(decimalSep);
@@ -354,7 +356,7 @@ namespace FileHelpers
 		}
 
 
-		internal class DoubleConverter : ConverterBase
+		internal sealed class DoubleConverter : ConverterBase
 		{
 			CultureInfo ci;
 
@@ -417,7 +419,7 @@ namespace FileHelpers
 
 		#region "  Convert Classes  "
 
-		internal class DateTimeConverter : ConverterBase
+		internal sealed class DateTimeConverter : ConverterBase
 		{
 			string mFormat;
 
@@ -441,6 +443,8 @@ namespace FileHelpers
 
 				mFormat = format;
 			}
+
+			CultureInfo mInvariant = System.Globalization.CultureInfo.InvariantCulture;
 
 			public override object StringToField(string from)
 			{
@@ -494,7 +498,7 @@ namespace FileHelpers
 
 		#region "  Convert Classes  "
 
-		internal class BooleanConverter : ConverterBase
+		internal sealed class BooleanConverter : ConverterBase
 		{
 			private string mTrueString = null;
 			private string mFalseString = null;

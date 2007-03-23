@@ -383,6 +383,7 @@ namespace FileHelpers
 
 			for (int i = 0; i < max; i++)
 			{
+				mLineNumber++;
 				try
 				{
 					if (records[i] == null)
@@ -595,7 +596,7 @@ namespace FileHelpers
 			if (BeforeReadRecord != null)
 			{
 				BeforeReadRecordEventArgs e = null;
-				e = new BeforeReadRecordEventArgs(line, LineNumber);
+				e = new BeforeReadRecordEventArgs(line, mLineNumber);
 				BeforeReadRecord(this, e);
 
 				return e.SkipThisRecord;
@@ -612,7 +613,7 @@ namespace FileHelpers
 		    if (AfterReadRecord != null)
 			{
 				AfterReadRecordEventArgs e = null;
-				e = new AfterReadRecordEventArgs(line, record, LineNumber);
+				e = new AfterReadRecordEventArgs(line, record, mLineNumber);
 				AfterReadRecord(this, e);
 				return e.SkipThisRecord;
 			}
@@ -628,7 +629,7 @@ namespace FileHelpers
 		    if (BeforeWriteRecord != null)
 			{
 				BeforeWriteRecordEventArgs e = null;
-				e = new BeforeWriteRecordEventArgs(record, LineNumber);
+				e = new BeforeWriteRecordEventArgs(record, mLineNumber);
 				BeforeWriteRecord(this, e);
 
 				return e.SkipThisRecord;
@@ -643,7 +644,7 @@ namespace FileHelpers
 			if (AfterWriteRecord != null)
 			{
 				AfterWriteRecordEventArgs e = null;
-				e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+				e = new AfterWriteRecordEventArgs(record, mLineNumber, line);
 				AfterWriteRecord(this, e);
 				return e.RecordLine;
 			}
