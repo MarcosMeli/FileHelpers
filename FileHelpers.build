@@ -128,6 +128,9 @@
        <copy file="Doc\tree.js" todir="..\Release\Docs" overwrite="True" />
        <copy file="Doc\tree.css" todir="..\Release\Docs" overwrite="True" />
 
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$HEADER$}&quot; -f &quot;add_header.txt&quot;" workingdir="Doc" />
+	   <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$FOOTER$}&quot; -f &quot;add_footer.txt&quot;" workingdir="Doc" />
+	   
        <zip zipfile="..\Release\Docs\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
            <fileset basedir="FileHelpers.CodeExamples">
                <include name="**/*" />
