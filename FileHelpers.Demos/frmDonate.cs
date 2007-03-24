@@ -148,11 +148,11 @@ namespace FileHelpersSamples
 			this.checkBox1.BackColor = System.Drawing.Color.Transparent;
 			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.checkBox1.ForeColor = System.Drawing.Color.White;
-			this.checkBox1.Location = new System.Drawing.Point(16, 344);
+			this.checkBox1.Location = new System.Drawing.Point(96, 344);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(360, 16);
+			this.checkBox1.Size = new System.Drawing.Size(280, 16);
 			this.checkBox1.TabIndex = 11;
-			this.checkBox1.Text = "I never want to see this annoying popup anymore";
+			this.checkBox1.Text = "Dont show me this popup anymore";
 			// 
 			// cmdDonate
 			// 
@@ -172,7 +172,7 @@ namespace FileHelpersSamples
 			// frmDonate
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(378, 392);
+			this.ClientSize = new System.Drawing.Size(378, 389);
 			this.Controls.Add(this.cmdDonate);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.panText);

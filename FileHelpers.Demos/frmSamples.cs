@@ -28,11 +28,9 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.PictureBox pictureBox5;
 		private System.Windows.Forms.PictureBox pictureBox6;
 		private System.Windows.Forms.PictureBox pictureBox4;
-
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private Container components = null;
+		private System.Windows.Forms.ToolTip tip;
+		private System.Windows.Forms.Label lblVersion2;
+		private System.ComponentModel.IContainer components;
 
 		public frmSamples()
 		{
@@ -69,6 +67,7 @@ namespace FileHelpersSamples
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(frmSamples));
 			this.cmdEasy = new System.Windows.Forms.Button();
 			this.cmdDataLink = new System.Windows.Forms.Button();
@@ -87,6 +86,8 @@ namespace FileHelpersSamples
 			this.pictureBox5 = new System.Windows.Forms.PictureBox();
 			this.pictureBox6 = new System.Windows.Forms.PictureBox();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.tip = new System.Windows.Forms.ToolTip(this.components);
+			this.lblVersion2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// pictureBox3
@@ -275,6 +276,7 @@ namespace FileHelpersSamples
 			// 
 			this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
+			this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
 			this.picNewVersion.Location = new System.Drawing.Point(465, 315);
 			this.picNewVersion.Name = "picNewVersion";
@@ -282,6 +284,7 @@ namespace FileHelpersSamples
 			this.picNewVersion.TabIndex = 18;
 			this.picNewVersion.TabStop = false;
 			this.picNewVersion.Visible = false;
+			this.picNewVersion.Click += new System.EventHandler(this.picNewVersion_Click);
 			// 
 			// pictureBox5
 			// 
@@ -316,10 +319,30 @@ namespace FileHelpersSamples
 			this.pictureBox4.TabIndex = 21;
 			this.pictureBox4.TabStop = false;
 			// 
+			// tip
+			// 
+			this.tip.AutomaticDelay = 200;
+			this.tip.AutoPopDelay = 20000;
+			this.tip.InitialDelay = 200;
+			this.tip.ReshowDelay = 0;
+			this.tip.ShowAlways = true;
+			// 
+			// lblVersion2
+			// 
+			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
+			this.lblVersion2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblVersion2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(224)), ((System.Byte)(224)), ((System.Byte)(224)));
+			this.lblVersion2.Location = new System.Drawing.Point(0, 349);
+			this.lblVersion2.Name = "lblVersion2";
+			this.lblVersion2.Size = new System.Drawing.Size(100, 18);
+			this.lblVersion2.TabIndex = 22;
+			this.lblVersion2.Text = "Version: ";
+			// 
 			// frmSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(610, 392);
+			this.Controls.Add(this.lblVersion2);
 			this.Controls.Add(this.pictureBox6);
 			this.Controls.Add(this.pictureBox5);
 			this.Controls.Add(this.cmdMasterDetail);
@@ -333,20 +356,20 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cmdDataLink);
 			this.Controls.Add(this.cmdEasy);
-			this.Controls.Add(this.picCurrent);
 			this.Controls.Add(this.picNewVersion);
 			this.Controls.Add(this.pictureBox7);
 			this.Controls.Add(this.pictureBox4);
+			this.Controls.Add(this.picCurrent);
 			this.ExitOnEsc = false;
 			this.MaximizeBox = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
 			this.Load += new System.EventHandler(this.frmSamples_Load);
 			this.Activated += new System.EventHandler(this.frmSamples_Activated);
+			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox4, 0);
 			this.Controls.SetChildIndex(this.pictureBox7, 0);
 			this.Controls.SetChildIndex(this.picNewVersion, 0);
-			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
 			this.Controls.SetChildIndex(this.cmdDataLink, 0);
@@ -361,6 +384,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.cmdMasterDetail, 0);
 			this.Controls.SetChildIndex(this.pictureBox5, 0);
 			this.Controls.SetChildIndex(this.pictureBox6, 0);
+			this.Controls.SetChildIndex(this.lblVersion2, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -446,6 +470,7 @@ namespace FileHelpersSamples
 	
 		private void frmSamples_Load(object sender, System.EventArgs e)
 		{
+			lblVersion2.Text += typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
 
 			cmdEasy2.Image = cmdEasy.Image;
 			cmdAsync.Image = cmdEasy.Image;
@@ -459,25 +484,6 @@ namespace FileHelpersSamples
 
 		}
 
-		[DelimitedRecord("|")]
-		public class VersionData
-		{
-			public string Version;
-			
-			[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
-			public DateTime ReleaseDate;
-
-			public string DownloadUrl;
-
-			[FieldInNewLine]
-			[FieldQuoted(MultilineMode.AllowForBoth)]
-			public string Description;
-			
-			[FieldQuoted(MultilineMode.AllowForBoth)]
-			public string History;
-
-
-		}
 
 		public static int CompararVersiones(string ver1, string ver2)
 		{
@@ -537,7 +543,11 @@ namespace FileHelpersSamples
 				if (CompararVersiones(ver, verLast) == 0)
 					picCurrent.Visible = true;
 				else
+				{
 					picNewVersion.Visible = true;
+                    picNewVersion.Tag = versions[versions.Length - 1];
+					tip.SetToolTip(picNewVersion, "Version: " + versions[versions.Length - 1].Version + Environment.NewLine +  versions[versions.Length - 1].Description);
+				}
 			}			
 			catch //(Exception ex)
 			{
@@ -546,5 +556,34 @@ namespace FileHelpersSamples
 
 		
 		}
+
+		private void picNewVersion_Click(object sender, System.EventArgs e)
+		{
+			frmLastVersion frm = new frmLastVersion((VersionData) picNewVersion.Tag);
+			frm.ShowDialog();
+			frm.Dispose();
+		}
 	}
+
+	[DelimitedRecord("|")]
+	public class VersionData
+	{
+		public string Version;
+			
+		[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
+		public DateTime ReleaseDate;
+
+		public string DownloadUrl;
+		public string DownloadOthers;
+
+		[FieldInNewLine]
+		[FieldQuoted(MultilineMode.AllowForBoth)]
+		public string Description;
+			
+		[FieldQuoted(MultilineMode.AllowForBoth)]
+		public string History;
+
+
+	}
+
 }

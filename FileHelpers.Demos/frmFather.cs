@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using FileHelpers;
 
 namespace FileHelpersSamples
 {
@@ -113,10 +114,10 @@ namespace FileHelpersSamples
 			this.linkLabel2.LinkColor = System.Drawing.Color.Black;
 			this.linkLabel2.Location = new System.Drawing.Point(2, 6);
 			this.linkLabel2.Name = "linkLabel2";
-			this.linkLabel2.Size = new System.Drawing.Size(200, 16);
+			this.linkLabel2.Size = new System.Drawing.Size(158, 16);
 			this.linkLabel2.TabIndex = 100;
 			this.linkLabel2.TabStop = true;
-			this.linkLabel2.Text = "(c) 2005-06 to Marcos Meli";
+			this.linkLabel2.Text = "(c) 2005-07 to Marcos Meli";
 			this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
 			// 
 			// linkLabel1
@@ -125,9 +126,9 @@ namespace FileHelpersSamples
 			this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
 			this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-			this.linkLabel1.Location = new System.Drawing.Point(432, 5);
+			this.linkLabel1.Location = new System.Drawing.Point(464, 5);
 			this.linkLabel1.Name = "linkLabel1";
-			this.linkLabel1.Size = new System.Drawing.Size(168, 16);
+			this.linkLabel1.Size = new System.Drawing.Size(136, 16);
 			this.linkLabel1.TabIndex = 101;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "www.filehelpers.com";
@@ -159,7 +160,7 @@ namespace FileHelpersSamples
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "frmFather";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Padre";
+			this.Text = "FileHelpers - Demos";
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 

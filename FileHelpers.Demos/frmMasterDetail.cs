@@ -289,7 +289,7 @@ public class Orders
 			this.Controls.Add(this.label3);
 			this.MaximizeBox = false;
 			this.Name = "frmMasterDetail";
-			this.Text = "FileHelpers - Easy Example";
+			this.Text = "FileHelpers - MasterDetail";
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.txtClass, 0);
