@@ -259,7 +259,7 @@ private void ProgressChange(ProgressEventArgs e)
 			prog4.Text = e.ProgressCurrent.ToString() + " Of " + e.ProgressTotal.ToString();
 
 			Application.DoEvents();
-			Thread.Sleep(90);
+			Thread.Sleep(10);
 		}
 	}
 

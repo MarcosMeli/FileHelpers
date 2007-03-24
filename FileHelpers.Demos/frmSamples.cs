@@ -332,7 +332,7 @@ namespace FileHelpersSamples
 			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
 			this.lblVersion2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblVersion2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(224)), ((System.Byte)(224)), ((System.Byte)(224)));
-			this.lblVersion2.Location = new System.Drawing.Point(0, 349);
+			this.lblVersion2.Location = new System.Drawing.Point(3, 350);
 			this.lblVersion2.Name = "lblVersion2";
 			this.lblVersion2.Size = new System.Drawing.Size(100, 18);
 			this.lblVersion2.TabIndex = 22;
@@ -540,7 +540,7 @@ namespace FileHelpersSamples
 				versions = (VersionData[]) engine.ReadString(dataString);
 
 				string verLast = versions[versions.Length - 1].Version;
-				if (CompararVersiones(ver, verLast) == 0)
+				if (CompararVersiones(ver, verLast) >= 0)
 					picCurrent.Visible = true;
 				else
 				{

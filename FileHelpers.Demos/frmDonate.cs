@@ -18,6 +18,7 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.Panel panText;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Button cmdDonate;
+		private System.Windows.Forms.LinkLabel linkLabel3;
 		private System.ComponentModel.IContainer components = null;
 
 		public frmDonate()
@@ -59,12 +60,13 @@ namespace FileHelpersSamples
 			this.panText = new System.Windows.Forms.Panel();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.cmdDonate = new System.Windows.Forms.Button();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.panText.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.Location = new System.Drawing.Point(258, 7);
+			this.pictureBox3.Location = new System.Drawing.Point(280, 7);
 			this.pictureBox3.Name = "pictureBox3";
 			this.pictureBox3.Visible = false;
 			// 
@@ -96,7 +98,7 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(16, 248);
+			this.pictureBox4.Location = new System.Drawing.Point(32, 248);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(72, 29);
 			this.pictureBox4.TabIndex = 6;
@@ -114,7 +116,7 @@ namespace FileHelpersSamples
 														   "u$s    20",
 														   "u$s    50",
 														   "u$s  100"});
-			this.lstAmount.Location = new System.Drawing.Point(96, 248);
+			this.lstAmount.Location = new System.Drawing.Point(112, 248);
 			this.lstAmount.Name = "lstAmount";
 			this.lstAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.lstAmount.Size = new System.Drawing.Size(64, 82);
@@ -126,7 +128,7 @@ namespace FileHelpersSamples
 			this.cmdClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
-			this.cmdClose.Location = new System.Drawing.Point(168, 292);
+			this.cmdClose.Location = new System.Drawing.Point(184, 296);
 			this.cmdClose.Name = "cmdClose";
 			this.cmdClose.Size = new System.Drawing.Size(184, 38);
 			this.cmdClose.TabIndex = 9;
@@ -148,7 +150,7 @@ namespace FileHelpersSamples
 			this.checkBox1.BackColor = System.Drawing.Color.Transparent;
 			this.checkBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.checkBox1.ForeColor = System.Drawing.Color.White;
-			this.checkBox1.Location = new System.Drawing.Point(96, 344);
+			this.checkBox1.Location = new System.Drawing.Point(64, 376);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(280, 16);
 			this.checkBox1.TabIndex = 11;
@@ -162,24 +164,39 @@ namespace FileHelpersSamples
 			this.cmdDonate.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdDonate.Image = ((System.Drawing.Image)(resources.GetObject("cmdDonate.Image")));
 			this.cmdDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdDonate.Location = new System.Drawing.Point(168, 248);
+			this.cmdDonate.Location = new System.Drawing.Point(184, 248);
 			this.cmdDonate.Name = "cmdDonate";
 			this.cmdDonate.Size = new System.Drawing.Size(184, 38);
 			this.cmdDonate.TabIndex = 12;
 			this.cmdDonate.Text = "Donation Page";
 			this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click_1);
 			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.ForeColor = System.Drawing.Color.White;
+			this.linkLabel3.LinkColor = System.Drawing.Color.White;
+			this.linkLabel3.Location = new System.Drawing.Point(72, 348);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(248, 16);
+			this.linkLabel3.TabIndex = 102;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "Or check out the Amazon Book Wish List";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+			// 
 			// frmDonate
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(378, 389);
+			this.ClientSize = new System.Drawing.Size(394, 421);
+			this.Controls.Add(this.linkLabel3);
 			this.Controls.Add(this.cmdDonate);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.panText);
 			this.Controls.Add(this.cmdClose);
 			this.Controls.Add(this.lstAmount);
 			this.Controls.Add(this.pictureBox4);
-			this.MaximizeBox = false;
 			this.Name = "frmDonate";
 			this.Text = "Donate =)";
 			this.Load += new System.EventHandler(this.frmDonate_Load);
@@ -190,6 +207,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.panText, 0);
 			this.Controls.SetChildIndex(this.checkBox1, 0);
 			this.Controls.SetChildIndex(this.cmdDonate, 0);
+			this.Controls.SetChildIndex(this.linkLabel3, 0);
 			this.panText.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -258,6 +276,15 @@ namespace FileHelpersSamples
 				cmdDonate.Enabled = false;
 				cmdClose.Focus();
 			}
+		
+		}
+
+		private void linkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9\"");
+			//info.CreateNoWindow = false;
+			//info.UseShellExecute = true;
+			Process.Start(info);
 		
 		}
 
