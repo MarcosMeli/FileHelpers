@@ -143,7 +143,15 @@
        </zip>
 
        <exec program="Libs\ndoc\hhc.exe " commandline="&quot;..\Release\Docs\FileHelpers.hhp&quot;" workingdir="." failonerror="false" />
-       <move file="..\Release\Docs\FileHelpers.chm" todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Docs" overwrite="True" />
+       <move file="..\Release\Docs\FileHelpers.chm" tofile="..\AutoBuild\${LibraryVersion}\FileHelpers\Docs\FileHelpers - Documentation.chm" overwrite="True" />
+
+       <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Doc">
+           <fileset>
+               <include name="*.url" />
+           </fileset>
+       </copy>
+
+   	   <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;&lt;/BODY&gt;&quot; -f &quot;add_ads.txt&quot;" workingdir="Doc" />
 
        <zip zipfile="..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
            <fileset basedir="..\Release\Docs">
