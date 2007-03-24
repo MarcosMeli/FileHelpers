@@ -1,2 +1,0 @@
-
-- Inherit Record Class
