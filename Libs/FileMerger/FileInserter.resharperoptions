@@ -1,0 +1,41 @@
+<Configuration>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:@">
+      <Item value="Position" priority="0" />
+      <Item value="ReadToEnd" priority="0" />
+      <Item value="Write" priority="0" />
+      <Item value="Length" priority="0" />
+      <Item value="Close" priority="1" />
+      <Item value="Substring" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO">
+      <Item value="FileStream" priority="0" />
+      <Item value="StreamWriter" priority="0" />
+      <Item value="StringWriter" priority="0" />
+      <Item value="File" priority="0" />
+      <Item value="StreamReader" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Int32">
+      <Item value="Parse" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileAccess">
+      <Item value="Write" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileMode">
+      <Item value="Open" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System">
+      <Item value="IO" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean />
+  </SettingsComponent>
+  <RecentFilesTracker>
+    <RecentFilesTracker>
+      <TrackedFile location="D:\_FileInserter\FileInserter\Main.cs" offset="139" line="17" column="0" />
+    </RecentFilesTracker>
+  </RecentFilesTracker>
+</Configuration>
