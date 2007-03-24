@@ -12,29 +12,8 @@ rel=stylesheet>
 <BODY   text=black vLink=purple aLink=red link=blue 
 bgColor=white leftMargin=0 topMargin=0>
 
-     <FORM method=GET action=http://www.google.com/custom>
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr>
-				<td background="up_logo_right.png" width="1" height="51" nowrap><a href="/"><img src="up_logo.png" width="333" height="51" border="0"></a></td><td background="up_logo_right.png" nowrap align=right valign=middle><INPUT TYPE=text name=q size=12 maxlength=200 value="" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; COLOR: navy; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8fcff"> <INPUT type=submit name=sa VALUE="Search" style="BORDER-RIGHT: royalblue 1px solid; BORDER-TOP: royalblue 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: royalblue 1px solid; CURSOR: hand; COLOR: white; BORDER-BOTTOM: royalblue 1px solid; FONT-FAMILY: Verdana; HEIGHT: 21px; BACKGROUND-COLOR: navy">
-                    <INPUT type=hidden name=cof VALUE="S:http://www.filehelpers.com;AH:center;LH:64;L:http://www.filehelpers.com/logo_search.png;LW:244;AWFID:82b822b221689c96;"><input type=hidden name=domains value="www.filehelpers.com"><input type=hidden name=sitesearch value="www.filehelpers.com" checked>
-<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9"><img src="giftsmall.gif" width="23" height="24" border="0" alt="Amazon Wish List"></a> <a href="http://www.filehelpers.com/forums/"><img src="forums.gif" width="24" height="24" border="0" alt="Browse the Forums"></a> <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1">
-                        <img src="rss2.gif" border="0" alt="News RSS feed."></a>
-                    &nbsp; </td></tr>
-			<tr >
-				<td background="button_bar_back.jpg" height="26px" nowrap valign=top colspan=2>
-				<strong>
-                        <span style="color: white">
-                    &nbsp; <a href="/" class="bar_link">Overview</a> -
-							<a href="downloads.html" class="bar_link">Downloads</a> -
-                            <a href="http://www.filehelpers.com/forums/" class="bar_link">Browse Forums </a> - <a  href="examples.html" class="bar_link">Examples</a> - 
-                            
-                            <a href="http://sourceforge.net/export/rss2_projnews.php?group_id=152382&rss_fulltext=1" class="bar_link" target="_blank">News Feed</a> -
-                            <a href="credits.html" class="bar_link">Contact Info</a>
-                            </span> </strong>
-                            </td><td background="button_bar_right.png" nowrap style="height: 26px">
-                                                      </td></tr>
-		</table>
-		</FORM>
+		{$HEADER$}
+
 <table width="100%" height="686" cellpadding="5" cellspacing="5">
 <tr><td height="676"><div id=contentdiv>
           <h2>
@@ -43,20 +22,7 @@ bgColor=white leftMargin=0 topMargin=0>
         <img src="class_diagram_storage.png" >&nbsp;</p>
     <h2>
         &nbsp;</h2>
-       <hr align="left" />
-      <div >
-<table width="100%" >
-  <tr><td class="SmallText">
-Copyright &copy; 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> <br>
-Contact me: <a href="mailto:marcos@filehelpers.com?subject=FileHelpersFeedback">marcos@filehelpers.com</a><br>
-Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers Dev Home</a>
-</td>
-    <td valign="middle" > <a href="http://www.filehelpers.com/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /></a></td><td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" width="189" height="40" border="0" alt="Browse the Forums"></a></td>
-  </tr>
-</table>
-</div>
-                    <center>Thanks to: <br /><a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a> <a href="http://www.codeproject.com/useritems/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a> <a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a> <a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> <a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="161" height="29"></a></center>
-</div>
+								{$FOOTER$}
 </tr>
 </table>
 
