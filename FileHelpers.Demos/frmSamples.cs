@@ -89,11 +89,6 @@ namespace FileHelpersSamples
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(280, 51);
-			// 
 			// pictureBox3
 			// 
 			this.pictureBox3.Location = new System.Drawing.Point(508, 8);
@@ -347,11 +342,11 @@ namespace FileHelpersSamples
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
 			this.Load += new System.EventHandler(this.frmSamples_Load);
+			this.Activated += new System.EventHandler(this.frmSamples_Activated);
 			this.Controls.SetChildIndex(this.pictureBox4, 0);
 			this.Controls.SetChildIndex(this.pictureBox7, 0);
 			this.Controls.SetChildIndex(this.picNewVersion, 0);
 			this.Controls.SetChildIndex(this.picCurrent, 0);
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
 			this.Controls.SetChildIndex(this.cmdDataLink, 0);
@@ -452,7 +447,6 @@ namespace FileHelpersSamples
 		private void frmSamples_Load(object sender, System.EventArgs e)
 		{
 
-			
 			cmdEasy2.Image = cmdEasy.Image;
 			cmdAsync.Image = cmdEasy.Image;
 			cmdMultipleDeli.Image = cmdEasy.Image;
@@ -463,37 +457,6 @@ namespace FileHelpersSamples
 			cmdLibrary.Image = cmdEasy.Image;
 			cmdMultiTimming.Image = cmdEasy.Image;
 
-			try
-			{
-				string ver = typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
-
-				string dataString;
-				using (WebClient webClient = new WebClient())
-				{
-					byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
-				
-					dataString = System.Text.Encoding.Default.GetString(data);
-				}
-			
-				VersionData[] versions = null;            
-				FileHelperEngine engine = new FileHelperEngine(typeof(VersionData));
-				versions = (VersionData[]) engine.ReadString(dataString);
-
-				foreach (VersionData version in versions)
-				{
-					Console.WriteLine(version.Description);
-				}
-		
-				string verLast = versions[versions.Length - 1].Version;
-				if (CompararVersiones(ver, verLast) == 0)
-					picCurrent.Visible = true;
-				else
-					picNewVersion.Visible = true;
-			}			
-			catch(Exception ex)
-			{
-				MessageBox.Show(ex.ToString());
-			}
 		}
 
 		[DelimitedRecord("|")]
@@ -542,6 +505,46 @@ namespace FileHelpersSamples
 				}
 			}
 			return 0;
+		}
+
+		bool mFirstTime = true;
+
+		private void frmSamples_Activated(object sender, System.EventArgs e)
+		{
+			if (mFirstTime == false)
+				return;
+
+			mFirstTime = false;
+
+			Application.DoEvents();
+			Application.DoEvents();
+			try
+			{
+				string ver = typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
+
+				string dataString;
+				using (WebClient webClient = new WebClient())
+				{
+					byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
+					dataString = System.Text.Encoding.Default.GetString(data);
+				}
+			
+				VersionData[] versions = null;            
+				FileHelperEngine engine = new FileHelperEngine(typeof(VersionData));
+				versions = (VersionData[]) engine.ReadString(dataString);
+
+				string verLast = versions[versions.Length - 1].Version;
+				if (CompararVersiones(ver, verLast) == 0)
+					picCurrent.Visible = true;
+				else
+					picNewVersion.Visible = true;
+			}			
+			catch //(Exception ex)
+			{
+				//	MessageBox.Show(ex.ToString());
+			}
+
+		
 		}
 	}
 }

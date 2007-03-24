@@ -13,7 +13,7 @@ namespace FileHelpersSamples
 	public class frmFather : Form
 	{
 		private PictureBox pictureBox1;
-		protected PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pictureBox2;
 		private Panel panel1;
 		private LinkLabel linkLabel1;
 		private LinkLabel linkLabel2;
@@ -76,7 +76,7 @@ namespace FileHelpersSamples
 			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
 			this.pictureBox1.Location = new System.Drawing.Point(0, 0);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(469, 51);
+			this.pictureBox1.Size = new System.Drawing.Size(333, 51);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -87,9 +87,9 @@ namespace FileHelpersSamples
 			this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-			this.pictureBox2.Location = new System.Drawing.Point(456, 0);
+			this.pictureBox2.Location = new System.Drawing.Point(256, 0);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(176, 51);
+			this.pictureBox2.Size = new System.Drawing.Size(544, 51);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 1;
 			this.pictureBox2.TabStop = false;

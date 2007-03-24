@@ -72,11 +72,6 @@ namespace FileHelpersSamples
 			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(304, 51);
-			// 
 			// pictureBox3
 			// 
 			this.pictureBox3.Location = new System.Drawing.Point(578, 7);
@@ -239,7 +234,6 @@ BOLID      Bólido Comidas preparadas             Martín Sommer         Owner    
 			this.MaximizeBox = false;
 			this.Name = "frmEasySampleFixed";
 			this.Text = "FileHelpers - Easy Fixed Length Example";
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.textBox1, 0);
 			this.Controls.SetChildIndex(this.label3, 0);

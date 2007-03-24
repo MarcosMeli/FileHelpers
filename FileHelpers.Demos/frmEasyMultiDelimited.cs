@@ -76,11 +76,6 @@ namespace FileHelpersSamples
 			this.txtOut2 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(354, 51);
-			// 
 			// pictureBox3
 			// 
 			this.pictureBox3.Location = new System.Drawing.Point(618, 8);
@@ -235,7 +230,6 @@ engine.WriteFile(""Out_Tab.txt"", customers)";
 			this.Name = "frmEasyMulti";
 			this.Text = "FileHelpers -  Multiple Formats - Same Record Class";
 			this.Load += new System.EventHandler(this.frmEasyMulti_Load);
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.txtOut3, 0);

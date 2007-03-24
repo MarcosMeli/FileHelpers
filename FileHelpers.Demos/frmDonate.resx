@@ -97,15 +97,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="pictureBox2.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="pictureBox2.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="pictureBox2.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Family</value>
-  </data>
   <data name="pictureBox3.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
@@ -161,15 +152,6 @@
         xirrrLTWauurIQAAOw==
 </value>
   </data>
-  <data name="cmdDonate.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="cmdDonate.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="cmdDonate.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
   <data name="lstAmount.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
@@ -215,6 +197,47 @@
   <data name="checkBox1.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>Private</value>
   </data>
+  <data name="cmdDonate.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="cmdDonate.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="cmdDonate.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Private</value>
+  </data>
+  <data name="cmdDonate.Image" type="System.Drawing.Bitmap, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        R0lGODlhIAAgAPcAAAAAAA4ObxAQcBAQcRERchIScxQUcxYWdBoadR4edhwceB4eeCAgdiQkdiEheSIi
+        eSIifCUleSUlfCgoeSgofSoqfywseS8veiwsfSwsfy4ufTIyeTMzfjY2eTU1fDw8dzg4ejk5fjo6fj09
+        eTw8fz8/fjleHzxKPD1fKD1TNjpmFTpkHztsFDxtFTp2DDx3Djl5Bj5/CD5pJD1AQT1FQkFeMUBcOEZq
+        OEhtNkZwLktxNEx1M055MlJ/MlJ5O0BES0JCVUVGVkZHVkVFWkhJV0VVS0xRXkxWXk9dX0dHYUZGaEVF
+        bkhIZUpKZE9PZkpKaEhIbUNDckBAdEREdUZGdkBAeUNDeUBAfUdHekREf0hIckpKdExMck9PcUpKeklJ
+        fkxMfFFSY1NTZlFRaVNTbVdXbFtbalNTcFFRdlVVcFFReVBQf1JSfFZWelhYclpadVpafVxce0ZiQUps
+        QFBtQlttXFVySl9yXmBgfmVlf2ZmfWJtcWlpf2hyeC8vgDAwgDMzgDQ0gzY2gDY2hDo6gDo6hD09hTw8
+        hz8/iEFBgEJChEREgEdHgUREhEBAiUJCi0VFiEVFjEtLgklJhkxMhE5OhklJiklJjE1NiExMjVNTgFVV
+        glZWhFZWh1NTiFBQjVBQjlNTjFRUj1pagV5egFhYi1paj11diFxcjl5ejlhYkF5ekGBggGJiiGNji2Vl
+        iGZmjGtrg2lpi21tiGxsjGxsj2JikWNjkmVlk2ZmkWpqkEKMBkeXBk+VGU+cE1CCL1CMIFGOJFSDMlWH
+        M1eKNFaQKluTLluQNl2UNl+aMF+cM02hClCoCFesEmGZOmWfPmS5J2e9IWa7KnC9M2SRTWeUWmajQXGp
+        RXepTnavSHmuTnuzTn24T13DDF3ECF7FDGHAFWLFFGbYC4C8T4a4XILBT4TGUIfLUIrdSInQUIvVUI7a
+        UZzIeZ/Mep/YcZTgWKDQeqLUeqTYeqbid7PXlr3eo7rml83rtd3xzejw4ur24fP37/r8+P7+/gwMbwAA
+        ACH5BAEAAAAALAAAAAAgACAAAAj/AP0JDBBAwIABBAooXKiQwAABBAVKnCiR4MGEBgwc2MjRQAECBCAG
+        oEix4MECGg8gQKCg5UoEBzw6hEhyoEGMBxQseAABgoSeDx4ogOnx4EiSFzUiWACBQoY/UKFmoCBBKMyP
+        A45ORKhRQdM/gQodQkT2UKFAfzBUVRDToVaBKHNCqBDoEKRLmT7pzWQJkiFBfyhASICgaESBXSFkCOTo
+        kihVqFKtSoWqlCdMfgNlkLCgcIGsElU+oOsok6pVuWDJesW61alOniYpGhT4QWG3I1lK+HPokipb1aT1
+        4aOHGrQ9eEiN6lRJUaE/nG8/DOCV7iNRtnRZExfujhll3Ou8/4kzilOlRoQ0RDfgdsHuQr5z0XqG7t03
+        OsXqf7NT5g2cTZQokl4EbLE3wAMU/IEIKKvoMosz6/QzjzfNRDihD2K4AYcmkiTCAQW2FTVXII+Acosu
+        sSCjTj/92PPNii1280sYabSxxiIDJtCWYoNcd0stsRyTDov9uDMki/eAE4wRZ6jxRQkcTBBiARJkMEgk
+        ouACJDHnEClPl0TiE00vRnThxRUeWODAVVVemSUtfAxjDpHxzElkP/pM48sRW1jRgZpEtYklLnAKUw6R
+        8Bx6Zz/1MDOHFlX82UCgVg4KZw/jENlOpnfSs0wOTCzxQQcTMHAVj1jeIgsfPHBDJDuuvv/KSw1DKBHF
+        BxuUulEBI5Zoy6o8bMMiP9kI2w8/5OySAhBJLCEFCBc0oKNHIzrCICx57KBNP/tcs8u23cZwArNQ3Jqr
+        qQd8hiBvmZjiSh46YJNPMi6oIG8yL9BA7hSjWiBtTAUIoECbkIRyCis4GANMCzOYoDALPwzBBBRTVAFt
+        BNMGLDCCgBiCSSej3ACDDEQEgQIMKwiRxMQVQ1vqVQ8JgEACbTZCySZIyEHGGE4UYUMTT0ChRcsXvJxu
+        SBCJ9p4ikqzBBhpodCE1F1tQYcUIHRSN7mcCCIBYThwTkggjX4BhNhheYHE1CB5cEAG67HUtEUosNeWH
+        ICQkksUii2RRcUUJIbRtwdtEIT1RQiol4AAFGnAgCCGEkBCCCB5woMEEGBfe9VtcJe6ABBg0zsHoGmiA
+        QQQOENbW5hSdpFQCD0RAAQUY1D4B5gyoHjdNFAUEADs=
+</value>
+  </data>
   <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
@@ -223,6 +246,9 @@
   </data>
   <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
+  </data>
+  <data name="$this.Name">
+    <value>frmDonate</value>
   </data>
   <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -235,9 +261,6 @@
   </data>
   <data name="$this.TrayHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>80</value>
-  </data>
-  <data name="$this.Name">
-    <value>frmDonate</value>
   </data>
   <data name="$this.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

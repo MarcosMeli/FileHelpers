@@ -121,7 +121,7 @@
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="Doc" />
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;add_to_contents.html.txt&quot; 1204" workingdir="Doc" />
        <exec program="Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;add_to_contents-header.html.txt&quot; 548" workingdir="Doc" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;6699CC&quot; &quot;1A40A5&quot;" workingdir="Doc" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\contents.html&quot; &quot;6699CC&quot; &quot;395CA7&quot;" workingdir="Doc" />
 
        <copy file="Doc\index.html" todir="..\Release\Docs" overwrite="True" />
        <copy file="Doc\MSDN.css" todir="..\Release\Docs" overwrite="True" />
@@ -154,7 +154,7 @@
    
    <target name="test" depends="release" />
    
-   <target name="package" depends="release">
+   <target name="package" depends="release, document">
    
    
        <exec program="DelTemps.bat" workingdir="." failonerror="false" />

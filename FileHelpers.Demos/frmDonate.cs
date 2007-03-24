@@ -14,10 +14,10 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.ListBox lstAmount;
-		private System.Windows.Forms.Button cmdDonate;
 		private System.Windows.Forms.Button cmdClose;
 		private System.Windows.Forms.Panel panText;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.Button cmdDonate;
 		private System.ComponentModel.IContainer components = null;
 
 		public frmDonate()
@@ -54,22 +54,17 @@ namespace FileHelpersSamples
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.cmdDonate = new System.Windows.Forms.Button();
 			this.lstAmount = new System.Windows.Forms.ListBox();
 			this.cmdClose = new System.Windows.Forms.Button();
 			this.panText = new System.Windows.Forms.Panel();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.cmdDonate = new System.Windows.Forms.Button();
 			this.panText.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(2, 51);
-			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.Location = new System.Drawing.Point(266, 7);
+			this.pictureBox3.Location = new System.Drawing.Point(258, 7);
 			this.pictureBox3.Name = "pictureBox3";
 			this.pictureBox3.Visible = false;
 			// 
@@ -101,49 +96,39 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(304, 8);
+			this.pictureBox4.Location = new System.Drawing.Point(16, 248);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(72, 29);
 			this.pictureBox4.TabIndex = 6;
 			this.pictureBox4.TabStop = false;
 			// 
-			// cmdDonate
-			// 
-			this.cmdDonate.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
-			this.cmdDonate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.cmdDonate.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.cmdDonate.Location = new System.Drawing.Point(152, 248);
-			this.cmdDonate.Name = "cmdDonate";
-			this.cmdDonate.Size = new System.Drawing.Size(168, 40);
-			this.cmdDonate.TabIndex = 0;
-			this.cmdDonate.Text = "Donation Page >>";
-			this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click);
-			// 
 			// lstAmount
 			// 
 			this.lstAmount.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.lstAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.lstAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lstAmount.ItemHeight = 16;
 			this.lstAmount.Items.AddRange(new object[] {
-														   "$  5",
-														   "$ 10",
-														   "$ 20",
-														   "$ 50",
-														   "$ 100"});
-			this.lstAmount.Location = new System.Drawing.Point(80, 248);
+														   "u$s      5",
+														   "u$s    10",
+														   "u$s    20",
+														   "u$s    50",
+														   "u$s  100"});
+			this.lstAmount.Location = new System.Drawing.Point(96, 248);
 			this.lstAmount.Name = "lstAmount";
 			this.lstAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-			this.lstAmount.Size = new System.Drawing.Size(64, 84);
+			this.lstAmount.Size = new System.Drawing.Size(64, 82);
 			this.lstAmount.TabIndex = 8;
 			// 
 			// cmdClose
 			// 
 			this.cmdClose.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
-			this.cmdClose.Location = new System.Drawing.Point(152, 293);
+			this.cmdClose.Location = new System.Drawing.Point(168, 292);
 			this.cmdClose.Name = "cmdClose";
-			this.cmdClose.Size = new System.Drawing.Size(168, 40);
+			this.cmdClose.Size = new System.Drawing.Size(184, 38);
 			this.cmdClose.TabIndex = 9;
 			this.cmdClose.Text = "Maybe next time :P ";
 			this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -169,28 +154,42 @@ namespace FileHelpersSamples
 			this.checkBox1.TabIndex = 11;
 			this.checkBox1.Text = "I never want to see this annoying popup anymore";
 			// 
+			// cmdDonate
+			// 
+			this.cmdDonate.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdDonate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdDonate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdDonate.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdDonate.Image = ((System.Drawing.Image)(resources.GetObject("cmdDonate.Image")));
+			this.cmdDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdDonate.Location = new System.Drawing.Point(168, 248);
+			this.cmdDonate.Name = "cmdDonate";
+			this.cmdDonate.Size = new System.Drawing.Size(184, 38);
+			this.cmdDonate.TabIndex = 12;
+			this.cmdDonate.Text = "Donation Page";
+			this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click_1);
+			// 
 			// frmDonate
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(386, 392);
+			this.ClientSize = new System.Drawing.Size(378, 392);
+			this.Controls.Add(this.cmdDonate);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.panText);
 			this.Controls.Add(this.cmdClose);
 			this.Controls.Add(this.lstAmount);
-			this.Controls.Add(this.cmdDonate);
 			this.Controls.Add(this.pictureBox4);
 			this.MaximizeBox = false;
 			this.Name = "frmDonate";
 			this.Text = "Donate =)";
 			this.Load += new System.EventHandler(this.frmDonate_Load);
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.pictureBox4, 0);
-			this.Controls.SetChildIndex(this.cmdDonate, 0);
 			this.Controls.SetChildIndex(this.lstAmount, 0);
 			this.Controls.SetChildIndex(this.cmdClose, 0);
 			this.Controls.SetChildIndex(this.panText, 0);
 			this.Controls.SetChildIndex(this.checkBox1, 0);
+			this.Controls.SetChildIndex(this.cmdDonate, 0);
 			this.panText.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -202,24 +201,6 @@ namespace FileHelpersSamples
 			lstAmount.SelectedIndex = 2;
 		}
 
-		private void cmdDonate_Click(object sender, System.EventArgs e)
-		{
-			lock(this)
-			{
-				if (cmdDonate.Enabled == false)
-					return;
-				
-				string amount = lstAmount.Text.Substring(lstAmount.Text.LastIndexOf(" ")).Trim();
-
-				ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
-				//info.CreateNoWindow = false;
-				//info.UseShellExecute = true;
-				Process.Start(info);
-				cmdDonate.Enabled = false;
-				cmdClose.Focus();
-			}
-
-		}
 
 		private void cmdClose_Click(object sender, System.EventArgs e)
 		{
@@ -260,6 +241,25 @@ namespace FileHelpersSamples
 
             return base.ProcessDialogKey(keyData);
         }
+
+		private void cmdDonate_Click_1(object sender, System.EventArgs e)
+		{
+			lock(this)
+			{
+				if (cmdDonate.Enabled == false)
+					return;
+				
+				string amount = lstAmount.Text.Substring(lstAmount.Text.LastIndexOf(" ")).Trim();
+
+				ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://sourceforge.net/donate/index.php?group_id=152382&amt="+amount.ToString()+"&type=0\"");
+				//info.CreateNoWindow = false;
+				//info.UseShellExecute = true;
+				Process.Start(info);
+				cmdDonate.Enabled = false;
+				cmdClose.Focus();
+			}
+		
+		}
 
 	}
 }

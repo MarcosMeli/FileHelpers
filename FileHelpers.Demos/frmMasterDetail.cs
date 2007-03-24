@@ -83,11 +83,6 @@ namespace FileHelpersSamples
 			this.label7 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(376, 51);
-			// 
 			// pictureBox3
 			// 
 			this.pictureBox3.Location = new System.Drawing.Point(640, 8);
@@ -295,7 +290,6 @@ public class Orders
 			this.MaximizeBox = false;
 			this.Name = "frmMasterDetail";
 			this.Text = "FileHelpers - Easy Example";
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.label3, 0);
 			this.Controls.SetChildIndex(this.txtClass, 0);

@@ -70,11 +70,6 @@ namespace FileHelpersSamples
 			this.txtOut = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(312, 51);
-			// 
 			// pictureBox3
 			// 
 			this.pictureBox3.Location = new System.Drawing.Point(576, 8);
@@ -199,7 +194,6 @@ namespace FileHelpersSamples
 			this.Name = "frmEasySampleAsync";
 			this.Text = "FileHelpers - Easy Example";
 			this.Controls.SetChildIndex(this.textBox1, 0);
-			this.Controls.SetChildIndex(this.pictureBox2, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.txtClass, 0);
 			this.Controls.SetChildIndex(this.cmdRun, 0);
