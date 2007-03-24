@@ -1,0 +1,100 @@
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+AROUT|Around the Horn|Thomas Hardy|Sales Representative|120 Hanover Sq.|London|UK
+BERGS|Berglunds snabbköp|Christina Berglund|Order Administrator|Berguvsvägen  8|Luleå|Sweden
+BLAUS|Blauer See Delikatessen|Hanna Moos|Sales Representative|Forsterstr. 57|Mannheim|Germany
+BLONP|Blondesddsl père et fils|Frédérique Citeaux|Marketing Manager|24, place Kléber|Strasbourg|France
+BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain
+BONAP|Bon app'|Laurence Lebihan|Owner|12, rue des Bouchers|Marseille|France
+BOTTM|Bottom-Dollar Markets|Elizabeth Lincoln|Accounting Manager|23 Tsawassen Blvd.|Tsawassen|Canada
+BSBEV|B's Beverages|Victoria Ashworth|Sales Representative|Fauntleroy Circus|London|UK
+CACTU|Cactus Comidas para llevar|Patricio Simpson|Sales Agent|Cerrito 333|Buenos Aires|Argentina
+CENTC|Centro comercial Moctezuma|Francisco Chang|Marketing Manager|Sierras de Granada 9993|México D.F.|Mexico
+CHOPS|Chop-suey Chinese|Yang Wang|Owner|Hauptstr. 29|Bern|Switzerland
+COMMI|Comércio Mineiro|Pedro Afonso|Sales Associate|Av. dos Lusíadas, 23|Sao Paulo|Brazil
+CONSH|Consolidated Holdings|Elizabeth Brown|Sales Representative|Berkeley Gardens 12  Brewery|London|UK
+DRACD|Drachenblut Delikatessen|Sven Ottlieb|Order Administrator|Walserweg 21|Aachen|Germany
+DUMON|Du monde entier|Janine Labrune|Owner|67, rue des Cinquante Otages|Nantes|France
+EASTC|Eastern Connection|Ann Devon|Sales Agent|35 King George|London|UK
+ERNSH|Ernst Handel|Roland Mendel|Sales Manager|Kirchgasse 6|Graz|Austria
+FAMIA|Familia Arquibaldo|Aria Cruz|Marketing Assistant|Rua Orós, 92|Sao Paulo|Brazil
+FISSA|FISSA Fabrica Inter. Salchichas S.A.|Diego Roel|Accounting Manager|C/ Moralzarzal, 86|Madrid|Spain
+FOLIG|Folies gourmandes|Martine Rancé|Assistant Sales Agent|184, chaussée de Tournai|Lille|France
+FOLKO|Folk och fä HB|Maria Larsson|Owner|Åkergatan 24|Bräcke|Sweden
+FRANK|Frankenversand|Peter Franken|Marketing Manager|Berliner Platz 43|München|Germany
+FRANR|France restauration|Carine Schmitt|Marketing Manager|54, rue Royale|Nantes|France
+FRANS|Franchi S.p.A.|Paolo Accorti|Sales Representative|Via Monte Bianco 34|Torino|Italy
+FURIB|Furia Bacalhau e Frutos do Mar|Lino Rodriguez|Sales Manager|Jardim das rosas n. 32|Lisboa|Portugal
+GALED|Galería del gastrónomo|Eduardo Saavedra|Marketing Manager|Rambla de Cataluña, 23|Barcelona|Spain
+GODOS|Godos Cocina Típica|José Pedro Freyre|Sales Manager|C/ Romero, 33|Sevilla|Spain
+GOURL|Gourmet Lanchonetes|André Fonseca|Sales Associate|Av. Brasil, 442|Campinas|Brazil
+GREAL|Great Lakes Food Market|Howard Snyder|Marketing Manager|2732 Baker Blvd.|Eugene|USA
+GROSR|GROSELLA-Restaurante|Manuel Pereira|Owner|5ª Ave. Los Palos Grandes|Caracas|Venezuela
+HANAR|Hanari Carnes|Mario Pontes|Accounting Manager|Rua do Paço, 67|Rio de Janeiro|Brazil
+HILAA|HILARION-Abastos|Carlos Hernández|Sales Representative|Carrera 22 con Ave. Carlos Soublette #8-35|San Cristóbal|Venezuela
+HUNGC|Hungry Coyote Import Store|Yoshi Latimer|Sales Representative|City Center Plaza 516 Main St.|Elgin|USA
+HUNGO|Hungry Owl All-Night Grocers|Patricia McKenna|Sales Associate|8 Johnstown Road|Cork|Ireland
+ISLAT|Island Trading|Helen Bennett|Marketing Manager|Garden House Crowther Way|Cowes|UK
+KOENE|Königlich Essen|Philip Cramer|Sales Associate|Maubelstr. 90|Brandenburg|Germany
+LACOR|La corne d'abondance|Daniel Tonini|Sales Representative|67, avenue de l'Europe|Versailles|France
+LAMAI|La maison d'Asie|Annette Roulet|Sales Manager|1 rue Alsace-Lorraine|Toulouse|France
+LAUGB|Laughing Bacchus Wine Cellars|Yoshi Tannamuri|Marketing Assistant|1900 Oak St.|Vancouver|Canada
+LAZYK|Lazy K Kountry Store|John Steel|Marketing Manager|12 Orchestra Terrace|Walla Walla|USA
+LEHMS|Lehmanns Marktstand|Renate Messner|Sales Representative|Magazinweg 7|Frankfurt a.M.|Germany
+LETSS|Let's Stop N Shop|Jaime Yorres|Owner|87 Polk St. Suite 5|San Francisco|USA
+LILAS|LILA-Supermercado|Carlos González|Accounting Manager|Carrera 52 con Ave. Bolívar #65-98 Llano Largo|Barquisimeto|Venezuela
+LINOD|LINO-Delicateses|Felipe Izquierdo|Owner|Ave. 5 de Mayo Porlamar|I. de Margarita|Venezuela
+LONEP|Lonesome Pine Restaurant|Fran Wilson|Sales Manager|89 Chiaroscuro Rd.|Portland|USA
+MAGAA|Magazzini Alimentari Riuniti|Giovanni Rovelli|Marketing Manager|Via Ludovico il Moro 22|Bergamo|Italy
+MAISD|Maison Dewey|Catherine Dewey|Sales Agent|Rue Joseph-Bens 532|Bruxelles|Belgium
+MEREP|Mère Paillarde|Jean Fresnière|Marketing Assistant|43 rue St. Laurent|Montréal|Canada
+MORGK|Morgenstern Gesundkost|Alexander Feuer|Marketing Assistant|Heerstr. 22|Leipzig|Germany
+NORTS|North/South|Simon Crowther|Sales Associate|South House 300 Queensbridge|London|UK
+OCEAN|Océano Atlántico Ltda.|Yvonne Moncada|Sales Agent|Ing. Gustavo Moncada 8585 Piso 20-A|Buenos Aires|Argentina
+OLDWO|Old World Delicatessen|Rene Phillips|Sales Representative|2743 Bering St.|Anchorage|USA
+OTTIK|Ottilies Käseladen|Henriette Pfalzheim|Owner|Mehrheimerstr. 369|Köln|Germany
+PARIS|Paris spécialités|Marie Bertrand|Owner|265, boulevard Charonne|Paris|France
+PERIC|Pericles Comidas clásicas|Guillermo Fernández|Sales Representative|Calle Dr. Jorge Cash 321|México D.F.|Mexico
+PICCO|Piccolo und mehr|Georg Pipps|Sales Manager|Geislweg 14|Salzburg|Austria
+PRINI|Princesa Isabel Vinhos|Isabel de Castro|Sales Representative|Estrada da saúde n. 58|Lisboa|Portugal
+QUEDE|Que Delícia|Bernardo Batista|Accounting Manager|Rua da Panificadora, 12|Rio de Janeiro|Brazil
+QUEEN|Queen Cozinha|Lúcia Carvalho|Marketing Assistant|Alameda dos Canàrios, 891|Sao Paulo|Brazil
+QUICK|QUICK-Stop|Horst Kloss|Accounting Manager|Taucherstraße 10|Cunewalde|Germany
+RANCH|Rancho grande|Sergio Gutiérrez|Sales Representative|Av. del Libertador 900|Buenos Aires|Argentina
+RATTC|Rattlesnake Canyon Grocery|Paula Wilson|Assistant Sales Representative|2817 Milton Dr.|Albuquerque|USA
+REGGC|Reggiani Caseifici|Maurizio Moroni|Sales Associate|Strada Provinciale 124|Reggio Emilia|Italy
+RICAR|Ricardo Adocicados|Janete Limeira|Assistant Sales Agent|Av. Copacabana, 267|Rio de Janeiro|Brazil
+RICSU|Richter Supermarkt|Michael Holz|Sales Manager|Grenzacherweg 237|Genève|Switzerland
+ROMEY|Romero y tomillo|Alejandra Camino|Accounting Manager|Gran Vía, 1|Madrid|Spain
+SANTG|Santé Gourmet|Jonas Bergulfsen|Owner|Erling Skakkes gate 78|Stavern|Norway
+SAVEA|Save-a-lot Markets|Jose Pavarotti|Sales Representative|187 Suffolk Ln.|Boise|USA
+SEVES|Seven Seas Imports|Hari Kumar|Sales Manager|90 Wadhurst Rd.|London|UK
+SIMOB|Simons bistro|Jytte Petersen|Owner|Vinbæltet 34|Kobenhavn|Denmark
+SPECD|Spécialités du monde|Dominique Perrier|Marketing Manager|25, rue Lauriston|Paris|France
+SPLIR|Split Rail Beer & Ale|Art Braunschweiger|Sales Manager|P.O. Box 555|Lander|USA
+SUPRD|Suprêmes délices|Pascale Cartrain|Accounting Manager|Boulevard Tirou, 255|Charleroi|Belgium
+THEBI|The Big Cheese|Liz Nixon|Marketing Manager|89 Jefferson Way Suite 2|Portland|USA
+THECR|The Cracker Box|Liu Wong|Marketing Assistant|55 Grizzly Peak Rd.|Butte|USA
+TOMSP|Toms Spezialitäten|Karin Josephs|Marketing Manager|Luisenstr. 48|Münster|Germany
+TORTU|Tortuga Restaurante|Miguel Angel Paolino|Owner|Avda. Azteca 123|México D.F.|Mexico
+TRADH|Tradição Hipermercados|Anabela Domingues|Sales Representative|Av. Inês de Castro, 414|Sao Paulo|Brazil
+TRAIH|Trail's Head Gourmet Provisioners|Helvetius Nagy|Sales Associate|722 DaVinci Blvd.|Kirkland|USA
+VAFFE|Vaffeljernet|Palle Ibsen|Sales Manager|Smagsloget 45|Århus|Denmark
+VICTE|Victuailles en stock|Mary Saveley|Sales Agent|2, rue du Commerce|Lyon|France
+VINET|Vins et alcools Chevalier|Paul Henriot|Accounting Manager|59 rue de l'Abbaye|Reims|France
+WANDK|Die Wandernde Kuh|Rita Müller|Sales Representative|Adenauerallee 900|Stuttgart|Germany
+WARTH|Wartian Herkku|Pirkko Koskitalo|Accounting Manager|Torikatu 38|Oulu|Finland
+WELLI|Wellington Importadora|Paula Parente|Sales Manager|Rua do Mercado, 12|Resende|Brazil
+WHITC|White Clover Markets|Karl Jablonski|Owner|305 - 14th Ave. S. Suite 3B|Seattle|USA
+WILMK|Wilman Kala|Matti Karttunen|Owner/Marketing Assistant|Keskuskatu 45|Helsinki|Finland
+WOLZA|Wolski  Zajazd|Zbyszek Piestrzeniewicz|Owner|ul. Filtrowa 68|Warszawa|Poland
+SPLIR|Split Rail Beer & Ale|Art Braunschweiger|Sales Manager|P.O. Box 555|Lander|USA
+SUPRD|Suprêmes délices|Pascale Cartrain|Accounting Manager|Boulevard Tirou, 255|Charleroi|Belgium
+THEBI|The Big Cheese|Liz Nixon|Marketing Manager|89 Jefferson Way Suite 2|Portland|USA
+THECR|The Cracker Box|Liu Wong|Marketing Assistant|55 Grizzly Peak Rd.|Butte|USA
+LAMAI|La maison d'Asie|Annette Roulet|Sales Manager|1 rue Alsace-Lorraine|Toulouse|France
+LAUGB|Laughing Bacchus Wine Cellars|Yoshi Tannamuri|Marketing Assistant|1900 Oak St.|Vancouver|Canada
+LAZYK|Lazy K Kountry Store|John Steel|Marketing Manager|12 Orchestra Terrace|Walla Walla|USA
+LEHMS|Lehmanns Marktstand|Renate Messner|Sales Representative|Magazinweg 7|Frankfurt a.M.|Germany
+LETSS|Let's Stop N Shop|Jaime Yorres|Owner|87 Polk St. Suite 5|San Francisco|USA

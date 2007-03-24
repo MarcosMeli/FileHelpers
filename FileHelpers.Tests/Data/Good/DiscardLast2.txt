@@ -1,0 +1,6 @@
+11121314901234
+10111314012345
+11101314123456
+10101314234567
+you can get this lines
+with the FileHelperEngine.FooterText property

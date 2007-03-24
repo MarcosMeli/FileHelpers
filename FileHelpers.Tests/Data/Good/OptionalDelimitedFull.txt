@@ -1,0 +1,9 @@
+PLT_OrganizationID,PartnerTier,EngagementType,MOSBFlag,MCEFlag,PAM,PAM Alias
+-789756580,Gold Certified Partner,Account Managed,No,No ,"Jhoncc, xxi",
+-804381196,Registered Member,Telesales Managed,Yes,No ,"No ,one",
+-789652192,Registered Member,Account Managed,No,No ,"English Boy",
+-789644051,Gold Certified Partner,Account Managed,Yes,No ,"Hi hi",
+-804325920,Registered Member,Account Managed,Yes,No ,"testing Optional",mgust
+-790605820,Registered Member,Telesales Managed,No,No ,"Excellent",
+-805289939,Registered Member,Program Managed,Yes,No ,N/A,
+-805285571,Registered Member,Program Managed,No,No ,N/A

@@ -1,0 +1,12 @@
+10248|VINET|5|04071996|01081996|16071996|3|32.38
+10249|TOMSP|6|05071996|16081996|10071996|1|11.61
+ALFKI;Alfreds Futterkiste;Maria Anders;Sales Representative;Obere Str. 57;Berlin;Germany
+ANATR;Ana Trujillo Emparedados y helados;Ana Trujillo;Owner;Avda. de la Constitución 2222;México D.F.;Mexico
+10250|HANAR|4|08071996|05081996|12071996|2|65.83
+10111314012345
+11101314123456
+10251|VICTE|3|08071996|05081996|15071996|1|41.34
+11121314901234
+10101314234567
+ANTON;Antonio Moreno Taquería;Antonio Moreno;Owner;Mataderos  2312;México D.F.;Mexico
+BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;Luleå;Sweden

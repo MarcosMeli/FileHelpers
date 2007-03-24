@@ -170,7 +170,7 @@
            </fileset>
        </copy>
 
-       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2003.zip" ziplevel="9">
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_FullSource_2003.zip" ziplevel="9">
            <fileset basedir="..">
                <include name="${Source2003}/**/*" />
                <exclude name="${Source2003}/FileHelpers.WizardApp/**/*" />
@@ -313,7 +313,7 @@
        <exec program="DelTemps.bat" workingdir="..\${Source2005}" failonerror="false" />
       
 
-       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_DevPack_2005.zip" ziplevel="9">
+       <zip zipfile="..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_FullSource_2005.zip" ziplevel="9">
            <fileset basedir="..">
                <include name="${Source2005}/**/*" />
                <exclude name="${Source2005}/FileHelpers.DB2Storage/**/*" />

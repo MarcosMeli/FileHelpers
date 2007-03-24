@@ -1,0 +1,8 @@
+ALFKI|Alfreds Futterkiste|Maria Anders|3
+ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|5
+ANTON|Antonio Moreno Taquería|Antonio Moreno
+AROUT|Around the Horn|Thomas Hardy|1
+BERGS|Berglunds snabbköp|Christina Berglund|1
+BLAUS|Blauer See Delikatessen|Hanna Moos
+BLONP|Blondesddsl père et fils|Frédérique Citeaux|6
+BOLID|Bólido Comidas preparadas|Martín Sommer|747

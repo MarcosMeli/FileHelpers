@@ -1,0 +1,6 @@
+ALFKI,c:\Prueba1\anda ?,Maria Anders
+ANATR,"D:\Glossaries\O12",Ana Trujillo
+ANTON,\\s\\,Antonio Moreno
+AROUT,Around the Horn,Thomas Hardy
+BERGS,Berglunds snabbkp,Christina Berglund
+BLAUS,Blauer See Delikatessen,Hanna Moos
