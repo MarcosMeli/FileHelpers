@@ -1,7 +1,7 @@
 @echo off
 @rmdir /S /Q "FileHelpers\obj"
-@rmdir /S /Q "FileHelpersTests\obj" 
-@rmdir /S /Q "FileHelpersTests\Release" 
+@rmdir /S /Q "FileHelpers.Tests\obj" 
+@rmdir /S /Q "FileHelpers.Tests\Release" 
 @rmdir /S /Q "FileHelpers.Demos\Release"
 @rmdir /S /Q "FileHelpers.Demos\obj"
 @rmdir /S /Q "FileHelpers.Benchmarks\obj"

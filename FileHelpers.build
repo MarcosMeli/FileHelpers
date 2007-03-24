@@ -93,8 +93,8 @@
        </copy>
        <copy file="DevNotes.txt" todir="..\AutoBuild\${LibraryVersion}\FileHelpers" />
 
-       <copy file="FileHelpersTests\Data\TestData.mdb" todir="..\Release\Demos" />
-       <copy file="FileHelpersTests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\Release\Demos\Customers.txt" />
+       <copy file="FileHelpers.Tests\Data\TestData.mdb" todir="..\Release\Demos" />
+       <copy file="FileHelpers.Tests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\Release\Demos\Customers.txt" />
 
       
        <copy todir="..\AutoBuild\${LibraryVersion}\FileHelpers\Examples">
@@ -212,21 +212,21 @@
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj&quot; &quot;..\..\Release\DotNet 1.1&quot; &quot;..\..\Release\DotNet 2.0&quot;" workingdir="Libs" failonerror="false" />
 
        <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers\FileHelpers.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\FileHelpers.Tests.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\FileHelpers.Tests.csproj&quot; &quot;;NET_1_1&quot; &quot;;NET_2_0&quot;" workingdir="Libs" failonerror="false" />
 
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent)&quot; &quot;BeforeEvent&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new AfterReadRecordHandler(AfterEvent)&quot; &quot;AfterEvent&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new BeforeWriteRecordHandler(engine_BeforeWriteRecord)&quot; &quot;engine_BeforeWriteRecord&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new AfterWriteRecordHandler(engine_AfterWriteRecord)&quot; &quot;engine_AfterWriteRecord&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent)&quot; &quot;BeforeEvent&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new AfterReadRecordHandler(AfterEvent)&quot; &quot;AfterEvent&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new BeforeWriteRecordHandler(engine_BeforeWriteRecord)&quot; &quot;engine_BeforeWriteRecord&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new AfterWriteRecordHandler(engine_AfterWriteRecord)&quot; &quot;engine_AfterWriteRecord&quot;" workingdir="Libs" failonerror="false" />
 
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeReadRecordEventArgs&quot; &quot;BeforeReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;BeforeReadRecordEventArgs&quot; &quot;BeforeReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;AfterReadRecordEventArgs&quot; &quot;AfterReadRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;BeforeWriteRecordEventArgs&quot; &quot;BeforeWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;AfterWriteRecordEventArgs&quot; &quot;AfterWriteRecordEventArgs&lt;object&gt;&quot;" workingdir="Libs" failonerror="false" />
        
 
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new AfterReadRecordHandler(AfterEvent2)&quot; &quot;AfterEvent2&quot;" workingdir="Libs" failonerror="false" />
-       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpersTests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent2)&quot; &quot;BeforeEvent2&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new AfterReadRecordHandler(AfterEvent2)&quot; &quot;AfterEvent2&quot;" workingdir="Libs" failonerror="false" />
+       <exec program="Libs\FileReplace.exe " commandline="&quot;..\..\${Source2005}\FileHelpers.Tests\Tests\Common\Events.cs&quot; &quot;new BeforeReadRecordHandler(BeforeEvent2)&quot; &quot;BeforeEvent2&quot;" workingdir="Libs" failonerror="false" />
 
 
        <exec program="${Vs9Path}\devenv.exe " commandline=" /upgrade /ProjectConfig Release &quot;..\${Source2005}\FileHelpers.sln  " workingdir="." failonerror="false" />
