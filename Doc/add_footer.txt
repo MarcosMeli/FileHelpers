@@ -9,25 +9,35 @@
 						<div>
 							<table width="100%">
 								<tr>
-									<td class="SmallText">
-									<font size="1">
-										Copyright © 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
+									<td >  
+									<a href="http://www.devoo.net" target="_top"><img src="devoo.png" border="0" alt="Devoo Software" /></a> 
+
+									</td>
+
+<td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums" /></a></td>
+									<td class="SmallText" valign="middle" align="right" >
+									<font size="2">
+										Copyright © 2005-07 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
 										<br>
-										Contact me: <a href="mailto:marcos@filehelpers.com?subject=FileHelpersFeedback">
-											marcos@filehelpers.com</a><br>
+										Contact me: <script type="text/javascript" language="javascript">
+<!--
+ML="\"mf@ cp/rt:s<aol.>ie=h";
+MI="<=4E8C2D01=B?9>:1=85>;32B?CEC?6C8;@5>10A1=85>;32B?CEC?6C8;@5>1<7=A";
+OT="";
+for(j=0;j<MI.length;j++){
+OT+=ML.charAt(MI.charCodeAt(j)-48);
+}document.write(OT);
+// --></script>
+<br />
 										Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers 
 											Dev Home</a>
 											</font>
 									</td>
-									<td valign="middle">  <a href="http://www.filehelpers.com/forums/feedback.php" target="_top"><img src="feedback.gif" width="189" height="40" border="0" alt="Send your feedback" /> </a> 
-
-									</td>
-<td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums"></a></td>
 								</tr>
 							</table>
 						</div>
 					</div>
-                    <center>Thanks to: <br />
+                    <center>Powered by: <br /><br />
 	
 	<a href="http://sourceforge.net/"><img src='sf.gif' width=88 height=31 alt="Source Forge" border="0"></a>
 	<a href="http://www.jetbrains.com/resharper/?dotnet_filehelpers.com"><img src="resharper.png" width=89 height=31 alt="Thanks Jetbrains for support us !!" border="0"></a>
