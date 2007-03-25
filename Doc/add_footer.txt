@@ -29,7 +29,7 @@
 					</div>
                     <center>Thanks to: <br />
 	
-	<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=152382&type=1" width=88 height=31 alt="Source Forge" border="0"></a>
+	<a href="http://sourceforge.net/"><img src='sf.gif' width=88 height=31 alt="Source Forge" border="0"></a>
 	<a href="http://www.jetbrains.com/resharper/?dotnet_filehelpers.com"><img src="resharper.png" width=89 height=31 alt="Thanks Jetbrains for support us !!" border="0"></a>
 	<a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="150" height="31"></a>
 	<a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a> 
