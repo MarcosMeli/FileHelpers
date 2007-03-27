@@ -143,7 +143,7 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdRun.ForeColor = System.Drawing.Color.White;
-			this.cmdRun.Location = new System.Drawing.Point(304, 8);
+			this.cmdRun.Location = new System.Drawing.Point(336, 8);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(152, 32);
 			this.cmdRun.TabIndex = 0;
@@ -220,7 +220,6 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			this.Controls.Add(this.txtData);
 			this.Controls.Add(this.txtClass);
 			this.Controls.Add(this.label3);
-			this.MaximizeBox = false;
 			this.Name = "frmEasySampleDelimited";
 			this.Text = "FileHelpers - Easy Example";
 			this.Controls.SetChildIndex(this.pictureBox3, 0);

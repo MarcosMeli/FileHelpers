@@ -103,7 +103,7 @@ namespace FileHelpersSamples
 			this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
 			this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdRun.ForeColor = System.Drawing.Color.White;
-			this.cmdRun.Location = new System.Drawing.Point(304, 8);
+			this.cmdRun.Location = new System.Drawing.Point(336, 8);
 			this.cmdRun.Name = "cmdRun";
 			this.cmdRun.Size = new System.Drawing.Size(152, 32);
 			this.cmdRun.TabIndex = 0;
@@ -190,7 +190,6 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.cmdRun);
 			this.Controls.Add(this.txtClass);
 			this.Controls.Add(this.textBox1);
-			this.MaximizeBox = false;
 			this.Name = "frmEasySampleAsync";
 			this.Text = "FileHelpers - Easy Example";
 			this.Controls.SetChildIndex(this.textBox1, 0);
