@@ -20,6 +20,12 @@ namespace FileHelpers
 				throw new ArgumentNullException("Value can´t be null or empty");
 		}
 
+		public static void CheckNullOrEmpty(string val, string paramName)
+		{
+			if (val == null || val.Length == 0)
+				throw new ArgumentNullException(paramName, "Value can´t be null or empty");
+		}
+
 		public static void CheckNullParam(string param, string paramName)
 		{
 			if (param == null || param.Length == 0)

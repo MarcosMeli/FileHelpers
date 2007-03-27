@@ -531,17 +531,32 @@ namespace FileHelpers
 		/// <returns>A record formed with the passed values.</returns>
 		public object ValuesToRecord(object[] values)
 		{
+			for (int i = 0; i < mFieldCount; i++)
+			{
+				if (mFields[i].mFieldType == typeof(DateTime) && values[i] is double)
+					values[i] = DoubleToDate((int)(double)values[i]);
+
+				values[i] = mFields[i].CreateValueForField(values[i]);
+			}
+
+#if NET_1_1 || MINI
+
 			object record = mRecordConstructor.Invoke(RecordInfo.mEmptyObjectArr);
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				if (mFields[i].mFieldType == typeof(DateTime) && values[i] is double)
-					mFields[i].AssignFromValue(DoubleToDate((int)(double)values[i]), record);
-				else
-					mFields[i].AssignFromValue(values[i], record);
+				mFields[i].mFieldInfo.SetValue(record, values[i]);
 			}
 
 			return record;
+
+#else
+			CreateAssingMethods();
+
+			// Asign all values via dinamic method that creates an object and assign values
+			return mCreateHandler(values);
+#endif
+
 		}
 
 		private DateTime DoubleToDate(int serialNumber)
@@ -565,14 +580,21 @@ namespace FileHelpers
 		/// <returns>An object[] of the values in the fields.</returns>
 		public object[] RecordToValues(object record)
 		{
+#if NET_1_1 || MINI
 			object[] res = new object[mFieldCount];
 
 			for (int i = 0; i < mFieldCount; i++)
 			{
 				res[i] = mFields[i].mFieldInfo.GetValue(record);
 			}
-
 			return res;
+
+#else
+			CreateGetAllMethod();
+
+			return mGetAllValuesHandler(record);
+#endif
+
 		}
 		#endregion
 
@@ -588,16 +610,9 @@ namespace FileHelpers
 		
 		internal DataTable RecordsToDataTable(ICollection records, int maxRecords)
 		{
-			DataTable res = new DataTable();
+			DataTable res = CreateEmptyDataTable();
+
 			res.BeginLoadData();
-
-			foreach (FieldBase f in mFields)
-			{
-				DataColumn column1;
-
-				column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
-				column1.ReadOnly = true;
-			}
 
 			res.MinimumCapacity = records.Count;
 
@@ -623,13 +638,44 @@ namespace FileHelpers
 			res.EndLoadData();
 			return res;
 		}
-		
+
+		internal DataTable CreateEmptyDataTable()
+		{
+			DataTable res = new DataTable();
+
+			foreach (FieldBase f in mFields)
+			{
+				DataColumn column1;
+
+				column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
+				column1.ReadOnly = true;
+			}
+			return res;
+		}
+
 		#endregion
 
 	#endif
 
 
+		#if NET_2_0
+
+		public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
+		{
+				DynamicMethod dm = new DynamicMethod("_GetValue"+ fi.Name + "_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,	CallingConventions.Standard, typeof(object), new Type[] { typeof(object) }, fi.DeclaringType, true);
+
+				ILGenerator generator = dm.GetILGenerator();
+    
+				generator.Emit(OpCodes.Ldarg_0);
+				generator.Emit(OpCodes.Castclass, fi.DeclaringType);
+				generator.Emit(OpCodes.Ldfld, fi);
+				generator.Emit(OpCodes.Ret);
+
+				return (GetFieldValueCallback)dm.CreateDelegate(typeof(GetFieldValueCallback));
+
+		}
+	
+		#endif
 	}
 	
-
 }

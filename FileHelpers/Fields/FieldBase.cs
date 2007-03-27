@@ -251,7 +251,6 @@ namespace FileHelpers
 			}
 
 			return val;
-			//mFieldInfo.SetValue(record, val);
 		}
 
 		private object GetNullValue()
@@ -285,9 +284,9 @@ namespace FileHelpers
 
 		#endregion
 
-		#region "  AssignFromValue  " 
+		#region "  CreateValueForField  " 
 
-		internal void AssignFromValue(object fieldValue, object record)
+		public object CreateValueForField(object fieldValue)
 		{
 			object val = null;
 
@@ -325,7 +324,7 @@ namespace FileHelpers
 				}
 			}
 
-			mFieldInfo.SetValue(record, val);
+			return val;
 		}
 
 		#endregion

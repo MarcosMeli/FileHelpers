@@ -9,6 +9,7 @@ using System.Collections;
 using System.Data;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 #if NET_2_0
@@ -353,9 +354,24 @@ namespace FileHelpers
 
 			public int Compare(object x, object y)
 			{
+
+#if NET_1_1 || MINI
 				IComparable xv = mFieldInfo.GetValue(x) as IComparable;
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
+#else
+				if (mGetFieldValueHandler == null)
+					mGetFieldValueHandler = RecordInfo.CreateGetFieldMethod(mFieldInfo);
+
+				IComparable xv = mGetFieldValueHandler(x) as IComparable;
+				return xv.CompareTo(mGetFieldValueHandler(y)) * mAscending;
+#endif
+
 			}
+
+#if ! (NET_1_1 || MINI)
+			private GetFieldValueCallback mGetFieldValueHandler;
+#endif
+
 		}
 
 		#endregion
@@ -671,4 +687,9 @@ namespace FileHelpers
 
 
 	}
+
+#if ! (NET_1_1 || MINI)
+	internal delegate object GetFieldValueCallback(object record);
+#endif
+
 }

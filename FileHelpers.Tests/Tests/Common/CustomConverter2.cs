@@ -163,21 +163,21 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException), "Constructor for converter: AddressConverter2 with these arguments: (String) was not found. You must add a constructor with this signature (can be public or private)")]
+		[ExpectedException(typeof(BadUsageException), ExpectedMessage = "Constructor for converter: AddressConverter2 with these arguments: (String) was not found. You must add a constructor with this signature (can be public or private)")]
 		public void NameConverterBad1()
 		{
 			engine = new FileHelperEngine(typeof (AddressBadClass1));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException), "Empty constructor for converter: AddressConverter2 was not found. You must add a constructor without args (can be public or private)")]
+		[ExpectedException(typeof(BadUsageException), ExpectedMessage = "Empty constructor for converter: AddressConverter2 was not found. You must add a constructor without args (can be public or private)")]
 		public void NameConverterBad2()
 		{
 			engine = new FileHelperEngine(typeof (AddressBadClass2));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException), "Constructor for converter: AddressConverter2 with these arguments: (Int32, Double) was not found. You must add a constructor with this signature (can be public or private)")]
+		[ExpectedException(typeof(BadUsageException), ExpectedMessage = "Constructor for converter: AddressConverter2 with these arguments: (Int32, Double) was not found. You must add a constructor with this signature (can be public or private)")]
 		public void NameConverterBad3()
 		{
 			engine = new FileHelperEngine(typeof (AddressBadClass3));

@@ -141,6 +141,20 @@ namespace FileHelpers
 		public T[] ReadStream(TextReader reader, int maxRecords)
 #endif
 		{
+
+#if ! MINI
+
+			return ReadStream(reader, maxRecords, null);
+		}
+
+
+#if ! GENERICS
+		private object[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+#else
+		private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+#endif
+		{
+#endif
 			if (reader == null)
 				throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
 
@@ -194,25 +208,35 @@ namespace FileHelpers
 					line.ReLoad(currentLine);
 					
 					bool skip = false;
-					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-						skip = OnBeforeReadRecord(currentLine);
-					#endif
+#if !MINI
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+					skip = OnBeforeReadRecord(currentLine);
+#endif
 
 					if (skip == false)
 					{
 						object record = mRecordInfo.StringToRecord(line);
 
-						#if !MINI
-							#if ! GENERICS
-								skip = OnAfterReadRecord(currentLine, record);
-							#else
-								skip = OnAfterReadRecord(currentLine, (T) record);
-							#endif
-						#endif
+#if !MINI
+#if ! GENERICS
+						skip = OnAfterReadRecord(currentLine, record);
+#else
+						skip = OnAfterReadRecord(currentLine, (T) record);
+#endif
+#endif
 						
 						if (skip == false && record != null)
-							resArray.Add(record);
+						{
+#if MINI
+								resArray.Add(record);
+#else
+							if (dt == null)
+								resArray.Add(record);
+							else
+								dt.Rows.Add(mRecordInfo.RecordToValues(record));
+#endif
+
+						}
 
 					}
 				}
@@ -229,7 +253,7 @@ namespace FileHelpers
 							ErrorInfo err = new ErrorInfo();
 							err.mLineNumber = freader.LineNumber;
 							err.mExceptionInfo = ex;
-//							err.mColumnNumber = mColumnNum;
+							//							err.mColumnNumber = mColumnNum;
 							err.mRecordString = completeLine;
 
 							mErrorManager.AddError(err);
@@ -288,15 +312,17 @@ namespace FileHelpers
 			if (source == null)
 				source = string.Empty;
 
-			StringReader reader = new StringReader(source);
+			using (StringReader reader = new StringReader(source))
+			{
 #if ! GENERICS
-			object[] res;
+				object[] res;
 #else
-			T[] res;
+				T[] res;
 #endif
-			res= ReadStream(reader, maxRecords);
-			reader.Close();
-			return res;
+				res= ReadStream(reader, maxRecords);
+				reader.Close();
+				return res;
+			}
 		}
 
 		#endregion
@@ -523,7 +549,14 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadFileAsDT(string fileName, int maxRecords)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadFile(fileName, maxRecords));
+			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+			{
+				DataTable res;
+				res = ReadStreamAsDT(fs, maxRecords);
+				fs.Close();
+
+				return res;
+			}
 		}
 
 		
@@ -546,7 +579,16 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStringAsDT(string source, int maxRecords)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadString(source, maxRecords));
+			if (source == null)
+				source = string.Empty;
+
+			using (StringReader reader = new StringReader(source))
+			{
+				DataTable res;
+				res = ReadStreamAsDT(reader, maxRecords);
+				reader.Close();
+				return res;
+			}
 		}
 
 		/// <summary>
@@ -567,7 +609,12 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStreamAsDT(TextReader reader, int maxRecords)
 		{
-			return mRecordInfo.RecordsToDataTable(ReadStream(reader, maxRecords));
+			DataTable dt = mRecordInfo.CreateEmptyDataTable();
+			dt.BeginLoadData();
+			ReadStream(reader, maxRecords, dt);
+			dt.EndLoadData();
+
+			return dt;
 		}
 
 		#endif
