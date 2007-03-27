@@ -188,6 +188,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "frmEasyToDataTable.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmEasyToDataTable.resx"
+                    DependentUpon = "frmEasyToDataTable.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "frmFather.cs"
                     SubType = "Form"
                     BuildAction = "Compile"

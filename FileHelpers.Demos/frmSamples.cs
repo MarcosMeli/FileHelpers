@@ -30,6 +30,7 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.ToolTip tip;
 		private System.Windows.Forms.Label lblVersion2;
+		private System.Windows.Forms.PictureBox pictureBox8;
 		private System.ComponentModel.IContainer components;
 
 		public frmSamples()
@@ -88,11 +89,12 @@ namespace FileHelpersSamples
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.lblVersion2 = new System.Windows.Forms.Label();
+			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
 			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.Location = new System.Drawing.Point(508, 8);
+			this.pictureBox3.Location = new System.Drawing.Point(588, 8);
 			this.pictureBox3.Name = "pictureBox3";
 			// 
 			// cmdEasy
@@ -103,9 +105,9 @@ namespace FileHelpersSamples
 			this.cmdEasy.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdEasy.Image = ((System.Drawing.Image)(resources.GetObject("cmdEasy.Image")));
 			this.cmdEasy.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdEasy.Location = new System.Drawing.Point(16, 64);
+			this.cmdEasy.Location = new System.Drawing.Point(11, 64);
 			this.cmdEasy.Name = "cmdEasy";
-			this.cmdEasy.Size = new System.Drawing.Size(240, 40);
+			this.cmdEasy.Size = new System.Drawing.Size(216, 40);
 			this.cmdEasy.TabIndex = 0;
 			this.cmdEasy.Text = "Easy Delimited";
 			this.cmdEasy.Click += new System.EventHandler(this.cmdEasy_Click);
@@ -117,9 +119,9 @@ namespace FileHelpersSamples
 			this.cmdDataLink.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdDataLink.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdDataLink.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdDataLink.Location = new System.Drawing.Point(320, 64);
+			this.cmdDataLink.Location = new System.Drawing.Point(416, 64);
 			this.cmdDataLink.Name = "cmdDataLink";
-			this.cmdDataLink.Size = new System.Drawing.Size(240, 40);
+			this.cmdDataLink.Size = new System.Drawing.Size(216, 40);
 			this.cmdDataLink.TabIndex = 2;
 			this.cmdDataLink.Text = "Access DataLink";
 			this.cmdDataLink.Click += new System.EventHandler(this.cmdDataLink_Click);
@@ -130,9 +132,9 @@ namespace FileHelpersSamples
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-			this.button1.Location = new System.Drawing.Point(176, 312);
+			this.button1.Location = new System.Drawing.Point(216, 320);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(240, 40);
+			this.button1.Size = new System.Drawing.Size(192, 40);
 			this.button1.TabIndex = 4;
 			this.button1.Text = "Exit";
 			this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -144,9 +146,9 @@ namespace FileHelpersSamples
 			this.cmdEasy2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdEasy2.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdEasy2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdEasy2.Location = new System.Drawing.Point(16, 112);
+			this.cmdEasy2.Location = new System.Drawing.Point(11, 112);
 			this.cmdEasy2.Name = "cmdEasy2";
-			this.cmdEasy2.Size = new System.Drawing.Size(240, 40);
+			this.cmdEasy2.Size = new System.Drawing.Size(216, 40);
 			this.cmdEasy2.TabIndex = 1;
 			this.cmdEasy2.Text = "Easy Fixed";
 			this.cmdEasy2.Click += new System.EventHandler(this.cmdEasy2_Click);
@@ -158,9 +160,9 @@ namespace FileHelpersSamples
 			this.cmdLibrary.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdLibrary.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdLibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdLibrary.Location = new System.Drawing.Point(320, 208);
+			this.cmdLibrary.Location = new System.Drawing.Point(416, 208);
 			this.cmdLibrary.Name = "cmdLibrary";
-			this.cmdLibrary.Size = new System.Drawing.Size(240, 40);
+			this.cmdLibrary.Size = new System.Drawing.Size(216, 40);
 			this.cmdLibrary.TabIndex = 3;
 			this.cmdLibrary.Text = "Time Testing";
 			this.cmdLibrary.Click += new System.EventHandler(this.cmdLibrary_Click);
@@ -172,9 +174,9 @@ namespace FileHelpersSamples
 			this.cmdProgress.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdProgress.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdProgress.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdProgress.Location = new System.Drawing.Point(320, 112);
+			this.cmdProgress.Location = new System.Drawing.Point(416, 112);
 			this.cmdProgress.Name = "cmdProgress";
-			this.cmdProgress.Size = new System.Drawing.Size(240, 40);
+			this.cmdProgress.Size = new System.Drawing.Size(216, 40);
 			this.cmdProgress.TabIndex = 5;
 			this.cmdProgress.Text = "Progress Notification";
 			this.cmdProgress.Click += new System.EventHandler(this.cmdProgress_Click);
@@ -186,11 +188,11 @@ namespace FileHelpersSamples
 			this.cmdMultiTimming.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdMultiTimming.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdMultiTimming.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdMultiTimming.Location = new System.Drawing.Point(320, 256);
+			this.cmdMultiTimming.Location = new System.Drawing.Point(416, 256);
 			this.cmdMultiTimming.Name = "cmdMultiTimming";
-			this.cmdMultiTimming.Size = new System.Drawing.Size(240, 40);
+			this.cmdMultiTimming.Size = new System.Drawing.Size(216, 40);
 			this.cmdMultiTimming.TabIndex = 7;
-			this.cmdMultiTimming.Text = "Multiple time Sampling";
+			this.cmdMultiTimming.Text = "Mult Time Testing";
 			this.cmdMultiTimming.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// cmdSort
@@ -200,9 +202,9 @@ namespace FileHelpersSamples
 			this.cmdSort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdSort.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdSort.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdSort.Location = new System.Drawing.Point(320, 160);
+			this.cmdSort.Location = new System.Drawing.Point(416, 160);
 			this.cmdSort.Name = "cmdSort";
-			this.cmdSort.Size = new System.Drawing.Size(240, 40);
+			this.cmdSort.Size = new System.Drawing.Size(216, 40);
 			this.cmdSort.TabIndex = 9;
 			this.cmdSort.Text = "Sorting";
 			this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
@@ -214,9 +216,9 @@ namespace FileHelpersSamples
 			this.cmdMultipleDeli.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdMultipleDeli.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdMultipleDeli.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdMultipleDeli.Location = new System.Drawing.Point(16, 208);
+			this.cmdMultipleDeli.Location = new System.Drawing.Point(11, 208);
 			this.cmdMultipleDeli.Name = "cmdMultipleDeli";
-			this.cmdMultipleDeli.Size = new System.Drawing.Size(240, 40);
+			this.cmdMultipleDeli.Size = new System.Drawing.Size(216, 40);
 			this.cmdMultipleDeli.TabIndex = 11;
 			this.cmdMultipleDeli.Text = "Changing Delimiters";
 			this.cmdMultipleDeli.Click += new System.EventHandler(this.cmdMiltipleDeli_Click);
@@ -228,9 +230,9 @@ namespace FileHelpersSamples
 			this.cmdAsync.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdAsync.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdAsync.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdAsync.Location = new System.Drawing.Point(16, 160);
+			this.cmdAsync.Location = new System.Drawing.Point(11, 160);
 			this.cmdAsync.Name = "cmdAsync";
-			this.cmdAsync.Size = new System.Drawing.Size(240, 40);
+			this.cmdAsync.Size = new System.Drawing.Size(216, 40);
 			this.cmdAsync.TabIndex = 12;
 			this.cmdAsync.Text = "Record by Record";
 			this.cmdAsync.Click += new System.EventHandler(this.cmdAsync_Click);
@@ -242,9 +244,9 @@ namespace FileHelpersSamples
 			this.cmdMasterDetail.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.cmdMasterDetail.ForeColor = System.Drawing.Color.Gainsboro;
 			this.cmdMasterDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.cmdMasterDetail.Location = new System.Drawing.Point(16, 256);
+			this.cmdMasterDetail.Location = new System.Drawing.Point(11, 256);
 			this.cmdMasterDetail.Name = "cmdMasterDetail";
-			this.cmdMasterDetail.Size = new System.Drawing.Size(240, 40);
+			this.cmdMasterDetail.Size = new System.Drawing.Size(216, 40);
 			this.cmdMasterDetail.TabIndex = 15;
 			this.cmdMasterDetail.Text = "Master Detail";
 			this.cmdMasterDetail.Click += new System.EventHandler(this.cmdMasterDetail_Click);
@@ -253,9 +255,9 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-			this.pictureBox7.Location = new System.Drawing.Point(256, 264);
+			this.pictureBox7.Location = new System.Drawing.Point(224, 264);
 			this.pictureBox7.Name = "pictureBox7";
-			this.pictureBox7.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox7.Size = new System.Drawing.Size(48, 30);
 			this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox7.TabIndex = 16;
 			this.pictureBox7.TabStop = false;
@@ -265,7 +267,7 @@ namespace FileHelpersSamples
 			this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.picCurrent.BackColor = System.Drawing.Color.Transparent;
 			this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
-			this.picCurrent.Location = new System.Drawing.Point(465, 315);
+			this.picCurrent.Location = new System.Drawing.Point(545, 320);
 			this.picCurrent.Name = "picCurrent";
 			this.picCurrent.Size = new System.Drawing.Size(146, 53);
 			this.picCurrent.TabIndex = 17;
@@ -278,7 +280,7 @@ namespace FileHelpersSamples
 			this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
 			this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
-			this.picNewVersion.Location = new System.Drawing.Point(465, 315);
+			this.picNewVersion.Location = new System.Drawing.Point(545, 320);
 			this.picNewVersion.Name = "picNewVersion";
 			this.picNewVersion.Size = new System.Drawing.Size(146, 53);
 			this.picNewVersion.TabIndex = 18;
@@ -290,9 +292,9 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-			this.pictureBox5.Location = new System.Drawing.Point(256, 168);
+			this.pictureBox5.Location = new System.Drawing.Point(224, 168);
 			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox5.Size = new System.Drawing.Size(48, 30);
 			this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox5.TabIndex = 19;
 			this.pictureBox5.TabStop = false;
@@ -301,9 +303,9 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-			this.pictureBox6.Location = new System.Drawing.Point(256, 216);
+			this.pictureBox6.Location = new System.Drawing.Point(224, 216);
 			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox6.Size = new System.Drawing.Size(48, 30);
 			this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox6.TabIndex = 20;
 			this.pictureBox6.TabStop = false;
@@ -312,9 +314,9 @@ namespace FileHelpersSamples
 			// 
 			this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(560, 264);
+			this.pictureBox4.Location = new System.Drawing.Point(632, 264);
 			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(55, 30);
+			this.pictureBox4.Size = new System.Drawing.Size(48, 30);
 			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox4.TabIndex = 21;
 			this.pictureBox4.TabStop = false;
@@ -332,21 +334,29 @@ namespace FileHelpersSamples
 			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
 			this.lblVersion2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblVersion2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(224)), ((System.Byte)(224)), ((System.Byte)(224)));
-			this.lblVersion2.Location = new System.Drawing.Point(3, 350);
+			this.lblVersion2.Location = new System.Drawing.Point(3, 352);
 			this.lblVersion2.Name = "lblVersion2";
 			this.lblVersion2.Size = new System.Drawing.Size(100, 18);
 			this.lblVersion2.TabIndex = 22;
 			this.lblVersion2.Text = "Version: ";
 			// 
+			// pictureBox8
+			// 
+			this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+			this.pictureBox8.Location = new System.Drawing.Point(274, 99);
+			this.pictureBox8.Name = "pictureBox8";
+			this.pictureBox8.Size = new System.Drawing.Size(128, 152);
+			this.pictureBox8.TabIndex = 23;
+			this.pictureBox8.TabStop = false;
+			// 
 			// frmSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(610, 392);
+			this.ClientSize = new System.Drawing.Size(690, 397);
+			this.Controls.Add(this.pictureBox8);
 			this.Controls.Add(this.lblVersion2);
-			this.Controls.Add(this.pictureBox6);
-			this.Controls.Add(this.pictureBox5);
 			this.Controls.Add(this.cmdMasterDetail);
-			this.Controls.Add(this.cmdAsync);
 			this.Controls.Add(this.cmdMultipleDeli);
 			this.Controls.Add(this.cmdSort);
 			this.Controls.Add(this.cmdMultiTimming);
@@ -357,18 +367,23 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.cmdDataLink);
 			this.Controls.Add(this.cmdEasy);
 			this.Controls.Add(this.picNewVersion);
-			this.Controls.Add(this.pictureBox7);
 			this.Controls.Add(this.pictureBox4);
 			this.Controls.Add(this.picCurrent);
+			this.Controls.Add(this.pictureBox6);
+			this.Controls.Add(this.pictureBox7);
+			this.Controls.Add(this.cmdAsync);
+			this.Controls.Add(this.pictureBox5);
 			this.ExitOnEsc = false;
-			this.MaximizeBox = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
 			this.Load += new System.EventHandler(this.frmSamples_Load);
 			this.Activated += new System.EventHandler(this.frmSamples_Activated);
+			this.Controls.SetChildIndex(this.pictureBox5, 0);
+			this.Controls.SetChildIndex(this.cmdAsync, 0);
+			this.Controls.SetChildIndex(this.pictureBox7, 0);
+			this.Controls.SetChildIndex(this.pictureBox6, 0);
 			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox4, 0);
-			this.Controls.SetChildIndex(this.pictureBox7, 0);
 			this.Controls.SetChildIndex(this.picNewVersion, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
@@ -380,11 +395,9 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.cmdMultiTimming, 0);
 			this.Controls.SetChildIndex(this.cmdSort, 0);
 			this.Controls.SetChildIndex(this.cmdMultipleDeli, 0);
-			this.Controls.SetChildIndex(this.cmdAsync, 0);
 			this.Controls.SetChildIndex(this.cmdMasterDetail, 0);
-			this.Controls.SetChildIndex(this.pictureBox5, 0);
-			this.Controls.SetChildIndex(this.pictureBox6, 0);
 			this.Controls.SetChildIndex(this.lblVersion2, 0);
+			this.Controls.SetChildIndex(this.pictureBox8, 0);
 			this.ResumeLayout(false);
 
 		}

@@ -19,6 +19,7 @@ namespace FileHelpersSamples
 		private LinkLabel linkLabel1;
 		private LinkLabel linkLabel2;
 		protected System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.LinkLabel linkLabel3;
 
 		/// <summary>
 		/// Required designer variable.
@@ -68,6 +69,7 @@ namespace FileHelpersSamples
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -97,6 +99,7 @@ namespace FileHelpersSamples
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.linkLabel3);
 			this.panel1.Controls.Add(this.linkLabel2);
 			this.panel1.Controls.Add(this.linkLabel1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -125,8 +128,9 @@ namespace FileHelpersSamples
 			this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
 			this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
 			this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-			this.linkLabel1.Location = new System.Drawing.Point(464, 5);
+			this.linkLabel1.Location = new System.Drawing.Point(464, 6);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(136, 16);
 			this.linkLabel1.TabIndex = 101;
@@ -146,6 +150,21 @@ namespace FileHelpersSamples
 			this.pictureBox3.TabIndex = 3;
 			this.pictureBox3.TabStop = false;
 			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+			this.linkLabel3.LinkColor = System.Drawing.Color.Black;
+			this.linkLabel3.Location = new System.Drawing.Point(256, 6);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(106, 16);
+			this.linkLabel3.TabIndex = 102;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "www.devoo.net";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
 			// frmFather
 			// 
@@ -245,6 +264,12 @@ namespace FileHelpersSamples
 			}
 			
 			return base.ProcessCmdKey (ref msg, keyData);
+		}
+
+		private void linkLabel3_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.devoo.net\"");
+			Process.Start(info);
 		}
 
 		public bool ExitOnEsc
