@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace FileHelpers.RunTime
 {
@@ -30,8 +31,15 @@ namespace FileHelpers.RunTime
 				string firstLine = CommonEngine.RawReadFirstLines(options.SampleFileName, 1);
 
 				if (options.HeaderLines > 0)
+				{
 					foreach (string header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
-						AddField(header.Replace(" ", "_").Replace(".", "_").Replace(",", "_"));
+					{
+						//Changed JC 20070322 - Any other non-word (punctuation) characters are removed including cr/lf.
+						string TmpHeader = header.Replace(" ", "_").Replace(".", "_").Replace(",", "_");
+						TmpHeader = mRemoveBlanks.Replace(TmpHeader, string.Empty);
+						AddField( TmpHeader );
+					}
+				}
 				else
 				{
 					int fieldsNbr = firstLine.Split(options.Delimiter).Length;
@@ -48,7 +56,8 @@ namespace FileHelpers.RunTime
 				throw new BadUsageException("You must provide a SampleFileName or a NumberOfFields to parse a genric CSV file.");
 
 		}
-
+		
+		private static Regex mRemoveBlanks = new Regex(@"\W", System.Text.RegularExpressions.RegexOptions.Compiled);
 
 
 		/// <summary>Add a new Delimited field to the current class.</summary>
