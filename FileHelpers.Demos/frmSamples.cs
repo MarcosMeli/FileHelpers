@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Windows.Forms;
 using FileHelpers;
@@ -35,6 +36,7 @@ namespace FileHelpersSamples
 		private System.Windows.Forms.PictureBox pictureBox9;
 		private System.Windows.Forms.PictureBox pictureBox10;
 		private System.Windows.Forms.Button cmdEvents;
+		private System.Windows.Forms.PictureBox pictureBox11;
 		private System.ComponentModel.IContainer components;
 
 		public frmSamples()
@@ -92,6 +94,7 @@ namespace FileHelpersSamples
 			this.pictureBox6 = new System.Windows.Forms.PictureBox();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
+			this.pictureBox11 = new System.Windows.Forms.PictureBox();
 			this.lblVersion2 = new System.Windows.Forms.Label();
 			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.cmdReadAsDatatable = new System.Windows.Forms.Button();
@@ -337,6 +340,19 @@ namespace FileHelpersSamples
 			this.tip.ReshowDelay = 0;
 			this.tip.ShowAlways = true;
 			// 
+			// pictureBox11
+			// 
+			this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+			this.pictureBox11.Location = new System.Drawing.Point(302, 244);
+			this.pictureBox11.Name = "pictureBox11";
+			this.pictureBox11.Size = new System.Drawing.Size(80, 98);
+			this.pictureBox11.TabIndex = 28;
+			this.pictureBox11.TabStop = false;
+			this.tip.SetToolTip(this.pictureBox11, "--> Devoo Software Home");
+			this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
+			// 
 			// lblVersion2
 			// 
 			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
@@ -351,12 +367,15 @@ namespace FileHelpersSamples
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
+			this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-			this.pictureBox8.Location = new System.Drawing.Point(274, 99);
+			this.pictureBox8.Location = new System.Drawing.Point(280, 80);
 			this.pictureBox8.Name = "pictureBox8";
 			this.pictureBox8.Size = new System.Drawing.Size(128, 152);
 			this.pictureBox8.TabIndex = 23;
 			this.pictureBox8.TabStop = false;
+			this.tip.SetToolTip(this.pictureBox8, "--> FileHelpers Home");
+			this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
 			// 
 			// cmdReadAsDatatable
 			// 
@@ -411,6 +430,7 @@ namespace FileHelpersSamples
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.ClientSize = new System.Drawing.Size(690, 429);
+			this.Controls.Add(this.pictureBox11);
 			this.Controls.Add(this.cmdEvents);
 			this.Controls.Add(this.pictureBox9);
 			this.Controls.Add(this.cmdReadAsDatatable);
@@ -463,6 +483,7 @@ namespace FileHelpersSamples
 			this.Controls.SetChildIndex(this.cmdReadAsDatatable, 0);
 			this.Controls.SetChildIndex(this.pictureBox9, 0);
 			this.Controls.SetChildIndex(this.cmdEvents, 0);
+			this.Controls.SetChildIndex(this.pictureBox11, 0);
 			this.ResumeLayout(false);
 
 		}
@@ -648,6 +669,19 @@ namespace FileHelpersSamples
 			frmEasyToDataTable frm = new frmEasyToDataTable();
 			frm.ShowDialog();
 			frm.Dispose();
+		}
+
+		private void pictureBox11_Click(object sender, System.EventArgs e)
+		{
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.devoo.net\"");
+			Process.Start(info);
+		}
+
+		private void pictureBox8_Click(object sender, System.EventArgs e)
+		{
+			ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
+			Process.Start(info);
+	
 		}
 	}
 

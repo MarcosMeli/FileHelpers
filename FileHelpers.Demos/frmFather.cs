@@ -66,10 +66,10 @@ namespace FileHelpersSamples
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel2 = new System.Windows.Forms.LinkLabel();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -108,6 +108,22 @@ namespace FileHelpersSamples
 			this.panel1.Size = new System.Drawing.Size(592, 24);
 			this.panel1.TabIndex = 2;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
+			this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+			this.linkLabel3.LinkColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
+			this.linkLabel3.Location = new System.Drawing.Point(268, 4);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(80, 16);
+			this.linkLabel3.TabIndex = 102;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "Devoo Soft";
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
 			// linkLabel2
 			// 
@@ -150,21 +166,6 @@ namespace FileHelpersSamples
 			this.pictureBox3.TabIndex = 3;
 			this.pictureBox3.TabStop = false;
 			this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-			// 
-			// linkLabel3
-			// 
-			this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
-			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-			this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-			this.linkLabel3.Location = new System.Drawing.Point(256, 6);
-			this.linkLabel3.Name = "linkLabel3";
-			this.linkLabel3.Size = new System.Drawing.Size(106, 16);
-			this.linkLabel3.TabIndex = 102;
-			this.linkLabel3.TabStop = true;
-			this.linkLabel3.Text = "www.devoo.net";
-			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
 			// frmFather
 			// 
