@@ -510,7 +510,10 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
         I keep working hard to keep to library updated and to give support to the users,
         you can check for example the Forums with a lot of problem solved, I also was asking
         a lot of mails with problems from the users.<br/>
-        &nbsp;</td>
+        &nbsp;
+		
+		 <br />We have our own domain www.filehelpers.com thanks to (Antonie) and a DevBlog at http://blog.filehelpers.com
+		</td>
 	</tr>
 </table>
                                  
@@ -518,33 +521,46 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                          <br />
                          <b>Breaking changes:</b>
 							<UL>
-                                <li>MOD: <b>Now the FixedLengthRecords must contain the exact number of chars</b>. You can pass an extra parameter in the [FixedLengthRecord] attribute to allow a different behavior.</li>
-                                <li>MOD: CommonActions renamed to CommonSelector in the MasterDetailEngine</li>
+                                <li>MOD: <b>The constructor of the MultiRecordEngine was changed to allow params args, and to allow users to dont pass the RecordSelector (in write operations were dont nedded)</b>.</li>
 							</UL>
                                         <p>
                                         </p>
-					 <b>Major changes: </b>
+					 <b>New Features</b>
                          <UL>
-                             <li>ADD: The awaited RunTime Records thanks to the suggestion of Gerhardt Scriven to use RunTime Compilation.
-								Supports for classes written in C# and VB.NET<br />
-								There are a lot of features inside this new feature, <a href="runtime_classes.html">so take a look at the docs</a>
-								</li>
-                             <li>MOD: The <strong>Record Wizard</strong> was completely rewritten to use the run time records
-                             and now has a lot of options to check the classes the you are building, in the future the wizard can help you to
-                             discover the record class based on a sample file
-                             </li>
-                             <li>ADD: Generic Csv files are now supported (for example Excel generated ones)<br />
-Was a hard work but worth it because it can be used with any engine. <br />
-In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from <b>Sébastien Lorion</b> for standalone CSV processing.</li>
-							 <li>ADD: <a href="events.html">Event support</a> !! from this version the FileHelperEngine has 4 events 2 for read operations and 2 for write that are throw before and after process each record.
-                             <li>ADD: FileDiffEngine to compare files with the same record layout.</li>
-                             <li>ADD: MultiRecordEngine to read files with different record layouts.</li>
-                             <li>ADD: DataTableToCsv, CsvToDataTable, RecordsToDataTable, RemoveDuplicateRecords and other methods to the CommonEngine</li>
-                             <li>ADD: FixedMode Enum for fixed length records, used to provide better validations in Fixed Length Files</li>
-                             <lI>ADD: Template support in ExcelStorage</li>
+						 
+							 <li>The very cool DelimitedFileEngine and FixedFileEngine that allow to change options at RunTime (also with generic versions) <a>Check an example here</a>
+                             <li>.NET 2.0 Nullable Types support. (Thanks Vijayan) </li>
+							 <li>Not more reflection in the operations (only in the constructors).</li>
+							 <li>Generic versions of near all the engines of the library (is really hard to mantain the two copies :P so every one is time to port !!)</li>
+							 <li>Async Operations in others engines like the MultiRecordEngine</li>
+							 <li>The engines with async ops are now IDisposable so you can declare it with using(..)</li>
+							 <li>The engines with async ops are now IEnumerable so you can use them in a foreach loop</li>
+							 <li>Event support to the MultiRecordEngine thanks to the contribution of Francis de Fouchier</li>
+							 <li>DataMapper: (in beta) a really cool feature to tell the FileHelpers how to map info from a DataTable ot a DataReader to the fileds of a type
+							   (can be also types that dont have the [DelimitedRecord] or [FicedLengthRecord] on them =)
+							 </li>
+							 <li>New Version Checker in the demos and Wizard (both with renew look and feel)</li>
+	 						 <li>Internal use of Reflection.Emit, Dynamic Methods and char buffers to get enhaced performance. (more than 60% in .NET 2.0)</li>
+							 <li>The Read..AsDT methods now create the DataTable record by record, not at the end, so you can handle large files without any memory overload</li>
+							 <li>The Assembly is now Signed</li>
+							 <li>Can handle now infinite :P levels of inheritance adding the high level fields first.</li>
+							 <li>The write methods are less strict you can pass now an IList instead of an array, so you can direct pass a List or ArrayLIst to the method without need of do a ToArray()</li>
+							 <li>ConditionalRecords you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) 
+							 
+							 
+
+							 <li></li>
+							 
+
+                            
+                         </ul>
+					 <b>New Features</b>
+                         <UL>
+						 
+                             <li>MOD: A Full Core Rewrite !! Now with the uses of buffers and a lot of optimizations, a lot for .NET 2.0 with the use of the really faste dynamic methods and Reflection.Emit.</li>
+                             <li>MOD: A Full Core Rewrite !! Now with the uses of buffers and a lot of optimizations, a lot for .NET 2.0 with the use of the really faste dynamic methods and Reflection.Emit.</li>
                              <li>ADD: <a href="examples.html">A lot of new examples check it out !!</a>
-                             <li>MOD: The decimal, double, and single converters now recieve an string param to set the decimal delimiter (by default is ".")</li>
-                             <li>MOD: Improved docs in the SDK, the general help and examples. (Thanks Antoine)</li>
+                             <li>MOD: Improved docs. (Thanks Antoine and Matt)</li>
                              
                          </ul>
                              <p></p>
