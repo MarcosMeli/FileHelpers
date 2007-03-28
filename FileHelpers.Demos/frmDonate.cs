@@ -218,7 +218,7 @@ namespace FileHelpersSamples
 
 		private void frmDonate_Load(object sender, System.EventArgs e)
 		{
-			lstAmount.SelectedIndex = 1;
+			lstAmount.SelectedIndex = 2;
 		}
 
 

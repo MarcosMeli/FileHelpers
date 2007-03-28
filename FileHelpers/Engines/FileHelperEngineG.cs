@@ -383,8 +383,6 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
 
-			if (records.Count > 0 && records[0] != null && mRecordInfo.mRecordType.IsInstanceOfType(records[0]) == false)
-				throw new BadUsageException("This engine works with record of type " + mRecordInfo.mRecordType.Name + " and you use records of type " + records[0].GetType().Name );
 
 			ResetFields();
 
@@ -398,34 +396,51 @@ namespace FileHelpers
 			string currentLine = null;
 
 			//ConstructorInfo constr = mType.GetConstructor(new Type[] {});
-			int max = records.Count;
-
-			if (maxRecords >= 0)
-				max = Math.Min(records.Count, maxRecords);
+			int max = maxRecords;
+			if (records is IList)
+				max = Math.Min(max, ((IList)records).Count);
 
 			#if !MINI
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
 			#endif
 
-			for (int i = 0; i < max; i++)
+			int recIndex = 0;
+
+			bool first = true;
+#if ! GENERICS
+			foreach(object rec in records)
+#else
+            foreach (T rec in records)
+#endif
 			{
+				if (recIndex == maxRecords)
+					break;
+				
 				mLineNumber++;
 				try
 				{
-					if (records[i] == null)
-						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
-					
+					if (rec == null)
+						throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
+
+					if (first)
+					{
+						first = false;
+						if (mRecordInfo.mRecordType.IsInstanceOfType(rec) == false)
+							throw new BadUsageException("This engine works with record of type " + mRecordInfo.mRecordType.Name + " and you use records of type " + rec.GetType().Name );
+					}
+
+
 					bool skip = false;
 					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
-						skip = OnBeforeWriteRecord(records[i]);
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, recIndex+1, max);
+						skip = OnBeforeWriteRecord(rec);
 					#endif
 
 					if (skip == false)
 					{
-						currentLine = mRecordInfo.RecordToString(records[i]);
+						currentLine = mRecordInfo.RecordToString(rec);
 						#if !MINI
-						currentLine = OnAfterWriteRecord(currentLine, records[i]);
+						currentLine = OnAfterWriteRecord(currentLine, rec);
 						#endif
 						writer.WriteLine(currentLine);
 					}
@@ -449,9 +464,10 @@ namespace FileHelpers
 					}
 				}
 
+				recIndex++;
 			}
 
-			mTotalRecords = records.Count;
+			mTotalRecords = recIndex;
 
 			if (mFooterText != null && mFooterText != string.Empty)
 				if (mFooterText.EndsWith(StringHelper.NewLine))
@@ -509,9 +525,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
 #if ! GENERICS
-		public void AppendToFile(string fileName, IList records)
+		public void AppendToFile(string fileName, IEnumerable records)
 #else
-		public void AppendToFile(string fileName, IList<T> records)
+		public void AppendToFile(string fileName, IEnumerable<T> records)
 #endif
 		{
             

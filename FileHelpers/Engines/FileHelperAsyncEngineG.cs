@@ -437,18 +437,20 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("The record to write cant be null.");
 
-			if (records.Count == 0)
-				return;
-
-			if (RecordType.IsAssignableFrom(records[0].GetType()) == false)
-				throw new BadUsageException("The record must be of type: " + RecordType.Name);
-
+			bool first = true;
 #if ! GENERICS
 			foreach (object rec in records)
 #else
 			foreach (T rec in records)
 #endif
 			{
+				if (first)
+				{
+					if (RecordType.IsAssignableFrom(rec.GetType()) == false)
+						throw new BadUsageException("The record must be of type: " + RecordType.Name);
+					first = false;
+				}
+				
 				WriteRecord(rec);
 			}
 

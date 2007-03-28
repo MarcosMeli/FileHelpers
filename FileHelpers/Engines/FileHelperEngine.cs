@@ -407,7 +407,11 @@ namespace FileHelpers
 			int recIndex = 0;
 
 			bool first = true;
+#if ! GENERICS
 			foreach(object rec in records)
+#else
+            foreach (T rec in records)
+#endif
 			{
 				if (recIndex == maxRecords)
 					break;
