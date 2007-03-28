@@ -404,19 +404,19 @@ namespace FileHelpers
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
 			#endif
 
-			int act = 0;
+			int recIndex = 0;
 
 			bool first = true;
 			foreach(object rec in records)
 			{
-				if (act == maxRecords)
+				if (recIndex == maxRecords)
 					break;
 				
 				mLineNumber++;
 				try
 				{
 					if (rec == null)
-						throw new BadUsageException("The record at index " + act.ToString() + " is null.");
+						throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
 					if (first)
 					{
@@ -428,7 +428,7 @@ namespace FileHelpers
 
 					bool skip = false;
 					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, act+1, max);
+						ProgressHelper.Notify(mNotifyHandler, mProgressMode, recIndex+1, max);
 						skip = OnBeforeWriteRecord(rec);
 					#endif
 
@@ -460,10 +460,10 @@ namespace FileHelpers
 					}
 				}
 
-				act++;
+				recIndex++;
 			}
 
-			mTotalRecords = act;
+			mTotalRecords = recIndex;
 
 			if (mFooterText != null && mFooterText != string.Empty)
 				if (mFooterText.EndsWith(StringHelper.NewLine))

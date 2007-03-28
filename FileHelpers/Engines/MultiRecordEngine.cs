@@ -409,13 +409,13 @@ namespace FileHelpers
 		#region "  WriteFile  "
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile/*'/>
-		public void WriteFile(string fileName, object[] records)
+		public void WriteFile(string fileName, IEnumerable records)
 		{
 			WriteFile(fileName, records, -1);
 		}
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile2/*'/>
-		public void WriteFile(string fileName, object[] records, int maxRecords)
+		public void WriteFile(string fileName, IEnumerable records, int maxRecords)
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
 			{
@@ -434,13 +434,13 @@ namespace FileHelpers
 		/// </summary>
 		/// <param name="writer"></param>
 		/// <param name="records"></param>
-		public void WriteStream(TextWriter writer, object[] records)
+		public void WriteStream(TextWriter writer, IEnumerable records)
 		{
 			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteStream2/*'/>
-		public void WriteStream(TextWriter writer, object[] records, int maxRecords)
+		public void WriteStream(TextWriter writer, IEnumerable records, int maxRecords)
 		{
 			if (writer == null)
 				throw new ArgumentNullException("writer", "The writer of the Stream can be null");
@@ -460,40 +460,43 @@ namespace FileHelpers
 			string currentLine = null;
 
 			//ConstructorInfo constr = mType.GetConstructor(new Type[] {});
-			int max = records.Length;
+			int max = maxRecords;
 
-			if (maxRecords >= 0)
-				max = Math.Min(records.Length, maxRecords);
+			if (records is IList)
+				max = Math.Min(max, ((IList)records).Count);
 
 
 #if !MINI
 			ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
                 
 #endif
+			int recIndex = 0;
 
-			for (int i = 0; i < max; i++)
+			foreach (object rec in records)
 			{
+				if (recIndex == maxRecords)
+					break;
 				try
 				{
-					if (records[i] == null)
-						throw new BadUsageException("The record at index " + i.ToString() + " is null.");
+					if (rec == null)
+						throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
 					bool skip = false;
 #if !MINI
-					ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
-					skip = OnBeforeWriteRecord(records[i]);
+					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recIndex+1, max);
+					skip = OnBeforeWriteRecord(rec);
 #endif
 
-					RecordInfo info = (RecordInfo) mRecordInfoHash[records[i].GetType()];
+					RecordInfo info = (RecordInfo) mRecordInfoHash[rec.GetType()];
 
 					if (info == null)
-						throw new BadUsageException("The record at index " + i.ToString() + " is of type '"+records[i].GetType().Name+"' and the engine dont handle this type. You can add it to the constructor.");
+						throw new BadUsageException("The record at index " + recIndex.ToString() + " is of type '" + rec.GetType().Name+"' and the engine dont handle this type. You can add it to the constructor.");
 
 					if (skip == false)
 					{
-						currentLine = info.RecordToString(records[i]);
+						currentLine = info.RecordToString(rec);
 #if !MINI
-						currentLine = OnAfterWriteRecord(currentLine, records[i]);
+						currentLine = OnAfterWriteRecord(currentLine, rec);
 #endif
 						writer.WriteLine(currentLine);
 					}
@@ -517,10 +520,10 @@ namespace FileHelpers
 							break;
 					}
 				}
-
+				recIndex++;
 			}
 
-			mTotalRecords = records.Length;
+			mTotalRecords = recIndex;
 
 			if (mFooterText != null && mFooterText != string.Empty)
 				if (mFooterText.EndsWith(StringHelper.NewLine))
@@ -535,13 +538,13 @@ namespace FileHelpers
 		#region "  WriteString  "
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteString/*'/>
-		public string WriteString(object[] records)
+		public string WriteString(IEnumerable records)
 		{
 			return WriteString(records, -1);
 		}
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteString2/*'/>
-		public string WriteString(object[] records, int maxRecords)
+		public string WriteString(IEnumerable records, int maxRecords)
 		{
 			StringBuilder sb = new StringBuilder();
 			StringWriter writer = new StringWriter(sb);
@@ -562,7 +565,7 @@ namespace FileHelpers
 		}
 
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
-		public void AppendToFile(string fileName, object[] records)
+		public void AppendToFile(string fileName, IEnumerable records)
 		{
 			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
 			{

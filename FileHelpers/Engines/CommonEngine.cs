@@ -315,6 +315,7 @@ namespace FileHelpers
 					throw new BadUsageException("The record class not contains the field " + fieldName);
 
 				IComparer comparer = new FieldComparer(fi, ascending);
+				
 				Array.Sort(records, comparer);
 			}
 		}
