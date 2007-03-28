@@ -426,9 +426,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
 #if ! GENERICS
-		public void WriteNexts(IList records)
+		public void WriteNexts(IEnumerable records)
 #else
-		public void WriteNexts(IList<T> records)
+		public void WriteNexts(IEnumerable<T> records)
 #endif
 		{
 			if (mAsyncWriter == null)
@@ -437,18 +437,20 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("The record to write can´t be null.");
 
-			if (records.Count == 0)
-				return;
-
-			if (RecordType.IsAssignableFrom(records[0].GetType()) == false)
-				throw new BadUsageException("The record must be of type: " + RecordType.Name);
-
+			bool first = true;
 #if ! GENERICS
 			foreach (object rec in records)
 #else
 			foreach (T rec in records)
 #endif
 			{
+				if (first)
+				{
+					if (RecordType.IsAssignableFrom(rec.GetType()) == false)
+						throw new BadUsageException("The record must be of type: " + RecordType.Name);
+					first = false;
+				}
+				
 				WriteRecord(rec);
 			}
 

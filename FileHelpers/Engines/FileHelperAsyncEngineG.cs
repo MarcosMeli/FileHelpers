@@ -426,9 +426,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
 #if ! GENERICS
-		public void WriteNexts(IList records)
+		public void WriteNexts(IEnumerable records)
 #else
-		public void WriteNexts(IList<T> records)
+		public void WriteNexts(IEnumerable<T> records)
 #endif
 		{
 			if (mAsyncWriter == null)

@@ -143,7 +143,7 @@
 		<summary>
 		Write the nexts records to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.
 		</summary>
-		<param name="records">The records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 	</WriteNexts>
 
 </doc>

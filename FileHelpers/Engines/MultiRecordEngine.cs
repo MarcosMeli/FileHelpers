@@ -927,8 +927,8 @@ namespace FileHelpers
 		}
 		
 		/// <summary>Write the nexts records to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.</summary>
-		/// <param name="records">The records to write.</param>
-		public void WriteNexts(IList records)
+		/// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+		public void WriteNexts(IEnumerable records)
 		{
 			if (mAsyncWriter == null)
 				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
@@ -936,11 +936,7 @@ namespace FileHelpers
 			if (records == null)
 				throw new ArgumentNullException("The record to write can´t be null.");
 
-			if (records.Count == 0)
-				return;
-
 			int nro = 0;
-			
 			foreach (object rec in records)
 			{
 				nro++;

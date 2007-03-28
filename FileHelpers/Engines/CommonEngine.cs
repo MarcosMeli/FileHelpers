@@ -161,8 +161,8 @@ namespace FileHelpers
 		/// </summary>
 		/// <param name="recordClass">The record class.</param>
 		/// <param name="fileName">The file name</param>
-		/// <param name="records">The records to write</param>
-		public static void WriteFile(Type recordClass, string fileName, IList records)
+		/// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+		public static void WriteFile(Type recordClass, string fileName, IEnumerable records)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
 			engine.WriteFile(fileName, records);
@@ -174,8 +174,8 @@ namespace FileHelpers
 		/// <b>This is feature limited method try to use the non static methods.</b>
 		/// </summary>
 		/// <param name="fileName">The file name</param>
-		/// <param name="records">The records to write</param>
-		public static void WriteFile<T>(string fileName, IList<T> records)
+		/// <param name="records">The records to write (Can be an array, List<T>, etc)</param>
+ 		public static void WriteFile<T>(string fileName, IEnumerable<T> records)
 		{
 			FileHelperEngine<T> engine = new FileHelperEngine<T>();
 			engine.WriteFile(fileName, records);
@@ -187,9 +187,9 @@ namespace FileHelpers
 		/// <b>This is feature limited method try to use the non static methods.</b>
 		/// </summary>
 		/// <param name="recordClass">The record class.</param>
-		/// <param name="records">The records to write</param>
+		/// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		/// <returns>The string with the writen records.</returns>
-		public static string WriteString(Type recordClass, IList records)
+		public static string WriteString(Type recordClass, IEnumerable records)
 		{
 			FileHelperEngine engine = new FileHelperEngine(recordClass);
 			return engine.WriteString(records);

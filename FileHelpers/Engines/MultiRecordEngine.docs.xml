@@ -55,7 +55,7 @@
 		<include file='Examples.xml' path='doc/examples/AppendFile/*'/>
 	
 		<param name="fileName">The file path to be written at end.</param>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<returns>True if the operation is successful. False otherwise.</returns>
 	</AppendToFile2>
 
@@ -69,7 +69,7 @@
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="fileName">The file path to be write.</param>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<returns>True if the operation is successful. False otherwise.</returns>
 	</WriteFile>
 
@@ -83,7 +83,7 @@
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="fileName">The file path to be write.</param>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<param name="maxRecords">The max number of array elements to write.</param>
 		<returns>True if the operation is successful. False otherwise.</returns>
 	</WriteFile2>
@@ -97,7 +97,7 @@
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<returns>True if the operation is successful. False otherwise.</returns>
 	</WriteStream>
 
@@ -110,7 +110,7 @@
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<param name="maxRecords">The max number of array elements to write.</param>
 		<returns>True if the operation is successful. False otherwise.</returns>
 	</WriteStream2>
@@ -119,7 +119,7 @@
 		<summary>
 		Write an array of records to an String and return it.
 		</summary>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<returns>The resulting string after write the records.</returns>
 	</WriteString>
 
@@ -127,7 +127,7 @@
 		<summary>
 		Write an array of records to an String and return it.
 		</summary>
-		<param name="records">The array of records to write.</param>
+		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		<returns>The resulting string after write the records.</returns>
 		<param name="maxRecords">The max number of array elements to write.</param>
 		<returns>True if the operation is successful. False otherwise.</returns>

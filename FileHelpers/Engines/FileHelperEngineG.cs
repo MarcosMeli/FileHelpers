@@ -331,9 +331,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
 #if ! GENERICS
-		public void WriteFile(string fileName, IList records)
+		public void WriteFile(string fileName, IEnumerable records)
 #else
-		public void WriteFile(string fileName, IList<T> records)
+		public void WriteFile(string fileName, IEnumerable<T> records)
 #endif
 		{
 			WriteFile(fileName, records, -1);
@@ -341,9 +341,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
 #if ! GENERICS
-		public void WriteFile(string fileName, IList records, int maxRecords)
+		public void WriteFile(string fileName, IEnumerable records, int maxRecords)
 #else
-		public void WriteFile(string fileName, IList<T> records, int maxRecords)
+		public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
 #endif
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
@@ -361,9 +361,9 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
-		public void WriteStream(TextWriter writer, IList records)
+		public void WriteStream(TextWriter writer, IEnumerable records)
 #else
-		public void WriteStream(TextWriter writer, IList<T> records)
+		public void WriteStream(TextWriter writer, IEnumerable<T> records)
 #endif
 		{
 			WriteStream(writer, records, -1);
@@ -372,9 +372,9 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 #if ! GENERICS
-		public void WriteStream(TextWriter writer, IList records, int maxRecords)
+		public void WriteStream(TextWriter writer, IEnumerable records, int maxRecords)
 #else
-		public void WriteStream(TextWriter writer, IList<T> records, int maxRecords)
+		public void WriteStream(TextWriter writer, IEnumerable<T> records, int maxRecords)
 #endif
 		{
 			if (writer == null)
@@ -467,9 +467,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString/*'/>
 #if ! GENERICS
-		public string WriteString(IList records)
+		public string WriteString(IEnumerable records)
 #else
-		public string WriteString(IList<T> records)
+		public string WriteString(IEnumerable<T> records)
 #endif
 		{
 			return WriteString(records, -1);
@@ -477,9 +477,9 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString2/*'/>
 #if ! GENERICS
-		public string WriteString(IList records, int maxRecords)
+		public string WriteString(IEnumerable records, int maxRecords)
 #else
-		public string WriteString(IList<T> records, int maxRecords)
+		public string WriteString(IEnumerable<T> records, int maxRecords)
 #endif
 		{
 			StringBuilder sb = new StringBuilder();
