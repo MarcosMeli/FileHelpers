@@ -17,7 +17,7 @@ namespace FileHelpers.RunTime
 			fieldName = fieldName.Trim();
 			
 			if (ClassBuilder.ValidIdentifier(fieldName) == false)
-				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 			
 			mFieldName = fieldName;
 			mFieldType = fieldType.FullName;
@@ -28,10 +28,10 @@ namespace FileHelpers.RunTime
 			fieldName = fieldName.Trim();
 
 			if (ClassBuilder.ValidIdentifier(fieldName) == false)
-				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 
 			if (ClassBuilder.ValidIdentifier(fieldType, true) == false)
-				throw new FileHelperException(string.Format(ClassBuilder.sInvalidIdentifier, fieldType));
+				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldType));
 
 			mFieldName = fieldName;
 			mFieldType = fieldType;

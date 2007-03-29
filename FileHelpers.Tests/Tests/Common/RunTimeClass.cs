@@ -561,21 +561,21 @@ namespace FileHelpersTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelperException))]
+		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName1()
 		{
 			new DelimitedClassBuilder("2yClass", ",");
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelperException))]
+		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName2()
 		{
 			new DelimitedClassBuilder("My Class", ",");
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelperException))]
+		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName3()
 		{
 			new DelimitedClassBuilder("", ",");

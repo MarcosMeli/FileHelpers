@@ -49,7 +49,7 @@ namespace FileHelpers.DataLink
         protected sealed override IDbConnection CreateConnection( )
         {
             if ( String.IsNullOrEmpty( _connectionString ) )
-                //throw new FileHelperException( "The connection cannot open because connection string is null or empty." );
+                //throw new FileHelpersException( "The connection cannot open because connection string is null or empty." );
                 throw new Exception( "The connection cannot open because connection string is null or empty." );
 
             T connection = new T( );

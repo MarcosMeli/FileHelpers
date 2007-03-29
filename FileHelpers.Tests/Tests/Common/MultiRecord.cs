@@ -79,7 +79,7 @@ namespace FileHelpersTests
 
 
 		[Test]
-		[ExpectedException(typeof(FileHelperException))]
+		[ExpectedException(typeof(FileHelpersException))]
 		public void MultpleRecordsFileAsyncBad()
 		{
 			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));

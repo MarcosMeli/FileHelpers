@@ -134,7 +134,7 @@ namespace FileHelpers.Mapping
 			
 
 			if (fields.Length > dt.Columns.Count)
-				throw new FileHelperException("The data table has less fields than fields in the Type: " +
+				throw new FileHelpersException("The data table has less fields than fields in the Type: " +
 					mRecordInfo.mRecordType.Name);
 			
 			for(int i = 0; i < fields.Length; i++)
@@ -245,7 +245,7 @@ namespace FileHelpers.Mapping
 		{
 			mField = t.GetField(field, (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance | BindingFlags.IgnoreCase));
 			if (mField == null)
-				throw new FileHelperException("The field: " + field + " was not found in the Type: " + t.Name);
+				throw new FileHelpersException("The field: " + field + " was not found in the Type: " + t.Name);
 		}
 
 		public MappingInfo(FieldInfo fi)
@@ -272,11 +272,11 @@ namespace FileHelpers.Mapping
 				{
 					mDataColumnIndex = row.Table.Columns[mDataColumnName].Ordinal;
 					if (mDataColumnIndex == -1)
-						throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
+						throw new FileHelpersException("The column : " + mDataColumnName + " was not found in the datatable.");
 				}
 				catch
 				{
-					throw new FileHelperException("The column : " + mDataColumnName + " was not found in the datatable.");
+					throw new FileHelpersException("The column : " + mDataColumnName + " was not found in the datatable.");
 				}
 				
 			}
@@ -291,11 +291,11 @@ namespace FileHelpers.Mapping
 				{
 					mDataColumnIndex = dr.GetOrdinal(mDataColumnName);
 					if (mDataColumnIndex == -1)
-						throw new FileHelperException("The column : " + mDataColumnName + " was not found in the data reader.");
+						throw new FileHelpersException("The column : " + mDataColumnName + " was not found in the data reader.");
 				}
 				catch
 				{
-					throw new FileHelperException("The column : " + mDataColumnName + " was not found in the data reader.");
+					throw new FileHelpersException("The column : " + mDataColumnName + " was not found in the data reader.");
 				}
 				
 			}
@@ -333,7 +333,7 @@ namespace FileHelpers.Mapping
 			}
 			catch
 			{
-				throw new FileHelperException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", row[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
+				throw new FileHelpersException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", row[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
 			}
 			
 		}
@@ -367,7 +367,7 @@ namespace FileHelpers.Mapping
 			}
 			catch
 			{
-				throw new FileHelperException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", dr[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
+				throw new FileHelpersException(string.Format("Error converting value: {0} to {1} in the column with index {2} and the field {3}", dr[mDataColumnIndex], mField.FieldType, mDataColumnIndex, mField.Name));
 			}
 			
 		}

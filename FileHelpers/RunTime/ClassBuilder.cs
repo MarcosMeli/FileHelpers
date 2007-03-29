@@ -292,7 +292,7 @@ namespace FileHelpers.RunTime
 		{
     		className = className.Trim();
     		if (ValidIdentifier(className) == false)
-    			throw new FileHelperException(string.Format(sInvalidIdentifier, className));
+    			throw new FileHelpersException(string.Format(sInvalidIdentifier, className));
     		
     		mClassName = className;
 		}

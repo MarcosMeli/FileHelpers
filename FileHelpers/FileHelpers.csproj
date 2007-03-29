@@ -449,7 +449,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ErrorHandling\FileHelperException.cs"
+                    RelPath = "ErrorHandling\FileHelpersException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

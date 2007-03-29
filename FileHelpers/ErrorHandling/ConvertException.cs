@@ -11,7 +11,7 @@ namespace FileHelpers
 	/// <summary>
 	/// Indicates that a string value can't be converted to a dest type.
 	/// </summary>
-	public sealed class ConvertException : FileHelperException
+	public sealed class ConvertException : FileHelpersException
 	{
 		private string mFieldName = string.Empty;
 		private string mStringValue = string.Empty;

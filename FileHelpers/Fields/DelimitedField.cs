@@ -135,7 +135,7 @@ namespace FileHelpers
 						else
 							msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line " + line.mReader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
 
-						throw new FileHelperException(msg);
+						throw new FileHelpersException(msg);
 
 					}
 					else

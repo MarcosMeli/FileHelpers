@@ -12,7 +12,7 @@ namespace FileHelpers.RunTime
 	/// <summary>
 	/// Exception with error information of the run time compilation.
 	/// </summary>
-	public sealed class RunTimeCompilationException : FileHelperException
+	public sealed class RunTimeCompilationException : FileHelpersException
 	{
 
 		internal RunTimeCompilationException(string message, string sourceCode, CompilerErrorCollection errors) : base(message)
