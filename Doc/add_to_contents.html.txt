@@ -1,23 +1,24 @@
 
 
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Delimited</a>
+          <a href="default.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="home.gif" border=0 /> Introduction</a>
+        </div>
+
+        <div class="treeNode">
+          <a href="quick_start.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="play.gif" border=0 /> Quick Start Delimited</a>
+        </div>
+
+        <div class="treeNode">
+          <a href="quick_start_fixed.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="play.gif" border=0 /> Quick Start Fixed Length</a>
+        </div>
+
+        <div class="treeNode">
+          <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="globe.gif" border=0 />  FileHelpers on the Web</a>
         </div>
 
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="quick_start_fixed.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Quick Start Fixed Length</a>
-        </div>
-
-        <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers on the Web</a>
-        </div>
-
-        <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records <img src="new.gif" width="31" height="12" border=0 ></a>
+          <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RunTime Records<img src="new.gif" width="31" height="12" border=0 ></a>
         </div>
 
         <div class="treeNode">
@@ -51,14 +52,13 @@
         </div>
 
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="howhelp.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>How to Help</b></a>
+          <a href="howhelp.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="howhelp.gif" border=0 /> <b>How to Help</b></a>
         </div>
 
 
 	   <div class="treeNode">
           <img src="treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)" />
-          <a href="examples.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Examples of Use</a>
+          <a href="examples.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="examples.png" border=0 /> Examples of Use</a>
           <div class="treeSubnodesHidden">
           
           	<div class="treeNode">
@@ -159,7 +159,7 @@
 	
 	    <div class="treeNode">
           <img src="treenodeplus.gif" class="treeLinkImage" onclick="expandCollapse(this.parentNode)" />
-          <a href="class_diagram.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Class Diagrams</a>
+          <a href="class_diagram.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="home.gif" border=0 /> Class Diagrams</a>
           <div class="treeSubnodesHidden">
 
 
@@ -190,11 +190,11 @@
 
 
         <div class="treeNode">
-          <a href="downloads.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="download.gif" border=0 /> <b>Downloads</b></a>
+          <a href="downloads.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="downsmall.gif" border=0 /> <b>Downloads</b></a>
         </div>
 
         <div class="treeNode">
-          <a href="statistics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="download.gif" border=0 /> <b>Library Statistics</b></a>
+          <a href="statistics.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="stats.gif" border=0 /> <b>Library Statistics</b></a>
         </div>
 
         <div class="treeNode">
@@ -204,23 +204,21 @@
 
 
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="history.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">History</a>
+          <a href="history.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="history.gif" border=0 /> History</a>
         </div>
+		
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="roadmap.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">RoadMap</a>
+          <a href="roadmap.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="roadmap.gif" border=0 /> RoadMap</a>
         </div>
 
        
         <div class="treeNode">
-          <a href="http://www.filehelpers.com/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumsmall.gif" border=0 /> <b>Browse Forums</b></a>
+          <a href="http://www.filehelpers.com/forums/" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="forumss.gif" border="0" /> <b>Browse Forums</b></a>
         </div>
 
 
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="http://sourceforge.net/projects/filehelpers" target="main" class="treeUnselected" onclick="clickAnchor(this)">FileHelpers DevHome</a>
+          <a href="http://sourceforge.net/projects/filehelpers" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="home.gif" border=0 /> FileHelpers DevHome</a>
         </div>
 	
         <div class="treeNode">
@@ -229,6 +227,6 @@
         </div>
 
         <div class="treeNode">
-          <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>Contact and Credits</b></a>
+          
+          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="contact.gif" border="0" /> <b>Contact and Credits</b></a>
         </div>

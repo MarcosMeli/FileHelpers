@@ -8,7 +8,8 @@
     overflow: auto;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    background-image: url(tree_back.png); background-repeat: repeat-y
+/*    background-image: url(tree_back.png); background-repeat: repeat-y
+*/
 }
 
 .treeNode 
