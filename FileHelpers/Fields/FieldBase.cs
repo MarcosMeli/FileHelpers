@@ -33,7 +33,6 @@ namespace FileHelpers
 		internal bool mIsLast = false;
 		internal bool mTrailingArray = false;
 
-		internal FixedMode mFixedMode = FixedMode.ExactLength;
 
 		internal object mNullValue = null;
 		//internal bool mNullValueOnWrite = false;

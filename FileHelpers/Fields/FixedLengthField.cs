@@ -17,6 +17,9 @@ namespace FileHelpers
 		internal int mFieldLength;
 		internal FieldAlignAttribute mAlign = new FieldAlignAttribute(AlignMode.Left, ' ');
 
+		internal FixedMode mFixedMode = FixedMode.ExactLength;
+
+
 		#endregion
 
 		#region "  Constructor  "

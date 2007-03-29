@@ -61,8 +61,6 @@ namespace FileHelpers.WizardApp
         }
 
 
-        private int mNumber;
-
         private FieldBuilder mFieldInfo;
 
         public virtual void FieldInfoReload()

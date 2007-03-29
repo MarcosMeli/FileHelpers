@@ -31,5 +31,7 @@ using System.Security.Permissions;
 [assembly : AssemblyKeyName("")]
 
 #if ! NET_2_0
+#if ! MINI
 [assembly: AssemblyKeyFile(@"..\..\FileHelpers.snk")]
+#endif
 #endif
