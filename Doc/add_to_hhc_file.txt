@@ -19,6 +19,11 @@
 		<param name="Local" value="runtime_classes.html">
 		</OBJECT>
 
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Powered By">
+		<param name="Local" value="poweredby.html">
+		</OBJECT>
+
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Attributes List">
 		<param name="Local" value="attributes.html">

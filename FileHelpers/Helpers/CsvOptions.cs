@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using FileHelpers.RunTime;
 
 namespace FileHelpers
 {
@@ -73,7 +74,7 @@ namespace FileHelpers
 		public string FieldsPrefix
 		{
 			get { return mFieldsPrefix; }
-			set { mFieldsPrefix = value; }
+			set { mFieldsPrefix = ClassBuilder.StringToIdentifier(value); }
 		}
 
 		/// <summary>The number of fields that the file contains.</summary>

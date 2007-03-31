@@ -48,31 +48,31 @@ namespace FileHelpersTests.DataLink
 			Assert.AreEqual(830, dt.Rows.Count);
 		}
 
-		[Test]
-		public void OrdersRead3()
-		{
-			ExcelReader reader = new ExcelReader(1, 1);
-			reader.HasHeaders = false;
-			DataTable dt = reader.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1);
-
-			Assert.AreEqual(830, dt.Rows.Count);
-			Assert.AreEqual(typeof(double), dt.Rows[0][0].GetType());
-			Assert.AreEqual(10248.0, dt.Rows[0][0]);
-			
-		}
-
-		[Test]
-		public void OrdersRead4()
-		{
-			ExcelReader reader = new ExcelReader(1, 1);
-			reader.HasHeaders = false;
-			reader.ReadAllAsText = true;
-			DataTable dt = reader.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1);
-
-			Assert.AreEqual(830, dt.Rows.Count);
-			Assert.AreEqual(typeof(string), dt.Rows[0][0].GetType());
-			Assert.AreEqual("10248", dt.Rows[0][0]);
-		}
+//		[Test]
+//		public void OrdersRead3()
+//		{
+//			ExcelReader reader = new ExcelReader(1, 1);
+//			reader.HasHeaders = false;
+//			DataTable dt = reader.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1);
+//
+//			Assert.AreEqual(830, dt.Rows.Count);
+//			Assert.AreEqual(typeof(double), dt.Rows[0][0].GetType());
+//			Assert.AreEqual(10248.0, dt.Rows[0][0]);
+//			
+//		}
+//
+//		[Test]
+//		public void OrdersRead4()
+//		{
+//			ExcelReader reader = new ExcelReader(1, 1);
+//			reader.HasHeaders = false;
+//			reader.ReadAllAsText = true;
+//			DataTable dt = reader.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1);
+//
+//			Assert.AreEqual(830, dt.Rows.Count);
+//			Assert.AreEqual(typeof(string), dt.Rows[0][0].GetType());
+//			Assert.AreEqual("10248", dt.Rows[0][0]);
+//		}
 
 		[Test]
 		public void OrdersWrite()

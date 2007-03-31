@@ -464,7 +464,7 @@ namespace FileHelpers
  		IEnumerator IEnumerable.GetEnumerator()
  		{
  			if (mAsyncReader == null)
- 				throw new FileHelperException("You must call BeginRead before use the engine in a for each loop.");
+ 				throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
  			
 #if ! GENERICS
 			return new AsyncEnumerator(this);

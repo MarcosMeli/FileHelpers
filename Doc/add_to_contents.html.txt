@@ -13,7 +13,12 @@
         </div>
 
         <div class="treeNode">
-          <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="globe.gif" border=0 />  FileHelpers on the Web</a>
+          <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="globe.gif" border=0 /> FileHelpers on the Web</a>
+        </div>
+
+        <div class="treeNode">
+          <img src="treenodedot.gif" class="treeNoLinkImage" />
+          <a href="poweredby.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>Powered By</b></a>
         </div>
 
         <div class="treeNode">

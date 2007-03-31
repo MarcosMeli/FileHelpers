@@ -823,7 +823,7 @@ namespace FileHelpers.RunTime
 		
 		internal const string sInvalidIdentifier = "The string '{0}' not is a valid .NET identifier.";
 
-		internal string StringToIdentifier(string name)
+		internal static string StringToIdentifier(string name)
 		{
 			StringBuilder sb = new StringBuilder(name.Trim());
 			for(int i = 0; i < sb.Length; i++)

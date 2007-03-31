@@ -151,7 +151,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelperException))]
+		[ExpectedException(typeof(FileHelpersException))]
 		public void AsyncReadEnumerableBad()
 		{
             FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();

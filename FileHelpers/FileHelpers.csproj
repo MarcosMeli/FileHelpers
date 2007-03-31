@@ -474,16 +474,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Excel\ExcelHelper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Excel\ExcelReader.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Fields\DelimitedField.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -34,10 +34,7 @@ namespace FileHelpers.RunTime
 				{
 					foreach (string header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
 					{
-						//Changed JC 20070322 - Any other non-word (punctuation) characters are removed including cr/lf.
-						string TmpHeader = header.Replace(" ", "_").Replace(".", "_").Replace(",", "_");
-						TmpHeader = mRemoveBlanks.Replace(TmpHeader, string.Empty);
-						AddField( TmpHeader );
+						AddField(StringToIdentifier(header));
 					}
 				}
 				else
@@ -57,7 +54,7 @@ namespace FileHelpers.RunTime
 
 		}
 		
-		private static Regex mRemoveBlanks = new Regex(@"\W", System.Text.RegularExpressions.RegexOptions.Compiled);
+		//private static Regex mRemoveBlanks = new Regex(@"\W", System.Text.RegularExpressions.RegexOptions.Compiled);
 
 
 		/// <summary>Add a new Delimited field to the current class.</summary>

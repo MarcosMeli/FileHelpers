@@ -7,6 +7,7 @@ namespace FileHelpers
 	/// Interface used to provide In record notification of read operations.
 	/// </summary>
 	/// <example>
+	/// <code>
 	/// private class SampleType: INotifyRead, INotifyWrite
 	/// { ....
 	/// 
@@ -20,6 +21,7 @@ namespace FileHelpers
 	///		}
 	/// 
 	/// }
+	/// </code>
 	/// </example>
 	public interface INotifyRead
 	{
@@ -35,6 +37,7 @@ namespace FileHelpers
 	/// Interface used to provide <b>In record notification of write operations.</b>
 	/// </summary>
 	/// <example>
+	/// <code>
 	/// private class SampleType: INotifyRead, INotifyWrite
 	/// { ....
 	/// 
@@ -48,6 +51,7 @@ namespace FileHelpers
 	///		}
 	/// 
 	/// }
+	/// </code>
 	/// </example>
 	public interface INotifyWrite
 	{
