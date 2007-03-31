@@ -36,9 +36,21 @@ namespace FileHelpers
 #if NET_1_1
 	public sealed class BeforeReadRecordEventArgs: ReadRecordEventArgs
 #else
-	public sealed class BeforeReadRecordEventArgs<T>: ReadRecordEventArgs
+    public sealed class BeforeReadRecordEventArgs: BeforeReadRecordEventArgs<object>
+    {
+        internal BeforeReadRecordEventArgs(string line)
+            : this(line, -1)
+        { }
+
+        internal BeforeReadRecordEventArgs(string line, int lineNumber)
+            : base(line, lineNumber)
+        { }
+    }
+
+    /// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
+    public class BeforeReadRecordEventArgs<T> : ReadRecordEventArgs
 #endif
-													  {
+	{
 		internal BeforeReadRecordEventArgs(string line): this(line, -1)
 		{}
 
@@ -78,7 +90,20 @@ namespace FileHelpers
 		}
 
 #else
-	public sealed class AfterReadRecordEventArgs<T>: ReadRecordEventArgs
+    public sealed class AfterReadRecordEventArgs: AfterReadRecordEventArgs<object>
+    {
+        internal AfterReadRecordEventArgs(string line, object newRecord)
+            : this(line, newRecord, -1)
+        { }
+
+        internal AfterReadRecordEventArgs(string line, object newRecord, int lineNumber)
+            : base(line, newRecord, lineNumber)
+        {
+        }
+    }
+
+    /// <summary>Arguments for the <see cref="AfterReadRecordHandler"/></summary>
+    public class AfterReadRecordEventArgs<T> : ReadRecordEventArgs
 	{
 		internal AfterReadRecordEventArgs(string line, T newRecord): this(line, newRecord, -1)
 		{}

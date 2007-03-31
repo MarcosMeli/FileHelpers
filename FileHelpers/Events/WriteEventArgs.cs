@@ -5,7 +5,7 @@ namespace FileHelpers
 {
 
 	/// <summary></summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
 #if NET_1_1
 	public abstract class WriteRecordEventArgs: EventArgs
 	{
@@ -15,7 +15,7 @@ namespace FileHelpers
 			mLineNumber = lineNumber;
 		}
 #else
-	public abstract class WriteRecordEventArgs<T>: EventArgs
+    public abstract class WriteRecordEventArgs<T>: EventArgs
 	{
 		internal WriteRecordEventArgs(T record, int lineNumber)
 		{
@@ -62,7 +62,15 @@ namespace FileHelpers
 	{
 		internal BeforeWriteRecordEventArgs(object record, int lineNumber)
 #else
-	public sealed class BeforeWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
+    public sealed class BeforeWriteRecordEventArgs: BeforeWriteRecordEventArgs<object>
+    {
+        internal BeforeWriteRecordEventArgs(object record, int lineNumber)
+			: base(record, lineNumber)
+		{}
+
+    }
+	/// <summary>Arguments for the <see cref="BeforeWriteRecordHandler"/></summary>
+    public class BeforeWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
 	{
 		internal BeforeWriteRecordEventArgs(T record, int lineNumber)
 #endif
@@ -85,7 +93,14 @@ namespace FileHelpers
 	{
 		internal AfterWriteRecordEventArgs(object record, int lineNumber, string line): base(record, lineNumber)
 #else
-	public sealed class AfterWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
+   	public sealed class AfterWriteRecordEventArgs: AfterWriteRecordEventArgs<object>
+    {
+        internal AfterWriteRecordEventArgs(object record, int lineNumber, string line)
+            :base(record, lineNumber, line)
+        { }
+    }
+	/// <summary>Arguments for the <see cref="AfterWriteRecordHandler"/></summary>
+	public class AfterWriteRecordEventArgs<T>: WriteRecordEventArgs<T>
 	{
 		internal AfterWriteRecordEventArgs(T record, int lineNumber, string line): base(record, lineNumber)
 #endif

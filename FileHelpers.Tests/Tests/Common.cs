@@ -24,10 +24,10 @@ namespace FileHelpersTests
 			return engine.ReadFile(@"..\data\" + fileName);
 		}
 
-		public static object[] ReadTest(FileHelperEngine engine, string fileName, int maxRecords)
-		{
-			return engine.ReadFile(@"..\data\" + fileName, maxRecords);
-		}
+        public static object[] ReadTest(FileHelperEngine engine, string fileName, int maxRecords)
+        {
+            return engine.ReadFile(@"..\data\" + fileName, maxRecords);
+        }
 
 		public static object[] ReadAllAsync(FileHelperAsyncEngine engine, string fileName)
 		{

@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 	
 
 		[Test]
-		public void ReadFileSomes01()
+        public void ReadFileMaxRecords01()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -37,7 +37,7 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		public void ReadFileSomes02()
+		public void ReadFileMaxRecords02()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -51,7 +51,7 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		public void ReadFileSomes03()
+        public void ReadFileMaxRecords03()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -64,7 +64,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void ReadFileSomes04()
+        public void ReadMaxRecords04()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -77,7 +77,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void ReadFileSomes05()
+        public void ReadMaxRecords05()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -90,7 +90,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void ReadFileSomes06()
+        public void ReadFileMaxRecords06()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -103,7 +103,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void ReadFileSomes07()
+        public void ReadFileMaxRecords07()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -119,7 +119,7 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		public void ReadFileSomes08()
+        public void ReadFileMaxRecords08()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -134,14 +134,14 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		public void ReadFileSomes09()
+        public void ReadFileMaxRecords09()
 		{
 			object[] res = CommonEngine.ReadFile(typeof(SampleType), Common.TestPath(@"Good\test1.txt"), 2);
 			Assert.AreEqual(2, res.Length);
 		}
 
 		[Test]
-		public void ReadFileSomes10()
+        public void ReadFileMaxRecords10()
 		{
 			object[] res = CommonEngine.ReadFile(typeof(SampleType), Common.TestPath(@"Good\test1.txt"), -1);
 
