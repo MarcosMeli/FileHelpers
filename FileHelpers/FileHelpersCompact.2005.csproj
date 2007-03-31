@@ -1,0 +1,279 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ECE16BAD-F7BF-4556-B817-F27C9352BED9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FileHelpersPPC</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OutputFileFolder>\Program Files\FielHelpers</OutputFileFolder>
+    <RootNamespace>FileHelpers</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PlatformID>E2BECB1F-8C8C-41ba-B736-9BE7D946A398</PlatformID>
+    <PlatformFamilyName>WindowsCE</PlatformFamilyName>
+    <DeployDirSuffix>$(AssemblyName)</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\Release\DotNet 2.0 PPC\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>0</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;MINI</DefineConstants>
+    <DocumentationFile>FileHelpersPPC.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\Release\DotNet 2.0 PPC\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>0</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;MINI</DefineConstants>
+    <DocumentationFile>FileHelpersPPC.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Name>MSCorLib</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\ConditionalRecordAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\DelimitedRecordAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldAlignAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldConverterAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldDelimiterAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldFixedLengthAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldIgnoredAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldInNewLineAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldNullValueAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldOptionalAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldQuotedAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FieldTrimAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FixedLengthRecordAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\IgnoreCommentedLinesAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\IgnoreEmptyLinesAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\IgnoreFirstAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\IgnoreLastAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\TypedRecordAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\ConverterBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\ConvertHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ExtractInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ForwardReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\LineInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\RecordInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\DelimitedFileEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\EngineBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\FileHelperAsyncEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\FileHelperAsyncEngineG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\FileHelperEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\FileHelperEngineG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engines\FixedFileEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\AlignMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\ConverterKind.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\ErrorMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\FixedMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\MultilineMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\QuoteMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\RecordCondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\TrimMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\BadUsageException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\ConvertException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\ErrorInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\ErrorManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorHandling\FileHelpersException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fields\DelimitedField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fields\FieldBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fields\FieldFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fields\FixedLengthField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\ConditionHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\ExHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\StreamHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\StringHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options\DelimitedRecordOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options\FixedRecordOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Options\RecordOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" xmlns="">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
