@@ -586,6 +586,8 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                                 </li>
                                                 <li>Flush Method to AsyncEngines to allow users to ensure data writte for example if
                                                     there are using the lib for logging.</li>
+                                                <li>The converters are now smarter they validate to wich types can be assigned and throw exceptions if is wrong (for example if you use ConverterKind.Decimal in a double field)</li>
+                                                <li>The integer converters recieve also now a decimal separator to build a InvariantCulture to format and parse the values and strings</li>
                                             </span>
                                         </ul>
                                         <p>
@@ -616,8 +618,9 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         </p>
 							 <p></p>
                                         <ul>
-							 <li>The Assembly is now Signed</li>
+											<li>The Assembly is now Signed</li>
                                             <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
+											<li>The new ConverterBase.DefaultDateTimeFormat to avoid set the converter field by field =)</li>
                                             <li>Some error messages from the library were rewritten and now provide more context information (line number, full name, etc). </li>
                                             <li>Improved docs. (Thanks Antoine and Matt) </li>
                                             <li>ExcelStorage support for more than 26 columns (thxs to Mark Izendooren)</li>

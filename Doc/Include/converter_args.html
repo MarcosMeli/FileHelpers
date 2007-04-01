@@ -67,7 +67,7 @@ You can check all the supported format strings check the MSDN docs for DateTime.
         <h2>ConverterKind.Double, ConverterKind.Single and ConverterKind.Decimal</h2>
 <BLOCKQUOTE>
 <p>
-			<b>Arg1:</b> A string with the char used as DEcimalSeparator. <b>By default: "."</b>
+			<b>Arg1:</b> A string with the char used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
 </p>
 <p>
 			<b>Examples:</b><br />
@@ -86,9 +86,38 @@ public double Freight;
 [FieldConverter(ConverterKind.Double, ",")]
 public double Freight;
 
-// The same works for the 
+// The same for the other converters:
 // ConverterKind.Decimal and ConverterKind.Single 
-// converters
+
+</textarea><br />
+
+</p>
+</BLOCKQUOTE>
+        <h2>ConverterKind.Int16, ConverterKind.Int32, ConverterKind.Int64, ConverterKind.UInt16, ConverterKind.UInt32, ConverterKind.UInt64, ConverterKind.Byte and ConverterKind.SByte</h2>
+<BLOCKQUOTE>
+<p>
+			<b>Arg1:</b> A string with the char used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
+</p>
+<p>
+			<b>WARNING:</b> The library request a Decimal Separator here and internally creates the Group Separator with the conterpart (for example if you provide "." uses ",")
+</p>
+<p>
+			<b>Examples:</b><br />
+			
+			<textarea name="code" class="c#">
+
+// "." is the decimal separator by default
+// allows you to parse:  12,125 or 1,458,385
+[FieldConverter(ConverterKind.Int32)]
+public Int32 Amount;
+
+// using "," as decimal separator
+// allows you to parse:  12.125 or 1.458.385
+[FieldConverter(ConverterKind.Int32, ",")]
+public Int32 Amount;
+
+
+// The same works for the rest of the converts
 
 </textarea><br />
 
