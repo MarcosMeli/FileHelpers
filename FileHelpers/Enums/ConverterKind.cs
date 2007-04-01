@@ -21,19 +21,61 @@ namespace FileHelpers
 		Date,
 		/// <summary>Convert from/to <b>Boolean</b> values.</summary>
 		Boolean,
-		/// <summary>Convert from/to <b>Byte</b> values.</summary>
-		Byte,
-		/// <summary>Convert from/to <b>Int16</b> values.</summary>
-		Int16,
-		/// <summary>Convert from/to <b>Int32</b> values.</summary>
-		Int32,
-		/// <summary>Convert from/to <b>Int64</b> values.</summary>
-		Int64,
-		/// <summary>Convert from/to <b>Decimal</b> values.</summary>
-		Decimal,
-		/// <summary>Convert from/to <b>Double</b> values.</summary>
-		Double,
-		/// <summary>Convert from/to <b>Single</b> values.</summary>
-		Single
+
+        /// <summary>
+        /// <para>Convert from/to <b>Byte</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Byte,
+        /// <summary>
+        /// <para>Convert from/to <b>Int16 or short</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Int16,
+        /// <summary>
+        /// <para>Convert from/to <b>Int32 or int</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Int32,
+        /// <summary>
+        /// <para>Convert from/to <b>Int64 or long</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Int64,
+        /// <summary>
+        /// <para>Convert from/to <b>Decimal</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Decimal,
+        /// <summary>
+        /// <para>Convert from/to <b>Double</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Double,
+        /// <summary>
+        /// <para>Convert from/to <b>Single</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        Single,
+        /// <summary>
+        /// <para>Convert from/to <b>Byte</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        SByte,
+        /// <summary>
+        /// <para>Convert from/to <b>UInt16 or unsigned short</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        UInt16,
+        /// <summary>
+        /// <para>Convert from/to <b>UInt32 or unsigned int</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        UInt32,
+        /// <summary>
+        /// <para>Convert from/to <b>UInt64 or unsigned long</b> values.</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        UInt64
 	}
 }

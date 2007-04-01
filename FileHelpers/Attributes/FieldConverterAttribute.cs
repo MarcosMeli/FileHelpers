@@ -54,6 +54,8 @@ namespace FileHelpers
 
 		private FieldConverterAttribute(ConverterKind converter, params string[] args)
 		{
+            Kind = converter;
+            
 			Type convType;
 
 			switch (converter)
@@ -63,8 +65,12 @@ namespace FileHelpers
 					break;
 
 				case ConverterKind.Byte:
-					convType = typeof (ConvertHelpers.SByteConverter);
+					convType = typeof (ConvertHelpers.ByteConverter);
 					break;
+
+                case ConverterKind.SByte:
+                    convType = typeof(ConvertHelpers.SByteConverter);
+                    break;
 
 				case ConverterKind.Int16:
 					convType = typeof (ConvertHelpers.Int16Converter);
@@ -75,7 +81,18 @@ namespace FileHelpers
 				case ConverterKind.Int64:
 					convType = typeof (ConvertHelpers.Int64Converter);
 					break;
-				case ConverterKind.Decimal:
+
+                case ConverterKind.UInt16:
+                    convType = typeof(ConvertHelpers.UInt16Converter);
+                    break;
+                case ConverterKind.UInt32:
+                    convType = typeof(ConvertHelpers.UInt32Converter);
+                    break;
+                case ConverterKind.UInt64:
+                    convType = typeof(ConvertHelpers.UInt64Converter);
+                    break;
+
+                case ConverterKind.Decimal:
 					convType = typeof (ConvertHelpers.DecimalConverter);
 					break;
 				case ConverterKind.Double:
@@ -142,6 +159,7 @@ namespace FileHelpers
 		#region "  Converter  "
 
 		internal ConverterBase Converter;
+        internal ConverterKind Kind;
 
 		#endregion
 
@@ -226,5 +244,54 @@ namespace FileHelpers
 
 		#endregion
 
-	}
+
+        internal void ValidateTypes(FieldInfo fi)
+        {
+            bool valid = false;
+
+            Type fieldType = fi.FieldType;
+
+#if NET_2_0
+
+            if (fieldType.IsValueType &&
+                  fieldType.IsGenericType &&
+                    fieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                fieldType = fieldType.GetGenericArguments()[0];
+            }
+
+#endif
+
+            switch (Kind)
+            {
+                case ConverterKind.None:
+                    valid = true;
+                    break;
+
+                case ConverterKind.Date:
+                    valid = typeof(DateTime) == fieldType;
+                    break;
+
+                case ConverterKind.Byte:
+                case ConverterKind.SByte:
+                case ConverterKind.Int16:
+                case ConverterKind.Int32:
+                case ConverterKind.Int64:
+                case ConverterKind.UInt16:
+                case ConverterKind.UInt32:
+                case ConverterKind.UInt64:
+                case ConverterKind.Decimal:
+                case ConverterKind.Double:
+                case ConverterKind.Single:
+                case ConverterKind.Boolean:
+                    valid = Kind.ToString() == fieldType.UnderlyingSystemType.Name;
+                    break;
+
+            }
+
+            if (valid == false)
+               throw new BadUsageException(
+                   "The Converter of the field: '" + fi.Name + "' is wrong. The field is of Type: " + fieldType.Name + " and the converter is for type: " + Kind.ToString());
+        }
+    }
 }

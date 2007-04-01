@@ -53,7 +53,11 @@ namespace FileHelpers
 			object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
 
 			if (attribs.Length > 0)
-				mConvertProvider = ((FieldConverterAttribute) attribs[0]).Converter;
+            {
+                FieldConverterAttribute conv = (FieldConverterAttribute)attribs[0];
+                mConvertProvider = conv.Converter;
+                conv.ValidateTypes(mFieldInfo);
+            }
 			else
 				mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
 

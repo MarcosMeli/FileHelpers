@@ -109,6 +109,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "TestBaseHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "TODO Tests.txt"
                     BuildAction = "None"
                 />
@@ -234,6 +239,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\InNewLine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\IntegerSeparators.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

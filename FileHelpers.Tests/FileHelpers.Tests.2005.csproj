@@ -180,6 +180,7 @@
     <Compile Include="Tests\Common\InNewLine.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\IntegerSeparators.cs" />
     <Compile Include="Tests\Common\LineCounter.cs">
       <SubType>Code</SubType>
     </Compile>
