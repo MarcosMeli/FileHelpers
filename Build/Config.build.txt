@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<project>
+	<property name="LibraryVersion" 
+						value="2.0.0" 
+	/>
+	<property name="LibraryFileVersion" 
+						value="${string::replace(LibraryVersion, '.', '_')}" 
+	/>
+    
+	</project>

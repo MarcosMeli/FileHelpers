@@ -719,21 +719,21 @@ namespace FileHelpers
 #if ! GENERICS
 
         /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public event BeforeReadRecordHandler<object> BeforeReadRecord;
+        public event BeforeReadRecordHandler BeforeReadRecord;
         /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public event AfterReadRecordHandler<object> AfterReadRecord;
+        public event AfterReadRecordHandler AfterReadRecord;
         /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public event BeforeWriteRecordHandler<object> BeforeWriteRecord;
+        public event BeforeWriteRecordHandler BeforeWriteRecord;
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public event AfterWriteRecordHandler<object> AfterWriteRecord;
+        public event AfterWriteRecordHandler AfterWriteRecord;
 
 		private bool OnBeforeReadRecord(string line)
 		{
 
 			if (BeforeReadRecord != null)
 			{
-				BeforeReadRecordEventArgs<object> e = null;
-				e = new BeforeReadRecordEventArgs<object>(line, LineNumber);
+				BeforeReadRecordEventArgs e = null;
+				e = new BeforeReadRecordEventArgs(line, LineNumber);
 				BeforeReadRecord(this, e);
 
 				return e.SkipThisRecord;
@@ -749,8 +749,8 @@ namespace FileHelpers
 
 		    if (AfterReadRecord != null)
 			{
-				AfterReadRecordEventArgs<object> e = null;
-                e = new AfterReadRecordEventArgs<object>(line, record, LineNumber);
+				AfterReadRecordEventArgs e = null;
+                e = new AfterReadRecordEventArgs(line, record, LineNumber);
 				AfterReadRecord(this, e);
 				return e.SkipThisRecord;
 			}
@@ -765,8 +765,8 @@ namespace FileHelpers
 
 		    if (BeforeWriteRecord != null)
 			{
-                BeforeWriteRecordEventArgs<object> e = null;
-                e = new BeforeWriteRecordEventArgs<object>(record, LineNumber);
+                BeforeWriteRecordEventArgs e = null;
+                e = new BeforeWriteRecordEventArgs(record, LineNumber);
 				BeforeWriteRecord(this, e);
 
 				return e.SkipThisRecord;
@@ -780,8 +780,8 @@ namespace FileHelpers
 
 			if (AfterWriteRecord != null)
 			{
-                AfterWriteRecordEventArgs<object> e = null;
-                e = new AfterWriteRecordEventArgs<object>(record, LineNumber, line);
+                AfterWriteRecordEventArgs e = null;
+                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
 				AfterWriteRecord(this, e);
 				return e.RecordLine;
 			}
