@@ -57,20 +57,7 @@ namespace FileHelpers.RunTime
 		/// <param name="lang">One of the .NET Languages</param>
 		public static Type ClassFromString(string classStr, string className, NetLanguage lang)
 		{
-			ICodeCompiler comp = null;
-
-			switch(lang)
-			{
-				case NetLanguage.CSharp:
-					comp = (new CSharpCodeProvider()).CreateCompiler();
-					break;
-
-				case NetLanguage.VbNet:
-					comp = (new VBCodeProvider()).CreateCompiler();
-					break;
-			}
-
-			CompilerParameters cp = new CompilerParameters();
+	    	CompilerParameters cp = new CompilerParameters();
 			cp.ReferencedAssemblies.Add("system.dll");
 			cp.ReferencedAssemblies.Add("system.data.dll");
 			cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
@@ -96,7 +83,39 @@ namespace FileHelpers.RunTime
 
 			code.Append(classStr);
 
-			CompilerResults cr = comp.CompileAssemblyFromSource(cp, code.ToString());
+            CompilerResults cr;
+
+#if NET_2_0
+            CodeDomProvider prov = null;
+
+            switch (lang)
+            {
+                case NetLanguage.CSharp:
+                    prov = CodeDomProvider.CreateProvider("cs");
+                    break;
+
+                case NetLanguage.VbNet:
+                    prov = CodeDomProvider.CreateProvider("vb");
+                    break;
+            }
+
+            cr = prov.CompileAssemblyFromSource(cp, code.ToString());
+#else
+            ICodeCompiler comp = null;
+
+            switch (lang)
+            {
+                case NetLanguage.CSharp:
+                    comp = (new CSharpCodeProvider()).CreateCompiler();
+                    break;
+
+                case NetLanguage.VbNet:
+                    comp = (new VBCodeProvider()).CreateCompiler();
+                    break;
+            }
+
+            cr = comp.CompileAssemblyFromSource(cp, code.ToString());
+#endif
 
 			if (cr.Errors.HasErrors)
 			{

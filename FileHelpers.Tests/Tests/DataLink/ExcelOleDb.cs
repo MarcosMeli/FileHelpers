@@ -15,9 +15,8 @@ namespace FileHelpersTests.DataLink
 		[Test]
 		public void OneColumn()
 		{
-			ExcelStorageOleDb provider = new ExcelStorageOleDb(typeof (OneColumnType), 1, 1);
-
-			provider.FileName = @"..\data\Excel\OneColumn.xls";
+            ExcelStorageOleDb provider = new ExcelStorageOleDb(typeof(OneColumnType), 1, 1);
+            provider.FileName = @"..\data\Excel\OneColumn.xls";
 
 			object[] res = provider.ExtractRecords();
 
@@ -44,7 +43,7 @@ namespace FileHelpersTests.DataLink
 		[Test]
 		public void OrdersRead2()
 		{
-			DataTable dt = ExcelStorageOleDb.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1);
+			DataTable dt = ExcelStorageOleDb.ExtractDataTable(@"..\data\Excel\Orders.xls", 1, 1, false);
 			Assert.AreEqual(830, dt.Rows.Count);
 		}
 
@@ -118,7 +117,7 @@ namespace FileHelpersTests.DataLink
 
 			public int ShipVia;
 
-			public decimal Freight;
+			public string Freight;
 		}
 
 		[DelimitedRecord("\t")]

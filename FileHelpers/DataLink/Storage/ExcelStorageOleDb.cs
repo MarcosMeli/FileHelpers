@@ -17,6 +17,22 @@ namespace FileHelpers.DataLink
 	/// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files using a OleDbConnection</para></summary>
 	public sealed class ExcelStorageOleDb : DataStorage
 	{
+        static string CreateConnectionString(string file, bool hasHeaders)
+        {
+            string mConnectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source={0};Extended Properties=\"Excel 8.0;{1}\"";
+            string extProps = string.Empty;
+
+            if (hasHeaders)
+                extProps += " HDR=YES;";
+            else
+                extProps += " HDR=NO;";
+
+
+            return String.Format(mConnectionString, file, extProps);
+        }
+
+
+
 		#region "  Constructors  "
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -52,12 +68,12 @@ namespace FileHelpers.DataLink
 		private string mSheetName = String.Empty;
 		private string mFileName = String.Empty;
 
-        private static string mConnectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source={0};Extended Properties=\"Excel 8.0;Hdr=YES;\"";
+//        private static string mConnectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source={0};Extended Properties=\"Excel 8.0;Hdr=YES;\"";
 
 		private int mStartRow = 1;
 		private int mStartColumn = 1;
 
-		private int mHeaderRows = 0;
+        private bool mHasHeaderRow = false;
 
 		private DataTable mDtExcel;
         private OleDbConnection mCnExcel;
@@ -82,11 +98,10 @@ namespace FileHelpers.DataLink
 			set { mStartColumn = value; }
 		}
 
-		/// <summary>The numbers of header rows.</summary>
-		public int HeaderRows
+		public bool HasHeaderRow
 		{
-			get { return mHeaderRows; }
-			set { mHeaderRows = value; }
+            get { return mHasHeaderRow; }
+            set { mHasHeaderRow= value; }
 		}
 
 		/// <summary>The Excel File Name.</summary>
@@ -111,12 +126,12 @@ namespace FileHelpers.DataLink
 			get { return mOverrideFile; }
 			set { mOverrideFile = value; }
 		}
-        /// <summary>Indicates the Connection String to Open the Excel File.</summary>
-        public string ConnectionString
-        {
-            get { return mConnectionString; }
-            set { mConnectionString = value; }
-        }
+        ///// <summary>Indicates the Connection String to Open the Excel File.</summary>
+        //public string ConnectionString
+        //{
+        //    get { return mConnectionString; }
+        //    set { mConnectionString = value; }
+        //}
 
 
 		#endregion
@@ -135,7 +150,7 @@ namespace FileHelpers.DataLink
 #endif
                 }
 
-                mCnExcel= new OleDbConnection(String.Format(mConnectionString, mFileName));
+                mCnExcel= new OleDbConnection(CreateConnectionString(mFileName, HasHeaderRow));
                 mCnExcel.Open();
                 mDtExcel = new DataTable();
 
@@ -177,8 +192,7 @@ namespace FileHelpers.DataLink
 
 			if (this.mSheetName == null || this.mSheetName == string.Empty)
             {
-
-string sheet;
+                string sheet;   
             	sheet = GetFirstSheet(mCnExcel);
             	this.mSheetName = sheet;
 			}
@@ -298,7 +312,11 @@ string sheet;
             mDaExcel.InsertCommand = cmd;
             foreach (DataColumn col in mDtExcel.Columns)
             {
+#if NET_2_0
+                cmd.Parameters.AddWithValue("@" + col.ColumnName, col.DataType).SourceColumn = col.ColumnName;
+#else
                 cmd.Parameters.Add("@" + col.ColumnName, col.DataType).SourceColumn = col.ColumnName;
+#endif
             }
             #endregion
 
@@ -323,9 +341,9 @@ string sheet;
 
             if (numberOfCols == 1)
             {
-                if (startCol < mDtExcel.Columns.Count)
+                if (startCol <= mDtExcel.Columns.Count)
                 {
-                    res = new object[] { mDtExcel.Rows[row][startCol] };
+                    res = new object[] { mDtExcel.Rows[row][startCol-1] };
                 }
                 else
                 {
@@ -533,13 +551,13 @@ string sheet;
         #endregion
 
 
-		public static DataTable ExtractDataTable(string file, int row, int col)
+		public static DataTable ExtractDataTable(string file, int row, int col, bool hasHeader)
 		{
 
 			OleDbConnection connExcel;
 			//private OleDbDataAdapter mDaExcel;
-				
-			connExcel= new OleDbConnection(String.Format(mConnectionString, file));
+
+            connExcel = new OleDbConnection(CreateConnectionString(file, hasHeader));
 			connExcel.Open();
 			DataTable res = new DataTable();
 

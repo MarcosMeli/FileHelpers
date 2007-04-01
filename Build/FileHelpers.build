@@ -107,7 +107,9 @@
 			<fail />
 	</if>
 
-	<exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
+       <exec program="DelTemps.bat" workingdir="." failonerror="false" />
+
+	   <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
 
        <copy file="..\..\Release\DotNet 1.1\FileHelpers.dll" todir="..\FileHelpers.CodeExamples\References" />
    </target>
@@ -207,7 +209,6 @@
        
    </target>
    
-  
    <target name="build2005" depends="common">
    <if test="${not property::exists('Vs9Path')}">
 		<if test="${not property::exists('Vs8Path')}">
@@ -229,13 +230,7 @@
 	</if>
 
 	
-	
-	
-	
-	
-	
-	
-	
+    <exec program="DelTemps.bat" workingdir="." failonerror="false" />
 	
 	<exec program="${Vs9Path}\devenv.exe " commandline=" /rebuild release &quot;FileHelpers.vs2005.sln" workingdir=".." failonerror="true" />
        <delete>

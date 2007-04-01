@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace FileHelpersTests
@@ -16,7 +15,7 @@ namespace FileHelpersTests
 
         protected string BuildPath(string basePath, string file)
         {
-            if (string.IsNullOrEmpty(basePath))
+            if (basePath == null | basePath.Length == 0)
                 return mBasePath + file;
             else
                 return mBasePath + basePath + @"\" + file;

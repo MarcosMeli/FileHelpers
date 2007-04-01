@@ -14,6 +14,34 @@ namespace FileHelpers
 	/// </summary>
 	public abstract class ConverterBase
 	{
+
+        private static string mDefaultDateTimeFormat = "ddMMyyyy";
+
+
+        /// <summary>
+        /// <para>Allow you to set the default Date Format used for the converter.</para>
+        /// <para>With the same format that the .NET framework.</para>
+        /// <para>By default: "ddMMyyyy"</para>
+        /// </summary>
+        public static string DefaultDateTimeFormat
+        {
+            get { return mDefaultDateTimeFormat; }
+            set 
+            {
+                try
+                {
+                    string tmp = DateTime.Now.ToString(value);
+                }
+                catch
+                {
+                    throw new BadUsageException("The format: '" + value + " is invalid for the DateTime Converter.");
+                }
+
+                mDefaultDateTimeFormat= value;
+            }
+        }
+
+
 		/// <summary>
 		/// Convert a string in the file to a field value.
 		/// </summary>

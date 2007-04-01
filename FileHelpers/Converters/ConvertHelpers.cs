@@ -344,7 +344,7 @@ namespace FileHelpers
 		{
 			string mFormat;
 
-			public DateTimeConverter() : this("ddMMyyyy")
+			public DateTimeConverter() : this(ConverterBase.DefaultDateTimeFormat)
 			{
 			}
 
@@ -365,7 +365,7 @@ namespace FileHelpers
 				mFormat = format;
 			}
 
-			CultureInfo mInvariant = System.Globalization.CultureInfo.InvariantCulture;
+            //static CultureInfo mInvariant = System.Globalization.CultureInfo.InvariantCulture;
 
 			public override object StringToField(string from)
 			{
