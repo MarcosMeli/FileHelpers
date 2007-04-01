@@ -6,8 +6,6 @@
 
    <property name="Source" value="FileHelpers_Source" />
 
-   <property name="nant.settings.currentframework" value="net-1.1" />
-		  
    <target name="clean">
     
        <delete>
@@ -28,11 +26,11 @@
        
 		<readregistry property="Vs8Path" 
 			key="SOFTWARE\Microsoft\VisualStudio\7.1\InstallDir" 
-			hive="LocalMachine" />
+			hive="LocalMachine" failonerror="false" />
 
 		<readregistry property="Vs9Path" 
 			key="SOFTWARE\Microsoft\VisualStudio\8.0\InstallDir" 
-			hive="LocalMachine" />
+			hive="LocalMachine" failonerror="false" />
 
 			<delete file="..\FileHelpers\Engines\FileHelperEngineG.cs" />
        <copy file="..\FileHelpers\Engines\FileHelperEngine.cs" tofile="..\FileHelpers\Engines\FileHelperEngineG.cs" />
@@ -90,7 +88,26 @@
 	</target>
    
    <target name="build2003" depends="common">
-       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
+   <if test="${not property::exists('Vs8Path')}">
+		<if test="${not property::exists('Vs9Path')}">
+			<echo message="-----------------------------------------------------------" />
+			<echo message="" />
+			<echo message="You dont have Visual Studio 2003 installed on your system" />
+			<echo message="But you have Visual Studio 2005 so you can try running the Build2005.bat" />
+			<echo message="" />
+			<echo message="-----------------------------------------------------------" />
+			<fail />
+		</if>
+			<echo message="-----------------------------------------------------------" />
+			<echo message="" />
+			<echo message="You dont have any Visual Studio installed on your system." />
+			<echo message="This build requires VS2003" />
+			<echo message="" />
+			<echo message="-----------------------------------------------------------" />
+			<fail />
+	</if>
+
+	<exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
 
        <copy file="..\..\Release\DotNet 1.1\FileHelpers.dll" todir="..\FileHelpers.CodeExamples\References" />
    </target>
@@ -192,7 +209,35 @@
    
   
    <target name="build2005" depends="common">
-       <exec program="${Vs9Path}\devenv.exe " commandline=" /rebuild release &quot;FileHelpers.vs2005.sln" workingdir=".." failonerror="true" />
+   <if test="${not property::exists('Vs9Path')}">
+		<if test="${not property::exists('Vs8Path')}">
+			<echo message="-----------------------------------------------------------" />
+			<echo message="" />
+			<echo message="You dont have Visual Studio 2005 installed on your system" />
+			<echo message="But you have Visual Studio 2003 so you can try running the Build2003.bat" />
+			<echo message="" />
+			<echo message="-----------------------------------------------------------" />
+			<fail />
+		</if>
+			<echo message="-----------------------------------------------------------" />
+			<echo message="" />
+			<echo message="You dont have any Visual Studio installed on your system." />
+			<echo message="This build requires VS2005" />
+			<echo message="" />
+			<echo message="-----------------------------------------------------------" />
+			<fail />
+	</if>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<exec program="${Vs9Path}\devenv.exe " commandline=" /rebuild release &quot;FileHelpers.vs2005.sln" workingdir=".." failonerror="true" />
        <delete>
            <fileset basedir="..\..\Release\Wizard">
                <include name="FileHelpers.xml" />
