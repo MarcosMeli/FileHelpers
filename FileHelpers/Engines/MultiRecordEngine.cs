@@ -31,9 +31,9 @@ namespace FileHelpers
 
 	#endregion
 
-	/// <summary>This engine allows you to parse and write files that contain
-	/// records of different types and that are in a linear relationship
-	/// (for Master-Detail check the <see cref="MasterDetailEngine"/>
+	/// <summary><para>This engine allows you to parse and write files that contain
+    /// records of different types and that are in a linear relationship</para>
+    /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
 	/// </summary>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
