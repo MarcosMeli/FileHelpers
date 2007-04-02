@@ -65,12 +65,12 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Easy Sample">
+			<param name="Name" value="Easy Example">
 			<param name="Local" value="example_easy.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Easy Sample (Generics)">
+			<param name="Name" value="Easy Example (Generics)">
 			<param name="Local" value="example_generics.html">
 			<param name="ImageNumber" value="11">
 			</OBJECT>
