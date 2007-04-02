@@ -124,33 +124,35 @@ namespace FileHelpers
 
 		#region "  RemoveBlanks  "
 
-        //internal static string RemoveBlanks(string source)
-        //{
-        //    if (source == null || source.Length == 0)
-        //        return source;
+        internal static string RemoveBlanks(string source)
+        {
+            StringBuilder sb = null;
+            int i = 0;
 
-        //    StringBuilder sb = new StringBuilder(source.Length);
-        //    int i = 0;
-        //    while (i < source.Length && Char.IsWhiteSpace(source[i]))
-        //    {
-        //        i++;
-        //    }
+            while (i < source.Length && Char.IsWhiteSpace(source[i]))
+            {
+                i++;
+            }
 
-        //    if (i < source.Length && (source[i] == '+' || source[i] == '-'))
-        //    {
-        //        sb.Append(source[i]);
-        //        i++;
-        //        while (i < source.Length && Char.IsWhiteSpace(source[i]))
-        //        {
-        //            i++;
-        //        }
-        //    }
+            if (i < source.Length && (source[i] == '+' || source[i] == '-'))
+            {
+                i++;
+                while (i < source.Length && Char.IsWhiteSpace(source[i]))
+                {
+                    if (sb == null)
+                        sb = new StringBuilder(source[i-1].ToString());
 
-        //    if (i < source.Length)
-        //        sb.Append(source.Substring(i));
+                    i++;
+                }
+            }
 
-        //    return sb.ToString();
-        //}
+            if (sb == null)
+                return source;
+            else if (i < source.Length)
+                sb.Append(source.Substring(i));
+
+            return sb.ToString();
+        }
 
 		#endregion
 //

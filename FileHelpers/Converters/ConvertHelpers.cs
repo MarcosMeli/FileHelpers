@@ -149,7 +149,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Byte.Parse(from, NumberStyles.Number, mCulture);
+                return Byte.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -166,7 +166,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt16.Parse(from, NumberStyles.Number, mCulture);
+                return UInt16.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -183,7 +183,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt32.Parse(from, NumberStyles.Number, mCulture);
+                return UInt32.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -201,7 +201,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt64.Parse(from, NumberStyles.Number, mCulture);
+                return UInt64.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -221,7 +221,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return SByte.Parse(from, NumberStyles.Number, mCulture);
+                return SByte.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -237,7 +237,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int16.Parse(from, NumberStyles.Number, mCulture);
+                return Int16.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -254,7 +254,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int32.Parse(from, NumberStyles.Number, mCulture);
+                return Int32.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -269,7 +269,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int64.Parse(from, NumberStyles.Number, mCulture);
+                return Int64.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -286,6 +286,7 @@ namespace FileHelpers
             public DecimalConverter()
                 : this(DefaultDecimalSep)
             {}
+
 			public DecimalConverter(string decimalSep)
                 :base (typeof(Decimal), decimalSep)
 			{
@@ -293,7 +294,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Decimal.Parse(from, NumberStyles.Number, mCulture);
+                return Decimal.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -309,7 +310,7 @@ namespace FileHelpers
 
 			protected override object ParseString(string from)
             {
-                return Single.Parse(from, NumberStyles.Number, mCulture);
+                return Single.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
             }
         }
 
@@ -327,7 +328,7 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Double.Parse(from, NumberStyles.Number, mCulture); 
+                return Double.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture); 
             }
         }
 
