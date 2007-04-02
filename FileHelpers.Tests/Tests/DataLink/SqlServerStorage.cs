@@ -317,9 +317,8 @@ namespace FileHelpersTests.DataLink
 		{
 			OrdersVerticalBar obj = (OrdersVerticalBar) record;
 
-			return String.Format("INSERT INTO OrdersTemp (OrderId, CustomerId, OrderDate) " +
-				" VALUES ( {0} , '{1}' , '{2}'); ",
-				obj.OrderID,
+			return String.Format("INSERT INTO OrdersTemp (CustomerId, OrderDate) " +
+				" VALUES ('{0}' , '{1}'); ",
 				obj.CustomerID,
 				obj.OrderDate.ToShortDateString()
 				);
