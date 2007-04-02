@@ -32,11 +32,11 @@ bgColor=white leftMargin=0 topMargin=0>
 </table>
 <br />
     <h2>
-        Quick Start for </b>Delimited</b> files (easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
+        Quick Start for Record by Record Operations (easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
     </h2>
     
     <blockquote>
-    Or check the <a href="quick_start_fixed.html">Fixed Length File Example</a> or <a href="quick_start_async.html">Record by Record Example</a><br /><br />
+    Or check the <a href="quick_start_fixed.html">Fixed Length File Example</a> or <a href="quick_start.html">Delimited File Example</a><br /><br />
     </blockquote>
 
     <table width="100%"  border="0">
@@ -104,55 +104,64 @@ End Class
       </tr>
       <tr>
         <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Later you need to create a FileHelperEngine and Read/Write files:                        
+        <td valign="top"><p>Later you need to create a FileHelperAsync and use it:
             <blockquote><b>C#</b>
 <textarea name="code" class="c#">
-FileHelperEngine engine = new FileHelperEngine(typeof(Customer));
 
-// To Read Use:
-Customer[] res = engine.ReadFile(&quot;FileIn.txt&quot;) as Customer[];
+FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Customer));
 
-// To Write Use:
-engine.WriteFile(&quot;FileOut.txt&quot;, res);
+// Read
+engine.BeginReadFile(&quot;TestIn.txt&quot;);
+
+// The engine is IEnumerable 
+foreach(Customer cust in engine)
+{
+   // your code here
+   Console.WriteLine(cust.Name);
+}
+
+engine.Close();
+
+// Write
+engine.BeginWriteFile(&quot;TestOut.txt&quot;);
+
+foreach(Customer cust in arrayCustomers)
+{
+   engine.WriteNext(cust);
+}
+
+engine.Close();
+
 </textarea>
           </blockquote>
             <blockquote><b>VB.NET</b>
 <textarea name="code" class="vb">
-Dim engine As New FileHelperEngine(GetType( Customer))
 
-' To Read Use:
-Dim res As  Customer() = DirectCast(engine.ReadFile(&quot;FileIn.txt&quot;), Customer())
+Dim engine As New FileHelperAsyncEngine(GetType(Customer))
 
-' To Write Use:
-engine.WriteFile(&quot;FileOut.txt&quot;, res)
+' Read
+engine.BeginReadFile(&quot;TestIn.txt&quot;)
+
+' The engine is IEnumerable 
+For Each cust As Customer In engine)
+   ' your code here
+   Console.WriteLine(cust.Name)
+Next
+
+engine.Close()
+
+// Write
+engine.BeginWriteFile(&quot;TestOut.txt&quot;)
+
+For Each cust As Customer In arrayCustomers)
+   engine.WriteNext(cust)
+Next
+
+engine.Close()
+
 </textarea>
           </blockquote>
                     </td>
-      </tr>
-      <tr>
-        <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Finally we can use the res array to access each item in the file, for example: </p>
-          <blockquote><b>C#</b>
-<textarea name="code" class="c#">
-foreach (Customer cust in res)
- {
-    Console.WriteLine(&quot;Customer Info:&quot;);
-    Console.WriteLine(cust.Name + &quot; - &quot; +
-                      cust.AddedDate.ToString(&quot;dd/MM/yy&quot;));
- }
-</textarea>
-          </blockquote>
-          <blockquote><b>VB.NET</b>
-<textarea name="code" class="vb">
-For Each cust As Customer In res)
- 
-    Console.WriteLine(&quot;Customer Info:&quot;)
-    Console.WriteLine(cust.Name + &quot; - &quot; + _
-                      cust.AddedDate.ToString(&quot;dd/MM/yy&quot;))
-Next
-</textarea>
-          </blockquote>
-          </td>
       </tr>
     </table>      
                   

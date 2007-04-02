@@ -9,6 +9,11 @@
 		<param name="Local" value="quick_start_fixed.html">
 		</OBJECT>
 
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Quick Start Record by Record">
+		<param name="Local" value="quick_start_async.html">
+		</OBJECT>
+
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="FileHelpers on the Web">
 		<param name="Local" value="community.html">

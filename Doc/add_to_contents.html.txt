@@ -13,6 +13,10 @@
         </div>
 
         <div class="treeNode">
+          <a href="quick_start_async.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="play.gif" border=0 /> Quick Start Record by Record</a>
+        </div>
+
+        <div class="treeNode">
           <a href="community.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="globe.gif" border=0 /> FileHelpers on the Web</a>
         </div>
 
