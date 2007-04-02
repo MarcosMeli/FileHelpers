@@ -25,7 +25,7 @@
 	   <delete file="..\FileHelpers\${current.generic}G.cs" />
        <copy file="..\FileHelpers\${current.generic}.cs" tofile="..\FileHelpers\${current.generic}G.cs" />
 
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
+       <exec program="..\Libs\FileReplace.exe " output="build.log.txt" commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
