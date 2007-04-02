@@ -4,6 +4,7 @@
    
    <include buildfile="Config.build.txt" />
 
+   <property name="source.dir" value="FileHelpers_Source" />
    <property name="source.path" value="..\..\FileHelpers_Source" />
 
    <target name="clean">
@@ -140,9 +141,8 @@
 
        
        <zip zipfile="..\..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_source_2003_2005.zip" ziplevel="9">
-           <fileset basedir="${source.path}">
-               <include name="**/*" />
-               <exclude name="FileHelpers.Benchmarks/Sessions/**/*" />
+           <fileset basedir="${source.path}\..">
+               <include name="${source.dir}/**/*" />
                <exclude name=".svn" />
                <exclude name="obj" />
 			   <exclude name="bin" />
