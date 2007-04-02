@@ -21,6 +21,16 @@
        </delete>
    </target>
 
+   <target name="makegeneric" >
+	   <delete file="..\FileHelpers\${current.generic}G.cs" />
+       <copy file="..\FileHelpers\${current.generic}.cs" tofile="..\FileHelpers\${current.generic}G.cs" />
+
+       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
+       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
+       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
+       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
+
+   </target>
 
    <target name="common" depends="clean">
        
@@ -32,58 +42,26 @@
 			key="SOFTWARE\Microsoft\VisualStudio\8.0\InstallDir" 
 			hive="LocalMachine" failonerror="false" />
 
-			<delete file="..\FileHelpers\Engines\FileHelperEngineG.cs" />
-       <copy file="..\FileHelpers\Engines\FileHelperEngine.cs" tofile="..\FileHelpers\Engines\FileHelperEngineG.cs" />
+	   <property name="current.generic" value="Engines\FileHelperEngine" />
+       <call target="makegeneric" />
+	   
+	   <property name="current.generic" value="Engines\FileHelperAsyncEngine" />
+       <call target="makegeneric" />
 
-       <delete file="..\FileHelpers\Engines\FileHelperEngineG.cs" />
-       <copy file="..\FileHelpers\Engines\FileHelperEngine.cs" tofile="..\FileHelpers\Engines\FileHelperEngineG.cs" />
+	   <property name="current.generic" value="Engines\FileDiffEngine" />
+       <call target="makegeneric" />
 
-       <delete file="..\FileHelpers\Engines\FileHelperAsyncEngineG.cs" />
-       <copy file="..\FileHelpers\Engines\FileHelperAsyncEngine.cs" tofile="..\FileHelpers\Engines\FileHelperAsyncEngineG.cs"  />
+	   <property name="current.generic" value="MasterDetail\MasterDetailEngine" />
+       <call target="makegeneric" />
 
-       <delete file="..\FileHelpers\Engines\FileDiffEngineG.cs" />
-       <copy file="..\FileHelpers\Engines\FileDiffEngine.cs" tofile="..\FileHelpers\Engines\FileDiffEngineG.cs"  />
+	   <property name="current.generic" value="MasterDetail\MasterDetails" />
+       <call target="makegeneric" />
 
-       <delete file="..\FileHelpers\MasterDetail\MasterDetailEngineG.cs" />
-       <copy file="..\FileHelpers\MasterDetail\MasterDetailEngine.cs" tofile="..\FileHelpers\MasterDetail\MasterDetailEngineG.cs"  />
+  	   <property name="current.generic" value="Engines\FileTransformEngine" />
+       <call target="makegeneric" />
 
-       <delete file="..\FileHelpers\MasterDetail\MasterDetailsG.cs" />
-       <copy file="..\FileHelpers\MasterDetail\MasterDetails.cs" tofile="..\FileHelpers\MasterDetail\MasterDetailsG.cs" />
-
-       <delete file="..\FileHelpers\Engines\FileTransformEngineG.cs" />
-       <copy file="..\FileHelpers\Engines\FileTransformEngine.cs" tofile="..\FileHelpers\Engines\FileTransformEngineG.cs" />
-       
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileHelperAsyncEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileDiffEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-       
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\MasterDetail\MasterDetailsG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-
-
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot;" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\Engines\FileTransformEngineG.cs&quot; &quot;//#endif&quot; &quot;#endif&quot;" workingdir="..\Libs" failonerror="false" />
-
+  	   <property name="current.generic" value="Mapping\DataMapper" />
+       <call target="makegeneric" />
 
 	</target>
    
@@ -174,8 +152,8 @@
        <copy file="..\Doc\tree.js" todir="..\..\Release\Docs" overwrite="true" />
        <copy file="..\Doc\tree.css" todir="..\..\Release\Docs" overwrite="true" />
 
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$HEADER$}&quot; -f &quot;add_header.txt&quot;" workingdir="..\Doc" />
-	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$FOOTER$}&quot; -f &quot;add_footer.txt&quot;" workingdir="..\Doc" />
+       <exec program="..\Libs\FileReplace.exe " output="build.log.txt" append="true" commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$HEADER$}&quot; -f &quot;add_header.txt&quot;" workingdir="..\Doc" />
+	   <exec program="..\Libs\FileReplace.exe " output="build.log.txt" append="true" commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$FOOTER$}&quot; -f &quot;add_footer.txt&quot;" workingdir="..\Doc" />
 	   
        <zip zipfile="..\..\Release\Docs\FileHelpers_Examples_CSharp_VbNet.zip" ziplevel="9">
            <fileset basedir="..\FileHelpers.CodeExamples">

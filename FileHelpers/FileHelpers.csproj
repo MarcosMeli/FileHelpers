@@ -544,6 +544,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Mapping\DataMapperG.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Mapping\MappingInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MasterDetail\Common.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

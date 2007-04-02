@@ -345,9 +345,11 @@
     <Compile Include="Interfaces\INotificableRecord.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mapping\DataMapperG.cs" />
     <Compile Include="Mapping\DataMapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mapping\MappingInfo.cs" />
     <Compile Include="MasterDetail\Common.cs">
       <SubType>Code</SubType>
     </Compile>

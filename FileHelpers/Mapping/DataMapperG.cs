@@ -1,6 +1,6 @@
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 using System;
 using System.Collections;
@@ -314,4 +314,4 @@ namespace FileHelpers.Mapping
 
 
 }
-//#endif
+#endif
