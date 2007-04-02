@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Text;
+using System.Diagnostics;
 
 namespace FileHelpers.MasterDetail
 {
@@ -158,10 +159,19 @@ namespace FileHelpers.MasterDetail
 #endif
 		#endregion 
 
-		private RecordInfo mMasterInfo;
-		private MasterDetailSelector mRecordSelector;
+        #if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        #endif
+        private RecordInfo mMasterInfo;
+        #if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        #endif
+        private MasterDetailSelector mRecordSelector;
 
-		private Type mMasterType;
+        #if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        #endif
+        private Type mMasterType;
 
 		/// <summary>Returns the type of the master records handled by this engine.</summary>
 		public Type MasterType

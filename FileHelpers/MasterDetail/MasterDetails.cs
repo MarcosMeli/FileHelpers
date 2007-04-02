@@ -3,6 +3,7 @@
 //#if NET_2_0
 
 using System.ComponentModel;
+using System.Diagnostics;
 //using System.ComponentModel.TypeConverter;
 
 namespace FileHelpers.MasterDetail
@@ -12,7 +13,10 @@ namespace FileHelpers.MasterDetail
 	/// <para>This class is used for the Read and Write operations of the <see cref="MasterDetailEngine"/>.</para>
 	/// </summary>
 #if ! GENERICS
-	[TypeConverter(typeof(ExpandableObjectConverter))]
+#if NET_2_0
+    [DebuggerDisplay("Master: {Master.ToString()} - Details: {Details.Length}")]
+#endif
+    [TypeConverter(typeof(ExpandableObjectConverter))]
 	public class MasterDetails
 	{
 
@@ -31,6 +35,9 @@ namespace FileHelpers.MasterDetail
 			mDetails = details;
 		}
 		
+		#if NET_2_0
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)] 
+		#endif
 		private static MasterDetails mEmpty = new MasterDetails(null, new object[] {});
 
 		/// <summary>Returns a canonical empty MasterDetail object.</summary>
@@ -39,6 +46,9 @@ namespace FileHelpers.MasterDetail
 			get { return mEmpty; }
 		}
 
+		#if NET_2_0
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)] 
+		#endif
 		internal object mMaster;
 
 		/// <summary>The Master record.</summary>
@@ -48,6 +58,9 @@ namespace FileHelpers.MasterDetail
 			set { mMaster = value; }
 		}
 
+		#if NET_2_0
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)] 
+		#endif
 		internal object[] mDetails;
 
 		/// <summary>An Array with the Detail records.</summary>

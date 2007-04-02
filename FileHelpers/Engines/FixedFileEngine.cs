@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -10,7 +11,10 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with little different options.
 	/// </remarks>
-	public sealed class FixedFileEngine : FileHelperEngine
+#if NET_2_0
+    [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+    public sealed class FixedFileEngine : FileHelperEngine
 	{
 
         #region "  Constructor  "
@@ -49,7 +53,10 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with little different options.
 	/// </remarks>
-	public sealed class FixedFileEngine<T> : FileHelperEngine<T>
+#if NET_2_0
+    [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+    public sealed class FixedFileEngine<T> : FileHelperEngine<T>
 	{
 	#region "  Constructor  "
 

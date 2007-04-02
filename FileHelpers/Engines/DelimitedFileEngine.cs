@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -9,6 +10,9 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with 2 or more different delimiters or little different options.
 	/// </remarks>
+#if NET_2_0
+    [DebuggerDisplay("DelimitedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
     public sealed class DelimitedFileEngine : FileHelperEngine
     {
 
@@ -46,7 +50,10 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with 2 or more different delimiters or little different options.
 	/// </remarks>
-	public sealed class DelimitedFileEngine<T> : FileHelperEngine<T>
+#if NET_2_0
+    [DebuggerDisplay("DelimitedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+    public sealed class DelimitedFileEngine<T> : FileHelperEngine<T>
 	{
 	#region "  Constructor  "
 

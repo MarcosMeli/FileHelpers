@@ -98,10 +98,6 @@ namespace FileHelpers.DataLink
 		/// <returns>An Abstract Connection Object.</returns>
 		protected abstract IDbConnection CreateConnection();
 
-		/// <summary>Must create an abstract command object.</summary>
-		/// <returns>An Abstract Command Object.</returns>
-		protected abstract IDbCommand CreateCommand();
-		
 		#endregion
 
 		#region Connections
@@ -133,7 +129,7 @@ namespace FileHelpers.DataLink
 				if (mConn.State != ConnectionState.Open)
 					mConn.Open();
 
-				IDbCommand command = CreateCommand();
+				IDbCommand command = mConn.CreateCommand();
 				command.Connection = mConn;
 				command.CommandText = GetSelectSql();
 
@@ -264,7 +260,7 @@ namespace FileHelpers.DataLink
 		{
 			InitConnection();
 
-			IDbCommand command = CreateCommand();
+			IDbCommand command = mConn.CreateCommand();
 			command.Connection = mConn;
 			command.CommandText = sql;
 
@@ -282,7 +278,7 @@ namespace FileHelpers.DataLink
 				if (mConn.State != ConnectionState.Open)
 					mConn.Open();
 
-				IDbCommand command = CreateCommand();
+				IDbCommand command = mConn.CreateCommand();
 				command.Connection = mConn;
 				command.CommandText = sql;
 
@@ -394,5 +390,23 @@ namespace FileHelpers.DataLink
 			if (trans == null) return;
 			trans.Rollback();
 		}
+
+
+        private string mConnectionString = String.Empty;
+
+        /// <summary>
+        /// The connection string used for this storage.
+        /// </summary>
+        public string ConnectionString
+        {
+            get
+            {
+                return mConnectionString;
+            }
+            set
+            {
+                mConnectionString = value;
+            }
+        }
 	}
 }

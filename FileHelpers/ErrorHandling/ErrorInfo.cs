@@ -5,19 +5,26 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
 	/// <summary>Contains error information of the <see cref="FileHelperEngine"/> class.</summary>
 	[DelimitedRecord("|")]
 	[IgnoreFirst(2)]
-	public sealed class ErrorInfo
+#if NET_2_0
+    [DebuggerDisplay("Line: {LineNumber}. Error: {ExceptionInfo.Message}.")]
+#endif
+    public sealed class ErrorInfo
 	{
 		internal ErrorInfo()
 		{
 		}
 
-		internal int mLineNumber;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal int mLineNumber;
 
 		/// <summary>The line number of the error</summary>
 		public int LineNumber
@@ -25,7 +32,10 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
-		[FieldQuoted(QuoteMode.OptionalForBoth)]
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        [FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal string mRecordString = string.Empty;
 
 		/// <summary>The string of the record of the error.</summary>
@@ -34,7 +44,10 @@ namespace FileHelpers
 			get { return mRecordString; }
 		}
 
-		[FieldConverter(typeof (ExceptionConverter))] 
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        [FieldConverter(typeof(ExceptionConverter))] 
 		[FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal Exception mExceptionInfo;
 

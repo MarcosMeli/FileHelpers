@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.IO;
 using System.Text;
@@ -21,6 +22,9 @@ namespace FileHelpers
 {
 	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
+#if NET_2_0
+    [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
 #if ! GENERICS
  	public sealed class FileHelperAsyncEngine : 
  		EngineBase, IEnumerable, IDisposable
@@ -57,19 +61,31 @@ namespace FileHelpers
 
 		#endregion
 
-		ForwardReader mAsyncReader;
-		TextWriter mAsyncWriter;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        ForwardReader mAsyncReader;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        TextWriter mAsyncWriter;
 
 		#region "  LastRecord  "
 
 #if ! GENERICS
-		private object mLastRecord;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private object mLastRecord;
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
 		public object LastRecord
 		{
 			get { return mLastRecord; }
 		}
 #else
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
 		private T mLastRecord;
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
@@ -79,11 +95,11 @@ namespace FileHelpers
 		}
 #endif
 
-		#endregion
+        #endregion
 
-		#region "  BeginReadStream"
+        #region "  BeginReadStream"
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
 		public void BeginReadStream(TextReader reader)
 		{
 			if (reader == null)

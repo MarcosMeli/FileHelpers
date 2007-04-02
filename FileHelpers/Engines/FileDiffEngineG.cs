@@ -5,6 +5,8 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics;
+
 #if GENERICS
 using System.Collections.Generic;
 #endif
@@ -15,6 +17,9 @@ namespace FileHelpers
 
 
 	/// <summary>Engine used to create diff files based on the <see cref="IComparableRecord"/> interface.</summary>
+#if NET_2_0
+    [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
 #if ! GENERICS
 	public sealed class FileDiffEngine: EngineBase
 #else

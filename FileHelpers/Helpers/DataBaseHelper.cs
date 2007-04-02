@@ -28,7 +28,8 @@ namespace FileHelpers
 		{
             string res = AccessConnStr;
             res = res.Replace("<BASE>", db);
-            res = res.Replace("<PASSWORD>", password);
+
+            res = res.Replace("<PASSWORD>", password == null ? string.Empty : password);
             return res;
 		}
 

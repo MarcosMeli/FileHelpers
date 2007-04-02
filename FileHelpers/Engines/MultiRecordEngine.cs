@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
@@ -39,6 +40,9 @@ namespace FileHelpers
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
+#if NET_2_0
+    [DebuggerDisplay("MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
 #if ! GENERICS
 	public sealed class MultiRecordEngine : 
 		EngineBase, IEnumerable, IDisposable
@@ -47,9 +51,36 @@ namespace FileHelpers
 		EngineBase, IEnumerable, IDisposable
 #endif
 	{
-		private RecordInfo[] mMultiRecordInfo;
-		private Hashtable mRecordInfoHash;
-		private RecordTypeSelector mRecordSelector;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private RecordInfo[] mMultiRecordInfo;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Hashtable mRecordInfoHash;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private RecordTypeSelector mRecordSelector;
+
+        private string ListTypes()
+        {
+            string res = string.Empty;
+            bool first = true;
+            foreach (Type t in mRecordInfoHash.Keys)
+	        {
+                if (first)
+                    first = false;
+                else
+                    res += ", ";
+
+                res += t.Name;
+	        }
+
+            return res;
+        }
+
 
 		/// <summary>
 		/// The Selector used by the engine in Read operations to determine the Type to use.
@@ -60,7 +91,10 @@ namespace FileHelpers
 			set { mRecordSelector = value; }
 		}
 
-		private Type[] mTypes;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Type[] mTypes;
 		
 		#region "  Constructor  "
 
@@ -463,7 +497,7 @@ namespace FileHelpers
 			int max = maxRecords;
 
 			if (records is IList)
-				max = Math.Min(max, ((IList)records).Count);
+                max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 
 #if !MINI
@@ -593,14 +627,23 @@ namespace FileHelpers
 		}
 		
 
-		//      ASYNC METHODS !!!!!!!
-		
-		ForwardReader mAsyncReader;
-		TextWriter mAsyncWriter;
+		// ASYNC METHODS --------------
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        ForwardReader mAsyncReader;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        TextWriter mAsyncWriter;
 
 		#region "  LastRecord  "
 
-		private object mLastRecord;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private object mLastRecord;
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
 		public object LastRecord

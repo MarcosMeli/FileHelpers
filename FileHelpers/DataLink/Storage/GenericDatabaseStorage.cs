@@ -3,37 +3,27 @@ using System.Data;
 
 namespace FileHelpers.DataLink
 {
-#if NET_20
+#if NET_2_0
 
-    public sealed class GenericDatabaseStorage<T, U> : DatabaseStorage
-        where T : IDbConnection, new( )
-        where U : IDbCommand, new( )
+    /// <summary>This is a base class that implements the storage for <b>any</b> DB with ADO.NET support.</summary>
+    /// <typeparam name="ConnectionClass">The ADO.NET connection class</typeparam>
+    public sealed class GenericDatabaseStorage<ConnectionClass> : DatabaseStorage
+        where ConnectionClass : IDbConnection, new()
     {
         #region Constructors
-
+        /// <summary>Creates an object that implements the storage for <b>any</b> DB with ADO.NET support.</summary>        
+        /// <param name="recordType">The record type to use.</param>
+        /// <param name="connectionString">The connection string to </param>
         public GenericDatabaseStorage( Type recordType, string connectionString ) : base( recordType )
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
         }
 
         #endregion
 
         #region Properties
 
-        private string _connectionString = String.Empty;
-
-        public string ConnectionString
-        {
-            get
-            {
-                return _connectionString;
-            }
-            set
-            {
-                _connectionString = value;
-            }
-        }
-
+        /// <summary></summary>
         protected override bool ExecuteInBatch
         {
             get
@@ -48,19 +38,14 @@ namespace FileHelpers.DataLink
 
         protected sealed override IDbConnection CreateConnection( )
         {
-            if ( String.IsNullOrEmpty( _connectionString ) )
+            if ( String.IsNullOrEmpty( ConnectionString ) )
                 //throw new FileHelpersException( "The connection cannot open because connection string is null or empty." );
                 throw new Exception( "The connection cannot open because connection string is null or empty." );
 
-            T connection = new T( );
-            connection.ConnectionString = _connectionString;
+            ConnectionClass connection = new ConnectionClass();
+            connection.ConnectionString = ConnectionString;
 
             return connection;
-        }
-
-        protected override IDbCommand CreateCommand( )
-        {
-            return new U( );
         }
 
         #endregion

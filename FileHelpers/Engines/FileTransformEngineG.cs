@@ -13,6 +13,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -24,6 +25,9 @@ namespace FileHelpers
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
+#if NET_2_0
+    [DebuggerDisplay("FileTransformanEngine for types: {SourceType.Name} --> {DestinationType.Name}. Source Encoding: {SourceEncoding.EncodingName}. Destination Encoding: {DestinationEncoding.EncodingName}")]
+#endif
 #if ! GENERICS
 	public sealed class FileTransformEngine
 	{
@@ -65,13 +69,28 @@ namespace FileHelpers
 
 		#region "  Private Fields  "
 
-		private static object[] mEmptyArray = new object[]{};
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private static object[] mEmptyArray = new object[] { };
 
-		private Type mSourceType;
-		private Type mDestinationType;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Type mSourceType;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Type mDestinationType;
 
-		private Encoding mSourceEncoding = Encoding.Default;
-		private Encoding mDestinationEncoding = Encoding.Default;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Encoding mSourceEncoding = Encoding.Default;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Encoding mDestinationEncoding = Encoding.Default;
 
 
 		#endregion
@@ -298,7 +317,10 @@ namespace FileHelpers
 		#region "  Properties  "
 
 
-		MethodInfo mConvert1to2 = null;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        MethodInfo mConvert1to2 = null;
 		//MethodInfo mConvert2to1 = null;
 
 		/// <summary>The source record Type.</summary>

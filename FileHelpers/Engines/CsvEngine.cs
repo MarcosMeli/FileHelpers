@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
@@ -27,7 +28,10 @@ namespace FileHelpers
 
 
 	/// <summary>A class to read generic CSV files delimited for any char.</summary>
-	public sealed class CsvEngine : FileHelperEngine
+#if NET_2_0
+    [DebuggerDisplay("CsvEngine. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+    public sealed class CsvEngine : FileHelperEngine
 	{
 
 		#region "  Static Methods  "

@@ -19,25 +19,26 @@ namespace FileHelpers.DataLink
 
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
 		/// <param name="recordType">The type of the record class.</param>
-		public SqlServerStorage(Type recordType): base(recordType)
+		public SqlServerStorage(Type recordType)
+            : this(recordType, string.Empty)
 		{}
 
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="connectionStr">The full conection string used to connect to the sql server.</param>
-		public SqlServerStorage(Type recordType, string connectionStr): base(recordType)
+		public SqlServerStorage(Type recordType, string connectionStr)
+            : base(recordType)
 		{
-			mConnectionString = connectionStr;
+			ConnectionString = connectionStr;
 		}
 
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses windows auth)</summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="server">The server name or IP of the sqlserver</param>
 		/// <param name="database">The database name into the server.</param>
-		public SqlServerStorage(Type recordType, string server, string database): base(recordType)
+		public SqlServerStorage(Type recordType, string server, string database)
+            : this(recordType, server, database, string.Empty,string.Empty)
 		{
-			mServerName = server;
-			mDatabaseName = database;
 		}
 
 		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses SqlServer auth)</summary>
@@ -46,9 +47,12 @@ namespace FileHelpers.DataLink
 		/// <param name="database">The database name into the server.</param>
 		/// <param name="user">The sql username to login into the server.</param>
 		/// <param name="pass">The pass of the sql username to login into the server.</param>
-		public SqlServerStorage(Type recordType, string server, string database, string user, string pass): this(recordType, server, database)
+		public SqlServerStorage(Type recordType, string server, string database, string user, string pass)
+            : this(recordType,  DataBaseHelper.SqlConnectionString(server, database, user, pass))
 		{
-			mUserName = user;
+            mServerName = server;
+            mDatabaseName = database;
+            mUserName = user;
 			mUserPass = pass;
 		}
 
@@ -61,7 +65,7 @@ namespace FileHelpers.DataLink
 		protected sealed override IDbConnection CreateConnection()
 		{
 			string conString;
-			if (mConnectionString == string.Empty)
+			if (ConnectionString == string.Empty)
 			{
 				if (mServerName == null || mServerName == string.Empty)
 					throw new BadUsageException("The ServerName can´t be null or empty.");
@@ -73,36 +77,14 @@ namespace FileHelpers.DataLink
 			}
 			else
 			{
-				conString = mConnectionString;
+				conString = ConnectionString;
 			}
 
 			return new SqlConnection(conString);
 		}
 
-		/// <summary>Must create an abstract command object.</summary>
-		/// <returns>An Abstract Command Object.</returns>
-		protected override IDbCommand CreateCommand()
-		{
-			return new SqlCommand();
-		}
-
 		#endregion
 
-		private string mConnectionString = string.Empty;
-		
-		/// <summary> The full connection string used to connect to the SqlServer </summary>
-		public string ConnectionString
-		{
-			get 
-			{
-				if (mConnectionString != string.Empty)
-                    return mConnectionString;
-				else
-					return DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
-			}
-			set { mConnectionString = value; }
-		}
-		
 		#region "  ServerName  "
 
 		private string mServerName = string.Empty;
@@ -111,7 +93,11 @@ namespace FileHelpers.DataLink
 		public string ServerName
 		{
 			get { return mServerName; }
-			set { mServerName = value; }
+			set 
+            {
+                mServerName = value;
+                ConnectionString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+            }
 		}
 
 		#endregion
@@ -123,7 +109,11 @@ namespace FileHelpers.DataLink
 		public string DatabaseName
 		{
 			get { return mDatabaseName; }
-			set { mDatabaseName = value; }
+            set
+            {
+                mDatabaseName = value;
+                ConnectionString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+            }
 		}
 
 		#endregion
@@ -135,7 +125,11 @@ namespace FileHelpers.DataLink
 		public string UserName
 		{
 			get { return mUserName; }
-			set { mUserName = value; }
+            set
+            {
+                mUserName = value;
+                ConnectionString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+            }
 		}
 
 		#endregion
@@ -147,7 +141,11 @@ namespace FileHelpers.DataLink
 		public string UserPass
 		{
 			get { return mUserPass; }
-			set { mUserPass = value; }
+            set
+            {
+                mUserPass = value;
+                ConnectionString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
+            }
 		}
 
 		#endregion

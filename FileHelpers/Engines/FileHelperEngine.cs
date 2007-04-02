@@ -10,6 +10,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
@@ -28,9 +29,12 @@ namespace FileHelpers
 {
 
 
-
-	/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
+    
+    /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
+#if NET_2_0
+    [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
 #if ! GENERICS
 	public class FileHelperEngine : EngineBase
 #else
@@ -38,6 +42,7 @@ namespace FileHelpers
 	public class FileHelperEngine<T>: EngineBase
 #endif
     {
+        
 
 		#region "  Constructor  "
 
@@ -399,7 +404,7 @@ namespace FileHelpers
 			//ConstructorInfo constr = mType.GetConstructor(new Type[] {});
 			int max = maxRecords;
 			if (records is IList)
-				max = Math.Min(max, ((IList)records).Count);
+				max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 			#if !MINI
 				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
@@ -869,7 +874,10 @@ namespace FileHelpers
 
 		#endregion
 
-		internal RecordOptions mDynamicOptions;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal RecordOptions mDynamicOptions;
 
 		/// <summary>
 		/// Allows to change some record layout options at runtime

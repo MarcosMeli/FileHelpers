@@ -7,12 +7,16 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
 	/// <summary>This is the class that handles the errors of the engines process.</summary>
 	/// <remarks>All the engines and DataStorages contains a ErrorManager.</remarks>
-	public sealed class ErrorManager
+#if NET_2_0
+    [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
+#endif
+    public sealed class ErrorManager
 	{
 		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class.</summary>
 		public ErrorManager()
@@ -26,15 +30,35 @@ namespace FileHelpers
 			mErrorMode = mode;
 		}
 
-		ArrayList mErrorsArray = new ArrayList();
+
+#if NET_2_0
+        private string ErrorsDescription()
+        {
+            if (ErrorCount == 1)
+                return ErrorCount.ToString() + " Error";
+            else if (ErrorCount == 0)
+                return "No Errors";
+            else
+                return ErrorCount.ToString() + " Errors";
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        ArrayList mErrorsArray = new ArrayList();
 
 		/// <summary>Is an array of <see cref="ErrorInfo"/> that contains the errors of the last operation in this class.</summary>
-		public ErrorInfo[] Errors
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+#endif
+        public ErrorInfo[] Errors
 		{
 			get { return (ErrorInfo[]) mErrorsArray.ToArray(typeof (ErrorInfo)); }
 		}
 
-		private ErrorMode mErrorMode = ErrorMode.ThrowException;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private ErrorMode mErrorMode = ErrorMode.ThrowException;
 		
 
 		/// <summary>Indicates the behavior of the <see cref="FileHelperEngine"/> when it found an error.</summary>

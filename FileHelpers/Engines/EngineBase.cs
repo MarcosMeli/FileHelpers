@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -9,7 +10,10 @@ namespace FileHelpers
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class EngineBase
 	{
-		internal RecordInfo mRecordInfo;
+        #if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        #endif
+        internal RecordInfo mRecordInfo;
 
 		#region "  Constructor  "
 
@@ -39,8 +43,14 @@ namespace FileHelpers
 
 		#region "  LineNumber  "
 
-		internal int mLineNumber;
-		internal int mTotalRecords;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal int mLineNumber;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal int mTotalRecords;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
 		public int LineNumber
@@ -62,7 +72,10 @@ namespace FileHelpers
 
 		#region "  RecordType  "
 
-		private Type mRecordType;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Type mRecordType;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
 		public Type RecordType
@@ -74,7 +87,10 @@ namespace FileHelpers
 
 		#region "  HeaderText  "
 
-		internal string mHeaderText = String.Empty;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal string mHeaderText = String.Empty;
 
 		/// <summary>The read header in the last read operation. If any.</summary>
 		public string HeaderText
@@ -87,7 +103,10 @@ namespace FileHelpers
 
 		#region "  FooterText"
 
-		internal string mFooterText = String.Empty;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal string mFooterText = String.Empty;
 
 		/// <summary>The read footer in the last read operation. If any.</summary>
 		public string FooterText
@@ -100,7 +119,10 @@ namespace FileHelpers
 
 		#region "  Encoding  "
 
-		internal Encoding mEncoding = Encoding.Default;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal Encoding mEncoding = Encoding.Default;
 
 		/// <summary>The encoding to Read and Write the streams.</summary>
 		/// <remarks>Default is the system's current ANSI code page.</remarks>
@@ -115,7 +137,10 @@ namespace FileHelpers
 
 		#region "  ErrorManager"
 
-		/// <summary>This is a common class that manage the errors of the library.</summary>
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        /// <summary>This is a common class that manage the errors of the library.</summary>
 		protected ErrorManager mErrorManager = new ErrorManager();
 
 		/// <summary>This is a common class that manage the errors of the library.</summary>
@@ -139,11 +164,17 @@ namespace FileHelpers
 		#endregion
 
 		#if ! MINI
-		
-		/// <summary></summary>
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        /// <summary></summary>
 		protected ProgressMode mProgressMode = ProgressMode.DontNotify;
 
-		/// <summary></summary>
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        /// <summary></summary>
 		protected ProgressChangeHandler mNotifyHandler = null;
 
 		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>
