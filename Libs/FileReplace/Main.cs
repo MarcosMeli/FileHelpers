@@ -25,13 +25,18 @@ namespace FileReplace
 				newString = args[2];
 
 				if (srcString == string.Empty)
+				{
 					ShowSyntaxs();
+					Environment.Exit(-1);
+					return;
+				}
 
 				if (newString == "-f")
 				{
 					if (args.Length < 4)
 					{
 						ShowSyntaxs();
+						Environment.Exit(-1);
 						return;
 					}
 
@@ -41,6 +46,9 @@ namespace FileReplace
 				
 				}
 
+				if (args[args.Length - 1].ToLower() == "-v")
+					mVerbose = false;
+
 				foreach (string	file in Directory.GetFiles(Path.GetDirectoryName(destFile), Path.GetFileName(destFile)))
 				{
 					ReplaceFile(file, newString, srcString);
@@ -49,6 +57,7 @@ namespace FileReplace
 			}
 		}
 
+		static bool mVerbose = true;
 		private static void ReplaceFile(string destFile, string newString, string srcString)
 		{
 			System.IO.StreamReader reader = new StreamReader(destFile);
@@ -59,8 +68,7 @@ namespace FileReplace
 			writer.Write(originalStr.Replace(srcString, newString));
 			writer.Close();
 
-
-			Console.WriteLine("Replaced: '" + FirstChars(srcString, 25) + "' --> '" + FirstChars(newString, 25) + "'.");
+			if (mVerbose) Console.WriteLine("Replaced: '" + FirstChars(srcString, 25) + "' --> '" + FirstChars(newString, 25) + "'.");
 		}
 
 		private static string FirstChars(string source, int chars)

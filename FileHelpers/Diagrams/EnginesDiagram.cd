@@ -34,7 +34,7 @@
     <Position X="0.5" Y="7.75" Width="3" />
     <TypeIdentifier>
       <FileName>Engines\FileHelperAsyncEngine.cs</FileName>
-      <HashCode>AAAAIAACDAAAAIAGAAAABAQAACgAAAhAAAggAEIAAQA=</HashCode>
+      <HashCode>AAAAIAACDAAAAIAGAAAABAQAAAgAAAgEAAghAEKIAQA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Field Name="mAsyncReader" Hidden="true" />
@@ -44,6 +44,14 @@
       <Method Name="WriteHeader" Hidden="true" />
       <Method Name="WriteRecord" Hidden="true" />
     </Members>
+    <NestedTypes>
+      <Class Name="FileHelpers.FileHelperAsyncEngine.AsyncEnumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Engines\FileHelperAsyncEngine.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
     <InheritanceLine Type="FileHelpers.EngineBase" ManuallyRouted="true" FixedToPoint="true">
       <Path>
         <Point X="1.75" Y="2.849" />
@@ -53,18 +61,18 @@
         <Point X="3.5" Y="9.125" />
       </Path>
     </InheritanceLine>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="FileHelpers.FileHelperEngine">
     <Position X="0.5" Y="3.5" Width="4.25" />
     <TypeIdentifier>
       <FileName>Engines\FileHelperEngine.cs</FileName>
-      <HashCode>gBAIABAAAAAAQBIEAgAAAAAKAIAAAUAAACAACEAAAAA=</HashCode>
+      <HashCode>gBAIABAAAAQAQBIAAmAAAAAqAIAAAUAIAAAACEAAAAA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="FileHelperEngine" Hidden="true" />
-      <Method Name="OnAfterProcessRecord" Hidden="true" />
+      <Field Name="mDynamicOptions" Hidden="true" />
       <Method Name="OnAfterWriteRecord" Hidden="true" />
-      <Method Name="OnBeforeProcessRecord" Hidden="true" />
       <Method Name="OnBeforeWriteRecord" Hidden="true" />
     </Members>
   </Class>
@@ -90,15 +98,15 @@
       <Path>
         <Point X="1.75" Y="2.849" />
         <Point X="1.75" Y="3.3" />
-        <Point X="6.378" Y="3.3" />
-        <Point X="6.378" Y="13.558" />
+        <Point X="6.385" Y="3.3" />
+        <Point X="6.385" Y="13.558" />
         <Point X="5.062" Y="13.558" />
         <Point X="5.062" Y="13.75" />
       </Path>
     </InheritanceLine>
   </Class>
   <Class Name="FileHelpers.ErrorManager">
-    <Position X="4.5" Y="0.5" Width="2.5" />
+    <Position X="4.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <FileName>ErrorHandling\ErrorManager.cs</FileName>
       <HashCode>AEAAAAABABAAAQAAABAAAAAAAAgAAAAMAAAAAAAggAA=</HashCode>
@@ -137,7 +145,7 @@
     <Position X="0.5" Y="17.75" Width="4.5" />
     <TypeIdentifier>
       <FileName>Engines\MultiRecordEngine.cs</FileName>
-      <HashCode>ABAAABAAAAAAQBAAAgCAABAAAAAAAQAAAAAACEAAAAE=</HashCode>
+      <HashCode>gBAAIBACDAAAQJAGAkCABBQIAIgAAUgMAoghCEKIAQE=</HashCode>
     </TypeIdentifier>
     <Members>
       <Field Name="mMultiRecordInfo" Hidden="true" />
@@ -145,6 +153,14 @@
       <Field Name="mRecordSelector" Hidden="true" />
       <Field Name="mTypes" Hidden="true" />
     </Members>
+    <NestedTypes>
+      <Class Name="FileHelpers.MultiRecordEngine.AsyncEnumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Engines\MultiRecordEngine.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
     <InheritanceLine Type="FileHelpers.EngineBase" ManuallyRouted="true">
       <Path>
         <Point X="1.75" Y="2.849" />
@@ -155,12 +171,13 @@
         <Point X="2.75" Y="17.75" />
       </Path>
     </InheritanceLine>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="FileHelpers.FileTransformEngine">
     <Position X="0.5" Y="21" Width="3.5" />
     <TypeIdentifier>
       <FileName>Engines\FileTransformEngine.cs</FileName>
-      <HashCode>ACACAAAQAAAAAAoASAAKAAQCAAAAAAQAQAAACAACBAA=</HashCode>
+      <HashCode>CCACAAAQAAAAEAogUAAKAACCAAABAAQQQAAACAACBAA=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="GetTransformMethod" Hidden="true" />
@@ -170,8 +187,6 @@
       <Field Name="mEmptyArray" Hidden="true" />
       <Field Name="mSourceEncoding" Hidden="true" />
       <Field Name="mSourceType" Hidden="true" />
-      <Method Name="Transform" Hidden="true" />
-      <Method Name="TransformAsync" Hidden="true" />
       <Method Name="ValidateRecordTypes" Hidden="true" />
     </Members>
   </Class>

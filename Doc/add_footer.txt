@@ -9,12 +9,6 @@
 						<div>
 							<table width="100%" >
 								<tr>
-									<td >  
-									<a href="http://www.devoo.net" target="_top"><img src="devoo.png" border="0" alt="Devoo Software" /></a> 
-
-									</td>
-
-<td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums" /></a></td>
 									<td class="SmallText" valign="middle" >
 									<font size="2">
 										Copyright © 2005-07 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
@@ -33,6 +27,14 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 											Dev Home</a>
 											</font>
 									</td>
+
+<td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums" /></a> 
+<a href="http://blog.filehelpers.com"><img src="blog.gif" height="32" border="0" alt="Development Blog" /></a>
+</td>
+									<td >  
+									<a href="http://www.devoo.net" target="_top"><img src="devoo.png" border="0" alt="Devoo Software" /></a> 
+									</td>
+									
 								</tr>
 							</table>
 						</div>

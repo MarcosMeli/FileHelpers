@@ -174,7 +174,7 @@ namespace FileHelpers
 		/// <b>This is feature limited method try to use the non static methods.</b>
 		/// </summary>
 		/// <param name="fileName">The file name</param>
-		/// <param name="records">The records to write (Can be an array, List<T>, etc)</param>
+        /// <param name="records">The records to write (Can be an array, List&lt;T&gt;, etc)</param>
  		public static void WriteFile<T>(string fileName, IEnumerable<T> records)
 		{
 			FileHelperEngine<T> engine = new FileHelperEngine<T>();

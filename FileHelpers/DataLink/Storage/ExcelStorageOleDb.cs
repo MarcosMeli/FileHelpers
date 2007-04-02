@@ -98,6 +98,9 @@ namespace FileHelpers.DataLink
 			set { mStartColumn = value; }
 		}
 
+        /// <summary>
+        /// Indicates if in the StartColumn and StartRow has headers or not.
+        /// </summary>
 		public bool HasHeaderRow
 		{
             get { return mHasHeaderRow; }
@@ -551,6 +554,14 @@ namespace FileHelpers.DataLink
         #endregion
 
 
+        /// <summary>
+        /// An useful method to direct extract a DataTable from an Excel File without need to instanciate anything.
+        /// </summary>
+        /// <param name="file">The Excel file to read.</param>
+        /// <param name="row">The initial row (the first is 1)</param>
+        /// <param name="col">The initial column (the first is 1)</param>
+        /// <param name="hasHeader">Indicates is there ir a header row.</param>
+        /// <returns>The DataTable generated reading the excel file at the specified position.</returns>
 		public static DataTable ExtractDataTable(string file, int row, int col, bool hasHeader)
 		{
 
