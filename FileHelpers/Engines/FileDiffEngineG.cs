@@ -18,10 +18,11 @@ namespace FileHelpers
 #if ! GENERICS
 	public sealed class FileDiffEngine: EngineBase
 #else
-	public sealed class FileDiffEngine<T>: EngineBase
+    /// <typeparam name="T">The record type.</typeparam>
+    public sealed class FileDiffEngine<T>: EngineBase
 		where T: IComparableRecord
 #endif
-	{
+    {
 		/// <summary>
 		/// Creates a new <see cref="FileDiffEngine"/>
 		/// </summary>

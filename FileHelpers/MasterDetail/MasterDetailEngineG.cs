@@ -45,12 +45,14 @@ namespace FileHelpers.MasterDetail
 		#endregion
 	
 #else
+    /// <typeparam name="M">The Master Record Type</typeparam>
+    /// <typeparam name="D">The Detail Record Type</typeparam>
 	public sealed class MasterDetailEngine<M,D> : EngineBase
         where M : class
         where D : class
 	{
 
-		#region "  Constructor  "
+        #region "  Constructor  "
 
 		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
 		public MasterDetailEngine(MasterDetailSelector recordSelector) 
@@ -72,14 +74,14 @@ namespace FileHelpers.MasterDetail
 			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
-		#endregion
+        #endregion
 
 #endif
 
-		#region CommonSelectorInternal
+        #region CommonSelectorInternal
 
 #if ! GENERICS
-		internal class CommonSelectorInternal
+        internal class CommonSelectorInternal
 		{
 			CommonSelector mAction;
 			string mSelector;

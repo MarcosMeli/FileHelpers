@@ -22,6 +22,7 @@ namespace FileHelpers.Mapping
 #if ! GENERICS
     public sealed class DataMapper
 #else
+    /// <typeparam name="T">The record Type</typeparam>
     public sealed class DataMapper<T>
 #endif
     {
@@ -48,14 +49,16 @@ namespace FileHelpers.Mapping
 		}
 
 #endif
+        private int mInitialColumnOffset = 0;
 
-        private int mGlobalOffset = 0;
-
-		public int GlobalOffset
-		{
-			get { return mGlobalOffset; }
-			set { mGlobalOffset = value; }
-		}
+        /// <summary>
+        /// Indicates the number of columns to discard in the result.
+        /// </summary>
+        public int InitialColumnOffset
+        {
+            get { return mInitialColumnOffset; }
+            set { mInitialColumnOffset = value; }
+        }
 
 		/// <summary>
 		/// Add a new mapping between column at <paramref>columnIndex</paramref> and the fieldName with the specified <paramref>fieldName</paramref> name.
@@ -65,7 +68,7 @@ namespace FileHelpers.Mapping
 		public void AddMapping(int columnIndex, string fieldName)
 		{
 			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, fieldName);
-			map.mDataColumnIndex = columnIndex + mGlobalOffset;
+			map.mDataColumnIndex = columnIndex + mInitialColumnOffset;
 			mMappings.Add(map);
 		}
 		

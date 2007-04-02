@@ -34,9 +34,10 @@ namespace FileHelpers
 #if ! GENERICS
 	public class FileHelperEngine : EngineBase
 #else
+    /// <typeparam name="T">The record type.</typeparam>
 	public class FileHelperEngine<T>: EngineBase
 #endif
-	{
+    {
 
 		#region "  Constructor  "
 
@@ -68,9 +69,9 @@ namespace FileHelpers
 		private void CreateRecordOptions()
 		{
 			if (mRecordInfo.IsDelimited)
-				mOptions = new DelimitedRecordOptions(mRecordInfo);
+				mDynamicOptions = new DelimitedRecordOptions(mRecordInfo);
 			else
-				mOptions = new FixedRecordOptions(mRecordInfo);
+				mDynamicOptions = new FixedRecordOptions(mRecordInfo);
 		}
 
 		internal FileHelperEngine(RecordInfo ri)
@@ -868,15 +869,15 @@ namespace FileHelpers
 
 		#endregion
 
-		internal RecordOptions mOptions;
+		internal RecordOptions mDynamicOptions;
 
 		/// <summary>
 		/// Allows to change some record layout options at runtime
 		/// </summary>
-		public RecordOptions Options
+		public RecordOptions DynamicOptions
 		{
-			get { return mOptions; }
-			set { mOptions = value; }
+			get { return mDynamicOptions; }
+			set { mDynamicOptions = value; }
 		}
 
 	}

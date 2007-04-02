@@ -25,10 +25,11 @@ namespace FileHelpers
  	public sealed class FileHelperAsyncEngine : 
  		EngineBase, IEnumerable, IDisposable
 #else
-	public sealed class FileHelperAsyncEngine<T> : 
+    /// <typeparam name="T">The record type.</typeparam>
+    public sealed class FileHelperAsyncEngine<T> : 
 		EngineBase, IEnumerable, IDisposable
 #endif
-	{
+    {
 		#region "  Constructor  "
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>

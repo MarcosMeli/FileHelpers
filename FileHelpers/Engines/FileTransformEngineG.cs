@@ -28,13 +28,15 @@ namespace FileHelpers
 	public sealed class FileTransformEngine
 	{
 #else
-	public sealed class FileTransformEngine<Source, Destination>
+    /// <typeparam name="Source">The source record type.</typeparam>
+    /// <typeparam name="Destination">The destination record type.</typeparam>
+    public sealed class FileTransformEngine<Source, Destination>
 	{
 #endif
 
-		#region "  Constructor  "
+        #region "  Constructor  "
 
-		/// <summary>Create a new instance of the class.</summary>
+        /// <summary>Create a new instance of the class.</summary>
 		/// <param name="sourceType">The source record Type.</param>
 		/// <param name="destType">The destination record Type.</param>
 

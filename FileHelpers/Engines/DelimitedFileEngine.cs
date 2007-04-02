@@ -9,32 +9,29 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with 2 or more different delimiters or little different options.
 	/// </remarks>
-	public sealed class DelimitedFileEngine : FileHelperEngine
-	{
-		#region "  Constructor  "
+    public sealed class DelimitedFileEngine : FileHelperEngine
+    {
 
-		/// <summary>
-		/// Create a version of the <see cref="FileHelperEngine"/> exclusive for 
-		/// delimited records that allow you to change the delimiter an other options at runtime
-		/// </summary>
-		/// <remarks>
-		/// Useful when you need to export or import the same info with 2 or more different delimiters.
-		/// </remarks>
-		/// <param name="recordType">The record mapping class.</param>
-		public DelimitedFileEngine(Type recordType)
-			: base(recordType)
-		{
-			if (mRecordInfo.mFields[0] is DelimitedField == false)
-				throw new BadUsageException("The Delimited Engine only accepts Record Types marked with DelimitedRecordAttribute");
-		}
-
-		#endregion
+        /// <summary>
+        /// Create a version of the <see cref="FileHelperEngine"/> exclusive for 
+        /// delimited records that allow you to change the delimiter an other options at runtime
+        /// </summary>
+        /// <remarks>
+        /// Useful when you need to export or import the same info with 2 or more different delimiters.
+        /// </remarks>
+        /// <param name="recordType">The record mapping class.</param>
+        public DelimitedFileEngine(Type recordType)
+            : base(recordType)
+        {
+            if (mRecordInfo.mFields[0] is DelimitedField == false)
+                throw new BadUsageException("The Delimited Engine only accepts record types marked with DelimitedRecordAttribute");
+        }
 
 		
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
-		public new DelimitedRecordOptions Options
+		public new DelimitedRecordOptions DynamicOptions
 		{
-			get { return (DelimitedRecordOptions) mOptions; }
+			get { return (DelimitedRecordOptions) mDynamicOptions; }
 			
 		}
 	}
@@ -71,9 +68,9 @@ namespace FileHelpers
 
 		
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
-		public new DelimitedRecordOptions Options
+        public new DelimitedRecordOptions DynamicOptions
 		{
-			get { return (DelimitedRecordOptions) mOptions; }
+            get { return (DelimitedRecordOptions) mDynamicOptions; }
 			
 		}
 	}

@@ -12,7 +12,8 @@ namespace FileHelpers
 	/// </remarks>
 	public sealed class FixedFileEngine : FileHelperEngine
 	{
-		#region "  Constructor  "
+
+        #region "  Constructor  "
 
 		/// <summary>
 		/// Creates a version of the <see cref="FileHelperEngine"/> exclusive for 
@@ -30,12 +31,11 @@ namespace FileHelpers
 		}
 
 		#endregion
-
 		
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
-		public new FixedRecordOptions Options
+		public new FixedRecordOptions DynamicOptions
 		{
-			get { return (FixedRecordOptions) mOptions; }
+			get { return (FixedRecordOptions) mDynamicOptions; }
 		}
 	}
 
@@ -71,9 +71,9 @@ namespace FileHelpers
 
 		
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
-		public new FixedRecordOptions Options
+		public new FixedRecordOptions DynamicOptions
 		{
-			get { return (FixedRecordOptions) mOptions; }
+            get { return (FixedRecordOptions)mDynamicOptions; }
 		}
 	}
 #endif
