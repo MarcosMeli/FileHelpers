@@ -314,6 +314,7 @@ pre.syntax, div.syntax
 	{
 	margin: 0;
 	font-weight: normal;
+	text-decoration: none;
 	}
 /* END changes to dtue.css conventions */
 /* ----------------------------------- */
@@ -373,14 +374,17 @@ dt
 a:link
 	{
 	color: #0000ff;
+	text-decoration: none;
 	}
 a:visited
 	{
 	color: #0000ff;
+	text-decoration: none;
 	}
 a:hover
 	{
 	color: #3366ff;
+		text-decoration: underline;
 	}
 
 img

@@ -4,10 +4,11 @@ using System.ComponentModel;
 namespace FileHelpers
 {
 
-	/// <summary></summary>
+    
     [EditorBrowsable(EditorBrowsableState.Never)]
 #if NET_1_1
-	public abstract class WriteRecordEventArgs: EventArgs
+    /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs"/> and <see cref="AfterWriteRecordEventArgs"/></summary>
+    public abstract class WriteRecordEventArgs: EventArgs
 	{
 		internal WriteRecordEventArgs(object record, int lineNumber)
 		{
@@ -15,6 +16,7 @@ namespace FileHelpers
 			mLineNumber = lineNumber;
 		}
 #else
+    /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs&lt;T&gt;"/> and <see cref="AfterWriteRecordEventArgs&lt;T&gt;"/></summary>
     public abstract class WriteRecordEventArgs<T>: EventArgs
 	{
 		internal WriteRecordEventArgs(T record, int lineNumber)
