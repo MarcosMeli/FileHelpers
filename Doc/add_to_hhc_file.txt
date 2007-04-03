@@ -195,15 +195,15 @@
 
 	
 	<LI> <OBJECT type="text/sitemap">
-	<param name="Name" value="Examples">
-	<param name="Local" value="roadmap.html">
+	<param name="Name" value="More Info">
+	<param name="Local" value="roadmap2.html">
 	</OBJECT>
 	<UL>
 	
 
 
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="RoadMap">
+		<param name="Name" value="Roadmap">
 		<param name="Local" value="roadmap.html">
 		</OBJECT>
 

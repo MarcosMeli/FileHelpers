@@ -42,6 +42,8 @@
 			key="SOFTWARE\Microsoft\VisualStudio\8.0\InstallDir" 
 			hive="LocalMachine" failonerror="false" />
 
+       <copy file="..\Doc\Include\roadmap.html" tofile="..\Doc\Include\roadmap2.html" overwrite="true" />
+
 	   <property name="current.generic" value="Engines\FileHelperEngine" />
        <call target="makegeneric" />
 	   

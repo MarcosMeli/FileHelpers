@@ -141,9 +141,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkSealed = new System.Windows.Forms.CheckBox();
@@ -179,9 +179,13 @@ namespace FileHelpers.WizardApp
             this.label2 = new System.Windows.Forms.Label();
             this.panFields = new System.Windows.Forms.FlowLayoutPanel();
             this.panStep0 = new System.Windows.Forms.Panel();
+            this.picNewVersion = new System.Windows.Forms.PictureBox();
+            this.picCurrent = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtClassName = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cboFixedMode2 = new System.Windows.Forms.ComboBox();
             this.gbxDelimitedBy = new System.Windows.Forms.GroupBox();
             this.radDelTabs = new System.Windows.Forms.RadioButton();
             this.txtDelimiter = new System.Windows.Forms.TextBox();
@@ -232,10 +236,6 @@ namespace FileHelpers.WizardApp
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
             this.tip = new System.Windows.Forms.ToolTip(this.components);
-            this.picNewVersion = new System.Windows.Forms.PictureBox();
-            this.picCurrent = new System.Windows.Forms.PictureBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cboFixedMode2 = new System.Windows.Forms.ComboBox();
             this.panStep1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -246,6 +246,8 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).BeginInit();
             this.panStep3.SuspendLayout();
             this.panStep0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.gbxDelimitedBy.SuspendLayout();
@@ -260,8 +262,6 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).BeginInit();
             this.SuspendLayout();
             // 
             // panStep1
@@ -401,7 +401,6 @@ namespace FileHelpers.WizardApp
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fields Options";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // txtFieldLength
             // 
@@ -574,8 +573,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -704,6 +703,32 @@ namespace FileHelpers.WizardApp
             this.panStep0.TabIndex = 0;
             this.panStep0.TabStop = true;
             // 
+            // picNewVersion
+            // 
+            this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
+            this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
+            this.picNewVersion.Location = new System.Drawing.Point(127, 306);
+            this.picNewVersion.Name = "picNewVersion";
+            this.picNewVersion.Size = new System.Drawing.Size(146, 53);
+            this.picNewVersion.TabIndex = 1012;
+            this.picNewVersion.TabStop = false;
+            this.picNewVersion.Visible = false;
+            this.picNewVersion.Click += new System.EventHandler(this.picNewVersion_Click);
+            // 
+            // picCurrent
+            // 
+            this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCurrent.BackColor = System.Drawing.Color.Transparent;
+            this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
+            this.picCurrent.Location = new System.Drawing.Point(127, 306);
+            this.picCurrent.Name = "picCurrent";
+            this.picCurrent.Size = new System.Drawing.Size(146, 53);
+            this.picCurrent.TabIndex = 1011;
+            this.picCurrent.TabStop = false;
+            this.picCurrent.Visible = false;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txtClassName);
@@ -736,6 +761,32 @@ namespace FileHelpers.WizardApp
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Select the Record Type";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label12.Location = new System.Drawing.Point(168, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "FixedMode";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // cboFixedMode2
+            // 
+            this.cboFixedMode2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFixedMode2.FormattingEnabled = true;
+            this.cboFixedMode2.Items.AddRange(new object[] {
+            "public",
+            "private",
+            "internal",
+            "protected"});
+            this.cboFixedMode2.Location = new System.Drawing.Point(227, 21);
+            this.cboFixedMode2.Name = "cboFixedMode2";
+            this.cboFixedMode2.Size = new System.Drawing.Size(98, 21);
+            this.cboFixedMode2.TabIndex = 9;
+            this.cboFixedMode2.SelectedIndexChanged += new System.EventHandler(this.cboFixedMode2_SelectedIndexChanged);
             // 
             // gbxDelimitedBy
             // 
@@ -1080,8 +1131,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender3;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1310,57 +1361,6 @@ namespace FileHelpers.WizardApp
             this.tip.ReshowDelay = 0;
             this.tip.ShowAlways = true;
             // 
-            // picNewVersion
-            // 
-            this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
-            this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
-            this.picNewVersion.Location = new System.Drawing.Point(127, 306);
-            this.picNewVersion.Name = "picNewVersion";
-            this.picNewVersion.Size = new System.Drawing.Size(146, 53);
-            this.picNewVersion.TabIndex = 1012;
-            this.picNewVersion.TabStop = false;
-            this.picNewVersion.Visible = false;
-            // 
-            // picCurrent
-            // 
-            this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCurrent.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
-            this.picCurrent.Location = new System.Drawing.Point(127, 306);
-            this.picCurrent.Name = "picCurrent";
-            this.picCurrent.Size = new System.Drawing.Size(146, 53);
-            this.picCurrent.TabIndex = 1011;
-            this.picCurrent.TabStop = false;
-            this.picCurrent.Visible = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(168, 25);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 13);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "FixedMode";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // cboFixedMode2
-            // 
-            this.cboFixedMode2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFixedMode2.FormattingEnabled = true;
-            this.cboFixedMode2.Items.AddRange(new object[] {
-            "public",
-            "private",
-            "internal",
-            "protected"});
-            this.cboFixedMode2.Location = new System.Drawing.Point(227, 21);
-            this.cboFixedMode2.Name = "cboFixedMode2";
-            this.cboFixedMode2.Size = new System.Drawing.Size(98, 21);
-            this.cboFixedMode2.TabIndex = 9;
-            this.cboFixedMode2.SelectedIndexChanged += new System.EventHandler(this.cboFixedMode2_SelectedIndexChanged);
-            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
@@ -1369,10 +1369,10 @@ namespace FileHelpers.WizardApp
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panStep0);
             this.Controls.Add(this.panStep1);
             this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
-            this.Controls.Add(this.panStep0);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
@@ -1399,6 +1399,8 @@ namespace FileHelpers.WizardApp
             this.panStep3.PerformLayout();
             this.panStep0.ResumeLayout(false);
             this.panStep0.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1419,8 +1421,6 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2298,9 +2298,11 @@ namespace FileHelpers.WizardApp
             }
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
+        private void picNewVersion_Click(object sender, EventArgs e)
         {
-
+            frmLastVersion frm = new frmLastVersion((VersionData)picNewVersion.Tag);
+            frm.ShowDialog();
+            frm.Dispose();
         }
 
 
