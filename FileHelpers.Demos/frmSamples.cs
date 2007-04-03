@@ -585,34 +585,6 @@ namespace FileHelpersSamples
 		}
 
 
-		public static int CompararVersiones(string ver1, string ver2)
-		{
-			string[] ver1A = ver1.Split('.');
-			string[] ver2A = ver2.Split('.');
-			if (ver1A.Length > 0 & ver2A.Length > 0)
-			{
-				if (int.Parse(ver1A[0]) != int.Parse(ver2A[0]))
-				{
-					return int.Parse(ver1A[0]) - int.Parse(ver2A[0]);
-				}
-			}
-			if (ver1A.Length > 1 & ver2A.Length > 1)
-			{
-				if (int.Parse(ver1A[1]) != int.Parse(ver2A[1]))
-				{
-					return int.Parse(ver1A[1]) - int.Parse(ver2A[1]);
-				}
-			}
-			if (ver1A.Length > 2 & ver2A.Length > 2)
-			{
-				if (int.Parse(ver1A[2]) != int.Parse(ver2A[2]))
-				{
-					return int.Parse(ver1A[2]) - int.Parse(ver2A[2]);
-				}
-			}
-			return 0;
-		}
-
 		bool mFirstTime = true;
 
 		private void frmSamples_Activated(object sender, System.EventArgs e)
@@ -623,40 +595,29 @@ namespace FileHelpersSamples
 			mFirstTime = false;
 
 			Application.DoEvents();
-			Application.DoEvents();
-			try
+
+            try
 			{
-				string ver = typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
+                string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
+                VersionData verLast;
+                verLast = VersionData.GetLastVersion();
 
-				string dataString;
-				using (WebClient webClient = new WebClient())
-				{
-					byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
-					dataString = System.Text.Encoding.Default.GetString(data);
-				}
-			
-				VersionData[] versions = null;            
-				FileHelperEngine engine = new FileHelperEngine(typeof(VersionData));
-				versions = (VersionData[]) engine.ReadString(dataString);
-
-				string verLast = versions[versions.Length - 1].Version;
-				if (CompararVersiones(ver, verLast) >= 0)
+				if (VersionData.CompararVersiones(ver, verLast.Version) >= 0)
 					picCurrent.Visible = true;
 				else
 				{
 					picNewVersion.Visible = true;
-                    picNewVersion.Tag = versions[versions.Length - 1];
-					tip.SetToolTip(picNewVersion, "Version: " + versions[versions.Length - 1].Version + Environment.NewLine +  versions[versions.Length - 1].Description);
+                    picNewVersion.Tag = verLast;
+                    tip.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
 				}
 			}			
-			catch //(Exception ex)
-			{
-				//	MessageBox.Show(ex.ToString());
-			}
+			catch
+			{}
 
 		
 		}
 
+       
 		private void picNewVersion_Click(object sender, System.EventArgs e)
 		{
 			frmLastVersion frm = new frmLastVersion((VersionData) picNewVersion.Tag);
@@ -685,25 +646,5 @@ namespace FileHelpersSamples
 		}
 	}
 
-	[DelimitedRecord("|")]
-	public class VersionData
-	{
-		public string Version;
-			
-		[FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
-		public DateTime ReleaseDate;
-
-		public string DownloadUrl;
-		public string DownloadOthers;
-
-		[FieldInNewLine]
-		[FieldQuoted(MultilineMode.AllowForBoth)]
-		public string Description;
-			
-		[FieldQuoted(MultilineMode.AllowForBoth)]
-		public string History;
-
-
-	}
 
 }
