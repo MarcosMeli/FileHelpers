@@ -228,11 +228,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DataLink\ExcelDataLinkOleDb.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "DataLink\FileDataLink.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -254,11 +249,6 @@
                 />
                 <File
                     RelPath = "DataLink\Storage\DataStorage.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DataLink\Storage\ExcelStorageOleDb.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -538,21 +528,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
-                <File
-                    RelPath = "Mapping\DataMapper.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Mapping\DataMapperG.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Mapping\MappingInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
+                <Folder RelPath = "Mapping\" />
                 <File
                     RelPath = "MasterDetail\Common.cs"
                     SubType = "Code"

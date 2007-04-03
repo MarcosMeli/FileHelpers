@@ -373,11 +373,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Tests\DataLink\ExcelOleDb.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Tests\DataLink\ExcelProvidersExtraTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -434,11 +429,6 @@
                 />
                 <File
                     RelPath = "Tests\Errors\TransformBad.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Tests\Mapping\Mapping.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

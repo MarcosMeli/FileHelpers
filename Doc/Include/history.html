@@ -9,7 +9,7 @@
 	</style>
 <meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
 <meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
+<meta NAME="keywords" Content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
 <meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
 	</HEAD>
 	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0" topMargin="0">
@@ -559,20 +559,34 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                             <li>FieldSorter faster too, Removed REFLECTION for EMIT</li>
                                         </ul>
                                         <p>
-                                            <span style="text-decoration: underline">API Changes and Extensions</span></p>
+                                            <span style="text-decoration: underline">Shining new features</span></p>
+                                        <ul>
+                                            <li>The very cool DelimitedFileEngine and FixedFileEngine that allow to change options at RunTime (also with generic versions) <a>Check an example here</a> </li>
+                                            <li>ConditionalRecords you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) </li>
+                                            <li>A new GenericDatabaseStorage excellent to allow others Db with ASO.NET support to
+                                                work with the FileHelpers (Thanks Rodolfo Finochietti)</li>
+                                            <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (some user are already using it)</li>
+                                            <li>New Version Checker in the demos and Wizard (both with renew look and feel) </li>
+											<li>.NET 2.0 Nullable Types support. (Thanks Vijayan) </li>
+                                            <li>Notification Interfaces: you can now get notified of the events simply implement&nbsp;<span
+                                                style="text-decoration: underline"></span><span style="text-decoration: underline"></span><span
+                                                    style="text-decoration: underline"></span></li>
+											<li>Enhaced Debugging in .NET 2.0 with DebuggerDisplay and DebuggerBrowsable, DebugVisualizars to come.</li>
+											<li>Now the code for Vs2003 and Vs2005 are both on SVN sharing the same files and the build script autodetect your Visual Studio installation. So no more excuses time to get involved =)</li>
+                                            <li>The engines with async ops are now IDisposable and IEnumerable so you can declare it with using(..) and use them in a foreach loop </li>
+                                        </ul>
+
+                                        <p>
+										<span style="text-decoration: underline">API Changes and Extensions</span></p>
                                         <ul>
                                             <span>
 							 <li>The write methods are less strict you can pass now an IEnumerable
                                  instead of an array, so you can direct pass a List or ArrayLIst to the method without need of do a ToArray() </li>
                                                 <li>RunTime records can now get a DataTable in the constructor and so use DataColumns
                                                     to create one field for each column. </li>
-                                                <li>.NET 2.0 Nullable Types support. (Thanks Vijayan) </li>
                                                 <li>Generic versions of near all the engines of the library (is really hard to mantain the two copies :P so every one is time to port !!) </li>
                                                 <li>Async Operations in others engines like the MultiRecordEngine </li>
                                                 <li>Event support to the MultiRecordEngine thanks to the contribution of Francis de Fouchier </li>
-                                                <li>The engines with async ops are now IDisposable so you can declare it with using(..)
-                                                </li>
-                                                <li>The engines with async ops are now IEnumerable so you can use them in a foreach loop </li>
                                                 <li>The library handle now infinite levels of inheritance adding the high level fields first in the result record class.&nbsp;</li>
                                                 <li>Allow to ignore spaces and tabs in the <a href="FileHelpers.IgnoreEmptyLinesAttribute.html">
                                                     IgnoreEmptyLinesAttribute</a> </li>
@@ -593,26 +607,6 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         <p>
                                         </p>
                                         <p>
-                                            <span style="text-decoration: underline">Shining new features</span></p>
-                                        <ul>
-                                            <li>The very cool DelimitedFileEngine and FixedFileEngine that allow to change options at RunTime (also with generic versions) <a>Check an example here</a> </li>
-                                            <li>ConditionalRecords you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) </li>
-                                            <li>A new GenericDatabaseStorage excellent to allow others Db with ASO.NET support to
-                                                work with the FileHelpers (Thanks Rodolfo Finochietti)</li>
-                                            <li>DataMapper: (in beta) a really cool feature to tell the FileHelpers how to map info from a DataTable ot a DataReader to the fileds of a type
-							   (can be also types that dont have the [DelimitedRecord] or [FicedLengthRecord] on them =) </li>
-                                            <li>ExcelOleDbStorage (in beta, only use it in simple cases) (thanks to <a href="http://www.vemn.com.ar/">
-                                                Daniel Laco</a>, a great MVP from my country)</li>
-                                            <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (some user are already using it)</li>
-                                            <li>New Version Checker in the demos and Wizard (both with renew look and feel) </li>
-                                            <li>Notification Interfaces: you can now get notified of the events simply implement&nbsp;<span
-                                                style="text-decoration: underline"></span><span style="text-decoration: underline"></span><span
-                                                    style="text-decoration: underline"></span></li>
-											<li>Enhaced Debugging in .NET 2.0 with DebuggerDisplay and DebuggerBrowsable, DebugVisualizars to come.</li>
-											<li>Now the code for Vs2003 and Vs2005 are both on SVN sharing the same files and the build script autodetect your Visual Studio installation. So no more excuses time to get involved =)</li>
-                                        </ul>
-                                        <p>
-                                            &nbsp;</p>
                                         <p>
                                             <span style="text-decoration: underline">Small Changes<span></span></span></p>
                                         <p>

@@ -256,9 +256,6 @@
     <Compile Include="Tests\DataLink\DataProvidersTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\DataLink\ExcelOleDb.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tests\DataLink\ExcelProvidersExtraTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -293,9 +290,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Errors\TransformBad.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\Mapping\Mapping.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
