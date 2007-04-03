@@ -603,8 +603,7 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
 							   (can be also types that dont have the [DelimitedRecord] or [FicedLengthRecord] on them =) </li>
                                             <li>ExcelOleDbStorage (in beta, only use it in simple cases) (thanks to <a href="http://www.vemn.com.ar/">
                                                 Daniel Laco</a>, a great MVP from my country)</li>
-                                            <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (in
-                                                fact some user are already using it)</li>
+                                            <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (some user are already using it)</li>
                                             <li>New Version Checker in the demos and Wizard (both with renew look and feel) </li>
                                             <li>Notification Interfaces: you can now get notified of the events simply implement&nbsp;<span
                                                 style="text-decoration: underline"></span><span style="text-decoration: underline"></span><span
@@ -620,6 +619,9 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         </p>
 							 <p></p>
                                         <ul>
+											<li>Fixed the problem with ASP.NET: "Line 0: Metadata file 'filehelpers.dll' could not be found"
+											<li>Fixed some problems with the CsvClassBuilder (is a good practice to dont release the last minute added features)
+											
 											<li>The Assembly is now Signed</li>
                                             <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
 											<li>The new ConverterBase.DefaultDateTimeFormat to avoid set the converter field by field =)</li>
@@ -636,13 +638,6 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                             <li>The FixedLengthClassBuilder has more constructor to set the lengths of the fields
                                                 in you instruction</li>
                                         </ul>
-                                        <p>
-                                            &nbsp;</p>
-                                        <ul>
-                                            <li>THE DAMN Problem with Line 0: Metadata file 'filehelpers.dll' could not be found
-                                            </li>
-                                            <li>FIX: Double Number of fields in CsvClassBuilder (CsvOptions) </li>
-                                            <li>FIX: StackOverflow on CsvClassBuilder.AddField (a forget of .FullName)</li>
                                         </ul>
                                         <p>
                                             &nbsp;</p>

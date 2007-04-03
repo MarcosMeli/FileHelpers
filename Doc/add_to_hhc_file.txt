@@ -1,33 +1,38 @@
 
     <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Quick Start Delimited">
-		<param name="Local" value="quick_start.html">
+		<param name="Name" value="Downloads">
+		<param name="Local" value="downloads.html">
 		</OBJECT>
 
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Quick Start Fixed Length">
-		<param name="Local" value="quick_start_fixed.html">
+		<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="History">
+		<param name="Local" value="history.html">
 		</OBJECT>
-
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Quick Start Record by Record">
-		<param name="Local" value="quick_start_async.html">
-		</OBJECT>
-
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="FileHelpers on the Web">
-		<param name="Local" value="community.html">
-		</OBJECT>
-
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="RunTime Records">
-		<param name="Local" value="runtime_classes.html">
-		</OBJECT>
-
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Powered By">
 		<param name="Local" value="poweredby.html">
 		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Must Read">
+		<param name="Local" value="must_read.html">
+		</OBJECT>
+	<UL>
+				
+		    <LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Quick Start Delimited">
+				<param name="Local" value="quick_start.html">
+				</OBJECT>
+
+		    <LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Quick Start Fixed Length">
+				<param name="Local" value="quick_start_fixed.html">
+				</OBJECT>
+
+		    <LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Quick Start Record by Record">
+				<param name="Local" value="quick_start_async.html">
+				</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Attributes List">
@@ -38,15 +43,24 @@
 		<param name="Name" value="Converters Arguments">
 		<param name="Local" value="converter_args.html">
 		</OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value=".NET 2.0 Generics">
+		<param name="Local" value="generics.html">
+		</OBJECT>
+
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RunTime Records">
+		<param name="Local" value="runtime_classes.html">
+		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Event Support">
 		<param name="Local" value="events.html">
 		</OBJECT>
 
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value=".NET 2.0 Generics">
-		<param name="Local" value="generics.html">
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Record Class Wizard">
+		<param name="Local" value="wizard.html">
 		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
@@ -55,9 +69,14 @@
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="How to Help">
-		<param name="Local" value="howhelp.html">
+		<param name="Name" value="Contact and Credits">
+		<param name="Local" value="credits.html">
+        <param name="ImageNumber" value="25">
 		</OBJECT>
+
+	</UL>
+				
+				
 
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Examples">
@@ -174,7 +193,50 @@
 
 	</UL>
 
+	
+	<LI> <OBJECT type="text/sitemap">
+	<param name="Name" value="Examples">
+	<param name="Local" value="roadmap.html">
+	</OBJECT>
+	<UL>
+	
 
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="RoadMap">
+		<param name="Local" value="roadmap.html">
+		</OBJECT>
+
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="How to Help">
+		<param name="Local" value="howhelp.html">
+		</OBJECT>
+
+		
+    <LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Library Statistics">
+		<param name="Local" value="statistics.html">
+		</OBJECT>
+		
+		
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FileHelpers on the Web">
+		<param name="Local" value="community.html">
+		</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Library Testing">
+		<param name="Local" value="testing.html">
+		</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="F.A.Q.">
+		<param name="Local" value="FAQ.html">
+		</OBJECT>
+
+
+
+		
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Class Diagrams">
 		<param name="Local" value="class_diagram.html">
@@ -200,49 +262,18 @@
 			</OBJECT>
 	</UL>
 
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Downloads">
-		<param name="Local" value="downloads.html">
-		</OBJECT>
+
+
 
     <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Library Statistics">
-		<param name="Local" value="statistics.html">
-		</OBJECT>
-		
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Library Testing">
-		<param name="Local" value="testing.html">
-		</OBJECT>
-
-
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="History">
-		<param name="Local" value="history.html">
-		</OBJECT>
-
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="RoadMap">
-		<param name="Local" value="roadmap.html">
-		</OBJECT>
-
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Discussion Forums">
+		<param name="Name" value="Support Forums">
 		<param name="Local" value="http://www.filehelpers.com/forums/">
 		</OBJECT>
 
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="FileHelpers DevHome">
+		<param name="Name" value="FileHelpers on SourceForge">
 		<param name="Local" value="http://sourceforge.net/projects/filehelpers">
 		</OBJECT>
 
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="F.A.Q.">
-		<param name="Local" value="FAQ.html">
-		</OBJECT>
+			</UL>
 
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Contact and Credits">
-		<param name="Local" value="credits.html">
-        <param name="ImageNumber" value="25">
-		</OBJECT>

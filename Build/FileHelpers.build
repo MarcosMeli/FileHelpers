@@ -25,7 +25,7 @@
    <target name="makegeneric" >
        <copy file="..\FileHelpers\${current.generic}.cs" tofile="..\FileHelpers\${current.generic}G.cs" overwrite="true" />
 
-       <exec program="..\Libs\FileReplace.exe " output="build.log.txt" commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot; -v" workingdir="..\Libs" failonerror="false" />
+       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot; -v" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot; -v" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot; -v" workingdir="..\Libs" failonerror="false" />
        <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#endif&quot; &quot;#endif&quot; -v" workingdir="..\Libs" failonerror="false" />
@@ -169,6 +169,7 @@
        <copy file="..\Doc\MSDN.css" todir="..\..\Release\Docs" overwrite="true" />
        <copy file="..\Doc\tree.js" todir="..\..\Release\Docs" overwrite="true" />
        <copy file="..\Doc\tree.css" todir="..\..\Release\Docs" overwrite="true" />
+       <copy file="..\Doc\treenodedot.gif" todir="..\..\Release\Docs" overwrite="true" />
 
        <exec program="..\Libs\FileReplace.exe " output="build.log.txt" append="true" commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$HEADER$}&quot; -f &quot;add_header.txt&quot; -v" workingdir="..\Doc" />
 	   <exec program="..\Libs\FileReplace.exe " output="build.log.txt" append="true" commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;{$FOOTER$}&quot; -f &quot;add_footer.txt&quot; -v" workingdir="..\Doc" />
@@ -196,6 +197,7 @@
    	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;&lt;/BODY&gt;&quot; -f &quot;add_ads.txt&quot; -v" workingdir="..\Doc" />
    	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;img src='sf.gif&quot; &quot;img src='http://sflogo.sourceforge.net/sflogo.php?group_id=152382&amp;type=1&quot; -v" workingdir="..\Doc" />
 
+	   
        <zip zipfile="..\..\AutoBuild\${LibraryVersion}\SF_FileHelpers_${LibraryFileVersion}_HomeUp.zip" ziplevel="9">
            <fileset basedir="..\..\Release\Docs">
                <include name="**/*" />
