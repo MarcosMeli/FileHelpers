@@ -1,5 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
 <LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
 href="global.css" type=text/css 
 rel=stylesheet>
@@ -21,7 +22,6 @@ bgColor=white leftMargin=0 topMargin=0>
 
 		{$HEADER$}
 
-
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td style="height: 720px">
     <h2>
@@ -34,27 +34,35 @@ bgColor=white leftMargin=0 topMargin=0>
             The names of the classes are the same that without generics, then you can use both:</p>
         <p>
             <strong>C# 2.0</strong></p>
-        <pre>
-<span style="text-decoration: underline">Standard Way </span>
-FileHelperEngine engine = new FileHelperEngine(<strong>typeof(Customers)</strong>);
 
-<span style="text-decoration: underline">Generics Way</span>
-<br />FileHelperEngine<strong>&lt;Customers&gt;</strong> engine = new FileHelperEngine<strong>&lt;Customers&gt;</strong>();</pre>
+<textarea name="code" class="c#">
+// Standard Way 
+FileHelperEngine engine = new FileHelperEngine(typeof(Customers));
+
+// Generics Way
+FileHelperEngine&lt;Customers&gt; engine = new FileHelperEngine&lt;Customers&gt;();
+</textarea>
+
         <p>
-            <strong>VB.NET 2.0</strong></p><pre>
-<span style="text-decoration: underline">Standard Way</span>
-Dim engine As New FileHelperEngine(<strong>GetType(Customers)</strong>)
+            <strong>VB.NET 2.0</strong></p>
+<textarea name="code" class="vb">
+' Standard Way 
+Dim engine As New FileHelperEngine(GetType(Customers))
 
-<span style="text-decoration: underline">Generics Way</span>
-Dim engine As New FileHelperEngine(<strong>Of Customers</strong>)();</pre>
+' Generics Way
+Dim engine As New FileHelperEngine(Of Customers)()
+</textarea>
         <p>
             <strong>The main diference is that you don´t need to cast the engine results:</strong></p>
-        <pre>
-<span style="text-decoration: underline">Standard Way </span>
-Customers[] res = <strong>(Customers[])</strong> engine.ReadFile("File.txt");
 
-<span style="text-decoration: underline">Generics Way</span>
-Customers[] res = engine.ReadFile("File.txt");</pre>
+			<textarea name="code" class="c#">
+// Standard Way 
+Customers[] res = (Customers[]) engine.ReadFile("File.txt");
+
+// Generics Way
+Customers[] res = engine.ReadFile("File.txt");
+</textarea>
+
     </blockquote>
     <br />
     &nbsp; &nbsp; &nbsp; &nbsp; Any other idea is welcome !!!<br />

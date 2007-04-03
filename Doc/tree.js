@@ -246,5 +246,5 @@ function resizeTree()
 	var treeDiv = document.getElementById('tree');
 	//treeDiv.setAttribute('style', 'width: ' + document.body.offsetWidth + 'px; height: ' + (document.body.offsetHeight - 27) + 'px;');
 	treeDiv.style.width = document.documentElement.offsetWidth;
-	treeDiv.style.height = document.documentElement.offsetHeight - 52;
+	treeDiv.style.height = document.documentElement.offsetHeight - 90;
 }

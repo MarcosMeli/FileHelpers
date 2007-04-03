@@ -23,7 +23,7 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 }document.write(OT);
 // --></script>
 <br />
-										Open Source Library. <a href="http://sourceforge.net/projects/filehelpers">FileHelpers on SourceForge</a>
+										<a href="http://sourceforge.net/projects/filehelpers">FileHelpers on SourceForge</a>
 											</font>
 									</td>
 
