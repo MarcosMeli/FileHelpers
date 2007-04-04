@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyDescription("A simple application to show the bahavior of the Library.")]
 [assembly : AssemblyCompany("Marcos Meli")]
 [assembly : AssemblyProduct("FileHelpers")]
-[assembly : AssemblyCopyright("Copyright 2005-06. Marcos Meli")]
+[assembly : AssemblyCopyright("Copyright 2005-07. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyConfiguration("")]

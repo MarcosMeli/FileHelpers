@@ -37,9 +37,9 @@ namespace FileHelpers.RunTime
 				WriteElement(element, valueStr);
 		}
 
-		public void WriteElement(string element, bool valueStr)
+		public void WriteElement(string element, bool mustWrite)
 		{
-			if (valueStr)
+            if (mustWrite)
 			{
 				mWriter.WriteStartElement(element);
 				mWriter.WriteEndElement();

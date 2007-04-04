@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace FileHelpers
 {
@@ -6,10 +8,14 @@ namespace FileHelpers
 	/// This class allows you to set some options of the records but at runtime.
 	/// With this options the library is more flexible than never.
 	/// </summary>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
 	public abstract class RecordOptions
 	{
 		
-		internal RecordInfo mRecordInfo;
+#if NET_2_0
+    [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+        internal RecordInfo mRecordInfo;
 	
 		internal RecordOptions(RecordInfo info)
 		{
@@ -62,5 +68,18 @@ namespace FileHelpers
 			set { mRecordInfo.mRecordConditionSelector = value; }
 		}
 
+        /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+        public string CommentMarker
+        {
+            get { return mRecordInfo.mCommentMarker; }
+            set { mRecordInfo.mCommentMarker = value; }
+        }
+
+        /// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
+        public bool CommentInAnyPlace
+        {
+            get { return mRecordInfo.mCommentAnyPlace; }
+            set { mRecordInfo.mCommentAnyPlace = value; }
+        }
 	}
 }

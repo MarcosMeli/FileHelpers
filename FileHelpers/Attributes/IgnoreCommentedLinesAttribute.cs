@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -17,10 +17,9 @@ namespace FileHelpers
 	public sealed class IgnoreCommentedLinesAttribute : Attribute
 	{
 		internal string mCommentMarker;
-		internal bool mAtFirstColumn = false;
+		internal bool mAnyPlace = true;
 
-
-		/// <summary>Indicates that the engine must ignore commented lines while reading. (The Comment Marker can appear in any column)</summary>
+		/// <summary>Indicates that the engine must ignore commented lines while reading. (The Comment Marker can appear in any place with spaces or tabs at his left)</summary>
 		/// <param name="commentMarker">The comment marker used to ignore the lines</param>
 		public IgnoreCommentedLinesAttribute(string commentMarker): this(commentMarker, false)
 		{
@@ -28,14 +27,14 @@ namespace FileHelpers
 
 		/// <summary>Indicates that the engine must ignore commented lines while reading.</summary>
 		/// <param name="commentMarker">The comment marker used to ignore the lines</param>
-		/// <param name="atFirstColumn">Indicates if the comment can only begin at the first column (false by default)</param>
-		public IgnoreCommentedLinesAttribute(string commentMarker, bool atFirstColumn)
+        /// <param name="anyPlace">Indicates if the comment can have spaces or tabs at left (true by default)</param>
+		public IgnoreCommentedLinesAttribute(string commentMarker, bool anyPlace)
 		{
 			if (commentMarker == null ||  commentMarker.Length == 0)
 				throw new BadUsageException("The comment string parameter cant be null or empty.");
 			
 			mCommentMarker = commentMarker;
-			mAtFirstColumn = atFirstColumn;
+            mAnyPlace = anyPlace;
 		}
 
 	}

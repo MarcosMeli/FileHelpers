@@ -2,7 +2,7 @@
 //#define GENERICS
 //#if NET_2_0
 
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 

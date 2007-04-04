@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -26,7 +26,7 @@ namespace FileHelpers
 		public ConditionalRecordAttribute(RecordCondition condition, string selector)
 		{
 			if (selector == null ||  selector.Length == 0)
-				throw new BadUsageException("The selector arg cant be null or empty.");
+				throw new BadUsageException("The selector arg for the ConditionalRecordAttribute can't be null or empty.");
 			
 			mCondition = condition;
 			mConditionSelector = selector;

@@ -41,6 +41,7 @@ namespace FileHelpers.RunTime
 					case NetLanguage.VbNet:
 						mSb.Append(", _");
 						mSb.Append(StringHelper.NewLine);
+                        mSb.Append(" ");
 						break;
 					case NetLanguage.CSharp:
 						mSb.Append("[");

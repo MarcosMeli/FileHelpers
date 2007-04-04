@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -36,13 +36,13 @@ namespace FileHelpers
 		internal int mIgnoreFirst = 0;
 		internal int mIgnoreLast = 0;
 		internal bool mIgnoreEmptyLines = false;
-		private bool mIgnoreEmptySpaces = false;
+		internal bool mIgnoreEmptySpaces = false;
 		
-		private string mCommentString = null;
-		private bool mCommentAtFirstColumn = true;
+		internal string mCommentMarker = null;
+		internal bool mCommentAnyPlace = true;
 
 		internal RecordCondition mRecordCondition = RecordCondition.None;
-		internal string mRecordConditionSelector = null;
+		internal string mRecordConditionSelector = string.Empty;
 		
 #if ! MINI
 		internal bool mNotifyRead;
@@ -256,8 +256,8 @@ namespace FileHelpers
 			{
 				IgnoreCommentedLinesAttribute ignoreComments =
 					(IgnoreCommentedLinesAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreCommentedLinesAttribute), false)[0];
-					mCommentString = ignoreComments.mCommentMarker;
-					mCommentAtFirstColumn = ignoreComments.mAtFirstColumn;
+					mCommentMarker = ignoreComments.mCommentMarker;
+					mCommentAnyPlace = ignoreComments.mAnyPlace;
 			}
 
 			if (mRecordType.IsDefined(typeof (ConditionalRecordAttribute), false))
@@ -443,9 +443,9 @@ namespace FileHelpers
 					return true;
 		
 		
-			if (mCommentString != null)
-				if ( (mCommentAtFirstColumn == false && line.TrimStart().StartsWith(mCommentString)) ||
-					line.StartsWith(mCommentString))
+			if (mCommentMarker != null && mCommentMarker.Length > 0)
+				if ( (mCommentAnyPlace && line.TrimStart().StartsWith(mCommentMarker)) ||
+					line.StartsWith(mCommentMarker))
 					return true;
 			
 

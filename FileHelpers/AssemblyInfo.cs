@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -21,7 +21,7 @@ using System.Security.Permissions;
 
 [assembly : AssemblyVersion("2.0.0.0")]
 [assembly : AssemblyCompany("Marcos Meli")]
-[assembly : AssemblyCopyright("Copyright 2005-06. Marcos Meli")]
+[assembly : AssemblyCopyright("Copyright 2005-07. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyConfiguration("")]

@@ -522,6 +522,11 @@ namespace FileHelpers.RunTime
 			if (mIgnoreEmptyLines == true)
 				attbs.AddAttribute("IgnoreEmptyLines()");
 
+            if (mRecordCondition != RecordCondition.None)
+                attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordCondition.ToString() + ", \"" + mRecordConditionSelector +"\")");
+
+            if (mCommentMarker != null && mCommentMarker.Length > 0)
+                attbs.AddAttribute("IgnoreCommentedLines(\""+mCommentMarker+ "\", " + mCommentInAnyPlace.ToString().ToLower() + ")");
 		
 		}
     	
@@ -745,9 +750,15 @@ namespace FileHelpers.RunTime
 
 			node = document.ChildNodes.Item(0)["IgnoreEmptyLines"];
 			if (node != null) res.IgnoreEmptyLines = true;
+            
+            node = document.ChildNodes.Item(0)["CommentMarker"];
+            if (node != null) res.CommentMarker = node.InnerText;
+
+            node = document.ChildNodes.Item(0)["CommentInAnyPlace"];
+            if (node != null) res.CommentInAnyPlace = bool.Parse(node.InnerText.ToLower());
 
 			node = document.ChildNodes.Item(0)["SealedClass"];
-			if (node != null) res.SealedClass = true;
+            res.SealedClass = node != null;
 
 			node = document.ChildNodes.Item(0)["Namespace"];
 			if (node != null) res.Namespace = node.InnerText;
@@ -755,7 +766,13 @@ namespace FileHelpers.RunTime
 			node = document.ChildNodes.Item(0)["Visibility"];
 			if (node != null) res.Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), node.InnerText);;
 
-			res.ReadClassElements(document);
+            node = document.ChildNodes.Item(0)["RecordCondition"];
+            if (node != null) res.RecordCondition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); ;
+
+            node = document.ChildNodes.Item(0)["RecordConditionSelector"];
+            if (node != null) res.RecordConditionSelector = node.InnerText;
+
+            res.ReadClassElements(document);
 			
 			node = document.ChildNodes.Item(0)["Fields"];
 			XmlNodeList nodes ;
@@ -774,7 +791,7 @@ namespace FileHelpers.RunTime
 
 		}
 
-		
+        
 		/// <summary>
 		/// Creates a custom serialization of the current ClassBuilder
 		/// </summary>
@@ -789,12 +806,19 @@ namespace FileHelpers.RunTime
 			
 			writer.WriteElement("ClassName", ClassName);
 			writer.WriteElement("Namespace", this.Namespace, string.Empty);
-			writer.WriteElement("SealedClass", this.SealedClass);
-			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
 
-			writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines);
-			writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
-			writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
+            writer.WriteElement("SealedClass", this.SealedClass);
+            writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
+
+            writer.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines);
+            writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
+            writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
+
+            writer.WriteElement("CommentMarker", this.CommentMarker, string.Empty);
+            writer.WriteElement("CommentInAnyPlace", this.CommentInAnyPlace.ToString().ToLower(), true.ToString().ToLower());
+
+            writer.WriteElement("RecordCondition", this.RecordCondition.ToString(), "None");
+            writer.WriteElement("RecordConditionSelector", this.RecordConditionSelector, string.Empty);
 
 			WriteExtraElements(writer);
 
@@ -854,5 +878,42 @@ namespace FileHelpers.RunTime
 
 			return sb.ToString().Trim('_');
 		}
-	}
+
+        RecordCondition mRecordCondition = RecordCondition.None;
+
+        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+        public RecordCondition RecordCondition
+        {
+            get { return mRecordCondition; }
+            set { mRecordCondition = value; }
+        }
+
+        string mRecordConditionSelector = string.Empty;
+
+        /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
+        public string RecordConditionSelector
+        {
+			get { return mRecordConditionSelector; }
+            set { mRecordConditionSelector = value; }
+        }
+
+        private string mCommentMarker = string.Empty;
+
+        /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+        public string CommentMarker
+        {
+            get { return mCommentMarker; }
+            set { mCommentMarker = value; }
+        }
+
+        private bool mCommentInAnyPlace = true;
+
+        /// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
+        public bool CommentInAnyPlace
+        {
+            get { return mCommentInAnyPlace; }
+            set { mCommentInAnyPlace = value; }
+        }
+
+    }
 }
