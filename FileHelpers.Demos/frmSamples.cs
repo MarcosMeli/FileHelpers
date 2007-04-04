@@ -95,8 +95,8 @@ namespace FileHelpersSamples
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.tip = new System.Windows.Forms.ToolTip(this.components);
 			this.pictureBox11 = new System.Windows.Forms.PictureBox();
-			this.lblVersion2 = new System.Windows.Forms.Label();
 			this.pictureBox8 = new System.Windows.Forms.PictureBox();
+			this.lblVersion2 = new System.Windows.Forms.Label();
 			this.cmdReadAsDatatable = new System.Windows.Forms.Button();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
 			this.cmdEvents = new System.Windows.Forms.Button();
@@ -353,17 +353,6 @@ namespace FileHelpersSamples
 			this.tip.SetToolTip(this.pictureBox11, "--> Devoo Software Home");
 			this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
 			// 
-			// lblVersion2
-			// 
-			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
-			this.lblVersion2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblVersion2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(224)), ((System.Byte)(224)), ((System.Byte)(224)));
-			this.lblVersion2.Location = new System.Drawing.Point(0, 386);
-			this.lblVersion2.Name = "lblVersion2";
-			this.lblVersion2.Size = new System.Drawing.Size(100, 18);
-			this.lblVersion2.TabIndex = 22;
-			this.lblVersion2.Text = "Version: ";
-			// 
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
@@ -376,6 +365,17 @@ namespace FileHelpersSamples
 			this.pictureBox8.TabStop = false;
 			this.tip.SetToolTip(this.pictureBox8, "--> FileHelpers Home");
 			this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
+			// 
+			// lblVersion2
+			// 
+			this.lblVersion2.BackColor = System.Drawing.Color.Transparent;
+			this.lblVersion2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblVersion2.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(224)), ((System.Byte)(224)), ((System.Byte)(224)));
+			this.lblVersion2.Location = new System.Drawing.Point(0, 386);
+			this.lblVersion2.Name = "lblVersion2";
+			this.lblVersion2.Size = new System.Drawing.Size(100, 18);
+			this.lblVersion2.TabIndex = 22;
+			this.lblVersion2.Text = "Version: ";
 			// 
 			// cmdReadAsDatatable
 			// 
@@ -446,27 +446,27 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cmdDataLink);
 			this.Controls.Add(this.cmdEasy);
-			this.Controls.Add(this.picNewVersion);
 			this.Controls.Add(this.pictureBox4);
-			this.Controls.Add(this.picCurrent);
 			this.Controls.Add(this.pictureBox6);
 			this.Controls.Add(this.pictureBox7);
 			this.Controls.Add(this.cmdAsync);
 			this.Controls.Add(this.pictureBox5);
 			this.Controls.Add(this.pictureBox10);
+			this.Controls.Add(this.picNewVersion);
+			this.Controls.Add(this.picCurrent);
 			this.ExitOnEsc = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
 			this.Load += new System.EventHandler(this.frmSamples_Load);
 			this.Activated += new System.EventHandler(this.frmSamples_Activated);
+			this.Controls.SetChildIndex(this.picCurrent, 0);
+			this.Controls.SetChildIndex(this.picNewVersion, 0);
 			this.Controls.SetChildIndex(this.pictureBox10, 0);
 			this.Controls.SetChildIndex(this.pictureBox5, 0);
 			this.Controls.SetChildIndex(this.cmdAsync, 0);
 			this.Controls.SetChildIndex(this.pictureBox7, 0);
 			this.Controls.SetChildIndex(this.pictureBox6, 0);
-			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox4, 0);
-			this.Controls.SetChildIndex(this.picNewVersion, 0);
 			this.Controls.SetChildIndex(this.pictureBox3, 0);
 			this.Controls.SetChildIndex(this.cmdEasy, 0);
 			this.Controls.SetChildIndex(this.cmdDataLink, 0);

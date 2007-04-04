@@ -114,9 +114,9 @@ namespace FileHelpersSamples
 			this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
 			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.linkLabel3.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
+			this.linkLabel3.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(150)), ((System.Byte)(50)), ((System.Byte)(0)));
 			this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-			this.linkLabel3.LinkColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
+			this.linkLabel3.LinkColor = System.Drawing.Color.FromArgb(((System.Byte)(150)), ((System.Byte)(50)), ((System.Byte)(0)));
 			this.linkLabel3.Location = new System.Drawing.Point(268, 4);
 			this.linkLabel3.Name = "linkLabel3";
 			this.linkLabel3.Size = new System.Drawing.Size(80, 16);

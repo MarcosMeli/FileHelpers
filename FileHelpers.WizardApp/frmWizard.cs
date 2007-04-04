@@ -692,11 +692,11 @@ namespace FileHelpers.WizardApp
             // 
             this.panStep0.BackColor = System.Drawing.Color.White;
             this.panStep0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panStep0.Controls.Add(this.picNewVersion);
-            this.panStep0.Controls.Add(this.picCurrent);
             this.panStep0.Controls.Add(this.groupBox5);
             this.panStep0.Controls.Add(this.groupBox8);
             this.panStep0.Controls.Add(this.label18);
+            this.panStep0.Controls.Add(this.picCurrent);
+            this.panStep0.Controls.Add(this.picNewVersion);
             this.panStep0.Location = new System.Drawing.Point(170, 0);
             this.panStep0.Name = "panStep0";
             this.panStep0.Size = new System.Drawing.Size(400, 366);
