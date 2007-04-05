@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
@@ -522,8 +523,8 @@ namespace FileHelpers.RunTime
             if (mRecordConditionInfo.Condition != FileHelpers.RecordCondition.None)
                 attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() + ", \"" + mRecordConditionInfo.Selector + "\")");
 
-            if (mCommentMarker != null && mCommentMarker.Length > 0)
-                attbs.AddAttribute("IgnoreCommentedLines(\""+mCommentMarker+ "\", " + mCommentInAnyPlace.ToString().ToLower() + ")");
+            if (mIgnoreCommentInfo.CommentMarker != null && mIgnoreCommentInfo.CommentMarker.Length > 0)
+                attbs.AddAttribute("IgnoreCommentedLines(\""+mIgnoreCommentInfo.CommentMarker+ "\", " + mIgnoreCommentInfo.InAnyPlace.ToString().ToLower() + ")");
 		
 		}
     	
@@ -749,10 +750,10 @@ namespace FileHelpers.RunTime
 			if (node != null) res.IgnoreEmptyLines = true;
             
             node = document.ChildNodes.Item(0)["CommentMarker"];
-            if (node != null) res.CommentMarker = node.InnerText;
+            if (node != null) res.IgnoreCommentedLines.CommentMarker = node.InnerText;
 
             node = document.ChildNodes.Item(0)["CommentInAnyPlace"];
-            if (node != null) res.CommentInAnyPlace = bool.Parse(node.InnerText.ToLower());
+            if (node != null) res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLower());
 
 			node = document.ChildNodes.Item(0)["SealedClass"];
             res.SealedClass = node != null;
@@ -811,8 +812,8 @@ namespace FileHelpers.RunTime
             writer.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
             writer.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
 
-            writer.WriteElement("CommentMarker", this.CommentMarker, string.Empty);
-            writer.WriteElement("CommentInAnyPlace", this.CommentInAnyPlace.ToString().ToLower(), true.ToString().ToLower());
+            writer.WriteElement("CommentMarker", this.IgnoreCommentedLines.CommentMarker, string.Empty);
+            writer.WriteElement("CommentInAnyPlace", this.IgnoreCommentedLines.InAnyPlace.ToString().ToLower(), true.ToString().ToLower());
 
             writer.WriteElement("RecordCondition", this.RecordCondition.Condition.ToString(), "None");
             writer.WriteElement("RecordConditionSelector", this.RecordCondition.Selector, string.Empty);
@@ -884,28 +885,22 @@ namespace FileHelpers.RunTime
             get { return mRecordConditionInfo; }
         }
         
+		private IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
 
-        private string mCommentMarker = string.Empty;
+		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+		public IgnoreCommentInfo IgnoreCommentedLines
+		{
+			get { return mIgnoreCommentInfo; }
+		}
 
-        /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
-        public string CommentMarker
-        {
-            get { return mCommentMarker; }
-            set { mCommentMarker = value; }
-        }
-
-        private bool mCommentInAnyPlace = true;
-
-        /// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
-        public bool CommentInAnyPlace
-        {
-            get { return mCommentInAnyPlace; }
-            set { mCommentInAnyPlace = value; }
-        }
 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
-        public sealed class RecordConditionInfo
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		public sealed class RecordConditionInfo
         {
+			internal RecordConditionInfo()
+			{}
+
             RecordCondition mRecordCondition = FileHelpers.RecordCondition.None;
 
             /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
@@ -926,5 +921,37 @@ namespace FileHelpers.RunTime
 
         }
 
+		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		public sealed class IgnoreCommentInfo
+		{
+			internal IgnoreCommentInfo()
+			{}
+
+			/// <summary>
+			/// <para>Indicates that the engine must ignore the lines with this comment marker.</para>
+			/// <para>An emty string or null indicates that the engine dont look for comments</para>
+			/// </summary>
+			public string CommentMarker
+			{
+				get { return mMarker; }
+				set
+				{
+					if (value != null)
+						value = value.Trim();
+
+					mMarker = value;
+				}
+			}
+			private string mMarker = string.Empty;
+
+			/// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
+			public bool InAnyPlace
+			{
+				get { return mInAnyPlace; }
+				set { mInAnyPlace = value; }
+			}
+			private bool mInAnyPlace = true;
+		}
     }
 }

@@ -21,6 +21,7 @@ namespace FileHelpers
 		{
 			mRecordInfo = info;
             mRecordConditionInfo = new RecordConditionInfo(info);
+			mIgnoreCommentInfo = new IgnoreCommentInfo(info);
 		}
 		
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
@@ -52,35 +53,26 @@ namespace FileHelpers
 			set { mRecordInfo.mIgnoreEmptyLines= value; }
 		}
 
-        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+		private RecordConditionInfo mRecordConditionInfo;
+		
+		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
         public RecordConditionInfo RecordCondition
         {
-            get 
-            {
-                return mRecordConditionInfo;
-            }
-        }
-
-        private RecordConditionInfo mRecordConditionInfo;
-
-
-        /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
-        public string CommentMarker
-        {
-            get { return mRecordInfo.mCommentMarker; }
-            set { mRecordInfo.mCommentMarker = value; }
-        }
-
-        /// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
-        public bool CommentInAnyPlace
-        {
-            get { return mRecordInfo.mCommentAnyPlace; }
-            set { mRecordInfo.mCommentAnyPlace = value; }
+            get { return mRecordConditionInfo; }
         }
 
 
+		private IgnoreCommentInfo mIgnoreCommentInfo;
+
+		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+		public IgnoreCommentInfo IgnoreCommentedLines
+		{
+			get { return mIgnoreCommentInfo; }
+		}
+ 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
-        public sealed class RecordConditionInfo
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+		public sealed class RecordConditionInfo
         {
             RecordInfo mRecordInfo;
             internal RecordConditionInfo(RecordInfo ri)
@@ -103,6 +95,40 @@ namespace FileHelpers
             }
         }
 
+
+
+		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		public sealed class IgnoreCommentInfo
+		{
+			RecordInfo mRecordInfo;
+			internal IgnoreCommentInfo(RecordInfo ri)
+			{
+				mRecordInfo = ri;
+			}
+
+			/// <summary>
+			/// <para>Indicates that the engine must ignore the lines with this comment marker.</para>
+			/// <para>An emty string or null indicates that the engine dont look for comments</para>
+			/// </summary>
+			public string CommentMarker
+			{
+				get { return mRecordInfo.mCommentMarker; }
+				set
+				{
+					if (value != null)
+						value = value.Trim();
+					mRecordInfo.mCommentMarker = value;
+				}
+			}
+
+			/// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
+			public bool InAnyPlace
+			{
+				get { return mRecordInfo.mCommentAnyPlace; }
+				set { mRecordInfo.mCommentAnyPlace = value; }
+			}
+		}
     }
 
 }

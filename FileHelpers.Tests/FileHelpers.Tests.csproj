@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{3731CD63-3236-47FB-A27C-146D37DE88AC}"
     >
@@ -168,6 +168,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\DelimitedEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\DiffTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -209,6 +214,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\FieldIgnored.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\FixedEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

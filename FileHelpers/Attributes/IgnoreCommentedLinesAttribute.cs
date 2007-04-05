@@ -30,10 +30,10 @@ namespace FileHelpers
         /// <param name="anyPlace">Indicates if the comment can have spaces or tabs at left (true by default)</param>
 		public IgnoreCommentedLinesAttribute(string commentMarker, bool anyPlace)
 		{
-			if (commentMarker == null ||  commentMarker.Length == 0)
+			if (commentMarker == null ||  commentMarker.Trim().Length == 0)
 				throw new BadUsageException("The comment string parameter cant be null or empty.");
 			
-			mCommentMarker = commentMarker;
+			mCommentMarker = commentMarker.Trim();
             mAnyPlace = anyPlace;
 		}
 
