@@ -54,7 +54,7 @@
 		</OBJECT>
 
     <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Event Support">
+		<param name="Name" value="Events">
 		<param name="Local" value="events.html">
 		</OBJECT>
 

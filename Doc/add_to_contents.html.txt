@@ -58,7 +58,7 @@
   
         <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
-          <a href="events.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Event Support</a>
+          <a href="events.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Events</a>
         </div>
 
         <div class="treeNode">
@@ -192,7 +192,7 @@
           <div class="treeSubnodes">
 		
         <div class="treeNode">
-          <a href="roadmap.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="roadmap.gif" border=0 /> RoadMap</a>
+          <a href="roadmap.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="roadmap.gif" border=0 /> Roadmap</a>
         </div>
 
         <div class="treeNode">
