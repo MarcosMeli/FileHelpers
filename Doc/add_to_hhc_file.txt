@@ -100,6 +100,25 @@
 			<param name="ImageNumber" value="11">
 			</OBJECT>
 			
+
+			<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Nullable Types">
+			<param name="Local" value="example_nullable.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+			
+			<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Delimited File Engine">
+			<param name="Local" value="example_delimitedengine.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+			
+			<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Fixed File Engine">
+			<param name="Local" value="example_fixedengine.html">
+			<param name="ImageNumber" value="11">
+			</OBJECT>
+			
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="RunTime Records">
 			<param name="Local" value="runtime_classes.html">

@@ -107,7 +107,25 @@
 			  <a href="example_errorhandling.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Error Handling</a>
 			</div>
 
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_nullable.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Nullable Types</a>
+			</div>
 
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_delimitedengine.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Delimited File Engine</a>
+			</div>
+
+          	<div class="treeNode">
+			  <img src="treenodedot.gif" class="treeNoLinkImage" />
+			  <a href="example_fixedlength.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Fixed File Engine</a>
+			</div>
+			
+			
+			
+			
 			<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
 			  <a href="runtime_classes.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><b>RunTime Records</b></a>
