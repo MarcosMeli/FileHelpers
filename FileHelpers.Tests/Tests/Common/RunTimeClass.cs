@@ -521,6 +521,47 @@ namespace FileHelpersTests
 			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
 		}
 
+
+		[Test]
+		public void SaveLoadXmlOptions()
+		{
+			DelimitedClassBuilder cbOrig = new DelimitedClassBuilder("Customers", ",");
+			cbOrig.AddField("Field1", typeof(DateTime));
+			cbOrig.AddField("FieldTwo", typeof(string));
+
+			cbOrig.RecordCondition.Condition = RecordCondition.ExcludeIfMatchRegex;
+			cbOrig.RecordCondition.Selector = @"\w*";
+
+			cbOrig.IgnoreCommentedLines.CommentMarker = "//";
+			cbOrig.IgnoreCommentedLines.InAnyPlace = false;
+
+			cbOrig.IgnoreEmptyLines= true;
+			cbOrig.IgnoreFirstLines = 123;
+			cbOrig.IgnoreLastLines = 456;
+
+			cbOrig.SealedClass = false;
+			cbOrig.SaveToXml(@"runtime.xml");
+			cbOrig = null;
+			
+			ClassBuilder cb2 = ClassBuilder.LoadFromXml("runtime.xml");
+
+			Assert.AreEqual("Customers", cb2.ClassName);
+			Assert.AreEqual(2, cb2.FieldCount);
+			Assert.AreEqual("Field1", cb2.Fields[0].FieldName);
+
+			Assert.AreEqual(RecordCondition.ExcludeIfMatchRegex, cb2.RecordCondition.Condition );
+			Assert.AreEqual(@"\w*", cb2.RecordCondition.Selector );
+
+			Assert.AreEqual("//", cb2.IgnoreCommentedLines.CommentMarker);
+			Assert.AreEqual(false, cb2.IgnoreCommentedLines.InAnyPlace );
+			Assert.AreEqual(false, cb2.SealedClass );
+
+			Assert.AreEqual(true, cb2.IgnoreEmptyLines );
+			Assert.AreEqual(123, cb2.IgnoreFirstLines );
+			Assert.AreEqual(456, cb2.IgnoreLastLines );
+
+		}
+
 		[Test]
 		public void LoopingFields()
 		{
