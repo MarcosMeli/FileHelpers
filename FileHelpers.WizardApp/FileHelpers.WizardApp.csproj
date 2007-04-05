@@ -126,6 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\folder_table.png" />
+    <None Include="Resources\page_copy.png" />
+    <None Include="Resources\door_out.png" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />

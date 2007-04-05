@@ -328,6 +328,19 @@ namespace FileHelpers.WizardApp
             return res;
         }
 
+        public static bool HasValue(string keyName)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(mBranch, RegistryKeyPermissionCheck.ReadSubTree);
+            if (key == null)
+            {
+                key = Registry.CurrentUser.CreateSubKey(mBranch, RegistryKeyPermissionCheck.ReadSubTree);
+            }
+            object res = (string)key.GetValue(keyName, null);
+            key.Close();
+
+            return res != null;
+        }
+
         public static void SetStringValue(string keyName, string value)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(mBranch, true);

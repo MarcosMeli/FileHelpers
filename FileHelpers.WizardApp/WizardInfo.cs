@@ -73,6 +73,9 @@ namespace FileHelpers.WizardApp
 
         public string WizardOutput(NetLanguage lang)
         {
+            if (mClassBuilder == null)
+                return string.Empty;
+
             return mClassBuilder.GetClassSourceCode(lang);
         }
 

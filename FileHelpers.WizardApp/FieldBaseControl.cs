@@ -18,7 +18,7 @@ namespace FileHelpers.WizardApp
         public FieldBaseControl()
         {
             InitializeComponent();
-
+            this.DoubleBuffered = true;
             cboTrim.SelectedIndex = 0;
             mInit = false;
         }

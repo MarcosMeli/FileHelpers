@@ -60,9 +60,37 @@ namespace FileHelpers.WizardApp.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap disk {
+            get {
+                object obj = ResourceManager.GetObject("disk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap door_out {
+            get {
+                object obj = ResourceManager.GetObject("door_out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_table {
+            get {
+                object obj = ResourceManager.GetObject("folder_table", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap forward20g2 {
             get {
                 object obj = ResourceManager.GetObject("forward20g2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap page_copy {
+            get {
+                object obj = ResourceManager.GetObject("page_copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -105,7 +106,6 @@ namespace FileHelpers.WizardApp
         private Label linkHome;
         private PictureBox picNewVersion;
         private PictureBox picCurrent;
-        private ToolTip tip;
         private Label label12;
         private ComboBox cboFixedMode2;
         private TextBox txtCommentMarker;
@@ -149,15 +149,19 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCommentMarker = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtRecordConditionSelector = new System.Windows.Forms.TextBox();
+            this.cboRecordCondition = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIgnoreEmpty = new System.Windows.Forms.CheckBox();
             this.txtIgnoreLast = new System.Windows.Forms.NumericUpDown();
@@ -212,13 +216,13 @@ namespace FileHelpers.WizardApp
             this.cmdAddField = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.dlgSaveToFile = new System.Windows.Forms.SaveFileDialog();
-            this.cmdClose = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
             this.cmdTestClass = new System.Windows.Forms.Button();
             this.cboClassLeng = new System.Windows.Forms.ComboBox();
@@ -230,6 +234,11 @@ namespace FileHelpers.WizardApp
             this.txtOutput = new Fireball.Windows.Forms.CodeEditorControl();
             this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.chkProperties = new System.Windows.Forms.CheckBox();
+            this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
+            this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picDonate = new System.Windows.Forms.PictureBox();
+            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkHome = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -242,16 +251,6 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.picDonate = new System.Windows.Forms.PictureBox();
-            this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
-            this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
-            this.tip = new System.Windows.Forms.ToolTip(this.components);
-            this.cboRecordCondition = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtRecordConditionSelector = new System.Windows.Forms.TextBox();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -272,13 +271,13 @@ namespace FileHelpers.WizardApp
             this.panel2.SuspendLayout();
             this.panPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
             this.SuspendLayout();
             // 
             // panStep1
@@ -313,9 +312,9 @@ namespace FileHelpers.WizardApp
             // 
             this.chkCommentAnyPlace.Checked = true;
             this.chkCommentAnyPlace.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCommentAnyPlace.Location = new System.Drawing.Point(16, 54);
+            this.chkCommentAnyPlace.Location = new System.Drawing.Point(15, 54);
             this.chkCommentAnyPlace.Name = "chkCommentAnyPlace";
-            this.chkCommentAnyPlace.Size = new System.Drawing.Size(138, 30);
+            this.chkCommentAnyPlace.Size = new System.Drawing.Size(148, 30);
             this.chkCommentAnyPlace.TabIndex = 11;
             this.chkCommentAnyPlace.Text = "The comment can have spaces or tabs at left";
             this.chkCommentAnyPlace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -337,6 +336,7 @@ namespace FileHelpers.WizardApp
             this.txtCommentMarker.Name = "txtCommentMarker";
             this.txtCommentMarker.Size = new System.Drawing.Size(40, 21);
             this.txtCommentMarker.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.txtCommentMarker, "Allow you to ignore the lines that begin with this comment marker.");
             this.txtCommentMarker.TextChanged += new System.EventHandler(this.txtCommentMarker_TextChanged);
             // 
             // groupBox3
@@ -351,6 +351,45 @@ namespace FileHelpers.WizardApp
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Conditional Records";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(47, 47);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(131, 13);
+            this.label21.TabIndex = 1018;
+            this.label21.Text = "Record Condition Selector";
+            // 
+            // txtRecordConditionSelector
+            // 
+            this.txtRecordConditionSelector.Location = new System.Drawing.Point(181, 44);
+            this.txtRecordConditionSelector.Name = "txtRecordConditionSelector";
+            this.txtRecordConditionSelector.Size = new System.Drawing.Size(137, 21);
+            this.txtRecordConditionSelector.TabIndex = 1019;
+            this.toolTip1.SetToolTip(this.txtRecordConditionSelector, "The selector used with the Record Condition");
+            this.txtRecordConditionSelector.TextChanged += new System.EventHandler(this.txtRecordConditionSelector_TextChanged);
+            // 
+            // cboRecordCondition
+            // 
+            this.cboRecordCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRecordCondition.FormattingEnabled = true;
+            this.cboRecordCondition.Location = new System.Drawing.Point(181, 20);
+            this.cboRecordCondition.Name = "cboRecordCondition";
+            this.cboRecordCondition.Size = new System.Drawing.Size(137, 21);
+            this.cboRecordCondition.TabIndex = 1016;
+            this.toolTip1.SetToolTip(this.cboRecordCondition, "Allow you to include or exclude certain records");
+            this.cboRecordCondition.SelectedIndexChanged += new System.EventHandler(this.cboRecordCondition_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(47, 23);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(89, 13);
+            this.label19.TabIndex = 1017;
+            this.label19.Text = "Record Condition";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // groupBox1
             // 
@@ -376,6 +415,7 @@ namespace FileHelpers.WizardApp
             this.chkIgnoreEmpty.Size = new System.Drawing.Size(118, 17);
             this.chkIgnoreEmpty.TabIndex = 1;
             this.chkIgnoreEmpty.Text = "Ignore Empty Lines";
+            this.toolTip1.SetToolTip(this.chkIgnoreEmpty, "By Pass the empty lines");
             this.chkIgnoreEmpty.UseVisualStyleBackColor = true;
             this.chkIgnoreEmpty.CheckedChanged += new System.EventHandler(this.chkIgnoreEmpty_CheckedChanged);
             // 
@@ -600,8 +640,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -673,11 +713,13 @@ namespace FileHelpers.WizardApp
             // cmdSaveToFile
             // 
             this.cmdSaveToFile.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdSaveToFile.Location = new System.Drawing.Point(18, 334);
+            this.cmdSaveToFile.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
+            this.cmdSaveToFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSaveToFile.Location = new System.Drawing.Point(18, 333);
             this.cmdSaveToFile.Name = "cmdSaveToFile";
-            this.cmdSaveToFile.Size = new System.Drawing.Size(122, 25);
+            this.cmdSaveToFile.Size = new System.Drawing.Size(117, 28);
             this.cmdSaveToFile.TabIndex = 3;
-            this.cmdSaveToFile.Text = "Save to File ...";
+            this.cmdSaveToFile.Text = "    Save to File ...";
             this.cmdSaveToFile.UseVisualStyleBackColor = true;
             this.cmdSaveToFile.Click += new System.EventHandler(this.cmdSaveToFile_Click);
             // 
@@ -685,11 +727,13 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdToClipboard.BackColor = System.Drawing.SystemColors.Control;
             this.cmdToClipboard.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdToClipboard.Location = new System.Drawing.Point(228, 334);
+            this.cmdToClipboard.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
+            this.cmdToClipboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdToClipboard.Location = new System.Drawing.Point(246, 333);
             this.cmdToClipboard.Name = "cmdToClipboard";
-            this.cmdToClipboard.Size = new System.Drawing.Size(157, 25);
+            this.cmdToClipboard.Size = new System.Drawing.Size(139, 28);
             this.cmdToClipboard.TabIndex = 2;
-            this.cmdToClipboard.Text = "Copy All to Clipboard";
+            this.cmdToClipboard.Text = "    Copy to Clipboard";
             this.cmdToClipboard.UseVisualStyleBackColor = true;
             this.cmdToClipboard.Click += new System.EventHandler(this.cmdToClipboard_Click);
             // 
@@ -741,7 +785,7 @@ namespace FileHelpers.WizardApp
             this.cboClassVisibility.Name = "cboClassVisibility";
             this.cboClassVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboClassVisibility.TabIndex = 1014;
-            this.toolTip1.SetToolTip(this.cboClassVisibility, "Set de visibility of your record class. ");
+            this.toolTip1.SetToolTip(this.cboClassVisibility, "Set the visibility of your record class. ");
             this.cboClassVisibility.SelectedIndexChanged += new System.EventHandler(this.cboClassVisibility_SelectedIndexChanged);
             // 
             // label8
@@ -760,9 +804,10 @@ namespace FileHelpers.WizardApp
             this.chkSealed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSealed.Location = new System.Drawing.Point(37, 331);
             this.chkSealed.Name = "chkSealed";
-            this.chkSealed.Size = new System.Drawing.Size(142, 31);
+            this.chkSealed.Size = new System.Drawing.Size(168, 31);
             this.chkSealed.TabIndex = 1013;
-            this.chkSealed.Text = "Mark the class as sealed (better performance)";
+            this.chkSealed.Text = "Mark the class as sealed\r\n(better performance)";
+            this.toolTip1.SetToolTip(this.chkSealed, "Enhace a bit the performance with this option");
             this.chkSealed.UseVisualStyleBackColor = true;
             this.chkSealed.CheckedChanged += new System.EventHandler(this.chkSealed_CheckedChanged);
             // 
@@ -783,6 +828,7 @@ namespace FileHelpers.WizardApp
             this.txtClassName.Size = new System.Drawing.Size(309, 21);
             this.txtClassName.TabIndex = 0;
             this.txtClassName.Text = "YourRecordClass";
+            this.toolTip1.SetToolTip(this.txtClassName, "The name of the record class. Needs to be a valid identifier");
             this.txtClassName.TextChanged += new System.EventHandler(this.txtClassName_TextChanged);
             // 
             // groupBox8
@@ -823,6 +869,7 @@ namespace FileHelpers.WizardApp
             this.cboFixedMode2.Name = "cboFixedMode2";
             this.cboFixedMode2.Size = new System.Drawing.Size(98, 21);
             this.cboFixedMode2.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.cboFixedMode2, "Indicates if the engines allow to found less or more chars in the last record");
             this.cboFixedMode2.SelectedIndexChanged += new System.EventHandler(this.cboFixedMode2_SelectedIndexChanged);
             // 
             // gbxDelimitedBy
@@ -980,11 +1027,13 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdAddField.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAddField.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAddField.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddField.Image")));
+            this.cmdAddField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAddField.Location = new System.Drawing.Point(18, 334);
             this.cmdAddField.Name = "cmdAddField";
-            this.cmdAddField.Size = new System.Drawing.Size(101, 25);
+            this.cmdAddField.Size = new System.Drawing.Size(101, 28);
             this.cmdAddField.TabIndex = 4;
-            this.cmdAddField.Text = "Add Field";
+            this.cmdAddField.Text = "   Add Field";
             this.cmdAddField.UseVisualStyleBackColor = true;
             this.cmdAddField.Click += new System.EventHandler(this.cmdAddField_Click);
             // 
@@ -1005,23 +1054,15 @@ namespace FileHelpers.WizardApp
             this.dlgSaveToFile.Filter = "C# files|*.cs|VB.Net Files|*.vb|All Files|*.*";
             this.dlgSaveToFile.Title = "Save the output to a file.";
             // 
-            // cmdClose
-            // 
-            this.cmdClose.Location = new System.Drawing.Point(398, 10);
-            this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(83, 25);
-            this.cmdClose.TabIndex = 1100;
-            this.cmdClose.Text = "&Close";
-            this.cmdClose.UseVisualStyleBackColor = true;
-            this.cmdClose.Click += new System.EventHandler(this.button1_Click);
-            // 
             // cmdNext
             // 
-            this.cmdNext.Location = new System.Drawing.Point(309, 10);
+            this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
+            this.cmdNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdNext.Location = new System.Drawing.Point(301, 9);
             this.cmdNext.Name = "cmdNext";
-            this.cmdNext.Size = new System.Drawing.Size(83, 25);
+            this.cmdNext.Size = new System.Drawing.Size(83, 28);
             this.cmdNext.TabIndex = 1010;
-            this.cmdNext.Text = "&Next >";
+            this.cmdNext.Text = "   &Next";
             this.cmdNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.cmdNext.UseVisualStyleBackColor = true;
             this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
@@ -1029,22 +1070,27 @@ namespace FileHelpers.WizardApp
             // cmdBack
             // 
             this.cmdBack.Enabled = false;
-            this.cmdBack.Location = new System.Drawing.Point(220, 10);
+            this.cmdBack.Image = ((System.Drawing.Image)(resources.GetObject("cmdBack.Image")));
+            this.cmdBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdBack.Location = new System.Drawing.Point(212, 9);
             this.cmdBack.Name = "cmdBack";
-            this.cmdBack.Size = new System.Drawing.Size(83, 25);
+            this.cmdBack.Size = new System.Drawing.Size(83, 28);
             this.cmdBack.TabIndex = 1009;
-            this.cmdBack.Text = "< &Back";
+            this.cmdBack.Text = "   &Back";
             this.cmdBack.UseVisualStyleBackColor = true;
             this.cmdBack.Click += new System.EventHandler(this.cmdBack_Click);
             // 
             // cmdPreview
             // 
             this.cmdPreview.Enabled = false;
-            this.cmdPreview.Location = new System.Drawing.Point(487, 10);
+            this.cmdPreview.Image = ((System.Drawing.Image)(resources.GetObject("cmdPreview.Image")));
+            this.cmdPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdPreview.Location = new System.Drawing.Point(479, 9);
             this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(83, 25);
+            this.cmdPreview.Size = new System.Drawing.Size(91, 28);
             this.cmdPreview.TabIndex = 1011;
             this.cmdPreview.Text = "&Preview >>";
+            this.cmdPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdPreview.UseVisualStyleBackColor = true;
             this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
             // 
@@ -1057,31 +1103,49 @@ namespace FileHelpers.WizardApp
             this.panel2.Controls.Add(this.cmdBack);
             this.panel2.Controls.Add(this.cmdNext);
             this.panel2.Controls.Add(this.cmdClose);
-            this.panel2.Location = new System.Drawing.Point(-10, 365);
+            this.panel2.Location = new System.Drawing.Point(-10, 366);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(587, 51);
             this.panel2.TabIndex = 1000;
             // 
             // cmdLoad
             // 
-            this.cmdLoad.Location = new System.Drawing.Point(16, 10);
+            this.cmdLoad.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
+            this.cmdLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdLoad.Location = new System.Drawing.Point(16, 9);
             this.cmdLoad.Name = "cmdLoad";
-            this.cmdLoad.Size = new System.Drawing.Size(83, 25);
+            this.cmdLoad.Size = new System.Drawing.Size(82, 28);
             this.cmdLoad.TabIndex = 1102;
             this.cmdLoad.Text = "Load Info";
+            this.cmdLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdLoad.UseVisualStyleBackColor = true;
             this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
             // 
             // cmdSave
             // 
             this.cmdSave.Enabled = false;
-            this.cmdSave.Location = new System.Drawing.Point(104, 10);
+            this.cmdSave.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
+            this.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSave.Location = new System.Drawing.Point(104, 9);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(83, 25);
+            this.cmdSave.Size = new System.Drawing.Size(83, 28);
             this.cmdSave.TabIndex = 1101;
             this.cmdSave.Text = "Save Info";
+            this.cmdSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // cmdClose
+            // 
+            this.cmdClose.Image = global::FileHelpers.WizardApp.Properties.Resources.door_out;
+            this.cmdClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdClose.Location = new System.Drawing.Point(390, 9);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(83, 28);
+            this.cmdClose.TabIndex = 1100;
+            this.cmdClose.Text = "    &Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.button1_Click);
             // 
             // panPreview
             // 
@@ -1099,17 +1163,19 @@ namespace FileHelpers.WizardApp
             this.panPreview.Controls.Add(this.chkProperties);
             this.panPreview.Location = new System.Drawing.Point(568, 0);
             this.panPreview.Name = "panPreview";
-            this.panPreview.Size = new System.Drawing.Size(2, 412);
+            this.panPreview.Size = new System.Drawing.Size(376, 412);
             this.panPreview.TabIndex = 1002;
             // 
             // cmdTestClass
             // 
-            this.cmdTestClass.Location = new System.Drawing.Point(177, 375);
+            this.cmdTestClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdTestClass.Location = new System.Drawing.Point(230, 374);
             this.cmdTestClass.Name = "cmdTestClass";
-            this.cmdTestClass.Size = new System.Drawing.Size(70, 25);
+            this.cmdTestClass.Size = new System.Drawing.Size(106, 28);
             this.cmdTestClass.TabIndex = 1008;
             this.cmdTestClass.Text = "Test Class";
             this.cmdTestClass.UseVisualStyleBackColor = true;
+            this.cmdTestClass.Visible = false;
             this.cmdTestClass.Click += new System.EventHandler(this.cmdTestClass_Click);
             // 
             // cboClassLeng
@@ -1120,7 +1186,7 @@ namespace FileHelpers.WizardApp
             this.cboClassLeng.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(-61, 30);
+            this.cboClassLeng.Location = new System.Drawing.Point(307, 30);
             this.cboClassLeng.Name = "cboClassLeng";
             this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
             this.cboClassLeng.TabIndex = 1004;
@@ -1130,7 +1196,7 @@ namespace FileHelpers.WizardApp
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-113, 34);
+            this.label7.Location = new System.Drawing.Point(250, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -1160,22 +1226,27 @@ namespace FileHelpers.WizardApp
             // 
             // cmdSaveClass
             // 
-            this.cmdSaveClass.Location = new System.Drawing.Point(6, 375);
+            this.cmdSaveClass.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
+            this.cmdSaveClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSaveClass.Location = new System.Drawing.Point(6, 374);
             this.cmdSaveClass.Name = "cmdSaveClass";
-            this.cmdSaveClass.Size = new System.Drawing.Size(86, 25);
+            this.cmdSaveClass.Size = new System.Drawing.Size(106, 28);
             this.cmdSaveClass.TabIndex = 11;
             this.cmdSaveClass.Text = "Save to File ...";
+            this.cmdSaveClass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSaveClass.UseVisualStyleBackColor = true;
             this.cmdSaveClass.Click += new System.EventHandler(this.cmdSaveClass_Click);
             // 
             // cmdCopyClass
             // 
             this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdCopyClass.Location = new System.Drawing.Point(96, 375);
+            this.cmdCopyClass.Image = ((System.Drawing.Image)(resources.GetObject("cmdCopyClass.Image")));
+            this.cmdCopyClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdCopyClass.Location = new System.Drawing.Point(118, 374);
             this.cmdCopyClass.Name = "cmdCopyClass";
-            this.cmdCopyClass.Size = new System.Drawing.Size(78, 25);
+            this.cmdCopyClass.Size = new System.Drawing.Size(106, 28);
             this.cmdCopyClass.TabIndex = 11;
-            this.cmdCopyClass.Text = "Copy Class";
+            this.cmdCopyClass.Text = "   Copy Class";
             this.cmdCopyClass.UseVisualStyleBackColor = true;
             this.cmdCopyClass.Click += new System.EventHandler(this.cmdCopyClass_Click);
             // 
@@ -1194,8 +1265,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender3;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1205,7 +1276,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.ShowGutterMargin = false;
             this.txtOutput.ShowLineNumbers = false;
             this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(1, 312);
+            this.txtOutput.Size = new System.Drawing.Size(370, 312);
             this.txtOutput.SmoothScroll = false;
             this.txtOutput.SplitView = false;
             this.txtOutput.SplitviewH = -4;
@@ -1232,6 +1303,47 @@ namespace FileHelpers.WizardApp
             this.chkProperties.Text = "Create Properties";
             this.chkProperties.UseVisualStyleBackColor = true;
             this.chkProperties.CheckedChanged += new System.EventHandler(this.chkProperties_CheckedChanged);
+            // 
+            // dlgSaveWizard
+            // 
+            this.dlgSaveWizard.DefaultExt = "fhw";
+            this.dlgSaveWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
+            this.dlgSaveWizard.Title = "Save the Record Info to a File";
+            // 
+            // dlgOpenWizard
+            // 
+            this.dlgOpenWizard.DefaultExt = "fhw";
+            this.dlgOpenWizard.FileName = "openFileDialog1";
+            this.dlgOpenWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
+            this.dlgOpenWizard.Title = "Load a Previous Record info";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "FileHelpers Wizard";
+            // 
+            // picDonate
+            // 
+            this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
+            this.picDonate.Location = new System.Drawing.Point(469, 0);
+            this.picDonate.Name = "picDonate";
+            this.picDonate.Size = new System.Drawing.Size(100, 36);
+            this.picDonate.TabIndex = 1010;
+            this.picDonate.TabStop = false;
+            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to know a little about\r\nabo" +
+                    "ut what you can donate to the project.\r\n\r\nSome money will keep FileHelpers alive" +
+                    "\r\n\r\nThanks");
+            this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
+            // 
+            // dlgOpenTest
+            // 
+            this.dlgOpenTest.DefaultExt = "txt";
+            this.dlgOpenTest.FileName = "openFileDialog1";
+            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
+            this.dlgOpenTest.Title = "Load a Test File";
             // 
             // panel1
             // 
@@ -1264,7 +1376,7 @@ namespace FileHelpers.WizardApp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(32, 183);
+            this.button1.Location = new System.Drawing.Point(64, 334);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 25);
             this.button1.TabIndex = 1009;
@@ -1372,105 +1484,15 @@ namespace FileHelpers.WizardApp
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
-            // picDonate
-            // 
-            this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
-            this.picDonate.Location = new System.Drawing.Point(470, 1);
-            this.picDonate.Name = "picDonate";
-            this.picDonate.Size = new System.Drawing.Size(100, 36);
-            this.picDonate.TabIndex = 1010;
-            this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to know a little about\r\nabo" +
-                    "ut what you can donate to the project.\r\n\r\nSome money will keep FileHelpers alive" +
-                    "\r\n\r\nThanks");
-            this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
-            // 
-            // dlgSaveWizard
-            // 
-            this.dlgSaveWizard.DefaultExt = "fhw";
-            this.dlgSaveWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
-            this.dlgSaveWizard.Title = "Save the Record Info to a File";
-            // 
-            // dlgOpenWizard
-            // 
-            this.dlgOpenWizard.DefaultExt = "fhw";
-            this.dlgOpenWizard.FileName = "openFileDialog1";
-            this.dlgOpenWizard.Filter = "File Helpers Wizard (*.fhw) |*.fhw";
-            this.dlgOpenWizard.Title = "Load a Previous Record info";
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 250;
-            this.toolTip1.AutoPopDelay = 10000;
-            this.toolTip1.InitialDelay = 200;
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ReshowDelay = 300;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "Donate to the Project";
-            // 
-            // dlgOpenTest
-            // 
-            this.dlgOpenTest.DefaultExt = "txt";
-            this.dlgOpenTest.FileName = "openFileDialog1";
-            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
-            this.dlgOpenTest.Title = "Load a Test File";
-            // 
-            // tip
-            // 
-            this.tip.AutomaticDelay = 200;
-            this.tip.AutoPopDelay = 20000;
-            this.tip.InitialDelay = 200;
-            this.tip.ReshowDelay = 0;
-            this.tip.ShowAlways = true;
-            // 
-            // cboRecordCondition
-            // 
-            this.cboRecordCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRecordCondition.FormattingEnabled = true;
-            this.cboRecordCondition.Location = new System.Drawing.Point(181, 20);
-            this.cboRecordCondition.Name = "cboRecordCondition";
-            this.cboRecordCondition.Size = new System.Drawing.Size(137, 21);
-            this.cboRecordCondition.TabIndex = 1016;
-            this.toolTip1.SetToolTip(this.cboRecordCondition, "Set de visibility of your record class. ");
-            this.cboRecordCondition.SelectedIndexChanged += new System.EventHandler(this.cboRecordCondition_SelectedIndexChanged);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(47, 23);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(89, 13);
-            this.label19.TabIndex = 1017;
-            this.label19.Text = "Record Condition";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(47, 47);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(131, 13);
-            this.label21.TabIndex = 1018;
-            this.label21.Text = "Record Condition Selector";
-            // 
-            // txtRecordConditionSelector
-            // 
-            this.txtRecordConditionSelector.Location = new System.Drawing.Point(181, 44);
-            this.txtRecordConditionSelector.Name = "txtRecordConditionSelector";
-            this.txtRecordConditionSelector.Size = new System.Drawing.Size(137, 21);
-            this.txtRecordConditionSelector.TabIndex = 1019;
-            this.txtRecordConditionSelector.TextChanged += new System.EventHandler(this.txtRecordConditionSelector_TextChanged);
-            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 411);
+            this.ClientSize = new System.Drawing.Size(943, 411);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panStep1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
             this.Controls.Add(this.panStep0);
@@ -1481,7 +1503,8 @@ namespace FileHelpers.WizardApp
             this.MinimumSize = new System.Drawing.Size(573, 440);
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FileHelpers - Record Class Wizard v1.4";
+            this.Text = "FileHelpers - Record Class Wizard v2.0";
+            this.Resize += new System.EventHandler(this.frmWizard_Resize);
             this.Activated += new System.EventHandler(this.frmWizard_Activated);
             this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
@@ -1516,6 +1539,7 @@ namespace FileHelpers.WizardApp
             this.panPreview.ResumeLayout(false);
             this.panPreview.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
@@ -1523,7 +1547,6 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2100,11 +2123,22 @@ namespace FileHelpers.WizardApp
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (RegConfig.HasValue("WizardTemplatePath"))
+                    dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardTemplatePath", "");
+            }
+            catch
+            {}
+
             dlgSaveToFile.FilterIndex = cboLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = "TemplateOur";
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
+            {
                 File.WriteAllText(dlgSaveToFile.FileName, sdTemplOut.Text);
+                RegConfig.SetStringValue("WizardTemplatePath", Path.GetDirectoryName(dlgSaveToFile.FileName));
+            }
 
         }
 
@@ -2115,11 +2149,22 @@ namespace FileHelpers.WizardApp
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (RegConfig.HasValue("WizardClassDir"))
+                    dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardClassDir", "");
+            }
+            catch 
+            {}
+
             dlgSaveToFile.FilterIndex = cboClassLeng.SelectedIndex + 1;
             dlgSaveToFile.FileName = txtClassName.Text;
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
+            {
                 File.WriteAllText(dlgSaveToFile.FileName, sdClassOut.Text);
+                RegConfig.SetStringValue("WizardClassDir", Path.GetDirectoryName(dlgSaveToFile.FileName));
+            }
         }
 
         private void cboClassLeng_SelectedIndexChanged(object sender, EventArgs e)
@@ -2151,8 +2196,18 @@ namespace FileHelpers.WizardApp
         {
             dlgOpenWizard.FileName = "";
 
+            try
+            {
+                if (RegConfig.HasValue("WizardOpenDir"))
+                    dlgOpenWizard.InitialDirectory = RegConfig.GetStringValue("WizardOpenDir", "");
+            }
+            catch 
+            {}
+
             if (dlgOpenWizard.ShowDialog() == DialogResult.OK)
             {
+                RegConfig.SetStringValue("WizardOpenDir", Path.GetDirectoryName(dlgOpenWizard.FileName));
+
                 mLoadingFile = true;
                 Application.DoEvents();
                 cmdSave.Enabled = true;
@@ -2248,8 +2303,8 @@ namespace FileHelpers.WizardApp
             chkSealed.Checked = mWizardInfo.ClassBuilder.SealedClass;
             chkProperties.Checked = mWizardInfo.ClassBuilder.GenerateProperties;
 
-            txtCommentMarker.Text = mWizardInfo.ClassBuilder.CommentMarker;
-            chkCommentAnyPlace.Checked = mWizardInfo.ClassBuilder.CommentInAnyPlace;
+            txtCommentMarker.Text = mWizardInfo.ClassBuilder.IgnoreCommentedLines.CommentMarker;
+            chkCommentAnyPlace.Checked = mWizardInfo.ClassBuilder.IgnoreCommentedLines.InAnyPlace;
 
         }
 
@@ -2308,6 +2363,9 @@ namespace FileHelpers.WizardApp
 
         private void chkProperties_CheckedChanged(object sender, EventArgs e)
         {
+            if (mWizardInfo.ClassBuilder == null)
+                return;
+
             mWizardInfo.ClassBuilder.GenerateProperties = chkProperties.Checked;
             ReLoadPreview();
         }
@@ -2402,7 +2460,7 @@ namespace FileHelpers.WizardApp
                 {
                     picNewVersion.Visible = true;
                     picNewVersion.Tag = verLast;
-                    tip.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
+                    toolTip1.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
                 }
             }
             catch
@@ -2432,13 +2490,13 @@ namespace FileHelpers.WizardApp
 
         private void txtCommentMarker_TextChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.CommentMarker = txtCommentMarker.Text;
+            mWizardInfo.ClassBuilder.IgnoreCommentedLines.CommentMarker = txtCommentMarker.Text;
             ReLoadPreview();
         }
 
         private void chkCommentAnyPlace_CheckedChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.CommentInAnyPlace = chkCommentAnyPlace.Checked;
+            mWizardInfo.ClassBuilder.IgnoreCommentedLines.InAnyPlace = chkCommentAnyPlace.Checked;
             ReLoadPreview();
         }
 
@@ -2455,6 +2513,11 @@ namespace FileHelpers.WizardApp
                 mWizardInfo.ClassBuilder.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), cboRecordCondition.Text);
                 ReLoadPreview();
             }
+        }
+
+        private void frmWizard_Resize(object sender, EventArgs e)
+        {
+            txtOutput.Width = this.Width - 585;
         }
 
 
