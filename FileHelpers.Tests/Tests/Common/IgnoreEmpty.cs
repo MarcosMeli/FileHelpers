@@ -173,7 +173,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[FixedLengthRecord]
-			[IgnoreCommentedLines("//", true)]
+			[IgnoreCommentedLines("//", false)]
 			public class IgnoreCommentsType2
 		{
 			[FieldFixedLength(8)]

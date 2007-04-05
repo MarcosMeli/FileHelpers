@@ -390,7 +390,6 @@ namespace FileHelpersTests
 			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
 
 			cb.FixedMode = FixedMode.ExactLength;
-			
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
 			cb.LastField.Converter.Arg1 = "ddMMyyyy";

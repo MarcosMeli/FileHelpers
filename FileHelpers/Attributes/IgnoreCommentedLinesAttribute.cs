@@ -21,7 +21,7 @@ namespace FileHelpers
 
 		/// <summary>Indicates that the engine must ignore commented lines while reading. (The Comment Marker can appear in any place with spaces or tabs at his left)</summary>
 		/// <param name="commentMarker">The comment marker used to ignore the lines</param>
-		public IgnoreCommentedLinesAttribute(string commentMarker): this(commentMarker, false)
+		public IgnoreCommentedLinesAttribute(string commentMarker): this(commentMarker, true)
 		{
 		}
 
