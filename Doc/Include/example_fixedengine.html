@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+		{$HEADER$}
+
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>
+      Fixed File Engine</h2>
+  <blockquote>
+          <p>
+             With this cool feature you can change some of the record definitions at run time.</p>
+          <p>
+             Lets start with a simple example:</p>
+          <blockquote>
+<textarea name="code" class="c#">
+
+	[FixedLengthRecord()]
+	public class Customer
+	{
+		[FieldFixedLength(5)]
+		public int CustId;
+		
+		[FieldFixedLength(20)]
+		public string Name;
+
+		[FieldFixedLength(8)]
+		[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+		public DateTime AddedDate;
+
+    }
+
+</textarea>
+
+      <p>
+             You work with this file for a time, and later you need to ignore some lines or get only some that validate some condition, so:</b>
+</p>
+
+			 
+			 <textarea name="code" class="c#">
+
+			FixedFileEngine engine = new FixedFileEngine(typeof(Customer));
+            Customer[] res = (Customer[]) engine.ReadFile("input.txt");
+
+            engine.Options.IgnoreFirstLines = 10;
+            Customer[] res = (Customer[]) engine.ReadFile("input.txt");
+
+            engine.Options.IgnoreFirstLines = 0;
+			engine.Options.= 0;
+            
+
+</textarea>
+
+  </blockquote>
+
+		{$FOOTER$}
+</tr>
+</table>
+
+
+</BODY></HTML>

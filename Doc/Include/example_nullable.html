@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+		{$HEADER$}
+
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>
+      .NET 2.0 Nullable Types</h2>
+  <blockquote>
+          <p>
+             The library nows supports .NET nullable types in his core. You can use it with out changes in your code.</p>
+          <blockquote>
+<textarea name="code" class="c#">
+
+[DelimitedRecord("|")]
+public class Orders
+{
+   public int OrderID;
+
+   public DateTime? OrderDate;
+
+   [FieldConverter(ConverterKind.Date, "ddMMyyyy")]  
+   public DateTime? RequiredDate;
+
+   public int? ShipVia;
+}
+
+</textarea>
+
+  </blockquote>
+
+		{$FOOTER$}
+</tr>
+</table>
+
+
+</BODY></HTML>

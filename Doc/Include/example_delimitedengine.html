@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+		{$HEADER$}
+
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>
+      Delimited File Engine</h2>
+  <blockquote>
+          <p>
+             With this cool feature you can change some of the record definitions at run time.</p>
+          <p>
+             Lets start with a simple example:</p>
+          <blockquote>
+<textarea name="code" class="c#">
+
+	[DelimitedRecord("\t")]
+	public class CustomersTab
+	{
+		public string CustomerID;
+		public string CompanyName;
+		public string ContactName;
+		public string ContactTitle;
+		public string Address;
+		public string City;
+		public string Country;
+	}
+
+</textarea>
+
+      <p>
+             You work with this file for a time, and later you need to export the data in this format <b>but also delimited by ";" and "|"</b>
+			 <br />Check how easy this is:</p>
+
+			 
+			 <textarea name="code" class="c#">
+
+            DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersTab));
+			engine.WriteFile("RecordsWithTabs.txt", records)
+            
+			engine.Options.Delimiter = ";";
+			engine.WriteFile("RecordsWithSemiColons.txt", records)
+
+			engine.Options.Delimiter = "|";
+			engine.WriteFile("RecordsWithVerticalBar.txt", records)
+
+</textarea>
+
+  </blockquote>
+
+		{$FOOTER$}
+</tr>
+</table>
+
+
+</BODY></HTML>
