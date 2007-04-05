@@ -20,6 +20,7 @@ namespace FileHelpers
 		internal RecordOptions(RecordInfo info)
 		{
 			mRecordInfo = info;
+            mRecordConditionInfo = new RecordConditionInfo(info);
 		}
 		
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
@@ -44,7 +45,6 @@ namespace FileHelpers
 			}
 		}
 
-		
 		/// <summary>Indicates that the engine must ignore the empty lines while reading.</summary>
 		public bool IgnoreEmptyLines
 		{
@@ -52,21 +52,17 @@ namespace FileHelpers
 			set { mRecordInfo.mIgnoreEmptyLines= value; }
 		}
 
+        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+        public RecordConditionInfo RecordCondition
+        {
+            get 
+            {
+                return mRecordConditionInfo;
+            }
+        }
 
+        private RecordConditionInfo mRecordConditionInfo;
 
-		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
-		public RecordCondition RecordCondition
-		{
-			get { return mRecordInfo.mRecordCondition; }
-			set { mRecordInfo.mRecordCondition = value; }
-		}
-
-		/// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
-		public string RecordConditionSelector
-		{
-			get { return mRecordInfo.mRecordConditionSelector; }
-			set { mRecordInfo.mRecordConditionSelector = value; }
-		}
 
         /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
         public string CommentMarker
@@ -81,5 +77,32 @@ namespace FileHelpers
             get { return mRecordInfo.mCommentAnyPlace; }
             set { mRecordInfo.mCommentAnyPlace = value; }
         }
-	}
+
+
+        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+        public sealed class RecordConditionInfo
+        {
+            RecordInfo mRecordInfo;
+            internal RecordConditionInfo(RecordInfo ri)
+            {
+                mRecordInfo = ri;
+            }
+
+            /// <summary>The condition used to include or exclude records.</summary>
+            public RecordCondition Condition
+            {
+                get { return mRecordInfo.mRecordCondition; }
+                set { mRecordInfo.mRecordCondition = value; }
+            }
+
+            /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
+            public string Selector
+            {
+                get { return mRecordInfo.mRecordConditionSelector; }
+                set { mRecordInfo.mRecordConditionSelector = value; }
+            }
+        }
+
+    }
+
 }

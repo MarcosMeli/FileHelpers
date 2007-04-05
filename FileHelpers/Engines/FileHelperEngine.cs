@@ -74,9 +74,9 @@ namespace FileHelpers
 		private void CreateRecordOptions()
 		{
 			if (mRecordInfo.IsDelimited)
-				mDynamicOptions = new DelimitedRecordOptions(mRecordInfo);
+				mOptions = new DelimitedRecordOptions(mRecordInfo);
 			else
-				mDynamicOptions = new FixedRecordOptions(mRecordInfo);
+				mOptions = new FixedRecordOptions(mRecordInfo);
 		}
 
 		internal FileHelperEngine(RecordInfo ri)
@@ -877,15 +877,15 @@ namespace FileHelpers
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        internal RecordOptions mDynamicOptions;
+        internal RecordOptions mOptions;
 
 		/// <summary>
 		/// Allows to change some record layout options at runtime
 		/// </summary>
-		public RecordOptions DynamicOptions
+		public RecordOptions Options
 		{
-			get { return mDynamicOptions; }
-			set { mDynamicOptions = value; }
+			get { return mOptions; }
+			set { mOptions = value; }
 		}
 
 	}

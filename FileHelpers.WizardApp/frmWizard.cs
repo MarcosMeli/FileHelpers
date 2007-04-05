@@ -2242,8 +2242,8 @@ namespace FileHelpers.WizardApp
             
             cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility;
             cboClassVisibility.SelectedItem = mWizardInfo.ClassBuilder.Visibility;
-            cboRecordCondition.SelectedItem = mWizardInfo.ClassBuilder.RecordCondition;
-            txtRecordConditionSelector.Text = mWizardInfo.ClassBuilder.RecordConditionSelector;
+            cboRecordCondition.SelectedItem = mWizardInfo.ClassBuilder.RecordCondition.Condition;
+            txtRecordConditionSelector.Text = mWizardInfo.ClassBuilder.RecordCondition.Selector;
 
             chkSealed.Checked = mWizardInfo.ClassBuilder.SealedClass;
             chkProperties.Checked = mWizardInfo.ClassBuilder.GenerateProperties;
@@ -2444,7 +2444,7 @@ namespace FileHelpers.WizardApp
 
         private void txtRecordConditionSelector_TextChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.RecordConditionSelector = txtRecordConditionSelector.Text;
+            mWizardInfo.ClassBuilder.RecordCondition.Selector = txtRecordConditionSelector.Text;
             ReLoadPreview();
         }
 
@@ -2452,7 +2452,7 @@ namespace FileHelpers.WizardApp
         {
             if (mWizardInfo.ClassBuilder != null)
             {
-                mWizardInfo.ClassBuilder.RecordCondition = (RecordCondition)Enum.Parse(typeof(RecordCondition), cboRecordCondition.Text);
+                mWizardInfo.ClassBuilder.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), cboRecordCondition.Text);
                 ReLoadPreview();
             }
         }

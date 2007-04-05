@@ -33,9 +33,9 @@ namespace FileHelpers
 
 		
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
-		public new DelimitedRecordOptions DynamicOptions
+		public new DelimitedRecordOptions Options
 		{
-			get { return (DelimitedRecordOptions) mDynamicOptions; }
+			get { return (DelimitedRecordOptions) mOptions; }
 			
 		}
 	}
@@ -75,9 +75,9 @@ namespace FileHelpers
 
 		
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
-        public new DelimitedRecordOptions DynamicOptions
+        public new DelimitedRecordOptions Options
 		{
-            get { return (DelimitedRecordOptions) mDynamicOptions; }
+            get { return (DelimitedRecordOptions) mOptions; }
 			
 		}
 	}

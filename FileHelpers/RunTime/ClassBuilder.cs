@@ -10,10 +10,7 @@ using System.Security.Cryptography;
 
 namespace FileHelpers.RunTime
 {
-	
-	//-> ADD: Sealed !!!
-	//-> ADD: Visibility !!!
-	
+		
 	//-> REGIONS !!!!
 
 	/// <summary>The MAIN class to work with runtime defined records.</summary>
@@ -522,8 +519,8 @@ namespace FileHelpers.RunTime
 			if (mIgnoreEmptyLines == true)
 				attbs.AddAttribute("IgnoreEmptyLines()");
 
-            if (mRecordCondition != RecordCondition.None)
-                attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordCondition.ToString() + ", \"" + mRecordConditionSelector +"\")");
+            if (mRecordConditionInfo.Condition != FileHelpers.RecordCondition.None)
+                attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() + ", \"" + mRecordConditionInfo.Selector + "\")");
 
             if (mCommentMarker != null && mCommentMarker.Length > 0)
                 attbs.AddAttribute("IgnoreCommentedLines(\""+mCommentMarker+ "\", " + mCommentInAnyPlace.ToString().ToLower() + ")");
@@ -767,10 +764,10 @@ namespace FileHelpers.RunTime
 			if (node != null) res.Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), node.InnerText);;
 
             node = document.ChildNodes.Item(0)["RecordCondition"];
-            if (node != null) res.RecordCondition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); ;
+            if (node != null) res.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); ;
 
             node = document.ChildNodes.Item(0)["RecordConditionSelector"];
-            if (node != null) res.RecordConditionSelector = node.InnerText;
+            if (node != null) res.RecordCondition.Selector = node.InnerText;
 
             res.ReadClassElements(document);
 			
@@ -817,8 +814,8 @@ namespace FileHelpers.RunTime
             writer.WriteElement("CommentMarker", this.CommentMarker, string.Empty);
             writer.WriteElement("CommentInAnyPlace", this.CommentInAnyPlace.ToString().ToLower(), true.ToString().ToLower());
 
-            writer.WriteElement("RecordCondition", this.RecordCondition.ToString(), "None");
-            writer.WriteElement("RecordConditionSelector", this.RecordConditionSelector, string.Empty);
+            writer.WriteElement("RecordCondition", this.RecordCondition.Condition.ToString(), "None");
+            writer.WriteElement("RecordConditionSelector", this.RecordCondition.Selector, string.Empty);
 
 			WriteExtraElements(writer);
 
@@ -879,23 +876,14 @@ namespace FileHelpers.RunTime
 			return sb.ToString().Trim('_');
 		}
 
-        RecordCondition mRecordCondition = RecordCondition.None;
+        private RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
-        public RecordCondition RecordCondition
+        public RecordConditionInfo RecordCondition
         {
-            get { return mRecordCondition; }
-            set { mRecordCondition = value; }
+            get { return mRecordConditionInfo; }
         }
-
-        string mRecordConditionSelector = string.Empty;
-
-        /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
-        public string RecordConditionSelector
-        {
-			get { return mRecordConditionSelector; }
-            set { mRecordConditionSelector = value; }
-        }
+        
 
         private string mCommentMarker = string.Empty;
 
@@ -913,6 +901,29 @@ namespace FileHelpers.RunTime
         {
             get { return mCommentInAnyPlace; }
             set { mCommentInAnyPlace = value; }
+        }
+
+        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+        public sealed class RecordConditionInfo
+        {
+            RecordCondition mRecordCondition = FileHelpers.RecordCondition.None;
+
+            /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+            public RecordCondition Condition
+            {
+                get { return mRecordCondition; }
+                set { mRecordCondition = value; }
+            }
+
+            string mRecordConditionSelector = string.Empty;
+
+            /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
+            public string Selector
+            {
+                get { return mRecordConditionSelector; }
+                set { mRecordConditionSelector = value; }
+            }
+
         }
 
     }

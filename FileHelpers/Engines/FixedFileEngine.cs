@@ -37,9 +37,9 @@ namespace FileHelpers
 		#endregion
 		
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
-		public new FixedRecordOptions DynamicOptions
+		public new FixedRecordOptions Options
 		{
-			get { return (FixedRecordOptions) mDynamicOptions; }
+			get { return (FixedRecordOptions) mOptions; }
 		}
 	}
 
@@ -78,9 +78,9 @@ namespace FileHelpers
 
 		
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
-		public new FixedRecordOptions DynamicOptions
+		public new FixedRecordOptions Options
 		{
-            get { return (FixedRecordOptions)mDynamicOptions; }
+            get { return (FixedRecordOptions) mOptions; }
 		}
 	}
 #endif
