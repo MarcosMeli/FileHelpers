@@ -156,7 +156,7 @@ namespace FileHelpers
 
 			line.mCurrentPos += mCharsToDiscard; //total;
 
-			return AssignFromString(info);
+			return AssignFromString(info, line);
 
 
 			//-> discard the part that I use
@@ -186,75 +186,77 @@ namespace FileHelpers
 
 		#region "  AssignFromString  " 
 
-		internal object AssignFromString(ExtractedInfo fieldString)
-		{
-			object val;
+        internal object AssignFromString(ExtractedInfo fieldString, LineInfo line)
+        {
+            object val;
 
-				switch (mTrimMode)
-				{
-					case TrimMode.None:
-						break;
+            switch (mTrimMode)
+            {
+                case TrimMode.None:
+                    break;
 
-					case TrimMode.Both:
-						fieldString.TrimBoth(mTrimChars);
-						break;
+                case TrimMode.Both:
+                    fieldString.TrimBoth(mTrimChars);
+                    break;
 
-					case TrimMode.Left:
-						fieldString.TrimStart(mTrimChars);
-						break;
+                case TrimMode.Left:
+                    fieldString.TrimStart(mTrimChars);
+                    break;
 
-					case TrimMode.Right:
-						fieldString.TrimEnd(mTrimChars);
-						break;
-				}
+                case TrimMode.Right:
+                    fieldString.TrimEnd(mTrimChars);
+                    break;
+            }
+            
+            try
+            {
 
-			if (mConvertProvider == null)
-			{
-				if (mIsStringField)
-					val = fieldString.ExtractedString();
-				else
-				{
-					// Trim it to use Convert.ChangeType
-					fieldString.TrimBoth(WhitespaceChars);
+                if (mConvertProvider == null)
+                {
+                    if (mIsStringField)
+                        val = fieldString.ExtractedString();
+                    else
+                    {
+                        // Trim it to use Convert.ChangeType
+                        fieldString.TrimBoth(WhitespaceChars);
 
-					if (fieldString.Length == 0)
-					{
-						// Empty stand for null
-						val = GetNullValue();
-					}
-					else
-					{
-						val = Convert.ChangeType(fieldString.ExtractedString(), mFieldType, null);
-					}
-				}
-			}
+                        if (fieldString.Length == 0)
+                        {
+                            // Empty stand for null
+                            val = GetNullValue();
+                        }
+                        else
+                        {
+                            val = Convert.ChangeType(fieldString.ExtractedString(), mFieldType, null);
+                        }
+                    }
+                }
 
-			else
-			{
-				if (mConvertProvider.CustomNullHandling == false && 
-				    fieldString.HasOnlyThisChars(WhitespaceChars))
-				{
-					val = GetNullValue();
-				}
-				else
-				{
-					try
-					{
-						val = mConvertProvider.StringToField(fieldString.ExtractedString());
+                else
+                {
+                    if (mConvertProvider.CustomNullHandling == false &&
+                        fieldString.HasOnlyThisChars(WhitespaceChars))
+                    {
+                        val = GetNullValue();
+                    }
+                    else
+                    {
+                        string from = fieldString.ExtractedString();
+                        val = mConvertProvider.StringToField(from);
 
-						if (val == null)
-							val = GetNullValue();
-					}
-					catch (ConvertException ex)
-					{
-						ex.FieldName = this.mFieldInfo.Name;
-						throw ex;
-					}
-				}
-			}
+                        if (val == null)
+                            val = GetNullValue();
 
-			return val;
-		}
+                    }
+                }
+
+                return val;
+            }
+            catch (ConvertException ex)
+            {
+                throw ConvertException.ReThrowException(ex, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
+            }
+        }
 
 		private object GetNullValue()
 		{

@@ -404,13 +404,10 @@ namespace FileHelpers
 				mValues[i] = mFields[i].ExtractValue(line);
 			}
 
-			
 #if NET_1_1 || MINI
 			object record = CreateRecordObject();
-			//TypedReference tr = __makeref(record);
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				//mFields[i].mFieldInfo.SetValueDirect(tr, mValues[i]);
 				mFields[i].mFieldInfo.SetValue(record, mValues[i]);
 			}
 			
@@ -418,8 +415,21 @@ namespace FileHelpers
 #else
 			CreateAssingMethods();
 
-			// Asign all values via dinamic method that creates an object and assign values
-			return mCreateHandler(mValues);
+            try
+            {
+                // Asign all values via dinamic method that creates an object and assign values
+               return mCreateHandler(mValues);
+            }
+            catch (InvalidCastException)
+            {
+                // Occurrs when the a custom converter returns an invalid value for the field.
+                for (int i = 0; i < mFieldCount; i++)
+                {
+                    if (mValues[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(mValues[i]))
+                        throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + mValues[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name);
+                }
+                return null;
+            }
 #endif
 		}
 
