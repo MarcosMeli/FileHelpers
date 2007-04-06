@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.ComponentModel;
 using System.Text;
 using System.Xml;
@@ -9,8 +10,14 @@ namespace FileHelpers.RunTime
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class FieldBuilder
 	{
-		private string mFieldName;
-		private string mFieldType;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mFieldName;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mFieldType;
 
 		internal FieldBuilder(string fieldName, Type fieldType)
 		{
@@ -39,7 +46,10 @@ namespace FileHelpers.RunTime
 
 		#region TrimMode
 
-		private TrimMode mTrimMode = TrimMode.None;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private TrimMode mTrimMode = TrimMode.None;
 
 		/// <summary>Indicates the TrimMode for the field.</summary>
 		public TrimMode TrimMode
@@ -47,8 +57,11 @@ namespace FileHelpers.RunTime
 			get { return mTrimMode; }
 			set { mTrimMode = value; }
 		}
-		
-		private string mTrimChars = " \t";
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mTrimChars = " \t";
 		
 		/// <summary>Indicates the trim chars used if TrimMode is set.</summary>
 		public string TrimChars
@@ -59,7 +72,10 @@ namespace FileHelpers.RunTime
 
 		#endregion
 
-		internal int mFieldIndex = -1;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal int mFieldIndex = -1;
 
 		/// <summary>The position index inside the class.</summary>
 		public int FieldIndex
@@ -67,7 +83,10 @@ namespace FileHelpers.RunTime
 			get { return mFieldIndex; }
 		}
 
-		private bool mFieldInNewLine = false;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mFieldInNewLine = false;
 
 		/// <summary>Indicates that this field is at the begging of a new line.</summary>
 		public bool FieldInNewLine
@@ -76,7 +95,10 @@ namespace FileHelpers.RunTime
 			set { mFieldInNewLine = value; }
 		}
 
-		private bool mFieldIgnored = false;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mFieldIgnored = false;
 
 		/// <summary>Indicates that this field must be ignored by the engine.</summary>
 		public bool FieldIgnored
@@ -85,7 +107,10 @@ namespace FileHelpers.RunTime
 			set { mFieldIgnored = value; }
 		}
 
-		private bool mFieldOptional = false;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mFieldOptional = false;
 
 		/// <summary>Indicates that this field is optional.</summary>
 		public bool FieldOptional
@@ -114,7 +139,10 @@ namespace FileHelpers.RunTime
 			set { mFieldType = value; }
 		}
 
-		private object mFieldNullValue = null;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private object mFieldNullValue = null;
 
 		/// <summary>The null value of the field when their value not is in the file.</summary>
 		public object FieldNullValue
@@ -124,7 +152,10 @@ namespace FileHelpers.RunTime
 		}
 
 
-		private ConverterBuilder mConverter = new ConverterBuilder();
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private ConverterBuilder mConverter = new ConverterBuilder();
 		
 		internal string GetFieldCode(NetLanguage lang)
 		{
@@ -243,13 +274,22 @@ namespace FileHelpers.RunTime
 			
 			if (mTrimMode != TrimMode.None)
 			{
-				attbs.AddAttribute("FieldTrim(TrimMode."+ mTrimMode.ToString()+", \""+ mTrimChars.ToString() +"\")");
+                if (" \t" == mTrimChars)
+				    attbs.AddAttribute("FieldTrim(TrimMode."+ mTrimMode.ToString()+")");
+                else
+                    attbs.AddAttribute("FieldTrim(TrimMode." + mTrimMode.ToString() + ", \"" + mTrimChars.ToString() + "\")");
 			}
 		}
 
-		internal ClassBuilder mClassBuilder;
-		
-		private NetVisibility mVisibility = NetVisibility.Public;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal ClassBuilder mClassBuilder;
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private NetVisibility mVisibility = NetVisibility.Public;
 
 		/// <summary>
 		/// Gets or sets the visibility of the field.

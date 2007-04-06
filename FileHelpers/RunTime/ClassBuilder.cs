@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.Text;
@@ -333,13 +334,13 @@ namespace FileHelpers.RunTime
 		{
 			mFields.Clear();
 		}
-		
-		/// <summary></summary>
-		protected ArrayList mFields = new ArrayList();
 
-		/// <summary></summary>
-		/// <param name="field"></param>
-		protected void AddFieldInternal(FieldBuilder field)
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        internal ArrayList mFields = new ArrayList();
+
+		internal void AddFieldInternal(FieldBuilder field)
 		{
 			field.mFieldIndex = mFields.Add(field);
 			field.mClassBuilder = this;
@@ -372,8 +373,11 @@ namespace FileHelpers.RunTime
 		#endregion
     	
 		#region ClassName
-		
-    	private string mClassName;
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mClassName;
 		/// <summary>The name of the Class.</summary>
 		public string ClassName
 		{
@@ -388,8 +392,11 @@ namespace FileHelpers.RunTime
     	//->  ATTRIBUTE MAPPING
     	
 		#region IgnoreFirstLines
-    	
-		private int mIgnoreFirstLines = 0;
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private int mIgnoreFirstLines = 0;
 
 		/// <summary>Indicates the number of FIRST LINES to be ignored by the engines.</summary>
 		public int IgnoreFirstLines
@@ -401,8 +408,11 @@ namespace FileHelpers.RunTime
     	#endregion
 
 		#region IgnoreLastLines
-    	
-		private int mIgnoreLastLines = 0;
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private int mIgnoreLastLines = 0;
 
 		/// <summary>Indicates the number of LAST LINES to be ignored by the engines.</summary>
 		public int IgnoreLastLines
@@ -415,7 +425,10 @@ namespace FileHelpers.RunTime
     	
 		#region IgnoreEmptyLines
 
-		private bool mIgnoreEmptyLines = false;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mIgnoreEmptyLines = false;
 
 		/// <summary>Indicates that the engines must ignore the empty lines in the files.</summary>
 		public bool IgnoreEmptyLines
@@ -426,7 +439,10 @@ namespace FileHelpers.RunTime
 
     	#endregion
 
-		private bool mGenerateProperties = false;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mGenerateProperties = false;
 
 		/// <summary>Indicates if this ClassBuilder generates also the property accessors (Perfect for DataBinding)</summary>
 		public bool GenerateProperties
@@ -592,10 +608,13 @@ namespace FileHelpers.RunTime
     	
 		
 		#endregion
-    	
 
-		
-		private NetVisibility mVisibility = NetVisibility.Public;
+
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private NetVisibility mVisibility = NetVisibility.Public;
 
 		/// <summary>The Visibility for the class.</summary>
 		public NetVisibility Visibility
@@ -604,7 +623,10 @@ namespace FileHelpers.RunTime
 			set { mVisibility = value; }
 		}
 
-		private bool mSealedClass = true;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private bool mSealedClass = true;
 
 		/// <summary>Indicates if the generated class must be sealed.</summary>
 		public bool SealedClass
@@ -613,7 +635,10 @@ namespace FileHelpers.RunTime
 			set { mSealedClass = value; }
 		}
 
-		private string mNamespace = string.Empty;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mNamespace = string.Empty;
 
 		/// <summary>The namespace used when creating the class.</summary>
 		public string Namespace
@@ -877,6 +902,9 @@ namespace FileHelpers.RunTime
 			return sb.ToString().Trim('_');
 		}
 
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
         private RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
@@ -884,8 +912,11 @@ namespace FileHelpers.RunTime
         {
             get { return mRecordConditionInfo; }
         }
-        
-		private IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
 
 		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
 		public IgnoreCommentInfo IgnoreCommentedLines

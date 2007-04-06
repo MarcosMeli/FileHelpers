@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Xml;
+using System.Diagnostics;
 
 namespace FileHelpers.RunTime
 {
@@ -130,7 +131,10 @@ namespace FileHelpers.RunTime
 				FieldByIndex(i).FieldLength = lengths[i];
 		}
 
-		private FixedMode mFixedMode = FixedMode.ExactLength;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private FixedMode mFixedMode = FixedMode.ExactLength;
 
 		/// <summary>Indicates the behavior when variable length records are found </summary>
 		public FixedMode FixedMode

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Data;
 using System.Xml;
 
@@ -7,7 +8,10 @@ namespace FileHelpers.RunTime
 	/// <summary>Used to create classes that maps to Delimited records.</summary>
 	public class DelimitedClassBuilder: ClassBuilder
 	{
-		private string mDelimiter = string.Empty;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string mDelimiter = string.Empty;
 
 		/// <summary>The Delimiter that marks the end of each field.</summary>
 		public string Delimiter
