@@ -142,16 +142,6 @@ namespace FileHelpersTests.CommonTests
 			public int Field5854;
 		}
 
-        [Test]
-        public void InheritedMultiple()
-        {
-            engine = new FileHelperEngine(typeof(Type1RecordBase));
-
-            Type1RecordBase[] res;
-            res = (Type1RecordBase[]) Common.ReadTest(engine, @"Good\inheritedAmex.txt");
-
-            Assert.AreEqual(4, res.Length);
-        }
 
         [FixedLengthRecord(FixedMode.AllowMoreChars)]
         public class Type1RecordBase
