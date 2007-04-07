@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML>
 	<HEAD>
 		<TITLE>FileHelpers Library - Marcos Meli</TITLE>
 		<LINK href="/favicon.ico" rel="SHORTCUT ICON" />
@@ -602,6 +601,7 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                                 <li>Flush Method to AsyncEngines to allow users to ensure data writte for example if
                                                     there are using the lib for logging.</li>
                                                 <li>The converters are now smarter they validate to wich types can be assigned and throw exceptions if is wrong (for example if you use ConverterKind.Decimal in a double field)</li>
+												<li>The ConvertException has a lot of context information: LineNumber, ColumnNumber, FieldName. Also better Exception Message.</li>
                                                 <li>The integer converters recieve also now a decimal separator to build a InvariantCulture to format and parse the values and strings</li>
                                             </span>
                                         </ul>
@@ -616,14 +616,14 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         <ul>
 											<li>Fixed the problem with ASP.NET: "Line 0: Metadata file 'filehelpers.dll' could not be found"
 											<li>Fixed some problems with the CsvClassBuilder (is a good practice to dont release the last minute added features)
-											
-											<li>The Assembly is now Signed</li>
+											<li>The Assemblies are now Signed</li>
                                             <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
 											<li>The new ConverterBase.DefaultDateTimeFormat to avoid set the converter field by field =)</li>
                                             <li>Some error messages from the library were rewritten and now provide more context information (line number, full name, etc). </li>
                                             <li>Improved docs. (Thanks Antoine and Matt) </li>
                                             <li>ExcelStorage support for more than 26 columns (thxs to Mark Izendooren)</li>
                                             <li>Encoding Support to the CsvEngine</li>
+											<li>The wizard remember all the paths now</li>
                                             <li>SkipThisRecord in the AfterReadRecordEventArgs, this allow tho skip records from
                                                 the results (thanks Crestline) </li>
                                             <li>More Methods for the <a href="FileHelpers.CommonEngineMembers.html">CommonEngine</a></li>

@@ -8,7 +8,13 @@
 		<param name="Name" value="History">
 		<param name="Local" value="history.html">
 		</OBJECT>
-    <LI> <OBJECT type="text/sitemap">
+
+		<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Movies (on-line)">
+		<param name="Local" value="http://filehelpers.sourceforge.net/movies.html">
+		</OBJECT>
+		
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Powered By">
 		<param name="Local" value="poweredby.html">
 		</OBJECT>
