@@ -27,7 +27,7 @@ namespace FileHelpers.WizardApp
         private GroupBox groupBox2;
         private NumericUpDown txtNumberOfFields;
         private Label label6;
-        private PictureBox pictureBox2;
+        private PictureBox picFirstDark;
         private Panel panel1;
         private PictureBox picCurrStep;
         private Label lblStep0;
@@ -66,7 +66,7 @@ namespace FileHelpers.WizardApp
         private PictureBox pictureBox5;
         private Label lblStep2;
         private Label lblStep3;
-        private Button cmdClose;
+        private Button cmdReset;
         private Button cmdNext;
         private Button cmdBack;
         private Button cmdPreview;
@@ -215,14 +215,14 @@ namespace FileHelpers.WizardApp
             this.label15 = new System.Windows.Forms.Label();
             this.dlgSaveToFile = new System.Windows.Forms.SaveFileDialog();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmdTestClass = new System.Windows.Forms.Button();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
-            this.cmdClose = new System.Windows.Forms.Button();
+            this.cmdReset = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
-            this.cmdTestClass = new System.Windows.Forms.Button();
             this.cboClassLeng = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -238,7 +238,6 @@ namespace FileHelpers.WizardApp
             this.picDonate = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkHome = new System.Windows.Forms.Label();
-            this.picCurrStep = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lblStep2 = new System.Windows.Forms.Label();
             this.lblStep3 = new System.Windows.Forms.Label();
@@ -246,7 +245,8 @@ namespace FileHelpers.WizardApp
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picCurrStep = new System.Windows.Forms.PictureBox();
+            this.picFirstDark = new System.Windows.Forms.PictureBox();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -269,11 +269,11 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).BeginInit();
             this.SuspendLayout();
             // 
             // panStep1
@@ -1053,22 +1053,35 @@ namespace FileHelpers.WizardApp
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cmdTestClass);
             this.panel2.Controls.Add(this.cmdLoad);
             this.panel2.Controls.Add(this.cmdSave);
             this.panel2.Controls.Add(this.cmdPreview);
             this.panel2.Controls.Add(this.cmdBack);
             this.panel2.Controls.Add(this.cmdNext);
-            this.panel2.Controls.Add(this.cmdClose);
             this.panel2.Location = new System.Drawing.Point(-10, 366);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(587, 51);
             this.panel2.TabIndex = 1000;
             // 
+            // cmdTestClass
+            // 
+            this.cmdTestClass.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
+            this.cmdTestClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdTestClass.Location = new System.Drawing.Point(14, 6);
+            this.cmdTestClass.Name = "cmdTestClass";
+            this.cmdTestClass.Size = new System.Drawing.Size(86, 28);
+            this.cmdTestClass.TabIndex = 1008;
+            this.cmdTestClass.Text = "      Test Class";
+            this.cmdTestClass.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdTestClass.UseVisualStyleBackColor = true;
+            this.cmdTestClass.Click += new System.EventHandler(this.cmdTestClass_Click);
+            // 
             // cmdLoad
             // 
             this.cmdLoad.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
             this.cmdLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdLoad.Location = new System.Drawing.Point(16, 9);
+            this.cmdLoad.Location = new System.Drawing.Point(105, 6);
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(82, 28);
             this.cmdLoad.TabIndex = 1102;
@@ -1082,7 +1095,7 @@ namespace FileHelpers.WizardApp
             this.cmdSave.Enabled = false;
             this.cmdSave.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSave.Location = new System.Drawing.Point(104, 9);
+            this.cmdSave.Location = new System.Drawing.Point(192, 6);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(83, 28);
             this.cmdSave.TabIndex = 1101;
@@ -1096,7 +1109,7 @@ namespace FileHelpers.WizardApp
             this.cmdPreview.Enabled = false;
             this.cmdPreview.Image = ((System.Drawing.Image)(resources.GetObject("cmdPreview.Image")));
             this.cmdPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdPreview.Location = new System.Drawing.Point(479, 9);
+            this.cmdPreview.Location = new System.Drawing.Point(480, 6);
             this.cmdPreview.Name = "cmdPreview";
             this.cmdPreview.Size = new System.Drawing.Size(91, 28);
             this.cmdPreview.TabIndex = 1011;
@@ -1110,7 +1123,7 @@ namespace FileHelpers.WizardApp
             this.cmdBack.Enabled = false;
             this.cmdBack.Image = ((System.Drawing.Image)(resources.GetObject("cmdBack.Image")));
             this.cmdBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBack.Location = new System.Drawing.Point(212, 9);
+            this.cmdBack.Location = new System.Drawing.Point(304, 6);
             this.cmdBack.Name = "cmdBack";
             this.cmdBack.Size = new System.Drawing.Size(83, 28);
             this.cmdBack.TabIndex = 1009;
@@ -1122,7 +1135,7 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
             this.cmdNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdNext.Location = new System.Drawing.Point(301, 9);
+            this.cmdNext.Location = new System.Drawing.Point(392, 6);
             this.cmdNext.Name = "cmdNext";
             this.cmdNext.Size = new System.Drawing.Size(83, 28);
             this.cmdNext.TabIndex = 1010;
@@ -1131,24 +1144,27 @@ namespace FileHelpers.WizardApp
             this.cmdNext.UseVisualStyleBackColor = true;
             this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
             // 
-            // cmdClose
+            // cmdReset
             // 
-            this.cmdClose.Image = global::FileHelpers.WizardApp.Properties.Resources.door_out;
-            this.cmdClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdClose.Location = new System.Drawing.Point(390, 9);
-            this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(83, 28);
-            this.cmdClose.TabIndex = 1100;
-            this.cmdClose.Text = "    &Close";
-            this.cmdClose.UseVisualStyleBackColor = true;
-            this.cmdClose.Click += new System.EventHandler(this.button1_Click);
+            this.cmdReset.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdReset.Image = ((System.Drawing.Image)(resources.GetObject("cmdReset.Image")));
+            this.cmdReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReset.Location = new System.Drawing.Point(38, 172);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(83, 25);
+            this.cmdReset.TabIndex = 1100;
+            this.cmdReset.Text = "      Reset All";
+            this.cmdReset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReset.UseVisualStyleBackColor = false;
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
             // 
             // panPreview
             // 
             this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panPreview.Controls.Add(this.cmdTestClass);
             this.panPreview.Controls.Add(this.cboClassLeng);
             this.panPreview.Controls.Add(this.label7);
             this.panPreview.Controls.Add(this.pictureBox4);
@@ -1161,19 +1177,6 @@ namespace FileHelpers.WizardApp
             this.panPreview.Name = "panPreview";
             this.panPreview.Size = new System.Drawing.Size(2, 412);
             this.panPreview.TabIndex = 1002;
-            // 
-            // cmdTestClass
-            // 
-            this.cmdTestClass.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
-            this.cmdTestClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdTestClass.Location = new System.Drawing.Point(203, 374);
-            this.cmdTestClass.Name = "cmdTestClass";
-            this.cmdTestClass.Size = new System.Drawing.Size(86, 28);
-            this.cmdTestClass.TabIndex = 1008;
-            this.cmdTestClass.Text = "       Test Class";
-            this.cmdTestClass.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdTestClass.UseVisualStyleBackColor = true;
-            this.cmdTestClass.Click += new System.EventHandler(this.cmdTestClass_Click);
             // 
             // cboClassLeng
             // 
@@ -1225,7 +1228,7 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdSaveClass.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSaveClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSaveClass.Location = new System.Drawing.Point(6, 374);
+            this.cmdSaveClass.Location = new System.Drawing.Point(5, 371);
             this.cmdSaveClass.Name = "cmdSaveClass";
             this.cmdSaveClass.Size = new System.Drawing.Size(92, 28);
             this.cmdSaveClass.TabIndex = 11;
@@ -1239,7 +1242,7 @@ namespace FileHelpers.WizardApp
             this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCopyClass.Image = ((System.Drawing.Image)(resources.GetObject("cmdCopyClass.Image")));
             this.cmdCopyClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCopyClass.Location = new System.Drawing.Point(104, 374);
+            this.cmdCopyClass.Location = new System.Drawing.Point(103, 371);
             this.cmdCopyClass.Name = "cmdCopyClass";
             this.cmdCopyClass.Size = new System.Drawing.Size(93, 28);
             this.cmdCopyClass.TabIndex = 11;
@@ -1281,6 +1284,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.SplitviewV = -4;
             this.txtOutput.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(234)))));
             this.txtOutput.TabIndex = 1006;
+            this.txtOutput.TabSize = 3;
             this.txtOutput.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
             // 
             // sdClassOut
@@ -1341,19 +1345,21 @@ namespace FileHelpers.WizardApp
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.Controls.Add(this.linkHome);
-            this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.lblStep2);
             this.panel1.Controls.Add(this.lblStep3);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.cmdReset);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.lblStep0);
             this.panel1.Controls.Add(this.lblStep1);
-            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.picCurrStep);
+            this.panel1.Controls.Add(this.picFirstDark);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // linkHome
             // 
@@ -1363,17 +1369,6 @@ namespace FileHelpers.WizardApp
             this.linkHome.Size = new System.Drawing.Size(165, 68);
             this.linkHome.TabIndex = 1010;
             this.linkHome.Click += new System.EventHandler(this.linkHome_Click);
-            // 
-            // picCurrStep
-            // 
-            this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrStep.Image = ((System.Drawing.Image)(resources.GetObject("picCurrStep.Image")));
-            this.picCurrStep.Location = new System.Drawing.Point(8, 70);
-            this.picCurrStep.Name = "picCurrStep";
-            this.picCurrStep.Size = new System.Drawing.Size(20, 20);
-            this.picCurrStep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picCurrStep.TabIndex = 7;
-            this.picCurrStep.TabStop = false;
             // 
             // pictureBox5
             // 
@@ -1452,29 +1447,40 @@ namespace FileHelpers.WizardApp
             this.lblStep1.TabIndex = 9;
             this.lblStep1.Text = "Common Properties";
             // 
-            // pictureBox2
+            // picCurrStep
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(8, 70);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
+            this.picCurrStep.Image = ((System.Drawing.Image)(resources.GetObject("picCurrStep.Image")));
+            this.picCurrStep.Location = new System.Drawing.Point(8, 70);
+            this.picCurrStep.Name = "picCurrStep";
+            this.picCurrStep.Size = new System.Drawing.Size(20, 20);
+            this.picCurrStep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picCurrStep.TabIndex = 7;
+            this.picCurrStep.TabStop = false;
+            // 
+            // picFirstDark
+            // 
+            this.picFirstDark.BackColor = System.Drawing.Color.Transparent;
+            this.picFirstDark.Image = ((System.Drawing.Image)(resources.GetObject("picFirstDark.Image")));
+            this.picFirstDark.Location = new System.Drawing.Point(8, 70);
+            this.picFirstDark.Name = "picFirstDark";
+            this.picFirstDark.Size = new System.Drawing.Size(20, 20);
+            this.picFirstDark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picFirstDark.TabIndex = 4;
+            this.picFirstDark.TabStop = false;
             // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 411);
+            this.ClientSize = new System.Drawing.Size(569, 406);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panStep0);
             this.Controls.Add(this.panStep1);
             this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
+            this.Controls.Add(this.panStep0);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
@@ -1521,11 +1527,11 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1534,11 +1540,6 @@ namespace FileHelpers.WizardApp
         #endregion
 
   
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
 
 
         WizardInfo mWizardInfo = new WizardInfo();
@@ -1780,6 +1781,8 @@ namespace FileHelpers.WizardApp
                
                 txtNumberOfFields.Enabled = false;
                 txtDefaultType.Enabled = false;
+                txtFieldLength.Enabled = false;
+
             }
 
             panFields.SuspendLayout();
@@ -2399,27 +2402,33 @@ namespace FileHelpers.WizardApp
 
             mFirstTime = false;
 
-            Application.DoEvents();
-            Application.DoEvents();
-
-            try
-            {
-                string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
-                VersionData verLast;
-                verLast = VersionData.GetLastVersion();
-
-                if (VersionData.CompararVersiones(ver, verLast.Version) >= 0)
-                    picCurrent.Visible = true;
-                else
+            System.Threading.ThreadPool.QueueUserWorkItem(
+                delegate(object targ)
                 {
-                    picNewVersion.Visible = true;
-                    picNewVersion.Tag = verLast;
-                    toolTip1.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
+                    try
+                    {
+                        string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
+                        VersionData verLast;
+                        verLast = VersionData.GetLastVersion();
+
+                        if (VersionData.CompararVersiones(ver, verLast.Version) >= 0)
+                            picCurrent.Invoke((MethodInvoker)delegate() { picCurrent.Visible = true; });
+                        else
+                        {
+                            picCurrent.Invoke((MethodInvoker)delegate() {
+                                picNewVersion.Visible = true;
+                                picNewVersion.Tag = verLast;
+                                toolTip1.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
+                            });
+                        }
+                    }
+                    catch
+                    { }
                 }
-            }
-            catch
-            { }
+            );
         }
+        
+
 
         private void radFixed_CheckedChanged(object sender, EventArgs e)
         {
@@ -2474,8 +2483,49 @@ namespace FileHelpers.WizardApp
             txtOutput.Width = this.Width - 585;
         }
 
+        private void cmdReset_Click(object sender, EventArgs e)
+        {
+            mWizardInfo.ClassBuilder = null;
+            panStep0.BringToFront();
+            txtClassName.Text = "YourRecordClass";
+            txtClassName.SelectAll();
+            txtClassName.Focus();
+
+            panStep0.Show();
+            lblStep0.ForeColor = Color.White;
+
+            picCurrStep.Top = picFirstDark.Top;
+            panStep1.Hide();
+            lblStep1.ForeColor = Color.DarkGray;
+            panStep2.Hide();
+            lblStep2.ForeColor = Color.DarkGray;
+            panStep3.Hide();
+            lblStep3.ForeColor = Color.DarkGray;
+
+            cmdBack.Enabled = false;
+            cmdNext.Enabled = true;
+
+            txtNumberOfFields.Enabled = true;
+            txtDefaultType.Enabled = true;
+            cboFieldVisibility.Enabled = true;
+            txtFieldLength.Enabled = true;
+            cmdSave.Enabled = false;
+
+            this.Width = panStep1.Right - 1;
+            mExpanded = false;
+            cmdPreview.Text = "&Preview >>";
+            cmdPreview.Enabled = false;
+            
+            sdClassOut.Text = string.Empty;
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
  
-  
 
 
     }

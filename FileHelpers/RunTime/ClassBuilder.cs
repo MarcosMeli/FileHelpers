@@ -62,21 +62,20 @@ namespace FileHelpers.RunTime
 			cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
 			cp.GenerateExecutable = false;
 			cp.GenerateInMemory = true;
+            cp.IncludeDebugInformation = false;
 
 			StringBuilder code = new StringBuilder();
 
 			switch(lang)
 			{
 				case NetLanguage.CSharp:
-					code.Append("using System; \n");
-					code.Append("using FileHelpers; \n");
-					code.Append("using System.Data; \n\n");
+                    code.Append("using System; using FileHelpers; using System.Data; ");
 					break;
 
 				case NetLanguage.VbNet:
 					code.Append("Imports System \n");
 					code.Append("Imports FileHelpers \n");
-					code.Append("Imports System.Data \n\n");
+					code.Append("Imports System.Data \n");
 					break;
 			}
 

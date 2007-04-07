@@ -51,7 +51,9 @@ namespace FileHelpers.WizardApp
                 try
                 {
                     FileHelperEngine engine = new FileHelperEngine(mType);
-                    dgPreview.DataSource = engine.ReadStringAsDT(txtInput.Text);
+                    DataTable dt = engine.ReadStringAsDT(txtInput.Text);
+                    dgPreview.DataSource = dt;
+                    lblResults.Text = dt.Rows.Count.ToString() + " Rows - " + dt.Columns.Count.ToString() + " Fields";
                 }
                 catch (Exception ex)
                 {
@@ -98,12 +100,22 @@ namespace FileHelpers.WizardApp
         {
             dlgOpenTest.FileName = "";
 
+            try
+            {
+                if (RegConfig.HasValue("WizardOpenTest"))
+                    dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
+            }
+            catch 
+            {}
+
             dlgOpenTest.Title = "Open FileHelpers xml class file";
             dlgOpenTest.Filter = "RunTime Record xml class file|*.fhw;*.xml|All Files|*.*";
 
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;
+
+            RegConfig.SetStringValue("WizardOpenTest", Path.GetDirectoryName(dlgOpenTest.FileName));
 
             
             ClassBuilder sb = ClassBuilder.LoadFromXml(dlgOpenTest.FileName);
@@ -115,12 +127,22 @@ namespace FileHelpers.WizardApp
         {
             dlgOpenTest.FileName = "";
 
+            try
+            {
+                if (RegConfig.HasValue("WizardOpenTest"))
+                    dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
+            }
+            catch
+            { }
+
             dlgOpenTest.Title = "Open Class Source Code";
             dlgOpenTest.Filter = "Class source code files|*.txt;*.cs;*.vb|All Files|*.*";
 
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;
+
+            RegConfig.SetStringValue("WizardOpenTest", Path.GetDirectoryName(dlgOpenTest.FileName));
 
             sdClassOut.Text = File.ReadAllText(dlgOpenTest.FileName);
         }
@@ -133,12 +155,22 @@ namespace FileHelpers.WizardApp
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             dlgOpenTest.FileName = "";
-            dlgOpenTest.Title = "Open sample data file";
 
+            try
+            {
+                if (RegConfig.HasValue("WizardOpenTestData"))
+                    dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTestData", "");
+            }
+            catch
+            { }
+
+            dlgOpenTest.Title = "Open sample data file";
             dlgOpenTest.Filter = "Flat Files|*.txt;*.csv;*.prn;*.dat|All Files|*.*";
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;
+
+            RegConfig.SetStringValue("WizardOpenTestData", Path.GetDirectoryName(dlgOpenTest.FileName));
 
             txtInput.Text = File.ReadAllText(dlgOpenTest.FileName);
 

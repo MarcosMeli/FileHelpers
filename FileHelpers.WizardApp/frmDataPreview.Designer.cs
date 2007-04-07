@@ -29,18 +29,19 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataPreview));
             this.dgPreview = new System.Windows.Forms.DataGridView();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cboClassLeng = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtClass = new Fireball.Windows.Forms.CodeEditorControl();
             this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
-            this.label3 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.txtInput = new System.Windows.Forms.TextBox();
+            this.lblResults = new System.Windows.Forms.Label();
             this.cmdReadTest = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -72,13 +73,15 @@ namespace FileHelpers.WizardApp
             this.dgPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgPreview.ColumnHeadersHeight = 25;
+            this.dgPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgPreview.Location = new System.Drawing.Point(0, 29);
             this.dgPreview.Name = "dgPreview";
             this.dgPreview.ReadOnly = true;
             this.dgPreview.RowHeadersVisible = false;
             this.dgPreview.ShowEditingIcon = false;
-            this.dgPreview.Size = new System.Drawing.Size(489, 213);
+            this.dgPreview.Size = new System.Drawing.Size(483, 208);
             this.dgPreview.TabIndex = 0;
             // 
             // toolStripContainer1
@@ -88,11 +91,11 @@ namespace FileHelpers.WizardApp
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
             this.toolStripContainer1.ContentPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(792, 446);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(782, 436);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(792, 471);
+            this.toolStripContainer1.Size = new System.Drawing.Size(782, 461);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -116,8 +119,8 @@ namespace FileHelpers.WizardApp
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(792, 446);
-            this.splitContainer1.SplitterDistance = 300;
+            this.splitContainer1.Size = new System.Drawing.Size(782, 436);
+            this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.SplitterIncrement = 4;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 1;
@@ -130,11 +133,25 @@ namespace FileHelpers.WizardApp
             this.cboClassLeng.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(237, 3);
+            this.cboClassLeng.Location = new System.Drawing.Point(233, 3);
             this.cboClassLeng.Name = "cboClassLeng";
             this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
             this.cboClassLeng.TabIndex = 1007;
             this.cboClassLeng.SelectedIndexChanged += new System.EventHandler(this.cboClassLeng_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(296, 30);
+            this.label3.TabIndex = 1013;
+            this.label3.Text = "Class Source";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtClass
             // 
@@ -156,8 +173,8 @@ namespace FileHelpers.WizardApp
             this.txtClass.InfoTipPosition = null;
             this.txtClass.InfoTipSelectedIndex = 1;
             this.txtClass.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 25, 14);
-            this.txtClass.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
+            this.txtClass.LineMarginRender = lineMarginRender1;
             this.txtClass.Location = new System.Drawing.Point(0, 29);
             this.txtClass.LockCursorUpdate = false;
             this.txtClass.Name = "txtClass";
@@ -165,7 +182,7 @@ namespace FileHelpers.WizardApp
             this.txtClass.Saved = true;
             this.txtClass.ShowGutterMargin = false;
             this.txtClass.ShowScopeIndicator = false;
-            this.txtClass.Size = new System.Drawing.Size(300, 417);
+            this.txtClass.Size = new System.Drawing.Size(296, 407);
             this.txtClass.SmoothScroll = false;
             this.txtClass.SplitView = false;
             this.txtClass.SplitviewH = -4;
@@ -177,34 +194,10 @@ namespace FileHelpers.WizardApp
             // sdClassOut
             // 
             this.sdClassOut.Lines = new string[] {
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        "\r",
-        ""};
+        " "};
             this.sdClassOut.MaxUndoBufferSize = 1;
             this.sdClassOut.Modified = false;
             this.sdClassOut.UndoStep = 0;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(300, 30);
-            this.label3.TabIndex = 1013;
-            this.label3.Text = "Class Source";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer2
             // 
@@ -220,25 +213,26 @@ namespace FileHelpers.WizardApp
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.lblResults);
             this.splitContainer2.Panel2.Controls.Add(this.cmdReadTest);
             this.splitContainer2.Panel2.Controls.Add(this.dgPreview);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(489, 446);
-            this.splitContainer2.SplitterDistance = 201;
+            this.splitContainer2.Size = new System.Drawing.Size(483, 436);
+            this.splitContainer2.SplitterDistance = 196;
             this.splitContainer2.SplitterIncrement = 4;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(489, 30);
+            this.label1.Size = new System.Drawing.Size(483, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "Sample Data";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -254,15 +248,24 @@ namespace FileHelpers.WizardApp
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
             this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInput.Size = new System.Drawing.Size(489, 171);
+            this.txtInput.Size = new System.Drawing.Size(483, 166);
             this.txtInput.TabIndex = 0;
             this.txtInput.WordWrap = false;
+            // 
+            // lblResults
+            // 
+            this.lblResults.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.lblResults.Location = new System.Drawing.Point(359, 6);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(127, 20);
+            this.lblResults.TabIndex = 1013;
+            this.lblResults.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cmdReadTest
             // 
             this.cmdReadTest.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
             this.cmdReadTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdReadTest.Location = new System.Drawing.Point(335, 0);
+            this.cmdReadTest.Location = new System.Drawing.Point(0, 1);
             this.cmdReadTest.Name = "cmdReadTest";
             this.cmdReadTest.Size = new System.Drawing.Size(144, 28);
             this.cmdReadTest.TabIndex = 1011;
@@ -273,14 +276,14 @@ namespace FileHelpers.WizardApp
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(489, 30);
+            this.label2.Size = new System.Drawing.Size(483, 30);
             this.label2.TabIndex = 1012;
             this.label2.Text = "DataTable Results";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -358,7 +361,7 @@ namespace FileHelpers.WizardApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 471);
+            this.ClientSize = new System.Drawing.Size(782, 461);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDataPreview";
@@ -406,5 +409,6 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Label lblResults;
     }
 }
