@@ -15,10 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelStorage", 
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{20D4826A-C6FA-45DB-90F4-C717570B9F32}") = "FileHelpersCompact", "FileHelpers\FileHelpersCompact.csdproj", "{ECE16BAD-F7BF-4556-B817-F27C9352BED9}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
@@ -27,8 +23,6 @@ Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
-	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug.ActiveCfg = Debug|.NET
@@ -47,10 +41,6 @@ Global
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Debug.Build.0 = Debug|.NET
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Release.ActiveCfg = Release|.NET
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Release.Build.0 = Release|.NET
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug.ActiveCfg = Debug|.NET
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug.Build.0 = Debug|.NET
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release.ActiveCfg = Release|.NET
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release.Build.0 = Release|.NET
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Debug.ActiveCfg = Debug|Windows CE
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Debug.Build.0 = Debug|Windows CE
 		{ECE16BAD-F7BF-4556-B817-F27C9352BED9}.Debug.Deploy.0 = Debug|Windows CE
