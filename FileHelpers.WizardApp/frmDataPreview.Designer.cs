@@ -366,7 +366,7 @@ namespace FileHelpers.WizardApp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDataPreview";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Read Class Tester - Results Preview";
+            this.Text = "Record Class Tester - Results Preview";
             this.Load += new System.EventHandler(this.frmDataPreview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

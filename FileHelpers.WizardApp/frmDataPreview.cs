@@ -108,8 +108,8 @@ namespace FileHelpers.WizardApp
             catch 
             {}
 
-            dlgOpenTest.Title = "Open FileHelpers xml class file";
-            dlgOpenTest.Filter = "RunTime Record xml class file|*.fhw;*.xml|All Files|*.*";
+            dlgOpenTest.Title = "Open FileHelpers Class";
+            dlgOpenTest.Filter = "RunTime Record File (*.fhw;*.xml)|*.fhw;*.xml|All Files|*.*";
 
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
@@ -136,7 +136,7 @@ namespace FileHelpers.WizardApp
             { }
 
             dlgOpenTest.Title = "Open Class Source Code";
-            dlgOpenTest.Filter = "Class source code files|*.txt;*.cs;*.vb|All Files|*.*";
+            dlgOpenTest.Filter = "Class source code files (*.cs;*.vb;*.txt)|*.txt;*.cs;*.vb|All Files|*.*";
 
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
@@ -165,7 +165,7 @@ namespace FileHelpers.WizardApp
             { }
 
             dlgOpenTest.Title = "Open sample data file";
-            dlgOpenTest.Filter = "Flat Files|*.txt;*.csv;*.prn;*.dat|All Files|*.*";
+            dlgOpenTest.Filter = "Flat Files (*.txt;*.csv;*.prn;*.dat)|*.txt;*.csv;*.prn;*.dat|All Files|*.*";
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;
