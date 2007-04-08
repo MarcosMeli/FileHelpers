@@ -5,7 +5,7 @@
     <Position X="0.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <FileName>RunTime\ClassBuilder.cs</FileName>
-      <HashCode>QVAADACwAACQAAiQAgQAQAgAACAAITQUIAYAQAQRiQQ=</HashCode>
+      <HashCode>QVAADACwACCRAKiQAgQAQAgACiAAITQUIAYBQAQRiwU=</HashCode>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Fields" />
@@ -24,15 +24,34 @@
       <Field Name="mClassName" Hidden="true" />
       <Field Name="mFields" Hidden="true" />
       <Field Name="mGenerateProperties" Hidden="true" />
+      <Field Name="mIgnoreCommentInfo" Hidden="true" />
       <Field Name="mIgnoreEmptyLines" Hidden="true" />
       <Field Name="mIgnoreFirstLines" Hidden="true" />
       <Field Name="mIgnoreLastLines" Hidden="true" />
       <Field Name="mNamespace" Hidden="true" />
+      <Field Name="mRecordConditionInfo" Hidden="true" />
       <Field Name="mSealedClass" Hidden="true" />
       <Field Name="mVisibility" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Field Name="sInvalidIdentifier" Hidden="true" />
+      <Method Name="StringToIdentifier" Hidden="true" />
+      <Method Name="ValidIdentifier" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderElement" Hidden="true" />
     </Members>
+    <NestedTypes>
+      <Class Name="FileHelpers.RunTime.ClassBuilder.RecordConditionInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RunTime\ClassBuilder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="FileHelpers.RunTime.ClassBuilder.IgnoreCommentInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>RunTime\ClassBuilder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <AssociationLine Name="Fields" Type="FileHelpers.RunTime.FieldBuilder">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="0.142" Y="0.081" Height="0.16" Width="0.865" />
@@ -40,27 +59,30 @@
     </AssociationLine>
   </Class>
   <Class Name="FileHelpers.RunTime.CsvClassBuilder">
-    <Position X="0.5" Y="8" Width="2.5" />
+    <Position X="0.5" Y="8.75" Width="2.5" />
     <TypeIdentifier>
       <FileName>RunTime\CsvClassBuilder.cs</FileName>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="FileHelpers.RunTime.DelimitedClassBuilder">
-    <Position X="0.5" Y="5.75" Width="2.5" />
+    <Position X="0.5" Y="6.25" Width="2.5" />
     <TypeIdentifier>
       <FileName>RunTime\DelimitedClassBuilder.cs</FileName>
-      <HashCode>AAAAEAAEAAAAACAABgAAAAAAAAAAAAAAIAQAAAAAAAA=</HashCode>
+      <HashCode>AABAEAAEAAABACAABgAAAAAAAAAAAAAEIAQAAAAAgAE=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="LoadXmlInternal" Hidden="true" />
       <Field Name="mDelimiter" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderElement" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.DelimitedFieldBuilder">
-    <Position X="5.5" Y="3.5" Width="1.75" />
+    <Position X="5.75" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <FileName>RunTime\DelimitedFieldBuilder.cs</FileName>
       <HashCode>AIAAAAAAAAQAAAAAAAAAAAAAAAAAAAQANAQAAAgSAEA=</HashCode>
@@ -72,15 +94,16 @@
       <Field Name="mQuoteChar" Hidden="true" />
       <Field Name="mQuoteMode" Hidden="true" />
       <Field Name="mQuoteMultiline" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderAttributes" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.FieldBuilder">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>RunTime\FieldBuilder.cs</FileName>
-      <HashCode>IEAYAADCQACQAAAEQRQCAAgCAACBCAAQIAQAAAQGIAA=</HashCode>
+      <HashCode>IEAYAADCQACQAAAEQRQCAAgCAACBCAAQIAQAAAwGIAE=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="AddAttributesCode" Hidden="true" />
@@ -99,16 +122,18 @@
       <Field Name="mTrimChars" Hidden="true" />
       <Field Name="mTrimMode" Hidden="true" />
       <Field Name="mVisibility" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
       <Method Name="SaveToXml" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderAttributes" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.FixedFieldBuilder">
-    <Position X="3.75" Y="3.5" Width="1.5" />
+    <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>RunTime\FixedFieldBuilder.cs</FileName>
-      <HashCode>AAAAACAAAAAQAAAAAAAAAAAAgAAAAAAAIAQAEAACAAI=</HashCode>
+      <HashCode>AAAAACAAAAAQAAAAAAAAAAAAgAAAAAAAIAQAEAgCAAI=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="AddAttributesCode" Hidden="true" />
@@ -116,28 +141,25 @@
       <Field Name="mAlignChar" Hidden="true" />
       <Field Name="mAlignMode" Hidden="true" />
       <Field Name="mFieldLength" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderAttributes" Hidden="true" />
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.FixedLengthClassBuilder">
-    <Position X="3.25" Y="5.75" Width="2.25" />
+    <Position X="3.25" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <FileName>RunTime\FixedLengthClassBuilder.cs</FileName>
-      <HashCode>AAAAAAAEAAAAAAAABgAAAAAAAAAAAAAAIAQAAAAAAAA=</HashCode>
+      <HashCode>IABAAAAEAAABAAAABgAACAgAAAAAAAAEIAQAAAAAgAE=</HashCode>
     </TypeIdentifier>
     <Members>
       <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="LoadXmlInternal" Hidden="true" />
+      <Field Name="mFixedMode" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
       <Method Name="WriteExtraElements" Hidden="true" />
       <Method Name="WriteHeaderElement" Hidden="true" />
     </Members>
-    <InheritanceLine Type="FileHelpers.RunTime.ClassBuilder" FixedToPoint="true">
-      <Path>
-        <Point X="2" Y="4.986" />
-        <Point X="2" Y="5.375" />
-        <Point X="4.656" Y="5.375" />
-        <Point X="4.656" Y="5.75" />
-      </Path>
-    </InheritanceLine>
   </Class>
 </ClassDiagram>

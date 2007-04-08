@@ -402,6 +402,7 @@
     <None Include="Diagrams\DataLinkDiagram.cd" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
+    <None Include="Diagrams\RunTimeRecords.cd" />
     <None Include="Diagrams\StorageDiagrams.cd" />
     <None Include="FileHelpers.snk" />
   </ItemGroup>
