@@ -82,7 +82,7 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.DelimitedFieldBuilder">
-    <Position X="5.75" Y="3.5" Width="1.75" />
+    <Position X="5.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <FileName>RunTime\DelimitedFieldBuilder.cs</FileName>
       <HashCode>AIAAAAAAAAQAAAAAAAAAAAAAAAAAAAQANAQAAAgSAEA=</HashCode>
@@ -100,7 +100,7 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.FieldBuilder">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>RunTime\FieldBuilder.cs</FileName>
       <HashCode>IEAYAADCQACQAAAEQRQCAAgCAACBCAAQIAQAAAwGIAE=</HashCode>
@@ -130,7 +130,7 @@
     </Members>
   </Class>
   <Class Name="FileHelpers.RunTime.FixedFieldBuilder">
-    <Position X="4" Y="3.5" Width="1.5" />
+    <Position X="3.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>RunTime\FixedFieldBuilder.cs</FileName>
       <HashCode>AAAAACAAAAAQAAAAAAAAAAAAgAAAAAAAIAQAEAgCAAI=</HashCode>
