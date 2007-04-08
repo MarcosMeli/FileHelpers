@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -30,6 +31,32 @@ namespace FileHelpers
 				}
 			}
 		}
+
+#if NET_2_0
+        [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+#endif
+        private int mRecordLength = int.MinValue;
+
+        /// <summary>
+        /// The sum of the indivial field lengths.
+        /// </summary>
+        public int RecordLength
+        {
+            get 
+            {
+                if (mRecordLength != int.MinValue)
+                    return mRecordLength;
+
+                mRecordLength = 0;
+                foreach (FixedLengthField field in mRecordInfo.mFields)
+                {
+                    mRecordLength += field.mFieldLength;
+                }
+
+                return mRecordLength;
+            }
+        }
+
 		
 	
 	}

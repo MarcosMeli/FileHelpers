@@ -106,6 +106,7 @@ namespace FileHelpers
 		/// <param name="origValue">The value to convert.</param>
 		/// <param name="destType">The destination Type.</param>
 		/// <param name="extraInfo">Aditional info of the error.</param>
+        /// <param name="columnNumber">The estimated column number.</param>
         /// <param name="lineNumber">The line where the error was found.</param>
         /// <param name="fieldName">The name of the field with the error</param>
         public ConvertException(string origValue, Type destType, string fieldName, int lineNumber, int columnNumber, string extraInfo)

@@ -38,5 +38,20 @@ namespace FileHelpersTests.CommonTests
             RunTests(@"Good\CustomersSemiColon.txt", typeof(CustomersTab), ";");
 		}
 
+
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BadRecordType1()
+        {
+            DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersFixed));
+        }
+
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BadRecordType2()
+        {
+            DelimitedFileEngine engine = new DelimitedFileEngine(null);
+        }
+
 	}
 }

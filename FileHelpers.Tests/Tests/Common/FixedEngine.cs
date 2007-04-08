@@ -19,6 +19,8 @@ namespace FileHelpersTests.CommonTests
             engine.Options.IgnoreLastLines = 6;
             Assert.AreEqual(75, Common.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
 
+            Assert.AreEqual(183, engine.Options.RecordLength);
+
         }
 
         [Test]
@@ -33,6 +35,19 @@ namespace FileHelpersTests.CommonTests
 
         }
 
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BadRecordType1()
+        {
+            FixedFileEngine engine = new FixedFileEngine(typeof(CustomersTab));
+        }
+
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BadRecordType2()
+        {
+            FixedFileEngine engine = new FixedFileEngine(null);
+        }
 
 	}
 }

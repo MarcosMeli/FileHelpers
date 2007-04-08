@@ -594,29 +594,40 @@ namespace FileHelpersSamples
 
 			mFirstTime = false;
 
-			Application.DoEvents();
-
-            try
-			{
-                string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
-                VersionData verLast;
-                verLast = VersionData.GetLastVersion();
-
-				if (VersionData.CompararVersiones(ver, verLast.Version) >= 0)
-					picCurrent.Visible = true;
-				else
-				{
-					picNewVersion.Visible = true;
-                    picNewVersion.Tag = verLast;
-                    tip.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
-				}
-			}			
-			catch
-			{}
-
-		
+            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(BuscarVersion));
+ 
+	
 		}
 
+        VersionData mLastVersion;
+        private void BuscarVersion(object target)
+        {
+            try
+            {
+                mLastVersion = VersionData.GetLastVersion();
+                picNewVersion.Invoke(new SimpleHandler(MostrarVersion));
+            }
+            catch
+            { }
+
+        }
+
+        private void MostrarVersion()
+        {
+            if (mLastVersion == null)
+                return;
+
+            string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
+            if (VersionData.CompararVersiones(ver, mLastVersion.Version) >= 0)
+                picCurrent.Visible = true;
+            else
+            {
+                picNewVersion.Visible = true;
+                picNewVersion.Tag = mLastVersion;
+                tip.SetToolTip(picNewVersion, "Version: " + mLastVersion.Version + Environment.NewLine + mLastVersion.Description);
+            }
+        }
+        private delegate void SimpleHandler();
        
 		private void picNewVersion_Click(object sender, System.EventArgs e)
 		{
