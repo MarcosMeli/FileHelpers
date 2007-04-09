@@ -47,6 +47,7 @@
             <property name="DocumentInheritedFrameworkMembers" value="False" />
             <property name="DocumentExplicitInterfaceImplementations" value="True" />
             <property name="DocumentProtected" value="False" />
+            <property name="EditorBrowsableFilter" value="HideNever" />
             <property name="AssemblyVersionInfo" value="AssemblyVersion" />
             <property name="IncludeDefaultThreadSafety" value="False" />
         </documenter>

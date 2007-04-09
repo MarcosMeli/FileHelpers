@@ -5,9 +5,10 @@ namespace FileHelpers
 {
 
     
-    [EditorBrowsable(EditorBrowsableState.Never)]
+   
 #if NET_1_1
-    /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs"/> and <see cref="AfterWriteRecordEventArgs"/></summary>
+    /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs" /> and <see cref="AfterWriteRecordEventArgs" /></summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class WriteRecordEventArgs: EventArgs
 	{
 		internal WriteRecordEventArgs(object record, int lineNumber)
@@ -17,7 +18,8 @@ namespace FileHelpers
 		}
 #else
     /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs&lt;T&gt;"/> and <see cref="AfterWriteRecordEventArgs&lt;T&gt;"/></summary>
-    public abstract class WriteRecordEventArgs<T>: EventArgs
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class WriteRecordEventArgs<T> : EventArgs
 	{
 		internal WriteRecordEventArgs(T record, int lineNumber)
 		{
