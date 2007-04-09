@@ -71,7 +71,7 @@ namespace FileHelpers
             get { return mLineNumber; }
         }
 
-        /// <summary>The stimate column where the error was found. (-1 is unknown)</summary>
+        /// <summary>The estimate column where the error was found. (-1 is unknown)</summary>
         public int ColumnNumber
         {
             get { return mColumnNumber; }
