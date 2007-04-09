@@ -131,7 +131,6 @@ namespace FileHelpersSamples
             this.cmdEasy.Size = new System.Drawing.Size(216, 40);
             this.cmdEasy.TabIndex = 0;
             this.cmdEasy.Text = "Easy Delimited";
-            this.cmdEasy.UseVisualStyleBackColor = false;
             this.cmdEasy.Click += new System.EventHandler(this.cmdEasy_Click);
             // 
             // cmdDataLink
@@ -146,7 +145,6 @@ namespace FileHelpersSamples
             this.cmdDataLink.Size = new System.Drawing.Size(216, 40);
             this.cmdDataLink.TabIndex = 2;
             this.cmdDataLink.Text = "Access DataLink";
-            this.cmdDataLink.UseVisualStyleBackColor = false;
             this.cmdDataLink.Click += new System.EventHandler(this.cmdDataLink_Click);
             // 
             // button1
@@ -160,7 +158,6 @@ namespace FileHelpersSamples
             this.button1.Size = new System.Drawing.Size(192, 40);
             this.button1.TabIndex = 4;
             this.button1.Text = "Exit";
-            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmdEasy2
@@ -175,7 +172,6 @@ namespace FileHelpersSamples
             this.cmdEasy2.Size = new System.Drawing.Size(216, 40);
             this.cmdEasy2.TabIndex = 1;
             this.cmdEasy2.Text = "Easy Fixed";
-            this.cmdEasy2.UseVisualStyleBackColor = false;
             this.cmdEasy2.Click += new System.EventHandler(this.cmdEasy2_Click);
             // 
             // cmdLibrary
@@ -190,7 +186,6 @@ namespace FileHelpersSamples
             this.cmdLibrary.Size = new System.Drawing.Size(216, 40);
             this.cmdLibrary.TabIndex = 3;
             this.cmdLibrary.Text = "Time Testing";
-            this.cmdLibrary.UseVisualStyleBackColor = false;
             this.cmdLibrary.Click += new System.EventHandler(this.cmdLibrary_Click);
             // 
             // cmdProgress
@@ -205,7 +200,6 @@ namespace FileHelpersSamples
             this.cmdProgress.Size = new System.Drawing.Size(216, 40);
             this.cmdProgress.TabIndex = 5;
             this.cmdProgress.Text = "Progress Notification";
-            this.cmdProgress.UseVisualStyleBackColor = false;
             this.cmdProgress.Click += new System.EventHandler(this.cmdProgress_Click);
             // 
             // cmdMultiTimming
@@ -220,7 +214,6 @@ namespace FileHelpersSamples
             this.cmdMultiTimming.Size = new System.Drawing.Size(216, 40);
             this.cmdMultiTimming.TabIndex = 7;
             this.cmdMultiTimming.Text = "Mult Time Testing";
-            this.cmdMultiTimming.UseVisualStyleBackColor = false;
             this.cmdMultiTimming.Click += new System.EventHandler(this.button2_Click);
             // 
             // cmdSort
@@ -235,7 +228,6 @@ namespace FileHelpersSamples
             this.cmdSort.Size = new System.Drawing.Size(216, 40);
             this.cmdSort.TabIndex = 9;
             this.cmdSort.Text = "Sorting";
-            this.cmdSort.UseVisualStyleBackColor = false;
             this.cmdSort.Click += new System.EventHandler(this.cmdSort_Click);
             // 
             // cmdMultipleDeli
@@ -250,7 +242,6 @@ namespace FileHelpersSamples
             this.cmdMultipleDeli.Size = new System.Drawing.Size(216, 40);
             this.cmdMultipleDeli.TabIndex = 11;
             this.cmdMultipleDeli.Text = "Changing Delimiters";
-            this.cmdMultipleDeli.UseVisualStyleBackColor = false;
             this.cmdMultipleDeli.Click += new System.EventHandler(this.cmdMiltipleDeli_Click);
             // 
             // cmdAsync
@@ -265,7 +256,6 @@ namespace FileHelpersSamples
             this.cmdAsync.Size = new System.Drawing.Size(216, 40);
             this.cmdAsync.TabIndex = 12;
             this.cmdAsync.Text = "Record by Record";
-            this.cmdAsync.UseVisualStyleBackColor = false;
             this.cmdAsync.Click += new System.EventHandler(this.cmdAsync_Click);
             // 
             // cmdMasterDetail
@@ -280,7 +270,6 @@ namespace FileHelpersSamples
             this.cmdMasterDetail.Size = new System.Drawing.Size(216, 40);
             this.cmdMasterDetail.TabIndex = 15;
             this.cmdMasterDetail.Text = "Master Detail";
-            this.cmdMasterDetail.UseVisualStyleBackColor = false;
             this.cmdMasterDetail.Click += new System.EventHandler(this.cmdMasterDetail_Click);
             // 
             // pictureBox7
@@ -410,7 +399,6 @@ namespace FileHelpersSamples
             this.cmdReadAsDatatable.Size = new System.Drawing.Size(216, 40);
             this.cmdReadAsDatatable.TabIndex = 24;
             this.cmdReadAsDatatable.Text = "Read as DataTable";
-            this.cmdReadAsDatatable.UseVisualStyleBackColor = false;
             this.cmdReadAsDatatable.Click += new System.EventHandler(this.cmdReadAsDatatable_Click);
             // 
             // pictureBox9
@@ -437,7 +425,6 @@ namespace FileHelpersSamples
             this.cmdEvents.Size = new System.Drawing.Size(216, 40);
             this.cmdEvents.TabIndex = 26;
             this.cmdEvents.Text = "Engines Events";
-            this.cmdEvents.UseVisualStyleBackColor = false;
             // 
             // pictureBox10
             // 

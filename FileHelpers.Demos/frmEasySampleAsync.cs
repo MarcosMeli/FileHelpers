@@ -99,7 +99,6 @@ namespace FileHelpersSamples
             this.cmdRun.Size = new System.Drawing.Size(152, 32);
             this.cmdRun.TabIndex = 0;
             this.cmdRun.Text = "RUN >>";
-            this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
             // label2
