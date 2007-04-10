@@ -35,6 +35,13 @@ namespace FileHelpersTests.CommonTests
 
         }
 
+		[Test]
+		public void SimpleTest3()
+		{
+			FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed2));
+			Assert.AreEqual(8, Common.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+		}
+
         [Test]
         [ExpectedException(typeof(BadUsageException))]
         public void BadRecordType1()
@@ -49,5 +56,30 @@ namespace FileHelpersTests.CommonTests
             FixedFileEngine engine = new FixedFileEngine(null);
         }
 
+		[FixedLengthRecord]
+		[ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
+		public class CustomersFixed2
+		{
+			[FieldFixedLength(11)]
+			public string CustomerID;
+
+			[FieldFixedLength(50 - 12)]
+			public string CompanyName;
+
+			[FieldFixedLength(72 - 50)]
+			public string ContactName;
+
+			[FieldFixedLength(110 - 72)]
+			public string ContactTitle;
+
+			[FieldFixedLength(151 - 110)]
+			public string Address;
+
+			[FieldFixedLength(169 - 151)]
+			public string City;
+
+			[FieldFixedLength(15)]
+			public string Country;
+		}
 	}
 }

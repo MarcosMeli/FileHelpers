@@ -144,6 +144,9 @@
     <Compile Include="frmProgressSample.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmRecordConditions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSamples.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +214,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgressSample.resx">
       <DependentUpon>frmProgressSample.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecordConditions.resx">
+      <DependentUpon>frmRecordConditions.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSamples.resx">

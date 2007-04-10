@@ -238,6 +238,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "frmRecordConditions.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "frmRecordConditions.resx"
+                    DependentUpon = "frmRecordConditions.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "frmSamples.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
