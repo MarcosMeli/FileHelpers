@@ -534,7 +534,7 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                 <p>
                                     Here do you have all the stuff that keep me busy for a while :P</p>
                                         <p>
-                                            <span style="text-decoration: underline">Breaking Changes</span></p>
+                                            <b>Breaking Changes</b></p>
                                         <ul>
                                             <li><span></span><b>The constructor of the MultiRecordEngine was changed to allow params args, and to allow users to dont pass the RecordSelector (in write operations were dont nedded)</b>.
                                             </li>
@@ -546,10 +546,10 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                             <li>By default the numeric fields in the FixedLengthRecords that dont have an [FieldAlign]
                                                 will be aligned to the right and the rest the left by default, with this we avoid
                                                 the problem of generate files with different meaning when read and write</SPAN></li>
-                                            <li></li>
+                                            
                                         </ul>
                                         <p>
-                                            <span></span><span style="text-decoration: underline">Performance Related</span></p>
+                                            <b>Performance Related</b></p>
                                         <ul>
                                             <li>Internal use of Reflection.Emit, Dynamic Methods and char buffers to get <strong>
                                                 more than 50% enhace in performance and for .NET 2.0 more than 65%</strong></li>
@@ -558,10 +558,10 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                             <li>FieldSorter faster too, Removed REFLECTION for EMIT</li>
                                         </ul>
                                         <p>
-                                            <span style="text-decoration: underline">Shining new features</span></p>
+                                            <b>Shining new features</b></p>
                                         <ul>
                                             <li>The very cool <a href="example_delimitedengine.html" >DelimitedFileEngine</a> and <a href="example_fixedengine.html" >FixedFileEngine</a> that allow to change options at RunTime (also with generic versions) <a>Check an example here</a> </li>
-                                            <li>ConditionalRecords you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) </li>
+                                            <li><a href="example_conditionalrecords.html">ConditionalRecords</a> you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) <a href="example_conditionalrecords.html">Check the example</a></li>
                                             <li>A new GenericDatabaseStorage excellent to allow others Db with ASO.NET support to
                                                 work with the FileHelpers (Thanks Rodolfo Finochietti)</li>
                                             <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (some users are already using it, we hope that in the next release we have a completely working version for this framework)</li>
@@ -579,7 +579,7 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         </ul>
 
                                         <p>
-										<span style="text-decoration: underline">API Changes and Extensions</span></p>
+										<b>API Changes and Extensions</b></p>
                                         <ul>
                                             <span>
 							 <li>The write methods are less strict you can pass now an IEnumerable
@@ -602,8 +602,8 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                                 </li>
                                                 <li>Flush Method to AsyncEngines to allow users to ensure data writte for example if
                                                     there are using the lib for logging.</li>
-                                                <li>The converters are now smarter they validate to wich types can be assigned and throw exceptions if is wrong (for example if you use ConverterKind.Decimal in a double field)</li>
-												<li>The ConvertException has a lot of context information: LineNumber, ColumnNumber, FieldName. Also better Exception Message.</li>
+                                                <li>The converters are now smarter they validate to wich types can be assigned and throw exceptions if is wrong (for example if you use ConverterKind.Decimal in a int field)</li>
+												<li>The <a href="FileHelpers.ConvertException.html">ConvertException</a> has a lot of context information: LineNumber, ColumnNumber, FieldName. Also better Exception Message.</li>
                                                 <li>The integer converters recieve also now a decimal separator to build a InvariantCulture to format and parse the values and strings</li>
                                             </span>
                                         </ul>
@@ -611,7 +611,7 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                         </p>
                                         <p>
                                         <p>
-                                            <span style="text-decoration: underline">Small Changes<span></span></span></p>
+                                            <b>Small Changes</b></span></span></p>
                                         <p>
                                         </p>
 							 <p></p>
@@ -619,10 +619,8 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
 											<li>Fixed the problem with ASP.NET: "Line 0: Metadata file 'filehelpers.dll' could not be found"
 											<li>Fixed some problems with the CsvClassBuilder (is a good practice to dont release the last minute added features)
 											<li>The Assemblies are now Signed</li>
-                                            <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
-											<li>The new ConverterBase.DefaultDateTimeFormat to avoid set the converter field by field =)</li>
-                                            <li>Some error messages from the library were rewritten and now provide more context information (line number, full name, etc). </li>
-                                            <li>Improved docs. (Thanks Antoine and Matt) </li>
+											<li>The new ConverterBase.DefaultDateTimeFormat to avoid set the converter format field by field =)</li>
+                                            <li>Some error messages from the library were rewritten and now provide more context information (line and column numbers, field name, etc). </li>
                                             <li>ExcelStorage support for more than 26 columns (thxs to Mark Izendooren)</li>
                                             <li>Encoding Support to the CsvEngine</li>
 											<li>The wizard remember all the paths now</li>
@@ -631,9 +629,11 @@ A lot of things were changed, mostly internaly, now we have a performance gain o
                                             <li>More Methods for the <a href="FileHelpers.CommonEngineMembers.html">CommonEngine</a></li>
                                             <li>More than <a href="testing.html">420+ NUnit tests</a> !!! (I cant belive it, I´m
                                                 a lazy developer but I know how much worth to test the lib)</li>
-                                            <li>Now we generate two versions for the demos, one for each framework version. </li>
+                                            <li>Now you have two versions for the demos, one for each framework version. </li>
                                             <li>The FixedLengthClassBuilder has more constructor to set the lengths of the fields
                                                 in you instruction</li>
+                                            <li>Improved docs. (Thanks Antoine and Matt) </li>
+                                            <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
                                         </ul>
                                         </ul>
                                         <p>
