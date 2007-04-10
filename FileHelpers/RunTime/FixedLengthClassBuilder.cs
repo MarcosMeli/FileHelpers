@@ -155,20 +155,12 @@ namespace FileHelpers.RunTime
 		internal static FixedLengthClassBuilder LoadXmlInternal(XmlDocument document)
 		{
 			FixedLengthClassBuilder res;
-			FixedMode mode = (FixedMode) Enum.Parse(typeof(FixedMode), document.ChildNodes[0].Attributes[0].Value);
+
+            FixedMode  mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.ChildNodes[0].Attributes[0].Value);
 			
 			string className = document.ChildNodes.Item(0).SelectNodes("/FixedLengthClass/ClassName").Item(0).InnerText;
 			
-			res = new FixedLengthClassBuilder(className, mode);
-			//			
-			//			while(reader.mReader.EOF == false)
-			//			{
-			//				reader.ReadToNextElement();
-			////				if (reader.mReader.LocalName == "IgnoreEmptyLines")
-			//			}
-			
-			
-			return res;
+			return new FixedLengthClassBuilder(className, mode);
 		}
 	}
 }

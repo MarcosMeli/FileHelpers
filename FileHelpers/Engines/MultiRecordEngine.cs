@@ -892,7 +892,9 @@ namespace FileHelpers
 		#endregion
 		
 		#region "  IEnumerable implementation  "
- 		
+
+ 		/// <summary>Allows to loop record by record in the engine</summary>
+ 		/// <returns>The Enumerator</returns>
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			if (mAsyncReader == null)
@@ -943,6 +945,9 @@ namespace FileHelpers
 
 		#region "  IDisposable implementation  "
 		
+        /// <summary>
+        /// Release Resources
+        /// </summary>
 		void IDisposable.Dispose()
 		{
 			Close();

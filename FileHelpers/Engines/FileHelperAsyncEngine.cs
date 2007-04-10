@@ -477,8 +477,10 @@ namespace FileHelpers
 
 
 		#region "  IEnumerable implementation  "
- 		
- 		IEnumerator IEnumerable.GetEnumerator()
+
+        /// <summary>Allows to loop record by record in the engine</summary>
+        /// <returns>The enumerator</returns>
+        IEnumerator IEnumerable.GetEnumerator()
  		{
  			if (mAsyncReader == null)
  				throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
@@ -537,8 +539,9 @@ namespace FileHelpers
  		#endregion
 
 		#region "  IDisposable implementation  "
-		
- 		void IDisposable.Dispose()
+
+        /// <summary>Release Resources</summary>
+        void IDisposable.Dispose()
  		{
 			Close();
  			GC.SuppressFinalize(this);

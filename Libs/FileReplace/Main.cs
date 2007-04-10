@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 
 namespace FileReplace
 {
@@ -60,11 +61,11 @@ namespace FileReplace
 		static bool mVerbose = true;
 		private static void ReplaceFile(string destFile, string newString, string srcString)
 		{
-			System.IO.StreamReader reader = new StreamReader(destFile);
+			System.IO.StreamReader reader = new StreamReader(destFile, Encoding.Default);
 			string originalStr = reader.ReadToEnd();
 			reader.Close();
 
-			StreamWriter writer = new StreamWriter(destFile);
+			StreamWriter writer = new StreamWriter(destFile, false, Encoding.Default);
 			writer.Write(originalStr.Replace(srcString, newString));
 			writer.Close();
 
