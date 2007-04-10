@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
+<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="global.css" type=text/css 
+rel=stylesheet>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+
+<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author"             content="Marcos Meli" />
+<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
+<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+
+<style type="text/css">
+<!--
+.style1 {color: #FFFFFF}
+-->
+</style>
+</HEAD>
+<BODY   text=black vLink=purple aLink=red link=blue 
+bgColor=white leftMargin=0 topMargin=0>
+
+		{$HEADER$}
+
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id=contentdiv> 
+  <h2>Record Conditions Example </h2>
+  <blockquote>
+          <p>You can now filter the records using a lot of conditions to include or exclude each line.</p>
+		  
+		  <p>If we have this sample data:</p>
+          <blockquote>
+
+		  <textarea name="code" class="c#:nogutter:nocontrols">
+ANTON	Antonio Moreno Taquería	Antonio Moreno	Owner	Mataderos  2312	México D.F.	Mexico
+AROUT	Around the Horn	Thomas Hardy	Sales Representative	120 Hanover Sq.	London	UK
+BERGS	Berglunds snabbköp	Christina Berglund	Order Administrator	Berguvsvägen  8	Luleå	Sweden
+BOTTM	Bottom-Dollar Markets	Elizabeth Lincoln	Accounting Manager	23 Tsawassen Blvd.	Tsawassen	Canada
+BSBEV	B's Beverages	Victoria Ashworth	Sales Representative	Fauntleroy Circus	London	UK
+CACTU	Cactus Comidas para llevar	Patricio Simpson	Sales Agent	Cerrito 333	Buenos Aires	Argentina
+COMMI	Comércio Mineiro	Pedro Afonso	Sales Associate	Av. dos Lusíadas, 23	Sao Paulo	Brazil
+DRACD	Drachenblut Delikatessen	Sven Ottlieb	Order Administrator	Walserweg 21	Aachen	Germany
+EASTC	Eastern Connection	Ann Devon	Sales Agent	35 King George	London	UK
+ERNSH	Ernst Handel	Roland Mendel	Sales Manager	Kirchgasse 6	Graz	Austria
+FISSA	FISSA Fabrica Inter. Salchichas S.A.	Diego Roel	Accounting Manager	C/ Moralzarzal, 86	Madrid	Spain
+FOLIG	Folies gourmandes	Martine Rancé	Assistant Sales Agent	184, chaussée de Tournai	Lille	France
+FOLKO	Folk och fä HB	Maria Larsson	Owner	Åkergatan 24	Bräcke	Sweden
+FRANK	Frankenversand	Peter Franken	Marketing Manager	Berliner Platz 43	München	Germany
+FURIB	Furia Bacalhau e Frutos do Mar	Lino Rodriguez	Sales Manager	Jardim das rosas n. 32	Lisboa	Portugal
+GROSR	GROSELLA-Restaurante	Manuel Pereira	Owner	5ª Ave. Los Palos Grandes	Caracas	Venezuela
+</textarea>
+          </blockquote>
+          <p>
+              We define a record class with an RecordCondition to include all the ones that begin with "F"
+          <blockquote>
+<textarea name="code" class="c#">
+
+[ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
+[DelimitedRecord("\t")]
+public class CustomersTab
+{
+	public string CustomerID;
+	public string CompanyName;
+	public string ContactName;
+	public string ContactTitle;
+	public string Address;
+	public string City;
+	public string Country;
+}
+</textarea>
+
+          </blockquote>
+          <p>If now we run:</p>
+          <blockquote>
+              
+<textarea name="code" class="c#">
+
+			FileHelperEngine engine = new FileHelperEngine(typeof(CustomersTab));
+			CustomersTab[] res = (CustomersTab[]) engine.ReadFile("sample.txt");
+
+</textarea>
+          </blockquote>
+
+          <p>And the res array only has this records:</p>
+          <blockquote>
+              
+		  <textarea name="code" class="c#:nogutter:nocontrols">
+FISSA	FISSA Fabrica Inter. Salchichas S.A.	Diego Roel	Accounting Manager	C/ Moralzarzal, 86	Madrid	Spain
+FOLIG	Folies gourmandes	Martine Rancé	Assistant Sales Agent	184, chaussée de Tournai	Lille	France
+FOLKO	Folk och fä HB	Maria Larsson	Owner	Åkergatan 24	Bräcke	Sweden
+FRANK	Frankenversand	Peter Franken	Marketing Manager	Berliner Platz 43	München	Germany
+FURIB	Furia Bacalhau e Frutos do Mar	Lino Rodriguez	Sales Manager	Jardim das rosas n. 32	Lisboa	Portugal
+</textarea>
+          </blockquote>
+
+          <p>Remember that you can also do this with the DelimitedFileEngine</p>
+          <blockquote>
+              
+<textarea name="code" class="c#">
+
+			DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersTab));
+            engine.Options.RecordCondition.Condition = RecordCondition.IncludeIfBegins;
+            engine.Options.RecordCondition.Selector = "F";
+
+            // The same result
+			CustomersTab[] res = (CustomersTab[]) engine.ReadFile("sample.txt");
+
+</textarea>
+		  
+          </blockquote>
+      <p>
+         Enjoy it !!!</p>
+  </blockquote>
+
+		{$FOOTER$}
+</tr>
+</table>
+
+
+</BODY></HTML>
