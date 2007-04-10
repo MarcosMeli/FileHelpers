@@ -132,6 +132,12 @@
 		</OBJECT>
 
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Conditional Records">
+			<param name="Local" value="example_conditionalrecords.html">
+			<param name="ImageNumber" value="11">
+		</OBJECT>
+
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Master-Details 1">
 			<param name="Local" value="example_masterdetail.html">
 			<param name="ImageNumber" value="11">

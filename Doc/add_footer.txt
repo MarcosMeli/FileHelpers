@@ -11,9 +11,9 @@
 								<tr>
 									<td class="SmallText" valign="middle" >
 									<font size="2">
-										Copyright © 2005-07 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
+										&copy; 2005-07 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a>
 										<br>
-										Contact me: <script type="text/javascript" language="javascript">
+										<script type="text/javascript" language="javascript">
 <!--
 ML="\"mf@ cp/rt:s<aol.>ie=h";
 MI="<=4E8C2D01=B?9>:1=85>;32B?CEC?6C8;@5>10A1=85>;32B?CEC?6C8;@5>1<7=A";
@@ -27,9 +27,12 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 											</font>
 									</td>
 
-<td><a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums" /></a> 
-<a href="http://blog.filehelpers.com"><img src="blog.gif" height="32" border="0" alt="Development Blog" /></a>
-</td>
+<td>
+<center>
+<a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" height="32" border="0" alt="Browse the Forums" /></a> 
+<a href="http://blog.filehelpers.com"><img src="blog.gif" height="32" border="0" alt="Development Blog" /></a
+><br 
+/><a href="howhelp.html#donate"><img src="donate.gif" height="32" border="0" alt="Support the project" /></center></td>
 									<td >  
 									<a href="http://www.devoo.net" target="_top"><img src="devoo.png" border="0" alt="Devoo Software" /></a> 
 									</td>
