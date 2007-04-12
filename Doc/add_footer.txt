@@ -3,7 +3,7 @@
 							<p></p>
 							<a href="must_read.html">Must Read</a> - <a href="quick_start.html">Quick Start Guide</a> - <a href="attributes.html">Attributes 
 								List</a> - <a href="FAQ.html">F.A.Q.</a> - <a href="examples.html">Examples of 
-								Use</a> - <a href="credits.html">Contacts &amp; Credits</a> - <a href="howtohelp.html#donate">Donations</a></blockquote>
+								Use</a> - <a href="credits.html">Contacts &amp; Credits</a> - <a href="howhelp.html#donate">Donations</a></blockquote>
 						<hr align="left">
 
 						<div>
