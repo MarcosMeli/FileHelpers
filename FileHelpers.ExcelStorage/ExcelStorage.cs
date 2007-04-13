@@ -24,7 +24,7 @@ namespace FileHelpers.DataLink
         private ExcelUpdateLinksMode mUpdateLinks = ExcelUpdateLinksMode.NeverUpdate;
 
         /// <summary>
-        /// Specifies the way links in the file are updated. By default the libra dont update the links
+        /// Specifies the way links in the file are updated. By default the library never update the links
         /// </summary>
         public ExcelUpdateLinksMode UpdateLinks
         {
