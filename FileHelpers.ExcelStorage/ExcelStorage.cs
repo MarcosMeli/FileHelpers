@@ -20,6 +20,18 @@ namespace FileHelpers.DataLink
 	/// <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
 	public sealed class ExcelStorage : DataStorage
 	{
+
+        private ExcelUpdateLinksMode mUpdateLinks = ExcelUpdateLinksMode.NeverUpdate;
+
+        /// <summary>
+        /// Specifies the way links in the file are updated. By default the libra dont update the links
+        /// </summary>
+        public ExcelUpdateLinksMode UpdateLinks
+        {
+            get { return mUpdateLinks; }
+            set { mUpdateLinks = value; }
+        }
+
 		#region "  Constructors  "
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -209,7 +221,8 @@ namespace FileHelpers.DataLink
 			if (info.Exists == false)
 				throw new FileNotFoundException("Excel File '" + filename + "' not found.", filename);
 
-			this.mBook = this.mApp.Workbooks.Open(info.FullName, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
+			this.mBook = this.mApp.Workbooks.Open(info.FullName, (int) mUpdateLinks, 
+                mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
 			if (this.mSheetName == null || mSheetName == string.Empty)
 				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
@@ -493,5 +506,18 @@ namespace FileHelpers.DataLink
 			
 			return res;
 		}
+	}
+
+    /// <summary>
+    /// Specifies the way links in the file are updated.
+    /// </summary>
+    public enum ExcelUpdateLinksMode
+	{
+        /// <summary>User specifies how links will be updated</summary>
+        UserPrompted = 1,
+        /// <summary>Never update links for this workbook on opening</summary>
+        NeverUpdate = 2,
+        /// <summary>Always update links for this workbook on opening</summary>
+        AlwaysUpdate = 3
 	}
 }
