@@ -25,5 +25,16 @@ namespace FileHelpers
 			
 		}
 
+		/// <summary>Basic constructor of the exception.</summary>
+		/// <param name="message">Message of the exception.</param>
+		/// <param name="line">The line number where the problem was found</param>
+		/// <param name="column">The column number where the problem was found</param>
+		public FileHelpersException(int line, int column, string message) 
+			: base("Line: " + line.ToString() + " Column: " + column.ToString() + ". " + message)
+		{
+			
+		}
+
+
 	}
 }

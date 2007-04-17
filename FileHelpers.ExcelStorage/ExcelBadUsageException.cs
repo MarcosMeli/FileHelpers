@@ -9,7 +9,7 @@ using System;
 namespace FileHelpers.DataLink
 {
 	/// <summary>Indicates the wrong usage of the ExcelStorage of the library.</summary>
-	public class ExcelBadUsageException : BadUsageException
+	public sealed class ExcelBadUsageException : BadUsageException
 	{
 		/// <summary>Creates an instance of an ExcelBadUsageException.</summary>
 		/// <param name="message">The exception Message</param>

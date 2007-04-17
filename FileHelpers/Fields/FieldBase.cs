@@ -139,14 +139,14 @@ namespace FileHelpers
 			if (this.mInNewLine == true)
 			{
 				if (line.EmptyFromPos() == false)
-					throw new BadUsageException("Text '" + line.CurrentString +
+					throw new BadUsageException(line, "Text '" + line.CurrentString +
 					                            "' found before the new line of the field: " + mFieldInfo.Name +
 					                            " (this is not allowed when you use [FieldInNewLine])");
 
 				line.ReLoad(line.mReader.ReadNextLine());
 
 				if (line.mLineStr == null)
-					throw new BadUsageException("End of stream found parsing the field " + mFieldInfo.Name +
+					throw new BadUsageException(line, "End of stream found parsing the field " + mFieldInfo.Name +
 					                            ". Please check the class record.");
 			}
 
@@ -270,13 +270,12 @@ namespace FileHelpers
 						return null;
 #endif
 
-				string msg = "Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos + 
-							 ". Empty value found for the Field: '" + mFieldInfo.Name + "' Class: '" + mFieldInfo.DeclaringType.Name + "'. ";
+				string msg = "Empty value found for the Field: '" + mFieldInfo.Name + "' Class: '" + mFieldInfo.DeclaringType.Name + "'. ";
 
 #if NET_2_0	
-					throw new BadUsageException(msg + "You must specify a FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
+					throw new BadUsageException(line, msg + "You must use the FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
 #else
-					throw new BadUsageException(msg + "You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
+					throw new BadUsageException(line, msg + "You must use the FieldNullValue attribute because this is a ValueType and can´t be null.");
 #endif
 
 				}
