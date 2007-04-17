@@ -223,7 +223,7 @@ namespace FileHelpers
                         if (fieldString.Length == 0)
                         {
                             // Empty stand for null
-                            val = GetNullValue();
+                            val = GetNullValue(line);
                         }
                         else
                         {
@@ -237,7 +237,7 @@ namespace FileHelpers
                     if (mConvertProvider.CustomNullHandling == false &&
                         fieldString.HasOnlyThisChars(WhitespaceChars))
                     {
-                        val = GetNullValue();
+                        val = GetNullValue(line);
                     }
                     else
                     {
@@ -245,7 +245,7 @@ namespace FileHelpers
                         val = mConvertProvider.StringToField(from);
 
                         if (val == null)
-                            val = GetNullValue();
+                            val = GetNullValue(line);
 
                     }
                 }
@@ -258,7 +258,7 @@ namespace FileHelpers
             }
         }
 
-		private object GetNullValue()
+		private object GetNullValue(LineInfo line)
 		{
 			if (mNullValue == null)
 			{
@@ -268,15 +268,15 @@ namespace FileHelpers
 #if NET_2_0
 				   if ( mIsNullableType )
 						return null;
-						
-					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
-						mFieldInfo.DeclaringType.Name +
-						"'. You must specify a FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
+#endif
+
+				string msg = "Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos + 
+							 ". Empty value found for the Field: '" + mFieldInfo.Name + "' Class: '" + mFieldInfo.DeclaringType.Name + "'. ";
+
+#if NET_2_0	
+					throw new BadUsageException(msg + "You must specify a FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
 #else
-					throw new BadUsageException("Null Value found for the field '" + mFieldInfo.Name + "' in the class '" +
-						mFieldInfo.DeclaringType.Name +
-						"'. You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
-						
+					throw new BadUsageException(msg + "You must specify a FieldNullValueAttribute because this is a ValueType and can´t be null.");
 #endif
 
 				}
