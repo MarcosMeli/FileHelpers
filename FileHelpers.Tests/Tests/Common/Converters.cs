@@ -100,5 +100,34 @@ namespace FileHelpersTests.CommonTests
 			
 		}
 
+		[Test]
+		public void NameConverterTest2()
+		{
+			engine = new FileHelperEngine(typeof (DecimalConvType2));
+
+			DecimalConvType2[] res = (DecimalConvType2[]) Common.ReadTest(engine, @"Good\ConverterDecimals2.txt");
+
+			Assert.AreEqual(5, res.Length);
+
+			for (int i = 0; i < 5; i++)
+			{
+				Assert.AreEqual(res[i].DoubleField1, res[i].DoubleField2);
+			}
+
+		}
+		// TEST CLASS
+		[DelimitedRecord("|")]
+			public sealed class DecimalConvType2
+		{
+			[FieldConverter(ConverterKind.Double, ".")]
+			[FieldNullValue(double.NaN)] 
+			public double DoubleField1;
+
+			[FieldConverter(ConverterKind.Double, ",")]
+			[FieldNullValue(double.NaN)] 
+			public double DoubleField2;
+			
+		}
+
 	}
 }
