@@ -426,7 +426,7 @@ namespace FileHelpers
                 for (int i = 0; i < mFieldCount; i++)
                 {
                     if (mValues[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(mValues[i]))
-                        throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + mValues[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name);
+                        throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + mValues[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
                 }
                 return null;
             }

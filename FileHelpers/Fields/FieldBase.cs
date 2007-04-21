@@ -207,7 +207,7 @@ namespace FileHelpers
                     fieldString.TrimEnd(mTrimChars);
                     break;
             }
-            
+
             try
             {
 
@@ -231,7 +231,6 @@ namespace FileHelpers
                         }
                     }
                 }
-
                 else
                 {
                     if (mConvertProvider.CustomNullHandling == false &&
@@ -255,6 +254,13 @@ namespace FileHelpers
             catch (ConvertException ex)
             {
                 throw ConvertException.ReThrowException(ex, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
+            }
+            catch (Exception ex)
+            {
+                if (mConvertProvider == null || mConvertProvider.GetType().AssemblyQualifiedName == typeof(FieldBase).AssemblyQualifiedName)
+                    throw new ConvertException(fieldString.ExtractedString(), mFieldType, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
+                else
+                    throw new ConvertException(fieldString.ExtractedString(), mFieldType, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + mConvertProvider.GetType().Name + " throws an " + ex.GetType().Name +" with the message: " + ex.Message, ex);
             }
         }
 

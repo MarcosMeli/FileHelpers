@@ -96,7 +96,7 @@ namespace FileHelpers
 		/// <param name="destType">The destination Type.</param>
 		/// <param name="extraInfo">Aditional info of the error.</param>
         public ConvertException(string origValue, Type destType, string extraInfo)
-            : this(origValue, destType, string.Empty, -1, -1, extraInfo)
+            : this(origValue, destType, string.Empty, -1, -1, extraInfo, null)
         { 
         }
 
@@ -109,8 +109,9 @@ namespace FileHelpers
         /// <param name="columnNumber">The estimated column number.</param>
         /// <param name="lineNumber">The line where the error was found.</param>
         /// <param name="fieldName">The name of the field with the error</param>
-        public ConvertException(string origValue, Type destType, string fieldName, int lineNumber, int columnNumber, string extraInfo)
-            : base(MessageBuilder(origValue, destType, fieldName, lineNumber, columnNumber, extraInfo))
+        /// <param name="innerEx">The Inner Exception</param>
+        public ConvertException(string origValue, Type destType, string fieldName, int lineNumber, int columnNumber, string extraInfo, Exception innerEx)
+            : base(MessageBuilder(origValue, destType, fieldName, lineNumber, columnNumber, extraInfo), innerEx)
 		{
 			mFieldStringValue = origValue;
 			mFieldType = destType;
@@ -144,7 +145,7 @@ namespace FileHelpers
 
         internal static ConvertException ReThrowException(ConvertException ex, string fieldName, int line, int column)
         {
-            return new ConvertException(ex.FieldStringValue, ex.mFieldType, fieldName, line, column, ex.mMessageExtra);
+            return new ConvertException(ex.FieldStringValue, ex.mFieldType, fieldName, line, column, ex.mMessageExtra, ex.InnerException);
         }
     }
 }
