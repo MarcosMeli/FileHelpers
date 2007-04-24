@@ -29,7 +29,7 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataPreview));
             this.dgPreview = new System.Windows.Forms.DataGridView();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -42,16 +42,16 @@ namespace FileHelpers.WizardApp
             this.label1 = new System.Windows.Forms.Label();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.lblResults = new System.Windows.Forms.Label();
-            this.cmdReadTest = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
+            this.cmdReadTest = new System.Windows.Forms.Button();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -173,8 +173,8 @@ namespace FileHelpers.WizardApp
             this.txtClass.InfoTipPosition = null;
             this.txtClass.InfoTipSelectedIndex = 1;
             this.txtClass.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
-            this.txtClass.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
+            this.txtClass.LineMarginRender = lineMarginRender2;
             this.txtClass.Location = new System.Drawing.Point(0, 29);
             this.txtClass.LockCursorUpdate = false;
             this.txtClass.Name = "txtClass";
@@ -254,25 +254,13 @@ namespace FileHelpers.WizardApp
             // 
             // lblResults
             // 
+            this.lblResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResults.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblResults.Location = new System.Drawing.Point(359, 6);
+            this.lblResults.Location = new System.Drawing.Point(355, 6);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(127, 20);
             this.lblResults.TabIndex = 1013;
             this.lblResults.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cmdReadTest
-            // 
-            this.cmdReadTest.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
-            this.cmdReadTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdReadTest.Location = new System.Drawing.Point(0, 1);
-            this.cmdReadTest.Name = "cmdReadTest";
-            this.cmdReadTest.Size = new System.Drawing.Size(144, 28);
-            this.cmdReadTest.TabIndex = 1011;
-            this.cmdReadTest.Text = "Compile and Read Data";
-            this.cmdReadTest.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdReadTest.UseVisualStyleBackColor = true;
-            this.cmdReadTest.Click += new System.EventHandler(this.cmdReadTest_Click);
             // 
             // label2
             // 
@@ -301,8 +289,39 @@ namespace FileHelpers.WizardApp
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(433, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(462, 25);
             this.toolStrip1.TabIndex = 0;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // dlgOpenTest
+            // 
+            this.dlgOpenTest.DefaultExt = "txt";
+            this.dlgOpenTest.FileName = "openFileDialog1";
+            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
+            this.dlgOpenTest.Title = "Load a Test File";
+            // 
+            // cmdReadTest
+            // 
+            this.cmdReadTest.BackColor = System.Drawing.Color.Silver;
+            this.cmdReadTest.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
+            this.cmdReadTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReadTest.Location = new System.Drawing.Point(0, 1);
+            this.cmdReadTest.Name = "cmdReadTest";
+            this.cmdReadTest.Size = new System.Drawing.Size(144, 28);
+            this.cmdReadTest.TabIndex = 1011;
+            this.cmdReadTest.Text = "Compile and Read Data";
+            this.cmdReadTest.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdReadTest.UseVisualStyleBackColor = false;
+            this.cmdReadTest.Click += new System.EventHandler(this.cmdReadTest_Click);
             // 
             // toolStripButton1
             // 
@@ -322,11 +341,6 @@ namespace FileHelpers.WizardApp
             this.toolStripButton3.Text = "Load Source Class";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripButton2
             // 
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
@@ -336,11 +350,6 @@ namespace FileHelpers.WizardApp
             this.toolStripButton2.Text = "Paste Class";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripButton4
             // 
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
@@ -349,13 +358,6 @@ namespace FileHelpers.WizardApp
             this.toolStripButton4.Size = new System.Drawing.Size(113, 22);
             this.toolStripButton4.Text = "Load Sample Data";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // dlgOpenTest
-            // 
-            this.dlgOpenTest.DefaultExt = "txt";
-            this.dlgOpenTest.FileName = "openFileDialog1";
-            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
-            this.dlgOpenTest.Title = "Load a Test File";
             // 
             // frmDataPreview
             // 
