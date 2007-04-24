@@ -46,9 +46,13 @@ namespace FileHelpers.WizardApp
         {
             base.FieldInfoReload();
             if (CastedFieldInfo.FieldQuoted)
-                txtQuoted.Text = "";
-            else
-                txtQuoted.Text = CastedFieldInfo.QuoteChar.ToString();
+            {
+                if (CastedFieldInfo.QuoteChar.ToString().Length == 0)
+                    // by default use " as quote char 
+                    txtQuoted.Text = "\"";
+                else
+                    txtQuoted.Text = CastedFieldInfo.QuoteChar.ToString();
+             }
         }
 
     }
