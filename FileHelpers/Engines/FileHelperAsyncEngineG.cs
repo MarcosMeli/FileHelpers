@@ -365,7 +365,11 @@ namespace FileHelpers
 			try
 			{
 				mLastRecordValues = null;
-				mLastRecord = null;
+#if ! GENERICS
+    			mLastRecord = null;
+#else
+                mLastRecord = default(T);
+#endif
 
 				if (mAsyncReader != null)
 					mAsyncReader.Close();
