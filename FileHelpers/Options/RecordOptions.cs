@@ -23,7 +23,13 @@ namespace FileHelpers
             mRecordConditionInfo = new RecordConditionInfo(info);
 			mIgnoreCommentInfo = new IgnoreCommentInfo(info);
 		}
-		
+
+		/// <summary>The number of fields of the record type.</summary>
+		public int FieldCount
+		{
+			get {return mRecordInfo.mFieldCount; }
+		}
+
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines
 		{

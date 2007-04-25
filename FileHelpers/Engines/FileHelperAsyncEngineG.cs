@@ -45,6 +45,7 @@ namespace FileHelpers
 			: base(typeof(T))
 #endif
 		{
+			CreateRecordOptions();
 		}
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
@@ -57,6 +58,15 @@ namespace FileHelpers
 			: base(typeof(T), encoding)
 #endif
 		{
+			CreateRecordOptions();
+		}
+
+		private void CreateRecordOptions()
+		{
+			if (mRecordInfo.IsDelimited)
+				mOptions = new DelimitedRecordOptions(mRecordInfo);
+			else
+				mOptions = new FixedRecordOptions(mRecordInfo);
 		}
 
 		#endregion
@@ -104,6 +114,9 @@ namespace FileHelpers
 		{
 			get
 			{
+				if (mLastRecordValues == null)
+					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+
 				return mLastRecordValues[fieldIndex];
 			}
 		}
@@ -116,6 +129,9 @@ namespace FileHelpers
 		{
 			get
 			{
+				if (mLastRecordValues == null)
+					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+
 				int index = mRecordInfo.GetFieldIndex(fieldName);
 				return mLastRecordValues[index];
 			}
@@ -274,6 +290,8 @@ namespace FileHelpers
 				}
 				else
 				{
+					mLastRecordValues = null;
+
 #if ! GENERICS
 					mLastRecord = null;
 #else
@@ -346,6 +364,9 @@ namespace FileHelpers
 		{
 			try
 			{
+				mLastRecordValues = null;
+				mLastRecord = null;
+
 				if (mAsyncReader != null)
 					mAsyncReader.Close();
 
@@ -597,6 +618,18 @@ namespace FileHelpers
  		}
 
 		#endregion
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+		internal RecordOptions mOptions;
+
+		/// <summary>Allows to change some record layout options at runtime</summary>
+		public RecordOptions Options
+		{
+			get { return mOptions; }
+			set { mOptions = value; }
+		}
 
 	}
 }

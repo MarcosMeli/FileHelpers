@@ -74,6 +74,24 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
+		public void AsyncFieldIndex4()
+		{
+
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			engine.BeginReadString(data);
+
+			Assert.AreEqual(3, engine.Options.FieldCount);
+
+			while(engine.ReadNext() != null)
+			{
+				for(int i = 0; i < engine.Options.FieldCount; i++)
+					Assert.IsNotNull(engine[i]);
+			}
+
+			engine.Close();
+		}
+
+		[Test]
 		[ExpectedException(typeof(IndexOutOfRangeException))]
 		public void AsyncFieldIndexBad1()
 		{

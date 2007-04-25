@@ -45,6 +45,7 @@ namespace FileHelpers
 			: base(typeof(T))
 #endif
 		{
+			CreateRecordOptions();
 		}
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
@@ -57,6 +58,15 @@ namespace FileHelpers
 			: base(typeof(T), encoding)
 #endif
 		{
+			CreateRecordOptions();
+		}
+
+		private void CreateRecordOptions()
+		{
+			if (mRecordInfo.IsDelimited)
+				mOptions = new DelimitedRecordOptions(mRecordInfo);
+			else
+				mOptions = new FixedRecordOptions(mRecordInfo);
 		}
 
 		#endregion
@@ -608,6 +618,18 @@ namespace FileHelpers
  		}
 
 		#endregion
+
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+		internal RecordOptions mOptions;
+
+		/// <summary>Allows to change some record layout options at runtime</summary>
+		public RecordOptions Options
+		{
+			get { return mOptions; }
+			set { mOptions = value; }
+		}
 
 	}
 }
