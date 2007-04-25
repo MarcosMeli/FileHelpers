@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly : AssemblyVersion("2.0.0.0")]
+[assembly : AssemblyVersion("2.1.0.0")]
 
 [assembly : AssemblyTitle("FileHelpers Sample App")]
 [assembly : AssemblyDescription("A simple application to show the bahavior of the Library.")]
