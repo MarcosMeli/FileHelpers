@@ -204,6 +204,7 @@ namespace FileHelpers
 			LineInfo line = new LineInfo(currentLine);
 			line.mReader = freader;
 			
+			object[] values = new object[mRecordInfo.mFieldCount];
 			while (currentLine != null && currentRecord < maxRecords)
 			{
 				try
@@ -221,7 +222,7 @@ namespace FileHelpers
 
 					if (skip == false)
 					{
-						object record = mRecordInfo.StringToRecord(line);
+						object record = mRecordInfo.StringToRecord(line, values);
 
 #if !MINI
 #if ! GENERICS

@@ -3,9 +3,6 @@ using NUnit.Framework;
 
 namespace FileHelpersTests.CommonTests
 {
-    
-
-    // NUNIT TESTS
     [TestFixture]
     public class CustomConverterBad
     {

@@ -332,5 +332,32 @@ namespace FileHelpersTests.CommonTests
 
 		}
 
+		[Test]
+		public void ReadAsyncFieldIndex()
+		{
+			string data = "11121314901234" + Environment.NewLine +
+				"10111314012345" + Environment.NewLine +
+				"11101314123456" + Environment.NewLine +
+				"10101314234567" + Environment.NewLine;
+
+			asyncEngine = new FileHelperAsyncEngine(typeof(SampleType));
+			asyncEngine.BeginReadString(data);
+
+			foreach (SampleType rec in asyncEngine)
+			{
+				Assert.AreEqual(rec.Field1, asyncEngine[0]);
+				Assert.AreEqual(rec.Field2, asyncEngine[1]);
+				Assert.AreEqual(rec.Field3, asyncEngine[2]);
+
+				Assert.AreEqual(rec.Field1, asyncEngine["Field1"]);
+				Assert.AreEqual(rec.Field2, asyncEngine["Field2"]);
+				Assert.AreEqual(rec.Field3, asyncEngine["Field3"]);
+
+			}
+
+			asyncEngine.Close();
+
+
+		}
 	}
 }

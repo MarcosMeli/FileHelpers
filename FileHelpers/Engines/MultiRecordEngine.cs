@@ -371,7 +371,8 @@ namespace FileHelpers
 
 						if (skip == false)
 						{
-							object record = info.StringToRecord(line);
+							object[] values = new object[info.mFieldCount];
+							object record = info.StringToRecord(line, values);
 
 #if !MINI
 							skip = OnAfterReadRecord(currentLine, record);
@@ -809,7 +810,8 @@ namespace FileHelpers
 						if (currType != null)
 						{
 							RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
-							mLastRecord = info.StringToRecord(line);
+							object[] values = new object[info.mFieldCount];
+							mLastRecord = info.StringToRecord(line, values);
 
 							if (mLastRecord != null)
 							{

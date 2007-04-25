@@ -95,6 +95,33 @@ namespace FileHelpers
 		}
 #endif
 
+		public object this[int fieldIndex]
+		{
+			get
+			{
+				return mLastRecordValues[fieldIndex];
+			}
+		}
+
+		public object this[string fieldName]
+		{
+			get
+			{
+				int index = mRecordInfo.GetFieldIndex(fieldName);
+				return mLastRecordValues[index];
+			}
+		}
+
+
+		//object[] mLastValuesArray;
+		private object[] mLastRecordValues;
+
+		public object[] LastRecordValues
+		{
+			get { return mLastRecordValues; }
+		}
+
+		
         #endregion
 
         #region "  BeginReadStream"
@@ -181,6 +208,9 @@ namespace FileHelpers
 			LineInfo line = new LineInfo(string.Empty);
 			line.mReader = mAsyncReader;
 			
+			if (mLastRecordValues == null)
+				mLastRecordValues = new object[mRecordInfo.mFieldCount];
+			
 			while (true)
 			{
 				if (currentLine != null)
@@ -191,9 +221,9 @@ namespace FileHelpers
 						line.ReLoad(currentLine);
 
 #if ! GENERICS
-						mLastRecord = mRecordInfo.StringToRecord(line);
+						mLastRecord = mRecordInfo.StringToRecord(line, mLastRecordValues);
 #else
-						mLastRecord = (T) mRecordInfo.StringToRecord(line);
+						mLastRecord = (T) mRecordInfo.StringToRecord(line, mLastRecordValues);
 #endif
 
 						if (mLastRecord != null)
@@ -455,6 +485,8 @@ namespace FileHelpers
 				throw new ArgumentNullException("The record to write can´t be null.");
 
 			bool first = true;
+
+
 #if ! GENERICS
 			foreach (object rec in records)
 #else

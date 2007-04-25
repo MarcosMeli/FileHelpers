@@ -272,6 +272,10 @@ namespace FileHelpers.MasterDetail
 			LineInfo line = new LineInfo(currentLine);
 			line.mReader = freader;
 			
+
+			object[] valuesMaster = new object[mMasterInfo.mFieldCount];
+			object[] valuesDetail = new object[mRecordInfo.mFieldCount];
+
 			while (currentLine != null)
 			{
 				try
@@ -307,9 +311,9 @@ namespace FileHelpers.MasterDetail
 #endif
 							tmpDetails.Clear();
 #if ! GENERICS
-							object lastMaster = mMasterInfo.StringToRecord(line);
+							object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
-							M lastMaster = (M)mMasterInfo.StringToRecord(line);
+							M lastMaster = (M)mMasterInfo.StringToRecord(line, valuesMaster);
 #endif
 
 							if (lastMaster != null)
@@ -319,9 +323,9 @@ namespace FileHelpers.MasterDetail
 
 						case RecordAction.Detail:
 #if ! GENERICS
-							object lastChild = mRecordInfo.StringToRecord(line);
+							object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-							D lastChild = (D) mRecordInfo.StringToRecord(line);
+							D lastChild = (D) mRecordInfo.StringToRecord(line, valuesDetail);
 #endif
 
 							if (lastChild != null)

@@ -154,7 +154,7 @@ namespace FileHelpers.RunTime
 		
 		internal static FixedLengthClassBuilder LoadXmlInternal(XmlDocument document)
 		{
-			FixedLengthClassBuilder res;
+			//FixedLengthClassBuilder res;
 
             FixedMode  mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.ChildNodes[0].Attributes[0].Value);
 			

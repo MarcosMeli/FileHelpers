@@ -389,44 +389,53 @@ namespace FileHelpers
 
 
 		#region StringToRecord
-		internal object StringToRecord(LineInfo line)
+		internal object StringToRecord(LineInfo line, object[] values)
 		{
 			if (MustIgnoreLine(line.mLineStr))
 				return null;
-
-
-			object[] mValues = new object[mFieldCount];
 
 			// array that holds the fields values
 			
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				mValues[i] = mFields[i].ExtractValue(line);
+				values[i] = mFields[i].ExtractValue(line);
 			}
 
 #if NET_1_1 || MINI
-			object record = CreateRecordObject();
-			for (int i = 0; i < mFieldCount; i++)
+			try
 			{
-				mFields[i].mFieldInfo.SetValue(record, mValues[i]);
+				object record = CreateRecordObject();
+				for (int i = 0; i < mFieldCount; i++)
+				{
+					mFields[i].mFieldInfo.SetValue(record, values[i]);
+				}
+				return record;
 			}
-			
-			return record;
+			catch (ArgumentException)
+			{
+				// Occurrs when the a custom converter returns an invalid value for the field.
+				for (int i = 0; i < mFieldCount; i++)
+				{
+					if (values[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(values[i]))
+						throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
+				}
+				return null;
+			}
 #else
 			CreateAssingMethods();
 
             try
             {
                 // Asign all values via dinamic method that creates an object and assign values
-               return mCreateHandler(mValues);
+               return mCreateHandler(values);
             }
             catch (InvalidCastException)
             {
                 // Occurrs when the a custom converter returns an invalid value for the field.
                 for (int i = 0; i < mFieldCount; i++)
                 {
-                    if (mValues[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(mValues[i]))
-                        throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + mValues[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
+                    if (values[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(values[i]))
+						throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
                 }
                 return null;
             }
@@ -686,6 +695,23 @@ namespace FileHelpers
 		}
 	
 		#endif
+
+		private Hashtable mMapFieldIndex;
+		public int GetFieldIndex(string fieldName)
+		{
+			if (mMapFieldIndex == null)
+			{
+				mMapFieldIndex = new Hashtable(mFieldCount);
+				for(int i = 0; i < mFieldCount; i++)
+				{
+					mMapFieldIndex.Add(mFields[i].mFieldInfo.Name, i);
+				}
+			}
+
+			object res = mMapFieldIndex[fieldName];
+
+			return res == null ? -1 : (int) res;
+		}
 	}
 	
 }

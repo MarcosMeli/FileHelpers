@@ -255,6 +255,10 @@ namespace FileHelpers
             {
                 throw ConvertException.ReThrowException(ex, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
             }
+			catch (BadUsageException)
+			{
+				throw;
+			}
             catch (Exception ex)
             {
                 if (mConvertProvider == null || mConvertProvider.GetType().AssemblyQualifiedName == typeof(FieldBase).AssemblyQualifiedName)
