@@ -709,8 +709,10 @@ namespace FileHelpers
 			}
 
 			object res = mMapFieldIndex[fieldName];
+			if (res == null)
+				throw new BadUsageException("The field: " + fieldName + " was not found in the class: " + mRecordType.Name + ". Remember that this option is case sensitive.");
 
-			return res == null ? -1 : (int) res;
+			return (int) res;
 		}
 	}
 	

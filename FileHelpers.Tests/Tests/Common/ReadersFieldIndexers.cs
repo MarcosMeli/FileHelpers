@@ -103,5 +103,36 @@ namespace FileHelpersTests.CommonTests
 			engine.Close();
 		}
 
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void AsyncFieldIndexBad3()
+		{
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			object val = engine[2];
+		}
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void AsyncFieldIndexBad4()
+		{
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			object val = engine["Field1"];
+		}
+
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void AsyncFieldIndexBad5()
+		{
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			engine.BeginReadString(data);
+			while(engine.ReadNext() != null)
+			{
+			}
+			engine.Close();
+			object val = engine[2];
+
+		}
+
 	}
 }

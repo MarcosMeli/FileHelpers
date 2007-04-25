@@ -104,6 +104,9 @@ namespace FileHelpers
 		{
 			get
 			{
+				if (mLastRecordValues == null)
+					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+
 				return mLastRecordValues[fieldIndex];
 			}
 		}
@@ -116,6 +119,9 @@ namespace FileHelpers
 		{
 			get
 			{
+				if (mLastRecordValues == null)
+					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+
 				int index = mRecordInfo.GetFieldIndex(fieldName);
 				return mLastRecordValues[index];
 			}
@@ -274,6 +280,8 @@ namespace FileHelpers
 				}
 				else
 				{
+					mLastRecordValues = null;
+
 #if ! GENERICS
 					mLastRecord = null;
 #else
@@ -346,6 +354,9 @@ namespace FileHelpers
 		{
 			try
 			{
+				mLastRecordValues = null;
+				mLastRecord = null;
+
 				if (mAsyncReader != null)
 					mAsyncReader.Close();
 
