@@ -366,9 +366,9 @@ namespace FileHelpers
 			{
 				mLastRecordValues = null;
 #if ! GENERICS
-    			mLastRecord = null;
+			mLastRecord = null;
 #else
-                mLastRecord = default(T);
+			mLastRecord = default(T);
 #endif
 
 				if (mAsyncReader != null)
