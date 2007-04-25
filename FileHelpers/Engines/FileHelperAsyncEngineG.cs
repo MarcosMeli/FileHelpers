@@ -78,6 +78,7 @@ namespace FileHelpers
 #endif
         private object mLastRecord;
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+
 		public object LastRecord
 		{
 			get { return mLastRecord; }
@@ -95,6 +96,10 @@ namespace FileHelpers
 		}
 #endif
 
+		/// <summary>
+		/// Get a field value of the current records.
+		/// </summary>
+		/// <param name="fieldIndex" >The index of the field.</param>
 		public object this[int fieldIndex]
 		{
 			get
@@ -103,6 +108,10 @@ namespace FileHelpers
 			}
 		}
 
+		/// <summary>
+		/// Get a field value of the current records.
+		/// </summary>
+		/// <param name="fieldName" >The name of the field (case sensitive)</param>
 		public object this[string fieldName]
 		{
 			get
@@ -113,9 +122,11 @@ namespace FileHelpers
 		}
 
 
-		//object[] mLastValuesArray;
 		private object[] mLastRecordValues;
 
+		/// <summary>
+		/// An array with the values of each field of the current record. 
+		/// </summary>
 		public object[] LastRecordValues
 		{
 			get { return mLastRecordValues; }
