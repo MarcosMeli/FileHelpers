@@ -298,17 +298,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Engines\FileDiffEngineG.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Engines\FileHelperAsyncEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Engines\FileHelperAsyncEngineG.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -318,17 +308,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Engines\FileHelperEngineG.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Engines\FileTransformEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Engines\FileTransformEngineG.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -512,7 +492,16 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
-                <Folder RelPath = "Mapping\" />
+                <File
+                    RelPath = "Mapping\DataMapper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Mapping\MappingInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
                 <File
                     RelPath = "MasterDetail\Common.cs"
                     SubType = "Code"
