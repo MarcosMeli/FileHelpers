@@ -398,7 +398,7 @@ namespace FileHelpers
 			
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				values[i] = mFields[i].ExtractValue(line);
+				values[i] = mFields[i].ExtractFieldValue(line);
 			}
 
 #if NET_1_1 || MINI

@@ -96,6 +96,7 @@
     <Compile Include="Attributes\FieldAlignAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldArrayLength.cs" />
     <Compile Include="Attributes\FieldAttribute.cs">
       <SubType>Code</SubType>
     </Compile>

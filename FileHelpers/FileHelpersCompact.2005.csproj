@@ -101,6 +101,7 @@
     <Compile Include="Attributes\FieldAlignAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldArrayLength.cs" />
     <Compile Include="Attributes\FieldAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -263,7 +264,7 @@
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" xmlns="">
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
         <HostingProcess disable="1" />
       </FlavorProperties>
     </VisualStudio>

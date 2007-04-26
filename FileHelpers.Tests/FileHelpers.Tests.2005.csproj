@@ -110,6 +110,7 @@
     <Compile Include="Tests\Common\AppendWriters.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\ArrayFields.cs" />
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>

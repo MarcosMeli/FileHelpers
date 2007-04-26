@@ -149,7 +149,7 @@ namespace FileHelpers
 
 		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
-			string field = base.BaseFieldString(fieldValue);
+			string field = base.CreateFieldString(fieldValue);
 
 			bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine) >= 0;
 

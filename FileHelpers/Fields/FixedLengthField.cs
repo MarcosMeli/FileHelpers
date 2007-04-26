@@ -83,7 +83,7 @@ namespace FileHelpers
 
 		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
-			string field = base.BaseFieldString(fieldValue);
+			string field = base.CreateFieldString(fieldValue);
 
 			if (field.Length > mFieldLength)
 				field = field.Substring(0, mFieldLength);

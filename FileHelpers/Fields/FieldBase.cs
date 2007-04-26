@@ -109,7 +109,7 @@ namespace FileHelpers
 
 		protected abstract void CreateFieldString(StringBuilder sb, object fieldValue);
 
-		protected string BaseFieldString(object fieldValue)
+		protected string CreateFieldString(object fieldValue)
 		{
 			if (mConvertProvider == null)
 			{
@@ -137,7 +137,7 @@ namespace FileHelpers
 		#region "  ExtractValue  " 
 
 // object[] values, int index, ForwardReader reader
-		internal object ExtractValue(LineInfo line)
+		internal object ExtractFieldValue(LineInfo line)
 		{
 			//-> extract only what I need
 
@@ -180,6 +180,7 @@ namespace FileHelpers
 					line.mCurrentPos += mCharsToDiscard; //total;
 
 					res.Add(AssignFromString(info, line));
+                    i++;
 				}
 
 				return res.ToArray(mArrayType);
@@ -381,7 +382,18 @@ namespace FileHelpers
 			if (this.mInNewLine == true)
 				sb.Append(StringHelper.NewLine);
 
-			CreateFieldString(sb, fieldValue);
+            if (mIsArray)
+            {
+                if (fieldValue == null)
+                    return;
+
+                foreach (object val in (Array) fieldValue)
+                {
+                    CreateFieldString(sb, val);
+                }
+            }
+            else
+                CreateFieldString(sb, fieldValue);
 		}
 
 		#endregion

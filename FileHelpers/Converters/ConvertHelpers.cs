@@ -52,6 +52,11 @@ namespace FileHelpers
 
 		internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType)
 		{
+            if (fieldType.IsArray)
+            {
+                fieldType = fieldType.GetElementType();
+            }
+
 #if NET_2_0
 
             if (fieldType.IsValueType &&
@@ -63,10 +68,6 @@ namespace FileHelpers
 
 #endif
 
-	        if (fieldType.IsArray)
-            {
-                fieldType = fieldType.GetElementType();
-            }
 
 			// Try to assign a default Converter
             if (fieldType == typeof(string))
