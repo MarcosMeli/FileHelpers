@@ -5,6 +5,7 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Reflection;
 using System.Text;
 
@@ -34,6 +35,7 @@ namespace FileHelpers
 		internal bool mTrailingArray = false;
 
 		internal bool mIsArray = false;
+		internal Type mArrayType;
 		internal int mArrayMinLength;
 		internal int mArrayMaxLength;
 
@@ -153,13 +155,36 @@ namespace FileHelpers
 					                            ". Please check the class record.");
 			}
 
-			ExtractedInfo info = ExtractFieldString(line);
-			if (info.mCustomExtractedString == null)
-				line.mCurrentPos = info.ExtractedTo + 1;
+			if (mIsArray == false)
+			{
+				ExtractedInfo info = ExtractFieldString(line);
+				if (info.mCustomExtractedString == null)
+					line.mCurrentPos = info.ExtractedTo + 1;
 
-			line.mCurrentPos += mCharsToDiscard; //total;
+				line.mCurrentPos += mCharsToDiscard; //total;
 
-			return AssignFromString(info, line);
+				return AssignFromString(info, line);
+			}
+			else
+			{
+				int i = 0;
+
+				ArrayList res = new ArrayList(mArrayMinLength);
+
+				while (line.IsEOL() == false && i < mArrayMaxLength)
+				{
+					ExtractedInfo info = ExtractFieldString(line);
+					if (info.mCustomExtractedString == null)
+						line.mCurrentPos = info.ExtractedTo + 1;
+
+					line.mCurrentPos += mCharsToDiscard; //total;
+
+					res.Add(AssignFromString(info, line));
+				}
+
+				return res.ToArray(mArrayType);
+		
+			}
 
 
 			//-> discard the part that I use

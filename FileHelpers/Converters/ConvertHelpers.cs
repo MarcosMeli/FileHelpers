@@ -63,8 +63,13 @@ namespace FileHelpers
 
 #endif
 
+	        if (fieldType.IsArray)
+            {
+                fieldType = fieldType.GetElementType();
+            }
+
 			// Try to assign a default Converter
-            if (fieldType == typeof(string) || fieldType.IsArray)
+            if (fieldType == typeof(string))
 				return null;
 			else if (fieldType == typeof(Int16))
                 return new Int16Converter();

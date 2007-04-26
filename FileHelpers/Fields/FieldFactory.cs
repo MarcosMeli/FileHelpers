@@ -125,6 +125,7 @@ namespace FileHelpers
 				if (fi.FieldType.IsArray)
 				{
 					res.mIsArray = true;
+					res.mArrayType = fi.FieldType.GetElementType();
 
 					FieldArrayLengthAttribute[] arrayAttribs = (FieldArrayLengthAttribute[]) fi.GetCustomAttributes(typeof (FieldArrayLengthAttribute), false);
 
