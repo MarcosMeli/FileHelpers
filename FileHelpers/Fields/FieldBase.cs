@@ -33,6 +33,9 @@ namespace FileHelpers
 		internal bool mIsLast = false;
 		internal bool mTrailingArray = false;
 
+		internal bool mIsArray = false;
+		internal int mArrayMinLength;
+		internal int mArrayMaxLength;
 
 		internal object mNullValue = null;
 		//internal bool mNullValueOnWrite = false;

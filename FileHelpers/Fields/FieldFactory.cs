@@ -39,8 +39,11 @@ namespace FileHelpers
 			if (attributes.Length == 0 && recordAttribute is FixedLengthRecordAttribute)
 				throw new BadUsageException("The record class marked with the FixedLengthRecord attribute must include a FixedLength attribute in each field.");
 
-			if (recordAttribute is DelimitedRecordAttribute && fi.IsDefined(typeof (FieldAlignAttribute), true))
+			if (recordAttribute is DelimitedRecordAttribute && fi.IsDefined(typeof (FieldAlignAttribute), false))
 				throw new BadUsageException("The AlignAttribute is only valid for fixed length records and are used only for write purpouse.");
+
+			if (fi.FieldType.IsArray == false && fi.IsDefined(typeof (FieldArrayLengthAttribute), false))
+				throw new BadUsageException("The FieldArrayLength attribute is only valid for array fields.");
 
 
 			// PROCESS IN NORMAL CONDITIONS
@@ -51,12 +54,13 @@ namespace FileHelpers
 
 				if (fieldAttb is FieldFixedLengthAttribute)
 				{
+					// Fixed Field
 					if (recordAttribute is DelimitedRecordAttribute)
 						throw new BadUsageException("The FieldFixedLengthAttribute is only for the FixedLengthRecords not for the delimited ones.");
 
 					FieldFixedLengthAttribute attb = ((FieldFixedLengthAttribute) fieldAttb);
 
-					FieldAlignAttribute[] alignAttbs = (FieldAlignAttribute[]) fi.GetCustomAttributes(typeof (FieldAlignAttribute), true);
+					FieldAlignAttribute[] alignAttbs = (FieldAlignAttribute[]) fi.GetCustomAttributes(typeof (FieldAlignAttribute), false);
 					FieldAlignAttribute align = null;
 
 					if (alignAttbs.Length > 0)
@@ -67,6 +71,7 @@ namespace FileHelpers
 				}
 				else if (fieldAttb is FieldDelimiterAttribute)
 				{
+					// Delimited Field
 					if (recordAttribute is FixedLengthRecordAttribute)
 						throw new BadUsageException("The DelimitedAttribute is only for DelimitedRecords not for the fixed ones.");
 
@@ -82,18 +87,19 @@ namespace FileHelpers
 					res = new DelimitedField(fi, ((DelimitedRecordAttribute) recordAttribute).Separator);
 			}
 
-			//-----  TRIMMING
-
 			if (res != null)
 			{
-				FieldTrimAttribute[] trim = (FieldTrimAttribute[]) fi.GetCustomAttributes(typeof (FieldTrimAttribute), true);
+
+				// Trim Related
+				FieldTrimAttribute[] trim = (FieldTrimAttribute[]) fi.GetCustomAttributes(typeof (FieldTrimAttribute), false);
 				if (trim.Length > 0)
 				{
 					res.mTrimMode = trim[0].TrimMode;
 					res.mTrimChars = trim[0].TrimChars;
 				}
 
-				FieldQuotedAttribute[] quotedAttributes = (FieldQuotedAttribute[]) fi.GetCustomAttributes(typeof (FieldQuotedAttribute), true);
+				// Quote Related
+				FieldQuotedAttribute[] quotedAttributes = (FieldQuotedAttribute[]) fi.GetCustomAttributes(typeof (FieldQuotedAttribute), false);
 				if (quotedAttributes.Length > 0)
 				{
 					if (res is FixedLengthField)
@@ -104,15 +110,38 @@ namespace FileHelpers
 					((DelimitedField) res).mQuoteMultiline = quotedAttributes[0].QuoteMultiline;
 				}
 
-				FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[]) fi.GetCustomAttributes(typeof (FieldOptionalAttribute), true);
+				// Optional Related
+				FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[]) fi.GetCustomAttributes(typeof (FieldOptionalAttribute), false);
 
 				if (optionalAttribs.Length > 0)
 					res.mIsOptional	= true;
 				else if (someOptional)
 					throw new BadUsageException("When you define a field as FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + res.mFieldInfo.Name + " )");
 
-				
+				// NewLine Related
 				res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), true);
+
+				// Array Related
+				if (fi.FieldType.IsArray)
+				{
+					res.mIsArray = true;
+
+					FieldArrayLengthAttribute[] arrayAttribs = (FieldArrayLengthAttribute[]) fi.GetCustomAttributes(typeof (FieldArrayLengthAttribute), false);
+
+					if (arrayAttribs.Length > 0)
+					{
+						res.mArrayMinLength = arrayAttribs[0].mMinLength;
+						res.mArrayMaxLength = arrayAttribs[0].mMaxLength;
+					}
+					else
+					{
+						res.mArrayMinLength = 0;
+						res.mArrayMaxLength = int.MaxValue;
+					}
+				}
+
+
+
 			}
 
 

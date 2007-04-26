@@ -12,8 +12,8 @@ namespace FileHelpersTests.CommonTests
 		FileHelperEngine engine;
 
 		[Test]
-		[Ignore("Not Implemented yet")]
-		public void DiffCustomers()
+		//[Ignore("Not Implemented yet")]
+		public void ArrayFields1()
 		{
 			engine = new FileHelperEngine(typeof (ArrayType1));
 			ArrayType1[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType1[];
@@ -22,15 +22,35 @@ namespace FileHelpersTests.CommonTests
 
 
 
-		[DelimitedRecord("|")]
+		[Test]
+		[ExpectedException(typeof(BadUsageException))]
+		public void ArrayFieldsBad1()
+		{
+			engine = new FileHelperEngine(typeof (ArrayTypeBad1));
+		}
+
+
+		[FixedLengthRecord(FixedMode.ExactLength)]
 		private class ArrayType1
 		{
+			[FieldFixedLength(5)]
 			public string CustomerID;
 
+			[FieldArrayLength(2, 30)]
+			[FieldFixedLength(7)]
 			public int[] BuyedArts;
 
 		}
 
+
+
+		
+		[DelimitedRecord("|")]
+		private class ArrayTypeBad1
+		{
+			[FieldArrayLength(2, 30)]
+			public string CustomerID;
+		}
 
 	}
 }

@@ -62,10 +62,11 @@ namespace FileHelpers
             }
 
 #endif
+
 			// Try to assign a default Converter
-            if (fieldType == typeof(string))
-                return null;
-            else if (fieldType == typeof(Int16))
+            if (fieldType == typeof(string) || fieldType.IsArray)
+				return null;
+			else if (fieldType == typeof(Int16))
                 return new Int16Converter();
             else if (fieldType == typeof(Int32))
                 return new Int32Converter();
