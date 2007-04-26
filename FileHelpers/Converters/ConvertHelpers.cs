@@ -426,40 +426,51 @@ namespace FileHelpers
 				mFalseStringLower = falseStr.ToLower();
 			}
 
-			public override object StringToField(string from)
-			{
-				object val;
-				try
-				{
-					string testTo = from.ToLower();
-					
-					if (mTrueString == null)
-					{
-						testTo = testTo.Trim();
-						if (testTo == "true" || testTo == "1")
-							val = true;
-						else if (testTo == "false" || testTo == "0" || testTo == "")
-							val = false;
-						else
-							throw new Exception();
-					}
-					else
-					{
-						if (testTo == mTrueStringLower || testTo.Trim() == mTrueStringLower)
-							val = true;
-						else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)
-							val = false;
-						else
-							throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
-					}
-				}
-				catch
-				{
-					throw new ConvertException(from, typeof (Boolean));
-				}
+            public override object StringToField(string from)
+            {
+                object val;
+                string testTo = from.ToLower();
 
-				return val;
-			}
+                if (mTrueString == null)
+                {
+                    testTo = testTo.Trim();
+                    switch (testTo)
+                    {
+                        case "true":
+                        case "1":
+                        case "y":
+                        case "t":
+                            val = true;
+                            break;
+
+                        case "false":
+                        case "0":
+                        case "n":
+                        case "f":
+
+                        // I dont thing that this case is posible without overriding the CustomNullHandling
+                        // and maybe is not good to allow empty fields to be false
+                        case "": 
+                            val = false;
+                            break;
+
+                        default:
+                            throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using default true/false values.");
+                    }
+                }
+                else
+                {
+                    // The trim in the or part is for performance enhace and dont do useless trims
+                    if (testTo == mTrueStringLower || testTo.Trim() == mTrueStringLower)
+                        val = true;
+                    else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)
+                        val = false;
+                    else
+                        throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
+                }
+
+                return val;
+            }
 
 			public override string FieldToString(object from)
 			{
