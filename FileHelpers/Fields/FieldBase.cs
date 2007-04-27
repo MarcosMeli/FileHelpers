@@ -35,6 +35,7 @@ namespace FileHelpers
 		internal bool mTrailingArray = false;
 
 		internal bool mIsArray = false;
+        //internal bool mIgnoreExtraLength = false;
 		internal Type mArrayType;
 		internal int mArrayMinLength;
 		internal int mArrayMaxLength;
@@ -173,6 +174,7 @@ namespace FileHelpers
 
 				while (line.IsEOL() == false && i < mArrayMaxLength)
 				{
+                    //mIgnoreExtraLength = i < (mArrayMaxLength - 1);
 					ExtractedInfo info = ExtractFieldString(line);
 					if (info.mCustomExtractedString == null)
 						line.mCurrentPos = info.ExtractedTo + 1;
@@ -182,6 +184,11 @@ namespace FileHelpers
 					res.Add(AssignFromString(info, line));
                     i++;
 				}
+
+                if (res.Count < mArrayMinLength)
+                    throw new InvalidOperationException("The array has only "+ res.Count.ToString() +" values, less than the minimum length of " + mArrayMinLength.ToString());
+                else if (res.Count > mArrayMaxLength)
+                    throw new InvalidOperationException("The array has " + res.Count.ToString() + " values, more than the maximum length of " + mArrayMaxLength.ToString());
 
 				return res.ToArray(mArrayType);
 		
