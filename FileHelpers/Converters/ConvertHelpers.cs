@@ -54,7 +54,14 @@ namespace FileHelpers
 		{
             if (fieldType.IsArray)
             {
+				if (fieldType.GetArrayRank() != 1)
+					throw new BadUsageException("The array field: '" + fieldName + "' has more than one dimension and is not supported by the library.");
+
                 fieldType = fieldType.GetElementType();
+
+				if (fieldType.IsArray)
+					throw new BadUsageException("The array field: '" + fieldName + "' is a jagged array and is not supported by the library.");
+
             }
 
 #if NET_2_0
@@ -103,7 +110,7 @@ namespace FileHelpers
                 return new EnumConverter(fieldType);
 #endif			
 
-			throw new BadUsageException("The field: '" + fieldName + "' of type: " + fieldType.Name + " is a non system type, so this field need a CustomConverter (see the docs for more info).");
+			throw new BadUsageException("The field: '" + fieldName + "' has the type: " + fieldType.Name + " that is not a system type, so this field need a CustomConverter (check the docs for more info).");
 		}
 
 		#endregion

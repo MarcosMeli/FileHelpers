@@ -327,33 +327,52 @@ namespace FileHelpers
 
 		private static FieldBase[] CreateCoreFields(ArrayList fields, TypedRecordAttribute recordAttribute)
 		{
-			FieldBase curField;
-			ArrayList arr = new ArrayList();
-			bool someOptional = false;
+			ArrayList resFields = new ArrayList();
+
+			FieldBase currentField;
+
 			for (int i = 0; i < fields.Count; i++)
 			{
-				FieldInfo fieldInfo = (FieldInfo) fields[i];
+				currentField = FieldFactory.CreateField((FieldInfo) fields[i], recordAttribute);
 
-				curField = FieldFactory.CreateField(fieldInfo, recordAttribute, someOptional);
-
-				if (curField != null)
+				if (currentField != null)
 				{
-					someOptional = curField.mIsOptional;
+					// Add to the result
+					resFields.Add(currentField);
 
-					arr.Add(curField);
-					if (arr.Count > 1)
-						((FieldBase)arr[arr.Count-2]).mNextIsOptional = ((FieldBase)arr[arr.Count-1]).mIsOptional;
+					// Check some differences with the previous field
+					if (resFields.Count > 1)
+					{
+						FieldBase prevField = (FieldBase)resFields[resFields.Count-2];
+	
+						prevField.mNextIsOptional = currentField.mIsOptional;
+
+						// Check for optional problems
+						if (prevField.mIsOptional && currentField.mIsOptional == false)
+						   throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + currentField.mFieldInfo.Name + " )");
+
+						// Check for array problems
+						if (prevField.mIsArray)
+						{
+							if (prevField.mArrayMinLength == int.MinValue)
+								throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
+
+							if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
+								throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name + " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
+						}
+					}
+
 				}
 			}
 
-			if (arr.Count > 0)
+			if (resFields.Count > 0)
 			{
-				((FieldBase) arr[0]).mIsFirst = true;
-				((FieldBase) arr[arr.Count - 1]).mIsLast = true;
+				((FieldBase) resFields[0]).mIsFirst = true;
+				((FieldBase) resFields[resFields.Count - 1]).mIsLast = true;
 
 			}
 
-			return (FieldBase[]) arr.ToArray(typeof (FieldBase));
+			return (FieldBase[]) resFields.ToArray(typeof (FieldBase));
 
 		}
 		#endregion

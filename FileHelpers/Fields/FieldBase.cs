@@ -35,7 +35,6 @@ namespace FileHelpers
 		internal bool mTrailingArray = false;
 
 		internal bool mIsArray = false;
-        //internal bool mIgnoreExtraLength = false;
 		internal Type mArrayType;
 		internal int mArrayMinLength;
 		internal int mArrayMaxLength;
@@ -168,9 +167,12 @@ namespace FileHelpers
 			}
 			else
 			{
+				if (mArrayMinLength <= 0)
+					mArrayMinLength = 0;
+
 				int i = 0;
 
-				ArrayList res = new ArrayList(mArrayMinLength);
+				ArrayList res = new ArrayList(Math.Max(mArrayMinLength, 10));
 
 				while (line.IsEOL() == false && i < mArrayMaxLength)
 				{
@@ -186,9 +188,10 @@ namespace FileHelpers
 				}
 
                 if (res.Count < mArrayMinLength)
-                    throw new InvalidOperationException("The array has only "+ res.Count.ToString() +" values, less than the minimum length of " + mArrayMinLength.ToString());
-                else if (res.Count > mArrayMaxLength)
-                    throw new InvalidOperationException("The array has " + res.Count.ToString() + " values, more than the maximum length of " + mArrayMaxLength.ToString());
+                    throw new InvalidOperationException("Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos.ToString() + " Field: " + mFieldInfo.Name + ". The array has only "+ res.Count.ToString() +" values, less than the minimum length of " + mArrayMinLength.ToString());
+
+                else if (mIsLast && line.IsEOL() == false)
+                    throw new InvalidOperationException("Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos.ToString() + " Field: " + mFieldInfo.Name + ". The array has more values than the maximum length of " + mArrayMaxLength.ToString());
 
 				return res.ToArray(mArrayType);
 		

@@ -71,7 +71,7 @@ namespace FileHelpers
 				else
 					throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has less chars than the defined for " + mFieldInfo.Name + " (" + mFieldLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
 			else if (line.CurrentLength > mFieldLength  && 
-						mIsArray &&
+						mIsArray == false &&
                         mIsLast &&
 				        mFixedMode != FixedMode.AllowMoreChars && 
 						mFixedMode != FixedMode.AllowVariableLength)

@@ -18,7 +18,7 @@ namespace FileHelpers
 
 		#endregion
 
-		public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute, bool someOptional)
+		public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
 		{
 			// If ignored, return null
 			if (fi.IsDefined(typeof (FieldIgnoredAttribute), true))
@@ -115,8 +115,6 @@ namespace FileHelpers
 
 				if (optionalAttribs.Length > 0)
 					res.mIsOptional	= true;
-				else if (someOptional)
-					throw new BadUsageException("When you define a field as FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + res.mFieldInfo.Name + " )");
 
 				// NewLine Related
 				res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), true);
@@ -133,18 +131,21 @@ namespace FileHelpers
 					{
 						res.mArrayMinLength = arrayAttribs[0].mMinLength;
 						res.mArrayMaxLength = arrayAttribs[0].mMaxLength;
+
+						if (res.mArrayMaxLength < res.mArrayMinLength ||
+							res.mArrayMinLength < 0 || 
+							res.mArrayMaxLength <= 0)
+							throw new BadUsageException("The field: " + fi.Name + " has invalid length values in the [FieldArrayLength] attribute.");
 					}
 					else
 					{
-						res.mArrayMinLength = 0;
+						// MinValue indicates that there is no FieldArrayLength in the array
+						res.mArrayMinLength = int.MinValue; 
 						res.mArrayMaxLength = int.MaxValue;
 					}
 				}
 
-
-
 			}
-
 
 			return res;
 		}
