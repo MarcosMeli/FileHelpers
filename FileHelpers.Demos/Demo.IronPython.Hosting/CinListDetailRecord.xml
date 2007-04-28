@@ -1,0 +1,15 @@
+﻿<FixedLengthClass FixedMode="ExactLength">
+	<Namespace>USPS.FAST.DEPS.CinList</Namespace>
+	<ClassName>DetailRecord</ClassName>
+	<SealedClass />
+	<Fields>
+		<Field Name="CopyrightDetailCode" Type="System.String" Length="1" />
+		<Field Name="CinCode" Type="System.String" Length="3" />
+		<Field Name="PalletCode" Type="System.String" Length="1" />
+		<Field Name="PrimaryMailClass" Type="System.String" Length="10" />
+		<Field Name="SecondaryMailClass" Type="System.String" Length="10" />
+		<Field Name="MailShape" Type="System.String" Length="10" />
+		<Field Name="DiscountTypeCode" Type="System.String" Length="1" />
+		<Field Name="SortType" Type="System.String" Length="50" />
+	</Fields>
+</FixedLengthClass>

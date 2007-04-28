@@ -1,0 +1,14 @@
+﻿<FixedLengthClass FixedMode="ExactLength">
+	<Namespace>USPS.FAST.DEPS.CinList</Namespace>
+	<ClassName>CopyrightRecord</ClassName>
+	<SealedClass />
+	<Fields>
+		<Field Name="CopyrightDetailCode" Type="System.String" Length="1" />
+		<Field Name="Filler" Type="System.String" Length="5" />
+		<Field Name="CopyrightStatementCode" Type="System.String" Length="12" />
+		<Field Name="FileVersionDate" Type="System.String" Length="8" />
+		<Field Name="CopyrightOwner" Type="System.String" Length="4" />
+		<Field Name="VolumeSequenceNumber" Type="System.Int32" Length="3" />
+		<Field Name="Padding" Type="System.String" Length="53" />
+	</Fields>
+</FixedLengthClass>
