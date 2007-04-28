@@ -24,6 +24,7 @@ namespace FileHelpersTests.CommonTests
 
 			foreach (SampleType rec in engine)
 			{
+                
 				Assert.AreEqual(rec.Field1, engine[0]);
 				Assert.AreEqual(rec.Field2, engine[1]);
 				Assert.AreEqual(rec.Field3, engine[2]);
@@ -36,6 +37,7 @@ namespace FileHelpersTests.CommonTests
 
 			engine.Close();
 		}
+
 
 		[Test]
 		public void AsyncFieldIndex2()
@@ -151,6 +153,21 @@ namespace FileHelpersTests.CommonTests
 			object val = engine[2];
 
 		}
+
+
+        [Test]
+        public void FieldNames()
+        {
+            FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+            string[] names = engine.Options.GetFieldsNames();
+
+            Assert.AreEqual(3, names.Length);
+            Assert.AreEqual("Field1", names[0]);
+            Assert.AreEqual("Field2", names[1]);
+            Assert.AreEqual("Field3", names[2]);
+
+        }
+
 
 	}
 }

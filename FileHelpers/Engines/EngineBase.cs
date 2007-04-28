@@ -8,12 +8,19 @@ namespace FileHelpers
 {
 	/// <summary>Base class for the two engines of the library: <see cref="FileHelperEngine"/> and <see cref="FileHelperAsyncEngine"/></summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public abstract class EngineBase
+	public abstract class EngineBase 
+        //#if ! MINI
+        //:Component
+        //#endif
 	{
         #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         #endif
+        
         internal RecordInfo mRecordInfo;
+
+        private EngineBase()
+        {}
 
 		#region "  Constructor  "
 

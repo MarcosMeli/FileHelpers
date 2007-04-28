@@ -30,6 +30,33 @@ namespace FileHelpers
 			get {return mRecordInfo.mFieldCount; }
 		}
 
+        // <summary>The number of fields of the record type.</summary>
+        //[System.Runtime.CompilerServices.IndexerName("FieldNames")]
+        //public string this[int index]
+        //{
+        //    get 
+        //    {
+        //        return mRecordInfo.mFields[index].mFieldInfo.Name; 
+        //    }
+        //}
+
+        string[] mFieldNames;
+
+        /// <summary>Returns an string array with the fields names. (You cant change the values of the array, clone it first)</summary>
+        /// <returns>An string array with the fields names.</returns>
+        public string[] GetFieldsNames()
+        {
+            if (mFieldNames == null)
+            {
+                mFieldNames = new string[mRecordInfo.mFieldCount];
+                for (int i = 0; i < mFieldNames.Length; i++)
+                    mFieldNames[i] = mRecordInfo.mFields[i].mFieldInfo.Name;
+            }
+
+            return mFieldNames;
+        }
+
+
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines
 		{
