@@ -138,19 +138,11 @@ namespace FileHelpers.RunTime
 		internal static DelimitedClassBuilder LoadXmlInternal(XmlDocument document)
 		{
 			DelimitedClassBuilder res;
-			string del = document.ChildNodes[0].Attributes[0].Value;
+			string del = document.SelectNodes("/DelimitedClass")[0].Attributes["Delimiter"].Value;
 			
-			string className = document.ChildNodes.Item(0).SelectNodes("/DelimitedClass/ClassName").Item(0).InnerText;
-			
+			string className = document.SelectNodes("/DelimitedClass/ClassName")[0].InnerText;
+
 			res = new DelimitedClassBuilder(className, del);
-//			
-//			while(reader.mReader.EOF == false)
-//			{
-//				reader.ReadToNextElement();
-////				if (reader.mReader.LocalName == "IgnoreEmptyLines")
-//			}
-			
-			
 			return res;
 		}
 

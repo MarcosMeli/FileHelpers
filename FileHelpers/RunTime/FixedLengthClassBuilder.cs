@@ -154,11 +154,11 @@ namespace FileHelpers.RunTime
 		
 		internal static FixedLengthClassBuilder LoadXmlInternal(XmlDocument document)
 		{
-			//FixedLengthClassBuilder res;
-
-            FixedMode  mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.ChildNodes[0].Attributes[0].Value);
-			
-			string className = document.ChildNodes.Item(0).SelectNodes("/FixedLengthClass/ClassName").Item(0).InnerText;
+			// Note: for some reason, ReSharper complains about the use of the 2-argument form
+			// of Enum.Parse() used here (and elsewhere).  ReSharper marks it as a fatal error,
+			// despite the fact that the code compiles just fine, with no warnings.
+			FixedMode mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.SelectNodes("/FixedLengthClass")[0].Attributes["FixedMode"].Value);
+			string className = document.SelectNodes("/FixedLengthClass/ClassName")[0].InnerText;
 			
 			return new FixedLengthClassBuilder(className, mode);
 		}

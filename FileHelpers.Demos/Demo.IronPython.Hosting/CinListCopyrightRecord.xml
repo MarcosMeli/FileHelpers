@@ -1,14 +1,37 @@
-﻿<FixedLengthClass FixedMode="ExactLength">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The CIN List file should always contain one Copyright Record
+at the beginning of the file. -->
+<FixedLengthClass FixedMode="ExactLength">
 	<Namespace>USPS.FAST.DEPS.CinList</Namespace>
 	<ClassName>CopyrightRecord</ClassName>
 	<SealedClass />
 	<Fields>
+		<!-- Record type indicator; always "C" for the Copyright Record -->
 		<Field Name="CopyrightDetailCode" Type="System.String" Length="1" />
+
+		<!-- Unused blank filler space -->
 		<Field Name="Filler" Type="System.String" Length="5" />
+		
+		<!-- The literal string "COPYRIGHT(C)" -->
 		<Field Name="CopyrightStatementCode" Type="System.String" Length="12" />
+		
+		<!-- The date of the last update to this file.
+			 Note that since this date is NOT Y2K compliant, 
+		     using a DateTime field here could be problematic. -->
 		<Field Name="FileVersionDate" Type="System.String" Length="8" />
+
+		<!-- The literal string "USPS" -->
 		<Field Name="CopyrightOwner" Type="System.String" Length="4" />
+		
+		<!-- This field is undocumented in the file layout specification.
+			It also seems to always appear as "001", so it may only be 
+			included for legacy purposes and/or backward-compatibility. -->
 		<Field Name="VolumeSequenceNumber" Type="System.Int32" Length="3" />
+
+		<!-- Since the Detail records are larger than this Copyright Record,
+			the difference in record lengths is made up by this blank
+			padding field. -->
 		<Field Name="Padding" Type="System.String" Length="53" />
 	</Fields>
 </FixedLengthClass>

@@ -1,15 +1,51 @@
-﻿<FixedLengthClass FixedMode="ExactLength">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Except for one Copyright Record at the beginning of the file,
+all other lines in the CIN List file should be CIN List Detail Records. -->
+<FixedLengthClass FixedMode="ExactLength">
 	<Namespace>USPS.FAST.DEPS.CinList</Namespace>
 	<ClassName>DetailRecord</ClassName>
 	<SealedClass />
 	<Fields>
+		<!-- Record type indicator; always "D" for Detail Records -->
 		<Field Name="CopyrightDetailCode" Type="System.String" Length="1" />
+		
+		<!-- A 3-character "Content Identifier Number" code reflecting
+			 a certain combination of mail class, shape, sortation, etc.
+			 The purpose of this data file is to describe which 
+			 characteristics apply to each CIN.-->
 		<Field Name="CinCode" Type="System.String" Length="3" />
+		
+		<!-- A "3-state boolean" field indicating whether this CIN
+			 applies to palletized mail.  Possible values are
+			 "Y", "N", or "B" (for "both"). -->
 		<Field Name="PalletCode" Type="System.String" Length="1" />
+		
+		<!-- The primary mail class indicated by this CIN. -->
 		<Field Name="PrimaryMailClass" Type="System.String" Length="10" />
+
+		<!-- The secondary mail class (if any) indicated by this CIN. -->
 		<Field Name="SecondaryMailClass" Type="System.String" Length="10" />
+		
+		<!-- Describes the allowable "shapes" of mail for this CIN.
+			 Possible values are:
+			 "ALL"     - Any mail shape
+			 "LTRS"    - Letters
+			 "FLATS"   - Flats; approx. 9x12 inch envelopes
+			 "MACH"    - Machinable Parcels; boxes/packages of consistent dimensions
+			 "IRREG"   - Irregular Parcels; boxes/packages of variable dimensions
+			 "MCH IR"  - Machinable Irregular Parcels; can be processed by machinery 
+			 "PARCELS" - All types of parcels -->
 		<Field Name="MailShape" Type="System.String" Length="10" />
+		
+		<!-- 1-letter code indicating the postage discount available to this CIN
+			 if the mailing is drop-shipped to a certain type of postal facility:
+			 "A" = ADC, "B" = BMC, "S" = SCF, "D" = DDU -->
 		<Field Name="DiscountTypeCode" Type="System.String" Length="1" />
+		
+		<!-- Type of postal sortation which applies to this CIN. 
+			Examples: "5D BC" (5-digit Barcoded), "UPGR" (Upgradable), 
+			"ECRLOT" (Enhanced Carrier Route Line Of Travel), etc. -->
 		<Field Name="SortType" Type="System.String" Length="50" />
 	</Fields>
 </FixedLengthClass>

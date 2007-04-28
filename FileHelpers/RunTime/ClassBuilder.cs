@@ -756,47 +756,47 @@ namespace FileHelpers.RunTime
 			
 			XmlDocument document = new XmlDocument();
 			document.Load(filename);
-			
-			string classtype = document.ChildNodes[0].LocalName;
+
+		    string classtype = document.DocumentElement.LocalName;
 			
 			if (classtype == "DelimitedClass")
 				res = DelimitedClassBuilder.LoadXmlInternal(document);
 			else
 				res = FixedLengthClassBuilder.LoadXmlInternal(document);
-			
-			XmlNode node = document.ChildNodes.Item(0)["IgnoreLastLines"];
+
+            XmlNode node = document.DocumentElement["IgnoreLastLines"];
 			if (node != null) res.IgnoreLastLines = int.Parse(node.InnerText);
-			
-			node = document.ChildNodes.Item(0)["IgnoreFirstLines"];
+
+            node = document.DocumentElement["IgnoreFirstLines"];
 			if (node != null) res.IgnoreFirstLines = int.Parse(node.InnerText);
 
-			node = document.ChildNodes.Item(0)["IgnoreEmptyLines"];
+            node = document.DocumentElement["IgnoreEmptyLines"];
 			if (node != null) res.IgnoreEmptyLines = true;
-            
-            node = document.ChildNodes.Item(0)["CommentMarker"];
+
+            node = document.DocumentElement["CommentMarker"];
             if (node != null) res.IgnoreCommentedLines.CommentMarker = node.InnerText;
 
-            node = document.ChildNodes.Item(0)["CommentInAnyPlace"];
+            node = document.DocumentElement["CommentInAnyPlace"];
             if (node != null) res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLower());
 
-			node = document.ChildNodes.Item(0)["SealedClass"];
+            node = document.DocumentElement["SealedClass"];
             res.SealedClass = node != null;
 
-			node = document.ChildNodes.Item(0)["Namespace"];
+            node = document.DocumentElement["Namespace"];
 			if (node != null) res.Namespace = node.InnerText;
 
-			node = document.ChildNodes.Item(0)["Visibility"];
+            node = document.DocumentElement["Visibility"];
 			if (node != null) res.Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), node.InnerText);;
 
-            node = document.ChildNodes.Item(0)["RecordCondition"];
+            node = document.DocumentElement["RecordCondition"];
             if (node != null) res.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); ;
 
-            node = document.ChildNodes.Item(0)["RecordConditionSelector"];
+            node = document.DocumentElement["RecordConditionSelector"];
             if (node != null) res.RecordCondition.Selector = node.InnerText;
 
             res.ReadClassElements(document);
-			
-			node = document.ChildNodes.Item(0)["Fields"];
+
+            node = document.DocumentElement["Fields"];
 			XmlNodeList nodes ;
 				
 			if (classtype == "DelimitedClass")

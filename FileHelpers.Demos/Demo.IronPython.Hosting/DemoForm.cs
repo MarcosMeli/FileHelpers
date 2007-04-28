@@ -47,7 +47,7 @@ namespace Demo.IronPython.Hosting
         {
             StringBuilder errorMessage = new StringBuilder();
 
-            openFileDialog1.Filter = "Python Scripts (*.py; *.pyw)|*.py;*.pyw";
+            openFileDialog1.Filter = "test.py|test.py";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
