@@ -26,13 +26,14 @@ namespace FileHelpersTests.CommonTests
 		{
 			RunAlignTest();
 
-			Assert.AreEqual(6, res.Length);
+			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("ALFKI      ", res[0].CustomerID);
 			Assert.AreEqual("ANATR      ", res[1].CustomerID);
 			Assert.AreEqual("ANTON      ", res[2].CustomerID);
 			Assert.AreEqual("AROUT      ", res[3].CustomerID);
 			Assert.AreEqual("BERGS      ", res[4].CustomerID);
-			Assert.AreEqual("BLAUS      ", res[5].CustomerID);
+			Assert.AreEqual("           ", res[5].CustomerID);
+			Assert.AreEqual("BLAUS      ", res[6].CustomerID);
 		}
 
 
@@ -41,13 +42,14 @@ namespace FileHelpersTests.CommonTests
 		{
 			RunAlignTest();
 
-			Assert.AreEqual(6, res.Length);
+			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("                   Alfreds Futterkiste", res[0].CompanyName);
 			Assert.AreEqual("    Ana Trujillo Emparedados y helados", res[1].CompanyName);
 			Assert.AreEqual("               Antonio Moreno Taquería", res[2].CompanyName);
 			Assert.AreEqual("                       Around the Horn", res[3].CompanyName);
 			Assert.AreEqual("                     Berglunds snabbkp", res[4].CompanyName);
-			Assert.AreEqual("               Blauer See Delikatessen", res[5].CompanyName);
+			Assert.AreEqual("                                      ", res[5].CompanyName);
+			Assert.AreEqual("               Blauer See Delikatessen", res[6].CompanyName);
 		}
 
 		[Test]
@@ -55,13 +57,14 @@ namespace FileHelpersTests.CommonTests
 		{
 			RunAlignTest();
 
-			Assert.AreEqual(6, res.Length);
+			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("     Maria Anders     ", res[0].ContactName);
 			Assert.AreEqual("     Ana Trujillo     ", res[1].ContactName);
 			Assert.AreEqual("    Antonio Moreno    ", res[2].ContactName);
 			Assert.AreEqual("     Thomas Hardy     ", res[3].ContactName);
 			Assert.AreEqual("  Christina Berglund  ", res[4].ContactName);
-			Assert.AreEqual("      Hanna Moos      ", res[5].ContactName);
+			Assert.AreEqual("                      ", res[5].ContactName);
+			Assert.AreEqual("      Hanna Moos      ", res[6].ContactName);
 		}
 
 

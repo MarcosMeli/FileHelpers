@@ -63,7 +63,8 @@ namespace FileHelpers
 			if (mCustomExtractedString != null)
 				mCustomExtractedString = mCustomExtractedString.TrimStart(sortedToTrim);
 			else
-				while(ExtractedFrom < ExtractedTo&& Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
+				while (ExtractedFrom <= ExtractedTo &&
+					   Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
 					ExtractedFrom++;
 		}
 
@@ -72,7 +73,8 @@ namespace FileHelpers
 			if (mCustomExtractedString != null)
 				mCustomExtractedString = mCustomExtractedString.TrimEnd(sortedToTrim);
 			else
-				while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+				while (ExtractedTo >= ExtractedFrom && 
+					   Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
 					ExtractedTo--;
 		}
 
@@ -87,7 +89,7 @@ namespace FileHelpers
 					ExtractedFrom++;
 				}
 			
-				while(ExtractedTo > ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+				while(ExtractedTo >= ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
 				{
 					ExtractedTo--;
 				}
