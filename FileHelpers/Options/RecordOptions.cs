@@ -56,6 +56,14 @@ namespace FileHelpers
             return mFieldNames;
         }
 
+        /// <summary>Returns an string with the name of the field at the specified index</summary>
+        /// <returns>The name of the field.</returns>
+        /// <param name="index">The index of the field</param>
+        public string GetFieldName(int index)
+        {
+            return mRecordInfo.mFields[index].mFieldInfo.Name;
+        }
+
 
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines

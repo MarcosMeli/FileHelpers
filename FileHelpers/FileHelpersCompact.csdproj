@@ -128,6 +128,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Attributes\FieldArrayLength.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\FieldAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

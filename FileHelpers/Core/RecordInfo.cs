@@ -378,6 +378,7 @@ namespace FileHelpers
 		#endregion
 
 		#region GetFieldInfo
+
 		internal FieldInfo GetFieldInfo(string name)
 		{
 			foreach (FieldBase field in mFields)

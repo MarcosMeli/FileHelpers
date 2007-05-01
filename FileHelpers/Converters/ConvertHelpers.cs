@@ -54,8 +54,10 @@ namespace FileHelpers
 		{
             if (fieldType.IsArray)
             {
+#if !MINI
 				if (fieldType.GetArrayRank() != 1)
 					throw new BadUsageException("The array field: '" + fieldName + "' has more than one dimension and is not supported by the library.");
+#endif
 
                 fieldType = fieldType.GetElementType();
 
