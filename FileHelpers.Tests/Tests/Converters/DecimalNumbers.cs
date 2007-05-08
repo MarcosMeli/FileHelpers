@@ -72,5 +72,28 @@ namespace FileHelpersTests.Converters
 			public decimal DecimalField;
 
 		}
+
+
+
+        [Test]
+        public void DecimalsWithExponents()
+        {
+            engine = new FileHelperEngine(typeof(DecimalType));
+
+            DecimalType[] res;
+            res = (DecimalType[])Common.ReadTest(engine, @"Good\NumberFormat2.txt");
+
+            Assert.AreEqual(4, res.Length);
+
+            Assert.AreEqual(10248, res[0].IntField);
+            Assert.AreEqual(1024900, res[1].IntField);
+            
+            CheckDecimal((decimal)32.38, res[0]);
+            CheckDecimal((decimal)11.61E+03, res[1]);
+            CheckDecimal((decimal)81.91, res[2]);
+            CheckDecimal((decimal)65.83E+02, res[3]);
+
+        }
+
 	}
 }
