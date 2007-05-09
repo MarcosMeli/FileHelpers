@@ -357,8 +357,8 @@ namespace FileHelpers.Mapping
 		private static bool HasRows(IDataReader dr)
 		{
 #if NET_2_0
-			if (dr is System.Data.DbDataReader)
-				return ((System.Data.DbDataReader) dr).HasRows;
+			if (dr is System.Data.Common.DbDataReader)
+                return ((System.Data.Common.DbDataReader)dr).HasRows;
 #else
 			if (dr is System.Data.SqlClient.SqlDataReader)
 				return ((System.Data.SqlClient.SqlDataReader) dr).HasRows;

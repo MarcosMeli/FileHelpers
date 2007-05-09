@@ -16,8 +16,8 @@ namespace FileHelpers.Mapping
 {
 
 	/// <summary>
-    /// <para>A class to provide Record-DataTable operations.</para>
-    /// <para>(BETA QUALITY, use it at your own risk :P, API can change in future version)</para>
+    /// <para>A class to provide DataTable - DataReader - Records operations.</para>
+    /// <para>(Use it at your own risk, API can change a lot in future version)</para>
 	/// </summary>
 #if ! GENERICS
     public sealed class DataMapper
@@ -271,7 +271,7 @@ namespace FileHelpers.Mapping
 		}
 	
 		/// <summary>
-		/// For each row in the datatable create a record.
+		/// For each row in the data reader create a record and return them.
 		/// </summary>
 		/// <param name="dr">The source DataReader</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
@@ -284,20 +284,11 @@ namespace FileHelpers.Mapping
         {
             List<T> arr = new List<T>();
 #endif
-
             ExHelper.CheckNullParam(dr, "dr");
 
 			mMappings.TrimToSize();
 			
-
-			bool hasRows = true;
-			if (dr is System.Data.SqlClient.SqlDataReader)
-				hasRows = ((System.Data.SqlClient.SqlDataReader) dr).HasRows;
-			else if (dr is System.Data.OleDb.OleDbDataReader)
-				hasRows = ((System.Data.OleDb.OleDbDataReader) dr).HasRows;
-			
-
-			if (hasRows)
+			if (HasRows(dr))
 			{
 				while (dr.Read())
 				{
@@ -312,7 +303,71 @@ namespace FileHelpers.Mapping
         }
 
 	
-	
+		/// <summary>
+		/// For each row in the data reader create a record and write them to the file
+		/// </summary>
+		/// <param name="filename">The destination file path</param>
+		/// <param name="dr">The source DataReader</param>
+		public void MapDataReader2File(IDataReader dr, string filename)
+		{
+			ExHelper.CheckNullParam(dr, "dr");
+			ExHelper.CheckNullOrEmpty(filename, "filename");
+
+			mMappings.TrimToSize();
+			
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
+
+			engine.BeginWriteFile(filename);
+
+			if (HasRows(dr))
+			{
+				while (dr.Read())
+				{
+					engine.WriteNext(MapRow2Record(dr));
+				}
+			}
+
+			engine.Close();
+		}
+
+
+		/// <summary>
+		/// For each row in the data table create a record and write them to the file
+		/// </summary>
+		/// <param name="filename">The destination file path</param>
+		/// <param name="dt">The source Datatable</param>
+		public void MapDatatable2File(DataTable dt, string filename)
+		{
+			ExHelper.CheckNullParam(dt, "dt");
+			ExHelper.CheckNullOrEmpty(filename, "filename");
+
+			mMappings.TrimToSize();
+			
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
+			engine.BeginWriteFile(filename);
+
+			for(int i = 0; i < dt.Rows.Count; i++)
+			{
+				engine.WriteNext(MapRow2Record(dt.Rows[i]));
+			}
+
+			engine.Close();
+		}
+
+		private static bool HasRows(IDataReader dr)
+		{
+#if NET_2_0
+			if (dr is System.Data.Common.DbDataReader)
+                return ((System.Data.Common.DbDataReader)dr).HasRows;
+#else
+			if (dr is System.Data.SqlClient.SqlDataReader)
+				return ((System.Data.SqlClient.SqlDataReader) dr).HasRows;
+			else if (dr is System.Data.OleDb.OleDbDataReader)
+				return ((System.Data.OleDb.OleDbDataReader) dr).HasRows;
+#endif
+			return true;
+		}
+		
 	}
 
 
