@@ -284,20 +284,11 @@ namespace FileHelpers.Mapping
         {
             List<T> arr = new List<T>();
 #endif
-
             ExHelper.CheckNullParam(dr, "dr");
 
 			mMappings.TrimToSize();
 			
-
-			bool hasRows = true;
-			if (dr is System.Data.SqlClient.SqlDataReader)
-				hasRows = ((System.Data.SqlClient.SqlDataReader) dr).HasRows;
-			else if (dr is System.Data.OleDb.OleDbDataReader)
-				hasRows = ((System.Data.OleDb.OleDbDataReader) dr).HasRows;
-			
-
-			if (hasRows)
+			if (HasRows(dr))
 			{
 				while (dr.Read())
 				{
@@ -324,17 +315,11 @@ namespace FileHelpers.Mapping
 
 			mMappings.TrimToSize();
 			
-			bool hasRows = true;
-			if (dr is System.Data.SqlClient.SqlDataReader)
-				hasRows = ((System.Data.SqlClient.SqlDataReader) dr).HasRows;
-			else if (dr is System.Data.OleDb.OleDbDataReader)
-				hasRows = ((System.Data.OleDb.OleDbDataReader) dr).HasRows;
-
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
 
 			engine.BeginWriteFile(filename);
 
-			if (hasRows)
+			if (HasRows(dr))
 			{
 				while (dr.Read())
 				{
@@ -368,6 +353,21 @@ namespace FileHelpers.Mapping
 
 			engine.Close();
 		}
+
+		private static bool HasRows(IDataReader dr)
+		{
+#if NET_2_0
+			if (dr is System.Data.DbDataReader)
+				return ((System.Data.DbDataReader) dr).HasRows;
+#else
+			if (dr is System.Data.SqlClient.SqlDataReader)
+				return ((System.Data.SqlClient.SqlDataReader) dr).HasRows;
+			else if (dr is System.Data.OleDb.OleDbDataReader)
+				return ((System.Data.OleDb.OleDbDataReader) dr).HasRows;
+#endif
+			return true;
+		}
+		
 	}
 
 
