@@ -217,7 +217,14 @@ namespace FileHelpers
 					bool skip = false;
 #if !MINI
 					ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-					skip = OnBeforeReadRecord(currentLine);
+#if ! GENERICS
+                    BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
+#else
+                    BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
+#endif
+                    skip = OnBeforeReadRecord(e);
+                    if (e.RecordLineChanged)
+                        line.ReLoad(currentLine);
 #endif
 
 					if (skip == false)
@@ -806,13 +813,11 @@ namespace FileHelpers
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
         public event AfterWriteRecordHandler<T> AfterWriteRecord;
 
-		private bool OnBeforeReadRecord(string line)
+        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
 		{
 
 			if (BeforeReadRecord != null)
 			{
-				BeforeReadRecordEventArgs<T> e = null;
-				e = new BeforeReadRecordEventArgs<T>(line, LineNumber);
 				BeforeReadRecord(this, e);
 
 				return e.SkipThisRecord;

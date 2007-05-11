@@ -18,6 +18,8 @@ namespace FileHelpers
 
 		private int mLineNumber;
 
+        private bool mRecordLineChanged = false;
+
 		/// <summary>The current line number.</summary>
 		public int LineNumber
 		{
@@ -28,8 +30,18 @@ namespace FileHelpers
 		public string RecordLine
 		{
 			get { return mRecordLine; }
+            set 
+            { 
+                mRecordLine = value;
+                mRecordLineChanged = true; 
+            }
 		}
 
+        /// <summary>Whether the RecordLine property has been written-to.</summary>
+        public bool RecordLineChanged
+        {
+            get { return mRecordLineChanged; }
+        }
 	}
 
 	/// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
