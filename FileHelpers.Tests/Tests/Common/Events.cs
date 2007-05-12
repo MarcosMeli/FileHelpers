@@ -152,5 +152,35 @@ namespace FileHelpersTests.CommonTests
 			before++;
 		}
 
+
+
+
+        [Test(Description = "3 empty lines as input and the events give the original line")]
+        public void ChangeLineInEvent()
+        {
+            string input = "\n\n\n";
+            engine = new FileHelperEngine(typeof(SampleType));
+            engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEventChange);
+
+            SampleType[] res = (SampleType[]) engine.ReadString(input);
+
+            Assert.AreEqual(3, res.Length);
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
+            Assert.AreEqual("901", res[0].Field2);
+            Assert.AreEqual(234, res[0].Field3);
+
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[1].Field1);
+            Assert.AreEqual("901", res[2].Field2);
+            Assert.AreEqual(234, res[2].Field3);
+
+        }
+
+	    private static void BeforeEventChange(EngineBase engine, BeforeReadRecordEventArgs e)
+	    {
+            Assert.IsFalse(e.RecordLineChanged);
+	        e.RecordLine = "11121314901234";
+            Assert.IsTrue(e.RecordLineChanged);
+
+	    }
 	}
 }
