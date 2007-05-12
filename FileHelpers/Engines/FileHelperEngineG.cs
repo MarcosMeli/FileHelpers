@@ -224,7 +224,7 @@ namespace FileHelpers
 #endif
                     skip = OnBeforeReadRecord(e);
                     if (e.RecordLineChanged)
-                        line.ReLoad(currentLine);
+                        line.ReLoad(e.RecordLine);
 #endif
 
 					if (skip == false)
@@ -741,13 +741,11 @@ namespace FileHelpers
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
         public event AfterWriteRecordHandler AfterWriteRecord;
 
-		private bool OnBeforeReadRecord(string line)
+        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
 		{
 
 			if (BeforeReadRecord != null)
 			{
-				BeforeReadRecordEventArgs e = null;
-				e = new BeforeReadRecordEventArgs(line, LineNumber);
 				BeforeReadRecord(this, e);
 
 				return e.SkipThisRecord;
@@ -813,7 +811,7 @@ namespace FileHelpers
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
         public event AfterWriteRecordHandler<T> AfterWriteRecord;
 
-        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
+		private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
 		{
 
 			if (BeforeReadRecord != null)
@@ -878,7 +876,7 @@ namespace FileHelpers
 
 #endif
 
-		#endregion
+        #endregion
 
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
