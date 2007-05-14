@@ -90,7 +90,7 @@ namespace FileHelpers
         /// <summary>Returns the type of the field at the specified index</summary>
         /// <returns>The type of the field.</returns>
         /// <param name="index">The index of the field</param>
-        public string GetFieldType(int index)
+        public Type GetFieldType(int index)
         {
             return mRecordInfo.mFields[index].mFieldInfo.FieldType;
         }
