@@ -11,9 +11,9 @@ namespace FileHelpers
     [EditorBrowsable(EditorBrowsableState.Advanced)]
 	public abstract class RecordOptions
 	{
-		
+
 #if NET_2_0
-    [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         internal RecordInfo mRecordInfo;
 	
@@ -40,9 +40,12 @@ namespace FileHelpers
         //    }
         //}
 
-        string[] mFieldNames;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private string[] mFieldNames;
 
-        /// <summary>Returns an string array with the fields names. (You cant change the values of the array, clone it first)</summary>
+        /// <summary>Returns an string array with the fields names. (You mustn´t change the values of the array, clone it first if you need it)</summary>
         /// <returns>An string array with the fields names.</returns>
         public string[] GetFieldsNames()
         {
@@ -63,8 +66,36 @@ namespace FileHelpers
         {
             return mRecordInfo.mFields[index].mFieldInfo.Name;
         }
+        
 
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private Type[] mFieldTypes;
 
+        /// <summary>Returns a Type[] array with the fields types. (You mustn´t change the values of the array, clone it first if you need it)</summary>
+        /// <returns>An Type[] array with the fields types.</returns>
+        public Type[] GetFieldsTypes()
+        {
+            if (mFieldTypes == null)
+            {
+                mFieldTypes = new Type[mRecordInfo.mFieldCount];
+                for (int i = 0; i < mFieldTypes.Length; i++)
+                    mFieldTypes[i] = mRecordInfo.mFields[i].mFieldInfo.FieldType;
+            }
+
+            return mFieldTypes;
+        }
+
+        /// <summary>Returns the type of the field at the specified index</summary>
+        /// <returns>The type of the field.</returns>
+        /// <param name="index">The index of the field</param>
+        public string GetFieldType(int index)
+        {
+            return mRecordInfo.mFields[index].mFieldInfo.FieldType;
+        }
+
+        
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines
 		{
@@ -94,7 +125,10 @@ namespace FileHelpers
 			set { mRecordInfo.mIgnoreEmptyLines= value; }
 		}
 
-		private RecordConditionInfo mRecordConditionInfo;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private RecordConditionInfo mRecordConditionInfo;
 		
 		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
         public RecordConditionInfo RecordCondition
@@ -103,7 +137,10 @@ namespace FileHelpers
         }
 
 
-		private IgnoreCommentInfo mIgnoreCommentInfo;
+#if NET_2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+        private IgnoreCommentInfo mIgnoreCommentInfo;
 
 		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
 		public IgnoreCommentInfo IgnoreCommentedLines
@@ -115,7 +152,11 @@ namespace FileHelpers
         [EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class RecordConditionInfo
         {
+#if NET_2_0
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
             RecordInfo mRecordInfo;
+
             internal RecordConditionInfo(RecordInfo ri)
             {
                 mRecordInfo = ri;
@@ -142,8 +183,12 @@ namespace FileHelpers
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class IgnoreCommentInfo
 		{
-			RecordInfo mRecordInfo;
-			internal IgnoreCommentInfo(RecordInfo ri)
+#if NET_2_0
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
+            RecordInfo mRecordInfo;
+			
+            internal IgnoreCommentInfo(RecordInfo ri)
 			{
 				mRecordInfo = ri;
 			}

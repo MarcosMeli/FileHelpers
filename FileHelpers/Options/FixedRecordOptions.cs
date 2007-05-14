@@ -33,7 +33,7 @@ namespace FileHelpers
 		}
 
 #if NET_2_0
-        [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private int mRecordLength = int.MinValue;
 
