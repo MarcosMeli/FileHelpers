@@ -656,90 +656,16 @@ namespace FileHelpers
 
 #if ! MINI
 
-#if NET_1_1
-	/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-	public event BeforeReadRecordHandler BeforeReadRecord;
-	/// <summary>Called in read operations just after the record was created from a record string.</summary>
-	public event AfterReadRecordHandler AfterReadRecord;
-	/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-	public event BeforeWriteRecordHandler BeforeWriteRecord;
-	/// <summary>Called in write operations just after the record was converted to a string.</summary>
-	public event AfterWriteRecordHandler AfterWriteRecord;
-
-			
-		private bool OnBeforeReadRecord(string line)
-		{
-
-			if (BeforeReadRecord != null)
-			{
-				BeforeReadRecordEventArgs e = null;
-				e = new BeforeReadRecordEventArgs(line, mLineNumber);
-				BeforeReadRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private bool OnAfterReadRecord(string line, object record)
-		{
-			if (mRecordInfo.mNotifyRead)
-				((INotifyRead)record).AfterRead(this, line);
-
-		    if (AfterReadRecord != null)
-			{
-				AfterReadRecordEventArgs e = null;
-				e = new AfterReadRecordEventArgs(line, record, mLineNumber);
-				AfterReadRecord(this, e);
-				return e.SkipThisRecord;
-			}
-			
-			return false;
-		}
-
-		private bool OnBeforeWriteRecord(object record)
-		{
-			if (mRecordInfo.mNotifyWrite)
-				((INotifyWrite)record).BeforeWrite(this);
-
-		    if (BeforeWriteRecord != null)
-			{
-				BeforeWriteRecordEventArgs e = null;
-				e = new BeforeWriteRecordEventArgs(record, mLineNumber);
-				BeforeWriteRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private string OnAfterWriteRecord(string line, object record)
-		{
-
-			if (AfterWriteRecord != null)
-			{
-				AfterWriteRecordEventArgs e = null;
-				e = new AfterWriteRecordEventArgs(record, mLineNumber, line);
-				AfterWriteRecord(this, e);
-				return e.RecordLine;
-			}
-			return line;
-		}
-
-#else
-
 #if ! GENERICS
 
-        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public event BeforeReadRecordHandler BeforeReadRecord;
-        /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public event AfterReadRecordHandler AfterReadRecord;
-        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public event BeforeWriteRecordHandler BeforeWriteRecord;
-        /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public event AfterWriteRecordHandler AfterWriteRecord;
+		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
+		public event BeforeReadRecordHandler BeforeReadRecord;
+		/// <summary>Called in read operations just after the record was created from a record string.</summary>
+		public event AfterReadRecordHandler AfterReadRecord;
+		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+		public event BeforeWriteRecordHandler BeforeWriteRecord;
+		/// <summary>Called in write operations just after the record was converted to a string.</summary>
+		public event AfterWriteRecordHandler AfterWriteRecord;
 
         private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
 		{
@@ -874,7 +800,7 @@ namespace FileHelpers
 
 #endif
 
-#endif
+
 
         #endregion
 

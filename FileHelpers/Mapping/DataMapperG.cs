@@ -302,13 +302,23 @@ namespace FileHelpers.Mapping
 #endif
         }
 
-	
 		/// <summary>
 		/// For each row in the data reader create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
 		/// <param name="dr">The source DataReader</param>
 		public void MapDataReader2File(IDataReader dr, string filename)
+		{
+			MapDataReader2File(dr, filename, false);
+		}
+	
+		/// <summary>
+		/// For each row in the data reader create a record and write them to the file
+		/// </summary>
+		/// <param name="filename">The destination file path</param>
+		/// <param name="dr">The source DataReader</param>
+		/// <param name="append">Indicates if the engine must append to the file or create a new one</param>
+		public void MapDataReader2File(IDataReader dr, string filename, bool append)
 		{
 			ExHelper.CheckNullParam(dr, "dr");
 			ExHelper.CheckNullOrEmpty(filename, "filename");
@@ -317,7 +327,10 @@ namespace FileHelpers.Mapping
 			
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
 
-			engine.BeginWriteFile(filename);
+			if (append)
+				engine.BeginAppendToFile(filename);
+			else
+				engine.BeginWriteFile(filename);
 
 			if (HasRows(dr))
 			{
@@ -330,13 +343,22 @@ namespace FileHelpers.Mapping
 			engine.Close();
 		}
 
-
 		/// <summary>
 		/// For each row in the data table create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
 		/// <param name="dt">The source Datatable</param>
-		public void MapDatatable2File(DataTable dt, string filename)
+		public void MapDataTable2File(DataTable dt, string filename)
+		{
+			MapDataTable2File(dt, filename, false);
+		}
+		/// <summary>
+		/// For each row in the data table create a record and write them to the file
+		/// </summary>
+		/// <param name="filename">The destination file path</param>
+		/// <param name="dt">The source Datatable</param>
+		/// <param name="append">Indicates if the engine must append to the file or create a new one</param>
+		public void MapDataTable2File(DataTable dt, string filename, bool append)
 		{
 			ExHelper.CheckNullParam(dt, "dt");
 			ExHelper.CheckNullOrEmpty(filename, "filename");
@@ -344,7 +366,11 @@ namespace FileHelpers.Mapping
 			mMappings.TrimToSize();
 			
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
-			engine.BeginWriteFile(filename);
+			
+			if (append)
+				engine.BeginAppendToFile(filename);
+			else
+				engine.BeginWriteFile(filename);
 
 			for(int i = 0; i < dt.Rows.Count; i++)
 			{
