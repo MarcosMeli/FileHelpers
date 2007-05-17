@@ -57,8 +57,8 @@ namespace FileHelpers.RunTime
 		public static Type ClassFromString(string classStr, string className, NetLanguage lang)
 		{
 	    	CompilerParameters cp = new CompilerParameters();
-			cp.ReferencedAssemblies.Add("system.dll");
-			cp.ReferencedAssemblies.Add("system.data.dll");
+			cp.ReferencedAssemblies.Add("System.dll");
+			cp.ReferencedAssemblies.Add("System.Data.dll");
 			cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
 			cp.GenerateExecutable = false;
 			cp.GenerateInMemory = true;
