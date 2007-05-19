@@ -91,7 +91,7 @@
 
 	   <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
 
-       <copy file="..\..\Release\DotNet 1.1\FileHelpers.dll" todir="..\FileHelpers.CodeExamples\References" />
+       <copy file="..\..\Release\DotNet_1.1\FileHelpers.dll" todir="..\FileHelpers.CodeExamples\References" />
    </target>
 
    <target name="generate2003" depends="build2003">
@@ -264,23 +264,23 @@
            </fileset>
        </copy>
 
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 1.1">
-           <fileset basedir="..\..\Release\DotNet 1.1">
+       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_1.1">
+           <fileset basedir="..\..\Release\DotNet_1.1">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 1.1 PPC">
-           <fileset basedir="..\..\Release\DotNet 1.1 PPC">
+       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_1.1_PPC">
+           <fileset basedir="..\..\Release\DotNet_1.1_PPC">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 2.0">
-           <fileset basedir="..\..\Release\DotNet 2.0">
+       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_2.0">
+           <fileset basedir="..\..\Release\DotNet_2.0">
                <include name="*\**" />
            </fileset>
        </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet 2.0 PPC">
-           <fileset basedir="..\..\Release\DotNet 2.0 PPC">
+       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_2.0_PPC">
+           <fileset basedir="..\..\Release\DotNet_2.0_PPC">
                <include name="*\**" />
            </fileset>
        </copy>

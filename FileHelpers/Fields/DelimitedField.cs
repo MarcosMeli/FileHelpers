@@ -16,15 +16,16 @@ namespace FileHelpers
 
 		#region "  Constructor  "
 
-		internal DelimitedField(FieldInfo fi, string sep) : base(fi)
+        private static CompareInfo mCompare = StringHelper.CreateComparer();
+        
+        internal DelimitedField(FieldInfo fi, string sep)
+            : base(fi)
 		{
-			Separator = sep;
+            Separator = sep; // string.Intern(sep);
 		}
 
 		#endregion
 
-		private static CompareInfo mCompare = StringHelper.CreateComparer();
-		
 		#region "  Properties  "
 
 		private string mSeparator;
