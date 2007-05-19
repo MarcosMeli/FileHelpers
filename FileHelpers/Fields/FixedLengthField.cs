@@ -10,7 +10,7 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal sealed class FixedLengthField : FieldBase
+	public sealed class FixedLengthField : FieldBase
 	{
 		#region "  Properties  "
 
@@ -52,7 +52,7 @@ namespace FileHelpers
 
 		#region "  Overrides String Handling  "
 
-		protected override ExtractedInfo ExtractFieldString(LineInfo line)
+        internal override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
 			if (line.CurrentLength == 0)
 			{
@@ -82,7 +82,7 @@ namespace FileHelpers
 			return res;
 		}
 
-		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
+        internal override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
 			string field = base.CreateFieldString(fieldValue);
 

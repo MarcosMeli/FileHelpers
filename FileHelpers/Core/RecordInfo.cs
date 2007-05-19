@@ -273,7 +273,7 @@ namespace FileHelpers
 				if (mRecordCondition == RecordCondition.ExcludeIfMatchRegex ||
 					mRecordCondition == RecordCondition.IncludeIfMatchRegex)
 				{
-					mConditionRegEx = new Regex(mRecordConditionSelector, RegexOptions.Compiled | RegexOptions.CultureInvariant |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+					mConditionRegEx = new Regex(mRecordConditionSelector, RegexOptions.Compiled |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
 				}
 				#endif
 			}

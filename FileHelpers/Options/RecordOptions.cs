@@ -12,6 +12,8 @@ namespace FileHelpers
 	public abstract class RecordOptions
 	{
 
+
+
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif

@@ -13,8 +13,19 @@ namespace FileHelpers
 {
 
 	/// <summary>Base class for all Field Types. Implements all the basic functionality of a field in a typed file.</summary>
-	internal abstract class FieldBase
+	public abstract class FieldBase
 	{
+
+        public string FielName
+        {
+            get { return mFieldInfo.Name; }
+        }
+
+        public Type FielType
+        {
+            get { return mFieldType; }
+        }
+
 		#region "  Private & Internal Fields  "
 
 		private static Type strType = typeof (string);
@@ -48,7 +59,7 @@ namespace FileHelpers
 
 		#region "  Constructor  " 
 
-		protected FieldBase(FieldInfo fi)
+		internal FieldBase(FieldInfo fi)
 		{
 			mFieldInfo = fi;
 			mFieldType = mFieldInfo.FieldType;
@@ -104,11 +115,11 @@ namespace FileHelpers
 
 		#region "  MustOverride (String Handling)  " 
 
-		protected abstract ExtractedInfo ExtractFieldString(LineInfo line);
+		internal abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
-		protected abstract void CreateFieldString(StringBuilder sb, object fieldValue);
+        internal abstract void CreateFieldString(StringBuilder sb, object fieldValue);
 
-		protected string CreateFieldString(object fieldValue)
+        internal string CreateFieldString(object fieldValue)
 		{
 			if (mConvertProvider == null)
 			{
@@ -127,7 +138,7 @@ namespace FileHelpers
 			}
 		}
 
-		protected int mCharsToDiscard = 0;
+		internal int mCharsToDiscard = 0;
 
 		#endregion
 

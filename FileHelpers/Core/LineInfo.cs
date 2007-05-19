@@ -103,7 +103,7 @@ namespace FileHelpers
 			if (mCurrentPos >= mLineStr.Length)
 				return false;
 			else
-				return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.IgnoreCase) == 0;
+				return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.OrdinalIgnoreCase) == 0;
 		}
 
 		public bool StartsWithTrim(string str)
@@ -116,7 +116,7 @@ namespace FileHelpers
 				pos++;
 			}
 			
-			return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.IgnoreCase) == 0;
+			return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.OrdinalIgnoreCase) == 0;
 		}
 
 		public void ReadNextLine()
@@ -127,7 +127,7 @@ namespace FileHelpers
 			mCurrentPos = 0;
 		}
 		
-		private static CompareInfo mCompare = CultureInfo.InvariantCulture.CompareInfo;
+		private static CompareInfo mCompare = StringHelper.CreateComparer();
 
 		
 		public int IndexOf(string foundThis)
@@ -152,7 +152,7 @@ namespace FileHelpers
 //			if (mLineStr == null)
 //				return -1;
 //			else
-				return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.IgnoreCase);
+				return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.Ordinal);
 		}
 
 		internal void ReLoad(string line)

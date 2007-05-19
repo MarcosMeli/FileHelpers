@@ -11,8 +11,9 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal sealed class DelimitedField : FieldBase
+	public sealed class DelimitedField : FieldBase
 	{
+
 		#region "  Constructor  "
 
 		internal DelimitedField(FieldInfo fi, string sep) : base(fi)
@@ -22,7 +23,7 @@ namespace FileHelpers
 
 		#endregion
 
-		private static CompareInfo mCompare = CultureInfo.InvariantCulture.CompareInfo;
+		private static CompareInfo mCompare = StringHelper.CreateComparer();
 		
 		#region "  Properties  "
 
@@ -51,7 +52,7 @@ namespace FileHelpers
 		#region "  Overrides String Handling  "
 
 
-		protected override ExtractedInfo ExtractFieldString(LineInfo line)
+		internal override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
 			if (mIsOptional && line.IsEOL() )
 				return ExtractedInfo.Empty;
@@ -135,7 +136,7 @@ namespace FileHelpers
 						else
 							msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line " + line.mReader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
 
-						throw new FileHelpersException(msg);
+						throw new FileHelpersException(line.mReader.LineNumber, line.mCurrentPos, msg);
 
 					}
 					else
@@ -147,11 +148,11 @@ namespace FileHelpers
 			return res;
 		}
 
-		protected override void CreateFieldString(StringBuilder sb, object fieldValue)
+        internal override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
 			string field = base.CreateFieldString(fieldValue);
 
-			bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine) >= 0;
+            bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
 
 			// If have a new line and this is not allowed throw an exception
 			if (hasNewLine &&
@@ -168,7 +169,7 @@ namespace FileHelpers
 				(mQuoteMode == QuoteMode.AlwaysQuoted || 
 					mQuoteMode == QuoteMode.OptionalForRead || 
 					( (mQuoteMode == QuoteMode.OptionalForWrite || mQuoteMode == QuoteMode.OptionalForBoth)  
-					&& mCompare.IndexOf(field, mSeparator) >= 0) || hasNewLine))
+					&& mCompare.IndexOf(field, mSeparator, CompareOptions.Ordinal) >= 0) || hasNewLine))
 				StringHelper.CreateQuotedString(sb, field, mQuoteChar);
 			else
 				sb.Append(field);

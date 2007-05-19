@@ -382,8 +382,6 @@ namespace FileHelpers
 				mFormat = format;
 			}
 
-            //static CultureInfo mInvariant = System.Globalization.CultureInfo.InvariantCulture;
-
 			public override object StringToField(string from)
 			{
 				if (from == null) from = string.Empty;

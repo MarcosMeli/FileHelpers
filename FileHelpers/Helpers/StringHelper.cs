@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Globalization;
 
 namespace FileHelpers
 {
@@ -22,8 +23,7 @@ namespace FileHelpers
 		#else
 			internal static readonly string NewLine = "\r\n";
 		#endif
-
-
+        
 
 		#region "  ExtractQuotedString  "
 
@@ -155,66 +155,14 @@ namespace FileHelpers
         }
 
 		#endregion
-//
-//		#region "  ExtractQuotedString  "
-//
-//		internal static string ExtractQuotedString(string source, char quoteChar, out int index)
-//		{
-//			StringBuilder res = new StringBuilder(32);
-//			bool beginEscape = false;
-//
-//
-//			if (source == null || source.Length == 0)
-//
-//
-//				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
-//
-//
-//			if (source[0] != quoteChar)
-//				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
-//
-//			index = 0;
-//			int i = 1;
-//			while (i < source.Length)
-//			{
-//				if (source[i] == quoteChar)
-//				{
-//					if (beginEscape == true)
-//					{
-//						beginEscape = false;
-//						res.Append(quoteChar);
-//					}
-//					else
-//					{
-//						beginEscape = true;
-//					}
-//				}
-//				else
-//				{
-//					if (beginEscape)
-//					{
-//						// End of the String
-//						index = i;
-//						return res.ToString();
-//					}
-//					else
-//					{
-//						res.Append(source[i]);
-//					}
-//				}
-//
-//				i++;
-//			}
-//			if (beginEscape)
-//			{
-//				index = i;
-//				return res.ToString();
-//			}
-//			else
-//				throw new BadUsageException("The current field has an UnClosed quoted string. Complete line: " + source);
-//		}
-//
-//		#endregion
 
-	}
+	    private static CultureInfo mCulture;
+        internal static CompareInfo CreateComparer()
+        {
+            if (mCulture == null)
+                mCulture = CultureInfo.InvariantCulture; // new CultureInfo("en-us");
+
+            return mCulture.CompareInfo;
+        }
+    }
 }
