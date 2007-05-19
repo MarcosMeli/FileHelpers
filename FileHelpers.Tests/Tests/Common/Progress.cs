@@ -32,7 +32,7 @@ namespace FileHelpersTests.CommonTests
 		public void WriteFileNotifyRecord()
 		{
 			actual = 0;
-			actualAdd = 1;
+			actualAdd = 1; 
 			engine = new FileHelperEngine(typeof (SampleType));
 			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
 
