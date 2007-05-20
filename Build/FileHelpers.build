@@ -69,7 +69,7 @@
    
    <target name="build2003" depends="common">
    <if test="${not property::exists('Vs8Path')}">
-		<if test="${not property::exists('Vs9Path')}">
+		<if test="${property::exists('Vs9Path')}">
 			<echo message="-----------------------------------------------------------" />
 			<echo message="" />
 			<echo message="You dont have Visual Studio 2003 installed on your system" />
@@ -211,7 +211,7 @@
    
    <target name="build2005" depends="common">
    <if test="${not property::exists('Vs9Path')}">
-		<if test="${not property::exists('Vs8Path')}">
+		<if test="${property::exists('Vs8Path')}">
 			<echo message="-----------------------------------------------------------" />
 			<echo message="" />
 			<echo message="You dont have Visual Studio 2005 installed on your system" />
