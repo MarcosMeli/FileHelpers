@@ -90,12 +90,12 @@
                     HintPath = "..\Libs\nunit\nunit.framework.dll"
                 />
                 <Reference
-                    Name = "FileHelpers"
+                    Name = "FileHelpers.2003"
                     Project = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "FileHelpers.ExcelStorage"
+                    Name = "FileHelpers.ExcelStorage.2003"
                     Project = "{B3F2B976-73D5-49C7-BEAA-BF62E233132A}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />

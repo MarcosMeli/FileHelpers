@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{B3F2B976-73D5-49C7-BEAA-BF62E233132A}"
     >
@@ -80,7 +80,7 @@
                     HintPath = "..\References\Interop.Excel.dll"
                 />
                 <Reference
-                    Name = "FileHelpers"
+                    Name = "FileHelpers.2003"
                     Project = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />

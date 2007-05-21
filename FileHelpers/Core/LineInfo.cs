@@ -103,7 +103,11 @@ namespace FileHelpers
 			if (mCurrentPos >= mLineStr.Length)
 				return false;
 			else
+#if NET_2_0
 				return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.OrdinalIgnoreCase) == 0;
+#else
+				return mCompare.Compare(mLineStr, mCurrentPos, str.Length, str, 0, str.Length, CompareOptions.IgnoreCase) == 0;
+#endif
 		}
 
 		public bool StartsWithTrim(string str)
@@ -116,7 +120,11 @@ namespace FileHelpers
 				pos++;
 			}
 			
+#if NET_2_0
 			return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.OrdinalIgnoreCase) == 0;
+#else
+			return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.IgnoreCase) == 0;
+#endif
 		}
 
 		public void ReadNextLine()
