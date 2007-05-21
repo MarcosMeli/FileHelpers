@@ -141,7 +141,7 @@ namespace FileHelpers
 
 					}
 					else
-						sepPos = line.mLine.Length - 1;
+						sepPos = line.mLine.Length;
 				}
 
 				res = new ExtractedInfo(line, sepPos);
