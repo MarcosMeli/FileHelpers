@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!--EXTERNAL_PROPERTIES: LibraryVersion;LibraryFileVersion-->
 <project name="DevFramework" default="build2005">
    <property name="BaseDir" value="&quot;.\&quot;" />
    
