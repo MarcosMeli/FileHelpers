@@ -235,7 +235,7 @@ test65@test.com
 test66@test.com
 test67@test.com
 test68@test.com
-test69@test.com
+""test69@test.com""
 test70@test.com
 test71@test.com
 test72@test.com
@@ -252,7 +252,7 @@ test82@test.com
 test83@test.com
 test84@test.com
 test85@test.com
-test86@test.com
+""test86@test.com""
 test87@test.com
 test88@test.com
 test89@test.com
@@ -288,7 +288,7 @@ test118@test.com
 test119@test.com
 test120@test.com
 test121@test.com
-test122@test.com
+""test122@test.com""
 test123@test.com
 test124@test.com
 test125@test.com
@@ -364,7 +364,8 @@ test150@test.com";
 public class RecipientImport
 {
 
-	public string Email;
+    [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+    public string Email;
 	[FieldOptional()]
 	public string FirstName;
 	[FieldOptional()]
