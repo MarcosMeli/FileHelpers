@@ -243,6 +243,13 @@
 
    <target name="generate2005" depends="build2005">
 
+	   <copy todir="..\..\Release\Demos\DotNet_2.0\IronPython">
+		   <fileset basedir="..\FileHelpers.Demos\IronPython">
+			   <include name="*.*" />
+			   <exclude name=".svn" />
+		   </fileset>
+	   </copy>
+
        <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Demos">
            <fileset basedir="..\..\Release\Demos">
                <include name="**/*.dll" />
@@ -253,6 +260,10 @@
        <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Demos">
            <fileset basedir="..\..\Release\Demos">
                <include name="*.*" />
+               <include name="**/*.py" />
+               <include name="**/*.bat" />
+               <include name="**/*.xml" />
+               <include name="**/READ ME.txt" />
            </fileset>
        </copy>
 

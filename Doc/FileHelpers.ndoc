@@ -1,7 +1,7 @@
 <project SchemaVersion="1.3">
     <assemblies>
-        <assembly location="..\..\Release\DotNet 1.1\FileHelpers.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.xml" />
-        <assembly location="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.dll" documentation="..\..\Release\DotNet 1.1\FileHelpers.ExcelStorage.xml" />
+        <assembly location="..\..\Release\DotNet_1.1\FileHelpers.dll" documentation="..\..\Release\DotNet_1.1\FileHelpers.xml" />
+        <assembly location="..\..\Release\DotNet_1.1\FileHelpers.ExcelStorage.dll" documentation="..\..\Release\DotNet_1.1\FileHelpers.ExcelStorage.xml" />
     </assemblies>
     <namespaces>
         <namespace name="FileHelpers">The <b>main namespace</b> of the library.<br />You must import always this namespace to work with the FileHelpers.<br /><br />Go directly to the Engine classes <a href="FileHelpers.FileHelperEngine.html"><b><span style="font-size: 10pt">FileHelperEngine</span></b></a> and <a href="FileHelpers.FileHelperAsyncEngine.html"><b><span style="font-size: 10pt">FileHelperAsyncEngine</span></b></a>. You can also check the <a href="FileHelpers.CommonEngine.html"><b><span style="font-size: 10pt">CommonEngine</span></b></a> for shortcuts to the common operations.<br /><br />You can also check the advanced engines <a href="FileHelpers.MultiRecordEngine.html"><b><span style="font-size: 10pt">MultiRecordEngine</span></b></a>, <a href="FileHelpers.FileTransformEngine.html"><b><span style="font-size: 10pt">FileTransformEngine</span></b></a>, the <a href="FileHelpers.FileDiffEngine.html"><b><span style="font-size: 10pt">FileDiffEngine</span></b></a>. <br />Engines Diagram:<br />
