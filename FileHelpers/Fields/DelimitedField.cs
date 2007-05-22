@@ -11,7 +11,7 @@ using System.Text;
 
 namespace FileHelpers
 {
-	public sealed class DelimitedField : FieldBase
+	internal sealed class DelimitedField : FieldBase
 	{
 
 		#region "  Constructor  "

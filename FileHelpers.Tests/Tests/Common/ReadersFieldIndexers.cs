@@ -159,7 +159,7 @@ namespace FileHelpersTests.CommonTests
         public void FieldNames()
         {
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-            string[] names = engine.Options.GetFieldsNames();
+            string[] names = engine.Options.FieldsNames;
 
             Assert.AreEqual(3, names.Length);
             Assert.AreEqual("Field1", names[0]);
@@ -168,6 +168,18 @@ namespace FileHelpersTests.CommonTests
 
         }
 
+		[Test]
+		public void FieldTypes()
+		{
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			Type[] types = engine.Options.FieldsTypes;
+
+			Assert.AreEqual(3, types.Length);
+			Assert.AreEqual(typeof(DateTime), types[0]);
+			Assert.AreEqual(typeof(string), types[1]);
+			Assert.AreEqual(typeof(int), types[2]);
+
+		}
 
 	}
 }

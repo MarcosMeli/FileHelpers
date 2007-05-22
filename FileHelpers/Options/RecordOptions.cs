@@ -49,25 +49,21 @@ namespace FileHelpers
 
         /// <summary>Returns an string array with the fields names. (You mustn´t change the values of the array, clone it first if you need it)</summary>
         /// <returns>An string array with the fields names.</returns>
-        public string[] GetFieldsNames()
+        public string[] FieldsNames
         {
-            if (mFieldNames == null)
-            {
-                mFieldNames = new string[mRecordInfo.mFieldCount];
-                for (int i = 0; i < mFieldNames.Length; i++)
-                    mFieldNames[i] = mRecordInfo.mFields[i].mFieldInfo.Name;
-            }
+			get
+			{
+				if (mFieldNames == null)
+				{
+					mFieldNames = new string[mRecordInfo.mFieldCount];
+					for (int i = 0; i < mFieldNames.Length; i++)
+						mFieldNames[i] = mRecordInfo.mFields[i].mFieldInfo.Name;
+				}
 
-            return mFieldNames;
+				return mFieldNames;
+			}
         }
 
-        /// <summary>Returns an string with the name of the field at the specified index</summary>
-        /// <returns>The name of the field.</returns>
-        /// <param name="index">The index of the field</param>
-        public string GetFieldName(int index)
-        {
-            return mRecordInfo.mFields[index].mFieldInfo.Name;
-        }
         
 
 #if NET_2_0
@@ -77,25 +73,28 @@ namespace FileHelpers
 
         /// <summary>Returns a Type[] array with the fields types. (You mustn´t change the values of the array, clone it first if you need it)</summary>
         /// <returns>An Type[] array with the fields types.</returns>
-        public Type[] GetFieldsTypes()
+        public Type[] FieldsTypes
         {
-            if (mFieldTypes == null)
-            {
-                mFieldTypes = new Type[mRecordInfo.mFieldCount];
-                for (int i = 0; i < mFieldTypes.Length; i++)
-                    mFieldTypes[i] = mRecordInfo.mFields[i].mFieldInfo.FieldType;
-            }
+			get
+			{
+				if (mFieldTypes == null)
+				{
+					mFieldTypes = new Type[mRecordInfo.mFieldCount];
+					for (int i = 0; i < mFieldTypes.Length; i++)
+						mFieldTypes[i] = mRecordInfo.mFields[i].mFieldInfo.FieldType;
+				}
 
-            return mFieldTypes;
+				return mFieldTypes;
+			}
         }
 
-        /// <summary>Returns the type of the field at the specified index</summary>
-        /// <returns>The type of the field.</returns>
-        /// <param name="index">The index of the field</param>
-        public Type GetFieldType(int index)
-        {
-            return mRecordInfo.mFields[index].mFieldInfo.FieldType;
-        }
+//        /// <summary>Returns the type of the field at the specified index</summary>
+//        /// <returns>The type of the field.</returns>
+//        /// <param name="index">The index of the field</param>
+//        public Type GetFieldType(int index)
+//        {
+//            return mRecordInfo.mFields[index].mFieldInfo.FieldType;
+//        }
 
         
 		/// <summary>Indicates the number of first lines to be discarded.</summary>

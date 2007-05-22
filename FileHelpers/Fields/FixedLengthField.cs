@@ -10,7 +10,7 @@ using System.Text;
 
 namespace FileHelpers
 {
-	public sealed class FixedLengthField : FieldBase
+	internal sealed class FixedLengthField : FieldBase
 	{
 		#region "  Properties  "
 
