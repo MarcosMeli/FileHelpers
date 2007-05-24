@@ -18,28 +18,64 @@ namespace FileHelpersTests.CommonTests
 			ArrayType1[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType1[];
 
 			SimpleComparer(res);
+        }
 
-		}
+        [Test]
+        public void ArrayFields2()
+        {
+            engine = new FileHelperEngine(typeof(ArrayType3));
+            ArrayType3[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType3[];
 
-		private static void SimpleComparer(ArrayType1[] res)
+            SimpleComparer2(res);
+        }
+
+        [Test]
+        public void ArrayFieldsDelimited()
+        {
+            engine = new FileHelperEngine(typeof(ArrayTypeDelimited));
+            ArrayTypeDelimited[] res = (ArrayTypeDelimited[]) engine.ReadFile(Common.TestPath(@"good\ArrayFieldsDelimited.txt"));
+
+            Assert.AreEqual(692, res.Length);
+            
+        }
+
+        private static void SimpleComparer2(ArrayType3[] res)
 		{
 			Assert.AreEqual(3, res.Length);
 
-			Assert.AreEqual(58745, res[0].CustomerID);
-			Assert.AreEqual(13, res[0].BuyedArts[0]);
-			Assert.AreEqual(8, res[0].BuyedArts[1]);
-			Assert.AreEqual(3, res[0].BuyedArts[2]);
-			Assert.AreEqual(-7, res[0].BuyedArts[3]);
+			Assert.AreEqual("58745", res[0].CustomerID);
+			Assert.AreEqual("13", res[0].BuyedArts[0]);
+			Assert.AreEqual("+8", res[0].BuyedArts[1]);
+			Assert.AreEqual("+3", res[0].BuyedArts[2]);
+			Assert.AreEqual("-7", res[0].BuyedArts[3]);
 			Assert.AreEqual(20, res[0].BuyedArts.Length);
 
-			Assert.AreEqual(31245, res[1].CustomerID);
-			Assert.AreEqual(6, res[1].BuyedArts[0]);
+			Assert.AreEqual("31245", res[1].CustomerID);
+			Assert.AreEqual("6", res[1].BuyedArts[0]);
 			Assert.AreEqual(17, res[1].BuyedArts.Length);
 
-			Assert.AreEqual(1245, res[2].CustomerID);
+			Assert.AreEqual(" 1245", res[2].CustomerID);
 			Assert.AreEqual(0, res[2].BuyedArts.Length);
 		}
 
+        private static void SimpleComparer(ArrayType1[] res)
+        {
+            Assert.AreEqual(3, res.Length);
+
+            Assert.AreEqual(58745, res[0].CustomerID);
+            Assert.AreEqual(13, res[0].BuyedArts[0]);
+            Assert.AreEqual(8, res[0].BuyedArts[1]);
+            Assert.AreEqual(3, res[0].BuyedArts[2]);
+            Assert.AreEqual(-7, res[0].BuyedArts[3]);
+            Assert.AreEqual(20, res[0].BuyedArts.Length);
+
+            Assert.AreEqual(31245, res[1].CustomerID);
+            Assert.AreEqual(6, res[1].BuyedArts[0]);
+            Assert.AreEqual(17, res[1].BuyedArts.Length);
+
+            Assert.AreEqual(1245, res[2].CustomerID);
+            Assert.AreEqual(0, res[2].BuyedArts.Length);
+        }
 
 		[Test]
 		public void ArrayFieldsRW()
@@ -121,16 +157,28 @@ namespace FileHelpersTests.CommonTests
 			public int[] BuyedArts;
 
 		}
+        [FixedLengthRecord(FixedMode.ExactLength)]
+        private class ArrayType2
+        {
+            [FieldFixedLength(5)]
+            public int CustomerID;
+
+            [FieldFixedLength(7)]
+            [FieldArrayLength(5)]
+            public int[] BuyedArts;
+
+        } 
+
 
 		[FixedLengthRecord(FixedMode.ExactLength)]
-			private class ArrayType2
+			private class ArrayType3
 		{
 			[FieldFixedLength(5)]
-			public int CustomerID;
+			public string CustomerID;
 
 			[FieldFixedLength(7)]
-			[FieldArrayLength(5)]
-			public int[] BuyedArts;
+            [FieldTrim(TrimMode.Both)]
+            public string[] BuyedArts;
 
 		}
 
@@ -143,7 +191,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[DelimitedRecord("|")]
-			private class ArrayTypeBad2
+		private class ArrayTypeBad2
 		{
 			
 			public int[][] JaggedArray;
@@ -182,4 +230,12 @@ namespace FileHelpersTests.CommonTests
 		}
 
 	}
+
+    [DelimitedRecord("\t")]
+    class ArrayTypeDelimited
+    {
+        public string[] Values;
+
+    }
+
 }
