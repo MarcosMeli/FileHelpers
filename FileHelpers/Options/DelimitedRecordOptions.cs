@@ -12,7 +12,7 @@ namespace FileHelpers
 		internal DelimitedRecordOptions(RecordInfo info)
 			:base(info)
 		{}
-		
+		 
 		/// <summary>
 		/// The delimiter used to identify each field in the data.
 		/// </summary>

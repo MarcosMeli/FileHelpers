@@ -115,9 +115,9 @@ namespace FileHelpers
         generator.Emit(OpCodes.Ldfld, field.mFieldInfo);
 
 
-        if (field.mFieldType.IsValueType)
+        if (field.FieldType.IsValueType)
         {
-            generator.Emit(OpCodes.Box, field.mFieldType);
+            generator.Emit(OpCodes.Box, field.FieldType);
         }
 
         generator.Emit(OpCodes.Stelem_Ref);
@@ -171,13 +171,13 @@ namespace FileHelpers
         generator.Emit(OpCodes.Ldelem_Ref);
 
 
-        if (field.mFieldType.IsValueType)
+        if (field.FieldType.IsValueType)
         {
-            generator.Emit(OpCodes.Unbox_Any, field.mFieldType);
+            generator.Emit(OpCodes.Unbox_Any, field.FieldType);
         }
         else
         {
-            generator.Emit(OpCodes.Castclass, field.mFieldType);
+            generator.Emit(OpCodes.Castclass, field.FieldType);
         }
 
         generator.Emit(OpCodes.Stfld, field.mFieldInfo);
@@ -414,8 +414,6 @@ namespace FileHelpers
 			if (MustIgnoreLine(line.mLineStr))
 				return null;
 
-			// array that holds the fields values
-			
 			for (int i = 0; i < mFieldCount; i++)
 			{
 				values[i] = mFields[i].ExtractFieldValue(line);
@@ -436,13 +434,13 @@ namespace FileHelpers
 				// Occurrs when the a custom converter returns an invalid value for the field.
 				for (int i = 0; i < mFieldCount; i++)
 				{
-					if (values[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(values[i]))
-						throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
+					if (values[i] != null && ! mFields[i].mFieldTypeInternal.IsInstanceOfType(values[i]))
+						throw new ConvertException(null, mFields[i].mFieldTypeInternal, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldTypeInternal.Name, null);
 				}
 				return null;
 			}
 #else
-			CreateAssingMethods();
+            CreateAssingMethods();
 
             try
             {
@@ -454,8 +452,8 @@ namespace FileHelpers
                 // Occurrs when the a custom converter returns an invalid value for the field.
                 for (int i = 0; i < mFieldCount; i++)
                 {
-                    if (values[i] != null && ! mFields[i].mFieldType.IsInstanceOfType(values[i]))
-						throw new ConvertException(null, mFields[i].mFieldType, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldType.Name, null);
+                    if (values[i] != null && ! mFields[i].mFieldTypeInternal.IsInstanceOfType(values[i]))
+						throw new ConvertException(null, mFields[i].mFieldTypeInternal, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldTypeInternal.Name, null);
                 }
                 return null;
             }
@@ -572,7 +570,7 @@ namespace FileHelpers
 		{
 			for (int i = 0; i < mFieldCount; i++)
 			{
-				if (mFields[i].mFieldType == typeof(DateTime) && values[i] is double)
+				if (mFields[i].mFieldTypeInternal == typeof(DateTime) && values[i] is double)
 					values[i] = DoubleToDate((int)(double)values[i]);
 
 				values[i] = mFields[i].CreateValueForField(values[i]);

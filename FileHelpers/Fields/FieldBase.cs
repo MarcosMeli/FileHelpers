@@ -21,7 +21,7 @@ namespace FileHelpers
             get { return mFieldInfo.Name; }
         }
 
-        public Type FielType
+        public Type FieldType
         {
             get { return mFieldType; }
         }
@@ -30,7 +30,8 @@ namespace FileHelpers
 
 		private static Type strType = typeof (string);
 
-		internal Type mFieldType;
+		private Type mFieldType;
+        internal Type mFieldTypeInternal;
 		internal bool mIsStringField;
 		internal FieldInfo mFieldInfo;
 
@@ -63,7 +64,13 @@ namespace FileHelpers
 		{
 			mFieldInfo = fi;
 			mFieldType = mFieldInfo.FieldType;
-			mIsStringField = mFieldType == strType;
+
+            if (mFieldType.IsArray)
+                mFieldTypeInternal = mFieldType.GetElementType();
+            else
+                mFieldTypeInternal = mFieldType;
+
+			mIsStringField = mFieldTypeInternal == strType;
 
 			object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
 
@@ -77,7 +84,7 @@ namespace FileHelpers
 				mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
 
 			if (mConvertProvider != null)
-				mConvertProvider.mDestinationType = fi.FieldType;
+				mConvertProvider.mDestinationType = mFieldTypeInternal;
 
 			attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
@@ -88,18 +95,18 @@ namespace FileHelpers
 
 				if (mNullValue != null)
 				{
-					if (! mFieldType.IsAssignableFrom(mNullValue.GetType()))
+					if (! mFieldTypeInternal.IsAssignableFrom(mNullValue.GetType()))
 						throw new BadUsageException("The NullValue is of type: " + mNullValue.GetType().Name +
 						                            " that is not asignable to the field " + mFieldInfo.Name + " of type: " +
-						                            mFieldType.Name);
+                                                    mFieldTypeInternal.Name);
 				}
 			}
 
 
 #if NET_2_0
-			mIsNullableType = mFieldType.IsValueType &&
-									mFieldType.IsGenericType && 
-									mFieldType.GetGenericTypeDefinition() == typeof(Nullable<>);
+            mIsNullableType = mFieldTypeInternal.IsValueType &&
+                                    mFieldTypeInternal.IsGenericType &&
+                                    mFieldTypeInternal.GetGenericTypeDefinition() == typeof(Nullable<>);
 #endif
 		}
 
@@ -276,7 +283,7 @@ namespace FileHelpers
                         }
                         else
                         {
-                            val = Convert.ChangeType(fieldString.ExtractedString(), mFieldType, null);
+                            val = Convert.ChangeType(fieldString.ExtractedString(), mFieldTypeInternal, null);
                         }
                     }
                 }
@@ -311,9 +318,9 @@ namespace FileHelpers
             catch (Exception ex)
             {
                 if (mConvertProvider == null || mConvertProvider.GetType().Assembly == typeof(FieldBase).Assembly)
-                    throw new ConvertException(fieldString.ExtractedString(), mFieldType, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
+                    throw new ConvertException(fieldString.ExtractedString(), mFieldTypeInternal, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
                 else
-                    throw new ConvertException(fieldString.ExtractedString(), mFieldType, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + mConvertProvider.GetType().Name + " throws an " + ex.GetType().Name +" with the message: " + ex.Message, ex);
+                    throw new ConvertException(fieldString.ExtractedString(), mFieldTypeInternal, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + mConvertProvider.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
             }
         }
 
@@ -321,7 +328,7 @@ namespace FileHelpers
 		{
 			if (mNullValue == null)
 			{
-				if (mFieldType.IsValueType)
+                if (mFieldTypeInternal.IsValueType)
 				{
 
 #if NET_2_0
@@ -357,9 +364,9 @@ namespace FileHelpers
 			{
 				if (mNullValue == null)
 				{
-					if (mFieldType.IsValueType)
+                    if (mFieldTypeInternal.IsValueType)
 						throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + mFieldInfo.Name +
-						                            " field of type " + mFieldInfo.FieldType.Name + ", because this is a ValueType.");
+                                                    " field of type " + mFieldTypeInternal.Name + ", because this is a ValueType.");
 					else
 						val = null;
 				}
@@ -368,17 +375,17 @@ namespace FileHelpers
 					val = mNullValue;
 				}
 			}
-			else if (mFieldType == fieldValue)
+			else if (mFieldTypeInternal == fieldValue.GetType())
 				val = fieldValue;
 			else
 			{
 				if (mConvertProvider == null)
-					val = Convert.ChangeType(fieldValue, mFieldType, null);
+					val = Convert.ChangeType(fieldValue, mFieldTypeInternal, null);
 				else
 				{
 					try
 					{
-						val = Convert.ChangeType(fieldValue, mFieldType, null);
+						val = Convert.ChangeType(fieldValue, mFieldTypeInternal, null);
 					}
 					catch
 					{

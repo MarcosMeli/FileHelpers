@@ -116,10 +116,9 @@ namespace FileHelpers
 
 		private ExtractedInfo BasicExtractString(LineInfo line)
 		{
-			ExtractedInfo res;
-			
-			if (mIsLast)
-				res = new ExtractedInfo(line);
+		
+			if (mIsLast && ! mIsArray)
+				return new ExtractedInfo(line);
 			else
 			{
 				int sepPos;
@@ -128,6 +127,9 @@ namespace FileHelpers
 
 				if (sepPos == -1)
 				{
+                    if (mIsLast && mIsArray)
+                        return new ExtractedInfo(line);
+
 					if (this.mNextIsOptional == false)
 					{
 						string msg = null;
@@ -144,9 +146,8 @@ namespace FileHelpers
 						sepPos = line.mLine.Length;
 				}
 
-				res = new ExtractedInfo(line, sepPos);
+				return new ExtractedInfo(line, sepPos);
 			}
-			return res;
 		}
 
         internal override void CreateFieldString(StringBuilder sb, object fieldValue)
