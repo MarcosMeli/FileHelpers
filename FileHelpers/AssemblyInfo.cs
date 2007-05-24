@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 #if ! MINI
 [assembly : AssemblyTitle("FileHelpers Lib   http://www.filehelpers.com")]
-[assembly : AssemblyDescription("A simple to use file library for .NET that supports automatic formated file read/write operations.")]
+[assembly : AssemblyDescription("An easy to use file library for .NET that supports automatic formated file read/write operations.")]
 [assembly : AssemblyProduct("FileHelpers   http://www.filehelpers.com")]
 [assembly : ReflectionPermission(SecurityAction.RequestMinimum, ReflectionEmit = true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, SerializationFormatter = true)]
