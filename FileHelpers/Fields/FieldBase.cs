@@ -135,9 +135,6 @@ namespace FileHelpers
 				else
 					return fieldValue.ToString();
 
-//				else if (mNullValueOnWrite && fieldValue.Equals(mNullValue))
-//					res = string.Empty;
-
 			}
 			else
 			{
@@ -153,7 +150,6 @@ namespace FileHelpers
 
 		#region "  ExtractValue  " 
 
-// object[] values, int index, ForwardReader reader
 		internal object ExtractFieldValue(LineInfo line)
 		{
 			//-> extract only what I need
@@ -193,12 +189,11 @@ namespace FileHelpers
 
 				while (line.IsEOL() == false && i < mArrayMaxLength)
 				{
-                    //mIgnoreExtraLength = i < (mArrayMaxLength - 1);
 					ExtractedInfo info = ExtractFieldString(line);
 					if (info.mCustomExtractedString == null)
 						line.mCurrentPos = info.ExtractedTo + 1;
 
-					line.mCurrentPos += mCharsToDiscard; //total;
+				    line.mCurrentPos += mCharsToDiscard;
 
 					res.Add(AssignFromString(info, line));
                     i++;
@@ -213,30 +208,6 @@ namespace FileHelpers
 				return res.ToArray(mArrayType);
 		
 			}
-
-
-			//-> discard the part that I use
-
-
-			//TODO: Uncoment this for Quoted Handling
-//			if (info.NewRestOfLine != null)
-//			{
-//				if (info.NewRestOfLine.Length < CharsToDiscard())
-//					return info.NewRestOfLine;
-//				else
-//					return info.NewRestOfLine.Substring(CharsToDiscard());
-//			}
-//			else
-//			{
-//				int total;
-//				if (info.CharsRemoved >= line.mLine.Length)
-//					total = line.mLine.Length;
-//				else
-//					total = info.CharsRemoved + CharsToDiscard();
-
-				//return buffer.Substring(total);
-//			}
-
 
 		}
 

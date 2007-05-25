@@ -5,12 +5,16 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace FileHelpers
 {
-	
-	internal sealed class LineInfo
+
+#if NET_2_0 && DEBUG
+    [DebuggerDisplay("{DebuggerDisplayStr()}")]
+#endif
+    internal sealed class LineInfo
 	{
 		#region "  Constructor  "
 
@@ -40,6 +44,17 @@ namespace FileHelpers
 			};
 
 		#endregion
+
+#if NET_2_0 && DEBUG
+        internal string DebuggerDisplayStr()
+        {
+            if (this.IsEOL())
+                return "<EOL>";
+            else
+                return CurrentString;
+        }
+
+#endif
 
 		public string CurrentString
 		{

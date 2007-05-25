@@ -37,7 +37,7 @@ namespace FileHelpers
 			{
 				mSeparator = value;
 
-				if (mIsLast)
+				if (mIsLast && mIsArray == false)
 					mCharsToDiscard = 0;
 				else
 					mCharsToDiscard = mSeparator.Length;
@@ -51,7 +51,7 @@ namespace FileHelpers
 		#endregion
 
 		#region "  Overrides String Handling  "
-
+         
 
 		internal override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
@@ -63,50 +63,24 @@ namespace FileHelpers
 				return BasicExtractString(line);
 			else
 			{
-				//TODO: UnComment and Fix
-
 				if (mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left)
 				{
-
-					//int pos = line.mCurrentPos;
 					line.TrimStart(mTrimChars);
-//					from2 = from.TrimStart(mTrimChars);
-					//res.CharsRemoved = line.mCurrentPos - pos;
 				}
 
 				string quotedStr = mQuoteChar.ToString();
 				if (line.StartsWith(quotedStr))
 				{
-
-//					ExtractedInfo res = null;
-//					res = new ExtractedInfo(line, line.mCurrentPos);
-
 					return StringHelper.ExtractQuotedString(line, mQuoteChar, mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead);
-//					if (mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead)
-//					{
-//
-//						//res.ExtractedString = ei.ExtractedString;
-//						//res.CharsRemoved += ei.CharsRemoved;
-//						//res.ExtraLines = ei.ExtraLines;
-//						//res.NewRestOfLine = ei.NewRestOfLine;
-//					}
-//					else
-//					{
-//						return StringHelper.ExtractQuotedString(from2, mQuoteChar, out index);
-//						//res.CharsRemoved += index;
-//					}
-
-				//	return res;
-
 				}
 				else
 				{
 					if (mQuoteMode == QuoteMode.OptionalForBoth || mQuoteMode == QuoteMode.OptionalForRead)
 						return BasicExtractString(line);
 					else if (line.StartsWithTrim(quotedStr))
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' has spaces before the QuotedChar at line "+ line.mReader.LineNumber.ToString() + ". Use the TrimAttribute to by pass this error. Field String: " + line.CurrentString);
+						throw new BadUsageException(string.Format("The field '{0}' has spaces before the QuotedChar at line {1}. Use the TrimAttribute to by pass this error. Field String: {2}", mFieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
 					else
-						throw new BadUsageException("The field '" + this.mFieldInfo.Name + "' not begin with the QuotedChar at line "+ line.mReader.LineNumber.ToString() + ". You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: " + line.CurrentString);
+						throw new BadUsageException(string.Format("The field '{0}' not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: {2}", mFieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
 				}
 
 			}

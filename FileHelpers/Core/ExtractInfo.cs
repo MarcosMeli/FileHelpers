@@ -1,12 +1,14 @@
 using System;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
 
+#if NET_2_0
+    [DebuggerDisplay("{ExtractedString()} [{ExtractedFrom}-{ExtractedTo}]")]
+#endif
 	internal sealed class ExtractedInfo
 	{
-		//public int CharsRemoved;
-		//public string ExtractedString;
 
 		internal string mCustomExtractedString = null;
 
@@ -16,8 +18,6 @@ namespace FileHelpers
 				return new string(mLine.mLine, ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
 			else
 				return mCustomExtractedString;
-			//			return new string(mLine,  .mLine.Substring(ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
-
 		}
 
 		public int Length
@@ -29,18 +29,12 @@ namespace FileHelpers
 		public int ExtractedFrom;
 		public int ExtractedTo;
 
-		//public int ExtraLines;
-		//public string NewRestOfLine;
-		//public string TrailString;
 
 		public ExtractedInfo(LineInfo line)
 		{
 			mLine = line;
 			ExtractedFrom = line.mCurrentPos;
 			ExtractedTo = line.mLine.Length - 1;
-			//CharsRemoved = ExtractedTo - ExtractedFrom + 1;
-			//ExtraLines = 0;
-		//	NewRestOfLine = null;
 		}
 
 		public ExtractedInfo(LineInfo line, int extractTo)
@@ -48,9 +42,6 @@ namespace FileHelpers
 			mLine = line;
 			ExtractedFrom = line.mCurrentPos;
 			ExtractedTo = extractTo - 1;
-			//CharsRemoved = ExtractedTo - ExtractedFrom + 1;
-			//ExtraLines = 0;
-		//	NewRestOfLine = null;
 		}
 		
 		public ExtractedInfo(string customExtract)
@@ -95,15 +86,6 @@ namespace FileHelpers
 				}
 			}
 		}
-
-		//
-		//				  public ExtractedInfo(string extracted, int charsRem, int lines)
-		//				  {
-		//					  ExtractedString = extracted;
-		//					  CharsRemoved = charsRem;
-		//					  ExtraLines = lines;
-		//					  NewRestOfLine = null;
-		//				  }
 
 		internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
 
