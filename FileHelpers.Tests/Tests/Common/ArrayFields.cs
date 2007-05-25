@@ -35,7 +35,7 @@ namespace FileHelpersTests.CommonTests
             engine = new FileHelperEngine(typeof(ArrayTypeDelimited));
             ArrayTypeDelimited[] res = (ArrayTypeDelimited[]) engine.ReadFile(Common.TestPath(@"good\ArrayFieldsDelimited.txt"));
 
-            Assert.AreEqual(692, res.Length);
+            Assert.AreEqual(10, res.Length);
             
         }
 

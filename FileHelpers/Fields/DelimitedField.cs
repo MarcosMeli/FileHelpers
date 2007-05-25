@@ -130,14 +130,14 @@ namespace FileHelpers
                     if (mIsLast && mIsArray)
                         return new ExtractedInfo(line);
 
-					if (this.mNextIsOptional == false)
+					if (mNextIsOptional == false)
 					{
-						string msg = null;
+						string msg;
 
 						if (mIsFirst && line.EmptyFromPos())
-							msg = "The line " + line.mReader.LineNumber.ToString() + " is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
+							msg = string.Format("The line {0} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.", line.mReader.LineNumber);
 						else
-							msg = "The delimiter '" + this.mSeparator + "' can´t be found after the field '" + this.mFieldInfo.Name + "' at line " + line.mReader.LineNumber.ToString() + " (the record has less fields, the delimiter is wrong or the next field must be marked as optional).";
+							msg = string.Format("The delimiter '{0}' can´t be found after the field '{1}' at line {2} (the record has less fields, the delimiter is wrong or the next field must be marked as optional).", mSeparator, this.mFieldInfo.Name, line.mReader.LineNumber);
 
 						throw new FileHelpersException(line.mReader.LineNumber, line.mCurrentPos, msg);
 

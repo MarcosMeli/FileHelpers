@@ -158,7 +158,7 @@ namespace FileHelpers
 		{
 			//-> extract only what I need
 
-			if (this.mInNewLine == true)
+			if (mInNewLine)
 			{
 				if (line.EmptyFromPos() == false)
 					throw new BadUsageException(line, "Text '" + line.CurrentString +
@@ -205,10 +205,10 @@ namespace FileHelpers
 				}
 
                 if (res.Count < mArrayMinLength)
-                    throw new InvalidOperationException("Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos.ToString() + " Field: " + mFieldInfo.Name + ". The array has only "+ res.Count.ToString() +" values, less than the minimum length of " + mArrayMinLength.ToString());
+                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}", line.mReader.LineNumber.ToString(), line.mCurrentPos.ToString(), mFieldInfo.Name, res.Count, mArrayMinLength));
 
                 else if (mIsLast && line.IsEOL() == false)
-                    throw new InvalidOperationException("Line: " + line.mReader.LineNumber.ToString() + " Column: " + line.mCurrentPos.ToString() + " Field: " + mFieldInfo.Name + ". The array has more values than the maximum length of " + mArrayMaxLength.ToString());
+                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, mFieldInfo.Name, mArrayMaxLength));
 
 				return res.ToArray(mArrayType);
 		
