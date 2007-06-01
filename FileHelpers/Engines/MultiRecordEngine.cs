@@ -54,11 +54,11 @@ namespace FileHelpers
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private RecordInfo[] mMultiRecordInfo;
+        private readonly RecordInfo[] mMultiRecordInfo;
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private Hashtable mRecordInfoHash;
+        private readonly Hashtable mRecordInfoHash;
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
@@ -1069,7 +1069,7 @@ namespace FileHelpers
 		public void BeginWriteStream(TextWriter writer)
 		{
 			if (writer == null)
-				throw new ArgumentException("writer", "The TextWriter can´t be null.");
+                throw new ArgumentException("The TextWriter can´t be null.", "writer");
 
 			ResetFields();
 			mAsyncWriter = writer;

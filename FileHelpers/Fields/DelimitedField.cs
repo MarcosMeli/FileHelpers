@@ -42,7 +42,7 @@ namespace FileHelpers
 				else
 					mCharsToDiscard = mSeparator.Length;
 			}
-		}
+		} 
 
 		internal char mQuoteChar = '\0';
 		internal QuoteMode mQuoteMode;

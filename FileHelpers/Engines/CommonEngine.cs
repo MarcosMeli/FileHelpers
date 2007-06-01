@@ -90,7 +90,6 @@ namespace FileHelpers
 		/// Used to read a file without instanciate the engine.<br />
 		/// <b>This is feature limited method try to use the non static methods.</b>
 		/// </summary>
-		/// <param name="recordClass">The record class.</param>
 		/// <param name="fileName">The file name</param>
 		/// <returns>The read records.</returns>
 		public static T[] ReadFile<T>(string fileName)
@@ -102,7 +101,6 @@ namespace FileHelpers
 		/// Used to read a file without instanciate the engine.<br />
 		/// <b>This is feature limited method try to use the non static methods.</b>
 		/// </summary>
-		/// <param name="recordClass">The record class.</param>
 		/// <param name="fileName">The file name</param>
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
 		/// <returns>The read records.</returns>

@@ -226,7 +226,7 @@ namespace FileHelpers
 			//-> Checked by the AttributeTargets
 			//new BadUsageException("Structures are not supported in the FileHelperEngine only classes are allowed.");
 
-			TypedRecordAttribute recordAttribute = null;
+			TypedRecordAttribute recordAttribute;
 
 			if (mRecordType.IsDefined(typeof (TypedRecordAttribute), true) == false)
 				throw new BadUsageException("The class " + mRecordType.Name + " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
@@ -329,13 +329,11 @@ namespace FileHelpers
 		{
 			ArrayList resFields = new ArrayList();
 
-			FieldBase currentField;
-
-			for (int i = 0; i < fields.Count; i++)
+		    for (int i = 0; i < fields.Count; i++)
 			{
-				currentField = FieldFactory.CreateField((FieldInfo) fields[i], recordAttribute);
+			    FieldBase currentField = FieldFactory.CreateField((FieldInfo) fields[i], recordAttribute);
 
-				if (currentField != null)
+			    if (currentField != null)
 				{
 					// Add to the result
 					resFields.Add(currentField);
@@ -365,7 +363,7 @@ namespace FileHelpers
 				}
 			}
 
-			if (resFields.Count > 0)
+		    if (resFields.Count > 0)
 			{
 				((FieldBase) resFields[0]).mIsFirst = true;
 				((FieldBase) resFields[resFields.Count - 1]).mIsLast = true;
@@ -596,7 +594,7 @@ namespace FileHelpers
 
 		}
 
-		private DateTime DoubleToDate(int serialNumber)
+		private static DateTime DoubleToDate(int serialNumber)
 		{
 		
 			if (serialNumber < 59) 

@@ -76,7 +76,14 @@ public class MoneyConverter : ConverterBase
         // a more elegant option that also works
         // return Convert.ToInt32(Convert.ToDecimal(fieldValue) * (10 ^ mDecimals)).ToString(); 
     }
-    
+
+	// this is to get notified when the library found a Null Value
+    protected override bool CustomNullHandling
+	{
+		get { return true; } 
+	}
+	
+ 
 }
 </textarea>
           </blockquote>

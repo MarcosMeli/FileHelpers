@@ -7,9 +7,9 @@ namespace FileHelpers
 {
 	internal sealed class ForwardReader
 	{
-		TextReader mReader;
+	    readonly TextReader mReader;
 
-		private string[] mFowardStrings;
+		private readonly string[] mFowardStrings;
 		private int mForwardIndex = 0;
 		
 		internal char[] mEOF = StringHelper.NewLine.ToCharArray();
@@ -98,7 +98,7 @@ namespace FileHelpers
 			set { mDiscardForward = value; }
 		}
 
-		private int mFowardLines = 0;
+		private readonly int mFowardLines = 0;
 
 		public int FowardLines
 		{

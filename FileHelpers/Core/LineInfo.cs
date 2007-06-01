@@ -18,7 +18,7 @@ namespace FileHelpers
 	{
 		#region "  Constructor  "
 
-		static char[] mEmptyChars = new char[] {};
+		static readonly char[] mEmptyChars = new char[] {};
 
 		public LineInfo(string line)
 		{
@@ -37,7 +37,7 @@ namespace FileHelpers
 		internal ForwardReader mReader;
 		internal int mCurrentPos;
 		
-		private static char[] WhitespaceChars = new char[] 
+		private static readonly char[] WhitespaceChars = new char[] 
 			{ 
 				'\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
 				'\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
@@ -48,7 +48,7 @@ namespace FileHelpers
 #if NET_2_0 && DEBUG
         internal string DebuggerDisplayStr()
         {
-            if (this.IsEOL())
+            if (IsEOL())
                 return "<EOL>";
             else
                 return CurrentString;
@@ -150,7 +150,7 @@ namespace FileHelpers
 			mCurrentPos = 0;
 		}
 		
-		private static CompareInfo mCompare = StringHelper.CreateComparer();
+		private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
 
 		
 		public int IndexOf(string foundThis)
