@@ -19,5 +19,5 @@ namespace FileHelpers
 		AllowForWrite,
 		/// <summary>The engine don´t allow multiline values for this field.</summary>
 		NotAllow
-	}
+	} 
 }

@@ -20,56 +20,58 @@ using System.Collections.Generic;
 
 namespace FileHelpers
 {
-	/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
-	/// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
+    /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
+    /// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 #if NET_2_0
     [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
 #endif
 #if ! GENERICS
- 	public sealed class FileHelperAsyncEngine : 
- 		EngineBase, IEnumerable, IDisposable
+    public sealed class FileHelperAsyncEngine :
+        EngineBase, IEnumerable, IDisposable
 #else
     /// <typeparam name="T">The record type.</typeparam>
     public sealed class FileHelperAsyncEngine<T> : 
 		EngineBase, IEnumerable, IDisposable
 #endif
     {
-		#region "  Constructor  "
+        #region "  Constructor  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
 #if ! GENERICS
-		public FileHelperAsyncEngine(Type recordType) 
-			: base(recordType)
+        public FileHelperAsyncEngine(Type recordType)
+            : base(recordType)
 #else
 		public FileHelperAsyncEngine() 
 			: base(typeof(T))
 #endif
-		{
-			CreateRecordOptions();
-		}
+        {
+            CreateRecordOptions();
+        }
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
-		/// <param name="encoding">The encoding used by the Engine.</param>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <param name="encoding">The encoding used by the Engine.</param>
 #if ! GENERICS
-		public FileHelperAsyncEngine(Type recordType, Encoding encoding)
-			: base(recordType, encoding)
+        public FileHelperAsyncEngine(Type recordType, Encoding encoding)
+            : base(recordType, encoding)
 #else
 		public FileHelperAsyncEngine(Encoding encoding)
 			: base(typeof(T), encoding)
 #endif
-		{
-			CreateRecordOptions();
-		}
+        {
+            CreateRecordOptions();
+        }
 
-		private void CreateRecordOptions()
-		{
-			if (mRecordInfo.IsDelimited)
-				mOptions = new DelimitedRecordOptions(mRecordInfo);
-			else
-				mOptions = new FixedRecordOptions(mRecordInfo);
-		}
+        private void CreateRecordOptions()
+        {
+            if (mRecordInfo.IsDelimited)
+                mOptions = new DelimitedRecordOptions(mRecordInfo);
+            else
+                mOptions = new FixedRecordOptions(mRecordInfo);
+        }
 
-		#endregion
+        #endregion
+
+        #region "  Readers and Writters  "
 
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -80,19 +82,21 @@ namespace FileHelpers
 #endif
         TextWriter mAsyncWriter;
 
-		#region "  LastRecord  "
+        #endregion
+
+        #region "  LastRecord  "
 
 #if ! GENERICS
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private object mLastRecord;
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
 
-		public object LastRecord
-		{
-			get { return mLastRecord; }
-		}
+        public object LastRecord
+        {
+            get { return mLastRecord; }
+        }
 #else
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -106,536 +110,612 @@ namespace FileHelpers
 		}
 #endif
 
-		/// <summary>
-		/// Get a field value of the current records.
-		/// </summary>
-		/// <param name="fieldIndex" >The index of the field.</param>
-		public object this[int fieldIndex]
-		{
-			get
-			{
-				if (mLastRecordValues == null)
-					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+        private object[] mLastRecordValues;
 
-				return mLastRecordValues[fieldIndex];
-			}
-		}
-
-		/// <summary>
-		/// Get a field value of the current records.
-		/// </summary>
-		/// <param name="fieldName" >The name of the field (case sensitive)</param>
-		public object this[string fieldName]
-		{
-			get
-			{
-				if (mLastRecordValues == null)
-					throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
-
-				int index = mRecordInfo.GetFieldIndex(fieldName);
-				return mLastRecordValues[index];
-			}
-		}
+        /// <summary>
+        /// An array with the values of each field of the current record
+        /// </summary>
+        public object[] LastRecordValues
+        {
+            get { return mLastRecordValues; }
+        }
 
 
-		private object[] mLastRecordValues;
+        /// <summary>
+        /// Get a field value of the current records.
+        /// </summary>
+        /// <param name="fieldIndex" >The index of the field.</param>
+        public object this[int fieldIndex]
+        {
+            get
+            {
+                if (mLastRecordValues == null)
+                    throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
 
-		/// <summary>
-		/// An array with the values of each field of the current record. 
-		/// </summary>
-		public object[] LastRecordValues
-		{
-			get { return mLastRecordValues; }
-		}
+                return mLastRecordValues[fieldIndex];
+            }
+            set
+            {
+                if (mAsyncWriter == null)
+                    throw new BadUsageException("You must be writting something to set a record value. Try calling BeginWriteFile first.");
 
-		
+                if (mLastRecordValues == null)
+                    mLastRecordValues = new object[mRecordInfo.mFieldCount];
+
+                if (value == null)
+                {
+                    if (mRecordInfo.mFields[fieldIndex].FieldType.IsValueType)
+                        throw new BadUsageException("You cant assing null to a value type.");
+
+                    mLastRecordValues[fieldIndex] = null;
+                }
+                else
+                {
+                    if (!mRecordInfo.mFields[fieldIndex].FieldType.IsInstanceOfType(value))
+                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}", value.GetType().Name, mRecordInfo.mFields[fieldIndex].FieldType.Name));
+
+                    mLastRecordValues[fieldIndex] = value;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Get a field value of the current records.
+        /// </summary>
+        /// <param name="fieldName" >The name of the field (case sensitive)</param>
+        public object this[string fieldName]
+        {
+            get
+            {
+                if (mLastRecordValues == null)
+                    throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+
+                int index = mRecordInfo.GetFieldIndex(fieldName);
+                return mLastRecordValues[index];
+            }
+            set
+            {
+                int index = mRecordInfo.GetFieldIndex(fieldName);
+                this[index] = value;
+            }
+        }
+
+
+
         #endregion
 
         #region "  BeginReadStream"
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
-		public void BeginReadStream(TextReader reader)
-		{
-			if (reader == null)
-				throw new ArgumentNullException("The TextReader can´t be null.");
+        public void BeginReadStream(TextReader reader)
+        {
+            if (reader == null)
+                throw new ArgumentNullException("reader", "The TextReader can´t be null.");
 
-				ResetFields();
-				mHeaderText = String.Empty;
-				mFooterText = String.Empty;
+            ResetFields();
+            mHeaderText = String.Empty;
+            mFooterText = String.Empty;
 
-				if (mRecordInfo.mIgnoreFirst > 0)
-				{
-					for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
-					{
-						string temp = reader.ReadLine();
-						mLineNumber++;
-						if (temp != null)
-							mHeaderText += temp + StringHelper.NewLine;
-						else
-							break;
-					}
-				}
+            if (mRecordInfo.mIgnoreFirst > 0)
+            {
+                for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
+                {
+                    string temp = reader.ReadLine();
+                    mLineNumber++;
+                    if (temp != null)
+                        mHeaderText += temp + StringHelper.NewLine;
+                    else
+                        break;
+                }
+            }
 
-				mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
-				mAsyncReader.DiscardForward = true;
-		}
+            mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
+            mAsyncReader.DiscardForward = true;
+        }
 
-		#endregion
+        #endregion
 
-		#region "  BeginReadFile  "
+        #region "  BeginReadFile  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
-		public void BeginReadFile(string fileName)
-		{
-			BeginReadStream(new StreamReader(fileName, mEncoding, true));
-		}
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
+        public void BeginReadFile(string fileName)
+        {
+            BeginReadStream(new StreamReader(fileName, mEncoding, true));
+        }
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
-		public void BeginReadString(string sourceData)
-		{
-			if (sourceData == null)
-				sourceData = String.Empty;
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
+        public void BeginReadString(string sourceData)
+        {
+            if (sourceData == null)
+                sourceData = String.Empty;
 
-			BeginReadStream(new StringReader(sourceData));
-		}
+            BeginReadStream(new StringReader(sourceData));
+        }
 
-		#endregion
+        #endregion
 
-		#region "  ReadNext  "
+        #region "  ReadNext  "
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
 #if ! GENERICS
-		public object ReadNext()
+        public object ReadNext()
 #else
 		public T ReadNext()
 #endif
-		{
-			if (mAsyncReader == null)
-				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+        {
+            if (mAsyncReader == null)
+                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-			ReadNextRecord();
+            ReadNextRecord();
 
-			return mLastRecord;
-		}
+            return mLastRecord;
+        }
 
-		private void ReadNextRecord()
-		{
-			string currentLine = mAsyncReader.ReadNextLine();
-			mLineNumber++;
+        private void ReadNextRecord()
+        {
+            string currentLine = mAsyncReader.ReadNextLine();
+            mLineNumber++;
 
-			bool byPass = false;
+            bool byPass = false;
 
 #if ! GENERICS
-			mLastRecord = null;
+            mLastRecord = null;
 #else
 			mLastRecord = default(T);
 #endif
-			
-			
-			LineInfo line = new LineInfo(string.Empty);
-			line.mReader = mAsyncReader;
-			
-			if (mLastRecordValues == null)
-				mLastRecordValues = new object[mRecordInfo.mFieldCount];
-			
-			while (true)
-			{
-				if (currentLine != null)
-				{
-					try
-					{
-						mTotalRecords++;
-						line.ReLoad(currentLine);
+
+
+            LineInfo line = new LineInfo(string.Empty);
+            line.mReader = mAsyncReader;
+
+            if (mLastRecordValues == null)
+                mLastRecordValues = new object[mRecordInfo.mFieldCount];
+
+            while (true)
+            {
+                if (currentLine != null)
+                {
+                    try
+                    {
+                        mTotalRecords++;
+                        line.ReLoad(currentLine);
 
 #if ! GENERICS
-						mLastRecord = mRecordInfo.StringToRecord(line, mLastRecordValues);
+                        mLastRecord = mRecordInfo.StringToRecord(line, mLastRecordValues);
 #else
 						mLastRecord = (T) mRecordInfo.StringToRecord(line, mLastRecordValues);
 #endif
 
-						if (mLastRecord != null)
-						{
-							byPass = true;
-							return;
-						}
-					}
-					catch (Exception ex)
-					{
-						switch (mErrorManager.ErrorMode)
-						{
-							case ErrorMode.ThrowException:
-								byPass = true;
-								throw;
-							case ErrorMode.IgnoreAndContinue:
-								break;
-							case ErrorMode.SaveAndContinue:
-								ErrorInfo err = new ErrorInfo();
-								err.mLineNumber = mAsyncReader.LineNumber;
-								err.mExceptionInfo = ex;
-								//							err.mColumnNumber = mColumnNum;
-								err.mRecordString = currentLine;
+                        if (mLastRecord != null)
+                        {
+                            byPass = true;
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
+                            case ErrorMode.ThrowException:
+                                byPass = true;
+                                throw;
+                            case ErrorMode.IgnoreAndContinue:
+                                break;
+                            case ErrorMode.SaveAndContinue:
+                                ErrorInfo err = new ErrorInfo();
+                                err.mLineNumber = mAsyncReader.LineNumber;
+                                err.mExceptionInfo = ex;
+                                //							err.mColumnNumber = mColumnNum;
+                                err.mRecordString = currentLine;
 
-								mErrorManager.AddError(err);
-								break;
-						}
-					}
-					finally
-					{
-						if (byPass == false)
-						{
-							currentLine = mAsyncReader.ReadNextLine();
-							mLineNumber = mAsyncReader.LineNumber;
-						}
-					}
-				}
-				else
-				{
-					mLastRecordValues = null;
+                                mErrorManager.AddError(err);
+                                break;
+                        }
+                    }
+                    finally
+                    {
+                        if (byPass == false)
+                        {
+                            currentLine = mAsyncReader.ReadNextLine();
+                            mLineNumber = mAsyncReader.LineNumber;
+                        }
+                    }
+                }
+                else
+                {
+                    mLastRecordValues = null;
 
 #if ! GENERICS
-					mLastRecord = null;
+                    mLastRecord = null;
 #else
 					mLastRecord = default(T);
 #endif
 
 
-					if (mRecordInfo.mIgnoreLast > 0)
-						mFooterText = mAsyncReader.RemainingText;
+                    if (mRecordInfo.mIgnoreLast > 0)
+                        mFooterText = mAsyncReader.RemainingText;
 
-					try
-					{
-						mAsyncReader.Close();
-						//mAsyncReader = null;
-					}
-					catch
-					{
-					}
+                    try
+                    {
+                        mAsyncReader.Close();
+                        //mAsyncReader = null;
+                    }
+                    catch
+                    {
+                    }
 
-					return;
-				}
-			}
-		}
+                    return;
+                }
+            }
+        }
 
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
 #if ! GENERICS
-		public object[] ReadNexts(int numberOfRecords)
+        public object[] ReadNexts(int numberOfRecords)
 #else
 		public T[] ReadNexts(int numberOfRecords)
 #endif
-		{
-			if (mAsyncReader == null)
-				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+        {
+            if (mAsyncReader == null)
+                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-			ArrayList arr = new ArrayList(numberOfRecords);
+            ArrayList arr = new ArrayList(numberOfRecords);
 
-			for (int i = 0; i < numberOfRecords; i++)
-			{
-				ReadNextRecord();
-				if (mLastRecord != null)
-					arr.Add(mLastRecord);
-				else
-					break;
-			}
+            for (int i = 0; i < numberOfRecords; i++)
+            {
+                ReadNextRecord();
+                if (mLastRecord != null)
+                    arr.Add(mLastRecord);
+                else
+                    break;
+            }
 #if ! GENERICS
-			return (object[])
+            return (object[])
 #else
 			return (T[])
 #endif
-							arr.ToArray(RecordType);
-		}
+arr.ToArray(RecordType);
+        }
 
-		#endregion
+        #endregion
 
-		#region "  Close  "
+        #region "  Close  "
 
-		/// <summary>
-		/// Save all the buffered data for write to the disk. 
-		/// Useful to long opened async engines that wants to save pending values or for engines used for logging.
-		/// </summary>
-		public void Flush()
-		{
-			if (mAsyncWriter != null)
-				mAsyncWriter.Flush();
-		}
-		
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
-		public void Close()
-		{
-			try
-			{
-				mLastRecordValues = null;
+        /// <summary>
+        /// Save all the buffered data for write to the disk. 
+        /// Useful to long opened async engines that wants to save pending values or for engines used for logging.
+        /// </summary>
+        public void Flush()
+        {
+            if (mAsyncWriter != null)
+                mAsyncWriter.Flush();
+        }
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
+        public void Close()
+        {
+            try
+            {
+                mLastRecordValues = null;
 #if ! GENERICS
-			mLastRecord = null;
+                mLastRecord = null;
 #else
 			mLastRecord = default(T);
 #endif
 
-				if (mAsyncReader != null)
-					mAsyncReader.Close();
+                if (mAsyncReader != null)
+                    mAsyncReader.Close();
 
-				mAsyncReader = null;
-			}
-			catch
-			{}
-			
-			try
-			{
-				if (mAsyncWriter != null)
-				{
-					if (mFooterText != null && mFooterText != string.Empty)
-						if (mFooterText.EndsWith(StringHelper.NewLine))
-							mAsyncWriter.Write(mFooterText);
-						else
-							mAsyncWriter.WriteLine(mFooterText);
+                mAsyncReader = null;
+            }
+            catch
+            { }
 
-					mAsyncWriter.Close();
-					mAsyncWriter = null;
+            try
+            {
+                if (mAsyncWriter != null)
+                {
+                    if (mFooterText != null && mFooterText != string.Empty)
+                        if (mFooterText.EndsWith(StringHelper.NewLine))
+                            mAsyncWriter.Write(mFooterText);
+                        else
+                            mAsyncWriter.WriteLine(mFooterText);
 
-
-				}
-
-			}
-			catch
-			{}
-		}
-
-		#endregion
-
-		#region "  BeginWriteStream"
-
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
-		public void BeginWriteStream(TextWriter writer)
-		{
-			if (writer == null)
-				throw new ArgumentException("writer", "The TextWriter can´t be null.");
-
-				ResetFields();
-				mAsyncWriter = writer;
-				WriteHeader();
-		}
-
-		private void WriteHeader()
-		{
-			if (mHeaderText != null && mHeaderText != string.Empty)
-				if (mHeaderText.EndsWith(StringHelper.NewLine))
-					mAsyncWriter.Write(mHeaderText);
-				else
-					mAsyncWriter.WriteLine(mHeaderText);
-		}
-
-		#endregion
-
-		#region "  BeginWriteFile  "
-
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
-		public void BeginWriteFile(string fileName)
-		{
-			BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
-		}
-
-		#endregion
+                    mAsyncWriter.Close();
+                    mAsyncWriter = null;
 
 
-		#region "  BeginappendToFile  "
+                }
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
-		public void BeginAppendToFile(string fileName)
-		{
-			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
-			mHeaderText = String.Empty;
-			mFooterText = String.Empty;
-		}
+            }
+            catch
+            { }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  WriteNext  "
+        #region "  BeginWriteStream"
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
+        public void BeginWriteStream(TextWriter writer)
+        { 
+            if (writer == null)
+                throw new ArgumentException("writer", "The TextWriter can´t be null.");
+
+            ResetFields();
+            mAsyncWriter = writer;
+            WriteHeader();
+        }
+
+        private void WriteHeader()
+        {
+            if (mHeaderText != null && mHeaderText != string.Empty)
+                if (mHeaderText.EndsWith(StringHelper.NewLine))
+                    mAsyncWriter.Write(mHeaderText);
+                else
+                    mAsyncWriter.WriteLine(mHeaderText);
+        }
+
+        #endregion
+
+        #region "  BeginWriteFile  "
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
+        public void BeginWriteFile(string fileName)
+        {
+            BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+        }
+
+        #endregion
+
+
+        #region "  BeginappendToFile  "
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
+        public void BeginAppendToFile(string fileName)
+        {
+            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
+            mHeaderText = String.Empty;
+            mFooterText = String.Empty;
+        }
+
+        #endregion
+
+        #region "  WriteNext  "
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
 #if ! GENERICS
-		public void WriteNext(object record)
+        public void WriteNext(object record)
 #else
 		public void WriteNext(T record)
 #endif
-		{
-			if (mAsyncWriter == null)
-				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+        {
+            if (mAsyncWriter == null)
+                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
-			if (record == null)
-				throw new BadUsageException("The record to write can´t be null.");
+            if (record == null)
+                throw new BadUsageException("The record to write can´t be null.");
 
-			if (RecordType.IsAssignableFrom(record.GetType()) == false)
-				throw new BadUsageException("The record must be of type: " + RecordType.Name);
+            if (RecordType.IsAssignableFrom(record.GetType()) == false)
+                throw new BadUsageException("The record must be of type: " + RecordType.Name);
 
-			WriteRecord(record);
-		}
+            WriteRecord(record);
+        }
 
 #if ! GENERICS
-		private void WriteRecord(object record)
+        private void WriteRecord(object record)
 #else
 		private void WriteRecord(T record)
 #endif
-		{
-			string currentLine = null;
+        {
+            string currentLine = null;
 
-			try
-			{
-				mLineNumber++;
-				mTotalRecords++;
+            try
+            {
+                mLineNumber++;
+                mTotalRecords++;
 
-				currentLine = mRecordInfo.RecordToString(record);
-				mAsyncWriter.WriteLine(currentLine);
-			}
-			catch (Exception ex)
-			{
-				switch (mErrorManager.ErrorMode)
-				{
-					case ErrorMode.ThrowException:
-						throw;
-					case ErrorMode.IgnoreAndContinue:
-						break;
-					case ErrorMode.SaveAndContinue:
-						ErrorInfo err = new ErrorInfo();
-						err.mLineNumber = mLineNumber;
-						err.mExceptionInfo = ex;
-						//							err.mColumnNumber = mColumnNum;
-						err.mRecordString = currentLine;
-						mErrorManager.AddError(err);
-						break;
-				}
-			}
+                currentLine = mRecordInfo.RecordToString(record);
+                mAsyncWriter.WriteLine(currentLine);
+            }
+            catch (Exception ex)
+            {
+                switch (mErrorManager.ErrorMode)
+                {
+                    case ErrorMode.ThrowException:
+                        throw;
+                    case ErrorMode.IgnoreAndContinue:
+                        break;
+                    case ErrorMode.SaveAndContinue:
+                        ErrorInfo err = new ErrorInfo();
+                        err.mLineNumber = mLineNumber;
+                        err.mExceptionInfo = ex;
+                        //							err.mColumnNumber = mColumnNum;
+                        err.mRecordString = currentLine;
+                        mErrorManager.AddError(err);
+                        break;
+                }
+            }
 
-		}
+        }
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
 #if ! GENERICS
-		public void WriteNexts(IEnumerable records)
+        public void WriteNexts(IEnumerable records)
 #else
 		public void WriteNexts(IEnumerable<T> records)
 #endif
-		{
-			if (mAsyncWriter == null)
-				throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+        {
+            if (mAsyncWriter == null)
+                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
-			if (records == null)
-				throw new ArgumentNullException("The record to write can´t be null.");
+            if (records == null)
+                throw new ArgumentNullException("The record to write can´t be null.");
 
-			bool first = true;
+            bool first = true;
 
 
 #if ! GENERICS
-			foreach (object rec in records)
+            foreach (object rec in records)
 #else
 			foreach (T rec in records)
 #endif
-			{
-				if (first)
-				{
-					if (RecordType.IsAssignableFrom(rec.GetType()) == false)
-						throw new BadUsageException("The record must be of type: " + RecordType.Name);
-					first = false;
-				}
-				
-				WriteRecord(rec);
-			}
+            {
+                if (first)
+                {
+                    if (RecordType.IsAssignableFrom(rec.GetType()) == false)
+                        throw new BadUsageException("The record must be of type: " + RecordType.Name);
+                    first = false;
+                }
 
-		}
+                WriteRecord(rec);
+            }
 
-		#endregion
+        }
+
+        #endregion
 
 
-		#region "  IEnumerable implementation  "
+        #region "  IEnumerable implementation  "
 
         /// <summary>Allows to loop record by record in the engine</summary>
         /// <returns>The enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator()
- 		{
- 			if (mAsyncReader == null)
- 				throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
- 			
+        {
+            if (mAsyncReader == null)
+                throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
+
 #if ! GENERICS
-			return new AsyncEnumerator(this);
+            return new AsyncEnumerator(this);
 #else
 				return new AsyncEnumerator<T>(this);
 #endif
- 		}
- 		
+        }
+
 #if ! GENERICS
-		private class AsyncEnumerator : IEnumerator
-		{
-			FileHelperAsyncEngine mEngine;
-			public AsyncEnumerator(FileHelperAsyncEngine engine)
+        private class AsyncEnumerator : IEnumerator
+        {
+            FileHelperAsyncEngine mEngine;
+            public AsyncEnumerator(FileHelperAsyncEngine engine)
 #else
 		private class AsyncEnumerator<X> : IEnumerator
 		{
 			FileHelperAsyncEngine<X> mEngine;
 			public AsyncEnumerator(FileHelperAsyncEngine<X> engine)
 #endif
-			{
-				mEngine = engine;
-			}
+            {
+                mEngine = engine;
+            }
 
-			public bool MoveNext()
-			{
-				object res = mEngine.ReadNext();
-				
-				if (res == null)
-				{
-					mEngine.Close();
-					return false;
-				}
+            public bool MoveNext()
+            {
+                object res = mEngine.ReadNext();
 
-				return true;
+                if (res == null)
+                {
+                    mEngine.Close();
+                    return false;
+                }
 
-			}
+                return true;
 
-			public object Current
-			{
-				get
-				{
-					return mEngine.mLastRecord;
-				}
-			}
+            }
 
-			public void Reset()
-			{
-				// No needed
-			}
-		}
+            public object Current
+            {
+                get
+                {
+                    return mEngine.mLastRecord;
+                }
+            }
 
- 		
- 		#endregion
+            public void Reset()
+            {
+                // No needed
+            }
+        }
 
-		#region "  IDisposable implementation  "
+
+        #endregion
+
+        #region "  IDisposable implementation  "
 
         /// <summary>Release Resources</summary>
         void IDisposable.Dispose()
- 		{
-			Close();
- 			GC.SuppressFinalize(this);
- 		}
- 		
- 		/// <summary>Destructor</summary>
-		~FileHelperAsyncEngine()
- 		{
-			Close();
- 		}
+        {
+            Close();
+            GC.SuppressFinalize(this);
+        }
 
-		#endregion
+        /// <summary>Destructor</summary>
+        ~FileHelperAsyncEngine()
+        {
+            Close();
+        }
+
+        #endregion
 
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-		internal RecordOptions mOptions;
+        internal RecordOptions mOptions;
 
-		/// <summary>Allows to change some record layout options at runtime</summary>
-		public RecordOptions Options
-		{
-			get { return mOptions; }
-			set { mOptions = value; }
-		}
+        /// <summary>Allows to change some record layout options at runtime</summary>
+        public RecordOptions Options
+        {
+            get { return mOptions; }
+            set { mOptions = value; }
+        }
 
-	}
+        /// <summary>
+        /// Write the current record values. You can use engine[0] or engine["YourField"] to set the values.
+        /// </summary>
+        public void WriteNext()
+        {
+            if (mAsyncWriter == null)
+                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+
+            if (mLastRecordValues == null)
+                throw new BadUsageException("You must set some values of the record before call this method, or use the overload that has a record as argument.");
+
+            string currentLine = null;
+
+            try
+            {
+                mLineNumber++;
+                mTotalRecords++;
+
+                currentLine = mRecordInfo.RecordValuesToString(this.mLastRecordValues);
+                mAsyncWriter.WriteLine(currentLine);
+            }
+            catch (Exception ex)
+            {
+                switch (mErrorManager.ErrorMode)
+                {
+                    case ErrorMode.ThrowException:
+                        throw;
+                    case ErrorMode.IgnoreAndContinue:
+                        break;
+                    case ErrorMode.SaveAndContinue:
+                        ErrorInfo err = new ErrorInfo();
+                        err.mLineNumber = mLineNumber;
+                        err.mExceptionInfo = ex;
+                        //							err.mColumnNumber = mColumnNum;
+                        err.mRecordString = currentLine;
+                        mErrorManager.AddError(err);
+                        break;
+                }
+            }
+            finally
+            {
+                mLastRecordValues = null;
+            }
+        }
+
+    }
 }
+
 
 #endif

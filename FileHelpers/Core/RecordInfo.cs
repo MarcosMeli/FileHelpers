@@ -558,6 +558,22 @@ namespace FileHelpers
 
 			return sb.ToString();
 		}
+
+        internal string RecordValuesToString(object[] recordValues)
+        {
+            StringBuilder sb = new StringBuilder(mSizeHint);
+            //string res = String.Empty;
+
+            for (int f = 0; f < mFieldCount; f++)
+            {
+                mFields[f].AssignToString(sb, recordValues[f]);
+            }
+
+            //_BigSize = Math.Max(_BigSize, sb.Length);
+
+            return sb.ToString();
+        }
+
 		#endregion
 
 		#region ValuesToRecord

@@ -10,7 +10,7 @@ namespace FileHelpersTests.CommonTests
 	[TestFixture]
 	public class ReadersFieldIndexer
 	{
-		string data = "11121314901234" + Environment.NewLine +
+	    readonly string data = "11121314901234" + Environment.NewLine +
 			"10111314012345" + Environment.NewLine +
 			"11101314123456" + Environment.NewLine +
 			"10101314234567" + Environment.NewLine;

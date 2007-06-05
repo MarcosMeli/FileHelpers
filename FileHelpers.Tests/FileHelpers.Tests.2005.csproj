@@ -120,6 +120,7 @@
     <Compile Include="Tests\Common\Converters.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\WritersFieldIndexers.cs" />
     <Compile Include="Tests\Common\CustomConverterExceptions.cs" />
     <Compile Include="Tests\Common\CustomConverterBad.cs" />
     <Compile Include="Tests\Common\FixedEngine.cs" />

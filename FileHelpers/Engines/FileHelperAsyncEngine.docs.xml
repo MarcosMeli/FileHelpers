@@ -122,7 +122,7 @@
 
 	<BeginWriteStream>
 		<summary>
-		  Set the stream to be used in the <see cref="WriteNext" /> operation.
+		  Set the stream to be used in the <see cref="WriteNext(object)" /> operation.
 		</summary>
 		<remarks>
 		<para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para>
