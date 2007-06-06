@@ -48,10 +48,10 @@ namespace FileHelpersTests.CommonTests
             }
             catch (ConvertException ex)
             {
-                Assert.IsTrue(ex.Message.Contains("VeryBadConverter"));
-                Assert.IsTrue(ex.Message.Contains("custom converter"));
-                Assert.IsTrue(ex.Message.Contains("Line: 1"));
-                Assert.IsTrue(ex.Message.Contains("Column: 1"));
+                Assert.IsTrue(ex.Message.IndexOf("VeryBadConverter") >= 0);
+                Assert.IsTrue(ex.Message.IndexOf("custom converter") >= 0);
+                Assert.IsTrue(ex.Message.IndexOf("Line: 1") >= 0);
+                Assert.IsTrue(ex.Message.IndexOf("Column: 1") >= 0);
             }
         }
 

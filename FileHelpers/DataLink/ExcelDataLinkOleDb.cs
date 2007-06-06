@@ -98,6 +98,7 @@ namespace FileHelpers.DataLink
 		public bool ExtractToExcel(string fileName)
 		{
 			mLastExtractedRecords = mProvider.ExtractRecords();
+			mExcelStorage.FileName = fileName;
 			mExcelStorage.InsertRecords(mLastExtractedRecords);
 			return true;
 		}

@@ -304,7 +304,7 @@ namespace FileHelpers.DataLink
             string values = "";
             foreach( DataColumn col in mDtExcel.Columns)
             {
-                cmdIns += col.ColumnName + ",";
+				cmdIns += "[" + col.ColumnName + "],";
                 values += "?,";
             }
             cmdIns = cmdIns.Substring(0,cmdIns.Length-1); //Clean the ","

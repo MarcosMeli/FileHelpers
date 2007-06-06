@@ -233,6 +233,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "DataLink\ExcelDataLinkOleDb.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "DataLink\FileDataLink.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -254,6 +259,11 @@
                 />
                 <File
                     RelPath = "DataLink\Storage\DataStorage.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DataLink\Storage\ExcelStorageOleDb.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

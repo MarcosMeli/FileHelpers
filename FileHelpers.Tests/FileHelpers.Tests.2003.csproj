@@ -173,6 +173,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\CustomConverterExceptions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\Customers.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -364,6 +369,11 @@
                 />
                 <File
                     RelPath = "Tests\Common\Writers.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tests\Common\WritersFieldIndexers.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
