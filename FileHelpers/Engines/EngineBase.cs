@@ -19,9 +19,6 @@ namespace FileHelpers
         
         internal RecordInfo mRecordInfo;
 
-        private EngineBase()
-        {}
-
 		#region "  Constructor  "
 
 		internal EngineBase(Type recordType):this(recordType, Encoding.Default)
@@ -82,7 +79,7 @@ namespace FileHelpers
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private Type mRecordType;
+        private readonly Type mRecordType;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
 		public Type RecordType

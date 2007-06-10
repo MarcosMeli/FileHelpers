@@ -1,4 +1,8 @@
 using System;
+using System.Collections;
+#if NET_2_0
+using System.Collections.Generic;
+#endif
 using FileHelpers;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
@@ -80,8 +84,59 @@ namespace FileHelpersTests.MasterDetail
             Assert.AreEqual("DUMON", ((CustomersVerticalBar)res[3].Master).CustomerID);
 
         }
-       
+
+#if NET_2_0
+	    private OrdersVerticalBar[] colDetails = new OrdersVerticalBar[] {};
+        
+        [Test]
+        public void CustomerOrdersWrite2()
+        {
+            MasterDetailEngine<CustomersVerticalBar, OrdersVerticalBar> masterDetEng = new MasterDetailEngine<CustomersVerticalBar, OrdersVerticalBar>();
+
+            MasterDetails<CustomersVerticalBar, OrdersVerticalBar> record;
+            List<MasterDetails<CustomersVerticalBar, OrdersVerticalBar>> records = new List<MasterDetails<CustomersVerticalBar,OrdersVerticalBar>>();
+
+            // Create the master detail item
+            record = new MasterDetails<CustomersVerticalBar, OrdersVerticalBar>();
+            records.Add(record);
+
+            // Create the master object
+            record.Master = new CustomersVerticalBar();
+            record.Master.CustomerID = "ALFKI";
+            record.Master.Country = "Argentina";
+
+            // Create the details object
+            List<OrdersVerticalBar> orders = new List<OrdersVerticalBar>();
+            foreach (OrdersVerticalBar det in colDetails)
+            {
+                orders.Add(det);
+            }
+
+            record.Details = orders.ToArray();
 
 
-	}
+            // We can create a second master object
+            record = new MasterDetails<CustomersVerticalBar, OrdersVerticalBar>();
+            records.Add(record);
+
+            record.Master = new CustomersVerticalBar();
+            record.Master.CustomerID = "ALFKI";
+            record.Master.Country = "Argentina";
+
+            orders = new List<OrdersVerticalBar>();
+            foreach (OrdersVerticalBar det in colDetails)
+            {
+                orders.Add(det);
+            }
+            record.Details = orders.ToArray();
+
+            // And now write it to a file
+
+            masterDetEng.WriteFile("myMDfile.txt", records.ToArray());
+
+        }
+
+#endif
+
+    }
 }

@@ -23,7 +23,7 @@
 		</summary>
 		<param name="masterType">The master record class.</param>
 		<param name="detailType">The detail record class.</param>
-		<param name="recordSelector">The <see cref="MasterDetailSelector" /> to get the <see cref="RecordAction" />.</param>
+		<param name="recordSelector">The <see cref="MasterDetailSelector" /> to get the <see cref="RecordAction" /> (only for read operations)</param>
 	</MasterDetailEngineCtr1>
 
 	<MasterDetailEngineCtr2>
@@ -32,7 +32,7 @@
 		</summary>
 		<param name="masterType">The master record class.</param>
 		<param name="detailType">The detail record class.</param>
-		<param name="action">The <see cref="CommonSelector" /> used by the engine.</param>
+		<param name="action">The <see cref="CommonSelector" /> used by the engine (only for read operations)</param>
 		<param name="selector">The string passed to the selector.</param>
 	</MasterDetailEngineCtr2>
 
