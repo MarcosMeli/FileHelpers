@@ -76,6 +76,14 @@ namespace FileHelpers
         /// <para>Convert from/to <b>UInt64 or unsigned long</b> values.</para>
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
         /// </summary>
-        UInt64
+        UInt64,
+        /// <summary>
+        /// <para>Convert from/to <b>Date</b> values using more than one valid format.</para>
+        /// <para>Params: arg1 is a <b>string</b> with the main date format. This format is the unique used for write.</para>
+        /// <para>Params: arg2 is a <b>string</b> with one of the date formats.</para>
+        /// <para>Params: arg3 is a <b>string</b> with one of the date formats.</para>
+        /// </summary>
+        DateMultiFormat
+
 	}
 }

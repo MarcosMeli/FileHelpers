@@ -2,9 +2,9 @@ using System;
 
 namespace FileHelpers
 {
-	internal class EnumConverter : ConverterBase
+	internal sealed class EnumConverter : ConverterBase
 	{
-		Type mEnumType;
+	    readonly Type mEnumType;
 
 		public EnumConverter(Type sourceEnum)
 		{

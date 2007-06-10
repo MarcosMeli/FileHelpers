@@ -64,6 +64,10 @@ namespace FileHelpers
 					convType = typeof (ConvertHelpers.DateTimeConverter);
 					break;
 
+                case ConverterKind.DateMultiFormat:
+                    convType = typeof(ConvertHelpers.DateTimeMultiFormatConverter);
+                    break;
+
 				case ConverterKind.Byte:
 					convType = typeof (ConvertHelpers.ByteConverter);
 					break;
@@ -204,7 +208,7 @@ namespace FileHelpers
 
 		#region "  ArgsToTypes  "
 
-		private Type[] ArgsToTypes(object[] args)
+		private static Type[] ArgsToTypes(object[] args)
 		{
 			if (args == null)
 				throw new BadUsageException("The args to the constructor can be null, if you not want to pass the ConverterKind.");
@@ -223,7 +227,7 @@ namespace FileHelpers
 
 		}
 
-		private string ArgsDesc(object[] args)
+		private static string ArgsDesc(object[] args)
 		{
 			
 			string res = DisplayType(args[0]);
@@ -234,7 +238,7 @@ namespace FileHelpers
 			return res;
 		}
 
-		private string DisplayType(object o)
+		private static string DisplayType(object o)
 		{
 			if (o == null)
 				return "Object";
@@ -269,6 +273,7 @@ namespace FileHelpers
                     break;
 
                 case ConverterKind.Date:
+                case ConverterKind.DateMultiFormat:
                     valid = typeof(DateTime) == fieldType;
                     break;
 

@@ -30,7 +30,7 @@ namespace FileHelpers
             {
                 try
                 {
-                    string tmp = DateTime.Now.ToString(value);
+                    DateTime.Now.ToString(value);
                 }
                 catch
                 {

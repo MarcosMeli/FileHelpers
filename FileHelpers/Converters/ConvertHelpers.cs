@@ -6,6 +6,7 @@
 
 using System;
 using System.Globalization;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -354,14 +355,13 @@ namespace FileHelpers
 
 		#region "  Date Converters  "
 
-
 		#region "  Convert Classes  "
 
 		internal sealed class DateTimeConverter : ConverterBase
 		{
-			string mFormat;
+		    readonly string mFormat;
 
-			public DateTimeConverter() : this(ConverterBase.DefaultDateTimeFormat)
+			public DateTimeConverter() : this(DefaultDateTimeFormat)
 			{
 			}
 
@@ -372,7 +372,7 @@ namespace FileHelpers
 
 				try
 				{
-					string tmp = DateTime.Now.ToString(format);
+					DateTime.Now.ToString(format);
 				}
 				catch
 				{
@@ -393,7 +393,8 @@ namespace FileHelpers
 				}
 				catch
 				{
-					string extra = String.Empty;
+					string extra;
+
 					if (from.Length > mFormat.Length)
 						extra = " There are more chars than in the format string: '" + mFormat + "'";
 					else if (from.Length < mFormat.Length)
@@ -415,6 +416,85 @@ namespace FileHelpers
 
 		#endregion
 
+        #region "  Convert Classes  "
+
+        internal sealed class DateTimeMultiFormatConverter : ConverterBase
+        {
+            readonly string[] mFormats;
+
+
+            public DateTimeMultiFormatConverter(string format1, string format2)
+                : this(new string[] { format1, format2 })
+            {
+            }
+
+            public DateTimeMultiFormatConverter(string format1, string format2, string format3)
+                : this(new string[] { format1, format2, format3 })
+            {
+            }
+
+            private DateTimeMultiFormatConverter(string[] formats)
+            {
+                for (int i = 0; i < formats.Length; i++)
+                {
+                    if (formats[i] == null || formats[i] == String.Empty)
+                        throw new BadUsageException("The format of the DateTime Converter can be null or empty.");
+
+                    try
+                    {
+                        DateTime.Now.ToString(formats[i]);
+                    }
+                    catch
+                    {
+                        throw new BadUsageException("The format: '" + formats[i] + " is invalid for the DateTime Converter.");
+                    }
+                }
+
+                mFormats = formats;
+            }
+
+            public override object StringToField(string from)
+            {
+                if (from == null) from = string.Empty;
+
+                object val;
+                try
+                {
+                    val = DateTime.ParseExact(from.Trim(), mFormats, null, DateTimeStyles.None);
+                }
+                catch
+                {
+                    string extra;
+                    extra = " Not match any of the formats: " + CreateFormats();
+                    throw new ConvertException(from, typeof(DateTime), extra);
+                }
+                return val;
+            }
+
+            private string CreateFormats()
+            {
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < mFormats.Length; i++)
+                {
+                    if (i == 0)
+                        sb.Append("'" + mFormats[i] + "'");
+                    else
+                        sb.Append(", '" + mFormats[i] + "'");
+                }
+
+                return sb.ToString();
+            }
+
+            public override string FieldToString(object from)
+            {
+                return Convert.ToDateTime(from).ToString(mFormats[0]);
+            }
+        }
+
+        #endregion
+
+
 		#endregion
 
 		#region "  Boolean Converters  "
@@ -423,10 +503,10 @@ namespace FileHelpers
 
 		internal sealed class BooleanConverter : ConverterBase
 		{
-			private string mTrueString = null;
-			private string mFalseString = null;
-			private string mTrueStringLower = null;
-			private string mFalseStringLower = null;
+			private readonly string mTrueString = null;
+            private readonly string mFalseString = null;
+            private readonly string mTrueStringLower = null;
+            private readonly string mFalseStringLower = null;
 
 			public BooleanConverter()
 			{
