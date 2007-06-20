@@ -135,7 +135,7 @@ namespace FileHelpers.RunTime
 				if (ts.Length > 0)
 					foreach (Type t in ts)
 					{
-						if (t.FullName.StartsWith("My.My") == false)
+						if (t.FullName.StartsWith("My.My") == false && t.IsDefined(typeof(TypedRecordAttribute), false))
 							return t;
 					}
 

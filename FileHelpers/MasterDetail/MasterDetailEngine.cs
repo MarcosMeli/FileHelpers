@@ -49,7 +49,7 @@ namespace FileHelpers.MasterDetail
 			mMasterInfo = new RecordInfo(masterType);
 
 			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
-			RecordSelector = sel.CommonSelectorMethod;
+			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
         #endregion
