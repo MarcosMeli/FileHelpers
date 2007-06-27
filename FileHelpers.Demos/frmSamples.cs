@@ -453,15 +453,15 @@ namespace FileHelpersSamples
 			this.Controls.Add(this.cmdAsync);
 			this.Controls.Add(this.pictureBox5);
 			this.Controls.Add(this.pictureBox10);
-			this.Controls.Add(this.picNewVersion);
 			this.Controls.Add(this.picCurrent);
+			this.Controls.Add(this.picNewVersion);
 			this.ExitOnEsc = false;
 			this.Name = "frmSamples";
 			this.Text = "FileHelpers Library - Samples ";
 			this.Load += new System.EventHandler(this.frmSamples_Load);
 			this.Activated += new System.EventHandler(this.frmSamples_Activated);
-			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.picNewVersion, 0);
+			this.Controls.SetChildIndex(this.picCurrent, 0);
 			this.Controls.SetChildIndex(this.pictureBox10, 0);
 			this.Controls.SetChildIndex(this.pictureBox5, 0);
 			this.Controls.SetChildIndex(this.cmdAsync, 0);
