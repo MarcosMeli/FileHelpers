@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 			"10101314234567" + Environment.NewLine;
 
 
-		[Test]
+		[Test] 
 		public void AsyncFieldIndex1()
 		{
 
