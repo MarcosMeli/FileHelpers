@@ -33,7 +33,7 @@ namespace FileHelpersTests.CommonTests
 
 				Assert.AreEqual(res.Length, 32);
 			}
-
+             
 			[Test]
 			public void GetMSWSReportsFromURL_AsData_20060709_28Records()
 			{
