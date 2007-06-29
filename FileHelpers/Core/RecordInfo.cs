@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-07 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.devoo.net" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -22,400 +22,231 @@ using System.Reflection.Emit;
 
 namespace FileHelpers
 {
-	
-	
+    
+    /// <summary>An internal class used to store information about the Record Type.</summary>
+    /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
+    internal sealed class RecordInfo
+    {
+        // --------------------------------------
+        // Constructor and Init Methods
 
-	/// <summary>An internal class used to store information about the Record Type.</summary>
-	/// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
-	internal sealed class RecordInfo
-	{
-		#region "  Internal Fields  "
-		
-		internal Type mRecordType;
-		internal FieldBase[] mFields;
-		internal int mIgnoreFirst = 0;
-		internal int mIgnoreLast = 0;
-		internal bool mIgnoreEmptyLines = false;
-		internal bool mIgnoreEmptySpaces = false;
-		
-		internal string mCommentMarker = null;
-		internal bool mCommentAnyPlace = true;
+        #region "  Internal Fields  "
 
-		internal RecordCondition mRecordCondition = RecordCondition.None;
-		internal string mRecordConditionSelector = string.Empty;
-		
+        internal Type mRecordType;
+        internal FieldBase[] mFields;
+        internal int mIgnoreFirst = 0;
+        internal int mIgnoreLast = 0;
+        internal bool mIgnoreEmptyLines = false;
+        internal bool mIgnoreEmptySpaces = false;
+
+        internal string mCommentMarker = null;
+        internal bool mCommentAnyPlace = true;
+
+        internal RecordCondition mRecordCondition = RecordCondition.None;
+        internal string mRecordConditionSelector = string.Empty;
+
 #if ! MINI
-		internal bool mNotifyRead;
-		internal bool mNotifyWrite;
-		private Regex mConditionRegEx = null;
+        internal bool mNotifyRead;
+        internal bool mNotifyWrite;
+        private Regex mConditionRegEx = null;
 #endif
-		internal int mFieldCount;
-		
-		private ConstructorInfo mRecordConstructor;
+        internal int mFieldCount;
 
-		private static readonly object[] mEmptyObjectArr = new object[] {};
-		private static readonly Type[] mEmptyTypeArr = new Type[] {};
-		
-		#endregion
-		
-		#region "  Constructor  "
+        private ConstructorInfo mRecordConstructor;
 
-		/// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
-		/// <param name="recordType">The Type of the record class.</param>
-		internal RecordInfo(Type recordType)
-		{
-			mRecordType = recordType;
-			InitFields();
-		
-		}
+        private static readonly object[] mEmptyObjectArr = new object[] { };
+        private static readonly Type[] mEmptyTypeArr = new Type[] { };
 
-		internal bool IsDelimited
-		{
-			get { return mFields[0] is DelimitedField; }
-		}
+        #endregion
 
-		#endregion
+        #region "  Constructor  "
 
-		#region "  CreateAssingMethods  "
-
-#if NET_2_0
-
-        private delegate object[] GetAllValuesCallback(object record);
-        private GetAllValuesCallback mGetAllValuesHandler;
-
-        private void CreateGetAllMethod()
-		{
-			if (mGetAllValuesHandler != null)
-				return;
-
-				DynamicMethod dm = new DynamicMethod("_GetAllValues_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,	CallingConventions.Standard, typeof(object[]), new Type[] { typeof(object) }, mRecordType, true);
-
-    ILGenerator generator = dm.GetILGenerator();
-    
-        generator.DeclareLocal(typeof(object[]));
-        generator.DeclareLocal(mRecordType);
-
-        generator.Emit(OpCodes.Ldc_I4, mFieldCount);
-        generator.Emit(OpCodes.Newarr, typeof(object));
-        generator.Emit(OpCodes.Stloc_0);
-
-        generator.Emit(OpCodes.Ldarg_0);
-        generator.Emit(OpCodes.Castclass, mRecordType);
-        generator.Emit(OpCodes.Stloc_1);
-
-
-    for (int i = 0; i < mFieldCount; i++)
-    {
-        FieldBase field = mFields[i];
-
-        generator.Emit(OpCodes.Ldloc_0);
-        generator.Emit(OpCodes.Ldc_I4, i);
-        generator.Emit(OpCodes.Ldloc_1);
-
-        generator.Emit(OpCodes.Ldfld, field.mFieldInfo);
-
-
-        if (field.FieldType.IsValueType)
+        /// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
+        /// <param name="recordType">The Type of the record class.</param>
+        internal RecordInfo(Type recordType)
         {
-            generator.Emit(OpCodes.Box, field.FieldType);
+            mRecordType = recordType;
+            InitRecordFields();
+
         }
 
-        generator.Emit(OpCodes.Stelem_Ref);
-        //generator.EmitCall();
-
-    }
-
-    // return the value
-    generator.Emit(OpCodes.Ldloc_0);
-    generator.Emit(OpCodes.Ret);
-
-    mGetAllValuesHandler = (GetAllValuesCallback)dm.CreateDelegate(typeof(GetAllValuesCallback));
-
-		}
-
-
-
-
-
-
-
-
-        private delegate object CreateAndAssignCallback(object[] values);
-        private CreateAndAssignCallback mCreateHandler;
-
-
-
-
-		private void CreateAssingMethods()
-		{
-			if (mCreateHandler != null)
-				return;
-
-				DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
-				//dm.InitLocals = false;
-
-    ILGenerator generator = dm.GetILGenerator();
-    
-    generator.DeclareLocal(mRecordType);
-    //generator.DeclareLocal(typeof(object));
-    generator.Emit(OpCodes.Newobj, mRecordConstructor);
-    generator.Emit(OpCodes.Stloc_0);
-
-    for (int i = 0; i < mFieldCount; i++)
-    {
-        FieldBase field = mFields[i];
-
-        generator.Emit(OpCodes.Ldloc_0);
-        generator.Emit(OpCodes.Ldarg_0);
-        generator.Emit(OpCodes.Ldc_I4, i);
-        generator.Emit(OpCodes.Ldelem_Ref);
-
-
-        if (field.FieldType.IsValueType)
+        internal bool IsDelimited
         {
-            generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-        }
-        else
-        {
-            generator.Emit(OpCodes.Castclass, field.FieldType);
+            get { return mFields[0] is DelimitedField; }
         }
 
-        generator.Emit(OpCodes.Stfld, field.mFieldInfo);
-        //generator.EmitCall();
+        #endregion
+        
+        #region "  InitRecordFields  "
 
-    }
+        private void InitRecordFields()
+        {
+            //-> Checked by the AttributeTargets
+            //new BadUsageException("Structures are not supported in the FileHelperEngine only classes are allowed.");
 
-    // return the value
-    generator.Emit(OpCodes.Ldloc_0);
-    generator.Emit(OpCodes.Ret);
+            TypedRecordAttribute recordAttribute;
 
-    mCreateHandler = (CreateAndAssignCallback)dm.CreateDelegate(typeof(CreateAndAssignCallback));
+            if (mRecordType.IsDefined(typeof(TypedRecordAttribute), true) == false)
+                throw new BadUsageException("The class " + mRecordType.Name + " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
+            else
+            {
+                object[] attbs = mRecordType.GetCustomAttributes(typeof(TypedRecordAttribute), true);
+                recordAttribute = (TypedRecordAttribute)attbs[0];
+            }
 
-		}
+            if (mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] { }) == null)
+                throw new BadUsageException("The record class " + mRecordType.Name + " need a constructor with no args (public or private)");
 
-        private delegate object CreateNewObject();
-        private CreateNewObject mFastConstructor;
+            if (mRecordType.IsDefined(typeof(IgnoreFirstAttribute), false))
+                mIgnoreFirst = ((IgnoreFirstAttribute)mRecordType.GetCustomAttributes(typeof(IgnoreFirstAttribute), false)[0]).NumberOfLines;
 
+            if (mRecordType.IsDefined(typeof(IgnoreLastAttribute), false))
+                mIgnoreLast = ((IgnoreLastAttribute)mRecordType.GetCustomAttributes(typeof(IgnoreLastAttribute), false)[0]).NumberOfLines;
 
-		private void CreateFastConstructor()
-		{
-			if (mFastConstructor != null)
-				return;
+            if (mRecordType.IsDefined(typeof(IgnoreEmptyLinesAttribute), false))
+            {
+                mIgnoreEmptyLines = true;
+                mIgnoreEmptySpaces = ((IgnoreEmptyLinesAttribute)mRecordType.GetCustomAttributes(typeof(IgnoreEmptyLinesAttribute), false)[0]).
+                        mIgnoreSpaces;
+            }
 
-			DynamicMethod dm = new DynamicMethod("_CreateRecordFast_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,							CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
-			
-		    ILGenerator generator = dm.GetILGenerator();
-    
-//			generator.DeclareLocal(mRecordType);
-		    generator.Emit(OpCodes.Newobj, mRecordConstructor);
-			generator.Emit(OpCodes.Ret);
+            if (mRecordType.IsDefined(typeof(IgnoreCommentedLinesAttribute), false))
+            {
+                IgnoreCommentedLinesAttribute ignoreComments =
+                    (IgnoreCommentedLinesAttribute)mRecordType.GetCustomAttributes(typeof(IgnoreCommentedLinesAttribute), false)[0];
+                mCommentMarker = ignoreComments.mCommentMarker;
+                mCommentAnyPlace = ignoreComments.mAnyPlace;
+            }
 
-			mFastConstructor = (CreateNewObject)dm.CreateDelegate(typeof(CreateNewObject));
+            if (mRecordType.IsDefined(typeof(ConditionalRecordAttribute), false))
+            {
+                ConditionalRecordAttribute conditional =
+                    (ConditionalRecordAttribute)mRecordType.GetCustomAttributes(typeof(ConditionalRecordAttribute), false)[0];
 
-		}
+                mRecordCondition = conditional.mCondition;
+                mRecordConditionSelector = conditional.mConditionSelector;
 
+#if ! MINI
 
-	#endif
-		#endregion
-
-		
-		#region InitFields
-
-		private void InitFields()
-		{
-			//-> Checked by the AttributeTargets
-			//new BadUsageException("Structures are not supported in the FileHelperEngine only classes are allowed.");
-
-			TypedRecordAttribute recordAttribute;
-
-			if (mRecordType.IsDefined(typeof (TypedRecordAttribute), true) == false)
-				throw new BadUsageException("The class " + mRecordType.Name + " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
-			else
-			{
-				object[] attbs = mRecordType.GetCustomAttributes(typeof (TypedRecordAttribute), true);
-				recordAttribute = (TypedRecordAttribute) attbs[0];
-			}
-
-			if (mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {}) == null)
-				throw new BadUsageException("The record class " + mRecordType.Name + " need a constructor with no args (public or private)");
-
-			if (mRecordType.IsDefined(typeof (IgnoreFirstAttribute), false))
-				mIgnoreFirst = ((IgnoreFirstAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreFirstAttribute), false)[0]).NumberOfLines;
-
-			if (mRecordType.IsDefined(typeof (IgnoreLastAttribute), false))
-				mIgnoreLast = ((IgnoreLastAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreLastAttribute), false)[0]).NumberOfLines;
-
-			if (mRecordType.IsDefined(typeof (IgnoreEmptyLinesAttribute), false))
-			{
-				mIgnoreEmptyLines = true;
-				mIgnoreEmptySpaces = ((IgnoreEmptyLinesAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreEmptyLinesAttribute), false)[0]).
-						mIgnoreSpaces;
-			}
-
-			if (mRecordType.IsDefined(typeof (IgnoreCommentedLinesAttribute), false))
-			{
-				IgnoreCommentedLinesAttribute ignoreComments =
-					(IgnoreCommentedLinesAttribute) mRecordType.GetCustomAttributes(typeof (IgnoreCommentedLinesAttribute), false)[0];
-					mCommentMarker = ignoreComments.mCommentMarker;
-					mCommentAnyPlace = ignoreComments.mAnyPlace;
-			}
-
-			if (mRecordType.IsDefined(typeof (ConditionalRecordAttribute), false))
-			{
-				ConditionalRecordAttribute conditional =
-					(ConditionalRecordAttribute) mRecordType.GetCustomAttributes(typeof (ConditionalRecordAttribute), false)[0];
-
-				mRecordCondition = conditional.mCondition;
-				mRecordConditionSelector = conditional.mConditionSelector;
-
-				#if ! MINI
-
-				if (mRecordCondition == RecordCondition.ExcludeIfMatchRegex ||
-					mRecordCondition == RecordCondition.IncludeIfMatchRegex)
-				{
-					mConditionRegEx = new Regex(mRecordConditionSelector, RegexOptions.Compiled |RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
-				}
-				#endif
-			}
+                if (mRecordCondition == RecordCondition.ExcludeIfMatchRegex ||
+                    mRecordCondition == RecordCondition.IncludeIfMatchRegex)
+                {
+                    mConditionRegEx = new Regex(mRecordConditionSelector, RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+                }
+#endif
+            }
 
 
 
 #if ! MINI
-			if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
-				mNotifyRead = true;
+            if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
+                mNotifyRead = true;
 
-			if (typeof(INotifyWrite).IsAssignableFrom(mRecordType))
-				mNotifyWrite = true;
+            if (typeof(INotifyWrite).IsAssignableFrom(mRecordType))
+                mNotifyWrite = true;
 #endif
 
 
-			mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] {});
+            mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] { });
 
-			// Create fields
+            // Create fields
 
-			ArrayList fields = new ArrayList();
-			RecursiveGetFields(fields, mRecordType, recordAttribute);
+            ArrayList fields = new ArrayList();
+            RecursiveGetFields(fields, mRecordType, recordAttribute);
 
-			mFields = CreateCoreFields(fields, recordAttribute);
-			mFieldCount = mFields.Length;
-			
-			if (recordAttribute is FixedLengthRecordAttribute)
-			{
-				// Defines the initial size of the StringBuilder
-				mSizeHint = 0;
-				for(int i = 0; i < mFieldCount; i++)
-					mSizeHint += ((FixedLengthField) mFields[i]).mFieldLength;
-			}
-					
+            mFields = CreateCoreFields(fields, recordAttribute);
+            mFieldCount = mFields.Length;
 
-			if (mFieldCount == 0)
-				throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
-
-		}
-
-		private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
-		{
-			if (currentType.BaseType != null)
-				RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
-
-			fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-		}
-
-		#endregion
-
-		#region CreateFields
-
-		private static FieldBase[] CreateCoreFields(ArrayList fields, TypedRecordAttribute recordAttribute)
-		{
-			ArrayList resFields = new ArrayList();
-
-		    for (int i = 0; i < fields.Count; i++)
-			{
-			    FieldBase currentField = FieldFactory.CreateField((FieldInfo) fields[i], recordAttribute);
-
-			    if (currentField != null)
-				{
-					// Add to the result
-					resFields.Add(currentField);
-
-					// Check some differences with the previous field
-					if (resFields.Count > 1)
-					{
-						FieldBase prevField = (FieldBase)resFields[resFields.Count-2];
-	
-						prevField.mNextIsOptional = currentField.mIsOptional;
-
-						// Check for optional problems
-						if (prevField.mIsOptional && currentField.mIsOptional == false)
-						   throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + currentField.mFieldInfo.Name + " )");
-
-						// Check for array problems
-						if (prevField.mIsArray)
-						{
-							if (prevField.mArrayMinLength == int.MinValue)
-								throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
-
-							if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
-								throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name + " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
-						}
-					}
-
-				}
-			}
-
-		    if (resFields.Count > 0)
-			{
-				((FieldBase) resFields[0]).mIsFirst = true;
-				((FieldBase) resFields[resFields.Count - 1]).mIsLast = true;
-
-			}
-
-			return (FieldBase[]) resFields.ToArray(typeof (FieldBase));
-
-		}
-		#endregion
-
-		#region GetFieldInfo
-
-		internal FieldInfo GetFieldInfo(string name)
-		{
-			foreach (FieldBase field in mFields)
-			{
-				if (field.mFieldInfo.Name.ToLower() == name.ToLower())
-					return field.mFieldInfo;
-			}
-
-			return null;
-		}
-		#endregion
-
-		#region CreateRecordObject
-		internal object CreateRecordObject()
-		{
-#if NET_2_0
-			CreateFastConstructor();
-
-			if (mFastConstructor == null)
-				CreateFastConstructor();
-
-			return mFastConstructor();
-#else
-			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
-#endif
-		}
-		#endregion
+            if (recordAttribute is FixedLengthRecordAttribute)
+            {
+                // Defines the initial size of the StringBuilder
+                mSizeHint = 0;
+                for (int i = 0; i < mFieldCount; i++)
+                    mSizeHint += ((FixedLengthField)mFields[i]).mFieldLength;
+            }
 
 
-		#region StringToRecord
-		internal object StringToRecord(LineInfo line, object[] values)
-		{
-			if (MustIgnoreLine(line.mLineStr))
-				return null;
+            if (mFieldCount == 0)
+                throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
 
-			for (int i = 0; i < mFieldCount; i++)
-			{
-				values[i] = mFields[i].ExtractFieldValue(line);
-			}
+        }
+
+        private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
+        {
+            if (currentType.BaseType != null)
+                RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
+
+            fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+        }
+
+        #endregion
+
+        #region "  CreateFields  "
+        
+        private static FieldBase[] CreateCoreFields(ArrayList fields, TypedRecordAttribute recordAttribute)
+        {
+            ArrayList resFields = new ArrayList();
+
+            for (int i = 0; i < fields.Count; i++)
+            {
+                FieldBase currentField = FieldFactory.CreateField((FieldInfo)fields[i], recordAttribute);
+
+                if (currentField != null)
+                {
+                    // Add to the result
+                    resFields.Add(currentField);
+
+                    // Check some differences with the previous field
+                    if (resFields.Count > 1)
+                    {
+                        FieldBase prevField = (FieldBase)resFields[resFields.Count - 2];
+
+                        prevField.mNextIsOptional = currentField.mIsOptional;
+
+                        // Check for optional problems
+                        if (prevField.mIsOptional && currentField.mIsOptional == false)
+                            throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " + currentField.mFieldInfo.Name + " )");
+
+                        // Check for array problems
+                        if (prevField.mIsArray)
+                        {
+                            if (prevField.mArrayMinLength == int.MinValue)
+                                throw new BadUsageException("The field: " + prevField.mFieldInfo.Name + " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
+
+                            if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
+                                throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name + " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
+                        }
+                    }
+
+                }
+            }
+
+            if (resFields.Count > 0)
+            {
+                ((FieldBase)resFields[0]).mIsFirst = true;
+                ((FieldBase)resFields[resFields.Count - 1]).mIsLast = true;
+
+            }
+
+            return (FieldBase[])resFields.ToArray(typeof(FieldBase));
+
+        }
+        #endregion
+
+        // ----------------------------------------
+        // String <--> Record <--> Values methods
+
+        #region "  StringToRecord  "
+
+        internal object StringToRecord(LineInfo line, object[] values)
+        {
+            if (MustIgnoreLine(line.mLineStr))
+                return null;
+
+            for (int i = 0; i < mFieldCount; i++)
+            {
+                values[i] = mFields[i].ExtractFieldValue(line);
+            }
 
 #if NET_1_1 || MINI
 			try
@@ -443,96 +274,96 @@ namespace FileHelpers
             try
             {
                 // Asign all values via dinamic method that creates an object and assign values
-               return mCreateHandler(values);
+                return mCreateHandler(values);
             }
             catch (InvalidCastException)
             {
                 // Occurrs when the a custom converter returns an invalid value for the field.
                 for (int i = 0; i < mFieldCount; i++)
                 {
-                    if (values[i] != null && ! mFields[i].mFieldTypeInternal.IsInstanceOfType(values[i]))
-						throw new ConvertException(null, mFields[i].mFieldTypeInternal, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldTypeInternal.Name, null);
+                    if (values[i] != null && !mFields[i].mFieldTypeInternal.IsInstanceOfType(values[i]))
+                        throw new ConvertException(null, mFields[i].mFieldTypeInternal, mFields[i].mFieldInfo.Name, line.mReader.LineNumber, -1, "The converter for the field: " + mFields[i].mFieldInfo.Name + " returns an object of Type: " + values[i].GetType().Name + " and the field is of type: " + mFields[i].mFieldTypeInternal.Name, null);
                 }
                 return null;
             }
 #endif
-		}
-
-		
-		
-//		private static ErrorManager CreateAndAssign(object[] values)
-//		{
-//			ErrorManager record = new ErrorManager();
-//			record.mErrorMode = (ErrorMode) values[0];
-//			record.temp = (string) values[1];
-//			
-//			return record;
-//		}
-		
-		
-		private bool MustIgnoreLine(string line)
-		{
-			if (mIgnoreEmptyLines)
-				if ((mIgnoreEmptySpaces && line.TrimStart().Length == 0) || 
-					line.Length == 0) 
-					return true;
-		
-		
-			if (mCommentMarker != null && mCommentMarker.Length > 0)
-				if ( (mCommentAnyPlace && line.TrimStart().StartsWith(mCommentMarker)) ||
-					line.StartsWith(mCommentMarker))
-					return true;
-			
+        }
 
 
-			if (mRecordCondition != RecordCondition.None)
-			{
-				switch (mRecordCondition)
-				{
-					case RecordCondition.ExcludeIfBegins:
-						return ConditionHelper.BeginsWith(line, mRecordConditionSelector);
-					case RecordCondition.IncludeIfBegins:
-						return ! ConditionHelper.BeginsWith(line, mRecordConditionSelector);
 
-					case RecordCondition.ExcludeIfContains:
-						return ConditionHelper.Contains(line, mRecordConditionSelector);
-					case RecordCondition.IncludeIfContains:
-						return ConditionHelper.Contains(line, mRecordConditionSelector);
+        //		private static ErrorManager CreateAndAssign(object[] values)
+        //		{
+        //			ErrorManager record = new ErrorManager();
+        //			record.mErrorMode = (ErrorMode) values[0];
+        //			record.temp = (string) values[1];
+        //			
+        //			return record;
+        //		}
 
 
-					case RecordCondition.ExcludeIfEnclosed:
-						return ConditionHelper.Enclosed(line, mRecordConditionSelector);
-					case RecordCondition.IncludeIfEnclosed:
-						return ! ConditionHelper.Enclosed(line, mRecordConditionSelector);
-					
-					case RecordCondition.ExcludeIfEnds:
-						return ConditionHelper.EndsWith(line, mRecordConditionSelector);
-					case RecordCondition.IncludeIfEnds:
-						return ! ConditionHelper.EndsWith(line, mRecordConditionSelector);
+        private bool MustIgnoreLine(string line)
+        {
+            if (mIgnoreEmptyLines)
+                if ((mIgnoreEmptySpaces && line.TrimStart().Length == 0) ||
+                    line.Length == 0)
+                    return true;
 
-				#if ! MINI
-					case RecordCondition.ExcludeIfMatchRegex:
-						return mConditionRegEx.IsMatch(line);
-					case RecordCondition.IncludeIfMatchRegex:
-						return ! mConditionRegEx.IsMatch(line);
-				#endif
 
-				}
-			}
-			
-			return false;
-		}
+            if (mCommentMarker != null && mCommentMarker.Length > 0)
+                if ((mCommentAnyPlace && line.TrimStart().StartsWith(mCommentMarker)) ||
+                    line.StartsWith(mCommentMarker))
+                    return true;
 
-		#endregion
 
-		#region RecordToString
 
-		internal int mSizeHint = 32;
+            if (mRecordCondition != RecordCondition.None)
+            {
+                switch (mRecordCondition)
+                {
+                    case RecordCondition.ExcludeIfBegins:
+                        return ConditionHelper.BeginsWith(line, mRecordConditionSelector);
+                    case RecordCondition.IncludeIfBegins:
+                        return !ConditionHelper.BeginsWith(line, mRecordConditionSelector);
 
-		internal string RecordToString(object record)
-		{
-			StringBuilder sb = new StringBuilder(mSizeHint);
-			//string res = String.Empty;
+                    case RecordCondition.ExcludeIfContains:
+                        return ConditionHelper.Contains(line, mRecordConditionSelector);
+                    case RecordCondition.IncludeIfContains:
+                        return ConditionHelper.Contains(line, mRecordConditionSelector);
+
+
+                    case RecordCondition.ExcludeIfEnclosed:
+                        return ConditionHelper.Enclosed(line, mRecordConditionSelector);
+                    case RecordCondition.IncludeIfEnclosed:
+                        return !ConditionHelper.Enclosed(line, mRecordConditionSelector);
+
+                    case RecordCondition.ExcludeIfEnds:
+                        return ConditionHelper.EndsWith(line, mRecordConditionSelector);
+                    case RecordCondition.IncludeIfEnds:
+                        return !ConditionHelper.EndsWith(line, mRecordConditionSelector);
+
+#if ! MINI
+                    case RecordCondition.ExcludeIfMatchRegex:
+                        return mConditionRegEx.IsMatch(line);
+                    case RecordCondition.IncludeIfMatchRegex:
+                        return !mConditionRegEx.IsMatch(line);
+#endif
+
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #region "  RecordToString  "
+
+        internal int mSizeHint = 32;
+
+        internal string RecordToString(object record)
+        {
+            StringBuilder sb = new StringBuilder(mSizeHint);
+            //string res = String.Empty;
 
 
 #if NET_1_1 || MINI
@@ -543,21 +374,21 @@ namespace FileHelpers
 			}
 
 #else
-			CreateGetAllMethod();
+            CreateGetAllMethod();
 
-			object[] mValues = mGetAllValuesHandler(record);
+            object[] mValues = mGetAllValuesHandler(record);
 #endif
-			 
 
-			for (int f = 0; f < mFieldCount; f++)
-			{
-				mFields[f].AssignToString(sb, mValues[f]);
-			}
 
-			//_BigSize = Math.Max(_BigSize, sb.Length);
+            for (int f = 0; f < mFieldCount; f++)
+            {
+                mFields[f].AssignToString(sb, mValues[f]);
+            }
 
-			return sb.ToString();
-		}
+            //_BigSize = Math.Max(_BigSize, sb.Length);
+
+            return sb.ToString();
+        }
 
         internal string RecordValuesToString(object[] recordValues)
         {
@@ -574,21 +405,22 @@ namespace FileHelpers
             return sb.ToString();
         }
 
-		#endregion
+        #endregion
 
-		#region ValuesToRecord
-		/// <summary>Returns a record formed with the passed values.</summary>
-		/// <param name="values">The source Values.</param>
-		/// <returns>A record formed with the passed values.</returns>
-		public object ValuesToRecord(object[] values)
-		{
-			for (int i = 0; i < mFieldCount; i++)
-			{
-				if (mFields[i].mFieldTypeInternal == typeof(DateTime) && values[i] is double)
-					values[i] = DoubleToDate((int)(double)values[i]);
+        #region "  ValuesToRecord  "
 
-				values[i] = mFields[i].CreateValueForField(values[i]);
-			}
+        /// <summary>Returns a record formed with the passed values.</summary>
+        /// <param name="values">The source Values.</param>
+        /// <returns>A record formed with the passed values.</returns>
+        public object ValuesToRecord(object[] values)
+        {
+            for (int i = 0; i < mFieldCount; i++)
+            {
+                if (mFields[i].mFieldTypeInternal == typeof(DateTime) && values[i] is double)
+                    values[i] = DoubleToDate((int)(double)values[i]);
+
+                values[i] = mFields[i].CreateValueForField(values[i]);
+            }
 
 #if NET_1_1 || MINI
 
@@ -602,35 +434,35 @@ namespace FileHelpers
 			return record;
 
 #else
-			CreateAssingMethods();
+            CreateAssingMethods();
 
-			// Asign all values via dinamic method that creates an object and assign values
-			return mCreateHandler(values);
+            // Asign all values via dinamic method that creates an object and assign values
+            return mCreateHandler(values);
 #endif
 
-		}
+        }
 
-		private static DateTime DoubleToDate(int serialNumber)
-		{
-		
-			if (serialNumber < 59) 
-			{ 
-				// Because of the 29-02-1900 bug, any serial date 
-				// under 60 is one off... Compensate. 
-				serialNumber++; 
-			} 
+        private static DateTime DoubleToDate(int serialNumber)
+        {
 
-			return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600)); 
-		}
+            if (serialNumber < 59)
+            {
+                // Because of the 29-02-1900 bug, any serial date 
+                // under 60 is one off... Compensate. 
+                serialNumber++;
+            }
 
-		#endregion
+            return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600));
+        }
 
-		#region RecordToValues
-		/// <summary>Get an object[] of the values in the fields of the passed record.</summary>
-		/// <param name="record">The source record.</param>
-		/// <returns>An object[] of the values in the fields.</returns>
-		public object[] RecordToValues(object record)
-		{
+        #endregion
+
+        #region "  RecordToValues  "
+        /// <summary>Get an object[] of the values in the fields of the passed record.</summary>
+        /// <param name="record">The source record.</param>
+        /// <returns>An object[] of the values in the fields.</returns>
+        public object[] RecordToValues(object record)
+        {
 #if NET_1_1 || MINI
 			object[] res = new object[mFieldCount];
 
@@ -641,111 +473,277 @@ namespace FileHelpers
 			return res;
 
 #else
-			CreateGetAllMethod();
+            CreateGetAllMethod();
 
-			return mGetAllValuesHandler(record);
+            return mGetAllValuesHandler(record);
 #endif
 
-		}
-		#endregion
+        }
+        #endregion
 
-	
-	#if ! MINI
+        #region "  RecordsToDataTable  "
 
-		#region RecordsToDataTable
+        #if ! MINI
 
-		internal DataTable RecordsToDataTable(ICollection records)
-		{
-			return RecordsToDataTable(records, -1);
-		}
-		
-		internal DataTable RecordsToDataTable(ICollection records, int maxRecords)
-		{
-			DataTable res = CreateEmptyDataTable();
+        internal DataTable RecordsToDataTable(ICollection records)
+        {
+            return RecordsToDataTable(records, -1);
+        }
 
-			res.BeginLoadData();
+        internal DataTable RecordsToDataTable(ICollection records, int maxRecords)
+        {
+            DataTable res = CreateEmptyDataTable();
 
-			res.MinimumCapacity = records.Count;
+            res.BeginLoadData();
 
-			if (maxRecords == -1)
-			{
-				foreach (object r in records)
-					res.Rows.Add(RecordToValues(r));
-			}
-			else
-			{
-				int i = 0;
-				foreach (object r in records)
-				{
-					if (i == maxRecords)
-						break;
+            res.MinimumCapacity = records.Count;
 
-					res.Rows.Add(RecordToValues(r));
-					i++;
-				}
+            if (maxRecords == -1)
+            {
+                foreach (object r in records)
+                    res.Rows.Add(RecordToValues(r));
+            }
+            else
+            {
+                int i = 0;
+                foreach (object r in records)
+                {
+                    if (i == maxRecords)
+                        break;
 
-			}
+                    res.Rows.Add(RecordToValues(r));
+                    i++;
+                }
 
-			res.EndLoadData();
-			return res;
-		}
+            }
 
-		internal DataTable CreateEmptyDataTable()
-		{
-			DataTable res = new DataTable();
+            res.EndLoadData();
+            return res;
+        }
 
-			foreach (FieldBase f in mFields)
-			{
-				DataColumn column1;
+        internal DataTable CreateEmptyDataTable()
+        {
+            DataTable res = new DataTable();
 
-				column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
-				column1.ReadOnly = true;
-			}
-			return res;
-		}
+            foreach (FieldBase f in mFields)
+            {
+                DataColumn column1;
 
-		#endregion
+                column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
+                column1.ReadOnly = true;
+            }
+            return res;
+        }
 
-	#endif
+#endif
+
+        #endregion
+
+        #region "  CreateRecordObject  "
+
+        internal object CreateRecordObject()
+        {
+#if NET_2_0
+            CreateFastConstructor();
+
+            if (mFastConstructor == null)
+                CreateFastConstructor();
+
+            return mFastConstructor();
+#else
+			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
+#endif
+        }
+        #endregion
+
+        // ----------------------------------------
+        // Lighweight code generation (NET 2.0)
+
+        #region "  CreateAssingMethods  "
+
+#if NET_2_0
+
+        private delegate object[] GetAllValuesCallback(object record);
+        private GetAllValuesCallback mGetAllValuesHandler;
+
+        private delegate object CreateAndAssignCallback(object[] values);
+        private CreateAndAssignCallback mCreateHandler;
+
+        private void CreateGetAllMethod()
+        {
+            if (mGetAllValuesHandler != null)
+                return;
+
+            DynamicMethod dm = new DynamicMethod("_GetAllValues_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object[]), new Type[] { typeof(object) }, mRecordType, true);
+
+            ILGenerator generator = dm.GetILGenerator();
+
+            generator.DeclareLocal(typeof(object[]));
+            generator.DeclareLocal(mRecordType);
+
+            generator.Emit(OpCodes.Ldc_I4, mFieldCount);
+            generator.Emit(OpCodes.Newarr, typeof(object));
+            generator.Emit(OpCodes.Stloc_0);
+
+            generator.Emit(OpCodes.Ldarg_0);
+            generator.Emit(OpCodes.Castclass, mRecordType);
+            generator.Emit(OpCodes.Stloc_1);
 
 
-		#if NET_2_0
+            for (int i = 0; i < mFieldCount; i++)
+            {
+                FieldBase field = mFields[i];
 
-		public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
-		{
-				DynamicMethod dm = new DynamicMethod("_GetValue"+ fi.Name + "_FH_RT_", MethodAttributes.Static | MethodAttributes.Public,	CallingConventions.Standard, typeof(object), new Type[] { typeof(object) }, fi.DeclaringType, true);
+                generator.Emit(OpCodes.Ldloc_0);
+                generator.Emit(OpCodes.Ldc_I4, i);
+                generator.Emit(OpCodes.Ldloc_1);
 
-				ILGenerator generator = dm.GetILGenerator();
-    
-				generator.Emit(OpCodes.Ldarg_0);
-				generator.Emit(OpCodes.Castclass, fi.DeclaringType);
-				generator.Emit(OpCodes.Ldfld, fi);
-				generator.Emit(OpCodes.Ret);
+                generator.Emit(OpCodes.Ldfld, field.mFieldInfo);
 
-				return (GetFieldValueCallback)dm.CreateDelegate(typeof(GetFieldValueCallback));
 
-		}
-	
-		#endif
+                if (field.FieldType.IsValueType)
+                {
+                    generator.Emit(OpCodes.Box, field.FieldType);
+                }
 
-		private Hashtable mMapFieldIndex;
-		public int GetFieldIndex(string fieldName)
-		{
-			if (mMapFieldIndex == null)
-			{
-				mMapFieldIndex = new Hashtable(mFieldCount);
-				for(int i = 0; i < mFieldCount; i++)
-				{
-					mMapFieldIndex.Add(mFields[i].mFieldInfo.Name, i);
-				}
-			}
+                generator.Emit(OpCodes.Stelem_Ref);
+                //generator.EmitCall();
 
-			object res = mMapFieldIndex[fieldName];
-			if (res == null)
-				throw new BadUsageException("The field: " + fieldName + " was not found in the class: " + mRecordType.Name + ". Remember that this option is case sensitive.");
+            }
 
-			return (int) res;
-		}
-	}
-	
+            // return the value
+            generator.Emit(OpCodes.Ldloc_0);
+            generator.Emit(OpCodes.Ret);
+
+            mGetAllValuesHandler = (GetAllValuesCallback)dm.CreateDelegate(typeof(GetAllValuesCallback));
+
+        }
+
+
+        private void CreateAssingMethods()
+        {
+            if (mCreateHandler != null)
+                return;
+
+            DynamicMethod dm = new DynamicMethod("_CreateAndAssing_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
+            //dm.InitLocals = false;
+
+            ILGenerator generator = dm.GetILGenerator();
+
+            generator.DeclareLocal(mRecordType);
+            //generator.DeclareLocal(typeof(object));
+            generator.Emit(OpCodes.Newobj, mRecordConstructor);
+            generator.Emit(OpCodes.Stloc_0);
+
+            for (int i = 0; i < mFieldCount; i++)
+            {
+                FieldBase field = mFields[i];
+
+                generator.Emit(OpCodes.Ldloc_0);
+                generator.Emit(OpCodes.Ldarg_0);
+                generator.Emit(OpCodes.Ldc_I4, i);
+                generator.Emit(OpCodes.Ldelem_Ref);
+
+
+                if (field.FieldType.IsValueType)
+                {
+                    generator.Emit(OpCodes.Unbox_Any, field.FieldType);
+                }
+                else
+                {
+                    generator.Emit(OpCodes.Castclass, field.FieldType);
+                }
+
+                generator.Emit(OpCodes.Stfld, field.mFieldInfo);
+                //generator.EmitCall();
+
+            }
+
+            // return the value
+            generator.Emit(OpCodes.Ldloc_0);
+            generator.Emit(OpCodes.Ret);
+
+            mCreateHandler = (CreateAndAssignCallback)dm.CreateDelegate(typeof(CreateAndAssignCallback));
+
+        }
+
+        private delegate object CreateNewObject();
+        private CreateNewObject mFastConstructor;
+
+
+        private void CreateFastConstructor()
+        {
+            if (mFastConstructor != null)
+                return;
+
+            DynamicMethod dm = new DynamicMethod("_CreateRecordFast_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object), new Type[] { typeof(object[]) }, mRecordType, true);
+
+            ILGenerator generator = dm.GetILGenerator();
+
+            //			generator.DeclareLocal(mRecordType);
+            generator.Emit(OpCodes.Newobj, mRecordConstructor);
+            generator.Emit(OpCodes.Ret);
+
+            mFastConstructor = (CreateNewObject)dm.CreateDelegate(typeof(CreateNewObject));
+
+        }
+
+
+        public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
+        {
+            DynamicMethod dm = new DynamicMethod("_GetValue" + fi.Name + "_FH_RT_", MethodAttributes.Static | MethodAttributes.Public, CallingConventions.Standard, typeof(object), new Type[] { typeof(object) }, fi.DeclaringType, true);
+
+            ILGenerator generator = dm.GetILGenerator();
+
+            generator.Emit(OpCodes.Ldarg_0);
+            generator.Emit(OpCodes.Castclass, fi.DeclaringType);
+            generator.Emit(OpCodes.Ldfld, fi);
+            generator.Emit(OpCodes.Ret);
+
+            return (GetFieldValueCallback)dm.CreateDelegate(typeof(GetFieldValueCallback));
+
+        }
+
+#endif
+        #endregion
+
+        #region " FieldIndexes  "
+
+        private Hashtable mMapFieldIndex;
+        public int GetFieldIndex(string fieldName)
+        {
+            if (mMapFieldIndex == null)
+            {
+                mMapFieldIndex = new Hashtable(mFieldCount);
+                for (int i = 0; i < mFieldCount; i++)
+                {
+                    mMapFieldIndex.Add(mFields[i].mFieldInfo.Name, i);
+                }
+            }
+
+            object res = mMapFieldIndex[fieldName];
+            if (res == null)
+                throw new BadUsageException("The field: " + fieldName + " was not found in the class: " + mRecordType.Name + ". Remember that this option is case sensitive.");
+
+            return (int)res;
+        }
+
+        #endregion
+
+        #region "  GetFieldInfo  "
+
+        internal FieldInfo GetFieldInfo(string name)
+        {
+            foreach (FieldBase field in mFields)
+            {
+                if (field.mFieldInfo.Name.ToLower() == name.ToLower())
+                    return field.mFieldInfo;
+            }
+
+            return null;
+        }
+        #endregion
+
+    }
+
 }

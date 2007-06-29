@@ -1,3 +1,9 @@
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.devoo.net"
+
+// Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
+
+#endregion
+
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -474,8 +480,8 @@ namespace FileHelpers.RunTime
 			
 			AttributesBuilder attbs = new AttributesBuilder(lang);
 			
-			AddAttributesInternal(attbs, lang);
-			AddAttributesCode(attbs, lang);
+			AddAttributesInternal(attbs);
+			AddAttributesCode(attbs);
 			
 			sb.Append(attbs.GetAttributesCode());
 			
@@ -521,9 +527,9 @@ namespace FileHelpers.RunTime
 		
 		}
     	
-		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang);
+		internal abstract void AddAttributesCode(AttributesBuilder attbs);
 
-		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage lang)
+		private void AddAttributesInternal(AttributesBuilder attbs)
 		{
 
 			if (mIgnoreFirstLines != 0)
@@ -568,7 +574,9 @@ namespace FileHelpers.RunTime
 				new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
 							   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
 			byte[] encryptedData = Encrypt(clearBytes, 
+#pragma warning disable 612,618
 				pdb.GetBytes(32), pdb.GetBytes(16)); 
+#pragma warning restore 612,618
 			return Convert.ToBase64String(encryptedData); 
 		}
     

@@ -1,3 +1,9 @@
+#region "  © Copyright 2005-07 to Marcos Meli - http://www.devoo.net"
+
+// Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
+
+#endregion
+
 using System;
 using System.Diagnostics;
 using System.Data;
@@ -113,7 +119,7 @@ namespace FileHelpers.RunTime
 			}
 		}
 
-		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+		internal override void AddAttributesCode(AttributesBuilder attbs)
 		{
 			if (mDelimiter == string.Empty)
 				throw new BadUsageException("The Delimiter of the DelimiterClassBuilder can't be null or empty.");
