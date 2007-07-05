@@ -72,20 +72,26 @@ namespace FileHelpers.RunTime
 
 			StringBuilder code = new StringBuilder();
 
-			switch(lang)
-			{
-				case NetLanguage.CSharp:
-                    code.Append("using System; using FileHelpers; using System.Data; ");
-					break;
+            switch (lang)
+            {
+                case NetLanguage.CSharp:
+                    code.Append("using System; using FileHelpers; using System.Data;");
+                    break;
 
-				case NetLanguage.VbNet:
-					code.Append("Imports System \n");
-					code.Append("Imports FileHelpers \n");
-					code.Append("Imports System.Data \n");
-					break;
-			}
+                case NetLanguage.VbNet:
+                    if (classStr.IndexOf("Imports System", StringComparison.OrdinalIgnoreCase) == -1)
+                        code.Append("Imports System\n");
 
-			code.Append(classStr);
+                    if (classStr.IndexOf("Imports FileHelpers", StringComparison.OrdinalIgnoreCase) == -1)
+                        code.Append("Imports FileHelpers\n");
+
+                    if (classStr.IndexOf("Imports System.Data", StringComparison.OrdinalIgnoreCase) == -1)
+                        code.Append("Imports System.Data\n");
+
+                    break;
+            }
+
+		    code.Append(classStr);
 
             CompilerResults cr;
 

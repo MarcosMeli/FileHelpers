@@ -244,7 +244,8 @@ namespace FileHelpers.WizardApp
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInput.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtInput.Location = new System.Drawing.Point(0, 29);
+            this.txtInput.Location = new System.Drawing.Point(-1, 29);
+            this.txtInput.MaxLength = 5000000;
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
             this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -303,7 +304,7 @@ namespace FileHelpers.WizardApp
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(433, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(431, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
