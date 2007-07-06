@@ -890,8 +890,11 @@ namespace FileHelpers.RunTime
 
 			for(int i=1; i < id.Length;i++)
 			{
-				if (isType && id[i] == '.')
-					continue;
+				if (isType )
+				{
+                    if (id[i] == '.' || id[i] == '<' || id[i] == '>' || id[i] == '?' || id[i] == ',')
+        			   continue;
+				}
 				
 				if (id[i] != '_' && Char.IsLetterOrDigit(id[i]) == false)
 					return false;
@@ -997,5 +1000,30 @@ namespace FileHelpers.RunTime
 			}
 			private bool mInAnyPlace = true;
 		}
+
+	    internal static string TypeToString(Type type)
+	    {
+            if (type.IsGenericType)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(type.Name.Substring(0, type.Name.IndexOf("`", StringComparison.Ordinal)));
+                sb.Append("<");
+
+                Type[] args = type.GetGenericArguments();
+
+                for (int i = 0; i < args.Length; i++ )
+                {
+                    if (i > 0)
+                        sb.Append(",");
+                    
+                    sb.Append(TypeToString(args[i]));
+                }
+                sb.Append(">");
+                
+                return sb.ToString();
+            }
+            else 
+	            return type.FullName;
+	    }
     }
 }

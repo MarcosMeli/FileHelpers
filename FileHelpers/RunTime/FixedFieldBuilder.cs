@@ -19,7 +19,7 @@ namespace FileHelpers.RunTime
 #endif
         private int mFieldLength;
 
-		internal FixedFieldBuilder(string fieldName, int length, Type fieldType): this(fieldName, length, fieldType.FullName)
+		internal FixedFieldBuilder(string fieldName, int length, Type fieldType): this(fieldName, length, ClassBuilder.TypeToString(fieldType))
 		{}
 
 		internal FixedFieldBuilder(string fieldName, int length, string fieldType): base(fieldName, fieldType)

@@ -79,11 +79,11 @@ namespace FileHelpers.RunTime
 		/// <summary>Adds a new Fixed Length field.</summary>
 		/// <param name="fieldName">The name of the field.</param>
 		/// <param name="length">The length of the field.</param>
-		/// <param name="fieldType">The Type of the field.</param>
+        /// <param name="fieldType">The Type of the field. (For generic of nullable types use the string overload, like "int?")</param>
 		/// <returns>The just created field.</returns>
 		public FixedFieldBuilder AddField(string fieldName, int length, Type fieldType)
 		{
-			return AddField(fieldName, length, fieldType.FullName);
+			return AddField(fieldName, length, TypeToString(fieldType));
 		}
 
 		/// <summary>Adds a new Fixed Length field.</summary>

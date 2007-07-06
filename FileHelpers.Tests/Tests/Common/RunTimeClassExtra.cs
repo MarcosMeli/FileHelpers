@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using FileHelpers;
@@ -125,6 +126,31 @@ namespace FileHelpersTests
 			// new DelimitedClassBuilder("", ",");
 		}
 
-		
+
+
+        [Test]
+        public void RunTimeNullableFields()
+        {
+            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+
+            cb.AddField("Field1", "int?");
+            cb.AddField("Field2", typeof(int?));
+            cb.AddField("Field3", "Nullable<int>");
+            cb.AddField("Field4", typeof (Nullable<int>));
+        }
+
+
+
+        [Test]
+        public void RunTimeGenerics()
+        {
+            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+
+            cb.AddField("Field2", typeof(Dictionary<int, List<string>>));
+            cb.AddField("Field1", "List<int>");
+            cb.AddField("Field2", typeof(List<int>));
+            cb.AddField("Field3", "Nullable<int>");
+            cb.AddField("Field4", typeof(Nullable<int>));
+        }
 	}
 }

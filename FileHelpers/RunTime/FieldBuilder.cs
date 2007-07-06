@@ -33,7 +33,7 @@ namespace FileHelpers.RunTime
 				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 			
 			mFieldName = fieldName;
-			mFieldType = fieldType.FullName;
+			mFieldType = ClassBuilder.TypeToString(fieldType);
 		}
 
 		internal FieldBuilder(string fieldName, string fieldType)
@@ -264,7 +264,7 @@ namespace FileHelpers.RunTime
 					attbs.AddAttribute("FieldNullValue(\"" + mFieldNullValue.ToString() + "\")");
 				else
 				{
-					string t = mFieldNullValue.GetType().FullName;
+					string t = ClassBuilder.TypeToString(mFieldNullValue.GetType());
 					string gt = string.Empty;
 					if (leng == NetLanguage.CSharp)
 						gt = "typeof(" + t + ")";
@@ -330,7 +330,7 @@ namespace FileHelpers.RunTime
 			{
 				writer.mWriter.WriteStartElement("FieldNullValue");
 				writer.mWriter.WriteStartAttribute("Type", "");
-				writer.mWriter.WriteString(mFieldNullValue.GetType().FullName);
+				writer.mWriter.WriteString(ClassBuilder.TypeToString(mFieldNullValue.GetType()));
 				writer.mWriter.WriteEndAttribute();
 				
 				writer.mWriter.WriteString(mFieldNullValue.ToString());

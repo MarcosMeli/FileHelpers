@@ -83,11 +83,11 @@ namespace FileHelpers.RunTime
 
 		/// <summary>Add a new Delimited field to the current class.</summary>
 		/// <param name="fieldName">The Name of the field.</param>
-		/// <param name="fieldType">The Type of the field.</param>
+		/// <param name="fieldType">The Type of the field. (For generic of nullable types use the string overload, like "int?")</param>
 		/// <returns>The just created field.</returns>
 		public DelimitedFieldBuilder AddField(string fieldName, Type fieldType)
 		{
-			return AddField(fieldName, fieldType.FullName);
+			return AddField(fieldName, TypeToString(fieldType));
 		}
 
 		/// <summary>Add a new Delimited string field to the current class.</summary>
