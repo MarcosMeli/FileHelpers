@@ -73,6 +73,41 @@ namespace FileHelpersTests.Errors
             Assert.AreEqual(3, engine.ErrorManager.Errors[0].LineNumber);
         }
 
+
+        [Test]
+        public void SaveAndContinue3()
+        {
+            engine = new FileHelperEngine(typeof(SampleTypeIgnoreFirstLast));
+
+            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+
+            Assert.AreEqual(3, Common.ReadTest(engine, @"Bad\BadDate1IgnoreLast.txt").Length);
+
+            Assert.AreEqual(4, engine.TotalRecords);
+
+            Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual(typeof(ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(4, engine.ErrorManager.Errors[0].LineNumber);
+        }
+
+        [Test]
+        public void SaveAndContinue4()
+        {
+            engine = new FileHelperEngine(typeof(SampleTypeIgnoreFirstLast));
+
+            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+
+            Assert.AreEqual(3, Common.ReadTest(engine, @"Bad\BadDate1IgnoreLast2.txt").Length);
+
+            Assert.AreEqual(4, engine.TotalRecords);
+
+            Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual(typeof(ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(6, engine.ErrorManager.Errors[0].LineNumber);
+        }
+
         [Test]
 		[ExpectedException(typeof (ConvertException))]
 		public void ThrowException()

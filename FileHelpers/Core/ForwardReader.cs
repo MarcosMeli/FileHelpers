@@ -32,7 +32,7 @@ namespace FileHelpers
 
 		public int LineNumber
 		{
-			get {return mLineNumber - 1;}
+			get {return mLineNumber - 1 - mFowardLines;}
 		}
 		
 //		
