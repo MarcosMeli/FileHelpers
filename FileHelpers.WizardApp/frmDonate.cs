@@ -21,8 +21,9 @@ namespace FileHelpers.WizardApp
 		private System.Windows.Forms.Button cmdDonate;
 		private System.Windows.Forms.LinkLabel linkLabel3;
 		private System.ComponentModel.IContainer components = null;
+	    public const string WizardDonateRegKey = "WizardShowDonate_2_1";
 
-		public frmDonate()
+	    public frmDonate()
 		{
 			// This call is required by the Windows Form Designer.
 			InitializeComponent();
@@ -79,7 +80,7 @@ namespace FileHelpers.WizardApp
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(356, 135);
+            this.label1.Size = new System.Drawing.Size(356, 185);
             this.label1.TabIndex = 4;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -90,17 +91,18 @@ namespace FileHelpers.WizardApp
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(152, 152);
+            this.label2.Location = new System.Drawing.Point(284, 194);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 22);
+            this.label2.Size = new System.Drawing.Size(80, 22);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Thank you very much !!!!";
+            this.label2.Text = "Thanks !!";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(40, 281);
+            this.pictureBox4.Location = new System.Drawing.Point(40, 328);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(72, 29);
             this.pictureBox4.TabIndex = 6;
@@ -108,6 +110,7 @@ namespace FileHelpers.WizardApp
             // 
             // lstAmount
             // 
+            this.lstAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lstAmount.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lstAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstAmount.ItemHeight = 16;
@@ -117,18 +120,19 @@ namespace FileHelpers.WizardApp
             "u$s    20",
             "u$s    50",
             "u$s  100"});
-            this.lstAmount.Location = new System.Drawing.Point(120, 256);
+            this.lstAmount.Location = new System.Drawing.Point(120, 303);
             this.lstAmount.Name = "lstAmount";
             this.lstAmount.Size = new System.Drawing.Size(64, 84);
             this.lstAmount.TabIndex = 8;
             // 
             // cmdClose
             // 
+            this.cmdClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
             this.cmdClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cmdClose.Location = new System.Drawing.Point(192, 302);
+            this.cmdClose.Location = new System.Drawing.Point(192, 349);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(172, 38);
             this.cmdClose.TabIndex = 9;
@@ -138,20 +142,21 @@ namespace FileHelpers.WizardApp
             // 
             // panText
             // 
-            this.panText.Controls.Add(this.label1);
             this.panText.Controls.Add(this.label2);
+            this.panText.Controls.Add(this.label1);
             this.panText.Location = new System.Drawing.Point(12, 56);
             this.panText.Name = "panText";
-            this.panText.Size = new System.Drawing.Size(386, 176);
+            this.panText.Size = new System.Drawing.Size(386, 226);
             this.panText.TabIndex = 10;
             this.panText.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // chkPopup
             // 
+            this.chkPopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkPopup.BackColor = System.Drawing.Color.Transparent;
             this.chkPopup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkPopup.ForeColor = System.Drawing.Color.Gainsboro;
-            this.chkPopup.Location = new System.Drawing.Point(3, 383);
+            this.chkPopup.Location = new System.Drawing.Point(3, 430);
             this.chkPopup.Name = "chkPopup";
             this.chkPopup.Size = new System.Drawing.Size(264, 22);
             this.chkPopup.TabIndex = 11;
@@ -160,13 +165,14 @@ namespace FileHelpers.WizardApp
             // 
             // cmdDonate
             // 
+            this.cmdDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdDonate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
             this.cmdDonate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdDonate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDonate.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmdDonate.Image = ((System.Drawing.Image)(resources.GetObject("cmdDonate.Image")));
             this.cmdDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdDonate.Location = new System.Drawing.Point(192, 256);
+            this.cmdDonate.Location = new System.Drawing.Point(192, 303);
             this.cmdDonate.Name = "cmdDonate";
             this.cmdDonate.Size = new System.Drawing.Size(172, 40);
             this.cmdDonate.TabIndex = 12;
@@ -177,12 +183,12 @@ namespace FileHelpers.WizardApp
             // 
             // linkLabel3
             // 
-            this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.ForeColor = System.Drawing.Color.White;
             this.linkLabel3.LinkColor = System.Drawing.Color.White;
-            this.linkLabel3.Location = new System.Drawing.Point(32, 360);
+            this.linkLabel3.Location = new System.Drawing.Point(32, 407);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(344, 16);
             this.linkLabel3.TabIndex = 102;
@@ -194,7 +200,7 @@ namespace FileHelpers.WizardApp
             // frmDonate
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(410, 429);
+            this.ClientSize = new System.Drawing.Size(410, 479);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.cmdDonate);
             this.Controls.Add(this.chkPopup);
@@ -204,8 +210,8 @@ namespace FileHelpers.WizardApp
             this.Controls.Add(this.pictureBox4);
             this.Name = "frmDonate";
             this.Text = "Donate =)";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDonate_FormClosed);
             this.Load += new System.EventHandler(this.frmDonate_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDonate_FormClosed);
             this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.pictureBox4, 0);
             this.Controls.SetChildIndex(this.lstAmount, 0);
@@ -227,7 +233,7 @@ namespace FileHelpers.WizardApp
 		private void frmDonate_Load(object sender, System.EventArgs e)
 		{
 			lstAmount.SelectedIndex = 2;
-            chkPopup.Checked = RegConfig.GetStringValue("WizardShowDonate", "1") == "0";
+            chkPopup.Checked = RegConfig.GetStringValue(WizardDonateRegKey, "1") == "0";
 		}
 
 
@@ -302,9 +308,14 @@ namespace FileHelpers.WizardApp
         private void frmDonate_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (chkPopup.Checked)
-                RegConfig.SetStringValue("WizardShowDonate", "0");
+                RegConfig.SetStringValue(WizardDonateRegKey, "0");
             else
-                RegConfig.SetStringValue("WizardShowDonate", "1");
+                RegConfig.SetStringValue(WizardDonateRegKey, "1");
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
 
 

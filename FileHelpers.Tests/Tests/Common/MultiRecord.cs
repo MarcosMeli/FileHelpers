@@ -28,6 +28,7 @@ namespace FileHelpersTests
 			Assert.AreEqual(typeof(SampleType), res[5].GetType());
 		}
 
+
 		[Test]
 		public void MultpleRecordsFileAsync()
 		{

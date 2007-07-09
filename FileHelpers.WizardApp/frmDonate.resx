@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>The library becomes day by day harder to mantain and is using a lot of my time, so is very important that if you found the library useful you can donate an small amount of money to let me to do less consultant work and use more time to add features and enhace the existant ones</value>
+    <value>Every day, this project grows larger and adds more features.  As a result, I need to spend a lot of my time to maintain it.  Please bear this in mind as you use the library; if you find it useful I ask you to consider donating a small amount of money to the project.  Any amount you can donate will allow me to spend less time doing consulting work and more time on this project, adding new features and enhancing existing functionality.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
