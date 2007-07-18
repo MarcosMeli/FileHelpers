@@ -159,7 +159,15 @@ namespace FileHelpers
 			get { return mErrorManager; }
 		}
 
-		#endregion
+
+	    /// <summary>Indicates the behavior of the <see cref="FileHelperEngine"/> when it found an error. (shortcut)</summary>
+	    public ErrorMode ErrorMode
+	    {
+	        get { return mErrorManager.ErrorMode; }
+	        set { mErrorManager.ErrorMode = value; }
+	    }
+
+	    #endregion
 
 		#region "  ResetFields  "
 
