@@ -131,6 +131,9 @@ namespace FileHelpers
 
             public sealed override string FieldToString(object from)
             {
+                if (from == null)
+                    return string.Empty;
+
                 return ((IConvertible)from).ToString(mCulture);
             }
 
@@ -410,6 +413,9 @@ namespace FileHelpers
 
 			public override string FieldToString(object from)
 			{
+                if (from == null)
+                    return string.Empty;
+
 				return Convert.ToDateTime(from).ToString(mFormat);
 			}
 		}

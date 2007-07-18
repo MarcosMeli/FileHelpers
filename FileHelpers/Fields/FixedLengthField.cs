@@ -42,7 +42,21 @@ namespace FileHelpers
 					fi.FieldType == typeof(sbyte) ||
 					fi.FieldType == typeof(decimal) ||
 					fi.FieldType == typeof(float) ||
-					fi.FieldType == typeof(double))
+					fi.FieldType == typeof(double)
+#if NET_2_0
+                 || fi.FieldType == typeof(Int16?) ||
+					fi.FieldType == typeof(Int32?) ||
+					fi.FieldType == typeof(Int64?) ||
+					fi.FieldType == typeof(UInt16?) ||
+					fi.FieldType == typeof(UInt32?) ||
+					fi.FieldType == typeof(UInt64?) ||
+					fi.FieldType == typeof(byte?) ||
+					fi.FieldType == typeof(sbyte?) ||
+					fi.FieldType == typeof(decimal?) ||
+					fi.FieldType == typeof(float?) ||
+					fi.FieldType == typeof(double?)
+#endif
+                    )
 
 					mAlign = new FieldAlignAttribute(AlignMode.Right, ' ');
 			}
@@ -86,9 +100,9 @@ namespace FileHelpers
 		{
 			string field = base.CreateFieldString(fieldValue);
 
+            // Discard longer field values
 			if (field.Length > mFieldLength)
-				field = field.Substring(0, mFieldLength);
-				//sb.Length = length + this.mFieldLength;
+				field = field.Substring(0, mFieldLength); 
 
 			if (mAlign.Align == AlignMode.Left)
 			{
