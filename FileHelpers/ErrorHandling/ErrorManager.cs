@@ -6,6 +6,9 @@
 
 using System;
 using System.Collections;
+#if NET_2_0
+using System.Collections.Generic;
+#endif
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -17,6 +20,7 @@ namespace FileHelpers
     [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
 #endif
     public sealed class ErrorManager
+        :IEnumerable
 	{
 		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class.</summary>
 		public ErrorManager()
@@ -144,5 +148,17 @@ namespace FileHelpers
 			return (ErrorInfo[]) engine.ReadFile(fileName);
 		}
 
+        ///<summary>
+        ///Returns an enumerator that iterates through a collection.
+        ///</summary>
+        ///
+        ///<returns>
+        ///An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+        ///</returns>
+        ///<filterpriority>2</filterpriority>
+        public IEnumerator GetEnumerator()
+        {
+            return mErrorsArray.GetEnumerator();
+        }
 	}
 }

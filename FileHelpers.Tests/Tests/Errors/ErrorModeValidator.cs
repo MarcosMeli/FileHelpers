@@ -125,6 +125,21 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 		}
 
+        [Test]
+        public void ErrorManagerEnumerable()
+        {
+            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(0, Common.ReadTest(engine, @"Bad\BadAll1.txt").Length);
+
+            int i = 0;
+            foreach (ErrorInfo info in engine.ErrorManager)
+            {
+                i++;
+                Assert.IsNotNull(info);
+            }
+            Assert.AreEqual(4, i);
+            Assert.AreEqual(typeof(ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+        }
 
 		[Test]
 		public void ErrorsOrder()
