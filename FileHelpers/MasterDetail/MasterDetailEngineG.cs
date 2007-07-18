@@ -4,11 +4,9 @@
 
 #endregion
 
-
 //#undef GENERICS
 #define GENERICS
 #if NET_2_0
-
 
 using System;
 using System.Collections;
@@ -51,7 +49,7 @@ namespace FileHelpers.MasterDetail
 			mMasterInfo = new RecordInfo(masterType);
 
 			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
-			RecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
+			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 		}
 
         #endregion
@@ -102,9 +100,9 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
         internal class CommonSelectorInternal
 		{
-			CommonSelector mAction;
-			string mSelector;
-			bool mIgnoreEmpty = false;
+            readonly CommonSelector mAction;
+            readonly string mSelector;
+            readonly bool mIgnoreEmpty = false;
 
 
 			internal CommonSelectorInternal(CommonSelector action, string selector, bool ignoreEmpty)
@@ -180,7 +178,7 @@ namespace FileHelpers.MasterDetail
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private RecordInfo mMasterInfo;
+        private readonly RecordInfo mMasterInfo;
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
@@ -189,7 +187,7 @@ namespace FileHelpers.MasterDetail
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private Type mMasterType;
+        private readonly Type mMasterType;
 
         /// <summary>Returns the type of the master records handled by this engine.</summary>
         public Type MasterType
@@ -252,7 +250,7 @@ namespace FileHelpers.MasterDetail
                 throw new ArgumentNullException("reader", "The reader of the Stream cant be null");
 
             if (RecordSelector == null)
-                throw new BadUsageException("The Recordselector cant be null, please pass a not null Selector in the constructor.");
+                throw new BadUsageException("The RecordSelector cant be null on read operations.");
 
             ResetFields();
             mHeaderText = String.Empty;

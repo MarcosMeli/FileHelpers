@@ -8,7 +8,6 @@
 #define GENERICS
 #if NET_2_0
 
-
 using System;
 using System.Diagnostics;
 using System.Collections;

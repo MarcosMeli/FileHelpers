@@ -90,7 +90,17 @@ namespace FileHelpers
 		}
 
 
-		/// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
+        /// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+        /// <param name="dt">The source Data Table</param>
+        /// <param name="filename">The destination file.</param>
+        /// <param name="delimiter">The delimiter to be used on the file</param>
+        public static void DataTableToCsv(DataTable dt, string filename, char delimiter)
+        {
+            DataTableToCsv(dt, filename, new CsvOptions("Tempo1", delimiter, dt.Columns.Count));
+        }
+
+        
+        /// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
 		/// <param name="options">The options used to write the file</param>
@@ -127,19 +137,22 @@ namespace FileHelpers
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
-		public CsvEngine(string className, char delimiter, string sampleFile): this(new CsvOptions(className, delimiter, sampleFile))
+		public CsvEngine(string className, char delimiter, string sampleFile)
+            : this(new CsvOptions(className, delimiter, sampleFile))
 		{}
 
 		/// <summary>Create a CsvEngine using the specified number of fields.</summary>
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="numberOfFields">The number of fields of each record</param>
-		public CsvEngine(string className, char delimiter, int numberOfFields): this(new CsvOptions(className, delimiter, numberOfFields))
+		public CsvEngine(string className, char delimiter, int numberOfFields)
+            : this(new CsvOptions(className, delimiter, numberOfFields))
 		{}
 
 		/// <summary>Create a CsvEngine using the specified sample file with their headers.</summary>
 		/// <param name="options">The options used to create the record mapping class.</param>
-		public CsvEngine(CsvOptions options): base(GetMappingClass(options))
+		public CsvEngine(CsvOptions options)
+            : base(GetMappingClass(options))
 		{
 		}
 

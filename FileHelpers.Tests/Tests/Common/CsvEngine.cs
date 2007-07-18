@@ -21,6 +21,53 @@ namespace FileHelpersTests.CommonTests
 			RunTest(file, delimiter, classname);
 		}
 
+        
+        [Test]
+        public void ReadFileHeader1()
+        {
+            string file = Common.TestPath(@"Good\RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
+        
+            CsvOptions options = new CsvOptions(classname, delimiter, file);
+            options.HeaderLines = 0;
+            
+            CsvEngine engine = new CsvEngine(options);
+
+            Assert.AreEqual(classname, engine.RecordType.Name);
+
+            DataTable dt = engine.ReadFileAsDT(file);
+
+            Assert.AreEqual(21, dt.Rows.Count);
+            Assert.AreEqual(21, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual("Field_0", dt.Columns[0].ColumnName);
+        }
+
+        [Test]
+        public void ReadFileHeader2()
+        {
+            string file = Common.TestPath(@"Good\RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
+
+            CsvOptions options = new CsvOptions(classname, delimiter, file);
+            options.HeaderLines = 2;
+
+            CsvEngine engine = new CsvEngine(options);
+
+            Assert.AreEqual(classname, engine.RecordType.Name);
+
+            DataTable dt = engine.ReadFileAsDT(file);
+
+            Assert.AreEqual(19, dt.Rows.Count);
+            Assert.AreEqual(19, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
+
 		[Test]
 		public void ReadFileComma2()
 		{
