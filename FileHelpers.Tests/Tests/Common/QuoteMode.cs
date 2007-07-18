@@ -10,7 +10,7 @@ namespace FileHelpersTests.CommonTests
 	{
 		FileHelperEngine engine;
 		private const int ExpectedRecords = 6;
-		private string[] ExpectedNames = new string[] {"VINET", "TO,SP", "HA\"AR", "VICTE", "S\"U\"P,\"\"", "HA,,,NAR"};
+		private readonly string[] ExpectedNames = new string[] {"VINET", "TO,SP", "HA\"AR", "VICTE", "S\"U\"P,\"\"", "HA,,,NAR"};
 
 
 		private void ValidateData(QuoteMode1[] data)
@@ -95,5 +95,14 @@ namespace FileHelpersTests.CommonTests
 			public string CustomerName;
 
 		}
+
+        [Test]
+        public void AutoRemoveQuotes()
+        {
+            CsvEngine eng = new CsvEngine("YourClass", ',', );
+            QuoteMode2[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode2[];
+            ValidateData(res);
+        }
+
 	}
 }
