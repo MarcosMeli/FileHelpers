@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.IO;
 using FileHelpers;
 using NUnit.Framework;
@@ -99,9 +100,11 @@ namespace FileHelpersTests.CommonTests
         [Test]
         public void AutoRemoveQuotes()
         {
-            CsvEngine eng = new CsvEngine("YourClass", ',', );
-            QuoteMode2[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode2[];
-            ValidateData(res);
+            CsvEngine eng = new CsvEngine(new CsvOptions("YourClass", ',', 2, 0));
+            DataTable dt = eng.ReadFileAsDT(Common.TestPath(@"Good\QuoteMode1.txt"));
+
+            Assert.AreEqual("VINET", dt.Rows[0][1]);
+
         }
 
 	}

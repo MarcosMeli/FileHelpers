@@ -16,7 +16,7 @@ namespace FileHelpers
 
 		#region "  Constructor  "
 
-        private static CompareInfo mCompare = StringHelper.CreateComparer();
+        private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
         
         internal DelimitedField(FieldInfo fi, string sep)
             : base(fi)
@@ -57,8 +57,7 @@ namespace FileHelpers
 		{
 			if (mIsOptional && line.IsEOL() )
 				return ExtractedInfo.Empty;
-
-
+            
 			if (mQuoteChar == '\0')
 				return BasicExtractString(line);
 			else
@@ -111,7 +110,7 @@ namespace FileHelpers
 						if (mIsFirst && line.EmptyFromPos())
 							msg = string.Format("The line {0} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.", line.mReader.LineNumber);
 						else
-							msg = string.Format("The delimiter '{0}' can´t be found after the field '{1}' at line {2} (the record has less fields, the delimiter is wrong or the next field must be marked as optional).", mSeparator, this.mFieldInfo.Name, line.mReader.LineNumber);
+							msg = string.Format("Delimiter '{0}' not found after field '{1}' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).", mSeparator, this.mFieldInfo.Name, line.mReader.LineNumber);
 
 						throw new FileHelpersException(line.mReader.LineNumber, line.mCurrentPos, msg);
 

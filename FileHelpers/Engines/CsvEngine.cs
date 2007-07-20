@@ -133,7 +133,10 @@ namespace FileHelpers
 
 		#region "  Constructor  "
 
-		/// <summary>Create a CsvEngine using the specified sample file with their headers.</summary>
+		/// <summary>
+        /// <para>Create a CsvEngine using the specified sample file with their headers.</para>
+        /// <para>With this constructor will ignore the first line of the file. Use CsvOptions overload.</para>
+        /// </summary>
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
@@ -141,7 +144,10 @@ namespace FileHelpers
             : this(new CsvOptions(className, delimiter, sampleFile))
 		{}
 
-		/// <summary>Create a CsvEngine using the specified number of fields.</summary>
+		/// <summary>
+        /// <para>Create a CsvEngine using the specified number of fields.</para>
+        /// <para>With this constructor will ignore the first line of the file. Use CsvOptions overload.</para>
+        /// </summary>
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="numberOfFields">The number of fields of each record</param>
