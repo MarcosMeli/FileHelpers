@@ -205,8 +205,8 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.LinkLabel lblUp;
         private System.Windows.Forms.LinkLabel lblDown;
         private System.Windows.Forms.LinkLabel lblDelete;
-        private System.Windows.Forms.ComboBox cboTrim;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chkOptional;
+        internal System.Windows.Forms.CheckBox chkOptional;
+        internal System.Windows.Forms.ComboBox cboTrim;
     }
 }

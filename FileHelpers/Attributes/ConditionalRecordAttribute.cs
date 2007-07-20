@@ -25,9 +25,8 @@ namespace FileHelpers
 		/// <param name="selector">The selector for the condition.</param>
 		public ConditionalRecordAttribute(RecordCondition condition, string selector)
 		{
-			if (selector == null ||  selector.Length == 0)
-				throw new BadUsageException("The selector arg for the ConditionalRecordAttribute can't be null or empty.");
-			
+		    ExHelper.CheckNullOrEmpty(selector, "selector");
+
 			mCondition = condition;
 			mConditionSelector = selector;
 		}

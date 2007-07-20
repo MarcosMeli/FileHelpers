@@ -49,8 +49,9 @@ namespace FileHelpers.WizardApp
             this.txtQuoted.Location = new System.Drawing.Point(45, 28);
             this.txtQuoted.MaxLength = 2;
             this.txtQuoted.Name = "txtQuoted";
-            this.txtQuoted.Size = new System.Drawing.Size(32, 21);
+            this.txtQuoted.Size = new System.Drawing.Size(26, 21);
             this.txtQuoted.TabIndex = 10;
+            this.txtQuoted.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtQuoted.TextChanged += new System.EventHandler(this.txtQuoted_TextChanged);
             // 
             // FieldDelimitedControl
@@ -70,6 +71,6 @@ namespace FileHelpers.WizardApp
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtQuoted;
+        internal System.Windows.Forms.TextBox txtQuoted;
     }
 }

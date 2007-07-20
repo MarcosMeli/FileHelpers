@@ -117,6 +117,9 @@ namespace FileHelpers.WizardApp
         private TextBox txtRecordConditionSelector;
         private ComboBox cboRecordCondition;
         private Label label19;
+        private CheckBox chkAllTrim;
+        private CheckBox chkAllOptional;
+        private CheckBox chkAllQuoted;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -147,9 +150,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -211,6 +214,9 @@ namespace FileHelpers.WizardApp
             this.picCurrent = new System.Windows.Forms.PictureBox();
             this.picNewVersion = new System.Windows.Forms.PictureBox();
             this.panStep2 = new System.Windows.Forms.Panel();
+            this.chkAllTrim = new System.Windows.Forms.CheckBox();
+            this.chkAllOptional = new System.Windows.Forms.CheckBox();
+            this.chkAllQuoted = new System.Windows.Forms.CheckBox();
             this.cmdAddField = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.dlgSaveToFile = new System.Windows.Forms.SaveFileDialog();
@@ -371,6 +377,7 @@ namespace FileHelpers.WizardApp
             this.cboRecordCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRecordCondition.FormattingEnabled = true;
             this.cboRecordCondition.Location = new System.Drawing.Point(181, 20);
+            this.cboRecordCondition.MaxDropDownItems = 15;
             this.cboRecordCondition.Name = "cboRecordCondition";
             this.cboRecordCondition.Size = new System.Drawing.Size(137, 21);
             this.cboRecordCondition.TabIndex = 1016;
@@ -636,8 +643,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender1;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender3;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -669,6 +676,7 @@ namespace FileHelpers.WizardApp
             // 
             this.cboTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTemplate.Location = new System.Drawing.Point(70, 43);
+            this.cboTemplate.MaxDropDownItems = 20;
             this.cboTemplate.Name = "cboTemplate";
             this.cboTemplate.Size = new System.Drawing.Size(176, 21);
             this.cboTemplate.Sorted = true;
@@ -749,7 +757,7 @@ namespace FileHelpers.WizardApp
             this.panFields.AutoScroll = true;
             this.panFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.panFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panFields.Location = new System.Drawing.Point(18, 43);
+            this.panFields.Location = new System.Drawing.Point(18, 40);
             this.panFields.Name = "panFields";
             this.panFields.Size = new System.Drawing.Size(374, 288);
             this.panFields.TabIndex = 0;
@@ -1009,6 +1017,9 @@ namespace FileHelpers.WizardApp
             // 
             this.panStep2.BackColor = System.Drawing.Color.White;
             this.panStep2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panStep2.Controls.Add(this.chkAllQuoted);
+            this.panStep2.Controls.Add(this.chkAllTrim);
+            this.panStep2.Controls.Add(this.chkAllOptional);
             this.panStep2.Controls.Add(this.panFields);
             this.panStep2.Controls.Add(this.cmdAddField);
             this.panStep2.Controls.Add(this.label15);
@@ -1019,13 +1030,51 @@ namespace FileHelpers.WizardApp
             this.panStep2.TabStop = true;
             this.panStep2.Visible = false;
             // 
+            // chkAllTrim
+            // 
+            this.chkAllTrim.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.chkAllTrim.Location = new System.Drawing.Point(125, 348);
+            this.chkAllTrim.Name = "chkAllTrim";
+            this.chkAllTrim.Size = new System.Drawing.Size(134, 15);
+            this.chkAllTrim.TabIndex = 1016;
+            this.chkAllTrim.Text = "Mark all as Trim.Both";
+            this.chkAllTrim.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.toolTip1.SetToolTip(this.chkAllTrim, "Useful for Fixed Length Records");
+            this.chkAllTrim.UseVisualStyleBackColor = true;
+            this.chkAllTrim.CheckedChanged += new System.EventHandler(this.chkAllTrim_CheckedChanged);
+            // 
+            // chkAllOptional
+            // 
+            this.chkAllOptional.Location = new System.Drawing.Point(125, 331);
+            this.chkAllOptional.Name = "chkAllOptional";
+            this.chkAllOptional.Size = new System.Drawing.Size(131, 22);
+            this.chkAllOptional.TabIndex = 1015;
+            this.chkAllOptional.Text = "Mark all as Optional";
+            this.chkAllOptional.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.toolTip1.SetToolTip(this.chkAllOptional, "Useful for CSV files generated with Excel");
+            this.chkAllOptional.UseVisualStyleBackColor = true;
+            this.chkAllOptional.CheckedChanged += new System.EventHandler(this.chkAllOptional_CheckedChanged);
+            // 
+            // chkAllQuoted
+            // 
+            this.chkAllQuoted.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.chkAllQuoted.Location = new System.Drawing.Point(258, 332);
+            this.chkAllQuoted.Name = "chkAllQuoted";
+            this.chkAllQuoted.Size = new System.Drawing.Size(121, 16);
+            this.chkAllQuoted.TabIndex = 1014;
+            this.chkAllQuoted.Text = "Mark all as Quoted";
+            this.chkAllQuoted.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.toolTip1.SetToolTip(this.chkAllQuoted, "Eseful for CSV files generated with Excel and multiline fields");
+            this.chkAllQuoted.UseVisualStyleBackColor = true;
+            this.chkAllQuoted.CheckedChanged += new System.EventHandler(this.chkAllQuoted_CheckedChanged);
+            // 
             // cmdAddField
             // 
             this.cmdAddField.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAddField.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddField.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddField.Image")));
             this.cmdAddField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAddField.Location = new System.Drawing.Point(18, 334);
+            this.cmdAddField.Location = new System.Drawing.Point(18, 332);
             this.cmdAddField.Name = "cmdAddField";
             this.cmdAddField.Size = new System.Drawing.Size(101, 28);
             this.cmdAddField.TabIndex = 4;
@@ -1266,8 +1315,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender1;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1323,8 +1372,6 @@ namespace FileHelpers.WizardApp
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ShowAlways = true;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "FileHelpers Wizard";
             // 
             // picDonate
             // 
@@ -1359,7 +1406,6 @@ namespace FileHelpers.WizardApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // linkHome
             // 
@@ -1472,15 +1518,15 @@ namespace FileHelpers.WizardApp
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 406);
+            this.ClientSize = new System.Drawing.Size(569, 413);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panStep1);
             this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
             this.Controls.Add(this.panStep0);
+            this.Controls.Add(this.panStep1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
@@ -1765,7 +1811,7 @@ namespace FileHelpers.WizardApp
 
             if (mWizardInfo.ClassBuilder.FieldCount == 0)
             {
-                //CLEAR: dsd
+                
                 for (int i = 0; i < txtNumberOfFields.Value; i++)
                 {
                     FieldBuilder field;
@@ -1798,6 +1844,8 @@ namespace FileHelpers.WizardApp
             cmdPreview.Enabled = true;
 
             panFields.Focus();
+
+            chkAllQuoted.Visible = mWizardInfo.ClassBuilder is DelimitedClassBuilder;
 
             ExpandAndShowPreview();
             return true;
@@ -2030,36 +2078,36 @@ namespace FileHelpers.WizardApp
 
         private void ReLoadPreview()
         {
-            if (mLoadingFile == false)
+            if (mLoadingFile != false)
+                return;
+
+            string output;
+            switch (cboClassLeng.SelectedIndex)
             {
-                string output;
-                switch (cboClassLeng.SelectedIndex)
-                {
-                    case 0:
-                        output = mWizardInfo.WizardOutput(NetLanguage.CSharp);
+                case 0:
+                    output = mWizardInfo.WizardOutput(NetLanguage.CSharp);
 
-                        if (sdClassOut.Text == output)
-                            return;
+                    if (sdClassOut.Text == output)
+                        return;
 
-                        CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
-                        CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
-                        sdClassOut.Text = output;
-                        break;
+                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
+                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
+                    sdClassOut.Text = output;
+                    break;
 
-                    case 1:
-                        output = mWizardInfo.WizardOutput(NetLanguage.VbNet);
+                case 1:
+                    output = mWizardInfo.WizardOutput(NetLanguage.VbNet);
 
-                        if (sdClassOut.Text == output)
-                            return;
+                    if (sdClassOut.Text == output)
+                        return;
 
-                        CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
-                        CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
-                        sdClassOut.Text = output;
-                        break;
+                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
+                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
+                    sdClassOut.Text = output;
+                    break;
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         }
 
@@ -2520,8 +2568,53 @@ namespace FileHelpers.WizardApp
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void chkAllOptional_CheckedChanged(object sender, EventArgs e)
         {
+            mLoadingFile = true;
+            bool first = true;
+            foreach (FieldBaseControl ctrl in panFields.Controls)
+            {
+                if (first)
+                    first = false;
+                else
+                    ctrl.chkOptional.Checked = chkAllOptional.Checked;
+            }
+
+            mLoadingFile = false;
+            ReLoadPreview();
+        }
+
+        private void chkAllQuoted_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder)
+                return;
+
+            mLoadingFile = true;
+            foreach (FieldDelimitedControl ctrl in panFields.Controls)
+            {
+                if (chkAllQuoted.Checked)
+                    ctrl.txtQuoted.Text = "\"";
+                else
+                    ctrl.txtQuoted.Text = "";
+            }
+            mLoadingFile = false;
+            ReLoadPreview();
+        }
+
+        private void chkAllTrim_CheckedChanged(object sender, EventArgs e)
+        {
+            mLoadingFile = true;
+            foreach (FieldBaseControl ctrl in panFields.Controls)
+            {
+                if (chkAllTrim.Checked)
+                    ctrl.cboTrim.SelectedIndex = 3;
+                else
+                    ctrl.cboTrim.SelectedIndex = 0;
+
+             //   ctrl.cboTrim.Refresh();
+            }
+            mLoadingFile = false;
+            ReLoadPreview();
 
         }
 

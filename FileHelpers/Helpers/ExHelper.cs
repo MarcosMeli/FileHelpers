@@ -11,8 +11,7 @@ namespace FileHelpers
 	internal sealed class ExHelper
 	{
 		private ExHelper()
-		{
-		}
+		{}
 
 		public static void CheckNullOrEmpty(string val)
 		{
