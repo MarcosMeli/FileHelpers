@@ -323,29 +323,29 @@ namespace FileHelpers
                     case RecordCondition.ExcludeIfBegins:
                         return ConditionHelper.BeginsWith(line, mRecordConditionSelector);
                     case RecordCondition.IncludeIfBegins:
-                        return !ConditionHelper.BeginsWith(line, mRecordConditionSelector);
+                        return ! ConditionHelper.BeginsWith(line, mRecordConditionSelector);
 
                     case RecordCondition.ExcludeIfContains:
                         return ConditionHelper.Contains(line, mRecordConditionSelector);
                     case RecordCondition.IncludeIfContains:
-                        return ConditionHelper.Contains(line, mRecordConditionSelector);
+                        return ! ConditionHelper.Contains(line, mRecordConditionSelector);
 
 
                     case RecordCondition.ExcludeIfEnclosed:
                         return ConditionHelper.Enclosed(line, mRecordConditionSelector);
                     case RecordCondition.IncludeIfEnclosed:
-                        return !ConditionHelper.Enclosed(line, mRecordConditionSelector);
+                        return ! ConditionHelper.Enclosed(line, mRecordConditionSelector);
 
                     case RecordCondition.ExcludeIfEnds:
                         return ConditionHelper.EndsWith(line, mRecordConditionSelector);
                     case RecordCondition.IncludeIfEnds:
-                        return !ConditionHelper.EndsWith(line, mRecordConditionSelector);
+                        return ! ConditionHelper.EndsWith(line, mRecordConditionSelector);
 
 #if ! MINI
                     case RecordCondition.ExcludeIfMatchRegex:
                         return mConditionRegEx.IsMatch(line);
                     case RecordCondition.IncludeIfMatchRegex:
-                        return !mConditionRegEx.IsMatch(line);
+                        return ! mConditionRegEx.IsMatch(line);
 #endif
 
                 }

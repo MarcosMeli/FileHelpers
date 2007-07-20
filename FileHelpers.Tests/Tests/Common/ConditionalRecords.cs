@@ -42,9 +42,23 @@ namespace FileHelpersTests.CommonTests
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
-		} 
+		}
 
-	
+
+        [Test]
+        public void Conditional4()
+        {
+            engine = new FileHelperEngine(typeof(ConditionalType4));
+
+            ConditionalType4[] res = (ConditionalType4[]) Common.ReadTest(engine, @"Good\ConditionalRecords4.txt");
+
+            Assert.AreEqual(2, res.Length);
+            Assert.AreEqual(5, engine.LineNumber);
+            Assert.AreEqual('$', res[0].Field2[0]);
+            Assert.AreEqual('$', res[1].Field2[0]);
+            
+        }
+
 		[DelimitedRecord(",")]
 		[ConditionalRecord(RecordCondition.ExcludeIfBegins, "//")]
 		public class ConditionalType1
@@ -74,6 +88,16 @@ namespace FileHelpersTests.CommonTests
 			public string Field2;
 			public int Field3;
 		}
+
+        [DelimitedRecord(",")]
+        [ConditionalRecord(RecordCondition.IncludeIfContains, "$")]
+        public class ConditionalType4
+        {
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime Field1;
+            public string Field2;
+            public int Field3;
+        }
 
 
 	}
