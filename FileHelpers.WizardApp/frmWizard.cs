@@ -2212,6 +2212,15 @@ namespace FileHelpers.WizardApp
             //mWizardInfo.Fields.Add(ctrl.FieldInfo);
             panFields.Controls.Add(ctrl);
 
+            ctrl.chkOptional.Checked = chkAllOptional.Checked;
+            
+            if (chkAllTrim.Checked)
+                ctrl.cboTrim.SelectedIndex = 3;
+
+            if (chkAllQuoted.Visible)
+                ((FieldDelimitedControl) ctrl).txtQuoted.Text = "\"";
+            
+
             ReLoadPreview();
         }
 
