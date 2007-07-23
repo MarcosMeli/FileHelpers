@@ -8,6 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
@@ -79,13 +80,14 @@ namespace FileHelpers.RunTime
                     break;
 
                 case NetLanguage.VbNet:
-                    if (classStr.IndexOf("Imports System", StringComparison.OrdinalIgnoreCase) == -1)
+
+                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
                         code.Append("Imports System\n");
 
-                    if (classStr.IndexOf("Imports FileHelpers", StringComparison.OrdinalIgnoreCase) == -1)
+					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
                         code.Append("Imports FileHelpers\n");
 
-                    if (classStr.IndexOf("Imports System.Data", StringComparison.OrdinalIgnoreCase) == -1)
+					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
                         code.Append("Imports System.Data\n");
 
                     break;
@@ -580,9 +582,7 @@ namespace FileHelpers.RunTime
 				new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
 							   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76}); 
 			byte[] encryptedData = Encrypt(clearBytes, 
-#pragma warning disable 612,618
 				pdb.GetBytes(32), pdb.GetBytes(16)); 
-#pragma warning restore 612,618
 			return Convert.ToBase64String(encryptedData); 
 		}
     
@@ -1003,6 +1003,7 @@ namespace FileHelpers.RunTime
 
 	    internal static string TypeToString(Type type)
 	    {
+#if NET_2_0
             if (type.IsGenericType)
             {
                 StringBuilder sb = new StringBuilder();
@@ -1023,6 +1024,7 @@ namespace FileHelpers.RunTime
                 return sb.ToString();
             }
             else 
+#endif
 	            return type.FullName;
 	    }
     }

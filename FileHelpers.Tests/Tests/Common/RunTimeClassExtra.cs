@@ -1,10 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using FileHelpers;
 using FileHelpers.RunTime;
 using NUnit.Framework;
+#if NET_2_0
+using System.Collections.Generic;
+#endif
 
 namespace FileHelpersTests
 {
@@ -126,6 +128,7 @@ namespace FileHelpersTests
 			// new DelimitedClassBuilder("", ",");
 		}
 
+#if NET_2_0
 
 
         [Test]
@@ -152,5 +155,7 @@ namespace FileHelpersTests
             cb.AddField("Field3", "Nullable<int>");
             cb.AddField("Field4", typeof(Nullable<int>));
         }
+
+#endif
 	}
 }

@@ -12,7 +12,6 @@ namespace FileHelpersSamples
 	public class frmDonate : FileHelpersSamples.frmFather
 	{
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.ListBox lstAmount;
 		private System.Windows.Forms.Button cmdClose;
@@ -52,171 +51,151 @@ namespace FileHelpersSamples
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDonate));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.lstAmount = new System.Windows.Forms.ListBox();
-            this.cmdClose = new System.Windows.Forms.Button();
-            this.panText = new System.Windows.Forms.Panel();
-            this.chkPopup = new System.Windows.Forms.CheckBox();
-            this.cmdDonate = new System.Windows.Forms.Button();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panText.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(296, 7);
-            this.pictureBox3.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.label1.Location = new System.Drawing.Point(20, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(356, 135);
-            this.label1.TabIndex = 4;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(152, 152);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 22);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Thank you very much !!!!";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(40, 281);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(72, 29);
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
-            // 
-            // lstAmount
-            // 
-            this.lstAmount.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lstAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstAmount.ItemHeight = 16;
-            this.lstAmount.Items.AddRange(new object[] {
-            "u$s      5",
-            "u$s    10",
-            "u$s    20",
-            "u$s    50",
-            "u$s  100"});
-            this.lstAmount.Location = new System.Drawing.Point(120, 256);
-            this.lstAmount.Name = "lstAmount";
-            this.lstAmount.Size = new System.Drawing.Size(64, 84);
-            this.lstAmount.TabIndex = 8;
-            // 
-            // cmdClose
-            // 
-            this.cmdClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
-            this.cmdClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cmdClose.Location = new System.Drawing.Point(192, 302);
-            this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(172, 38);
-            this.cmdClose.TabIndex = 9;
-            this.cmdClose.Text = "Maybe next time :P ";
-            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
-            // 
-            // panText
-            // 
-            this.panText.Controls.Add(this.label1);
-            this.panText.Controls.Add(this.label2);
-            this.panText.Location = new System.Drawing.Point(12, 56);
-            this.panText.Name = "panText";
-            this.panText.Size = new System.Drawing.Size(386, 176);
-            this.panText.TabIndex = 10;
-            this.panText.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // chkPopup
-            // 
-            this.chkPopup.BackColor = System.Drawing.Color.Transparent;
-            this.chkPopup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPopup.ForeColor = System.Drawing.Color.Gainsboro;
-            this.chkPopup.Location = new System.Drawing.Point(3, 383);
-            this.chkPopup.Name = "chkPopup";
-            this.chkPopup.Size = new System.Drawing.Size(264, 22);
-            this.chkPopup.TabIndex = 11;
-            this.chkPopup.Text = "Dont show me this popup anymore";
-            // 
-            // cmdDonate
-            // 
-            this.cmdDonate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
-            this.cmdDonate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDonate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdDonate.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cmdDonate.Image = ((System.Drawing.Image)(resources.GetObject("cmdDonate.Image")));
-            this.cmdDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdDonate.Location = new System.Drawing.Point(192, 256);
-            this.cmdDonate.Name = "cmdDonate";
-            this.cmdDonate.Size = new System.Drawing.Size(172, 40);
-            this.cmdDonate.TabIndex = 12;
-            this.cmdDonate.Text = "Donation Page";
-            this.cmdDonate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click_1);
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.ForeColor = System.Drawing.Color.White;
-            this.linkLabel3.LinkColor = System.Drawing.Color.White;
-            this.linkLabel3.Location = new System.Drawing.Point(32, 360);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(344, 16);
-            this.linkLabel3.TabIndex = 102;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Or Donate a book from the Amazon Whis List";
-            this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
-            // 
-            // frmDonate
-            // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(410, 429);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.cmdDonate);
-            this.Controls.Add(this.chkPopup);
-            this.Controls.Add(this.panText);
-            this.Controls.Add(this.cmdClose);
-            this.Controls.Add(this.lstAmount);
-            this.Controls.Add(this.pictureBox4);
-            this.Name = "frmDonate";
-            this.Text = "Donate =)";
-            this.Closed += new EventHandler(this.frmDonate_FormClosed);
-            this.Load += new System.EventHandler(this.frmDonate_Load);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
-            this.Controls.SetChildIndex(this.pictureBox4, 0);
-            this.Controls.SetChildIndex(this.lstAmount, 0);
-            this.Controls.SetChildIndex(this.cmdClose, 0);
-            this.Controls.SetChildIndex(this.panText, 0);
-            this.Controls.SetChildIndex(this.chkPopup, 0);
-            this.Controls.SetChildIndex(this.cmdDonate, 0);
-            this.Controls.SetChildIndex(this.linkLabel3, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panText.ResumeLayout(false);
-            this.panText.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(frmDonate));
+			this.label1 = new System.Windows.Forms.Label();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.lstAmount = new System.Windows.Forms.ListBox();
+			this.cmdClose = new System.Windows.Forms.Button();
+			this.panText = new System.Windows.Forms.Panel();
+			this.chkPopup = new System.Windows.Forms.CheckBox();
+			this.cmdDonate = new System.Windows.Forms.Button();
+			this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+			this.panText.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.Location = new System.Drawing.Point(296, 7);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Visible = false;
+			// 
+			// label1
+			// 
+			this.label1.BackColor = System.Drawing.Color.Transparent;
+			this.label1.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(40)), ((System.Byte)(40)), ((System.Byte)(40)));
+			this.label1.Location = new System.Drawing.Point(20, 9);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(356, 183);
+			this.label1.TabIndex = 4;
+			this.label1.Text = @"Every day, this project grows larger and adds more features.  As a result, I need to spend a lot of my time to maintain it.  Please bear this in mind as you use the library; if you find it useful I ask you to consider donating a small amount of money to the project.  Any amount you can donate will allow me to spend less time doing consulting work and more time on this project, adding new features and enhancing existing functionality.  Thanks!";
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+			this.pictureBox4.Location = new System.Drawing.Point(48, 288);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(72, 29);
+			this.pictureBox4.TabIndex = 6;
+			this.pictureBox4.TabStop = false;
+			// 
+			// lstAmount
+			// 
+			this.lstAmount.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.lstAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lstAmount.ItemHeight = 16;
+			this.lstAmount.Items.AddRange(new object[] {
+														   "u$s      5",
+														   "u$s    10",
+														   "u$s    20",
+														   "u$s    50",
+														   "u$s  100"});
+			this.lstAmount.Location = new System.Drawing.Point(128, 264);
+			this.lstAmount.Name = "lstAmount";
+			this.lstAmount.Size = new System.Drawing.Size(64, 84);
+			this.lstAmount.TabIndex = 8;
+			// 
+			// cmdClose
+			// 
+			this.cmdClose.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdClose.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdClose.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdClose.Location = new System.Drawing.Point(200, 312);
+			this.cmdClose.Name = "cmdClose";
+			this.cmdClose.Size = new System.Drawing.Size(172, 38);
+			this.cmdClose.TabIndex = 9;
+			this.cmdClose.Text = "Maybe next time :P ";
+			this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+			// 
+			// panText
+			// 
+			this.panText.Controls.Add(this.label1);
+			this.panText.Location = new System.Drawing.Point(12, 56);
+			this.panText.Name = "panText";
+			this.panText.Size = new System.Drawing.Size(386, 200);
+			this.panText.TabIndex = 10;
+			this.panText.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+			// 
+			// chkPopup
+			// 
+			this.chkPopup.BackColor = System.Drawing.Color.Transparent;
+			this.chkPopup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.chkPopup.ForeColor = System.Drawing.Color.Gainsboro;
+			this.chkPopup.Location = new System.Drawing.Point(16, 392);
+			this.chkPopup.Name = "chkPopup";
+			this.chkPopup.Size = new System.Drawing.Size(264, 22);
+			this.chkPopup.TabIndex = 11;
+			this.chkPopup.Text = "Dont show me this popup anymore";
+			// 
+			// cmdDonate
+			// 
+			this.cmdDonate.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(110)));
+			this.cmdDonate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cmdDonate.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.cmdDonate.ForeColor = System.Drawing.Color.Gainsboro;
+			this.cmdDonate.Image = ((System.Drawing.Image)(resources.GetObject("cmdDonate.Image")));
+			this.cmdDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cmdDonate.Location = new System.Drawing.Point(200, 264);
+			this.cmdDonate.Name = "cmdDonate";
+			this.cmdDonate.Size = new System.Drawing.Size(172, 40);
+			this.cmdDonate.TabIndex = 12;
+			this.cmdDonate.Text = "Donation Page";
+			this.cmdDonate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.cmdDonate.Click += new System.EventHandler(this.cmdDonate_Click_1);
+			// 
+			// linkLabel3
+			// 
+			this.linkLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
+			this.linkLabel3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.linkLabel3.ForeColor = System.Drawing.Color.White;
+			this.linkLabel3.LinkColor = System.Drawing.Color.White;
+			this.linkLabel3.Location = new System.Drawing.Point(40, 368);
+			this.linkLabel3.Name = "linkLabel3";
+			this.linkLabel3.Size = new System.Drawing.Size(344, 16);
+			this.linkLabel3.TabIndex = 102;
+			this.linkLabel3.TabStop = true;
+			this.linkLabel3.Text = "Or Donate a book from the Amazon Whis List";
+			this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+			// 
+			// frmDonate
+			// 
+			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
+			this.ClientSize = new System.Drawing.Size(410, 447);
+			this.Controls.Add(this.linkLabel3);
+			this.Controls.Add(this.cmdDonate);
+			this.Controls.Add(this.chkPopup);
+			this.Controls.Add(this.panText);
+			this.Controls.Add(this.cmdClose);
+			this.Controls.Add(this.lstAmount);
+			this.Controls.Add(this.pictureBox4);
+			this.Name = "frmDonate";
+			this.Text = "Donate =)";
+			this.Load += new System.EventHandler(this.frmDonate_Load);
+			this.Closed += new System.EventHandler(this.frmDonate_FormClosed);
+			this.Controls.SetChildIndex(this.pictureBox3, 0);
+			this.Controls.SetChildIndex(this.pictureBox4, 0);
+			this.Controls.SetChildIndex(this.lstAmount, 0);
+			this.Controls.SetChildIndex(this.cmdClose, 0);
+			this.Controls.SetChildIndex(this.panText, 0);
+			this.Controls.SetChildIndex(this.chkPopup, 0);
+			this.Controls.SetChildIndex(this.cmdDonate, 0);
+			this.Controls.SetChildIndex(this.linkLabel3, 0);
+			this.panText.ResumeLayout(false);
+			this.ResumeLayout(false);
 
 		}
 		#endregion
