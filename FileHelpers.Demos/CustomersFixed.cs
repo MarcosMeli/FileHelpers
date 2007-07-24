@@ -9,7 +9,7 @@ namespace FileHelpersSamples
 	{
 		[FieldFixedLength(11)] public string mCustomerID;
 
-		[FieldFixedLength(38)] public string mCompanyName;
+		[FieldFixedLength(38)] public string mCompanyName; 
 
 		[FieldFixedLength(22)] public string mContactName;
 

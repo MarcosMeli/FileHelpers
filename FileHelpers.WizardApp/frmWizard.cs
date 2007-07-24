@@ -2436,7 +2436,7 @@ namespace FileHelpers.WizardApp
         }
 
 
-
+        
         private void picDonate_Click(object sender, EventArgs e)
         {
             frmDonate frm = new frmDonate();

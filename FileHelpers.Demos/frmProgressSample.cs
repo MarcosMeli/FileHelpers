@@ -88,8 +88,8 @@ namespace FileHelpersSamples
 			// 
 			// prog1
 			// 
-			this.prog1.ColorBarBorder = System.Drawing.Color.Blue;
-			this.prog1.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
+			this.prog1.Color1 = System.Drawing.Color.Blue;
+			this.prog1.Color2 = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
 			this.prog1.ColorText = System.Drawing.Color.WhiteSmoke;
 			this.prog1.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -109,8 +109,8 @@ namespace FileHelpersSamples
 			// 
 			// prog3
 			// 
-			this.prog3.ColorBarBorder = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(224)), ((System.Byte)(192)));
-			this.prog3.ColorBarCenter = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
+			this.prog3.Color1 = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(224)), ((System.Byte)(192)));
+			this.prog3.Color2 = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(64)), ((System.Byte)(0)));
 			this.prog3.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(115)), ((System.Byte)(50)), ((System.Byte)(0)));
 			this.prog3.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -128,8 +128,8 @@ namespace FileHelpersSamples
 			// 
 			// prog2
 			// 
-			this.prog2.ColorBarBorder = System.Drawing.Color.AliceBlue;
-			this.prog2.ColorBarCenter = System.Drawing.Color.SteelBlue;
+			this.prog2.Color1 = System.Drawing.Color.AliceBlue;
+			this.prog2.Color2 = System.Drawing.Color.SteelBlue;
 			this.prog2.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(64)));
 			this.prog2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.prog2.GradientStyle = Framework.Controls.GradientMode.Diagonal;
@@ -146,8 +146,8 @@ namespace FileHelpersSamples
 			// 
 			// prog4
 			// 
-			this.prog4.ColorBarBorder = System.Drawing.Color.RoyalBlue;
-			this.prog4.ColorBarCenter = System.Drawing.Color.AliceBlue;
+			this.prog4.Color1 = System.Drawing.Color.RoyalBlue;
+			this.prog4.Color2 = System.Drawing.Color.AliceBlue;
 			this.prog4.ColorText = System.Drawing.Color.Navy;
 			this.prog4.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.prog4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));

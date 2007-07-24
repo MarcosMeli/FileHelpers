@@ -150,8 +150,8 @@ namespace FileHelpersSamples
 			// 
 			// pb
 			// 
-			this.pb.ColorBarBorder = System.Drawing.Color.RoyalBlue;
-			this.pb.ColorBarCenter = System.Drawing.Color.AliceBlue;
+			this.pb.Color1 = System.Drawing.Color.RoyalBlue;
+			this.pb.Color2 = System.Drawing.Color.AliceBlue;
 			this.pb.ColorText = System.Drawing.Color.FromArgb(((System.Byte)(0)), ((System.Byte)(0)), ((System.Byte)(50)));
 			this.pb.ColorTextShadow = System.Drawing.Color.DimGray;
 			this.pb.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
