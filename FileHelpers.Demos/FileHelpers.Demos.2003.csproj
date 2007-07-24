@@ -87,7 +87,7 @@
                 <Reference
                     Name = "Framework.Controls.ProgressBar"
                     AssemblyName = "Framework.Controls.ProgressBar"
-                    HintPath = "..\References\Framework.Controls.ProgressBar.dll"
+                    HintPath = "..\References\ProgressBar\Net_1.1\Framework.Controls.ProgressBar.dll"
                 />
                 <Reference
                     Name = "System.XML"
