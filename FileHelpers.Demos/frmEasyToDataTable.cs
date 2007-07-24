@@ -67,8 +67,6 @@ namespace FileHelpersSamples
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.DataGridDatos = new System.Windows.Forms.DataGrid();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -180,8 +178,6 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.DataGridDatos, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
