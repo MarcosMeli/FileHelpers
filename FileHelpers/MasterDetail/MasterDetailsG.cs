@@ -41,10 +41,12 @@ namespace FileHelpers.MasterDetail
 			mDetails = details;
 		}
 		
+
 		#if NET_2_0
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)] 
 		#endif
 		private static MasterDetails mEmpty = new MasterDetails(null, new object[] {});
+
 
 		/// <summary>Returns a canonical empty MasterDetail object.</summary>
 		public static MasterDetails Empty
