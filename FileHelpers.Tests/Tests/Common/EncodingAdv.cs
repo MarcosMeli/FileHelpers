@@ -35,6 +35,7 @@ namespace FileHelpersTests.CommonTests
 			}
              
 			[Test]
+            [Explicit]
 			public void GetMSWSReportsFromURL_AsData_20060709_28Records()
 			{
 				DateTime date = new DateTime(2006, 7, 20);
@@ -55,6 +56,7 @@ namespace FileHelpersTests.CommonTests
 			}
 
 			[Test]
+            [Explicit]
 			public void GetMSWSReportsFromURL_AsString_20060709_28Records()
 			{
 				DateTime date = new DateTime(2006, 7, 20);
@@ -72,6 +74,7 @@ namespace FileHelpersTests.CommonTests
 			}
 
 			[Test]
+            [Explicit]
 			public void GetMSWSReportsFromURL_AsStream_20060709_28Records()
 			{
 				DateTime date = new DateTime(2006, 7, 20);
