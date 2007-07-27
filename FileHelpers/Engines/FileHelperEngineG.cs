@@ -155,151 +155,150 @@ namespace FileHelpers
 
 
 #if ! GENERICS
-		private object[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+        private object[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
 #else
 		private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
 #endif
-		{
+        {
 #endif
-			if (reader == null)
-				throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+            if (reader == null)
+                throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
 
-			ResetFields();
-			mHeaderText = String.Empty;
-			mFooterText = String.Empty;
+            ResetFields();
+            mHeaderText = String.Empty;
+            mFooterText = String.Empty;
 
-			ArrayList resArray = new ArrayList();
-			int currentRecord = 0;
+            ArrayList resArray = new ArrayList();
+            int currentRecord = 0;
 
-			ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast);
-			freader.DiscardForward = true;
+            using (ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast))
+            {
+                freader.DiscardForward = true;
 
-			string currentLine, completeLine;
 
-			mLineNumber = 1;
+                string currentLine, completeLine;
 
-			completeLine = freader.ReadNextLine();
-			currentLine = completeLine;
+                mLineNumber = 1;
 
-			#if !MINI
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
-			#endif
+                completeLine = freader.ReadNextLine();
+                currentLine = completeLine;
 
-			if (mRecordInfo.mIgnoreFirst > 0)
-			{
-				for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
-				{
-					mHeaderText += currentLine + StringHelper.NewLine;
-					currentLine = freader.ReadNextLine();
-					mLineNumber++;
-				
-				}
-			}
-
-			bool byPass = false;
-
-			if (maxRecords < 0)
-				maxRecords = int.MaxValue;
-
-			LineInfo line = new LineInfo(currentLine);
-			line.mReader = freader;
-			
-			object[] values = new object[mRecordInfo.mFieldCount];
-			while (currentLine != null && currentRecord < maxRecords)
-			{
-				try
-				{
-					mTotalRecords++;
-					currentRecord++; 
-				
-					line.ReLoad(currentLine);
-					
-					bool skip = false;
 #if !MINI
-					ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+                ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+#endif
+
+                if (mRecordInfo.mIgnoreFirst > 0)
+                {
+                    for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
+                    {
+                        mHeaderText += currentLine + StringHelper.NewLine;
+                        currentLine = freader.ReadNextLine();
+                        mLineNumber++;
+                    }
+                }
+
+                bool byPass = false;
+
+                if (maxRecords < 0)
+                    maxRecords = int.MaxValue;
+
+                LineInfo line = new LineInfo(currentLine);
+                line.mReader = freader;
+
+                object[] values = new object[mRecordInfo.mFieldCount];
+                while (currentLine != null && currentRecord < maxRecords)
+                {
+                    try
+                    {
+                        mTotalRecords++;
+                        currentRecord++;
+
+                        line.ReLoad(currentLine);
+
+                        bool skip = false;
+#if !MINI
+                        ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 #if ! GENERICS
-                    BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
+                        BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
 #else
                     BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
 #endif
-                    skip = OnBeforeReadRecord(e);
-                    if (e.RecordLineChanged)
-                        line.ReLoad(e.RecordLine);
+                        skip = OnBeforeReadRecord(e);
+                        if (e.RecordLineChanged)
+                            line.ReLoad(e.RecordLine);
 #endif
 
-					if (skip == false)
-					{
-						object record = mRecordInfo.StringToRecord(line, values);
+                        if (skip == false)
+                        {
+                            object record = mRecordInfo.StringToRecord(line, values);
 
 #if !MINI
 #if ! GENERICS
-						skip = OnAfterReadRecord(currentLine, record);
+                            skip = OnAfterReadRecord(currentLine, record);
 #else
 						skip = OnAfterReadRecord(currentLine, (T) record);
 #endif
 #endif
-						
-						if (skip == false && record != null)
-						{
+
+                            if (skip == false && record != null)
+                            {
 #if MINI
 								resArray.Add(record);
 #else
-							if (dt == null)
-								resArray.Add(record);
-							else
-								dt.Rows.Add(mRecordInfo.RecordToValues(record));
+                                if (dt == null)
+                                    resArray.Add(record);
+                                else
+                                    dt.Rows.Add(mRecordInfo.RecordToValues(record));
 #endif
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
+                            case ErrorMode.ThrowException:
+                                byPass = true;
+                                throw;
+                            case ErrorMode.IgnoreAndContinue:
+                                break;
+                            case ErrorMode.SaveAndContinue:
+                                ErrorInfo err = new ErrorInfo();
+                                err.mLineNumber = freader.LineNumber;
+                                err.mExceptionInfo = ex;
+                                //							err.mColumnNumber = mColumnNum;
+                                err.mRecordString = completeLine;
 
-						}
+                                mErrorManager.AddError(err);
+                                break;
+                        }
+                    }
+                    finally
+                    {
+                        if (byPass == false)
+                        {
+                            currentLine = freader.ReadNextLine();
+                            completeLine = currentLine;
+                            mLineNumber++;
+                        }
+                    }
+                }
 
-					}
-				}
-				catch (Exception ex)
-				{
-					switch (mErrorManager.ErrorMode)
-					{
-						case ErrorMode.ThrowException:
-							byPass = true;
-							throw;
-						case ErrorMode.IgnoreAndContinue:
-							break;
-						case ErrorMode.SaveAndContinue:
-							ErrorInfo err = new ErrorInfo();
-							err.mLineNumber = freader.LineNumber;
-							err.mExceptionInfo = ex;
-							//							err.mColumnNumber = mColumnNum;
-							err.mRecordString = completeLine;
-
-							mErrorManager.AddError(err);
-							break;
-					}
-				}
-				finally
-				{
-					if (byPass == false)
-					{
-						currentLine = freader.ReadNextLine();
-						completeLine = currentLine;
-						mLineNumber++;
-					}
-				}
-
-			}
-
-			if (mRecordInfo.mIgnoreLast > 0)
-			{
-				mFooterText = freader.RemainingText;
-			}
+                if (mRecordInfo.mIgnoreLast > 0)
+                {
+                    mFooterText = freader.RemainingText;
+                }
+            }
 
 #if ! GENERICS
-			return (object[]) 
+            return (object[])
 #else
 			return (T[])
 #endif
-			 resArray.ToArray(RecordType);
-		}
+                   resArray.ToArray(RecordType);
+        }
 
-		#endregion
+        #endregion
 
 		
 		

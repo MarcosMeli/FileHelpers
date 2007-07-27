@@ -385,7 +385,7 @@ arr.ToArray(RecordType);
 
         /// <summary>
         /// Save all the buffered data for write to the disk. 
-        /// Useful to long opened async engines that wants to save pending values or for engines used for logging.
+        /// Useful to opened async engines that wants to save pending values to disk or for engines used for logging.
         /// </summary>
         public void Flush()
         {

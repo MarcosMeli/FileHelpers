@@ -258,157 +258,155 @@ namespace FileHelpers.MasterDetail
 
             ArrayList resArray = new ArrayList();
 
-            ForwardReader freader = new ForwardReader(reader, mMasterInfo.mIgnoreLast);
-            freader.DiscardForward = true;
+            using (ForwardReader freader = new ForwardReader(reader, mMasterInfo.mIgnoreLast))
+            {
+                freader.DiscardForward = true;
 
-            string currentLine, completeLine;
+                string currentLine, completeLine;
 
-            mLineNumber = 1;
+                mLineNumber = 1;
 
-            completeLine = freader.ReadNextLine();
-            currentLine = completeLine;
+                completeLine = freader.ReadNextLine();
+                currentLine = completeLine;
 
 #if !MINI
-            ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+                ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
 #endif
-            int currentRecord = 0;
+                int currentRecord = 0;
 
-            if (mMasterInfo.mIgnoreFirst > 0)
-            {
-                for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
+                if (mMasterInfo.mIgnoreFirst > 0)
                 {
-                    mHeaderText += currentLine + StringHelper.NewLine;
-                    currentLine = freader.ReadNextLine();
-                    mLineNumber++;
+                    for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
+                    {
+                        mHeaderText += currentLine + StringHelper.NewLine;
+                        currentLine = freader.ReadNextLine();
+                        mLineNumber++;
+                    }
                 }
-            }
 
 
-            bool byPass = false;
+                bool byPass = false;
 
 #if ! GENERICS
-			MasterDetails record = null;
+                MasterDetails record = null;
 #else
             MasterDetails<M, D> record = null;
 #endif
-            ArrayList tmpDetails = new ArrayList();
+                ArrayList tmpDetails = new ArrayList();
 
-            LineInfo line = new LineInfo(currentLine);
-            line.mReader = freader;
+                LineInfo line = new LineInfo(currentLine);
+                line.mReader = freader;
 
 
-            object[] valuesMaster = new object[mMasterInfo.mFieldCount];
-            object[] valuesDetail = new object[mRecordInfo.mFieldCount];
+                object[] valuesMaster = new object[mMasterInfo.mFieldCount];
+                object[] valuesDetail = new object[mRecordInfo.mFieldCount];
 
-            while (currentLine != null)
-            {
-                try
+                while (currentLine != null)
                 {
-                    currentRecord++;
+                    try
+                    {
+                        currentRecord++;
 
-                    line.ReLoad(currentLine);
+                        line.ReLoad(currentLine);
 
 #if !MINI
-                    ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+                        ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
 #endif
 
-                    RecordAction action = RecordSelector(currentLine);
+                        RecordAction action = RecordSelector(currentLine);
 
-                    switch (action)
-                    {
-                        case RecordAction.Master:
-                            if (record != null)
-                            {
+                        switch (action)
+                        {
+                            case RecordAction.Master:
+                                if (record != null)
+                                {
 #if ! GENERICS
-									record.mDetails = tmpDetails.ToArray();
+                                    record.mDetails = tmpDetails.ToArray();
 #else
                                 record.mDetails = (D[])tmpDetails.ToArray();
 #endif
-                                resArray.Add(record);
-                            }
+                                    resArray.Add(record);
+                                }
 
-                            mTotalRecords++;
+                                mTotalRecords++;
 #if ! GENERICS
-							record = new MasterDetails();
+                                record = new MasterDetails();
 #else
                             record = new MasterDetails<M, D>();
 #endif
-                            tmpDetails.Clear();
+                                tmpDetails.Clear();
 #if ! GENERICS
-							object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
+                                object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
                             M lastMaster = (M)mMasterInfo.StringToRecord(line, valuesMaster);
 #endif
 
-                            if (lastMaster != null)
-                                record.mMaster = lastMaster;
+                                if (lastMaster != null)
+                                    record.mMaster = lastMaster;
 
-                            break;
+                                break;
 
-                        case RecordAction.Detail:
+                            case RecordAction.Detail:
 #if ! GENERICS
-							object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
+                                object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
                             D lastChild = (D)mRecordInfo.StringToRecord(line, valuesDetail);
 #endif
 
-                            if (lastChild != null)
-                                tmpDetails.Add(lastChild);
-                            break;
+                                if (lastChild != null)
+                                    tmpDetails.Add(lastChild);
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
-
-
-                }
-                catch (Exception ex)
-                {
-                    switch (mErrorManager.ErrorMode)
+                    catch (Exception ex)
                     {
-                        case ErrorMode.ThrowException:
-                            byPass = true;
-                            throw;
-                        case ErrorMode.IgnoreAndContinue:
-                            break;
-                        case ErrorMode.SaveAndContinue:
-                            ErrorInfo err = new ErrorInfo();
-                            err.mLineNumber = mLineNumber;
-                            err.mExceptionInfo = ex;
-                            //							err.mColumnNumber = mColumnNum;
-                            err.mRecordString = completeLine;
+                        switch (mErrorManager.ErrorMode)
+                        {
+                            case ErrorMode.ThrowException:
+                                byPass = true;
+                                throw;
+                            case ErrorMode.IgnoreAndContinue:
+                                break;
+                            case ErrorMode.SaveAndContinue:
+                                ErrorInfo err = new ErrorInfo();
+                                err.mLineNumber = mLineNumber;
+                                err.mExceptionInfo = ex;
+                                //							err.mColumnNumber = mColumnNum;
+                                err.mRecordString = completeLine;
 
-                            mErrorManager.AddError(err);
-                            break;
+                                mErrorManager.AddError(err);
+                                break;
+                        }
                     }
-                }
-                finally
-                {
-                    if (byPass == false)
+                    finally
                     {
-                        currentLine = freader.ReadNextLine();
-                        completeLine = currentLine;
-                        mLineNumber = freader.LineNumber;
+                        if (byPass == false)
+                        {
+                            currentLine = freader.ReadNextLine();
+                            completeLine = currentLine;
+                            mLineNumber = freader.LineNumber;
+                        }
                     }
                 }
 
-            }
-
-            if (record != null)
-            {
+                if (record != null)
+                {
 #if ! GENERICS
-				record.mDetails = tmpDetails.ToArray();
+                    record.mDetails = tmpDetails.ToArray();
 #else
                 record.mDetails = (D[])tmpDetails.ToArray();
 #endif
-                resArray.Add(record);
-            }
+                    resArray.Add(record);
+                }
 
-            if (mMasterInfo.mIgnoreLast > 0)
-            {
-                mFooterText = freader.RemainingText;
+                if (mMasterInfo.mIgnoreLast > 0)
+                {
+                    mFooterText = freader.RemainingText;
+                }
             }
-
 #if ! GENERICS
 			return (MasterDetails[]) resArray.ToArray(typeof (MasterDetails));
 #else
