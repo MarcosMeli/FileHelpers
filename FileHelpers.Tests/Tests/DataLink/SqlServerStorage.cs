@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 namespace FileHelpersTests.DataLink
 {
 	[TestFixture]
+    [Explicit]
 	public class SqlServer
 	{
 		[Test]

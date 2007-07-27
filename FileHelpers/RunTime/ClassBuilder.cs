@@ -81,13 +81,13 @@ namespace FileHelpers.RunTime
 
                 case NetLanguage.VbNet:
 
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
+                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System\n");
 
-					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
+					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports FileHelpers\n");
 
-					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase | CompareOptions.Ordinal) == -1)
+					if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System.Data\n");
 
                     break;

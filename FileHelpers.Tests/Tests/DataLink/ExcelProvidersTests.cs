@@ -8,7 +8,8 @@ using NUnit.Framework;
 namespace FileHelpersTests.DataLink
 {
 	[TestFixture]
-	public class ExcelDataProviderTest
+    [Explicit]
+    public class ExcelDataProviderTest
 	{
 		[Test]
 		public void CustomersRead()
