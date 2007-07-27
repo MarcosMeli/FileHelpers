@@ -20,10 +20,15 @@ namespace FileHelpers.RunTime
 		
 		public void BeginWriteFile(string filename)
 		{
-			mWriter = new XmlTextWriter(new StreamWriter(filename));
-			mWriter.Formatting = Formatting.Indented;
-			mWriter.Indentation = 4;
+            BeginWriteStream(new StreamWriter(new FileStream(filename, FileMode.Create)));
 		}
+
+        public void BeginWriteStream(TextWriter writer)
+        {
+            mWriter = new XmlTextWriter(writer);
+            mWriter.Formatting = Formatting.Indented;
+            mWriter.Indentation = 4;
+        }
 
 		public void BeginReadFile(string filename)
 		{

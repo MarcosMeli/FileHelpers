@@ -512,11 +512,12 @@ namespace FileHelpers
 #endif
 		{
 			StringBuilder sb = new StringBuilder();
-			StringWriter writer = new StringWriter(sb);
-			WriteStream(writer, records, maxRecords);
-			string res = writer.ToString();
-			writer.Close();
-			return res;
+            using (StringWriter writer = new StringWriter(sb))
+            {
+                WriteStream(writer, records, maxRecords);
+                string res = writer.ToString();
+                return res;
+            }
 		}
 
 		#endregion
