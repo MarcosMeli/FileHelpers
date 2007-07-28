@@ -22,6 +22,8 @@ using System.Collections.Generic;
 
 #if ! MINI
 using System.Data;
+using FileHelpers.RunTime;
+
 #endif
 
 
@@ -45,6 +47,7 @@ namespace FileHelpers
         
 
 		#region "  Constructor  "
+
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 #if ! GENERICS
@@ -70,6 +73,12 @@ namespace FileHelpers
 			CreateRecordOptions();
 		}
 
+//        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+//    #if ! GENERICS
+//        public FileHelperEngine(ClassBuilder builder)
+//            : this(builder.CreateRecordClass(), Encoding.Default)
+//        { }
+//    #endif
 
 		private void CreateRecordOptions()
 		{

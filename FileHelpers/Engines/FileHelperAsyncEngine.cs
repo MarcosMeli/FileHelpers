@@ -30,8 +30,8 @@ namespace FileHelpers
         EngineBase, IEnumerable, IDisposable
 #else
     /// <typeparam name="T">The record type.</typeparam>
-    public sealed class FileHelperAsyncEngine<T> : 
-		EngineBase, IEnumerable, IDisposable
+    public sealed class FileHelperAsyncEngine<T> :
+        EngineBase, IEnumerable<T>, IDisposable
 #endif
     {
         #region "  Constructor  "
@@ -440,7 +440,7 @@ arr.ToArray(RecordType);
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
         public void BeginWriteStream(TextWriter writer)
-        { 
+        {
             if (writer == null)
                 throw new ArgumentException("writer", "The TextWriter can´t be null.");
 
@@ -580,19 +580,42 @@ arr.ToArray(RecordType);
 
         #region "  IEnumerable implementation  "
 
+#if ! GENERICS
         /// <summary>Allows to loop record by record in the engine</summary>
         /// <returns>The enumerator</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             if (mAsyncReader == null)
                 throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
-
-#if ! GENERICS
             return new AsyncEnumerator(this);
-#else
-				return new AsyncEnumerator<T>(this);
-#endif
         }
+#else
+        /// <summary>Allows to loop record by record in the engine</summary>
+        /// <returns>The enumerator</returns>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            if (mAsyncReader == null)
+                throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
+            return new AsyncEnumerator<T>(this);
+        }
+
+        ///<summary>
+        ///Returns an enumerator that iterates through a collection.
+        ///</summary>
+        ///
+        ///<returns>
+        ///An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+        ///</returns>
+        ///<filterpriority>2</filterpriority>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            if (mAsyncReader == null)
+                throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
+            return new AsyncEnumerator<T>(this);
+        }
+
+
+#endif
 
 #if ! GENERICS
         private class AsyncEnumerator : IEnumerator
@@ -600,8 +623,18 @@ arr.ToArray(RecordType);
             FileHelperAsyncEngine mEngine;
             public AsyncEnumerator(FileHelperAsyncEngine engine)
 #else
-		private class AsyncEnumerator<X> : IEnumerator
+		private class AsyncEnumerator<X> : IEnumerator<X>
 		{
+            X IEnumerator<X>.Current
+            {
+                get { return mEngine.mLastRecord; }
+            }
+
+            void IDisposable.Dispose()
+            {
+                mEngine.Close();
+            }
+
 			FileHelperAsyncEngine<X> mEngine;
 			public AsyncEnumerator(FileHelperAsyncEngine<X> engine)
 #endif
@@ -635,6 +668,8 @@ arr.ToArray(RecordType);
             {
                 // No needed
             }
+
+
         }
 
 

@@ -146,11 +146,11 @@ namespace FileHelpers
 
 		#region "  ErrorManager"
 
+        /// <summary>This is a common class that manage the errors of the library.</summary>
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        /// <summary>This is a common class that manage the errors of the library.</summary>
-		protected ErrorManager mErrorManager = new ErrorManager();
+        protected ErrorManager mErrorManager = new ErrorManager();
 
 		/// <summary>This is a common class that manage the errors of the library.</summary>
 		/// <remarks>You can, for example, get the errors, their number, Save them to a file, etc.</remarks>
@@ -182,16 +182,16 @@ namespace FileHelpers
 
 		#if ! MINI
 
+        /// <summary></summary>
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        /// <summary></summary>
 		protected ProgressMode mProgressMode = ProgressMode.DontNotify;
 
+        /// <summary></summary>
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        /// <summary></summary>
 		protected ProgressChangeHandler mNotifyHandler = null;
 
 		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>

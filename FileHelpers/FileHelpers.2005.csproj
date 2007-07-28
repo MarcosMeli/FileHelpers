@@ -171,6 +171,7 @@
     <Compile Include="Core\RecordInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Csv\RecordIndexer.cs" />
     <Compile Include="DataLink\FileDataLink.cs">
       <SubType>Code</SubType>
     </Compile>
