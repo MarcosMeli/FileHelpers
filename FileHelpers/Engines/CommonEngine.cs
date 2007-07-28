@@ -717,7 +717,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines)
         {
-            return ReadCsv(filename, delimiter, 0);
+            return ReadCsv(filename, delimiter, 0, Encoding.Default);
         }
 
         /// <summary>
