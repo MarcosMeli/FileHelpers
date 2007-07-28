@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace FileHelpers
 {
-
-
+    
     /// <summary>
     /// A class to loop through the field values
     /// </summary>
     [DelimitedRecord(",")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
     public sealed class RecordIndexer
-        :IEnumerable<string>
+        :IEnumerable<string> 
+        //, INotifyRead
     {
 
         internal RecordIndexer()
@@ -30,7 +32,7 @@ namespace FileHelpers
             get { return values.Length; }
         }
 
-        /// <summary>
+         /// <summary>
         /// Get the field value at the specified index.
         /// </summary>
         /// <param name="index">The index of the field (zero based)</param>
@@ -47,7 +49,6 @@ namespace FileHelpers
         IEnumerator<string> IEnumerable<string>.GetEnumerator()
         {
             return new ArrayEnumerator(values);
-            
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -55,7 +56,20 @@ namespace FileHelpers
             return ((IEnumerable<string>) this).GetEnumerator();
         }
 
-        private sealed class ArrayEnumerator:IEnumerator<string>
+        ///// <summary>
+        ///// The Header of the Csv File
+        ///// </summary>
+        //public string Header
+        //{
+        //    get { return mHeader; }
+        //}
+        
+        //[FieldIgnored]
+        //private string mHeader;
+
+        #region "  ArrayEnumerator  "
+
+        private sealed class ArrayEnumerator : IEnumerator<string>
         {
             private string[] mValues;
             private int i;
@@ -72,7 +86,7 @@ namespace FileHelpers
 
             public void Dispose()
             {
-                
+
             }
 
             public bool MoveNext()
@@ -92,8 +106,20 @@ namespace FileHelpers
 
             public object Current
             {
-                get { throw new NotImplementedException(); }
+                get { return mValues[i]; }
             }
         }
+
+        #endregion
+
+
+        #region INotifyRead Members
+
+        //void INotifyRead.AfterRead(EngineBase engine, string line)
+        //{
+        //    mHeader = engine.HeaderText;
+        //}
+
+        #endregion
     }
 }

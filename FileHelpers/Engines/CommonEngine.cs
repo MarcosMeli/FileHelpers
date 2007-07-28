@@ -705,7 +705,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter)
         {
-            return ReadCsv(filename, delimiter, Encoding.Default);
+            return ReadCsv(filename, delimiter, 0);
         }
 
         /// <summary>
@@ -717,7 +717,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines)
         {
-            return ReadCsv(filename, delimiter, 0, Encoding.Default);
+            return ReadCsv(filename, delimiter, headerLines, Encoding.Default);
         }
 
         /// <summary>
@@ -744,6 +744,7 @@ namespace FileHelpers
         {
             FileHelperAsyncEngine<RecordIndexer> engine = new FileHelperAsyncEngine<RecordIndexer>(encoding);
             ((DelimitedRecordOptions)engine.Options).Delimiter = delimiter.ToString();
+            engine.Options.IgnoreFirstLines = headerLines;
             engine.BeginReadFile(filename);
 
             return engine;
