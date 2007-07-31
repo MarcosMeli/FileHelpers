@@ -136,8 +136,7 @@ namespace FileHelpers
 #endif
             }
 
-
-
+			
 #if ! MINI
             if (typeof(INotifyRead).IsAssignableFrom(mRecordType))
                 mNotifyRead = true;
@@ -173,7 +172,7 @@ namespace FileHelpers
 
         private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
         {
-            if (currentType.BaseType != null)
+			if (currentType.BaseType != null && ! currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
                 RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
 
             fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
@@ -189,7 +188,7 @@ namespace FileHelpers
 
             for (int i = 0; i < fields.Count; i++)
             {
-                FieldBase currentField = FieldFactory.CreateField((FieldInfo)fields[i], recordAttribute);
+                FieldBase currentField = FieldBase.CreateField((FieldInfo)fields[i], recordAttribute);
 
                 if (currentField != null)
                 {

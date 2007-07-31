@@ -2,7 +2,7 @@
   FileHelpers
 -----------------------
 
-  http://www.filehelpers.com  - SF Home: http://sourceforge.net/projects/filehelpers
+  http://www.filehelpers.com  - SourceForge Home: http://sf.net/projects/filehelpers
 
   The FileHelpers are an easy to use library to import/export data from fixed length or delimited files.
  

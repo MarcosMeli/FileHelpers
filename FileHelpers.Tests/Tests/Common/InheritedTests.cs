@@ -16,6 +16,12 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (SampleInheritType));
 
+            Assert.AreEqual(3, engine.Options.FieldCount);
+
+            Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
+            Assert.AreEqual("Field2", engine.Options.FieldsNames[1]);
+            Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
+
 			SampleInheritType[] res;
 			res = (SampleInheritType[]) Common.ReadTest(engine, @"Good\test1.txt");
 
@@ -516,6 +522,87 @@ namespace FileHelpersTests.CommonTests
 
         }
 
+
+        [FixedLengthRecord]
+        [IgnoreInheritedClass]
+        public class SampleInheritIgnoreType
+            : CollectionBase
+        {
+            [FieldFixedLength(8)]
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime Field1;
+
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Left, ' ')]
+            [FieldTrim(TrimMode.Both)]
+            public string Field2;
+            
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Right, '0')]
+            [FieldTrim(TrimMode.Both)]
+            public int Field3;
+        }
+
+        [FixedLengthRecord]
+        public class SampleInheritIgnoreType2
+            : SampleInheritIgnoreType
+        {
+            [FieldOptional]
+            [FieldNullValue(2)]
+            [FieldFixedLength(3)]
+            public int Field4;
+        }
+
+
+        [Test]
+        public void IgnoreInherited1()
+        {
+            engine = new FileHelperEngine(typeof(SampleInheritIgnoreType));
+
+            Assert.AreEqual(3, engine.Options.FieldCount);
+
+            SampleInheritIgnoreType[] res;
+            res = (SampleInheritIgnoreType[])Common.ReadTest(engine, @"Good\test1.txt");
+
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
+            Assert.AreEqual("901", res[0].Field2);
+            Assert.AreEqual(234, res[0].Field3);
+
+            Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
+            Assert.AreEqual("012", res[1].Field2);
+            Assert.AreEqual(345, res[1].Field3);
+
+        }
+
+
+        [Test]
+        public void IgnoreInherited2()
+        {
+            engine = new FileHelperEngine(typeof(SampleInheritIgnoreType2));
+
+            Assert.AreEqual(4, engine.Options.FieldCount);
+            Assert.AreEqual("Field4", engine.Options.FieldsNames[3]);
+
+            SampleInheritIgnoreType2[] res;
+            res = (SampleInheritIgnoreType2[])Common.ReadTest(engine, @"Good\test1.txt");
+
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
+            Assert.AreEqual("901", res[0].Field2);
+            Assert.AreEqual(234, res[0].Field3);
+
+            Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
+            Assert.AreEqual("012", res[1].Field2);
+            Assert.AreEqual(345, res[1].Field3);
+
+        }
 
 	}
 }

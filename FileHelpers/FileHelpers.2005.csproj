@@ -310,9 +310,6 @@
     <Compile Include="Fields\FieldBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Fields\FieldFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Fields\FixedLengthField.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -406,6 +403,7 @@
     <Compile Include="RunTime\XmlHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
     <None Include="Diagrams\DataLinkDiagram.cd" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
