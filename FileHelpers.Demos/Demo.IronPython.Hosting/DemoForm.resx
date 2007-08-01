@@ -120,4 +120,11 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>These demos make use of IronPython, a .NET implementation of the Python scripting/programming language.  FileHelpers already comes with the necessary DLLs, but if you wish to download IronPython separately, you can find it at: http://www.codeplex.com/IronPython/
+
+The demo scripts/programs also require the USPS CIN List file from the DEPS service on the US Postal Service's FAST web portal.  This demonstrates the usage of FileHelpers on a real-world data file; however, this file cannot be redistributed due to copyright restrictions.  It is freely available from the USPS FAST DEPS website at https://fast.usps.com; no login is necessary, simply use the menus to choose "Resources", then "Drop-Ship Product File Download", then the "CIN List File".  Once the file is finished downloading, unzip it into this demo's directory.  (It should contain a single file called "CINLIST")
+
+Once you've added the CINLIST file to the demo directory, go ahead and launch the pure Python demo by running "demo.bat", or launch the IronPython Hosting demo by running Demo.IronPython.Hosting.exe</value>
+  </data>
 </root>
