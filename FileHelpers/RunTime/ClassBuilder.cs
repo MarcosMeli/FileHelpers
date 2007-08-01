@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
@@ -16,6 +17,7 @@ using System.Xml;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
+using System.Collections.Specialized;
 
 namespace FileHelpers.RunTime
 {
@@ -56,6 +58,9 @@ namespace FileHelpers.RunTime
             return ClassFromString(classStr, className, NetLanguage.CSharp);
         }
 
+        private static String[] mReferences;
+        private static object mReferencesLock = new object();
+
         /// <summary>Compiles the source code passed and returns the Type with the name className.</summary>
         /// <param name="classStr">The Source Code of the class in the specified language</param>
         /// <param name="className">The Name of the Type that must be returned</param>
@@ -63,10 +68,33 @@ namespace FileHelpers.RunTime
         /// <param name="lang">One of the .NET Languages</param>
         public static Type ClassFromString(string classStr, string className, NetLanguage lang)
         {
+
             CompilerParameters cp = new CompilerParameters();
-            cp.ReferencedAssemblies.Add("System.dll");
-            cp.ReferencedAssemblies.Add("System.Data.dll");
-            cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
+            //cp.ReferencedAssemblies.Add("System.dll");
+            //cp.ReferencedAssemblies.Add("System.Data.dll");
+            //cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
+
+            lock (mReferencesLock)
+            {
+                if (mReferences == null)
+                {
+                     ArrayList arr = new ArrayList();
+
+                    foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+                    {
+                        Module module = assembly.GetModules()[0];
+                        if (module.Name == "mscorlib.dll" || module.Name == "<Unknown>")
+                            continue;
+
+                        arr.Add(module.FullyQualifiedName);
+                    }
+
+                    mReferences = (string[]) arr.ToArray(typeof (string));
+                }
+            }
+
+            cp.ReferencedAssemblies.AddRange(mReferences);
+
             cp.GenerateExecutable = false;
             cp.GenerateInMemory = true;
             cp.IncludeDebugInformation = false;

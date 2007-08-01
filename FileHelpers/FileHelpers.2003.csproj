@@ -183,6 +183,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Attributes\IgnoreInheritedClassAttribute.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Attributes\IgnoreLastAttribute.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -449,11 +454,6 @@
                 />
                 <File
                     RelPath = "Fields\FieldBase.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Fields\FieldFactory.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
