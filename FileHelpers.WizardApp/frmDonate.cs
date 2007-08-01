@@ -115,11 +115,11 @@ namespace FileHelpers.WizardApp
             this.lstAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstAmount.ItemHeight = 16;
             this.lstAmount.Items.AddRange(new object[] {
-            "u$s      5",
-            "u$s    10",
-            "u$s    20",
-            "u$s    50",
-            "u$s  100"});
+            "US      $5",
+            "US    $10",
+            "US    $20",
+            "US    $50",
+            "US  $100"});
             this.lstAmount.Location = new System.Drawing.Point(120, 303);
             this.lstAmount.Name = "lstAmount";
             this.lstAmount.Size = new System.Drawing.Size(64, 84);
@@ -193,7 +193,7 @@ namespace FileHelpers.WizardApp
             this.linkLabel3.Size = new System.Drawing.Size(344, 16);
             this.linkLabel3.TabIndex = 102;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Or Donate a book from the Amazon Whis List";
+            this.linkLabel3.Text = "Or Donate a book from the Amazon Wish List";
             this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
@@ -210,8 +210,8 @@ namespace FileHelpers.WizardApp
             this.Controls.Add(this.pictureBox4);
             this.Name = "frmDonate";
             this.Text = "Donate =)";
-            this.Load += new System.EventHandler(this.frmDonate_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDonate_FormClosed);
+            this.Load += new System.EventHandler(this.frmDonate_Load);
             this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.pictureBox4, 0);
             this.Controls.SetChildIndex(this.lstAmount, 0);
