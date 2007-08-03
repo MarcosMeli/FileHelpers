@@ -27,10 +27,16 @@ namespace FileHelpers
     /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
     internal sealed class RecordInfo
     {
+
         // --------------------------------------
         // Constructor and Init Methods
 
         #region "  Internal Fields  "
+
+        // Cache of all the fields that must be used for a Type
+        // More info at:  http://www.filehelpers.com/forums/viewtopic.php?t=387
+        // Thanks Brian for the report, research and fix
+        private static readonly Hashtable mCachedRecordFields = new Hashtable();
 
         internal Type mRecordType;
         internal FieldBase[] mFields;
@@ -150,8 +156,15 @@ namespace FileHelpers
 
             // Create fields
 
-            ArrayList fields = new ArrayList();
-            RecursiveGetFields(fields, mRecordType, recordAttribute);
+            // Search for cached fields
+            ArrayList fields = mCachedRecordFields[mRecordType] as ArrayList;
+
+            if (fields == null)
+            {
+                fields = new ArrayList();
+                RecursiveGetFields(fields, mRecordType, recordAttribute);
+                mCachedRecordFields.Add(mRecordType, fields);
+            }
 
             mFields = CreateCoreFields(fields, recordAttribute);
             mFieldCount = mFields.Length;
