@@ -188,15 +188,29 @@ namespace FileHelpers
 
             if (currentType == typeof(object))
                 return;
-
-            object cache = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic).GetValue(mRecordType, null);
-            cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic).SetValue(cache, null);
+ 
+            ClearFieldInfoCache();
 
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
             fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+        }
+
+        private static PropertyInfo mTypeCacheInfo;
+        private static FieldInfo mFieldCachePointer;
+        private void ClearFieldInfoCache()
+        {
+            if (mTypeCacheInfo == null)
+                mTypeCacheInfo = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic);
+
+            object cache = mTypeCacheInfo.GetValue(mRecordType, null);
+
+            if (mFieldCachePointer == null)
+                mFieldCachePointer = cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic);
+
+            mFieldCachePointer.SetValue(cache, null);
         }
 
         #endregion
