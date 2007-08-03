@@ -151,11 +151,7 @@ namespace FileHelpers
                 mNotifyWrite = true;
 #endif
 
-
-            mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] { });
-
             // Create fields
-
             // Search for cached fields
             ArrayList fields = mCachedRecordFields[mRecordType] as ArrayList;
 
@@ -166,28 +162,40 @@ namespace FileHelpers
                 mCachedRecordFields.Add(mRecordType, fields);
             }
 
+            mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] { });
+
             mFields = CreateCoreFields(fields, recordAttribute);
             mFieldCount = mFields.Length;
 
             if (recordAttribute is FixedLengthRecordAttribute)
             {
                 // Defines the initial size of the StringBuilder
-                mSizeHint = 0;
+                mSizeHint = 0; 
                 for (int i = 0; i < mFieldCount; i++)
                     mSizeHint += ((FixedLengthField)mFields[i]).mFieldLength;
             }
 
-
             if (mFieldCount == 0)
                 throw new BadUsageException("The record class " + mRecordType.Name + " don't contains any field.");
+
 
         }
 
         private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
         {
-			if (currentType.BaseType != null && ! currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
+            if (currentType.BaseType != null && !currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
                 RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
 
+            if (currentType == typeof(object))
+                return;
+
+            object cache = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic).GetValue(mRecordType, null);
+            cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic).SetValue(cache, null);
+
+            //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
             fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
         }
 
