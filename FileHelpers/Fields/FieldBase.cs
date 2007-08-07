@@ -321,7 +321,7 @@ namespace FileHelpers
 
                 ArrayList res = new ArrayList(Math.Max(mArrayMinLength, 10));
 
-                while (line.IsEOL() == false && i < mArrayMaxLength)
+                while (line.mCurrentPos - mCharsToDiscard < line.mLine.Length && i < mArrayMaxLength)
                 {
                     ExtractedInfo info = ExtractFieldString(line);
                     if (info.mCustomExtractedString == null)

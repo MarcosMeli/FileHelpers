@@ -84,6 +84,32 @@ namespace FileHelpersTests.CommonTests
 
         }
 
+        [Test]
+        public void ReadFileTab2()
+        {
+            string file = Common.TestPath(@"Good\RealCsvTab2.txt");
+
+            List<RecordIndexer> res = new List<RecordIndexer>();
+
+            foreach (RecordIndexer record in CommonEngine.ReadCsv(file, '\t', 0))
+            {
+                res.Add(record);
+            }
+
+            Assert.AreEqual(21, res.Count);
+            Assert.AreEqual(9, res[0].FieldCount);
+
+            Assert.AreEqual("EP_CRUDO", res[0][0]);
+            Assert.AreEqual("REL_EP_FINAL_7", res[0][8]);
+
+            
+            Assert.AreEqual("ACUSA REBELDIA ADMITEN Y DESAHOGAN PRUEBAS Y SE ABRE JUICIO A ALEGATOS PORDOS DIAS", res[1][0]);
+            Assert.AreEqual("REBELDIA", res[1][1]);
+
+
+        }
+
+
 
 	}
 }
