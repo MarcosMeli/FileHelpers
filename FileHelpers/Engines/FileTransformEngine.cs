@@ -65,6 +65,27 @@ namespace FileHelpers
 			ValidateRecordTypes();
 		}
 
+#if ! GENERICS
+        public FileTransformEngine(Type sourceType, Type destType, FileHelpers.ErrorMode errorMode)
+        {
+#else
+		public FileTransformEngine()
+		{
+			Type sourceType = typeof(Source);
+			Type destType = typeof(Destination);
+
+#endif
+            //throw new NotImplementedException("This feature is not ready yet. In the next release maybe work =)");
+            ExHelper.CheckNullParam(sourceType, "sourceType");
+            ExHelper.CheckNullParam(destType, "destType");
+            ExHelper.CheckDifferentsParams(sourceType, "sourceType", destType, "destType");
+
+            mSourceType = sourceType;
+            mDestinationType = destType;
+            _ErrorMode = errorMode;
+            ValidateRecordTypes();
+        }
+
 		#endregion
 
 		#region "  Private Fields  "
@@ -91,6 +112,30 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private Encoding mDestinationEncoding = Encoding.Default;
+
+        private FileHelpers.ErrorMode _ErrorMode;
+
+        public FileHelpers.ErrorMode ErrorMode
+        {
+            get { return _ErrorMode; }
+            set { _ErrorMode = value; }
+        }
+
+        private FileHelpers.ErrorManager _SourceErrorManager;
+
+        public FileHelpers.ErrorManager SourceErrorManager
+        {
+            get { return _SourceErrorManager; }
+            set { _SourceErrorManager = value; }
+        }
+
+        private FileHelpers.ErrorManager _DestinationErrorManager;
+
+        public FileHelpers.ErrorManager DestinationErrorManager
+        {
+            get { return _DestinationErrorManager; }
+            set { _DestinationErrorManager = value; }
+        }
 
 
 		#endregion
@@ -176,6 +221,8 @@ namespace FileHelpers
 				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
 
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mSourceType, mSourceEncoding);
+            engine.ErrorManager.ErrorMode = this.ErrorMode;
+            SourceErrorManager = engine.ErrorManager;
 
 			ArrayList res = new ArrayList();
 
@@ -208,6 +255,12 @@ namespace FileHelpers
             FileHelperEngine sourceEngine = new FileHelperEngine(sourceType, mSourceEncoding);
 			FileHelperEngine destEngine = new FileHelperEngine(destType, mDestinationEncoding);
 
+            sourceEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            SourceErrorManager = sourceEngine.ErrorManager;
+
+            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            DestinationErrorManager = destEngine.ErrorManager;
+
             object[] source = sourceEngine.ReadStream(sourceFile);
 			object[] transformed = CoreTransformRecords(source, method);
 #else
@@ -217,11 +270,17 @@ namespace FileHelpers
             FileHelperEngine<Source> sourceEngine = new FileHelperEngine<Source>(mSourceEncoding);
             FileHelperEngine<Destination> destEngine = new FileHelperEngine<Destination>(mDestinationEncoding);
 
+            sourceEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            SourceErrorManager = sourceEngine.ErrorManager;
+
+            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            DestinationErrorManager = destEngine.ErrorManager;
+
             Source[] source = sourceEngine.ReadStream(sourceFile);
 			Destination[] transformed = CoreTransformRecords(source, method);
-#endif 
+#endif
 
-			destEngine.WriteStream(destFile, transformed);
+            destEngine.WriteStream(destFile, transformed);
 
 			return transformed;
 		}
@@ -275,6 +334,12 @@ namespace FileHelpers
 		{
 			FileHelperAsyncEngine sourceEngine = new FileHelperAsyncEngine(sourceType);
 			FileHelperAsyncEngine destEngine = new FileHelperAsyncEngine(destType);
+
+            sourceEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            SourceErrorManager = sourceEngine.ErrorManager;
+
+            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            DestinationErrorManager = destEngine.ErrorManager;
 
 			sourceEngine.Encoding = mSourceEncoding;
 			destEngine.Encoding = mDestinationEncoding;
