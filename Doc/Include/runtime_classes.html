@@ -26,7 +26,7 @@ bgColor=white leftMargin=0 topMargin=0>
 <tr><td><div id=contentdiv>
 <h2>Run Time Record Class Examples</h2>
 <blockquote>
-<p>From the version 1.6.0 you can use the new RuntimeRecords, this was one of the most requested features and the most fun to write because I need a clear API and that can be expended in the future other adds (XML backends, easy CSV records, etc). <br /><br />I hope that you like the way that I use to implement them and ofcourse that any suggestion is welcome.</p>
+<p>From the version 1.6.0 you can use the new RuntimeRecords, this was one of the most requested features and the most fun to write because I need a clear API and that can be expended in the future other adds (XML backends, easy CSV records, etc). <br /><br />I hope that you like the way that I implemented them and of course all suggestions are welcome.</p>
 
 <p>The most importat is that you have a lot of ways to create or load your record class at runtime:</p>
 
@@ -101,7 +101,7 @@ And now some examples of the basic methods:
 <blockquote>
 <textarea name="code" class="c#">
 		
-		ClassBuilder cd = ClassBuilder.LoadXml("Customers.fhw");
+		ClassBuilder cb = ClassBuilder.LoadFromXml("Customers.fhw");
 		engine = new FileHelperEngine(cb.CreateRecordClass());
 
 		// Or
@@ -149,14 +149,14 @@ And now some examples of the basic methods:
 </textarea>
 </blockquote>
 
-<h2>Form a encripted source file of the record class.</h2>
+<h2>Form a encrypted source file of the record class.</h2>
 <blockquote>
-The idea of the encripted file is <b>not security</b> (you can found the keyphrase in the code) <br />
+The idea of the encrypted file is <b>not security</b> (you can found the keyphrase in the code) <br />
 This only aims to <b>hide to end users</b> part of your code and so they don't touch it =)
 
 <textarea name="code" class="c#">
 		
-		// .fhc estands for File Helper Class
+		// .fhc stands for File Helper Class
 		Type t = ClassBuilder.ClassFromBinaryFile("your_class.fhc");
 		
 		FileHelperEngine engine = new FileHelperEngine(t);
