@@ -20,36 +20,29 @@ bgColor=white leftMargin=0 topMargin=0>
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv>  <h2>Custom Converter Example </h2>
         <blockquote>
-          <p>If you like to parse a file with a field that has different parsing rules you can define a CustomConverter, for example if you have this source file:</p>
-          <blockquote>
-
-<textarea name="code" class="c#:nogutter:nocontrols">
-Argentina|Meli, Marcos|25
+          <p>If you&nbsp;want to parse a file with a field that has different parsing rules, you can define a CustomConverter.&nbsp; For example, if you have this source file:</p>
+          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>Argentina|Meli, Marcos|25
 Argentina|Meli, Luciano|25
 Argentina|Perez, Juan|25
 Chile|Salas, Marcelo|25
-</textarea>
+</TEXTAREA>
 
           </blockquote>
           <p>The solution is to define a class for the Name part:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-public class NameField
+          <blockquote><TEXTAREA class=c# name=code>public class NameField
  {
      public string FirstName;
      public string LastName;
 
      public override string ToString()
      {
-         return LastName + &quot;, &quot; + FirstName;
+         return LastName + ", " + FirstName;
      }
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>Later define your record class:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord(&quot;|&quot;)]
+          <p>Next&nbsp;define your record class:</p>
+          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class CustomConvClass
 {
    public string Country;
@@ -58,14 +51,12 @@ public class CustomConvClass
    public NameField Names;
 
    public int Age;
-}</pre>
-</textarea>
+}&lt;/pre&gt;
+</TEXTAREA>
 
           </blockquote>
-          <p>The big step is to define the converter you must inherit from the <a href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
-          <blockquote>
-<textarea name="code" class="c#">
-public class NameConverter: ConverterBase
+          <p>The big step is to define the converter you must inherit from the <A href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
+          <blockquote><TEXTAREA class=c# name=code>public class NameConverter: ConverterBase
 {
    public override object StringToField(string from)
    {
@@ -78,13 +69,11 @@ public class NameConverter: ConverterBase
        return res;
    }
 }
-</textarea>
+</TEXTAREA>
 
           </blockquote>
-          <p>Done !! you can actually parse the file with.</p>
-          <blockquote>
-<textarea name="code" class="c#">
-FileHelperEngine  engine = new FileHelperEngine(typeof(CustomConvClass));
+          <p> Done. You can now parse the file with:</p>
+          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine  engine = new FileHelperEngine(typeof(CustomConvClass));
 
 CustomConvClass[] res = (CustomConvClass[]) engine.ReadFile("NameTest.txt");
 
@@ -94,12 +83,12 @@ CustomConvClass[] res = (CustomConvClass[]) engine.ReadFile("NameTest.txt");
   res[0].Names.LastName
   res[i].Names.FirstName
   res[i].Age
-</textarea>
+</TEXTAREA>
   
           </blockquote>
-        </blockquote>
+        </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

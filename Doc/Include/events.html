@@ -25,9 +25,9 @@ bgColor=white leftMargin=0 topMargin=0>
 <tr><td><div id=contentdiv> 
   <h2>Events Architecture</h2>
   <blockquote>
-          <p>Some time you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
+          <p> Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
 
-          <p>To solve these problems I´ve add a event architecture in the FileHelperEngine (in the future in all the others) </p>
+          <p>To solve these problems I've add a event architecture in the FileHelperEngine (in the future in all the others) </p>
 
           <p>The events are 4 (2 for read and 2 for write ops):</p>
           
@@ -36,7 +36,7 @@ bgColor=white leftMargin=0 topMargin=0>
 			<li>BeforeReadRecord
 			<li>AfterReadRecord
 			<li>BeforeWriteRecord
-			<li>AfterWriteRecord			
+			<li>AfterWriteRecord</li>			
           </ul>
 
           </blockquote>
@@ -45,10 +45,8 @@ bgColor=white leftMargin=0 topMargin=0>
 
 <h2>The Example</h2>
             <blockquote>
-          <p>Supose that you need to parse a txt report from a legacy system with these format</p>
-            <blockquote>
-<textarea name="code" class="c#:nogutter:nocontrols">
------------------------------------------------------
+          <p>Suppose that you need to parse a txt report from a legacy system with this format:</p>
+            <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>-----------------------------------------------------
               XXX Enterprise
 -----------------------------------------------------
 10249   TOMSP  05071996      11.61
@@ -65,12 +63,10 @@ bgColor=white leftMargin=0 topMargin=0>
 ...............          
                                        Page 2
 And so on !!                                       
-</textarea>
+</TEXTAREA>
 </blockquote>
           <p>You must declare a Record Mapping Class for the main record:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-[FixedLengthRecord(FixedMode.AllowVariableLength)]
+          <blockquote><TEXTAREA class=c# name=code>[FixedLengthRecord(FixedMode.AllowVariableLength)]
 								
  [FixedLengthRecord]
  public class OrdersFixed
@@ -87,43 +83,35 @@ And so on !!
    [FieldFixedLength(11)]
    public decimal Freight;
  }
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>So now is the time where we instanciate the engine and hook to the events.</p>
-          <blockquote>
-<textarea name="code" class="c#">
-FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+          <p>So now is the time where we instantiate the engine and hook to the events:</p>
+          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent);
 
 Orders[] res = engine.ReadFile("report.txt") as Orders[];
 
-</textarea>
+</TEXTAREA>
           
     </blockquote>
           
-          <p>So in the event method we ignore the lines with spaces and -</p>
-          <blockquote>
-<textarea name="code" class="c#">
-		private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
+          <p> So in the event method we ignore the lines with spaces and:</p>
+          <blockquote><TEXTAREA class=c# name=code>		private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
 		{
 			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
 				e.SkipThisRecord = true;
 		}
-</textarea>
+</TEXTAREA>
 
     </blockquote>
           
 <table width="500" align="center" class="note">
-	<td valign="middle" align="center" class="note">
-        <b>Note: if you change the RecordLine the engine use the changed value<br/>This can be useful in some cases but you must be carefull</b>
-	</td>
+          
+          <TR>
+	<td valign="center" align="middle" class="note">
+        <b>Note: if you change the RecordLine the engine use the changed value<br>This can be useful in some cases but you must be careful</b>
+	</td></TR></table></blockquote>{$FOOTER$}</div></td>
 	</tr>
-</table>          
-
-  </blockquote>
-
-								{$FOOTER$}
-</tr>
 </table>
 
 </BODY></HTML>

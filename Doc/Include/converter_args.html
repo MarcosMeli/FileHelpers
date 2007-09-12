@@ -27,13 +27,11 @@ bgColor=white leftMargin=0 topMargin=0>
         <h2>ConverterKind.Date</h2>
 <BLOCKQUOTE>
 <p>
-			<b>Arg1:</b> A string he DateTime format that the engine pass to the DateTime.Parse function.
+			<b>Arg1:</b> A string with the&nbsp;DateTime format that the engine passes to the DateTime.Parse function.
 </p>
 <p>
-			<b>Examples:</b><br />
-			
-			<textarea name="code" class="c#">
-
+			<b>Examples:</b><br 
+        ><TEXTAREA class=c# name=code>
 // By default the engines use: "ddMMyyyy"
 [FieldConverter(ConverterKind.Date)]
 public DateTime ShippedDate;
@@ -58,22 +56,24 @@ public DateTime ShippedDate;
 [FieldConverter(ConverterKind.Date, "MMddyyyy" )]
 public DateTime ShippedDate;
 
-</textarea><br />
+</TEXTAREA><br >
 
-You can check all the supported format strings check the MSDN docs for DateTime.ParseExact (link soon hahah, some googling don't hurt)
+You can check all the supported 
+        format strings check the MSDN docs for <A title=DateTime.ParseExact 
+        href="http://msdn2.microsoft.com/en-us/library/system.datetime.parseexact.aspx">DateTime.ParseExact</A>
+
+                    
 </p>
 </BLOCKQUOTE>
 
         <h2>ConverterKind.Double, ConverterKind.Single and ConverterKind.Decimal</h2>
 <BLOCKQUOTE>
 <p>
-			<b>Arg1:</b> A string with the char used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
+			<b>Arg1:</b> A string with the character to be used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
 </p>
 <p>
-			<b>Examples:</b><br />
-			
-			<textarea name="code" class="c#">
-
+			<b>Examples:</b><br 
+        ><TEXTAREA class=c# name=code>
 // "." is the decimal separator by default
 [FieldConverter(ConverterKind.Double)]
 public double Freight;
@@ -89,26 +89,26 @@ public double Freight;
 // The same for the other converters:
 // ConverterKind.Decimal and ConverterKind.Single 
 
-</textarea><br />
+</TEXTAREA><br >
 
 </p>
 </BLOCKQUOTE>
         <h2>Integer Converters</h2>
 
-        <b>ConverterKind.Int16, ConverterKind.Int32, ConverterKind.Int64, ConverterKind.Byte, <br />
+        <b>ConverterKind.Int16, ConverterKind.Int32, ConverterKind.Int64, ConverterKind.Byte, <br 
+      >
 		   ConverterKind.UInt16, ConverterKind.UInt32, ConverterKind.UInt64, and ConverterKind.SByte</b>
 <BLOCKQUOTE>
 <p>
-			<b>Arg1:</b> A string with the char used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
+			<b>Arg1:</b> A string with 
+        the character to be&nbsp;used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b>
 </p>
 <p>
-			<b>WARNING:</b> The library request a Decimal Separator here and internally creates the Group Separator with the conterpart (for example if you provide "." uses ",")
+			<b>WARNING:</b> The library request a decimal separator here and internally creates the group separator with the conterpart (for example if you provide "." it uses ",")
 </p>
 <p>
-			<b>Examples:</b><br />
-			
-			<textarea name="code" class="c#">
-
+			<b>Examples:</b><br 
+        ><TEXTAREA class=c# name=code>
 // "." is the decimal separator by default
 // allows you to parse:  12,125 or 1,458,385
 [FieldConverter(ConverterKind.Int32)]
@@ -122,7 +122,7 @@ public Int32 Amount;
 
 // The same works for the rest of the converts
 
-</textarea><br />
+</TEXTAREA><br >
 
 </p>
 </BLOCKQUOTE>
@@ -131,17 +131,17 @@ public Int32 Amount;
 <h2>ConverterKind.Boolean</h2>
 <BLOCKQUOTE>
 <p>
-			<b>Arg1:</b> A string thats represents the <b>True</b> value
-			<br />
-			<b>Arg2:</b> A string thats represents the <b>False</b> value
-			<br /><br />
-			By default this converters takes as true the strings "True" (case insensitive) and "1". And writes the string "True" and "False" when converting the field to string.
+			<b>Arg1:</b> A string that represents the <b>True</b> value
+			<br 
+        >
+			<b>Arg2:</b> A string that represents the <b>False</b> value
+			<br 
+        ><br >
+			By default, this converter takes the strings "True" (case insensitive) and "1" as true. The values "True" and "False" are returned when converting the field to string.
 </p>
 <p>
-			<b>Examples:</b><br />
-			
-			<textarea name="code" class="c#">
-
+			<b>Examples:</b><br 
+        ><TEXTAREA class=c# name=code>
 // By default it reads as true the strings "True" (Case insensitive) and "1"
 [FieldConverter(ConverterKind.Boolean)]
 public bool Shipped;
@@ -159,13 +159,13 @@ public bool Shipped;
 [FieldConverter(ConverterKind.Boolean, "X", "-")]
 public bool Shipped;
 
-</textarea><br />
+</TEXTAREA><br >
 
 </p>
-</BLOCKQUOTE>
+</BLOCKQUOTE>{$FOOTER$}</div>
 
 
-								{$FOOTER$}
+								
   </td>
 </tr>
 </table>

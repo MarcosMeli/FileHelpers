@@ -23,18 +23,16 @@ bgColor=white leftMargin=0 topMargin=0>
       CommonEngine</h2>
   <blockquote>
           <p>
-              You can use this class as a short cut to the common operations, now have only the
-              basic methods but in the feature will contains a full list of common operations.</p>
+              You can use this class as a shortcut to the common operations.&nbsp; Currently, it only has basic
+              methods but in the future it will contains a full list of common operations.</p>
       <p>
           You can use this class like this</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
+          <blockquote><TEXTAREA class=c# name=code>
 // to read use:
-Orders[] res = CommonEngine.ReadFile(typeof(Orders),&quot;TestIn.txt&quot;) as Orders[];
+Orders[] res = CommonEngine.ReadFile(typeof(Orders),"TestIn.txt") as Orders[];
 
 // to read sorted:
-Orders[] res = CommonEngine.ReadSortedFile(typeof(Orders),&quot;TestIn.txt&quot;) as Orders[];
+Orders[] res = CommonEngine.ReadSortedFile(typeof(Orders),"TestIn.txt") as Orders[];
 
 // to write use:
 CommonEngine.WriteFile(typeof(Orders), "TestOut.txt", res);
@@ -63,12 +61,12 @@ DataTable dt = CommonEngine.RecordsToDataTable(records);
 // only 25 records
 DataTable dt = CommonEngine.RecordsToDataTable(records, 25); 
 
-</textarea>
+</TEXTAREA>
           </blockquote>
           <b>Remember that you lose functionality if you use this engine, for example encoding, error handling and others.</b>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

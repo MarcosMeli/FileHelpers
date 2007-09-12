@@ -17,49 +17,40 @@ rel=stylesheet>
 </style>
 </HEAD>
 <BODY   text=black vLink=purple aLink=red link=blue
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+ bgColor=white leftMargin=0 topMargin=0>
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv>
-<h2>Async Read  Example </h2>
+<h2>Asynchronous Read  Example </h2>
 <blockquote>
 <p>If you have a source file like this, separated by a |:</p>
-<blockquote>
-<textarea name="code" class="c#:nogutter:nocontrols">
-10248|VINET|04071996|32.38
+<blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 ...............
-</textarea>
+</TEXTAREA>
 </blockquote>
 <p>You must declare a Record Mapping Class:</p>
-<blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord(&quot;|&quot;)]
+<blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class Orders
 {
   public int OrderID;
 
   public string CustomerID;
 
-  [FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)]
+  [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
   public DateTime OrderDate;
 
   public decimal Freight;
 }
-</textarea>
+</TEXTAREA>
 </blockquote>
-<p>Finally you can do a record by record procesing:</p>
-<blockquote>
-<textarea name="code" class="c#">
-
+<p>Finally, you can do&nbsp;record by record processing:</p>
+<blockquote><TEXTAREA class=c# name=code>
 FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders));
 
-engine.BeginReadFile(&quot;TestIn.txt&quot;);
+engine.BeginReadFile("TestIn.txt");
 
 // The engine is IEnumerable 
 foreach(Orders ord in engine)
@@ -70,15 +61,13 @@ foreach(Orders ord in engine)
 
 engine.Close();
 
-</textarea>
+</TEXTAREA>
 </blockquote>
-<p>The Async can be used like an IDIsposable object with the using directive:</p>
-<blockquote>
-<textarea name="code" class="c#">
-
+<p>The Async can be used like an IDisposable object with the using directive:</p>
+<blockquote><TEXTAREA class=c# name=code>
 using(FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders)))
 {
-	engine.BeginReadFile(&quot;TestIn.txt&quot;);
+	engine.BeginReadFile("TestIn.txt");
 
 	foreach(Orders ord in engine)
 	{
@@ -86,13 +75,14 @@ using(FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders)))
 	}
 } // Auto Closed
 
-</textarea>
+</TEXTAREA>
 </blockquote>
 <blockquote><blockquote>&nbsp;</blockquote>
 </blockquote>
-</blockquote>
-		{$FOOTER$}
-</tr>
+</blockquote>{$FOOTER$}</div></td>
+		
+
+		</tr>
 </table>
 
 </BODY></HTML>
