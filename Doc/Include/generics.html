@@ -23,49 +23,41 @@ bgColor=white leftMargin=0 topMargin=0>
 		{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td style="height: 720px">
+<tr><td style="HEIGHT: 720px">
     <h2>
         &nbsp;.NET 2.0 Generics Support</h2>
     <blockquote>
       <p>
-          From the version 1.3.5 and foward the FileHelpers supports the use of Generics for the
-          Engines.</p>
+             From version 1.3.5 the FileHelpers supports the use of generics for the
+          engines.</p>
         <p>
             The names of the classes are the same that without generics, then you can use both:</p>
         <p>
-            <strong>C# 2.0</strong></p>
-
-<textarea name="code" class="c#">
-// Standard Way 
+            <strong>C# 2.0</strong></p><TEXTAREA class=c# name=code>// Standard Way 
 FileHelperEngine engine = new FileHelperEngine(typeof(Customers));
 
 // Generics Way
 FileHelperEngine&lt;Customers&gt; engine = new FileHelperEngine&lt;Customers&gt;();
-</textarea>
+</TEXTAREA>
 
         <p>
-            <strong>VB.NET 2.0</strong></p>
-<textarea name="code" class="vb">
-' Standard Way 
+            <strong>VB.NET 2.0</strong></p><TEXTAREA class=vb name=code>' Standard Way 
 Dim engine As New FileHelperEngine(GetType(Customers))
 
 ' Generics Way
 Dim engine As New FileHelperEngine(Of Customers)()
-</textarea>
+</TEXTAREA>
         <p>
-            <strong>The main diference is that you don´t need to cast the engine results:</strong></p>
-
-			<textarea name="code" class="c#">
-// Standard Way 
+            <strong>The main diference is that you don't need to cast the engine results:</strong></p><TEXTAREA class=c# name=code>// Standard Way 
 Customers[] res = (Customers[]) engine.ReadFile("File.txt");
 
 // Generics Way
 Customers[] res = engine.ReadFile("File.txt");
-</textarea>
+</TEXTAREA>
 
     </blockquote>
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; Any other idea is welcome !!!<br />
+    <br >
+    &nbsp; &nbsp; &nbsp; &nbsp; Any other ideas are welcome !!!<br >
 		{$FOOTER$}
 </td>
 </tr>

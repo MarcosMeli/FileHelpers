@@ -24,15 +24,13 @@ bgColor=white leftMargin=0 topMargin=0>
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv> 
   <h2>
-      Using the Differents Error Modes</h2>
+      Using the Different Error Modes</h2>
   <blockquote>
           <p>
               The FileHelpers library has support for 3 kinds of error handling.</p>
       <p>
           In the standard mode you can catch the exceptions when something fail.</p>
-          <blockquote>
-<textarea name="code" class="c#">
-try
+          <blockquote><TEXTAREA class=c# name=code>try
 {
   records = engine.Read...
 }
@@ -40,17 +38,15 @@ catch(Exception ex)
 {
   Console.WriteLine(ex.ToString());
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
-              This approach not is bad but you lose some info about the current record and you
-              can't use the records array because is not asigned.</p>
+              This approach not is bad but you lose some information about the current record and you
+              can't use the records array because is not assigned.</p>
       <p>
-          A more intelligent way is usign the <a href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
+          A more intelligent way is usign the <A href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
           of the ErrorManager:</p>
-      <blockquote>
-<textarea name="code" class="c#">
-
+      <blockquote><TEXTAREA class=c# name=code>
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
 records = engine.ReadFile(...
@@ -63,19 +59,17 @@ if (engine.ErrorManager.HasErrors)
       Console.WriteLine(err.ExceptionInfo.ToString());`
    }
  
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
               Using the engine like this you have the good records in the records array and in
-              the ErrorManager you have te records with errors and can do wherever you want.</p>
+              the ErrorManager you have the records with errors and can do wherever you want.</p>
       <p>
-          Another option is to ignore the errors and continue how is showed in this example</p>
-          <blockquote>
-<textarea name="code" class="c#">
-engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
+            Another option is to ignore the errors and continue.&nbsp; Here is an example:</p>
+          <blockquote><TEXTAREA class=c# name=code>engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
 
 records = engine.ReadFile(...
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
               In the records array you only have the good records.</p>
@@ -84,31 +78,28 @@ records = engine.ReadFile(...
         Saving and Loading Errors</h2>
     <blockquote>
         <p>
-            One intersting feature is the method in the ErrorManager to save the errors to a
-            file files, you can do this</p>
-        <blockquote>
-<textarea name="code" class="c#">
-engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            One
+            intersting feature is the method in the ErrorManager to save the errors to a file,
+            you can do this as follows:</p>
+        <blockquote><TEXTAREA class=c# name=code>engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
 records = engine.ReadFile(...
 
 if (engine.ErrorManager.HasErrors)
    engine.ErrorManager.SaveErrors("errors.txt"); 
-</textarea>
+</TEXTAREA>
         </blockquote>
         <p>
-            To load a file with errors you can use the static method
+            To load a file with errors you can use the static method:
         </p>
-        <blockquote>
-<textarea name="code" class="c#">
-   
+        <blockquote><TEXTAREA class=c# name=code>   
    ErrorInfo[] errores = ErrorManager.LoadErrors("errors.txt");
 
-</textarea>
+</TEXTAREA>
         </blockquote>
-    </blockquote>
+    </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

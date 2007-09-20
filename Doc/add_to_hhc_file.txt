@@ -9,6 +9,12 @@
 		<param name="Local" value="history.html">
 		</OBJECT>
 
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Contact and Credits">
+		<param name="Local" value="credits.html">
+        <param name="ImageNumber" value="25">
+		</OBJECT>
+
 		<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Movies (on-line)">
 		<param name="Local" value="http://filehelpers.sourceforge.net/movies.html">
@@ -74,11 +80,6 @@
 		<param name="Local" value="vb_tips.html">
 		</OBJECT>
 
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Contact and Credits">
-		<param name="Local" value="credits.html">
-        <param name="ImageNumber" value="25">
-		</OBJECT>
 
 	</UL>
 				

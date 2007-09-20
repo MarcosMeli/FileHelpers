@@ -12,7 +12,7 @@
 				<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
 	</HEAD>
 	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
-		topMargin="0">
+		 topMargin="0">
 
 		{$HEADER$}
 
@@ -34,16 +34,14 @@
 							<p>If You want to transfer data from this Excel to a File or other Data Storage you 
 								must follow this steps:
 							</p>
-							<p>For example with the&nbsp;following worksheet (from the Northwind DB)</p>
-							<p><img src="excel.png" width="611" height="414"></p>
+							<p>For example, with the&nbsp;following worksheet (from the Northwind DB)</p>
+							<p><IMG height=414 src="excel.png" width=611></p>
 							<p>&nbsp;</p>
 						</blockquote>
 						<h2>
 							To use Delimited Format</h2>
 							<p>You must define:</p>
-							<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
-<textarea name="code" class="c#">
-
+							<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px"><TEXTAREA class=c# name=code>
 	[DelimitedRecord("|")]
 	public class CustomersVerticalBar
 	{
@@ -61,13 +59,11 @@
 
 		public string Country;
 	}
-</textarea>
-							</blockquote>
+</TEXTAREA>
+							</BLOCKQUOTE>
 						<h2>The Solution</h2>
-						<p>&nbsp;&nbsp; Finally use the ExcelDataStorage to Read the records.&nbsp;</p>
-						<blockquote>
-<textarea name="code" class="c#">
-							
+						<p>&nbsp;&nbsp; Finally, use the ExcelDataStorage to Read the records:</p>
+						<blockquote><TEXTAREA class=c# name=code>							
    ExcelStorage provider = new ExcelStorage(typeof(CustomersVerticalBar));
    
    provider.StartRow = 3;
@@ -77,10 +73,10 @@
    
    CustomerVerticalBar[] res = (CustomerVerticalBar[]) provider.ExtractRecords();
 
-</textarea>
+</TEXTAREA>
 
-						</blockquote>
-		{$FOOTER$}
+						</blockquote>{$FOOTER$}</div>
+		
 				</td>
 			</tr>
 		</table>

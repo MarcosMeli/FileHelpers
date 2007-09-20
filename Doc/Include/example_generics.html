@@ -27,55 +27,49 @@ bgColor=white leftMargin=0 topMargin=0>
   <h2>Easy Example (using Generics)</h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-10248|VINET|04071996|32.38
+          <blockquote><TEXTAREA class=c# name=code>10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 ...............
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>You must declare a Record Mapping Class:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord(&quot;|&quot;)]
+          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class Orders
 {
    public int OrderID;
 
    public string CustomerID;
 
-   [FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)]
+   [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
    public DateTime OrderDate;
 
    public decimal Freight;
 }
 
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>Finally you must to instanciate a FileHelperEngine and Read/Write files:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
+          <p>Finally you must to instantiate a FileHelperEngine and Read/Write files:</p>
+          <blockquote><TEXTAREA class=c# name=code>
 FileHelperEngine&lt;Orders&gt; engine = new FileHelperEngine&lt;Orders&gt;();
 
 // to Read use:
-Orders[] res = engine.ReadFile(&quot;TestIn.txt&quot;);
+Orders[] res = engine.ReadFile("TestIn.txt");
 
 // to Write use:
-engine.WriteFile(&quot;TestOut.txt&quot;, res);
-</textarea>
+engine.WriteFile("TestOut.txt", res);
+</TEXTAREA>
           </blockquote>
           <p>Now you have an Orders array named res where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>
           <blockquote>
             <blockquote>
-              <p><img src="vs_orders.png" width="165" height="93"></p>
+              <p><IMG height=93 src="vs_orders.png" width=165></p>
             </blockquote>
           </blockquote>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

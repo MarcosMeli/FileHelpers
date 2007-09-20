@@ -31,28 +31,23 @@ bgColor=white leftMargin=0 topMargin=0>
               From the version 1.4.2 you can get notified about the progress of the operations
               of the engines and DataLinks.</p>
       <p>
-          The already implemented feature can be used in all cases, for example when you wirte
-          a file the engine knows the total records to be written and the actual record then
-          can be accurate in the notification. However if you read a file the engine only
-          know the current record and not the total then informs -1.</p>
+          The already implemented feature
+          can be used in all cases.&nbsp; For example, when you write a file, the engine
+          knows the total records to be written and the record currently being processed.&nbsp; This information is
+          used to provide an accurate notification. &nbsp;However, if you read a file the engine only
+          knows the current record and not the total then informs -1.</p>
       <p>
-          The usaje is simple you must to instanciate the engine and before call any operation
-          you must call the SetProgressHandler</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
-    FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+             The usage is simple, you must to instantiate the engine and&nbsp;before&nbsp;any operation,
+          you must call the SetProgressHandler:</p>
+          <blockquote><TEXTAREA class=c# name=code>    FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
     engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
     
     engine.ReadFile(... 
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
-              and in your Progress change method:</p><blockquote>
-<textarea name="code" class="c#">
-
-    private void ProgressChange(ProgressEventArgs e)
+              and in your Progress change method:</p><blockquote><TEXTAREA class=c# name=code>    private void ProgressChange(ProgressEventArgs e)
     {
         prog1.PositionMax = e.ProgressTotal;
         prog1.Position = e.ProgressCurrent;
@@ -60,18 +55,18 @@ bgColor=white leftMargin=0 topMargin=0>
 
         Application.DoEvents();
     }
-</textarea>
+</TEXTAREA>
           </blockquote>
       <p>
-          Check the demo application for an example that looks like</p>
+          Check the demo application for an example that looks like:</p>
       <p>
-          <img src="progress.png" />&nbsp;</p>
+          <IMG src="progress.png" >&nbsp;</p>
       <p>
-          <strong>Into the distribution you can found My XpProgressBar for using it thogeter with
+          <strong> In&nbsp;the distribution you can find My XpProgressBar for using it together with
               the FileHelpers.</strong></p>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

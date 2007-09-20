@@ -28,38 +28,29 @@ bgColor=white leftMargin=0 topMargin=0>
       File Transform Engine</h2>
   <blockquote>
           <p>
-              This engine helps to change the record type of a file for example if you want to
-              change a CSV file
+               This engine helps to change the record type of a file.&nbsp; For&nbsp;example, if you want to
+              change a CSV file:&nbsp;
           </p>
-          <blockquote>
-<textarea name="code" class="c#">
-
-ALFKI,Alfreds Futterkiste,Maria Anders
+          <blockquote><TEXTAREA class=c# name=code>ALFKI,Alfreds Futterkiste,Maria Anders
 ANATR,Ana Trujillo Emparedados y helados,Ana Trujillo
 ANTON,Antonio Moreno Taquería,Antonio Moreno
 AROUT,Around the Horn,Thomas Hardy
 ...
 
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
-              to this fixed length format</p><blockquote>
-<textarea name="code" class="c#">
-
-ALFKI     Alfreds Futterkiste                               Maria Anders                                                
+              to this fixed length format</p><blockquote><TEXTAREA class=c# name=code>ALFKI     Alfreds Futterkiste                               Maria Anders                                                
 ANATR     Ana Trujillo Emparedados y helados                Ana Trujillo                                                
 ANTON     Antonio Moreno Taquería                           Antonio Moreno                                              
 AROUT     Around the Horn                                   Thomas Hardy                                                
 ...
 
-</textarea>
+</TEXTAREA>
           </blockquote>
       <p>
           You must define this two classes (see the TransformToRecord attribute):</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
-    [DelimitedRecord(",")]
+          <blockquote><TEXTAREA class=c# name=code>    [DelimitedRecord(",")]
     private class FromClass
     {
         public string CustomerId;
@@ -90,22 +81,19 @@ AROUT     Around the Horn                                   Thomas Hardy
         public string CustomerName;
     }
 
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>Finally the code to transform the file</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
-FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+          <p>Finally, the code to transform the file:</p>
+          <blockquote><TEXTAREA class=c# name=code>FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
 
 link.TransformFile1To2("source.txt", "dest.txt");
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
               What more simple ??</p>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

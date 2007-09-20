@@ -13,6 +13,10 @@
         </div>
 
         <div class="treeNode">
+          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="contact.gif" border="0" /> Contact and Credits</a>
+        </div>
+
+        <div class="treeNode">
           <img src="treenodedot.gif" class="treeNoLinkImage" />
           <a href="movies.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Screencast and Presentations</a>
         </div>
@@ -76,9 +80,6 @@
           <a href="vb_tips.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Tips for VB.NET</a>
         </div>
 
-        <div class="treeNode">
-          <a href="credits.html" target="main" class="treeUnselected" onclick="clickAnchor(this)"><img src="contact.gif" border="0" /> Contact and Credits</a>
-        </div>
 
        </div>
         </div>
@@ -125,7 +126,7 @@
 
           	<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
-			  <a href="example_fixedlength.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Fixed File Engine</a>
+			  <a href="example_fixedengine.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Fixed File Engine</a>
 			</div>
 			
 

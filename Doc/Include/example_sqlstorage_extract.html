@@ -12,7 +12,7 @@
 				<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
 	</HEAD>
 	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
-		topMargin="0">
+		 topMargin="0">
 
 		{$HEADER$}
 
@@ -32,17 +32,15 @@
 						<h2>The Problem
 						</h2>
 						<blockquote>
-							<p>For example if you want to extract the records of the Orders table of the Northwind DB</p>
-							<p><img src="orders1.png" width="652" height="374"></p>
+							<p>For example, if you want to extract the records from&nbsp;the Orders table in the Northwind database</p>
+							<p><IMG height=374 src="orders1.png" width=652></p>
 							<p>&nbsp;</p>
 						</blockquote>
 						<h2>
 							To use Delimited Format</h2>
 						<blockquote>
 							<p>You must define:</p>
-							<blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord("|")]
+							<blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class OrdersVerticalBar
 {
     public int OrderID;
@@ -56,16 +54,14 @@ public class OrdersVerticalBar
     public int ShipVia; 
     public decimal Freight;
 }
-</textarea>
+</TEXTAREA>
 							</blockquote></blockquote>
 						<h2>
                             The SqlServerStorage</h2>
                             <blockquote>
 						<p>
-                            The idea is a lot simple you create the SqlServerStorage with your record class.</p>
-                    <p>
-                    
-<textarea name="code" class="c#"> 
+                              The idea is&nbsp;simple, you create a SqlServerStorage instance with your record class.</p>
+                    <p><TEXTAREA class=c# name=code> 
     
    SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
@@ -76,20 +72,17 @@ public class OrdersVerticalBar
    storage.UserName = "Marcos";
    storage.UserPass = "private :)";   
 
-</textarea>                    
+</TEXTAREA>                    
                     						<p>
-After these lines if you want to get the records from the Db you need this lines:
-<textarea name="code" class="c#">
-  
+After these lines if you want to get the records 
+        from the database you need these lines:<BR><TEXTAREA class=c# name=code>  
    storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);  
    
    OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
-</textarea>
+</TEXTAREA>
                     						<p>
-                                                The FillRecord method is somethig like that:
-                                                <textarea name="code" class="c#" id="TEXTAREA1" onclick="return TEXTAREA1_onclick()">
-
-protected void FillRecordOrder(object rec, object[] fields)
+                                                The FillRecord method is something like 
+        this:<BR><TEXTAREA class=c# id=TEXTAREA1 onclick="return TEXTAREA1_onclick()" name=code>protected void FillRecordOrder(object rec, object[] fields)
 {
 	OrdersVerticalBar record = (OrdersVerticalBar) rec;
 
@@ -107,26 +100,25 @@ protected void FillRecordOrder(object rec, object[] fields)
 	record.ShipVia = (int) fields[6];
 	record.Freight = (decimal) fields[7];
 }
-</textarea>
+</TEXTAREA></p>
 </blockquote>                     
                     <h2>
                         Write the results direct to a File</h2>
-                    &nbsp; &nbsp;&nbsp; You need this code for that task:<br />
+                    &nbsp; &nbsp;&nbsp; You need this code for that task:<br >
                     
-<blockquote>
-<textarea name="code" class="c#">
-   
+<blockquote><TEXTAREA class=c# name=code>   
   FileDataLink.EasyExtractToFile(storage, "outfile.txt");
 
   // or
 
   FileDataLink link = new FileDataLink(storage); 
   link.ExtractToFile("outfile.txt");     
-</textarea>
+</TEXTAREA>
 </blockquote>
-                    <br />
+                    <br >
                     <blockquote>
-		{$FOOTER$}
+		{$FOOTER$}</blockquote></div>
+		
                     </td>
                 </tr>
 		</table>

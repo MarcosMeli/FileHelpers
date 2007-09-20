@@ -12,7 +12,7 @@
 				<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
 	</HEAD>
 	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
-		topMargin="0">
+		 topMargin="0">
 
 		{$HEADER$}
 
@@ -24,20 +24,17 @@
                             SqlServerStorage InsertRecords Example
 						</h2>
 						<blockquote>
-							<p>This example shows how to write records to an sql server storage</p>
+							<p>This example shows how to write records to a sql server database</p>
 						</blockquote>
 						<h2>The Problem
 						</h2>
 						<blockquote>
-							<p>For example if you want to insert records to the Customers table in the Northwind DB</p>
+							<p>For example, let's say&nbsp;that&nbsp;you want to insert records into the Customers table&nbsp;on the Northwind database</p>
 						</blockquote>
 						<h2>
 							To use Delimited Format</h2>
 						<blockquote>
-							<p>You must define:</p>
-							<blockquote>
-<textarea name="code" class="c#">
-
+							<p>You must define:<BR><TEXTAREA class=c# name=code>
 	[DelimitedRecord("|")]
 	public class CustomersVerticalBar
 	{
@@ -50,16 +47,13 @@
 		public string Country;
 	}
 
-</textarea>
-							</blockquote></blockquote>
+</TEXTAREA>  </p></blockquote>
 						<h2>
                             The SqlServerStorage</h2>
                             <blockquote>
 						<p>
-                            The idea is very simple you create the SqlServerStorage with your record class</p>
-                    <p>
-<textarea name="code" class="c#">
-
+                            The idea is very simple, you create the SqlServerStorage with your record class</p>
+                    <p><TEXTAREA class=c# name=code>
    SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
 			
    storage.ServerName = "NEON-64";
@@ -68,12 +62,11 @@
    // Comment this for Windows Auth
    storage.UserName = "Marcos";
    storage.UserPass = "private :)";   
-</textarea>
+</TEXTAREA>
                     
                     						<p>
-After these lines if you want to insert records to your db you need these lines:
-<textarea name="code" class="c#">
-
+After these lines if you want to insert records 
+        to your&nbsp;database you need these lines:<BR> <TEXTAREA class=c# name=code>
 	storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
 CustomersVerticalBar[] res = CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt") as CustomerVerticalBar[];
@@ -83,11 +76,10 @@ storage.InsertRecords(res);
 
 storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt"));
    
-</textarea>
+</TEXTAREA>
                     						<p>
-                                                The GetInsertSql method must look something like that:
-                                                <textarea name="code" class="c#">
-
+                                                The GetInsertSql method must look something like 
+        this:<BR> <TEXTAREA class=c# name=code>
 		protected string GetInsertSqlCust(object record)
 		{
 			CustomersVerticalBar obj = (CustomersVerticalBar) record;
@@ -105,27 +97,26 @@ storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infil
 
 		}
 		
-</textarea>
+</TEXTAREA></p>
 </blockquote>                     
                     <h2>
                         Read the data from a File</h2>
-                    &nbsp; &nbsp;&nbsp; You need this code for that task:<br />
+                    &nbsp; &nbsp;&nbsp; You need this code for that task:<br >
                     
-<blockquote>
-<textarea name="code" class="c#">
-    
+<blockquote><TEXTAREA class=c# name=code>    
   FileDataLink.EasyInsertFromFile(storage, "infile.txt");
   
   // or
 
   FileDataLink link = new FileDataLink(storage); 
   link.InsertFromToFile("infile.txt");     
-</textarea>
+</TEXTAREA>
 
 </blockquote>
-                    <br />
+                    <br >
                     <blockquote>
-		{$FOOTER$}
+		{$FOOTER$}</blockquote></div>
+		
                     </td>
                 </tr>
 		</table>

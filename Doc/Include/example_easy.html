@@ -27,19 +27,15 @@ bgColor=white leftMargin=0 topMargin=0>
   <h2>Easy Example </h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote>
-<textarea name="code" class="c#:nogutter:nocontrols">
-10248|VINET|04071996|32.38
+          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 ...............          
-</textarea>
+</TEXTAREA>
 </blockquote>
           <p>You must declare a Record Mapping Class:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord("|")]
+          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class Orders
 {
    public int OrderID;
@@ -49,12 +45,10 @@ public class Orders
 
    public decimal Freight;
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>Finally you must to instanciate a FileHelperEngine and Read/Write files:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+          <p>Finally you must to instantiate a FileHelperEngine and Read/Write files:</p>
+          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
 // to Read use:
 Orders[] res = engine.ReadFile("TestIn.txt") as Orders[];
@@ -62,18 +56,18 @@ Orders[] res = engine.ReadFile("TestIn.txt") as Orders[];
 // to Write use:
 engine.WriteFile("TestOut.txt", res);
 
-</textarea>
+</TEXTAREA>
 
           </blockquote>
           <p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>
           <blockquote>
             <blockquote>
-              <p><img src="vs_orders.png" width="165" height="93"></p>
+              <p><IMG height=93 src="vs_orders.png" width=165></p>
             </blockquote>
           </blockquote>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 

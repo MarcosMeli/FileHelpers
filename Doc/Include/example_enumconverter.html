@@ -22,36 +22,30 @@ bgColor=white leftMargin=0 topMargin=0>
     Enum Converter Example </h2>
         <blockquote>
           <p>
-              Some times you have a string field in your files that can be better handled if you map it like an enum.</p>
+               Sometimes you have a string field in your files that can be better handled if you map it like an enum.</p>
             <p>
-                In this version and thanks to <b>Derek Fluker</b> you can automatic use an enum with out define
-                any converter, the FileHelpers automaticly parse the field and compare (case insensitive)
-                to the enum values and assign the correct one.</p>
+                In this version, and thanks to <b>Derek Fluker,</b> you can automatically use an enum with out defining any
+                converter. The FileHelpers library parses the field and performs a case insensitive
+                comparison&nbsp;to the enum values and assigns the correct one.</p>
             <p>
-                The customer file is an excelent sample:</p>
-          <blockquote>
-<textarea name="code" class="c#:nogutter:nocontrols">
-ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
+                The customer file is an excellent sample:</p>
+          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>The enum is:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-public enum CustomerTitle
+          <blockquote><TEXTAREA class=c# name=code>public enum CustomerTitle
  {
     Owner,
     SalesRepresentative,
     MarketingManager
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>Later define your record class:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-[DelimitedRecord(&quot;|&quot;)]
+          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
 public class Customers
 {
    public string CustomerID;
@@ -59,12 +53,10 @@ public class Customers
    public string ContactName;
    public CustomerTitle ContactTitle;
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
-          <p>Done !! you can actually parse the file with.</p>
-          <blockquote>
-<textarea name="code" class="c#">
-FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
+          <p>Done !! you can actually parse the file with:</p>
+          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
 
 Customers[] res = (Customers[]) engine.ReadFile("NameTest.txt");
 
@@ -73,11 +65,12 @@ Customers[] res = (Customers[]) engine.ReadFile("NameTest.txt");
 if (res[0].ContactTitle == CustomerTitle.Owner)
     // SomeAction
     
-</textarea>
+</TEXTAREA>
           </blockquote>
         </blockquote>
       <blockquote>
-		{$FOOTER$}
+		{$FOOTER$}</blockquote></div></td>
+		
 </tr>
 </table>
 

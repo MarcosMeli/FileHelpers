@@ -27,9 +27,7 @@ bgColor=white leftMargin=0 topMargin=0>
   <h2>Master Detail Easy Example</h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+          <blockquote><TEXTAREA class=c# name=code>ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 10248|ALFKI|5|04071996|01081996|16071996|3|32.38
 10249|ALFKI|6|05071996|16081996|10071996|1|11.61
 10251|ALFKI|3|08071996|05081996|15071996|1|41.34
@@ -37,16 +35,14 @@ ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitu
 10252|ANATR|4|09071996|06081996|11071996|2|51.3
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
 ...............
-</textarea>
+</TEXTAREA>
           </blockquote>
           <p>
-              where the lines that <strong>begins with letters are the Customers</strong> (master records) and
-              the lines that begins with numbers are the Orders (details records)</p>
+              where the lines that <strong>begin with letters are the Customers</strong> (master records) and
+              the lines that begin with numbers are the Orders (details records)</p>
       <p>
           The two Mapping Classes are:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
+          <blockquote><TEXTAREA class=c# name=code>
 [DelimitedRecord("|")]
 public class Customers
 {
@@ -58,10 +54,7 @@ public class Customers
    public string City;
    public string Country;
 }
-</textarea>
-
-<textarea name="code" class="c#">
-
+</TEXTAREA> <TEXTAREA class=c# name=code>
 [DelimitedRecord("|")]
 public class Orders
 {
@@ -74,15 +67,12 @@ public class Orders
    public int ShipVia;
    public decimal Freight;
 }
-</textarea>
+</TEXTAREA>
         
           </blockquote>
           <p>
               You need to define a Selector Method too:</p>
-          <blockquote>
-              
-<textarea name="code" class="c#">
-
+          <blockquote><TEXTAREA class=c# name=code>
 RecordAction ExampleSelector(string record)
 {
    if (Char.IsLetter(record[0]))
@@ -90,28 +80,23 @@ RecordAction ExampleSelector(string record)
     else
       return RecordAction.Detail;
 }
-</textarea>
+</TEXTAREA>
           </blockquote>
       <p>
-          Finally you must to instanciate a MasterDetailEngine and Read/Write files:</p>
-          <blockquote>
-<textarea name="code" class="c#">
-
+          Finally, you must to instantiate a MasterDetailEngine and Read/Write files:</p>
+          <blockquote><TEXTAREA class=c# name=code>
 MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
 
 // to Read use:
-MasterDetails[] res = engine.ReadFile(&quot;TestIn.txt&quot;);
+MasterDetails[] res = engine.ReadFile("TestIn.txt");
 
 // to Write use:
-engine.WriteFile(&quot;TestOut.txt&quot;, res);
-</textarea>
+engine.WriteFile("TestOut.txt", res);
+</TEXTAREA>
           </blockquote>
-          <p>Now you have a MasterDetails array named <span class="cs-literal">res</span> where every item in the array is a MasterDetails object.<br />
+          <p>Now you have a MasterDetails array named <span class="cs-literal">res</span> where every item in the array is a MasterDetails object.<br >
               If you want to access the Master or Detail objects you can use:</p>
-          <blockquote>
-              
-<textarea name="code" class="c#">
-
+          <blockquote><TEXTAREA class=c# name=code>
 // The master record
 res[0].Master  
 
@@ -120,13 +105,13 @@ res[0].Details
 
 // The first detail record
 res[0].Details[0]
-</textarea>
+</TEXTAREA>
           </blockquote>
       <p>
           &nbsp;</p>
-  </blockquote>
+  </blockquote>{$FOOTER$}</div></td>
 
-		{$FOOTER$}
+		
 </tr>
 </table>
 
