@@ -26,23 +26,23 @@ bgColor=white leftMargin=0 topMargin=0>
 		<a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="download32.gif" border=0 alt="Download Example Code"></a>
 	</td>
 	<td valign="middle" class="note">
-        <a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="new.gif" width="31" height="12" border=0 >Click HERE To download two example projects  (C# and VB.NET) </a>
+        <a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="new.gif" width="31" height="12" border=0 >Click here to download two example projects  (C# and VB.NET) </a>
 	</td>
 	</tr>
 </table>
 <br />
     <h2>
-        Quick Start for Fixed Length files(easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
+        Quick Start for fixed length files(easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
     </h2>
     
     <blockquote>
-    Or check the <a href="quick_start.html">Delimited File Example</a> or <a href="quick_start_async.html">Record by Record Example</a><br /><br />
+    Or check the <a href="quick_start.html">Delimited file example</a> or <a href="quick_start_async.html">record by record example</a><br /><br />
     </blockquote>
 
     <table width="100%"  border="0">
       <tr>
         <td height="123" valign="top"><a name="first"></a><img src="1.png" width="16" height="16" align="left"> </td>
-        <td width="97%" valign="top"><p>To start using the FileHelpers Library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get Intellisense support. </p>
+        <td width="97%" valign="top"><p>To start using the FileHelpers library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get intellisense support. </p>
           <blockquote>
             <p><img src="references.png" width="103" height="53"></p>
           </blockquote></td>
@@ -151,7 +151,7 @@ End Class
       </tr>
       <tr>
         <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Later you need to create a FileHelperEngine and Read/Write files:                        
+        <td valign="top"><p>Later you need to create a FileHelperEngine and read/write files:                        
             <blockquote><b>C#</b>
 <textarea name="code" class="c#">
 FileHelperEngine engine = new FileHelperEngine(typeof(Customer));
@@ -178,7 +178,7 @@ engine.WriteFile(&quot;FileOut.txt&quot;, res)
       </tr>
       <tr>
         <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Finally we can use the res array to access each item in the file, for example: </p>
+        <td valign="top"><p>Finally, we can use the res array to access each item in the file, for example: </p>
           <blockquote><b>C#</b>
 <textarea name="code" class="c#">
 foreach (Customer cust in res)
