@@ -51,7 +51,7 @@ dp.sh.Utils.Expand = function(sender)
 	table.parentNode.style.height = '100%'; // containing div isn't getting updated properly when the TBODY is shown
 }
 
-// opens a new windows and puts the original unformatted source code inside.
+// opens a new window and puts the original unformatted source code inside.
 dp.sh.Utils.ViewSource = function(sender)
 {
 	var code = sender.parentNode.originalCode;
@@ -70,7 +70,7 @@ dp.sh.Utils.ToClipboard = function(sender)
 	
 	// This works only for IE. There's a way to make it work with Mozilla as well,
 	// but it requires security settings changed on the client, which isn't by
-	// default, so 99% of users won't have it working anyways.
+	// default, so 99% of users won't have it working anyway.
 	if(window.clipboardData)
 	{
 		window.clipboardData.setData('text', code);
@@ -426,7 +426,7 @@ dp.sh.Highlighter.prototype.Highlight = function(code)
 		return lines.join('\n');
 	}
 	
-	// This function returns a portions of the string from pos1 to pos2 inclusive
+	// This function returns a portion of the string from pos1 to pos2 inclusive
 	function Copy(string, pos1, pos2)
 	{
 		return string.substr(pos1, pos2 - pos1);
@@ -453,7 +453,7 @@ dp.sh.Highlighter.prototype.Highlight = function(code)
 
 	this.ProcessRegexList();	
 
-	// if no matches found, add entire code as plain text
+	// if no matches are found, add entire code as plain text
 	if(this.matches.length == 0)
 	{
 		this.AddBit(this.code, null);
