@@ -9,10 +9,10 @@ using System;
 namespace FileHelpers
 {
 	/// <summary>Indicates the <see cref="AlignMode"/> used for <b>write</b> operations.</summary>
-	/// <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more clear info and examples of each one.</remarks>
-	/// <seealso href="attributes.html">Attributes List</seealso>
-	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
-	/// <seealso href="examples.html">Examples of Use</seealso>
+	/// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
+	/// <seealso href="attributes.html">Attributes list</seealso>
+	/// <seealso href="quick_start.html">Quick start guide</seealso>
+	/// <seealso href="examples.html">Examples of use</seealso>
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldAlignAttribute : Attribute
 	{

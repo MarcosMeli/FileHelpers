@@ -11,10 +11,10 @@ using System.Text;
 namespace FileHelpers
 {
 	/// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
-	/// <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more clear info and examples of each one.</remarks>
-	/// <seealso href="attributes.html">Attributes List</seealso>
-	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
-	/// <seealso href="examples.html">Examples of Use</seealso>
+	/// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
+	/// <seealso href="attributes.html">Attributes list</seealso>
+	/// <seealso href="quick_start.html">Quick start guide</seealso>
+	/// <seealso href="examples.html">Examples of use</seealso>
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldConverterAttribute : Attribute
 	{
@@ -296,7 +296,7 @@ namespace FileHelpers
 
             if (valid == false)
                throw new BadUsageException(
-                   "The Converter of the field: '" + fi.Name + "' is wrong. The field is of Type: " + fieldType.Name + " and the converter is for type: " + Kind.ToString());
+                   "The converter of the field: '" + fi.Name + "' is wrong. The field is of Type: " + fieldType.Name + " and the converter is for type: " + Kind.ToString());
         }
     }
 }
