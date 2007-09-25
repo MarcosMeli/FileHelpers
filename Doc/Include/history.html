@@ -27,8 +27,8 @@
 						</li>
 						<li>1.1.0 (11-Nov-2005)
 							<ul>
-								<li>MOD: The Decimal, Double and Single converters now are Culture less and discard all the blanks before converting the number to allow (" - 10.3", " - 13. ", etc)</li>
-								<li>MOD: The default encoding of the FileHelperEngine changed from UTF8 to Default (ANSI).</li>
+								<li>MOD: The Decimal, Double and Single converters now are cultureless and discard all the blanks before converting the number to allow (" - 10.3", " - 13. ", etc)</li>
+								<li>MOD: The default encoding of the FileHelperEngine was changed from UTF8 to Default (ANSI).</li>
 								<li>ADD: FileHelperEngine.AppendToFile Method.(thanks Pierre)</li>
 								<li>ADD: IgnoreFirstAttribute to discard the n first lines of the files. (thanks Sam)</li>
 								<li>ADD: QuotedAttribute to mark the quoted fields in the files. (thanks jyjohnson)</li>
@@ -63,31 +63,31 @@
 										<li>NullValueAttribute -> FieldNullValueAttribute</li>
 										<li>QuotedAttribute -> FieldQuotedAttribute</li>
 									</ul>
-								<li>ADD: New form in the demo for Time and Stress Tests.</li>
-								<li>ADD: New form in the demo for Fixed Length Tests.</li>
-								<li>ADD: More NUnit Tests. (now are 90+)</li>
-								<li>ADD: Require a Custom Converter for non system Types.</li>
-								<li>ADD: CustomConverter example in the docs (see advance example).</li>
+								<li>ADD: New form in the demo for time and stress tests.</li>
+								<li>ADD: New form in the demo for fixed length tests.</li>
+								<li>ADD: More NUnit tests. (now are 90+)</li>
+								<li>ADD: Require a custom converter for non system types.</li>
+								<li>ADD: CustomConverter example in the docs (see advanced example).</li>
 							</ul>
                         <li>1.3.0 RC1 (27-Dec-2005)
                             <ul>
 								<li>FIX: BeginReadFile now uses the IgnoreFirst(n) attribute.
-								<li>FIX: Documentation Examples (bad syntax and names)
-								<li>FIX: Documentation Browsing (some see also topics was bad)
-								<li>MOD: A lot of name Refactors in the DataLinks to get the names shorts. 
+								<li>FIX: Documentation examples (bad syntax and names)
+								<li>FIX: Documentation browsing (some see also topics was bad)
+								<li>MOD: A lot of name refactoring in the DataLinks to get the names shorts. 
 									<ul>
 										<li>IDataLinkProvider -> IDataStorage</li>
 										<li>DataBaseDataLinkProvider -> DataBaseStorage</li>
 										<li>SqlServerDataLinkProvider -> SqlServerStorage</li>
 										<li>AccessDataLinkProvider -> AccessStorage</li>
 									</ul>
-								<li>MOD: DataLinkEngine now is GenericDataLink and not need to be from/to file you can use all the implementations of the IDataStorage for example SqlServerStorage &lt;--> ExcelStorage</li>
+								<li>MOD: DataLinkEngine now is GenericDataLink and does not need to be from/to file you can use all the implementations of the IDataStorage for example SqlServerStorage &lt;--> ExcelStorage</li>
 								<li>MOD: A <strong>big</strong> change in this revision is the split in the <a href="FileHelpers.FileHelperEngine.html">FileHelperEngine</a> that now is only for whole operations like ReadFile, WriteFile, etc. and the <a href="FileHelpers.FileHelperAsyncEngine.html">FileHelperAsyncEngine</a> that have the Async operations BeginReadFile, ReadNext, etc.</li>
-								<li>MOD: Now the lib have a decent NAnt build file that generates the zips for the distribution, run the test, generate the documentation (inserting the additional content)</li>
+								<li>MOD: Now the library has a decent NAnt build file that generates the zips for the distribution, run the test, generate the documentation (inserting the additional content)</li>
 								<li>ADD: The FileDataLink with a similar functionallity of the old DataLinkEngine with one IDataStorage and the operations to ExtractToFile and InsertFromFile.</li>
 								<li>ADD: FileTransformDataLink to convert records of the type1 in one file to records of type2 in the destination file. (ideal for Delimited to Fixed Length record conversions).</li>
-								<li>ADD: More examples in the SDK Documentation.</li>
-								<li>ADD: New ExcelStorage in a new Assembly to avoid the import of the Interop assemblies when you don´t use it.</li>
+								<li>ADD: More examples in the SDK documentation.</li>
+								<li>ADD: New ExcelStorage in a new assembly to avoid the import of the interop assemblies when you don't use it.</li>
 								<li>ADD: You can get the <a href="FileHelpers.EngineBase.HeaderText.html">HeaderText</a> of the IgnoreFristAttribute or set it before write a file to put it in the destination file.</li>
 								<li>ADD: The EndsRead and EndsWrite to ensure that the streams are closed and disposed after use.</li>
 								<li>ADD: More <a href="testing.html">NUnit tests</a> (now 100+)</li>
@@ -96,30 +96,30 @@
                     		<ul>
 								<li>FIX: ExcelStorage: Fail when the number of columns in the worksheet is 1.</li>
 								<li>FIX: BeginReadFile now uses the IgnoreFirst(n) attribute.</li>
-                                <li>DEL: FileHelpers.Convertion Namespace (it has only one class "ConverterBase" that now is in the root namespace)</li>
+                                <li>DEL: FileHelpers.Convertion namespace (it has only one class "ConverterBase" that now is in the root namespace)</li>
                                 <li>MOD: ExcelStorage is now in advanced beta (only Date types don´t work)</li>
 								<li>MOD: A <a href="vb_tips.html">Tips for VB.NET</a> section in the docs.</li>
-                                <li>MOD: Internal refactors to improve the design.</li>
-                                <li>ADD: The WriteFile and WriteStream methods now have an optional third param with the max number of records to write.</li>
-          						<li>ADD: The ErrorManager class to handle the errors not only in the filehelper engine, also in the DataStorages.</li>
+                                <li>MOD: Internal refactoring to improve the design.</li>
+                                <li>ADD: The WriteFile and WriteStream methods now have an optional third parameter with the maximum number of records to write.</li>
+          						<li>ADD: The ErrorManager class to handle the errors not only in the filehelper engine, but also in the DataStorages.</li>
 								<li>ADD: FieldIgnored to exclude the specified Field from the engine.</li>
-                                <li>ADD: A navigator bar to the CHM Help and Home Site.</li>
-                                <li>ADD: A search option based in Google Site Search (another goodie from google =)</li> 
+                                <li>ADD: A navigator bar to the CHM Help and home site.</li>
+                                <li>ADD: A search option based on the Google site search (another goodie from google =)</li> 
                                 <li>ADD: More examples in the SDK help.</li>
                                 <li>ADD: The ReadString and WriteString methods to the FileHelperEngine.</li> 
-                                <li>ADD: The WriteFile, WriteStream and WriteString have an optional parameter with the max number of records to write.</li> 
+                                <li>ADD: The WriteFile, WriteStream and WriteString have an optional parameter with the maximum number of records to write.</li> 
                                 <li>ADD: RecordInfo class that holds all the properties of the records, including the converters, with this the DataStorage can browse the properties of each field in a nice way.</li> 
                                 <li>ADD: More <a href="testing.html">NUnit tests</a> (now 122)</li>
 							</ul>
                         <li>1.3.2 (28-Jan-2006)
 							<ul>
-								<li>FIX: FieldIgnore: Problems when used in th elast field in the record class.</li>
-								<li>FIX: ExcelStorage.SheetName: didn´t work, now yes and catch the sheet don´t exists error.</li>
-								<li>DEL: ColumnNumber removed from the Engine and the ErrorInfo (didn´t work anyway)</li>
-								<li>MOD: Refactor some internal class to catch better the exceptions and more clear error messagges.</li>
+								<li>FIX: FieldIgnore: Problems when used in the last field in the record class.</li>
+								<li>FIX: ExcelStorage.SheetName: didn't work, now yes and catch the sheet don't exists error.</li>
+								<li>DEL: ColumnNumber removed from the Engine and the ErrorInfo (didn't work anyway)</li>
+								<li>MOD: Refactor some internal classes to catch better the exceptions and more clear error messagges.</li>
 								<li>MOD: Some specific code reported by FxCop as problematic.</li>
 								<li>ADD: WriteNexts and ReadNexts to the FileHelperAsyncEngine to process more than one record at once.</li>
-                                <li>ADD: A lot of <a href="credits.html">contributors</a> this weeks I recieve a lot of congrats and great ideas !! thanks to all.</li>
+                                <li>ADD: A lot of <a href="credits.html">contributors</a> this weeks I recieve a lot of congrats and great ideas !! thanks to all of you.</li>
 								<li>ADD: A DeveloperStuff directory in the distribution with links to the SVn, Trac, Mailing list, used tools, etc.</li> 
                                 <li>ADD: More <a href="testing.html">NUnit tests</a> (now 137)</li> 
                                 <li>NEWS: Now using <a href="http://www.cenqua.com/">Clover.NET</a> (thanks to Cenqua fo rthe FREE licence for the project !!!) shortly I upload the coverage results.</li>
@@ -134,37 +134,37 @@
 									<li><a href="example_enumconverter.html">EnumConverter</a> to auto parse and write enum values in the fields.</li> 
                                     <li>Full VB.NET Support: solve the previous versions issues.</li>
                                 </ul>
-								<li>ADD. Four new <a href="examples.html">Examples</a> !!</li>
+								<li>ADD. Four new <a href="examples.html">examples</a> !!</li>
                                 <li>ADD: Some new <a href="class_diagram.html">class diagrams</a> for the <a href="diagram_engines.html">Engines</a>, <a href="diagram_datastorage.html">DataStorage</a> and <a href="diagram_datalinks.html">DataLinks</a></li>
                                 <li>ADD: FooterText: you can read or read this string when you use the IgnoreLastAttribute. 
                                 <li>ADD: More <a href="credits.html">contributors</a> from wich I recieve a lot of congrats and great ideas !! thanks to all again.</li> 
                                 <li>ADD: More <a href="testing.html">NUnit tests</a> (now 156 =)</li> 
                                 <li>FIX: TotalRecords: report bad values when the file has errors or when the first lines are ignored.</li> 
                                 <li>MOD: The optional parameters of the converters now are only strings to provide full vb.net compatibility.</li>
-                                <li>MOD: Refactor... a lot of refactor to support the IgnoreLast, forward reading and others enhaces.</li>
+                                <li>MOD: Refactor... a lot of refactor to support the IgnoreLast, forward reading and others enhancements.</li>
                             </ul>
 						</li>
                         <li>1.4.0 (17-Mar-2006) After a lot of work, here is the new release
 					 <li>Major changes:
 							<ul>
-                                <li>DEL: ConverterKind.Custom was removed because it was irrelevant to use custom converters now the lib use [FieldConverter(typeof(YouConverter))]</li>
-                                <li>DEL: Some Exceptions trying to simplify the Exception handling and reducing the number of differnt exceptions. The deleted exceptions are <b>NullValueException, QuotedStringException and InternalException all replaced with the BadUsageException</b>.</li> 
+                                <li>DEL: ConverterKind.Custom was removed because it was irrelevant to use custom converters now the library uses [FieldConverter(typeof(YouConverter))]</li>
+                                <li>DEL: Some Exceptions trying to simplify the Exception handling and reducing the number of different exceptions. The deleted exceptions are <b>NullValueException, QuotedStringException and InternalException all replaced with the BadUsageException</b>.</li> 
                                 <li>FIX: The Async engines now uses the ErrorMode in all cases. 
                                 <li>MOD: The MasterDetailEngine now takes the IgnoreFirst and IgnoreLast options from the master record an not from the detail.</li> 
-                                <li>MOD: All methods in the FileHelpers Engines that <b>returns bool changed to void</b> because they was using error handling with exceptions and a bool result is redundant and useless, this provide also a more clear OOD.</li>
+                                <li>MOD: All methods in the FileHelpers Engines that <b>returned bool changed to void</b> because they was using error handling with exceptions and a bool result is redundant and useless, this provides also a more clear OOD.</li>
                                 <li>MOD: <a href="example_errorhandling.html">LoadErrors</a> from the ErrorManager class now is static.</li> 
                                 <li>ADD: <a href="example_commonengine.html">The CommonEngine</a>: with four static methods for the common operations.</li> 
-                                <li>ADD: <a href="example_progress.html">The Progress Notification feature</a>, with it you can get notified of the progress of each opration.</li> 
+                                <li>ADD: <a href="example_progress.html">The progress notification feature</a>, with it you can get notified of the progress of each opration.</li> 
                                 <li>ADD: Full ExcelCSV support, a new parameter to the FieldQuoted attribute to indicate if the Quote is optional (like excel does with CSV)</li> 
-                                <li>NEWS: Full Subversion support in Sourceforge: now you can help in the development using any subversion client and send me the patchs with your changes. <a href="https://svn.sourceforge.net/svnroot/filehelpers/trunk">https://svn.sourceforge.net/svnroot/filehelpers/trunk </a></li>
+                                <li>NEWS: Full Subversion support in Sourceforge: now you can help in the development using any subversion client and send me the patches with your changes. <a href="https://svn.sourceforge.net/svnroot/filehelpers/trunk">https://svn.sourceforge.net/svnroot/filehelpers/trunk </a></li>
                                 <li>NEWS: <a href="http://www.filehelpers.com/forums/">FileHelpers Forums</a> the main please for your feedback and discussions about the library.<a href="https://svn.sourceforge.net/svnroot/filehelpers/trunk"></a></li>
 							</ul>
 					 <li>Minor changes:
 							<ul>
-								<li>DEL: Description property to the FieldBase this is really old (from the beggining of the lib.)</li> 
+								<li>DEL: Description property to the FieldBase this is really old (from the beginning of the library.)</li> 
                                 <li>DEL: Demo zip file now is merged into the binary zip.</li>
                                 <li>MOD: EngineBase.LineNum and ErrorInfo.LineNum now are <strong>LineNumber</strong>.</li>
-                                <li>MOD: Enhaced exception messages. </li>
+                                <li>MOD: Enhanced exception messages. </li>
                                 <li>MOD: SaveErrors can recieve a header string to write into the file.</li> 
                                 <li>MOD: ErrorManager.<strong>LastErrors renamed to </strong>ErrorManager.<strong>Errors</strong></li>
 								<li>ADD: The ExcelStorage checks if Excel is installed, if not throws a BadUsageException</li> 
@@ -172,7 +172,7 @@
                                 <li>ADD: A lot of new <a href="examples.html">Usage Examples</a>.</li>
                                 <li>ADD: A new form in the demo app that shows how to use the <a href="example_progress.html"> ProgressNotification</a>.</li> 
                                 <li>ADD: Wizard: now use the <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">FireBall CodeEditor</a> for syntax highlight.</li> 
-								<li>ADD: Wizard: a lot of new templates and fix in others.</li>
+								<li>ADD: Wizard: a lot of new templates and fixes in others.</li>
                             </ul>
                             <li>
 					 <a name="v1_5_0"><span style="FONT-SIZE: 12pt"><strong>1.5.0</strong> (Jun-2006)</span>
@@ -190,7 +190,7 @@
                          <br>
                          Breaking changes:</b>
 							<ul>
-                                <li>Both DataStorages: SqlServerStorage and AccessStorage completely changed, from now you don´t need to override this classes (in fact you can´t because are sealed)<br>
+                                <li>Both DataStorages: SqlServerStorage and AccessStorage completely changed, from now you don't need to override this classes (in fact you can't because are sealed)<br>
                                     You can use these classes as client and provide the callbacks for the Insert and Fill record methods.(<a href="examples.html">check the examples</a>)<li>The FieldQuoted attribute was completely rewritten to support
               optional quote for read, write or both. <br>
               So you need to use now the QuoteMode enum and not only a boolean. (For Excel generated
@@ -238,13 +238,13 @@
           classes were deleted (aiming to reduce the dll size and library 
           performance, much better for Compact Framework) 
                                 <li>DEL: The obsolete LastErrors of the 
-          ErrorManager. Now is mandatory to use Errors. 
-                                <li>ADD: More and enhaced <a href="testing.html">NUnit tests</a> (more than 260) based
+          ErrorManager. Now it is mandatory to use Errors. 
+                                <li>ADD: More and enhanced <a href="testing.html">NUnit tests</a> (more than 260) based
                                     in the coverage of <a href="http://www.cenqua.com">clover.net</a>  
 
-                                <li>ADD: Some new and corrected <a href="examples.html">Usage Examples</a>. 
-                                <li>ADD: Now the Wizard Supports FieldOptional 
-          and IgnoreEmptyLines, also you can generate the Properties that maps 
+                                <li>ADD: Some new and corrected <a href="examples.html">Usage examples</a>. 
+                                <li>ADD: Now the wizard supports FieldOptional 
+          and IgnoreEmptyLines, also you can generate the properties that map 
           to the fields (useful for Data Binding the RecordClass to any binding 
           aware control in VS2005) 
                                 <li>ADD: Encoding support for source and 
@@ -253,14 +253,12 @@
           to allow them to handle the null values 
                                 <li>ADD: More features in the CommonEngine: 
           TransformFile and the fast TransformFileAsync 
-                                <li>ADD: two Easy methods to export/import data 
+                                <li>ADD: two easy methods to export/import data 
           to/from a file. 
                                 <li>MOD: Wizard: now use the Beta2 of the excellent <a href="http://www.codeproject.com/useritems/fireballcodeeditor.asp">
                                     FireBall CodeEditor</a>. 
-                                <li>MOD: A lot of doc corrections and adds (my 
-          english is now a bit better. I learn english with the write and fix 
-          schema =) 
-                                <li>MOD: Demo App rewritten to show some new features and show the syntax changes in
+                                <li>MOD: A lot of documentation corrections and additions 
+                                <li>MOD: Demo application rewritten to show some new features and show the syntax changes in
                                     the old ones.</li>
                             </ul>
                                 <p></p>
@@ -278,12 +276,12 @@
 <tr>
 	<td valign="center" class="note">
 	The library has 10 months now and a lot of things were added. So I want to thanks
-        all the people who send their feedbacks, posted motivating entries on the web and a lot of other ones that help me in the development. (<a href="credits.html">partial list of  contributors)</a>
+        all the people who send their feedback, posted motivating entries on the web and a lot of other ones that help me in the development. (<a href="credits.html">partial list of  contributors)</a>
 	<br><br>
                                         Now the important things !!... <a href="runtime_classes.html"><b>RunTime Records</b></a> are here thanks to some help Gerhardt Scriven to use RunTime Compilation. Enjoy it !!
     <br><br>
                                         <b>I think in this version as 2.0 </b> because the RunTime Records functionalities were one of the most requested features and also
-        one of the hardest to implement features,
+        one of the hardest to implement features.
                                         A lot of effort was put in the usability and in a clear API, if you have any suggestion please post it in the forums =)<br>
                                         Other important news are the <a href="FileHelpers.CsvEngine.html">CsvEngine</a> (for generic Csv files), the <a href="example_filediffengine.html">FileDiffEngine</a>, the <a href="example_multirecords.html">MultiRecordEngine</a>,..
 	</td>
@@ -294,7 +292,7 @@
                          <br>
                          <b>Breaking changes:</b>
 							<ul>
-                                <li>MOD: <b>Now the FixedLengthRecords must contain the exact number of chars</b>. You can 
+                                <li>MOD: <b>Now the FixedLengthRecords must contain the exact number of characters</b>. You can 
           pass an extra parameter in the [FixedLengthRecord] attribute to allow 
           a different behavior. 
                                 <li>MOD: CommonActions renamed to CommonSelector in the MasterDetailEngine</li>
@@ -306,16 +304,16 @@
                              <li>ADD: The awaited RunTime Records thanks to the suggestion of Gerhardt Scriven to use RunTime Compilation.
 								Supports for classes written in C# and VB.NET<br>
 								There are a lot of features inside this new feature, <a href="runtime_classes.html">so take a look at the docs</a>
-                             <li>MOD: The <strong>Record Wizard</strong> was completely rewritten to use the run time records 
+                             <li>MOD: The <strong>Record wizard</strong> was completely rewritten to use the run time records 
           and now has a lot of options to check the classes that you are 
           building, in the future the wizard could help you discovering the 
           record class based on a sample file 
                              <li>ADD: Generic Csv files are now supported (for example Excel generated ones)<br>
 Was a hard work but worth it because it can be used with any engine. <br>
-In the next version I´ll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from <b>Sébastien Lorion</b> for standalone CSV 
+In the next version I'll add the Excellent <a href="http://www.codeproject.com/cs/database/CsvReader.asp">Fast CSV Reader</a> from <b>Sébastien Lorion</b> for standalone CSV 
           processing. 
  
-							 <li>ADD: <a href="events.html">Event support</a> !! from this version the FileHelperEngine has 4 events 2 for read operations and 2 for write that are throw before and after process each record.
+							 <li>ADD: <a href="events.html">Event support</a> !! from this version the FileHelperEngine has 4 events, 2 for read operations and 2 for write that are thrown before and after process each record.
                              <li>ADD: FileDiffEngine to compare files with the 
           same record layout. 
                              <li>ADD: MultiRecordEngine to read files with 
@@ -324,26 +322,26 @@ In the next version I´ll add the Excellent <a href="http://www.codeproject.com/c
           RecordsToDataTable, RemoveDuplicateRecords and other methods to the 
           CommonEngine 
                              <li>ADD: FixedMode Enum for fixed length records, 
-          used to provide better validations in Fixed Length Files 
+          used to provide better validation in fixed length files 
                              <li>ADD: Template support in ExcelStorage 
                              <li>ADD: <a href="examples.html">A lot of new examples check it out !!</a>
                              <li>MOD: The decimal, double, and single 
           converters now recieve an string param to set the decimal delimiter 
           (by default is ".") 
-                             <li>MOD: Improved docs in the SDK, the general help and examples. (Thanks Antoine)</li>
+                             <li>MOD: Improved documentation in the SDK, the general help and examples. (Thanks Antoine)</li>
                              
                          </ul>
                              <p></p>
                         <b> Minor changes:</b>
 							<ul>
-							 <li>FIX: FieldDelimiter disn´t work very well 
-          after the refactor of the previous version. 
+							 <li>FIX: FieldDelimiter doesn't work very well 
+          after the refactoring of the previous version. 
  
 							 <li>FIX: Bug when copy or saving to file in the 
-          Wizard 
+          wizard 
                              <li>DEL: more and more properties of the internal 
           classes, this enhances both the performance and the dll size. 
-                             <li>MOD: A lot of internal refactor and enhaces 
+                             <li>MOD: A lot of internal refactoring and enhancements
                              <li>MOD: ExcelStorage now returns the cells 
           values when using ErrorMode.SaveAndContinue 
                              <li>ADD: <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">These excellents <b>VB.NET - C# comparison cheat sheets</b></a> (to avoid translating the examples)
@@ -355,8 +353,8 @@ In the next version I´ll add the Excellent <a href="http://www.codeproject.com/c
           arguments for the true or false values 
                              <li>ADD: New constructor to the SqlServerStorage 
           to directly pass the ConnectionString. Thanks to Anatoly Kleyman 
-                             <li>ADD: Again a lot of new <a href="testing.html">NUnit tests</a> near the 320 (wow I never thought in writing that much)
-                             <li>ADD: <a href="statistics.html">Library Statistics</a> page.
+                             <li>ADD: Again a lot of new <a href="testing.html">NUnit tests</a> near the 320 (wow I never thought of writing that many)
+                             <li>ADD: <a href="statistics.html">Library statistics</a> page.
                              <li>ADD: <a href="howhelp.html"><b>How to help me with the development of the Library</b></a> page.</li> 
                             </ul>
                                 <p></p>
@@ -381,15 +379,13 @@ Too many things were changed, mostly internaly, now we have a performance gain o
         <br>
         I will be releasing the version for .NET 1.1 because I know that a lot of people use
         it in some corporations, but maybe in the next releases the new features will be .net
-        2.0 only, is a titanical work to maintain and optimize both =( versions<br>
+        2.0 only.  It's a massive job maintain and optimize both =( versions<br>
         <br>
         There are also a lot of major changes, refactoring in the code, and a big
         core rewrite that allow the engines to use less memory and temporary string (we
-        are using more buffers to aviod this)<br>
+        are using more buffers to avoid this)<br>
     <br>
-        We were very busy to keep to library updated and to give support to the users,
-        you can check for example the Forums with a lot of problem solved, I also was asking
-        a lot of mails with problems from the users.<br>
+        We were very busy to keep to library updated and to give support to the users.  Check the forums for any problems as it's likely they have been addressed here.<br>
          
 		
 		 <br>We have our own domain www.filehelpers.com thanks to (Antoine) and a DevBlog at http://blog.filehelpers.com
@@ -418,14 +414,14 @@ Too many things were changed, mostly internaly, now we have a performance gain o
                                             
                                         </ul>
                                         <p>
-                                            <b>Performance Related</b></p>
+                                            <b>Performance related</b></p>
                                         <ul>
                                             <li>Internal use of Reflection.Emit, Dynamic Methods and char buffers to get <strong>
                                                 more than 50% enhace in performance and for .NET 2.0 more than 65%</strong>
                                             <li>The Read..AsDT methods now create the 
           DataTable record by record, not at the end, so you can handle large 
           files without any memory overload 
-                                            <li>Not more reflection in the operations (only 
+                                            <li>No more reflection in the operations (only 
           in the constructors). 
                                             <li>FieldSorter faster too, Removed REFLECTION for EMIT</li>
                                         </ul>
@@ -435,19 +431,19 @@ Too many things were changed, mostly internaly, now we have a performance gain o
                                             <li>The very cool <a href="example_delimitedengine.html">DelimitedFileEngine</a> and <a href="example_fixedengine.html">FixedFileEngine</a> that allow to change options at RunTime (also with generic versions) <a>Check an example here</a>
                                             <li><a href="example_conditionalrecords.html">ConditionalRecords</a> you can easily include or exclude certain records based on a RecordCondition (like BeginsWith, EndsWith, Contains or RegEx) <a href="example_conditionalrecords.html">Check the example</a>
                                             <li>A new GenericDatabaseStorage excellent to 
-          allow others Db with ASO.NET support to work with the FileHelpers 
+          allow others databases with ADO.NET support to work with the FileHelpers 
           (Thanks Rodolfo Finochietti) 
-                                            <li>Experimental <a href="http://www.mono-project.com">Mono Project</a> Support (some users are already using it, we hope that in 
+                                            <li>Experimental <a href="http://www.mono-project.com">Mono project</a> Support (some users are already using it, we hope that in 
           the next release we have a completely working version for this 
           framework) 
-                                            <li>New Version Checker in the demos and Wizard (both with renew look and feel) <a href="http://www.filehelpers.com/movies.html">Check the movies</a>
+                                            <li>New version checker in the demos and wizard (both with a renewed look and feel) <a href="http://www.filehelpers.com/movies.html">Check the movies</a>
 											<li>.NET 2.0 Nullable Types support. (Thanks Vijayan) <a href="example_nullable.html">Check the example</a>
                                             <li>Notification Interfaces: you can now get notified of the events simply implement <span style="TEXT-DECORATION: underline"></span><span style="TEXT-DECORATION: underline"></span><span style="TEXT-DECORATION: underline"></span>
 											<li>Enhaced Debugging in .NET 2.0 with 
           DebuggerDisplay and DebuggerBrowsable, DebugVisualizars to come. 
           
-											<li>The Wizard has a Record Class Test that allow 
-          you to intruduce sample data and your class and check for errors or 
+											<li>The wizard has a record class test that allows 
+          you to introduce sample data and your class and check for errors or 
           results. 
           
 											<li>You can <a href="http://www.filehelpers.com/movies.html">check some screencast</a> about the demos, wizard 
@@ -458,27 +454,27 @@ Too many things were changed, mostly internaly, now we have a performance gain o
           on SVN, sharing the same files and the build script autodetect your 
           Visual Studio installation. So no more excuses time to get involved =) 
 
-                                            <li>The engines with async ops are now IDisposable and IEnumerable so you can declare it with using(..) and use them in a foreach loop </li>
+                                            <li>The engines with asynchronous operations are now IDisposable and IEnumerable so you can declare it with using(..) and use them in a foreach loop </li>
                                         </ul>
 
                                         <p>
-										<b>API Changes and Extensions</b></p>
+										<b>API changes and extensions</b></p>
                                         <ul>
                                             <span>
 							 <li>The write methods are less strict you can 
           pass now an IEnumerable instead of an array, so you can direct pass a 
-          List or ArrayLIst to the method without need of do a ToArray() 
+          List or ArrayList to the method without need of do a ToArray() 
                                                 <li>RunTime records can now get a DataTable in 
           the constructor and so use DataColumns to create one field for each 
           column. 
                                                 <li>Generic versions of near all the engines of 
-          the library (is really hard to mantain the two copies :P so every one 
+          the library (it is really hard to mantain the two copies :P so every one 
           is time to port !!) 
-                                                <li>Async Operations in others engines like the 
+                                                <li>Asynchronous operations in others engines like the 
           MultiRecordEngine 
                                                 <li>Event support to the MultiRecordEngine thanks 
           to the contribution of Francis de Fouchier 
-                                                <li>The library handle now infinite levels of 
+                                                <li>The library now handles infinite levels of 
           inheritance adding the high level fields first in the result record 
           class.  
                                                 <li>Allow to ignore spaces and tabs in the <a href="FileHelpers.IgnoreEmptyLinesAttribute.html">
@@ -492,16 +488,15 @@ Too many things were changed, mostly internaly, now we have a performance gain o
           Encoding feature. 
                                                 <li>FileTransformEngine with two new methods 
           ReadAndTransformRecords and TransformRecords 
-                                                <li>Flush Method to AsyncEngines to allow users 
-          to ensure data writte for example if there are using the lib for 
-          logging. 
-                                                <li>The converters are now smarter they validate 
-          to wich types can be assigned and throw exceptions if is wrong (for 
+                                                <li>Flush method to AsyncEngines to allow users 
+          to ensure data is written.  For example, if they are using the library for logging. 
+                                                <li>The converters are now smarter as they validate 
+          to which types can be assigned and throw exceptions if is wrong (for 
           example if you use ConverterKind.Decimal in a int field) 
           
 												<li>The <a href="FileHelpers.ConvertException.html">ConvertException</a> 
           has a lot of context information: LineNumber, ColumnNumber, FieldName. 
-          Also better Exception Message. 
+          Also better exception messages. 
                                                 <li>The integer converters recieve also now a 
           decimal separator to build a InvariantCulture to format and parse the 
           values and strings
@@ -511,37 +506,36 @@ Too many things were changed, mostly internaly, now we have a performance gain o
                                         </p>
                                         <p>
                                         <p>
-                                            <b>Small Changes</b></span></span></p>
+                                            <b>Small changes</b></span></span></p>
                                         <p>
                                         </p>
 							 <p></p>
                                         <ul>
 											<li>Fixed the problem with ASP.NET: "Line 0: Metadata file 'filehelpers.dll' could not be found"
-											<li>Fixed some problems with the CsvClassBuilder (is a good practice to dont release the last minute added features)
-											<li>The Assemblies are now Signed 
+											<li>Fixed some problems with the CsvClassBuilder (is a good practice to not to release the last minute added features)
+											<li>The assemblies are now signed 
           
 											<li>The new ConverterBase.DefaultDateTimeFormat 
           to avoid set the converter format field by field =) 
                                             <li>Some error messages from the library were 
-          rewritten and now provide more context information (line and column 
+          rewritten and now provide more contextual information (line and column 
           numbers, field name, etc). 
                                             <li>ExcelStorage support for more than 26 columns 
-          (thxs to Mark Izendooren) 
-                                            <li>Encoding Support to the CsvEngine 
+          (thanks to Mark Izendooren) 
+                                            <li>Encoding support to the CsvEngine 
           
-											<li>The wizard remember all the paths now 
+											<li>The wizard remembers all the paths now 
                                             <li>SkipThisRecord in the 
           AfterReadRecordEventArgs, this allow tho skip records from the results 
           (thanks Crestline) 
-                                            <li>More Methods for the <a href="FileHelpers.CommonEngineMembers.html">CommonEngine</a>
+                                            <li>More methods for the <a href="FileHelpers.CommonEngineMembers.html">CommonEngine</a>
                                             <li>More than <a href="testing.html">420+ NUnit tests</a> 
-          !!! (I cant belive it, I´m a lazy developer but I know how much worth 
-          to test the lib) 
+          !!! (I cant belive it, I'm a lazy developer but I know how much worth you get out of tesing the library)
                                             <li>Now you have two versions for the demos, one 
           for each framework version. 
                                             <li>The FixedLengthClassBuilder has more 
-          constructor to set the lengths of the fields in you instruction 
-                                            <li>Improved docs. (Thanks Antoine and Matt) 
+          constructors to set the length of the fields in your instruction 
+                                            <li>Improved documentation. (Thanks Antoine and Matt) 
                                             <li><a href="examples.html">A lot of new examples check it out !!</a> </li>
                                         </ul>
 							 <p></p>
@@ -557,14 +551,14 @@ Too many things were changed, mostly internaly, now we have a performance gain o
 	<td valign="center" class="note">
 	I everyone again !!
 	<br><br>
-This is a mantenience release but there are some interesting addiction and more performance gain 
+This is a mantenience release but there are some interesting addition and performance gain improvements
         for .NET 2.0<br>
         <br>
-        We are working in some big internal changes to allow move the next features level of the version 3.0, 
-        for that we need to rewrite some stream level readers and writers, some maybe we will be busy some time :P<br>
+        We are working on some big internal changes to allow move the next features level of the version 3.0, 
+        for that we need to rewrite some stream level readers and writers. So, this will be a very busy time<br>
          
 		
-		<br>We are working very hard to supports users, you can see that in our forums and all for free, so your donations are always welcome via: <br>
+		<br>We are working very hard to support users.  You can see that our forums are free, but your donations are always welcome via: <br>
 		<a href="http://sourceforge.net/donate/index.php?group_id=152382"><b>PayPal</b></a>  or 
 		<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&amp;filter=all&amp;sort=priority&amp;layout=standard&amp;x=10&amp;y=9"><b>Amazon Book List</b></a>
 		</td>
@@ -580,11 +574,11 @@ This is a mantenience release but there are some interesting addiction and more 
                                             </li></ul>
 							 <p></p>
 
-										<b>API Changes and Extensions</b>
+										<b>API changes and extensions</b>
         <p></p>
                                         <ul>
-                                        <li>Excel : new UpdateLinks property, allow to 
-          specify how the library must handle Workbook links.</li>              
+                                        <li>Excel : new UpdateLinks property, allow you to 
+          specify how the library must handle workbook links.</li>              
                                         </ul>
 
 							 <p></p></li></ul>
