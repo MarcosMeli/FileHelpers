@@ -160,7 +160,7 @@ namespace FileHelpers
 		}
 
 
-	    /// <summary>Indicates the behavior of the <see cref="FileHelperEngine"/> when it found an error. (shortcut)</summary>
+	    /// <summary>Indicates the behavior of the engine when it found an error. (shortcut for ErrorManager.ErrorMode)</summary>
 	    public ErrorMode ErrorMode
 	    {
 	        get { return mErrorManager.ErrorMode; }
