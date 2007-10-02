@@ -189,7 +189,9 @@ namespace FileHelpers
             if (currentType == typeof(object))
                 return;
  
+#if ! MINI
             ClearFieldInfoCache();
+#endif
 
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
@@ -198,10 +200,13 @@ namespace FileHelpers
             fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
         }
 
+#if ! MINI
+
         private static PropertyInfo mTypeCacheInfo;
         private static FieldInfo mFieldCachePointer;
         private void ClearFieldInfoCache()
         {
+            
             if (mTypeCacheInfo == null)
                 mTypeCacheInfo = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -213,6 +218,7 @@ namespace FileHelpers
             mFieldCachePointer.SetValue(cache, null);
         }
 
+#endif 
         #endregion
 
         #region "  CreateFields  "

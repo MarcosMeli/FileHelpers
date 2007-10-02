@@ -25,6 +25,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks.2005", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.2005.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
 EndProject
 Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {7ED1BD6E-F965-49DE-AC44-0FC8F9EA1E54}
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -69,8 +72,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 		{2EE250D6-38E9-4CF5-9BB6-DE8262D8229D} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
-	EndGlobalSection
-	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
-		DPCodeReviewSolutionGUID = {7ED1BD6E-F965-49DE-AC44-0FC8F9EA1E54}
 	EndGlobalSection
 EndGlobal
