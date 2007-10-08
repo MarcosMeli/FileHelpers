@@ -127,6 +127,7 @@
     <None Include="Resources\page_copy.png" />
     <None Include="Resources\door_out.png" />
     <None Include="Resources\tick.png" />
+    <None Include="Resources\stop.png" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />

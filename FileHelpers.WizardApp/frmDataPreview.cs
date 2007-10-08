@@ -149,7 +149,8 @@ namespace FileHelpers.WizardApp
 
         private void frmDataPreview_Load(object sender, EventArgs e)
         {
-            cboClassLeng.SelectedIndex = 0;
+            if (cboClassLeng.SelectedIndex < 0)
+                cboClassLeng.SelectedIndex = 0;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -174,6 +175,16 @@ namespace FileHelpers.WizardApp
 
             txtInput.Text = File.ReadAllText(dlgOpenTest.FileName);
 
+        }
+
+        private void txtClearData_Click(object sender, EventArgs e)
+        {
+            txtInput.Text = string.Empty;
+        }
+
+        private void txtPasteData_Click(object sender, EventArgs e)
+        {
+            txtInput.Text = Clipboard.GetText(TextDataFormat.Text);
         }
     }
 }

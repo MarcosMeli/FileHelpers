@@ -150,9 +150,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -214,9 +214,9 @@ namespace FileHelpers.WizardApp
             this.picCurrent = new System.Windows.Forms.PictureBox();
             this.picNewVersion = new System.Windows.Forms.PictureBox();
             this.panStep2 = new System.Windows.Forms.Panel();
+            this.chkAllQuoted = new System.Windows.Forms.CheckBox();
             this.chkAllTrim = new System.Windows.Forms.CheckBox();
             this.chkAllOptional = new System.Windows.Forms.CheckBox();
-            this.chkAllQuoted = new System.Windows.Forms.CheckBox();
             this.cmdAddField = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.dlgSaveToFile = new System.Windows.Forms.SaveFileDialog();
@@ -425,6 +425,11 @@ namespace FileHelpers.WizardApp
             // txtIgnoreLast
             // 
             this.txtIgnoreLast.Location = new System.Drawing.Point(98, 43);
+            this.txtIgnoreLast.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.txtIgnoreLast.Name = "txtIgnoreLast";
             this.txtIgnoreLast.Size = new System.Drawing.Size(44, 21);
             this.txtIgnoreLast.TabIndex = 8;
@@ -452,6 +457,11 @@ namespace FileHelpers.WizardApp
             // txtIgnoreFirst
             // 
             this.txtIgnoreFirst.Location = new System.Drawing.Point(98, 17);
+            this.txtIgnoreFirst.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.txtIgnoreFirst.Name = "txtIgnoreFirst";
             this.txtIgnoreFirst.Size = new System.Drawing.Size(44, 21);
             this.txtIgnoreFirst.TabIndex = 0;
@@ -497,7 +507,7 @@ namespace FileHelpers.WizardApp
             // 
             this.txtFieldLength.Location = new System.Drawing.Point(154, 48);
             this.txtFieldLength.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
@@ -560,6 +570,11 @@ namespace FileHelpers.WizardApp
             // txtNumberOfFields
             // 
             this.txtNumberOfFields.Location = new System.Drawing.Point(154, 21);
+            this.txtNumberOfFields.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
             this.txtNumberOfFields.Name = "txtNumberOfFields";
             this.txtNumberOfFields.Size = new System.Drawing.Size(84, 21);
             this.txtNumberOfFields.TabIndex = 0;
@@ -643,8 +658,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender3;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender2;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -1030,6 +1045,19 @@ namespace FileHelpers.WizardApp
             this.panStep2.TabStop = true;
             this.panStep2.Visible = false;
             // 
+            // chkAllQuoted
+            // 
+            this.chkAllQuoted.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.chkAllQuoted.Location = new System.Drawing.Point(258, 332);
+            this.chkAllQuoted.Name = "chkAllQuoted";
+            this.chkAllQuoted.Size = new System.Drawing.Size(121, 16);
+            this.chkAllQuoted.TabIndex = 1014;
+            this.chkAllQuoted.Text = "Mark all as Quoted";
+            this.chkAllQuoted.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.toolTip1.SetToolTip(this.chkAllQuoted, "Eseful for CSV files generated with Excel and multiline fields");
+            this.chkAllQuoted.UseVisualStyleBackColor = true;
+            this.chkAllQuoted.CheckedChanged += new System.EventHandler(this.chkAllQuoted_CheckedChanged);
+            // 
             // chkAllTrim
             // 
             this.chkAllTrim.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -1054,19 +1082,6 @@ namespace FileHelpers.WizardApp
             this.toolTip1.SetToolTip(this.chkAllOptional, "Useful for CSV files generated with Excel");
             this.chkAllOptional.UseVisualStyleBackColor = true;
             this.chkAllOptional.CheckedChanged += new System.EventHandler(this.chkAllOptional_CheckedChanged);
-            // 
-            // chkAllQuoted
-            // 
-            this.chkAllQuoted.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.chkAllQuoted.Location = new System.Drawing.Point(258, 332);
-            this.chkAllQuoted.Name = "chkAllQuoted";
-            this.chkAllQuoted.Size = new System.Drawing.Size(121, 16);
-            this.chkAllQuoted.TabIndex = 1014;
-            this.chkAllQuoted.Text = "Mark all as Quoted";
-            this.chkAllQuoted.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.toolTip1.SetToolTip(this.chkAllQuoted, "Eseful for CSV files generated with Excel and multiline fields");
-            this.chkAllQuoted.UseVisualStyleBackColor = true;
-            this.chkAllQuoted.CheckedChanged += new System.EventHandler(this.chkAllQuoted_CheckedChanged);
             // 
             // cmdAddField
             // 
@@ -1315,8 +1330,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender1;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender3;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1518,7 +1533,7 @@ namespace FileHelpers.WizardApp
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 413);
+            this.ClientSize = new System.Drawing.Size(569, 408);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
