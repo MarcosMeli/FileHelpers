@@ -161,14 +161,16 @@ namespace FileHelpers.DataLink
 					throw;
 			}
 
-			this.mBook = null;
-			this.mSheet = null;
-			this.mApp.Visible = false;
-			this.mApp.AlertBeforeOverwriting = false;
-			this.mApp.ScreenUpdating = false;
-			this.mApp.DisplayAlerts = false;
-			this.mApp.EnableAnimations = false;
-			this.mApp.Interactive = false;
+
+                this.mBook = null;
+                this.mSheet = null;
+                this.mApp.Visible = false;
+                this.mApp.AlertBeforeOverwriting = false;
+                this.mApp.ScreenUpdating = false;
+                this.mApp.DisplayAlerts = false;
+                this.mApp.EnableAnimations = false;
+                this.mApp.Interactive = false;
+
 		}
 
 		#endregion
@@ -366,54 +368,56 @@ namespace FileHelpers.DataLink
 
 		/// <summary>Insert all the records in the specified Excel File.</summary>
 		/// <param name="records">The records to insert.</param>
-		public override void InsertRecords(object[] records)
+        public override void InsertRecords(object[] records)
 		{
-			if (records == null || records.Length == 0)
-				return;
+		    if (records == null || records.Length == 0)
+		        return;
 
-			try
-			{
-				int recordNumber = 0;
-				Notify(mNotifyHandler, mProgressMode, 0, records.Length);
+            System.Globalization.CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            try
+		    {
+		        int recordNumber = 0;
+		        Notify(mNotifyHandler, mProgressMode, 0, records.Length);
 
-				this.InitExcel();
+		            this.InitExcel();
 
-				if (mOverrideFile && File.Exists(mFileName))
-					File.Delete(mFileName);
+		            if (mOverrideFile && File.Exists(mFileName))
+		                File.Delete(mFileName);
 
-				if (mTemplateFile != string.Empty)
-				{
-					if (File.Exists(mTemplateFile) == false)
-						throw new ExcelBadUsageException("Template file not found: '" + mTemplateFile + "'");
+		            if (mTemplateFile != string.Empty)
+		            {
+		                if (File.Exists(mTemplateFile) == false)
+		                    throw new ExcelBadUsageException("Template file not found: '" + mTemplateFile + "'");
 
-					if (mTemplateFile != mFileName)
-						File.Copy(mTemplateFile, mFileName, true);
-				}
-				
-				this.OpenOrCreateWorkbook(this.mFileName);
+		                if (mTemplateFile != mFileName)
+		                    File.Copy(mTemplateFile, mFileName, true);
+		            }
 
-				for (int i = 0; i < records.Length; i++)
-				{
-					recordNumber++;
-					Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
+		            this.OpenOrCreateWorkbook(this.mFileName);
 
-					WriteRowValues(RecordToValues(records[i]), mStartRow + i, mStartColumn);
-				}
+		            for (int i = 0; i < records.Length; i++)
+		            {
+		                recordNumber++;
+		                Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
 
-				SaveWorkbook(this.mFileName);
-			}
-			catch
-			{
-				throw;
-			}
-			finally
-			{
-				CloseAndCleanUp();
-			}
+		                WriteRowValues(RecordToValues(records[i]), mStartRow + i, mStartColumn);
+		            }
 
+		            SaveWorkbook(this.mFileName);
+		    }
+		    catch
+		    {
+		        throw;
+		    }
+		    finally
+		    {
+		        CloseAndCleanUp();
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+		    }
 		}
 
-		#endregion
+	    #endregion
 
 		#region "  ExtractRecords  "
 
@@ -427,60 +431,60 @@ namespace FileHelpers.DataLink
 
 			ArrayList res = new ArrayList();
 
-			try
-			{
-				int cRow = mStartRow;
+            System.Globalization.CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            try
+            {
+                int cRow = mStartRow;
 
-				int recordNumber = 0;
-				Notify(mNotifyHandler, mProgressMode, 0, -1);
+                int recordNumber = 0;
+                Notify(mNotifyHandler, mProgressMode, 0, -1);
 
-				object[] colValues = new object[RecordFieldCount];
+                object[] colValues = new object[RecordFieldCount];
 
-				this.InitExcel();
-				this.OpenWorkbook(this.mFileName);
+                    this.InitExcel();
+                    this.OpenWorkbook(this.mFileName);
 
-				while (CellAsString(cRow, mStartColumn) != String.Empty)
-				{
-					try
-					{
-						recordNumber++;
-						Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
+                    while (CellAsString(cRow, mStartColumn) != String.Empty)
+                    {
+                        try
+                        {
+                            recordNumber++;
+                            Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
 
-						colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
+                            colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
 
-						object record = ValuesToRecord(colValues);
-						res.Add(record);
-
-					}
-					catch (Exception ex)
-					{
-						switch (mErrorManager.ErrorMode)
-						{
-							case ErrorMode.ThrowException:
-								throw;
-							case ErrorMode.IgnoreAndContinue:
-								break;
-							case ErrorMode.SaveAndContinue:
-								AddError(cRow, ex, ColumnsToValues(colValues));
-								break;
-						}
-					}
-					finally
-					{
-						cRow++;
-					}
-
-				}
-
-			}
-			catch
-			{
-				throw;
-			}
+                            object record = ValuesToRecord(colValues);
+                            res.Add(record);
+                        }
+                        catch (Exception ex)
+                        {
+                            switch (mErrorManager.ErrorMode)
+                            {
+                                case ErrorMode.ThrowException:
+                                    throw;
+                                case ErrorMode.IgnoreAndContinue:
+                                    break;
+                                case ErrorMode.SaveAndContinue:
+                                    AddError(cRow, ex, ColumnsToValues(colValues));
+                                    break;
+                            }
+                        }
+                        finally
+                        {
+                            cRow++;
+                        }
+                    }
+            }
+            catch
+            {
+                throw;
+            }
 			finally
 			{
 				CloseAndCleanUp();
-			}
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
 
 			return (object[]) res.ToArray(this.RecordType);
 		}

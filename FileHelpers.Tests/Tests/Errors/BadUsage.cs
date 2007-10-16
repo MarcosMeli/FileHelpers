@@ -15,7 +15,8 @@ namespace FileHelpersTests.Errors
 		public class TestDupli
 		{
 			[FieldFixedLength(10)]
-			[FieldDelimiter("|")] public string Field1;
+			[FieldDelimiter("|")] 
+            public string Field1;
 		}
 
 		[Test]
@@ -32,13 +33,15 @@ namespace FileHelpersTests.Errors
 		[FixedLengthRecord]
 		public class SwitchedAttributes1
 		{
-			[FieldDelimiter("|")] public string Field1;
+			[FieldDelimiter("|")] 
+            public string Field1;
 		}
 
 		[DelimitedRecord("|")]
 		public class SwitchedAttributes2
 		{
-			[FieldFixedLength(12)] public string Field1;
+			[FieldFixedLength(12)] 
+            public string Field1;
 		}
 
 		[Test]
