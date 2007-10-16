@@ -193,11 +193,18 @@ namespace FileHelpers
             ClearFieldInfoCache();
 #endif
 
+            foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+            {
+                if ((typeof(Delegate)).IsAssignableFrom(fi.FieldType))
+                    continue;
+
+                fields.Add(fi);
+            } 
+
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
-            fields.AddRange(currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
         }
 
 #if ! MINI

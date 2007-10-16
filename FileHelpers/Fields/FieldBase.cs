@@ -33,8 +33,11 @@ namespace FileHelpers
 
             // CHECK USAGE ERRORS !!!
 
-            if (attributes.Length == 0 && recordAttribute is FixedLengthRecordAttribute)
+            if (recordAttribute is FixedLengthRecordAttribute && attributes.Length == 0)
                 throw new BadUsageException("The field: '" + fi.Name + "' must be marked the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
+
+            if (attributes.Length > 1)
+                throw new BadUsageException("The field: '" + fi.Name + "' has a FieldFixedLength and a FieldDelimiter attribute.");
 
             if (recordAttribute is DelimitedRecordAttribute && fi.IsDefined(typeof(FieldAlignAttribute), false))
                 throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpouse.");
