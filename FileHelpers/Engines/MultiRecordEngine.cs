@@ -884,7 +884,7 @@ namespace FileHelpers
 				else
 					break;
 			}
-			return (object[])  arr.ToArray(RecordType);
+			return arr.ToArray();
 		}
 
 		#endregion
