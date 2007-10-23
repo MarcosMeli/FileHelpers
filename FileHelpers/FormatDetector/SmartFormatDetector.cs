@@ -5,15 +5,23 @@ using FileHelpers.RunTime;
 
 namespace FileHelpers.Detection
 {
+    /// <summary>Utility class used to auto detect the record format, the number of fields, the type, etc.</summary>
     public sealed class SmartFormatDetector
     {
+        #region "  Constants  "
+
         private const int MIN_SAMPLE_DATA = 15;
         private const double MIN_DELIMITED_DEVIATION = 0.2;
+
+        #endregion
 
         #region "  Properties  "
 
         private FormatHint mFormatHint;
 
+        /// <summary>
+        /// Provides a suggestion to the <see cref="SmartFormatDetector"/> about the records in the file
+        /// </summary>
         public FormatHint FormatHint
         {
             get { return mFormatHint; }
@@ -30,6 +38,8 @@ namespace FileHelpers.Detection
 
         private Encoding mEncoding = Encoding.Default;
 
+        /// <summary>The encoding to Read and Write the streams.</summary>
+        /// <remarks>Default is the system's current ANSI code page.</remarks>
         public Encoding Encoding
         {
             get { return mEncoding; }
@@ -38,9 +48,7 @@ namespace FileHelpers.Detection
 
         private double mFixedLengthDeviationTolerance = 0.01;
 
-        /// <summary>
-        /// Uses to calculate when a file has fixed length records. Between 0.0 - 1.0 (Default 0.01)
-        /// </summary>
+        /// <summary>Used to calculate when a file has fixed length records. Between 0.0 - 1.0 (Default 0.01)</summary>
         public double FixedLengthDeviationTolerance
         {
             get { return mFixedLengthDeviationTolerance; }
