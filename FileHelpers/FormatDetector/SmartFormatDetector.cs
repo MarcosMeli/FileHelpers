@@ -68,7 +68,21 @@ namespace FileHelpers.Detection
                     throw new InvalidOperationException("Unsuported FormatHint value.");
             }
 
+            foreach (FormatOption option in res)
+            {
+                DetectTypes(option);
+                DetectQuoted(option);
+            }
+
             return res.ToArray();
+        }
+
+        private void DetectQuoted(FormatOption option)
+        {
+        }
+
+        private void DetectTypes(FormatOption option)
+        {
         }
 
         private string[][] GetSampleLines(IEnumerable<string> files, int nroOfLines)
@@ -86,11 +100,36 @@ namespace FileHelpers.Detection
         // UNKNOWN
         private void CreateMixedOptions(string[][] sampleData, List<FormatOption> res)
         {
+            if (LooksLikeFixed(sampleData))
+                CreateFixedLengthOptions(sampleData, res);
+            else 
+                CreateDelimiterOptions(sampleData, res);
             
+        }
+
+        private bool LooksLikeFixed(string[][] data)
+        {
+            double average = CreateAverageLines(data);
+            double deviation = CalculateDeviationLines(data, average);
+
+            return deviation < average*0.02;
         }
 
         // FIXED LENGTH
         private void CreateFixedLengthOptions(string[][] sampleData, List<FormatOption> res)
+        {
+            FormatOption option = new FormatOption();
+            option.Certainty = 50;
+
+            FixedLengthClassBuilder builder = new FixedLengthClassBuilder("AutoDetectedClass");
+            CreateFixedLengthFields(sampleData, builder);
+
+            option.mClassBuilder = builder;
+
+            res.Add(option);
+        }
+
+        private void CreateFixedLengthFields(string[][] data, FixedLengthClassBuilder builder)
         {
             
         }
@@ -103,35 +142,40 @@ namespace FileHelpers.Detection
 
         private void CreateDelimiterOptions(string[][] sampleData, List<FormatOption> res, char delimiter)
         {
-            List<char> delimiters = new List<char>();
+            List<DelimiterInfo> delimiters = new List<DelimiterInfo>();
+           
             if (delimiter == '\0')
                 delimiters = GetDelimiters(sampleData);
             else 
-                delimiters.Add(delimiter);
+                delimiters.Add(GetDelimiterInfo(sampleData, delimiter));
 
-            FormatOption option = new FormatOption();
-            DelimitedClassBuilder builder = new DelimitedClassBuilder("AutoDetectedClass", delimiter.ToString());
-
-
-        }
-
-        private List<char> GetDelimiters(string[][] sampleData)
-        {
-            SortedDictionary<int, List<char>> frequency = FrequencyTable(sampleData);
-            
-            foreach (KeyValuePair<int, List<char>> pair in frequency)
+            foreach (DelimiterInfo info in delimiters)
             {
+                FormatOption option = new FormatOption();
+                option.Certainty = (int) ((1 - info.Deviation) * 100);
                 
+                DelimitedClassBuilder builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
+                builder.AddFields(info.AvergeByLine);
+
+                option.mClassBuilder = builder;
+                
+                res.Add(option);
             }
 
-            return new List<char>();
         }
 
-        private SortedDictionary<int, List<char>> FrequencyTable(string[][] data)
+        private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
-            SortedDictionary<int, List<char>> res = new SortedDictionary<int, List<char>>();
+            double average = CreateAverage(delimiter, data);
+            double deviation = CalculateDeviation(delimiter, data, average);
 
-            SortedDictionary<char, int> frecuency = new SortedDictionary<char, int>();
+            return new DelimiterInfo(delimiter, (int) Math.Round(average), deviation);
+
+        }
+
+        private List<DelimiterInfo> GetDelimiters(string[][] data)
+        {
+            Dictionary<char, int> frecuency = new Dictionary<char, int>();
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -144,9 +188,10 @@ namespace FileHelpers.Detection
                     for (int ci = 0; ci < line.Length; ci++)
                     {
                         char c = line[ci];
-                        if (Char.IsLetterOrDigit(c) || c == ' ')
-                            continue;
                         
+                        if (Char.IsLetterOrDigit(c) 
+                            || c == ' ')
+                            continue;
 
                         int count;
                         if (frecuency.TryGetValue(c, out count))
@@ -160,19 +205,129 @@ namespace FileHelpers.Detection
                 }
             }
 
+            int max = 0;
             foreach (KeyValuePair<char, int> pair in frecuency)
             {
-                if (res.ContainsKey(pair.Value))
-                    res[pair.Value].Add(pair.Key);
-                else
+                max = Math.Max(max, pair.Value);
+            }
+
+            List<DelimiterInfo> candidates = new List<DelimiterInfo>();
+
+
+            foreach (KeyValuePair<char, int> pair in frecuency)
+            {
+                double average = CreateAverage(pair.Key, data);
+                double deviation = CalculateDeviation(pair.Key, data, average);
+
+                if (average > 1 && deviation < 0.2)
+                    candidates.Add(new DelimiterInfo(pair.Key, (int) Math.Round(average), deviation));
+            }
+
+            return candidates;
+        }
+
+        private double CalculateDeviation(char c, string[][] data, double average)
+        {
+            double bigSum = 0.0;
+            int lines = 0;
+            foreach (string[] fileData in data)
+            {
+                foreach (string line in fileData)
                 {
-                    List<char> valueList = new List<char>();
-                    valueList.Add(pair.Key);
-                    res.Add(pair.Value, valueList);
+                    lines++;
+                    
+                    int sum = 0;
+                    foreach (char candidate in line)
+                    {
+                        if (candidate == c)
+                            sum += 1;
+                    }
+
+                    bigSum = Math.Pow(sum - average, 2);
                 }
             }
 
-            return res;
+            bigSum = bigSum / lines;
+            bigSum = Math.Sqrt(bigSum);
+
+            return bigSum;
+            
+        }
+
+        private double CreateAverage(char c, string[][] data)
+        {
+            double sum = 0;
+            int lines = 0;
+
+            foreach (string[] fileData in data)
+            {
+                foreach (string line in fileData)
+                {
+                    lines++;
+
+                    foreach (char candidate in line)
+                    {
+                        if (candidate == c)
+                            sum += 1;
+                    }
+
+                }
+            }
+
+            return sum / lines;
+        }
+
+        private double CreateAverageLines(string[][] data)
+        {
+            double sum = 0;
+            int lines = 0;
+
+            foreach (string[] fileData in data)
+            {
+                foreach (string line in fileData)
+                {
+                    lines++;
+                    sum += line.Length;
+                }
+            }
+
+            return sum / lines;
+        }
+
+        private double CalculateDeviationLines(string[][] data, double average)
+        {
+            double bigSum = 0.0;
+            int lines = 0;
+
+            foreach (string[] fileData in data)
+            {
+                foreach (string line in fileData)
+                {
+                    lines++;
+                    bigSum = Math.Pow(line.Length - average, 2);
+                }
+            }
+
+            bigSum = bigSum / lines;
+            bigSum = Math.Sqrt(bigSum);
+
+            return bigSum;
+
+        }
+
+    }
+
+    internal class DelimiterInfo
+    {
+        public char Delimiter;
+        public int AvergeByLine;
+        public double Deviation;
+
+        public DelimiterInfo(char delimiter, int average, double deviation)
+        {
+            Delimiter = delimiter;
+            AvergeByLine = average;
+            Deviation = deviation;
         }
     }
 }

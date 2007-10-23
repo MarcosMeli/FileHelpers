@@ -4,12 +4,12 @@ namespace FileHelpers.Detection
 {
     public class FormatOption
     {
-        private int mCertainty;
+        private int mConfidence = 0;
 
-        public int Certainty
+        public int Confidence
         {
-            get { return mCertainty; }
-            set { mCertainty = value; }
+            get { return mConfidence; }
+            set { mConfidence = value; }
         }
 
         internal ClassBuilder mClassBuilder;

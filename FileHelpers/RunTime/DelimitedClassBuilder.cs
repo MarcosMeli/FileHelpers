@@ -159,5 +159,17 @@ namespace FileHelpers.RunTime
 		{
 			AddField(node.Attributes.Item(0).InnerText, node.Attributes.Item(1).InnerText).ReadField(node);
 		}
+
+        /// <summary>
+        /// Adds n fields of type string, with the names "Field1", Field2", etc
+        /// </summary>
+        /// <param name="numberOfFields">The number of fields to add</param>
+	    public void AddFields(int numberOfFields)
+	    {
+            for (int i = 0; i < numberOfFields; i++)
+            {
+                AddField("Field" + (i + 1).ToString().PadLeft(4, '0'));
+            }
+	    }
 	}
 }

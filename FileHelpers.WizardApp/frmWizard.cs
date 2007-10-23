@@ -150,9 +150,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -658,8 +658,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -1330,8 +1330,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender3;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1406,6 +1406,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.linkHome);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.lblStep2);
@@ -1415,7 +1416,6 @@ namespace FileHelpers.WizardApp
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.lblStep0);
             this.panel1.Controls.Add(this.lblStep1);
-            this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.picFirstDark);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -1533,7 +1533,7 @@ namespace FileHelpers.WizardApp
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 408);
+            this.ClientSize = new System.Drawing.Size(569, 406);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
@@ -1550,9 +1550,9 @@ namespace FileHelpers.WizardApp
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FileHelpers - Record Class Wizard v2.0";
-            this.Resize += new System.EventHandler(this.frmWizard_Resize);
-            this.Activated += new System.EventHandler(this.frmWizard_Activated);
             this.Load += new System.EventHandler(this.frmWizard_Load);
+            this.Activated += new System.EventHandler(this.frmWizard_Activated);
+            this.Resize += new System.EventHandler(this.frmWizard_Resize);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1617,6 +1617,7 @@ namespace FileHelpers.WizardApp
             cboClassVisibility.DataSource = new NetVisibility[] { NetVisibility.Public, NetVisibility.Internal};
             cboRecordCondition.DataSource = Enum.GetValues(typeof(RecordCondition));
             mMoving = false;
+            picCurrStep.BringToFront();
 
         }
 
