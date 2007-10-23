@@ -313,6 +313,8 @@
     <Compile Include="Fields\FixedLengthField.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FormatDetector\FormatHint.cs" />
+    <Compile Include="FormatDetector\FormatOption.cs" />
     <Compile Include="Helpers\ConditionHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -404,6 +406,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
+    <Compile Include="FormatDetector\SmartFormatDetector.cs" />
     <None Include="Diagrams\DataLinkDiagram.cd" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />

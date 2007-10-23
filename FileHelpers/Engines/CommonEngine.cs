@@ -671,16 +671,52 @@ namespace FileHelpers
 
             StreamReader reader = new StreamReader(file);
 
-            string line;
             for (int i = 0; i < lines; i++)
             {
-                line = reader.ReadLine();
-                if (line != null)
+                string line = reader.ReadLine();
+                if (line == null)
+                    break;
+                else
                     sb.Append(line + StringHelper.NewLine);
             }
             reader.Close();
 
             return sb.ToString();
+        }
+
+                /// <summary>
+                /// Shortcut method to read the first n lines of a text file as array.
+                /// </summary>
+                /// <param name="file">The file name</param>
+                /// <param name="lines">The number of lines to read.</param>
+                /// <returns>The first n lines of the file.</returns>
+                public static string[] RawReadFirstLinesArray(string file, int lines)
+                {
+                    return RawReadFirstLinesArray(file, lines, Encoding.Default);
+                }
+
+	    /// <summary>
+        /// Shortcut method to read the first n lines of a text file as array.
+        /// </summary>
+        /// <param name="file">The file name</param>
+        /// <param name="lines">The number of lines to read.</param>
+        /// <returns>The first n lines of the file.</returns>
+        public static string[] RawReadFirstLinesArray(string file, int lines, Encoding encoding)
+        {
+            ArrayList res = new ArrayList(lines);
+            StreamReader reader = new StreamReader(file, encoding);
+
+	        for (int i = 0; i < lines; i++)
+            {
+                string line = reader.ReadLine();
+                if (line == null)
+                    break;
+                else
+                    res.Add(line);
+            }
+	        reader.Close();
+
+            return (string[]) res.ToArray(typeof(string));
         }
 
 
