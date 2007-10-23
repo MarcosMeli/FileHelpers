@@ -313,8 +313,9 @@
     <Compile Include="Fields\FixedLengthField.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FormatDetector\DelimiterInfo.cs" />
     <Compile Include="FormatDetector\FormatHint.cs" />
-    <Compile Include="FormatDetector\FormatOption.cs" />
+    <Compile Include="FormatDetector\RecordFormatInfo.cs" />
     <Compile Include="Helpers\ConditionHelper.cs">
       <SubType>Code</SubType>
     </Compile>
