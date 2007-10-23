@@ -1,0 +1,1765 @@
+City,Tax,County
+Acampo,7.750%,San Joaquin
+Acton,8.250%,Los Angeles
+Adelaida,7.250%,San Luis Obispo
+Adelanto*,7.750%,San Bernardino
+Adin,7.250%,Modoc
+Agoura Hills*,8.250%,Los Angeles
+Agua Caliente,7.750%,Sonoma
+Agua Caliente Springs,7.750%,San Diego
+Agua Dulce,8.250%,Los Angeles
+Aguanga,7.750%,Riverside
+Ahwahnee,7.750%,Madera
+Al Tahoe,7.250%,El Dorado
+Alameda*,8.750%,Alameda
+Alamo,8.250%,Contra Costa
+Albany*,8.750%,Alameda
+Alberhill (Lake Elsinore*),7.750%,Riverside
+Albion,7.250%,Mendocino
+Alderpoint,7.250%,Humboldt
+Alhambra*,8.250%,Los Angeles
+Aliso Viejo*,7.750%,Orange
+Alleghany,7.250%,Sierra
+Almaden Valley,8.250%,Santa Clara
+Almanor,7.250%,Plumas
+Almondale,8.250%,Los Angeles
+Alondra,8.250%,Los Angeles
+Alpaugh,7.750%,Tulare
+Alpine,7.750%,San Diego
+Alta,7.250%,Placer
+Alta Loma (Rancho Cucamonga*),7.750%,San Bernardino
+Altadena,8.250%,Los Angeles
+Altaville*,7.250%,Calaveras
+Alton,7.250%,Humboldt
+Alturas*,7.250%,Modoc
+Alviso (San Jose*),8.250%,Santa Clara
+Amador City*,7.250%,Amador
+Amargosa (Death Valley),7.750%,Inyo
+Amboy,7.750%,San Bernardino
+American Canyon*,7.750%,Napa
+Anaheim*,7.750%,Orange
+Anderson*,7.250%,Shasta
+Angels Camp*,7.250%,Calaveras
+Angelus Oaks,7.750%,San Bernardino
+Angwin,7.750%,Napa
+Annapolis,7.750%,Sonoma
+Antelope,7.750%,Sacramento
+Antelope Acres,8.250%,Los Angeles
+Antioch*,8.250%,Contra Costa
+Anza,7.750%,Riverside
+Apple Valley*,7.750%,San Bernardino
+Applegate,7.250%,Placer
+Aptos,8.000%,Santa Cruz
+Arbuckle,7.250%,Colusa
+Arcadia*,8.250%,Los Angeles
+Arcata*,7.250%,Humboldt
+Argus,7.750%,San Bernardino
+Arleta (Los Angeles*),8.250%,Los Angeles
+Arlington (Riverside*),7.750%,Riverside
+Armona,7.250%,Kings
+Army Terminal,8.750%,Alameda
+Arnold,7.250%,Calaveras
+Aromas,7.250%,Monterey
+Arrowbear Lake,7.750%,San Bernardino
+Arrowhead Highlands,7.750%,San Bernardino
+Arroyo Grande*,7.750%,San Luis Obispo
+Artesia*,8.250%,Los Angeles
+Artois,7.250%,Glenn
+Arvin*,7.250%,Kern
+Ashland,8.750%,Alameda
+Asti,7.750%,Sonoma
+Atascadero*,7.250%,San Luis Obispo
+Athens,8.250%,Los Angeles
+Atherton*,8.250%,San Mateo
+Atwater*,7.250%,Merced
+Atwood,7.750%,Orange
+Auberry,7.975%,Fresno
+Auburn*,7.250%,Placer
+Avalon*,8.750%,Los Angeles
+Avenal*,7.250%,Kings
+Avery,7.250%,Calaveras
+Avila Beach,7.250%,San Luis Obispo
+Azusa*,8.250%,Los Angeles
+Badger,7.750%,Tulare
+Bailey,8.250%,Los Angeles
+Baker,7.750%,San Bernardino
+Bakersfield*,7.250%,Kern
+Balboa (Newport Beach*),7.750%,Orange
+Balboa Island (Newport Beach*),7.750%,Orange
+Balboa Park (San Diego*),7.750%,San Diego
+Baldwin Park*,8.250%,Los Angeles
+Ballard,7.750%,Santa Barbara
+Ballico,7.250%,Merced
+Ballroad,7.750%,Orange
+Bangor,7.250%,Butte
+Banning*,7.750%,Riverside
+Banta,7.750%,San Joaquin
+Bard,7.750%,Imperial
+Barrington,8.250%,Los Angeles
+Barstow*,7.750%,San Bernardino
+Bartlett,7.750%,Inyo
+Barton,7.975%,Fresno
+Base Line,7.750%,San Bernardino
+Bass Lake,7.750%,Madera
+Bassett,8.250%,Los Angeles
+Baxter,7.250%,Placer
+Bayside,7.250%,Humboldt
+Baywood Park,7.250%,San Luis Obispo
+Beale A.F.B.,7.250%,Yuba
+Bear River Lake,7.250%,Amador
+Bear Valley,7.250%,Alpine
+Bear Valley,7.750%,Mariposa
+Beaumont*,7.750%,Riverside
+Beckwourth,7.250%,Plumas
+Bel Air Estates,8.250%,Los Angeles
+Belden,7.250%,Plumas
+Bell Gardens*,8.250%,Los Angeles
+Bell*,8.250%,Los Angeles
+Bella Vista,7.250%,Shasta
+Bellflower*,8.250%,Los Angeles
+Belmont*,8.250%,San Mateo
+Belvedere*,7.750%,Marin
+Ben Lomond,8.000%,Santa Cruz
+Benicia*,7.375%,Solano
+Benton,7.250%,Mono
+Berkeley*,8.750%,Alameda
+Bermuda Dunes,7.750%,Riverside
+Berry Creek,7.250%,Butte
+Bethel Island,8.250%,Contra Costa
+Betteravia,7.750%,Santa Barbara
+Beverly Hills*,8.250%,Los Angeles
+Bieber,7.250%,Lassen
+Big Bar,7.250%,Trinity
+Big Basin,8.000%,Santa Cruz
+Big Bear City,7.750%,San Bernardino
+Big Bear Lake*,7.750%,San Bernardino
+Big Bend,7.250%,Shasta
+Big Creek,7.975%,Fresno
+Big Oak Flat,7.250%,Tuolumne
+Big Pine,7.750%,Inyo
+Big River,7.750%,San Bernardino
+Big Sur,7.250%,Monterey
+Biggs*,7.250%,Butte
+Bijou,7.250%,El Dorado
+Biola,7.975%,Fresno
+Biola College (La Mirada*),8.250%,Los Angeles
+Birds Landing,7.375%,Solano
+Bishop*,7.750%,Inyo
+Black Hawk,8.250%,Contra Costa
+Blairsden,7.250%,Plumas
+Blocksburg,7.250%,Humboldt
+Bloomington,7.750%,San Bernardino
+Blossom Hill,8.250%,Santa Clara
+Blossom Valley,8.250%,Santa Clara
+Blue Jay,7.750%,San Bernardino
+Blue Lake*,7.250%,Humboldt
+Blythe*,7.750%,Riverside
+Bodega,7.750%,Sonoma
+Bodega Bay,7.750%,Sonoma
+Bodfish,7.250%,Kern
+Bolinas,7.750%,Marin
+Bolsa,7.750%,Orange
+Bombay Beach,7.750%,Imperial
+Bonita,7.750%,San Diego
+Bonny Doon,8.000%,Santa Cruz
+Bonsall,7.750%,San Diego
+Boonville,7.250%,Mendocino
+Boron,7.250%,Kern
+Borrego Springs,7.750%,San Diego
+Bostonia,7.750%,San Diego
+Boulder Creek,8.000%,Santa Cruz
+Boulevard,7.750%,San Diego
+Bouquet Canyon (Santa Clarita*),8.250%,Los Angeles
+Bowman,7.250%,Placer
+Boyes Hot Springs,7.750%,Sonoma
+Bradbury*,8.250%,Los Angeles
+Bradford,8.750%,Alameda
+Bradley,7.250%,Monterey
+Branscomb,7.250%,Mendocino
+Brawley*,7.750%,Imperial
+Brea*,7.750%,Orange
+Brents Junction,8.250%,Los Angeles
+Brentwood (Los Angeles*),8.250%,Los Angeles
+Brentwood*,8.250%,Contra Costa
+Briceland,7.250%,Humboldt
+Bridgeport,7.750%,Mariposa
+Bridgeport,7.250%,Mono
+Bridgeville,7.250%,Humboldt
+Brisbane*,8.250%,San Mateo
+Broderick (West Sacramento*),7.750%,Yolo
+Brookdale,8.000%,Santa Cruz
+Brookhurst Center,7.750%,Orange
+Brooks,7.250%,Yolo
+Browns Valley,7.250%,Yuba
+Brownsville,7.250%,Yuba
+Bryn Mawr,7.750%,San Bernardino
+Bryte (West Sacramento*),7.750%,Yolo
+Buellton*,7.750%,Santa Barbara
+Buena Park*,7.750%,Orange
+Burbank*,8.250%,Los Angeles
+Burlingame*,8.250%,San Mateo
+Burney,7.250%,Shasta
+Burnt Ranch,7.250%,Trinity
+Burrel,7.975%,Fresno
+Burson,7.250%,Calaveras
+Butte City,7.250%,Glenn
+Butte Meadows,7.250%,Butte
+Buttonwillow,7.250%,Kern
+Byron,8.250%,Contra Costa
+Cabazon,7.750%,Riverside
+Cabrillo,8.250%,Los Angeles
+Cadiz,7.750%,San Bernardino
+Calabasas Highlands,8.250%,Los Angeles
+Calabasas Park,8.250%,Los Angeles
+Calabasas*,8.250%,Los Angeles
+Calexico*,7.750%,Imperial
+Caliente,7.250%,Kern
+California City*,7.250%,Kern
+California Hot Springs,7.750%,Tulare
+California Valley,7.250%,San Luis Obispo
+Calimesa*,7.750%,Riverside
+Calipatria*,7.750%,Imperial
+Calistoga*,7.750%,Napa
+Callahan,7.250%,Siskiyou
+Calpella,7.250%,Mendocino
+Calpine,7.250%,Sierra
+Calwa,7.975%,Fresno
+Camarillo*,7.250%,Ventura
+Cambria,7.250%,San Luis Obispo
+Cambrian Park,8.250%,Santa Clara
+Cameron Park,7.250%,El Dorado
+Camino,7.250%,El Dorado
+Camp Beale,7.250%,Yuba
+Camp Connell,7.250%,Calaveras
+Camp Curry,7.750%,Mariposa
+Camp Kaweah,7.750%,Tulare
+Camp Meeker,7.750%,Sonoma
+Camp Nelson,7.750%,Tulare
+Camp Pendleton,7.750%,San Diego
+Camp Roberts,7.250%,Monterey
+Campbell*,8.250%,Santa Clara
+Campo,7.750%,San Diego
+Campo Seco,7.250%,Calaveras
+Camptonville,7.250%,Yuba
+Canby,7.250%,Modoc
+Canoga Annex,8.250%,Los Angeles
+Canoga Park (Los Angeles*),8.250%,Los Angeles
+Cantil,7.250%,Kern
+Cantua Creek,7.975%,Fresno
+Canyon,8.250%,Contra Costa
+Canyon Country (Santa Clarita*),8.250%,Los Angeles
+Canyon Lake*,7.750%,Riverside
+Canyondam,7.250%,Plumas
+Capay,7.250%,Yolo
+Capistrano Beach (Dana Point*),7.750%,Orange
+Capitola*,8.250%,Santa Cruz
+Cardiff By The Sea (Encinitas*),7.750%,San Diego
+Cardwell,7.975%,Fresno
+Carlotta,7.250%,Humboldt
+Carlsbad*,7.750%,San Diego
+Carmel Rancho,7.250%,Monterey
+Carmel Valley,7.250%,Monterey
+Carmel*,7.250%,Monterey
+Carmichael,7.750%,Sacramento
+Carnelian Bay,7.250%,Placer
+Carpinteria*,7.750%,Santa Barbara
+Carson*,8.250%,Los Angeles
+Cartago,7.750%,Inyo
+Caruthers,7.975%,Fresno
+Casitas Springs,7.250%,Ventura
+Casmalia,7.750%,Santa Barbara
+Caspar,7.250%,Mendocino
+Cassel,7.250%,Shasta
+Castaic,8.250%,Los Angeles
+Castella,7.250%,Shasta
+Castle A.F.B.,7.250%,Merced
+Castro Valley,8.750%,Alameda
+Castroville,7.250%,Monterey
+Cathedral City*,7.750%,Riverside
+Catheys Valley,7.750%,Mariposa
+Cayucos,7.250%,San Luis Obispo
+Cazadero,7.750%,Sonoma
+Cecilville,7.250%,Siskiyou
+Cedar,8.250%,Los Angeles
+Cedar Crest,7.975%,Fresno
+Cedar Glen,7.750%,San Bernardino
+Cedar Ridge,7.375%,Nevada
+Cedarpines Park,7.750%,San Bernardino
+Cedarville,7.250%,Modoc
+Central Valley,7.250%,Shasta
+Century City,8.250%,Los Angeles
+Ceres*,7.375%,Stanislaus
+Cerritos*,8.250%,Los Angeles
+Challenge,7.250%,Yuba
+Chambers Lodge,7.250%,Placer
+Charter Oak,8.250%,Los Angeles
+Chatsworth (Los Angeles*),8.250%,Los Angeles
+Cherry Valley,7.750%,Riverside
+Chester,7.250%,Plumas
+Chicago Park,7.375%,Nevada
+Chico*,7.250%,Butte
+Chilcoot,7.250%,Plumas
+China Lake NWC (Ridgecrest*),7.250%,Kern
+Chinese Camp,7.250%,Tuolumne
+Chino Hills*,7.750%,San Bernardino
+Chino*,7.750%,San Bernardino
+Chiriaco Summit,7.750%,Riverside
+Cholame,7.250%,San Luis Obispo
+Chowchilla*,7.750%,Madera
+Chualar,7.250%,Monterey
+Chula Vista*,7.750%,San Diego
+Cima,7.750%,San Bernardino
+Citrus Heights*,7.750%,Sacramento
+City of Commerce*,8.250%,Los Angeles
+City of Industry*,8.250%,Los Angeles
+City Terrace,8.250%,Los Angeles
+Claremont*,8.250%,Los Angeles
+Clarksburg,7.250%,Yolo
+Clayton*,8.250%,Contra Costa
+Clear Creek,7.250%,Siskiyou
+Clearlake Highlands,7.250%,Lake
+Clearlake Oaks,7.250%,Lake
+Clearlake Park (Clearlake*),7.750%,Lake
+Clearlake*,7.750%,Lake
+Clements,7.750%,San Joaquin
+Clinter,7.975%,Fresno
+Clio,7.250%,Plumas
+Clipper Mills,7.250%,Butte
+Cloverdale*,7.750%,Sonoma
+Clovis*,8.275%,Fresno
+Coachella*,7.750%,Riverside
+Coalinga*,7.975%,Fresno
+Coarsegold,7.750%,Madera
+Cobb,7.250%,Lake
+Cohasset,7.250%,Butte
+Cole,8.250%,Los Angeles
+Coleville,7.250%,Mono
+Colfax*,7.250%,Placer
+College City,7.250%,Colusa
+College Grove Center,7.750%,San Diego
+Colma*,8.250%,San Mateo
+Coloma,7.250%,El Dorado
+Colorado,7.750%,Mariposa
+Colton*,7.750%,San Bernardino
+Columbia,7.250%,Tuolumne
+Colusa*,7.250%,Colusa
+Commerce*,8.250%,Los Angeles
+Comptche,7.250%,Mendocino
+Compton*,8.250%,Los Angeles
+Concord*,8.250%,Contra Costa
+Cool,7.250%,El Dorado
+Copperopolis,7.250%,Calaveras
+Corcoran*,7.250%,Kings
+Cornell,8.250%,Los Angeles
+Corning*,7.250%,Tehama
+Corona Del Mar (Newport Beach*),7.750%,Orange
+Corona*,7.750%,Riverside
+Coronado*,7.750%,San Diego
+Corralitos (Watsonville*),8.250%,Santa Cruz
+Corte Madera*,7.750%,Marin
+Coso Junction,7.750%,Inyo
+Costa Mesa*,7.750%,Orange
+Cotati*,7.750%,Sonoma
+Cottonwood,7.250%,Shasta
+Coulterville,7.750%,Mariposa
+Courtland,7.750%,Sacramento
+Covelo,7.250%,Mendocino
+Covina*,8.250%,Los Angeles
+Cowan Heights,7.750%,Orange
+Coyote,8.250%,Santa Clara
+Crannell,7.250%,Humboldt
+Crenshaw,8.250%,Los Angeles
+Crescent City*,7.250%,Del Norte
+Crescent Mills,7.250%,Plumas
+Cressey,7.250%,Merced
+Crest Park,7.750%,San Bernardino
+Cresta Blanca,8.750%,Alameda
+Crestline,7.750%,San Bernardino
+Creston,7.250%,San Luis Obispo
+Crockett,8.250%,Contra Costa
+Cromberg,7.250%,Plumas
+Cross Roads,7.750%,San Bernardino
+Crowley Lake (Mammoth Lake*),7.250%,Mono
+Crows Landing,7.375%,Stanislaus
+Cucamonga (Rancho Cucamonga*),7.750%,San Bernardino
+Cudahy*,8.250%,Los Angeles
+Culver City*,8.250%,Los Angeles
+Cummings,7.250%,Mendocino
+Cupertino*,8.250%,Santa Clara
+Curry Village,7.750%,Mariposa
+Cutler,7.750%,Tulare
+Cutten,7.250%,Humboldt
+Cuyama,7.750%,Santa Barbara
+Cypress*,7.750%,Orange 
+Daggett,7.750%,San Bernardino
+Dairy Farm,7.375%,Solano
+Daly City*,8.250%,San Mateo
+Dana Point*,7.750%,Orange
+Danville*,8.250%,Contra Costa
+Dardanelle,7.250%,Tuolumne
+Darwin,7.750%,Inyo
+Davenport,8.000%,Santa Cruz
+Davis Creek,7.250%,Modoc
+Davis*,7.750%,Yolo
+Death Valley,7.750%,Inyo
+Death Valley Junction,7.750%,Inyo
+Deer Park,7.750%,Napa
+Del Kern (Bakersfield*),7.250%,Kern
+Del Mar Heights (Morro Bay*),7.750%,San Luis Obispo
+Del Mar*,7.750%,San Diego
+Del Monte Park (Monterey*),7.250%,Monterey
+Del Rey,7.975%,Fresno
+Del Rey Oaks*,8.250%,Monterey
+Del Rosa,7.750%,San Bernardino
+Del Sur,8.250%,Los Angeles
+Delano*,7.250%,Kern
+Deleven,7.250%,Colusa
+Delhi,7.250%,Merced
+Denair,7.375%,Stanislaus
+Denny,7.250%,Trinity
+Descanso,7.750%,San Diego
+Desert Center,7.750%,Riverside
+Desert Hot Springs*,7.750%,Riverside
+Di Giorgio,7.250%,Kern
+Diablo,8.250%,Contra Costa
+Diamond Bar*,8.250%,Los Angeles
+Diamond Springs,7.250%,El Dorado
+Dillon Beach,7.750%,Marin
+Dinkey Creek,7.975%,Fresno
+Dinuba*,8.500%,Tulare
+Dixon*,7.375%,Solano
+Dobbins,7.250%,Yuba
+Dollar Ranch,8.250%,Contra Costa
+Dorris*,7.250%,Siskiyou
+Dos Palos*,7.250%,Merced
+Dos Rios,7.250%,Mendocino
+Douglas City,7.250%,Trinity
+Douglas Flat,7.250%,Calaveras
+Downey*,8.250%,Los Angeles
+Downieville,7.250%,Sierra
+Doyle,7.250%,Lassen
+Drytown,7.250%,Amador
+Duarte*,8.250%,Los Angeles
+Dublin*,8.750%,Alameda
+Ducor,7.750%,Tulare
+Dulzura,7.750%,San Diego
+Duncans Mills,7.750%,Sonoma
+Dunlap,7.975%,Fresno
+Dunnigan,7.250%,Yolo
+Dunsmuir*,7.250%,Siskiyou
+Durham,7.250%,Butte
+Dutch Flat,7.250%,Placer
+Eagle Mountain,7.750%,Riverside
+Eagle Rock (Los Angeles*),8.250%,Los Angeles
+Eagleville,7.250%,Modoc
+Earlimart,7.750%,Tulare
+Earp,7.750%,San Bernardino
+East Highlands (Highland*),7.750%,San Bernardino
+East Irvine (Irvine*),7.750%,Orange
+East Los Angeles,8.250%,Los Angeles
+East Lynwood (Lynwood*),8.250%,Los Angeles
+East Nicolaus,7.250%,Sutter
+East Palo Alto*,8.250%,San Mateo
+East Porterville (Porterville*),8.250%,Tulare
+East San Pedro (Los Angeles*),8.250%,Los Angeles
+Eastgate,8.250%,Los Angeles
+Easton,7.975%,Fresno
+Eastside,7.750%,San Bernardino
+Echo Lake,7.250%,El Dorado
+Echo Park (Los Angeles*),8.250%,Los Angeles
+Edgemont (Moreno Valley*),7.750%,Riverside
+Edgewood,7.250%,Siskiyou
+Edison,7.250%,Kern
+Edwards,7.250%,Kern
+Edwards A.F.B.,7.250%,Kern
+El Cajon*,8.250%,San Diego
+El Centro*,7.750%,Imperial
+El Cerrito*,8.250%,Contra Costa
+El Dorado,7.250%,El Dorado
+El Dorado Hills,7.250%,El Dorado
+El Granada,8.250%,San Mateo
+El Macero,7.250%,Yolo
+El Modena,7.750%,Orange
+El Monte*,8.250%,Los Angeles
+El Nido,7.250%,Merced
+El Portal,7.750%,Mariposa
+El Segundo*,8.250%,Los Angeles
+El Sobrante,8.250%,Contra Costa
+El Toro (Lake Forest*),7.750%,Orange
+El Toro M.C.A.S.,7.750%,Orange
+El Verano,7.750%,Sonoma
+El Viejo,7.375%,Stanislaus
+Eldridge,7.750%,Sonoma
+Elizabeth Lake,8.250%,Los Angeles
+Elk,7.250%,Mendocino
+Elk Creek,7.250%,Glenn
+Elk Grove*,7.750%,Sacramento
+Elmira,7.375%,Solano
+Elmwood,8.750%,Alameda
+Elverta,7.750%,Sacramento
+Emeryville*,8.750%,Alameda
+Emigrant Gap,7.250%,Placer
+Empire,7.375%,Stanislaus
+Encinitas*,7.750%,San Diego
+Encino (Los Angeles*),8.250%,Los Angeles
+Enterprise,7.250%,Shasta
+Escalon*,7.750%,San Joaquin
+Escondido*,7.750%,San Diego
+Esparto,7.250%,Yolo
+Essex,7.750%,San Bernardino
+Etiwanda (Rancho Cucamonga*),7.750%,San Bernardino
+Etna*,7.250%,Siskiyou
+Ettersburg,7.250%,Humboldt
+Eureka*,7.250%,Humboldt
+Exeter*,7.750%,Tulare
+Fair Oaks ,7.750%,Sacramento
+Fairfax*,7.750%,Marin
+Fairfield*,7.375%,Solano
+Fairmount,8.250%,Contra Costa
+Fall River Mills,7.250%,Shasta
+Fallbrook ,7.750%,San Diego
+Fallbrook Junction,7.750%,San Diego
+Fallen Leaf,7.250%,El Dorado
+Fallon,7.750%,Marin
+Fancher,7.975%,Fresno
+Farmersville*,8.250%,Tulare
+Farmington,7.750%,San Joaquin
+Fawnskin,7.750%,San Bernardino
+Feather Falls,7.250%,Butte
+Fellows,7.250%,Kern
+Felton,8.000%,Santa Cruz
+Fenner,7.750%,San Bernardino
+Fernbridge (Fortuna*),7.250%,Humboldt
+Ferndale*,7.250%,Humboldt
+Fiddletown,7.250%,Amador
+Fields Landing,7.250%,Humboldt
+Fig Garden Village (Fresno*),7.975%,Fresno
+Fillmore*,7.250%,Ventura
+Finley,7.250%,Lake
+Firebaugh*,7.975%,Fresno
+Fish Camp,7.750%,Mariposa
+Five Points,7.975%,Fresno
+Flinn Springs,7.750%,San Diego
+Flintridge (LaCanada/ Flintridge*),8.250%,Los Angeles
+Florence,8.250%,Los Angeles
+Floriston,7.375%,Nevada
+Flournoy,7.250%,Tehama
+Folsom*,7.750%,Sacramento
+Fontana*,7.750%,San Bernardino
+Foothill Ranch,7.750%,Orange
+Forbestown,7.250%,Butte
+Forest Falls,7.750%,San Bernardino
+Forest Glen,7.250%,Trinity
+Forest Knolls,7.750%,Marin
+Forest Park,8.250%,Los Angeles
+Forest Ranch,7.250%,Butte
+Foresthill,7.250%,Placer
+Forestville,7.750%,Sonoma
+Forks of Salmon,7.250%,Siskiyou
+Fort Bidwell,7.250%,Modoc
+Fort Bragg*,7.750%,Mendocino
+Fort Dick,7.250%,Del Norte
+Fort Irwin,7.750%,San Bernardino
+Fort Jones*,7.250%,Siskiyou
+Fort Ord (Seaside*),7.250%,Monterey
+Fort Seward,7.250%,Humboldt
+Fortuna*,7.250%,Humboldt
+Foster City*,8.250%,San Mateo
+Fountain Valley*,7.750%,Orange
+Fowler*,7.975%,Fresno
+Frazier Park,7.250%,Kern
+Freedom,8.000%,Santa Cruz
+Freeport,7.750%,Sacramento
+Freestone,7.750%,Sonoma
+Fremont*,8.750%,Alameda
+French Camp,7.750%,San Joaquin
+French Gulch,7.250%,Shasta
+Freshwater,7.250%,Humboldt
+Fresno*,7.975%,Fresno
+Friant,7.975%,Fresno
+Friendly Valley (Santa Clarita*),8.250%,Los Angeles
+Frontera,7.750%,Riverside
+Fullerton*,7.750%,Orange
+Fulton,7.750%,Sonoma
+Galt*,7.750%,Sacramento
+Garberville,7.250%,Humboldt
+Garden Grove*,7.750%,Orange
+Garden Valley,7.250%,El Dorado
+Gardena*,8.250%,Los Angeles
+Garey,7.750%,Santa Barbara
+Garnet,7.750%,Riverside
+Gasquet,7.250%,Del Norte
+Gaviota,7.750%,Santa Barbara
+Gazelle,7.250%,Siskiyou
+George A.F.B.,7.750%,San Bernardino
+Georgetown,7.250%,El Dorado
+Gerber,7.250%,Tehama
+Geyserville,7.750%,Sonoma
+Giant Forest,7.750%,Tulare
+Gillman Hot Springs,7.750%,Riverside
+Gilroy*,8.250%,Santa Clara
+Glassell Park (Los Angeles*),8.250%,Los Angeles
+Glen Avon,7.750%,Riverside
+Glen Ellen,7.750%,Sonoma
+Glenburn,7.250%,Shasta
+Glencoe,7.250%,Calaveras
+Glendale*,8.250%,Los Angeles
+Glendora*,8.250%,Los Angeles
+Glenhaven,7.250%,Lake
+Glenn,7.250%,Glenn
+Glennville,7.250%,Kern
+Gold River (Rancho Cordova*),7.750%,Sacramento
+Gold Run,7.250%,Placer
+Golden Hills,7.250%,Kern
+Goleta*,7.750%,Santa Barbara
+Gonzales*,7.250%,Monterey
+Goodyears Bar,7.250%,Sierra
+Gorman,8.250%,Los Angeles
+Goshen,7.750%,Tulare
+Government Island,8.750%,Alameda
+Graeagle,7.250%,Plumas
+Granada Hills (Los Angeles*),8.250%,Los Angeles
+Grand Terrace*,7.750%,San Bernardino
+Granite Bay,7.250%,Placer
+Grass Valley*,7.375%,Nevada
+Graton,7.750%,Sonoma
+Green Valley,8.250%,Los Angeles
+Green Valley Lake,7.750%,San Bernardino
+Greenacres,7.250%,Kern
+Greenbrae (Larkspur*),7.750%,Marin
+Greenfield*,7.250%,Monterey
+Greenview,7.250%,Siskiyou
+Greenville,7.250%,Plumas
+Greenwood,7.250%,El Dorado
+Grenada,7.250%,Siskiyou
+Gridley*,7.250%,Butte
+Grimes,7.250%,Colusa
+Grizzly Flats,7.250%,El Dorado
+Groveland,7.250%,Tuolumne
+Grover Beach*,7.750%,San Luis Obispo
+Guadalupe*,7.750%,Santa Barbara
+Gualala,7.250%,Mendocino
+Guasti (Ontario*),7.750%,San Bernardino
+Guatay,7.750%,San Diego
+Guerneville,7.750%,Sonoma
+Guinda,7.250%,Yolo
+Gustine*,7.250%,Merced
+Hacienda Heights,8.250%,Los Angeles
+Halcyon,7.250%,San Luis Obispo
+Half Moon Bay*,8.250%,San Mateo
+Hamilton A.F.B. (Novato*),7.750%,Marin
+Hamilton City,7.250%,Glenn
+Hanford*,7.250%,Kings
+Happy Camp,7.250%,Siskiyou
+Harbor City (Los Angeles*),8.250%,Los Angeles
+Harmony,7.250%,San Luis Obispo
+Harris,7.250%,Humboldt
+Hat Creek,7.250%,Shasta
+Hathaway Pines,7.250%,Calaveras
+Havasu Lake,7.750%,San Bernardino
+Hawaiian Gardens*,8.250%,Los Angeles
+Hawthorne*,8.250%,Los Angeles
+Hayfork,7.250%,Trinity
+Hayward*,8.750%,Alameda
+Hazard,8.250%,Los Angeles
+Healdsburg*,7.750%,Sonoma
+Heber,7.750%,Imperial
+Helena,7.250%,Trinity
+Helendale,7.750%,San Bernardino
+Helm,7.975%,Fresno
+Hemet*,7.750%,Riverside
+Herald,7.750%,Sacramento
+Hercules*,8.250%,Contra Costa
+Herlong,7.250%,Lassen
+Hermosa Beach*,8.250%,Los Angeles
+Herndon,7.975%,Fresno
+Hesperia*,7.750%,San Bernardino
+Heyer,8.750%,Alameda
+Hickman,7.375%,Stanislaus
+Hidden Hills*,8.250%,Los Angeles
+Highgrove,7.750%,Riverside
+Highland Park (Los Angeles*),8.250%,Los Angeles
+Highland*,7.750%,San Bernardino
+Highway City (Fresno*),7.975%,Fresno
+Hillcrest (San Diego*),7.750%,San Diego
+Hillsborough*,8.250%,San Mateo
+Hillsdale (San Mateo*),8.250%,San Mateo
+Hilmar,7.250%,Merced
+Hilt,7.250%,Siskiyou
+Hinkley,7.750%,San Bernardino
+Hobergs,7.250%,Lake
+Hollister*,7.250%,San Benito
+Hollywood (Los Angeles*),8.250%,Los Angeles
+Holmes,7.250%,Humboldt
+Holt,7.750%,San Joaquin
+Holtville*,7.750%,Imperial
+Holy City,8.250%,Santa Clara
+Homeland,7.750%,Riverside
+Homestead,7.250%,Kern
+Homestead,7.750%,Riverside
+Homewood,7.250%,Placer
+Honby,8.250%,Los Angeles
+Honeydew,7.250%,Humboldt
+Hood,7.750%,Sacramento
+Hoopa,7.250%,Humboldt
+Hope Valley (Forest Camp),7.250%,Alpine
+Hopland,7.250%,Mendocino
+Hornbrook,7.250%,Siskiyou
+Hornitos,7.750%,Mariposa
+Horse Creek,7.250%,Siskiyou
+Horse Lake,7.250%,Lassen
+Hughson*,7.375%,Stanislaus
+Hume,7.975%,Fresno
+Huntington,7.750%,Orange
+Huntington Beach*,7.750%,Orange
+Huntington Lake,7.975%,Fresno
+Huntington Park*,8.250%,Los Angeles
+Huron*,7.975%,Fresno
+Hyampom,7.250%,Trinity
+Hyde Park (Los Angeles*),8.250%,Los Angeles
+Hydesville,7.250%,Humboldt
+Idria,7.250%,San Benito
+Idyllwild,7.750%,Riverside
+Ignacio (Novato*),7.750%,Marin
+Igo,7.250%,Shasta
+Imola (Napa*),7.750%,Napa
+Imperial Beach*,7.750%,San Diego
+Imperial*,7.750%,Imperial
+Independence,7.750%,Inyo
+Indian Wells*,7.750%,Riverside
+Indio*,7.750%,Riverside
+Industry*,8.250%,Los Angeles
+Inglewood*,8.750%,Los Angeles
+Inverness,7.750%,Marin
+Inyo,7.750%,Inyo
+Inyokern,7.250%,Kern
+Ione*,7.250%,Amador
+Iowa Hill,7.250%,Placer
+Irvine*,7.750%,Orange
+Irwindale*,8.250%,Los Angeles
+Isla Vista,7.750%,Santa Barbara
+Island Mountain,7.250%,Trinity
+Isleton*,7.750%,Sacramento
+Ivanhoe,7.750%,Tulare
+Ivanpah,7.750%,San Bernardino
+Jackson*,7.250%,Amador
+Jacumba,7.750%,San Diego
+Jamacha,7.750%,San Diego
+Jamestown,7.250%,Tuolumne
+Jamul,7.750%,San Diego
+Janesville,7.250%,Lassen
+Jenner,7.750%,Sonoma
+Johannesburg,7.250%,Kern
+Johnsondale,7.750%,Tulare
+Johnstonville,7.250%,Lassen
+Johnstown,7.750%,San Diego
+Jolon,7.250%,Monterey
+Joshua Tree,7.750%,San Bernardino
+Julian,7.750%,San Diego
+Junction City,7.250%,Trinity
+June Lake,7.250%,Mono
+Juniper,7.250%,Lassen
+Kagel Canyon,8.250%,Los Angeles
+Kaweah,7.750%,Tulare
+Keddie,7.250%,Plumas
+Keeler,7.750%,Inyo
+Keene,7.250%,Kern
+Kelsey,7.250%,El Dorado
+Kelseyville,7.250%,Lake
+Kelso,7.750%,San Bernardino
+Kensington,8.250%,Contra Costa
+Kentfield,7.750%,Marin
+Kenwood,7.750%,Sonoma
+Kerman*,7.975%,Fresno
+Kernville,7.250%,Kern
+Keswick,7.250%,Shasta
+Kettleman City,7.250%,Kings
+Keyes,7.375%,Stanislaus
+King City*,7.250%,Monterey
+Kings Beach,7.250%,Placer
+Kings Canyon National Park,7.750%,Tulare
+Kingsburg*,7.975%,Fresno
+Kinyon,7.250%,Siskiyou
+Kirkwood,7.250%,Alpine
+Kit Carson,7.250%,Amador
+Klamath,7.250%,Del Norte
+Klamath River,7.250%,Siskiyou
+Kneeland,7.250%,Humboldt
+Knights Ferry,7.375%,Stanislaus
+Knights Landing,7.250%,Yolo
+Knightsen,8.250%,Contra Costa
+Korbel,7.250%,Humboldt
+Korbel,7.750%,Sonoma
+Kyburz,7.250%,El Dorado
+L.A. Airport (Los Angeles*),8.250%,Los Angeles
+La Canada- Flintridge*,8.250%,Los Angeles
+La Crescenta,8.250%,Los Angeles
+La Cresta Village,7.250%,Kern
+La Grange,7.375%,Stanislaus
+La Habra Heights*,8.250%,Los Angeles
+La Habra*,7.750%,Orange
+La Honda,8.250%,San Mateo
+La Jolla (San Diego*),7.750%,San Diego
+La Mesa*,7.750%,San Diego
+La Mirada*,8.250%,Los Angeles
+La Palma*,7.750%,Orange
+La Porte,7.250%,Plumas
+La Puente*,8.250%,Los Angeles
+La Quinta*,7.750%,Riverside
+La Selva Beach,8.000%,Santa Cruz
+La Verne*,8.250%,Los Angeles
+La Vina,8.250%,Los Angeles
+Ladera,8.250%,San Mateo
+Ladera Heights,8.250%,Los Angeles
+Ladera Ranch,7.750%,Orange
+Lafayette*,8.250%,Contra Costa
+Laguna Beach*,8.250%,Orange
+Laguna Hills*,7.750%,Orange
+Laguna Niguel*,7.750%,Orange
+Lagunitas,7.750%,Marin
+Lake Alpine,7.250%,Alpine
+Lake Arrowhead,7.750%,San Bernardino
+Lake City,7.250%,Modoc
+Lake City,7.375%,Nevada
+Lake Elsinore*,7.750%,Riverside
+Lake Forest (El Toro*),7.750%,Orange
+Lake Hughes,8.250%,Los Angeles
+Lake Isabella,7.250%,Kern
+Lake Los Angeles,8.250%,Los Angeles
+Lake Mary,7.250%,Mono
+Lake San Marcos,7.750%,San Diego
+Lake Shastina,7.250%,Siskiyou
+Lake Sherwood,7.250%,Ventura
+Lakehead,7.250%,Shasta
+Lakeport*,7.750%,Lake
+Lakeshore,7.975%,Fresno
+Lakeside,7.750%,San Diego
+Lakeview,7.750%,Riverside
+Lakeview Terrace (Los Angeles*),8.250%,Los Angeles
+Lakewood*,8.250%,Los Angeles
+Lamont,7.250%,Kern
+Lancaster*,8.250%,Los Angeles
+Landers,7.750%,San Bernardino
+Landscape,8.750%,Alameda
+Lang,8.250%,Los Angeles
+Larkfield,7.750%,Sonoma
+Larkspur*,7.750%,Marin
+Larwin Plaza,7.375%,Solano
+Lathrop,7.750%,San Joaquin
+Laton,7.975%,Fresno
+Lawndale*,8.250%,Los Angeles
+Laws,7.750%,Inyo
+Laytonville,7.250%,Mendocino
+Le Grand (Also Legrand),7.250%,Merced
+Lebec,7.250%,Kern
+Lee Vining,7.250%,Mono
+Leggett,7.250%,Mendocino
+Leisure World,7.750%,Orange
+Leisure World (Seal Beach*),7.750%,Orange
+Lemon Grove*,7.750%,San Diego
+Lemoncove,7.750%,Tulare
+Lemoore*,7.250%,Kings
+Lennox,8.250%,Los Angeles
+Lenwood,7.750%,San Bernardino
+Leona Valley,8.250%,Los Angeles
+Leucadia (Encinitas*),7.750%,San Diego
+Lewiston,7.250%,Trinity
+Liberty Farms,7.375%,Solano
+Likely,7.250%,Modoc
+Lincoln Acres,7.750%,San Diego
+Lincoln Village,7.750%,San Joaquin
+Lincoln*,7.250%,Placer
+Linda,7.250%,Yuba
+Linden,7.750%,San Joaquin
+Lindsay*,7.750%,Tulare
+Linnell,7.750%,Tulare
+Litchfield,7.250%,Lassen
+Little Lake,7.750%,Inyo
+Little Norway,7.250%,El Dorado
+Little Valley,7.250%,Lassen
+Littleriver,7.250%,Mendocino
+Littlerock (Also Little Rock),8.250%,Los Angeles
+Live Oak*,7.250%,Sutter
+Livermore*,8.750%,Alameda
+Livingston*,7.250%,Merced
+Llano,8.250%,Los Angeles
+Loch Lomond,7.250%,Lake
+Locke,7.750%,Sacramento
+Lockeford,7.750%,San Joaquin
+Lockheed,8.000%,Santa Cruz
+Lockwood,7.250%,Monterey
+Lodi*,7.750%,San Joaquin
+Loleta,7.250%,Humboldt
+Loma Linda*,7.750%,San Bernardino
+Loma Mar,8.250%,San Mateo
+Loma Rica,7.250%,Yuba
+Lomita*,8.250%,Los Angeles
+Lompoc*,7.750%,Santa Barbara
+London,7.750%,Tulare
+Lone Pine,7.750%,Inyo
+Long Barn,7.250%,Tuolumne
+Long Beach*,8.250%,Los Angeles
+Longview,8.250%,Los Angeles
+Lookout,7.250%,Modoc
+Loomis*,7.250%,Placer
+Lorre Estates,8.250%,Santa Clara
+Los Alamitos*,7.750%,Orange
+Los Alamos,7.750%,Santa Barbara
+Los Altos Hills*,8.250%,Santa Clara
+Los Altos*,8.250%,Santa Clara
+Los Angeles*,8.250%,Los Angeles
+Los Banos*,7.750%,Merced
+Los Gatos*,8.250%,Santa Clara
+Los Molinos,7.250%,Tehama
+Los Nietos,8.250%,Los Angeles
+Los Olivos,7.750%,Santa Barbara
+Los Osos,7.250%,San Luis Obispo
+Los Padres,7.250%,San Luis Obispo
+Los Serranos (Chino Hills*),7.750%,San Bernardino
+Lost Hills,7.250%,Kern
+Lost Lake,7.750%,Riverside
+Lotus,7.250%,El Dorado
+Lower Lake,7.250%,Lake
+Loyalton*,7.250%,Sierra
+Lucerne,7.250%,Lake
+Lucerne Valley,7.750%,San Bernardino
+Lucia,7.250%,Monterey
+Ludlow,7.750%,San Bernardino
+Lugo,8.250%,Los Angeles
+Luther Burbank (Santa Rosa*),8.000%,Sonoma
+Lynwood*,8.250%,Los Angeles
+Lytle Creek,7.750%,San Bernardino
+Macdoel,7.250%,Siskiyou
+Maclay,8.250%,Los Angeles
+Mad River,7.250%,Trinity
+Madeline,7.250%,Lassen
+Madera*,7.750%,Madera
+Madison,7.250%,Yolo
+Magalia,7.250%,Butte
+Malaga,7.975%,Fresno
+Malibu*,8.250%,Los Angeles
+Mammoth Lakes*,7.250%,Mono
+Manhattan Beach*,8.250%,Los Angeles
+Manteca*,8.250%,San Joaquin
+Manton,7.250%,Tehama
+Manzanita Lake,7.250%,Shasta
+Mar Vista,8.250%,Los Angeles
+Marcelina,8.250%,Los Angeles
+March A.F.B.,7.750%,Riverside
+Mare Island (Vallejo*),7.375%,Solano
+Maricopa*,7.250%,Kern
+Marin City,7.750%,Marin
+Marina Del Rey,8.250%,Los Angeles
+Marina*,7.250%,Monterey
+Marine Corps (Twentynine Palms*),7.750%,San Bernardino
+Mariner,7.750%,Orange
+Mariposa,7.750%,Mariposa
+Markleeville,7.250%,Alpine
+Marsh Manor,8.250%,San Mateo
+Marshall,7.750%,Marin
+Martell,7.250%,Amador
+Martinez*,8.250%,Contra Costa
+Marysville*,7.250%,Yuba
+Mather,7.250%,Tuolumne
+Mather A.F.B.,7.750%,Sacramento
+Maxwell,7.250%,Colusa
+Maywood*,8.250%,Los Angeles
+McArthur,7.250%,Shasta
+McClellan A.F.B.,7.750%,Sacramento
+McCloud,7.250%,Siskiyou
+McFarland*,7.250%,Kern
+McKinleyville,7.250%,Humboldt
+McKittrick,7.250%,Kern
+Mead Valley,7.750%,Riverside
+Meadow Valley,7.250%,Plumas
+Meadow Vista,7.250%,Placer
+Meadowbrook,7.750%,Riverside
+Mecca,7.750%,Riverside
+Meeks Bay,7.250%,El Dorado
+Meiners Oaks,7.250%,Ventura
+Mendocino,7.250%,Mendocino
+Mendota*,7.975%,Fresno
+Menifee,7.750%,Riverside
+Menlo Park*,8.250%,San Mateo
+Mentone,7.750%,San Bernardino
+Merced*,7.750%,Merced
+Meridian,7.250%,Sutter
+Mettler,7.250%,Kern
+Meyers,7.250%,El Dorado
+Middletown,7.250%,Lake
+Midland,7.750%,Riverside
+Midpines,7.750%,Mariposa
+Midway City,7.750%,Orange
+Milford,7.250%,Lassen
+Mill Creek,7.250%,Tehama
+Mill Valley*,7.750%,Marin
+Millbrae*,8.250%,San Mateo
+Millville,7.250%,Shasta
+Milpitas*,8.250%,Santa Clara
+Mineral,7.250%,Tehama
+Mineral King,7.750%,Tulare
+Mint Canyon,8.250%,Los Angeles
+Mira Loma,7.750%,Riverside
+Mira Vista,8.250%,Contra Costa
+Miracle Hot Springs,7.250%,Kern
+Miramar (San Diego*),7.750%,San Diego
+Miramonte,7.975%,Fresno
+Miranda,7.250%,Humboldt
+Mission Hills (Los Angeles*),8.250%,Los Angeles
+Mission Viejo*,7.750%,Orange
+Mi-Wuk Village,7.250%,Tuolumne
+Moccasin,7.250%,Tuolumne
+Modesto*,7.375%,Stanislaus
+Moffett Field,8.250%,Santa Clara
+Mojave,7.250%,Kern
+Mokelumne Hill,7.250%,Calaveras
+Moneta,8.250%,Los Angeles
+Mono Hot Springs,7.975%,Fresno
+Mono Lake,7.250%,Mono
+Monolith,7.250%,Kern
+Monrovia*,8.250%,Los Angeles
+Monta Vista,8.250%,Santa Clara
+Montague*,7.250%,Siskiyou
+Montalvo (Ventura*),7.250%,Ventura
+Montara,8.250%,San Mateo
+Montclair*,8.000%,San Bernardino
+Monte Rio,7.750%,Sonoma
+Monte Sereno*,8.250%,Santa Clara
+Montebello*,8.250%,Los Angeles
+Montecito,7.750%,Santa Barbara
+Monterey Bay Academy,8.000%,Santa Cruz
+Monterey Park*,8.250%,Los Angeles
+Monterey*,7.250%,Monterey
+Montgomery Creek,7.250%,Shasta
+Montrose,8.250%,Los Angeles
+Mooney,7.750%,Tulare
+Moonridge,7.750%,San Bernardino
+Moorpark*,7.250%,Ventura
+Moraga*,8.250%,Contra Costa
+Moreno Valley*,7.750%,Riverside
+Morgan Hill*,8.250%,Santa Clara
+Morongo Valley,7.750%,San Bernardino
+Morro Bay*,7.750%,San Luis Obispo
+Morro Plaza,7.250%,San Luis Obispo
+Moss Beach,8.250%,San Mateo
+Moss Landing,7.250%,Monterey
+Mount Hamilton,8.250%,Santa Clara
+Mount Hebron,7.250%,Siskiyou
+Mount Hermon,8.000%,Santa Cruz
+Mount Laguna,7.750%,San Diego
+Mount Shasta*,7.250%,Siskiyou
+Mount Wilson,8.250%,Los Angeles
+Mountain Center,7.750%,Riverside
+Mountain Mesa,7.250%,Kern
+Mountain Pass,7.750%,San Bernardino
+Mountain Ranch,7.250%,Calaveras
+Mountain View*,8.250%,Santa Clara
+Mt. Aukum,7.250%,El Dorado
+Mt. Baldy,7.750%,San Bernardino
+Murphys,7.250%,Calaveras
+Murrieta*,7.750%,Riverside
+Muscoy,7.750%,San Bernardino
+Myers Flat,7.250%,Humboldt
+Napa*,7.750%,Napa
+Naples,8.250%,Los Angeles
+Nashville,7.250%,El Dorado
+National City*,8.750%,San Diego
+Naval (Port Hueneme*),7.250%,Ventura
+Naval (San Diego*),7.750%,San Diego
+Naval Air Station (Alameda*),8.750%,Alameda
+Naval Air Station (Coronado*),7.750%,San Diego
+Naval Air Station (Lemoore*),7.250%,Kings
+Naval Hospital (Oakland*),8.750%,Alameda
+Naval Hospital (San Diego*),7.750%,San Diego
+Naval Supply Center (Oakland*),8.750%,Alameda
+Naval Training Center (San Diego*),7.750%,San Diego
+Navarro,7.250%,Mendocino
+Needles*,7.750%,San Bernardino
+Nelson,7.250%,Butte
+Nevada City*,7.875%,Nevada
+New Almaden,8.250%,Santa Clara
+New Cuyama,7.750%,Santa Barbara
+New Idria,7.250%,San Benito
+Newark*,8.750%,Alameda
+Newberry,7.750%,San Bernardino
+Newberry Springs,7.750%,San Bernardino
+Newbury Park (Thousand Oaks*),7.250%,Ventura
+Newcastle,7.250%,Placer
+Newhall (Santa Clarita*),8.250%,Los Angeles
+Newman*,7.375%,Stanislaus
+Newport Beach*,7.750%,Orange
+Nicasio,7.750%,Marin
+Nice,7.250%,Lake
+Nicolaus,7.250%,Sutter
+Niland,7.750%,Imperial
+Nipomo,7.250%,San Luis Obispo
+Nipton,7.750%,San Bernardino
+Norco*,7.750%,Riverside
+Norden,7.375%,Nevada
+North Edwards,7.250%,Kern
+North Fork,7.750%,Madera
+North Gardena,8.250%,Los Angeles
+North Highlands,7.750%,Sacramento
+North Hills (Los Angeles*),8.250%,Los Angeles
+North Hollywood (Los Angeles*),8.250%,Los Angeles
+North Palm Springs,7.750%,Riverside
+North San Juan,7.375%,Nevada
+North Shore,7.750%,Riverside
+Northridge (Los Angeles*),8.250%,Los Angeles
+Norton A.F.B. (San Bernardino*),8.000%,San Bernardino
+Norwalk*,8.250%,Los Angeles
+Novato*,7.750%,Marin
+Nubieber,7.250%,Lassen
+Nuevo,7.750%,Riverside
+Nyeland Acres,7.250%,Ventura
+Oak Park,7.250%,Ventura
+Oak Run,7.250%,Shasta
+Oak View,7.250%,Ventura
+Oakdale*,7.375%,Stanislaus
+Oakhurst,7.750%,Madera
+Oakland*,8.750%,Alameda
+Oakley,8.250%,Contra Costa
+Oakville,7.750%,Napa
+Oasis,7.750%,Riverside
+Oban,8.250%,Los Angeles
+O'Brien,7.250%,Shasta
+Occidental,7.750%,Sonoma
+Oceano,7.250%,San Luis Obispo
+Oceanside*,7.750%,San Diego
+Ocotillo,7.750%,Imperial
+Ocotillo Wells,7.750%,San Diego
+Oildale,7.250%,Kern
+Ojai*,7.250%,Ventura
+Olancha,7.750%,Inyo
+Old Station,7.250%,Shasta
+Olema,7.750%,Marin
+Olinda,7.250%,Shasta
+Olive View (Los Angeles*),8.250%,Los Angeles
+Olivehurst,7.250%,Yuba
+Olivenhain (Encinitas*),7.750%,San Diego
+Olympic Valley,7.250%,Placer
+Omo Ranch,7.250%,El Dorado
+O'Neals,7.750%,Madera
+Ono,7.250%,Shasta
+Ontario*,7.750%,San Bernardino
+Onyx,7.250%,Kern
+Opal Cliffs,8.000%,Santa Cruz
+Orange Cove*,7.975%,Fresno
+Orange*,7.750%,Orange
+Orangevale,7.750%,Sacramento
+Orcutt,7.750%,Santa Barbara
+Ordbend,7.250%,Glenn
+Oregon House,7.250%,Yuba
+Orick,7.250%,Humboldt
+Orinda*,8.250%,Contra Costa
+Orland*,7.250%,Glenn
+Orleans,7.250%,Humboldt
+Oro Grande,7.750%,San Bernardino
+Orosi,7.750%,Tulare
+Oroville*,7.250%,Butte
+Otay (Chula Vista*),7.750%,San Diego
+Oxnard*,7.250%,Ventura
+Pacheco,8.250%,Contra Costa
+Pacific Grove*,7.250%,Monterey
+Pacific House,7.250%,El Dorado
+Pacific Palisades (Los Angeles*),8.250%,Los Angeles
+Pacifica*,8.250%,San Mateo
+Pacoima (Los Angeles*),8.250%,Los Angeles
+Paicines,7.250%,San Benito
+Pajaro,7.250%,Monterey
+Pala,7.750%,San Diego
+Palermo,7.250%,Butte
+Pallett,8.250%,Los Angeles
+Palm City,7.750%,Riverside
+Palm City (San Diego*),7.750%,San Diego
+Palm Desert*,7.750%,Riverside
+Palm Springs*,7.750%,Riverside
+Palmdale*,8.250%,Los Angeles
+Palo (Vista*),8.250%,San Diego
+Palo Alto*,8.250%,Santa Clara
+Palo Cedro,7.250%,Shasta
+Palo Verde,7.750%,Imperial
+Palomar Mountain,7.750%,San Diego
+Palos Verdes Estates*,8.250%,Los Angeles
+Palos Verdes/Peninsula,8.250%,Los Angeles
+Panorama City (Los Angeles*),8.250%,Los Angeles
+Paradise*,7.250%,Butte
+Paramount*,8.250%,Los Angeles
+Parker Dam,7.750%,San Bernardino
+Parkfield,7.250%,Monterey
+Parlier*,7.975%,Fresno
+Pasadena*,8.250%,Los Angeles
+Paskenta,7.250%,Tehama
+Paso Robles*,7.250%,San Luis Obispo
+Patterson*,7.375%,Stanislaus
+Patton,7.750%,San Bernardino
+Pauma Valley,7.750%,San Diego
+Paynes Creek,7.250%,Tehama
+Pearblossom,8.250%,Los Angeles
+Pearland,8.250%,Los Angeles
+Pebble Beach,7.250%,Monterey
+Pedley,7.750%,Riverside
+Peninsula Village,7.250%,Plumas
+Penn Valley,7.375%,Nevada
+Penngrove,7.750%,Sonoma
+Penryn,7.250%,Placer
+Pepperwood,7.250%,Humboldt
+Permanente,8.250%,Santa Clara
+Perris*,7.750%,Riverside
+Perry (Whittier*),8.250%,Los Angeles
+Pescadero,8.250%,San Mateo
+Petaluma*,7.750%,Sonoma
+Petrolia,7.250%,Humboldt
+Phelan,7.750%,San Bernardino
+Phillipsville,7.250%,Humboldt
+Philo,7.250%,Mendocino
+Pico Rivera*,8.250%,Los Angeles
+Piedmont*,8.750%,Alameda
+Piedra,7.975%,Fresno
+Piercy,7.250%,Mendocino
+Pilot Hill,7.250%,El Dorado
+Pine Grove,7.250%,Amador
+Pine Valley,7.750%,San Diego
+Pinecrest,7.250%,Tuolumne
+Pinedale (Fresno*),7.975%,Fresno
+Pinetree,8.250%,Los Angeles
+Pinole*,8.750%,Contra Costa
+Pinon Hills,7.750%,San Bernardino
+Pioneer,7.250%,Amador
+Pioneertown,7.750%,San Bernardino
+Piru,7.250%,Ventura
+Pismo Beach*,7.250%,San Luis Obispo
+Pittsburg*,8.250%,Contra Costa
+Pixley,7.750%,Tulare
+Placentia*,7.750%,Orange
+Placerville*,7.500%,El Dorado
+Plainview,7.750%,Tulare
+Planada,7.250%,Merced
+Plaster City,7.750%,Imperial
+Platina,7.250%,Shasta
+Playa Del Rey (Los Angeles*),8.250%,Los Angeles
+Pleasant Grove,7.250%,Sutter
+Pleasant Hill*,8.250%,Contra Costa
+Pleasanton*,8.750%,Alameda
+Plymouth*,7.250%,Amador
+Point Arena*,7.750%,Mendocino
+Point Mugu,7.250%,Ventura
+Point Pittsburg (Pittsburg*),8.250%,Contra Costa
+Point Reyes Station,7.750%,Marin
+Pollock Pines,7.250%,El Dorado
+Pomona*,8.250%,Los Angeles
+Pond,7.250%,Kern
+Pondosa,7.250%,Siskiyou
+Pope Valley,7.750%,Napa
+Poplar,7.750%,Tulare
+Port Costa,8.250%,Contra Costa
+Port Hueneme*,7.250%,Ventura
+Porter Ranch (Los Angeles*),8.250%,Los Angeles
+Porterville*,8.250%,Tulare
+Portola Valley*,8.250%,San Mateo
+Portola*,7.250%,Plumas
+Portuguese Bend (Rancho Palos Verdes*),8.250%,Los Angeles
+Posey,7.750%,Tulare
+Potrero,7.750%,San Diego
+Potter Valley,7.250%,Mendocino
+Poway*,7.750%,San Diego
+Prather,7.975%,Fresno
+Presidio (San Francisco*),8.500%,San Francisco
+Presidio of Monterey (Monterey*),7.250%,Monterey
+Priest Valley,7.250%,Monterey
+Princeton,7.250%,Colusa
+Proberta,7.250%,Tehama
+Project City,7.250%,Shasta
+Prunedale,7.250%,Monterey
+Pt. Dume,8.250%,Los Angeles
+Pulga,7.250%,Butte
+Pumpkin Center,7.250%,Kern
+Quail Valley,7.750%,Riverside
+Quartz Hill,8.250%,Los Angeles
+Quincy,7.250%,Plumas
+Rackerby,7.250%,Yuba
+Rail Road Flat,7.250%,Calaveras
+Rainbow,7.750%,San Diego
+Raisin City,7.975%,Fresno
+Ramona,7.750%,San Diego
+Ranchita,7.750%,San Diego
+Rancho Bernardo (San Diego*),7.750%,San Diego
+Rancho California,7.750%,Riverside
+Rancho Cordova* ,7.750%,Sacramento
+Rancho Cucamonga*,7.750%,San Bernardino
+Rancho Dominguez,8.250%,Los Angeles
+Rancho Mirage*,7.750%,Riverside
+Rancho Murieta,7.750%,Sacramento
+Rancho Palos Verdes*,8.250%,Los Angeles
+Rancho Park (Los Angeles*),8.250%,Los Angeles
+Rancho Santa Fe,7.750%,San Diego
+Rancho Santa Margarita,7.750%,Orange
+Randsburg,7.250%,Kern
+Ravendale,7.250%,Lassen
+Ravenna,8.250%,Los Angeles
+Raymond,7.750%,Madera
+Red Bluff*,7.250%,Tehama
+Red Mountain,7.750%,San Bernardino
+Red Top,7.750%,Madera
+Redcrest,7.250%,Humboldt
+Redding*,7.250%,Shasta
+Redlands*,7.750%,San Bernardino
+Redondo Beach*,8.250%,Los Angeles
+Redway,7.250%,Humboldt
+Redwood City*,8.250%,San Mateo
+Redwood Estates,8.250%,Santa Clara
+Redwood Valley,7.250%,Mendocino
+Reedley*,7.975%,Fresno
+Refugio Beach,7.750%,Santa Barbara
+Represa (Folsom Prison),7.750%,Sacramento
+Requa,7.250%,Del Norte
+Rescue,7.250%,El Dorado
+Reseda (Los Angeles*),8.250%,Los Angeles
+Rheem Valley (Moraga*),8.250%,Contra Costa
+Rialto*,7.750%,San Bernardino
+Richardson Grove,7.250%,Humboldt
+Richardson Springs,7.250%,Butte
+Richfield,7.250%,Tehama
+Richgrove,7.750%,Tulare
+Richmond*,8.750%,Contra Costa
+Richvale,7.250%,Butte
+Ridgecrest*,7.250%,Kern
+Rimforest,7.750%,San Bernardino
+Rimpau (Los Angeles*),8.250%,Los Angeles
+Rio Bravo (Bakersfield*),7.250%,Kern
+Rio Dell*,7.250%,Humboldt
+Rio Linda,7.750%,Sacramento
+Rio Nido,7.750%,Sonoma
+Rio Oso,7.250%,Sutter
+Rio Vista*,7.375%,Solano
+Ripley,7.750%,Riverside
+Ripon*,7.750%,San Joaquin
+River Pines,7.250%,Amador
+Riverbank*,7.375%,Stanislaus
+Riverdale,7.975%,Fresno
+Riverside*,7.750%,Riverside
+Robbins,7.250%,Sutter
+Rocklin*,7.250%,Placer
+Rodeo,8.250%,Contra Costa
+Rohnert Park*,7.750%,Sonoma
+Rohnerville,7.250%,Humboldt
+Rolling Hills Estates*,8.250%,Los Angeles
+Rolling Hills*,8.250%,Los Angeles
+Romoland,7.750%,Riverside
+Rosamond,7.250%,Kern
+Rose Bowl (Pasadena*),8.250%,Los Angeles
+Roseland (Santa Rosa*),8.000%,Sonoma
+Rosemead*,8.250%,Los Angeles
+Roseville*,7.250%,Placer
+Ross*,7.750%,Marin
+Rossmoor,7.750%,Orange
+Rough and Ready,7.375%,Nevada
+Round Mountain,7.250%,Shasta
+Rowland Heights,8.250%,Los Angeles
+Royal Oaks,7.250%,Monterey
+Rubidoux,7.750%,Riverside
+Ruby Valley,7.250%,Humboldt
+Rumsey,7.250%,Yolo
+Running Springs,7.750%,San Bernardino
+Ruth,7.250%,Trinity
+Rutherford,7.750%,Napa
+Ryde,7.750%,Sacramento
+Sacramento*,7.750%,Sacramento
+Saint Helena*,7.750%,Napa
+Salida,7.375%,Stanislaus
+Salinas*,7.750%,Monterey
+Salton City,7.750%,Imperial
+Salyer,7.250%,Trinity
+Samoa,7.250%,Humboldt
+San Andreas,7.250%,Calaveras
+San Anselmo*,7.750%,Marin
+San Ardo,7.250%,Monterey
+San Benito,7.250%,San Benito
+San Bernardino*,8.000%,San Bernardino
+San Bruno*,8.250%,San Mateo
+San Carlos*,8.250%,San Mateo
+San Clemente*,7.750%,Orange
+San Diego*,7.750%,San Diego
+San Dimas*,8.250%,Los Angeles
+San Fernando*,8.250%,Los Angeles
+San Francisco*,8.500%,San Francisco
+San Gabriel*,8.250%,Los Angeles
+San Geronimo,7.750%,Marin
+San Gregorio,8.250%,San Mateo
+San Jacinto*,7.750%,Riverside
+San Joaquin*,7.975%,Fresno
+San Jose*,8.250%,Santa Clara
+San Juan Bautista*,8.000%,San Benito
+San Juan Capistrano*,7.750%,Orange
+San Juan Plaza (San Juan Capistrano),7.750%,Orange
+San Leandro*,8.750%,Alameda
+San Lorenzo,8.750%,Alameda
+San Lucas,7.250%,Monterey
+San Luis Obispo*,7.750%,San Luis Obispo
+San Luis Rey (Oceanside*),7.750%,San Diego
+San Marcos*,7.750%,San Diego
+San Marino*,8.250%,Los Angeles
+San Martin,8.250%,Santa Clara
+San Mateo*,8.250%,San Mateo
+San Miguel,7.250%,San Luis Obispo
+San Pablo*,8.250%,Contra Costa
+San Pedro (Los Angeles*),8.250%,Los Angeles
+San Quentin,7.750%,Marin
+San Rafael*,8.250%,Marin
+San Ramon*,8.250%,Contra Costa
+San Simeon,7.250%,San Luis Obispo
+San Tomas,8.250%,Santa Clara
+San Ysidro (San Diego*),7.750%,San Diego
+Sand City*,7.750%,Monterey
+Sanger*,7.975%,Fresno
+Santa Ana*,7.750%,Orange
+Santa Barbara*,7.750%,Santa Barbara
+Santa Clara*,8.250%,Santa Clara
+Santa Clarita*,8.250%,Los Angeles
+Santa Cruz*,8.500%,Santa Cruz
+Santa Fe Springs*,8.250%,Los Angeles
+Santa Margarita,7.250%,San Luis Obispo
+Santa Maria*,7.750%,Santa Barbara
+Santa Monica*,8.250%,Los Angeles
+Santa Nella,7.250%,Merced
+Santa Paula*,7.250%,Ventura
+Santa Rita Park,7.250%,Merced
+Santa Rosa*,8.000%,Sonoma
+Santa Ynez,7.750%,Santa Barbara
+Santa Ysabel,7.750%,San Diego
+Santee*,7.750%,San Diego
+Saratoga*,8.250%,Santa Clara
+Saticoy,7.250%,Ventura
+Sattley,7.250%,Sierra
+Saugus (Santa Clarita*),8.250%,Los Angeles
+Sausalito*,7.750%,Marin
+Sawtelle (Los Angeles*),8.250%,Los Angeles
+Sawyers Bar,7.250%,Siskiyou
+Scotia,7.250%,Humboldt
+Scott Bar,7.250%,Siskiyou
+Scotts Valley*,8.500%,Santa Cruz
+Sea Ranch,7.750%,Sonoma
+Seabright,8.000%,Santa Cruz
+Seal Beach*,7.750%,Orange
+Seaside*,7.250%,Monterey
+Sebastopol*,8.000%,Sonoma
+Seeley,7.750%,Imperial
+Seiad Valley,7.250%,Siskiyou
+Selby,8.250%,Contra Costa
+Selma*,7.975%,Fresno
+Seminole Hot Springs,8.250%,Los Angeles
+Sepulveda (Los Angeles*),8.250%,Los Angeles
+Sequoia National Park,7.750%,Tulare
+Shafter*,7.250%,Kern
+Shandon,7.250%,San Luis Obispo
+Sharpe Army Depot,7.750%,San Joaquin
+Shasta,7.250%,Shasta
+Shasta Lake,7.250%,Shasta
+Shaver Lake,7.975%,Fresno
+Sheepranch,7.250%,Calaveras
+Shell Beach (Pismo Beach*),7.250%,San Luis Obispo
+Sheridan,7.250%,Placer
+Sherman Island,7.750%,Sacramento
+Sherman Oaks (Los Angeles*),8.250%,Los Angeles
+Sherwin Plaza,7.250%,Mono
+Shingle Springs,7.250%,El Dorado
+Shingletown,7.250%,Shasta
+Shively,7.250%,Humboldt
+Shore Acres,8.250%,Contra Costa
+Shoshone,7.750%,Inyo
+Sierra City,7.250%,Sierra
+Sierra Madre*,8.250%,Los Angeles
+Sierraville,7.250%,Sierra
+Signal Hill*,8.250%,Los Angeles
+Silver Lake,7.250%,Amador
+Silverado Canyon,7.750%,Orange
+Simi Valley*,7.250%,Ventura
+Sisquoc,7.750%,Santa Barbara
+Sites,7.250%,Colusa
+Sky Valley,7.750%,Riverside
+Skyforest,7.750%,San Bernardino
+Sleepy Valley,8.250%,Los Angeles
+Sloat,7.250%,Plumas
+Sloughhouse,7.750%,Sacramento
+Smartville,7.250%,Yuba
+Smith River,7.250%,Del Norte
+Smithflat,7.250%,El Dorado
+Smoke Tree (Palm Springs*),7.750%,San Bernardino
+Snelling,7.250%,Merced
+Soda Springs,7.375%,Nevada
+Solana Beach*,7.750%,San Diego
+Soledad*,7.250%,Monterey
+Solemint,8.250%,Los Angeles
+Solvang*,7.750%,Santa Barbara
+Somerset,7.250%,El Dorado
+Somes Bar,7.250%,Siskiyou
+Somis,7.250%,Ventura
+Sonoma*,7.750%,Sonoma
+Sonora*,7.750%,Tuolumne
+Soquel,8.000%,Santa Cruz
+Soulsbyville,7.250%,Tuolumne
+South Dos Palos,7.250%,Merced
+South El Monte*,8.250%,Los Angeles
+South Fork,7.250%,Humboldt
+South Gate *,8.250%,Los Angeles
+South Laguna (Laguna Beach*),8.250%,Orange
+South Lake Tahoe*,7.750%,El Dorado
+South Pasadena*,8.250%,Los Angeles
+South San Francisco*,8.250%,San Mateo
+South Shore (Alameda*),8.750%,Alameda
+South Whittier,8.250%,Los Angeles
+Spanish Flat,7.750%,Napa
+Spreckels,7.250%,Monterey
+Spring Garden,7.250%,Plumas
+Spring Valley,7.750%,San Diego
+Springville,7.750%,Tulare
+Spyrock,7.250%,Mendocino
+Squaw Valley,7.975%,Fresno
+St. Helena*,7.750%,Napa
+Standard,7.250%,Tuolumne
+Standish,7.250%,Lassen
+Stanford,8.250%,Santa Clara
+Stanislaus,7.250%,Tuolumne
+Stanton*,7.750%,Orange
+Steele Park,7.750%,Napa
+Stevinson,7.250%,Merced
+Stewarts Point,7.750%,Sonoma
+Stinson Beach,7.750%,Marin
+Stirling City,7.250%,Butte
+Stockton*,8.000%,San Joaquin
+Stonyford,7.250%,Colusa
+Storrie,7.250%,Plumas
+Stratford,7.250%,Kings
+Strathmore,7.750%,Tulare
+Strawberry,7.250%,Tuolumne
+Strawberry Valley,7.250%,Yuba
+Studio City (Los Angeles*),8.250%,Los Angeles
+Sugarloaf,7.750%,San Bernardino
+Suisun City*,7.375%,Solano
+Sulphur Springs,8.250%,Los Angeles
+Sultana,7.750%,Tulare
+Summerland,7.750%,Santa Barbara
+Summit,7.750%,San Bernardino
+Summit City,7.250%,Shasta
+Sun City,7.750%,Riverside
+Sun Valley (Los Angeles*),8.250%,Los Angeles
+Sunland (Los Angeles*),8.250%,Los Angeles
+Sunnymead (Moreno Valley*),7.750%,Riverside
+Sunnyside,7.750%,San Diego
+Sunnyvale*,8.250%,Santa Clara
+Sunol,8.750%,Alameda
+Sunset Beach,7.750%,Orange
+Sunset Whitney Ranch,7.250%,Placer
+Surfside (Seal Beach*),7.750%,Orange
+Susanville*,7.250%,Lassen
+Sutter,7.250%,Sutter
+Sutter Creek*,7.250%,Amador
+Sylmar (Los Angeles*),8.250%,Los Angeles
+Taft*,7.250%,Kern
+Tagus Ranch,7.750%,Tulare
+Tahoe City,7.250%,Placer
+Tahoe Paradise,7.250%,El Dorado
+Tahoe Valley,7.250%,El Dorado
+Tahoe Vista,7.250%,Placer
+Tahoma,7.250%,Placer
+Talmage,7.250%,Mendocino
+Tamal (San Quentin),7.750%,Marin
+Tarzana (Los Angeles*),8.250%,Los Angeles
+Taylorsville,7.250%,Plumas
+Tecate,7.750%,San Diego
+Tecopa,7.750%,Inyo
+Tehachapi*,7.250%,Kern
+Tehama*,7.250%,Tehama
+Temecula*,7.750%,Riverside
+Temple City*,8.250%,Los Angeles
+Templeton,7.250%,San Luis Obispo
+Terminal Island (Los Angeles*),8.250%,Los Angeles
+Termo,7.250%,Lassen
+Terra Bella,7.750%,Tulare
+Thermal,7.750%,Riverside
+Thornton,7.750%,San Joaquin
+Thousand Oaks*,7.250%,Ventura
+Thousand Palms,7.750%,Riverside
+Three Rivers,7.750%,Tulare
+Tiburon*,7.750%,Marin
+Tierra Del Sol,7.750%,San Diego
+Tierrasanta (San Diego*),7.750%,San Diego
+Tipton,7.750%,Tulare
+Tollhouse,7.975%,Fresno
+Toluca Lake (Los Angeles*),8.250%,Los Angeles
+Tomales,7.750%,Marin
+Toms Place,7.250%,Mono
+Topanga (Los Angeles*),8.250%,Los Angeles
+Topanga Park (Los Angeles*),8.250%,Los Angeles
+Topaz,7.250%,Mono
+Torrance*,8.250%,Los Angeles
+Town Center,7.750%,Tulare
+Trabuco Canyon,7.750%,Orange
+Tracy*,7.750%,San Joaquin
+Tranquillity,7.975%,Fresno
+Traver,7.750%,Tulare
+Travis A.F.B. (Fairfield*),7.375%,Solano
+Tres Pinos,7.250%,San Benito
+Trinidad*,8.250%,Humboldt
+Trinity Center,7.250%,Trinity
+Trona,7.750%,San Bernardino
+Trowbridge,7.250%,Sutter
+Truckee*,7.875%,Nevada
+Tujunga (Los Angeles*),8.250%,Los Angeles
+Tulare*,8.250%,Tulare
+Tulelake*,7.250%,Siskiyou
+Tuolumne,7.250%,Tuolumne
+Tuolumne Meadows,7.750%,Mariposa
+Tupman,7.250%,Kern
+Turlock*,7.375%,Stanislaus
+Tustin*,7.750%,Orange
+Twain,7.250%,Plumas
+Twain Harte,7.250%,Tuolumne
+Twentynine Palms*,7.750%,San Bernardino
+Twin Bridges,7.250%,El Dorado
+Twin Peaks,7.750%,San Bernardino
+Two Rock Coast Guard Station,7.750%,Sonoma
+U.S.Naval Postgrad School (Monterey*),7.250%,Monterey
+Ukiah*,7.750%,Mendocino
+Union City*,8.750%,Alameda
+Universal City,8.250%,Los Angeles
+University,7.750%,Santa Barbara
+University Park (Irvine*),7.750%,Orange
+Upland*,7.750%,San Bernardino
+Upper Lake/ Upper Lake Valley,7.250%,Lake
+Vacaville*,7.375%,Solano
+Val Verde Park,8.250%,Los Angeles
+Valencia (Santa Clarita*),8.250%,Los Angeles
+Valinda,8.250%,Los Angeles
+Vallecito,7.250%,Calaveras
+Vallejo*,7.375%,Solano
+Valley Center,7.750%,San Diego
+Valley Fair,8.250%,Santa Clara
+Valley Ford,7.750%,Sonoma
+Valley Home,7.375%,Stanislaus
+Valley Springs,7.250%,Calaveras
+Valley Village,8.250%,Los Angeles
+Valyermo,8.250%,Los Angeles
+Van Nuys (Los Angeles*),8.250%,Los Angeles
+Vandenberg A.F.B,7.750%,Santa Barbara
+Vasquez Rocks,8.250%,Los Angeles
+Venice (Los Angeles*),8.250%,Los Angeles
+Ventucopa,7.750%,Santa Barbara
+Ventura*,7.250%,Ventura
+Verdugo City (Glendale*),8.250%,Los Angeles
+Vernalis,7.750%,San Joaquin
+Vernon*,8.250%,Los Angeles
+Veteran's Hospital (Los Angeles*),8.250%,Los Angeles
+Victor,7.750%,San Joaquin
+Victorville*,7.750%,San Bernardino
+Vidal,7.750%,San Bernardino
+View Park,8.250%,Los Angeles
+Villa Grande,7.750%,Sonoma
+Villa Park*,7.750%,Orange
+Vina,7.250%,Tehama
+Vincent,8.250%,Los Angeles
+Vineburg,7.750%,Sonoma
+Vinton,7.250%,Plumas
+Virgilia,7.250%,Plumas
+Visalia*,8.000%,Tulare
+Vista Park,7.250%,Kern
+Vista*,8.250%,San Diego
+Volcano,7.250%,Amador
+Volta,7.250%,Merced
+Wallace,7.250%,Calaveras
+Walnut Creek*,8.250%,Contra Costa
+Walnut Grove,7.750%,Sacramento
+Walnut Park,8.250%,Los Angeles
+Walnut*,8.250%,Los Angeles
+Warm Spring (Fremont*),8.750%,Alameda
+Warner Springs,7.750%,San Diego
+Wasco*,7.250%,Kern
+Waterford*,7.375%,Stanislaus
+Watsonville*,8.250%,Santa Cruz
+Watts,8.250%,Los Angeles
+Waukena,7.750%,Tulare
+Wawona,7.750%,Mariposa
+Weaverville,7.250%,Trinity
+Weed*,7.250%,Siskiyou
+Weimar,7.250%,Placer
+Weldon,7.250%,Kern
+Wendel,7.250%,Lassen
+Weott,7.250%,Humboldt
+West Covina*,8.250%,Los Angeles
+West Hills (Los Angeles*),8.250%,Los Angeles
+West Hollywood*,8.250%,Los Angeles
+West Los Angeles (Los Angeles*),8.250%,Los Angeles
+West Pittsburg,8.250%,Contra Costa
+West Point,7.250%,Calaveras
+West Sacramento*,7.750%,Yolo
+Westchester (Los Angeles*),8.250%,Los Angeles
+Westend,7.750%,San Bernardino
+Westhaven,7.250%,Humboldt
+Westlake (Los Angeles*),8.250%,Los Angeles
+Westlake Village (Thousand Oaks*),7.250%,Ventura
+Westlake Village*,8.250%,Los Angeles
+Westley,7.375%,Stanislaus
+Westminster*,7.750%,Orange
+Westmorland*,7.750%,Imperial
+Westport,7.250%,Mendocino
+Westside,7.375%,Stanislaus
+Westwood,7.250%,Lassen
+Westwood (Los Angeles*),8.250%,Los Angeles
+Wheatland*,7.250%,Yuba
+Wheeler Ridge,7.250%,Kern
+Whiskeytown,7.250%,Shasta
+Whispering Pines,7.250%,Lake
+White Pines,7.250%,Calaveras
+Whitethorn,7.250%,Humboldt
+Whitewater,7.750%,Riverside
+Whitlow,7.250%,Humboldt
+Whitmore,7.250%,Shasta
+Whittier*,8.250%,Los Angeles
+Wildomar,7.750%,Riverside
+Wildwood,7.250%,Shasta
+Williams*,7.750%,Colusa
+Willits*,7.750%,Mendocino
+Willow Creek,7.250%,Humboldt
+Willow Ranch,7.250%,Modoc
+Willowbrook,8.250%,Los Angeles
+Willows*,7.250%,Glenn
+Wilmington (Los Angeles*),8.250%,Los Angeles
+Wilseyville,7.250%,Calaveras
+Wilsona Gardens,8.250%,Los Angeles
+Wilton,7.750%,Sacramento
+Winchester,7.750%,Riverside
+Windsor Hills,8.250%,Los Angeles
+Windsor*,7.750%,Sonoma
+Winnetka (Los Angeles*),8.250%,Los Angeles
+Winterhaven,7.750%,Imperial
+Winters*,7.250%,Yolo
+Winton,7.250%,Merced
+Wishon,7.750%,Madera
+Witter Springs,7.250%,Lake
+Wofford Heights,7.250%,Kern
+Woodacre,7.750%,Marin
+Woodbridge,7.750%,San Joaquin
+Woodfords,7.250%,Alpine
+Woodlake*,7.750%,Tulare
+Woodland Hills (Los Angeles*),8.250%,Los Angeles
+Woodland*,7.750%,Yolo
+Woodleaf,7.250%,Yuba
+Woodside*,8.250%,San Mateo
+Woodville,7.750%,Tulare
+Woody,7.250%,Kern
+Wrightwood,7.750%,San Bernardino
+Yankee Hill,7.250%,Butte
+Yermo,7.750%,San Bernardino
+Yettem,7.750%,Tulare
+Yolo,7.250%,Yolo
+Yorba Linda*,7.750%,Orange
+Yorkville,7.250%,Mendocino
+Yosemite Lodge,7.750%,Mariposa
+Yosemite National Park,7.750%,Mariposa
+Yountville*,7.750%,Napa
+Yreka*,7.250%,Siskiyou
+Yuba City*,7.250%,Sutter
+Yucaipa*,7.750%,San Bernardino
+Yucca Valley*,7.750%,San Bernardino
+Zamora,7.250%,Yolo
+Zenia,7.250%,Trinity

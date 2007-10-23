@@ -12,34 +12,40 @@ namespace FileHelpersTests.Tests.Detector
     [TestFixture]
     public class BasicDetection
     {
-        private void AssertDelimitedFormat(string file, string delimiter, int fields, int confidence)
+        private void AssertDelimitedFormat(string file, string delimiter, int fields, int confidence, int numFormats)
         {
+            file = Common.TestPath(@"Detection\" + file);
+
             SmartFormatDetector detector = new SmartFormatDetector();
             RecordFormatInfo[] formats;
 
             detector.SampleLines = 10;
             formats = detector.DetectFileFormat(file);
-            AssertFormat(formats, delimiter, fields, confidence);
+            AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
             detector.SampleLines = 20;
             formats = detector.DetectFileFormat(file);
-            AssertFormat(formats, delimiter, fields, confidence);
+            AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
             detector.SampleLines = 50;
             formats = detector.DetectFileFormat(file);
-            AssertFormat(formats, delimiter, fields, confidence);
+            AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
             detector.SampleLines = 100;
             formats = detector.DetectFileFormat(file);
-            AssertFormat(formats, delimiter, fields, confidence);
+            AssertFormat(formats, delimiter, fields, confidence, numFormats);
         }
 
-        private void AssertFormat(RecordFormatInfo[] formats, string delimiter, int fields, int confidence)
+        private void AssertFormat(RecordFormatInfo[] formats, string delimiter, int fields, int confidence, int numFormats)
         {
-            Assert.AreEqual(1, formats.Length);
+            
+            if (numFormats > 0)
+                Assert.AreEqual(numFormats, formats.Length);
+            else
+                Assert.IsTrue(formats.Length > 0);
             
             if (confidence > 0)
-                Assert.AreEqual(confidence, formats[0].Confidence);
+                Assert.IsTrue(formats[0].Confidence >= confidence);
 
             Assert.IsTrue(formats[0].ClassBuilder is DelimitedClassBuilder);
             Assert.AreEqual(delimiter, ((DelimitedClassBuilder)formats[0].ClassBuilder).Delimiter);
@@ -49,30 +55,30 @@ namespace FileHelpersTests.Tests.Detector
         [Test]
         public void DelimitedTab()
         {
-            string file = Common.TestPath(@"Detection\CustomersTab.txt");
-            AssertDelimitedFormat(file, "\t", 7, 100);
+            string file = "CustomersTab.txt";
+            AssertDelimitedFormat(file, "\t", 7, 100, 1);
         }
 
 
         [Test]
         public void DelimitedSemiColon()
         {
-            string file = Common.TestPath(@"Detection\CustomersSemiColon.txt");
-            AssertDelimitedFormat(file, ";", 7, 100);
+            string file = "CustomersSemiColon.txt";
+            AssertDelimitedFormat(file, ";", 7, 100, 1);
         }
 
         [Test]
         public void DelimitedComma()
         {
-            string file = Common.TestPath(@"Detection\CustomersComma.txt");
-            AssertDelimitedFormat(file, ",", 7, 100);
+            string file = "CustomersComma.txt";
+            AssertDelimitedFormat(file, ",", 7, 100, 1);
         }
 
         [Test]
         public void DelimitedMedium()
         {
-            string file = Common.TestPath(@"Detection\DelimitedMedium.txt");
-            AssertDelimitedFormat(file, "\t", 41, -1);
+            string file = "DelimitedMedium.txt";
+            AssertDelimitedFormat(file, "\t", 41, -1, 1);
         }
 
         [Test]
@@ -85,6 +91,30 @@ namespace FileHelpersTests.Tests.Detector
             Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);
             Assert.AreEqual(100, formats[0].Confidence);
             Assert.AreEqual(7, formats[0].ClassBuilder.FieldCount);            
+        }
+
+        [Test]
+        public void Cities()
+        {
+            string file;
+            file = "Cities.txt";
+            AssertDelimitedFormat(file, ",", 5, 100, 0);
+
+            file = "Cities2.txt";
+            AssertDelimitedFormat(file, ",", 12, 100, 0);
+
+            file = "Locations.txt";
+            AssertDelimitedFormat(file, ",", 7, 90, 0);
+
+        }
+
+        [Test]
+        public void TestDataUrlEtc()
+        {
+            string file;
+            file = "SampleData.txt";
+            AssertDelimitedFormat(file, ",", 26, 100, 0);
+
         }
 
     }

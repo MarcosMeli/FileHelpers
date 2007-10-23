@@ -10,6 +10,7 @@ using FileHelpers.RunTime;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
 using System.Diagnostics;
+using FileHelpers.Detection;
 
 namespace FileHelpers.WizardApp
 {
@@ -120,6 +121,7 @@ namespace FileHelpers.WizardApp
         private CheckBox chkAllTrim;
         private CheckBox chkAllOptional;
         private CheckBox chkAllQuoted;
+        private Button cmdDetectFormat;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -243,6 +245,7 @@ namespace FileHelpers.WizardApp
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picDonate = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picCurrStep = new System.Windows.Forms.PictureBox();
             this.linkHome = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lblStep2 = new System.Windows.Forms.Label();
@@ -251,8 +254,8 @@ namespace FileHelpers.WizardApp
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
-            this.picCurrStep = new System.Windows.Forms.PictureBox();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
+            this.cmdDetectFormat = new System.Windows.Forms.Button();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -275,10 +278,10 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1406,6 +1409,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.cmdDetectFormat);
             this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.linkHome);
             this.panel1.Controls.Add(this.pictureBox5);
@@ -1421,6 +1425,17 @@ namespace FileHelpers.WizardApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
+            // 
+            // picCurrStep
+            // 
+            this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
+            this.picCurrStep.Image = ((System.Drawing.Image)(resources.GetObject("picCurrStep.Image")));
+            this.picCurrStep.Location = new System.Drawing.Point(8, 70);
+            this.picCurrStep.Name = "picCurrStep";
+            this.picCurrStep.Size = new System.Drawing.Size(20, 20);
+            this.picCurrStep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picCurrStep.TabIndex = 7;
+            this.picCurrStep.TabStop = false;
             // 
             // linkHome
             // 
@@ -1508,17 +1523,6 @@ namespace FileHelpers.WizardApp
             this.lblStep1.TabIndex = 9;
             this.lblStep1.Text = "Common Properties";
             // 
-            // picCurrStep
-            // 
-            this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrStep.Image = ((System.Drawing.Image)(resources.GetObject("picCurrStep.Image")));
-            this.picCurrStep.Location = new System.Drawing.Point(8, 70);
-            this.picCurrStep.Name = "picCurrStep";
-            this.picCurrStep.Size = new System.Drawing.Size(20, 20);
-            this.picCurrStep.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picCurrStep.TabIndex = 7;
-            this.picCurrStep.TabStop = false;
-            // 
             // picFirstDark
             // 
             this.picFirstDark.BackColor = System.Drawing.Color.Transparent;
@@ -1529,6 +1533,21 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
+            // 
+            // cmdDetectFormat
+            // 
+            this.cmdDetectFormat.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdDetectFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdDetectFormat.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetectFormat.Image")));
+            this.cmdDetectFormat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdDetectFormat.Location = new System.Drawing.Point(5, 340);
+            this.cmdDetectFormat.Name = "cmdDetectFormat";
+            this.cmdDetectFormat.Size = new System.Drawing.Size(147, 25);
+            this.cmdDetectFormat.TabIndex = 1101;
+            this.cmdDetectFormat.Text = "Auto Detect Format";
+            this.cmdDetectFormat.UseVisualStyleBackColor = false;
+            this.cmdDetectFormat.Click += new System.EventHandler(this.cmdDetectFormat_Click);
             // 
             // frmWizard
             // 
@@ -1588,10 +1607,10 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).EndInit();
             this.ResumeLayout(false);
 
@@ -2280,72 +2299,77 @@ namespace FileHelpers.WizardApp
                 Application.DoEvents();
                 cmdSave.Enabled = true;
 
-                mWizardInfo.ClassBuilder = ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
-
-                Application.DoEvents();
-
-                WizardToControls();
-
-                Application.DoEvents();
-
-                if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder)
-                {
-                    radFixed.Checked = true;
-                    mControlType = typeof(FieldFixedControl);
-                    mFieldType = typeof(FixedFieldBuilder);
-
-                    txtFieldLength.Enabled = true;
-
-                }
-                else
-                {
-                    txtFieldLength.Enabled = false;
-
-                    radDelimited.Checked = true;
-
-                    mControlType = typeof(FieldDelimitedControl);
-                    mFieldType = typeof(DelimitedFieldBuilder);
-
-                    txtDelimiter.Text = "";
-                    string delimiter = mWizardInfo.DelimitedBuilder.Delimiter;
-
-                    if (delimiter == "|")
-                        radDelVertBar.Checked = true;
-                    else if (delimiter  == ",")
-                        radDelComma.Checked = true;
-                    else if (delimiter == ";")
-                        radDelSemiCol.Checked = true;
-                    else if (delimiter == "\t")
-                        radDelTabs.Checked = true;
-                    else
-                    {
-                        radDelCustom.Checked = true;
-                        txtDelimiter.Text = delimiter;
-                    }
-                }
-
-
-                panFields.SuspendLayout();
-                panFields.Controls.Clear();
-
-                foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
-                {
-                    panFields.Controls.Add(CreateFieldControlFromInfo(info));
-                }
-
-                panFields.ResumeLayout();
-
-                cmdPreview.Enabled = true;
-
-                panFields.Focus();
-
-                mLoadingFile = false;
-
-
-                ExpandAndShowPreview();
-
+                ClassBuilder builder = ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
+                ClassBuilderToWizard(builder);
             }
 
+        }
+
+        private void ClassBuilderToWizard(ClassBuilder builder)
+        {
+            mWizardInfo.ClassBuilder = builder;
+
+            Application.DoEvents();
+
+            WizardToControls();
+
+            Application.DoEvents();
+
+            if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder)
+            {
+                radFixed.Checked = true;
+                mControlType = typeof(FieldFixedControl);
+                mFieldType = typeof(FixedFieldBuilder);
+
+                txtFieldLength.Enabled = true;
+
+            }
+            else
+            {
+                txtFieldLength.Enabled = false;
+
+                radDelimited.Checked = true;
+
+                mControlType = typeof(FieldDelimitedControl);
+                mFieldType = typeof(DelimitedFieldBuilder);
+
+                txtDelimiter.Text = "";
+                string delimiter = mWizardInfo.DelimitedBuilder.Delimiter;
+
+                if (delimiter == "|")
+                    radDelVertBar.Checked = true;
+                else if (delimiter  == ",")
+                    radDelComma.Checked = true;
+                else if (delimiter == ";")
+                    radDelSemiCol.Checked = true;
+                else if (delimiter == "\t")
+                    radDelTabs.Checked = true;
+                else
+                {
+                    radDelCustom.Checked = true;
+                    txtDelimiter.Text = delimiter;
+                }
+            }
+
+
+            panFields.SuspendLayout();
+            panFields.Controls.Clear();
+
+            foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
+            {
+                panFields.Controls.Add(CreateFieldControlFromInfo(info));
+            }
+
+            panFields.ResumeLayout();
+
+            cmdPreview.Enabled = true;
+
+            panFields.Focus();
+
+            mLoadingFile = false;
+
+
+            ExpandAndShowPreview();
         }
 
         private void WizardToControls()
@@ -2640,6 +2664,27 @@ namespace FileHelpers.WizardApp
             }
             mLoadingFile = false;
             ReLoadPreview();
+
+        }
+
+        private void cmdDetectFormat_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+            dialog.Title = "Select a Sample File";
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            SmartFormatDetector detector = new SmartFormatDetector();
+            detector.SampleLines = 100;
+            RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
+
+            if (formats.Length == 0)
+                return;
+
+            ClassBuilderToWizard(formats[0].ClassBuilder);
+
+
 
         }
 

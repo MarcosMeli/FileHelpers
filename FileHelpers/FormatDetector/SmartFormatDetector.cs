@@ -95,13 +95,22 @@ namespace FileHelpers.Detection
 
             foreach (RecordFormatInfo option in res)
             {
+                DetectOptionals(option);
                 DetectTypes(option);
                 DetectQuoted(option);
             }
 
+            // Sort by confidence
+            res.Sort(delegate(RecordFormatInfo x, RecordFormatInfo y)
+                    { return -1 * x.Confidence.CompareTo(y.Confidence); });
+
             return res.ToArray();
         }
 
+        private void DetectOptionals(RecordFormatInfo option)
+        {
+            
+        }
 
         #endregion
 
@@ -179,7 +188,8 @@ namespace FileHelpers.Detection
             foreach (DelimiterInfo info in delimiters)
             {
                 RecordFormatInfo format = new RecordFormatInfo();
-                format.mConfidence = (int)((1 - info.Deviation) * 100);
+                format.mConfidence = (int)((1 - info.Deviation ) * 100);
+                AdjustConfidence(format, info);
 
                 DelimitedClassBuilder builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
                 builder.AddFields(info.AvergeByLine + 1);
@@ -191,6 +201,29 @@ namespace FileHelpers.Detection
 
         }
 
+        private void AdjustConfidence(RecordFormatInfo format, DelimiterInfo info)
+        {
+            switch (info.Delimiter)
+            {
+
+                case '/': // Avoid the date delimiters and url to be selected
+                case '.': // Avoid the decimal separator to be selected
+                    format.mConfidence = (int)(format.Confidence * 0.4);
+                    break;
+
+
+                case '@': // Avoid the mails separator to be selected
+                case '&': // Avoid this is near a letter and URLS
+                case '=': // Avoid because URLS contains it
+                    format.mConfidence = (int)(format.Confidence * 0.6);
+                    break;
+
+                case '-': // Avoid this other date separator
+                    format.mConfidence = (int)(format.Confidence * 0.7);
+                    break;
+
+            }
+        }
 
         #endregion
 
@@ -221,6 +254,7 @@ namespace FileHelpers.Detection
 
         private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
+
             double average = CalculateAverage(delimiter, data);
             double deviation = CalculateDeviation(delimiter, data, average);
 
@@ -261,21 +295,17 @@ namespace FileHelpers.Detection
                 }
             }
 
-            int max = 0;
-            foreach (KeyValuePair<char, int> pair in frecuency)
-            {
-                max = Math.Max(max, pair.Value);
-            }
 
             List<DelimiterInfo> candidates = new List<DelimiterInfo>();
-
-
             foreach (KeyValuePair<char, int> pair in frecuency)
             {
                 double average = CalculateAverage(pair.Key, data);
                 double deviation = CalculateDeviation(pair.Key, data, average);
 
-                if (average > 1 && deviation * Math.Min(1, lines / MIN_SAMPLE_DATA) < MIN_DELIMITED_DEVIATION)
+                // Adjust based on the number of lines
+                deviation = deviation * Math.Min(1, ((double) lines)/MIN_SAMPLE_DATA);
+
+                if (average > 1 && deviation < MIN_DELIMITED_DEVIATION)
                     candidates.Add(new DelimiterInfo(pair.Key, (int)Math.Round(average), deviation));
             }
 
