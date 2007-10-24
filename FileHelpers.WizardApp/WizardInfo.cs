@@ -76,7 +76,15 @@ namespace FileHelpers.WizardApp
             if (mClassBuilder == null)
                 return string.Empty;
 
-            return mClassBuilder.GetClassSourceCode(lang);
+            try
+            {
+                return mClassBuilder.GetClassSourceCode(lang);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message, "Error generating class code", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return ex.Message;
+            }
         }
 
         private string mDefaultType;
