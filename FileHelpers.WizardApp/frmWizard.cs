@@ -245,6 +245,7 @@ namespace FileHelpers.WizardApp
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picDonate = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdDetectFormat = new System.Windows.Forms.Button();
             this.picCurrStep = new System.Windows.Forms.PictureBox();
             this.linkHome = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -255,7 +256,6 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
-            this.cmdDetectFormat = new System.Windows.Forms.Button();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1152,7 +1152,7 @@ namespace FileHelpers.WizardApp
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(82, 28);
             this.cmdLoad.TabIndex = 1102;
-            this.cmdLoad.Text = "Load Info";
+            this.cmdLoad.Text = "Load Class";
             this.cmdLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdLoad.UseVisualStyleBackColor = true;
             this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
@@ -1166,7 +1166,7 @@ namespace FileHelpers.WizardApp
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(83, 28);
             this.cmdSave.TabIndex = 1101;
-            this.cmdSave.Text = "Save Info";
+            this.cmdSave.Text = "Save Class";
             this.cmdSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -1426,6 +1426,21 @@ namespace FileHelpers.WizardApp
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
             // 
+            // cmdDetectFormat
+            // 
+            this.cmdDetectFormat.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdDetectFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdDetectFormat.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetectFormat.Image")));
+            this.cmdDetectFormat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdDetectFormat.Location = new System.Drawing.Point(5, 340);
+            this.cmdDetectFormat.Name = "cmdDetectFormat";
+            this.cmdDetectFormat.Size = new System.Drawing.Size(147, 25);
+            this.cmdDetectFormat.TabIndex = 1101;
+            this.cmdDetectFormat.Text = "Auto Detect Format";
+            this.cmdDetectFormat.UseVisualStyleBackColor = false;
+            this.cmdDetectFormat.Click += new System.EventHandler(this.cmdDetectFormat_Click);
+            // 
             // picCurrStep
             // 
             this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
@@ -1533,21 +1548,6 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
-            // 
-            // cmdDetectFormat
-            // 
-            this.cmdDetectFormat.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDetectFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.cmdDetectFormat.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetectFormat.Image")));
-            this.cmdDetectFormat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDetectFormat.Location = new System.Drawing.Point(5, 340);
-            this.cmdDetectFormat.Name = "cmdDetectFormat";
-            this.cmdDetectFormat.Size = new System.Drawing.Size(147, 25);
-            this.cmdDetectFormat.TabIndex = 1101;
-            this.cmdDetectFormat.Text = "Auto Detect Format";
-            this.cmdDetectFormat.UseVisualStyleBackColor = false;
-            this.cmdDetectFormat.Click += new System.EventHandler(this.cmdDetectFormat_Click);
             // 
             // frmWizard
             // 
@@ -2025,6 +2025,8 @@ namespace FileHelpers.WizardApp
                     mWizardInfo.DelimitedBuilder.AddField((DelimitedFieldBuilder) ctrl.FieldInfo);
                 else
                     mWizardInfo.FixedLengthBuilder.AddField((FixedFieldBuilder) ctrl.FieldInfo);
+
+                ctrl.RePaintData();
             }
         }
 
@@ -2255,8 +2257,9 @@ namespace FileHelpers.WizardApp
             if (chkAllQuoted.Visible)
                 ((FieldDelimitedControl) ctrl).txtQuoted.Text = "\"";
             
-
+            ctrl.RePaintData();
             ReLoadPreview();
+            
         }
 
         private void cmdSave_Click(object sender, EventArgs e)

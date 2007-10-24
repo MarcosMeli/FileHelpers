@@ -114,12 +114,16 @@ namespace FileHelpers.WizardApp
 
         protected void OnInfoChanged()
         {
+            int index = this.mFieldInfo.FieldIndex;
+            lblFieldPosition.Text = (index + 1).ToString();
+
             if (InfoChanged != null)
                 InfoChanged(this, EventArgs.Empty);
         }
 
         protected void OnOrderChanged()
         {
+
             if (OrderChanged != null)
                 OrderChanged(this, EventArgs.Empty);
         }
@@ -170,5 +174,11 @@ namespace FileHelpers.WizardApp
 
 
 
+
+        internal void RePaintData()
+        {
+            int index = this.mFieldInfo.FieldIndex;
+            lblFieldPosition.Text = (index + 1).ToString();
+        }
     }
 }

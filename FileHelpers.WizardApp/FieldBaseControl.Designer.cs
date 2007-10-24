@@ -38,6 +38,7 @@ namespace FileHelpers.WizardApp
             this.cboTrim = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.chkOptional = new System.Windows.Forms.CheckBox();
+            this.lblFieldPosition = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtName
@@ -174,10 +175,22 @@ namespace FileHelpers.WizardApp
             this.chkOptional.UseVisualStyleBackColor = false;
             this.chkOptional.CheckedChanged += new System.EventHandler(this.chkOptional_CheckedChanged);
             // 
+            // lblFieldPosition
+            // 
+            this.lblFieldPosition.BackColor = System.Drawing.Color.Transparent;
+            this.lblFieldPosition.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFieldPosition.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblFieldPosition.Location = new System.Drawing.Point(186, 43);
+            this.lblFieldPosition.Name = "lblFieldPosition";
+            this.lblFieldPosition.Size = new System.Drawing.Size(52, 20);
+            this.lblFieldPosition.TabIndex = 1007;
+            this.lblFieldPosition.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FieldBaseControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblFieldPosition);
             this.Controls.Add(this.chkOptional);
             this.Controls.Add(this.cboTrim);
             this.Controls.Add(this.label3);
@@ -208,5 +221,6 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.CheckBox chkOptional;
         internal System.Windows.Forms.ComboBox cboTrim;
+        private System.Windows.Forms.Label lblFieldPosition;
     }
 }
