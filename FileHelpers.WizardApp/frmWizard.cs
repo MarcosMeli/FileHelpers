@@ -2676,7 +2676,7 @@ namespace FileHelpers.WizardApp
                 return;
 
             SmartFormatDetector detector = new SmartFormatDetector();
-            detector.SampleLines = 100;
+            detector.MaxSampleLines = 100;
             RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
 
             if (formats.Length == 0)

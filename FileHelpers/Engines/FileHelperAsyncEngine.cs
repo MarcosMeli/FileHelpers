@@ -145,7 +145,7 @@ namespace FileHelpers
                 if (value == null)
                 {
                     if (mRecordInfo.mFields[fieldIndex].FieldType.IsValueType)
-                        throw new BadUsageException("You cant assing null to a value type.");
+                        throw new BadUsageException("You can't assing null to a value type.");
 
                     mLastRecordValues[fieldIndex] = null;
                 }

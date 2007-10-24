@@ -19,19 +19,19 @@ namespace FileHelpersTests.Tests.Detector
             SmartFormatDetector detector = new SmartFormatDetector();
             RecordFormatInfo[] formats;
 
-            detector.SampleLines = 10;
+            detector.MaxSampleLines = 10;
             formats = detector.DetectFileFormat(file);
             AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
-            detector.SampleLines = 20;
+            detector.MaxSampleLines = 20;
             formats = detector.DetectFileFormat(file);
             AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
-            detector.SampleLines = 50;
+            detector.MaxSampleLines = 50;
             formats = detector.DetectFileFormat(file);
             AssertFormat(formats, delimiter, fields, confidence, numFormats);
 
-            detector.SampleLines = 100;
+            detector.MaxSampleLines = 100;
             formats = detector.DetectFileFormat(file);
             AssertFormat(formats, delimiter, fields, confidence, numFormats);
         }
@@ -114,6 +114,24 @@ namespace FileHelpersTests.Tests.Detector
             string file;
             file = "SampleData.txt";
             AssertDelimitedFormat(file, ",", 26, 100, 0);
+
+        }
+
+        [Test]
+        public void Quoted()
+        {
+            string file;
+            file = "SuperQuoted.txt";
+            AssertDelimitedFormat(file, ",", 11, 100, 0);
+
+        }
+
+        [Test]
+        public void QuotedMore()
+        {
+            string file;
+            file = "SuperQuoted2.txt";
+            AssertDelimitedFormat(file, ",", 12, 90, 0);
 
         }
 

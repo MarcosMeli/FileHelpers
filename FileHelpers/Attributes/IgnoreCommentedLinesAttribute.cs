@@ -31,7 +31,7 @@ namespace FileHelpers
 		public IgnoreCommentedLinesAttribute(string commentMarker, bool anyPlace)
 		{
 			if (commentMarker == null ||  commentMarker.Trim().Length == 0)
-				throw new BadUsageException("The comment string parameter cant be null or empty.");
+				throw new BadUsageException("The comment string parameter can't be null or empty.");
 			
 			mCommentMarker = commentMarker.Trim();
             mAnyPlace = anyPlace;

@@ -28,12 +28,15 @@ namespace FileHelpers.Detection
             set { mFormatHint = value; }
         }
 
-        private int mSampleLines = 50;
+        private int mMaxSampleLines = 50;
 
-        public int SampleLines
+        /// <summary>
+        /// The number of lines of each file to be used as sample data.
+        /// </summary>
+        public int MaxSampleLines
         {
-            get { return mSampleLines; }
-            set { mSampleLines = value; }
+            get { return mMaxSampleLines; }
+            set { mMaxSampleLines = value; }
         }
 
         private Encoding mEncoding = Encoding.Default;
@@ -59,15 +62,25 @@ namespace FileHelpers.Detection
 
         #region "  Public Methods  "
         
+        /// <summary>
+        /// Tries to detect the possible formats of the file using the <see cref="FormatHint"/>
+        /// </summary>
+        /// <param name="file">The file to be used as sample data</param>
+        /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(string file)
         {
             return DetectFileFormat(new string[] { file });
         }
 
+        /// <summary>
+        /// Tries to detect the possible formats of the file using the <see cref="FormatHint"/>
+        /// </summary>
+        /// <param name="files">The files to be used as sample data</param>
+        /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(IEnumerable<string> files)
         {
             List<RecordFormatInfo> res = new List<RecordFormatInfo>();
-            string[][] sampleData = GetSampleLines(files, SampleLines);
+            string[][] sampleData = GetSampleLines(files, MaxSampleLines);
 
             switch (mFormatHint)
             {
@@ -95,9 +108,9 @@ namespace FileHelpers.Detection
 
             foreach (RecordFormatInfo option in res)
             {
-                DetectOptionals(option);
-                DetectTypes(option);
-                DetectQuoted(option);
+                DetectOptionals(option, sampleData);
+                DetectTypes(option, sampleData);
+                DetectQuoted(option, sampleData);
             }
 
             // Sort by confidence
@@ -107,22 +120,30 @@ namespace FileHelpers.Detection
             return res.ToArray();
         }
 
-        private void DetectOptionals(RecordFormatInfo option)
-        {
-            
-        }
 
         #endregion
 
         #region "  Fields Properties Methods  "
 
 
-        private void DetectQuoted(RecordFormatInfo format)
+        private void DetectQuoted(RecordFormatInfo format, string[][] data)
+        {
+            if (format.ClassBuilder is FixedLengthClassBuilder)
+                return;
+
+
+
+
+
+        }
+
+        private void DetectTypes(RecordFormatInfo format, string[][] data)
         {
         }
 
-        private void DetectTypes(RecordFormatInfo format)
+        private void DetectOptionals(RecordFormatInfo option, string[][] data)
         {
+
         }
 
         #endregion
@@ -206,6 +227,11 @@ namespace FileHelpers.Detection
             switch (info.Delimiter)
             {
 
+                case '"':  // Avoid the quote identifier
+                case '\'': // Avoid the quote identifier
+                    format.mConfidence = (int)(format.Confidence * 0.2);
+                    break;
+
                 case '/': // Avoid the date delimiters and url to be selected
                 case '.': // Avoid the decimal separator to be selected
                     format.mConfidence = (int)(format.Confidence * 0.4);
@@ -220,6 +246,12 @@ namespace FileHelpers.Detection
 
                 case '-': // Avoid this other date separator
                     format.mConfidence = (int)(format.Confidence * 0.7);
+                    break;
+
+                case ',': // Help the , ; tab to be confident
+                case ';': 
+                case '\t': 
+                    format.mConfidence = (int)Math.Min(100, format.Confidence * 1.15);
                     break;
 
             }

@@ -247,10 +247,10 @@ namespace FileHelpers.MasterDetail
 #endif
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream cant be null");
+                throw new ArgumentNullException("reader", "The reader of the Stream can't be null");
 
             if (RecordSelector == null)
-                throw new BadUsageException("The RecordSelector cant be null on read operations.");
+                throw new BadUsageException("The RecordSelector can't be null on read operations.");
 
             ResetFields();
             mHeaderText = String.Empty;

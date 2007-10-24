@@ -40,10 +40,10 @@ namespace FileHelpers
                 throw new BadUsageException("The field: '" + fi.Name + "' has a FieldFixedLength and a FieldDelimiter attribute.");
 
             if (recordAttribute is DelimitedRecordAttribute && fi.IsDefined(typeof(FieldAlignAttribute), false))
-                throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpouse.");
+                throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpouse.");
 
             if (fi.FieldType.IsArray == false && fi.IsDefined(typeof(FieldArrayLengthAttribute), false))
-                throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldArrayLength attribute is only valid for array fields.");
+                throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
 
 
             // PROCESS IN NORMAL CONDITIONS
@@ -56,7 +56,7 @@ namespace FileHelpers
                 {
                     // Fixed Field
                     if (recordAttribute is DelimitedRecordAttribute)
-                        throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldFixedLength attribute, it is only for the FixedLengthRecords not for delimited ones.");
+                        throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldFixedLength attribute, it is only for the FixedLengthRecords not for delimited ones.");
 
                     FieldFixedLengthAttribute attb = ((FieldFixedLengthAttribute)fieldAttb);
 
@@ -73,7 +73,7 @@ namespace FileHelpers
                 {
                     // Delimited Field
                     if (recordAttribute is FixedLengthRecordAttribute)
-                        throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldDelimiter attribute, it is only for DelimitedRecords not for fixed ones.");
+                        throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldDelimiter attribute, it is only for DelimitedRecords not for fixed ones.");
 
                     res = new DelimitedField(fi, ((FieldDelimiterAttribute)fieldAttb).mSeparator);
 
@@ -103,7 +103,7 @@ namespace FileHelpers
                 if (quotedAttributes.Length > 0)
                 {
                     if (res is FixedLengthField)
-                        throw new BadUsageException("The field: '" + fi.Name + "' cant be marked with FieldQuoted attribute, it is only for the delimited records.");
+                        throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
 
                     ((DelimitedField)res).mQuoteChar = quotedAttributes[0].QuoteChar;
                     ((DelimitedField)res).mQuoteMode = quotedAttributes[0].QuoteMode;

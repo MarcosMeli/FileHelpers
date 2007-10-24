@@ -555,7 +555,7 @@ namespace FileHelpers
                             break;
 
                         default:
-                            throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using default true/false values.");
+                            throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using default true/false values.");
                     }
                 }
                 else
@@ -566,7 +566,7 @@ namespace FileHelpers
                     else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)
                         val = false;
                     else
-                        throw new ConvertException(from, typeof(bool), "The string: " + from + " cant be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
+                        throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
                 }
 
                 return val;

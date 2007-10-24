@@ -510,6 +510,8 @@ namespace FileHelpers.RunTime
         /// <returns>The Source Code for the class that are currently building.</returns>
         public string GetClassSourceCode(NetLanguage lang)
         {
+            ValidateClass();
+
             StringBuilder sb = new StringBuilder(100);
 
             BeginNamespace(lang, sb);
@@ -561,6 +563,24 @@ namespace FileHelpers.RunTime
             return sb.ToString();
 
 
+        }
+
+        private void ValidateClass()
+        {
+            
+            if (ClassName.Trim().Length == 0)
+                throw new FileHelpersException("The ClassName can't be empty");
+
+            for (int i = 0; i < mFields.Count; i++)
+            {
+
+                if (((FieldBuilder) mFields[i]).FieldName.Trim().Length == 0)
+                    throw new FileHelpersException("The " + (i+1).ToString() +  "th field name can't be empty");
+
+                if (((FieldBuilder)mFields[i]).FieldType.Trim().Length == 0)
+                    throw new FileHelpersException("The " + (i + 1).ToString() + "th field type can't be empty");
+
+            }
         }
 
         internal abstract void AddAttributesCode(AttributesBuilder attbs);

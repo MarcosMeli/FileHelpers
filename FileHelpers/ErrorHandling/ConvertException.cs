@@ -54,7 +54,7 @@ namespace FileHelpers
             get { return mFieldType; }
         }
 
-        /// <summary>The value that cant be converterd. (null for unknown)</summary>
+        /// <summary>The value that can't be converterd. (null for unknown)</summary>
         public string FieldStringValue
         {
             get { return mFieldStringValue; }
