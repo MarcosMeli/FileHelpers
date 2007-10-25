@@ -1,7 +1,11 @@
-The FileHelpers are licensed under the new BSD LIcense
+The FileHelpers are licensed under the new BSD or LPGL, pick the best for you
 
 That allow commercial and non commercial developments under this terms:
------------------------------------------------------------------------
+
+====================================================
+                 BSD License
+====================================================
+
 Copyright (c) 2005, Marcos Meli
 
 All rights reserved.
