@@ -403,7 +403,7 @@ namespace FileHelpersTests.Errors
 		[ExpectedException(typeof (BadUsageException))]
 		public void NullRecordType()
 		{
-			new FileHelperEngine(null);
+			new FileHelperEngine((Type) null);
 		}
 
 		#endregion
