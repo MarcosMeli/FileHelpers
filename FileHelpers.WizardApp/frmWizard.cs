@@ -10,7 +10,6 @@ using FileHelpers.RunTime;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
 using System.Diagnostics;
-using FileHelpers.Detection;
 
 namespace FileHelpers.WizardApp
 {
@@ -1439,6 +1438,7 @@ namespace FileHelpers.WizardApp
             this.cmdDetectFormat.TabIndex = 1101;
             this.cmdDetectFormat.Text = "Auto Detect Format";
             this.cmdDetectFormat.UseVisualStyleBackColor = false;
+            this.cmdDetectFormat.Visible = false;
             this.cmdDetectFormat.Click += new System.EventHandler(this.cmdDetectFormat_Click);
             // 
             // picCurrStep
@@ -2672,20 +2672,20 @@ namespace FileHelpers.WizardApp
 
         private void cmdDetectFormat_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Title = "Select a Sample File";
-            if (dialog.ShowDialog() == DialogResult.Cancel)
-                return;
+            //OpenFileDialog dialog = new OpenFileDialog();
+            //dialog.Multiselect = false;
+            //dialog.Title = "Select a Sample File";
+            //if (dialog.ShowDialog() == DialogResult.Cancel)
+            //    return;
 
-            SmartFormatDetector detector = new SmartFormatDetector();
-            detector.MaxSampleLines = 100;
-            RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
+            //SmartFormatDetector detector = new SmartFormatDetector();
+            //detector.MaxSampleLines = 100;
+            //RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
 
-            if (formats.Length == 0)
-                return;
+            //if (formats.Length == 0)
+            //    return;
 
-            ClassBuilderToWizard(formats[0].ClassBuilder);
+            //ClassBuilderToWizard(formats[0].ClassBuilder);
 
 
 
