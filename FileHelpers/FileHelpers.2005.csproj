@@ -165,9 +165,13 @@
     <Compile Include="Core\ForwardReader.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\IRecordReader.cs" />
+    <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\NewLineDelimitedRecordReader.cs" />
+    <Compile Include="Core\PrefixedVariableLengthRecordReader.cs" />
     <Compile Include="Core\RecordInfo.cs">
       <SubType>Code</SubType>
     </Compile>

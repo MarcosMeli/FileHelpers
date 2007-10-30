@@ -5,8 +5,6 @@
 #endregion
 
 using System;
-using System.Globalization;
-using System.IO;
 using System.Text;
 
 namespace FileHelpers
@@ -16,7 +14,7 @@ namespace FileHelpers
     {
         internal static readonly char[] mEOF = StringHelper.NewLine.ToCharArray();
 
-        readonly TextReader mReader;
+        readonly IRecordReader mReader;
 
         private readonly string[] mFowardStrings;
         private int mForwardIndex = 0;
@@ -26,15 +24,15 @@ namespace FileHelpers
         #region "  Constructors  "
 
 
-        internal ForwardReader(TextReader reader)
+        internal ForwardReader(IRecordReader reader)
             : this(reader, 0, 0)
         { }
 
-        internal ForwardReader(TextReader reader, int forwardLines)
+        internal ForwardReader(IRecordReader reader, int forwardLines)
             : this(reader, forwardLines, 0)
         { }
 
-        internal ForwardReader(TextReader reader, int forwardLines, int startLine) 
+        internal ForwardReader(IRecordReader reader, int forwardLines, int startLine) 
         {
             mReader = reader;
 
@@ -46,7 +44,7 @@ namespace FileHelpers
 
             for (int i = 0; i < mFowardLines + 1; i++)
             {
-                mFowardStrings[i] = mReader.ReadLine();
+                mFowardStrings[i] = mReader.ReadRecord();
                 mLineNumber++;
                 if (mFowardStrings[i] == null)
                 {
@@ -124,7 +122,7 @@ namespace FileHelpers
 
                 if (mRemaingLines == (mFowardLines + 1))
                 {
-                    mFowardStrings[mForwardIndex] = mReader.ReadLine();
+                    mFowardStrings[mForwardIndex] = mReader.ReadRecord();
                     mLineNumber++;
 
                     if (mFowardStrings[mForwardIndex] == null)

@@ -172,6 +172,7 @@ namespace FileHelpers
 #endif
             if (reader == null)
                 throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -180,7 +181,7 @@ namespace FileHelpers
             ArrayList resArray = new ArrayList();
             int currentRecord = 0;
 
-            using (ForwardReader freader = new ForwardReader(reader, mRecordInfo.mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast))
             {
                 freader.DiscardForward = true;
 

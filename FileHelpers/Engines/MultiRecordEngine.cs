@@ -307,13 +307,15 @@ namespace FileHelpers
 			if (mRecordSelector == null)
 				throw new BadUsageException("The Recordselector can´t be null, please pass a not null Selector in the constructor.");
 
+            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
+
 			ResetFields();
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 
 			ArrayList resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(reader, mMultiRecordInfo[0].mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(recordReader, mMultiRecordInfo[0].mIgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -662,6 +664,7 @@ namespace FileHelpers
 		{
 			if (reader == null)
 				throw new ArgumentNullException("The TextReader can´t be null.");
+            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
 
 			ResetFields();
 			mHeaderText = String.Empty;
@@ -671,7 +674,7 @@ namespace FileHelpers
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
 				{
-					string temp = reader.ReadLine();
+				    string temp = recordReader.ReadRecord();
 					mLineNumber++;
 					if (temp != null)
 						mHeaderText += temp + StringHelper.NewLine;
@@ -680,7 +683,7 @@ namespace FileHelpers
 				}
 			}
 
-			mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
+			mAsyncReader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast, mLineNumber);
 			mAsyncReader.DiscardForward = true;
 		}
 

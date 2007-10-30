@@ -252,13 +252,15 @@ namespace FileHelpers.MasterDetail
             if (RecordSelector == null)
                 throw new BadUsageException("The RecordSelector can't be null on read operations.");
 
+            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
+
             ResetFields();
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
             ArrayList resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(reader, mMasterInfo.mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(recordReader, mMasterInfo.mIgnoreLast))
             {
                 freader.DiscardForward = true;
 

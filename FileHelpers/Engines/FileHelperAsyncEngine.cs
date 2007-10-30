@@ -192,6 +192,7 @@ namespace FileHelpers
         {
             if (reader == null)
                 throw new ArgumentNullException("reader", "The TextReader can´t be null.");
+            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -201,7 +202,7 @@ namespace FileHelpers
             {
                 for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
                 {
-                    string temp = reader.ReadLine();
+                    string temp = recordReader.ReadRecord();
                     mLineNumber++;
                     if (temp != null)
                         mHeaderText += temp + StringHelper.NewLine;
@@ -210,7 +211,7 @@ namespace FileHelpers
                 }
             }
 
-            mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
+            mAsyncReader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast, mLineNumber);
             mAsyncReader.DiscardForward = true;
         }
 
