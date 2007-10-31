@@ -75,14 +75,19 @@
                     HintPath = "c:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
                 />
                 <Reference
-                    Name = "Interop.Excel"
-                    AssemblyName = "Interop.Excel"
-                    HintPath = "..\References\Interop.Excel.dll"
-                />
-                <Reference
                     Name = "FileHelpers.2003"
                     Project = "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Interop.Excel"
+                    AssemblyName = "Interop.Excel"
+                    HintPath = "..\References\Net 1.1\Interop.Excel.dll"
+                />
+                <Reference
+                    Name = "Interop.Office"
+                    AssemblyName = "Interop.Office"
+                    HintPath = "..\References\Net 1.1\Interop.Office.dll"
                 />
             </References>
         </Build>

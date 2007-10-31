@@ -659,6 +659,7 @@ namespace FileHelpers
 
 #endif
 
+
         /// <summary>
         /// Shortcut method to read the first n lines of a text file.
         /// </summary>
@@ -721,6 +722,8 @@ namespace FileHelpers
 
 
         #region "  ReadCSV  "
+
+#if NET_2_0
 
 
         /// <summary>
@@ -786,7 +789,8 @@ namespace FileHelpers
             return engine;
         }
 
-        #endregion
+#endif
+		#endregion
     }
 
 #if ! (NET_1_1 || MINI)

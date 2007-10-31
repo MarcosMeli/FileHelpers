@@ -17,8 +17,3 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyKeyName("")]
 [assembly : ComVisible(false)]
  
-#if ! NET_2_0
-#if ! MINI
-    [assembly: AssemblyKeyFile(@"FileHelpers.snk")]
-#endif
-#endif

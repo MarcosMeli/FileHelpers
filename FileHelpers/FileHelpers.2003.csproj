@@ -228,7 +228,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Core\IRecordReader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Core\LineInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\NewLineDelimitedRecordReader.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Core\PrefixedVariableLengthRecordReader.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -359,6 +374,11 @@
                 />
                 <File
                     RelPath = "Enums\FixedMode.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Enums\LengthIndicatorType.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

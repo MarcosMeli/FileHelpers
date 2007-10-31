@@ -37,6 +37,6 @@ using System.Security.Permissions;
 
 #if ! NET_2_0
 #if ! MINI
-[assembly: AssemblyKeyFile(@"FileHelpers.snk")]
+[assembly: AssemblyKeyFile(@"..\..\FileHelpers.snk")]
 #endif
 #endif
