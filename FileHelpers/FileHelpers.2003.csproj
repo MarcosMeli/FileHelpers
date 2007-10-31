@@ -252,6 +252,7 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <Folder RelPath = "Csv\" />
                 <File
                     RelPath = "DataLink\ExcelDataLinkOleDb.cs"
                     SubType = "Code"

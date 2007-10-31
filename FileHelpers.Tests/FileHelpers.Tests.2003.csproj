@@ -343,6 +343,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Tests\Common\ReflectionOrder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Tests\Common\RunTimeClass.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
