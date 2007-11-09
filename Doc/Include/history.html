@@ -551,7 +551,7 @@ Too many things were changed, mostly internaly, now we have a performance gain o
 	<td valign="center" class="note">
 	I everyone again !!
 	<br><br>
-This is a mantenience release but there are some interesting addition and performance gain improvements
+This is a mantenience release but there are some interesting addition and performance improvements
         for .NET 2.0<br>
         <br>
         We are working on some big internal changes to allow move the next features level of the version 3.0, 
@@ -567,22 +567,36 @@ This is a mantenience release but there are some interesting addition and perfor
 
 
                          <br>
-                                        <p>
-                                            <b>Main changes</b></p>
+                                        
+                                            <b>Main changes</b>
         <ul>
                                             <li>The error messages have been made more meaningful.  In all exceptions you get; the FieldName, ColumnNumber, LineNumber, etc.
-                                            </li></ul>
+                                            <li>
+ADD: FieldIndexers you can now get the values in the AsyncEngine like in the DataReader of ADO.NET =)
+     You can access them via index or fieldName (at the moment case sensitive)<br />
+This also complete the RunTime records support
+                                            
+                                      </ul>
 							 <p></p>
 
 										<b>API changes and extensions</b>
-        <p></p>
                                         <ul>
-                                        <li>Excel : new UpdateLinks property, allow you to 
-          specify how the library must handle workbook links.</li>              
+                                        <li>Excel : new UpdateLinks property, allow you to specify how the library must handle workbook links.</li>              
+                                        
                                         </ul>
 
-							 <p></p></li></ul>
-							 <p>
+										<b>Minor Changes</b>
+                                        <ul>
+                                        <li>ADD: UpdateLinks properties, allow to specify how the library must handle Workbook links (thanks to Stefan Schälle)
+                                        <li><a href="examples.html">Some new examples.</a>
+                                        <li>FIX: A little problem with the quoted fields in the wizard
+                                        
+                                        
+                                        </ul>
+
+
+							 <p></p>
+							 </ul>
 
 					
 
