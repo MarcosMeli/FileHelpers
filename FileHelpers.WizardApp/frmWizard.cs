@@ -561,7 +561,14 @@ namespace FileHelpers.WizardApp
             "Decimal",
             "Double",
             "Single",
-            "Bool"});
+            "Boolean",
+            "Byte",
+            "SByte",
+            "UInt16",
+            "UInt32",
+            "UInt64",
+            "Guid",
+            "Char"});
             this.txtDefaultType.Location = new System.Drawing.Point(154, 75);
             this.txtDefaultType.MaxDropDownItems = 20;
             this.txtDefaultType.Name = "txtDefaultType";

@@ -108,6 +108,14 @@ namespace FileHelpers
 				case ConverterKind.Boolean:
 					convType = typeof (ConvertHelpers.BooleanConverter);
 					break;
+                // Added by Alexander Obolonkov 2007.11.08
+                case ConverterKind.Char:
+                    convType = typeof(ConvertHelpers.CharConverter);
+                    break;
+                // Added by Alexander Obolonkov 2007.11.08
+                case ConverterKind.Guid:
+                    convType = typeof(ConvertHelpers.GuidConverter);
+                    break;
 				default:
 					throw new BadUsageException("Converter '" + converter.ToString() + "' not found, you must specify a valid converter.");
 
@@ -289,6 +297,8 @@ namespace FileHelpers
                 case ConverterKind.Double:
                 case ConverterKind.Single:
                 case ConverterKind.Boolean:
+                case ConverterKind.Char:
+                case ConverterKind.Guid:
                     valid = Kind.ToString() == fieldType.UnderlyingSystemType.Name;
                     break;
 
