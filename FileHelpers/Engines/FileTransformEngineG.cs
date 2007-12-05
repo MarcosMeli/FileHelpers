@@ -18,7 +18,7 @@ using System.Diagnostics;
 namespace FileHelpers
 {
 	/// <summary>
-	/// This class allow you to convert the records to a different record format.
+	/// This class allow you to convert the records of a file to a different record format.
 	/// </summary>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
@@ -65,17 +65,12 @@ namespace FileHelpers
 			ValidateRecordTypes();
 		}
 
-        /// <summary>Create a new instance of the class.</summary>
-        /// <param name="sourceType">The source record Type.</param>
-        /// <param name="destType">The destination record Type.</param>
-        /// <param name="errorMode">The default <see cref="ErrorMode"/></param>
-
 #if ! GENERICS
-        public FileTransformEngine(Type sourceType, Type destType, ErrorMode errorMode)
+        public FileTransformEngine(Type sourceType, Type destType, FileHelpers.ErrorMode errorMode)
             :this(sourceType, destType)
         {
 #else
-		public FileTransformEngine(ErrorMode errorMode)
+		public FileTransformEngine(FileHelpers.ErrorMode errorMode)
             :this()
 		{
 #endif

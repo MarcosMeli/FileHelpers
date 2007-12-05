@@ -34,13 +34,13 @@ namespace FileHelpers
     
     /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
-    /// <typeparam name="T">The record type.</typeparam>
 #if NET_2_0
     [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
 #endif
 #if ! GENERICS
 	public class FileHelperEngine : EngineBase
 #else
+    /// <typeparam name="T">The record type.</typeparam>
 	public class FileHelperEngine<T>: EngineBase
 #endif
     {

@@ -166,6 +166,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\IRecordReader.cs" />
+    <Compile Include="Enums\EngineState.cs" />
     <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">
       <SubType>Code</SubType>

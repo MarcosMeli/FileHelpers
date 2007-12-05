@@ -34,6 +34,7 @@ namespace FileHelpers
         EngineBase, IEnumerable<T>, IDisposable
 #endif
     {
+
         #region "  Constructor  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
@@ -192,6 +193,10 @@ namespace FileHelpers
         {
             if (reader == null)
                 throw new ArgumentNullException("reader", "The TextReader can´t be null.");
+
+            if (mAsyncWriter != null)
+                throw new BadUsageException("You can't start to read while you are writing.");
+
             NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
@@ -213,6 +218,8 @@ namespace FileHelpers
 
             mAsyncReader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast, mLineNumber);
             mAsyncReader.DiscardForward = true;
+            mState = EngineState.Reading;
+
         }
 
         #endregion
@@ -397,6 +404,8 @@ arr.ToArray(RecordType);
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
         public void Close()
         {
+            mState = EngineState.Closed;
+
             try
             {
                 mLastRecordValues = null;
@@ -445,6 +454,11 @@ arr.ToArray(RecordType);
             if (writer == null)
                 throw new ArgumentException("writer", "The TextWriter can´t be null.");
 
+            if (mAsyncReader != null)
+                throw new BadUsageException("You can't start to write while you are reading.");
+
+
+            mState = EngineState.Writing;
             ResetFields();
             mAsyncWriter = writer;
             WriteHeader();
@@ -472,14 +486,18 @@ arr.ToArray(RecordType);
         #endregion
 
 
-        #region "  BeginappendToFile  "
+        #region "  BeginAppendToFile  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
         public void BeginAppendToFile(string fileName)
         {
+            if (mAsyncReader != null)
+                throw new BadUsageException("You can't start to write while you are reading.");
+
             mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
+            mState = EngineState.Writing;
         }
 
         #endregion
@@ -574,6 +592,55 @@ arr.ToArray(RecordType);
                 WriteRecord(rec);
             }
 
+        }
+
+        #endregion
+
+        #region "  WriteNext for LastRecordValues  "
+
+        /// <summary>
+        /// Write the current record values. You can use engine[0] or engine["YourField"] to set the values.
+        /// </summary>
+        public void WriteNext()
+        {
+            if (mAsyncWriter == null)
+                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+
+            if (mLastRecordValues == null)
+                throw new BadUsageException("You must set some values of the record before call this method, or use the overload that has a record as argument.");
+
+            string currentLine = null;
+
+            try
+            {
+                mLineNumber++;
+                mTotalRecords++;
+
+                currentLine = mRecordInfo.RecordValuesToString(this.mLastRecordValues);
+                mAsyncWriter.WriteLine(currentLine);
+            }
+            catch (Exception ex)
+            {
+                switch (mErrorManager.ErrorMode)
+                {
+                    case ErrorMode.ThrowException:
+                        throw;
+                    case ErrorMode.IgnoreAndContinue:
+                        break;
+                    case ErrorMode.SaveAndContinue:
+                        ErrorInfo err = new ErrorInfo();
+                        err.mLineNumber = mLineNumber;
+                        err.mExceptionInfo = ex;
+                        //							err.mColumnNumber = mColumnNum;
+                        err.mRecordString = currentLine;
+                        mErrorManager.AddError(err);
+                        break;
+                }
+            }
+            finally
+            {
+                mLastRecordValues = null;
+            }
         }
 
         #endregion
@@ -693,6 +760,8 @@ arr.ToArray(RecordType);
 
         #endregion
 
+        #region "  Options  "
+
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
@@ -705,50 +774,23 @@ arr.ToArray(RecordType);
             set { mOptions = value; }
         }
 
+        #endregion
+
+        #region "  State  "
+
+        private EngineState mState = EngineState.Closed;
+
         /// <summary>
-        /// Write the current record values. You can use engine[0] or engine["YourField"] to set the values.
+        /// Indicates the current state of the engine.
         /// </summary>
-        public void WriteNext()
+        public EngineState State
         {
-            if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
-
-            if (mLastRecordValues == null)
-                throw new BadUsageException("You must set some values of the record before call this method, or use the overload that has a record as argument.");
-
-            string currentLine = null;
-
-            try
-            {
-                mLineNumber++;
-                mTotalRecords++;
-
-                currentLine = mRecordInfo.RecordValuesToString(this.mLastRecordValues);
-                mAsyncWriter.WriteLine(currentLine);
-            }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
-                    case ErrorMode.ThrowException:
-                        throw;
-                    case ErrorMode.IgnoreAndContinue:
-                        break;
-                    case ErrorMode.SaveAndContinue:
-                        ErrorInfo err = new ErrorInfo();
-                        err.mLineNumber = mLineNumber;
-                        err.mExceptionInfo = ex;
-                        //							err.mColumnNumber = mColumnNum;
-                        err.mRecordString = currentLine;
-                        mErrorManager.AddError(err);
-                        break;
-                }
-            }
-            finally
-            {
-                mLastRecordValues = null;
-            }
+            get { return mState; }
+            set { mState = value; }
         }
+
+
+        #endregion
 
     }
 }

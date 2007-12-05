@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
@@ -186,6 +187,8 @@ namespace FileHelpersTests.Errors
 			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(@"C:\SavedErrors.txt");
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
+            File.Delete(@"C:\SavedErrors.txt");
+
 		}
 
 		[Test]
@@ -198,10 +201,9 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
 			engine.ErrorManager.SaveErrors(@"C:\SavedErrors.txt");
-
-			
-
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(@"C:\SavedErrors.txt").Length);
+            File.Delete(@"C:\SavedErrors.txt");
+
 		}
 
 

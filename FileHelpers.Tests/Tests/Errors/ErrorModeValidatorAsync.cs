@@ -1,5 +1,6 @@
 using FileHelpers;
 using NUnit.Framework;
+using System.IO;
 
 namespace FileHelpersTests.Errors
 {
@@ -118,6 +119,8 @@ namespace FileHelpersTests.Errors
 			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(@"C:\SavedErrors.txt");
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
+            File.Delete(@"C:\SavedErrors.txt");
+
 		}
 
 		[Test]
@@ -130,10 +133,36 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
 			engine.ErrorManager.SaveErrors(@"C:\SavedErrors.txt");
-
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(@"C:\SavedErrors.txt").Length);
+            File.Delete(@"C:\SavedErrors.txt");
 		}
 
+
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BeginReadWhileWriting()
+        {
+            FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
+            try
+            {
+                eng.BeginWriteFile(@"c:\tempfile.tmp");
+                eng.BeginReadString("jejjeje");
+            }
+            finally
+            {
+                eng.Close();
+                if (File.Exists(@"c:\tempfile.tmp")) File.Delete(@"c:\tempfile.tmp");
+            }
+        }
+
+        [Test]
+        [ExpectedException(typeof(BadUsageException))]
+        public void BeginWriteWhileReading()
+        {
+            FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
+            eng.BeginReadString("jejjeje");
+            eng.BeginWriteFile(@"c:\tempfile.tmp");
+        }
 
 	}
 }
