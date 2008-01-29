@@ -5,7 +5,6 @@ using System.Text;
 namespace FileHelpers.WizardApp
 {
 
-
     //public enum NetVisibility
     //{
     //    Private,

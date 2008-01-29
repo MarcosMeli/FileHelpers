@@ -1,0 +1,81 @@
+<DelimitedClass Delimiter="\t">
+    <ClassName>VendorImport</ClassName>
+    <SealedClass />
+    <IgnoreEmptyLines />
+    <Fields>
+        <Field Name="LastNameFirstName" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="Address1" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="City" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="State" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="ZipCode" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="Telephone" Type="String">
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="LastName" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="MiddleName" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="FirstName" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="AreaCode" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="PhoneNumber" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="EmailAddress" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="CellularAreaCode" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="Address2" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="SSN" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="CellularPhoneNumber" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="Gender" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="MaritalStatus" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="DateOfBirth" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+        <Field Name="DateOfDeath" Type="String">
+            <FieldOptional />
+            <TrimMode>Both</TrimMode>
+        </Field>
+    </Fields>
+</DelimitedClass>

@@ -74,6 +74,7 @@ namespace FileHelpers.RunTime
             //cp.ReferencedAssemblies.Add("System.Data.dll");
             //cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
 
+            bool mustAddSystemData = false;
             lock (mReferencesLock)
             {
                 if (mReferences == null)
@@ -85,6 +86,9 @@ namespace FileHelpers.RunTime
                         Module module = assembly.GetModules()[0];
                         if (module.Name == "mscorlib.dll" || module.Name == "<Unknown>")
                             continue;
+
+                        if (module.Name == "System.Data.dll")
+                            mustAddSystemData = true;
 
                         arr.Add(module.FullyQualifiedName);
                     }
@@ -104,18 +108,19 @@ namespace FileHelpers.RunTime
             switch (lang)
             {
                 case NetLanguage.CSharp:
-                    code.Append("using System; using FileHelpers; using System.Data;");
+                    code.Append("using System; using FileHelpers;");
+                    if (mustAddSystemData) code.Append(" using System.Data;");
                     break;
 
                 case NetLanguage.VbNet:
-
+                    
                     if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System\n");
 
                     if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports FileHelpers\n");
 
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase) == -1)
+                    if (mustAddSystemData && CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System.Data\n");
 
                     break;
