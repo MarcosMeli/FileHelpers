@@ -308,6 +308,37 @@ namespace FileHelpers.Mapping
 #endif
         }
 
+
+
+#if NET_2_0
+        /// <summary>
+		/// For each row in the data reader create a record and return them.
+		/// </summary>
+		/// <param name="dr">The source DataReader</param>
+		/// <returns>The mapped records contained in the DataTable</returns>
+#if ! GENERICS
+		public IEnumerator MapDataReader2RecordsEnum(IDataReader dr)
+        {
+#else
+		public IEnumerator<T> MapDataReader2RecordsEnum(IDataReader dr)
+        {
+#endif
+            ExHelper.CheckNullParam(dr, "dr");
+
+			mMappings.TrimToSize();
+			
+			if (HasRows(dr))
+			{
+				while (dr.Read())
+				{
+					yield return MapRow2Record(dr);
+				}
+			}
+        }
+
+#endif
+        
+
 		/// <summary>
 		/// For each row in the data reader create a record and write them to the file
 		/// </summary>
