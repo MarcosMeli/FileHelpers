@@ -48,7 +48,7 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 	<a href="http://www.bbsoftware.co.uk/BBFlashBack.aspx"><img src="bbflashback.png" width=137 height=31 alt="Thanks BB Software for support us !!" border="0"></a> 
 	<a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" border="0" width="150" height="31"></a> 
 	<a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" border="0" alt="Code Coverage by Clover.NET"/></a>  
-	<a href="http://www.codeproject.com/csharp/filehelpers.asp"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a>  
+	<a href="http://www.codeproject.com/KB/database/filehelpers.aspx"><img src="codeproject.gif" width="100" height="30" border="0" alt="Code Project Article"/></a>  
 	<a href="http://www.larkware.com"><img src="larkware.png" width="100" height="30" border="0" alt="Larkware News"/></a>  
 	<a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" border="0" width="83" height="30"></a> 
 </center>
