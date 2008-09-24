@@ -1,5 +1,5 @@
 
-ArrayList arr = new ArrayList();
+List<${ClassName}> arr = new List<${ClassName}>();
 
 ${ClassName} record;
 
@@ -11,4 +11,4 @@ ${ClassName} record;
 
 FileHelperEngine engine = new FileHelperEngine(typeof(${ClassName}));
 
-engine.WriteFile(@"YourFile.txt", arr.ToArray(typeof(${ClassName})));
+engine.WriteFile(@"YourFile.txt", arr);

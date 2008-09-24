@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
@@ -36,7 +37,7 @@ namespace FileHelpers
         // Cache of all the fields that must be used for a Type
         // More info at:  http://www.filehelpers.com/forums/viewtopic.php?t=387
         // Thanks Brian for the report, research and fix
-        private static readonly Hashtable mCachedRecordFields = new Hashtable();
+        private static readonly Dictionary<Type, List<FieldInfo>> mCachedRecordFields = new Dictionary<Type, List<FieldInfo>>();
 
         internal Type mRecordType;
         internal FieldBase[] mFields;
@@ -153,11 +154,11 @@ namespace FileHelpers
 
             // Create fields
             // Search for cached fields
-            ArrayList fields = mCachedRecordFields[mRecordType] as ArrayList;
+            List<FieldInfo> fields = mCachedRecordFields[mRecordType] ;
 
             if (fields == null)
             {
-                fields = new ArrayList();
+                fields = new List<FieldInfo>();
                 RecursiveGetFields(fields, mRecordType, recordAttribute);
                 mCachedRecordFields.Add(mRecordType, fields);
             }
@@ -181,26 +182,33 @@ namespace FileHelpers
 
         }
 
-        private void RecursiveGetFields(ArrayList fields, Type currentType, TypedRecordAttribute recordAttribute)
+        private void RecursiveGetFields(List<FieldInfo> fields, Type currentType, TypedRecordAttribute recordAttribute)
         {
             if (currentType.BaseType != null && !currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
                 RecursiveGetFields(fields, currentType.BaseType, recordAttribute);
 
             if (currentType == typeof(object))
                 return;
- 
+
 #if ! MINI
-            ClearFieldInfoCache();
+            lock (mTypeCacheLock)
+            {
+                ClearFieldInfoCache();
 #endif
 
-            foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
-            {
-                if ((typeof(Delegate)).IsAssignableFrom(fi.FieldType))
-                    continue;
+                foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
+                                                                    BindingFlags.NonPublic | 
+                                                                    BindingFlags.Instance |
+                                                                    BindingFlags.DeclaredOnly))
+                {
+                    if ((typeof (Delegate)).IsAssignableFrom(fi.FieldType))
+                        continue;
 
-                fields.Add(fi);
-            } 
-
+                    fields.Add(fi);
+                }
+#if ! MINI
+            }
+#endif
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //currentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             //GC.Collect();
@@ -210,19 +218,21 @@ namespace FileHelpers
 #if ! MINI
 
         private static PropertyInfo mTypeCacheInfo;
+        private static object mTypeCacheLock = new object();
+
         private static FieldInfo mFieldCachePointer;
         private void ClearFieldInfoCache()
         {
+                if (mTypeCacheInfo == null)
+                    mTypeCacheInfo = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic);
+
+                object cache = mTypeCacheInfo.GetValue(mRecordType, null);
+
+                if (mFieldCachePointer == null)
+                    mFieldCachePointer = cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic);
+
+                mFieldCachePointer.SetValue(cache, null);
             
-            if (mTypeCacheInfo == null)
-                mTypeCacheInfo = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic);
-
-            object cache = mTypeCacheInfo.GetValue(mRecordType, null);
-
-            if (mFieldCachePointer == null)
-                mFieldCachePointer = cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic);
-
-            mFieldCachePointer.SetValue(cache, null);
         }
 
 #endif 
@@ -230,9 +240,9 @@ namespace FileHelpers
 
         #region "  CreateFields  "
         
-        private static FieldBase[] CreateCoreFields(ArrayList fields, TypedRecordAttribute recordAttribute)
+        private static FieldBase[] CreateCoreFields(List<FieldInfo> fields, TypedRecordAttribute recordAttribute)
         {
-            ArrayList resFields = new ArrayList();
+            List<FieldBase> resFields = new List<FieldBase>();
 
             for (int i = 0; i < fields.Count; i++)
             {
@@ -275,7 +285,7 @@ namespace FileHelpers
 
             }
 
-            return (FieldBase[])resFields.ToArray(typeof(FieldBase));
+            return resFields.ToArray();
 
         }
         #endregion
