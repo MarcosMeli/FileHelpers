@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -279,6 +279,7 @@
     <Compile Include="Tests\DataLink\SqlServerStorage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\DataMapper\DataMapperBasicTests.cs" />
     <Compile Include="Tests\Errors\BadFormat.cs">
       <SubType>Code</SubType>
     </Compile>

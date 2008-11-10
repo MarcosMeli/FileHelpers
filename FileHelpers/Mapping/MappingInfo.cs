@@ -15,7 +15,19 @@ namespace FileHelpers.Mapping
     {
         public MappingInfo(Type t, string field)
         {
-            mField = t.GetField(field, (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance | BindingFlags.IgnoreCase));
+            Type useThis = t;
+
+            do
+            {
+                mField = useThis.GetField(field,
+                                    (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance |
+                                     BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy));
+
+                if (mField == null)
+                    useThis = useThis.BaseType;
+
+            } while (mField == null && useThis != null);
+        
             if (mField == null)
                 throw new FileHelpersException("The field: " + field + " was not found in the Type: " + t.Name);
         }

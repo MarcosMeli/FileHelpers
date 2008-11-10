@@ -154,9 +154,9 @@ namespace FileHelpers
 
             // Create fields
             // Search for cached fields
-            List<FieldInfo> fields = mCachedRecordFields[mRecordType] ;
+            List<FieldInfo> fields; ;
 
-            if (fields == null)
+            if (! mCachedRecordFields.TryGetValue(mRecordType, out fields))
             {
                 fields = new List<FieldInfo>();
                 RecursiveGetFields(fields, mRecordType, recordAttribute);
