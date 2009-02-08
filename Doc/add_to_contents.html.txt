@@ -138,7 +138,7 @@
 
           	<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
-			  <a href="example_conditionalrecord.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Record Conditions</a>
+			  <a href="example_conditionalrecords.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">Record Conditions</a>
 			</div>
 
           	<div class="treeNode">
