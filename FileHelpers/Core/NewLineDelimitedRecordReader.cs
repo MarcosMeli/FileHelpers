@@ -8,7 +8,7 @@ using System.IO;
 
 namespace FileHelpers
 {
-    internal class NewLineDelimitedRecordReader : IRecordReader
+    public class NewLineDelimitedRecordReader : IRecordReader
     {
         private readonly TextReader reader;
 

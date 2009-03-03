@@ -285,21 +285,20 @@ namespace FileHelpers
 		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
 			{
-				object[] tempRes;
-				tempRes = ReadStream(fs);
-				fs.Close();
-
-				return tempRes;
+			    return ReadStream(fs);
 			}
-
 		}
 
 		#endregion
 
 		#region "  ReadStream  "
+        public object[] ReadStream(TextReader reader)
+        {
+            return ReadStream(new NewLineDelimitedRecordReader(reader));
+        }
 
-		/// <include file='MultiRecordEngine.docs.xml' path='doc/ReadStream/*'/>
-		public object[] ReadStream(TextReader reader)
+        /// <include file='MultiRecordEngine.docs.xml' path='doc/ReadStream/*'/>
+		public object[] ReadStream(IRecordReader reader)
 		{
 			if (reader == null)
 				throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
@@ -307,15 +306,13 @@ namespace FileHelpers
 			if (mRecordSelector == null)
 				throw new BadUsageException("The Recordselector can´t be null, please pass a not null Selector in the constructor.");
 
-            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
-
 			ResetFields();
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 
 			ArrayList resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(recordReader, mMultiRecordInfo[0].mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(reader, mMultiRecordInfo[0].mIgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -654,17 +651,20 @@ namespace FileHelpers
 
 		#region "  BeginReadStream"
 
+        public void BeginReadStream(TextReader reader)
+        {
+            BeginReadStream(new NewLineDelimitedRecordReader(reader));
+        }
 
 		/// <summary>
 		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
 		/// </summary>
 		/// <param name="reader">The source Reader.</param>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		public void BeginReadStream(TextReader reader)
+		public void BeginReadStream(IRecordReader reader)
 		{
 			if (reader == null)
 				throw new ArgumentNullException("The TextReader can´t be null.");
-            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
 
 			ResetFields();
 			mHeaderText = String.Empty;
@@ -674,7 +674,7 @@ namespace FileHelpers
 			{
 				for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
 				{
-				    string temp = recordReader.ReadRecord();
+				    string temp = reader.ReadRecord();
 					mLineNumber++;
 					if (temp != null)
 						mHeaderText += temp + StringHelper.NewLine;
@@ -683,7 +683,7 @@ namespace FileHelpers
 				}
 			}
 
-			mAsyncReader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast, mLineNumber);
+			mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
 			mAsyncReader.DiscardForward = true;
 		}
 

@@ -6,7 +6,7 @@
 
 namespace FileHelpers
 {
-    internal interface IRecordReader
+    public interface IRecordReader
     {
         string ReadRecord();
         void Close();
