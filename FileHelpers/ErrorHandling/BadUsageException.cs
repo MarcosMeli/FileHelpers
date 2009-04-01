@@ -9,7 +9,8 @@ using System;
 namespace FileHelpers
 {
 	/// <summary>Indicates the wrong usage of the library.</summary>
-	public class BadUsageException : FileHelpersException
+    [Serializable]
+    public class BadUsageException : FileHelpersException
 	{
 		/// <summary>Creates an instance of an BadUsageException.</summary>
 		/// <param name="message">The exception Message</param>
