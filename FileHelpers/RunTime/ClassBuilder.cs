@@ -833,7 +833,7 @@ namespace FileHelpers.RunTime
         /// <remarks>
         /// ClassBuilder inheritors: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/>
         /// </remarks>
-        /// <param name="XmlDocument">The XML document with the representation of the record class.</param>
+        /// <param name="document">The XML document with the representation of the record class.</param>
         /// <returns>A new instance of a ClassBuilder inheritor: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/> </returns>
         public static ClassBuilder LoadFromXml(XmlDocument document)
         {

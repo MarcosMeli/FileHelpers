@@ -701,13 +701,14 @@ namespace FileHelpers
         /// </summary>
         /// <param name="file">The file name</param>
         /// <param name="lines">The number of lines to read.</param>
+        /// <param name="encoding">The Encoding used to read the file</param>
         /// <returns>The first n lines of the file.</returns>
         public static string[] RawReadFirstLinesArray(string file, int lines, Encoding encoding)
         {
             ArrayList res = new ArrayList(lines);
             StreamReader reader = new StreamReader(file, encoding);
 
-	        for (int i = 0; i < lines; i++)
+            for (int i = 0; i < lines; i++)
             {
                 string line = reader.ReadLine();
                 if (line == null)

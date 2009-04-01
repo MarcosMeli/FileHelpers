@@ -87,10 +87,10 @@ namespace FileHelpers.RunTime
 
 
 		/// <summary>
-		/// Adds to the class the specified number of fileds.
+		/// Adds to the class the specified number of fields.
 		/// </summary>
 		/// <param name="number">The number of fileds to add.</param>
-		public void AddFields(int number)
+		public override void AddFields(int number)
 		{
 			AddFields(number, "Field");
 		}

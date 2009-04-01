@@ -164,7 +164,7 @@ namespace FileHelpers.RunTime
         /// Adds n fields of type string, with the names "Field1", Field2", etc
         /// </summary>
         /// <param name="numberOfFields">The number of fields to add</param>
-	    public void AddFields(int numberOfFields)
+	    public virtual void AddFields(int numberOfFields)
 	    {
             for (int i = 0; i < numberOfFields; i++)
             {

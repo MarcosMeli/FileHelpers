@@ -133,8 +133,7 @@ namespace FileHelpers
 #endif
         internal Encoding mEncoding = Encoding.Default;
 
-		/// <summary>The encoding to Read and Write the streams.</summary>
-		/// <remarks>Default is the system's current ANSI code page.</remarks>
+        /// <summary>The encoding to Read and Write the streams. Default is the system's current ANSI code page.</summary>
 		/// <value>Default is the system's current ANSI code page.</value>
 		public Encoding Encoding
 		{
