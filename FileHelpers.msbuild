@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project DefaultTargets="release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="CurrentVersion.msbuild"/>
+    
+	<ItemGroup>
+		<Borrar Include="Release\*.*"  />
+	</ItemGroup>
+
+	<Target Name="clean">
+		<Delete Files="@(Borrar)" />	
+	</Target>
+
+	<PropertyGroup>
+	  <ToolsPath>.\Libs</ToolsPath>
+		<Document>False</Document>
+		<Test>True</Test>
+	</PropertyGroup>
+	
+    <Target Name="release" DependsOnTargets="clean">
+	    <MSBuild Projects="FileHelpers.vs2008.sln" Properties="Configuration=Release" />
+ 	  </Target>
+
+    <Target Name="debug" DependsOnTargets="clean">
+	    <MSBuild Projects="FileHelpers.vs2008.sln" Properties="Configuration=Debug" />
+  	</Target>
+
+	
+</Project>

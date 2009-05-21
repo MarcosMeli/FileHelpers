@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,7 +29,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\Debug\DotNet_2.0\</OutputPath>
+    <OutputPath>..\Debug\Net 2.0\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -52,7 +52,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\Release\DotNet_2.0\</OutputPath>
+    <OutputPath>..\Release\Net 2.0\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -319,6 +319,10 @@
     <Compile Include="Fields\FixedLengthField.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FormatDetector\DelimiterInfo.cs" />
+    <Compile Include="FormatDetector\FormatHint.cs" />
+    <Compile Include="FormatDetector\RecordFormatInfo.cs" />
+    <Compile Include="FormatDetector\SmartFormatDetector.cs" />
     <Compile Include="Helpers\ConditionHelper.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -280,6 +280,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\DataMapper\DataMapperBasicTests.cs" />
+    <Compile Include="Tests\Detector\BasicDetection.cs" />
     <Compile Include="Tests\Errors\BadFormat.cs">
       <SubType>Code</SubType>
     </Compile>
