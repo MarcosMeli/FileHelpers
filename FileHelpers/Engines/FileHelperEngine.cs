@@ -231,7 +231,7 @@ namespace FileHelpers
 #if ! GENERICS
                         BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
 #else
-                    BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
+                        BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
 #endif
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
@@ -244,7 +244,7 @@ namespace FileHelpers
 
 #if !MINI
 #if ! GENERICS
-                            skip = OnAfterReadRecord(currentLine, record);
+                        skip = OnAfterReadRecord(currentLine, record);
 #else
 						skip = OnAfterReadRecord(currentLine, (T) record);
 #endif

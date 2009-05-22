@@ -289,16 +289,42 @@ namespace FileHelpers
                         mTotalRecords++;
                         line.ReLoad(currentLine);
 
+                        bool skip = false;
+
+#if ! MINI
+
+    #if ! GENERICS 
+                            BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
+    #else
+                            BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
+    #endif
+                        skip = OnBeforeReadRecord(e);
+                        if (e.RecordLineChanged)
+                            line.ReLoad(e.RecordLine);
+
+#endif
+                        if (skip == false)
+                        {
 #if ! GENERICS
-                        mLastRecord = mRecordInfo.StringToRecord(line, mLastRecordValues);
+                            mLastRecord = mRecordInfo.StringToRecord(line, mLastRecordValues);
 #else
-						mLastRecord = (T) mRecordInfo.StringToRecord(line, mLastRecordValues);
+	    					mLastRecord = (T) mRecordInfo.StringToRecord(line, mLastRecordValues);
 #endif
 
-                        if (mLastRecord != null)
-                        {
-                            byPass = true;
-                            return;
+#if ! MINI
+
+#if ! GENERICS
+                            skip = OnAfterReadRecord(currentLine, mLastRecord);
+#else
+    						skip = OnAfterReadRecord(currentLine, (T) mLastRecord);
+#endif
+#endif
+
+                            if (skip == false && mLastRecord != null)
+                            {
+                                byPass = true;
+                                return;
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -536,8 +562,19 @@ arr.ToArray(RecordType);
                 mLineNumber++;
                 mTotalRecords++;
 
-                currentLine = mRecordInfo.RecordToString(record);
-                mAsyncWriter.WriteLine(currentLine);
+                bool skip = false;
+#if !MINI
+                skip = OnBeforeWriteRecord(record);
+#endif
+
+                if (skip == false)
+                {
+                    currentLine = mRecordInfo.RecordToString(record);
+#if !MINI
+                    currentLine = OnAfterWriteRecord(currentLine, record);
+#endif
+                    mAsyncWriter.WriteLine(currentLine);
+                }
             }
             catch (Exception ex)
             {
@@ -599,9 +636,9 @@ arr.ToArray(RecordType);
         #region "  WriteNext for LastRecordValues  "
 
         /// <summary>
-        /// Write the current record values. You can use engine[0] or engine["YourField"] to set the values.
+        /// Write the current record values in the buffer. You can use engine[0] or engine["YourField"] to set the values.
         /// </summary>
-        public void WriteNext()
+        public void WriteNextValues()
         {
             if (mAsyncWriter == null)
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
@@ -789,6 +826,157 @@ arr.ToArray(RecordType);
             set { mState = value; }
         }
 
+
+        #endregion
+
+
+        #region "  Event Handling  "
+
+#if ! MINI
+
+#if ! GENERICS
+
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public event BeforeReadRecordHandler BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public event AfterReadRecordHandler AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public event BeforeWriteRecordHandler BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public event AfterWriteRecordHandler AfterWriteRecord;
+
+        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
+        {
+
+            if (BeforeReadRecord != null)
+            {
+                BeforeReadRecord(this, e);
+
+                return e.SkipThisRecord;
+            }
+
+            return false;
+        }
+
+        private bool OnAfterReadRecord(string line, object record)
+        {
+            if (mRecordInfo.mNotifyRead)
+                ((INotifyRead)record).AfterRead(this, line);
+
+            if (AfterReadRecord != null)
+            {
+                AfterReadRecordEventArgs e = null;
+                e = new AfterReadRecordEventArgs(line, record, LineNumber);
+                AfterReadRecord(this, e);
+                return e.SkipThisRecord;
+            }
+
+            return false;
+        }
+
+        private bool OnBeforeWriteRecord(object record)
+        {
+            if (mRecordInfo.mNotifyWrite)
+                ((INotifyWrite)record).BeforeWrite(this);
+
+            if (BeforeWriteRecord != null)
+            {
+                BeforeWriteRecordEventArgs e = null;
+                e = new BeforeWriteRecordEventArgs(record, LineNumber);
+                BeforeWriteRecord(this, e);
+
+                return e.SkipThisRecord;
+            }
+
+            return false;
+        }
+
+        private string OnAfterWriteRecord(string line, object record)
+        {
+
+            if (AfterWriteRecord != null)
+            {
+                AfterWriteRecordEventArgs e = null;
+                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+                AfterWriteRecord(this, e);
+                return e.RecordLine;
+            }
+            return line;
+        }
+
+
+#else
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public event BeforeReadRecordHandler<T> BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public event AfterReadRecordHandler<T> AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public event BeforeWriteRecordHandler<T> BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public event AfterWriteRecordHandler<T> AfterWriteRecord;
+
+		private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
+		{
+
+			if (BeforeReadRecord != null)
+			{
+				BeforeReadRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private bool OnAfterReadRecord(string line, T record)
+		{
+			if (mRecordInfo.mNotifyRead)
+				((INotifyRead)record).AfterRead(this, line);
+
+		    if (AfterReadRecord != null)
+			{
+				AfterReadRecordEventArgs<T> e = null;
+				e = new AfterReadRecordEventArgs<T>(line, record, LineNumber);
+				AfterReadRecord(this, e);
+				return e.SkipThisRecord;
+			}
+			
+			return false;
+		}
+
+		private bool OnBeforeWriteRecord(T record)
+		{
+			if (mRecordInfo.mNotifyWrite)
+				((INotifyWrite)record).BeforeWrite(this);
+
+		    if (BeforeWriteRecord != null)
+			{
+				BeforeWriteRecordEventArgs<T> e = null;
+                e = new BeforeWriteRecordEventArgs<T>(record, LineNumber);
+				BeforeWriteRecord(this, e);
+
+				return e.SkipThisRecord;
+			}
+
+			return false;
+		}
+
+		private string OnAfterWriteRecord(string line, T record)
+		{
+
+			if (AfterWriteRecord != null)
+			{
+                AfterWriteRecordEventArgs<T> e = null;
+                e = new AfterWriteRecordEventArgs<T>(record, LineNumber, line);
+                AfterWriteRecord(this, e);
+				return e.RecordLine;
+			}
+			return line;
+		}
+
+#endif
+
+#endif
 
         #endregion
 
