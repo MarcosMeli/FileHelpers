@@ -158,6 +158,24 @@ namespace FileHelpers.WizardApp
             Brush b = new SolidBrush(this.ForeColor);
             e.Graphics.DrawString(Text, this.Font, b, mTextLeft, mTextTop);
             b.Dispose();
+
+            int closer = CalculateCloser(Control.MousePosition.X);
+            if (closer >= 0)
+            {
+                ColumnInfo col = mColumns[closer];
+
+                if (closer > 0)
+                { 
+                    if (col.CloserToLeft(Control.MousePosition.X))
+                        col = mColumns[closer - 1];
+                }
+                Pen p = new Pen(Color.Red, 3);
+                e.Graphics.DrawLine(p, col.mControlLeft + col.mControlWith, 0, col.mControlLeft + col.mControlWith, this.Height);
+                p.Dispose();
+            }
+
+
+
         }
 
         private void CalculateCharWidth(Graphics g)
@@ -198,11 +216,18 @@ namespace FileHelpers.WizardApp
                 int oldCol = mOverColumn;
                 mOverColumn = CalculateColumn(e.X);
 
+                int oldClose = mCloserEdge;
+                mCloserEdge = CalculateCloser(e.X);
 
-                if (oldCol != mOverColumn)
+                if (mCloserEdge > 0 && mColumns[mCloserEdge].CloserToLeft(e.X))
+                    mCloserEdge--;
+
+                if (oldCol != mOverColumn || oldClose != mCloserEdge)
                     this.Invalidate();
             }
         }
+
+        int mCloserEdge;
 
         protected override void OnMouseDown(MouseEventArgs e)
         {

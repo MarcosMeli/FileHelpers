@@ -10,6 +10,7 @@ using FileHelpers.RunTime;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
 using System.Diagnostics;
+using FileHelpers.Detection;
 
 namespace FileHelpers.WizardApp
 {
@@ -121,6 +122,7 @@ namespace FileHelpers.WizardApp
         private CheckBox chkAllOptional;
         private CheckBox chkAllQuoted;
         private Button cmdDetectFormat;
+        private Button cmdfileDesigner;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -255,6 +257,7 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
+            this.cmdfileDesigner = new System.Windows.Forms.Button();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1415,6 +1418,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.cmdfileDesigner);
             this.panel1.Controls.Add(this.cmdDetectFormat);
             this.panel1.Controls.Add(this.picCurrStep);
             this.panel1.Controls.Add(this.linkHome);
@@ -1437,15 +1441,13 @@ namespace FileHelpers.WizardApp
             this.cmdDetectFormat.BackColor = System.Drawing.Color.LightSteelBlue;
             this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdDetectFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.cmdDetectFormat.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetectFormat.Image")));
             this.cmdDetectFormat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDetectFormat.Location = new System.Drawing.Point(5, 340);
+            this.cmdDetectFormat.Location = new System.Drawing.Point(9, 340);
             this.cmdDetectFormat.Name = "cmdDetectFormat";
             this.cmdDetectFormat.Size = new System.Drawing.Size(147, 25);
             this.cmdDetectFormat.TabIndex = 1101;
             this.cmdDetectFormat.Text = "Auto Detect Format";
             this.cmdDetectFormat.UseVisualStyleBackColor = false;
-            this.cmdDetectFormat.Visible = false;
             this.cmdDetectFormat.Click += new System.EventHandler(this.cmdDetectFormat_Click);
             // 
             // picCurrStep
@@ -1556,6 +1558,20 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
             // 
+            // cmdfileDesigner
+            // 
+            this.cmdfileDesigner.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdfileDesigner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdfileDesigner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdfileDesigner.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdfileDesigner.Location = new System.Drawing.Point(8, 311);
+            this.cmdfileDesigner.Name = "cmdfileDesigner";
+            this.cmdfileDesigner.Size = new System.Drawing.Size(148, 25);
+            this.cmdfileDesigner.TabIndex = 1102;
+            this.cmdfileDesigner.Text = "Fixed Width Designer";
+            this.cmdfileDesigner.UseVisualStyleBackColor = false;
+            this.cmdfileDesigner.Click += new System.EventHandler(this.cmdfileDesigner_Click);
+            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
@@ -1576,9 +1592,9 @@ namespace FileHelpers.WizardApp
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FileHelpers - Record Class Wizard v2.0";
-            this.Load += new System.EventHandler(this.frmWizard_Load);
-            this.Activated += new System.EventHandler(this.frmWizard_Activated);
             this.Resize += new System.EventHandler(this.frmWizard_Resize);
+            this.Activated += new System.EventHandler(this.frmWizard_Activated);
+            this.Load += new System.EventHandler(this.frmWizard_Load);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -2679,22 +2695,27 @@ namespace FileHelpers.WizardApp
 
         private void cmdDetectFormat_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog dialog = new OpenFileDialog();
-            //dialog.Multiselect = false;
-            //dialog.Title = "Select a Sample File";
-            //if (dialog.ShowDialog() == DialogResult.Cancel)
-            //    return;
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+            dialog.Title = "Select a Sample File";
+            if (dialog.ShowDialog() == DialogResult.Cancel)
+                return;
 
-            //SmartFormatDetector detector = new SmartFormatDetector();
-            //detector.MaxSampleLines = 100;
-            //RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
+            SmartFormatDetector detector = new SmartFormatDetector();
+            detector.MaxSampleLines = 100;
+            RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
 
-            //if (formats.Length == 0)
-            //    return;
+            if (formats.Length == 0)
+                return;
 
-            //ClassBuilderToWizard(formats[0].ClassBuilder);
+            ClassBuilderToWizard(formats[0].ClassBuilder);
+        }
 
-
+        private void cmdfileDesigner_Click(object sender, EventArgs e)
+        {
+            frmDataFile frm = new frmDataFile();
+            frm.ShowDialog();
+            frm.Dispose();
 
         }
 

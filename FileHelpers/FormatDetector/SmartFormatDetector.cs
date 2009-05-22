@@ -186,8 +186,105 @@ namespace FileHelpers.Detection
             res.Add(format);
         }
 
+        private class FixedColumnInfo
+        {
+            public int Start;
+            public int Length;
+            public byte Confidence;
+        }
+
         private void CreateFixedLengthFields(string[][] data, FixedLengthClassBuilder builder)
         {
+            List<FixedColumnInfo> res = null;
+            
+            foreach (string[] dataFile in data)
+            {
+                List<FixedColumnInfo> candidates = CreateFixedLengthCandidates(dataFile);
+                res = JoinFixedColCandidates(res, candidates);
+            }
+
+            for (int i = 0; i < res.Count; i++)
+			{
+                FixedColumnInfo col = res[i];
+                builder.AddField("Field" + i.ToString().PadLeft(4, '0'), col.Length, typeof(string));
+            }
+        }
+
+        private List<FixedColumnInfo> CreateFixedLengthCandidates(string[] lines)
+        {
+            List<FixedColumnInfo> res = null;
+
+            foreach (string line in lines)
+            {
+                List<FixedColumnInfo> candidates = new List<FixedColumnInfo>();
+                int filled = 0;
+                int blanks = 0;
+
+                FixedColumnInfo col = null;
+                for (int i = 1; i < line.Length; i++)
+                {
+                    if (Char.IsWhiteSpace(line[i]))
+                    {
+                        blanks += 1;
+                    }
+                    else
+                    {
+                        if (blanks > 2)
+                        {
+                            if (col == null)
+                            {
+                                col = new FixedColumnInfo();
+                                col.Start = 0;
+                                col.Length = i;
+                            }
+                            else
+                            {
+                                FixedColumnInfo prevCol = col;
+                                col = new FixedColumnInfo();
+                                col.Start = prevCol.Start + prevCol.Length;
+                                col.Length = i - col.Start;
+                            }
+                            candidates.Add(col);
+                            // col anterior termina
+                            filled = 1;
+                            blanks = 0;
+                        }
+                    }
+                        
+
+                }
+
+                if (col == null)
+                {
+                    col = new FixedColumnInfo();
+                    col.Start = 0;
+                    col.Length = line.Length;
+                }
+                else
+                {
+                    FixedColumnInfo prevCol = col;
+                    col = new FixedColumnInfo();
+                    col.Start = prevCol.Start + prevCol.Length;
+                    col.Length = line.Length - col.Start;
+                }
+
+                candidates.Add(col);
+
+
+                res = JoinFixedColCandidates(res, candidates);
+            }
+
+            return res;
+        }
+
+        private List<FixedColumnInfo> JoinFixedColCandidates(List<FixedColumnInfo> cand1, List<FixedColumnInfo> cand2)
+        {
+            if (cand1 == null) return cand2;
+            if (cand2 == null) return cand1;
+
+            // Merge the result based on confidence
+            return cand1;
+
 
         }
 

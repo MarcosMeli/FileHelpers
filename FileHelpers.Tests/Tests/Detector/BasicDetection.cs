@@ -90,7 +90,18 @@ namespace FileHelpersTests.Tests.Detector
             Assert.AreEqual(1, formats.Length);
             Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);
             Assert.AreEqual(100, formats[0].Confidence);
-            Assert.AreEqual(7, formats[0].ClassBuilder.FieldCount);            
+            Assert.AreEqual(7, formats[0].ClassBuilder.FieldCount);
+
+
+            FixedLengthClassBuilder builder = formats[0].ClassBuilder as FixedLengthClassBuilder;
+            Assert.AreEqual(11, builder.Fields[0].FieldLength);
+            Assert.AreEqual(38, builder.Fields[1].FieldLength);
+            Assert.AreEqual(22, builder.Fields[2].FieldLength);
+            Assert.AreEqual(38, builder.Fields[3].FieldLength);
+            Assert.AreEqual(41, builder.Fields[4].FieldLength);
+            Assert.AreEqual(18, builder.Fields[5].FieldLength);
+            Assert.AreEqual(15, builder.Fields[6].FieldLength);
+
         }
 
         [Test]

@@ -191,40 +191,40 @@ namespace FileHelpers.WizardApp
             base.OnFontChanged(e);
             mCharWidth = -1;
         }
-       
-    }
-    public class ColumnInfo
-    {
-        private int mWidth;
 
-        public int Width
+        public class ColumnInfo
         {
-            get { return mWidth; }
-            set { mWidth = value; }
-        }
-        private Color mColor;
+            private int mWidth;
 
-        public Color Color
-        {
-            get { return mColor; }
-            set { mColor = value; }
-        }
+            public int Width
+            {
+                get { return mWidth; }
+                set { mWidth = value; }
+            }
+            private Color mColor;
 
-        public static bool even = false;
+            public Color Color
+            {
+                get { return mColor; }
+                set { mColor = value; }
+            }
 
-        public ColumnInfo()
-        {
-            if (even)
-                Color = Color.AliceBlue;
-            else
-                Color = Color.White;
-            even = !even;
-        }
+            public static bool even = false;
 
-        public ColumnInfo(int width)
-            : this()
-        {
-            this.Width = width;
+            public ColumnInfo()
+            {
+                if (even)
+                    Color = Color.AliceBlue;
+                else
+                    Color = Color.White;
+                even = !even;
+            }
+
+            public ColumnInfo(int width)
+                : this()
+            {
+                this.Width = width;
+            }
         }
     }
 }

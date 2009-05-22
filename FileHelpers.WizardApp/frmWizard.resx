@@ -305,9 +305,6 @@
         lYAk1T/cnXm6O/Nw98c/3p15BjzzlHfmAa/+4S6e7f7Ip7v/BHePYHu4brXVAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>635, 9</value>
-  </metadata>
   <data name="cmdAddField.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -850,27 +847,6 @@
         A7H3oQDYgnHPNUzLqaatGqjCbn+oFeZaWtnodrYyQTNkykqvovT9K2ja2hMr31HQLa/wsP1p6CL0It+z
         CkBaGzHy0gI320aCGIu48Nt+gJP6VfvdCdBGCg/MSf8AezWyM2T2wjCHYcn+KkxoloGFABQAUAFABQBr
         +Ff+Q5b/AFrjxf8ACZvQ+NH1b/zI/wDwH+lfkn/MUfb/APLk/9k=
-</value>
-  </data>
-  <data name="cmdDetectFormat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA1JJREFUOE9j/P//
-        P8PX/Tt5fr95zf73L9MnBkbG3yIRUQzYwPfaCgaOpnaGD6V57C8ePOR//fjpd4b3K+ZZvJrU0vGyp37x
-        q/7mnBetVQq34qMZnlQVws14ml/E8GtTL8PLmnKe5/XlNlfS48t3utgVzddQ02N40Nu46HF9waeXXdX/
-        3/TVf3jVULTuSWa0/e0QT9Y7EX4MT3OzGJ5mpTM/z4rXeVyS2XkpN2XvFn+Pnol6WuYlkhLcDPvz053O
-        FWfMvN9S8fhVR+W/1+Wpf59FuF584KQXf91ck/u2nzP/A1ejmDu+NgdOBLocWuJonZQlIyUE8joY8AtI
-        McwNCRDdmxQVcTklfNuDcJePT+xU/9/REb5zQUei4qyhXNcZTeFbuzQktkxSlnEI5uBkKxbgRw2i1RbG
-        DK6SUkwLjHWU9hooFZ9T5b98Tpb5zzFZ1i97ZTneLxXnWFzDz6kN1MWozsKMNYDBgsv0tRiWGenx7dOW
-        bj6syPX5sCzL/32ybO82KghkTtLWZVmiKoNb8+1wH4Y7MUGclx0NIs4YyV46oivxeaeayLlTGoIvzqoL
-        HDquKW70SIKB4Yi2HKYh1wMcGO4kx7Jf9TRPvGAie/ukrtivzTqyK7vkJc0P6soWnteTuHdOR3zuYV0F
-        USBGNeB+bATDo5Qk5uu+tgEXbdSun9EV+7ddTeRQj6yoBUjlElUFviP68qUXDKSunNGRTNioosiySx3J
-        FfcDzRnuhboZXHPRP3TeWPr/fk3Rh9NlhELlGdiYTVnYGdZqKzGs11ESOq0n3X1BU2TTURVh9ZvqfAzz
-        5WQhLrkfFcJ3P8S5+7qT9s9T+hI/1iiLTkzj5+dfpSgKd+oDNW6GgxqSymfVRBafVBHNWq6owLJHWRJq
-        QJiv7sNIj2M33Qz+HzOQebhIQcz7/xo3hlR+AbgBu9RkGGqURBiOqcv6HlGR690mLyNxUkUeIn83zMfi
-        UbzvpTs+Zv8PGymcmaMgoXdcS56Bj4EJJbD2a6oz7NfSENilrJi6UlZa97+VKUT+oq+z9PVQ13kXPMxf
-        bdBT7KkRExFskRLDiKpOIyOG1NBIhlkK8mI9kuJCwTAVy1QUGdebaBsu1lfLbJaX1gSJazKw4E4waDIA
-        A4wzcVeiM6kAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="picCurrStep.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -29,7 +29,7 @@ namespace FileHelpersTests.CommonTests
 		    engine[1] = "B";
             engine[2] = 18;
 
-		    engine.WriteNext();
+		    engine.WriteNextValues();
 
 		    engine.Close();
 
@@ -63,7 +63,7 @@ namespace FileHelpersTests.CommonTests
         public void AsyncFieldIndexBad2()
         {
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-            engine.WriteNext();
+            engine.WriteNextValues();
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace FileHelpersTests.CommonTests
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
             StringWriter sw = new StringWriter();
             engine.BeginWriteStream(sw);
-            engine.WriteNext();
+            engine.WriteNextValues();
         }
 
 
