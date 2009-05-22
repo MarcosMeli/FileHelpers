@@ -10,7 +10,7 @@ using FileHelpers.Mapping;
 namespace FileHelpersTests.Mapping
 {
 	[TestFixture]
-    [Explicit]
+    [Ignore]
 	public class DataMapperBasicTests
 	{
 	

@@ -1,3 +1,4 @@
+using System.Reflection;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 using System.Collections;
@@ -9,9 +10,15 @@ namespace FileHelpersTests
 	// this class only adds the relative path to the saple files.
 	public sealed class Common
 	{
+	    private static string mAssemblyLocation = string.Empty;
 		public static string TestPath(string fileName)
 		{
-			return @"..\data\" + fileName;
+            if (string.IsNullOrEmpty(mAssemblyLocation))
+            {
+                mAssemblyLocation = Assembly.GetAssembly(typeof (Common)).Location;
+            }
+
+            return Path.Combine(Path.Combine(mAssemblyLocation, @"..\data"), fileName);
 		}
 
 //		public static string FullTestPath(string fileName)
@@ -21,18 +28,18 @@ namespace FileHelpersTests
 
 		public static object[] ReadTest(FileHelperEngine engine, string fileName)
 		{
-			return engine.ReadFile(@"..\data\" + fileName);
+			return engine.ReadFile(TestPath(fileName));
 		}
 
         public static object[] ReadTest(FileHelperEngine engine, string fileName, int maxRecords)
         {
-            return engine.ReadFile(@"..\data\" + fileName, maxRecords);
+            return engine.ReadFile(TestPath(fileName), maxRecords);
         }
 
 		public static object[] ReadAllAsync(FileHelperAsyncEngine engine, string fileName)
 		{
 			ArrayList arr = new ArrayList();
-			engine.BeginReadFile(@"..\data\" + fileName);
+			engine.BeginReadFile(TestPath(fileName));
 			while(engine.ReadNext() != null)
 				arr.Add(engine.LastRecord);
 			engine.Close();
@@ -43,12 +50,12 @@ namespace FileHelpersTests
 
 		public static MasterDetails[] ReadTest(MasterDetailEngine engine, string fileName)
         {
-            return engine.ReadFile(@"..\data\" + fileName);
+            return engine.ReadFile(TestPath(fileName));
         }
 
         public static void BeginReadTest(FileHelperAsyncEngine engine, string fileName)
 		{
-			engine.BeginReadFile(@"..\data\" + fileName);
+			engine.BeginReadFile(TestPath(fileName));
 		}
 
 

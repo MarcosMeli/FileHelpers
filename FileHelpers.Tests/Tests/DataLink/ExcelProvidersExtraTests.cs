@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace FileHelpersTests.DataLink
 {
 	[TestFixture]
-    [Explicit]
+    [Ignore]
 	public class ExcelDataProviderExtraTests
 	{
 		[Test]
