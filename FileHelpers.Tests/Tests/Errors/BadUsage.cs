@@ -20,10 +20,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void DuplicatedDefinition()
 		{
-			new FileHelperEngine(typeof (TestDupli));
+            Assert.Throws<BadUsageException>(() 
+                => new FileHelperEngine(typeof (TestDupli)));
 		}
 
 		#endregion
@@ -45,17 +45,17 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void SwitchedAttb1()
 		{
-			new FileHelperEngine(typeof (SwitchedAttributes1));
+            Assert.Throws<BadUsageException>(() 
+                => new FileHelperEngine(typeof (SwitchedAttributes1)));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void SwitchedAttb2()
 		{
-			new FileHelperEngine(typeof (SwitchedAttributes2));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(SwitchedAttributes2)));
 		}
 
 		#endregion
@@ -69,10 +69,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NullValue1()
 		{
-			new FileHelperEngine(typeof (NullValue1Type));
+            Assert.Throws<BadUsageException>(() 
+                => new FileHelperEngine(typeof (NullValue1Type)));
 		}
 
 		#endregion
@@ -85,10 +85,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoMarked()
 		{
-			new FileHelperEngine(typeof (NoMarkedClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoMarkedClass)));
 		}
 
 		#endregion
@@ -102,10 +102,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void FixedWithOutLength()
 		{
-			new FileHelperEngine(typeof (FixedWithOutLengthClass)); ;
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(FixedWithOutLengthClass)));
 		}
 
 		#endregion
@@ -118,10 +118,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoFields()
 		{
-			new FileHelperEngine(typeof (NoFieldsClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoFieldsClass)));
 		}
 
 		#endregion
@@ -136,10 +136,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoFields2()
 		{
-			new FileHelperEngine(typeof (NoFieldsClass2));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoFieldsClass2)));
 		}
 
 		#endregion
@@ -157,10 +157,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoFields3()
 		{
-			new FileHelperEngine(typeof (NoFieldsClass3));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoFieldsClass3)));
 		}
 
 		#endregion
@@ -180,10 +180,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoConstructor()
 		{
-			new FileHelperEngine(typeof (NoConstructorClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoConstructorClass)));
 		}
 
 		#endregion
@@ -211,10 +211,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoConstructorConverter()
 		{
-			new FileHelperEngine(typeof (NoConstructorConvClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoConstructorConvClass)));
 		}
 
 
@@ -226,10 +226,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoConstructorConverter2()
 		{
-			new FileHelperEngine(typeof (NoConstructorConvClass2));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoConstructorConvClass2)));
 		}
 
 
@@ -241,10 +241,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoConstructorConverter3()
 		{
-			new FileHelperEngine(typeof (NoConstructorConvClass3));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoConstructorConvClass3)));
 		}
 
 		[DelimitedRecord(",")]
@@ -259,10 +259,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NoConstructorConverter4()
 		{
-			new FileHelperEngine(typeof (NoConstructorConvClass4));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NoConstructorConvClass4)));
 		}
 
 		#endregion
@@ -289,24 +289,24 @@ namespace FileHelpersTests.Errors
 
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadDateFormat1()
 		{
-			new FileHelperEngine(typeof (DateFormat1Class));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(DateFormat1Class)));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadDateFormat2()
 		{
-			new FileHelperEngine(typeof (DateFormat2Class));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(DateFormat2Class)));
 		}
 
 //		[Test]
-//		[ExpectedException(typeof (BadUsageException))]
 //		public void BadDateFormat3()
 //		{
-//			new FileHelperEngine(typeof (DateFormat3Class));
+        //Assert.Throws<BadUsageException>(() 
+        //        => new FileHelperEngine(typeof (DateFormat3Class));
 //		}
 
 		#endregion
@@ -321,7 +321,6 @@ namespace FileHelpersTests.Errors
 //		}
 //
 //		[Test]
-//		[ExpectedException(typeof (BadUsageException))]
 //		public void TrimOtherThanString()
 //		{
 //			new FileHelperEngine(typeof (TrimClass));
@@ -338,10 +337,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void AlignError()
 		{
-			new FileHelperEngine(typeof (AlignClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(AlignClass)));
 		}
 
 		#endregion
@@ -356,10 +355,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NonSystemType()
 		{
-			new FileHelperEngine(typeof (NonSystemTypeClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(NonSystemTypeClass)));
 		}
 
 		#endregion
@@ -373,10 +372,10 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void ValueType()
 		{
-			new FileHelperEngine(typeof (ValueTypeClass));
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine(typeof(ValueTypeClass)));
 		}
 
 		#endregion
@@ -391,25 +390,24 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadRecordType()
 		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (BadRecordTypeClass));
-			string res = engine.WriteString(new string[] {"hola"});
-			Console.Write(res);
+            FileHelperEngine engine = new FileHelperEngine(typeof(BadRecordTypeClass));
+			Assert.Throws<BadUsageException>(() 
+                => engine.WriteString(new [] {"hola"}));
+            
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void NullRecordType()
 		{
-			new FileHelperEngine((Type) null);
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine((Type)null));
 		}
 
 		#endregion
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void WriteBadUsage()
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
@@ -422,15 +420,16 @@ namespace FileHelpersTests.Errors
 			res[0].Field2 = "je";
 			res[0].Field3 = 0;
 
-			engine.WriteString(res);
+            Assert.Throws<BadUsageException>(() 
+                => engine.WriteString(res));
 		}
 
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void WriteBadUsage2()
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
-			engine.WriteString(null);
+            Assert.Throws<ArgumentNullException>(() 
+                => engine.WriteString(null));
 		}
 
 

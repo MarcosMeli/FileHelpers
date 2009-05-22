@@ -13,19 +13,19 @@ namespace FileHelpersTests.Errors
 		FileHelperAsyncEngine engine2;
 
 		[Test]
-		[ExpectedException(typeof (FileNotFoundException))]
 		public void FileNotFound()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.ReadFile("No foun343333d this file.txt");
+			Assert.Throws<FileNotFoundException>(()
+                => engine.ReadFile("No foun343333d this file.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void NullReader()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.ReadStream(null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine.ReadStream(null));
 		}
 
 		[Test]
@@ -36,20 +36,20 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void NullWriter()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.WriteStream(null, null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine.WriteStream(null, null));
 		}
 
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void NullRecords()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.WriteStream(new StringWriter(new StringBuilder()), null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine.WriteStream(new StringWriter(new StringBuilder()), null));
 		}
 
 
@@ -58,27 +58,27 @@ namespace FileHelpersTests.Errors
 
 
 		[Test]
-		[ExpectedException(typeof (FileNotFoundException))]
 		public void FileNotFound2()
 		{
 			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
-			engine2.BeginReadFile("No fouffffnd this file.txt");
+			Assert.Throws<FileNotFoundException>(()
+                => engine2.BeginReadFile("No fouffffnd this file.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void FileNotFound3()
 		{
 			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
-			engine2.BeginAppendToFile(null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine2.BeginAppendToFile(null));
 		}
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void NullReader2()
 		{
 			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
-			engine2.BeginReadStream(null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine2.BeginReadStream(null));
 		}
 
 		[Test]
@@ -89,22 +89,22 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (ArgumentException))]
 		public void NullWriter2()
 		{
 			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
-			engine2.BeginWriteStream(null);
+			Assert.Throws<ArgumentException>(()
+                => engine2.BeginWriteStream(null));
 		}
 
 
 		[Test]
-		[ExpectedException(typeof (ArgumentNullException))]
 		public void NullRecords2()
 		{
 			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
 			engine2.BeginWriteStream(new StringWriter(new StringBuilder()));
 
-			engine2.WriteNexts(null);
+			Assert.Throws<ArgumentNullException>(()
+                => engine2.WriteNexts(null));
 		}
 
 

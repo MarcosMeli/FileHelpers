@@ -51,29 +51,31 @@ namespace FileHelpersTests.CommonTests
 		}
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void AsyncFieldIndexBad1()
         {
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-            engine[0] = new DateTime(2003, 2, 1);
+            Assert.Throws<BadUsageException>(()
+                 => engine[0] = new DateTime(2003, 2, 1));
         }
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void AsyncFieldIndexBad2()
         {
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-            engine.WriteNextValues();
+            
+            Assert.Throws<BadUsageException>(()
+                 => engine.WriteNextValues());
         }
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void AsyncFieldIndexBad3()
         {
             FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
             StringWriter sw = new StringWriter();
             engine.BeginWriteStream(sw);
-            engine.WriteNextValues();
+            
+            Assert.Throws<BadUsageException>(()
+                 => engine.WriteNextValues());
         }
 
 

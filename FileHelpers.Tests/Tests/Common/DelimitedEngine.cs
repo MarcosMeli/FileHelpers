@@ -40,17 +40,17 @@ namespace FileHelpersTests.CommonTests
 
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BadRecordType1()
         {
-            DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersFixed));
+            Assert.Throws<BadUsageException>(
+                () => new DelimitedFileEngine(typeof(CustomersFixed)));
         }
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BadRecordType2()
         {
-            DelimitedFileEngine engine = new DelimitedFileEngine(null);
+            Assert.Throws<BadUsageException>(
+                () => new DelimitedFileEngine(null));
         }
 
 	}

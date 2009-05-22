@@ -10,18 +10,18 @@ namespace FileHelpersTests.Errors
 		FileHelperEngine engine;
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void DelimitedBad1()
 		{
-			engine = new FileHelperEngine(typeof (OptionalBad1));
+            Assert.Throws<BadUsageException>(() 
+                => new FileHelperEngine(typeof (OptionalBad1)));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void DelimitedBad2()
 		{
 			engine = new FileHelperEngine(typeof (OptionalBad2));
-			Common.ReadTest(engine, @"Bad\OptionalBad1.txt");
+            Assert.Throws<BadUsageException>(() 
+                => Common.ReadTest(engine, @"Bad\OptionalBad1.txt"));
 		}
 
 

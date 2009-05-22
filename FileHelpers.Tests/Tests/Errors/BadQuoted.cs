@@ -18,45 +18,45 @@ namespace FileHelpersTests.Errors
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted1()
 		{
-			Common.ReadTest(engine, @"Bad\BadQuoted1.txt");
+            Assert.Throws<BadUsageException>(() 
+                => Common.ReadTest(engine, @"Bad\BadQuoted1.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted2()
 		{
-			Common.ReadTest(engine, @"Bad\BadQuoted2.txt");
+            Assert.Throws<BadUsageException>(()
+                => Common.ReadTest(engine, @"Bad\BadQuoted2.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted3()
 		{
-			Common.ReadTest(engine, @"Bad\BadQuoted3.txt");
+            Assert.Throws<BadUsageException>(()
+                => Common.ReadTest(engine, @"Bad\BadQuoted3.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted1Async()
 		{
-			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted1.txt");
+            Assert.Throws<BadUsageException>(()
+                => Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted1.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted2Async()
 		{
-			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted2.txt");
+            Assert.Throws<BadUsageException>(()
+                => Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted2.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof (BadUsageException))]
 		public void BadQuoted3Async()
 		{
-			Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted3.txt");
+            Assert.Throws<BadUsageException>(()
+                => Common.ReadAllAsync(engineAsync, @"Bad\BadQuoted3.txt"));
 		}
 
 

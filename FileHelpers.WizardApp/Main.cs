@@ -11,12 +11,12 @@ namespace FileHelpers.WizardApp
 		{
             Application.EnableVisualStyles();
 
-            if (RegConfig.GetStringValue(frmDonate.WizardDonateRegKey, "1") == "1")
-            {
-                frmDonate frmDon = new frmDonate();
-                frmDon.ShowDialog();
-                frmDon.Dispose();
-            }
+            //if (RegConfig.GetStringValue(frmDonate.WizardDonateRegKey, "1") == "1")
+            //{
+            //    frmDonate frmDon = new frmDonate();
+            //    frmDon.ShowDialog();
+            //    frmDon.Dispose();
+            //}
 
             frmWizard frm = new frmWizard();
 			frm.ShowDialog();

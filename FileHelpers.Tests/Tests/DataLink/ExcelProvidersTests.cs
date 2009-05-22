@@ -64,7 +64,6 @@ namespace FileHelpersTests.DataLink
 
 
 		[Test]
-		[ExpectedException(typeof(ExcelBadUsageException))]
 		public void CustomersWithSheetNameError()
 		{
 			ExcelStorage provider = new ExcelStorage(typeof (CustomersVerticalBar));
@@ -72,18 +71,19 @@ namespace FileHelpersTests.DataLink
 			provider.SheetName = "SheetNotExists";
 			provider.FileName = @"..\data\Excel\Customers.xls";
 
-			provider.ExtractRecords();
+			Assert.Throws<ExcelBadUsageException>(()
+                => provider.ExtractRecords());
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileNotFoundException))]
 		public void CustomersFileError()
 		{
 			ExcelStorage provider = new ExcelStorage(typeof (CustomersVerticalBar));
 
 			provider.FileName = @"t:\SureThatThisCanExistInAnyMachine.xls";
 
-			provider.ExtractRecords();
+			Assert.Throws<FileNotFoundException>(()
+                => provider.ExtractRecords());
 		}
 
 

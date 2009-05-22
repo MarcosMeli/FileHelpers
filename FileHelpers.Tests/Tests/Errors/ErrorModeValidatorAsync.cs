@@ -57,11 +57,11 @@ namespace FileHelpersTests.Errors
         }
 
         [Test]
-		[ExpectedException(typeof (ConvertException))]
 		public void ThrowException()
 		{
 			engine.ErrorManager.ErrorMode = ErrorMode.ThrowException;
-        	Common.ReadAllAsync(engine, @"Bad\BadDate1.txt");
+        	Assert.Throws<ConvertException>(()
+                => Common.ReadAllAsync(engine, @"Bad\BadDate1.txt"));
 		}
 
 		[Test]
@@ -139,29 +139,34 @@ namespace FileHelpersTests.Errors
 
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BeginReadWhileWriting()
         {
             FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
-            try
-            {
-                eng.BeginWriteFile(@"c:\tempfile.tmp");
-                eng.BeginReadString("jejjeje");
-            }
-            finally
-            {
-                eng.Close();
-                if (File.Exists(@"c:\tempfile.tmp")) File.Delete(@"c:\tempfile.tmp");
-            }
+
+            Assert.Throws<BadUsageException>(()
+                                             =>
+                                                 {
+                                                     try
+                                                     {
+                                                         eng.BeginWriteFile(@"c:\tempfile.tmp");
+                                                         eng.BeginReadString("jejjeje");
+                                                     }
+                                                     finally
+                                                     {
+                                                         eng.Close();
+                                                         if (File.Exists(@"c:\tempfile.tmp"))
+                                                             File.Delete(@"c:\tempfile.tmp");
+                                                     }
+                                                 });
         }
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BeginWriteWhileReading()
         {
             FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
             eng.BeginReadString("jejjeje");
-            eng.BeginWriteFile(@"c:\tempfile.tmp");
+            Assert.Throws<BadUsageException>(() 
+                => eng.BeginWriteFile(@"c:\tempfile.tmp"));
         }
 
 	}

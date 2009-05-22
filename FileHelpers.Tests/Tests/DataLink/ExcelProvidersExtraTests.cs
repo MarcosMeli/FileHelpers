@@ -130,14 +130,16 @@ namespace FileHelpersTests.DataLink
 		}
 
 		[Test]
-		[ExpectedException(typeof(ExcelBadUsageException))]
 		public void NoTemplate()
 		{
+
 			ExcelStorage provider = new ExcelStorage(typeof (CustomersVerticalBar), 1, 1);
 			provider.TemplateFile = @"..\the template is not there.xls";
 			provider.FileName = @"output.xls";
 		
-			provider.InsertRecords(new object[] {new CustomersVerticalBar()});
+            
+            Assert.Throws<ExcelBadUsageException>(()
+                => provider.InsertRecords(new object[] {new CustomersVerticalBar()}));
 		}
 
 		[Test]

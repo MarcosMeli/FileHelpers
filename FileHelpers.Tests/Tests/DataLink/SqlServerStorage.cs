@@ -122,17 +122,17 @@ namespace FileHelpersTests.DataLink
 
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void OrdersExtractBad1()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
 			
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
-			storage.ExtractRecords();
+			
+            Assert.Throws<BadUsageException>(()
+                 => storage.ExtractRecords());
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void OrdersExtractBad2()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
@@ -140,54 +140,56 @@ namespace FileHelpersTests.DataLink
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
-			storage.ExtractRecords();
+			Assert.Throws<BadUsageException>(()
+                 => storage.ExtractRecords());
 		}
 
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
+		[Ignore]
 		public void OrdersExtractBad3()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
-			try
-			{
-				storage.ExtractRecords();
-			}
-			catch(SqlException ex)
-			{
-				if (ex.Number == 208)
-					Assert.Ignore("You dont have this tables in your SqlServer");
+            //try
+            //{
+            //    storage.ExtractRecords();
+            //}
+            //catch(SqlException ex)
+            //{
+            //    if (ex.Number == 208)
+            //        Assert.Ignore("You dont have this tables in your SqlServer");
 
-				if (ex.Number == 6)
-					Assert.Ignore("SqlServer not found, skipping this test.");
+            //    if (ex.Number == 6)
+            //        Assert.Ignore("SqlServer not found, skipping this test.");
 
-				Assert.Ignore(ex.ToString());
-			}
+            //    Assert.Ignore(ex.ToString());
+            //}
 		}
 
 		[Test]
-		[ExpectedException(typeof(System.Data.SqlClient.SqlException))]
 		public void OrdersExtractBad4()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "SureThatThisDontExist");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
-			storage.ExtractRecords();
+
+            Assert.Throws<SqlException>(()
+                => storage.ExtractRecords());
 		}
 
 		[Test]
-		[ExpectedException(typeof(System.Data.SqlClient.SqlException))]
 		public void OrdersExtractBad5()
 		{
 			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "WhereIsThisServer", "Northwind");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
-			storage.ExtractRecords();
+			Assert.Throws<SqlException>(()
+                => storage.ExtractRecords());
 		}
 
 		protected void FillRecordOrder(object rec, object[] fields)

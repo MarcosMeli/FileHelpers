@@ -46,10 +46,10 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void DiffTypeError()
 		{
-			engine = new FileDiffEngine(typeof (CustomersFixed));
+            Assert.Throws<BadUsageException>(
+                () => new FileDiffEngine(typeof (CustomersFixed)));
 		}
 
 		[Test]

@@ -48,22 +48,15 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void Sort3()
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 
-			CustomersVerticalBar[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
+            object[] res = engine.ReadFile(Common.TestPath(@"good\Sort1.txt"));
 
-			Assert.AreEqual(8, res.Length);
 
-			CommonEngine.SortRecords(res);
-
-			Assert.AreEqual(8, res.Length);
-
-			Assert.AreEqual("Alfreds Futterkiste", res[0].CompanyName);
-			Assert.AreEqual("La maison d'Asie", res[1].CompanyName);
-			Assert.AreEqual("Tortuga Restaurante", res[2].CompanyName);
+            Assert.Throws<BadUsageException>(()
+                 => CommonEngine.SortRecords(res));
 		}
 
 		[Test]
@@ -85,7 +78,6 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void Sort5()
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
@@ -93,7 +85,8 @@ namespace FileHelpersTests.CommonTests
 			CustomersSort[] res =  engine.ReadFile(Common.TestPath(@"good\Sort1.txt")) as CustomersSort[];
 			Assert.AreEqual(8, res.Length);
 
-			CommonEngine.SortRecordsByField(res, "CompanyNameNoExistHere");
+            Assert.Throws<BadUsageException>(()
+                 => CommonEngine.SortRecordsByField(res, "CompanyNameNoExistHere"));
 		}
 
 		[DelimitedRecord("|")]

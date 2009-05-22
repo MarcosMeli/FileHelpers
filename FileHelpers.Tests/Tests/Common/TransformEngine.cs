@@ -201,11 +201,11 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void TransformBad()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(ToClass), typeof(FromClass));
-			link.TransformFile(Common.TestPath("Good\\Transform1.txt"), Common.TestPath("Good\\transformout.txt"));
+            Assert.Throws<BadUsageException>(()
+                 => link.TransformFile(Common.TestPath("Good\\Transform1.txt"), Common.TestPath("Good\\transformout.txt")));
 		}
 
 		[Test]

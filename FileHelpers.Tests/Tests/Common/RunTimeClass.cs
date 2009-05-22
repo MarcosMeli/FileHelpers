@@ -642,24 +642,24 @@ namespace FileHelpersTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName1()
 		{
-			new DelimitedClassBuilder("2yClass", ",");
+            Assert.Throws<FileHelpersException>(()
+                => new DelimitedClassBuilder("2yClass", ","));
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName2()
 		{
-			new DelimitedClassBuilder("My Class", ",");
+            Assert.Throws<FileHelpersException>(()
+                => new DelimitedClassBuilder("My Class", ","));
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
 		public void BadClassName3()
 		{
-			new DelimitedClassBuilder("", ",");
+            Assert.Throws<FileHelpersException>(()
+                => new DelimitedClassBuilder("", ","));
 		}
 
 		

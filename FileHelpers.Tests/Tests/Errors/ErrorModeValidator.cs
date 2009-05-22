@@ -110,11 +110,11 @@ namespace FileHelpersTests.Errors
         }
 
         [Test]
-		[ExpectedException(typeof (ConvertException))]
 		public void ThrowException()
 		{
 			engine.ErrorManager.ErrorMode = ErrorMode.ThrowException;
-        	Common.ReadTest(engine, @"Bad\BadDate1.txt");
+        	Assert.Throws<ConvertException>(()
+                => Common.ReadTest(engine, @"Bad\BadDate1.txt"));
 		}
 
 		[Test]

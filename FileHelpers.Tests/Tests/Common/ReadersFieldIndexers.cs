@@ -94,7 +94,6 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(IndexOutOfRangeException))]
 		public void AsyncFieldIndexBad1()
 		{
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
@@ -102,46 +101,50 @@ namespace FileHelpersTests.CommonTests
 
 			while(engine.ReadNext() != null)
 			{
-				object val = engine[10];
+			    Assert.Throws<IndexOutOfRangeException>(()
+			        => { object val = engine[10]; });
 			}
 
 			engine.Close();
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void AsyncFieldIndexBad2()
 		{
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
-			while(engine.ReadNext() != null)
-			{
-				object val = engine["FieldNoThere"];
-			}
+		    Assert.Throws<BadUsageException>(()
+                 =>
+                     {
+                         while (engine.ReadNext() != null)
+                         {
+                             object val = engine["FieldNoThere"];
+                         }
+                     });
 
-			engine.Close();
+            engine.Close();
 		}
 
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
+		
 		public void AsyncFieldIndexBad3()
 		{
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-			object val = engine[2];
+			  Assert.Throws<BadUsageException>(()
+                 => { object val = engine[2]; });
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void AsyncFieldIndexBad4()
 		{
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-			object val = engine["Field1"];
+			  Assert.Throws<BadUsageException>(()
+                 => { object val = engine["Field1"]; });
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void AsyncFieldIndexBad5()
 		{
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
@@ -150,7 +153,8 @@ namespace FileHelpersTests.CommonTests
 			{
 			}
 			engine.Close();
-			object val = engine[2];
+		    Assert.Throws<BadUsageException>(()
+		        => { object val = engine[2]; });
 
 		}
 

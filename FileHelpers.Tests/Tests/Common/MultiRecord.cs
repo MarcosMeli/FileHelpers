@@ -80,19 +80,22 @@ namespace FileHelpersTests
 
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
 		public void MultpleRecordsFileAsyncBad()
 		{
-			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
-			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+		    engine = new MultiRecordEngine(typeof (OrdersVerticalBar), typeof (CustomersSemiColon), typeof (SampleType));
+		    engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
-			foreach (object o in engine)
-			{
-				o.ToString();
-			}
+		    Assert.Throws<FileHelpersException>(
+		        () =>
+		            {
+		                foreach (object o in engine)
+		                {
+		                    o.ToString();
+		                }
+		            });
 		}
-		
-		[Test]
+
+	    [Test]
 		public void MultpleRecordsFileRW()
 		{
 			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
@@ -118,17 +121,17 @@ namespace FileHelpersTests
 
 		
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void NoTypes()
 		{
-			engine = new MultiRecordEngine(new Type[] {});
+			Assert.Throws<BadUsageException>(() => 
+                new MultiRecordEngine(new Type[] {}));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void NullTypeArray()
 		{
-			engine = new MultiRecordEngine((Type[])null);
+            Assert.Throws<BadUsageException>(() => 
+                new MultiRecordEngine((Type[])null));
 		}
 				
 		[Test]
@@ -138,25 +141,24 @@ namespace FileHelpersTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void TwiceSameType()
 		{
-			engine = new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersVerticalBar));
+            Assert.Throws<BadUsageException>(() 
+                => new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersVerticalBar)));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void OneType()
 		{
-			engine = new MultiRecordEngine(typeof(CustomersVerticalBar));
+            Assert.Throws<BadUsageException>(() 
+                => new MultiRecordEngine(typeof(CustomersVerticalBar)));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void NullTypes()
 		{
-			engine = new MultiRecordEngine(typeof(CustomersVerticalBar), null);
-			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+			Assert.Throws<BadUsageException>(() 
+                => new MultiRecordEngine(typeof(CustomersVerticalBar), null));
 		}
 
         Type CustomSelector(MultiRecordEngine engine, string record)

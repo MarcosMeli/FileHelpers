@@ -12,35 +12,34 @@ namespace FileHelpersTests.CommonTests
 	public class TransformBad
 	{
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void Transform1()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass1), typeof(ToClass1));
-			link.TransformFile("a","b");
+            Assert.Throws<BadUsageException>(() 
+                => link.TransformFile("a","b"));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void Transform2()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass2), typeof(ToClass1));
-			link.TransformFile("a","b");
+			Assert.Throws<BadUsageException>(() 
+                => new FileTransformEngine(typeof(FromClass2), typeof(ToClass1)));
+            
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileNotFoundException))]
 		public void Transform3()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass3), typeof(ToClass2));
-			link.TransformFile("aaskdhaklhdla","baskdkalsd");
+            Assert.Throws<FileNotFoundException>(() 
+                => link.TransformFile("aaskdhaklhdla","baskdkalsd"));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void Transform4()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass4), typeof(ToClass1));
-			link.TransformFile("a","b");
+			Assert.Throws<BadUsageException>(() 
+                => new FileTransformEngine(typeof(FromClass4), typeof(ToClass1)));
 		}
 
 		[DelimitedRecord(",")]

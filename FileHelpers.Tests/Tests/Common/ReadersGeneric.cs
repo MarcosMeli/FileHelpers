@@ -151,15 +151,19 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
 		public void AsyncReadEnumerableBad()
 		{
             FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
-			foreach (SampleType rec1 in asyncEngine)
-			{
-				rec1.ToString();
-			}
+            Assert.Throws<FileHelpersException>(()
+                    =>
+            {
+                foreach (SampleType rec1 in asyncEngine)
+                {
+                    rec1.ToString();
+                }
+            });
+            asyncEngine.Close();
 		}
 
 		[Test]

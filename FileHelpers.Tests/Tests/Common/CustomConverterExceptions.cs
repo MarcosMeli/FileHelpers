@@ -31,11 +31,12 @@ namespace FileHelpersTests.CommonTests
         string testTo = "sad23\nverybad\n";
 
 		[Test]
-        [ExpectedException(typeof(ConvertException))]
-		public void ExceptionsTestsPriceConverterTest()
+        public void ExceptionsTestsPriceConverterTest()
 		{
 			engine = new FileHelperEngine(typeof (CustomConvType));
-            PriceRecord[] res = (PriceRecord[]) engine.ReadString(testTo);
+
+            Assert.Throws<ConvertException>(
+                () => engine.ReadString(testTo));
 		}
 
         [Test]

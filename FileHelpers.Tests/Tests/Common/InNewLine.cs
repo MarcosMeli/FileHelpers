@@ -198,19 +198,20 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void InNewLine3Bad()
 		{
 			engine = new FileHelperEngine(typeof(InNewLineType2));
-			engine.ReadFile(Common.TestPath(@"Bad\InNewLine3.txt"));
+
+			Assert.Throws<BadUsageException>(() => 
+                engine.ReadFile(Common.TestPath(@"Bad\InNewLine3.txt")));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void InNewLine4Bad()
 		{
 			engine = new FileHelperEngine(typeof(InNewLineType2));
-			engine.ReadFile(Common.TestPath(@"Bad\InNewLine4.txt"));
+			Assert.Throws<BadUsageException>(() => 
+                engine.ReadFile(Common.TestPath(@"Bad\InNewLine4.txt")));
 		}
 
 		[DelimitedRecord(",")]

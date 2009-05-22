@@ -43,17 +43,17 @@ namespace FileHelpersTests.CommonTests
 		}
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BadRecordType1()
         {
-            FixedFileEngine engine = new FixedFileEngine(typeof(CustomersTab));
+            Assert.Throws<BadUsageException>(
+                () => new FixedFileEngine(typeof(CustomersTab)));
         }
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BadRecordType2()
         {
-            FixedFileEngine engine = new FixedFileEngine(null);
+            Assert.Throws<BadUsageException>(
+                () => new FixedFileEngine(null));
         }
 
 		[FixedLengthRecord]

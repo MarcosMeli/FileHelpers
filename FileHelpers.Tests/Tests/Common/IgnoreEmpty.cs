@@ -67,19 +67,19 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void IgnoreEmpty4Bad()
 		{
 			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
-			Common.ReadTest(engine, @"Good\IgnoreEmpty4.txt");
+			Assert.Throws<BadUsageException>(
+                () => Common.ReadTest(engine, @"Good\IgnoreEmpty4.txt"));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void IgnoreEmpty4BadAsync()
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
-			Common.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty4.txt");
+            Assert.Throws<BadUsageException>(
+                () => Common.ReadAllAsync(asyncEngine, @"Good\IgnoreEmpty4.txt"));
 		}
 
 		[Test]
@@ -143,14 +143,13 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(ConvertException))]
 		public void IgnoreComment4()
 		{
 			engine = new FileHelperEngine(typeof (IgnoreCommentsType2));
-			object[] res = Common.ReadTest(engine, @"Good\IgnoreComments2.txt");
+            Assert.Throws<ConvertException>(
+                () =>  Common.ReadTest(engine, @"Good\IgnoreComments2.txt"));
 			
-			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(7, engine.LineNumber);
+			Assert.AreEqual(3, engine.LineNumber);
 		}
 
 	

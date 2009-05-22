@@ -37,12 +37,11 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void ReadOptionalWrite()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode2));
-			QuoteMode2[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode2[];
-			ValidateData(res);
+            Assert.Throws<BadUsageException>(() 
+                => Common.ReadTest(engine, @"Good\QuoteMode1.txt"));
 		}
 
 		[Test]
