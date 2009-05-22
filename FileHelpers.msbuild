@@ -2,6 +2,7 @@
 
 <Project DefaultTargets="release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
   <Import Project="CurrentVersion.msbuild"/>
     
 	<ItemGroup>
@@ -31,8 +32,8 @@
   	</Target>
 
 	
+
 	<Target Name="nightbuild" DependsOnTargets="release">
-	  <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
 		<NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />  
 	</Target>
 	
