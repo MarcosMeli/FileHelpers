@@ -136,10 +136,11 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[Test]
-		[ExpectedException(typeof(FileHelpersException))]
+		
 		public void BadName()
 		{
-			new CsvEngine("Ops, somerrors", '|', Common.TestPath(@"Good\RealCsvVerticalBar1.txt"));
+            Assert.Throws<FileHelpersException>(
+                () => new CsvEngine("Ops, somerrors", '|', Common.TestPath(@"Good\RealCsvVerticalBar1.txt")));
 		}
 
 		[Test]

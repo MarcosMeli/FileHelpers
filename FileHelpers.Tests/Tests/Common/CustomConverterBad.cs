@@ -9,24 +9,18 @@ namespace FileHelpersTests.CommonTests
         FileHelperEngine engine;
 
         [Test]
-        [ExpectedException(typeof(ConvertException))]
         public void PriceConverterTest()
         {
-            engine = new FileHelperEngine(typeof(GodRecord));
+            engine = new FileHelperEngine(typeof (GodRecord));
 
-            try
-            {
-                GodRecord[] res = (GodRecord[])Common.ReadTest(engine, @"Good\PriceConverter.txt");
-            }
-            catch (ConvertException ex)
-            {
-                Assert.AreEqual(1, ex.LineNumber);
-                Assert.AreEqual("PriceList", ex.FieldName);
-                Assert.AreEqual(typeof(decimal), ex.FieldType);
-                Assert.AreEqual(null, ex.FieldStringValue);
+            ConvertException ex = 
+                Assert.Throws<ConvertException>(
+                () => Common.ReadTest(engine, @"Good\PriceConverter.txt"));
 
-                throw;
-            }
+            Assert.AreEqual(1, ex.LineNumber);
+            Assert.AreEqual("PriceList", ex.FieldName);
+            Assert.AreEqual(typeof(decimal), ex.FieldType);
+            Assert.AreEqual(null, ex.FieldStringValue);
 
         
         }

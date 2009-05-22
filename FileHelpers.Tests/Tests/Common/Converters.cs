@@ -70,10 +70,10 @@ namespace FileHelpersTests.CommonTests
 		FileHelperEngine engine;
 
         [Test]
-        [ExpectedException(typeof(BadUsageException))]
         public void BadConverterOver()
         {
-            engine = new FileHelperEngine(typeof(BadConverter));
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof(BadConverter)));
         }
 
         [Test]

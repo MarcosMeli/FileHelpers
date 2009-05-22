@@ -10,6 +10,7 @@ namespace FileHelpersTests.CommonTests
 	public class ArrayFields
 	{
 		FileHelperEngine engine;
+        
 
 		[Test]
 		public void ArrayFields1()
@@ -91,45 +92,48 @@ namespace FileHelpersTests.CommonTests
 
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void ArrayFieldsBad01()
 		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad1));
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof (ArrayTypeBad1)));
+
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
+		
 		public void ArrayFieldsBad02()
 		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad2));
+			Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof (ArrayTypeBad2)));
 		}
 
-		[Test]
-		[ExpectedException(typeof(BadUsageException))]
-		public void ArrayFieldsBad03()
-		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad3));
-		}
+        [Test]
 
-		[Test]
-		[ExpectedException(typeof(BadUsageException))]
+        public void ArrayFieldsBad03()
+        {
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof (ArrayTypeBad3)));
+        }
+
+	    [Test]
 		public void ArrayFieldsBad04()
 		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad4));
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof (ArrayTypeBad4)));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void ArrayFieldsBad05()
 		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad5));
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine(typeof (ArrayTypeBad5)));
 		}
 
 		[Test]
-		[ExpectedException(typeof(BadUsageException))]
 		public void ArrayFieldsBad06()
 		{
-			engine = new FileHelperEngine(typeof (ArrayTypeBad6));
+            Assert.Throws<BadUsageException>(
+                () =>  new FileHelperEngine(typeof (ArrayTypeBad6)));
 		}
 
 		[Test]

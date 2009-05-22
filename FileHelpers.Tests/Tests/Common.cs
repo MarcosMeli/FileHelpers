@@ -10,15 +10,15 @@ namespace FileHelpersTests
 	// this class only adds the relative path to the saple files.
 	public sealed class Common
 	{
-	    private static string mAssemblyLocation = string.Empty;
+	    //private static string mAssemblyLocation = string.Empty;
 		public static string TestPath(string fileName)
 		{
-            if (string.IsNullOrEmpty(mAssemblyLocation))
-            {
-                mAssemblyLocation = Path.GetDirectoryName(Assembly.GetAssembly(typeof (Common)).Location);
-            }
+            //if (string.IsNullOrEmpty(mAssemblyLocation))
+            //{
+            //    mAssemblyLocation = Path.GetDirectoryName(Assembly.GetAssembly(typeof (Common)).Location);
+            //}
 
-            return Path.Combine(Path.Combine(mAssemblyLocation, @"..\data"), fileName);
+            return Path.Combine(Path.GetFullPath(@"..\data"), fileName);
 		}
 
 //		public static string FullTestPath(string fileName)
