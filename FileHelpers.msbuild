@@ -2,14 +2,19 @@
 
 <Project DefaultTargets="release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   <Import Project="CurrentVersion.msbuild"/>
     
 	<ItemGroup>
-		<Borrar Include="Release\*.*"  />
+		<DeleteRelease Include="Release\**\*.*"  />
+		<DeleteReleaseFolders Include="Release\**"  />
+		<DeleteDebug Include="Debug\**\*.*"  />
+		<DeleteDebugFolders Include="Debug\**"  />
 	</ItemGroup>
 
 	<Target Name="clean">
-		<Delete Files="@(Borrar)" />	
+		<Delete Files="@(DeleteRelease)" />	
+		<Delete Files="@(DeleteDebug)" />	
 	</Target>
 
 	<PropertyGroup>
@@ -26,5 +31,18 @@
 	    <MSBuild Projects="FileHelpers.vs2008.sln" Properties="Configuration=Debug" />
   	</Target>
 
+<Target Name="build" DependsOnTargets="release">
+  <ItemGroup>
+      <!-- All files from build -->
+      <ZipFiles Include="Release\**\*.*" Exclude="*.zip" />
+  </ItemGroup>
+  
+  <MakeDir Directories="NightBuilds" Condition="!Exists('NightBuilds')" />
+  
+  <Zip Files="@(ZipFiles)"
+       WorkingDirectory="Release\" 
+       ZipFileName="NightBuilds\FileHelpers-Build-$(CurrentVersion).zip"
+       ZipLevel="9" /> 
+	</Target>
 	
 </Project>

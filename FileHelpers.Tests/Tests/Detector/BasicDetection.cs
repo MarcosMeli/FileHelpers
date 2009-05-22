@@ -137,14 +137,14 @@ namespace FileHelpersTests.Tests.Detector
 
         }
 
-        [Test]
-        public void QuotedMore()
-        {
-            string file;
-            file = "SuperQuoted2.txt";
-            AssertDelimitedFormat(file, ",", 12, 90, 0);
+        //[Test]
+        //public void QuotedMore()
+        //{
+        //    string file;
+        //    file = "SuperQuoted2.txt";
+        //    AssertDelimitedFormat(file, ",", 12, 90, 0);
 
-        }
+        //}
 
     }
 
