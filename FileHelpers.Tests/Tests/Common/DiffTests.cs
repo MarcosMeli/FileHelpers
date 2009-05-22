@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
@@ -9,13 +7,13 @@ namespace FileHelpersTests.CommonTests
 	[TestFixture]
 	public class DiffRecords
 	{
-		FileDiffEngine engine;
+		
 
 		[Test]
 		public void DiffCustomers()
 		{
-			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
-			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\CustomersVerticalBar.txt")) as CustomersVerticalBar[];
+            var engine = new FileDiffEngine<CustomersVerticalBar>();
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\CustomersVerticalBar.txt"));
 			Assert.AreEqual(10, res.Length);
 			Assert.AreEqual("BLAUS", res[0].CustomerID);
 			Assert.AreEqual("BLONP", res[1].CustomerID);
@@ -24,66 +22,67 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void DiffCustomersAllEquals()
 		{
-			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
-			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt")) as CustomersVerticalBar[];
+            var engine = new FileDiffEngine<CustomersVerticalBar>();
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt"));
 			Assert.AreEqual(0, res.Length);
 		}
 
 		[Test]
 		public void DiffEmptyOld()
 		{
-			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
-			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\EmptyFile.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt")) as CustomersVerticalBar[];
+            var engine = new FileDiffEngine<CustomersVerticalBar>();
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\EmptyFile.txt"),Common.TestPath(@"good\CustomersVerticalBarOlds.txt"));
 			Assert.AreEqual(81, res.Length);
 		}
 
 		[Test]
 		public void DiffEmptyNews()
 		{
-			engine = new FileDiffEngine(typeof (CustomersVerticalBar));
-			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\EmptyFile.txt")) as CustomersVerticalBar[];
+            var engine = new FileDiffEngine<CustomersVerticalBar>();
+			CustomersVerticalBar[] res = engine.OnlyNewRecords(Common.TestPath(@"good\CustomersVerticalBarOlds.txt"), Common.TestPath(@"good\EmptyFile.txt"));
 			Assert.AreEqual(0, res.Length);
 		}
 
-		[Test]
-		public void DiffTypeError()
-		{
-            Assert.Throws<BadUsageException>(
-                () => new FileDiffEngine(typeof (CustomersFixed)));
-		}
+        // Automaticaly Checked now by compiler
+        //[Test]
+        //public void DiffTypeError()
+        //{
+        //    Assert.Throws<BadUsageException>(
+        //        () => new FileDiffEngine<CustomersFixed>());
+        //}
 
 		[Test]
 		public void OnlyNewRecords()
 		{
-			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
-			DiffOrdersFixed[] res = engine.OnlyNewRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+            var engine = new FileDiffEngine<DiffOrdersFixed>();
+			DiffOrdersFixed[] res = engine.OnlyNewRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt"));
 			Assert.AreEqual(5, res.Length);
 			
-			res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersNew.txt"), Common.TestPath(@"good\DiffOrdersOld.txt")) as DiffOrdersFixed[];
+			res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersNew.txt"), Common.TestPath(@"good\DiffOrdersOld.txt"));
 			Assert.AreEqual(5, res.Length);
 		}
 
 		[Test]
 		public void MissingRecords()
 		{
-			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
-			DiffOrdersFixed[] res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+            var engine = new FileDiffEngine<DiffOrdersFixed>();
+			DiffOrdersFixed[] res = engine.OnlyMissingRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt"));
 			Assert.AreEqual(2, res.Length);
 		}
 
 		[Test]
 		public void OnlyNoDuplicatedRecords()
 		{
-			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
-			DiffOrdersFixed[] res = engine.OnlyNoDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+            var engine = new FileDiffEngine<DiffOrdersFixed>();
+			DiffOrdersFixed[] res = engine.OnlyNoDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt"));
 			Assert.AreEqual(7, res.Length);
 		}
 
 		[Test]
 		public void OnlyDuplicatedRecords()
 		{
-			engine = new FileDiffEngine(typeof (DiffOrdersFixed));
-			DiffOrdersFixed[] res = engine.OnlyDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt")) as DiffOrdersFixed[];
+            var engine = new FileDiffEngine<DiffOrdersFixed>();
+			DiffOrdersFixed[] res = engine.OnlyDuplicatedRecords(Common.TestPath(@"good\DiffOrdersOld.txt"), Common.TestPath(@"good\DiffOrdersNew.txt"));
 			Assert.AreEqual(10, res.Length);
 		}
 

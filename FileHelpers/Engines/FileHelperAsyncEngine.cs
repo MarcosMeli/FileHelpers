@@ -4,9 +4,9 @@
 
 #endregion
 
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 using System;
 using System.Diagnostics;
@@ -20,6 +20,28 @@ using System.Collections.Generic;
 
 namespace FileHelpers
 {
+    public sealed class FileHelperAsyncEngine :
+        FileHelperAsyncEngine<object>
+    {
+        #region "  Constructor  "
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        public FileHelperAsyncEngine(Type recordType)
+            : base(recordType)
+        {
+        }
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <param name="encoding">The encoding used by the Engine.</param>
+        public FileHelperAsyncEngine(Type recordType, Encoding encoding)
+            : base(recordType, encoding)
+        {
+        }
+
+        #endregion
+        
+    }
+
     /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
     /// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
 #if NET_2_0
@@ -30,7 +52,7 @@ namespace FileHelpers
         EngineBase, IEnumerable, IDisposable
 #else
     /// <typeparam name="T">The record type.</typeparam>
-    public sealed class FileHelperAsyncEngine<T> :
+    public class FileHelperAsyncEngine<T> :
         EngineBase, IEnumerable<T>, IDisposable
 #endif
     {
@@ -38,26 +60,30 @@ namespace FileHelpers
         #region "  Constructor  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
-#if ! GENERICS
-        public FileHelperAsyncEngine(Type recordType)
-            : base(recordType)
-#else
 		public FileHelperAsyncEngine() 
 			: base(typeof(T))
-#endif
+        {
+            CreateRecordOptions();
+        }
+
+        protected FileHelperAsyncEngine(Type type)
+            : base(type)
         {
             CreateRecordOptions();
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
-#if ! GENERICS
-        public FileHelperAsyncEngine(Type recordType, Encoding encoding)
-            : base(recordType, encoding)
-#else
 		public FileHelperAsyncEngine(Encoding encoding)
 			: base(typeof(T), encoding)
-#endif
+        {
+            CreateRecordOptions();
+        }
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <param name="encoding">The encoding used by the Engine.</param>
+        public FileHelperAsyncEngine(Type type, Encoding encoding)
+            : base(type, encoding)
         {
             CreateRecordOptions();
         }
@@ -984,4 +1010,4 @@ arr.ToArray(RecordType);
 }
 
 
-//#endif
+#endif

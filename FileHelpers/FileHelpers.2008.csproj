@@ -220,13 +220,7 @@
     <Compile Include="Engines\FileDiffEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Engines\FileDiffEngineG.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Engines\FileHelperAsyncEngine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Engines\FileHelperAsyncEngineG.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engines\FileHelperEngine.cs">
