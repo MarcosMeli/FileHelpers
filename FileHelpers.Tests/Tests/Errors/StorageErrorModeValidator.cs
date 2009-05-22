@@ -9,6 +9,7 @@ namespace FileHelpersTests.Errors
 	public class StorageErrorModeValidator
 	{
 		[Test]
+        [Ignore]
 		public void OneColumnIgnore()
 		{
 			ExcelStorage provider = new ExcelStorage(typeof (OneColumnType), 1, 1);
@@ -23,6 +24,7 @@ namespace FileHelpersTests.Errors
 
 
 		[Test]
+        [Ignore]
 		public void OneColumnSave()
 		{
 			ExcelStorage provider = new ExcelStorage(typeof (OneColumnType), 1, 1);
