@@ -15,7 +15,7 @@ namespace FileHelpersTests
 		{
             if (string.IsNullOrEmpty(mAssemblyLocation))
             {
-                mAssemblyLocation = Assembly.GetAssembly(typeof (Common)).Location;
+                mAssemblyLocation = Path.GetDirectoryName(Assembly.GetAssembly(typeof (Common)).Location);
             }
 
             return Path.Combine(Path.Combine(mAssemblyLocation, @"..\data"), fileName);
