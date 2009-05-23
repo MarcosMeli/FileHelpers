@@ -3,7 +3,6 @@
 <Project DefaultTargets="release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
-  <UsingTask AssemblyFile="$(MSBuildCommunityTasksLib)" TaskName="MSBuild.Community.Tasks.Zip" />
   
   <Import Project="CurrentVersion.msbuild"/>
     
@@ -43,15 +42,10 @@
 	  
 	  <MakeDir Directories="NightBuilds" Condition="!Exists('NightBuilds')" />
 	  
-	  <Zip Files="@(ZipFiles)"
-	       WorkingDirectory="Release\" 
-	       ZipFileName="NightBuilds\FileHelpers-Build-$(CurrentVersion).zip"
-	       ZipLevel="9" /> 
 
 		<NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />  
 	</Target>
 	
 	
- 
 
 </Project>

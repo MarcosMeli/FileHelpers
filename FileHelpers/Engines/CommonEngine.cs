@@ -156,39 +156,30 @@ namespace FileHelpers
         /// Used to write a file without instanciate the engine.<br />
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
-        /// <param name="recordClass">The record class.</param>
         /// <param name="fileName">The file name</param>
         /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
-        public static void WriteFile(Type recordClass, string fileName, IEnumerable records)
-        {
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
-            engine.WriteFile(fileName, records);
-        }
-
-#if NET_2_0
-        /// <summary>
-        /// Used to write a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
-        /// </summary>
-        /// <param name="fileName">The file name</param>
-        /// <param name="records">The records to write (Can be an array, List&lt;T&gt;, etc)</param>
         public static void WriteFile<T>(string fileName, IEnumerable<T> records)
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
             engine.WriteFile(fileName, records);
         }
-#endif
 
-        /// <summary>
+
+        [Obsolete("Your must use WriteString<T>(IEnumerable<T>) without the type parameter", true)]
+                public static string WriteString(Type type, IEnumerable records)
+                {
+                    return null;
+                }
+
+	    /// <summary>
         /// Used to write a string without instanciate the engine.<br />
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
-        /// <param name="recordClass">The record class.</param>
         /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
         /// <returns>The string with the writen records.</returns>
-        public static string WriteString(Type recordClass, IEnumerable records)
+        public static string WriteString<T>(IEnumerable<T> records)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            FileHelperEngine<T> engine = new FileHelperEngine<T>();
             return engine.WriteString(records);
         }
 

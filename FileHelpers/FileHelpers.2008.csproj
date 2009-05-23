@@ -226,9 +226,6 @@
     <Compile Include="Engines\FileHelperEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Engines\FileHelperEngineG.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Engines\FileTransformEngine.cs">
       <SubType>Code</SubType>
     </Compile>

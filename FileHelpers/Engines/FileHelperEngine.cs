@@ -4,10 +4,6 @@
 
 #endregion
 
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
-
 
 using System;
 using System.Diagnostics;
@@ -16,9 +12,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
-#if GENERICS
 using System.Collections.Generic;
-#endif
 
 #if ! MINI
 using System.Data;
@@ -31,18 +25,130 @@ namespace FileHelpers
 {
 
 
-    
+    public class FileHelperEngine
+        : FileHelperEngine<object>
+    {
+        #region "  Constructor  "
+
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+		public FileHelperEngine(Type recordType)
+			: this(recordType, Encoding.Default)
+        { }
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        /// <param name="encoding">The Encoding used by the engine.</param>
+		public FileHelperEngine(Type recordType, Encoding encoding)
+			: base(recordType, encoding)
+        {
+            
+        }
+
+        internal FileHelperEngine(RecordInfo ri)
+            : base(ri)
+        {
+        }
+
+
+        #endregion
+
+
+
+
+        public string WriteString(IEnumerable records)
+        {
+            if (records == null)
+                return base.WriteString(null);
+
+            List<object> arr = new List<object>();
+            foreach (var record in records)
+            {
+                arr.Add(record);
+            }
+            return base.WriteString(arr);
+        }
+
+        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        public new event BeforeReadRecordHandler BeforeReadRecord;
+        /// <summary>Called in read operations just after the record was created from a record string.</summary>
+        public new event AfterReadRecordHandler AfterReadRecord;
+        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        public new event BeforeWriteRecordHandler BeforeWriteRecord;
+        /// <summary>Called in write operations just after the record was converted to a string.</summary>
+        public new event AfterWriteRecordHandler AfterWriteRecord;
+
+
+
+        protected override bool OnBeforeReadRecord(BeforeReadRecordEventArgs<object> e)
+        {
+            BeforeReadRecordEventArgs enew = new BeforeReadRecordEventArgs(e.RecordLine, e.LineNumber);
+
+            if (BeforeReadRecord != null)
+            {
+                BeforeReadRecord(this, enew);
+                e.RecordLine = enew.RecordLine;
+                return enew.SkipThisRecord;
+            }
+
+            return base.OnBeforeReadRecord(e);
+        }
+
+        protected override bool OnAfterReadRecord(string line, object record)
+        {
+
+            if (AfterReadRecord != null)
+            {
+                if (mRecordInfo.mNotifyRead)
+                    ((INotifyRead)record).AfterRead(this, line);
+
+                AfterReadRecordEventArgs e = null;
+                e = new AfterReadRecordEventArgs(line, record, LineNumber);
+                AfterReadRecord(this, e);
+                return e.SkipThisRecord;
+            }
+
+            return base.OnAfterReadRecord(line, record);
+        }
+
+        protected override bool OnBeforeWriteRecord(object record)
+        {
+
+            if (BeforeWriteRecord != null)
+            {
+                if (mRecordInfo.mNotifyWrite)
+                    ((INotifyWrite)record).BeforeWrite(this);
+
+                BeforeWriteRecordEventArgs e = null;
+                e = new BeforeWriteRecordEventArgs(record, LineNumber);
+                BeforeWriteRecord(this, e);
+
+                return e.SkipThisRecord;
+            }
+
+            return base.OnBeforeWriteRecord(record);
+        }
+
+        protected override string OnAfterWriteRecord(string line, object record)
+        {
+
+            if (AfterWriteRecord != null)
+            {
+                AfterWriteRecordEventArgs e = null;
+                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+                AfterWriteRecord(this, e);
+                return e.RecordLine;
+            }
+            
+            return base.OnAfterWriteRecord(line, record);
+        }
+
+    }
+
     /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
-#if NET_2_0
     [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
-#if ! GENERICS
-	public class FileHelperEngine : EngineBase
-#else
     /// <typeparam name="T">The record type.</typeparam>
 	public class FileHelperEngine<T>: EngineBase
-#endif
     {
         
 
@@ -50,35 +156,25 @@ namespace FileHelpers
 
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-#if ! GENERICS
-		public FileHelperEngine(Type recordType)
-			: this(recordType, Encoding.Default)
-#else
 		public FileHelperEngine() 
 			: this(Encoding.Default)
 
-#endif
 		{}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 		/// <param name="encoding">The Encoding used by the engine.</param>
-#if ! GENERICS
-		public FileHelperEngine(Type recordType, Encoding encoding)
-			: base(recordType, encoding)
-#else
 		public FileHelperEngine(Encoding encoding) 
 			: base(typeof(T), encoding)
-#endif
 		{
 			CreateRecordOptions();
 		}
 
-//        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-//    #if ! GENERICS
-//        public FileHelperEngine(ClassBuilder builder)
-//            : this(builder.CreateRecordClass(), Encoding.Default)
-//        { }
-//    #endif
+        protected FileHelperEngine(Type type, Encoding encoding)
+            : base(type, encoding)
+        {
+            CreateRecordOptions();
+        }
+
 
 		private void CreateRecordOptions()
 		{
@@ -100,31 +196,20 @@ namespace FileHelpers
 		#region "  ReadFile  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
-#if ! GENERICS
-		public object[] ReadFile(string fileName)
-#else
 		public T[] ReadFile(string fileName)
-#endif
 		{
 			return ReadFile(fileName, int.MaxValue);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-#if ! GENERICS
-		public object[] ReadFile(string fileName, int maxRecords)
-#else
 		public T[] ReadFile(string fileName, int maxRecords)
-#endif
 		{
 			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
 			{
-#if ! GENERICS
-				object[] tempRes;
-#else
 				T[] tempRes;
-#endif
-				tempRes = ReadStream(fs, maxRecords);
+
+                tempRes = ReadStream(fs, maxRecords);
 				fs.Close();
 
 				return tempRes;
@@ -138,11 +223,7 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-#if ! GENERICS
-		public object[] ReadStream(TextReader reader)
-#else
 		public T[] ReadStream(TextReader reader)
-#endif
 		{
 			return ReadStream(reader, int.MaxValue);
 		}
@@ -150,11 +231,7 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-#if ! GENERICS
-		public object[] ReadStream(TextReader reader, int maxRecords)
-#else
 		public T[] ReadStream(TextReader reader, int maxRecords)
-#endif
 		{
 
 #if ! MINI
@@ -163,11 +240,7 @@ namespace FileHelpers
 		}
 
 
-#if ! GENERICS
-        private object[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
-#else
 		private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
-#endif
         {
 #endif
             if (reader == null)
@@ -228,11 +301,7 @@ namespace FileHelpers
                         bool skip = false;
 #if !MINI
                         ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-#if ! GENERICS
-                        BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
-#else
-                        BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
-#endif
+                    BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
                             line.ReLoad(e.RecordLine);
@@ -243,11 +312,7 @@ namespace FileHelpers
                             object record = mRecordInfo.StringToRecord(line, values);
 
 #if !MINI
-#if ! GENERICS
-                        skip = OnAfterReadRecord(currentLine, record);
-#else
 						skip = OnAfterReadRecord(currentLine, (T) record);
-#endif
 #endif
 
                             if (skip == false && record != null)
@@ -300,11 +365,7 @@ namespace FileHelpers
                 }
             }
 
-#if ! GENERICS
-            return (object[])
-#else
 			return (T[])
-#endif
                    resArray.ToArray(RecordType);
         }
 
@@ -315,33 +376,21 @@ namespace FileHelpers
 		#region "  ReadString  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
-#if ! GENERICS
-		public object[] ReadString(string source)
-#else
 		public T[] ReadString(string source)
-#endif
 		{
 			return ReadString(source, int.MaxValue);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-#if ! GENERICS
-		public object[] ReadString(string source, int maxRecords)
-#else
 		public T[] ReadString(string source, int maxRecords)
-#endif
 		{
 			if (source == null)
 				source = string.Empty;
 
 			using (StringReader reader = new StringReader(source))
 			{
-#if ! GENERICS
-				object[] res;
-#else
 				T[] res;
-#endif
 				res= ReadStream(reader, maxRecords);
 				reader.Close();
 				return res;
@@ -353,21 +402,13 @@ namespace FileHelpers
 		#region "  WriteFile  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
-#if ! GENERICS
-		public void WriteFile(string fileName, IEnumerable records)
-#else
 		public void WriteFile(string fileName, IEnumerable<T> records)
-#endif
 		{
 			WriteFile(fileName, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
-#if ! GENERICS
-		public void WriteFile(string fileName, IEnumerable records, int maxRecords)
-#else
 		public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
-#endif
 		{
 			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
 			{
@@ -383,22 +424,14 @@ namespace FileHelpers
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-#if ! GENERICS
-		public void WriteStream(TextWriter writer, IEnumerable records)
-#else
 		public void WriteStream(TextWriter writer, IEnumerable<T> records)
-#endif
 		{
 			WriteStream(writer, records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-#if ! GENERICS
-		public void WriteStream(TextWriter writer, IEnumerable records, int maxRecords)
-#else
 		public void WriteStream(TextWriter writer, IEnumerable<T> records, int maxRecords)
-#endif
 		{
 			if (writer == null)
 				throw new ArgumentNullException("writer", "The writer of the Stream can be null");
@@ -430,11 +463,7 @@ namespace FileHelpers
 			int recIndex = 0;
 
 			bool first = true;
-#if ! GENERICS
-			foreach(object rec in records)
-#else
             foreach (T rec in records)
-#endif
 			{
 				if (recIndex == maxRecords)
 					break;
@@ -505,21 +534,13 @@ namespace FileHelpers
 		#region "  WriteString  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString/*'/>
-#if ! GENERICS
-		public string WriteString(IEnumerable records)
-#else
 		public string WriteString(IEnumerable<T> records)
-#endif
 		{
 			return WriteString(records, -1);
 		}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString2/*'/>
-#if ! GENERICS
-		public string WriteString(IEnumerable records, int maxRecords)
-#else
 		public string WriteString(IEnumerable<T> records, int maxRecords)
-#endif
 		{
 			StringBuilder sb = new StringBuilder();
             using (StringWriter writer = new StringWriter(sb))
@@ -535,24 +556,13 @@ namespace FileHelpers
 		#region "  AppendToFile  "
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile1/*'/>
-#if ! GENERICS
-		public void AppendToFile(string fileName, object record)
-		{
-			AppendToFile(fileName, new object[] {record});
-		}
-#else
 		public void AppendToFile(string fileName, T record)
 		{
 			AppendToFile(fileName, new T[] {record});
 		}
-#endif
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
-#if ! GENERICS
-		public void AppendToFile(string fileName, IEnumerable records)
-#else
 		public void AppendToFile(string fileName, IEnumerable<T> records)
-#endif
 		{
             
             using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
@@ -666,78 +676,6 @@ namespace FileHelpers
 
 #if ! MINI
 
-#if ! GENERICS
-
-		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-		public event BeforeReadRecordHandler BeforeReadRecord;
-		/// <summary>Called in read operations just after the record was created from a record string.</summary>
-		public event AfterReadRecordHandler AfterReadRecord;
-		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-		public event BeforeWriteRecordHandler BeforeWriteRecord;
-		/// <summary>Called in write operations just after the record was converted to a string.</summary>
-		public event AfterWriteRecordHandler AfterWriteRecord;
-
-        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
-		{
-
-			if (BeforeReadRecord != null)
-			{
-				BeforeReadRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private bool OnAfterReadRecord(string line, object record)
-		{
-			if (mRecordInfo.mNotifyRead)
-				((INotifyRead)record).AfterRead(this, line);
-
-		    if (AfterReadRecord != null)
-			{
-				AfterReadRecordEventArgs e = null;
-                e = new AfterReadRecordEventArgs(line, record, LineNumber);
-				AfterReadRecord(this, e);
-				return e.SkipThisRecord;
-			}
-			
-			return false;
-		}
-
-		private bool OnBeforeWriteRecord(object record)
-		{
-			if (mRecordInfo.mNotifyWrite)
-				((INotifyWrite)record).BeforeWrite(this);
-
-		    if (BeforeWriteRecord != null)
-			{
-                BeforeWriteRecordEventArgs e = null;
-                e = new BeforeWriteRecordEventArgs(record, LineNumber);
-				BeforeWriteRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private string OnAfterWriteRecord(string line, object record)
-		{
-
-			if (AfterWriteRecord != null)
-			{
-                AfterWriteRecordEventArgs e = null;
-                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-				AfterWriteRecord(this, e);
-				return e.RecordLine;
-			}
-			return line;
-		}
-
-
-#else
         /// <summary>Called in read operations just before the record string is translated to a record.</summary>
         public event BeforeReadRecordHandler<T> BeforeReadRecord;
         /// <summary>Called in read operations just after the record was created from a record string.</summary>
@@ -747,7 +685,7 @@ namespace FileHelpers
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
         public event AfterWriteRecordHandler<T> AfterWriteRecord;
 
-		private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
+        protected virtual bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
 		{
 
 			if (BeforeReadRecord != null)
@@ -760,7 +698,7 @@ namespace FileHelpers
 			return false;
 		}
 
-		private bool OnAfterReadRecord(string line, T record)
+        protected virtual bool OnAfterReadRecord(string line, T record)
 		{
 			if (mRecordInfo.mNotifyRead)
 				((INotifyRead)record).AfterRead(this, line);
@@ -776,7 +714,7 @@ namespace FileHelpers
 			return false;
 		}
 
-		private bool OnBeforeWriteRecord(T record)
+        protected virtual bool OnBeforeWriteRecord(T record)
 		{
 			if (mRecordInfo.mNotifyWrite)
 				((INotifyWrite)record).BeforeWrite(this);
@@ -793,7 +731,7 @@ namespace FileHelpers
 			return false;
 		}
 
-		private string OnAfterWriteRecord(string line, T record)
+		protected virtual string OnAfterWriteRecord(string line, T record)
 		{
 
 			if (AfterWriteRecord != null)
@@ -808,15 +746,11 @@ namespace FileHelpers
 
 #endif
 
-#endif
-
 
 
         #endregion
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal RecordOptions mOptions;
 
 		/// <summary>
@@ -833,4 +767,3 @@ namespace FileHelpers
 }
 
 
-//#endif

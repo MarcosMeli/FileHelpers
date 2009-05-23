@@ -52,7 +52,7 @@ namespace FileHelpersTests.CommonTests
 			res[1].Field2 = "ho";
 			res[1].Field3 = 2;
 
-			CommonEngine.WriteFile(typeof (SampleType), @"prueba.txt", res);
+			CommonEngine.WriteFile(@"prueba.txt", res);
 
 			if (File.Exists(@"prueba.txt"))
 				File.Delete(@"prueba.txt");
@@ -128,7 +128,7 @@ namespace FileHelpersTests.CommonTests
 			res[1].Field2 = "ho";
 			res[1].Field3 = 2;
 
-			string resStr = CommonEngine.WriteString(typeof (SampleType), res);
+			string resStr = CommonEngine.WriteString(res);
 
 			Assert.AreEqual(14 + 2 + 14 + 2, resStr.Length);
 			Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));

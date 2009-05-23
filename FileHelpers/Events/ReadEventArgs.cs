@@ -36,10 +36,14 @@ namespace FileHelpers
 		public string RecordLine
 		{
 			get { return mRecordLine; }
-            set 
-            { 
+            set
+            {
+                if (mRecordLine == value)
+                    return;
+
                 mRecordLine = value;
-                mRecordLineChanged = true; 
+                mRecordLineChanged = true;
+
             }
 		}
 

@@ -117,6 +117,7 @@ namespace FileHelpersTests.CommonTests
 		int before = 0;
 		int after = 0;
 
+        
 		private void BeforeEvent(EngineBase sender, BeforeReadRecordEventArgs e)
 		{
 			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
