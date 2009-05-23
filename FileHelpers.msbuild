@@ -34,6 +34,18 @@
 	
 
 	<Target Name="nightbuild" DependsOnTargets="release">
+	  <ItemGroup>
+	      <!-- All files from build -->
+	      <ZipFiles Include="Release\**\*.*" Exclude="*.zip" />
+	  </ItemGroup>
+	  
+	  <MakeDir Directories="NightBuilds" Condition="!Exists('NightBuilds')" />
+	  
+	  <Zip Files="@(ZipFiles)"
+	       WorkingDirectory="Release\" 
+	       ZipFileName="NightBuilds\FileHelpers-Build-$(CurrentVersion).zip"
+	       ZipLevel="9" /> 
+
 		<NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />  
 	</Target>
 	
