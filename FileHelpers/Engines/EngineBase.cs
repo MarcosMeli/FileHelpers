@@ -18,9 +18,7 @@ namespace FileHelpers
         //:Component
         //#endif
 	{
-        #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        #endif
         
         internal RecordInfo mRecordInfo;
 
@@ -52,13 +50,10 @@ namespace FileHelpers
 
 		#region "  LineNumber  "
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mLineNumber;
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mTotalRecords;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
@@ -81,9 +76,7 @@ namespace FileHelpers
 
 		#region "  RecordType  "
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private readonly Type mRecordType;
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
@@ -96,9 +89,7 @@ namespace FileHelpers
 
 		#region "  HeaderText  "
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal string mHeaderText = String.Empty;
 
 		/// <summary>The read header in the last read operation. If any.</summary>
@@ -112,9 +103,7 @@ namespace FileHelpers
 
 		#region "  FooterText"
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal string mFooterText = String.Empty;
 
 		/// <summary>The read footer in the last read operation. If any.</summary>
@@ -128,9 +117,7 @@ namespace FileHelpers
 
 		#region "  Encoding  "
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal Encoding mEncoding = Encoding.Default;
 
         /// <summary>The encoding to Read and Write the streams. Default is the system's current ANSI code page.</summary>
@@ -146,9 +133,7 @@ namespace FileHelpers
 		#region "  ErrorManager"
 
         /// <summary>This is a common class that manage the errors of the library.</summary>
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         protected ErrorManager mErrorManager = new ErrorManager();
 
 		/// <summary>This is a common class that manage the errors of the library.</summary>
@@ -182,15 +167,11 @@ namespace FileHelpers
 		#if ! MINI
 
         /// <summary></summary>
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
 		protected ProgressMode mProgressMode = ProgressMode.DontNotify;
 
         /// <summary></summary>
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
 		protected ProgressChangeHandler mNotifyHandler = null;
 
 		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>

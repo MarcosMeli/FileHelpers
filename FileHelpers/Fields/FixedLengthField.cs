@@ -12,6 +12,8 @@ namespace FileHelpers
 {
 	internal sealed class FixedLengthField : FieldBase
 	{
+
+
 		#region "  Properties  "
 
 		internal int mFieldLength;
@@ -32,35 +34,36 @@ namespace FileHelpers
 				this.mAlign = align;
 			else
 			{
-				if (fi.FieldType == typeof(Int16) ||
-					fi.FieldType == typeof(Int32) ||
-					fi.FieldType == typeof(Int64) ||
-					fi.FieldType == typeof(UInt16) ||
-					fi.FieldType == typeof(UInt32) ||
-					fi.FieldType == typeof(UInt64) ||
-					fi.FieldType == typeof(byte) ||
-					fi.FieldType == typeof(sbyte) ||
-					fi.FieldType == typeof(decimal) ||
-					fi.FieldType == typeof(float) ||
-					fi.FieldType == typeof(double)
-#if NET_2_0
-                 || fi.FieldType == typeof(Int16?) ||
-					fi.FieldType == typeof(Int32?) ||
-					fi.FieldType == typeof(Int64?) ||
-					fi.FieldType == typeof(UInt16?) ||
-					fi.FieldType == typeof(UInt32?) ||
-					fi.FieldType == typeof(UInt64?) ||
-					fi.FieldType == typeof(byte?) ||
-					fi.FieldType == typeof(sbyte?) ||
-					fi.FieldType == typeof(decimal?) ||
-					fi.FieldType == typeof(float?) ||
-					fi.FieldType == typeof(double?)
-#endif
-                    )
-
+                if (IsNumericType(fi.FieldType))
 					mAlign = new FieldAlignAttribute(AlignMode.Right, ' ');
 			}
 		}
+
+        private bool IsNumericType(Type type)
+        {
+            return  type == typeof(Int16) ||
+                    type == typeof(Int32) ||
+                    type == typeof(Int64) ||
+                    type == typeof(UInt16) ||
+                    type == typeof(UInt32) ||
+                    type == typeof(UInt64) ||
+                    type == typeof(byte) ||
+                    type == typeof(sbyte) ||
+                    type == typeof(decimal) ||
+                    type == typeof(float) ||
+                    type == typeof(double) ||
+                    type == typeof(Int16?) ||
+                    type == typeof(Int32?) ||
+                    type == typeof(Int64?) ||
+                    type == typeof(UInt16?) ||
+                    type == typeof(UInt32?) ||
+                    type == typeof(UInt64?) ||
+                    type == typeof(byte?) ||
+                    type == typeof(sbyte?) ||
+                    type == typeof(decimal?) ||
+                    type == typeof(float?) ||
+                    type == typeof(double?);
+        }
 
 		#endregion
 

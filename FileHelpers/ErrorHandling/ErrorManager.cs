@@ -6,9 +6,7 @@
 
 using System;
 using System.Collections;
-#if NET_2_0
 using System.Collections.Generic;
-#endif
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -16,9 +14,7 @@ namespace FileHelpers
 {
 	/// <summary>This is the class that handles the errors of the engines process.</summary>
 	/// <remarks>All the engines and DataStorages contains a ErrorManager.</remarks>
-#if NET_2_0
     [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
-#endif
     public sealed class ErrorManager
         :IEnumerable
 	{
@@ -35,7 +31,6 @@ namespace FileHelpers
 		}
 
 
-#if NET_2_0
         private string ErrorsDescription()
         {
             if (ErrorCount == 1)
@@ -47,21 +42,17 @@ namespace FileHelpers
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         ArrayList mErrorsArray = new ArrayList();
 
 		/// <summary>Is an array of <see cref="ErrorInfo"/> that contains the errors of the last operation in this class.</summary>
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-#endif
         public ErrorInfo[] Errors
 		{
 			get { return (ErrorInfo[]) mErrorsArray.ToArray(typeof (ErrorInfo)); }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private ErrorMode mErrorMode = ErrorMode.ThrowException;
 		
 

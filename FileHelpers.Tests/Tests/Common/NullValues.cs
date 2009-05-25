@@ -63,8 +63,6 @@ namespace FileHelpersTests.CommonTests
 		}
 
 
-#if NET_2_0
-
         [Test]
         public void ReadNullableTypes()
         {
@@ -198,7 +196,6 @@ namespace FileHelpersTests.CommonTests
         }
 
 
-#endif
 
 	}
 }

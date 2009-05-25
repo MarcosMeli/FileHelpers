@@ -17,9 +17,7 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with little different options.
 	/// </remarks>
-#if NET_2_0
     [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
     public sealed class FixedFileEngine : FileHelperEngine
 	{
 
@@ -50,8 +48,6 @@ namespace FileHelpers
 	}
 
 
-#if NET_2_0
-
 	/// <summary>
 	/// Is a version of the <see cref="FileHelperEngine"/> exclusive for 
 	/// fixed length records that allow you to change the delimiter an other options at runtime
@@ -59,10 +55,10 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with little different options.
 	/// </remarks>
-#if NET_2_0
     [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
-    public sealed class FixedFileEngine<T> : FileHelperEngine<T>
+    public sealed class FixedFileEngine<T>
+        : FileHelperEngine<T>
+        where T: class
 	{
 	#region "  Constructor  "
 
@@ -89,5 +85,4 @@ namespace FileHelpers
             get { return (FixedRecordOptions) mOptions; }
 		}
 	}
-#endif
 }

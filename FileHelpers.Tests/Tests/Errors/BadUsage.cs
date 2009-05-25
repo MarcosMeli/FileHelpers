@@ -376,6 +376,7 @@ namespace FileHelpersTests.Errors
 		{
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine(typeof(ValueTypeClass)));
+
 		}
 
 		#endregion

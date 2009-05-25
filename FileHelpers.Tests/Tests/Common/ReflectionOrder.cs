@@ -127,8 +127,6 @@ namespace FileHelpersTests.CommonTests
 
         }
 
-#if NET_2_0
-
         [Test]
         public void ReadFileGenerics()
         {
@@ -156,6 +154,5 @@ namespace FileHelpersTests.CommonTests
             }
 
         }
-#endif
     }
 }

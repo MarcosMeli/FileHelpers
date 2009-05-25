@@ -38,9 +38,7 @@ namespace FileHelpers
 			}
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private int mRecordLength = int.MinValue;
 
         /// <summary>

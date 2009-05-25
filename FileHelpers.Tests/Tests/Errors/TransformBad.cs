@@ -15,6 +15,7 @@ namespace FileHelpersTests.CommonTests
 		public void Transform1()
 		{
 			FileTransformEngine link = new FileTransformEngine(typeof(FromClass1), typeof(ToClass1));
+
             Assert.Throws<BadUsageException>(() 
                 => link.TransformFile("a","b"));
 		}

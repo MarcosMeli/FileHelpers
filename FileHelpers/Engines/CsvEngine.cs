@@ -4,9 +4,6 @@
 
 #endregion
 
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
 
 using System;
 using System.Diagnostics;
@@ -28,9 +25,7 @@ namespace FileHelpers
 
 
 	/// <summary>A class to read generic CSV files delimited for any char.</summary>
-#if NET_2_0
     [DebuggerDisplay("CsvEngine. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
     public sealed class CsvEngine : FileHelperEngine
 	{
 
@@ -174,4 +169,3 @@ namespace FileHelpers
 
 }
 
-//#endif

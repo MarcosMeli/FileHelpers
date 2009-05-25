@@ -10,9 +10,7 @@ using System.Diagnostics;
 namespace FileHelpers
 {
 
-#if NET_2_0
     [DebuggerDisplay("{ExtractedString()} [{ExtractedFrom}-{ExtractedTo}]")]
-#endif
 	internal sealed class ExtractedInfo
 	{
 

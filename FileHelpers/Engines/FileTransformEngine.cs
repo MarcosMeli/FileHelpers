@@ -4,10 +4,6 @@
 
 #endregion
 
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
-
 using System;
 using System.Collections;
 using System.IO;
@@ -17,6 +13,19 @@ using System.Diagnostics;
 
 namespace FileHelpers
 {
+
+    public sealed class FileTransformEngine
+        :FileTransformEngine<object, object>
+    {
+        public FileTransformEngine(Type sourceType, Type destType):
+            base(sourceType, destType)
+        {
+            mIsNonGenericEngine = true;
+        }
+
+    }
+
+
 	/// <summary>
 	/// This class allow you to convert the records of a file to a different record format.
 	/// </summary>
@@ -25,18 +34,13 @@ namespace FileHelpers
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
-#if NET_2_0
     [DebuggerDisplay("FileTransformanEngine for types: {SourceType.Name} --> {DestinationType.Name}. Source Encoding: {SourceEncoding.EncodingName}. Destination Encoding: {DestinationEncoding.EncodingName}")]
-#endif
-#if ! GENERICS
-	public sealed class FileTransformEngine
-	{
-#else
     /// <typeparam name="Source">The source record type.</typeparam>
     /// <typeparam name="Destination">The destination record type.</typeparam>
-    public sealed class FileTransformEngine<Source, Destination>
+    public class FileTransformEngine<Source, Destination>
+        where Source: class 
+        where Destination: class
 	{
-#endif
 
         #region "  Constructor  "
 
@@ -44,17 +48,14 @@ namespace FileHelpers
 		/// <param name="sourceType">The source record Type.</param>
 		/// <param name="destType">The destination record Type.</param>
 
-#if ! GENERICS
-		public FileTransformEngine(Type sourceType, Type destType)
-		{
-#else
 		public FileTransformEngine()
+            :this(typeof(Source), typeof(Destination))
 		{
-			Type sourceType = typeof(Source);
-			Type destType = typeof(Destination);
+		}
 
-#endif
-			//throw new NotImplementedException("This feature is not ready yet. In the next release maybe work =)");
+        internal FileTransformEngine(Type sourceType, Type destType)
+        { 
+            			//throw new NotImplementedException("This feature is not ready yet. In the next release maybe work =)");
 			ExHelper.CheckNullParam(sourceType, "sourceType");
 			ExHelper.CheckNullParam(destType, "destType");
 			ExHelper.CheckDifferentsParams(sourceType, "sourceType", destType, "destType");
@@ -63,46 +64,38 @@ namespace FileHelpers
 			mDestinationType = destType;
 
 			ValidateRecordTypes();
-		}
 
-#if ! GENERICS
-        public FileTransformEngine(Type sourceType, Type destType, FileHelpers.ErrorMode errorMode)
-            :this(sourceType, destType)
-        {
-#else
+        }
+
+
+        [Obsolete("You must use the Property ErrorMode instead of passing it to the constructor, use the parameterless constructor", true)]
 		public FileTransformEngine(FileHelpers.ErrorMode errorMode)
             :this()
 		{
-#endif
-            mErrorMode = errorMode;
+            throw new InvalidOperationException("Obsolete Method, setted to be removed in version 3.0");
         }
 
 		#endregion
 
 		#region "  Private Fields  "
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private static object[] mEmptyArray = new object[] { };
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Type mSourceType;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Type mDestinationType;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Encoding mSourceEncoding = Encoding.Default;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Encoding mDestinationEncoding = Encoding.Default;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal bool mIsNonGenericEngine = false;
 
         private ErrorMode mErrorMode;
 
@@ -147,11 +140,7 @@ namespace FileHelpers
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The transformed records.</returns>
-#if ! GENERICS
-		public object[] TransformFile(string sourceFile, string destFile)
-#else
 		public Destination[] TransformFile(string sourceFile, string destFile)
-#endif
 		{
 			ExHelper.CheckNullParam(sourceFile, "sourceFile");
 			ExHelper.CheckNullParam(destFile, "destFile");
@@ -195,11 +184,7 @@ namespace FileHelpers
 		/// <summary>Transform an array of records from the source type to the destination type</summary>
 		/// <param name="sourceRecords">An array of the source records.</param>
 		/// <returns>The transformed records.</returns>
-#if ! GENERICS
-		public object[] TransformRecords(object[] sourceRecords)
-#else
 		public Destination[] TransformRecords(Source[] sourceRecords)
-#endif
 		{
 			if (mConvert1to2 == null)
 				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
@@ -212,11 +197,7 @@ namespace FileHelpers
 		/// <param name="sourceFile">A file containing the source records.</param>
 		/// <returns>The transformed records.</returns>
 
-#if ! GENERICS
-		public object[] ReadAndTransformRecords(string sourceFile)
-#else
 		public Destination[] ReadAndTransformRecords(string sourceFile)
-#endif
 		{
 			if (mConvert1to2 == null)
 				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
@@ -229,69 +210,60 @@ namespace FileHelpers
 			ArrayList res = new ArrayList();
 
 			engine.BeginReadFile(sourceFile);
-#if ! GENERICS
-			foreach (object record in engine)
-#else
 			foreach (Source record in engine)
-#endif
 			{
 				res.Add(CoreTransformOneRecord(record, mConvert1to2));
 			}
 			engine.Close();
 
-#if ! GENERICS
-			return (object[]) res.ToArray(mDestinationType);
-#else
 			return (Destination[]) res.ToArray(mDestinationType);
-#endif
 		}
 
 		#region "  Transform Internal Methods  "
 
-
-			
-#if ! GENERICS
-        private object[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
-		{
-
-            FileHelperEngine sourceEngine = new FileHelperEngine(sourceType, mSourceEncoding);
-			FileHelperEngine destEngine = new FileHelperEngine(destType, mDestinationEncoding);
-
-            sourceEngine.ErrorMode = this.ErrorMode;
-            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
-            
-            mSourceErrorManager = sourceEngine.ErrorManager;
-            mDestinationErrorManager = destEngine.ErrorManager;
-
-            object[] source = sourceEngine.ReadStream(sourceFile);
-			object[] transformed = CoreTransformRecords(source, method);
-#else
+        			
         private Destination[] CoreTransform(StreamReader sourceFile, StreamWriter destFile, Type sourceType, Type destType, MethodInfo method)
         {
+            if (mIsNonGenericEngine)
+            {
+                FileHelperEngine sourceEngine = new FileHelperEngine(mSourceType, mSourceEncoding);
+                FileHelperEngine destEngine = new FileHelperEngine(mDestinationType, mDestinationEncoding);
 
-            FileHelperEngine<Source> sourceEngine = new FileHelperEngine<Source>(mSourceEncoding);
-            FileHelperEngine<Destination> destEngine = new FileHelperEngine<Destination>(mDestinationEncoding);
+                sourceEngine.ErrorMode = this.ErrorMode;
+                destEngine.ErrorManager.ErrorMode = this.ErrorMode;
 
-            sourceEngine.ErrorMode = this.ErrorMode;
-            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
-            
-            mSourceErrorManager = sourceEngine.ErrorManager;
-            mDestinationErrorManager = destEngine.ErrorManager;
+                mSourceErrorManager = sourceEngine.ErrorManager;
+                mDestinationErrorManager = destEngine.ErrorManager;
 
-            Source[] source = sourceEngine.ReadStream(sourceFile);
-			Destination[] transformed = CoreTransformRecords(source, method);
-#endif
+                object[] source = sourceEngine.ReadStream(sourceFile);
+                Destination[] transformed = CoreTransformRecords((Source[]) source, method);
 
-            destEngine.WriteStream(destFile, transformed);
+                destEngine.WriteStream(destFile, (object[]) transformed);
 
-			return transformed;
+                return transformed;
+            }
+            else
+            {
+
+                FileHelperEngine<Source> sourceEngine = new FileHelperEngine<Source>(mSourceEncoding);
+                FileHelperEngine<Destination> destEngine = new FileHelperEngine<Destination>(mDestinationEncoding);
+
+                sourceEngine.ErrorMode = this.ErrorMode;
+                destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+
+                mSourceErrorManager = sourceEngine.ErrorManager;
+                mDestinationErrorManager = destEngine.ErrorManager;
+
+                Source[] source = sourceEngine.ReadStream(sourceFile);
+                Destination[] transformed = CoreTransformRecords(source, method);
+
+                destEngine.WriteStream(destFile, transformed);
+
+                return transformed;
+            }
 		}
 
-#if ! GENERICS
-		private object[] CoreTransformRecords(object[] sourceRecords, MethodInfo method)
-#else
 		private Destination[] CoreTransformRecords(Source[] sourceRecords, MethodInfo method)
-#endif 
 		{
 			ArrayList res = new ArrayList(sourceRecords.Length);
 			
@@ -299,23 +271,13 @@ namespace FileHelpers
 			{
 				res.Add(CoreTransformOneRecord(sourceRecords[i], method));
 			}
-#if ! GENERICS
-			return (object[]) res.ToArray(mDestinationType);
-#else
 			return (Destination[]) res.ToArray(mDestinationType);
-#endif 
 		}
 
 		
-#if ! GENERICS
-		private object[] CoreTransformFile(string sourceFile, string destFile, Type sourceType, Type destType, MethodInfo method)
-		{
-			object[] tempRes;
-#else
 		private Destination[] CoreTransformFile(string sourceFile, string destFile, Type sourceType, Type destType, MethodInfo method)
 		{
 			Destination[] tempRes;
-#endif 
 
 			using (StreamReader fs = new StreamReader(sourceFile, mSourceEncoding, true))
 			{
@@ -349,17 +311,10 @@ namespace FileHelpers
 			sourceEngine.BeginReadFile(sourceFile);
 			destEngine.BeginWriteFile(destFile);
 
-#if ! GENERICS
-			foreach (object record in sourceEngine)
-			{
-				destEngine.WriteNext(CoreTransformOneRecord(record, method));
-			}
-#else
 			foreach (Source record in sourceEngine)
 			{
 				destEngine.WriteNext(CoreTransformOneRecord(record, method));
 			}
-#endif
 			
 			sourceEngine.Close();
 			destEngine.Close();
@@ -367,26 +322,16 @@ namespace FileHelpers
 			return sourceEngine.TotalRecords;
 		}
 
-#if ! GENERICS
-		private static object CoreTransformOneRecord(object record, MethodInfo method)
-		{
-			return method.Invoke(record, mEmptyArray);
-		}
-#else
 		private static Destination CoreTransformOneRecord(Source record, MethodInfo method)
 		{
 			return (Destination) method.Invoke(record, mEmptyArray);
 		}
-#endif
 
 		#endregion
 
 		#region "  Properties  "
 
-
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         MethodInfo mConvert1to2 = null;
 		//MethodInfo mConvert2to1 = null;
 
@@ -461,5 +406,3 @@ namespace FileHelpers
 
 	}
 }
-
-//#endif

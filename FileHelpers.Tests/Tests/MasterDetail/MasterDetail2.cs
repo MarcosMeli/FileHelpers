@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-#if NET_2_0
 using System.Collections.Generic;
-#endif
 using FileHelpers;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
@@ -85,7 +83,7 @@ namespace FileHelpersTests.MasterDetail
 
         }
 
-#if NET_2_0
+
 	    private OrdersVerticalBar[] colDetails = new OrdersVerticalBar[] {};
         
         [Test]
@@ -136,7 +134,7 @@ namespace FileHelpersTests.MasterDetail
 
         }
 
-#endif
+
 
     }
 }

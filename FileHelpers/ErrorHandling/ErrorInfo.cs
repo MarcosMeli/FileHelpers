@@ -12,18 +12,14 @@ namespace FileHelpers
 	/// <summary>Contains error information of the <see cref="FileHelperEngine"/> class.</summary>
 	[DelimitedRecord("|")]
 	[IgnoreFirst(2)]
-#if NET_2_0
     [DebuggerDisplay("Line: {LineNumber}. Error: {ExceptionInfo.Message}.")]
-#endif
     public sealed class ErrorInfo
 	{
 		internal ErrorInfo()
 		{
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mLineNumber;
 
 		/// <summary>The line number of the error</summary>
@@ -32,9 +28,7 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         [FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal string mRecordString = string.Empty;
 
@@ -44,9 +38,8 @@ namespace FileHelpers
 			get { return mRecordString; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         [FieldConverter(typeof(ExceptionConverter))] 
 		[FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal Exception mExceptionInfo;

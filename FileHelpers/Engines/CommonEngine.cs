@@ -11,10 +11,7 @@ using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
-
-#if NET_2_0
 using System.Collections.Generic;
-#endif
 
 namespace FileHelpers
 {
@@ -85,14 +82,14 @@ namespace FileHelpers
         }
 
 
-#if NET_2_0
+
         /// <summary>
         /// Used to read a file without instanciate the engine.<br />
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <returns>The read records.</returns>
-        public static T[] ReadFile<T>(string fileName)
+        public static T[] ReadFile<T>(string fileName) where T : class
         {
             return ReadFile<T>(fileName, int.MaxValue);
         }
@@ -104,13 +101,11 @@ namespace FileHelpers
         /// <param name="fileName">The file name</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         /// <returns>The read records.</returns>
-        public static T[] ReadFile<T>(string fileName, int maxRecords)
+        public static T[] ReadFile<T>(string fileName, int maxRecords) where T: class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
             return engine.ReadFile(fileName, maxRecords);
         }
-
-#endif
 
         /// <summary>
         /// Used to read a string without instanciate the engine.<br />
@@ -138,19 +133,17 @@ namespace FileHelpers
             return engine.ReadString(input, maxRecords);
         }
 
-#if NET_2_0
         /// <summary>
         /// Used to read a string without instanciate the engine.<br />
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <returns>The read records.</returns>
-        public static T[] ReadString<T>(string input)
+        public static T[] ReadString<T>(string input) where T : class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
             return engine.ReadString(input);
         }
-#endif
 
         /// <summary>
         /// Used to write a file without instanciate the engine.<br />
@@ -158,7 +151,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
-        public static void WriteFile<T>(string fileName, IEnumerable<T> records)
+        public static void WriteFile<T>(string fileName, IEnumerable<T> records) where T : class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
             engine.WriteFile(fileName, records);
@@ -177,7 +170,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
         /// <returns>The string with the writen records.</returns>
-        public static string WriteString<T>(IEnumerable<T> records)
+        public static string WriteString<T>(IEnumerable<T> records) where T : class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
             return engine.WriteString(records);
@@ -715,7 +708,6 @@ namespace FileHelpers
 
         #region "  ReadCSV  "
 
-#if NET_2_0
 
 
         /// <summary>
@@ -781,7 +773,6 @@ namespace FileHelpers
             return engine;
         }
 
-#endif
 		#endregion
     }
 

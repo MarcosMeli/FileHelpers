@@ -148,7 +148,9 @@ namespace FileHelpers
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
     [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
-	public class FileHelperEngine<T>: EngineBase
+	public class FileHelperEngine<T>
+        : EngineBase
+        where T : class
     {
         
 

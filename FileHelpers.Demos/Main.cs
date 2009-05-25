@@ -9,12 +9,12 @@ namespace FileHelpersSamples
 		public static void Main()
 		{
 
-            if (RegConfig.GetStringValue("DemoShowDonate", "1") == "1")
-            {
-                frmDonate frmDon = new frmDonate();
-                frmDon.ShowDialog();
-                frmDon.Dispose();
-            }
+            //if (RegConfig.GetStringValue("DemoShowDonate", "1") == "1")
+            //{
+            //    frmDonate frmDon = new frmDonate();
+            //    frmDon.ShowDialog();
+            //    frmDon.Dispose();
+            //}
 
 			frmSamples frm = new frmSamples();
 			frm.ShowDialog();

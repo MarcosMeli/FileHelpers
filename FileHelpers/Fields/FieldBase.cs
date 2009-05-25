@@ -190,9 +190,8 @@ namespace FileHelpers
         internal object mNullValue = null;
         //internal bool mNullValueOnWrite = false;
 
-#if NET_2_0
+
         private bool mIsNullableType = false;
-#endif
         #endregion
 
         #region "  Constructor  "
@@ -240,11 +239,9 @@ namespace FileHelpers
             }
 
 
-#if NET_2_0
             mIsNullableType = mFieldTypeInternal.IsValueType &&
                                     mFieldTypeInternal.IsGenericType &&
                                     mFieldTypeInternal.GetGenericTypeDefinition() == typeof(Nullable<>);
-#endif
         }
 
         #endregion
@@ -439,18 +436,13 @@ namespace FileHelpers
                 if (mFieldTypeInternal.IsValueType)
                 {
 
-#if NET_2_0
                     if (mIsNullableType)
                         return null;
-#endif
 
                     string msg = "Empty value found for the Field: '" + mFieldInfo.Name + "' Class: '" + mFieldInfo.DeclaringType.Name + "'. ";
 
-#if NET_2_0
+
                     throw new BadUsageException(line, msg + "You must use the FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
-#else
-					throw new BadUsageException(line, msg + "You must use the FieldNullValue attribute because this is a ValueType and can´t be null.");
-#endif
 
                 }
                 else

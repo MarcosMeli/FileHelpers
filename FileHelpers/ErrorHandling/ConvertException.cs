@@ -17,36 +17,26 @@ namespace FileHelpers
     {
         #region "  Fields & Property  "
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal string mFieldName = null;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mLineNumber = -1;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mColumnNumber = -1;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mFieldStringValue = null;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mMessageExtra = string.Empty;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mMessageOriginal = string.Empty;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Type mFieldType;
 
         /// <summary>The destination type.</summary>

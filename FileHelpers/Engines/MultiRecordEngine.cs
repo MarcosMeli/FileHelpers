@@ -40,9 +40,7 @@ namespace FileHelpers
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
-#if NET_2_0
     [DebuggerDisplay("MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
 #if ! GENERICS
 	public sealed class MultiRecordEngine : 
 		EngineBase, IEnumerable, IDisposable
@@ -51,17 +49,14 @@ namespace FileHelpers
 		EngineBase, IEnumerable, IDisposable
 #endif
 	{
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private readonly RecordInfo[] mMultiRecordInfo;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private readonly Hashtable mRecordInfoHash;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private RecordTypeSelector mRecordSelector;
 
         private string ListTypes()
@@ -91,9 +86,8 @@ namespace FileHelpers
 			set { mRecordSelector = value; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Type[] mTypes;
 		
 		#region "  Constructor  "
@@ -625,20 +619,16 @@ namespace FileHelpers
 
 		// ASYNC METHODS --------------
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         ForwardReader mAsyncReader;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         TextWriter mAsyncWriter;
 
 		#region "  LastRecord  "
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private object mLastRecord;
 
 		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>

@@ -18,11 +18,7 @@ namespace FileHelpers
 	public abstract class RecordOptions
 	{
 
-
-
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal RecordInfo mRecordInfo;
 	
 		internal RecordOptions(RecordInfo info)
@@ -48,9 +44,7 @@ namespace FileHelpers
         //    }
         //}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string[] mFieldNames;
 
         /// <summary>Returns an string array with the fields names. (You mustn´t change the values of the array, clone it first if you need it)</summary>
@@ -72,9 +66,7 @@ namespace FileHelpers
 
         
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private Type[] mFieldTypes;
 
         /// <summary>Returns a Type[] array with the fields types. (You mustn´t change the values of the array, clone it first if you need it)</summary>
@@ -132,9 +124,7 @@ namespace FileHelpers
 			set { mRecordInfo.mIgnoreEmptyLines= value; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private RecordConditionInfo mRecordConditionInfo;
 		
 		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
@@ -144,9 +134,7 @@ namespace FileHelpers
         }
 
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private IgnoreCommentInfo mIgnoreCommentInfo;
 
 		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
@@ -159,9 +147,7 @@ namespace FileHelpers
         [EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class RecordConditionInfo
         {
-#if NET_2_0
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
             RecordInfo mRecordInfo;
 
             internal RecordConditionInfo(RecordInfo ri)
@@ -190,9 +176,8 @@ namespace FileHelpers
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class IgnoreCommentInfo
 		{
-#if NET_2_0
+
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
             RecordInfo mRecordInfo;
 			
             internal IgnoreCommentInfo(RecordInfo ri)

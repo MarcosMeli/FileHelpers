@@ -16,10 +16,9 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with 2 or more different delimiters or little different options.
 	/// </remarks>
-#if NET_2_0
     [DebuggerDisplay("DelimitedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
-    public sealed class DelimitedFileEngine : FileHelperEngine
+    public sealed class DelimitedFileEngine
+        : FileHelperEngine
     {
 
         /// <summary>
@@ -47,8 +46,6 @@ namespace FileHelpers
 	}
 
 
-#if NET_2_0
-
 	/// <summary>
 	/// Is a version of the <see cref="FileHelperEngine"/> exclusive for 
 	/// delimited records that allow you to change the delimiter an other options at runtime
@@ -56,10 +53,10 @@ namespace FileHelpers
 	/// <remarks>
 	/// Useful when you need to export or import the same info with 2 or more different delimiters or little different options.
 	/// </remarks>
-#if NET_2_0
     [DebuggerDisplay("DelimitedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#endif
-    public sealed class DelimitedFileEngine<T> : FileHelperEngine<T>
+    public sealed class DelimitedFileEngine<T>
+        : FileHelperEngine<T>
+        where T: class
 	{
 	#region "  Constructor  "
 
@@ -88,5 +85,5 @@ namespace FileHelpers
 		}
 	}
 
-#endif
+
 }

@@ -21,9 +21,8 @@ namespace FileHelpers.RunTime
 		internal DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
 		{}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mFieldQuoted = false;
 
 		/// <summary>Indicates if the field is quoted with some char. (works with QuoteMode and QuoteChar)</summary>
@@ -33,9 +32,8 @@ namespace FileHelpers.RunTime
 			set { mFieldQuoted = value; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private char mQuoteChar = '"';
 
 		/// <summary>Indicates the char used to quote this field. (only used when FieldQuoted is true)</summary>
@@ -45,9 +43,8 @@ namespace FileHelpers.RunTime
 			set { mQuoteChar = value; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private QuoteMode mQuoteMode = QuoteMode.OptionalForRead;
 
 		/// <summary>Indicates the QuoteMode for this field. (only used when FieldQuoted is true)</summary>
@@ -57,9 +54,8 @@ namespace FileHelpers.RunTime
 			set { mQuoteMode = value; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private MultilineMode mQuoteMultiline = MultilineMode.AllowForRead;
 
 		/// <summary>Indicates if this quoted field can span multiple lines. (only used when FieldQuoted is true)</summary>

@@ -600,16 +600,12 @@ namespace FileHelpers
 
         internal object CreateRecordObject()
         {
-#if NET_2_0
             CreateFastConstructor();
 
             if (mFastConstructor == null)
                 CreateFastConstructor();
 
             return mFastConstructor();
-#else
-			return mRecordConstructor.Invoke(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, RecordInfo.mEmptyObjectArr, null);
-#endif
         }
         #endregion
 
@@ -618,7 +614,7 @@ namespace FileHelpers
 
         #region "  CreateAssingMethods  "
 
-#if NET_2_0
+
 
         private delegate object[] GetAllValuesCallback(object record);
         private GetAllValuesCallback mGetAllValuesHandler;
@@ -761,7 +757,6 @@ namespace FileHelpers
 
         }
 
-#endif
         #endregion
 
         #region " FieldIndexes  "

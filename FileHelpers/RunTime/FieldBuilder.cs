@@ -16,13 +16,11 @@ namespace FileHelpers.RunTime
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class FieldBuilder
 	{
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mFieldName;
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mFieldType;
 
 		internal FieldBuilder(string fieldName, Type fieldType)
@@ -52,9 +50,7 @@ namespace FileHelpers.RunTime
 
 		#region TrimMode
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private TrimMode mTrimMode = TrimMode.None;
 
 		/// <summary>Indicates the TrimMode for the field.</summary>
@@ -64,9 +60,7 @@ namespace FileHelpers.RunTime
 			set { mTrimMode = value; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mTrimChars = " \t";
 		
 		/// <summary>Indicates the trim chars used if TrimMode is set.</summary>
@@ -78,9 +72,7 @@ namespace FileHelpers.RunTime
 
 		#endregion
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal int mFieldIndex = -1;
 
 		/// <summary>The position index inside the class.</summary>
@@ -89,9 +81,8 @@ namespace FileHelpers.RunTime
 			get { return mFieldIndex; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mFieldInNewLine = false;
 
 		/// <summary>Indicates that this field is at the begging of a new line.</summary>
@@ -101,9 +92,7 @@ namespace FileHelpers.RunTime
 			set { mFieldInNewLine = value; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mFieldIgnored = false;
 
 		/// <summary>Indicates that this field must be ignored by the engine.</summary>
@@ -113,9 +102,7 @@ namespace FileHelpers.RunTime
 			set { mFieldIgnored = value; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mFieldOptional = false;
 
 		/// <summary>Indicates that this field is optional.</summary>
@@ -145,9 +132,8 @@ namespace FileHelpers.RunTime
 			set { mFieldType = value; }
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private object mFieldNullValue = null;
 
 		/// <summary>The null value of the field when their value not is in the file.</summary>
@@ -158,9 +144,7 @@ namespace FileHelpers.RunTime
 		}
 
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private ConverterBuilder mConverter = new ConverterBuilder();
 		
 		internal string GetFieldCode(NetLanguage lang)
@@ -287,14 +271,11 @@ namespace FileHelpers.RunTime
 			}
 		}
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal ClassBuilder mClassBuilder;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private NetVisibility mVisibility = NetVisibility.Public;
 
 		/// <summary>

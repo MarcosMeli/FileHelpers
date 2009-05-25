@@ -137,9 +137,7 @@ namespace FileHelpers.RunTime
 				FieldByIndex(i).FieldLength = lengths[i];
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private FixedMode mFixedMode = FixedMode.ExactLength;
 
 		/// <summary>Indicates the behavior when variable length records are found </summary>

@@ -14,9 +14,8 @@ namespace FileHelpers.RunTime
 	/// <summary>Used to create Fixed Length fields and set their properties.</summary>
 	public sealed class FixedFieldBuilder: FieldBuilder
 	{
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private int mFieldLength;
 
 		internal FixedFieldBuilder(string fieldName, int length, Type fieldType): this(fieldName, length, ClassBuilder.TypeToString(fieldType))
@@ -35,9 +34,7 @@ namespace FileHelpers.RunTime
 		}
 
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private AlignMode mAlignMode = AlignMode.Left;
 
 		/// <summary>The align of the field used for write operations.</summary>
@@ -47,9 +44,7 @@ namespace FileHelpers.RunTime
 			set { mAlignMode = value; }
 		}
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private char mAlignChar = ' ';
 
 		/// <summary>The align char of the field used for write operations.</summary>

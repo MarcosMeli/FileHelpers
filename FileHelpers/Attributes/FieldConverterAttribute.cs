@@ -263,16 +263,12 @@ namespace FileHelpers
 
             Type fieldType = fi.FieldType;
 
-#if NET_2_0
-
             if (fieldType.IsValueType &&
                   fieldType.IsGenericType &&
                     fieldType.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 fieldType = fieldType.GetGenericArguments()[0];
             }
-
-#endif
 
             switch (Kind)
             {

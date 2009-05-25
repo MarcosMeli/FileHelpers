@@ -302,19 +302,12 @@ namespace FileHelpersSamples
 
         public static string GetStringValue(string keyName, string def)
         {
-#if NET_2_0
             RegistryKey key = Registry.CurrentUser.OpenSubKey(mBranch,  RegistryKeyPermissionCheck.ReadSubTree);
             if (key == null)
             {
                 key = Registry.CurrentUser.CreateSubKey(mBranch, RegistryKeyPermissionCheck.ReadSubTree);
             }
-#else
-			RegistryKey key = Registry.CurrentUser.OpenSubKey(mBranch,  false);
-			if (key == null)
-			{
-				key = Registry.CurrentUser.CreateSubKey(mBranch);
-			}
-#endif
+
             string res;
             res = (string)key.GetValue(keyName, def);
             key.Close();

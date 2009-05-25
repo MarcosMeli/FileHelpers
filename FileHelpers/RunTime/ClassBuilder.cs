@@ -130,7 +130,6 @@ namespace FileHelpers.RunTime
 
             CompilerResults cr;
 
-#if NET_2_0
             CodeDomProvider prov = null;
 
             switch (lang)
@@ -145,22 +144,6 @@ namespace FileHelpers.RunTime
             }
 
             cr = prov.CompileAssemblyFromSource(cp, code.ToString());
-#else
-            ICodeCompiler comp = null;
-
-            switch (lang)
-            {
-                case NetLanguage.CSharp:
-                    comp = (new CSharpCodeProvider()).CreateCompiler();
-                    break;
-
-                case NetLanguage.VbNet:
-                    comp = (new VBCodeProvider()).CreateCompiler();
-                    break;
-            }
-
-            cr = comp.CompileAssemblyFromSource(cp, code.ToString());
-#endif
 
             if (cr.Errors.HasErrors)
             {
@@ -381,9 +364,7 @@ namespace FileHelpers.RunTime
             mFields.Clear();
         }
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         internal ArrayList mFields = new ArrayList();
 
         internal void AddFieldInternal(FieldBuilder field)
@@ -420,9 +401,8 @@ namespace FileHelpers.RunTime
 
         #region ClassName
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mClassName;
         /// <summary>The name of the Class.</summary>
         public string ClassName
@@ -439,9 +419,8 @@ namespace FileHelpers.RunTime
 
         #region IgnoreFirstLines
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private int mIgnoreFirstLines = 0;
 
         /// <summary>Indicates the number of FIRST LINES to be ignored by the engines.</summary>
@@ -455,9 +434,8 @@ namespace FileHelpers.RunTime
 
         #region IgnoreLastLines
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private int mIgnoreLastLines = 0;
 
         /// <summary>Indicates the number of LAST LINES to be ignored by the engines.</summary>
@@ -471,9 +449,8 @@ namespace FileHelpers.RunTime
 
         #region IgnoreEmptyLines
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mIgnoreEmptyLines = false;
 
         /// <summary>Indicates that the engines must ignore the empty lines in the files.</summary>
@@ -485,9 +462,8 @@ namespace FileHelpers.RunTime
 
         #endregion
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mGenerateProperties = false;
 
         /// <summary>Indicates if this ClassBuilder generates also the property accessors (Perfect for DataBinding)</summary>
@@ -677,9 +653,8 @@ namespace FileHelpers.RunTime
 
 
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private NetVisibility mVisibility = NetVisibility.Public;
 
         /// <summary>The Visibility for the class.</summary>
@@ -689,9 +664,8 @@ namespace FileHelpers.RunTime
             set { mVisibility = value; }
         }
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private bool mSealedClass = true;
 
         /// <summary>Indicates if the generated class must be sealed.</summary>
@@ -701,9 +675,7 @@ namespace FileHelpers.RunTime
             set { mSealedClass = value; }
         }
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private string mNamespace = string.Empty;
 
         /// <summary>The namespace used when creating the class.</summary>
@@ -1045,9 +1017,8 @@ namespace FileHelpers.RunTime
             return sb.ToString().Trim('_');
         }
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
@@ -1056,9 +1027,8 @@ namespace FileHelpers.RunTime
             get { return mRecordConditionInfo; }
         }
 
-#if NET_2_0
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
         private IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
 
         /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
@@ -1130,7 +1100,7 @@ namespace FileHelpers.RunTime
 
         internal static string TypeToString(Type type)
         {
-#if NET_2_0
+
             if (type.IsGenericType)
             {
                 StringBuilder sb = new StringBuilder();
@@ -1151,7 +1121,6 @@ namespace FileHelpers.RunTime
                 return sb.ToString();
             }
             else
-#endif
                 return type.FullName;
         }
     }

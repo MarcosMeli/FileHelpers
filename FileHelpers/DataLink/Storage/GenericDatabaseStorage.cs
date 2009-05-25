@@ -9,7 +9,7 @@ using System.Data;
 
 namespace FileHelpers.DataLink
 {
-#if NET_2_0
+
 
     /// <summary>This is a base class that implements the storage for <b>any</b> DB with ADO.NET support.</summary>
     /// <typeparam name="ConnectionClass">The ADO.NET connection class</typeparam>
@@ -56,5 +56,5 @@ namespace FileHelpers.DataLink
 
         #endregion
     }
-#endif
+
 }
