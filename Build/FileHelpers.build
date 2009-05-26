@@ -23,16 +23,6 @@
        </delete>
    </target>
 
-   <target name="makegeneric" >
-       <copy file="..\FileHelpers\${current.generic}.cs" tofile="..\FileHelpers\${current.generic}G.cs" overwrite="true" />
-
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;#undef GENERICS&quot; &quot;//#undef GENERICS&quot; -v" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#define GENERICS&quot; &quot;#define GENERICS&quot; -v" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#if NET_2_0&quot; &quot;#if NET_2_0&quot; -v" workingdir="..\Libs" failonerror="false" />
-       <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\FileHelpers\${current.generic}G.cs&quot; &quot;//#endif&quot; &quot;#endif&quot; -v" workingdir="..\Libs" failonerror="false" />
-
-   </target>
-
    <target name="common" depends="clean">
        
 		<readregistry property="Vs8Path" 
@@ -45,56 +35,8 @@
 
        <copy file="..\Doc\Include\roadmap.html" tofile="..\Doc\Include\roadmap2.html" overwrite="true" />
 
-	   <property name="current.generic" value="Engines\FileHelperEngine" />
-       <call target="makegeneric" />
-	   
-	   <property name="current.generic" value="Engines\FileHelperAsyncEngine" />
-       <call target="makegeneric" />
-
-	   <property name="current.generic" value="Engines\FileDiffEngine" />
-       <call target="makegeneric" />
-
-	   <property name="current.generic" value="MasterDetail\MasterDetailEngine" />
-       <call target="makegeneric" />
-
-	   <property name="current.generic" value="MasterDetail\MasterDetails" />
-       <call target="makegeneric" />
-
-  	   <property name="current.generic" value="Engines\FileTransformEngine" />
-       <call target="makegeneric" />
-
-  	   <property name="current.generic" value="Mapping\DataMapper" />
-       <call target="makegeneric" />
-
 	</target>
    
-   <target name="build2003" depends="common">
-   <if test="${not property::exists('Vs8Path')}">
-		<if test="${property::exists('Vs9Path')}">
-			<echo message="-----------------------------------------------------------" />
-			<echo message="" />
-			<echo message="You dont have Visual Studio 2003 installed on your system" />
-			<echo message="But you have Visual Studio 2005 so you can try running the Build2005.bat" />
-			<echo message="" />
-			<echo message="-----------------------------------------------------------" />
-			<fail />
-		</if>
-			<echo message="-----------------------------------------------------------" />
-			<echo message="" />
-			<echo message="You dont have any Visual Studio installed on your system." />
-			<echo message="This build requires VS2003" />
-			<echo message="" />
-			<echo message="-----------------------------------------------------------" />
-			<fail />
-	</if>
-
-       <exec program="DelTemps.bat" workingdir="." failonerror="false" />
-
-	   <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.vs2003.sln" workingdir="..\" failonerror="true" />
-
-       <copy file="..\..\Release\DotNet_1.1\FileHelpers.dll" todir="..\FileHelpers.CodeExamples\References" />
-   </target>
-
    <target name="generate2003" depends="build2003">
 
        <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers">
