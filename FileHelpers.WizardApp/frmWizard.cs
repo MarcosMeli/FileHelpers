@@ -2709,6 +2709,13 @@ namespace FileHelpers.WizardApp
                 return;
 
             ClassBuilderToWizard(formats[0].ClassBuilder);
+
+            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, cboClassLeng.SelectedIndex);
+            frm.txtInput.Text = File.ReadAllText(dialog.FileName);
+            frm.AutoRunTest = true;
+            frm.ShowDialog();
+            frm.Dispose();
+
         }
 
         private void cmdfileDesigner_Click(object sender, EventArgs e)

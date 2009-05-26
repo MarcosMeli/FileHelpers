@@ -21,13 +21,19 @@ namespace FileHelpers.WizardApp
             cboClassLeng.SelectedIndex = index;
         }
 
- 
+        public bool AutoRunTest { get; set; }
+        
         private void cmdReadFile_Click(object sender, EventArgs e)
         {
 
         }
 
         private void cmdReadTest_Click(object sender, EventArgs e)
+        {
+            RunTest();
+        }
+
+        private void RunTest()
         {
             try
             {
@@ -65,8 +71,6 @@ namespace FileHelpers.WizardApp
             {
                 MessageBox.Show(ex.Message, "Error Compiling Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -185,6 +189,16 @@ namespace FileHelpers.WizardApp
         private void txtPasteData_Click(object sender, EventArgs e)
         {
             txtInput.Text = Clipboard.GetText(TextDataFormat.Text);
+        }
+
+        private void frmDataPreview_Activated(object sender, EventArgs e)
+        {
+            if (AutoRunTest)
+            {
+                AutoRunTest = false;
+                Application.DoEvents();
+                RunTest();
+            }
         }
     }
 }

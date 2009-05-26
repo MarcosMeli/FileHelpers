@@ -39,21 +39,21 @@ namespace FileHelpers.WizardApp
             this.txtClass = new Fireball.Windows.Forms.CodeEditorControl();
             this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.txtPasteData = new System.Windows.Forms.Button();
+            this.txtClearData = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.lblResults = new System.Windows.Forms.Label();
+            this.cmdReadTest = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
-            this.txtClearData = new System.Windows.Forms.Button();
-            this.cmdReadTest = new System.Windows.Forms.Button();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.txtPasteData = new System.Windows.Forms.Button();
+            this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -226,6 +226,36 @@ namespace FileHelpers.WizardApp
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 1;
             // 
+            // txtPasteData
+            // 
+            this.txtPasteData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPasteData.BackColor = System.Drawing.Color.Transparent;
+            this.txtPasteData.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
+            this.txtPasteData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtPasteData.Location = new System.Drawing.Point(308, 1);
+            this.txtPasteData.Name = "txtPasteData";
+            this.txtPasteData.Size = new System.Drawing.Size(84, 28);
+            this.txtPasteData.TabIndex = 1015;
+            this.txtPasteData.Text = "Paste Data";
+            this.txtPasteData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtPasteData.UseVisualStyleBackColor = false;
+            this.txtPasteData.Click += new System.EventHandler(this.txtPasteData_Click);
+            // 
+            // txtClearData
+            // 
+            this.txtClearData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClearData.BackColor = System.Drawing.Color.Transparent;
+            this.txtClearData.Image = global::FileHelpers.WizardApp.Properties.Resources.stop;
+            this.txtClearData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtClearData.Location = new System.Drawing.Point(396, 1);
+            this.txtClearData.Name = "txtClearData";
+            this.txtClearData.Size = new System.Drawing.Size(84, 28);
+            this.txtClearData.TabIndex = 1014;
+            this.txtClearData.Text = "Clear Data";
+            this.txtClearData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtClearData.UseVisualStyleBackColor = false;
+            this.txtClearData.Click += new System.EventHandler(this.txtClearData_Click);
+            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
@@ -266,6 +296,20 @@ namespace FileHelpers.WizardApp
             this.lblResults.TabIndex = 1013;
             this.lblResults.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cmdReadTest
+            // 
+            this.cmdReadTest.BackColor = System.Drawing.Color.Transparent;
+            this.cmdReadTest.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdReadTest.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
+            this.cmdReadTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReadTest.Location = new System.Drawing.Point(3, 1);
+            this.cmdReadTest.Name = "cmdReadTest";
+            this.cmdReadTest.Size = new System.Drawing.Size(121, 28);
+            this.cmdReadTest.TabIndex = 1011;
+            this.cmdReadTest.Text = "Test Class";
+            this.cmdReadTest.UseVisualStyleBackColor = true;
+            this.cmdReadTest.Click += new System.EventHandler(this.cmdReadTest_Click);
+            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -296,53 +340,6 @@ namespace FileHelpers.WizardApp
             this.toolStrip1.Size = new System.Drawing.Size(433, 25);
             this.toolStrip1.TabIndex = 0;
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // dlgOpenTest
-            // 
-            this.dlgOpenTest.DefaultExt = "txt";
-            this.dlgOpenTest.FileName = "openFileDialog1";
-            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
-            this.dlgOpenTest.Title = "Load a Test File";
-            // 
-            // txtClearData
-            // 
-            this.txtClearData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClearData.BackColor = System.Drawing.Color.Transparent;
-            this.txtClearData.Image = global::FileHelpers.WizardApp.Properties.Resources.stop;
-            this.txtClearData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtClearData.Location = new System.Drawing.Point(396, 1);
-            this.txtClearData.Name = "txtClearData";
-            this.txtClearData.Size = new System.Drawing.Size(84, 28);
-            this.txtClearData.TabIndex = 1014;
-            this.txtClearData.Text = "Clear Data";
-            this.txtClearData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.txtClearData.UseVisualStyleBackColor = false;
-            this.txtClearData.Click += new System.EventHandler(this.txtClearData_Click);
-            // 
-            // cmdReadTest
-            // 
-            this.cmdReadTest.BackColor = System.Drawing.Color.Transparent;
-            this.cmdReadTest.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdReadTest.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
-            this.cmdReadTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdReadTest.Location = new System.Drawing.Point(3, 1);
-            this.cmdReadTest.Name = "cmdReadTest";
-            this.cmdReadTest.Size = new System.Drawing.Size(158, 28);
-            this.cmdReadTest.TabIndex = 1011;
-            this.cmdReadTest.Text = "Compile and Test Data";
-            this.cmdReadTest.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdReadTest.UseVisualStyleBackColor = true;
-            this.cmdReadTest.Click += new System.EventHandler(this.cmdReadTest_Click);
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
@@ -361,6 +358,11 @@ namespace FileHelpers.WizardApp
             this.toolStripButton3.Text = "Load Source Class";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
@@ -369,6 +371,11 @@ namespace FileHelpers.WizardApp
             this.toolStripButton2.Size = new System.Drawing.Size(82, 22);
             this.toolStripButton2.Text = "Paste Class";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton4
             // 
@@ -379,20 +386,12 @@ namespace FileHelpers.WizardApp
             this.toolStripButton4.Text = "Load Sample Data";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // txtPasteData
+            // dlgOpenTest
             // 
-            this.txtPasteData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPasteData.BackColor = System.Drawing.Color.Transparent;
-            this.txtPasteData.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
-            this.txtPasteData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtPasteData.Location = new System.Drawing.Point(308, 1);
-            this.txtPasteData.Name = "txtPasteData";
-            this.txtPasteData.Size = new System.Drawing.Size(84, 28);
-            this.txtPasteData.TabIndex = 1015;
-            this.txtPasteData.Text = "Paste Data";
-            this.txtPasteData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.txtPasteData.UseVisualStyleBackColor = false;
-            this.txtPasteData.Click += new System.EventHandler(this.txtPasteData_Click);
+            this.dlgOpenTest.DefaultExt = "txt";
+            this.dlgOpenTest.FileName = "openFileDialog1";
+            this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
+            this.dlgOpenTest.Title = "Load a Test File";
             // 
             // frmDataPreview
             // 
@@ -406,6 +405,7 @@ namespace FileHelpers.WizardApp
             this.Text = "Record Class Tester - Results Preview";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmDataPreview_Load);
+            this.Activated += new System.EventHandler(this.frmDataPreview_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -438,8 +438,6 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.ComboBox cboClassLeng;
         private Fireball.Windows.Forms.CodeEditorControl txtClass;
         private Fireball.Syntax.SyntaxDocument sdClassOut;
-        private System.Windows.Forms.TextBox txtInput;
-        private System.Windows.Forms.Button cmdReadTest;
         private System.Windows.Forms.OpenFileDialog dlgOpenTest;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
@@ -450,5 +448,7 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.Label lblResults;
         private System.Windows.Forms.Button txtClearData;
         private System.Windows.Forms.Button txtPasteData;
+        internal System.Windows.Forms.TextBox txtInput;
+        internal System.Windows.Forms.Button cmdReadTest;
     }
 }
