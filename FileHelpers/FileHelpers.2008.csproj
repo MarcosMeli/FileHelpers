@@ -339,7 +339,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mapping\DataMapper.cs" />
-    <Compile Include="Mapping\DataMapperG.cs" />
     <Compile Include="Mapping\MappingInfo.cs" />
     <Compile Include="MasterDetail\Common.cs">
       <SubType>Code</SubType>
@@ -347,13 +346,7 @@
     <Compile Include="MasterDetail\MasterDetailEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MasterDetail\MasterDetailEngineG.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MasterDetail\MasterDetails.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MasterDetail\MasterDetailsG.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MasterDetail\RecordAccion.cs">

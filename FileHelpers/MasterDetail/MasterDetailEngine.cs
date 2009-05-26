@@ -4,29 +4,25 @@
 
 #endregion
 
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
+//#undef GENERICS
+#define GENERICS
+#if NET_2_0
 
 using System;
 using System.Collections;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
-#if NET_2_0
 using System.Collections.Generic;
-#endif
 
 namespace FileHelpers.MasterDetail
 {
 
-    /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
-    /// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
-#if ! GENERICS
-	public sealed class MasterDetailEngine : EngineBase
-	{
-		
-    #region "  Constructor  "
+    public sealed class MasterDetailEngine
+        : MasterDetailEngine<object, object>
+    {
+
+        #region "  Constructor  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine(Type masterType, Type detailType)
@@ -34,30 +30,29 @@ namespace FileHelpers.MasterDetail
         {
         }
 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
-		public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector) : base(detailType)
-		{
-			mMasterType = masterType;
-			mMasterInfo = new RecordInfo(masterType);
-			RecordSelector = recordSelector;
-		}
- 
-		/// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
-		public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
-			: base(detailType)
-		{
-			mMasterInfo = new RecordInfo(masterType);
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
+        public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
+            : base(masterType, detailType, recordSelector)
+        {
+        }
 
-			CommonSelectorInternal sel = new CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
-			mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
-		}
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
+        public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
+            : base(masterType, detailType, action, selector)
+        {
+        }
 
         #endregion
-	
-#else
+
+
+       
+    }
+    /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
+    /// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
+
     /// <typeparam name="M">The Master Record Type</typeparam>
     /// <typeparam name="D">The Detail Record Type</typeparam>
-    public sealed class MasterDetailEngine<M, D> : EngineBase
+    public class MasterDetailEngine<M, D> : EngineBase
         where M : class
         where D : class
     {
@@ -73,31 +68,43 @@ namespace FileHelpers.MasterDetail
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine(MasterDetailSelector recordSelector)
-            : base(typeof(D))
+            : this(typeof(M), typeof(D), recordSelector)
         {
-            mMasterType = typeof(M);
+        }
+
+        internal MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
+            : base(detailType)
+        {
+            mMasterType = masterType;
             mMasterInfo = new RecordInfo(mMasterType);
             mRecordSelector = recordSelector;
         }
 
+
+
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         public MasterDetailEngine(CommonSelector action, string selector)
-            : base(typeof(D))
+            : this(typeof(M), typeof(D), action, selector)
         {
-            mMasterType = typeof(M);
+        }
+
+        internal MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
+            : base(detailType)
+        {
+            mMasterType = masterType;
             mMasterInfo = new RecordInfo(mMasterType);
 
             MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
+
         }
 
         #endregion
 
-#endif
+
 
         #region CommonSelectorInternal
 
-#if ! GENERICS
         internal class CommonSelectorInternal
 		{
             readonly CommonSelector mAction;
@@ -172,7 +179,7 @@ namespace FileHelpers.MasterDetail
 				return RecordAction.Skip;
 			}
 		}
-#endif
+
         #endregion
 
 #if NET_2_0
@@ -656,4 +663,4 @@ namespace FileHelpers.MasterDetail
     }
 }
 
-//#endif
+#endif

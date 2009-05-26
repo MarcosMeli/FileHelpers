@@ -3,7 +3,7 @@ using FileHelpers;
 using FileHelpers.MasterDetail;
 using System.Collections;
 using System.IO;
-
+using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpersTests
 {

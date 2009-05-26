@@ -3,6 +3,7 @@ using FileHelpers;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
 using System.IO;
+using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpersTests.MasterDetail
 {

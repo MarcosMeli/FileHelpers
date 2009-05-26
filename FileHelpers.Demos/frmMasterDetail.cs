@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using FileHelpers;
 using FileHelpers.MasterDetail;
+using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpersSamples
 {
