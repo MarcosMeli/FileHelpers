@@ -62,8 +62,19 @@ namespace FileReplace
 
             if (mEscape)
             {
-                srcString = string.Format(srcString.Replace("\\\\", "\\"));
-                newString = string.Format(newString.Replace("\\\\", "\\"));
+                srcString = srcString
+                    .Replace("\\n", "\n")
+                    .Replace("\\r", "\r")
+                    .Replace("\\t", "\t")
+                    .Replace("\\r\\n", "\r\n");
+
+                newString = newString
+                    .Replace("\\n", "\n")
+                    .Replace("\\r", "\r")
+                    .Replace("\\t", "\t")
+                    .Replace("\\r\\n", "\r\n");
+                
+
             }
 
             File.WriteAllText(destFile, ReplaceIgnoringCase(originalStr, srcString, newString), Encoding.Default);
