@@ -24,10 +24,6 @@ namespace FileReplace
                 destFile = args[0];
                 srcString = args[1];
                 newString = args[2];
-                int replaceMode = 0;
-                if (args.Length > 3)
-                    replaceMode = Convert.ToInt32(args[3]);
-
 
                 if (srcString == string.Empty)
                 {
@@ -45,9 +41,7 @@ namespace FileReplace
                         return;
                     }
 
-                    System.IO.StreamReader reader = new StreamReader(args[3]);
-                    newString = reader.ReadToEnd();
-                    reader.Close();
+                    newString = File.ReadAllText(args[3], Encoding.Default);
 
                 }
 
@@ -64,21 +58,15 @@ namespace FileReplace
         static bool mEscape = false;
         private static void ReplaceFile(string destFile, string newString, string srcString)
         {
-            System.IO.StreamReader reader = new StreamReader(destFile, Encoding.Default);
-            string originalStr = reader.ReadToEnd();
-            reader.Close();
-
-            StreamWriter writer = new StreamWriter(destFile, false, Encoding.Default);
+            string originalStr = File.ReadAllText(destFile, Encoding.Default);
 
             if (mEscape)
             {
-                srcString = string.Format(srcString);
-                newString = string.Format(newString);
+                srcString = string.Format(srcString.Replace("\\\\", "\\"));
+                newString = string.Format(newString.Replace("\\\\", "\\"));
             }
 
-            writer.Write(ReplaceIgnoringCase(originalStr, srcString, newString));
-            writer.Close();
-
+            File.WriteAllText(destFile, ReplaceIgnoringCase(originalStr, srcString, newString), Encoding.Default);
             Console.WriteLine("Replaced: '" + FirstChars(srcString, 25) + "' --> '" + FirstChars(newString, 25) + "'.");
         }
 
