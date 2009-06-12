@@ -46,6 +46,8 @@ namespace FileMerger
                     writeStr = File.ReadAllText(srcFile, Encoding.Default);
 
 			    string originalStr = File.ReadAllText(destFile, Encoding.Default);
+                if (pos < 0)
+                    pos = originalStr.Length + pos;
 
                 StringBuilder res = new StringBuilder(originalStr.Length + writeStr.Length);
 
@@ -61,7 +63,7 @@ namespace FileMerger
                     res.Append(originalStr.Substring(pos));
                 }
 
-			    File.WriteAllText(destFile, res.ToString());
+			    File.WriteAllText(destFile, res.ToString(), Encoding.Default);
 
 				Console.WriteLine("Finish to Merge files at position " + pos.ToString());
 			}
