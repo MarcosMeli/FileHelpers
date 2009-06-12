@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 
 namespace FileMerger
 {
@@ -23,22 +24,44 @@ namespace FileMerger
 
 				destFile = args[0];
 				srcFile = args[1];
-				pos = int.Parse(args[2]);
+                if (args[2].ToUpper() == "MAX" || args[2].ToUpper() == "END")
+                    pos = int.MaxValue;
+                else
+                    pos = int.Parse(args[2]);
 
-				System.IO.StreamReader reader = new StreamReader(srcFile);
-				string writeStr = reader.ReadToEnd();
-				reader.Close();
+                bool inCmd = args[args.Length -1].ToUpper() == "-INLINE";
 
-				reader = new StreamReader(destFile);
-				string originalStr = reader.ReadToEnd();
-				reader.Close();
+			    string writeStr;
+                if (inCmd)
+                {
+                    writeStr = srcFile;
+                    writeStr = writeStr
+                    .Replace("\\n", "\n")
+                    .Replace("\\r", "\r")
+                    .Replace("\\t", "\t")
+                    .Replace("\\r\\n", "\r\n");
+                }
+			    
+                else
+                    writeStr = File.ReadAllText(srcFile, Encoding.Default);
 
-				StreamWriter writer = new StreamWriter(destFile);
-                
-				writer.Write(originalStr.Substring(0, pos));
-				writer.Write(writeStr);
-				writer.Write(originalStr.Substring(pos));
-				writer.Close();
+			    string originalStr = File.ReadAllText(destFile, Encoding.Default);
+
+                StringBuilder res = new StringBuilder(originalStr.Length + writeStr.Length);
+
+                if (pos == int.MaxValue)
+                {
+                    res.Append(originalStr);
+                    res.Append(writeStr);
+                }
+                else
+                {
+                    res.Append(originalStr.Substring(0, pos));
+                    res.Append(writeStr);
+                    res.Append(originalStr.Substring(pos));
+                }
+
+			    File.WriteAllText(destFile, res.ToString());
 
 				Console.WriteLine("Finish to Merge files at position " + pos.ToString());
 			}
