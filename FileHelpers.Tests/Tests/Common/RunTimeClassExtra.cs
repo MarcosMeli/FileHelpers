@@ -115,7 +115,7 @@ namespace FileHelpersTests
 
 			engine = new FileHelperEngine(cb.CreateRecordClass()); 
 
-			DataTable contactData = engine.ReadFileAsDT(Common.TestPath(@"Good\ReadAsDataTable.txt"));
+			DataTable contactData = engine.ReadFileAsDT(TestCommon.GetPath(@"Good\ReadAsDataTable.txt"));
 
 			Assert.AreEqual(3, contactData.Rows.Count);
 			Assert.AreEqual(8, contactData.Columns.Count);

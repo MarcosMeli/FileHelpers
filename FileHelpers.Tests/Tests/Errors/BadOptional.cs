@@ -21,7 +21,7 @@ namespace FileHelpersTests.Errors
 		{
 			engine = new FileHelperEngine(typeof (OptionalBad2));
             Assert.Throws<BadUsageException>(() 
-                => Common.ReadTest(engine, @"Bad\OptionalBad1.txt"));
+                => TestCommon.ReadTest(engine, @"Bad\OptionalBad1.txt"));
 		}
 
 

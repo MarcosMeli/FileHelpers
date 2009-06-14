@@ -17,7 +17,7 @@ namespace FileHelpersTests.CommonTests
 
 			a = DateTime.Now.Ticks;
 
-			Common.ReadTest(engine, @"Good\OrdersVerticalBar.txt");
+			TestCommon.ReadTest(engine, @"Good\OrdersVerticalBar.txt");
 
 			b = DateTime.Now.Ticks;
 

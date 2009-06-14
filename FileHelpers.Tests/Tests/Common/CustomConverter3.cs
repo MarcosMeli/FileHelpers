@@ -40,7 +40,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (PriceRecord));
 
-			PriceRecord[] res = (PriceRecord[]) Common.ReadTest(engine, @"Good\PriceConverter.txt");
+			PriceRecord[] res = (PriceRecord[]) TestCommon.ReadTest(engine, @"Good\PriceConverter.txt");
 
 			Assert.AreEqual(4, res.Length);
 

@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,6 +27,7 @@
     </UpgradeBackupLocation>
     <SignAssembly>true</SignAssembly>
     <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
@@ -73,6 +74,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gallio, Version=3.0.6.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
+    <Reference Include="MbUnit, Version=3.0.6.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\nunit\2.0\nunit.framework.dll</HintPath>
@@ -80,11 +83,18 @@
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Threading, Version=1.0.3058.34407, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Parallel\System.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
@@ -121,6 +131,7 @@
     <Compile Include="Tests\Common\Converters.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
     <Compile Include="Tests\Common\ReflectionOrder.cs" />
     <Compile Include="Tests\Common\FastReadCsv.cs" />

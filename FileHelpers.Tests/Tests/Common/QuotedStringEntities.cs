@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (OrdersQuotedType));
 
-			OrdersQuotedType[] res = (OrdersQuotedType[]) Common.ReadTest(engine, @"Good\QuotedOrders.txt");
+			OrdersQuotedType[] res = (OrdersQuotedType[]) TestCommon.ReadTest(engine, @"Good\QuotedOrders.txt");
 
 			Assert.AreEqual(6, res.Length);
 
@@ -31,7 +31,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (OrdersQuoted2Type));
 
-			OrdersQuoted2Type[] res = (OrdersQuoted2Type[]) Common.ReadTest(engine, @"Good\QuotedOrders2.txt");
+			OrdersQuoted2Type[] res = (OrdersQuoted2Type[]) TestCommon.ReadTest(engine, @"Good\QuotedOrders2.txt");
 
 			Assert.AreEqual(6, res.Length);
 
@@ -48,7 +48,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersQuotedType));
 
-			CustomersQuotedType[] res = (CustomersQuotedType[]) Common.ReadTest(engine, @"Good\QuotedCustomers.txt");
+			CustomersQuotedType[] res = (CustomersQuotedType[]) TestCommon.ReadTest(engine, @"Good\QuotedCustomers.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -62,7 +62,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersQuotedType2));
 
-			CustomersQuotedType2[] res = (CustomersQuotedType2[]) Common.ReadTest(engine, @"Good\QuotedCustomers2.txt");
+			CustomersQuotedType2[] res = (CustomersQuotedType2[]) TestCommon.ReadTest(engine, @"Good\QuotedCustomers2.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -77,7 +77,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (OrdersQuotedType));
 
-			OrdersQuotedType[] res = (OrdersQuotedType[]) Common.ReadTest(engine, @"Good\QuotedOrders.txt");
+			OrdersQuotedType[] res = (OrdersQuotedType[]) TestCommon.ReadTest(engine, @"Good\QuotedOrders.txt");
 			engine.WriteFile("temp2.txt", res);
 			res = (OrdersQuotedType[]) engine.ReadFile("temp2.txt");
 

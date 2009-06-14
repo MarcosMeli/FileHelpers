@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
             DelimitedFileEngine engine = new DelimitedFileEngine(type);
             engine.Options.Delimiter = delimiter;
 
-			object[] res = Common.ReadTest(engine, fileName);
+			object[] res = TestCommon.ReadTest(engine, fileName);
 
             
 			Assert.AreEqual(ExpectedRecords, res.Length);

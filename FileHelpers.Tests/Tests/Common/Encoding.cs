@@ -32,7 +32,7 @@ namespace FileHelpersTests.CommonTests
 		private void CoreRunTest(string fileName)
 		{
 	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) Common.ReadTest(engine, fileName);
+			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, fileName);
 	
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
@@ -67,7 +67,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			ArrayList arr = new ArrayList();
 	
-			Common.BeginReadTest(asyncEngine, fileName);
+			TestCommon.BeginReadTest(asyncEngine, fileName);
 
 			foreach (object record in asyncEngine)
 			{

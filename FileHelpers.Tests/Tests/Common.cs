@@ -8,10 +8,10 @@ using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 namespace FileHelpersTests
 {
 	// this class only adds the relative path to the saple files.
-	public sealed class Common
+	public sealed class TestCommon
 	{
 	    //private static string mAssemblyLocation = string.Empty;
-		public static string TestPath(string fileName)
+		public static string GetPath(string fileName)
 		{
             //if (string.IsNullOrEmpty(mAssemblyLocation))
             //{
@@ -28,18 +28,18 @@ namespace FileHelpersTests
 
 		public static object[] ReadTest(FileHelperEngine engine, string fileName)
 		{
-			return engine.ReadFile(TestPath(fileName));
+			return engine.ReadFile(GetPath(fileName));
 		}
 
         public static object[] ReadTest(FileHelperEngine engine, string fileName, int maxRecords)
         {
-            return engine.ReadFile(TestPath(fileName), maxRecords);
+            return engine.ReadFile(GetPath(fileName), maxRecords);
         }
 
 		public static object[] ReadAllAsync(FileHelperAsyncEngine engine, string fileName)
 		{
 			ArrayList arr = new ArrayList();
-			engine.BeginReadFile(TestPath(fileName));
+			engine.BeginReadFile(GetPath(fileName));
 			while(engine.ReadNext() != null)
 				arr.Add(engine.LastRecord);
 			engine.Close();
@@ -50,16 +50,16 @@ namespace FileHelpersTests
 
 		public static MasterDetails[] ReadTest(MasterDetailEngine engine, string fileName)
         {
-            return engine.ReadFile(TestPath(fileName));
+            return engine.ReadFile(GetPath(fileName));
         }
 
         public static void BeginReadTest(FileHelperAsyncEngine engine, string fileName)
 		{
-			engine.BeginReadFile(TestPath(fileName));
+			engine.BeginReadFile(GetPath(fileName));
 		}
 
 
-		private Common()
+		private TestCommon()
 		{}
 	}
 }

@@ -14,7 +14,7 @@ namespace FileHelpersTests.Converters
 			engine = new FileHelperEngine(typeof (DecimalType));
 
 			DecimalType[] res;
-			res = (DecimalType[]) Common.ReadTest(engine, @"Good\NumberFormat.txt");
+			res = (DecimalType[]) TestCommon.ReadTest(engine, @"Good\NumberFormat.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -45,7 +45,7 @@ namespace FileHelpersTests.Converters
 			engine = new FileHelperEngine(typeof (DecimalType));
 
 			DecimalType[] res;
-			res = (DecimalType[]) Common.ReadTest(engine, @"Good\NumberNegative.txt");
+			res = (DecimalType[]) TestCommon.ReadTest(engine, @"Good\NumberNegative.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -81,7 +81,7 @@ namespace FileHelpersTests.Converters
             engine = new FileHelperEngine(typeof(DecimalType));
 
             DecimalType[] res;
-            res = (DecimalType[])Common.ReadTest(engine, @"Good\NumberFormat2.txt");
+            res = (DecimalType[])TestCommon.ReadTest(engine, @"Good\NumberFormat2.txt");
 
             Assert.AreEqual(4, res.Length);
 

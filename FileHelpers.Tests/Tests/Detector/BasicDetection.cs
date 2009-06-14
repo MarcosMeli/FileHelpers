@@ -14,7 +14,7 @@ namespace FileHelpersTests.Tests.Detector
     {
         private void AssertDelimitedFormat(string file, string delimiter, int fields, int confidence, int numFormats)
         {
-            file = Common.TestPath(@"Detection\" + file);
+            file = TestCommon.GetPath(@"Detection\" + file);
 
             SmartFormatDetector detector = new SmartFormatDetector();
             RecordFormatInfo[] formats;
@@ -85,7 +85,7 @@ namespace FileHelpersTests.Tests.Detector
         public void FixedLength()
         {
             SmartFormatDetector detector = new SmartFormatDetector();
-            RecordFormatInfo[] formats = detector.DetectFileFormat(Common.TestPath(@"Detection\CustomersFixed.txt"));
+            RecordFormatInfo[] formats = detector.DetectFileFormat(TestCommon.GetPath(@"Detection\CustomersFixed.txt"));
 
             Assert.AreEqual(1, formats.Length);
             Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);

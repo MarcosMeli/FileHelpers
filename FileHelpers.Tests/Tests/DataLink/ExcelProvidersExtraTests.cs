@@ -48,7 +48,7 @@ namespace FileHelpersTests.DataLink
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof(OrdersExcelType));
 
-			OrdersExcelType[] resFile = (OrdersExcelType[]) Common.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
+			OrdersExcelType[] resFile = (OrdersExcelType[]) TestCommon.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
 
 			ExcelStorage provider = new ExcelStorage(typeof (OrdersExcelType));
 			provider.StartRow = 1;
@@ -147,13 +147,13 @@ namespace FileHelpersTests.DataLink
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof(OrdersExcelType));
 
-			OrdersExcelType[] resFile = (OrdersExcelType[]) Common.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
+			OrdersExcelType[] resFile = (OrdersExcelType[]) TestCommon.ReadTest(engine, @"Good\OrdersWithOutDates.txt");
 
 			ExcelStorage provider = new ExcelStorage(typeof (OrdersExcelType));
 			provider.StartRow = 4;
 			provider.StartColumn = 1;
 			provider.FileName = @"c:\tempex.xls";
-			provider.TemplateFile = Common.TestPath(@"Excel\Template.xls");
+			provider.TemplateFile = TestCommon.GetPath(@"Excel\Template.xls");
 			provider.OverrideFile = true;
 
 			provider.InsertRecords(resFile);

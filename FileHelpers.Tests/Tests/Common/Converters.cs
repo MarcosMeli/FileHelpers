@@ -87,7 +87,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DecimalConvType));
 
-			DecimalConvType[] res = (DecimalConvType[]) Common.ReadTest(engine, @"Good\ConverterDecimals1.txt");
+			DecimalConvType[] res = (DecimalConvType[]) TestCommon.ReadTest(engine, @"Good\ConverterDecimals1.txt");
 
 			Assert.AreEqual(5, res.Length);
 
@@ -105,7 +105,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DecimalConvType2));
 
-			DecimalConvType2[] res = (DecimalConvType2[]) Common.ReadTest(engine, @"Good\ConverterDecimals2.txt");
+			DecimalConvType2[] res = (DecimalConvType2[]) TestCommon.ReadTest(engine, @"Good\ConverterDecimals2.txt");
 
 			Assert.AreEqual(5, res.Length);
 

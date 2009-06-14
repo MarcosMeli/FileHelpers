@@ -15,7 +15,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (ConditionalType1));
 
-			object[] res = Common.ReadTest(engine, @"Good\ConditionalRecords1.txt");
+			object[] res = TestCommon.ReadTest(engine, @"Good\ConditionalRecords1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -26,7 +26,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (ConditionalType2));
 
-			object[] res = Common.ReadTest(engine, @"Good\ConditionalRecords2.txt");
+			object[] res = TestCommon.ReadTest(engine, @"Good\ConditionalRecords2.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -38,7 +38,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (ConditionalType3));
 
-			object[] res = Common.ReadTest(engine, @"Good\ConditionalRecords3.txt");
+			object[] res = TestCommon.ReadTest(engine, @"Good\ConditionalRecords3.txt");
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -50,7 +50,7 @@ namespace FileHelpersTests.CommonTests
         {
             engine = new FileHelperEngine(typeof(ConditionalType4));
 
-            ConditionalType4[] res = (ConditionalType4[]) Common.ReadTest(engine, @"Good\ConditionalRecords4.txt");
+            ConditionalType4[] res = (ConditionalType4[]) TestCommon.ReadTest(engine, @"Good\ConditionalRecords4.txt");
 
             Assert.AreEqual(2, res.Length);
             Assert.AreEqual(5, engine.LineNumber);

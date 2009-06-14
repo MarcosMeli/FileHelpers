@@ -19,7 +19,7 @@ namespace FileHelpersTests.CommonTests
 			{
 				MSWSDailyReportRecord[] res = null;            
 				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-					res = (MSWSDailyReportRecord[]) Common.ReadTest(engine, @"Good\EncodingAdv1.txt");
+					res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, @"Good\EncodingAdv1.txt");
             
 				Assert.AreEqual(res.Length, 28);
 			}
@@ -29,7 +29,7 @@ namespace FileHelpersTests.CommonTests
 			{
 				MSWSDailyReportRecord[] res = null;
 				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-				res = (MSWSDailyReportRecord[]) Common.ReadTest(engine, @"Good\EncodingAdv2.txt");
+				res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, @"Good\EncodingAdv2.txt");
 
 				Assert.AreEqual(res.Length, 32);
 			}

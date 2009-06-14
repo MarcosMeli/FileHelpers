@@ -17,7 +17,7 @@ namespace FileHelpersTests.MasterDetail
 		{
             engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
 
-            MasterDetails[] res = Common.ReadTest(engine, @"Good\MasterDetail1.txt");
+            MasterDetails[] res = TestCommon.ReadTest(engine, @"Good\MasterDetail1.txt");
 
             Assert.AreEqual(4, res.Length);
 
@@ -51,7 +51,7 @@ namespace FileHelpersTests.MasterDetail
         public void CustomerOrdersWrite()
         {
             engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
-            MasterDetails[] resTmp = Common.ReadTest(engine, @"Good\MasterDetail1.txt");
+            MasterDetails[] resTmp = TestCommon.ReadTest(engine, @"Good\MasterDetail1.txt");
             Assert.AreEqual(4, resTmp.Length);
 
             engine.WriteFile("tempmd.txt", resTmp);

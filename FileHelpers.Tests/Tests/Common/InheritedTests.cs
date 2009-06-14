@@ -23,7 +23,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
 			SampleInheritType[] res;
-			res = (SampleInheritType[]) Common.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleInheritType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -45,7 +45,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleInheritEmpty));
 
 			SampleInheritEmpty[] res;
-			res = (SampleInheritEmpty[]) Common.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleInheritEmpty[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -562,7 +562,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual(3, engine.Options.FieldCount);
 
             SampleInheritIgnoreType[] res;
-            res = (SampleInheritIgnoreType[])Common.ReadTest(engine, @"Good\test1.txt");
+            res = (SampleInheritIgnoreType[])TestCommon.ReadTest(engine, @"Good\test1.txt");
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -588,7 +588,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual("Field4", engine.Options.FieldsNames[3]);
 
             SampleInheritIgnoreType2[] res;
-            res = (SampleInheritIgnoreType2[])Common.ReadTest(engine, @"Good\test1.txt");
+            res = (SampleInheritIgnoreType2[])TestCommon.ReadTest(engine, @"Good\test1.txt");
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);

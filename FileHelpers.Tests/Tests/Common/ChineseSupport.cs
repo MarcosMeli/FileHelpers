@@ -38,7 +38,7 @@ A987654321台北市民權東東路5號           20061008");
 
 			ChineseTest[] res;
 			//engine.Encoding = Encoding.Unicode;
-			res = (ChineseTest[]) Common.ReadTest(engine, @"Good\Chinese.txt");
+			res = (ChineseTest[]) TestCommon.ReadTest(engine, @"Good\Chinese.txt");
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);

@@ -17,7 +17,7 @@ namespace FileHelpersTests
 		{
 			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
-            object[] res = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+            object[] res = engine.ReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
 
             Assert.AreEqual(12, res.Length);
             Assert.AreEqual(12, engine.TotalRecords);
@@ -35,7 +35,7 @@ namespace FileHelpersTests
 			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
 			ArrayList res = new ArrayList();
-			engine.BeginReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+			engine.BeginReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
 			foreach (object o in engine)
 			{
 				res.Add(o);
@@ -56,7 +56,7 @@ namespace FileHelpersTests
 		{
 			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
-			object[] records = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+			object[] records = engine.ReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
 
 			engine.BeginWriteFile("tempoMulti.txt");
 			foreach (object o in records)
@@ -67,7 +67,7 @@ namespace FileHelpersTests
 			File.Delete("tempoMulti.txt");
 
 
-			object[] res = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+			object[] res = engine.ReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
 
 			Assert.AreEqual(12, res.Length);
 			Assert.AreEqual(12, engine.TotalRecords);
@@ -101,7 +101,7 @@ namespace FileHelpersTests
 			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
-			object[] res2 = engine.ReadFile(Common.TestPath(@"Good\MultiRecord1.txt"));
+			object[] res2 = engine.ReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
 
 			Assert.AreEqual(12, res2.Length);
 			Assert.AreEqual(12, engine.TotalRecords);

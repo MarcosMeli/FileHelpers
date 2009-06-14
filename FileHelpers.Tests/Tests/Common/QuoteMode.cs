@@ -32,7 +32,7 @@ namespace FileHelpersTests.CommonTests
 		public void ReadOptionalRead()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
+			QuoteMode1[] res = TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
 			ValidateData(res);
 		}
 
@@ -41,14 +41,14 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode2));
             Assert.Throws<BadUsageException>(() 
-                => Common.ReadTest(engine, @"Good\QuoteMode1.txt"));
+                => TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt"));
 		}
 
 		[Test]
 		public void WriteOptionalRead()
 		{
 			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = Common.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
+			QuoteMode1[] res = TestCommon.ReadTest(engine, @"Good\QuoteMode1.txt") as QuoteMode1[];
 
 			engine.WriteFile("quotetemp1.txt",res);
 
@@ -100,7 +100,7 @@ namespace FileHelpersTests.CommonTests
         public void AutoRemoveQuotes()
         {
             CsvEngine eng = new CsvEngine(new CsvOptions("YourClass", ',', 2, 0));
-            DataTable dt = eng.ReadFileAsDT(Common.TestPath(@"Good\QuoteMode1.txt"));
+            DataTable dt = eng.ReadFileAsDT(TestCommon.GetPath(@"Good\QuoteMode1.txt"));
 
             Assert.AreEqual("VINET", dt.Rows[0][1]);
 

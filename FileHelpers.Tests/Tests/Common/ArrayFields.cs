@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 		public void ArrayFields1()
 		{
 			engine = new FileHelperEngine(typeof (ArrayType1));
-			ArrayType1[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType1[];
+			ArrayType1[] res = engine.ReadFile(TestCommon.GetPath(@"good\ArrayFields.txt")) as ArrayType1[];
 
 			SimpleComparer(res);
         }
@@ -25,7 +25,7 @@ namespace FileHelpersTests.CommonTests
         public void ArrayFields2()
         {
             engine = new FileHelperEngine(typeof(ArrayType3));
-            ArrayType3[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType3[];
+            ArrayType3[] res = engine.ReadFile(TestCommon.GetPath(@"good\ArrayFields.txt")) as ArrayType3[];
 
             SimpleComparer2(res);
         }
@@ -34,7 +34,7 @@ namespace FileHelpersTests.CommonTests
         public void ArrayFieldsDelimited()
         {
             engine = new FileHelperEngine(typeof(ArrayTypeDelimited));
-            ArrayTypeDelimited[] res = (ArrayTypeDelimited[]) engine.ReadFile(Common.TestPath(@"good\ArrayFieldsDelimited.txt"));
+            ArrayTypeDelimited[] res = (ArrayTypeDelimited[]) engine.ReadFile(TestCommon.GetPath(@"good\ArrayFieldsDelimited.txt"));
 
             Assert.AreEqual(10, res.Length);
             
@@ -82,7 +82,7 @@ namespace FileHelpersTests.CommonTests
 		public void ArrayFieldsRW()
 		{
 			engine = new FileHelperEngine(typeof(ArrayType1));
-			ArrayType1[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields.txt")) as ArrayType1[];
+			ArrayType1[] res = engine.ReadFile(TestCommon.GetPath(@"good\ArrayFields.txt")) as ArrayType1[];
 			SimpleComparer(res);
             
 			res = engine.ReadString(engine.WriteString(res)) as ArrayType1[];
@@ -142,7 +142,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof(ArrayType2));
 			engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-			ArrayType2[] res = engine.ReadFile(Common.TestPath(@"good\ArrayFields2.txt")) as ArrayType2[];
+			ArrayType2[] res = engine.ReadFile(TestCommon.GetPath(@"good\ArrayFields2.txt")) as ArrayType2[];
             
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(2, engine.ErrorManager.ErrorCount);

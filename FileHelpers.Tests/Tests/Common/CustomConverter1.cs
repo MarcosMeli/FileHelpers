@@ -55,7 +55,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomConvClass));
 
-			CustomConvClass[] res = (CustomConvClass[]) Common.ReadTest(engine, @"Good\CustomConverter1.txt");
+			CustomConvClass[] res = (CustomConvClass[]) TestCommon.ReadTest(engine, @"Good\CustomConverter1.txt");
 
 			Assert.AreEqual(5, res.Length);
 
@@ -74,7 +74,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomConvClass));
 
-			CustomConvClass[] res = (CustomConvClass[]) Common.ReadTest(engine, @"Good\CustomConverter1.txt");
+			CustomConvClass[] res = (CustomConvClass[]) TestCommon.ReadTest(engine, @"Good\CustomConverter1.txt");
 			Assert.AreEqual(5, res.Length);
 
 			engine.WriteFile("tmpCC.txt", res);

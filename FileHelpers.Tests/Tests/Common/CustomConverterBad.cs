@@ -15,7 +15,7 @@ namespace FileHelpersTests.CommonTests
 
             ConvertException ex = 
                 Assert.Throws<ConvertException>(
-                () => Common.ReadTest(engine, @"Good\PriceConverter.txt"));
+                () => TestCommon.ReadTest(engine, @"Good\PriceConverter.txt"));
 
             Assert.AreEqual(1, ex.LineNumber);
             Assert.AreEqual("PriceList", ex.FieldName);

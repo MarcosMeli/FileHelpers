@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void ReadFileComma()
 		{
-            string file = Common.TestPath(@"Good\RealCsvComma1.txt");
+            string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
 
             List<RecordIndexer> res = new List<RecordIndexer>();
             
@@ -40,7 +40,7 @@ namespace FileHelpersTests.CommonTests
         [Test]
         public void ReadFileHeader1()
         {
-            string file = Common.TestPath(@"Good\RealCsvComma1.txt");
+            string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
 
             List<RecordIndexer> res = new List<RecordIndexer>();
 
@@ -63,7 +63,7 @@ namespace FileHelpersTests.CommonTests
 
         public void ReadFileTab()
         {
-            string file = Common.TestPath(@"Good\RealCsvTab1.txt");
+            string file = TestCommon.GetPath(@"Good\RealCsvTab1.txt");
 
             List<RecordIndexer> res = new List<RecordIndexer>();
 
@@ -87,7 +87,7 @@ namespace FileHelpersTests.CommonTests
         [Test]
         public void ReadFileTab2()
         {
-            string file = Common.TestPath(@"Good\RealCsvTab2.txt");
+            string file = TestCommon.GetPath(@"Good\RealCsvTab2.txt");
 
             List<RecordIndexer> res = new List<RecordIndexer>();
 

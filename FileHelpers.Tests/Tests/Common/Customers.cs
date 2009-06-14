@@ -15,7 +15,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(type);
 
-			object[] res = Common.ReadTest(engine, fileName);
+			object[] res = TestCommon.ReadTest(engine, fileName);
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
