@@ -156,11 +156,14 @@ namespace FileHelpers
             // Search for cached fields
             List<FieldInfo> fields; ;
 
-            if (! mCachedRecordFields.TryGetValue(mRecordType, out fields))
+            lock (mCachedRecordFields)
             {
-                fields = new List<FieldInfo>();
-                RecursiveGetFields(fields, mRecordType, recordAttribute);
-                mCachedRecordFields.Add(mRecordType, fields);
+                if (!mCachedRecordFields.TryGetValue(mRecordType, out fields))
+                {
+                    fields = new List<FieldInfo>();
+                    RecursiveGetFields(fields, mRecordType, recordAttribute);
+                    mCachedRecordFields.Add(mRecordType, fields);
+                }
             }
 
             mRecordConstructor = mRecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic, null, mEmptyTypeArr, new ParameterModifier[] { });
