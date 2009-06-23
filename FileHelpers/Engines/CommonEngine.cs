@@ -599,7 +599,7 @@ namespace FileHelpers
         /// <returns>An array with the result of remove the duplicate records from the source array.</returns>
         public static IComparableRecord[] RemoveDuplicateRecords(IComparableRecord[] arr)
         {
-            if (arr == null || arr.Length == 0)
+            if (arr == null || arr.Length <= 1)
                 return arr;
 
             ArrayList nodup = new ArrayList();
