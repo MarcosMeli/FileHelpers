@@ -361,6 +361,9 @@ namespace FileHelpers
                         if (currType != null)
                         {
                             RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
+                            if (info == null)
+                                throw new BadUsageException("A record is of type '" + currType.Name +
+                                                            "' which this engine is not configured to handle. Try adding this type to the constructor.");
 
                             if (skip == false)
                             {
@@ -799,6 +802,9 @@ namespace FileHelpers
 						if (currType != null)
 						{
 							RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
+                            if (info == null)
+                                throw new BadUsageException("A record is of type '" + currType.Name +
+                                                            "' which this engine is not configured to handle. Try adding this type to the constructor.");
 							object[] values = new object[info.mFieldCount];
 							mLastRecord = info.StringToRecord(line, values);
 

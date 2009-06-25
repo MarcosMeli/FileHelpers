@@ -28,7 +28,6 @@ namespace FileHelpersTests
 			Assert.AreEqual(typeof(SampleType), res[5].GetType());
 		}
 
-
 		[Test]
 		public void MultpleRecordsFileAsync()
 		{
@@ -161,15 +160,39 @@ namespace FileHelpersTests
                 => new MultiRecordEngine(typeof(CustomersVerticalBar), null));
 		}
 
+	    [Test]
+	    public void WhenSelectorReturnsTypeThatIsNotInEngine_ShouldThrowBadUsageException_WhenReadingFileAtATime()
+	    {
+	        engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelectorReturningBadType),
+	                                       typeof (OrdersVerticalBar), typeof (CustomersSemiColon), typeof (SampleType));
+
+            Assert.Throws<BadUsageException>(() => engine.ReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt")));
+	    }
+
+        [Test]
+        public void WhenSelectorReturnsTypeThatIsNotInEngine_ShouldThrowBadUsageException_WhenReadingRecordAtATime()
+        {
+            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelectorReturningBadType),
+                                           typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
+
+            engine.BeginReadFile(TestCommon.GetPath(@"Good\MultiRecord1.txt"));
+
+            Assert.Throws<BadUsageException>(() => engine.ReadNext());
+        }
+
         Type CustomSelector(MultiRecordEngine engine, string record)
         {
             if (Char.IsLetter(record[0]))
                 return typeof(CustomersSemiColon);
-			else if (record.Length == 14)
-				return typeof(SampleType);
+            else if (record.Length == 14)
+                return typeof(SampleType);
             else
                 return typeof(OrdersVerticalBar);
         }
 
+        Type CustomSelectorReturningBadType(MultiRecordEngine engine, string record)
+        {
+            return typeof (String);
+        }
 	}
 }
