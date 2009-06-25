@@ -8,20 +8,12 @@ namespace FileHelpersTests.Errors
 	public class ErrorModeValidatorAsync
 	{
 		FileHelperAsyncEngine engine;
-	    private string errorsFile;
 
-	    [SetUp]
+		[SetUp]
 		public void Setup()
 		{
 			engine = new FileHelperAsyncEngine(typeof (SampleType));
-	        errorsFile = Path.GetTempFileName();
 		}
-
-	    [TearDown]
-	    public void TearDown()
-	    {
-	        File.Delete(errorsFile);
-	    }
 
 		[Test]
 		public void IgnoreAndContinue()
@@ -120,14 +112,16 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
-			engine.ErrorManager.SaveErrors(errorsFile);
+            var filename = TestCommon.GetTempFile("SavedErrors.txt");
+
+			engine.ErrorManager.SaveErrors(filename);
 
 			FileHelperEngine e2 = new FileHelperEngine(typeof(ErrorInfo));
 
-			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(errorsFile);
+			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(filename);
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
-            File.Delete(errorsFile);
+            File.Delete(filename);
 
 		}
 
@@ -140,9 +134,11 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
-			engine.ErrorManager.SaveErrors(errorsFile);
-			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(errorsFile).Length);
-            File.Delete(errorsFile);
+            var filename = TestCommon.GetTempFile("SavedErrors.txt");
+
+			engine.ErrorManager.SaveErrors(filename);
+			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(filename).Length);
+            File.Delete(filename);
 		}
 
 
@@ -151,19 +147,21 @@ namespace FileHelpersTests.Errors
         {
             FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
 
+            var filename = TestCommon.GetTempFile("TempWrite.txt");
+
             Assert.Throws<BadUsageException>(()
                                              =>
                                                  {
                                                      try
                                                      {
-                                                         eng.BeginWriteFile(@"c:\tempfile.tmp");
+                                                         eng.BeginWriteFile(filename);
                                                          eng.BeginReadString("jejjeje");
                                                      }
                                                      finally
                                                      {
                                                          eng.Close();
-                                                         if (File.Exists(@"c:\tempfile.tmp"))
-                                                             File.Delete(@"c:\tempfile.tmp");
+                                                         if (File.Exists(filename))
+                                                             File.Delete(filename);
                                                      }
                                                  });
         }
@@ -173,8 +171,10 @@ namespace FileHelpersTests.Errors
         {
             FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
             eng.BeginReadString("jejjeje");
-            Assert.Throws<BadUsageException>(() 
-                => eng.BeginWriteFile(@"c:\tempfile.tmp"));
+
+            var filename = TestCommon.GetTempFile("TempWrite.txt");
+            Assert.Throws<BadUsageException>(()
+                => eng.BeginWriteFile(filename));
         }
 
 	}

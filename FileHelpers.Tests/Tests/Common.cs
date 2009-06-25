@@ -21,6 +21,17 @@ namespace FileHelpersTests
             return Path.Combine(Path.GetFullPath(@"..\data"), fileName);
 		}
 
+
+        public static string GetTempFile(string fileName)
+        {
+            //if (string.IsNullOrEmpty(mAssemblyLocation))
+            //{
+            //    mAssemblyLocation = Path.GetDirectoryName(Assembly.GetAssembly(typeof (Common)).Location);
+            //}
+
+            return Path.Combine(Path.GetTempPath(), fileName);
+        }
+
 //		public static string FullTestPath(string fileName)
 //		{
 //			return Path.GetDirectoryName(typeof(Common).Assembly.GetModules()[0].FullyQualifiedName) + @"\..\data\" + fileName;
