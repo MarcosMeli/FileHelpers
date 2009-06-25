@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using FileHelpers;
 using NUnit.Framework;
@@ -9,12 +8,20 @@ namespace FileHelpersTests.Errors
 	public class ErrorModeValidator
 	{
 		FileHelperEngine engine;
+	    private string errorsFile;
 
-		[SetUp]
+	    [SetUp]
 		public void Setup()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
+	        errorsFile = Path.GetTempFileName();
 		}
+
+	    [TearDown]
+	    public void TearDown()
+	    {
+	        File.Delete(errorsFile);
+	    }
 
 		[Test]
 		public void IgnoreAndContinue()
@@ -180,15 +187,14 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
-			engine.ErrorManager.SaveErrors(@"C:\SavedErrors.txt");
+		    engine.ErrorManager.SaveErrors(errorsFile);
 
 			FileHelperEngine e2 = new FileHelperEngine(typeof(ErrorInfo));
 
-			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(@"C:\SavedErrors.txt");
+			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(errorsFile);
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
-            File.Delete(@"C:\SavedErrors.txt");
-
+            File.Delete(errorsFile);
 		}
 
 		[Test]
@@ -200,12 +206,9 @@ namespace FileHelpersTests.Errors
 			Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 			Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
 
-			engine.ErrorManager.SaveErrors(@"C:\SavedErrors.txt");
-			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(@"C:\SavedErrors.txt").Length);
-            File.Delete(@"C:\SavedErrors.txt");
-
+		    engine.ErrorManager.SaveErrors(errorsFile);
+			Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(errorsFile).Length);
+            File.Delete(errorsFile);
 		}
-
-
 	}
 }
