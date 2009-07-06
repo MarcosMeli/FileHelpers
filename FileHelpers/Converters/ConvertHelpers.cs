@@ -692,6 +692,7 @@ namespace FileHelpers
 
             public override string FieldToString(object from)
             {
+                if (from == null) return String.Empty; 
                 return ((Guid)from).ToString(mFormat);
             }
         }

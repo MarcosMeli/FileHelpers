@@ -74,4 +74,10 @@ namespace FileHelpersTests
 
 	}
 
+    [DelimitedRecord(",")] 
+    public class SampleTypeNullableGuid 
+    { 
+        public Guid? Field1; 
+    } 
+
 }

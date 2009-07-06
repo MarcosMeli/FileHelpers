@@ -136,5 +136,15 @@ namespace FileHelpersTests.CommonTests
 		}
 
 
+        [Test] 
+        public void WriteStringNullableGuid() 
+        { 
+            engine = new FileHelperEngine(typeof(SampleTypeNullableGuid)); 
+  
+            string resStr = engine.WriteString(new []{new SampleTypeNullableGuid()}); 
+ 
+            Assert.AreEqual("\r\n", resStr); 
+        } 
+ 
 	}
 }
