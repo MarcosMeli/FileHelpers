@@ -205,12 +205,10 @@ namespace FileHelpers
 		public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
 
 
-        private bool OnBeforeReadRecord(string line)
+        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
         {
             if (BeforeReadRecord != null)
             {
-                BeforeReadRecordEventArgs e = null;
-                e = new BeforeReadRecordEventArgs(line, LineNumber);
                 BeforeReadRecord(this, e);
 
                 return e.SkipThisRecord;
@@ -234,6 +232,7 @@ namespace FileHelpers
             }
         	return false;
         }
+
 
         private bool OnBeforeWriteRecord(object record)
         {
@@ -353,7 +352,11 @@ namespace FileHelpers
                         bool skip = false;
 #if !MINI
                         ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
-                        skip = OnBeforeReadRecord(currentLine);
+                        BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
+                        skip = OnBeforeReadRecord(e);
+                        if (e.RecordLineChanged)
+                            line.ReLoad(e.RecordLine);
+
 #endif
 
                         Type currType = mRecordSelector(this, currentLine);
