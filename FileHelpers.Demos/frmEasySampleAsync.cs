@@ -69,6 +69,7 @@ namespace FileHelpersSamples
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtOut = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -98,6 +99,7 @@ namespace FileHelpersSamples
             this.cmdRun.Size = new System.Drawing.Size(152, 32);
             this.cmdRun.TabIndex = 0;
             this.cmdRun.Text = "RUN >>";
+            this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
             // label2
@@ -178,6 +180,7 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.txtOut, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,9 +192,8 @@ namespace FileHelpersSamples
 		{
 			txtOut.Text = string.Empty;
 			
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(CustomersVerticalBar));
-
-			
+			var engine = new FileHelperAsyncEngine<CustomersVerticalBar>();
+            
 			engine.BeginReadString(TestData.mCustomersTest);
 
 			// The Async engines are IEnumerable

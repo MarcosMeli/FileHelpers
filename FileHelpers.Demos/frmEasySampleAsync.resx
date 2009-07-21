@@ -131,7 +131,7 @@
 	}</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>  FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(CustomersVerticalBar));
+    <value>var engine = new FileHelperAsyncEngine&lt;CustomersVerticalBar&gt;();
 
   engine.BeginReadFile("TestIn.txt");
 

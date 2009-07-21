@@ -107,10 +107,10 @@ End Class
         <td valign="top"><p>Later you need to create a FileHelperEngine and Read/Write files:                        
             <blockquote><b>C#</b>
 <textarea name="code" class="c#">
-FileHelperEngine engine = new FileHelperEngine(typeof(Customer));
+FileHelperEngine<Customer> engine = new FileHelperEngine<Customer>();
 
 // To Read Use:
-Customer[] res = engine.ReadFile(&quot;FileIn.txt&quot;) as Customer[];
+Customer[] res = engine.ReadFile(&quot;FileIn.txt&quot;);
 
 // To Write Use:
 engine.WriteFile(&quot;FileOut.txt&quot;, res);
@@ -118,10 +118,10 @@ engine.WriteFile(&quot;FileOut.txt&quot;, res);
           </blockquote>
             <blockquote><b>VB.NET</b>
 <textarea name="code" class="vb">
-Dim engine As New FileHelperEngine(GetType( Customer))
+Dim engine As New FileHelperEngine(Of Customer)()
 
 ' To Read Use:
-Dim res As  Customer() = DirectCast(engine.ReadFile(&quot;FileIn.txt&quot;), Customer())
+Dim res As  Customer() = engine.ReadFile(&quot;FileIn.txt&quot;)
 
 ' To Write Use:
 engine.WriteFile(&quot;FileOut.txt&quot;, res)

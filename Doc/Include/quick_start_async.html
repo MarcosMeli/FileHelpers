@@ -108,7 +108,7 @@ End Class
             <blockquote><b>C#</b>
 <textarea name="code" class="c#">
 
-FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Customer));
+FileHelperAsyncEngine<Customer> engine = new FileHelperAsyncEngine<Customer>();
 
 // Read
 engine.BeginReadFile(&quot;TestIn.txt&quot;);
@@ -137,7 +137,7 @@ engine.Close();
             <blockquote><b>VB.NET</b>
 <textarea name="code" class="vb">
 
-Dim engine As New FileHelperAsyncEngine(GetType(Customer))
+Dim engine As New FileHelperAsyncEngine(Of Customer)()
 
 ' Read
 engine.BeginReadFile(&quot;TestIn.txt&quot;)
