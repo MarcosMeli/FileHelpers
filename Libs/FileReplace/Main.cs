@@ -41,7 +41,7 @@ namespace FileReplace
                         return;
                     }
 
-                    newString = File.ReadAllText(args[3], Encoding.Default);
+                    newString = File.ReadAllText(args[3], Encoding.UTF8);
 
                 }
 
@@ -58,7 +58,7 @@ namespace FileReplace
         static bool mEscape = false;
         private static void ReplaceFile(string destFile, string newString, string srcString)
         {
-            string originalStr = File.ReadAllText(destFile, Encoding.Default);
+            string originalStr = File.ReadAllText(destFile, Encoding.UTF8);
 
             if (mEscape)
             {
@@ -77,7 +77,7 @@ namespace FileReplace
 
             }
 
-            File.WriteAllText(destFile, ReplaceIgnoringCase(originalStr, srcString, newString), Encoding.Default);
+            File.WriteAllText(destFile, ReplaceIgnoringCase(originalStr, srcString, newString), Encoding.UTF8);
             Console.WriteLine("Replaced: '" + FirstChars(srcString, 25) + "' --> '" + FirstChars(newString, 25) + "'.");
         }
 
