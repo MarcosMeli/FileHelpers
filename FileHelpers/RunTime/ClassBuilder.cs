@@ -90,7 +90,8 @@ namespace FileHelpers.RunTime
                         if (module.Name == "System.Data.dll")
                             mustAddSystemData = true;
 
-                        arr.Add(module.FullyQualifiedName);
+                        if (File.Exists(module.FullyQualifiedName)) 
+                            arr.Add(module.FullyQualifiedName);
                     }
 
                     mReferences = (string[]) arr.ToArray(typeof (string));
