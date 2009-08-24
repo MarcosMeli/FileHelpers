@@ -332,7 +332,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                     record.mDetails = tmpDetails.ToArray();
 #else
-                                record.mDetails = (D[])tmpDetails.ToArray();
+                                record.mDetails = (D[])tmpDetails.ToArray(typeof(D));
 #endif
                                     resArray.Add(record);
                                 }
@@ -406,7 +406,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                     record.mDetails = tmpDetails.ToArray();
 #else
-                record.mDetails = (D[])tmpDetails.ToArray();
+                record.mDetails = (D[])tmpDetails.ToArray(typeof(D));
 #endif
                     resArray.Add(record);
                 }
