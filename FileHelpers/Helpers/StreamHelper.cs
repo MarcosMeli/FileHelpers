@@ -10,7 +10,7 @@ using System.Text;
 namespace FileHelpers
 {
 
-#if NET_1_1 || MINI
+#if MINI
 
 	internal sealed class StreamHelper
 	{

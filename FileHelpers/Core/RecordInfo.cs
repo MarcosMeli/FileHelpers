@@ -7,17 +7,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Reflection;
-using System.Security.Permissions;
-using System.Security.Policy;
 using System.Text;
 
 #if ! MINI
 using System.Data;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Reflection.Emit;
 #endif
 
@@ -308,7 +303,7 @@ namespace FileHelpers
                 values[i] = mFields[i].ExtractFieldValue(line);
             }
 
-#if NET_1_1 || MINI
+#if MINI
 			try
 			{
 				object record = CreateRecordObject();
@@ -426,7 +421,7 @@ namespace FileHelpers
             //string res = String.Empty;
 
 
-#if NET_1_1 || MINI
+#if MINI
 			object[] mValues = new object[mFieldCount];
 			for (int i = 0; i < mFieldCount; i++)
 			{
@@ -482,7 +477,7 @@ namespace FileHelpers
                 values[i] = mFields[i].CreateValueForField(values[i]);
             }
 
-#if NET_1_1 || MINI
+#if MINI
 
 			object record = mRecordConstructor.Invoke(RecordInfo.mEmptyObjectArr);
 
@@ -523,7 +518,7 @@ namespace FileHelpers
         /// <returns>An object[] of the values in the fields.</returns>
         public object[] RecordToValues(object record)
         {
-#if NET_1_1 || MINI
+#if MINI
 			object[] res = new object[mFieldCount];
 
 			for (int i = 0; i < mFieldCount; i++)

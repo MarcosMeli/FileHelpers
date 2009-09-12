@@ -55,9 +55,6 @@ namespace FileHelpers
 	}
 
 	/// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
-#if NET_1_1
-	public sealed class BeforeReadRecordEventArgs: ReadRecordEventArgs
-#else
     public sealed class BeforeReadRecordEventArgs: BeforeReadRecordEventArgs<object>
     {
         internal BeforeReadRecordEventArgs(string line)
@@ -71,7 +68,6 @@ namespace FileHelpers
 
     /// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
     public class BeforeReadRecordEventArgs<T> : ReadRecordEventArgs
-#endif
 	{
 		internal BeforeReadRecordEventArgs(string line): this(line, -1)
 		{}
@@ -91,27 +87,6 @@ namespace FileHelpers
 	}
 
 	/// <summary>Arguments for the <see cref="AfterReadRecordHandler"/></summary>
-#if NET_1_1
-	public sealed class AfterReadRecordEventArgs: ReadRecordEventArgs
-	{
-		internal AfterReadRecordEventArgs(string line, object newRecord): this(line, newRecord, -1)
-		{}
-
-		internal AfterReadRecordEventArgs(string line, object newRecord, int lineNumber): base(line, lineNumber)
-		{
-			mRecord = newRecord;
-		}
-
-		private object mRecord;
-
-		/// <summary>The current record.</summary>
-		public object Record
-		{
-			get { return mRecord; }
-			set { mRecord = value; }
-		}
-
-#else
     public sealed class AfterReadRecordEventArgs: AfterReadRecordEventArgs<object>
     {
         internal AfterReadRecordEventArgs(string line, object newRecord)
@@ -143,8 +118,6 @@ namespace FileHelpers
 			get { return mRecord; }
 			set { mRecord = value; }
 		}
-#endif
-
 
 		private bool mSkipThisRecord = false;
 

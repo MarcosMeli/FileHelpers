@@ -337,7 +337,7 @@ namespace FileHelpers
             public int Compare(object x, object y)
             {
 
-#if NET_1_1 || MINI
+#if MINI
 				IComparable xv = mFieldInfo.GetValue(x) as IComparable;
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
 #else
@@ -350,7 +350,7 @@ namespace FileHelpers
 
             }
 
-#if ! (NET_1_1 || MINI)
+#if ! (MINI)
             private GetFieldValueCallback mGetFieldValueHandler;
 #endif
 
@@ -626,24 +626,6 @@ namespace FileHelpers
 
         #endregion
 
-#if NET_1_1
-
-		/// <summary>
-		/// Shortcut method to read all the text in a file.
-		/// </summary>
-		/// <param name="file">The file name</param>
-		/// <returns>The contents of the files</returns>
-		public static string RawReadAllFile(string file)
-		{
-			StreamReader reader = new StreamReader(file);
-			string res = reader.ReadToEnd();
-			reader.Close();
-			return res;
-		}
-
-#endif
-
-
         /// <summary>
         /// Shortcut method to read the first n lines of a text file.
         /// </summary>
@@ -776,7 +758,7 @@ namespace FileHelpers
 		#endregion
     }
 
-#if ! (NET_1_1 || MINI)
+#if ! (MINI)
 	internal delegate object GetFieldValueCallback(object record);
 #endif
 
