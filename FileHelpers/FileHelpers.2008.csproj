@@ -12,6 +12,11 @@
     </AssemblyKeyContainerName>
     <AssemblyName>FileHelpers</AssemblyName>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
+    <!--  
+        Mono's Xbuild has a bug (https://bugzilla.novell.com/show_bug.cgi?id=542461)
+        which causes VS projects to not be correctly Strong Named. Hand-hacking a workaround:
+    -->
+    <KeyOriginatorFile>$(AssemblyOriginatorKeyFile)</KeyOriginatorFile>
     <SignAssembly>true</SignAssembly>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
