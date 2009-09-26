@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (SOXLog));
 			
-			SOXLog[] res = (SOXLog[]) TestCommon.ReadTest(engine, @"Good\FieldIgnoredAdvanced.txt");
+			SOXLog[] res = (SOXLog[]) TestCommon.ReadTest(engine, "Good", "FieldIgnoredAdvanced.txt");
 			Assert.AreEqual(5, res.Length);
 
 			Assert.AreEqual(ActionEnum.Deleted, res[0].ActionType);	
@@ -61,7 +61,7 @@ namespace FileHelpersTests.CommonTests
 		{
 				engine = new FileHelperEngine(typeof (AnotherDelimiterType));
 
-				AnotherDelimiterType[] res = (AnotherDelimiterType[]) TestCommon.ReadTest(engine, @"Good\CustomConverter2.txt");
+				AnotherDelimiterType[] res = (AnotherDelimiterType[]) TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
 
 				Assert.AreEqual(4, res.Length);
 

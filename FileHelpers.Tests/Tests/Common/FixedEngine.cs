@@ -11,13 +11,13 @@ namespace FileHelpersTests.CommonTests
 		public void SimpleTest()
 		{
             FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed));
-            Assert.AreEqual(91, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+            Assert.AreEqual(91, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 
             engine.Options.IgnoreFirstLines = 10;
-            Assert.AreEqual(81, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+            Assert.AreEqual(81, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 
             engine.Options.IgnoreLastLines = 6;
-            Assert.AreEqual(75, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+            Assert.AreEqual(75, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 
             Assert.AreEqual(183, engine.Options.RecordLength);
 
@@ -27,11 +27,11 @@ namespace FileHelpersTests.CommonTests
         public void SimpleTest2()
         {
             FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed));
-            Assert.AreEqual(91, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+            Assert.AreEqual(91, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 
             engine.Options.RecordCondition.Condition = RecordCondition.IncludeIfBegins;
             engine.Options.RecordCondition.Selector = "F";
-            Assert.AreEqual(8, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+            Assert.AreEqual(8, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 
         }
 
@@ -39,7 +39,7 @@ namespace FileHelpersTests.CommonTests
 		public void SimpleTest3()
 		{
 			FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed2));
-			Assert.AreEqual(8, TestCommon.ReadTest(engine, @"Good\CustomersFixed.txt").Length);
+			Assert.AreEqual(8, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
 		}
 
         [Test]

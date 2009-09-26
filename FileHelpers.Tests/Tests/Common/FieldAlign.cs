@@ -13,7 +13,7 @@ namespace FileHelpersTests.CommonTests
 		private void RunAlignTest()
 		{
 			engine = new FileHelperEngine(typeof (AlignClass));
-			AlignClass[] resTemp = (AlignClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			AlignClass[] resTemp = (AlignClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
 
 			string tmp = engine.WriteString(resTemp);
 

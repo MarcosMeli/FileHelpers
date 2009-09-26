@@ -221,7 +221,7 @@ namespace FileHelpersTests.DataLink
 
 			try
 			{
-				storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), TestCommon.GetPath(@"Good\CustomersVerticalBar.txt")));
+				storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), TestCommon.GetPath("Good", "CustomersVerticalBar.txt")));
 			}
 			catch(SqlException ex)
 			{
@@ -249,7 +249,7 @@ namespace FileHelpersTests.DataLink
 
 			try
 			{
-				FileDataLink.EasyInsertFromFile(storage, TestCommon.GetPath(@"Good\CustomersVerticalBar.txt"));
+				FileDataLink.EasyInsertFromFile(storage, TestCommon.GetPath("Good", "CustomersVerticalBar.txt"));
 			}
 			catch(SqlException ex)
 			{
@@ -272,7 +272,7 @@ namespace FileHelpersTests.DataLink
 			storage.DatabaseName = "Northwind";
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlOrder);
-			OrdersVerticalBar[] res = (OrdersVerticalBar[]) CommonEngine.ReadFile(typeof(OrdersVerticalBar), TestCommon.GetPath(@"Good\OrdersVerticalBar.txt"));
+			OrdersVerticalBar[] res = (OrdersVerticalBar[]) CommonEngine.ReadFile(typeof(OrdersVerticalBar), TestCommon.GetPath("Good", "OrdersVerticalBar.txt"));
 			OrdersVerticalBar[] res2 = new OrdersVerticalBar[1];
 			res2[0] = res[0];
 

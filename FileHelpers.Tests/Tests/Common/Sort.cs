@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 
-			CustomersVerticalBar[] res =  engine.ReadFile(TestCommon.GetPath(@"good\Sort1.txt")) as CustomersVerticalBar[];
+			CustomersVerticalBar[] res =  engine.ReadFile(TestCommon.GetPath("Good", "Sort1.txt")) as CustomersVerticalBar[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -34,7 +34,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath("Good", "Sort1.txt")) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -52,7 +52,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 
-            object[] res = engine.ReadFile(TestCommon.GetPath(@"good\Sort1.txt"));
+            object[] res = engine.ReadFile(TestCommon.GetPath("Good", "Sort1.txt"));
 
 
             Assert.Throws<BadUsageException>(()
@@ -64,7 +64,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath("Good", "Sort1.txt")) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -82,7 +82,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersSort));
 
-			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath(@"good\Sort1.txt")) as CustomersSort[];
+			CustomersSort[] res =  engine.ReadFile(TestCommon.GetPath("Good", "Sort1.txt")) as CustomersSort[];
 			Assert.AreEqual(8, res.Length);
 
             Assert.Throws<BadUsageException>(()

@@ -88,7 +88,7 @@ namespace FileHelpersTests.CommonTests
         {
             engine = new FileHelperEngine(typeof(AddressConvClass));
 
-            AddressConvClass[] res = (AddressConvClass[])TestCommon.ReadTest(engine, @"Good\CustomConverter2.txt");
+            AddressConvClass[] res = (AddressConvClass[])TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
 
             Assert.AreEqual(4, res.Length);
 
@@ -116,7 +116,7 @@ namespace FileHelpersTests.CommonTests
         {
             engine = new FileHelperEngine(typeof(AddressConvClass2));
 
-            AddressConvClass2[] res = (AddressConvClass2[])TestCommon.ReadTest(engine, @"Good\CustomConverter2.txt");
+            AddressConvClass2[] res = (AddressConvClass2[])TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
 
             Assert.AreEqual(4, res.Length);
 

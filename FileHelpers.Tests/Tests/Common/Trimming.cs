@@ -13,7 +13,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("ALFKI      ", res[0].CustomerID);
@@ -30,7 +30,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Alfreds Futterkiste", res[0].CompanyName);
@@ -47,7 +47,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Maria Anders", res[0].ContactName);
@@ -64,7 +64,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (TrimClass));
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, @"Good\Trim1.txt");
+			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Sales Representative                  ", res[0].ContactTitle);

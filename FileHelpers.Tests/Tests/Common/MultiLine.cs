@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof(FHClient));
 
-            object[] res = engine.ReadFile(TestCommon.GetPath(@"Good\MultilineFull.txt"));
+            object[] res = engine.ReadFile(TestCommon.GetPath("Good", "MultilineFull.txt"));
 
             Assert.AreEqual(16, res.Length);
             Assert.AreEqual(16, engine.TotalRecords);

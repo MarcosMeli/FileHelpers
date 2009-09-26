@@ -15,7 +15,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(5, engine.LineNumber);
@@ -30,7 +30,7 @@ namespace FileHelpersTests.CommonTests
 			SampleType rec1, rec2;
 
 			Assert.AreEqual(0, asyncEngine.LineNumber);
-			TestCommon.BeginReadTest(asyncEngine, @"Good\test1.txt");
+			TestCommon.BeginReadTest(asyncEngine, "Good", "test1.txt");
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);

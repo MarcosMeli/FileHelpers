@@ -11,11 +11,11 @@ namespace FileHelpersTests.CommonTests
 
 		private const int ExpectedRecords = 91;
 
-		private void RunTests(string fileName, Type type)
+        private void RunTests(Type type, params string[] pathElements)
 		{
 			engine = new FileHelperEngine(type);
 
-			object[] res = TestCommon.ReadTest(engine, fileName);
+			object[] res = TestCommon.ReadTest(engine, pathElements);
 
 			Assert.AreEqual(ExpectedRecords, res.Length);
 		}
@@ -23,25 +23,25 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void Fixed()
 		{
-			RunTests(@"Good\CustomersFixed.txt", typeof (CustomersFixed));
+			RunTests(typeof (CustomersFixed), "Good", "CustomersFixed.txt");
 		}
 
 		[Test]
 		public void Tab()
 		{
-			RunTests(@"Good\CustomersTab.txt", typeof (CustomersTab));
+			RunTests(typeof (CustomersTab), "Good", "CustomersTab.txt");
 		}
 
 		[Test]
 		public void VerticalBar()
 		{
-			RunTests(@"Good\CustomersVerticalBar.txt", typeof (CustomersVerticalBar));
+			RunTests(typeof (CustomersVerticalBar), "Good", "CustomersVerticalBar.txt");
 		}
 
 		[Test]
 		public void SemiColon()
 		{
-			RunTests(@"Good\CustomersSemiColon.txt", typeof (CustomersSemiColon));
+			RunTests(typeof (CustomersSemiColon), "Good", "CustomersSemiColon.txt");
 		}
 
 	}

@@ -19,7 +19,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", 2);
+			res = (SampleType[]) TestCommon.ReadTest(engine, 2, "Good", "test1.txt");
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);
@@ -42,7 +42,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", int.MaxValue);
+			res = (SampleType[]) TestCommon.ReadTest(engine, int.MaxValue, "Good", "test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -56,7 +56,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", -1);
+			res = (SampleType[]) TestCommon.ReadTest(engine, -1, "Good", "test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -69,7 +69,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", -1283623);
+			res = (SampleType[]) TestCommon.ReadTest(engine, -1283623, "Good", "test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -82,7 +82,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", 0);
+			res = (SampleType[]) TestCommon.ReadTest(engine, 0, "Good", "test1.txt");
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(0, engine.TotalRecords);
@@ -95,7 +95,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt", 1);
+			res = (SampleType[]) TestCommon.ReadTest(engine, 1, "Good", "test1.txt");
 
 			Assert.AreEqual(1, res.Length);
 			Assert.AreEqual(1, engine.TotalRecords);
@@ -108,7 +108,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "test1.txt");
 			string temp = engine.WriteString(res);
 			res = (SampleType[]) engine.ReadString(temp, 2);
 
@@ -124,7 +124,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "test1.txt");
 			string temp = engine.WriteString(res);
 			res = (SampleType[]) engine.ReadString(temp, int.MaxValue);
 
@@ -136,14 +136,14 @@ namespace FileHelpersTests.CommonTests
 		[Test]
         public void ReadFileMaxRecords09()
 		{
-			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath(@"Good\test1.txt"), 2);
+			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath("Good", "test1.txt"), 2);
 			Assert.AreEqual(2, res.Length);
 		}
 
 		[Test]
         public void ReadFileMaxRecords10()
 		{
-			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath(@"Good\test1.txt"), -1);
+			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath("Good", "test1.txt"), -1);
 
 			Assert.AreEqual(4, res.Length);
 		}

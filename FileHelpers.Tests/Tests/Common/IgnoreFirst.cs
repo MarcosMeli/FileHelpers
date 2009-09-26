@@ -16,7 +16,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType0));
 
-			DiscardType0[] res = (DiscardType0[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst0.txt");
+			DiscardType0[] res = (DiscardType0[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst0.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -27,7 +27,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType1));
 
-			DiscardType1[] res = (DiscardType1[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst1.txt");
+			DiscardType1[] res = (DiscardType1[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst1.txt");
 
             Assert.AreEqual(engine.TotalRecords, res.Length);
 
@@ -40,7 +40,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType11));
 
-			DiscardType11[] res = (DiscardType11[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst1.txt");
+			DiscardType11[] res = (DiscardType11[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -51,7 +51,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType2));
 
-			DiscardType2[] res = (DiscardType2[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst2.txt");
+			DiscardType2[] res = (DiscardType2[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst2.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -63,7 +63,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType2));
 
-			DiscardType2[] res = (DiscardType2[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst3.txt");
+			DiscardType2[] res = (DiscardType2[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -74,7 +74,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardType2));
 
-			TestCommon.BeginReadTest(asyncEngine, @"Good\DiscardFirst2.txt");
+			TestCommon.BeginReadTest(asyncEngine, "Good", "DiscardFirst2.txt");
 
 			Assert.AreEqual("you can get this lines\r\nwith the FileHelperEngine.HeaderText property\r\n", asyncEngine.HeaderText);
 
@@ -88,7 +88,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardType3));
 
-			TestCommon.BeginReadTest(asyncEngine, @"Good\DiscardFirst2.txt");
+			TestCommon.BeginReadTest(asyncEngine, "Good", "DiscardFirst2.txt");
 
 			object res = asyncEngine.ReadNext();
 
@@ -100,7 +100,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType3));
 
-			object[] res = TestCommon.ReadTest(engine, @"Good\DiscardFirst2.txt");
+			object[] res = TestCommon.ReadTest(engine, "Good", "DiscardFirst2.txt");
 
 			Assert.AreEqual(0, res.Length);
 		}
@@ -110,7 +110,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardType4));
 
-			TestCommon.BeginReadTest(asyncEngine, @"Good\DiscardFirst2.txt");
+			TestCommon.BeginReadTest(asyncEngine, "Good", "DiscardFirst2.txt");
 
 			object res = asyncEngine.ReadNext();
 
@@ -122,7 +122,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType4));
 
-			object[] res = TestCommon.ReadTest(engine, @"Good\DiscardFirst2.txt");
+			object[] res = TestCommon.ReadTest(engine, "Good", "DiscardFirst2.txt");
 
 			Assert.AreEqual(0, res.Length);
 		}
@@ -132,7 +132,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (DiscardType1));
 
-			DiscardType1[] res = (DiscardType1[]) TestCommon.ReadTest(engine, @"Good\DiscardFirst1.txt");
+			DiscardType1[] res = (DiscardType1[]) TestCommon.ReadTest(engine, "Good", "DiscardFirst1.txt");
 			engine.HeaderText = "This is a new header....";
 
 			engine.WriteFile("tempo.txt", res);
@@ -154,7 +154,7 @@ namespace FileHelpersTests.CommonTests
         {
             engine = new FileHelperEngine(typeof(DiscardType1));
 
-            DiscardType1[] res = (DiscardType1[])TestCommon.ReadTest(engine, @"Good\DiscardFirst1.txt");
+            DiscardType1[] res = (DiscardType1[])TestCommon.ReadTest(engine, "Good", "DiscardFirst1.txt");
 
             asyncEngine = new FileHelperAsyncEngine(typeof(DiscardType1));
 

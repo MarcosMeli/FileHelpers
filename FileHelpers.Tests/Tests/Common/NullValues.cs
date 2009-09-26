@@ -69,7 +69,7 @@ namespace FileHelpersTests.CommonTests
             engine = new FileHelperEngine(typeof(NullableType));
 
             NullableType[] res;
-            res = (NullableType[])TestCommon.ReadTest(engine, @"Good\NullableTypes1.txt");
+            res = (NullableType[])TestCommon.ReadTest(engine, "Good", "NullableTypes1.txt");
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);

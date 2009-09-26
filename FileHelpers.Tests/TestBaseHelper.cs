@@ -1,11 +1,10 @@
-using System;
-using System.Text;
+using System.IO;
 
 namespace FileHelpersTests
 {
     public class TestBaseHelper
     {
-     	private readonly string mBasePath = @"..\data\";
+        private readonly string mBasePath = Path.Combine("..", "data");
 
         protected string BuildPath(string file)
         {
@@ -16,9 +15,9 @@ namespace FileHelpersTests
         protected string BuildPath(string basePath, string file)
         {
             if (basePath == null | basePath.Length == 0)
-                return mBasePath + file;
+                return Path.Combine(mBasePath, file);
             else
-                return mBasePath + basePath + @"\" + file;
+                return Path.Combine(Path.Combine(mBasePath, basePath), file);
         }
     }
 }

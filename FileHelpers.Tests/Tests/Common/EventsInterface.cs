@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 		public void ReadEvents()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			SampleType[] res = (SampleType[]) TestCommon.ReadTest(engine, @"Good\test1.txt");
+			SampleType[] res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

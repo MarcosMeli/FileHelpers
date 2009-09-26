@@ -9,12 +9,12 @@ namespace FileHelpersTests.CommonTests
 	{
 		private const int ExpectedRecords = 91;
 
-		private void RunTests(string fileName, Type type, string delimiter)
+		private void RunTests(Type type, string delimiter, params string[] pathElements)
 		{
             DelimitedFileEngine engine = new DelimitedFileEngine(type);
             engine.Options.Delimiter = delimiter;
 
-			object[] res = TestCommon.ReadTest(engine, fileName);
+			object[] res = TestCommon.ReadTest(engine, pathElements);
 
             
 			Assert.AreEqual(ExpectedRecords, res.Length);
@@ -23,19 +23,19 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void Tab()
 		{
-			RunTests(@"Good\CustomersTab.txt", typeof (CustomersTab), "\t");
+			RunTests(typeof (CustomersTab), "\t", "Good", "CustomersTab.txt");
 		}
 
 		[Test]
 		public void VerticalBar()
 		{
-            RunTests(@"Good\CustomersVerticalBar.txt", typeof(CustomersTab), "|");
+            RunTests(typeof(CustomersTab), "|", "Good", "CustomersVerticalBar.txt");
 		}
 
 		[Test]
 		public void SemiColon()
 		{
-            RunTests(@"Good\CustomersSemiColon.txt", typeof(CustomersTab), ";");
+            RunTests(typeof(CustomersTab), ";", "Good", "CustomersSemiColon.txt");
 		}
 
 

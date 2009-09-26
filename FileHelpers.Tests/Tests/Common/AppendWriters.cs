@@ -81,7 +81,7 @@ namespace FileHelpersTests.CommonTests
 		public void AppendToEmpty()
 		{
 
-			File.Copy(TestCommon.GetPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
+			File.Copy(TestCommon.GetPath("Good", "TestEmpty.txt"), "tempEmpty.txt", true);
 			
 			engine = new FileHelperEngine(typeof (SampleType));
 
@@ -119,7 +119,7 @@ namespace FileHelpersTests.CommonTests
 			rec.Field2 = "je";
 			rec.Field3 = 0;
 
-			File.Copy(TestCommon.GetPath(@"Good\TestEmpty.txt"), "tempEmpty.txt", true);
+			File.Copy(TestCommon.GetPath("Good", "TestEmpty.txt"), "tempEmpty.txt", true);
 
 			engine.BeginAppendToFile(@"tempEmpty.txt");
 			engine.WriteNext(rec);
@@ -142,7 +142,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
-			File.Copy(@"..\data\Bad\BadAdd1.txt", "BadAddTemp1.txt", true);
+			File.Copy(TestCommon.GetPath("Bad", "BadAdd1.txt"), "BadAddTemp1.txt", true);
 
 			SampleType record = new SampleType();
 
@@ -163,7 +163,7 @@ namespace FileHelpersTests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
 
-			File.Copy(@"..\data\Bad\BadAdd2.txt", "BadAddTemp2.txt", true);
+			File.Copy(TestCommon.GetPath("Bad", "BadAdd2.txt"), "BadAddTemp2.txt", true);
 
 			SampleType record = new SampleType();
 

@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void ReadFileComma()
 		{
-			string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
 			string classname = "CustomerComma";
 			char delimiter = ',';
 
@@ -25,7 +25,7 @@ namespace FileHelpersTests.CommonTests
         [Test]
         public void ReadFileHeader1()
         {
-            string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
             string classname = "CustomerComma";
             char delimiter = ',';
         
@@ -48,7 +48,7 @@ namespace FileHelpersTests.CommonTests
         [Test]
         public void ReadFileHeader2()
         {
-            string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
             string classname = "CustomerComma";
             char delimiter = ',';
 
@@ -71,7 +71,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void ReadFileComma2()
 		{
-			string file = TestCommon.GetPath(@"Good\RealCsvComma2.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvComma2.txt");
 			string classname = "CustomerComma";
 			char delimiter = ',';
 			char delimiterHdr = '|';
@@ -83,7 +83,7 @@ namespace FileHelpersTests.CommonTests
 		public void ReadFileVerticalBar()
 		{
 
-			string file = TestCommon.GetPath(@"Good\RealCsvVerticalBar1.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt");
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
 
@@ -93,7 +93,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void ReadFileVerticalBar2()
 		{
-			string file = TestCommon.GetPath(@"Good\RealCsvVerticalBar2.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
 			char delimiterHdr = ',';
@@ -104,7 +104,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void DualEngine()
 		{
-			string file = TestCommon.GetPath(@"Good\RealCsvVerticalBar2.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
 
@@ -140,13 +140,13 @@ namespace FileHelpersTests.CommonTests
 		public void BadName()
 		{
             Assert.Throws<FileHelpersException>(
-                () => new CsvEngine("Ops, somerrors", '|', TestCommon.GetPath(@"Good\RealCsvVerticalBar1.txt")));
+                () => new CsvEngine("Ops, somerrors", '|', TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt")));
 		}
 
 		[Test]
 		public void ReadWithCommon()
 		{
-			string file = TestCommon.GetPath(@"Good\RealCsvComma1.txt");
+			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
 			string classname = "CustomerComma";
 			char delimiter = ',';
 

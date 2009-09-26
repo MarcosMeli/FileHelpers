@@ -14,25 +14,25 @@ namespace FileHelpersTests.CommonTests
 
 		private const int ExpectedRecords = 7;
 
-		private void RunTests(string fileName, Encoding enc)
+        private void RunTests(Encoding enc, params string[] pathElements)
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 			engine.Encoding = enc;
 			Assert.AreEqual(enc, engine.Encoding);
-			CoreRunTest(fileName);
+			CoreRunTest(pathElements);
 		}
 
-		private void RunConstructor(string fileName, Encoding enc)
+        private void RunConstructor(Encoding enc, params string[] pathElements)
 		{
 			engine = new FileHelperEngine(typeof (CustomersVerticalBar), enc);
 			Assert.AreEqual(enc, engine.Encoding);
-			CoreRunTest(fileName);
+			CoreRunTest(pathElements);
 		}
 
-		private void CoreRunTest(string fileName)
+        private void CoreRunTest(params string[] pathElements)
 		{
 	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, fileName);
+			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, pathElements);
 	
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
@@ -46,28 +46,28 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual("Luleå", res[4].City);
 		}
 
-		private void RunAsyncTests(string fileName, Encoding enc)
+		private void RunAsyncTests(Encoding enc, params string[] pathElements)
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar));
 			asyncEngine.Encoding = enc;
 			Assert.AreEqual(enc, asyncEngine.Encoding);
 
-			CoreRunAsync(fileName);
+			CoreRunAsync(pathElements);
 		}
 
-		private void RunAsyncConstructor(string fileName, Encoding enc)
+		private void RunAsyncConstructor(Encoding enc, params string[] pathElements)
 		{
 			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar), enc);
 			Assert.AreEqual(enc, asyncEngine.Encoding);
 
-			CoreRunAsync(fileName);
+			CoreRunAsync(pathElements);
 		}
 
-		private void CoreRunAsync(string fileName)
+		private void CoreRunAsync(params string[] pathElements)
 		{
 			ArrayList arr = new ArrayList();
 	
-			TestCommon.BeginReadTest(asyncEngine, fileName);
+			TestCommon.BeginReadTest(asyncEngine, pathElements);
 
 			foreach (object record in asyncEngine)
 			{
@@ -90,86 +90,86 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void EncodingANSI()
 		{
-			RunTests(@"Good\EncodingANSI.txt", Encoding.Default);
+			RunTests(Encoding.Default, "Good", "EncodingANSI.txt");
 		}
 
 		[Test]
 		public void EncodingUTF8()
 		{
-			RunTests(@"Good\EncodingUTF8.txt", Encoding.UTF8);
+			RunTests(Encoding.UTF8, "Good", "EncodingUTF8.txt");
 		}
 
 		[Test]
 		public void EncodingUnicode()
 		{
-			RunTests(@"Good\EncodingUnicode.txt", Encoding.Unicode);
+			RunTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUnicodeBig()
 		{
-			RunAsyncTests(@"Good\EncodingUnicodeBig.txt", Encoding.BigEndianUnicode);
+			RunAsyncTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncANSI()
 		{
-			RunAsyncTests(@"Good\EncodingANSI.txt", Encoding.Default);
+			RunAsyncTests(Encoding.Default, "Good", "EncodingANSI.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUTF8()
 		{
-			RunAsyncTests(@"Good\EncodingUTF8.txt", Encoding.UTF8);
+			RunAsyncTests(Encoding.UTF8, "Good", "EncodingUTF8.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUnicode()
 		{
-			RunAsyncTests(@"Good\EncodingUnicode.txt", Encoding.Unicode);
+			RunAsyncTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
 		}
 
 		[Test]
 		public void EncodingUnicodeBig()
 		{
-			RunTests(@"Good\EncodingUnicodeBig.txt", Encoding.BigEndianUnicode);
+			RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
 		}
 
 
 		[Test]
 		public void EncodingAsyncANSIConstructor()
 		{
-			RunConstructor(@"Good\EncodingANSI.txt", Encoding.Default);
+			RunConstructor(Encoding.Default, "Good", "EncodingANSI.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUTFConstructor()
 		{
-			RunConstructor(@"Good\EncodingUTF8.txt", Encoding.UTF8);
+			RunConstructor(Encoding.UTF8, "Good", "EncodingUTF8.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUnicodeConstructor()
 		{
-			RunConstructor(@"Good\EncodingUnicode.txt", Encoding.Unicode);
+			RunConstructor(Encoding.Unicode, "Good", "EncodingUnicode.txt");
 		}
 
 		[Test]
 		public void EncodingANSIConstructorAsync()
 		{
-			RunAsyncConstructor(@"Good\EncodingANSI.txt", Encoding.Default);
+			RunAsyncConstructor(Encoding.Default, "Good", "EncodingANSI.txt");
 		}
 
 		[Test]
 		public void EncodingUTF8ConstructorAsync()
 		{
-			RunAsyncConstructor(@"Good\EncodingUTF8.txt", Encoding.UTF8);
+			RunAsyncConstructor(Encoding.UTF8, "Good", "EncodingUTF8.txt");
 		}
 
 		[Test]
 		public void EncodingUnicodeConstructorAsync()
 		{
-			RunAsyncConstructor(@"Good\EncodingUnicode.txt", Encoding.Unicode);
+			RunAsyncConstructor(Encoding.Unicode, "Good", "EncodingUnicode.txt");
 		}
 
 	}
