@@ -188,13 +188,15 @@ namespace FileHelpers
                 if (mTypeCacheInfo == null)
                     mTypeCacheInfo = mRecordType.GetType().GetProperty("Cache", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.NonPublic);
 
+                if (mTypeCacheInfo != null)
+                {
                 object cache = mTypeCacheInfo.GetValue(mRecordType, null);
 
                 if (mFieldCachePointer == null)
                     mFieldCachePointer = cache.GetType().GetField("m_fieldInfoCache", BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic);
 
                 mFieldCachePointer.SetValue(cache, null);
-            
+                }
         }
 
         #endregion

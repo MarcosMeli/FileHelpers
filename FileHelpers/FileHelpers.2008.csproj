@@ -188,7 +188,7 @@
     <Compile Include="DataLink\Storage\AccessStorage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataLink\Storage\DatabaseStorage.cs">
+    <Compile Include="DataLink\Storage\DataBaseStorage.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataLink\Storage\DataStorage.cs">
