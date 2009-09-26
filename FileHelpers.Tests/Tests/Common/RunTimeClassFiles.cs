@@ -15,7 +15,7 @@ namespace FileHelpersTests
         [Test]
 		public void LoadFromXML()
 		{
-            ClassBuilder cb = ClassBuilder.LoadFromXml(TestCommon.GetPath(@"RunTime\VendorImport.xml"));
+            ClassBuilder cb = ClassBuilder.LoadFromXml(TestCommon.GetPath("RunTime", "VendorImport.xml"));
             Type t = cb.CreateRecordClass(); // this line generates an error in the FH library 
 
             using (FileHelperAsyncEngine engine = new FileHelperAsyncEngine(t))

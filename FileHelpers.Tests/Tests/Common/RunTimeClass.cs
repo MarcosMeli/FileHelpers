@@ -61,7 +61,7 @@ namespace FileHelpersTests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -88,7 +88,7 @@ namespace FileHelpersTests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -112,7 +112,7 @@ namespace FileHelpersTests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -136,7 +136,7 @@ namespace FileHelpersTests
 
 			asyncEngine = new FileHelperAsyncEngine(t);
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "test1.txt");
+			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -152,7 +152,7 @@ namespace FileHelpersTests
 
 			asyncEngine = new FileHelperAsyncEngine(t);
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "test1.txt");
+			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -172,7 +172,7 @@ namespace FileHelpersTests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -191,11 +191,11 @@ namespace FileHelpersTests
 		[Test]
 		public void ReadFileClassInFileEnc()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.GetPath(@"Classes\SampleBinaryClass.fhc"));
+			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.GetPath("Classes", "SampleBinaryClass.fhc"));
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -214,11 +214,11 @@ namespace FileHelpersTests
 		[Test]
 		public void ReadFileClassInFile()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath(@"Classes\SampleClass.cs"));
+			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "SampleClass.cs"));
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -236,11 +236,11 @@ namespace FileHelpersTests
 		[Test]
 		public void ReadFileClassInFileVbNet()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath(@"Classes\SampleClass.vb"), NetLanguage.VbNet);
+			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "SampleClass.vb"), NetLanguage.VbNet);
 
             engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -275,7 +275,7 @@ namespace FileHelpersTests
 			
 			engine = new FileHelperEngine(cb.CreateRecordClass());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test2.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test2.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -309,7 +309,7 @@ namespace FileHelpersTests
 			
 			engine = new FileHelperEngine(cb.CreateRecordClass());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -344,7 +344,7 @@ namespace FileHelpersTests
 		{
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);

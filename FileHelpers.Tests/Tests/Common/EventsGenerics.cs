@@ -21,7 +21,7 @@ namespace FileHelpersTests.CommonTests
 			engine.BeforeReadRecord += BeforeEvent;
 			engine.AfterReadRecord += AfterEvent;
 
-			object[] res = engine.ReadFile(BuildPath("Good", "test1.txt"));
+			object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -72,7 +72,7 @@ namespace FileHelpersTests.CommonTests
             engine = new FileHelperEngine<SampleType>();
             engine.AfterReadRecord += AfterEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "test1.txt"));
+            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -89,7 +89,7 @@ namespace FileHelpersTests.CommonTests
             engine = new FileHelperEngine<SampleType>();
             engine.BeforeReadRecord += BeforeEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "test1.txt"));
+            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -107,7 +107,7 @@ namespace FileHelpersTests.CommonTests
             engine.BeforeReadRecord += BeforeEvent2;
 			engine.AfterReadRecord += AfterEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "test1.txt"));
+            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

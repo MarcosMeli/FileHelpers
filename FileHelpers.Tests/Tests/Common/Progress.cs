@@ -20,7 +20,7 @@ namespace FileHelpersTests.CommonTests
 			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "test1.txt");
+			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

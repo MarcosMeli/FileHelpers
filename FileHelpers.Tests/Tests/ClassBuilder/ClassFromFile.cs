@@ -15,7 +15,7 @@ namespace FileHelpersTests
         [Test]
         public void ReadFile()
         {
-            Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath(@"Classes\ClassFromFile.cs"));
+            Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "ClassFromFile.cs"));
 
             var engine = new FileHelperEngine(t);
 

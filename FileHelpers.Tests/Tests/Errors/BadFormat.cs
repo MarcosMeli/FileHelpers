@@ -62,7 +62,7 @@ namespace FileHelpersTests.Errors
 		public void NoPendingNullValue()
 		{
 			engine = new FileHelperEngine(typeof (SampleType));
-			TestCommon.ReadTest(engine, "Bad", "NoBadNullValue.txt");
+			TestCommon.ReadTest(engine, "Bad", "NoBadNullvalue.txt");
 		}
 
 	}
