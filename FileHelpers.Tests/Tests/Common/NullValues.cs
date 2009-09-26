@@ -133,7 +133,7 @@ namespace FileHelpersTests.CommonTests
             Assert.AreEqual(new DateTime(1316, 5, 6), res[2].Field1);
 
             Assert.AreEqual("",
-                            engine.WriteString(toWrite).Split(new string[] {"\r\n"}, StringSplitOptions.None)[1].
+                            engine.WriteString(toWrite).Split(new string[] {Environment.NewLine}, StringSplitOptions.None)[1].
                                 Substring(0, 8).Trim());
 
         }

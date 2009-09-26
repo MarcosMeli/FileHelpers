@@ -143,7 +143,7 @@ namespace FileHelpersTests.CommonTests
   
             string resStr = engine.WriteString(new []{new SampleTypeNullableGuid()}); 
  
-            Assert.AreEqual("\r\n", resStr); 
+            Assert.AreEqual(Environment.NewLine, resStr); 
         } 
  
 	}

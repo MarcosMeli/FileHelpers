@@ -9,10 +9,13 @@ namespace FileHelpersTests.CommonTests
 	[TestFixture]
 	public class IgnoreLasts
 	{
-		FileHelperEngine engine;
+	    private readonly string expectedLongFooterText = "you can get this lines" + Environment.NewLine +
+	                                        "with the FileHelperEngine.FooterText property" + Environment.NewLine;
+	    FileHelperEngine engine;
 		FileHelperAsyncEngine asyncEngine;
+	    private readonly string expectedShortFooterText = "This is a new Footer....\r\n";
 
-		[Test]
+	    [Test]
 		public void DiscardLast1()
 		{
 			engine = new FileHelperEngine(typeof (DiscardLastType0));
@@ -69,7 +72,7 @@ namespace FileHelpersTests.CommonTests
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
-			Assert.AreEqual("you can get this lines\r\nwith the FileHelperEngine.FooterText property\r\n", engine.FooterText);
+			Assert.AreEqual(expectedLongFooterText, engine.FooterText);
 		}
 
 		[Test]
@@ -98,7 +101,7 @@ namespace FileHelpersTests.CommonTests
 
             Assert.AreEqual(4, asyncEngine.TotalRecords);
             
-			Assert.AreEqual("you can get this lines\r\nwith the FileHelperEngine.FooterText property\r\n", asyncEngine.FooterText);
+			Assert.AreEqual(expectedLongFooterText, asyncEngine.FooterText);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), ((DiscardLastType2)arr[0]).Field1);
 
@@ -111,7 +114,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (DiscardLastType1));
 
 			DiscardLastType1[] res = (DiscardLastType1[]) TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
-			engine.FooterText = "This is a new Footer....\r\n";
+			engine.FooterText = expectedShortFooterText;
 
 			engine.WriteFile("tempo.txt", res);
 			
@@ -120,7 +123,7 @@ namespace FileHelpersTests.CommonTests
 			DiscardLastType1[] res2 = (DiscardLastType1[]) engine.ReadFile(@"tempo.txt");
 
 			Assert.AreEqual(res.Length, res2.Length);
-			Assert.AreEqual("This is a new Footer....\r\n", engine.FooterText);
+			Assert.AreEqual(expectedShortFooterText, engine.FooterText);
 
 			if (File.Exists("tempo.txt")) File.Delete("tempo.txt");
 
@@ -152,12 +155,12 @@ namespace FileHelpersTests.CommonTests
             {}
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
-            Assert.AreEqual("This is a new Footer....\r\n", asyncEngine.FooterText);
+            Assert.AreEqual(expectedShortFooterText, asyncEngine.FooterText);
 
             asyncEngine.Close();
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
-            Assert.AreEqual("This is a new Footer....\r\n", asyncEngine.FooterText);
+            Assert.AreEqual(expectedShortFooterText, asyncEngine.FooterText);
 
             if (File.Exists("tempo.txt")) File.Delete("tempo.txt");
         }
