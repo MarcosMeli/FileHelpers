@@ -74,8 +74,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gallio, Version=3.0.6.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
-    <Reference Include="MbUnit, Version=3.0.6.0, Culture=neutral, PublicKeyToken=eb9cfa67ee6ab36e, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\nunit\2.0\nunit.framework.dll</HintPath>
@@ -276,6 +274,7 @@
     <Compile Include="Tests\Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EmbeddedIoC\ContainerTests.cs" />
     <Compile Include="Tests\DataLink\DataLinkTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -355,6 +354,9 @@
     </Compile>
     <None Include="FileHelpers.snk" />
     <None Include="TODO Tests.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\CoreUnitTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
