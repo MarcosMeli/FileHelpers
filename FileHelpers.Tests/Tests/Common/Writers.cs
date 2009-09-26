@@ -10,6 +10,7 @@ namespace FileHelpersTests.CommonTests
 	public class Writers
 	{
 		FileHelperEngine engine;
+	    private readonly int newLineLen = Environment.NewLine.Length;
 
 		[Test]
 		public void WriteFile()
@@ -81,7 +82,7 @@ namespace FileHelpersTests.CommonTests
 			StringWriter writer = new StringWriter(sb);
 			engine.WriteStream(writer, res);
 
-			Assert.AreEqual(14 + 2 + 14 + 2, sb.ToString().Length);
+			Assert.AreEqual(14 + newLineLen + 14 + newLineLen, sb.ToString().Length);
 			Assert.AreEqual(sb.ToString(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
 
 		}
@@ -107,7 +108,7 @@ namespace FileHelpersTests.CommonTests
 
 			string resStr = engine.WriteString(res);
 
-			Assert.AreEqual(14 + 2 + 14 + 2, resStr.Length);
+			Assert.AreEqual(14 + newLineLen + 14 + newLineLen, resStr.Length);
 			Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
 
 		}
@@ -130,7 +131,7 @@ namespace FileHelpersTests.CommonTests
 
 			string resStr = CommonEngine.WriteString(res);
 
-			Assert.AreEqual(14 + 2 + 14 + 2, resStr.Length);
+			Assert.AreEqual(14 + newLineLen + 14 + newLineLen, resStr.Length);
 			Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
 
 		}

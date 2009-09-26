@@ -81,7 +81,7 @@ namespace FileHelpersTests
 		public void ReadFileDiffDir()
 		{
 			string oldDir = Environment.CurrentDirectory;
-			Environment.CurrentDirectory = @"C:\";
+			Environment.CurrentDirectory = Path.GetTempPath();
 			
 			Type t = ClassBuilder.ClassFromString(mClass);
 			Environment.CurrentDirectory = oldDir;

@@ -6,13 +6,19 @@ using NUnit.Framework;
 
 namespace FileHelpersTests.CommonTests
 {
-	[TestFixture]
+    [TestFixture]
 	public class FileEncoding
 	{
 		FileHelperEngine engine;
 		FileHelperAsyncEngine asyncEngine;
+	    private const string expectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
+	    private const string expectedTextWithEGrave = "Blondesddsl p\u00e8re et fils";
+	    private const string expectedTextWithEAcute1 = "Fr\u00e9d\u00e9rique Citeaux";
+	    private const string expectedTextWithEAcute2 = "24, place Kl\u00e9ber";
+	    private const string expectedTextWithADiaeresis = "Berguvsv\u00e4gen  8";
+	    private const string expectedTextWithARing = "Lule\u00e5";
 
-		private const int ExpectedRecords = 7;
+	    private const int ExpectedRecords = 7;
 
         private void RunTests(Encoding enc, params string[] pathElements)
 		{
@@ -37,13 +43,13 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
 	
-			Assert.AreEqual("Ana Truñiño Emparedados y helados", res[1].CompanyName);
-			Assert.AreEqual("Blondesddsl père et fils", res[6].CompanyName);
-			Assert.AreEqual("Frédérique Citeaux", res[6].ContactName);
+			Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
+			Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
+			Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
 	
-			Assert.AreEqual("24, place Kléber", res[6].Address);
-			Assert.AreEqual("Berguvsvägen  8", res[4].Address);
-			Assert.AreEqual("Luleå", res[4].City);
+			Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
+			Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
+			Assert.AreEqual(expectedTextWithARing, res[4].City);
 		}
 
 		private void RunAsyncTests(Encoding enc, params string[] pathElements)
@@ -78,13 +84,13 @@ namespace FileHelpersTests.CommonTests
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
 	
-			Assert.AreEqual("Ana Truñiño Emparedados y helados", res[1].CompanyName);
-			Assert.AreEqual("Blondesddsl père et fils", res[6].CompanyName);
-			Assert.AreEqual("Frédérique Citeaux", res[6].ContactName);
+			Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
+			Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
+			Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
 	
-			Assert.AreEqual("24, place Kléber", res[6].Address);
-			Assert.AreEqual("Berguvsvägen  8", res[4].Address);
-			Assert.AreEqual("Luleå", res[4].City);
+			Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
+			Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
+			Assert.AreEqual(expectedTextWithARing, res[4].City);
 		}
 
 		[Test]

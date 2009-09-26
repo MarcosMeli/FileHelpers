@@ -11,7 +11,12 @@ namespace FileHelpersTests.CommonTests
 		FileHelperEngine engine;
 		FileHelperAsyncEngine asyncEngine;
 
-		[Test]
+	    private readonly string expectedLongHeaderText = "you can get this lines" + Environment.NewLine +
+	                                                     "with the FileHelperEngine.HeaderText property" + Environment.NewLine;
+
+	    private readonly string expectedShortHeaderText = "This is a new header...." + Environment.NewLine;
+
+	    [Test]
 		public void DiscardFirst1()
 		{
 			engine = new FileHelperEngine(typeof (DiscardType0));
@@ -55,7 +60,7 @@ namespace FileHelpersTests.CommonTests
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
-			Assert.AreEqual("you can get this lines\r\nwith the FileHelperEngine.HeaderText property\r\n", engine.HeaderText);
+			Assert.AreEqual(expectedLongHeaderText, engine.HeaderText);
 		}
 
 		[Test]
@@ -76,7 +81,7 @@ namespace FileHelpersTests.CommonTests
 
 			TestCommon.BeginReadTest(asyncEngine, "Good", "DiscardFirst2.txt");
 
-			Assert.AreEqual("you can get this lines\r\nwith the FileHelperEngine.HeaderText property\r\n", asyncEngine.HeaderText);
+			Assert.AreEqual(expectedLongHeaderText, asyncEngine.HeaderText);
 
 			DiscardType2 res = (DiscardType2) asyncEngine.ReadNext();
 
@@ -141,7 +146,7 @@ namespace FileHelpersTests.CommonTests
 			DiscardType1[] res2 = (DiscardType1[]) engine.ReadFile(@"tempo.txt");
 
 			Assert.AreEqual(res.Length, res2.Length);
-			Assert.AreEqual("This is a new header....\r\n", engine.HeaderText);
+			Assert.AreEqual(expectedShortHeaderText, engine.HeaderText);
 
 			if (File.Exists("tempo.txt")) File.Delete("tempo.txt");
 
@@ -172,12 +177,12 @@ namespace FileHelpersTests.CommonTests
             {}
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
-            Assert.AreEqual("This is a new header....\r\n", asyncEngine.HeaderText);
+            Assert.AreEqual(expectedShortHeaderText, asyncEngine.HeaderText);
 
             asyncEngine.Close();
 
             Assert.AreEqual(res.Length, asyncEngine.TotalRecords);
-            Assert.AreEqual("This is a new header....\r\n", asyncEngine.HeaderText);
+            Assert.AreEqual(expectedShortHeaderText, asyncEngine.HeaderText);
 
             if (File.Exists("tempo.txt")) File.Delete("tempo.txt");
 
