@@ -4,7 +4,7 @@ namespace FileHelpersTests
 {
     public class TestBaseHelper
     {
-        private readonly string mBasePath = Path.Combine("..", "data");
+        private readonly string mBasePath = Path.Combine("..", "Data");
 
         protected string BuildPath(string file)
         {
