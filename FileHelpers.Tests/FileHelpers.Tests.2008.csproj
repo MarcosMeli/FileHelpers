@@ -97,11 +97,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.2008.csproj">
-      <Name>FileHelpers.ExcelStorage</Name>
-      <Project>{B3F2B976-73D5-49C7-BEAA-BF62E233132A}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.2008.csproj">
       <Name>FileHelpers</Name>
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
@@ -281,12 +276,6 @@
     <Compile Include="Tests\DataLink\DataProvidersTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\DataLink\ExcelProvidersExtraTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\DataLink\ExcelProvidersTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tests\DataLink\SqlServerStorage.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -311,9 +300,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Errors\OtherErrors.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\Errors\StorageErrorModeValidator.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Errors\TransformBad.cs">
