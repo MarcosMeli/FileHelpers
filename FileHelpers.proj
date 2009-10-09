@@ -3,14 +3,19 @@
 <Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
-  <UsingTask AssemblyFile="Libs\MSBuild.ExtensionPack\MSBuild.ExtensionPack.JSharp.dll" 
+  <UsingTask AssemblyFile="Libs\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" 
              TaskName="Zip"/>
 
+  <ItemGroup>
+    <DebugZipFiles Include="Debug\**\*.*" />
+    <ReleaseZipFiles Include="Release\**\*.*" />
+  </ItemGroup>
+  
   <Target Name="continuous-build">
     <MSBuild Projects="FileHelpers.vs2008.sln" Properties="Configuration=Debug" />
     <MSBuild Projects="FileHelpers.vs2008.sln" Properties="Configuration=Release" />
     <NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
-    <Zip TaskAction="Create" CompressPath="Debug" RemoveRoot="Debug\" ZipFileName="Debug.zip"/>
-    <Zip TaskAction="Create" CompressPath="Release" RemoveRoot="Release\" ZipFileName="Release.zip"/>
+    <Zip Files="@(DebugZipFiles)" WorkingDirectory="Debug" ZipFileName="Debug.zip"/>
+    <Zip Files="@(ReleaseZipFiles)" WorkingDirectory="Release" ZipFileName="Release.zip"/>
   </Target>
 </Project>

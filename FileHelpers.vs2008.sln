@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
-		Build\FileHelpers.build = Build\FileHelpers.build
+		FileHelpers.proj = FileHelpers.proj
 		DeveloperStuff\Readme for Developers.txt = DeveloperStuff\Readme for Developers.txt
 	EndProjectSection
 EndProject
