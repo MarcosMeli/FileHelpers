@@ -36,7 +36,7 @@ namespace FileHelpers.Mapping
     /// <typeparam name="T">The record Type</typeparam>
     public class DataMapper<T>
     {
-		internal RecordInfo mRecordInfo;
+		internal IRecordInfo mRecordInfo;
 		
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace FileHelpers.Mapping
 
         internal DataMapper(Type recordType)
         {
-            mRecordInfo = new RecordInfo(recordType);
+            mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordType);
         }
 
         private int mInitialColumnOffset = 0;
@@ -71,7 +71,7 @@ namespace FileHelpers.Mapping
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(int columnIndex, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, fieldName);
+			MappingInfo map = new MappingInfo(mRecordInfo.RecordType, fieldName);
 			map.mDataColumnIndex = columnIndex + mInitialColumnOffset;
 			mMappings.Add(map);
 		}
@@ -83,7 +83,7 @@ namespace FileHelpers.Mapping
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(string columnName, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.mRecordType, fieldName);
+			MappingInfo map = new MappingInfo(mRecordInfo.RecordType, fieldName);
 			map.mDataColumnName = columnName;
 			mMappings.Add(map);
 		}
@@ -157,13 +157,13 @@ namespace FileHelpers.Mapping
             List<T> arr = new List<T>(dt.Rows.Count);
 
             FieldInfo[] fields =
-				mRecordInfo.mRecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField |
+				mRecordInfo.RecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField |
 				BindingFlags.Instance | BindingFlags.IgnoreCase);
 			
 
 			if (fields.Length > dt.Columns.Count)
 				throw new FileHelpersException("The data table has less fields than fields in the Type: " +
-					mRecordInfo.mRecordType.Name);
+					mRecordInfo.RecordType.Name);
 			
 			for(int i = 0; i < fields.Length; i++)
 			{
@@ -303,7 +303,7 @@ namespace FileHelpers.Mapping
 
 			mMappings.TrimToSize();
 			
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
 
 			if (append)
 				engine.BeginAppendToFile(filename);
@@ -343,7 +343,7 @@ namespace FileHelpers.Mapping
 
 			mMappings.TrimToSize();
 			
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.mRecordType);
+			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
 			
 			if (append)
 				engine.BeginAppendToFile(filename);

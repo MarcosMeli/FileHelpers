@@ -76,7 +76,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = new RecordInfo(mMasterType);
+            mMasterInfo = RecordInfoFactory.CreateRecordInfo(mMasterType);
             mRecordSelector = recordSelector;
         }
 
@@ -92,9 +92,9 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = new RecordInfo(mMasterType);
+            mMasterInfo = RecordInfoFactory.CreateRecordInfo(mMasterType);
 
-            MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.mIgnoreEmptyLines || mRecordInfo.mIgnoreEmptyLines);
+            MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || mRecordInfo.IgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 
         }
@@ -185,7 +185,7 @@ namespace FileHelpers.MasterDetail
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
-        private readonly RecordInfo mMasterInfo;
+        private readonly IRecordInfo mMasterInfo;
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
@@ -267,7 +267,7 @@ namespace FileHelpers.MasterDetail
 
             ArrayList resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(recordReader, mMasterInfo.mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -283,9 +283,9 @@ namespace FileHelpers.MasterDetail
 #endif
                 int currentRecord = 0;
 
-                if (mMasterInfo.mIgnoreFirst > 0)
+                if (mMasterInfo.IgnoreFirst > 0)
                 {
-                    for (int i = 0; i < mMasterInfo.mIgnoreFirst && currentLine != null; i++)
+                    for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++)
                     {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
@@ -307,8 +307,8 @@ namespace FileHelpers.MasterDetail
                 line.mReader = freader;
 
 
-                object[] valuesMaster = new object[mMasterInfo.mFieldCount];
-                object[] valuesDetail = new object[mRecordInfo.mFieldCount];
+                object[] valuesMaster = new object[mMasterInfo.FieldCount];
+                object[] valuesDetail = new object[mRecordInfo.FieldCount];
 
                 while (currentLine != null)
                 {
@@ -411,7 +411,7 @@ namespace FileHelpers.MasterDetail
                     resArray.Add(record);
                 }
 
-                if (mMasterInfo.mIgnoreLast > 0)
+                if (mMasterInfo.IgnoreLast > 0)
                 {
                     mFooterText = freader.RemainingText;
                 }

@@ -51,7 +51,7 @@ namespace FileHelpers
 	{
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly RecordInfo[] mMultiRecordInfo;
+        private readonly IRecordInfo[] mMultiRecordInfo;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Hashtable mRecordInfoHash;
@@ -104,7 +104,7 @@ namespace FileHelpers
 		public MultiRecordEngine(RecordTypeSelector recordSelector, params Type[] recordTypes) : base(GetFirstType(recordTypes))
 		{
 			mTypes = recordTypes;
-			mMultiRecordInfo = new RecordInfo[mTypes.Length];
+			mMultiRecordInfo = new IRecordInfo[mTypes.Length];
 			mRecordInfoHash = new Hashtable(mTypes.Length);
 			for(int i=0; i < mTypes.Length; i++)
 			{
@@ -114,7 +114,7 @@ namespace FileHelpers
 				if (mRecordInfoHash.Contains(mTypes[i]))
 					throw new BadUsageException("The type '"+ mTypes[i].Name + " is already in the engine. You can't pass the same type twice to the constructor.");
 
-				mMultiRecordInfo[i] = new RecordInfo(mTypes[i]); 
+				mMultiRecordInfo[i] = RecordInfoFactory.CreateRecordInfo(mTypes[i]); 
 				mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
 			}
 			mRecordSelector = recordSelector;
@@ -148,13 +148,12 @@ namespace FileHelpers
 
         private bool OnAfterReadRecord(string line, object record)
         {
-			if (mRecordInfo.mNotifyRead)
+			if (mRecordInfo.NotifyRead)
 				((INotifyRead)record).AfterRead(this, line);
 
             if (AfterReadRecord != null)
             {
-                AfterReadRecordEventArgs e = null;
-                e = new AfterReadRecordEventArgs(line, record, LineNumber);
+                AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
                 AfterReadRecord(this, e);
             	
             	return e.SkipThisRecord;
@@ -165,13 +164,12 @@ namespace FileHelpers
 
         private bool OnBeforeWriteRecord(object record)
         {
-			if (mRecordInfo.mNotifyWrite)
+			if (mRecordInfo.NotifyWrite)
 				((INotifyWrite)record).BeforeWrite(this);
 			
 			if (BeforeWriteRecord != null)
             {
-                BeforeWriteRecordEventArgs e = null;
-                e = new BeforeWriteRecordEventArgs(record, LineNumber);
+                BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
                 BeforeWriteRecord(this, e);
 
                 return e.SkipThisRecord;
@@ -184,8 +182,7 @@ namespace FileHelpers
         {
             if (AfterWriteRecord != null)
             {
-                AfterWriteRecordEventArgs e = null;
-                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+                AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
                 AfterWriteRecord(this, e);
                 return e.RecordLine;
             }
@@ -232,7 +229,7 @@ namespace FileHelpers
 
 			ArrayList resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(reader, mMultiRecordInfo[0].mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -248,9 +245,9 @@ namespace FileHelpers
 #endif
                 int currentRecord = 0;
 
-                if (mMultiRecordInfo[0].mIgnoreFirst > 0)
+                if (mMultiRecordInfo[0].IgnoreFirst > 0)
                 {
-                    for (int i = 0; i < mMultiRecordInfo[0].mIgnoreFirst && currentLine != null; i++)
+                    for (int i = 0; i < mMultiRecordInfo[0].IgnoreFirst && currentLine != null; i++)
                     {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
@@ -260,9 +257,6 @@ namespace FileHelpers
 
 
                 bool byPass = false;
-
-                //			MasterDetails record = null;
-                ArrayList tmpDetails = new ArrayList();
 
                 LineInfo line = new LineInfo(currentLine);
                 line.mReader = freader;
@@ -276,7 +270,7 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        bool skip = false;
+                        bool skip;
 #if !MINI
                         ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
                         BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
@@ -297,7 +291,7 @@ namespace FileHelpers
 
                             if (skip == false)
                             {
-                                object[] values = new object[info.mFieldCount];
+                                object[] values = new object[info.FieldCount];
                                 object record = info.StringToRecord(line, values);
 
 #if !MINI
@@ -340,7 +334,7 @@ namespace FileHelpers
                     }
                 }
 
-                if (mMultiRecordInfo[0].mIgnoreLast > 0)
+                if (mMultiRecordInfo[0].IgnoreLast > 0)
                 {
                     mFooterText = freader.RemainingText;
                 }
@@ -444,7 +438,7 @@ namespace FileHelpers
 					skip = OnBeforeWriteRecord(rec);
 #endif
 
-					RecordInfo info = (RecordInfo) mRecordInfoHash[rec.GetType()];
+					IRecordInfo info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
 
 					if (info == null)
 						throw new BadUsageException("The record at index " + recIndex.ToString() + " is of type '" + rec.GetType().Name+"' and the engine dont handle this type. You can add it to the constructor.");
@@ -593,9 +587,9 @@ namespace FileHelpers
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 
-			if (mRecordInfo.mIgnoreFirst > 0)
+			if (mRecordInfo.IgnoreFirst > 0)
 			{
-				for (int i = 0; i < mRecordInfo.mIgnoreFirst; i++)
+				for (int i = 0; i < mRecordInfo.IgnoreFirst; i++)
 				{
 				    string temp = reader.ReadRecord();
 					mLineNumber++;
@@ -606,8 +600,7 @@ namespace FileHelpers
 				}
 			}
 
-			mAsyncReader = new ForwardReader(reader, mRecordInfo.mIgnoreLast, mLineNumber);
-			mAsyncReader.DiscardForward = true;
+			mAsyncReader = new ForwardReader(reader, mRecordInfo.IgnoreLast, mLineNumber) {DiscardForward = true};
 		}
 
 		#endregion
@@ -735,7 +728,7 @@ namespace FileHelpers
                             if (info == null)
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
-							object[] values = new object[info.mFieldCount];
+							object[] values = new object[info.FieldCount];
 							mLastRecord = info.StringToRecord(line, values);
 
 							if (mLastRecord != null)
@@ -780,7 +773,7 @@ namespace FileHelpers
 					mLastRecord = null;
 
 
-					if (mRecordInfo.mIgnoreLast > 0)
+					if (mRecordInfo.IgnoreLast > 0)
 						mFooterText = mAsyncReader.RemainingText;
 
 					try
@@ -947,7 +940,7 @@ namespace FileHelpers
 				mLineNumber++;
 				mTotalRecords++;
 
-				RecordInfo info = (RecordInfo) mRecordInfoHash[record.GetType()];
+				IRecordInfo info = (IRecordInfo) mRecordInfoHash[record.GetType()];
 
 				if (info == null)
 					throw new BadUsageException("A record is of type '" + record.GetType().Name+ "' and the engine dont handle this type. You can add it to the constructor.");

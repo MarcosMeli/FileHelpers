@@ -98,11 +98,10 @@ namespace FileHelpers
 
             if (AfterReadRecord != null)
             {
-                if (mRecordInfo.mNotifyRead)
+                if (mRecordInfo.NotifyRead)
                     ((INotifyRead)record).AfterRead(this, line);
 
-                AfterReadRecordEventArgs e = null;
-                e = new AfterReadRecordEventArgs(line, record, LineNumber);
+                AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
                 AfterReadRecord(this, e);
                 return e.SkipThisRecord;
             }
@@ -115,11 +114,10 @@ namespace FileHelpers
 
             if (BeforeWriteRecord != null)
             {
-                if (mRecordInfo.mNotifyWrite)
+                if (mRecordInfo.NotifyWrite)
                     ((INotifyWrite)record).BeforeWrite(this);
 
-                BeforeWriteRecordEventArgs e = null;
-                e = new BeforeWriteRecordEventArgs(record, LineNumber);
+                BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
                 BeforeWriteRecord(this, e);
 
                 return e.SkipThisRecord;
@@ -133,8 +131,7 @@ namespace FileHelpers
 
             if (AfterWriteRecord != null)
             {
-                AfterWriteRecordEventArgs e = null;
-                e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+                AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
                 AfterWriteRecord(this, e);
                 return e.RecordLine;
             }
@@ -256,7 +253,7 @@ namespace FileHelpers
             ArrayList resArray = new ArrayList();
             int currentRecord = 0;
 
-            using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.mIgnoreLast))
+            using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -272,9 +269,9 @@ namespace FileHelpers
                 ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
 #endif
 
-                if (mRecordInfo.mIgnoreFirst > 0)
+                if (mRecordInfo.IgnoreFirst > 0)
                 {
-                    for (int i = 0; i < mRecordInfo.mIgnoreFirst && currentLine != null; i++)
+                    for (int i = 0; i < mRecordInfo.IgnoreFirst && currentLine != null; i++)
                     {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
@@ -287,10 +284,9 @@ namespace FileHelpers
                 if (maxRecords < 0)
                     maxRecords = int.MaxValue;
 
-                LineInfo line = new LineInfo(currentLine);
-                line.mReader = freader;
+                LineInfo line = new LineInfo(currentLine) {mReader = freader};
 
-                object[] values = new object[mRecordInfo.mFieldCount];
+                object[] values = new object[mRecordInfo.FieldCount];
                 while (currentLine != null && currentRecord < maxRecords)
                 {
                     try
@@ -300,7 +296,7 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        bool skip = false;
+                        bool skip;
 #if !MINI
                         ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
                     BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
@@ -340,11 +336,13 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                ErrorInfo err = new ErrorInfo();
-                                err.mLineNumber = freader.LineNumber;
-                                err.mExceptionInfo = ex;
-                                //							err.mColumnNumber = mColumnNum;
-                                err.mRecordString = completeLine;
+                                ErrorInfo err = new ErrorInfo
+                                                    {
+                                                        mLineNumber = freader.LineNumber,
+                                                        mExceptionInfo = ex,
+                                                        mRecordString = completeLine,
+                            //							mColumnNumber = mColumnNum
+                                                    };
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -361,7 +359,7 @@ namespace FileHelpers
                     }
                 }
 
-                if (mRecordInfo.mIgnoreLast > 0)
+                if (mRecordInfo.IgnoreLast > 0)
                 {
                     mFooterText = freader.RemainingText;
                 }
@@ -392,8 +390,7 @@ namespace FileHelpers
 
 			using (StringReader reader = new StringReader(source))
 			{
-				T[] res;
-				res= ReadStream(reader, maxRecords);
+			    T[] res = ReadStream(reader, maxRecords);
 				reader.Close();
 				return res;
 			}
@@ -444,7 +441,7 @@ namespace FileHelpers
 
 			ResetFields();
 
-			if (mHeaderText != null && mHeaderText.Length != 0)
+			if (!string.IsNullOrEmpty(mHeaderText))
 				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					writer.Write(mHeaderText);
 				else
@@ -474,13 +471,13 @@ namespace FileHelpers
 				try
 				{
 					if (rec == null)
-						throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
+						throw new BadUsageException(string.Format("The record at index {0} is null.", recIndex));
 
 					if (first)
 					{
 						first = false;
-						if (mRecordInfo.mRecordType.IsInstanceOfType(rec) == false)
-							throw new BadUsageException("This engine works with record of type " + mRecordInfo.mRecordType.Name + " and you use records of type " + rec.GetType().Name );
+						if (mRecordInfo.RecordType.IsInstanceOfType(rec) == false)
+							throw new BadUsageException("This engine works with record of type " + mRecordInfo.RecordType.Name + " and you use records of type " + rec.GetType().Name );
 					}
 
 
@@ -702,7 +699,7 @@ namespace FileHelpers
 
         protected virtual bool OnAfterReadRecord(string line, T record)
 		{
-			if (mRecordInfo.mNotifyRead)
+			if (mRecordInfo.NotifyRead)
 				((INotifyRead)record).AfterRead(this, line);
 
 		    if (AfterReadRecord != null)
@@ -718,7 +715,7 @@ namespace FileHelpers
 
         protected virtual bool OnBeforeWriteRecord(T record)
 		{
-			if (mRecordInfo.mNotifyWrite)
+			if (mRecordInfo.NotifyWrite)
 				((INotifyWrite)record).BeforeWrite(this);
 
 		    if (BeforeWriteRecord != null)

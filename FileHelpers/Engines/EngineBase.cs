@@ -20,7 +20,7 @@ namespace FileHelpers
 	{
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         
-        internal RecordInfo mRecordInfo;
+        internal readonly IRecordInfo mRecordInfo;
 
 		#region "  Constructor  "
 
@@ -35,13 +35,13 @@ namespace FileHelpers
 				throw new BadUsageException("The record type must be a class not a struct.");
 
 			mRecordType = recordType;
-			mRecordInfo = new RecordInfo(recordType);
+			mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordType);
 			mEncoding = encoding;
 		}
 
 		internal EngineBase(RecordInfo ri)
 		{
-			mRecordType = ri.mRecordType;
+			mRecordType = ri.RecordType;
 			mRecordInfo = ri;
 		}
 

@@ -15,7 +15,7 @@ namespace FileHelpers
 	public sealed class DelimitedRecordOptions: RecordOptions
 	{
 		
-		internal DelimitedRecordOptions(RecordInfo info)
+		internal DelimitedRecordOptions(IRecordInfo info)
 			:base(info)
 		{}
 		 
@@ -26,12 +26,12 @@ namespace FileHelpers
 		{
 			get
 			{
-				return ((DelimitedField) mRecordInfo.mFields[0]).Separator;
+				return ((DelimitedField) mRecordInfo.Fields[0]).Separator;
 			}
 			set
 			{
-				for(int i = 0; i < mRecordInfo.mFieldCount ;i++)
-					((DelimitedField) mRecordInfo.mFields[i]).Separator = value;
+				for(int i = 0; i < mRecordInfo.FieldCount ;i++)
+					((DelimitedField) mRecordInfo.Fields[i]).Separator = value;
 			}
 
 		}

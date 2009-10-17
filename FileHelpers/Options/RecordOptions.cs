@@ -19,9 +19,9 @@ namespace FileHelpers
 	{
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal RecordInfo mRecordInfo;
+        internal IRecordInfo mRecordInfo;
 	
-		internal RecordOptions(RecordInfo info)
+		internal RecordOptions(IRecordInfo info)
 		{
 			mRecordInfo = info;
             mRecordConditionInfo = new RecordConditionInfo(info);
@@ -31,7 +31,7 @@ namespace FileHelpers
 		/// <summary>The number of fields of the record type.</summary>
 		public int FieldCount
 		{
-			get {return mRecordInfo.mFieldCount; }
+			get {return mRecordInfo.FieldCount; }
 		}
 
         // <summary>The number of fields of the record type.</summary>
@@ -55,9 +55,9 @@ namespace FileHelpers
 			{
 				if (mFieldNames == null)
 				{
-					mFieldNames = new string[mRecordInfo.mFieldCount];
+					mFieldNames = new string[mRecordInfo.FieldCount];
 					for (int i = 0; i < mFieldNames.Length; i++)
-						mFieldNames[i] = mRecordInfo.mFields[i].mFieldInfo.Name;
+						mFieldNames[i] = mRecordInfo.Fields[i].mFieldInfo.Name;
 				}
 
 				return mFieldNames;
@@ -77,9 +77,9 @@ namespace FileHelpers
 			{
 				if (mFieldTypes == null)
 				{
-					mFieldTypes = new Type[mRecordInfo.mFieldCount];
+					mFieldTypes = new Type[mRecordInfo.FieldCount];
 					for (int i = 0; i < mFieldTypes.Length; i++)
-						mFieldTypes[i] = mRecordInfo.mFields[i].mFieldInfo.FieldType;
+						mFieldTypes[i] = mRecordInfo.Fields[i].mFieldInfo.FieldType;
 				}
 
 				return mFieldTypes;
@@ -98,30 +98,30 @@ namespace FileHelpers
 		/// <summary>Indicates the number of first lines to be discarded.</summary>
 		public int IgnoreFirstLines
 		{
-			get { return mRecordInfo.mIgnoreFirst; }
+			get { return mRecordInfo.IgnoreFirst; }
 			set
 			{
 				ExHelper.PositiveValue(value);
-				mRecordInfo.mIgnoreFirst= value;
+				mRecordInfo.IgnoreFirst= value;
 			}
 		}
 
 		/// <summary>Indicates the number of lines at the end of file to be discarded.</summary>
 		public int IgnoreLastLines
 		{
-			get { return mRecordInfo.mIgnoreLast; }
+			get { return mRecordInfo.IgnoreLast; }
 			set
 			{
 				ExHelper.PositiveValue(value);
-				mRecordInfo.mIgnoreLast = value;
+				mRecordInfo.IgnoreLast = value;
 			}
 		}
 
 		/// <summary>Indicates that the engine must ignore the empty lines while reading.</summary>
 		public bool IgnoreEmptyLines
 		{
-			get { return mRecordInfo.mIgnoreEmptyLines; }
-			set { mRecordInfo.mIgnoreEmptyLines= value; }
+			get { return mRecordInfo.IgnoreEmptyLines; }
+			set { mRecordInfo.IgnoreEmptyLines= value; }
 		}
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -148,9 +148,9 @@ namespace FileHelpers
 		public sealed class RecordConditionInfo
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            RecordInfo mRecordInfo;
+            IRecordInfo mRecordInfo;
 
-            internal RecordConditionInfo(RecordInfo ri)
+            internal RecordConditionInfo(IRecordInfo ri)
             {
                 mRecordInfo = ri;
             }
@@ -158,15 +158,15 @@ namespace FileHelpers
             /// <summary>The condition used to include or exclude records.</summary>
             public RecordCondition Condition
             {
-                get { return mRecordInfo.mRecordCondition; }
-                set { mRecordInfo.mRecordCondition = value; }
+                get { return mRecordInfo.RecordCondition; }
+                set { mRecordInfo.RecordCondition = value; }
             }
 
             /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
             public string Selector
             {
-                get { return mRecordInfo.mRecordConditionSelector; }
-                set { mRecordInfo.mRecordConditionSelector = value; }
+                get { return mRecordInfo.RecordConditionSelector; }
+                set { mRecordInfo.RecordConditionSelector = value; }
             }
         }
 
@@ -178,9 +178,9 @@ namespace FileHelpers
 		{
 
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            RecordInfo mRecordInfo;
+            IRecordInfo mRecordInfo;
 			
-            internal IgnoreCommentInfo(RecordInfo ri)
+            internal IgnoreCommentInfo(IRecordInfo ri)
 			{
 				mRecordInfo = ri;
 			}
@@ -191,20 +191,20 @@ namespace FileHelpers
 			/// </summary>
 			public string CommentMarker
 			{
-				get { return mRecordInfo.mCommentMarker; }
+				get { return mRecordInfo.CommentMarker; }
 				set
 				{
 					if (value != null)
 						value = value.Trim();
-					mRecordInfo.mCommentMarker = value;
+					mRecordInfo.CommentMarker = value;
 				}
 			}
 
 			/// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
 			public bool InAnyPlace
 			{
-				get { return mRecordInfo.mCommentAnyPlace; }
-				set { mRecordInfo.mCommentAnyPlace = value; }
+				get { return mRecordInfo.CommentAnyPlace; }
+				set { mRecordInfo.CommentAnyPlace = value; }
 			}
 		}
     }

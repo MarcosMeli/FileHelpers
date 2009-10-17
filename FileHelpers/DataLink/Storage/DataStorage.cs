@@ -52,7 +52,7 @@ namespace FileHelpers.DataLink
 		}
 
 		private Type mRecordType;
-		internal RecordInfo mRecordInfo;
+		internal IRecordInfo mRecordInfo;
 		
 		/// <summary>Returns the class that represent the records in the file.</summary>
 		public Type RecordType
@@ -71,7 +71,7 @@ namespace FileHelpers.DataLink
 		/// <returns>The extracted records.</returns>
 		public DataTable ExtractRecordsAsDT()
 		{
-			RecordInfo ri = new RecordInfo(RecordType);
+			IRecordInfo ri = RecordInfoFactory.CreateRecordInfo(RecordType);
 			return ri.RecordsToDataTable(ExtractRecords());
 		}
 
@@ -108,10 +108,9 @@ namespace FileHelpers.DataLink
 		protected DataStorage(Type recordClass)
 		{
 			mRecordType = recordClass;
-			mRecordInfo = new RecordInfo(recordClass);
+			mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordClass);
 			
 		}
-		
 
 		#region "  Values <-> Record Convertions "
 
@@ -138,11 +137,8 @@ namespace FileHelpers.DataLink
 		{
 			get
 			{
-				return mRecordInfo.mFieldCount;
+				return mRecordInfo.FieldCount;
 			}
 		}
-
-
-
 	}
 }

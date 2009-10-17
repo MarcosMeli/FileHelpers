@@ -376,12 +376,12 @@ namespace FileHelpers
         public static DataTable RecordsToDataTable(ICollection records, int maxRecords)
         {
 
-            RecordInfo ri = null;
+            IRecordInfo ri = null;
             foreach (object obj in records)
             {
                 if (obj != null)
                 {
-                    ri = new RecordInfo(obj.GetType());
+                    ri = RecordInfoFactory.CreateRecordInfo(obj.GetType());
                     break;
                 }
             }
@@ -408,7 +408,7 @@ namespace FileHelpers
         /// <param name="recordType">The type of the inner records.</param>
         public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
         {
-            RecordInfo ri = new RecordInfo(recordType);
+            IRecordInfo ri = RecordInfoFactory.CreateRecordInfo(recordType);
             return ri.RecordsToDataTable(records, maxRecords);
         }
 

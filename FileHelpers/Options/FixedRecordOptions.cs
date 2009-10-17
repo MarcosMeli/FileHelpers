@@ -16,7 +16,7 @@ namespace FileHelpers
 	public sealed class FixedRecordOptions: RecordOptions
 	{
 		
-		internal FixedRecordOptions(RecordInfo info)
+		internal FixedRecordOptions(IRecordInfo info)
 				:base(info)
 		{
 		}
@@ -27,13 +27,13 @@ namespace FileHelpers
 		{
 			get
 			{
-				return ((FixedLengthField) mRecordInfo.mFields[0]).mFixedMode;
+				return ((FixedLengthField) mRecordInfo.Fields[0]).mFixedMode;
 			}
 			set
 			{
-				for(int i = 0; i < mRecordInfo.mFieldCount; i++)
+				for(int i = 0; i < mRecordInfo.FieldCount; i++)
 				{
-					((FixedLengthField) mRecordInfo.mFields[i]).mFixedMode = value;
+					((FixedLengthField) mRecordInfo.Fields[i]).mFixedMode = value;
 				}
 			}
 		}
@@ -52,7 +52,7 @@ namespace FileHelpers
                     return mRecordLength;
 
                 mRecordLength = 0;
-                foreach (FixedLengthField field in mRecordInfo.mFields)
+                foreach (FixedLengthField field in mRecordInfo.Fields)
                 {
                     mRecordLength += field.mFieldLength;
                 }
