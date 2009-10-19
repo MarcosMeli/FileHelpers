@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using System.Data;
+using Container=EmbeddedIoC.Container;
 
 namespace FileHelpers.DataLink
 {
@@ -71,7 +72,7 @@ namespace FileHelpers.DataLink
 		/// <returns>The extracted records.</returns>
 		public DataTable ExtractRecordsAsDT()
 		{
-			IRecordInfo ri = RecordInfoFactory.CreateRecordInfo(RecordType);
+			IRecordInfo ri = Container.Resolve<IRecordInfo>(RecordType);
 			return ri.RecordsToDataTable(ExtractRecords());
 		}
 
@@ -108,8 +109,7 @@ namespace FileHelpers.DataLink
 		protected DataStorage(Type recordClass)
 		{
 			mRecordType = recordClass;
-			mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordClass);
-			
+		    mRecordInfo = Container.Resolve<IRecordInfo>(recordClass);
 		}
 
 		#region "  Values <-> Record Convertions "

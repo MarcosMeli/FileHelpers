@@ -174,7 +174,6 @@
     <Compile Include="Core\IRecordInfo.cs" />
     <Compile Include="Core\IRecordReader.cs" />
     <Compile Include="Core\EmbeddedIoC.cs" />
-    <Compile Include="Core\RecordInfoFactory.cs" />
     <Compile Include="Enums\EngineState.cs" />
     <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">

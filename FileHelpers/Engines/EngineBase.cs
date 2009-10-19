@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using System.Diagnostics;
+using Container=EmbeddedIoC.Container;
 
 namespace FileHelpers
 {
@@ -35,8 +36,8 @@ namespace FileHelpers
 				throw new BadUsageException("The record type must be a class not a struct.");
 
 			mRecordType = recordType;
-			mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordType);
-			mEncoding = encoding;
+		    mRecordInfo = Container.Resolve<IRecordInfo>(recordType);
+		    mEncoding = encoding;
 		}
 
 		internal EngineBase(RecordInfo ri)

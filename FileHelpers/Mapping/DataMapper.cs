@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Collections.Generic;
+using Container=EmbeddedIoC.Container;
 
 
 namespace FileHelpers.Mapping
@@ -50,10 +51,10 @@ namespace FileHelpers.Mapping
 
         internal DataMapper(Type recordType)
         {
-            mRecordInfo = RecordInfoFactory.CreateRecordInfo(recordType);
+            mRecordInfo = Container.Resolve<IRecordInfo>(recordType);
         }
 
-        private int mInitialColumnOffset = 0;
+	    private int mInitialColumnOffset = 0;
 
         /// <summary>
         /// Indicates the number of columns to discard in the result.

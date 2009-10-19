@@ -65,18 +65,24 @@ namespace EmbeddedIoC
 
         private static ConstructorInfo GetLongestConstructor(Type implementation)
         {
-            var constructors = implementation.GetConstructors();
+            var constructors = implementation.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             Array.Sort(constructors,
                        (a, b) => b.GetParameters().Length.CompareTo(a.GetParameters().Length));
             return constructors[0];
         }
 
+        public static readonly object[] empty = new object[0];
         public static TContract Resolve<TContract>()
         {
-            return (TContract) Resolve(typeof (TContract));
+            return (TContract) Resolve(typeof (TContract), empty, 0);
         }
 
-        private static object Resolve(Type contract)
+        public static TContract Resolve<TContract>(params object[] args)
+        {
+            return (TContract)Resolve(typeof(TContract), args, 0);
+        }
+
+        private static object Resolve(Type contract, object[] args, int index)
         {
             ConstructorInfo implementation;
             if (!constructorCache.TryGetValue(contract, out implementation))
@@ -87,9 +93,25 @@ namespace EmbeddedIoC
             var parameterValues = new List<object>(constructorParameters.Length);
 
             foreach (var parameterInfo in constructorParameters)
-                parameterValues.Add(Resolve(parameterInfo.ParameterType));
+            {
+                var parameterType = parameterInfo.ParameterType;
+                if (index < args.Length && parameterType.IsAssignableFrom(args[index].GetType()))
+                    parameterValues.Add(args[index++]);
+                else
+                    parameterValues.Add(Resolve(parameterType, args, index));
+            }
 
-            return implementation.Invoke(parameterValues.ToArray());
+            if (index < args.Length)
+                throw new TypeResolutionException("Too many constructor args for contract: " + contract);
+
+            try
+            {
+                return implementation.Invoke(parameterValues.ToArray());
+            }
+            catch (TargetInvocationException e)
+            {
+                throw e.InnerException;
+            }
         }
     }
 }

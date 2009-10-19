@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
+using EmbeddedIoC;
 
 namespace FileHelpers
 {
@@ -55,9 +56,9 @@ namespace FileHelpers
         #region "  Constructor &c "
         /// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
         /// <param name="recordType">The Type of the record class.</param>
-        public RecordInfo(Type recordType)
+        private RecordInfo(Type recordType)
         {
-            RecordConditionSelector = string.Empty;
+            RecordConditionSelector = String.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
             RecordType = recordType;
@@ -241,7 +242,7 @@ namespace FileHelpers
                         // Check for array problems
                         if (prevField.mIsArray)
                         {
-                            if (prevField.mArrayMinLength == int.MinValue)
+                            if (prevField.mArrayMinLength == Int32.MinValue)
                                 throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
                                                             " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
 
@@ -306,7 +307,7 @@ namespace FileHelpers
                     line.Length == 0)
                     return true;
 
-            if (!string.IsNullOrEmpty(CommentMarker))
+            if (!String.IsNullOrEmpty(CommentMarker))
                 if ((CommentAnyPlace && line.TrimStart().StartsWith(CommentMarker)) ||
                     line.StartsWith(CommentMarker))
                     return true;
@@ -673,8 +674,5 @@ namespace FileHelpers
             return null;
         }
         #endregion
-
-        // ----------------------------------------
-        // String <--> Record <--> Values methods
     }
 }

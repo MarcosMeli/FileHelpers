@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Collections.Generic;
+using EmbeddedIoC;
 
 namespace FileHelpers
 {
@@ -381,7 +382,7 @@ namespace FileHelpers
             {
                 if (obj != null)
                 {
-                    ri = RecordInfoFactory.CreateRecordInfo(obj.GetType());
+                    ri = Container.Resolve<IRecordInfo>(obj.GetType());
                     break;
                 }
             }
@@ -408,7 +409,7 @@ namespace FileHelpers
         /// <param name="recordType">The type of the inner records.</param>
         public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
         {
-            IRecordInfo ri = RecordInfoFactory.CreateRecordInfo(recordType);
+            IRecordInfo ri = Container.Resolve<IRecordInfo>(recordType);
             return ri.RecordsToDataTable(records, maxRecords);
         }
 

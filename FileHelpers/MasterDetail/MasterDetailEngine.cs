@@ -14,6 +14,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
+using EmbeddedIoC;
 
 namespace FileHelpers.MasterDetail
 {
@@ -76,7 +77,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = RecordInfoFactory.CreateRecordInfo(mMasterType);
+            mMasterInfo = Container.Resolve<IRecordInfo>(mMasterType);
             mRecordSelector = recordSelector;
         }
 
@@ -92,7 +93,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = RecordInfoFactory.CreateRecordInfo(mMasterType);
+            mMasterInfo = Container.Resolve<IRecordInfo>(mMasterType);
 
             MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || mRecordInfo.IgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);

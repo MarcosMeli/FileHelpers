@@ -18,7 +18,7 @@ namespace FileHelpersTests.CommonTests
 			engine = new FileHelperEngine(typeof (ChineseTest));
 
 			ChineseTest[] res;
-			//engine.Encoding = Encoding.Unicode;
+			engine.Encoding = Encoding.Unicode;
 			res = (ChineseTest[]) engine.ReadString(@"A123456789台北市民權東東路3號           20061008
 A987654321台北市民權東東路5號           20061008");
 

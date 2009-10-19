@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using FileHelpers.MasterDetail;
+using Container=EmbeddedIoC.Container;
 
 namespace FileHelpers
 {
@@ -114,8 +115,8 @@ namespace FileHelpers
 				if (mRecordInfoHash.Contains(mTypes[i]))
 					throw new BadUsageException("The type '"+ mTypes[i].Name + " is already in the engine. You can't pass the same type twice to the constructor.");
 
-				mMultiRecordInfo[i] = RecordInfoFactory.CreateRecordInfo(mTypes[i]); 
-				mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+			    mMultiRecordInfo[i] = Container.Resolve<IRecordInfo>(mTypes[i]);
+			    mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
 			}
 			mRecordSelector = recordSelector;
 		}
