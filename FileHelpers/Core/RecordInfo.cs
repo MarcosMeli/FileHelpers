@@ -10,7 +10,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
-using EmbeddedIoC;
 
 namespace FileHelpers
 {
@@ -18,6 +17,8 @@ namespace FileHelpers
     /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
     internal sealed class RecordInfo : IRecordInfo
     {
+        private readonly IFieldInfoCacheManipulator fieldInfoCacheManipulator;
+
         #region "  Internal Fields  "
         // Cache of all the fields that must be used for a Type
         // More info at:  http://www.filehelpers.com/forums/viewtopic.php?t=387
@@ -54,10 +55,10 @@ namespace FileHelpers
         #endregion
 
         #region "  Constructor &c "
-        /// <summary>The unique constructor for this class. It needs the subyacent record class.</summary>
-        /// <param name="recordType">The Type of the record class.</param>
-        private RecordInfo(Type recordType)
+
+        public RecordInfo(Type recordType, IFieldInfoCacheManipulator fieldInfoCacheManipulator)
         {
+            this.fieldInfoCacheManipulator = fieldInfoCacheManipulator;
             RecordConditionSelector = String.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
@@ -150,6 +151,9 @@ namespace FileHelpers
             Fields = CreateCoreFields(fields, recordAttribute);
             FieldCount = Fields.Length;
 
+            if (FieldCount == 0)
+                throw new BadUsageException("The record class " + RecordType.Name + " don't contains any field.");
+
             if (recordAttribute is FixedLengthRecordAttribute)
             {
                 // Defines the initial size of the StringBuilder
@@ -157,9 +161,6 @@ namespace FileHelpers
                 for (int i = 0; i < FieldCount; i++)
                     mSizeHint += ((FixedLengthField) Fields[i]).mFieldLength;
             }
-
-            if (FieldCount == 0)
-                throw new BadUsageException("The record class " + RecordType.Name + " don't contains any field.");
         }
 
         private IEnumerable<FieldInfo> RecursiveGetFields(Type currentType)
@@ -170,44 +171,15 @@ namespace FileHelpers
             if (currentType == typeof (object))
                 yield break;
 
-            lock (mTypeCacheLock)
+            fieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
+            
+            foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
+                                                           BindingFlags.NonPublic |
+                                                           BindingFlags.Instance |
+                                                           BindingFlags.DeclaredOnly))
             {
-                ClearFieldInfoCache();
-
-                foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
-                                                               BindingFlags.NonPublic |
-                                                               BindingFlags.Instance |
-                                                               BindingFlags.DeclaredOnly))
-                {
-                    if (!(typeof (Delegate)).IsAssignableFrom(fi.FieldType))
-                        yield return fi;
-                }
-            }
-        }
-        #endregion
-
-        #region "  FieldCache Magick  "
-        private static readonly object mTypeCacheLock = new object();
-        private static FieldInfo mFieldCachePointer;
-        private static PropertyInfo mTypeCacheInfo;
-
-        private void ClearFieldInfoCache()
-        {
-            if (mTypeCacheInfo == null)
-                mTypeCacheInfo = RecordType.GetType().GetProperty("Cache",
-                                                                  BindingFlags.DeclaredOnly | BindingFlags.Instance |
-                                                                  BindingFlags.NonPublic);
-
-            if (mTypeCacheInfo != null)
-            {
-                object cache = mTypeCacheInfo.GetValue(RecordType, null);
-
-                if (mFieldCachePointer == null)
-                    mFieldCachePointer = cache.GetType().GetField("m_fieldInfoCache",
-                                                                  BindingFlags.FlattenHierarchy | BindingFlags.Instance |
-                                                                  BindingFlags.NonPublic);
-
-                mFieldCachePointer.SetValue(cache, null);
+                if (!(typeof (Delegate)).IsAssignableFrom(fi.FieldType))
+                    yield return fi;
             }
         }
         #endregion
@@ -221,36 +193,34 @@ namespace FileHelpers
             {
                 FieldBase currentField = FieldBase.CreateField(fields[i], recordAttribute);
 
-                if (currentField != null)
+                if (currentField == null) continue;
+
+                // Add to the result
+                resFields.Add(currentField);
+
+                // Check some differences with the previous field
+                if (resFields.Count <= 1) continue;
+
+                FieldBase prevField = resFields[resFields.Count - 2];
+
+                prevField.mNextIsOptional = currentField.mIsOptional;
+
+                // Check for optional problems
+                if (prevField.mIsOptional && currentField.mIsOptional == false)
+                    throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
+                                                " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " +
+                                                currentField.mFieldInfo.Name + " )");
+
+                // Check for array problems
+                if (prevField.mIsArray)
                 {
-                    // Add to the result
-                    resFields.Add(currentField);
+                    if (prevField.mArrayMinLength == Int32.MinValue)
+                        throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
+                                                    " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
 
-                    // Check some differences with the previous field
-                    if (resFields.Count > 1)
-                    {
-                        FieldBase prevField = resFields[resFields.Count - 2];
-
-                        prevField.mNextIsOptional = currentField.mIsOptional;
-
-                        // Check for optional problems
-                        if (prevField.mIsOptional && currentField.mIsOptional == false)
-                            throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
-                                                        " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " +
-                                                        currentField.mFieldInfo.Name + " )");
-
-                        // Check for array problems
-                        if (prevField.mIsArray)
-                        {
-                            if (prevField.mArrayMinLength == Int32.MinValue)
-                                throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
-                                                            " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
-
-                            if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
-                                throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name +
-                                                            " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
-                        }
-                    }
+                    if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
+                        throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name +
+                                                    " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
                 }
             }
 

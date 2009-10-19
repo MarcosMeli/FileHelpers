@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Singleton = EmbeddedIoC.Container.SingletonAttribute;
 
 namespace EmbeddedIoC
 {
@@ -73,6 +74,17 @@ namespace EmbeddedIoC
         }
     }
 
+    public interface ISingletonContract
+    {
+        
+    }
+
+    [Singleton]
+    public class SingletonContract : ISingletonContract
+    {
+        
+    }
+
     #endregion
 
     [TestFixture]
@@ -97,6 +109,27 @@ namespace EmbeddedIoC
         }
 
         [Test]
+        public void Resolve_should_return_new_instance_of_implementation_when_implementation_not_marked_as_Singleton()
+        {
+            var instance1 = Container.Resolve<IImplementedContract>();
+            var instance2 = Container.Resolve<IImplementedContract>();
+            Assert.That(instance1, Is.InstanceOf<ImplementedContract>());
+            Assert.That(instance2, Is.InstanceOf<ImplementedContract>());
+            Assert.That(instance1, Is.Not.SameAs(instance2));
+        }
+
+        [Test]
+        public void Resolve_should_return_same_instance_of_implementation_when_implementation_is_marked_as_Singleton()
+        {
+            var instance1 = Container.Resolve<ISingletonContract>();
+            var instance2 = Container.Resolve<ISingletonContract>();
+            Assert.That(instance1, Is.InstanceOf<SingletonContract>());
+            Assert.That(instance2, Is.InstanceOf<SingletonContract>());
+            Assert.That(instance1, Is.SameAs(instance2));
+        }
+
+        [Test]
+        // TODO: break apart. This test also implicitly proves that longest ctor is selected as well as private ctors can be selected.
         public void Resolve_should_return_instance_of_implementation_when_implementation_found_for_contract_and_all_dependent_contracts()
         {
             var toplevel = Container.Resolve<IImplementedDependentContract>();

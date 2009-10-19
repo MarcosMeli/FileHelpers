@@ -23,10 +23,42 @@ namespace EmbeddedIoC
 
         #endregion
 
+        [AttributeUsage(AttributeTargets.Class)]
+        public class SingletonAttribute : Attribute { }
+
+        #region Mapping
+
+        private class Mapping
+        {
+            public readonly Type Contract;
+            public readonly Type Implementation;
+            public readonly ConstructorInfo Constructor;
+            public bool IsSingleton;
+            public object SingletonInstance;
+
+            public Mapping(Type contract, Type implementation)
+            {
+                Contract = contract;
+                Implementation = implementation;
+                Constructor = GetLongestConstructor();
+                IsSingleton = implementation.IsDefined(typeof (SingletonAttribute), false);
+            }
+
+            private ConstructorInfo GetLongestConstructor()
+            {
+                var constructors =
+                    Implementation.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                Array.Sort(constructors,
+                           (a, b) => b.GetParameters().Length.CompareTo(a.GetParameters().Length));
+                return constructors[0];
+            }
+        }
+
+        #endregion
+
         private const string assemblyPrefix = "FileHelpers";
 
-        private static readonly IDictionary<Type, ConstructorInfo> constructorCache =
-            new Dictionary<Type, ConstructorInfo>();
+        private static readonly IDictionary<Type, Mapping> cache = new Dictionary<Type, Mapping>();
 
         static Container()
         {
@@ -36,7 +68,7 @@ namespace EmbeddedIoC
             {
                 Type implementation = FindImplementingType(contract, types);
                 if (implementation != null)
-                    constructorCache[contract] = GetLongestConstructor(implementation);
+                    cache[contract] = new Mapping(contract, implementation);
             }
         }
 
@@ -63,15 +95,7 @@ namespace EmbeddedIoC
             return types.Find(t => !t.IsAbstract && contract.IsAssignableFrom(t) && t.Name.EndsWith(contractName));
         }
 
-        private static ConstructorInfo GetLongestConstructor(Type implementation)
-        {
-            var constructors = implementation.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            Array.Sort(constructors,
-                       (a, b) => b.GetParameters().Length.CompareTo(a.GetParameters().Length));
-            return constructors[0];
-        }
-
-        public static readonly object[] empty = new object[0];
+        private static readonly object[] empty = new object[0];
         public static TContract Resolve<TContract>()
         {
             return (TContract) Resolve(typeof (TContract), empty, 0);
@@ -79,16 +103,30 @@ namespace EmbeddedIoC
 
         public static TContract Resolve<TContract>(params object[] args)
         {
-            return (TContract)Resolve(typeof(TContract), args, 0);
+            return (TContract) Resolve(typeof (TContract), args, 0);
         }
 
         private static object Resolve(Type contract, object[] args, int index)
         {
-            ConstructorInfo implementation;
-            if (!constructorCache.TryGetValue(contract, out implementation))
+            Mapping mapping;
+            if (!cache.TryGetValue(contract, out mapping))
                 throw new TypeResolutionException("Could not find implementation for contract: " + contract);
 
-            var constructorParameters = implementation.GetParameters();
+            if (mapping.IsSingleton)
+            {
+                if (mapping.SingletonInstance == null)
+                {
+                    mapping.SingletonInstance = CreateInstance(mapping, args, index);
+                }
+                return mapping.SingletonInstance;
+            }
+
+            return CreateInstance(mapping, args, index);
+        }
+
+        private static object CreateInstance(Mapping mapping, object[] args, int index)
+        {
+            var constructorParameters = mapping.Constructor.GetParameters();
 
             var parameterValues = new List<object>(constructorParameters.Length);
 
@@ -102,11 +140,11 @@ namespace EmbeddedIoC
             }
 
             if (index < args.Length)
-                throw new TypeResolutionException("Too many constructor args for contract: " + contract);
+                throw new TypeResolutionException("Too many constructor args for contract: " + mapping.Contract);
 
             try
             {
-                return implementation.Invoke(parameterValues.ToArray());
+                return mapping.Constructor.Invoke(parameterValues.ToArray());
             }
             catch (TargetInvocationException e)
             {
