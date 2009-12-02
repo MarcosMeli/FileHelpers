@@ -22,7 +22,9 @@ namespace FileHelpers.WizardApp
         }
 
         public bool AutoRunTest { get; set; }
-        
+
+        public bool HasHeaders { get; set; }
+
         private void cmdReadFile_Click(object sender, EventArgs e)
         {
 
