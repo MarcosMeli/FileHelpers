@@ -52,7 +52,7 @@ namespace FileHelpers.RunTime
 		{
 			foreach(DataColumn dc in dt.Columns)
 			{
-                AddField(dc.ColumnName.ToValidIdentifier(), defaultLength, dc.DataType);
+                AddField(StringHelper.ToValidIdentifier(dc.ColumnName), defaultLength, dc.DataType);
 			}
 		}
 

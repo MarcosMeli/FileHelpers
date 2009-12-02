@@ -300,8 +300,6 @@
     <Compile Include="Events\WriteEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExtensionMethods\ExtensionAttribute.cs" />
-    <Compile Include="ExtensionMethods\StringExtensionMethods.cs" />
     <Compile Include="Fields\DelimitedField.cs">
       <SubType>Code</SubType>
     </Compile>

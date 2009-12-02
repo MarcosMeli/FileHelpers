@@ -164,5 +164,56 @@ namespace FileHelpers
 
             return mCulture.CompareInfo;
         }
+
+
+        internal static string ReplaceRecursive(string original, string oldValue, string newValue)
+        {
+            const int maxTries = 1000;
+
+            string ante, res;
+
+            res = original.Replace(oldValue, newValue);
+
+            var i = 0;
+            do
+            {
+                i++;
+                ante = res;
+                res = ante.Replace(oldValue, newValue);
+
+            } while (ante != res || i > maxTries);
+
+            return res;
+        }
+
+        internal static string ToValidIdentifier(string original)
+        {
+            if (original.Length == 0)
+                return string.Empty;
+
+            StringBuilder res = new StringBuilder(original.Length + 1);
+            if (!char.IsLetter(original[0]) && original[0] != '_')
+                res.Append('_');
+
+            for (int i = 0; i < original.Length; i++)
+            {
+                char c = original[i];
+                if (char.IsLetterOrDigit(c) || c == '_')
+                    res.Append(c);
+                else
+                    res.Append('_');
+            }
+
+            var identifier = ReplaceRecursive(res.ToString(), "__", "_").Trim('_');
+            if (identifier.Length == 0)
+                return "_";
+            else if (char.IsDigit(identifier[0]))
+                identifier = "_" + identifier;
+
+            return identifier;
+
+        }
+
+
     }
 }

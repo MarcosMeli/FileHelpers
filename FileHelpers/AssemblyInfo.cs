@@ -14,7 +14,7 @@ using System.Security.Permissions;
 [assembly : ReflectionPermission(SecurityAction.RequestMinimum, ReflectionEmit = true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, SerializationFormatter = true)]
 
-[assembly : AssemblyVersion("2.2.0.0")]
+[assembly : AssemblyVersion("2.5.0.1")]
 [assembly : AssemblyCompany("Marcos Meli")]
 [assembly : AssemblyCopyright("Copyright 2005-07. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]

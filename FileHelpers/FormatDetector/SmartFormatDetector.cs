@@ -326,7 +326,7 @@ namespace FileHelpers.Detection
                     if (FileHasHeaders && i < firstLineSplitted.Length)
                         name = firstLineSplitted[i];
 
-                    var f = builder.AddField(name.ToValidIdentifier());
+                    var f = builder.AddField(StringHelper.ToValidIdentifier(name));
                     if (i > info.Min)
                         f.FieldOptional = true;
                 }
@@ -512,7 +512,7 @@ namespace FileHelpers.Detection
                 
                 foreach (string line in fileData)
                 {
-                    if (line.IsNullOrEmpty())
+                    if (string.IsNullOrEmpty(line))
                         continue;
                     
                     lines++;
@@ -587,7 +587,7 @@ namespace FileHelpers.Detection
 
             int delimitersInLine = 0;
             var restOfLine = line;
-            while (restOfLine.NotIsNullOrEmpty())
+            while (!string.IsNullOrEmpty(restOfLine))
             {
                 if (restOfLine.StartsWith(quotedChar.ToString()))
                 {

@@ -104,7 +104,7 @@ namespace FileHelpers
 		public string FieldsPrefix
 		{
 			get { return mFieldsPrefix; }
-			set { mFieldsPrefix = value.ToValidIdentifier(); }
+			set { mFieldsPrefix = StringHelper.ToValidIdentifier(value); }
 		}
 
 		/// <summary>The number of fields that the file contains.</summary>
