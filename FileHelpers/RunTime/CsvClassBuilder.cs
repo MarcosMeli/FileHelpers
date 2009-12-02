@@ -43,7 +43,7 @@ namespace FileHelpers.RunTime
 				{
 					foreach (string header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
 					{
-						AddField(StringToIdentifier(header));
+						AddField(header.ToValidIdentifier());
 					}
 				}
 				else

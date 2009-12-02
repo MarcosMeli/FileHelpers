@@ -14,7 +14,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToFixedLength()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+			var link = new FileTransformEngine<FromClass, ToClass>();
 			link.TransformFile(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
@@ -28,7 +28,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToFixedLengthCommon()
 		{
-			CommonEngine.TransformFile(TestCommon.GetPath("Good", "Transform1.txt"), typeof(FromClass), TestCommon.GetPath("Good", "transformout.txt"), typeof(ToClass));
+			CommonEngine.TransformFile<FromClass, ToClass>(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
 			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.GetPath("Good", "transformout.txt"));
@@ -41,7 +41,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToFixedLengthCommonAsync()
 		{
-			CommonEngine.TransformFileAsync(TestCommon.GetPath("Good", "Transform1.txt"), typeof(FromClass), TestCommon.GetPath("Good", "transformout.txt"), typeof(ToClass));
+            CommonEngine.TransformFileAsync<FromClass, ToClass>(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
 			ToClass[] res = (ToClass[]) engine.ReadFile(TestCommon.GetPath("Good", "transformout.txt"));
@@ -55,7 +55,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToFixedLength2()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+            var link = new FileTransformEngine<FromClass, ToClass>();
 			link.TransformFile(TestCommon.GetPath("Good", "Transform2.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
@@ -70,8 +70,8 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void TransformRecords()
 		{
-			FileTransformEngine engine = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
-			ToClass[] res = (ToClass[]) engine.ReadAndTransformRecords(TestCommon.GetPath("Good", "Transform2.txt"));
+			var engine = new FileTransformEngine<FromClass, ToClass>();
+			ToClass[] res = engine.ReadAndTransformRecords(TestCommon.GetPath("Good", "Transform2.txt"));
 
 			Assert.AreEqual(@"c:\Prueba1\anda ?", res[0].CompanyName);
 			Assert.AreEqual("\"D:\\Glossaries\\O12\"", res[1].CompanyName);
@@ -82,7 +82,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToDelimited()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+			var link = new FileTransformEngine<FromClass, ToClass2>();
 			link.TransformFile(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
@@ -96,7 +96,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToDelimitedCommon()
 		{
-			CommonEngine.TransformFile(TestCommon.GetPath("Good", "Transform1.txt"), typeof(FromClass), TestCommon.GetPath("Good", "transformout.txt"), typeof(ToClass2));
+			CommonEngine.TransformFile<FromClass, ToClass2>(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
 			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.GetPath("Good", "transformout.txt"));
@@ -109,7 +109,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToDelimitedCommonAsync()
 		{
-			CommonEngine.TransformFileAsync(TestCommon.GetPath("Good", "Transform1.txt"), typeof(FromClass), TestCommon.GetPath("Good", "transformout.txt"), typeof(ToClass2));
+            CommonEngine.TransformFileAsync<FromClass, ToClass2>(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
 			ToClass2[] res = (ToClass2[]) engine.ReadFile(TestCommon.GetPath("Good", "transformout.txt"));
@@ -122,7 +122,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void CsvToDelimited2()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+            var link = new FileTransformEngine<FromClass, ToClass2>();
 			link.TransformFile(TestCommon.GetPath("Good", "Transform2.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
@@ -143,7 +143,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void AsyncCsvToFixedLength()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+            var link = new FileTransformEngine<FromClass, ToClass>();
 			link.TransformFileAsync(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
@@ -157,7 +157,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void AsyncCsvToFixedLength2()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass));
+            var link = new FileTransformEngine<FromClass, ToClass>();
 			link.TransformFileAsync(TestCommon.GetPath("Good", "Transform2.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
@@ -173,7 +173,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void AsyncCsvToDelimited()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+            var link = new FileTransformEngine<FromClass, ToClass2>();
 			link.TransformFileAsync(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
@@ -187,7 +187,7 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void AsyncCsvToDelimited2()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass), typeof(ToClass2));
+            var link = new FileTransformEngine<FromClass, ToClass2>();
 			link.TransformFileAsync(TestCommon.GetPath("Good", "Transform2.txt"), TestCommon.GetPath("Good", "transformout.txt"));
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
@@ -200,49 +200,34 @@ namespace FileHelpersTests.CommonTests
 		}
 
 
-		[Test]
-		public void TransformBad()
-		{
-			FileTransformEngine link = new FileTransformEngine(typeof(ToClass), typeof(FromClass));
-            Assert.Throws<BadUsageException>(()
-                 => link.TransformFile(TestCommon.GetPath("Good", "Transform1.txt"), TestCommon.GetPath("Good", "transformout.txt")));
-		}
-
-		[Test]
-		public void TransformBad2()
-		{
-			new FileTransformEngine(typeof(ToClass), typeof(FromClass));
-		}
-
-
 		[DelimitedRecord(",")]
 		private class FromClass
+            :ITransformable<ToClass>,
+             ITransformable<ToClass2>
 		{
 			public string CustomerId;
 			public string CompanyName;
 			public string CustomerName;
 
-			[TransformToRecord(typeof(ToClass))]
-			public ToClass Transform()
-			{
-				ToClass res = new ToClass();
-				res.CustomerId = CustomerId;
-				res.CompanyName = CompanyName;
-				res.CustomerName = CustomerName;
+		    ToClass ITransformable<ToClass>.TransformTo()
+		    {
+                ToClass res = new ToClass();
+                res.CustomerId = CustomerId;
+                res.CompanyName = CompanyName;
+                res.CustomerName = CustomerName;
 
-				return res;
-			}
+                return res;
+		    }
 
-			[TransformToRecord(typeof(ToClass2))]
-			public ToClass2 Transform2()
-			{
-				ToClass2 res = new ToClass2();
-				res.CustomerId = CustomerId;
-				res.CompanyName = CompanyName;
-				res.CustomerName = CustomerName;
+		    ToClass2 ITransformable<ToClass2>.TransformTo()
+		    {
+                ToClass2 res = new ToClass2();
+                res.CustomerId = CustomerId;
+                res.CompanyName = CompanyName;
+                res.CustomerName = CustomerName;
 
-				return res;
-			}
+                return res;
+            }
 		}
 	
 		[DelimitedRecord("|")]

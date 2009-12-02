@@ -11,104 +11,57 @@ namespace FileHelpersTests.CommonTests
 	[TestFixture]
 	public class TransformBad
 	{
-		[Test]
-		public void Transform1()
-		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass1), typeof(ToClass1));
 
-            Assert.Throws<BadUsageException>(() 
-                => link.TransformFile("a","b"));
-		}
-
-		[Test]
-		public void Transform2()
-		{
-			Assert.Throws<BadUsageException>(() 
-                => new FileTransformEngine(typeof(FromClass2), typeof(ToClass1)));
-            
-		}
-
-		[Test]
+        [Test]
 		public void Transform3()
 		{
-			FileTransformEngine link = new FileTransformEngine(typeof(FromClass3), typeof(ToClass2));
+			var link = new FileTransformEngine<FromClass3, ToClass2>();
             Assert.Throws<FileNotFoundException>(() 
                 => link.TransformFile("aaskdhaklhdla","baskdkalsd"));
 		}
 
-		[Test]
-		public void Transform4()
-		{
-			Assert.Throws<BadUsageException>(() 
-                => new FileTransformEngine(typeof(FromClass4), typeof(ToClass1)));
-		}
-
-		[DelimitedRecord(",")]
-		private class FromClass1
-		{
-			public string Field1;
-			public string Field2;
-			public string Field3;
-		}
-	
 		
-		[DelimitedRecord(",")]
-		private class FromClass2
-		{
-			public string Field1;
-			public string Field2;
-			public string Field3;
 
-			[TransformToRecord(typeof(ToClass1))]
-			public void  Transform()
-			{
-//				ToClass2 res = new ToClass2();
-//				res.Field1 = Field1;
-//				res.Field2 = Field2;
-//				res.Field3 = Field3;
-//
-//				return res;
-			}
-		}
-	
 
 		[DelimitedRecord(",")]
 		private class FromClass3
+            :ITransformable<ToClass2>
 		{
 			public string Field1;
 			public string Field2;
 			public string Field3;
 
-			[TransformToRecord(typeof(ToClass2))]
-			public ToClass2 Transform()
-			{
-				ToClass2 res = new ToClass2();
-				res.Field1 = Field1;
-				res.Field2 = Field2;
-				res.Field3 = Field3;
+		    public ToClass2 TransformTo()
+		    {
+                ToClass2 res = new ToClass2();
+                res.Field1 = Field1;
+                res.Field2 = Field2;
+                res.Field3 = Field3;
 
-				return res;
-			}
+                return res;
+		    }
 		}
 	
 		[DelimitedRecord(",")]
 		private class FromClass4
+            :ITransformable<ToClass1>
 		{
 			public string Field1;
 			public string Field2;
 			public string Field3;
 
-			[TransformToRecord(typeof(ToClass1))]
-			public ToClass1 Transform(bool test)
-			{
-				ToClass1 res = new ToClass1();
-				res.Field1 = Field1;
-				res.Field2 = Field2;
-				res.Field3 = Field3;
+		    public ToClass1 TransformTo()
+		    {
+                ToClass1 res = new ToClass1();
+                res.Field1 = Field1;
+                res.Field2 = Field2;
+                res.Field3 = Field3;
 
-				return res;
-			}
+                return res;
+		    }
 		}
+
+
 		[FixedLengthRecord()]
 		private class ToClass1
 		{

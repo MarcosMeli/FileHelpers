@@ -4,7 +4,8 @@ using FileHelpers;
 namespace FileHelpersTests
 {
 	[DelimitedRecord("|")]
-	public class CustomersVerticalBar: IComparableRecord
+	public class CustomersVerticalBar
+        : IComparableRecord<CustomersVerticalBar>
 	{
 		public string CustomerID;
 		public string CompanyName;
@@ -14,10 +15,9 @@ namespace FileHelpersTests
 		public string City;
 		public string Country;
 
-		public bool IsEqualRecord(object record)
+        public bool IsEqualRecord(CustomersVerticalBar record)
 		{
-			CustomersVerticalBar rec = (CustomersVerticalBar) record;
-			return this.CustomerID == rec.CustomerID;
+			return this.CustomerID == record.CustomerID;
 		}
 	}
 

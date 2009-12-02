@@ -310,6 +310,7 @@
     <Compile Include="Tests\Errors\TransformBad.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Helpers.cs" />
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
       <SubType>Code</SubType>
     </Compile>

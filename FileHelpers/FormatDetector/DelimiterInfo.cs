@@ -1,15 +1,22 @@
+using System;
+
 namespace FileHelpers.Detection
 {
     internal sealed class DelimiterInfo
     {
-        public char Delimiter;
-        public int AvergeByLine;
-        public double Deviation;
+        public int Max { get; set; }
+        public int Min { get; set; }
+        public int Averge { get; set; }
 
-        public DelimiterInfo(char delimiter, int average, double deviation)
+        public char Delimiter { get; set; }
+        public double Deviation { get; set; }
+
+        public DelimiterInfo(char delimiter, double average, int max, int min, double deviation)
         {
+            Max = max;
+            Min = min;
             Delimiter = delimiter;
-            AvergeByLine = average;
+            Averge = (int)Math.Round(average);
             Deviation = deviation;
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FileHelpers.RunTime;
 
@@ -8,6 +9,10 @@ namespace FileHelpers.Detection
     /// <summary>Utility class used to auto detect the record format, the number of fields, the type, etc.</summary>
     public sealed class SmartFormatDetector
     {
+        public SmartFormatDetector()
+        {
+            QuotedChar = '"';
+        }
         #region "  Constants  "
 
         private const int MIN_SAMPLE_DATA = 15;
@@ -50,6 +55,9 @@ namespace FileHelpers.Detection
         }
 
         private double mFixedLengthDeviationTolerance = 0.01;
+        
+        ///<summary>Indicates if the sample file has headers<summary>
+        public bool FileHasHeaders { get; set; }
 
         /// <summary>Used to calculate when a file has fixed length records. Between 0.0 - 1.0 (Default 0.01)</summary>
         public double FixedLengthDeviationTolerance
@@ -310,7 +318,19 @@ namespace FileHelpers.Detection
                 AdjustConfidence(format, info);
 
                 DelimitedClassBuilder builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
-                builder.AddFields(info.AvergeByLine + 1);
+                builder.IgnoreFirstLines = FileHasHeaders ? 1 : 0;
+                var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
+                for (int i = 0; i < info.Max + 1; i++)
+                {
+                    string name = "Field " + (i + 1).ToString().PadLeft(3, '0');
+                    if (FileHasHeaders && i < firstLineSplitted.Length)
+                        name = firstLineSplitted[i];
+
+                    var f = builder.AddField(name.ToValidIdentifier());
+                    if (i > info.Min)
+                        f.FieldOptional = true;
+                }
+                
 
                 format.mClassBuilder = builder;
 
@@ -384,10 +404,10 @@ namespace FileHelpers.Detection
         private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
 
-            double average = CalculateAverage(delimiter, data);
-            double deviation = CalculateDeviation(delimiter, data, average);
+            var indicators = CalculateIndicators(delimiter, data);
+            double deviation = CalculateDeviation(delimiter, data, indicators.Avg);
 
-            return new DelimiterInfo(delimiter, (int)Math.Round(average), deviation);
+            return new DelimiterInfo(delimiter, indicators.Avg, indicators.Max, indicators.Min, deviation);
 
         }
 
@@ -428,14 +448,14 @@ namespace FileHelpers.Detection
             List<DelimiterInfo> candidates = new List<DelimiterInfo>();
             foreach (KeyValuePair<char, int> pair in frecuency)
             {
-                double average = CalculateAverage(pair.Key, data);
-                double deviation = CalculateDeviation(pair.Key, data, average);
+                var indicators = CalculateIndicators(pair.Key, data);
+                double deviation = CalculateDeviation(pair.Key, data, indicators.Avg);
 
                 // Adjust based on the number of lines
                 deviation = deviation * Math.Min(1, ((double) lines)/MIN_SAMPLE_DATA);
 
-                if (average > 1 && deviation < MIN_DELIMITED_DEVIATION)
-                    candidates.Add(new DelimiterInfo(pair.Key, (int)Math.Round(average), deviation));
+                if (indicators.Avg > 1 && deviation < MIN_DELIMITED_DEVIATION)
+                    candidates.Add(new DelimiterInfo(pair.Key, indicators.Avg, indicators.Max, indicators.Min, deviation));
             }
 
             return candidates;
@@ -474,28 +494,48 @@ namespace FileHelpers.Detection
 
         }
 
-        private double CalculateAverage(char c, string[][] data)
+        private class Indicators
         {
-            double sum = 0;
+            public int Max = int.MinValue;
+            public int Min = int.MaxValue;
+            public double Avg = 0;
+        }
+
+        private Indicators CalculateIndicators(char c, string[][] data)
+        {
+            var res = new Indicators();
+            int totalDelimiters = 0;
             int lines = 0;
 
             foreach (string[] fileData in data)
             {
+                
                 foreach (string line in fileData)
                 {
+                    if (line.IsNullOrEmpty())
+                        continue;
+                    
                     lines++;
 
-                    foreach (char candidate in line)
-                    {
-                        if (candidate == c)
-                            sum += 1;
-                    }
+                    var delimiterInLine = QuoteHelper.CountNumberOfDelimiters(line, c, QuotedChar);
 
+                    if (delimiterInLine > res.Max)
+                        res.Max = delimiterInLine;
+
+                    if (delimiterInLine < res.Min)
+                        res.Min = delimiterInLine;
+
+                    totalDelimiters += delimiterInLine;
                 }
+                
             }
 
-            return sum / lines;
+            res.Avg = totalDelimiters / (double) lines;
+
+            return res;
         }
+
+        protected char QuotedChar { get; set; }
 
         private double CalculateAverageLineWidth(string[][] data)
         {
@@ -537,5 +577,49 @@ namespace FileHelpers.Detection
 
         #endregion
 
+    }
+    
+    internal static class QuoteHelper
+    {
+        public static int CountNumberOfDelimiters(string line, char delimiter, char quotedChar)
+        {
+           // Debug.Assert(false, "TODO: This dont work yet");
+
+            int delimitersInLine = 0;
+            var restOfLine = line;
+            while (restOfLine.NotIsNullOrEmpty())
+            {
+                if (restOfLine.StartsWith(quotedChar.ToString()))
+                {
+                    restOfLine = DiscartUntilQuotedChar(restOfLine, quotedChar);
+                }
+                else
+                {
+                    var index = restOfLine.IndexOf(delimiter);
+                    if (index < 0)
+                        return delimitersInLine;
+                    else
+                    {
+                        delimitersInLine++;
+                        restOfLine = restOfLine.Substring(index + 1);
+                    }
+                }
+
+            }
+
+            return delimitersInLine;
+        }
+
+        private static string DiscartUntilQuotedChar(string line, char quoteChar)
+        {
+            if (line.StartsWith(quoteChar.ToString()))
+                line = line.Substring(1);
+            
+            var index = line.IndexOf(quoteChar);
+            if (index < 0)
+                return string.Empty;
+            else
+                return line.Substring(index + 1);
+        }
     }
 }

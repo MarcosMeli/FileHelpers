@@ -185,9 +185,11 @@ namespace FileHelpers
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The number of transformed records</returns>
-        public static int TransformFileAsync(string sourceFile, Type sourceType, string destFile, Type destType)
+        public static int TransformFileAsync<TSource, TDest>(string sourceFile, string destFile) 
+            where TSource : class, ITransformable<TDest>
+            where TDest : class 
         {
-            FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
+            var engine = new FileTransformEngine<TSource, TDest>();
             return engine.TransformFileAsync(sourceFile, destFile);
         }
 
@@ -197,9 +199,11 @@ namespace FileHelpers
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The transformed records.</returns>
-        public static object[] TransformFile(string sourceFile, Type sourceType, string destFile, Type destType)
+        public static object[] TransformFile<TSource, TDest>(string sourceFile, string destFile) 
+            where TSource : class, ITransformable<TDest>
+            where TDest : class 
         {
-            FileTransformEngine engine = new FileTransformEngine(sourceType, destType);
+            var engine = new FileTransformEngine<TSource, TDest>();
             return engine.TransformFile(sourceFile, destFile);
         }
 
@@ -598,12 +602,12 @@ namespace FileHelpers
         /// </summary>
         /// <param name="arr">The array with the records to be checked.</param>
         /// <returns>An array with the result of remove the duplicate records from the source array.</returns>
-        public static IComparableRecord[] RemoveDuplicateRecords(IComparableRecord[] arr)
+        public static T[] RemoveDuplicateRecords<T>(T[] arr) where T : IComparableRecord<T>
         {
             if (arr == null || arr.Length <= 1)
                 return arr;
 
-            ArrayList nodup = new ArrayList();
+            List<T> nodup = new List<T>();
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -621,8 +625,7 @@ namespace FileHelpers
                 if (isUnique) nodup.Add(arr[i]);
             }
 
-            return (IComparableRecord[])nodup.ToArray(arr[1].GetType());
-
+            return nodup.ToArray();
         }
 
         #endregion

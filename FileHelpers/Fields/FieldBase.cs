@@ -439,10 +439,12 @@ namespace FileHelpers
                     if (mIsNullableType)
                         return null;
 
-                    string msg = "Empty value found for the Field: '" + mFieldInfo.Name + "' Class: '" + mFieldInfo.DeclaringType.Name + "'. ";
+                    string msg = "Not value found for the value type field: '" + mFieldInfo.Name + "' Class: '" +
+                                 mFieldInfo.DeclaringType.Name + "'. " + Environment.NewLine
+                                 +
+                                 "You must use the [FieldNullValue] attribute because this is a value type and can´t be null or use a Nullable Type instead of the current type.";
 
-
-                    throw new BadUsageException(line, msg + "You must use the FieldNullValue attribute because this is a ValueType and can´t be null or you can use the Nullable Types feature of the .NET framework.");
+                    throw new BadUsageException(line, msg);
 
                 }
                 else

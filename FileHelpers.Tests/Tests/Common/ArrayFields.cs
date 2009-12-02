@@ -152,7 +152,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[FixedLengthRecord(FixedMode.ExactLength)]
-			private class ArrayType1
+        public class ArrayType1
 		{
 			[FieldFixedLength(5)]
 			public int CustomerID;
@@ -162,7 +162,7 @@ namespace FileHelpersTests.CommonTests
 
 		}
         [FixedLengthRecord(FixedMode.ExactLength)]
-        private class ArrayType2
+        public class ArrayType2
         {
             [FieldFixedLength(5)]
             public int CustomerID;
@@ -175,7 +175,7 @@ namespace FileHelpersTests.CommonTests
 
 
 		[FixedLengthRecord(FixedMode.ExactLength)]
-			private class ArrayType3
+        public class ArrayType3
 		{
 			[FieldFixedLength(5)]
 			public string CustomerID;
@@ -188,14 +188,14 @@ namespace FileHelpersTests.CommonTests
 
 		
 		[DelimitedRecord("|")]
-			private class ArrayTypeBad1
+        public class ArrayTypeBad1
 		{
 			[FieldArrayLength(2, 30)]
 			public int CustomerID;
 		}
 
 		[DelimitedRecord("|")]
-		private class ArrayTypeBad2
+		public class ArrayTypeBad2
 		{
 			
 			public int[][] JaggedArray;
@@ -203,14 +203,14 @@ namespace FileHelpersTests.CommonTests
 
 		
 		[DelimitedRecord("|")]
-			private class ArrayTypeBad3
+        public class ArrayTypeBad3
 		{
 			
 			public int[,] TableArray;
 		}
 
 		[DelimitedRecord("|")]
-		private class ArrayTypeBad4
+        public class ArrayTypeBad4
 		{
 		
 			[FieldArrayLength(20, 10)]
@@ -218,7 +218,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[DelimitedRecord("|")]
-		private class ArrayTypeBad5
+        public class ArrayTypeBad5
 		{
 			public int[] Customers;
 			public int CustomerID;
@@ -226,7 +226,7 @@ namespace FileHelpersTests.CommonTests
 		}
 
 		[DelimitedRecord("|")]
-		private class ArrayTypeBad6
+        public class ArrayTypeBad6
 		{
 			[FieldArrayLength(20, 10)]
 			public int[] ArrayField;
@@ -236,7 +236,7 @@ namespace FileHelpersTests.CommonTests
 	}
 
     [DelimitedRecord("\t")]
-    class ArrayTypeDelimited
+    public class ArrayTypeDelimited
     {
         public string[] Values;
 

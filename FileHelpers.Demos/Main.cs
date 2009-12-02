@@ -9,6 +9,7 @@ namespace FileHelpersSamples
 		public static void Main()
 		{
 
+            // No ask anymore for donations :P for now !!
             //if (RegConfig.GetStringValue("DemoShowDonate", "1") == "1")
             //{
             //    frmDonate frmDon = new frmDonate();
@@ -21,7 +22,7 @@ namespace FileHelpersSamples
 			frm.Dispose();
 		}
 
-		public const string GlobalTestFile = @"..\Customers.txt";
+		public const string GlobalTestFile = @"Customers.txt";
 		public const string GlobalTestMdb = @"..\TestData.mdb";
 
 	}

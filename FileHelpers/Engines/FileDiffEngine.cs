@@ -15,7 +15,7 @@ namespace FileHelpers
     [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
     public sealed class FileDiffEngine<T>: EngineBase
-		where T: class, IComparableRecord
+		where T: class, IComparableRecord<T>
     {
 		/// <summary>
 		/// Creates a new <see cref="FileDiffEngine"/>

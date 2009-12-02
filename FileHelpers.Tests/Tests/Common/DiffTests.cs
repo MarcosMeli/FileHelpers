@@ -100,7 +100,8 @@ namespace FileHelpersTests.CommonTests
 
 
 		[FixedLengthRecord]
-		private class DiffOrdersFixed: IComparableRecord
+		private class DiffOrdersFixed
+            : IComparableRecord<DiffOrdersFixed>
 		{
 			[FieldFixedLength(7)] public int OrderID;
 
@@ -118,13 +119,11 @@ namespace FileHelpersTests.CommonTests
 			[FieldFixedLength(3)] public int ShipVia;
 
 			[FieldFixedLength(10)] public decimal Freight;
-
-			
-			public bool IsEqualRecord(object record)
-			{
-				DiffOrdersFixed rec = (DiffOrdersFixed) record;
-				return this.OrderID == rec.OrderID;
-			}
+            
+		    public bool IsEqualRecord(DiffOrdersFixed other)
+		    {
+                return this.OrderID == other.OrderID;
+		    }
 		}
 
 

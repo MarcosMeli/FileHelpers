@@ -14,6 +14,7 @@ using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
 using System.Xml;
+using FileHelpers.Helpers;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
@@ -339,7 +340,7 @@ namespace FileHelpers.RunTime
         internal ClassBuilder(string className)
         {
             className = className.Trim();
-            if (ValidIdentifier(className) == false)
+            if (IdentificatorValidator.ValidIdentifier(className) == false)
                 throw new FileHelpersException(string.Format(sInvalidIdentifier, className));
 
             mClassName = className;
@@ -975,48 +976,8 @@ namespace FileHelpers.RunTime
         internal abstract void ReadClassElements(XmlDocument document);
         internal abstract void ReadField(XmlNode node);
 
-        internal static bool ValidIdentifier(string id)
-        {
-            return ValidIdentifier(id, false);
-        }
-
-        internal static bool ValidIdentifier(string id, bool isType)
-        {
-            if (id == null || id.Length == 0)
-                return false;
-
-            if (Char.IsLetter(id[0]) == false && id[0] != '_')
-                return false;
-
-            for (int i = 1; i < id.Length; i++)
-            {
-                if (isType)
-                {
-                    if (id[i] == '.' || id[i] == '<' || id[i] == '>' || id[i] == '?' || id[i] == ',')
-                        continue;
-                }
-
-                if (id[i] != '_' && Char.IsLetterOrDigit(id[i]) == false)
-                    return false;
-            }
-
-            return true;
-        }
-
         internal const string sInvalidIdentifier = "The string '{0}' not is a valid .NET identifier.";
 
-        internal static string StringToIdentifier(string name)
-        {
-            StringBuilder sb = new StringBuilder(name.Trim());
-            for (int i = 0; i < sb.Length; i++)
-            {
-                if (char.IsLetterOrDigit(sb[i]) || sb[i] == '_')
-                    continue;
-                sb[i] = '_';
-            }
-
-            return sb.ToString().Trim('_');
-        }
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
