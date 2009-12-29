@@ -29,7 +29,6 @@
 
   </Target>
 
-  
   <Target Name="release" DependsOnTargets="common">
     <MSBuild Projects="FileHelpers.sln" Properties="Configuration=Release" />
   </Target>
@@ -38,13 +37,12 @@
     <MSBuild Projects="FileHelpers.sln" Properties="Configuration=Debug" />
   </Target>
 
-
   <Target Name="pack-release"  DependsOnTargets="release">
-    <Zip Files="@(ReleaseFiles)" WorkingDirectory="Release" ZipFileName="Output\Release_$(CurrentVersion).zip"/>
+    <Zip Files="@(ReleaseFiles)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).zip"/>
   </Target>
 
   <Target Name="pack-debug"  DependsOnTargets="debug">
-      <Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\Debug_$(CurrentVersion).$(Revision).zip"/>
+      <Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip"/>
   </Target>
 
 
