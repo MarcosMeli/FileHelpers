@@ -77,9 +77,9 @@
     <Compile Include="TextBoxOutputStream.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FileHelpers\FileHelpers.2008.csproj">
+    <ProjectReference Include="..\..\FileHelpers\FileHelpers.csproj">
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
-      <Name>FileHelpers.2005</Name>
+      <Name>FileHelpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

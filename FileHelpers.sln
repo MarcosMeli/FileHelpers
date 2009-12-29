@@ -2,7 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
-		FileHelpers.proj = FileHelpers.proj
 		DeveloperStuff\Readme for Developers.txt = DeveloperStuff\Readme for Developers.txt
 	EndProjectSection
 EndProject
@@ -10,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{747EBEDD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.WizardApp", "FileHelpers.WizardApp\FileHelpers.WizardApp.csproj", "{8997A588-1D83-4211-980D-28D8BF0CDA8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.2008", "FileHelpers\FileHelpers.2008.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Demos.2008", "FileHelpers.Demos\FileHelpers.Demos.2008.csproj", "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Demos", "FileHelpers.Demos\FileHelpers.Demos.csproj", "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelStorage.2008", "FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.2008.csproj", "{B3F2B976-73D5-49C7-BEAA-BF62E233132A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelStorage", "FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj", "{B3F2B976-73D5-49C7-BEAA-BF62E233132A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Tests.2008", "FileHelpers.Tests\FileHelpers.Tests.2008.csproj", "{3731CD63-3236-47FB-A27C-146D37DE88AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Tests", "FileHelpers.Tests\FileHelpers.Tests.csproj", "{3731CD63-3236-47FB-A27C-146D37DE88AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.IronPython.Hosting", "FileHelpers.Demos\Demo.IronPython.Hosting\Demo.IronPython.Hosting.csproj", "{2EE250D6-38E9-4CF5-9BB6-DE8262D8229D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks.2008", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.2008.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -26,7 +26,7 @@
 -------------------------------
 
   - TortoiseSVN
-  - NAnt
+  - MSBuild
   - NUnit
   - NDoc
   - FxCop
@@ -35,14 +35,13 @@
    Contact and how to help
 -------------------------------
 
-I love to hear feedback so feel free to contact me at 
+We love to hear feedback so feel free to contact us at 
 
-   marcos@filehelpers.com
+   feedback@filehelpers.com
    
-and tell me wherever do you want, if you want to help, 
-drop me a line with the parts of the library in wich you want
-to contribute.
+and tell us what u think of the lib
+if you want to help, drop us a line with the parts of the library in wich you want to contribute.
 
 ---
 Cheers
-Marcos Meli
+FileHelpers Team
