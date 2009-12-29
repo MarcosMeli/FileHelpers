@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
+
+  <Import Project="FileHelpers.msbuild"/>
+
+  <Target Name="test-team" DependsOnTargets="release" >
+    <NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
+  </Target>
+
+  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team" >
+  </Target>
+</Project>
