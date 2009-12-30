@@ -325,7 +325,7 @@
     <Compile Include="Helpers\ExHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\IdentificatorValidator.cs" />
+    <Compile Include="Helpers\ValidIdentifierValidator.cs" />
     <Compile Include="Helpers\ProgressHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -357,6 +357,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Misc\LogEngine.cs" />
+    <Compile Include="Misc\LogEngineMode.cs" />
     <Compile Include="Options\DelimitedRecordOptions.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -14,7 +14,7 @@ using System.Text;
 using System.IO;
 using System.CodeDom.Compiler;
 using System.Xml;
-using FileHelpers.Helpers;
+
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
@@ -340,7 +340,7 @@ namespace FileHelpers.RunTime
         internal ClassBuilder(string className)
         {
             className = className.Trim();
-            if (IdentificatorValidator.ValidIdentifier(className) == false)
+            if (ValidIdentifierValidator.ValidIdentifier(className) == false)
                 throw new FileHelpersException(string.Format(sInvalidIdentifier, className));
 
             mClassName = className;

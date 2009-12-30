@@ -13,7 +13,7 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal class DataBaseHelper
+	internal static class DataBaseHelper
 	{
 		#region "  AccessConnection  "
 
@@ -29,7 +29,7 @@ namespace FileHelpers
             string res = AccessConnStr;
             res = res.Replace("<BASE>", db);
 
-            res = res.Replace("<PASSWORD>", password == null ? string.Empty : password);
+            res = res.Replace("<PASSWORD>", password ?? string.Empty);
             return res;
 		}
 
@@ -40,12 +40,12 @@ namespace FileHelpers
 		private static string AppName = "FileHelpers"; //<- For display in SqlServer
 		
 
-		static public string SqlConnectionString(string server, string dbName)
+		public static string SqlConnectionString(string server, string dbName)
 		{
 			return SqlConnectionString(server, dbName, "", "");
 		}
 
-		static public string SqlConnectionString(string server, string dbName, string user, string pass)
+        public static string SqlConnectionString(string server, string dbName, string user, string pass)
 		{
 			StringBuilder sCadena = new StringBuilder(300);
 			if (user.Length == 0 && pass.Length == 0)

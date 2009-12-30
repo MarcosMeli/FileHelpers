@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Text;
 using System.Xml;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.RunTime
 {
@@ -28,7 +27,7 @@ namespace FileHelpers.RunTime
 		{
 			fieldName = fieldName.Trim();
 			
-			if (IdentificatorValidator.ValidIdentifier(fieldName) == false)
+			if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false)
 				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 			
 			mFieldName = fieldName;
@@ -39,10 +38,10 @@ namespace FileHelpers.RunTime
 		{
 			fieldName = fieldName.Trim();
 
-			if (IdentificatorValidator.ValidIdentifier(fieldName) == false)
+			if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false)
 				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
 
-			if (IdentificatorValidator.ValidIdentifier(fieldType, true) == false)
+			if (ValidIdentifierValidator.ValidIdentifier(fieldType, true) == false)
 				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldType));
 
 			mFieldName = fieldName;

@@ -20,6 +20,7 @@ namespace FileHelpers
 
         public LogEngine(string filename, LogEngineMode mode, Encoding encoding)
         {
+            Delimiter = "\t";
 
             switch (mode)
             {
@@ -38,7 +39,6 @@ namespace FileHelpers
                     mWriter = new System.IO.StreamWriter(filename, true, encoding);
                     break;
             }
-            
         }
 
         public void Close()
@@ -64,23 +64,9 @@ namespace FileHelpers
 
         #endregion
 
+        public string Prefix { get; set; }
 
-        private string mPrefix;
-
-        public string Prefix
-        {
-            get { return mPrefix; }
-            set { mPrefix = value; }
-        }
-
-
-        private string mDelimiter = "\t";
-
-        public string Delimiter
-        {
-            get { return mDelimiter; }
-            set { mDelimiter = value; }
-        }
+        public string Delimiter { get; set; }
 
         public void Log(params object[] values)
         {
@@ -95,11 +81,5 @@ namespace FileHelpers
             }
             mWriter.Write(Environment.NewLine);
         }
-    }
-    public enum LogEngineMode
-    { 
-        CreateNew,
-        Override,
-        Append
     }
 }

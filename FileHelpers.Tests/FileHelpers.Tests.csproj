@@ -79,9 +79,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\nunit\2.0\nunit.framework.dll</HintPath>
+      <HintPath>..\Libs\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

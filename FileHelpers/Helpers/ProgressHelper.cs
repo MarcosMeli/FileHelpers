@@ -8,12 +8,9 @@ using System;
 
 namespace FileHelpers
 {
-	internal sealed class ProgressHelper
+	internal static class ProgressHelper
 	{
-		private ProgressHelper()
-		{}
-
-		public static void Notify(ProgressChangeHandler handler, ProgressMode mode, int current, int total)
+	    public static void Notify(ProgressChangeHandler handler, ProgressMode mode, int current, int total)
 		{
 			if (handler == null)
 				return;

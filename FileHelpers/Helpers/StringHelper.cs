@@ -12,12 +12,8 @@ using System.Globalization;
 namespace FileHelpers
 {
 
-	internal sealed class StringHelper
+	internal static class StringHelper
 	{
-		private StringHelper()
-		{
-		}
-
 		#if ! MINI
 			internal static readonly string NewLine = Environment.NewLine;
 		#else

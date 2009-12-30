@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FileHelpers.Helpers
+namespace FileHelpers
 {
-    internal class IdentificatorValidator
+    internal static class ValidIdentifierValidator
     {
         internal static bool ValidIdentifier(string id)
         {
@@ -13,7 +13,7 @@ namespace FileHelpers.Helpers
 
         internal static bool ValidIdentifier(string id, bool isType)
         {
-            if (id == null || id.Length == 0)
+            if (string.IsNullOrEmpty(id))
                 return false;
 
             if (Char.IsLetter(id[0]) == false && id[0] != '_')
