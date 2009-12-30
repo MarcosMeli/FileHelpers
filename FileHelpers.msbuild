@@ -45,9 +45,16 @@
       <Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip"/>
   </Target>
 
+  <PropertyGroup>
+    <CustomProjectPath>d:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.shfbproj</CustomProjectPath>
+  </PropertyGroup>
+
+  <Import Project="FileHelpers.shfbproj" />
+  <Target Name="doc" DependsOnTargets="release" >
+      <CallTarget Targets="Build"/>
+  </Target>
 
   <Target Name="test-gallio" DependsOnTargets="release" >
-    <NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
   </Target>
 
 </Project>
