@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <!-- Sandcastle Help File Builder Tasks.  http://www.codeplex.com/SHFB -->
   <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.Build1xHelpFile"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="SandcastleBuilder.Utils.dll" />
 
   <!-- Task properties -->
   <PropertyGroup>
