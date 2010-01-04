@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FileHelpers
 {
+    ///<summary>
+    /// A simple class to provide basic logging features
+    ///</summary>
     public class LogEngine
         :IDisposable
     {

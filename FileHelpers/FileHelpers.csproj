@@ -356,8 +356,6 @@
     <Compile Include="MasterDetail\RecordAccion.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Misc\LogEngine.cs" />
-    <Compile Include="Misc\LogEngineMode.cs" />
     <Compile Include="Options\DelimitedRecordOptions.cs">
       <SubType>Code</SubType>
     </Compile>

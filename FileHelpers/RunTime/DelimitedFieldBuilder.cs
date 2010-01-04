@@ -109,13 +109,14 @@ namespace FileHelpers.RunTime
 			FieldQuoted = node["FieldQuoted"] != null;
 			
 			ele = node["QuoteChar"];
-			if (ele != null) QuoteChar = ele.InnerText[0];
+            
+			if (ele != null && ele.InnerText.Length > 0) QuoteChar = ele.InnerText[0];
 
 			ele = node["QuoteMode"];
-			if (ele != null) QuoteMode = (QuoteMode) Enum.Parse(typeof(QuoteMode), ele.InnerText);
+			if (ele != null && ele.InnerText.Length > 0) QuoteMode = (QuoteMode) Enum.Parse(typeof(QuoteMode), ele.InnerText);
 
 			ele = node["QuoteMultiline"];
-			if (ele != null) QuoteMultiline = (MultilineMode) Enum.Parse(typeof(MultilineMode), ele.InnerText);
+            if (ele != null && ele.InnerText.Length > 0) QuoteMultiline = (MultilineMode)Enum.Parse(typeof(MultilineMode), ele.InnerText);
 
 		}
 	}
