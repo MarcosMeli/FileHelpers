@@ -10,16 +10,14 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class ReadersFirst
 	{
-		FileHelperEngine engine;
-	
-
+		
 		[Test]
         public void ReadFileMaxRecords01()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, 2, "Good", "Test1.txt");
+			res = (SampleType[]) engine.ReadFile(FileTest.Good.Test1.Path, 2);
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);
@@ -39,10 +37,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadFileMaxRecords02()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, int.MaxValue, "Good", "Test1.txt");
+            res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, int.MaxValue);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -53,10 +51,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords03()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, -1, "Good", "Test1.txt");
+            res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, -1);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -66,10 +64,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadMaxRecords04()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+            var engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, -1283623, "Good", "Test1.txt");
+			res = (SampleType[]) engine.ReadFile(FileTest.Good.Test1.Path, -1283623);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -79,10 +77,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadMaxRecords05()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine(typeof (SampleType));
 
-			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, 0, "Good", "Test1.txt");
+		    var res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, 0);
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(0, engine.TotalRecords);
@@ -92,10 +89,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords06()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, 1, "Good", "Test1.txt");
+            res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, 1);
 
 			Assert.AreEqual(1, res.Length);
 			Assert.AreEqual(1, engine.TotalRecords);
@@ -105,12 +102,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords07()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+		    SampleType[] res = FileTest.Good.Test1.ReadWithEngine(engine);
+
 			string temp = engine.WriteString(res);
-			res = (SampleType[]) engine.ReadString(temp, 2);
+			res = engine.ReadString(temp, 2);
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);
@@ -121,12 +118,11 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords08()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+		    var res = FileTest.Good.Test1.ReadWithEngine(engine);
 			string temp = engine.WriteString(res);
-			res = (SampleType[]) engine.ReadString(temp, int.MaxValue);
+			res = engine.ReadString(temp, int.MaxValue);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

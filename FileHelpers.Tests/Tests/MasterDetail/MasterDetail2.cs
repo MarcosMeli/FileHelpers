@@ -12,14 +12,13 @@ namespace FileHelpers.Tests.MasterDetail
 	[TestFixture]
 	public class MasterDetail2
 	{
-		MasterDetailEngine engine;
 
 		[Test]
 		public void CustomerOrdersRead()
 		{
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.DetailIfContains, "@");
+            var engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.DetailIfContains, "@");
 
-            MasterDetails[] res = TestCommon.ReadTest(engine, "Good", "MasterDetail2.txt");
+            MasterDetails[] res = engine.ReadFile(FileTest.Good.MasterDetail2.Path);
 
             Assert.AreEqual(4, res.Length);
 
@@ -52,9 +51,9 @@ namespace FileHelpers.Tests.MasterDetail
         [Test]
         public void CustomerOrdersRead2()
         {
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.MasterIfContains, "@");
+            var engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), CommonSelector.MasterIfContains, "@");
 
-            MasterDetails[] res = TestCommon.ReadTest(engine, "Good", "MasterDetail3.txt");
+            MasterDetails[] res = engine.ReadFile(FileTest.Good.MasterDetail3.Path);
 
             Assert.AreEqual(4, res.Length);
 

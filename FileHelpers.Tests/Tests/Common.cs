@@ -33,11 +33,6 @@ namespace FileHelpers.Tests
             return engine.ReadFile(GetPath(pathElements));
         }
 
-        public static object[] ReadTest(FileHelperEngine engine, int maxRecords, params string[] pathElements)
-        {
-            return engine.ReadFile(GetPath(pathElements), maxRecords);
-        }
-
         public static object[] ReadAllAsync(FileHelperAsyncEngine engine, params string[] pathElements)
         {
             ArrayList arr = new ArrayList();
@@ -52,10 +47,6 @@ namespace FileHelpers.Tests
 
         }
 
-        public static MasterDetails[] ReadTest(MasterDetailEngine engine, params string[] pathElements)
-        {
-            return engine.ReadFile(GetPath(pathElements));
-        }
 
         public static void BeginReadTest(FileHelperAsyncEngine engine, params string[] pathElements)
         {

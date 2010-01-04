@@ -10,14 +10,13 @@ namespace FileHelpers.Tests.MasterDetail
 	[TestFixture]
 	public class MasterDetail
 	{
-		MasterDetailEngine engine;
 
 		[Test]
 		public void CustomerOrdersRead()
 		{
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
+            var engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
 
-            MasterDetails[] res = TestCommon.ReadTest(engine, "Good", "MasterDetail1.txt");
+            MasterDetails[] res = engine.ReadFile(FileTest.Good.MasterDetail1.Path);
 
             Assert.AreEqual(4, res.Length);
 
@@ -50,8 +49,8 @@ namespace FileHelpers.Tests.MasterDetail
         [Test]
         public void CustomerOrdersWrite()
         {
-            engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
-            MasterDetails[] resTmp = TestCommon.ReadTest(engine, "Good", "MasterDetail1.txt");
+            var engine = new MasterDetailEngine(typeof(CustomersVerticalBar), typeof(OrdersVerticalBar), new MasterDetailSelector(Test1Selector));
+            MasterDetails[] resTmp = engine.ReadFile(FileTest.Good.MasterDetail1.Path); 
             Assert.AreEqual(4, resTmp.Length);
 
             engine.WriteFile("tempmd.txt", resTmp);
@@ -90,7 +89,7 @@ namespace FileHelpers.Tests.MasterDetail
 
         }
 
-        RecordAction Test1Selector(string record)
+	    static RecordAction Test1Selector(string record)
         {
             if (Char.IsLetter(record[0]))
                 return RecordAction.Master;
