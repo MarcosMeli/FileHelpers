@@ -10,6 +10,11 @@
     <NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
   </Target>
 
-  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team" >
+  <Import Project="FileHelpers.shfbproj" />
+  <Target Name="doc" DependsOnTargets="release" >
+      <CallTarget Targets="Build"/>
+  </Target>
+
+  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team;doc" >
   </Target>
 </Project>
