@@ -16,7 +16,7 @@ using System.Security.Permissions;
 
 [assembly : AssemblyVersion("2.5.0.1")]
 [assembly : AssemblyCompany("Marcos Meli")]
-[assembly : AssemblyCopyright("Copyright 2005-07. Marcos Meli")]
+[assembly : AssemblyCopyright("Copyright 2005-2010. Marcos Meli")]
 [assembly : AssemblyTrademark("FileHelpers")]
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyConfiguration("")]

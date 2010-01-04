@@ -7,7 +7,7 @@ using FileHelpers;
 using FileHelpers.RunTime;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class ImageConverterTest

@@ -1,6 +1,6 @@
 using FileHelpers;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
 	[DelimitedRecord(";")]
 	public class CustomersSemiColon

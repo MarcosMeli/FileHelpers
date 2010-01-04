@@ -2,7 +2,7 @@ using FileHelpers;
 using System;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	// SPECIAL FIELD
     [DelimitedRecord("|")]

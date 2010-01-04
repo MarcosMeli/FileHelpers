@@ -4,7 +4,7 @@ using System.Reflection;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Errors
+namespace FileHelpers.Tests.Errors
 {
 	[TestFixture]
 	public class BadUsage

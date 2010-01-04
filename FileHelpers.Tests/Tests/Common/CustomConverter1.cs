@@ -2,7 +2,7 @@ using System.IO;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	// SPECIAL FIELD
 	public class NameField

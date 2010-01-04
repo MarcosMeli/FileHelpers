@@ -5,7 +5,7 @@ using FileHelpers.MasterDetail;
 using NUnit.Framework;
 using System.IO;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
 	[TestFixture]
 	public class MultiRecords

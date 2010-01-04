@@ -2,7 +2,7 @@ using FileHelpers;
 using NUnit.Framework;
 using System.IO;
 
-namespace FileHelpersTests.Errors
+namespace FileHelpers.Tests.Errors
 {
 	[TestFixture]
 	public class ErrorModeValidatorAsync

@@ -1,8 +1,8 @@
 using FileHelpers;
-using FileHelpersTests.CommonTests;
+using FileHelpers.Tests.CommonTests;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Errors
+namespace FileHelpers.Tests.Errors
 {
 	[TestFixture]
 	public class BadQuoted

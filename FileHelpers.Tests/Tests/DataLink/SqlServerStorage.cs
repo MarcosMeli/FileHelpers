@@ -5,7 +5,7 @@ using FileHelpers.DataLink;
 using NUnit.Framework;
 using System.Data.SqlClient;
 
-namespace FileHelpersTests.DataLink
+namespace FileHelpers.Tests.DataLink
 {
 	[TestFixture]
     [Ignore]

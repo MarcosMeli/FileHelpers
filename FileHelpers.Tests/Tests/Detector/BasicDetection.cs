@@ -6,7 +6,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 
 
-namespace FileHelpersTests.Tests.Detector
+namespace FileHelpers.Tests.Tests.Detector
 {
 
     [TestFixture]

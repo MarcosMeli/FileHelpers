@@ -1,7 +1,7 @@
 using System;
 using FileHelpers;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
 	[FixedLengthRecord]
 	public class SampleType

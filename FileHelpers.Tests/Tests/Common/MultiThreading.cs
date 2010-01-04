@@ -3,7 +3,7 @@ using System.Threading;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Tests
+namespace FileHelpers.Tests.Tests
 {
     [TestFixture]
     public class MultiThreading

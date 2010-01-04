@@ -1,2 +1,2 @@
-@call "%ProgramFiles%\Microsoft Visual Studio 9.0\VC\vcvarsall.bat" x86
+call "%VS90COMNTOOLS%vsvars32.bat"
 @msbuild FileHelpers.msbuild /t:release /nologo

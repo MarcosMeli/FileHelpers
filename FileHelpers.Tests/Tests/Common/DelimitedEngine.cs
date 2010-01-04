@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class DelimitedEngine
@@ -51,6 +51,16 @@ namespace FileHelpersTests.CommonTests
         {
             Assert.Throws<BadUsageException>(
                 () => new DelimitedFileEngine(null));
+        }
+
+        [Test]
+        public void CheckSeparator()
+        {
+            var engSemiColon = new DelimitedFileEngine<CustomersSemiColon>();
+            engSemiColon.Options.Delimiter.AssertEqualTo(";");
+
+            var engTab = new DelimitedFileEngine<CustomersTab>();
+            engTab.Options.Delimiter.AssertEqualTo("\t");
         }
 
 	}

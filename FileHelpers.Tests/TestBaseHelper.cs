@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
     public class TestBaseHelper
     {

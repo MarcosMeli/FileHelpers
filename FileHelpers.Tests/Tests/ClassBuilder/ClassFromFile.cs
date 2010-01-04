@@ -7,7 +7,7 @@ using FileHelpers;
 using FileHelpers.RunTime;
 using NUnit.Framework;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
     [TestFixture]
     public class ClassFromFile

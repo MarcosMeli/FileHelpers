@@ -4,7 +4,7 @@ using FileHelpers;
 using NUnit.Framework;
 using System.Collections;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class IgnoreLasts

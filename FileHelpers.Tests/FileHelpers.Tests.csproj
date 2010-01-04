@@ -22,7 +22,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>FileHelpersTests</RootNamespace>
+    <RootNamespace>FileHelpers.Tests</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -112,6 +112,11 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\GenerateDataLayer.autogen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenerateDataLayer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tests\ClassBuilder\ClassFromFile.cs" />
     <Compile Include="TestBaseHelper.cs" />
     <Compile Include="Tests\Common.cs">
@@ -158,10 +163,10 @@
     <Compile Include="Tests\Common\DiffTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\Encoding.cs">
+    <Compile Include="Tests\Common\FileEncoding.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\EncodingAdv.cs">
+    <Compile Include="Tests\Common\FileEncodingAdvanced.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Events.cs">
@@ -346,6 +351,174 @@
     </Compile>
     <None Include="FileHelpers.snk" />
     <None Include="TODO Tests.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Bad\IntWithDot.txt" />
+    <None Include="Data\Bad\IntWithLetters.txt" />
+    <None Include="Data\Bad\IntWithSpaces1.txt" />
+    <None Include="Data\Bad\IntWithSpaces2.txt" />
+    <None Include="Data\GenerateDataLayer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateDataLayer.autogen.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\FluentCode.cs" />
+    <Compile Include="Data\FileTestBase.cs" />
+    <Compile Include="FluentTestingExtensions.cs" />
+    <Compile Include="Tests\FowardReader.cs" />
+    <Compile Include="Tests\Errors\BadDelimited.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Bad\BadAdd1.txt" />
+    <Content Include="Data\Bad\BadAdd2.txt" />
+    <Content Include="Data\Bad\BadAll1.txt" />
+    <Content Include="Data\Bad\BadDate1.txt" />
+    <Content Include="Data\Bad\BadDate1Ignore.txt" />
+    <Content Include="Data\Bad\BadDate1IgnoreLast.txt" />
+    <Content Include="Data\Bad\BadDate1IgnoreLast2.txt" />
+    <Content Include="Data\Bad\BadDate2.txt" />
+    <Content Include="Data\Bad\BadInt1.txt" />
+    <Content Include="Data\Bad\BadInt2.txt" />
+    <Content Include="Data\Bad\BadInt3.txt" />
+    <Content Include="Data\Bad\BadInt4.txt" />
+    <Content Include="Data\Bad\BadQuoted1.txt" />
+    <Content Include="Data\Bad\BadQuoted2.txt" />
+    <Content Include="Data\Bad\BadQuoted3.txt" />
+    <Content Include="Data\Bad\CustomersTabNumFields.txt" />
+    <Content Include="Data\Bad\DelimiterNotFoundFirstField.txt" />
+    <Content Include="Data\Bad\DelimiterNotFoundLastField.txt" />
+    <Content Include="Data\Bad\DelimiterNotFoundMiddleField.txt" />
+    <Content Include="Data\Bad\EmptyLine.txt" />
+    <Content Include="Data\Bad\EmptyLineAtEnd.txt" />
+    <Content Include="Data\Bad\EmptyLineInTheMiddle.txt" />
+    <Content Include="Data\Bad\InNewLine3.txt" />
+    <Content Include="Data\Bad\InNewLine4.txt" />
+    <Content Include="Data\Bad\MultiRecord1.txt" />
+    <Content Include="Data\Bad\NoBadNullvalue.txt" />
+    <Content Include="Data\Bad\OptionalBad1.txt" />
+    <Content Include="Data\Detection\Cities.txt" />
+    <Content Include="Data\Detection\Cities2.txt" />
+    <Content Include="Data\Detection\CityRates.txt" />
+    <Content Include="Data\Detection\CustomersComma.txt" />
+    <Content Include="Data\Detection\CustomersFixed.txt" />
+    <Content Include="Data\Detection\CustomersSemiColon.txt" />
+    <Content Include="Data\Detection\CustomersTab.txt" />
+    <Content Include="Data\Detection\DelimitedMedium.txt" />
+    <Content Include="Data\Detection\Locations.txt" />
+    <Content Include="Data\Detection\SampleData.txt" />
+    <Content Include="Data\Detection\SuperQuoted.txt" />
+    <Content Include="Data\Detection\SuperQuoted2.txt" />
+    <Content Include="Data\Good\ArrayFields.txt" />
+    <Content Include="Data\Good\ArrayFields2.txt" />
+    <Content Include="Data\Good\ArrayFieldsDelimited.txt" />
+    <Content Include="Data\Good\Chinese.txt" />
+    <Content Include="Data\Good\ChineseUnicode.txt" />
+    <Content Include="Data\Good\ConditionalRecords1.txt" />
+    <Content Include="Data\Good\ConditionalRecords2.txt" />
+    <Content Include="Data\Good\ConditionalRecords3.txt" />
+    <Content Include="Data\Good\ConditionalRecords4.txt" />
+    <Content Include="Data\Good\ConverterDecimals1.txt" />
+    <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\CustomConverter1.txt" />
+    <Content Include="Data\Good\CustomConverter2.txt" />
+    <Content Include="Data\Good\CustomersFixed.txt" />
+    <Content Include="Data\Good\CustomersSemiColon.txt" />
+    <Content Include="Data\Good\CustomersTab.txt" />
+    <Content Include="Data\Good\CustomersTabIgnoreFirst.txt" />
+    <Content Include="Data\Good\CustomersTabIgnoreLast.txt" />
+    <Content Include="Data\Good\CustomersTabIgnoreMiddle.txt" />
+    <Content Include="Data\Good\CustomersVerticalBar.txt" />
+    <Content Include="Data\Good\CustomersVerticalBarDemo.txt" />
+    <Content Include="Data\Good\CustomersVerticalBarOlds.txt" />
+    <Content Include="Data\Good\DateFormat1.txt" />
+    <Content Include="Data\Good\DateFormat2.txt" />
+    <Content Include="Data\Good\DiffOrdersDup.txt" />
+    <Content Include="Data\Good\DiffOrdersNew.txt" />
+    <Content Include="Data\Good\DiffOrdersOld.txt" />
+    <Content Include="Data\Good\DiscardFirst0.txt" />
+    <Content Include="Data\Good\DiscardFirst1.txt" />
+    <Content Include="Data\Good\DiscardFirst2.txt" />
+    <Content Include="Data\Good\DiscardFirst3.txt" />
+    <Content Include="Data\Good\DiscardLast0.txt" />
+    <Content Include="Data\Good\DiscardLast1.txt" />
+    <Content Include="Data\Good\DiscardLast2.txt" />
+    <Content Include="Data\Good\DiscardLast3.txt" />
+    <Content Include="Data\Good\EmptyFile.txt" />
+    <Content Include="Data\Good\EncodingAdv1.txt" />
+    <Content Include="Data\Good\EncodingAdv2.txt" />
+    <Content Include="Data\Good\EncodingANSI.txt" />
+    <Content Include="Data\Good\EncodingUnicode.txt" />
+    <Content Include="Data\Good\EncodingUnicodeBig.txt" />
+    <Content Include="Data\Good\EncodingUTF8.txt" />
+    <Content Include="Data\Good\EnumConverter1.txt" />
+    <Content Include="Data\Good\EnumConverter2.txt" />
+    <Content Include="Data\Good\EnumConverter3.txt" />
+    <Content Include="Data\Good\ExcelCsv1.txt" />
+    <Content Include="Data\Good\ExcelCsv2.txt" />
+    <Content Include="Data\Good\FieldIgnoredAdvanced.txt" />
+    <Content Include="Data\Good\IgnoreComments1.txt" />
+    <Content Include="Data\Good\IgnoreComments2.txt" />
+    <Content Include="Data\Good\IgnoreEmpty1.txt" />
+    <Content Include="Data\Good\IgnoreEmpty2.txt" />
+    <Content Include="Data\Good\IgnoreEmpty3.txt" />
+    <Content Include="Data\Good\IgnoreEmpty4.txt" />
+    <Content Include="Data\Good\IgnoreEmpty5.txt" />
+    <Content Include="Data\Good\InNewLine0.txt" />
+    <Content Include="Data\Good\InNewLine1.txt" />
+    <Content Include="Data\Good\InNewLine2.txt" />
+    <Content Include="Data\Good\InNewLineFixed1.txt" />
+    <Content Include="Data\Good\InNewLineFixed2.txt" />
+    <Content Include="Data\Good\MasterDetail1.txt" />
+    <Content Include="Data\Good\MasterDetail2.txt" />
+    <Content Include="Data\Good\MasterDetail3.txt" />
+    <Content Include="Data\Good\MultilineFull.txt" />
+    <Content Include="Data\Good\MultiRecord1.txt" />
+    <Content Include="Data\Good\NullableTypes1.txt" />
+    <Content Include="Data\Good\NumberFormat.txt" />
+    <Content Include="Data\Good\NumberFormat2.txt" />
+    <Content Include="Data\Good\NumberNegative.txt" />
+    <Content Include="Data\Good\OptionalDelimited0.txt" />
+    <Content Include="Data\Good\OptionalDelimited1.txt" />
+    <Content Include="Data\Good\OptionalDelimited1Quoted.txt" />
+    <Content Include="Data\Good\OptionalDelimited2.txt" />
+    <Content Include="Data\Good\OptionalDelimited2Quoted.txt" />
+    <Content Include="Data\Good\OptionalDelimited3.txt" />
+    <Content Include="Data\Good\OptionalDelimited4.txt" />
+    <Content Include="Data\Good\OptionalDelimited5.txt" />
+    <Content Include="Data\Good\OptionalDelimitedFull.txt" />
+    <Content Include="Data\Good\OptionalFixed0.txt" />
+    <Content Include="Data\Good\OptionalFixed1.txt" />
+    <Content Include="Data\Good\OptionalFixed2.txt" />
+    <Content Include="Data\Good\OrdersFixed.txt" />
+    <Content Include="Data\Good\OrdersFixedIgnoreMiddle.txt" />
+    <Content Include="Data\Good\OrdersSemiColon.txt" />
+    <Content Include="Data\Good\OrdersTab.txt" />
+    <Content Include="Data\Good\OrdersVerticalBar.txt" />
+    <Content Include="Data\Good\OrdersWithOutDates.txt" />
+    <Content Include="Data\Good\PriceConverter.txt" />
+    <Content Include="Data\Good\QuotedCustomers.txt" />
+    <Content Include="Data\Good\QuotedCustomers2.txt" />
+    <Content Include="Data\Good\QuotedOrders.txt" />
+    <Content Include="Data\Good\QuotedOrders2.txt" />
+    <Content Include="Data\Good\QuoteMode1.txt" />
+    <Content Include="Data\Good\ReadAsDataTable.txt" />
+    <Content Include="Data\Good\RealCsvComma1.txt" />
+    <Content Include="Data\Good\RealCsvComma2.txt" />
+    <Content Include="Data\Good\RealCsvTab1.txt" />
+    <Content Include="Data\Good\RealCsvTab2.txt" />
+    <Content Include="Data\Good\RealCsvVerticalBar1.txt" />
+    <Content Include="Data\Good\RealCsvVerticalBar2.txt" />
+    <Content Include="Data\Good\Sort1.txt" />
+    <Content Include="Data\Good\Test1.txt" />
+    <Content Include="Data\Good\Test2.txt" />
+    <Content Include="Data\Good\TestEmpty.txt" />
+    <Content Include="Data\Good\Transform1.txt" />
+    <Content Include="Data\Good\Transform2.txt" />
+    <Content Include="Data\Good\Trim1.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\CoreUnitTests\" />

@@ -2,7 +2,7 @@ using System;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class FixedEngine
@@ -10,14 +10,14 @@ namespace FileHelpersTests.CommonTests
 		[Test]
 		public void SimpleTest()
 		{
-            FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed));
-            Assert.AreEqual(91, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+            var engine = new FixedFileEngine<CustomersFixed>();
+            Assert.AreEqual(91, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             engine.Options.IgnoreFirstLines = 10;
-            Assert.AreEqual(81, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+            Assert.AreEqual(81, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             engine.Options.IgnoreLastLines = 6;
-            Assert.AreEqual(75, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+            Assert.AreEqual(75, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             Assert.AreEqual(183, engine.Options.RecordLength);
 
@@ -27,11 +27,11 @@ namespace FileHelpersTests.CommonTests
         public void SimpleTest2()
         {
             FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed));
-            Assert.AreEqual(91, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+            Assert.AreEqual(91, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             engine.Options.RecordCondition.Condition = RecordCondition.IncludeIfBegins;
             engine.Options.RecordCondition.Selector = "F";
-            Assert.AreEqual(8, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+            Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
         }
 
@@ -39,7 +39,7 @@ namespace FileHelpersTests.CommonTests
 		public void SimpleTest3()
 		{
 			FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed2));
-			Assert.AreEqual(8, TestCommon.ReadTest(engine, "Good", "CustomersFixed.txt").Length);
+			Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 		}
 
         [Test]

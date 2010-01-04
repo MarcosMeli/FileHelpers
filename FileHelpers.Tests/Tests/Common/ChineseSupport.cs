@@ -5,7 +5,7 @@ using System.Text;
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class ChineseSupport

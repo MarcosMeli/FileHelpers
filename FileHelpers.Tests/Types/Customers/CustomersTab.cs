@@ -1,6 +1,6 @@
 using FileHelpers;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
 	[DelimitedRecord("\t")]
 	public class CustomersTab

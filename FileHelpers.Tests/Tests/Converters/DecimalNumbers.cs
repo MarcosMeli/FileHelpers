@@ -1,7 +1,7 @@
 using FileHelpers;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Converters
+namespace FileHelpers.Tests.Converters
 {
 	[TestFixture]
 	public class DecimalNumbers

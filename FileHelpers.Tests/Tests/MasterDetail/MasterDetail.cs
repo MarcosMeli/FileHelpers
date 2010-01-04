@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.IO;
 using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
-namespace FileHelpersTests.MasterDetail
+namespace FileHelpers.Tests.MasterDetail
 {
 	[TestFixture]
 	public class MasterDetail

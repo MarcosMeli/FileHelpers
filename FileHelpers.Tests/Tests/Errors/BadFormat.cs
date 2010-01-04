@@ -1,69 +1,69 @@
 using FileHelpers;
+using System.Diagnostics;
+using System;
 using NUnit.Framework;
 
-namespace FileHelpersTests.Errors
+namespace FileHelpers.Tests.Errors
 {
 	[TestFixture]
 	public class BadFormat
 	{
-		FileHelperEngine engine;
-
-		[SetUp]
-		public void Setup()
-		{
-			engine = new FileHelperEngine(typeof (SampleType));
-		}
 
 		[Test]
-		public void BadDate1()
+		public void Reading_DateWithBadFormat_Throws_ConvertException()
 		{
             Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadDate1.txt"));
-		}
+                  => FileTest.Bad.BadDate1
+                    .ReadWithEngine<SampleType>());
+        }
 
 		[Test]
-		public void BadDate2()
+        public void Reading_DateWithBadFormat_Throws_ConvertException2()
 		{
             Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadDate2.txt"));
-		}
+                  => FileTest.Bad.BadDate2
+                    .ReadWithEngine<SampleType>());
+        }
 
 		[Test]
-		public void BadInt1()
+        public void Reading_IntWithLetters_Throws_ConvertException()
 		{
-			Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadInt1.txt"));
-		}
+            Assert.Throws<ConvertException>(()
+                  => FileTest.Bad.IntWithLetters
+                    .ReadWithEngine<SampleType>());
+        }
 
 		[Test]
-		public void BadInt2()
+        public void Reading_IntWithDot_Throws_ConvertException()
 		{
-			Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadInt2.txt"));
-		}
+            Assert.Throws<ConvertException>(()
+                      => FileTest.Bad.IntWithDot
+                        .ReadWithEngine<SampleType>());
+        }
 
+        [Test]
+        public void Reading_IntWithSpaces_Throws_ConvertException()
+        {
+            Assert.Throws<ConvertException>(()
+                      => FileTest.Bad.IntWithSpaces1
+                        .ReadWithEngine<SampleTypeInt>());
+        }
+            
 		[Test]
-		public void BadInt3()
+        public void Reading_IntWithSpaces_Throws_ConvertException2()
 		{
-			engine = new FileHelperEngine(typeof (SampleTypeInt));
 			Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadInt3.txt"));
-		}
-
-		[Test]
-		public void BadInt4()
-		{
-			engine = new FileHelperEngine(typeof (SampleTypeInt));
-			Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadInt4.txt"));
+                => FileTest.Bad.IntWithSpaces2
+                        .ReadWithEngine<SampleTypeInt>());
 		}
 
 		[Test]
 		public void NoPendingNullValue()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
-			TestCommon.ReadTest(engine, "Bad", "NoBadNullvalue.txt");
-		}
+            var res = FileTest.Bad.NoBadNullvalue.ReadWithEngine<SampleType>();
+            res.Length.AssertEqualTo(4);
+        
+        }
 
 	}
 }

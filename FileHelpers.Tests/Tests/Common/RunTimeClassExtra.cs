@@ -6,7 +6,7 @@ using FileHelpers.RunTime;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace FileHelpersTests
+namespace FileHelpers.Tests
 {
 	[TestFixture]
 	public class RunTimeClassesExtra

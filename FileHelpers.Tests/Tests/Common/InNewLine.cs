@@ -4,7 +4,7 @@ using FileHelpers.MasterDetail;
 using NUnit.Framework;
 using System.IO;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
 	public class InNewLineTest
