@@ -11,8 +11,8 @@ namespace FileHelpers
     {
         private struct FieldInfoCache
         {
-            private readonly FieldInfo CacheField;
-            private readonly object CacheObject;
+            private readonly FieldInfo mCacheField;
+            private readonly object mCacheObject;
 
             public FieldInfoCache(Type type)
             {
@@ -22,24 +22,24 @@ namespace FileHelpers
 
                 if (CacheProperty != null)
                 {
-                    CacheObject = CacheProperty.GetValue(type, null);
+                    mCacheObject = CacheProperty.GetValue(type, null);
 
-                    CacheField = CacheObject.GetType().GetField("m_fieldInfoCache",
+                    mCacheField = mCacheObject.GetType().GetField("m_fieldInfoCache",
                                                                 BindingFlags.FlattenHierarchy | BindingFlags.Instance |
                                                                 BindingFlags.NonPublic);
                 }
                 else
                 {
-                    CacheObject = null;
-                    CacheField = null;
+                    mCacheObject = null;
+                    mCacheField = null;
                 }
             }
 
             public void Reset()
             {
-                lock (CacheObject)
+                lock (mCacheObject)
                 {
-                    CacheField.SetValue(CacheObject, null);
+                    mCacheField.SetValue(mCacheObject, null);
                 }
             }
         }

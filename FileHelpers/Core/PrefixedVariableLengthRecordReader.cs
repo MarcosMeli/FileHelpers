@@ -10,7 +10,7 @@ using System.Text;
 
 namespace FileHelpers
 {
-    public class PrefixedVariableLengthRecordReader : IRecordReader
+    public sealed class PrefixedVariableLengthRecordReader : IRecordReader
     {
         private readonly Stream stream;
         private readonly LengthIndicatorType indicatorType;

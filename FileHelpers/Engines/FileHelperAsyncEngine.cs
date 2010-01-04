@@ -183,7 +183,7 @@ namespace FileHelpers
         #region "  BeginReadStream"
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
-        public void BeginReadStream(TextReader reader)
+        public IDisposable BeginReadStream(TextReader reader)
         {
             if (reader == null)
                 throw new ArgumentNullException("reader", "The TextReader can´t be null.");
@@ -214,6 +214,7 @@ namespace FileHelpers
             mAsyncReader.DiscardForward = true;
             mState = EngineState.Reading;
 
+            return this;
         }
 
         #endregion
@@ -221,18 +222,20 @@ namespace FileHelpers
         #region "  BeginReadFile  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
-        public void BeginReadFile(string fileName)
+        public IDisposable BeginReadFile(string fileName)
         {
             BeginReadStream(new StreamReader(fileName, mEncoding, true));
+            return this;
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
-        public void BeginReadString(string sourceData)
+        public IDisposable BeginReadString(string sourceData)
         {
             if (sourceData == null)
                 sourceData = String.Empty;
 
             BeginReadStream(new StringReader(sourceData));
+            return this;
         }
 
         #endregion
@@ -355,6 +358,11 @@ namespace FileHelpers
         }
 
 
+        public T[] ReadToEnd()
+        {
+            return ReadNexts(int.MaxValue);
+        }
+
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
 		public T[] ReadNexts(int numberOfRecords)
         {
@@ -433,7 +441,7 @@ arr.ToArray(RecordType);
         #region "  BeginWriteStream"
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteStream/*'/>
-        public void BeginWriteStream(TextWriter writer)
+        public IDisposable BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
                 throw new ArgumentException("writer", "The TextWriter can´t be null.");
@@ -446,6 +454,8 @@ arr.ToArray(RecordType);
             ResetFields();
             mAsyncWriter = writer;
             WriteHeader();
+
+            return this;
         }
 
         private void WriteHeader()
@@ -462,9 +472,11 @@ arr.ToArray(RecordType);
         #region "  BeginWriteFile  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
-        public void BeginWriteFile(string fileName)
+        public IDisposable BeginWriteFile(string fileName)
         {
             BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+
+            return this;
         }
 
         #endregion
@@ -473,7 +485,7 @@ arr.ToArray(RecordType);
         #region "  BeginAppendToFile  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
-        public void BeginAppendToFile(string fileName)
+        public IDisposable BeginAppendToFile(string fileName)
         {
             if (mAsyncReader != null)
                 throw new BadUsageException("You can't start to write while you are reading.");
@@ -482,6 +494,8 @@ arr.ToArray(RecordType);
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
             mState = EngineState.Writing;
+
+            return this;
         }
 
         #endregion

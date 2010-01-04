@@ -12,7 +12,7 @@ namespace FileHelpers
     internal sealed class ForwardReader
         : IDisposable
     {
-        internal static readonly char[] mEOF = StringHelper.NewLine.ToCharArray();
+        //internal static readonly char[] mEOF = StringHelper.NewLine.ToCharArray();
 
         readonly IRecordReader mReader;
 
@@ -24,9 +24,9 @@ namespace FileHelpers
         #region "  Constructors  "
 
 
-        internal ForwardReader(IRecordReader reader)
-            : this(reader, 0, 0)
-        { }
+        //internal ForwardReader(IRecordReader reader)
+        //    : this(reader, 0, 0)
+        //{ }
 
         internal ForwardReader(IRecordReader reader, int forwardLines)
             : this(reader, forwardLines, 0)
