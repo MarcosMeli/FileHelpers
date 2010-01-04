@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
-
+using FileHelpers.Options;
 using FileHelpers.RunTime;
 
 #if ! MINI

@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics;
 using System.ComponentModel;
 
-namespace FileHelpers
+namespace FileHelpers.Options
 {
 	/// <summary>
 	/// This class allows you to set some options of the records but at runtime.

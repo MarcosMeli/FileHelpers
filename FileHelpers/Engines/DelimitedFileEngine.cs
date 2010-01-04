@@ -6,6 +6,7 @@
 
 using System;
 using System.Diagnostics;
+using FileHelpers.Options;
 
 namespace FileHelpers
 {

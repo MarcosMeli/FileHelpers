@@ -8,11 +8,8 @@ using System;
 
 namespace FileHelpers
 {
-	internal sealed class ConditionHelper
+	internal static class ConditionHelper
 	{
-		private ConditionHelper()
-		{}
-
 		public static bool BeginsWith(string line, string selector)
 		{
 			return line.StartsWith(selector);	

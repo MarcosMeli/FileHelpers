@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using System.Diagnostics;
+using FileHelpers.Events;
 using Container=EmbeddedIoC.Container;
 
 namespace FileHelpers
@@ -167,34 +168,21 @@ namespace FileHelpers
 
 		#if ! MINI
 
-        /// <summary></summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		protected ProgressMode mProgressMode = ProgressMode.DontNotify;
+        /// <summary>Called to notify progress.</summary>
+        public event EventHandler<ProgressEventArgs> Progress;
 
-        /// <summary></summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		protected ProgressChangeHandler mNotifyHandler = null;
+        /// <summary>
+        /// Raises the Progress Event
+        /// </summary>
+        /// <param name="e">The Event Args</param>
+        protected void OnProgress(ProgressEventArgs e)
+        {
+            if (Progress == null)
+                return;
 
-		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>
-		/// <param name="handler">The <see cref="ProgressChangeHandler"/></param>
-		public void SetProgressHandler(ProgressChangeHandler handler)
-		{
-			SetProgressHandler(handler, ProgressMode.NotifyRecords);
-		}
-
-		/// <summary>Set the handler to the engine used to notify progress into the operations.</summary>
-		/// <param name="handler">Your <see cref="ProgressChangeHandler"/> method.</param>
-		/// <param name="mode">The <see cref="ProgressMode"/> to use.</param>
-		public void SetProgressHandler(ProgressChangeHandler handler, ProgressMode mode)
-		{
-			mNotifyHandler = handler;
-
-			if (mode == ProgressMode.NotifyBytes)
-				throw new NotImplementedException("Not implemented yet. Planed for version 1.5.0");
-
-			mProgressMode = mode;
-		}
-		#endif
+            Progress(this, e);
+        }
+#endif
 
 	}
 }

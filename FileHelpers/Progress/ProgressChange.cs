@@ -4,52 +4,34 @@
 
 #endregion
 
-namespace FileHelpers
+using System;
+
+namespace FileHelpers.Events
 {
 #if ! MINI
 
 	/// <summary>Class used to notify the current progress position and other context info.</summary>
 	public class ProgressEventArgs
+        :EventArgs
 	{
-		internal ProgressEventArgs(ProgressMode mode, int current, int total)
-		{
-			mProgressMode = mode;
-			mProgressCurrent = current;
-			mProgressTotal = total;
-		}
+	    public double Percent { get; private set; }
+        public int CurrentRecord { get; private set; }
+	    //public int ReadBytes { get; private set; }
+	    public int TotalRecords { get; private set; }
 
-		internal ProgressEventArgs()
-		{
-			mProgressMode = ProgressMode.DontNotify;
-		}
+	    internal ProgressEventArgs(int currentRecord, int totalRecords)
+        {
 
+            CurrentRecord = currentRecord;
+	        TotalRecords = totalRecords;
 
-		private int mProgressCurrent;
-		private int mProgressTotal;
-		private ProgressMode mProgressMode = ProgressMode.DontNotify;
+            if (totalRecords > 0)
+                Percent = currentRecord / (double)totalRecords * 100.0;
+            else
+                Percent = -1;
 
-		/// <summary>The current progress position. Check also the ProgressMode property.</summary>
-		public int ProgressCurrent
-		{
-			get { return mProgressCurrent; }
-		}
-
-		/// <summary>The total when the progress finish. (<b>-1 means undefined</b>)</summary>
-		public int ProgressTotal
-		{
-			get { return mProgressTotal; }
-		}
-
-		/// <summary>The ProgressMode used.</summary>
-		public ProgressMode ProgressMode
-		{
-			get { return mProgressMode; }
-		}
+	    }
 	}
-
-	/// <summary>Delegate used to notify progress to the user.</summary>
-	/// <param name="e">The Event args with information about the progress.</param>
-	public delegate void ProgressChangeHandler(ProgressEventArgs e);
 
 #endif
 }

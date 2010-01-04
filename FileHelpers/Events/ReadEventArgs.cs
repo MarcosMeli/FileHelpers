@@ -7,7 +7,7 @@
 using System;
 using System.ComponentModel;
 
-namespace FileHelpers
+namespace FileHelpers.Events
 {
 
     /// <summary>Base class of <see cref="BeforeReadRecordEventArgs"/> and <see cref="AfterReadRecordEventArgs"/></summary>

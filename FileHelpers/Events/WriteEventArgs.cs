@@ -7,7 +7,7 @@
 using System;
 using System.ComponentModel;
 
-namespace FileHelpers
+namespace FileHelpers.Events
 {
     /// <summary>Base class of <see cref="BeforeWriteRecordEventArgs&lt;T&gt;"/> and <see cref="AfterWriteRecordEventArgs&lt;T&gt;"/></summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

@@ -231,9 +231,6 @@
     <Compile Include="Enums\NetVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\ProgressMode.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Enums\QuoteMode.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -296,9 +293,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\ValidIdentifierValidator.cs" />
-    <Compile Include="Helpers\ProgressHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Helpers\StreamHelper.cs">
       <SubType>Code</SubType>
     </Compile>

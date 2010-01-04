@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Data;
+using FileHelpers.Events;
 
 namespace FileHelpers.DataLink
 {
@@ -138,14 +139,14 @@ namespace FileHelpers.DataLink
 				object currentObj;
 				object[] values = new object[reader.FieldCount];
 
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+                OnProgress(new ProgressEventArgs(0, -1));
 
 				int recordNumber = 0;
 
 				while (reader.Read())
 				{
 					recordNumber++;
-					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
+                    OnProgress(new ProgressEventArgs(recordNumber, -1)); 
 
 
 					reader.GetValues(values);
@@ -196,7 +197,7 @@ namespace FileHelpers.DataLink
 
 				trans = InitTransaction(mConn);
 
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, records.Length);
+                OnProgress(new ProgressEventArgs(0, records.Length));
 				int recordNumber = 0;
 				int batchCount = 0;
 
@@ -205,7 +206,7 @@ namespace FileHelpers.DataLink
 					// Insert Logic Here, must check duplicates
 					recordNumber++;
 					batchCount++;
-					ProgressHelper.Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
+                    OnProgress(new ProgressEventArgs(recordNumber, records.Length));
 
 					SQL += GetInsertSql(record) + " ";
 

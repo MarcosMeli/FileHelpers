@@ -12,19 +12,11 @@ namespace FileHelpers
 {
     /// <summary>Class that provides static methods that returns a default <see cref="ConverterBase">Converter</see> to the basic types.</summary>
     /// <remarks>Used by the <see cref="FileHelpers.FieldConverterAttribute"/>.</remarks>
-    internal sealed class ConvertHelpers
+    internal static class ConvertHelpers
     {
         private const string DefaultDecimalSep = ".";
 
-        #region "  Constructors  "
-
-        // Not allow direct creation
-        private ConvertHelpers()
-        {
-        }
-
-        #endregion
-
+        
         #region "  CreateCulture  "
 
         static CultureInfo CreateCulture(string decimalSep)

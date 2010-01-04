@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FileHelpers;
+using FileHelpers.Events;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -17,7 +18,7 @@ namespace FileHelpers.Tests.CommonTests
 			actualAdd = 1;
 			engine = new FileHelperEngine(typeof (SampleType));
 
-			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+			engine.Progress += ProgressChange;
 
 			SampleType[] res;
 			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
@@ -34,7 +35,7 @@ namespace FileHelpers.Tests.CommonTests
 			actual = 0;
 			actualAdd = 1; 
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+            engine.Progress += ProgressChange;
 
 			SampleType[] res = new SampleType[2];
 
@@ -59,13 +60,13 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteFileNotifyPercent()
 		{
-			actual = 0;
-			actualAdd = 25;
+			actualPerc = 0;
+			actualAdd = 50;
 
 			engine = new FileHelperEngine(typeof (SampleType));
-			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange), ProgressMode.NotifyPercent);
+            engine.Progress += ProgressChangePercent;
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -86,12 +87,19 @@ namespace FileHelpers.Tests.CommonTests
 		int actual = 0;
 		int actualAdd = 0;
 
-		private void ProgressChange(ProgressEventArgs e)
+        double actualPerc = 0;
+
+		private void ProgressChange(object sender, ProgressEventArgs e)
 		{
-			Assert.AreEqual(actual, e.ProgressCurrent);
+			Assert.AreEqual(actual, e.CurrentRecord);
 			actual += actualAdd;
 		}
-
+        
+        private void ProgressChangePercent(object sender, ProgressEventArgs e)
+        {
+            Assert.AreEqual(actualPerc, e.Percent);
+            actualPerc += actualAdd;
+        }
 
 	}
 }

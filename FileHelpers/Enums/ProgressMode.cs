@@ -8,6 +8,7 @@ namespace FileHelpers
 {
 
 	/// <summary>Indicate the method used to calculate the current progress</summary>
+
 	public enum ProgressMode
 	{
 		/// <summary>Notify the percent completed.</summary>

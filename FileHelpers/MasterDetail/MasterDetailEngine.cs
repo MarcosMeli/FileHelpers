@@ -15,6 +15,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 using EmbeddedIoC;
+using FileHelpers.Events;
 
 namespace FileHelpers.MasterDetail
 {
@@ -280,7 +281,8 @@ namespace FileHelpers.MasterDetail
                 currentLine = completeLine;
 
 #if !MINI
-                ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+                OnProgress(new ProgressEventArgs(0, -1));
+                
 #endif
                 int currentRecord = 0;
 
@@ -320,7 +322,7 @@ namespace FileHelpers.MasterDetail
                         line.ReLoad(currentLine);
 
 #if !MINI
-                        ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+                        OnProgress(new ProgressEventArgs(currentRecord, -1));
 #endif
 
                         RecordAction action = RecordSelector(currentLine);
@@ -532,7 +534,7 @@ namespace FileHelpers.MasterDetail
                 max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 #if !MINI
-            ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+            OnProgress(new ProgressEventArgs(0, max));
 #endif
 
             int recIndex = 0;
@@ -552,7 +554,7 @@ namespace FileHelpers.MasterDetail
                         throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
 #if !MINI
-                    ProgressHelper.Notify(mNotifyHandler, mProgressMode, recIndex + 1, max);
+                    OnProgress(new ProgressEventArgs(recIndex + 1, max));
 #endif
 
                     currentLine = mMasterInfo.RecordToString(rec.mMaster);

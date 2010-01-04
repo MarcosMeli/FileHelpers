@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace FileHelpers
+namespace FileHelpers.Events
 {
 
 	// ----  Read Operations  ----

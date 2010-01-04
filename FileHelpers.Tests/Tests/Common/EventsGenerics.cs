@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FileHelpers;
+using FileHelpers.Events;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests

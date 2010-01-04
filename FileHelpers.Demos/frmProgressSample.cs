@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using FileHelpers;
+using FileHelpers.Events;
 
 namespace FileHelpersSamples
 {
@@ -236,26 +237,26 @@ private void ProgressChange(ProgressEventArgs e)
 
 			Application.DoEvents();
 
-			engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+			engine.Progress += ProgressChange;
 			engine.WriteString(records);
 			cmdRun.Enabled = true;
 		}
 
 
-		private void ProgressChange(ProgressEventArgs e)
+		private void ProgressChange(object sender, ProgressEventArgs e)
 		{
-			prog1.PositionMax = e.ProgressTotal;
-			prog2.PositionMax = e.ProgressTotal;
-			prog3.PositionMax = e.ProgressTotal;
-			prog4.PositionMax = e.ProgressTotal;
+			prog1.PositionMax = e.TotalRecords;
+            prog2.PositionMax = e.TotalRecords;
+            prog3.PositionMax = e.TotalRecords;
+            prog4.PositionMax = e.TotalRecords;
 
-			prog1.Position = e.ProgressCurrent;
-			prog2.Position = e.ProgressCurrent;
-			prog3.Position = e.ProgressCurrent;
-			prog4.Position = e.ProgressCurrent;
+			prog1.Position = e.CurrentRecord;
+            prog2.Position = e.CurrentRecord;
+            prog3.Position = e.CurrentRecord;
+            prog4.Position = e.CurrentRecord;
 
-			prog3.Text = "Record " + e.ProgressCurrent.ToString();
-			prog4.Text = e.ProgressCurrent.ToString() + " Of " + e.ProgressTotal.ToString();
+            prog3.Text = "Record " + e.CurrentRecord.ToString();
+            prog4.Text = e.CurrentRecord.ToString() + " Of " + e.TotalRecords.ToString();
 
 			Application.DoEvents();
 			Thread.Sleep(10);

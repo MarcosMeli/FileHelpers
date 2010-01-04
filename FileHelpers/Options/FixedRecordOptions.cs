@@ -7,7 +7,7 @@
 using System;
 using System.Diagnostics;
 
-namespace FileHelpers
+namespace FileHelpers.Options
 {
 	/// <summary>
 	/// This class allows you to set some options of the fixed length records but at runtime.

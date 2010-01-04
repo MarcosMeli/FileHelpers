@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.IO;
 using FileHelpers;
+using FileHelpers.Options;
 using FileHelpers.RunTime;
 using NUnit.Framework;
 

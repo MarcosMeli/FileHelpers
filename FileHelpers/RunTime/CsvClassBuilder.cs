@@ -6,6 +6,7 @@
 
 using System;
 using System.Text.RegularExpressions;
+using FileHelpers.Options;
 
 namespace FileHelpers.RunTime
 {

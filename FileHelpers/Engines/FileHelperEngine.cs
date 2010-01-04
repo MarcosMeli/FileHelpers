@@ -16,6 +16,8 @@ using System.Collections.Generic;
 
 #if ! MINI
 using System.Data;
+using FileHelpers.Events;
+using FileHelpers.Options;
 using FileHelpers.RunTime;
 
 #endif
@@ -266,7 +268,7 @@ namespace FileHelpers
                 currentLine = completeLine;
 
 #if !MINI
-                ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, -1);
+                OnProgress(new ProgressEventArgs(0, -1));
 #endif
 
                 if (mRecordInfo.IgnoreFirst > 0)
@@ -298,7 +300,7 @@ namespace FileHelpers
 
                         bool skip;
 #if !MINI
-                        ProgressHelper.Notify(mNotifyHandler, mProgressMode, currentRecord, -1);
+                        OnProgress(new ProgressEventArgs(currentRecord, -1));
                     BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
@@ -456,7 +458,7 @@ namespace FileHelpers
 				max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 			#if !MINI
-				ProgressHelper.Notify(mNotifyHandler, mProgressMode, 0, max);
+                OnProgress(new ProgressEventArgs(0, max));
 			#endif
 
 			int recIndex = 0;
@@ -483,7 +485,7 @@ namespace FileHelpers
 
 					bool skip = false;
 					#if !MINI
-						ProgressHelper.Notify(mNotifyHandler, mProgressMode, recIndex+1, max);
+                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
 						skip = OnBeforeWriteRecord(rec);
 					#endif
 

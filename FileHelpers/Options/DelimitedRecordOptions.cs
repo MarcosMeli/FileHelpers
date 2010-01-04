@@ -6,7 +6,7 @@
 
 using System;
 
-namespace FileHelpers
+namespace FileHelpers.Options
 {
 	/// <summary>
 	/// This class allows you to set some options of the delimited records but at runtime.

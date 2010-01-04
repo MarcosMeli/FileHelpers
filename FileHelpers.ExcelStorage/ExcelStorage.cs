@@ -10,6 +10,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using Excel;
+using FileHelpers.Events;
 
 namespace FileHelpers.DataLink
 {
@@ -378,7 +379,7 @@ namespace FileHelpers.DataLink
             try
 		    {
 		        int recordNumber = 0;
-		        Notify(mNotifyHandler, mProgressMode, 0, records.Length);
+                OnProgress(new ProgressEventArgs(0, records.Length));
 
 		            this.InitExcel();
 
@@ -399,7 +400,7 @@ namespace FileHelpers.DataLink
 		            for (int i = 0; i < records.Length; i++)
 		            {
 		                recordNumber++;
-		                Notify(mNotifyHandler, mProgressMode, recordNumber, records.Length);
+                        OnProgress(new ProgressEventArgs(recordNumber, records.Length));
 
 		                WriteRowValues(RecordToValues(records[i]), mStartRow + i, mStartColumn);
 		            }
@@ -438,7 +439,7 @@ namespace FileHelpers.DataLink
                 int cRow = mStartRow;
 
                 int recordNumber = 0;
-                Notify(mNotifyHandler, mProgressMode, 0, -1);
+                OnProgress(new ProgressEventArgs(0, -1));
 
                 object[] colValues = new object[RecordFieldCount];
 
@@ -450,7 +451,7 @@ namespace FileHelpers.DataLink
                         try
                         {
                             recordNumber++;
-                            Notify(mNotifyHandler, mProgressMode, recordNumber, -1);
+                            OnProgress(new ProgressEventArgs(recordNumber, -1));
 
                             colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
 
