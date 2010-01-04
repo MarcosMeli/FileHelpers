@@ -40,7 +40,7 @@ namespace FileHelpers
             return engine.ReadFile(Path);
         }
 
-        public T[] ReadWithaAsyncEngine<T>() where T : class
+        public T[] ReadWithAsyncEngine<T>() where T : class
         {
             var engine = new FileHelperAsyncEngine<T>();
             return ReadWithAsyncEngine(engine);

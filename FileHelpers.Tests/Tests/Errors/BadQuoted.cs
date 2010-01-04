@@ -7,56 +7,47 @@ namespace FileHelpers.Tests.Errors
 	[TestFixture]
 	public class BadQuoted
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine engineAsync;
-
-		[SetUp]
-		public void Setup()
-		{
-			engine = new FileHelperEngine(typeof (CustomersQuotedType));
-			engineAsync = new FileHelperAsyncEngine(typeof (CustomersQuotedType));
-		}
 
 		[Test]
 		public void BadQuoted1()
 		{
             Assert.Throws<BadUsageException>(() 
-                => TestCommon.ReadTest(engine, "Bad", "BadQuoted1.txt"));
+                => FileTest.Bad.BadQuoted1.ReadWithEngine<CustomersQuotedType>());
 		}
 
 		[Test]
 		public void BadQuoted2()
 		{
             Assert.Throws<BadUsageException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadQuoted2.txt"));
-		}
+                => FileTest.Bad.BadQuoted2.ReadWithEngine<CustomersQuotedType>());
+        }
 
 		[Test]
 		public void BadQuoted3()
 		{
             Assert.Throws<BadUsageException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadQuoted3.txt"));
+                => FileTest.Bad.BadQuoted3.ReadWithEngine<CustomersQuotedType>());
 		}
 
-		[Test]
-		public void BadQuoted1Async()
-		{
+        [Test]
+        public void BadQuoted1Async()
+        {
             Assert.Throws<BadUsageException>(()
-                => TestCommon.ReadAllAsync(engineAsync, "Bad", "BadQuoted1.txt"));
-		}
+                                             => FileTest.Bad.BadQuoted1.ReadWithAsyncEngine<CustomersQuotedType>());
+        }
 
-		[Test]
-		public void BadQuoted2Async()
-		{
+	    [Test]
+        public void BadQuoted2Async()
+        {
             Assert.Throws<BadUsageException>(()
-                => TestCommon.ReadAllAsync(engineAsync, "Bad", "BadQuoted2.txt"));
-		}
+                                             => FileTest.Bad.BadQuoted2.ReadWithAsyncEngine<CustomersQuotedType>());
+        }
 
-		[Test]
+	    [Test]
 		public void BadQuoted3Async()
 		{
             Assert.Throws<BadUsageException>(()
-                => TestCommon.ReadAllAsync(engineAsync, "Bad", "BadQuoted3.txt"));
+                                => FileTest.Bad.BadQuoted3.ReadWithAsyncEngine<CustomersQuotedType>());
 		}
 
 

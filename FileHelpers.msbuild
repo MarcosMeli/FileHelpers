@@ -8,6 +8,7 @@
   <ItemGroup>
     <DebugFiles Include="Debug\**\*.*" />
     <ReleaseFiles Include="Release\**\*.*" />
+    <OutputFiles Include="Output\**\*.*" />
   </ItemGroup>
   
   <Target Name="common">
@@ -15,9 +16,8 @@
     
     <Delete Files="@(DebugFiles)" />
     <Delete Files="@(ReleaseFiles)" />
-    
+    <Delete Files="@(OutputFiles)" />
     <MakeDir Directories="Output"/>
-    <Delete Files="Output\**\*" />
     
     <!--
 	<SvnVersion LocalPath=".">
@@ -38,11 +38,11 @@
   </Target>
 
   <Target Name="pack-release"  DependsOnTargets="release">
-    <Zip Files="@(ReleaseFiles)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).{build.number}.zip"/>
+    <Zip Files="@(ReleaseFiles)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).zip"/>
   </Target>
 
   <Target Name="pack-debug"  DependsOnTargets="debug">
-      <Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).{build.number}.zip"/>
+      <Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip"/>
   </Target>
 
   <PropertyGroup>
