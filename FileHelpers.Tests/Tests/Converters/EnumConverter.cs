@@ -12,9 +12,7 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void EnumSingleCase()
 		{
-            engine = new FileHelperEngine(typeof (EnumType2));
-
-			EnumType2[] res = (EnumType2[]) TestCommon.ReadTest(engine, "Good", "EnumConverter2.txt");
+		    var res = FileTest.Good.EnumConverter2.ReadWithEngine<EnumType2>();
 
 			Assert.AreEqual(5, res.Length);
 
@@ -28,9 +26,8 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void EnumexplicitConverter()
 		{
-			engine = new FileHelperEngine(typeof (EnumType3));
 
-			EnumType3[] res = (EnumType3[]) TestCommon.ReadTest(engine, "Good", "EnumConverter2.txt");
+            var res = FileTest.Good.EnumConverter2.ReadWithEngine<EnumType3>();
 
 			Assert.AreEqual(5, res.Length);
 
@@ -44,9 +41,7 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void EnumMulticase()
 		{
-			engine = new FileHelperEngine(typeof (EnumType1));
-
-			EnumType1[] res = (EnumType1[]) TestCommon.ReadTest(engine, "Good", "EnumConverter1.txt");
+            var res = FileTest.Good.EnumConverter1.ReadWithEngine<EnumType1>();
 
 			Assert.AreEqual(5, res.Length);
 

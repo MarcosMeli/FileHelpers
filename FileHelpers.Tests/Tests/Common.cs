@@ -28,38 +28,38 @@ namespace FileHelpers.Tests
             return Path.Combine(Path.GetTempPath(), fileName);
         }
 
-        //public static object[] ReadTest(FileHelperEngine engine, params string[] pathElements)
-        //{
-        //    return engine.ReadFile(GetPath(pathElements));
-        //}
+        public static object[] ReadTest(FileHelperEngine engine, params string[] pathElements)
+        {
+            return engine.ReadFile(GetPath(pathElements));
+        }
 
-        //public static object[] ReadTest(FileHelperEngine engine, int maxRecords, params string[] pathElements)
-        //{
-        //    return engine.ReadFile(GetPath(pathElements), maxRecords);
-        //}
+        public static object[] ReadTest(FileHelperEngine engine, int maxRecords, params string[] pathElements)
+        {
+            return engine.ReadFile(GetPath(pathElements), maxRecords);
+        }
 
-        //public static object[] ReadAllAsync(FileHelperAsyncEngine engine, params string[] pathElements)
-        //{
-        //    ArrayList arr = new ArrayList();
-            
-        //    using (engine.BeginReadFile(GetPath(pathElements)))
-        //    {
-        //        while (engine.ReadNext() != null)
-        //            arr.Add(engine.LastRecord);
-        //    }
-			
-        //    return arr.ToArray();
+        public static object[] ReadAllAsync(FileHelperAsyncEngine engine, params string[] pathElements)
+        {
+            ArrayList arr = new ArrayList();
 
-        //}
+            using (engine.BeginReadFile(GetPath(pathElements)))
+            {
+                while (engine.ReadNext() != null)
+                    arr.Add(engine.LastRecord);
+            }
 
-        //public static MasterDetails[] ReadTest(MasterDetailEngine engine, params string[] pathElements)
-        //{
-        //    return engine.ReadFile(GetPath(pathElements));
-        //}
+            return arr.ToArray();
 
-        //public static void BeginReadTest(FileHelperAsyncEngine engine, params string[] pathElements)
-        //{
-        //    engine.BeginReadFile(GetPath(pathElements));
-        //}
+        }
+
+        public static MasterDetails[] ReadTest(MasterDetailEngine engine, params string[] pathElements)
+        {
+            return engine.ReadFile(GetPath(pathElements));
+        }
+
+        public static void BeginReadTest(FileHelperAsyncEngine engine, params string[] pathElements)
+        {
+            engine.BeginReadFile(GetPath(pathElements));
+        }
 	}
 }
