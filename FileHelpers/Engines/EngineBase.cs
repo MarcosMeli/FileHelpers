@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Diagnostics;
 using FileHelpers.Events;
-using Container=EmbeddedIoC.Container;
+using Container=FileHelpers.IoC.Container;
 
 namespace FileHelpers
 {

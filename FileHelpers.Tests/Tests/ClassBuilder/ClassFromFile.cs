@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using FileHelpers;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests

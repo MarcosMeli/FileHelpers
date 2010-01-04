@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.IO;
 using FileHelpers;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 using NUnit.Framework;
 using System.Collections.Generic;
 

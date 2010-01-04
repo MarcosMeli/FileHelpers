@@ -4,7 +4,7 @@ using System.Text;
 using System.Collections;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.WizardApp
 {

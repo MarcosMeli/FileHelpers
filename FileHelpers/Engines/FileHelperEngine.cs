@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Data;
 using FileHelpers.Events;
 using FileHelpers.Options;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 #endif
 

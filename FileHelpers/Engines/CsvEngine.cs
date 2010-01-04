@@ -13,7 +13,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using FileHelpers.Options;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 #if ! MINI
 using System.Data;

@@ -6,11 +6,11 @@
 
 using System;
 using System.Text;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.Options
 {
-	/// <summary>Class used to pass information to the <see cref="FileHelpers.RunTime.CsvClassBuilder"/> and the <see cref="CsvEngine"/></summary>
+	/// <summary>Class used to pass information to the <see cref="FileHelpers.Dynamic.CsvClassBuilder"/> and the <see cref="CsvEngine"/></summary>
 	public sealed class CsvOptions
 	{
 

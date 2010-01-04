@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace EmbeddedIoC
+namespace FileHelpers.IoC
 {
     internal static class Container
     {

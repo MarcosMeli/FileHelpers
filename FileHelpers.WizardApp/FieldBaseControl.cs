@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.WizardApp
 {

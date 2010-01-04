@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.WizardApp
 {

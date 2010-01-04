@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.Detection
 {

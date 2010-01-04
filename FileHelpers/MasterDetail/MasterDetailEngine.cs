@@ -14,7 +14,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
-using EmbeddedIoC;
+using FileHelpers.IoC;
 using FileHelpers.Events;
 
 namespace FileHelpers.MasterDetail

@@ -1,4 +1,4 @@
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.Detection
 {

@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using Singleton = EmbeddedIoC.Container.SingletonAttribute;
+using Singleton = FileHelpers.IoC.Container.SingletonAttribute;
 
-namespace EmbeddedIoC
+namespace FileHelpers.IoC
 {
     #region Demo Contracts and Implementations
 
@@ -79,7 +79,7 @@ namespace EmbeddedIoC
         
     }
 
-    [Singleton]
+    [Container.SingletonAttribute]
     public class SingletonContract : ISingletonContract
     {
         

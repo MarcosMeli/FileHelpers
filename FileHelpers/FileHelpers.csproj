@@ -169,6 +169,16 @@
     <Compile Include="Core\IRecordInfo.cs" />
     <Compile Include="Core\IRecordReader.cs" />
     <Compile Include="Core\EmbeddedIoC.cs" />
+    <Compile Include="Dynamic\AttributesBuilder.cs" />
+    <Compile Include="Dynamic\ClassBuilder.cs" />
+    <Compile Include="Dynamic\ConverterBuilder.cs" />
+    <Compile Include="Dynamic\CsvClassBuilder.cs" />
+    <Compile Include="Dynamic\DelimitedClassBuilder.cs" />
+    <Compile Include="Dynamic\DelimitedFieldBuilder.cs" />
+    <Compile Include="Dynamic\FieldBuilder.cs" />
+    <Compile Include="Dynamic\FixedFieldBuilder.cs" />
+    <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
+    <Compile Include="Dynamic\XmlHelper.cs" />
     <Compile Include="Enums\EngineState.cs" />
     <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">
@@ -330,36 +340,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Progress\ProgressChange.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\AttributesBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\ClassBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\ConverterBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\CsvClassBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\DelimitedClassBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\DelimitedFieldBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\FieldBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\FixedFieldBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\FixedLengthClassBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RunTime\XmlHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />

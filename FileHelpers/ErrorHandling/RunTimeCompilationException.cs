@@ -7,7 +7,7 @@
 using System;
 using System.CodeDom.Compiler;
 
-namespace FileHelpers.RunTime
+namespace FileHelpers.Dynamic
 {
 	/// <summary>
 	/// Exception with error information of the run time compilation.

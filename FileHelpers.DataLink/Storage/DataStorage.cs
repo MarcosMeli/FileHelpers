@@ -8,7 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using FileHelpers.Events;
-using Container=EmbeddedIoC.Container;
+using Container=FileHelpers.IoC.Container;
 
 namespace FileHelpers.DataLink
 {

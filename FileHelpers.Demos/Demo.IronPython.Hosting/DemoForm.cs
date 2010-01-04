@@ -7,7 +7,7 @@ using IronPython.Hosting;
 using IronPython.Runtime.Calls;
 
 using FileHelpers;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 
 namespace Demo.IronPython.Hosting
 {

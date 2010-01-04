@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.IO;
-using FileHelpers.RunTime;
+using FileHelpers.Dynamic;
 using System.Xml.Serialization;
 using Fireball.CodeEditor.SyntaxFiles;
 using System.Diagnostics;

@@ -13,7 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Collections.Generic;
-using Container=EmbeddedIoC.Container;
+using Container=FileHelpers.IoC.Container;
 
 
 namespace FileHelpers.Mapping
