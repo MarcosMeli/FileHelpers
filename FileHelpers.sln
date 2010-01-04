@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.IronPython.Hosting", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.DataLink", "FileHelpers.DataLink\FileHelpers.DataLink.csproj", "{94B329D5-E42A-42E4-AAC1-05DA361FFF53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B329D5-E42A-42E4-AAC1-05DA361FFF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B329D5-E42A-42E4-AAC1-05DA361FFF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B329D5-E42A-42E4-AAC1-05DA361FFF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B329D5-E42A-42E4-AAC1-05DA361FFF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

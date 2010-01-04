@@ -39,7 +39,6 @@ namespace FileHelpers
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
 	/// <seealso href="examples.html">Examples of Use</seealso>
-	/// <seealso href="example_datalink.html">Example of the DataLink</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
     [DebuggerDisplay("MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
 #if ! GENERICS

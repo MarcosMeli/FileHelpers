@@ -647,7 +647,7 @@ arr.ToArray(RecordType);
         {
             if (mAsyncReader == null)
                 throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
-            return new AsyncEnumerator<T>(this);
+            return new AsyncEnumerator(this);
         }
 
         ///<summary>
@@ -662,13 +662,13 @@ arr.ToArray(RecordType);
         {
             if (mAsyncReader == null)
                 throw new FileHelpersException("You must call BeginRead before use the engine in a for each loop.");
-            return new AsyncEnumerator<T>(this);
+            return new AsyncEnumerator(this);
         }
 
 
-		private class AsyncEnumerator<X> : IEnumerator<X>
+		private class AsyncEnumerator : IEnumerator<T>
 		{
-            X IEnumerator<X>.Current
+            T IEnumerator<T>.Current
             {
                 get { return mEngine.mLastRecord; }
             }
@@ -678,8 +678,8 @@ arr.ToArray(RecordType);
                 mEngine.Close();
             }
 
-			FileHelperAsyncEngine<X> mEngine;
-			public AsyncEnumerator(FileHelperAsyncEngine<X> engine)
+			FileHelperAsyncEngine<T> mEngine;
+			public AsyncEnumerator(FileHelperAsyncEngine<T> engine)
             {
                 mEngine = engine;
             }

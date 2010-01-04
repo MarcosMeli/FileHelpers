@@ -180,33 +180,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Csv\RecordIndexer.cs" />
-    <Compile Include="DataLink\FileDataLink.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\GenericDataLink.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\AccessStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\DataBaseStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\DataStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\FileStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\GenericDatabaseStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\OleDbStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataLink\Storage\SqlServerStorage.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Engines\CommonEngine.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -265,9 +238,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\RecordCondition.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Enums\TransactionMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\TrimMode.cs">
@@ -399,11 +369,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
-    <None Include="Diagrams\DataLinkDiagram.cd" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
     <None Include="Diagrams\RunTimeRecords.cd" />
-    <None Include="Diagrams\StorageDiagrams.cd" />
     <None Include="FileHelpers.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
