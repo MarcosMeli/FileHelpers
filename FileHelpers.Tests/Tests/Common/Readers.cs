@@ -40,7 +40,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void ReadFileStatic()
 		{
 			SampleType[] res;
-			res = (SampleType[]) CommonEngine.ReadFile(typeof (SampleType), TestCommon.GetPath("Good", "Test1.txt"));
+			res = (SampleType[]) CommonEngine.ReadFile(typeof (SampleType), FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, res.Length);
 
@@ -319,7 +319,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			DataTable res;
 
-			res = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			res = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, res.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);

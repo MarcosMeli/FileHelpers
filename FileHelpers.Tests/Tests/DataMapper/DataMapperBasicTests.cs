@@ -44,7 +44,7 @@ namespace FileHelpers.Tests.Mapping
             :BasicMapperClass
         {
            // [FieldIgnored()]
-            private int InAdvancedClass;
+            public int InAdvancedClass;
         }
         
         [DelimitedRecord("\t")]

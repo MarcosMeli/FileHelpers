@@ -11,17 +11,17 @@ namespace FileHelpers.Tests
 	public static class TestCommon
 	{
 	    //private static string mAssemblyLocation = string.Empty;
-		public static string GetPath(params string[] pathElements)
-		{
-		    var result = Path.GetFullPath(Path.Combine("..", "Data"));
+        public static string GetPath(params string[] pathElements)
+        {
+            var result = Path.GetFullPath(Path.Combine("..", "Data"));
 
-		    foreach (var element in pathElements)
-		    {
-		        result = Path.Combine(result, element);
-		    }
+            foreach (var element in pathElements)
+            {
+                result = Path.Combine(result, element);
+            }
 
             return result;
-		}
+        }
 
         public static string GetTempFile(string fileName)
         {

@@ -28,18 +28,29 @@ namespace FileHelpers
             return ReadWithEngine(engine);
         }
 
-        public FileHelperAsyncEngine<T> BeginRead<T>() where T : class
+        public T[] ReadWithEngine<T>(int maxRecords) where T : class
         {
-            var engine = new FileHelperAsyncEngine<T>();
-            engine.BeginReadFile(Path);
-            return engine;
+            var engine = new FileHelperEngine<T>();
+            return ReadWithEngine(engine, maxRecords);
         }
+
 
         public T[] ReadWithEngine<T>(FileHelperEngine<T> engine) where T : class
         {
             return engine.ReadFile(Path);
         }
 
+        public T[] ReadWithEngine<T>(FileHelperEngine<T> engine, int maxRecords) where T : class
+        {
+            return engine.ReadFile(Path, maxRecords);
+        }
+
+        public FileHelperAsyncEngine<T> BeginRead<T>() where T : class
+        {
+            var engine = new FileHelperAsyncEngine<T>();
+            engine.BeginReadFile(Path);
+            return engine;
+        }
         public T[] ReadWithAsyncEngine<T>() where T : class
         {
             var engine = new FileHelperAsyncEngine<T>();

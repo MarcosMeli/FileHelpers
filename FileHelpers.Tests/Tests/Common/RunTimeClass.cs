@@ -61,7 +61,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -88,7 +88,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -112,7 +112,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -172,7 +172,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -195,7 +195,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -218,7 +218,7 @@ namespace FileHelpers.Tests
 
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -240,7 +240,7 @@ namespace FileHelpers.Tests
 
             engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -309,7 +309,7 @@ namespace FileHelpers.Tests
 			
 			engine = new FileHelperEngine(cb.CreateRecordClass());
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -344,7 +344,7 @@ namespace FileHelpers.Tests
 		{
 			engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test1.txt"));
+			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);

@@ -9,7 +9,6 @@ namespace FileHelpers.Tests.CommonTests
 {
     [TestFixture]
     public class IntegerSeparators
-        : TestBaseHelper
     {
         FileHelperEngine engine;
 

@@ -138,7 +138,7 @@ namespace FileHelpers.Tests.CommonTests
                 FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
 
                 SampleType[] res;
-                res = engine.ReadFile(TestCommon.GetPath("Good", "Test1.txt"));
+                res = engine.ReadFile(FileTest.Good.Test1.Path);
 
                 Assert.AreEqual(4, res.Length);
                 Assert.AreEqual(4, engine.TotalRecords);

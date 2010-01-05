@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -122,7 +122,6 @@
       <DependentUpon>GenerateDataLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="Tests\ClassBuilder\ClassFromFile.cs" />
-    <Compile Include="TestBaseHelper.cs" />
     <Compile Include="Tests\Common.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -354,7 +353,6 @@
       <SubType>Code</SubType>
     </Compile>
     <None Include="FileHelpers.snk" />
-    <None Include="TODO Tests.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />

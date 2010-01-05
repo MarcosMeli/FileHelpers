@@ -9,7 +9,7 @@ namespace FileHelpers.Tests
         protected string BuildPath(string file)
         {
             return BuildPath(string.Empty, file);
-            
+
         }
 
         protected string BuildPath(string basePath, string file)

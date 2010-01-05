@@ -132,15 +132,14 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords09()
 		{
-			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath("Good", "Test1.txt"), 2);
+			var res = FileTest.Good.Test1.ReadWithEngine<SampleType>(2);
 			Assert.AreEqual(2, res.Length);
 		}
 
 		[Test]
         public void ReadFileMaxRecords10()
 		{
-			object[] res = CommonEngine.ReadFile(typeof(SampleType), TestCommon.GetPath("Good", "Test1.txt"), -1);
-
+            var res = FileTest.Good.Test1.ReadWithEngine<SampleType>(-1);
 			Assert.AreEqual(4, res.Length);
 		}
 

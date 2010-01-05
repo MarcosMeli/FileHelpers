@@ -7,8 +7,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
-	public class EventsGenerics:
-        TestBaseHelper
+	public class EventsGenerics
 	{
 		FileHelperEngine<SampleType> engine;
 
@@ -22,7 +21,7 @@ namespace FileHelpers.Tests.CommonTests
 			engine.BeforeReadRecord += BeforeEvent;
 			engine.AfterReadRecord += AfterEvent;
 
-			object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
+			object[] res = engine.ReadFile(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -73,7 +72,7 @@ namespace FileHelpers.Tests.CommonTests
             engine = new FileHelperEngine<SampleType>();
             engine.AfterReadRecord += AfterEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
+            object[] res = engine.ReadFile(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -90,7 +89,7 @@ namespace FileHelpers.Tests.CommonTests
             engine = new FileHelperEngine<SampleType>();
             engine.BeforeReadRecord += BeforeEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
+            object[] res = engine.ReadFile(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -108,7 +107,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.BeforeReadRecord += BeforeEvent2;
 			engine.AfterReadRecord += AfterEvent2;
 
-            object[] res = engine.ReadFile(BuildPath("Good", "Test1.txt"));
+            object[] res = engine.ReadFile(FileTest.Good.Test1.Path);
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
