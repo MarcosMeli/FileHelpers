@@ -340,7 +340,7 @@
     <Compile Include="Options\RecordOptions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Progress\ProgressChange.cs">
+    <Compile Include="Events\ProgressEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
