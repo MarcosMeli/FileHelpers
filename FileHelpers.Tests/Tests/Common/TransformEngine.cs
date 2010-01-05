@@ -58,7 +58,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void CsvToFixedLength2()
 		{
             var link = new FileTransformEngine<FromClass, ToClass>();
-            link.TransformFile(FileTest.Good.Transform1.Path, fileOut);
+            link.TransformFile(FileTest.Good.Transform2.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
             ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
