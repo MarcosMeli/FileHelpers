@@ -1,7 +1,3 @@
-#region "  © Copyright 2005-07 to Marcos Meli - http://www.devoo.net" 
-// Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
-#endregion
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +13,7 @@ namespace FileHelpers
     /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
     internal sealed class RecordInfo : IRecordInfo
     {
-        private readonly IFieldInfoCacheManipulator fieldInfoCacheManipulator;
+        private readonly IFieldInfoCacheManipulator mFieldInfoCacheManipulator;
 
         #region "  Internal Fields  "
         // Cache of all the fields that must be used for a Type
@@ -58,7 +54,7 @@ namespace FileHelpers
 
         public RecordInfo(Type recordType, IFieldInfoCacheManipulator fieldInfoCacheManipulator)
         {
-            this.fieldInfoCacheManipulator = fieldInfoCacheManipulator;
+            this.mFieldInfoCacheManipulator = fieldInfoCacheManipulator;
             RecordConditionSelector = String.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
@@ -171,7 +167,7 @@ namespace FileHelpers
             if (currentType == typeof (object))
                 yield break;
 
-            fieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
+            mFieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
             
             foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
                                                            BindingFlags.NonPublic |
