@@ -49,9 +49,7 @@ namespace FileHelpers
 
 
         #endregion
-
-
-
+              
 
         public string WriteString(IEnumerable records)
         {
@@ -144,8 +142,8 @@ namespace FileHelpers
     [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
 	public class FileHelperEngine<T>
-        : EngineBase
-        where T : class
+        : EngineBase,
+          IFileHelperEngine<T> where T : class
     {
         
 

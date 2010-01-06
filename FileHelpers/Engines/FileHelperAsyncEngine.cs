@@ -39,7 +39,7 @@ namespace FileHelpers
     [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
     public class FileHelperAsyncEngine<T> :
-        EngineBase, IEnumerable<T>, IDisposable
+        EngineBase, IFileHelperAsyncEngine<T>
     {
 
         #region "  Constructor  "

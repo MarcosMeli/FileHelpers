@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -180,6 +180,8 @@
     <Compile Include="Dynamic\FixedFieldBuilder.cs" />
     <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
     <Compile Include="Dynamic\XmlHelper.cs" />
+    <Compile Include="Engines\IFileHelperAsyncEngine.cs" />
+    <Compile Include="Engines\IFileHelperEngine.cs" />
     <Compile Include="Enums\EngineState.cs" />
     <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">

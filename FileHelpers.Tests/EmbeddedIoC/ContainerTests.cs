@@ -1,7 +1,8 @@
+using FileHelpers.IoC;
 using NUnit.Framework;
 using Singleton = FileHelpers.IoC.Container.SingletonAttribute;
 
-namespace FileHelpers.IoC
+namespace FileHelpers.Tests.IoC
 {
     #region Demo Contracts and Implementations
 

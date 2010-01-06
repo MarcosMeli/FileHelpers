@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 
 
-namespace FileHelpers.Tests.Tests
+namespace FileHelpers.Tests
 {
 
     [TestFixture]
