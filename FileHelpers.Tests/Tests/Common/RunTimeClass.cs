@@ -54,7 +54,9 @@ namespace FileHelpers.Tests
 			End Class
 		";
 
-		[Test]
+	    private string mTempClassFile = "tempclass.cs";
+
+	    [Test]
 		public void ReadFile()
 		{
 			Type t = ClassBuilder.ClassFromString(mClass);
@@ -165,10 +167,11 @@ namespace FileHelpers.Tests
 		[Test]
 		public void ReadFileEncDec()
 		{
-			ClassBuilder.ClassToBinaryFile("temp.fhc", mClass);
+		    var tempFile = "temp.fhc";
+		    ClassBuilder.ClassToBinaryFile(tempFile, mClass);
 
-			Type t = ClassBuilder.ClassFromBinaryFile("temp.fhc");
-			File.Delete("temp.fhc");
+			Type t = ClassBuilder.ClassFromBinaryFile(tempFile);
+			File.Delete(tempFile);
 
 			engine = new FileHelperEngine(t);
 
@@ -191,7 +194,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void ReadFileClassInFileEnc()
 		{
-			Type t = ClassBuilder.ClassFromBinaryFile(TestCommon.GetPath("Classes", "SampleBinaryClass.fhc"));
+			var t = ClassBuilder.ClassFromBinaryFile(FileTest.Classes.SampleBinaryClass.Path);
 
 			engine = new FileHelperEngine(t);
 
@@ -214,7 +217,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void ReadFileClassInFile()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "SampleClass.cs"));
+			Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassCS.Path);
 
 			engine = new FileHelperEngine(t);
 
@@ -236,7 +239,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void ReadFileClassInFileVbNet()
 		{
-			Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "SampleClass.vb"), NetLanguage.VbNet);
+            Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassVB.Path, NetLanguage.VbNet);
 
             engine = new FileHelperEngine(t);
 
@@ -355,32 +358,32 @@ namespace FileHelpers.Tests
 		public void SaveLoadSourceFile()
 		{
 			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile("tempclass.cs");
-			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs"));
+			cb.SaveToSourceFile(mTempClassFile);
+			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
 		}
 
 		[Test]
 		public void SaveLoadSourceFileVbNet()
 		{
 			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile("tempclass.cs", NetLanguage.VbNet);
-			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs", NetLanguage.VbNet));
+			cb.SaveToSourceFile(mTempClassFile, NetLanguage.VbNet);
+			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile, NetLanguage.VbNet));
 		}
 
 		[Test]
 		public void SaveLoadBinaryFile()
 		{
 			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile("tempclass.cs");
-			ValidateType(ClassBuilder.ClassFromSourceFile("tempclass.cs"));
+			cb.SaveToSourceFile(mTempClassFile);
+			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
 		}
 
 		[Test]
 		public void SaveLoadBinaryFileVbNet()
 		{
 			ClassBuilder cb = CommonCreate();
-			cb.SaveToBinaryFile("tempclass.cs", NetLanguage.VbNet);
-			ValidateType(ClassBuilder.ClassFromBinaryFile("tempclass.cs", NetLanguage.VbNet));
+			cb.SaveToBinaryFile(mTempClassFile, NetLanguage.VbNet);
+			ValidateType(ClassBuilder.ClassFromBinaryFile(mTempClassFile, NetLanguage.VbNet));
 		}
 
 

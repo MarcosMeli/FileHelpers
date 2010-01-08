@@ -11,7 +11,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		private void RunTests(Type type, string delimiter, params string[] pathElements)
 		{
-            DelimitedFileEngine engine = new DelimitedFileEngine(type);
+            var engine = new DelimitedFileEngine(type);
             engine.Options.Delimiter = delimiter;
 
 			object[] res = TestCommon.ReadTest(engine, pathElements);

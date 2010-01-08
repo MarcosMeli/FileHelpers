@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Text;
 using FileHelpers.Options;
 
 namespace FileHelpers
@@ -35,6 +36,12 @@ namespace FileHelpers
 				throw new BadUsageException("The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
 		}
 
+        public FixedFileEngine(Type recordType, Encoding encoding)
+            : this(recordType)
+        {
+            Encoding = encoding;
+        }
+
 		#endregion
 		
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
@@ -57,6 +64,7 @@ namespace FileHelpers
         : FileHelperEngine<T>
         where T: class
 	{
+
 	#region "  Constructor  "
 
 		/// <summary>
@@ -72,6 +80,12 @@ namespace FileHelpers
 			if (mRecordInfo.IsDelimited)
 				throw new BadUsageException("The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
 		}
+
+        public FixedFileEngine(Encoding encoding)
+            : this()
+        {
+            Encoding = encoding;
+        }
 
 	#endregion
 

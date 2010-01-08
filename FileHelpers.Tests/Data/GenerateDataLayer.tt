@@ -37,21 +37,28 @@ public void Process(string folder)
 	
 	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
 	
-//	foreach (ProjectItem projectItem in project.ProjectItems)
-//	{
-//		ProcessProjectItem(projectItem, null);
-//	}
-
     WriteLine(Code.GenerateCode());
 }
 
 public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 {
 
-	if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
-		CreateFluentSql(projectItem, parent);
-
-	if (projectItem.ProjectItems != null)
+	if (projectItem.ProjectItems.Count == 0)
+	{
+		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
+		{ 
+			case "generatedatalayer.tt":
+			case "generatedatalayer.autogen.cs":
+			case "fluentcode.cs":
+			case "filetestbase.cs":
+					break;
+				default:
+					//if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
+						RenderItemCore(projectItem, parent);
+					break;
+		}
+	}
+	else
 	{
 		foreach (ProjectItem childItem in projectItem.ProjectItems)
 		{
@@ -61,10 +68,10 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 
 }
 
-private void CreateFluentSql(ProjectItem item, ProjectItem parent)
+private void RenderItemCore(ProjectItem item, ProjectItem parent)
 {
 	var filename = item.get_FileNames(0);
-	var name = ReplaceIgnoringCase(ReplaceIgnoringCase(Path.GetFileName(filename), ".model.sql", string.Empty), ".txt", string.Empty) ;
+	var name = Path.GetFileNameWithoutExtension(filename);
     var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
 	
     Code.Namespace("FileHelpers.Tests")

@@ -228,6 +228,39 @@ public partial class BadAdd1: FileTestBase
 }
 
 
+}public partial class Classes
+{
+public partial class ClassFromFile: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Classes\ClassFromFile.cs"; }
+
+
+}public partial class SampleBinaryClass: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Classes\SampleBinaryClass.fhc"; }
+
+
+}public partial class SampleClassCS: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Classes\SampleClassCS.cs"; }
+
+
+}public partial class SampleClassVB: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Classes\SampleClassVB.vb"; }
+
+
+}
+
+
 }public partial class Detection
 {
 public partial class Cities: FileTestBase
@@ -1071,6 +1104,18 @@ public partial class ArrayFields: FileTestBase
 }
 
 
+}public partial class RunTime
+{
+public partial class VendorImport: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"RunTime\VendorImport.xml"; }
+
+
+}
+
+
 }
 
 
@@ -1172,6 +1217,23 @@ public static ClassesFileTest.Bad.NoBadNullvalue NoBadNullvalue
 private static ClassesFileTest.Bad.OptionalBad1 mOptionalBad1 = new ClassesFileTest.Bad.OptionalBad1();
 public static ClassesFileTest.Bad.OptionalBad1 OptionalBad1
 { get { return  mOptionalBad1; } }
+
+
+}public partial class Classes
+{
+
+private static ClassesFileTest.Classes.ClassFromFile mClassFromFile = new ClassesFileTest.Classes.ClassFromFile();
+public static ClassesFileTest.Classes.ClassFromFile ClassFromFile
+{ get { return  mClassFromFile; } }
+private static ClassesFileTest.Classes.SampleBinaryClass mSampleBinaryClass = new ClassesFileTest.Classes.SampleBinaryClass();
+public static ClassesFileTest.Classes.SampleBinaryClass SampleBinaryClass
+{ get { return  mSampleBinaryClass; } }
+private static ClassesFileTest.Classes.SampleClassCS mSampleClassCS = new ClassesFileTest.Classes.SampleClassCS();
+public static ClassesFileTest.Classes.SampleClassCS SampleClassCS
+{ get { return  mSampleClassCS; } }
+private static ClassesFileTest.Classes.SampleClassVB mSampleClassVB = new ClassesFileTest.Classes.SampleClassVB();
+public static ClassesFileTest.Classes.SampleClassVB SampleClassVB
+{ get { return  mSampleClassVB; } }
 
 
 }public partial class Detection
@@ -1539,6 +1601,14 @@ public static ClassesFileTest.Good.Transform2 Transform2
 private static ClassesFileTest.Good.Trim1 mTrim1 = new ClassesFileTest.Good.Trim1();
 public static ClassesFileTest.Good.Trim1 Trim1
 { get { return  mTrim1; } }
+
+
+}public partial class RunTime
+{
+
+private static ClassesFileTest.RunTime.VendorImport mVendorImport = new ClassesFileTest.RunTime.VendorImport();
+public static ClassesFileTest.RunTime.VendorImport VendorImport
+{ get { return  mVendorImport; } }
 
 
 }

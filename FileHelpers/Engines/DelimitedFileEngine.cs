@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Text;
 using FileHelpers.Options;
 
 namespace FileHelpers
@@ -33,6 +34,11 @@ namespace FileHelpers
                 throw new BadUsageException("The Delimited Engine only accepts record types marked with DelimitedRecordAttribute");
         }
 
+        public DelimitedFileEngine(Type recordType, Encoding encoding)
+            : this(recordType)
+        {
+            Encoding = encoding;
+        }
 		
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
 		public new DelimitedRecordOptions Options
@@ -55,6 +61,7 @@ namespace FileHelpers
         : FileHelperEngine<T>
         where T: class
 	{
+
 	#region "  Constructor  "
 
 		/// <summary>
@@ -70,6 +77,12 @@ namespace FileHelpers
 			if (!mRecordInfo.IsDelimited)
 				throw new BadUsageException("The Delimited Engine only accepts Record Types marked with DelimitedRecordAttribute");
 		}
+
+        public DelimitedFileEngine(Encoding encoding)
+            : this()
+        {
+            Encoding = encoding;
+        }
 
 	#endregion
 

@@ -363,6 +363,7 @@
     <None Include="Data\Bad\IntWithLetters.txt" />
     <None Include="Data\Bad\IntWithSpaces1.txt" />
     <None Include="Data\Bad\IntWithSpaces2.txt" />
+    <None Include="Data\Classes\SampleBinaryClass.fhc" />
     <None Include="Data\GenerateDataLayer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateDataLayer.autogen.cs</LastGenOutput>
@@ -372,6 +373,8 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Classes\ClassFromFile.cs" />
+    <None Include="Data\Classes\SampleClassCS.cs" />
     <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
@@ -407,6 +410,7 @@
     <Content Include="Data\Bad\MultiRecord1.txt" />
     <Content Include="Data\Bad\NoBadNullvalue.txt" />
     <Content Include="Data\Bad\OptionalBad1.txt" />
+    <None Include="Data\Classes\SampleClassVB.vb" />
     <Content Include="Data\Detection\Cities.txt" />
     <Content Include="Data\Detection\Cities2.txt" />
     <Content Include="Data\Detection\CityRates.txt" />
@@ -526,6 +530,7 @@
     <Content Include="Data\Good\Transform1.txt" />
     <Content Include="Data\Good\Transform2.txt" />
     <Content Include="Data\Good\Trim1.txt" />
+    <Content Include="Data\RunTime\VendorImport.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\CoreUnitTests\" />
