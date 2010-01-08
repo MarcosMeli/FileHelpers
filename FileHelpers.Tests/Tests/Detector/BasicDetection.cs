@@ -14,8 +14,6 @@ namespace FileHelpers.Tests.Detector
     {
         private void AssertDelimitedFormat(string file, string delimiter, int fields, int confidence, int numFormats)
         {
-            file = TestCommon.GetPath("Detection", "" + file);
-
             SmartFormatDetector detector = new SmartFormatDetector();
             RecordFormatInfo[] formats;
 
@@ -55,37 +53,34 @@ namespace FileHelpers.Tests.Detector
         [Test]
         public void DelimitedTab()
         {
-            string file = "CustomersTab.txt";
-            AssertDelimitedFormat(file, "\t", 7, 100, 1);
+
+            AssertDelimitedFormat(FileTest.Detection.CustomersTab.Path, "\t", 7, 100, 1);
         }
 
 
         [Test]
         public void DelimitedSemiColon()
         {
-            string file = "CustomersSemiColon.txt";
-            AssertDelimitedFormat(file, ";", 7, 100, 1);
+            AssertDelimitedFormat(FileTest.Detection.CustomersSemiColon.Path, ";", 7, 100, 1);
         }
 
         [Test]
         public void DelimitedComma()
         {
-            string file = "CustomersComma.txt";
-            AssertDelimitedFormat(file, ",", 7, 100, 1);
+            AssertDelimitedFormat(FileTest.Detection.CustomersComma.Path, ",", 7, 100, 1);
         }
 
         [Test]
         public void DelimitedMedium()
         {
-            string file = "DelimitedMedium.txt";
-            AssertDelimitedFormat(file, "\t", 41, -1, 1);
+            AssertDelimitedFormat(FileTest.Detection.DelimitedMedium.Path, "\t", 41, -1, 1);
         }
 
         [Test]
         public void FixedLength()
         {
             SmartFormatDetector detector = new SmartFormatDetector();
-            RecordFormatInfo[] formats = detector.DetectFileFormat(TestCommon.GetPath("Detection", "CustomersFixed.txt"));
+            RecordFormatInfo[] formats = detector.DetectFileFormat(FileTest.Detection.CustomersFixed.Path);
 
             Assert.AreEqual(1, formats.Length);
             Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);
