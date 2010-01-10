@@ -102,33 +102,25 @@ namespace FileHelpers.Tests.Detector
         [Test]
         public void Cities()
         {
-            string file;
-            file = "Cities.txt";
-            AssertDelimitedFormat(file, ",", 5, 100, 0);
+            AssertDelimitedFormat(FileTest.Detection.Cities.Path, ",", 5, 100, 0);
 
-            file = "Cities2.txt";
-            AssertDelimitedFormat(file, ",", 12, 100, 0);
+            AssertDelimitedFormat(FileTest.Detection.Cities2.Path, ",", 12, 100, 0);
 
-            file = "Locations.txt";
-            AssertDelimitedFormat(file, ",", 7, 90, 0);
+            AssertDelimitedFormat(FileTest.Detection.Locations.Path, ",", 7, 90, 0);
 
         }
 
         [Test]
         public void TestDataUrlEtc()
         {
-            string file;
-            file = "SampleData.txt";
-            AssertDelimitedFormat(file, ",", 26, 100, 0);
+            AssertDelimitedFormat(FileTest.Detection.SampleData.Path, ",", 26, 100, 0);
 
         }
 
         [Test]
         public void Quoted()
         {
-            string file;
-            file = "SuperQuoted.txt";
-            AssertDelimitedFormat(file, ",", 11, 100, 0);
+            AssertDelimitedFormat(FileTest.Detection.SuperQuoted.Path, ",", 11, 100, 0);
 
         }
 
