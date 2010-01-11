@@ -81,59 +81,58 @@ namespace FileHelpers
             if (res != null)
             {
 
-                // Trim Related
-                FieldTrimAttribute[] trim = (FieldTrimAttribute[])fi.GetCustomAttributes(typeof(FieldTrimAttribute), false);
-                if (trim.Length > 0)
-                {
-                    res.mTrimMode = trim[0].TrimMode;
-                    res.mTrimChars = trim[0].TrimChars;
-                }
+                // FieldTrim
+                Attributes.WorkWithFirst<FieldTrimAttribute>(fi, (x) =>
+                                                 {
+                                                     res.mTrimMode = x.TrimMode;
+                                                     res.mTrimChars = x.TrimChars;
+                                                 });
 
-                // Quote Related
-                FieldQuotedAttribute[] quotedAttributes = (FieldQuotedAttribute[])fi.GetCustomAttributes(typeof(FieldQuotedAttribute), false);
-                if (quotedAttributes.Length > 0)
-                {
-                    if (res is FixedLengthField)
-                        throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
+                // FieldQuoted
+                Attributes.WorkWithFirst<FieldQuotedAttribute>(fi, (x) =>
+                                                                       {
+                                                                           if (res is FixedLengthField)
+                                                                               throw new BadUsageException(
+                                                                                   "The field: '" + fi.Name +
+                                                                                   "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
 
-                    ((DelimitedField)res).mQuoteChar = quotedAttributes[0].QuoteChar;
-                    ((DelimitedField)res).mQuoteMode = quotedAttributes[0].QuoteMode;
-                    ((DelimitedField)res).mQuoteMultiline = quotedAttributes[0].QuoteMultiline;
-                }
+                                                                           ((DelimitedField) res).mQuoteChar =
+                                                                               x.QuoteChar;
+                                                                           ((DelimitedField) res).mQuoteMode =
+                                                                               x.QuoteMode;
+                                                                           ((DelimitedField) res).mQuoteMultiline =
+                                                                               x.QuoteMultiline;
+                                                                       });
 
-                // Optional Related
-                FieldOptionalAttribute[] optionalAttribs = (FieldOptionalAttribute[])fi.GetCustomAttributes(typeof(FieldOptionalAttribute), false);
 
-                if (optionalAttribs.Length > 0)
-                    res.mIsOptional = true;
 
-                // NewLine Related
-                res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), true);
+                // FieldOptional
+                res.mIsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
 
-                // Array Related
+
+                // FieldInNewLine
+                res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
+
+                // FieldArrayLength
                 if (fi.FieldType.IsArray)
                 {
                     res.mIsArray = true;
                     res.mArrayType = fi.FieldType.GetElementType();
 
-                    FieldArrayLengthAttribute[] arrayAttribs = (FieldArrayLengthAttribute[])fi.GetCustomAttributes(typeof(FieldArrayLengthAttribute), false);
+                    // MinValue indicates that there is no FieldArrayLength in the array
+                    res.mArrayMinLength = int.MinValue;
+                    res.mArrayMaxLength = int.MaxValue;
 
-                    if (arrayAttribs.Length > 0)
+                    Attributes.WorkWithFirst<FieldArrayLengthAttribute>(fi, (x) =>
                     {
-                        res.mArrayMinLength = arrayAttribs[0].mMinLength;
-                        res.mArrayMaxLength = arrayAttribs[0].mMaxLength;
+                        res.mArrayMinLength = x.mMinLength;
+                        res.mArrayMaxLength = x.mMaxLength;
 
                         if (res.mArrayMaxLength < res.mArrayMinLength ||
                             res.mArrayMinLength < 0 ||
                             res.mArrayMaxLength <= 0)
                             throw new BadUsageException("The field: " + fi.Name + " has invalid length values in the [FieldArrayLength] attribute.");
-                    }
-                    else
-                    {
-                        // MinValue indicates that there is no FieldArrayLength in the array
-                        res.mArrayMinLength = int.MinValue;
-                        res.mArrayMaxLength = int.MaxValue;
-                    }
+                    });
                 }
 
             }
