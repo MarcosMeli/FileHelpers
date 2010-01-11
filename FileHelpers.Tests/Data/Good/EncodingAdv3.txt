@@ -1,0 +1,29 @@
+DENRTPMSW
+MOUNTAIN STATES WEATHER SERVICES
+FORT COLLINS, COLORADO (OFFICE 970 484-9463)
+REGIONAL TEMPERATURE/PRECIPITATION TABLE, 0800, SUN, JUL 20, 2008
+==========================================================================
+LOCATION                  COUNTY      ELEV  HI  LO   PCPN SNOW SNDPT MONTH
+==========================================================================
+AKRON 11NNE               WASHINGTON  4393  98  66   0.06  0.0   0   0.29
+BUCKHORN MTN 1E           LARIMER     7400  88  62   0.00  0.0   0   1.14
+BURNS 8NNE                LARAMIE     5490  94  56   0.00  0.0   0   0.58
+BUSHNELL 15S              KIMBALL     5200  94  58   T     0.0   0   0.71
+EATON 5ENE                WELD        4880  100 56   T     0.0   0   0.24
+ESTES PARK 1SSE           LARIMER     7785  86  51   0.00  0.0   0   0.33
+FORT COLLINS 4E           LARIMER     4920  95  55   0.00  0.0   0   0.17
+GILL 3NW                  WELD        4830  97  59   0.00  0.0   0   1.10
+HAXTUN 4E                 PHILLIPS    4028  97  54   0.00  0.0   0   0.40
+HORSETOOTH INLET BAY      LARIMER     5366  93  63   0.00  0.0   0   1.20
+HOURGLASS LAKE            LARIMER     9520  82  47   0.00  0.0   0   0.82
+PARKER                    DOUGLAS     6200  97  66   0.00  0.0   0   0.26
+RAWLINS 1NW               CARBON      6820  90  44   0.00  0.0   0   0.66
+STERLING 15WNW            LOGAN       4450  102 61   T     0.0   0   0.96
+VIRGINIA DALE 7ENE        LARIMER     7010  88  51   0.00  0.0   0   0.14
+WELLINGTON                LARIMER     5201  96  59   0.00  0.0   0   0.11
+WELLINGTON 1SE            LARIMER     5150  99  55   0.00  0.0   0   0.09
+WELLINGTON 6N             LARIMER     5448  96  55   T     0.0   0   0.06
+FOR MORE PRECIPITATION DATA GO TO:
+http://ccc.atmos.colostate.edu/~hail/
+WIRSHBORN
+END OF REPORT

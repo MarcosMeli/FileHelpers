@@ -1,0 +1,2 @@
+ALFKI      Alfreds Futterkiste                   Maria Anders          Sales Representative                  Obere Str. 57                            aaa
+ANATR      Ana Trujillo Emparedados y helados    Ana Trujillo          Owner                                 Avda. de la Constitución 2222            bbb

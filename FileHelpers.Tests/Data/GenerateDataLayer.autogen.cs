@@ -1,6 +1,6 @@
 using FileHelpers;
 using System.Diagnostics;
-using System;
+using System; 
 
 namespace FileHelpers.Tests
 {
@@ -15,210 +15,240 @@ public partial class BadAdd1: FileTestBase
 	   	    { return @"Bad\BadAdd1.txt"; }
 
 
-}public partial class BadAdd2: FileTestBase
+}
+public partial class BadAdd2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadAdd2.txt"; }
 
 
-}public partial class BadAll1: FileTestBase
+}
+public partial class BadAll1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadAll1.txt"; }
 
 
-}public partial class BadDate1: FileTestBase
+}
+public partial class BadDate1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadDate1.txt"; }
 
 
-}public partial class BadDate1Ignore: FileTestBase
+}
+public partial class BadDate1Ignore: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadDate1Ignore.txt"; }
 
 
-}public partial class BadDate1IgnoreLast: FileTestBase
+}
+public partial class BadDate1IgnoreLast: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadDate1IgnoreLast.txt"; }
 
 
-}public partial class BadDate1IgnoreLast2: FileTestBase
+}
+public partial class BadDate1IgnoreLast2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadDate1IgnoreLast2.txt"; }
 
 
-}public partial class BadDate2: FileTestBase
+}
+public partial class BadDate2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadDate2.txt"; }
 
 
-}public partial class BadInt1: FileTestBase
+}
+public partial class BadInt1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadInt1.txt"; }
 
 
-}public partial class BadInt2: FileTestBase
+}
+public partial class BadInt2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadInt2.txt"; }
 
 
-}public partial class BadInt3: FileTestBase
+}
+public partial class BadInt3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadInt3.txt"; }
 
 
-}public partial class BadInt4: FileTestBase
+}
+public partial class BadInt4: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadInt4.txt"; }
 
 
-}public partial class BadQuoted1: FileTestBase
+}
+public partial class BadQuoted1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadQuoted1.txt"; }
 
 
-}public partial class BadQuoted2: FileTestBase
+}
+public partial class BadQuoted2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadQuoted2.txt"; }
 
 
-}public partial class BadQuoted3: FileTestBase
+}
+public partial class BadQuoted3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\BadQuoted3.txt"; }
 
 
-}public partial class CustomersTabNumFields: FileTestBase
+}
+public partial class CustomersTabNumFields: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\CustomersTabNumFields.txt"; }
 
 
-}public partial class DelimiterNotFoundFirstField: FileTestBase
+}
+public partial class DelimiterNotFoundFirstField: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\DelimiterNotFoundFirstField.txt"; }
 
 
-}public partial class DelimiterNotFoundLastField: FileTestBase
+}
+public partial class DelimiterNotFoundLastField: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\DelimiterNotFoundLastField.txt"; }
 
 
-}public partial class DelimiterNotFoundMiddleField: FileTestBase
+}
+public partial class DelimiterNotFoundMiddleField: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\DelimiterNotFoundMiddleField.txt"; }
 
 
-}public partial class EmptyLine: FileTestBase
+}
+public partial class EmptyLine: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\EmptyLine.txt"; }
 
 
-}public partial class EmptyLineAtEnd: FileTestBase
+}
+public partial class EmptyLineAtEnd: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\EmptyLineAtEnd.txt"; }
 
 
-}public partial class EmptyLineInTheMiddle: FileTestBase
+}
+public partial class EmptyLineInTheMiddle: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\EmptyLineInTheMiddle.txt"; }
 
 
-}public partial class InNewLine3: FileTestBase
+}
+public partial class InNewLine3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\InNewLine3.txt"; }
 
 
-}public partial class InNewLine4: FileTestBase
+}
+public partial class InNewLine4: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\InNewLine4.txt"; }
 
 
-}public partial class IntWithDot: FileTestBase
+}
+public partial class IntWithDot: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\IntWithDot.txt"; }
 
 
-}public partial class IntWithLetters: FileTestBase
+}
+public partial class IntWithLetters: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\IntWithLetters.txt"; }
 
 
-}public partial class IntWithSpaces1: FileTestBase
+}
+public partial class IntWithSpaces1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\IntWithSpaces1.txt"; }
 
 
-}public partial class IntWithSpaces2: FileTestBase
+}
+public partial class IntWithSpaces2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\IntWithSpaces2.txt"; }
 
 
-}public partial class MultiRecord1: FileTestBase
+}
+public partial class MultiRecord1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\MultiRecord1.txt"; }
 
 
-}public partial class NoBadNullvalue: FileTestBase
+}
+public partial class NoBadNullvalue: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Bad\NoBadNullvalue.txt"; }
 
 
-}public partial class OptionalBad1: FileTestBase
+}
+public partial class OptionalBad1: FileTestBase
 {
 
  protected override string GetFullPathName()
@@ -228,7 +258,9 @@ public partial class BadAdd1: FileTestBase
 }
 
 
-}public partial class Classes
+
+}
+public partial class Classes
 {
 public partial class ClassFromFile: FileTestBase
 {
@@ -237,21 +269,24 @@ public partial class ClassFromFile: FileTestBase
 	   	    { return @"Classes\ClassFromFile.cs"; }
 
 
-}public partial class SampleBinaryClass: FileTestBase
+}
+public partial class SampleBinaryClass: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Classes\SampleBinaryClass.fhc"; }
 
 
-}public partial class SampleClassCS: FileTestBase
+}
+public partial class SampleClassCS: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Classes\SampleClassCS.cs"; }
 
 
-}public partial class SampleClassVB: FileTestBase
+}
+public partial class SampleClassVB: FileTestBase
 {
 
  protected override string GetFullPathName()
@@ -261,7 +296,9 @@ public partial class ClassFromFile: FileTestBase
 }
 
 
-}public partial class Detection
+
+}
+public partial class Detection
 {
 public partial class Cities: FileTestBase
 {
@@ -270,77 +307,88 @@ public partial class Cities: FileTestBase
 	   	    { return @"Detection\Cities.txt"; }
 
 
-}public partial class Cities2: FileTestBase
+}
+public partial class Cities2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\Cities2.txt"; }
 
 
-}public partial class CityRates: FileTestBase
+}
+public partial class CityRates: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\CityRates.txt"; }
 
 
-}public partial class CustomersComma: FileTestBase
+}
+public partial class CustomersComma: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\CustomersComma.txt"; }
 
 
-}public partial class CustomersFixed: FileTestBase
+}
+public partial class CustomersFixed: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\CustomersFixed.txt"; }
 
 
-}public partial class CustomersSemiColon: FileTestBase
+}
+public partial class CustomersSemiColon: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\CustomersSemiColon.txt"; }
 
 
-}public partial class CustomersTab: FileTestBase
+}
+public partial class CustomersTab: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\CustomersTab.txt"; }
 
 
-}public partial class DelimitedMedium: FileTestBase
+}
+public partial class DelimitedMedium: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\DelimitedMedium.txt"; }
 
 
-}public partial class Locations: FileTestBase
+}
+public partial class Locations: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\Locations.txt"; }
 
 
-}public partial class SampleData: FileTestBase
+}
+public partial class SampleData: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\SampleData.txt"; }
 
 
-}public partial class SuperQuoted: FileTestBase
+}
+public partial class SuperQuoted: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\SuperQuoted.txt"; }
 
 
-}public partial class SuperQuoted2: FileTestBase
+}
+public partial class SuperQuoted2: FileTestBase
 {
 
  protected override string GetFullPathName()
@@ -350,7 +398,9 @@ public partial class Cities: FileTestBase
 }
 
 
-}public partial class Good
+
+}
+public partial class Good
 {
 public partial class ArrayFields: FileTestBase
 {
@@ -359,742 +409,912 @@ public partial class ArrayFields: FileTestBase
 	   	    { return @"Good\ArrayFields.txt"; }
 
 
-}public partial class ArrayFields2: FileTestBase
+}
+public partial class ArrayFields2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ArrayFields2.txt"; }
 
 
-}public partial class ArrayFieldsDelimited: FileTestBase
+}
+public partial class ArrayFieldsDelimited: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ArrayFieldsDelimited.txt"; }
 
 
-}public partial class Chinese: FileTestBase
+}
+public partial class Chinese: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Chinese.txt"; }
 
 
-}public partial class ChineseUnicode: FileTestBase
+}
+public partial class ChineseUnicode: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ChineseUnicode.txt"; }
 
 
-}public partial class ConditionalRecords1: FileTestBase
+}
+public partial class ConditionalRecords1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConditionalRecords1.txt"; }
 
 
-}public partial class ConditionalRecords2: FileTestBase
+}
+public partial class ConditionalRecords2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConditionalRecords2.txt"; }
 
 
-}public partial class ConditionalRecords3: FileTestBase
+}
+public partial class ConditionalRecords3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConditionalRecords3.txt"; }
 
 
-}public partial class ConditionalRecords4: FileTestBase
+}
+public partial class ConditionalRecords4: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConditionalRecords4.txt"; }
 
 
-}public partial class ConverterDecimals1: FileTestBase
+}
+public partial class ConverterDecimals1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConverterDecimals1.txt"; }
 
 
-}public partial class ConverterDecimals2: FileTestBase
+}
+public partial class ConverterDecimals2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ConverterDecimals2.txt"; }
 
 
-}public partial class CustomConverter1: FileTestBase
+}
+public partial class CustomConverter1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomConverter1.txt"; }
 
 
-}public partial class CustomConverter2: FileTestBase
+}
+public partial class CustomConverter2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomConverter2.txt"; }
 
 
-}public partial class CustomersFixed: FileTestBase
+}
+public partial class CustomersFixed: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersFixed.txt"; }
 
 
-}public partial class CustomersSemiColon: FileTestBase
+}
+public partial class CustomersFixedExact: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedExact.txt"; }
+
+
+}
+public partial class CustomersFixedLessChars10Records: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedLessChars10Records.txt"; }
+
+
+}
+public partial class CustomersFixedMoreChars5Records: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedMoreChars5Records.txt"; }
+
+
+}
+public partial class CustomersFixedMoreVariable12Records: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedMoreVariable12Records.txt"; }
+
+
+}
+public partial class CustomersFixedWithout1AndHalfFields: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedWithout1AndHalfFields.txt"; }
+
+
+}
+public partial class CustomersFixedWithout2Fields: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedWithout2Fields.txt"; }
+
+
+}
+public partial class CustomersFixedWithoutLastField: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\CustomersFixedWithoutLastField.txt"; }
+
+
+}
+public partial class CustomersSemiColon: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersSemiColon.txt"; }
 
 
-}public partial class CustomersTab: FileTestBase
+}
+public partial class CustomersTab: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersTab.txt"; }
 
 
-}public partial class CustomersTabIgnoreFirst: FileTestBase
+}
+public partial class CustomersTabIgnoreFirst: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersTabIgnoreFirst.txt"; }
 
 
-}public partial class CustomersTabIgnoreLast: FileTestBase
+}
+public partial class CustomersTabIgnoreLast: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersTabIgnoreLast.txt"; }
 
 
-}public partial class CustomersTabIgnoreMiddle: FileTestBase
+}
+public partial class CustomersTabIgnoreMiddle: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersTabIgnoreMiddle.txt"; }
 
 
-}public partial class CustomersVerticalBar: FileTestBase
+}
+public partial class CustomersVerticalBar: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersVerticalBar.txt"; }
 
 
-}public partial class CustomersVerticalBarDemo: FileTestBase
+}
+public partial class CustomersVerticalBarDemo: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersVerticalBarDemo.txt"; }
 
 
-}public partial class CustomersVerticalBarOlds: FileTestBase
+}
+public partial class CustomersVerticalBarOlds: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\CustomersVerticalBarOlds.txt"; }
 
 
-}public partial class DateFormat1: FileTestBase
+}
+public partial class DateFormat1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DateFormat1.txt"; }
 
 
-}public partial class DateFormat2: FileTestBase
+}
+public partial class DateFormat2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DateFormat2.txt"; }
 
 
-}public partial class DiffOrdersDup: FileTestBase
+}
+public partial class DiffOrdersDup: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiffOrdersDup.txt"; }
 
 
-}public partial class DiffOrdersNew: FileTestBase
+}
+public partial class DiffOrdersNew: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiffOrdersNew.txt"; }
 
 
-}public partial class DiffOrdersOld: FileTestBase
+}
+public partial class DiffOrdersOld: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiffOrdersOld.txt"; }
 
 
-}public partial class DiscardFirst0: FileTestBase
+}
+public partial class DiscardFirst0: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardFirst0.txt"; }
 
 
-}public partial class DiscardFirst1: FileTestBase
+}
+public partial class DiscardFirst1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardFirst1.txt"; }
 
 
-}public partial class DiscardFirst2: FileTestBase
+}
+public partial class DiscardFirst2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardFirst2.txt"; }
 
 
-}public partial class DiscardFirst3: FileTestBase
+}
+public partial class DiscardFirst3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardFirst3.txt"; }
 
 
-}public partial class DiscardLast0: FileTestBase
+}
+public partial class DiscardLast0: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardLast0.txt"; }
 
 
-}public partial class DiscardLast1: FileTestBase
+}
+public partial class DiscardLast1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardLast1.txt"; }
 
 
-}public partial class DiscardLast2: FileTestBase
+}
+public partial class DiscardLast2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardLast2.txt"; }
 
 
-}public partial class DiscardLast3: FileTestBase
+}
+public partial class DiscardLast3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\DiscardLast3.txt"; }
 
 
-}public partial class EmptyFile: FileTestBase
+}
+public partial class EmptyFile: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EmptyFile.txt"; }
 
 
-}public partial class EncodingAdv1: FileTestBase
+}
+public partial class EncodingAdv1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingAdv1.txt"; }
 
 
-}public partial class EncodingAdv2: FileTestBase
+}
+public partial class EncodingAdv2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingAdv2.txt"; }
 
 
-}public partial class EncodingANSI: FileTestBase
+}
+public partial class EncodingAdv3: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\EncodingAdv3.txt"; }
+
+
+}
+public partial class EncodingANSI: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingANSI.txt"; }
 
 
-}public partial class EncodingUnicode: FileTestBase
+}
+public partial class EncodingUnicode: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingUnicode.txt"; }
 
 
-}public partial class EncodingUnicodeBig: FileTestBase
+}
+public partial class EncodingUnicodeBig: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingUnicodeBig.txt"; }
 
 
-}public partial class EncodingUTF8: FileTestBase
+}
+public partial class EncodingUTF8: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EncodingUTF8.txt"; }
 
 
-}public partial class EnumConverter1: FileTestBase
+}
+public partial class EnumConverter1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EnumConverter1.txt"; }
 
 
-}public partial class EnumConverter2: FileTestBase
+}
+public partial class EnumConverter2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EnumConverter2.txt"; }
 
 
-}public partial class EnumConverter3: FileTestBase
+}
+public partial class EnumConverter3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\EnumConverter3.txt"; }
 
 
-}public partial class ExcelCsv1: FileTestBase
+}
+public partial class ExcelCsv1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ExcelCsv1.txt"; }
 
 
-}public partial class ExcelCsv2: FileTestBase
+}
+public partial class ExcelCsv2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ExcelCsv2.txt"; }
 
 
-}public partial class FieldIgnoredAdvanced: FileTestBase
+}
+public partial class FieldIgnoredAdvanced: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\FieldIgnoredAdvanced.txt"; }
 
 
-}public partial class IgnoreComments1: FileTestBase
+}
+public partial class IgnoreComments1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreComments1.txt"; }
 
 
-}public partial class IgnoreComments2: FileTestBase
+}
+public partial class IgnoreComments2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreComments2.txt"; }
 
 
-}public partial class IgnoreEmpty1: FileTestBase
+}
+public partial class IgnoreEmpty1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreEmpty1.txt"; }
 
 
-}public partial class IgnoreEmpty2: FileTestBase
+}
+public partial class IgnoreEmpty2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreEmpty2.txt"; }
 
 
-}public partial class IgnoreEmpty3: FileTestBase
+}
+public partial class IgnoreEmpty3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreEmpty3.txt"; }
 
 
-}public partial class IgnoreEmpty4: FileTestBase
+}
+public partial class IgnoreEmpty4: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreEmpty4.txt"; }
 
 
-}public partial class IgnoreEmpty5: FileTestBase
+}
+public partial class IgnoreEmpty5: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\IgnoreEmpty5.txt"; }
 
 
-}public partial class InNewLine0: FileTestBase
+}
+public partial class InNewLine0: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\InNewLine0.txt"; }
 
 
-}public partial class InNewLine1: FileTestBase
+}
+public partial class InNewLine1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\InNewLine1.txt"; }
 
 
-}public partial class InNewLine2: FileTestBase
+}
+public partial class InNewLine2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\InNewLine2.txt"; }
 
 
-}public partial class InNewLineFixed1: FileTestBase
+}
+public partial class InNewLineFixed1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\InNewLineFixed1.txt"; }
 
 
-}public partial class InNewLineFixed2: FileTestBase
+}
+public partial class InNewLineFixed2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\InNewLineFixed2.txt"; }
 
 
-}public partial class MasterDetail1: FileTestBase
+}
+public partial class MasterDetail1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\MasterDetail1.txt"; }
 
 
-}public partial class MasterDetail2: FileTestBase
+}
+public partial class MasterDetail2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\MasterDetail2.txt"; }
 
 
-}public partial class MasterDetail3: FileTestBase
+}
+public partial class MasterDetail3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\MasterDetail3.txt"; }
 
 
-}public partial class MultilineFull: FileTestBase
+}
+public partial class MultilineFull: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\MultilineFull.txt"; }
 
 
-}public partial class MultiRecord1: FileTestBase
+}
+public partial class MultiRecord1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\MultiRecord1.txt"; }
 
 
-}public partial class NullableTypes1: FileTestBase
+}
+public partial class NullableTypes1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\NullableTypes1.txt"; }
 
 
-}public partial class NumberFormat: FileTestBase
+}
+public partial class NumberFormat: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\NumberFormat.txt"; }
 
 
-}public partial class NumberFormat2: FileTestBase
+}
+public partial class NumberFormat2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\NumberFormat2.txt"; }
 
 
-}public partial class NumberNegative: FileTestBase
+}
+public partial class NumberNegative: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\NumberNegative.txt"; }
 
 
-}public partial class OptionalDelimited0: FileTestBase
+}
+public partial class OptionalDelimited0: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited0.txt"; }
 
 
-}public partial class OptionalDelimited1: FileTestBase
+}
+public partial class OptionalDelimited1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited1.txt"; }
 
 
-}public partial class OptionalDelimited1Quoted: FileTestBase
+}
+public partial class OptionalDelimited1Quoted: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited1Quoted.txt"; }
 
 
-}public partial class OptionalDelimited2: FileTestBase
+}
+public partial class OptionalDelimited2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited2.txt"; }
 
 
-}public partial class OptionalDelimited2Quoted: FileTestBase
+}
+public partial class OptionalDelimited2Quoted: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited2Quoted.txt"; }
 
 
-}public partial class OptionalDelimited3: FileTestBase
+}
+public partial class OptionalDelimited3: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited3.txt"; }
 
 
-}public partial class OptionalDelimited4: FileTestBase
+}
+public partial class OptionalDelimited4: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited4.txt"; }
 
 
-}public partial class OptionalDelimited5: FileTestBase
+}
+public partial class OptionalDelimited5: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimited5.txt"; }
 
 
-}public partial class OptionalDelimitedFull: FileTestBase
+}
+public partial class OptionalDelimitedFull: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalDelimitedFull.txt"; }
 
 
-}public partial class OptionalFixed0: FileTestBase
+}
+public partial class OptionalFixed0: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalFixed0.txt"; }
 
 
-}public partial class OptionalFixed1: FileTestBase
+}
+public partial class OptionalFixed1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalFixed1.txt"; }
 
 
-}public partial class OptionalFixed2: FileTestBase
+}
+public partial class OptionalFixed2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OptionalFixed2.txt"; }
 
 
-}public partial class OrdersFixed: FileTestBase
+}
+public partial class OrdersFixed: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersFixed.txt"; }
 
 
-}public partial class OrdersFixedIgnoreMiddle: FileTestBase
+}
+public partial class OrdersFixedIgnoreMiddle: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersFixedIgnoreMiddle.txt"; }
 
 
-}public partial class OrdersSemiColon: FileTestBase
+}
+public partial class OrdersSemiColon: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersSemiColon.txt"; }
 
 
-}public partial class OrdersTab: FileTestBase
+}
+public partial class OrdersTab: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersTab.txt"; }
 
 
-}public partial class OrdersVerticalBar: FileTestBase
+}
+public partial class OrdersVerticalBar: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersVerticalBar.txt"; }
 
 
-}public partial class OrdersWithOutDates: FileTestBase
+}
+public partial class OrdersWithOutDates: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\OrdersWithOutDates.txt"; }
 
 
-}public partial class PriceConverter: FileTestBase
+}
+public partial class PriceConverter: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\PriceConverter.txt"; }
 
 
-}public partial class QuotedCustomers: FileTestBase
+}
+public partial class QuotedCustomers: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\QuotedCustomers.txt"; }
 
 
-}public partial class QuotedCustomers2: FileTestBase
+}
+public partial class QuotedCustomers2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\QuotedCustomers2.txt"; }
 
 
-}public partial class QuotedOrders: FileTestBase
+}
+public partial class QuotedOrders: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\QuotedOrders.txt"; }
 
 
-}public partial class QuotedOrders2: FileTestBase
+}
+public partial class QuotedOrders2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\QuotedOrders2.txt"; }
 
 
-}public partial class QuoteMode1: FileTestBase
+}
+public partial class QuoteMode1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\QuoteMode1.txt"; }
 
 
-}public partial class ReadAsDataTable: FileTestBase
+}
+public partial class ReadAsDataTable: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\ReadAsDataTable.txt"; }
 
 
-}public partial class RealCsvComma1: FileTestBase
+}
+public partial class RealCsvComma1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvComma1.txt"; }
 
 
-}public partial class RealCsvComma2: FileTestBase
+}
+public partial class RealCsvComma2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvComma2.txt"; }
 
 
-}public partial class RealCsvTab1: FileTestBase
+}
+public partial class RealCsvTab1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvTab1.txt"; }
 
 
-}public partial class RealCsvTab2: FileTestBase
+}
+public partial class RealCsvTab2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvTab2.txt"; }
 
 
-}public partial class RealCsvVerticalBar1: FileTestBase
+}
+public partial class RealCsvVerticalBar1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvVerticalBar1.txt"; }
 
 
-}public partial class RealCsvVerticalBar2: FileTestBase
+}
+public partial class RealCsvVerticalBar2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\RealCsvVerticalBar2.txt"; }
 
 
-}public partial class Sort1: FileTestBase
+}
+public partial class Sort1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Sort1.txt"; }
 
 
-}public partial class Test1: FileTestBase
+}
+public partial class Test1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Test1.txt"; }
 
 
-}public partial class Test2: FileTestBase
+}
+public partial class Test2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Test2.txt"; }
 
 
-}public partial class TestEmpty: FileTestBase
+}
+public partial class TestEmpty: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\TestEmpty.txt"; }
 
 
-}public partial class Transform1: FileTestBase
+}
+public partial class Transform1: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Transform1.txt"; }
 
 
-}public partial class Transform2: FileTestBase
+}
+public partial class Transform2: FileTestBase
 {
 
  protected override string GetFullPathName()
 	   	    { return @"Good\Transform2.txt"; }
 
 
-}public partial class Trim1: FileTestBase
+}
+public partial class Trim1: FileTestBase
 {
 
  protected override string GetFullPathName()
@@ -1104,7 +1324,9 @@ public partial class ArrayFields: FileTestBase
 }
 
 
-}public partial class RunTime
+
+}
+public partial class RunTime
 {
 public partial class VendorImport: FileTestBase
 {
@@ -1116,10 +1338,13 @@ public partial class VendorImport: FileTestBase
 }
 
 
+
 }
 
 
-}public partial class FileTest
+
+}
+public partial class FileTest
 {
 public partial class Bad
 {
@@ -1219,7 +1444,8 @@ public static ClassesFileTest.Bad.OptionalBad1 OptionalBad1
 { get { return  mOptionalBad1; } }
 
 
-}public partial class Classes
+}
+public partial class Classes
 {
 
 private static ClassesFileTest.Classes.ClassFromFile mClassFromFile = new ClassesFileTest.Classes.ClassFromFile();
@@ -1236,7 +1462,8 @@ public static ClassesFileTest.Classes.SampleClassVB SampleClassVB
 { get { return  mSampleClassVB; } }
 
 
-}public partial class Detection
+}
+public partial class Detection
 {
 
 private static ClassesFileTest.Detection.Cities mCities = new ClassesFileTest.Detection.Cities();
@@ -1277,7 +1504,8 @@ public static ClassesFileTest.Detection.SuperQuoted2 SuperQuoted2
 { get { return  mSuperQuoted2; } }
 
 
-}public partial class Good
+}
+public partial class Good
 {
 
 private static ClassesFileTest.Good.ArrayFields mArrayFields = new ClassesFileTest.Good.ArrayFields();
@@ -1322,6 +1550,27 @@ public static ClassesFileTest.Good.CustomConverter2 CustomConverter2
 private static ClassesFileTest.Good.CustomersFixed mCustomersFixed = new ClassesFileTest.Good.CustomersFixed();
 public static ClassesFileTest.Good.CustomersFixed CustomersFixed
 { get { return  mCustomersFixed; } }
+private static ClassesFileTest.Good.CustomersFixedExact mCustomersFixedExact = new ClassesFileTest.Good.CustomersFixedExact();
+public static ClassesFileTest.Good.CustomersFixedExact CustomersFixedExact
+{ get { return  mCustomersFixedExact; } }
+private static ClassesFileTest.Good.CustomersFixedLessChars10Records mCustomersFixedLessChars10Records = new ClassesFileTest.Good.CustomersFixedLessChars10Records();
+public static ClassesFileTest.Good.CustomersFixedLessChars10Records CustomersFixedLessChars10Records
+{ get { return  mCustomersFixedLessChars10Records; } }
+private static ClassesFileTest.Good.CustomersFixedMoreChars5Records mCustomersFixedMoreChars5Records = new ClassesFileTest.Good.CustomersFixedMoreChars5Records();
+public static ClassesFileTest.Good.CustomersFixedMoreChars5Records CustomersFixedMoreChars5Records
+{ get { return  mCustomersFixedMoreChars5Records; } }
+private static ClassesFileTest.Good.CustomersFixedMoreVariable12Records mCustomersFixedMoreVariable12Records = new ClassesFileTest.Good.CustomersFixedMoreVariable12Records();
+public static ClassesFileTest.Good.CustomersFixedMoreVariable12Records CustomersFixedMoreVariable12Records
+{ get { return  mCustomersFixedMoreVariable12Records; } }
+private static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields mCustomersFixedWithout1AndHalfFields = new ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields();
+public static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields CustomersFixedWithout1AndHalfFields
+{ get { return  mCustomersFixedWithout1AndHalfFields; } }
+private static ClassesFileTest.Good.CustomersFixedWithout2Fields mCustomersFixedWithout2Fields = new ClassesFileTest.Good.CustomersFixedWithout2Fields();
+public static ClassesFileTest.Good.CustomersFixedWithout2Fields CustomersFixedWithout2Fields
+{ get { return  mCustomersFixedWithout2Fields; } }
+private static ClassesFileTest.Good.CustomersFixedWithoutLastField mCustomersFixedWithoutLastField = new ClassesFileTest.Good.CustomersFixedWithoutLastField();
+public static ClassesFileTest.Good.CustomersFixedWithoutLastField CustomersFixedWithoutLastField
+{ get { return  mCustomersFixedWithoutLastField; } }
 private static ClassesFileTest.Good.CustomersSemiColon mCustomersSemiColon = new ClassesFileTest.Good.CustomersSemiColon();
 public static ClassesFileTest.Good.CustomersSemiColon CustomersSemiColon
 { get { return  mCustomersSemiColon; } }
@@ -1394,6 +1643,9 @@ public static ClassesFileTest.Good.EncodingAdv1 EncodingAdv1
 private static ClassesFileTest.Good.EncodingAdv2 mEncodingAdv2 = new ClassesFileTest.Good.EncodingAdv2();
 public static ClassesFileTest.Good.EncodingAdv2 EncodingAdv2
 { get { return  mEncodingAdv2; } }
+private static ClassesFileTest.Good.EncodingAdv3 mEncodingAdv3 = new ClassesFileTest.Good.EncodingAdv3();
+public static ClassesFileTest.Good.EncodingAdv3 EncodingAdv3
+{ get { return  mEncodingAdv3; } }
 private static ClassesFileTest.Good.EncodingANSI mEncodingANSI = new ClassesFileTest.Good.EncodingANSI();
 public static ClassesFileTest.Good.EncodingANSI EncodingANSI
 { get { return  mEncodingANSI; } }
@@ -1603,7 +1855,8 @@ public static ClassesFileTest.Good.Trim1 Trim1
 { get { return  mTrim1; } }
 
 
-}public partial class RunTime
+}
+public partial class RunTime
 {
 
 private static ClassesFileTest.RunTime.VendorImport mVendorImport = new ClassesFileTest.RunTime.VendorImport();
@@ -1614,6 +1867,8 @@ public static ClassesFileTest.RunTime.VendorImport VendorImport
 }
 
 
+
 }
+
 }
 

@@ -8,134 +8,92 @@ using System.IO;
 namespace FileHelpers.Tests.CommonTests
 {
 
-		[TestFixture]
+    [TestFixture]
     public class FileEncodingAdvanced
-		{
-			private const string MSWSDataUrl_Format = "http://data.msws.net/temp_precip/temp_precip{0}.txt";//http://data.msws.net/temp_precip/temp_precip7-20-06.txt
-			private const string MSWSDataURL_DateFormat = "M-d-yy";
+    {
 
-			[Test]
-			public void GetMSWSReportsFromFile_20060709_28Records()
-			{
-				MSWSDailyReportRecord[] res = null;            
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-					res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, "Good", "EncodingAdv1.txt");
-            
-				Assert.AreEqual(res.Length, 28);
-			}
+        [Test]
+        public void EncodingAdvanced1()
+        {
+            EncodingRecord[] res = null;
+            FileHelperEngine engine = new FileHelperEngine(typeof(EncodingRecord));
+            res = (EncodingRecord[])TestCommon.ReadTest(engine, "Good", "EncodingAdv1.txt");
 
-			[Test]
-			public void GetMSWSReportsFromFile_20060720_32Records()
-			{
-				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-				res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, "Good", "EncodingAdv2.txt");
+            Assert.AreEqual(res.Length, 28);
+        }
 
-				Assert.AreEqual(res.Length, 32);
-			}
-             
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsData_20060709_28Records()
-			{
-				DateTime date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-					byte[] data;
-				using (WebClient webClient = new WebClient())
-				{
-					//webClient.Encoding = System.Text.Encoding.ASCII;                
-					data = webClient.DownloadData(url);
-					System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-					string dataString = encoding.GetString(data);
-					res = (MSWSDailyReportRecord[]) engine.ReadString(dataString);
-				}
-				
-				Assert.AreEqual(res.Length, 32);
-			}
+        [Test]
+        public void EncodingAdvanced2()
+        {
+            EncodingRecord[] res = null;
+            FileHelperEngine engine = new FileHelperEngine(typeof(EncodingRecord));
+            res = (EncodingRecord[])TestCommon.ReadTest(engine, "Good", "EncodingAdv2.txt");
 
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsString_20060709_28Records()
-			{
-				DateTime date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
+            Assert.AreEqual(res.Length, 32);
+        }
 
-					using (WebClient webClient = new WebClient())
-					{
-						webClient.DownloadFile(url, "tempotemp.txt");
-						res = (MSWSDailyReportRecord[]) engine.ReadFile("tempotemp.txt");
-					}
+        [Test]
+        public void EncodingAdvanced3()
+        {
+            var engine = new FileHelperEngine(typeof(EncodingRecord));
+            byte[] data = File.ReadAllBytes(FileTest.Good.EncodingAdv3.Path);
+            var encoding = new System.Text.ASCIIEncoding();
+            string dataString = encoding.GetString(data);
+            var res = (EncodingRecord[])engine.ReadString(dataString);
 
-				Assert.AreEqual(res.Length, 32);
-			}
+            Assert.AreEqual(res.Length, 18);
+        }
 
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsStream_20060709_28Records()
-			{
-				DateTime date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
+        [Test]
+        public void EncodingAdvanced4()
+        {
+            var engine = new FileHelperEngine(typeof(EncodingRecord));
 
-					// make request 
-					HttpWebRequest webReq = null;
-				HttpWebResponse webResp = null;
-				StreamReader reader = null;
-				try
-				{
-					webReq = (HttpWebRequest)HttpWebRequest.Create(url);
-					webResp = (HttpWebResponse)webReq.GetResponse();
-					Encoding encode = Encoding.GetEncoding("utf-8");
-					reader = new StreamReader(webResp.GetResponseStream(), encode);
-					res = (MSWSDailyReportRecord[]) engine.ReadStream(reader);
-				}
-				catch 
-				{
-					throw;
-				}
-				finally
-				{
-					if (webReq != null) webReq = null;
-					if (webResp != null) webResp.Close();
-					if (reader != null) reader.Close();
-				}
-                        
-				Assert.AreEqual(res.Length, 32);
-			}
+            var res = (EncodingRecord[])engine.ReadFile(FileTest.Good.EncodingAdv3.Path);
 
-		}
+            Assert.AreEqual(res.Length, 18);
+        }
 
-	[FixedLengthRecordAttribute()]
-	[IgnoreFirst(7)]
-	[IgnoreLast(5)]
-	public sealed class MSWSDailyReportRecord
-	{
-		[FieldFixedLength(26)]
-		public String Location;
-		[FieldFixedLength(12)]
-		public String County;
-		[FieldFixedLength(5)]
-		public int Elev;
-		[FieldFixedLength(4)]
-		public int Hi;
-		[FieldFixedLength(4)]
-		public int Lo;
+        [Test]
+        public void EncodingAdvanced5()
+        {
+            var engine = new FileHelperEngine(typeof(EncodingRecord));
 
-		[FieldFixedLength(6)]
-		[FieldTrim(TrimMode.Both)]
-		public string PCPN;
-		[FieldFixedLength(5)]
-		public decimal SNOW;
-		[FieldFixedLength(5)]
-		public decimal SNDPT;
-		[FieldFixedLength(6)]
-		public decimal MONTH;
+            var encode = Encoding.GetEncoding("utf-8");
+            var reader = new StreamReader(FileTest.Good.EncodingAdv3.Path, encode);
+            var res = (EncodingRecord[])engine.ReadStream(reader);
 
-	}
+            Assert.AreEqual(res.Length, 18);
+        }
 
+
+        [FixedLengthRecordAttribute()]
+        [IgnoreFirst(7)]
+        [IgnoreLast(5)]
+        public sealed class EncodingRecord
+        {
+            [FieldFixedLength(26)]
+            public String Location;
+            [FieldFixedLength(12)]
+            public String County;
+            [FieldFixedLength(5)]
+            public int Elev;
+            [FieldFixedLength(4)]
+            public int Hi;
+            [FieldFixedLength(4)]
+            public int Lo;
+
+            [FieldFixedLength(6)]
+            [FieldTrim(TrimMode.Both)]
+            public string PCPN;
+            [FieldFixedLength(5)]
+            public decimal SNOW;
+            [FieldFixedLength(5)]
+            public decimal SNDPT;
+            [FieldFixedLength(6)]
+            public decimal MONTH;
+
+        }
+
+    }
 }

@@ -322,7 +322,7 @@
     <Compile Include="Tests\Errors\TransformBad.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Helpers.cs" />
+    <Compile Include="Tests\Helpers\QuoteHelperTests.cs" />
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -367,6 +367,7 @@
     <None Include="Data\GenerateDataLayer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateDataLayer.autogen.cs</LastGenOutput>
+      <CustomToolNamespace>Prueba</CustomToolNamespace>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -378,7 +379,9 @@
     <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
-    <Compile Include="Tests\FowardReader.cs" />
+    <Compile Include="Tests\Common\FixedModeTests.cs" />
+    <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
+    <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />
     <Compile Include="Tests\Errors\BadDelimited.cs" />
     <Compile Include="Tests\Mocking\FileHelperEngineTests.cs" />
   </ItemGroup>
@@ -434,6 +437,13 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />
+    <Content Include="Data\Good\CustomersFixedWithout2Fields.txt" />
+    <Content Include="Data\Good\CustomersFixedWithoutLastField.txt" />
+    <Content Include="Data\Good\CustomersFixedMoreVariable12Records.txt" />
+    <Content Include="Data\Good\CustomersFixedMoreChars5Records.txt" />
+    <Content Include="Data\Good\CustomersFixedLessChars10Records.txt" />
+    <Content Include="Data\Good\CustomersFixedExact.txt" />
     <Content Include="Data\Good\CustomConverter1.txt" />
     <Content Include="Data\Good\CustomConverter2.txt" />
     <Content Include="Data\Good\CustomersFixed.txt" />
@@ -461,6 +471,7 @@
     <Content Include="Data\Good\EmptyFile.txt" />
     <Content Include="Data\Good\EncodingAdv1.txt" />
     <Content Include="Data\Good\EncodingAdv2.txt" />
+    <Content Include="Data\Good\EncodingAdv3.txt" />
     <Content Include="Data\Good\EncodingANSI.txt" />
     <Content Include="Data\Good\EncodingUnicode.txt" />
     <Content Include="Data\Good\EncodingUnicodeBig.txt" />

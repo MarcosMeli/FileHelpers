@@ -16,10 +16,12 @@
 <#@ import namespace="System.Collections.Generic" #>
 using FileHelpers;
 using System.Diagnostics;
-using System;
+using System; 
 
 <#
+
 	Process("Data");
+    
 #>
 
 <#+
@@ -29,6 +31,7 @@ private FluentCode Code = new FluentCode();
 public void Process(string folder)
 {
 	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+	
 	EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
 	
 	/* Retrieve the project in which this template resides. */
@@ -254,7 +257,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
                 + Environment.NewLine;
 
             res += Environment.NewLine +
-        "}";
+        "}" + Environment.NewLine;
             return res;
         }
 

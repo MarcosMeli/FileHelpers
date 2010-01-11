@@ -10,7 +10,7 @@ namespace FileHelpers.Tests
 {
 
     [TestFixture]
-    public class Helpers
+    public class QuoteHelperTests
     {
         [Test]
         public void QuotedMore()
