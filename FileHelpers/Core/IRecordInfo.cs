@@ -5,12 +5,10 @@ using System.Reflection;
 
 namespace FileHelpers
 {
-    internal delegate object CreateNewObject();
-
     internal interface IRecordInfo
     {
         bool IsDelimited { get; }
-        CreateNewObject CreateRecordObject { get; }
+        CreateObjectDelegate CreateRecordHandler { get; }
         int FieldCount { get; }
         FieldBase[] Fields { get; }
         int IgnoreFirst { get; set; }

@@ -114,7 +114,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(DataRow dr)
         {
-			T record = (T) mRecordInfo.CreateRecordObject();
+			T record = (T) mRecordInfo.CreateRecordHandler();
 			
 			for(int i = 0; i < mMappings.Count; i++)
 			{
@@ -132,7 +132,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(IDataReader dr)
 		{
-            T record = (T) mRecordInfo.CreateRecordObject();
+            T record = (T) mRecordInfo.CreateRecordHandler();
             //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 				
 			for(int i = 0; i < mMappings.Count; i++)
@@ -172,7 +172,7 @@ namespace FileHelpers.Mapping
 
 			foreach (DataRow row in dt.Rows)
 			{
-				T record = (T) mRecordInfo.CreateRecordObject();
+				T record = (T) mRecordInfo.CreateRecordHandler();
                 //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 				
 				for(int i = 0; i < mMappings.Count; i++)

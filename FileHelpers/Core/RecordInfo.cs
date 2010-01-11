@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace FileHelpers
 {
+
+
     /// <summary>An internal class used to store information about the Record Type.</summary>
     /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
     internal sealed class RecordInfo : IRecordInfo
@@ -21,9 +24,7 @@ namespace FileHelpers
         // Thanks Brian for the report, research and fix
         private static readonly Dictionary<Type, List<FieldInfo>> mCachedRecordFields =
             new Dictionary<Type, List<FieldInfo>>();
-        private static readonly Type[] mEmptyTypeArr = new Type[] {};
         private Regex mConditionRegEx;
-        private ConstructorInfo mRecordConstructor;
         #endregion
 
         // --------------------------------------
@@ -50,7 +51,7 @@ namespace FileHelpers
         }
         #endregion
 
-        #region "  Constructor &c "
+        #region "  Constructor "
 
         public RecordInfo(Type recordType, IFieldInfoCacheManipulator fieldInfoCacheManipulator)
         {
@@ -64,67 +65,60 @@ namespace FileHelpers
 
         private void InitRecordFields()
         {
-            if (RecordType.IsDefined(typeof (TypedRecordAttribute), true) == false)
+            //Debug.Assert(false, "TODO: Add RecordFilter to the engine.");
+            var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
+
+            if (recordAttribute == null)
                 throw new BadUsageException("The class " + RecordType.Name +
                                             " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
-            object[] attbs = RecordType.GetCustomAttributes(typeof (TypedRecordAttribute), true);
-            var recordAttribute = (TypedRecordAttribute) attbs[0];
 
-            mRecordConstructor =
-                RecordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
-                                          null,
-                                          mEmptyTypeArr,
-                                          new ParameterModifier[] {});
-            if (mRecordConstructor == null)
+
+            if (ReflectionHelper.GetDefaultConstructor(RecordType) == null)
                 throw new BadUsageException("The record class " + RecordType.Name +
                                             " need a constructor with no args (public or private)");
 
-            if (RecordType.IsDefined(typeof (IgnoreFirstAttribute), false))
-                IgnoreFirst =
-                    ((IgnoreFirstAttribute) RecordType.GetCustomAttributes(typeof (IgnoreFirstAttribute), false)[0]).
-                        NumberOfLines;
+            
+            Attributes.WorkWithFirst<IgnoreFirstAttribute>(RecordType, 
+                a => IgnoreFirst = a.NumberOfLines);
+            
+            Attributes.WorkWithFirst<IgnoreLastAttribute>(RecordType,
+                a => IgnoreLast = a.NumberOfLines);
 
-            if (RecordType.IsDefined(typeof (IgnoreLastAttribute), false))
-                IgnoreLast =
-                    ((IgnoreLastAttribute) RecordType.GetCustomAttributes(typeof (IgnoreLastAttribute), false)[0]).
-                        NumberOfLines;
+            Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(RecordType,
+                                                                  (a) =>
+                                                                      {
+                                                                          IgnoreEmptyLines = true;
+                                                                          IgnoreEmptySpaces = a.mIgnoreSpaces;
+                                                                      });
 
-            if (RecordType.IsDefined(typeof (IgnoreEmptyLinesAttribute), false))
-            {
-                IgnoreEmptyLines = true;
-                IgnoreEmptySpaces =
-                    ((IgnoreEmptyLinesAttribute)
-                     RecordType.GetCustomAttributes(typeof (IgnoreEmptyLinesAttribute), false)[0]).
-                        mIgnoreSpaces;
-            }
 
-            if (RecordType.IsDefined(typeof (IgnoreCommentedLinesAttribute), false))
-            {
-                var ignoreComments =
-                    (IgnoreCommentedLinesAttribute)
-                    RecordType.GetCustomAttributes(typeof (IgnoreCommentedLinesAttribute), false)[0];
-                CommentMarker = ignoreComments.mCommentMarker;
-                CommentAnyPlace = ignoreComments.mAnyPlace;
-            }
+            Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(RecordType,
+                                                          (a) =>
+                                                          {
+                                                              IgnoreEmptyLines = true;
+                                                              CommentMarker = a.mCommentMarker;
+                                                              CommentAnyPlace = a.mAnyPlace;
+                                                          });
 
-            if (RecordType.IsDefined(typeof (ConditionalRecordAttribute), false))
-            {
-                var conditional =
-                    (ConditionalRecordAttribute)
-                    RecordType.GetCustomAttributes(typeof (ConditionalRecordAttribute), false)[0];
 
-                RecordCondition = conditional.mCondition;
-                RecordConditionSelector = conditional.mConditionSelector;
+            Attributes.WorkWithFirst<ConditionalRecordAttribute>(RecordType,
+                                              (a) =>
+                                              {
+                                                  RecordCondition = a.Condition;
+                                                  RecordConditionSelector = a.ConditionSelector;
 
-                if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
-                    RecordCondition == RecordCondition.IncludeIfMatchRegex)
-                {
-                    mConditionRegEx = new Regex(RecordConditionSelector,
-                                                RegexOptions.Compiled | RegexOptions.IgnoreCase |
-                                                RegexOptions.ExplicitCapture);
-                }
-            }
+                                                  if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
+                                                      RecordCondition == RecordCondition.IncludeIfMatchRegex)
+                                                  {
+                                                      mConditionRegEx = new Regex(RecordConditionSelector,
+                                                                                  RegexOptions.Compiled | RegexOptions.IgnoreCase |
+                                                                                  RegexOptions.ExplicitCapture);
+                                                  }
 
+                                              });
+
+
+           
             if (typeof (INotifyRead).IsAssignableFrom(RecordType))
                 NotifyRead = true;
 
@@ -320,7 +314,7 @@ namespace FileHelpers
         {
             var sb = new StringBuilder(mSizeHint);
 
-            object[] mValues = GetAllValuesHandler(record);
+            object[] mValues = ObjectToValuesHandler(record);
 
             for (int f = 0; f < FieldCount; f++)
             {
@@ -380,7 +374,7 @@ namespace FileHelpers
         /// <returns>An object[] of the values in the fields.</returns>
         public object[] RecordToValues(object record)
         {
-            return GetAllValuesHandler(record);
+            return ObjectToValuesHandler(record);
         }
         #endregion
 
@@ -433,175 +427,44 @@ namespace FileHelpers
         }
         #endregion
 
+
         #region "  Lightweight code generation (NET 2.0)  "
-        private CreateAndAssignCallback mCreateHandler;
-        private CreateNewObject mFastConstructor;
-        private GetAllValuesCallback mGetAllValuesHandler;
-        private GetAllValuesCallback GetAllValuesHandler
+
+        // Create on first usage
+        private ValuesToObjectDelegate mCreateHandler;
+        private CreateObjectDelegate mFastConstructor;
+        private ObjectToValuesDelegate mObjectToValuesHandler;
+
+        private ObjectToValuesDelegate ObjectToValuesHandler
         {
             get
             {
-                if (mGetAllValuesHandler == null)
-                    mGetAllValuesHandler = CreateGetAllMethod();
-                return mGetAllValuesHandler;
+                if (mObjectToValuesHandler == null)
+                    mObjectToValuesHandler = ReflectionHelper.ObjectToValuesMethod(RecordType, GetFieldInfoArray());
+                return mObjectToValuesHandler;
             }
         }
-        private CreateAndAssignCallback CreateHandler
+
+
+        private ValuesToObjectDelegate CreateHandler
         {
             get
             {
                 if (mCreateHandler == null)
-                    mCreateHandler = CreateAssignMethods();
+                    mCreateHandler = ReflectionHelper.ValuesToObjectMethod(RecordType, GetFieldInfoArray());
                 return mCreateHandler;
             }
         }
-        public CreateNewObject CreateRecordObject
+        public CreateObjectDelegate CreateRecordHandler
         {
             get
             {
                 if (mFastConstructor == null)
-                    mFastConstructor = CreateFastConstructor();
+                    mFastConstructor = ReflectionHelper.CreateFastConstructor(RecordType);
                 return mFastConstructor;
             }
         }
 
-        private GetAllValuesCallback CreateGetAllMethod()
-        {
-            var dm = new DynamicMethod("_GetAllValues_FH_RT_",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof (object[]),
-                                       new[] {typeof (object)},
-                                       RecordType,
-                                       true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.DeclareLocal(typeof (object[]));
-            generator.DeclareLocal(RecordType);
-
-            generator.Emit(OpCodes.Ldc_I4, FieldCount);
-            generator.Emit(OpCodes.Newarr, typeof (object));
-            generator.Emit(OpCodes.Stloc_0);
-
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, RecordType);
-            generator.Emit(OpCodes.Stloc_1);
-
-            for (int i = 0; i < FieldCount; i++)
-            {
-                FieldBase field = Fields[i];
-
-                generator.Emit(OpCodes.Ldloc_0);
-                generator.Emit(OpCodes.Ldc_I4, i);
-                generator.Emit(OpCodes.Ldloc_1);
-
-                generator.Emit(OpCodes.Ldfld, field.mFieldInfo);
-
-                if (field.FieldType.IsValueType)
-                {
-                    generator.Emit(OpCodes.Box, field.FieldType);
-                }
-
-                generator.Emit(OpCodes.Stelem_Ref);
-            }
-
-            // return the value
-            generator.Emit(OpCodes.Ldloc_0);
-            generator.Emit(OpCodes.Ret);
-
-            return (GetAllValuesCallback) dm.CreateDelegate(typeof (GetAllValuesCallback));
-        }
-
-        private CreateAndAssignCallback CreateAssignMethods()
-        {
-            var dm = new DynamicMethod("_CreateAndAssing_FH_RT_",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof (object),
-                                       new[] {typeof (object[])},
-                                       RecordType,
-                                       true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.DeclareLocal(RecordType);
-            generator.Emit(OpCodes.Newobj, mRecordConstructor);
-            generator.Emit(OpCodes.Stloc_0);
-
-            for (int i = 0; i < FieldCount; i++)
-            {
-                FieldBase field = Fields[i];
-
-                generator.Emit(OpCodes.Ldloc_0);
-                generator.Emit(OpCodes.Ldarg_0);
-                generator.Emit(OpCodes.Ldc_I4, i);
-                generator.Emit(OpCodes.Ldelem_Ref);
-
-                if (field.FieldType.IsValueType)
-                {
-                    generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-                }
-                else
-                {
-                    generator.Emit(OpCodes.Castclass, field.FieldType);
-                }
-
-                generator.Emit(OpCodes.Stfld, field.mFieldInfo);
-            }
-
-            // return the value
-            generator.Emit(OpCodes.Ldloc_0);
-            generator.Emit(OpCodes.Ret);
-
-            return (CreateAndAssignCallback) dm.CreateDelegate(typeof (CreateAndAssignCallback));
-        }
-
-        private CreateNewObject CreateFastConstructor()
-        {
-            var dm = new DynamicMethod("_CreateRecordFast_FH_RT_",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof (object),
-                                       new[] {typeof (object[])},
-                                       RecordType,
-                                       true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.Emit(OpCodes.Newobj, mRecordConstructor);
-            generator.Emit(OpCodes.Ret);
-
-            return (CreateNewObject) dm.CreateDelegate(typeof (CreateNewObject));
-        }
-
-        public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
-        {
-            var dm = new DynamicMethod("_GetValue" + fi.Name + "_FH_RT_",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof (object),
-                                       new[] {typeof (object)},
-                                       fi.DeclaringType,
-                                       true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, fi.DeclaringType);
-            generator.Emit(OpCodes.Ldfld, fi);
-            generator.Emit(OpCodes.Ret);
-
-            return (GetFieldValueCallback) dm.CreateDelegate(typeof (GetFieldValueCallback));
-        }
-
-        #region Nested type: CreateAndAssignCallback
-        private delegate object CreateAndAssignCallback(object[] values);
-        #endregion
-
-        #region Nested type: GetAllValuesCallback
-        private delegate object[] GetAllValuesCallback(object record);
-        #endregion
 
         #endregion
 
@@ -639,6 +502,18 @@ namespace FileHelpers
 
             return null;
         }
+
+        private FieldInfo[] GetFieldInfoArray()
+        {
+            var res = new FieldInfo[Fields.Length];
+
+            for (int i = 0; i < Fields.Length; i++)
+            {
+                res[i] = Fields[i].mFieldInfo;
+            }
+            return res;
+        }
+
         #endregion
     }
 }

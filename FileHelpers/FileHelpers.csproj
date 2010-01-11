@@ -170,6 +170,7 @@
     <Compile Include="Core\IRecordInfo.cs" />
     <Compile Include="Core\IRecordReader.cs" />
     <Compile Include="Core\EmbeddedIoC.cs" />
+    <Compile Include="Core\ReflectionHelper.cs" />
     <Compile Include="Dynamic\AttributesBuilder.cs" />
     <Compile Include="Dynamic\ClassBuilder.cs" />
     <Compile Include="Dynamic\ConverterBuilder.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="FormatDetector\FormatHint.cs" />
     <Compile Include="FormatDetector\RecordFormatInfo.cs" />
     <Compile Include="FormatDetector\SmartFormatDetector.cs" />
+    <Compile Include="Helpers\Attributes.cs" />
     <Compile Include="Helpers\ConditionHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -350,6 +352,9 @@
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
     <None Include="Diagrams\RunTimeRecords.cd" />
     <None Include="FileHelpers.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

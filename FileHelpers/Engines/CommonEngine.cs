@@ -344,9 +344,9 @@ namespace FileHelpers
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
 #else
                 if (mGetFieldValueHandler == null)
-                    mGetFieldValueHandler = RecordInfo.CreateGetFieldMethod(mFieldInfo);
+                    mGetFieldValueHandler = ReflectionHelper.CreateGetFieldMethod(mFieldInfo);
 
-                IComparable xv = mGetFieldValueHandler(x) as IComparable;
+                var xv = mGetFieldValueHandler(x) as IComparable;
                 return xv.CompareTo(mGetFieldValueHandler(y)) * mAscending;
 #endif
 

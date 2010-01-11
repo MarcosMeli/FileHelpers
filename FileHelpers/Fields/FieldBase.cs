@@ -63,7 +63,7 @@ namespace FileHelpers
                         align = alignAttbs[0];
 
                     res = new FixedLengthField(fi, attb.Length, align);
-                    ((FixedLengthField)res).mFixedMode = ((FixedLengthRecordAttribute)recordAttribute).mFixedMode;
+                    ((FixedLengthField)res).mFixedMode = ((FixedLengthRecordAttribute)recordAttribute).FixedMode;
                 }
                 else if (fieldAttb is FieldDelimiterAttribute)
                 {
@@ -71,7 +71,7 @@ namespace FileHelpers
                     if (recordAttribute is FixedLengthRecordAttribute)
                         throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldDelimiter attribute, it is only for DelimitedRecords not for fixed ones.");
 
-                    res = new DelimitedField(fi, ((FieldDelimiterAttribute)fieldAttb).mSeparator);
+                    res = new DelimitedField(fi, ((FieldDelimiterAttribute)fieldAttb).Delimiter);
 
                 }
                 else

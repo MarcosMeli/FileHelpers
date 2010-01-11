@@ -12,16 +12,19 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldDelimiterAttribute : FieldAttribute
 	{
-		internal string mSeparator;
-
-		/// <summary>Indicates a different delimiter for this field. </summary>
+	    /// <summary>Indicates a different delimiter for this field. </summary>
 		/// <param name="separator">The separator string used to split the fields of the record.</param>
 		public FieldDelimiterAttribute(string separator)
 		{
 			if (separator == null || separator.Length == 0)
 				throw new BadUsageException("The separator parameter of the FieldDelimited attribute can't be null or empty");
 			else
-				this.mSeparator = separator;
+				this.Delimiter = separator;
 		}
+
+        /// <summary>
+        /// The Delimiter for this field
+        /// </summary>
+	    public string Delimiter { get; private set; }
 	}
 }

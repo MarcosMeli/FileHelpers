@@ -13,18 +13,18 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class ConditionalRecordAttribute : Attribute
 	{
-		internal RecordCondition mCondition;
-		internal string mConditionSelector;
+        public RecordCondition Condition { get; private set; }
+        public string ConditionSelector { get; private set; }
 
         /// <summary>Allow to declaratively show what records must be included or excluded</summary>
 		/// <param name="condition">The condition used to include or exclude each record</param>
-		/// <param name="selector">The selector for the condition.</param>
-		public ConditionalRecordAttribute(RecordCondition condition, string selector)
+        /// <param name="conditionSelector">The selector for the condition.</param>
+		public ConditionalRecordAttribute(RecordCondition condition, string conditionSelector)
 		{
-		    ExHelper.CheckNullOrEmpty(selector, "selector");
+            Condition = condition;
+            ConditionSelector = conditionSelector;
+            ExHelper.CheckNullOrEmpty(conditionSelector, "conditionSelector");
 
-			mCondition = condition;
-			mConditionSelector = selector;
 		}
 
 	}
