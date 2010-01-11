@@ -54,15 +54,10 @@ namespace FileHelpers
                     if (recordAttribute is DelimitedRecordAttribute)
                         throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldFixedLength attribute, it is only for the FixedLengthRecords not for delimited ones.");
 
-                    FieldFixedLengthAttribute attb = ((FieldFixedLengthAttribute)fieldAttb);
+                    var attbFixedLength = (FieldFixedLengthAttribute)fieldAttb;
+                    var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(fi);
 
-                    FieldAlignAttribute[] alignAttbs = (FieldAlignAttribute[])fi.GetCustomAttributes(typeof(FieldAlignAttribute), false);
-                    FieldAlignAttribute align = null;
-
-                    if (alignAttbs.Length > 0)
-                        align = alignAttbs[0];
-
-                    res = new FixedLengthField(fi, attb.Length, align);
+                    res = new FixedLengthField(fi, attbFixedLength.Length, attbAlign);
                     ((FixedLengthField)res).mFixedMode = ((FixedLengthRecordAttribute)recordAttribute).FixedMode;
                 }
                 else if (fieldAttb is FieldDelimiterAttribute)

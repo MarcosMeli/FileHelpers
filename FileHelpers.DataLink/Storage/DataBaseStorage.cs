@@ -46,7 +46,7 @@ namespace FileHelpers.DataLink
 			if (FillRecordCallback == null)
 				throw new BadUsageException("You can´t extract records a null FillRecordCallback. Check the docs for help.");
 
-			object res = mRecordInfo.CreateRecordObject();
+			object res = mRecordInfo.CreateRecordHandler();
 			FillRecordCallback(res, fieldValues);
 			return res;
 		}
