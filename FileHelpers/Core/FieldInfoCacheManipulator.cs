@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
-using Singleton = FileHelpers.IoC.Container.SingletonAttribute;
+using Singleton = FileHelpers.Container.SingletonAttribute;
 
 namespace FileHelpers
 {

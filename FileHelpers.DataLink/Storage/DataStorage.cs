@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using FileHelpers.Events;
-using Container=FileHelpers.IoC.Container;
+using Container=FileHelpers.Container;
 
 namespace FileHelpers.DataLink
 {

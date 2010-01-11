@@ -66,39 +66,52 @@ namespace FileHelpers
             // Try to assign a default Converter
             if (fieldType == typeof(string))
                 return null;
-            else if (fieldType == typeof(Int16))
+            if (fieldType == typeof(Int16))
                 return new Int16Converter();
-            else if (fieldType == typeof(Int32))
+
+            if (fieldType == typeof(Int32))
                 return new Int32Converter();
-            else if (fieldType == typeof(Int64))
+
+            if (fieldType == typeof(Int64))
                 return new Int64Converter();
-            else if (fieldType == typeof(SByte))
+
+            if (fieldType == typeof(SByte))
                 return new SByteConverter();
-            else if (fieldType == typeof(UInt16))
+
+            if (fieldType == typeof(UInt16))
                 return new UInt16Converter();
-            else if (fieldType == typeof(UInt32))
+
+            if (fieldType == typeof(UInt32))
                 return new UInt32Converter();
-            else if (fieldType == typeof(UInt64))
+
+            if (fieldType == typeof(UInt64))
                 return new UInt64Converter();
-            else if (fieldType == typeof(Byte))
+
+            if (fieldType == typeof(Byte))
                 return new ByteConverter();
-            else if (fieldType == typeof(Decimal))
+
+            if (fieldType == typeof(Decimal))
                 return new DecimalConverter();
-            else if (fieldType == typeof(Double))
+
+            if (fieldType == typeof(Double))
                 return new DoubleConverter();
-            else if (fieldType == typeof(Single))
+
+            if (fieldType == typeof(Single))
                 return new SingleConverter();
-            else if (fieldType == typeof(DateTime))
+
+            if (fieldType == typeof(DateTime))
                 return new DateTimeConverter();
-            else if (fieldType == typeof(Boolean))
+
+            if (fieldType == typeof(Boolean))
                 return new BooleanConverter();
+
             // Added by Alexander Obolonkov 2007.11.08 (the next three)
-            else if (fieldType == typeof(Char))
+            if (fieldType == typeof(Char))
                 return new CharConverter();
-            else if (fieldType == typeof(Guid))
+            if (fieldType == typeof(Guid))
                 return new GuidConverter();
 #if ! MINI
-            else if (fieldType.IsEnum)
+            if (fieldType.IsEnum)
                 return new EnumConverter(fieldType);
 #endif
 

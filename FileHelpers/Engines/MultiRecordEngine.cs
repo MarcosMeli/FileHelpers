@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
-using Container=FileHelpers.IoC.Container;
+using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {

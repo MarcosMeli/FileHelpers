@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Diagnostics;
 using FileHelpers.Events;
-using Container=FileHelpers.IoC.Container;
+using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {

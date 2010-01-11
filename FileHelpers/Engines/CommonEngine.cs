@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Collections.Generic;
-using FileHelpers.IoC;
 using FileHelpers.Options;
 
 namespace FileHelpers

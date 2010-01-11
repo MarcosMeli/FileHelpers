@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Collections.Generic;
-using Container=FileHelpers.IoC.Container;
+using Container=FileHelpers.Container;
 
 
 namespace FileHelpers.Mapping
