@@ -67,14 +67,15 @@ namespace FileHelpers
             var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
 
             if (recordAttribute == null)
-                throw new BadUsageException("The class " + RecordType.Name +
-                                            " must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute.");
+                throw new BadUsageException(Messages.Errors.ClassWithOutRecordAttribute
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
 
             if (ReflectionHelper.GetDefaultConstructor(RecordType) == null)
-                throw new BadUsageException("The record class " + RecordType.Name +
-                                            " need a constructor with no args (public or private)");
-
+                throw new BadUsageException(Messages.Errors.ClassWithOutDefaultConstructor
+                                                .ClassName(RecordType.Name)
+                                                .Text);
             
             Attributes.WorkWithFirst<IgnoreFirstAttribute>(RecordType, 
                 a => IgnoreFirst = a.NumberOfLines);
@@ -140,7 +141,9 @@ namespace FileHelpers
             FieldCount = Fields.Length;
 
             if (FieldCount == 0)
-                throw new BadUsageException("The record class " + RecordType.Name + " don't contains any field.");
+                throw new BadUsageException(Messages.Errors.ClassWithOutFields
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
             if (recordAttribute is FixedLengthRecordAttribute)
             {
@@ -195,9 +198,9 @@ namespace FileHelpers
 
                 // Check for optional problems
                 if (prevField.mIsOptional && currentField.mIsOptional == false)
-                    throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
-                                                " must be marked as optional bacause after a field with FieldOptional, the next fields must be marked with the same attribute. ( Try adding [FieldOptional] to " +
-                                                currentField.mFieldInfo.Name + " )");
+                    throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
+                                                    .FieldName(prevField.mFieldInfo.Name)
+                                                    .Text);
 
                 // Check for array problems
                 if (prevField.mIsArray)

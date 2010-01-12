@@ -43,8 +43,7 @@ namespace FileHelpers.Tests
             }
             catch (FileHelpersException ex)
             {
-                ex.Message.AssertEqualTo("The string '' not is a valid .NET identifier.");
-                throw;
+                ex.Message.AssertEqualTo("The string '' not is a valid .NET identifier");
             }
         }
 
