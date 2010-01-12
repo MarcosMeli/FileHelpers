@@ -47,6 +47,14 @@ namespace FileHelpers.Tests
             }
         }
 
+        [Test]
+        public void Quotes()
+        {
+
+            Messages.Errors.TestQuote
+                .Text
+                .AssertEqualTo("The Message class also allows to use \" in any part of the \" text \" .");
+        }
 
     }
 

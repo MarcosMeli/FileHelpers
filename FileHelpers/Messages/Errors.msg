@@ -70,5 +70,9 @@
     The record type must be a class, and the type: $RecordType$ is a struct.
   </StructRecordClass>
 
+  <TestQuote>
+    The Message class also allows to use " in any part of the " text " .
+  </TestQuote>
+
 
 </Messages>

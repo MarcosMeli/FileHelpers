@@ -124,7 +124,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 				var classMsg = msgClassCode			
 					.Class(msgClass, "MessageBase");
 				
-				classMsg.Add("public " + msgClass + "(): base(@\"" + text +"\") {}");
+				classMsg.Add("public " + msgClass + "(): base(@\"" + text.Replace("\"", "\"\"") +"\") {}");
 				
 				foreach(var par in GetParameters(text))
 				{

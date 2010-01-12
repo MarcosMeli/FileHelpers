@@ -54,6 +54,9 @@ public static TypesOfMessages.Errors.NullRecordClassClass NullRecordClass
 private static TypesOfMessages.Errors.StructRecordClassClass mStructRecordClass = new TypesOfMessages.Errors.StructRecordClassClass();
 public static TypesOfMessages.Errors.StructRecordClassClass StructRecordClass
 { get { return  mStructRecordClass; } }
+private static TypesOfMessages.Errors.TestQuoteClass mTestQuote = new TypesOfMessages.Errors.TestQuoteClass();
+public static TypesOfMessages.Errors.TestQuoteClass TestQuote
+{ get { return  mTestQuote; } }
 
 
 }
@@ -304,6 +307,17 @@ public StructRecordClassClass(): base(@"The record type must be a class, and the
     {
         var res = SourceText;
         res = StringHelper.ReplaceIgnoringCase(res, "$RecordType$", mRecordType);
+        return res;
+    }
+
+
+}public  partial class TestQuoteClass: MessageBase
+{
+
+public TestQuoteClass(): base(@"The Message class also allows to use "" in any part of the "" text "" .") {}
+    protected override string GenerateText() 
+    {
+        var res = SourceText;
         return res;
     }
 
