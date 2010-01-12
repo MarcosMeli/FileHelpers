@@ -33,7 +33,7 @@ namespace FileHelpers
             public readonly Type Contract;
             public readonly Type Implementation;
             public readonly ConstructorInfo Constructor;
-            public bool IsSingleton;
+            public readonly bool IsSingleton;
             public object SingletonInstance;
 
             public Mapping(Type contract, Type implementation)
@@ -56,9 +56,9 @@ namespace FileHelpers
 
         #endregion
 
-        private const string assemblyPrefix = "FileHelpers";
+        private const string AssemblyPrefix = "FileHelpers";
 
-        private static readonly IDictionary<Type, Mapping> cache = new Dictionary<Type, Mapping>();
+        private static readonly IDictionary<Type, Mapping> mCache = new Dictionary<Type, Mapping>();
 
         static Container()
         {
@@ -68,7 +68,7 @@ namespace FileHelpers
             {
                 Type implementation = FindImplementingType(contract, types);
                 if (implementation != null)
-                    cache[contract] = new Mapping(contract, implementation);
+                    mCache[contract] = new Mapping(contract, implementation);
             }
         }
 
@@ -76,7 +76,7 @@ namespace FileHelpers
         {
             var types = new List<Type>();
             var assemblies = Array.FindAll(AppDomain.CurrentDomain.GetAssemblies(),
-                                           assembly => assembly.GetName().Name.StartsWith(assemblyPrefix));
+                                           assembly => assembly.GetName().Name.StartsWith(AssemblyPrefix));
             foreach (var assembly in assemblies)
             {
                 types.AddRange(assembly.GetTypes());
@@ -95,10 +95,11 @@ namespace FileHelpers
             return types.Find(t => !t.IsAbstract && contract.IsAssignableFrom(t) && t.Name.EndsWith(contractName));
         }
 
-        private static readonly object[] empty = new object[0];
+        private static readonly object[] mEmpty = new object[0];
+
         public static TContract Resolve<TContract>()
         {
-            return (TContract) Resolve(typeof (TContract), empty, 0);
+            return (TContract) Resolve(typeof (TContract), mEmpty, 0);
         }
 
         public static TContract Resolve<TContract>(params object[] args)
@@ -109,7 +110,7 @@ namespace FileHelpers
         private static object Resolve(Type contract, object[] args, int index)
         {
             Mapping mapping;
-            if (!cache.TryGetValue(contract, out mapping))
+            if (!mCache.TryGetValue(contract, out mapping))
                 throw new TypeResolutionException("Could not find implementation for contract: " + contract);
 
             if (mapping.IsSingleton)

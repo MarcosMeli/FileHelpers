@@ -24,7 +24,9 @@ namespace FileHelpers.Dynamic
 			fieldName = fieldName.Trim();
 			
 			if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false)
-				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+				throw new FileHelpersException(Messages.Errors.InvalidIdentifier
+                                                            .Identifier(fieldName)
+                                                            .Text);
 			
 			mFieldName = fieldName;
 			mFieldType = ClassBuilder.TypeToString(fieldType);
@@ -35,10 +37,14 @@ namespace FileHelpers.Dynamic
 			fieldName = fieldName.Trim();
 
 			if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false)
-				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldName));
+                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
+                                                        .Identifier(fieldName)
+                                                        .Text);
 
 			if (ValidIdentifierValidator.ValidIdentifier(fieldType, true) == false)
-				throw new FileHelpersException(string.Format(ClassBuilder.sInvalidIdentifier, fieldType));
+                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
+                                                    .Identifier(fieldType)
+                                                    .Text);
 
 			mFieldName = fieldName;
 			mFieldType = fieldType;

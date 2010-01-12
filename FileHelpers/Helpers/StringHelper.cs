@@ -206,6 +206,39 @@ namespace FileHelpers
 
         }
 
+        public static string ReplaceIgnoringCase(string original, string oldValue, string newValue)
+        {
+            return Replace(original, oldValue, newValue, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static string Replace(string original, string oldValue, string newValue, StringComparison comparisionType)
+        {
+            string result = original;
+
+            if (!string.IsNullOrEmpty(oldValue))
+            {
+                int index = -1;
+                int lastIndex = 0;
+
+                StringBuilder buffer = new StringBuilder(original.Length);
+
+                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0)
+                {
+                    buffer.Append(original, lastIndex, index - lastIndex);
+                    buffer.Append(newValue);
+
+                    lastIndex = index + oldValue.Length;
+                }
+                buffer.Append(original, lastIndex, original.Length - lastIndex);
+
+                result = buffer.ToString();
+            }
+
+            return result;
+        }  
+
+
+
 
     }
 }

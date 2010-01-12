@@ -335,6 +335,12 @@
     <Compile Include="MasterDetail\RecordAccion.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Messages\GenerateMessages1.autogen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenerateMessages.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Messages\MessageBase.cs" />
     <Compile Include="Options\DelimitedRecordOptions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -352,6 +358,11 @@
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
     <None Include="Diagrams\RunTimeRecords.cd" />
     <None Include="FileHelpers.snk" />
+    <None Include="Messages\Errors.msg" />
+    <None Include="Messages\GenerateMessages.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateMessages1.autogen.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />

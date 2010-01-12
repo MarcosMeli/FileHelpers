@@ -380,6 +380,7 @@
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\FixedModeTests.cs" />
+    <Compile Include="Tests\Helpers\MessagesTests.cs" />
     <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
     <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />
     <Compile Include="Tests\Errors\BadDelimited.cs" />

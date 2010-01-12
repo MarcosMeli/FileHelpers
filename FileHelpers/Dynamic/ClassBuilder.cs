@@ -337,7 +337,9 @@ namespace FileHelpers.Dynamic
         {
             className = className.Trim();
             if (ValidIdentifierValidator.ValidIdentifier(className) == false)
-                throw new FileHelpersException(string.Format(sInvalidIdentifier, className));
+                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
+                                                        .Identifier(className)
+                                                        .Text);
 
             mClassName = className;
         }
@@ -548,16 +550,20 @@ namespace FileHelpers.Dynamic
         {
             
             if (ClassName.Trim().Length == 0)
-                throw new FileHelpersException("The ClassName can't be empty");
+                throw new FileHelpersException(Messages.Errors.EmptyClassName.Text);
 
             for (int i = 0; i < mFields.Count; i++)
             {
 
                 if (((FieldBuilder) mFields[i]).FieldName.Trim().Length == 0)
-                    throw new FileHelpersException("The " + (i+1).ToString() +  "th field name can't be empty");
+                    throw new FileHelpersException(Messages.Errors.EmptyFieldName
+                                                       .Position((i + 1).ToString())
+                                                       .Text);
 
-                if (((FieldBuilder)mFields[i]).FieldType.Trim().Length == 0)
-                    throw new FileHelpersException("The " + (i + 1).ToString() + "th field type can't be empty");
+                if (((FieldBuilder) mFields[i]).FieldType.Trim().Length == 0)
+                    throw new FileHelpersException(Messages.Errors.EmptyFieldType
+                                                       .Position((i + 1).ToString())
+                                                       .Text);
 
             }
         }
@@ -972,8 +978,7 @@ namespace FileHelpers.Dynamic
         internal abstract void ReadClassElements(XmlDocument document);
         internal abstract void ReadField(XmlNode node);
 
-        internal const string sInvalidIdentifier = "The string '{0}' not is a valid .NET identifier.";
-
+        
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
