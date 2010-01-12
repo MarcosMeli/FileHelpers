@@ -28,9 +28,12 @@ namespace FileHelpers
 		internal EngineBase(Type recordType, Encoding encoding)
 		{
 			if (recordType == null)
-				throw new BadUsageException("The record type can't be null");
-			if (recordType.IsValueType)
-				throw new BadUsageException("The record type must be a class not a struct.");
+				throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
+
+            if (recordType.IsValueType)
+                throw new BadUsageException(Messages.Errors.StructRecordClass
+                                                .RecordType(recordType.Name)
+                                                .Text);
 
 			mRecordType = recordType;
 		    mRecordInfo = Container.Resolve<IRecordInfo>(recordType);

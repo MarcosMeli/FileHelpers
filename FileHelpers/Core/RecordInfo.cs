@@ -206,12 +206,14 @@ namespace FileHelpers
                 if (prevField.mIsArray)
                 {
                     if (prevField.mArrayMinLength == Int32.MinValue)
-                        throw new BadUsageException("The field: " + prevField.mFieldInfo.Name +
-                                                    " is an array and must contain a [FieldArrayLength] attribute because not is the last field.");
+                        throw new BadUsageException(Messages.Errors.MissingFieldArrayLenghtInNotLastField
+                                                        .FieldName(prevField.mFieldInfo.Name)
+                                                        .Text);
 
                     if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
-                        throw new BadUsageException("The array field: " + prevField.mFieldInfo.Name +
-                                                    " must contain a fixed length, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because not is the last field.");
+                        throw new BadUsageException(Messages.Errors.SameMinMaxLengthForArrayNotLastField
+                                                        .FieldName(prevField.mFieldInfo.Name)
+                                                        .Text);
                 }
             }
 
@@ -252,9 +254,11 @@ namespace FileHelpers
                                                    Fields[i].mFieldInfo.Name,
                                                    line.mReader.LineNumber,
                                                    -1,
-                                                   "The converter for the field: " + Fields[i].mFieldInfo.Name +
-                                                   " returns an object of Type: " + values[i].GetType().Name +
-                                                   " and the field is of type: " + Fields[i].mFieldTypeInternal.Name,
+                                                   Messages.Errors.WrongConverter
+                                                       .FieldName(Fields[i].mFieldInfo.Name)
+                                                       .ConverterReturnedType(values[i].GetType().Name)
+                                                       .Text
+                                                   ,
                                                    null);
                 }
                 return null;
@@ -485,8 +489,9 @@ namespace FileHelpers
 
             int res;
             if (!mMapFieldIndex.TryGetValue(fieldName, out res))
-                throw new BadUsageException("The field: " + fieldName + " was not found in the class: " +
-                                            RecordType.Name + ". Remember that this option is case sensitive.");
+                throw new BadUsageException(Messages.Errors.FieldNotFound
+                                                .FieldName(fieldName)
+                                                .Text);
 
             return res;
         }
