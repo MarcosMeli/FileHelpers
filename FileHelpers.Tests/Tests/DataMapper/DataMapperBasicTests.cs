@@ -5,6 +5,9 @@ using System.Data.OleDb;
 using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
+
+#if V_3_0
+
 using FileHelpers.Mapping;
 
 namespace FileHelpers.Tests.Mapping
@@ -57,5 +60,7 @@ namespace FileHelpers.Tests.Mapping
     }
 
 }
+
+#endif
 
 #endif

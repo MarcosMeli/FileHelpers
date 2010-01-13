@@ -1,8 +1,3 @@
-
-
-#define GENERICS
-
-
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -11,6 +6,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using Container=FileHelpers.Container;
 
+#if V_3_0
 
 namespace FileHelpers.Mapping
 {
@@ -21,7 +17,6 @@ namespace FileHelpers.Mapping
         public DataMapper(Type recordType)
             :base(recordType)
         {
-            
         }
     }
 
@@ -373,3 +368,5 @@ namespace FileHelpers.Mapping
 
 
 }
+
+#endif
