@@ -8,13 +8,11 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class NullWriters
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
 
 		[Test]
 		public void WriteNull()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+            var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[3];
 			res[0] = new SampleType();
@@ -22,7 +20,7 @@ namespace FileHelpers.Tests.CommonTests
 			res[2] = new SampleType();
 
 			string tempo = engine.WriteString(res);
-			res = (SampleType[]) engine.ReadString(tempo);
+			res = engine.ReadString(tempo);
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -37,7 +35,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteNullAsync()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
+			var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
 			asyncEngine.BeginWriteFile("tempNull.txt");
 
@@ -66,10 +64,8 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void ReadNullableTypes()
         {
-            engine = new FileHelperEngine(typeof(NullableType));
-
-            NullableType[] res;
-            res = (NullableType[])TestCommon.ReadTest(engine, "Good", "NullableTypes1.txt");
+            var engine = new FileHelperEngine<NullableType>();
+            var res = FileTest.Good.NullableTypes1.ReadWithEngine(engine);
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -92,9 +88,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void WriteNullableTypes1()
         {
-            engine = new FileHelperEngine(typeof(NullableType));
+            var engine = new FileHelperEngine<NullableType>();
 
-            System.Collections.Generic.List<NullableType> toWrite = new System.Collections.Generic.List<NullableType>();
+            var toWrite = new System.Collections.Generic.List<NullableType>();
 
             NullableType record;
 
@@ -116,7 +112,7 @@ namespace FileHelpers.Tests.CommonTests
             record.Field3 = 4;
             toWrite.Add(record);
 
-            NullableType[] res = (NullableType[]) engine.ReadString(engine.WriteString(toWrite));
+            NullableType[] res = engine.ReadString(engine.WriteString(toWrite));
             
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);
@@ -171,7 +167,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void WriteNullableTypes2()
         {
-            System.Collections.Generic.List<TestOrder> orders = new System.Collections.Generic.List<TestOrder>();
+            var orders = new System.Collections.Generic.List<TestOrder>();
 
             TestOrder or1 = new TestOrder();
             or1.OrderID = 1;

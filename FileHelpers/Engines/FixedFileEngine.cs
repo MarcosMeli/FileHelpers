@@ -47,7 +47,7 @@ namespace FileHelpers
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
 		public new FixedRecordOptions Options
 		{
-			get { return (FixedRecordOptions) mOptions; }
+            get { return (FixedRecordOptions)base.Options; }
 		}
 	}
 
@@ -93,7 +93,7 @@ namespace FileHelpers
 		/// <summary>Allow changes some fixed length options and others common settings.</summary>
 		public new FixedRecordOptions Options
 		{
-            get { return (FixedRecordOptions) mOptions; }
+            get { return (FixedRecordOptions)base.Options; }
 		}
 	}
 }

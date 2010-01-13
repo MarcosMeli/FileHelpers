@@ -179,7 +179,7 @@
     <Compile Include="Tests\Common\Events.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\EventsInterface.cs">
+    <Compile Include="Tests\Common\InterfaceEventsTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\ExcelCsv.cs">

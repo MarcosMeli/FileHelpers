@@ -40,7 +40,7 @@ namespace FileHelpers
     [DebuggerDisplay("MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
 #if ! GENERICS
 	public sealed class MultiRecordEngine : 
-		EngineBase, IEnumerable, IDisposable
+		EventEngineBase<object>, IEnumerable, IDisposable
 #else
 	public sealed class MultiRecordEngine<M,D> : 
 		EngineBase, IEnumerable, IDisposable
@@ -121,70 +121,70 @@ namespace FileHelpers
 
 		#region "  Events  "
 
-		/// <summary>Called in read operations just before the record string is translated to a record.</summary>
-		public event EventHandler<BeforeReadRecordEventArgs> BeforeReadRecord;
-		/// <summary>Called in read operations just after the record was created from a record string.</summary>
-		public event EventHandler<AfterReadRecordEventArgs> AfterReadRecord;
-		/// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-		public event EventHandler<BeforeWriteRecordEventArgs> BeforeWriteRecord;
-		/// <summary>Called in write operations just after the record was converted to a string.</summary>
-		public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
+        ///// <summary>Called in read operations just before the record string is translated to a record.</summary>
+        //public event EventHandler<BeforeReadRecordEventArgs> BeforeReadRecord;
+        ///// <summary>Called in read operations just after the record was created from a record string.</summary>
+        //public event EventHandler<AfterReadRecordEventArgs> AfterReadRecord;
+        ///// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
+        //public event EventHandler<BeforeWriteRecordEventArgs> BeforeWriteRecord;
+        ///// <summary>Called in write operations just after the record was converted to a string.</summary>
+        //public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
 
 
-        private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
-        {
-            if (BeforeReadRecord != null)
-            {
-                BeforeReadRecord(this, e);
+        //private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
+        //{
+        //    if (BeforeReadRecord != null)
+        //    {
+        //        BeforeReadRecord(this, e);
 
-                return e.SkipThisRecord;
-            }
+        //        return e.SkipThisRecord;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        private bool OnAfterReadRecord(string line, object record)
-        {
-			if (mRecordInfo.NotifyRead)
-				((INotifyRead)record).AfterRead(this, line);
+        //private bool OnAfterReadRecord(string line, object record)
+        //{
+        //    if (mRecordInfo.NotifyRead)
+        //        ((INotifyRead)record).AfterRead(this, line);
 
-            if (AfterReadRecord != null)
-            {
-                AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
-                AfterReadRecord(this, e);
+        //    if (AfterReadRecord != null)
+        //    {
+        //        AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
+        //        AfterReadRecord(this, e);
             	
-            	return e.SkipThisRecord;
-            }
-        	return false;
-        }
+        //        return e.SkipThisRecord;
+        //    }
+        //    return false;
+        //}
 
 
-        private bool OnBeforeWriteRecord(object record)
-        {
-			if (mRecordInfo.NotifyWrite)
-				((INotifyWrite)record).BeforeWrite(this);
+        //private bool OnBeforeWriteRecord(object record)
+        //{
+        //    if (mRecordInfo.NotifyWrite)
+        //        ((INotifyWrite)record).BeforeWrite(this);
 			
-			if (BeforeWriteRecord != null)
-            {
-                BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
-                BeforeWriteRecord(this, e);
+        //    if (BeforeWriteRecord != null)
+        //    {
+        //        BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
+        //        BeforeWriteRecord(this, e);
 
-                return e.SkipThisRecord;
-            }
+        //        return e.SkipThisRecord;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        private string OnAfterWriteRecord(string line, object record)
-        {
-            if (AfterWriteRecord != null)
-            {
-                AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-                AfterWriteRecord(this, e);
-                return e.RecordLine;
-            }
-            return line;
-        }
+        //private string OnAfterWriteRecord(string line, object record)
+        //{
+        //    if (AfterWriteRecord != null)
+        //    {
+        //        AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
+        //        AfterWriteRecord(this, e);
+        //        return e.RecordLine;
+        //    }
+        //    return line;
+        //}
 
 		#endregion
 
@@ -271,7 +271,7 @@ namespace FileHelpers
 #if !MINI
                         OnProgress(new ProgressEventArgs(currentRecord, -1));
 
-                        BeforeReadRecordEventArgs e = new BeforeReadRecordEventArgs(currentLine, LineNumber);
+                        var e = new BeforeReadRecordEventArgs<object>(currentLine, LineNumber);
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
                             line.ReLoad(e.RecordLine);
@@ -293,7 +293,7 @@ namespace FileHelpers
                                 object record = info.StringToRecord(line, values);
 
 #if !MINI
-                                skip = OnAfterReadRecord(currentLine, record);
+                                skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged);
 #endif
 
                                 if (skip == false && record != null)

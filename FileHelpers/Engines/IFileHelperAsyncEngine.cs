@@ -7,7 +7,9 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
-    public interface IFileHelperAsyncEngine<T> : IEnumerable<T>, IDisposable
+    public interface IFileHelperAsyncEngine<T> 
+        : IEnumerable<T>, IDisposable
+        where T : class
     {
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
         T LastRecord { get; }
@@ -18,7 +20,7 @@ namespace FileHelpers
         object[] LastRecordValues { get; }
 
         /// <summary>Allows to change some record layout options at runtime</summary>
-        RecordOptions Options { get; set; }
+        RecordOptions Options { get; }
 
         /// <summary>
         /// Indicates the current state of the engine.

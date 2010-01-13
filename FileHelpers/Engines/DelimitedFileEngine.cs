@@ -43,7 +43,7 @@ namespace FileHelpers
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
 		public new DelimitedRecordOptions Options
 		{
-			get { return (DelimitedRecordOptions) mOptions; }
+			get { return (DelimitedRecordOptions) base.Options; }
 			
 		}
 	}
@@ -90,7 +90,7 @@ namespace FileHelpers
 		/// <summary>Allow changes in the record layout like delimiters and others common settings.</summary>
         public new DelimitedRecordOptions Options
 		{
-            get { return (DelimitedRecordOptions) mOptions; }
+            get { return (DelimitedRecordOptions)base.Options; }
 			
 		}
 	}

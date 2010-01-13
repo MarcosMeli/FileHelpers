@@ -24,7 +24,8 @@ namespace FileHelpers.Tests.CommonTests
 			ima.MyImage = bmp;
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ImageClass));
-			string data = engine.WriteString((IList) new object[] {ima});
+
+			string data = engine.WriteString(new object[] {ima});
 			
 			ImageClass[] res = (ImageClass[]) engine.ReadString(data);
 			

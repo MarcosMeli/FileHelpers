@@ -120,7 +120,7 @@ namespace FileHelpers
         /// <summary>
         /// Allows to change some record layout options at runtime
         /// </summary>
-        RecordOptions Options { get; set; }
+        RecordOptions Options { get; }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
         int LineNumber { get; }

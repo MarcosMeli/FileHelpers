@@ -49,7 +49,8 @@ namespace FileHelpers.MasterDetail
 
     /// <typeparam name="M">The Master Record Type</typeparam>
     /// <typeparam name="D">The Detail Record Type</typeparam>
-    public class MasterDetailEngine<M, D> : EngineBase
+    public class MasterDetailEngine<M, D> 
+        : EngineBase
         where M : class
         where D : class
     {

@@ -257,6 +257,7 @@ namespace FileHelpers
                                                    Messages.Errors.WrongConverter
                                                        .FieldName(Fields[i].mFieldInfo.Name)
                                                        .ConverterReturnedType(values[i].GetType().Name)
+                                                       .FieldType(Fields[i].mFieldInfo.FieldType.Name)
                                                        .Text
                                                    ,
                                                    null);
@@ -491,6 +492,7 @@ namespace FileHelpers
             if (!mMapFieldIndex.TryGetValue(fieldName, out res))
                 throw new BadUsageException(Messages.Errors.FieldNotFound
                                                 .FieldName(fieldName)
+                                                .ClassName(RecordType.Name)
                                                 .Text);
 
             return res;

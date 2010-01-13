@@ -27,7 +27,7 @@ namespace FileHelpers
         : FileHelperEngine<object>
     {
         #region "  Constructor  "
-
+               
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
 		public FileHelperEngine(Type recordType)
@@ -35,8 +35,9 @@ namespace FileHelpers
         { }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        /// <param name="recordType">The Type of the record class</param>
         /// <param name="encoding">The Encoding used by the engine.</param>
-		public FileHelperEngine(Type recordType, Encoding encoding)
+        public FileHelperEngine(Type recordType, Encoding encoding)
 			: base(recordType, encoding)
         {
             
@@ -49,101 +50,17 @@ namespace FileHelpers
 
 
         #endregion
-              
-
-        public string WriteString(IEnumerable records)
-        {
-            if (records == null)
-                return base.WriteString(null);
-
-            List<object> arr = new List<object>();
-            foreach (var record in records)
-            {
-                arr.Add(record);
-            }
-            return base.WriteString(arr);
-        }
-
-        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public new event BeforeReadRecordHandler BeforeReadRecord;
-        /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public new event AfterReadRecordHandler AfterReadRecord;
-        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public new event BeforeWriteRecordHandler BeforeWriteRecord;
-        /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public new event AfterWriteRecordHandler AfterWriteRecord;
-
-
-
-        protected override bool OnBeforeReadRecord(BeforeReadRecordEventArgs<object> e)
-        {
-            BeforeReadRecordEventArgs enew = new BeforeReadRecordEventArgs(e.RecordLine, e.LineNumber);
-
-            if (BeforeReadRecord != null)
-            {
-                BeforeReadRecord(this, enew);
-                e.RecordLine = enew.RecordLine;
-                return enew.SkipThisRecord;
-            }
-
-            return base.OnBeforeReadRecord(e);
-        }
-
-        protected override bool OnAfterReadRecord(string line, object record)
-        {
-
-            if (AfterReadRecord != null)
-            {
-                if (mRecordInfo.NotifyRead)
-                    ((INotifyRead)record).AfterRead(this, line);
-
-                AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
-                AfterReadRecord(this, e);
-                return e.SkipThisRecord;
-            }
-
-            return base.OnAfterReadRecord(line, record);
-        }
-
-        protected override bool OnBeforeWriteRecord(object record)
-        {
-
-            if (BeforeWriteRecord != null)
-            {
-                if (mRecordInfo.NotifyWrite)
-                    ((INotifyWrite)record).BeforeWrite(this);
-
-                BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
-                BeforeWriteRecord(this, e);
-
-                return e.SkipThisRecord;
-            }
-
-            return base.OnBeforeWriteRecord(record);
-        }
-
-        protected override string OnAfterWriteRecord(string line, object record)
-        {
-
-            if (AfterWriteRecord != null)
-            {
-                AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-                AfterWriteRecord(this, e);
-                return e.RecordLine;
-            }
-            
-            return base.OnAfterWriteRecord(line, record);
-        }
 
     }
 
     /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngine/*'/>
 	/// <include file='Examples.xml' path='doc/examples/FileHelperEngine/*'/>
-    [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
+    [DebuggerDisplay("FileHelperEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
 	public class FileHelperEngine<T>
-        : EngineBase,
-          IFileHelperEngine<T> where T : class
+        : EventEngineBase<T>,
+          IFileHelperEngine<T>
+        where T : class
     {
         
 
@@ -161,28 +78,17 @@ namespace FileHelpers
 		public FileHelperEngine(Encoding encoding) 
 			: base(typeof(T), encoding)
 		{
-			CreateRecordOptions();
 		}
 
         protected FileHelperEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
-            CreateRecordOptions();
         }
-
-
-		private void CreateRecordOptions()
-		{
-			if (mRecordInfo.IsDelimited)
-				mOptions = new DelimitedRecordOptions(mRecordInfo);
-			else
-				mOptions = new FixedRecordOptions(mRecordInfo);
-		}
+		
 
 		internal FileHelperEngine(RecordInfo ri)
 			: base(ri)
 		{
-			CreateRecordOptions();
 		}
 
 
@@ -306,7 +212,7 @@ namespace FileHelpers
                             object record = mRecordInfo.StringToRecord(line, values);
 
 #if !MINI
-						skip = OnAfterReadRecord(currentLine, (T) record);
+						skip = OnAfterReadRecord(currentLine, (T) record, e.RecordLineChanged);
 #endif
 
                             if (skip == false && record != null)
@@ -666,96 +572,6 @@ namespace FileHelpers
 
 		#endregion
 
-
-		#region "  Event Handling  "
-
-#if ! MINI
-
-        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public event BeforeReadRecordHandler<T> BeforeReadRecord;
-        /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public event AfterReadRecordHandler<T> AfterReadRecord;
-        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public event BeforeWriteRecordHandler<T> BeforeWriteRecord;
-        /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public event AfterWriteRecordHandler<T> AfterWriteRecord;
-
-        protected virtual bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
-		{
-
-			if (BeforeReadRecord != null)
-			{
-				BeforeReadRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-        protected virtual bool OnAfterReadRecord(string line, T record)
-		{
-			if (mRecordInfo.NotifyRead)
-				((INotifyRead)record).AfterRead(this, line);
-
-		    if (AfterReadRecord != null)
-			{
-				AfterReadRecordEventArgs<T> e = null;
-				e = new AfterReadRecordEventArgs<T>(line, record, LineNumber);
-				AfterReadRecord(this, e);
-				return e.SkipThisRecord;
-			}
-			
-			return false;
-		}
-
-        protected virtual bool OnBeforeWriteRecord(T record)
-		{
-			if (mRecordInfo.NotifyWrite)
-				((INotifyWrite)record).BeforeWrite(this);
-
-		    if (BeforeWriteRecord != null)
-			{
-				BeforeWriteRecordEventArgs<T> e = null;
-                e = new BeforeWriteRecordEventArgs<T>(record, LineNumber);
-				BeforeWriteRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		protected virtual string OnAfterWriteRecord(string line, T record)
-		{
-
-			if (AfterWriteRecord != null)
-			{
-                AfterWriteRecordEventArgs<T> e = null;
-                e = new AfterWriteRecordEventArgs<T>(record, LineNumber, line);
-                AfterWriteRecord(this, e);
-				return e.RecordLine;
-			}
-			return line;
-		}
-
-#endif
-
-
-
-        #endregion
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal RecordOptions mOptions;
-
-		/// <summary>
-		/// Allows to change some record layout options at runtime
-		/// </summary>
-		public RecordOptions Options
-		{
-			get { return mOptions; }
-			set { mOptions = value; }
-		}
 
 	}
 

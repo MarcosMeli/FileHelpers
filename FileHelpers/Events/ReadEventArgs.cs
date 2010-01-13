@@ -12,23 +12,17 @@ namespace FileHelpers.Events
 	{
 		internal ReadRecordEventArgs(string line, int lineNumber)
 		{
-			mRecordLine = line;
-			mLineNumber = lineNumber;
+		    RecordLineChanged = false;
+		    mRecordLine = line;
+			LineNumber = lineNumber;
 		}
 
 		private string mRecordLine;
 
-		private int mLineNumber;
+        /// <summary>The current line number.</summary>
+        public int LineNumber { get; private set; }
 
-        private bool mRecordLineChanged = false;
-
-		/// <summary>The current line number.</summary>
-		public int LineNumber
-		{
-			get { return mLineNumber; }
-		}
-
-		/// <summary>The just read record line.</summary>
+        /// <summary>The just read record line.</summary>
 		public string RecordLine
 		{
 			get { return mRecordLine; }
@@ -38,91 +32,51 @@ namespace FileHelpers.Events
                     return;
 
                 mRecordLine = value;
-                mRecordLineChanged = true;
+                RecordLineChanged = true;
 
             }
 		}
 
         /// <summary>Whether the RecordLine property has been written-to.</summary>
-        public bool RecordLineChanged
-        {
-            get { return mRecordLineChanged; }
-        }
+        public bool RecordLineChanged { get; protected set; }
+
+        /// <summary>Set this property to true if you want to bypass the current record.</summary>
+        public bool SkipThisRecord { get; set; }
+
 	}
 
-	/// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
-    public sealed class BeforeReadRecordEventArgs: BeforeReadRecordEventArgs<object>
-    {
-        internal BeforeReadRecordEventArgs(string line)
-            : this(line, -1)
-        { }
-
-        internal BeforeReadRecordEventArgs(string line, int lineNumber)
-            : base(line, lineNumber)
-        { }
-    }
-
+	
     /// <summary>Arguments for the <see cref="BeforeReadRecordHandler"/></summary>
-    public class BeforeReadRecordEventArgs<T> : ReadRecordEventArgs
+    public sealed class BeforeReadRecordEventArgs<T> : ReadRecordEventArgs
 	{
 		internal BeforeReadRecordEventArgs(string line): this(line, -1)
 		{}
 
 		internal BeforeReadRecordEventArgs(string line, int lineNumber): base(line, lineNumber)
-		{}
-
-		private bool mSkipThisRecord = false;
-
-		/// <summary>Set this property to true if you want to bypass the current line.</summary>
-		public bool SkipThisRecord
 		{
-			get { return mSkipThisRecord; }
-			set { mSkipThisRecord = value; }
+		    SkipThisRecord = false;
 		}
 
 	}
 
-	/// <summary>Arguments for the <see cref="AfterReadRecordHandler"/></summary>
-    public sealed class AfterReadRecordEventArgs: AfterReadRecordEventArgs<object>
-    {
-        internal AfterReadRecordEventArgs(string line, object newRecord)
-            : this(line, newRecord, -1)
-        { }
-
-        internal AfterReadRecordEventArgs(string line, object newRecord, int lineNumber)
-            : base(line, newRecord, lineNumber)
-        {
-        }
-    }
 
     /// <summary>Arguments for the <see cref="AfterReadRecordHandler"/></summary>
-    public class AfterReadRecordEventArgs<T> : ReadRecordEventArgs
+    public sealed class AfterReadRecordEventArgs<T> : ReadRecordEventArgs
 	{
-		internal AfterReadRecordEventArgs(string line, T newRecord): this(line, newRecord, -1)
+        internal AfterReadRecordEventArgs(string line, bool lineChanged, T newRecord)
+            : this(line, lineChanged, newRecord, -1)
 		{}
 
-		internal AfterReadRecordEventArgs(string line, T newRecord, int lineNumber): base(line, lineNumber)
+        internal AfterReadRecordEventArgs(string line, bool lineChanged, T newRecord, int lineNumber)
+            : base(line, lineNumber)
 		{
-			mRecord = newRecord;
+		    SkipThisRecord = false;
+		    Record = newRecord;
+            RecordLineChanged = lineChanged;
 		}
 
-		private T mRecord;
-
-		/// <summary>The current record.</summary>
-		public T Record
-		{
-			get { return mRecord; }
-			set { mRecord = value; }
-		}
-
-		private bool mSkipThisRecord = false;
-
-		/// <summary>Set this property to true if you want to bypass the current record.</summary>
-		public bool SkipThisRecord
-		{
-			get { return mSkipThisRecord; }
-			set { mSkipThisRecord = value; }
-		}
+        /// <summary>The current record.</summary>
+        public T Record { get; set; }
 
 	}
 

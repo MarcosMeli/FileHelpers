@@ -39,7 +39,9 @@ namespace FileHelpers
     [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
     public class FileHelperAsyncEngine<T> :
-        EngineBase, IFileHelperAsyncEngine<T>
+        EventEngineBase<T>,
+        IFileHelperAsyncEngine<T>
+        where T: class
     {
 
         #region "  Constructor  "
@@ -48,13 +50,11 @@ namespace FileHelpers
 		public FileHelperAsyncEngine() 
 			: base(typeof(T))
         {
-            CreateRecordOptions();
         }
 
         protected FileHelperAsyncEngine(Type type)
             : base(type)
         {
-            CreateRecordOptions();
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
@@ -62,7 +62,6 @@ namespace FileHelpers
 		public FileHelperAsyncEngine(Encoding encoding)
 			: base(typeof(T), encoding)
         {
-            CreateRecordOptions();
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
@@ -70,16 +69,9 @@ namespace FileHelpers
         public FileHelperAsyncEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
-            CreateRecordOptions();
         }
 
-        private void CreateRecordOptions()
-        {
-            if (mRecordInfo.IsDelimited)
-                mOptions = new DelimitedRecordOptions(mRecordInfo);
-            else
-                mOptions = new FixedRecordOptions(mRecordInfo);
-        }
+    
 
         #endregion
 
@@ -292,7 +284,7 @@ namespace FileHelpers
 
 #if ! MINI
 
-    						skip = OnAfterReadRecord(currentLine, (T) mLastRecord);
+    						skip = OnAfterReadRecord(currentLine, (T) mLastRecord, e.RecordLineChanged);
 #endif
 
                             if (skip == false && mLastRecord != null)
@@ -732,20 +724,7 @@ arr.ToArray(RecordType);
 
         #endregion
 
-        #region "  Options  "
-
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal RecordOptions mOptions;
-
-        /// <summary>Allows to change some record layout options at runtime</summary>
-        public RecordOptions Options
-        {
-            get { return mOptions; }
-            set { mOptions = value; }
-        }
-
-        #endregion
+      
 
         #region "  State  "
 
@@ -763,82 +742,6 @@ arr.ToArray(RecordType);
 
         #endregion
 
-
-        #region "  Event Handling  "
-
-#if ! MINI
-
-        /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        public event BeforeReadRecordHandler<T> BeforeReadRecord;
-        /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        public event AfterReadRecordHandler<T> AfterReadRecord;
-        /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        public event BeforeWriteRecordHandler<T> BeforeWriteRecord;
-        /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        public event AfterWriteRecordHandler<T> AfterWriteRecord;
-
-		private bool OnBeforeReadRecord(BeforeReadRecordEventArgs<T> e)
-		{
-
-			if (BeforeReadRecord != null)
-			{
-				BeforeReadRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private bool OnAfterReadRecord(string line, T record)
-		{
-			if (mRecordInfo.NotifyRead)
-				((INotifyRead)record).AfterRead(this, line);
-
-		    if (AfterReadRecord != null)
-			{
-				AfterReadRecordEventArgs<T> e = null;
-				e = new AfterReadRecordEventArgs<T>(line, record, LineNumber);
-				AfterReadRecord(this, e);
-				return e.SkipThisRecord;
-			}
-			
-			return false;
-		}
-
-		private bool OnBeforeWriteRecord(T record)
-		{
-			if (mRecordInfo.NotifyWrite)
-				((INotifyWrite)record).BeforeWrite(this);
-
-		    if (BeforeWriteRecord != null)
-			{
-				BeforeWriteRecordEventArgs<T> e = null;
-                e = new BeforeWriteRecordEventArgs<T>(record, LineNumber);
-				BeforeWriteRecord(this, e);
-
-				return e.SkipThisRecord;
-			}
-
-			return false;
-		}
-
-		private string OnAfterWriteRecord(string line, T record)
-		{
-
-			if (AfterWriteRecord != null)
-			{
-                AfterWriteRecordEventArgs<T> e = null;
-                e = new AfterWriteRecordEventArgs<T>(record, LineNumber, line);
-                AfterWriteRecord(this, e);
-				return e.RecordLine;
-			}
-			return line;
-		}
-
-#endif
-
-        #endregion
 
     }
 }

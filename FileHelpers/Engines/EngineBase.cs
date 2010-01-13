@@ -5,11 +5,12 @@ using System.ComponentModel;
 using System.Text;
 using System.Diagnostics;
 using FileHelpers.Events;
+using FileHelpers.Options;
 using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {
-	/// <summary>Base class for the two engines of the library: <see cref="FileHelperEngine"/> and <see cref="FileHelperAsyncEngine"/></summary>
+    /// <summary>Base class for the two engines of the library: <see cref="FileHelperEngine"/> and <see cref="FileHelperAsyncEngine"/></summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class EngineBase 
         //#if ! MINI
@@ -38,12 +39,17 @@ namespace FileHelpers
 			mRecordType = recordType;
 		    mRecordInfo = Container.Resolve<IRecordInfo>(recordType);
 		    mEncoding = encoding;
-		}
+
+            CreateRecordOptions();
+        }
 
 		internal EngineBase(RecordInfo ri)
 		{
 			mRecordType = ri.RecordType;
 			mRecordInfo = ri;
+
+            CreateRecordOptions();
+
 		}
 
 		
@@ -182,6 +188,21 @@ namespace FileHelpers
             Progress(this, e);
         }
 #endif
+
+
+        private void CreateRecordOptions()
+        {
+            if (mRecordInfo.IsDelimited)
+                Options = new DelimitedRecordOptions(mRecordInfo);
+            else
+                Options = new FixedRecordOptions(mRecordInfo);
+        }
+
+        /// <summary>
+        /// Allows to change some record layout options at runtime
+        /// </summary>
+        public RecordOptions Options { get; private set; }
+
 
 	}
 }
