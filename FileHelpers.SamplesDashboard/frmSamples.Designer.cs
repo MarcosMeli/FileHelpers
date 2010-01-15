@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSamples));
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -38,6 +40,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
             this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
+            this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -165,10 +168,31 @@
             // treeViewDemos1
             // 
             this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDemos1.ImageIndex = 0;
+            this.treeViewDemos1.ImageList = this.imgTreeView;
             this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
             this.treeViewDemos1.Name = "treeViewDemos1";
+            this.treeViewDemos1.SelectedImageIndex = 0;
             this.treeViewDemos1.Size = new System.Drawing.Size(290, 415);
             this.treeViewDemos1.TabIndex = 0;
+            // 
+            // imgTreeView
+            // 
+            this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
+            this.imgTreeView.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgTreeView.Images.SetKeyName(0, "application_cascade.png");
+            this.imgTreeView.Images.SetKeyName(1, "application_double.png");
+            this.imgTreeView.Images.SetKeyName(2, "application_form.png");
+            this.imgTreeView.Images.SetKeyName(3, "application_osx_terminal.png");
+            this.imgTreeView.Images.SetKeyName(4, "demo");
+            this.imgTreeView.Images.SetKeyName(5, "application_view_xp_terminal.png");
+            this.imgTreeView.Images.SetKeyName(6, "application2.png");
+            this.imgTreeView.Images.SetKeyName(7, "folder.png");
+            this.imgTreeView.Images.SetKeyName(8, "folder");
+            this.imgTreeView.Images.SetKeyName(9, "note.png");
+            this.imgTreeView.Images.SetKeyName(10, "projection_screen.png");
+            this.imgTreeView.Images.SetKeyName(11, "projection_screen_present.png");
+            this.imgTreeView.Images.SetKeyName(12, "wand.png");
             // 
             // frmSamples
             // 
@@ -205,5 +229,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
+        private System.Windows.Forms.ImageList imgTreeView;
     }
 }

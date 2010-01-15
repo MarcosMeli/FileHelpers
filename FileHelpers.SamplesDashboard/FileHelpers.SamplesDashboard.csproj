@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoFiles.cs" />
+    <Compile Include="Demos\DemoFactory.cs" />
     <Compile Include="TreeViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -109,9 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Demos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
