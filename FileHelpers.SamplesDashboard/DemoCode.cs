@@ -12,6 +12,7 @@ namespace FileHelpers
         {
             CodeTitle = codeTitle;
             Category = category;
+            Files = new List<DemoFile>();
         }
 
         public string CodeTitle { get; set; }
@@ -22,7 +23,18 @@ namespace FileHelpers
         /// Can be of the form "Async/Delimited" with multiple categories
         /// </summary>
         public string Category { get; set; }
-        public DemoFiles[] Files { get; set; }
+        public List<DemoFile> Files { get; set; }
+        public DemoFile LastFile
+        {
+            get
+            {
+                if (Files.Count == 0)
+                    return null;
+                else
+                    return Files[Files.Count - 1];
+            }
+        }
+
         public UserControl Control  { get; set; }
 
     }

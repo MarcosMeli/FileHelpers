@@ -14,5 +14,12 @@ namespace FileHelpers.SamplesDashboard
         {
             InitializeComponent();
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            treeViewDemos1.LoadDemos(DemoFactory.GetDemos());
+        }
     }
 }

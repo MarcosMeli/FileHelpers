@@ -55,8 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryTreeNode.cs" />
     <Compile Include="DemoFiles.cs" />
     <Compile Include="Demos\DemoFactory.cs" />
+    <Compile Include="DemoTreeNode.cs" />
     <Compile Include="TreeViewEx.cs">
       <SubType>Component</SubType>
     </Compile>

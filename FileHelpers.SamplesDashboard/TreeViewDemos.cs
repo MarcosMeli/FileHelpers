@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace FileHelpers
 {
@@ -21,6 +20,8 @@ namespace FileHelpers
                 var demoNode = new DemoTreeNode(demo);
                 cat.Nodes.Add(demoNode);
             }
+
+            this.ExpandAll();
         }
 
         Dictionary<string, CategoryTreeNode> mCategories;
@@ -39,6 +40,8 @@ namespace FileHelpers
                         this.Nodes.Add(categNode);
                     else
                         previous.Nodes.Add(categNode);
+
+                    mCategories.Add(categ, categNode);
                 }
                
                 previous = categNode;
@@ -47,34 +50,4 @@ namespace FileHelpers
             return previous;
         }
     }
-
-        public class DemoTreeNode
-        : TreeNode
-        {
-            public DemoTreeNode(DemoCode demo)
-                : base(demo.CodeTitle)
-            {
-                this.Demo = demo;
-                this.SelectedImageKey = "folder";
-                this.ImageKey = "folder";
-            }
-
-            public DemoCode Demo { get; set; }
-
-        }
-
-        public class CategoryTreeNode
-            : TreeNode
-        {
-            public CategoryTreeNode(string text)
-                : base(text)
-            {
-                this.SelectedImageKey = "demo";
-                this.ImageKey = "demo";
-            }
-
-            public DemoCode Demo { get; set; }
-
-        }
-
 }
