@@ -74,7 +74,7 @@ namespace FileHelpers
         /// <returns>The datatable representing all the read records.</returns>
         public static DataTable ReadFileAsDT(Type recordClass, string fileName, int maxRecords)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             return engine.ReadFileAsDT(fileName, maxRecords);
         }
 
@@ -147,7 +147,7 @@ namespace FileHelpers
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
         /// <param name="fileName">The file name</param>
-        /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+        /// <param name="records">The records to write (Can be an array, List, etc)</param>
         public static void WriteFile<T>(string fileName, IEnumerable<T> records) where T : class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
@@ -165,7 +165,7 @@ namespace FileHelpers
         /// Used to write a string without instanciate the engine.<br />
         /// <b>This is feature limited method try to use the non static methods.</b>
         /// </summary>
-        /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+        /// <param name="records">The records to write (Can be an array, List, etc)</param>
         /// <returns>The string with the writen records.</returns>
         public static string WriteString<T>(IEnumerable<T> records) where T : class
         {
@@ -480,13 +480,11 @@ namespace FileHelpers
         {
             FileHelperEngine engine = new FileHelperEngine(recordType);
 
-            ArrayList arr = new ArrayList();
+            var list = engine.ReadFileAsList(file1);
+            list.AddRange(engine.ReadFileAsList(file2));
 
-            arr.AddRange(engine.ReadFile(file1));
-            arr.AddRange(engine.ReadFile(file2));
-
-            object[] res = (object[])arr.ToArray(recordType);
-            arr = null; // <- better performance (memory)
+            var res = list.ToArray();
+            list = null; // <- better performance (memory)
 
             CommonEngine.SortRecordsByField(res, field, ascending);
 
@@ -507,13 +505,11 @@ namespace FileHelpers
         {
             FileHelperEngine engine = new FileHelperEngine(recordType);
 
-            ArrayList arr = new ArrayList();
+            var list = engine.ReadFileAsList(file1);
+            list.AddRange(engine.ReadFileAsList(file2));
 
-            arr.AddRange(engine.ReadFile(file1));
-            arr.AddRange(engine.ReadFile(file2));
-
-            object[] res = (object[])arr.ToArray(recordType);
-            arr = null; // <- better performance (allow the GC to collect it)
+            var res = list.ToArray();
+            list = null; // <- better performance (memory)
 
             CommonEngine.SortRecords(res);
 
@@ -522,8 +518,7 @@ namespace FileHelpers
         }
 
 
-
-        /// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+	    /// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         public static void DataTableToCsv(DataTable dt, string filename)
@@ -671,20 +666,21 @@ namespace FileHelpers
         /// <returns>The first n lines of the file.</returns>
         public static string[] RawReadFirstLinesArray(string file, int lines, Encoding encoding)
         {
-            ArrayList res = new ArrayList(lines);
-            StreamReader reader = new StreamReader(file, encoding);
 
-            for (int i = 0; i < lines; i++)
+            var res = new List<string>(lines);
+            using(StreamReader reader = new StreamReader(file, encoding))
             {
-                string line = reader.ReadLine();
-                if (line == null)
-                    break;
-                else
-                    res.Add(line);
+                for (int i = 0; i < lines; i++)
+                {
+                    string line = reader.ReadLine();
+                    if (line == null)
+                        break;
+                    else
+                        res.Add(line);
+                }
             }
-	        reader.Close();
 
-            return (string[]) res.ToArray(typeof(string));
+	        return res.ToArray();
         }
 
 

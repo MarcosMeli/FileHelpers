@@ -117,6 +117,23 @@ namespace FileHelpers
 			}
 		}
 
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
+        public List<T> ReadFileAsList(string fileName)
+        {
+            return ReadFileAsList(fileName, int.MaxValue);
+        }
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
+        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+        public List<T> ReadFileAsList(string fileName, int maxRecords)
+        {
+            using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+            {
+                var res = ReadStreamAsList(fs, maxRecords);
+                fs.Close();
+                return res;
+            }
+        }
 		#endregion
 
 
@@ -129,19 +146,31 @@ namespace FileHelpers
 			return ReadStream(reader, int.MaxValue);
 		}
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
+
+        	/// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T[] ReadStream(TextReader reader, int maxRecords)
 		{
-
-#if ! MINI
-
-			return ReadStream(reader, maxRecords, null);
+			return ReadStreamAsList(reader, maxRecords, null).ToArray();
 		}
 
 
-		private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+        private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+        {
+            return ReadStreamAsList(reader, maxRecords, dt).ToArray();
+        }
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
+		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		public List<T> ReadStreamAsList(TextReader reader, int maxRecords)
+		{
+			return ReadStreamAsList(reader, maxRecords, null);
+		}
+
+#if !MINI
+		private List<T> ReadStreamAsList(TextReader reader, int maxRecords, DataTable dt)
         {
 #endif
             if (reader == null)
@@ -152,7 +181,7 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            ArrayList resArray = new ArrayList();
+            List<T> resArray = new List<T>();
             int currentRecord = 0;
 
             using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
@@ -209,7 +238,7 @@ namespace FileHelpers
 
                         if (skip == false)
                         {
-                            object record = mRecordInfo.Operations.StringToRecord(line, values);
+                            T record = mRecordInfo.Operations.StringToRecord<T>(line, values);
 
 #if !MINI
 						skip = OnAfterReadRecord(currentLine, (T) record, e.RecordLineChanged);
@@ -267,8 +296,7 @@ namespace FileHelpers
                 }
             }
 
-			return (T[])
-                   resArray.ToArray(RecordType);
+			return resArray;
         }
 
         #endregion
@@ -292,12 +320,33 @@ namespace FileHelpers
 
 			using (StringReader reader = new StringReader(source))
 			{
-			    T[] res = ReadStream(reader, maxRecords);
+			    var res = ReadStream(reader, maxRecords);
 				reader.Close();
 				return res;
 			}
 		}
 
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
+        public List<T> ReadStringAsList(string source)
+        {
+            return ReadStringAsList(source, int.MaxValue);
+        }
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
+        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+        public List<T> ReadStringAsList(string source, int maxRecords)
+        {
+            if (source == null)
+                source = string.Empty;
+
+            using (StringReader reader = new StringReader(source))
+            {
+                var res = ReadStreamAsList(reader, maxRecords);
+                reader.Close();
+                return res;
+            }
+        }
 		#endregion
 
 		#region "  WriteFile  "

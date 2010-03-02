@@ -377,7 +377,8 @@ namespace FileHelpers
             }
 
             #region "  StringToRecord  "
-            public object StringToRecord(LineInfo line, object[] values)
+            public T StringToRecord<T>(LineInfo line, object[] values)
+                where T: class
             {
                 if (MustIgnoreLine(line.mLineStr))
                     return null;
@@ -390,7 +391,7 @@ namespace FileHelpers
                 try
                 {
                     // Asign all values via dinamic method that creates an object and assign values
-                    return CreateHandler(values);
+                    return (T) CreateHandler(values);
                 }
                 catch (InvalidCastException)
                 {

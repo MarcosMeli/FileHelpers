@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Collections;
 using System.ComponentModel;
@@ -76,7 +77,7 @@ namespace FileHelpers.Dynamic
             {
                 if (mReferences == null)
                 {
-                     ArrayList arr = new ArrayList();
+                     var arr = new List<string>();
 
                     foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
@@ -91,7 +92,7 @@ namespace FileHelpers.Dynamic
                             arr.Add(module.FullyQualifiedName);
                     }
 
-                    mReferences = (string[]) arr.ToArray(typeof (string));
+                    mReferences = arr.ToArray();
                 }
             }
 

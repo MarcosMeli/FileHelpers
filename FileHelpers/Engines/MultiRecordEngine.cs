@@ -290,7 +290,7 @@ namespace FileHelpers
                             if (skip == false)
                             {
                                 object[] values = new object[info.FieldCount];
-                                object record = info.Operations.StringToRecord(line, values);
+                                object record = info.Operations.StringToRecord<object>(line, values);
 
 #if !MINI
                                 skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged);
@@ -728,7 +728,7 @@ namespace FileHelpers
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
 							object[] values = new object[info.FieldCount];
-                            mLastRecord = info.Operations.StringToRecord(line, values);
+                            mLastRecord = info.Operations.StringToRecord<object>(line, values);
 
 							if (mLastRecord != null)
 							{

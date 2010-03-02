@@ -347,7 +347,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
-                                M lastMaster = (M)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
+                                M lastMaster = mMasterInfo.Operations.StringToRecord<M>(line, valuesMaster);
 #endif
 
                                 if (lastMaster != null)
@@ -359,7 +359,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-                                D lastChild = (D)mRecordInfo.Operations.StringToRecord(line, valuesDetail);
+                                D lastChild = mRecordInfo.Operations.StringToRecord<D>(line, valuesDetail);
 #endif
 
                                 if (lastChild != null)
