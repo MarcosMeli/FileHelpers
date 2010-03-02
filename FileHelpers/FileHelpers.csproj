@@ -95,6 +95,7 @@
     <Compile Include="Attributes\ConditionalRecordAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldOrderAttribute.cs" />
     <Compile Include="Attributes\DelimitedRecordAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,8 +169,8 @@
     </Compile>
     <Compile Include="Core\IFieldInfoCacheManipulator.cs" />
     <Compile Include="Core\IRecordInfo.cs" />
+    <Compile Include="Core\IRecordOperations.cs" />
     <Compile Include="Core\IRecordReader.cs" />
-    <Compile Include="Core\EmbeddedIoC.cs" />
     <Compile Include="Core\ReflectionHelper.cs" />
     <Compile Include="Dynamic\AttributesBuilder.cs" />
     <Compile Include="Dynamic\ClassBuilder.cs" />
@@ -355,6 +356,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
+    <Compile Include="VersionInfo.cs" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
     <None Include="Diagrams\RunTimeRecords.cd" />

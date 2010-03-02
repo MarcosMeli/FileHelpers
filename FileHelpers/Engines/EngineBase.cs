@@ -6,7 +6,7 @@ using System.Text;
 using System.Diagnostics;
 using FileHelpers.Events;
 using FileHelpers.Options;
-using Container=FileHelpers.Container;
+//using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {
@@ -37,7 +37,7 @@ namespace FileHelpers
                                                 .Text);
 
 			mRecordType = recordType;
-		    mRecordInfo = Container.Resolve<IRecordInfo>(recordType);
+		    mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
 		    mEncoding = encoding;
 
             CreateRecordOptions();

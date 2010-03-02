@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FileHelpers\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="FileDataLink.cs" />
     <Compile Include="GenericDataLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

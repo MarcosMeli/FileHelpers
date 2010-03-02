@@ -12,7 +12,7 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
-using Container=FileHelpers.Container;
+//using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {
@@ -111,7 +111,7 @@ namespace FileHelpers
 				if (mRecordInfoHash.Contains(mTypes[i]))
 					throw new BadUsageException("The type '"+ mTypes[i].Name + " is already in the engine. You can't pass the same type twice to the constructor.");
 
-			    mMultiRecordInfo[i] = Container.Resolve<IRecordInfo>(mTypes[i]);
+			    mMultiRecordInfo[i] = RecordInfo.Resolve(mTypes[i]);
 			    mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
 			}
 			mRecordSelector = recordSelector;
@@ -290,7 +290,7 @@ namespace FileHelpers
                             if (skip == false)
                             {
                                 object[] values = new object[info.FieldCount];
-                                object record = info.StringToRecord(line, values);
+                                object record = info.Operations.StringToRecord(line, values);
 
 #if !MINI
                                 skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged);
@@ -444,7 +444,7 @@ namespace FileHelpers
 
 					if (skip == false)
 					{
-						currentLine = info.RecordToString(rec);
+                        currentLine = info.Operations.RecordToString(rec);
 #if !MINI
 						currentLine = OnAfterWriteRecord(currentLine, rec);
 #endif
@@ -728,7 +728,7 @@ namespace FileHelpers
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
 							object[] values = new object[info.FieldCount];
-							mLastRecord = info.StringToRecord(line, values);
+                            mLastRecord = info.Operations.StringToRecord(line, values);
 
 							if (mLastRecord != null)
 							{
@@ -946,7 +946,7 @@ namespace FileHelpers
 
 				if (skip == false)
 				{
-					currentLine = info.RecordToString(record);
+                    currentLine = info.Operations.RecordToString(record);
 					mAsyncWriter.WriteLine(currentLine);
 				}
 

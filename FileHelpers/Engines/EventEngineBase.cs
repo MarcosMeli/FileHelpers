@@ -8,15 +8,18 @@ namespace FileHelpers
         : EngineBase
         where T : class
     {
-        public EventEngineBase(Type recordType) : base(recordType)
+        public EventEngineBase(Type recordType)
+            : base(recordType)
         {
         }
 
-        public EventEngineBase(Type recordType, Encoding encoding) : base(recordType, encoding)
+        public EventEngineBase(Type recordType, Encoding encoding)
+            : base(recordType, encoding)
         {
         }
 
-        internal EventEngineBase(RecordInfo ri) : base(ri)
+        internal EventEngineBase(RecordInfo ri)
+            : base(ri)
         {
         }
 

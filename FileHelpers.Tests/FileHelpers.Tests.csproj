@@ -286,7 +286,6 @@
     <Compile Include="Tests\Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EmbeddedIoC\ContainerTests.cs" />
     <Compile Include="Tests\DataLink\DataLinkTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -376,9 +375,15 @@
   <ItemGroup>
     <None Include="Data\Classes\ClassFromFile.cs" />
     <None Include="Data\Classes\SampleClassCS.cs" />
+    <Compile Include="..\FileHelpers\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
+    <Compile Include="Tests\Common\Autoproperties.cs" />
+    <Compile Include="Tests\Common\FieldOrderTests.cs" />
+    <Compile Include="Tests\Common\FieldAligmentOrder.cs" />
     <Compile Include="Tests\Common\FixedModeTests.cs" />
     <Compile Include="Tests\Helpers\MessagesTests.cs" />
     <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
@@ -545,6 +550,7 @@
     <Content Include="Data\RunTime\VendorImport.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EmbeddedIoC\" />
     <Folder Include="Tests\CoreUnitTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

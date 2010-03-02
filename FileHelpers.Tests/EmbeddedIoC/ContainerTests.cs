@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Singleton = FileHelpers.Container.SingletonAttribute;
+//using Singleton = FileHelpers.Container.SingletonAttribute;
 
 namespace FileHelpers.Tests.IoC
 {

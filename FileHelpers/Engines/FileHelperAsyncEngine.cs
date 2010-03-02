@@ -280,7 +280,7 @@ namespace FileHelpers
 #endif
                         if (skip == false)
                         {
-	    					mLastRecord = (T) mRecordInfo.StringToRecord(line, mLastRecordValues);
+                            mLastRecord = (T)mRecordInfo.Operations.StringToRecord(line, mLastRecordValues);
 
 #if ! MINI
 
@@ -523,7 +523,7 @@ arr.ToArray(RecordType);
 
                 if (skip == false)
                 {
-                    currentLine = mRecordInfo.RecordToString(record);
+                    currentLine = mRecordInfo.Operations.RecordToString(record);
 #if !MINI
                     currentLine = OnAfterWriteRecord(currentLine, record);
 #endif
@@ -599,7 +599,7 @@ arr.ToArray(RecordType);
                 mLineNumber++;
                 mTotalRecords++;
 
-                currentLine = mRecordInfo.RecordValuesToString(this.mLastRecordValues);
+                currentLine = mRecordInfo.Operations.RecordValuesToString(this.mLastRecordValues);
                 mAsyncWriter.WriteLine(currentLine);
             }
             catch (Exception ex)

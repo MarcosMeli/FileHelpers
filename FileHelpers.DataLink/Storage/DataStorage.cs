@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using FileHelpers.Events;
-using Container=FileHelpers.Container;
+//using Container=FileHelpers.Container;
 
 namespace FileHelpers.DataLink
 {
@@ -46,8 +46,8 @@ namespace FileHelpers.DataLink
 		/// <returns>The extracted records.</returns>
 		public DataTable ExtractRecordsAsDT()
 		{
-			IRecordInfo ri = Container.Resolve<IRecordInfo>(RecordType);
-			return ri.RecordsToDataTable(ExtractRecords());
+			IRecordInfo ri = RecordInfo.Resolve(RecordType);
+            return ri.Operations.RecordsToDataTable(ExtractRecords());
 		}
 
 		/// <summary>Must Insert the records in a DataSource (DB, Excel, etc)</summary>
@@ -83,7 +83,7 @@ namespace FileHelpers.DataLink
 		protected DataStorage(Type recordClass)
 		{
 			mRecordType = recordClass;
-		    mRecordInfo = Container.Resolve<IRecordInfo>(recordClass);
+		    mRecordInfo = RecordInfo.Resolve(recordClass);
 		}
 
 		#region "  Values <-> Record Convertions "
@@ -93,7 +93,7 @@ namespace FileHelpers.DataLink
 		/// <returns>The just created record.</returns>
 		protected object ValuesToRecord(object[] values)
 		{
-			return mRecordInfo.ValuesToRecord(values);
+            return mRecordInfo.Operations.ValuesToRecord(values);
 		}
 
 		/// <summary>Returns an array of value based on a record.</summary>
@@ -101,7 +101,7 @@ namespace FileHelpers.DataLink
 		/// <returns>An array with the values of each field</returns>
 		protected object[] RecordToValues(object record)
 		{
-			return mRecordInfo.RecordToValues(record);
+            return mRecordInfo.Operations.RecordToValues(record);
 		}
 
 		#endregion

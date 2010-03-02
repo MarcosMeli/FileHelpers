@@ -106,9 +106,15 @@ namespace FileHelpers
 
 
 
+                // FieldOrder
+                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, (x) =>
+                {
+                    res.mFieldOrder= x.Order;
+                });
+
+
                 // FieldOptional
                 res.mIsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
-
 
                 // FieldInNewLine
                 res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
@@ -167,6 +173,8 @@ namespace FileHelpers
         internal bool mIsOptional = false;
         internal bool mNextIsOptional = false;
         internal bool mInNewLine = false;
+
+        internal int? mFieldOrder = null;
 
         internal bool mIsFirst = false;
         internal bool mIsLast = false;

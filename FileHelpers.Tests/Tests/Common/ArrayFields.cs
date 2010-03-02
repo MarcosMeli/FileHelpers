@@ -28,15 +28,16 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
-        public void ArrayFieldsDelimited()
+        public void ArrayFieldsString()
         {
-            var res = FileTest.Good.ArrayFieldsDelimited
-                .ReadWithEngine<ArrayTypeDelimited>();
+            var res = FileTest.Good.ArrayFields
+                .ReadWithEngine<ArrayTypeStrings>();
 
-            Assert.AreEqual(10, res.Length);
-            
+            SimpleComparerStrings(res);
         }
 
+
+      
         private static void SimpleComparer2(ArrayType3[] res)
 		{
 			Assert.AreEqual(3, res.Length);
@@ -69,6 +70,35 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(31245, res[1].CustomerID);
             Assert.AreEqual(6, res[1].BuyedArts[0]);
+            Assert.AreEqual(17, res[1].BuyedArts.Length);
+
+            Assert.AreEqual(1245, res[2].CustomerID);
+            Assert.AreEqual(0, res[2].BuyedArts.Length);
+        }
+
+        [Test]
+        public void ArrayFieldsDelimited()
+        {
+            var res = FileTest.Good.ArrayFieldsDelimited
+                .ReadWithEngine<ArrayTypeDelimited>();
+
+            Assert.AreEqual(10, res.Length);
+
+        }
+
+        private static void SimpleComparerStrings(ArrayTypeStrings[] res)
+        {
+            Assert.AreEqual(3, res.Length);
+
+            Assert.AreEqual(58745, res[0].CustomerID);
+            Assert.AreEqual("13", res[0].BuyedArts[0]);
+            Assert.AreEqual("+8", res[0].BuyedArts[1]);
+            Assert.AreEqual("+3", res[0].BuyedArts[2]);
+            Assert.AreEqual("-7", res[0].BuyedArts[3]);
+            Assert.AreEqual(20, res[0].BuyedArts.Length);
+
+            Assert.AreEqual(31245, res[1].CustomerID);
+            Assert.AreEqual("6", res[1].BuyedArts[0]);
             Assert.AreEqual(17, res[1].BuyedArts.Length);
 
             Assert.AreEqual(1245, res[2].CustomerID);
@@ -158,6 +188,18 @@ namespace FileHelpers.Tests.CommonTests
 			public int[] BuyedArts;
 
 		}
+
+        [FixedLengthRecord(FixedMode.ExactLength)]
+        public class ArrayTypeStrings
+        {
+            [FieldFixedLength(5)]
+            public int CustomerID;
+
+            [FieldFixedLength(7)]
+            [FieldTrim(TrimMode.Both)]
+            public string[] BuyedArts;
+        }
+
         [FixedLengthRecord(FixedMode.ExactLength)]
         public class ArrayType2
         {

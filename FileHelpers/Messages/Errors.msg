@@ -44,7 +44,14 @@
     The field: $FieldName$ must be marked as optional because his previoud field is marked as optional. (Try adding [FieldOptional] to $FieldName$)
   </ExpectingFieldOptional>
 
- 
+  <SameFieldOrder>
+    The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values
+  </SameFieldOrder>
+
+  <PartialFieldOrder>
+    The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.
+  </PartialFieldOrder>
+
   <MissingFieldArrayLenghtInNotLastField>
      The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because is not the last field
   </MissingFieldArrayLenghtInNotLastField>

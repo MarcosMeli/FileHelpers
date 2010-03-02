@@ -382,7 +382,7 @@ namespace FileHelpers
             {
                 if (obj != null)
                 {
-                    ri = Container.Resolve<IRecordInfo>(obj.GetType());
+                    ri = RecordInfo.Resolve(obj.GetType());
                     break;
                 }
             }
@@ -390,7 +390,7 @@ namespace FileHelpers
             if (ri == null)
                 return new DataTable();
 
-            return ri.RecordsToDataTable(records, maxRecords);
+            return ri.Operations.RecordsToDataTable(records, maxRecords);
         }
 
         /// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
@@ -409,8 +409,8 @@ namespace FileHelpers
         /// <param name="recordType">The type of the inner records.</param>
         public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
         {
-            IRecordInfo ri = Container.Resolve<IRecordInfo>(recordType);
-            return ri.RecordsToDataTable(records, maxRecords);
+            IRecordInfo ri = RecordInfo.Resolve(recordType);
+            return ri.Operations.RecordsToDataTable(records, maxRecords);
         }
 
 #endif

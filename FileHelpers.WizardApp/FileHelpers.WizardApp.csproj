@@ -180,6 +180,9 @@
     <None Include="Templates\CS - Read Whole File.tpl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="..\FileHelpers\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="FieldDelimitedControl.cs">
       <SubType>UserControl</SubType>

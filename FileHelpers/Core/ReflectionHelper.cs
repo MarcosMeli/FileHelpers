@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -145,6 +146,41 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ret);
 
             return (GetFieldValueCallback)dm.CreateDelegate(typeof(GetFieldValueCallback));
+        }
+
+
+        public static IEnumerable<FieldInfo> RecursiveGetFields(Type currentType)
+        {
+            if (currentType.BaseType != null && !currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
+                foreach (FieldInfo item in RecursiveGetFields(currentType.BaseType)) yield return item;
+
+            if (currentType == typeof(object))
+                yield break;
+
+            FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
+
+            //var temp = currentType.GetMembers(BindingFlags.Public |
+            //                                  BindingFlags.NonPublic |
+            //                                  BindingFlags.Instance |
+            //                                  BindingFlags.GetField |
+            //                                  BindingFlags.GetProperty |
+            //                                  BindingFlags.DeclaredOnly);
+
+            //Debug.WriteLine(temp.Length);
+
+            //Array.Sort(temp, (x, y) => x.MetadataToken.CompareTo(y.MetadataToken));
+
+
+            //Debug.WriteLine(temp.Length);
+
+            foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
+                                                           BindingFlags.NonPublic |
+                                                           BindingFlags.Instance |
+                                                           BindingFlags.DeclaredOnly))
+            {
+                if (!(typeof(Delegate)).IsAssignableFrom(fi.FieldType))
+                    yield return fi;
+            }
         }
 
     }

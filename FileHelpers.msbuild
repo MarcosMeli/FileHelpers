@@ -14,6 +14,9 @@
   <Target Name="common">
     <Message Text="##teamcity[buildNumber '$(CurrentVersion) ({build.number})']" />
     
+    <Copy SourceFiles="VersionInfo.cs" DestinationFolder="FileHelpers" />
+    <Exec Command="Libs\FileReplace.exe &quot;FileHelpers\VersionInfo.cs&quot; &quot;-CustomVersion-&quot; &quot;$(FullCurrentVersion)&quot;" />
+    
     <Delete Files="@(DebugFiles)" />
     <Delete Files="@(ReleaseFiles)" />
     <Delete Files="@(OutputFiles)" />

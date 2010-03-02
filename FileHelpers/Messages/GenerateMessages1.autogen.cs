@@ -36,6 +36,12 @@ public static TypesOfMessages.Errors.ClassWithOutFieldsClass ClassWithOutFields
 private static TypesOfMessages.Errors.ExpectingFieldOptionalClass mExpectingFieldOptional = new TypesOfMessages.Errors.ExpectingFieldOptionalClass();
 public static TypesOfMessages.Errors.ExpectingFieldOptionalClass ExpectingFieldOptional
 { get { return  mExpectingFieldOptional; } }
+private static TypesOfMessages.Errors.SameFieldOrderClass mSameFieldOrder = new TypesOfMessages.Errors.SameFieldOrderClass();
+public static TypesOfMessages.Errors.SameFieldOrderClass SameFieldOrder
+{ get { return  mSameFieldOrder; } }
+private static TypesOfMessages.Errors.PartialFieldOrderClass mPartialFieldOrder = new TypesOfMessages.Errors.PartialFieldOrderClass();
+public static TypesOfMessages.Errors.PartialFieldOrderClass PartialFieldOrder
+{ get { return  mPartialFieldOrder; } }
 private static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass mMissingFieldArrayLenghtInNotLastField = new TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass();
 public static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass MissingFieldArrayLenghtInNotLastField
 { get { return  mMissingFieldArrayLenghtInNotLastField; } }
@@ -271,6 +277,49 @@ public NullRecordClassClass(): base(@"The record type can't be null") {}
     protected override string GenerateText() 
     {
         var res = SourceText;
+        return res;
+    }
+
+
+}public  partial class PartialFieldOrderClass: MessageBase
+{
+
+public PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.") {}
+ private string mFieldName = null;
+ public PartialFieldOrderClass FieldName(string value)
+{
+    mFieldName = value;
+    return this;
+}
+    protected override string GenerateText() 
+    {
+        var res = SourceText;
+        res = StringHelper.ReplaceIgnoringCase(res, "$FieldName$", mFieldName);
+        return res;
+    }
+
+
+}public  partial class SameFieldOrderClass: MessageBase
+{
+
+public SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values") {}
+ private string mFieldName1 = null;
+ public SameFieldOrderClass FieldName1(string value)
+{
+    mFieldName1 = value;
+    return this;
+}
+ private string mFieldName2 = null;
+ public SameFieldOrderClass FieldName2(string value)
+{
+    mFieldName2 = value;
+    return this;
+}
+    protected override string GenerateText() 
+    {
+        var res = SourceText;
+        res = StringHelper.ReplaceIgnoringCase(res, "$FieldName1$", mFieldName1);
+        res = StringHelper.ReplaceIgnoringCase(res, "$FieldName2$", mFieldName2);
         return res;
     }
 

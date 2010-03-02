@@ -209,7 +209,7 @@ namespace FileHelpers
 
                         if (skip == false)
                         {
-                            object record = mRecordInfo.StringToRecord(line, values);
+                            object record = mRecordInfo.Operations.StringToRecord(line, values);
 
 #if !MINI
 						skip = OnAfterReadRecord(currentLine, (T) record, e.RecordLineChanged);
@@ -223,7 +223,7 @@ namespace FileHelpers
                                 if (dt == null)
                                     resArray.Add(record);
                                 else
-                                    dt.Rows.Add(mRecordInfo.RecordToValues(record));
+                                    dt.Rows.Add(mRecordInfo.Operations.RecordToValues(record));
 #endif
                             }
                         }
@@ -391,7 +391,7 @@ namespace FileHelpers
 
 					if (skip == false)
 					{
-						currentLine = mRecordInfo.RecordToString(rec);
+                        currentLine = mRecordInfo.Operations.RecordToString(rec);
 						#if !MINI
 						currentLine = OnAfterWriteRecord(currentLine, rec);
 						#endif
@@ -560,7 +560,7 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStreamAsDT(TextReader reader, int maxRecords)
 		{
-			DataTable dt = mRecordInfo.CreateEmptyDataTable();
+            DataTable dt = mRecordInfo.Operations.CreateEmptyDataTable();
 			dt.BeginLoadData();
 			ReadStream(reader, maxRecords, dt);
 			dt.EndLoadData();

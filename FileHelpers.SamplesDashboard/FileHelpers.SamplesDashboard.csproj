@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\FileHelpers\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="CategoryTreeNode.cs" />
     <Compile Include="DemoFiles.cs" />
     <Compile Include="Demos\DemoFactory.cs" />

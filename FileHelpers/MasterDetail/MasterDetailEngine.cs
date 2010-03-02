@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
@@ -74,7 +75,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = Container.Resolve<IRecordInfo>(mMasterType);
+            mMasterInfo = RecordInfo.Resolve(mMasterType); // Container.Resolve<IRecordInfo>(mMasterType);
             mRecordSelector = recordSelector;
         }
 
@@ -90,7 +91,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = Container.Resolve<IRecordInfo>(mMasterType);
+            mMasterInfo = RecordInfo.Resolve(mMasterType);
 
             MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || mRecordInfo.IgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
@@ -346,7 +347,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
-                            M lastMaster = (M)mMasterInfo.StringToRecord(line, valuesMaster);
+                                M lastMaster = (M)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
 #endif
 
                                 if (lastMaster != null)
@@ -358,7 +359,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-                            D lastChild = (D)mRecordInfo.StringToRecord(line, valuesDetail);
+                                D lastChild = (D)mRecordInfo.Operations.StringToRecord(line, valuesDetail);
 #endif
 
                                 if (lastChild != null)
@@ -553,13 +554,13 @@ namespace FileHelpers.MasterDetail
                     OnProgress(new ProgressEventArgs(recIndex + 1, max));
 #endif
 
-                    currentLine = mMasterInfo.RecordToString(rec.mMaster);
+                    currentLine = mMasterInfo.Operations.RecordToString(rec.mMaster);
                     writer.WriteLine(currentLine);
 
                     if (rec.mDetails != null)
                         for (int d = 0; d < rec.mDetails.Length; d++)
                         {
-                            currentLine = mRecordInfo.RecordToString(rec.mDetails[d]);
+                            currentLine = mRecordInfo.Operations.RecordToString(rec.mDetails[d]);
                             writer.WriteLine(currentLine);
                         }
                 }
