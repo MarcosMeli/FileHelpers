@@ -7,9 +7,7 @@ namespace FileHelpers
     {
         CreateObjectDelegate CreateRecordHandler { get; }
 
-        T StringToRecord<T>(LineInfo line, object[] values) 
-            where T : class;
-
+        object StringToRecord(LineInfo line, object[] values);
         string RecordToString(object record);
         string RecordValuesToString(object[] recordValues);
 

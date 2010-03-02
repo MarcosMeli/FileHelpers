@@ -64,6 +64,8 @@ namespace FileHelpers
     {
         
 
+                    private bool mObjectEngine;
+
 		#region "  Constructor  "
 
 
@@ -78,17 +80,20 @@ namespace FileHelpers
 		public FileHelperEngine(Encoding encoding) 
 			: base(typeof(T), encoding)
 		{
+		    mObjectEngine = typeof (T) == typeof (object);
 		}
 
         protected FileHelperEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
+            mObjectEngine = typeof(T) == typeof(object);
         }
 		
 
 		internal FileHelperEngine(RecordInfo ri)
 			: base(ri)
 		{
+            mObjectEngine = typeof(T) == typeof(object);
 		}
 
 
@@ -152,13 +157,27 @@ namespace FileHelpers
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T[] ReadStream(TextReader reader, int maxRecords)
 		{
-			return ReadStreamAsList(reader, maxRecords, null).ToArray();
+            var result = ReadStreamAsList(reader, maxRecords, null);
+
+            if (mObjectEngine)
+            {
+                return (T[])((ArrayList)result).ToArray(mRecordInfo.RecordType);
+            }
+            else
+                return ((List<T>)result).ToArray();
 		}
 
 
         private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
         {
-            return ReadStreamAsList(reader, maxRecords, dt).ToArray();
+            var result = ReadStreamAsList(reader, maxRecords, dt);
+
+            if (mObjectEngine)
+            {
+                return (T[]) ((ArrayList) result).ToArray(mRecordInfo.RecordType);
+            }
+            else
+                return ((List<T>)result).ToArray();
         }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
@@ -166,11 +185,23 @@ namespace FileHelpers
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public List<T> ReadStreamAsList(TextReader reader, int maxRecords)
 		{
-			return ReadStreamAsList(reader, maxRecords, null);
+            var result = ReadStreamAsList(reader, maxRecords, null);
+            
+            if (mObjectEngine)
+            {
+                var res = new List<T>(result.Count);
+                for (int i = 0; i < result.Count; i++)
+                {
+                    res.Add((T) result[i]);
+                }
+                return res;
+            }
+            else
+                return (List<T>)result;
 		}
 
 #if !MINI
-		private List<T> ReadStreamAsList(TextReader reader, int maxRecords, DataTable dt)
+		private IList ReadStreamAsList(TextReader reader, int maxRecords, DataTable dt)
         {
 #endif
             if (reader == null)
@@ -181,7 +212,13 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            List<T> resArray = new List<T>();
+		    IList result;
+
+            if (mObjectEngine)
+                result = new ArrayList();
+            else
+                result = new List<T>();
+
             int currentRecord = 0;
 
             using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
@@ -238,7 +275,7 @@ namespace FileHelpers
 
                         if (skip == false)
                         {
-                            T record = mRecordInfo.Operations.StringToRecord<T>(line, values);
+                            T record = (T) mRecordInfo.Operations.StringToRecord(line, values);
 
 #if !MINI
 						skip = OnAfterReadRecord(currentLine, (T) record, e.RecordLineChanged);
@@ -250,7 +287,7 @@ namespace FileHelpers
 								resArray.Add(record);
 #else
                                 if (dt == null)
-                                    resArray.Add(record);
+                                    result.Add(record);
                                 else
                                     dt.Rows.Add(mRecordInfo.Operations.RecordToValues(record));
 #endif
@@ -296,7 +333,7 @@ namespace FileHelpers
                 }
             }
 
-			return resArray;
+		    return result;
         }
 
         #endregion

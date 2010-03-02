@@ -280,7 +280,7 @@ namespace FileHelpers
 #endif
                         if (skip == false)
                         {
-                            mLastRecord = mRecordInfo.Operations.StringToRecord<T>(line, mLastRecordValues);
+                            mLastRecord = (T)mRecordInfo.Operations.StringToRecord(line, mLastRecordValues);
 
 #if ! MINI
 
