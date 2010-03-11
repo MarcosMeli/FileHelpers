@@ -37,6 +37,7 @@ namespace FileHelpers
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="recordType">The Type of the record class</param>
         /// <param name="encoding">The Encoding used by the engine.</param>
+        /// 
         public FileHelperEngine(Type recordType, Encoding encoding)
 			: base(recordType, encoding)
         {

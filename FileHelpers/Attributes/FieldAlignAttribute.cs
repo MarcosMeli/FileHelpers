@@ -20,7 +20,7 @@ namespace FileHelpers
 		{
 		}
 
-		/// <summary>You can indicate the align char.</summary>
+		/// <summary>You can indicate the align character.</summary>
 		/// <param name="align">The position of the alignment.</param>
 		/// <param name="alignChar">The character used to align.</param>
 		public FieldAlignAttribute(AlignMode align, char alignChar)

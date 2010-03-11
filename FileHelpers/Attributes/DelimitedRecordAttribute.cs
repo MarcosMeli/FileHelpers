@@ -21,7 +21,7 @@ namespace FileHelpers
 		    if (Separator != String.Empty)
 			    this.Separator = delimiter;
     		else
-	    		throw new ArgumentException("sep debe ser <> \"\"");
+	    		throw new ArgumentException("Given delimiter cannot be <> \"\"","delimiter");
 	    }
 	}
 }

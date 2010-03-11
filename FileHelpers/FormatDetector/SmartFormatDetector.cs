@@ -6,13 +6,21 @@ using FileHelpers.Dynamic;
 
 namespace FileHelpers.Detection
 {
-    /// <summary>Utility class used to auto detect the record format, the number of fields, the type, etc.</summary>
+    /// <summary>
+    /// Utility class used to auto detect the record format,
+    /// the number of fields, the type, etc.
+    /// </summary>
     public sealed class SmartFormatDetector
     {
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SmartFormatDetector"/> class.
+        /// </summary>
         public SmartFormatDetector()
         {
             QuotedChar = '"';
         }
+
         #region "  Constants  "
 
         private const int MIN_SAMPLE_DATA = 15;
@@ -25,7 +33,8 @@ namespace FileHelpers.Detection
         private FormatHint mFormatHint;
 
         /// <summary>
-        /// Provides a suggestion to the <see cref="SmartFormatDetector"/> about the records in the file
+        /// Provides a suggestion to the <see cref="SmartFormatDetector"/> 
+        /// about the records in the file
         /// </summary>
         public FormatHint FormatHint
         {
@@ -56,10 +65,15 @@ namespace FileHelpers.Detection
 
         private double mFixedLengthDeviationTolerance = 0.01;
         
-        ///<summary>Indicates if the sample file has headers<summary>
+        ///<summary>
+        ///Indicates if the sample file has headers
+        ///</summary>
         public bool FileHasHeaders { get; set; }
 
-        /// <summary>Used to calculate when a file has fixed length records. Between 0.0 - 1.0 (Default 0.01)</summary>
+        /// <summary>
+        /// Used to calculate when a file has fixed length records. 
+        /// Between 0.0 - 1.0 (Default 0.01)
+        /// </summary>
         public double FixedLengthDeviationTolerance
         {
             get { return mFixedLengthDeviationTolerance; }
@@ -535,6 +549,10 @@ namespace FileHelpers.Detection
             return res;
         }
 
+        /// <summary>
+        /// Gets or sets the quoted char.
+        /// </summary>
+        /// <value>The quoted char.</value>
         protected char QuotedChar { get; set; }
 
         private double CalculateAverageLineWidth(string[][] data)

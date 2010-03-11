@@ -6,10 +6,10 @@ using System.ComponentModel;
 
 namespace FileHelpers.Options
 {
-	/// <summary>
-	/// This class allows you to set some options of the records but at runtime.
-	/// With this options the library is more flexible than never.
-	/// </summary>
+    /// <summary>
+    /// This class allows you to set some options of the records at runtime.
+    /// With these options the library is now more flexible than ever.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Advanced)]
 	public abstract class RecordOptions
 	{
@@ -24,7 +24,9 @@ namespace FileHelpers.Options
 			mIgnoreCommentInfo = new IgnoreCommentInfo(info);
 		}
 
-		/// <summary>The number of fields of the record type.</summary>
+        /// <summary>
+        /// The number of fields of the record type.<
+        /// </summary>
 		public int FieldCount
 		{
 			get {return mRecordInfo.FieldCount; }
@@ -43,7 +45,10 @@ namespace FileHelpers.Options
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string[] mFieldNames;
 
-        /// <summary>Returns an string array with the fields names. (You mustn´t change the values of the array, clone it first if you need it)</summary>
+        /// <summary>
+        /// Returns an string array with the fields names. 
+        /// Note : Do NOT change the values of the array, clone it first if needed
+        /// </summary>
         /// <returns>An string array with the fields names.</returns>
         public string[] FieldsNames
         {
@@ -65,7 +70,10 @@ namespace FileHelpers.Options
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Type[] mFieldTypes;
 
-        /// <summary>Returns a Type[] array with the fields types. (You mustn´t change the values of the array, clone it first if you need it)</summary>
+        /// <summary>
+        /// Returns a Type[] array with the fields types. 
+        /// Note : Do NOT change the values of the array, clone it first if needed
+        /// </summary>
         /// <returns>An Type[] array with the fields types.</returns>
         public Type[] FieldsTypes
         {
@@ -90,8 +98,10 @@ namespace FileHelpers.Options
 //            return mRecordInfo.mFields[index].mFieldInfo.FieldType;
 //        }
 
-        
-		/// <summary>Indicates the number of first lines to be discarded.</summary>
+
+        /// <summary>
+        /// Indicates the number of first lines to be discarded.
+        /// </summary>
 		public int IgnoreFirstLines
 		{
 			get { return mRecordInfo.IgnoreFirst; }
@@ -122,8 +132,8 @@ namespace FileHelpers.Options
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordConditionInfo mRecordConditionInfo;
-		
-		/// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+
+        /// <summary>Used to tell the engine which records must be included or excluded while reading.</summary>
         public RecordConditionInfo RecordCondition
         {
             get { return mRecordConditionInfo; }
@@ -138,8 +148,8 @@ namespace FileHelpers.Options
 		{
 			get { return mIgnoreCommentInfo; }
 		}
- 
-        /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
+
+        /// <summary>Used to tell the engine which records must be included or excluded while reading.</summary>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class RecordConditionInfo
         {
@@ -183,7 +193,7 @@ namespace FileHelpers.Options
 
 			/// <summary>
 			/// <para>Indicates that the engine must ignore the lines with this comment marker.</para>
-			/// <para>An emty string or null indicates that the engine dont look for comments</para>
+			/// <para>An empty string or null indicates that the engine doesn't look for comments</para>
 			/// </summary>
 			public string CommentMarker
 			{

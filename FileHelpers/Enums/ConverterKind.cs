@@ -2,12 +2,15 @@
 
 namespace FileHelpers
 {
-	/// <summary>Indicates the convertion used in the <see cref="T:FileHelpers.FieldConverterAttribute"/>.</summary>
+	/// <summary>
+    /// Indicates the Convertion used in the <see cref="T:FileHelpers.FieldConverterAttribute"/>.
+    /// </summary>
 	public enum ConverterKind
 	{
 
 		/// <summary>Null Converter.</summary>
 		None = 0,
+
 		/// <summary>
 		/// <para>Convert from/to <b>Date</b> values.</para>
 		/// <para>Params: arg1 is the <b>string</b> with the date format.</para>
@@ -25,6 +28,7 @@ namespace FileHelpers
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
         /// </summary>
         Byte,
+        
         /// <summary>
         /// <para>Convert from/to <b>Int16 or short</b> values.</para>
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
@@ -45,6 +49,7 @@ namespace FileHelpers
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
         /// </summary>
         Decimal,
+        
         /// <summary>
         /// <para>Convert from/to <b>Double</b> values.</para>
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
@@ -82,6 +87,7 @@ namespace FileHelpers
         /// <para>Params: arg3 is a <b>string</b> with another valid read format.</para>
         /// </summary>
         DateMultiFormat,
+        
         // Added by Alexander Obolonkov 2007.11.08
         /// <summary>
         /// <para>Convert from/to <b>Char</b> values.</para>
@@ -98,6 +104,5 @@ namespace FileHelpers
         /// <para>   "P" ->  (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) </para>
         /// </summary>
         Guid
- 
-	}
+ 	}
 }

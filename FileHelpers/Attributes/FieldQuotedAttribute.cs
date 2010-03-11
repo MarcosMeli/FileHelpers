@@ -5,7 +5,10 @@ using System.ComponentModel;
 
 namespace FileHelpers
 {
-	/// <summary>Indicates that the field must be read and written like a Quoted String. (by default "")</summary>
+	/// <summary>
+    /// Indicates that the field must be read and written like a Quoted String. 
+    /// (by default "")
+    /// </summary>
     /// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
     /// <seealso href="attributes.html">Attributes List</seealso>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
@@ -19,18 +22,26 @@ namespace FileHelpers
 
 		internal MultilineMode QuoteMultiline = MultilineMode.AllowForBoth;
 
-		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
+		/// <summary>
+        /// Indicates that the field must be read and written like a Quoted String with double quotes.
+        /// </summary>
 		public FieldQuotedAttribute() : this('\"')
 		{
 		}
 
-		/// <summary>Indicates that the field must be read and written like a Quoted String with the specified char.</summary>
+		/// <summary>
+        /// Indicates that the field must be read and written like a Quoted String
+        /// with the specified char.
+        /// </summary>
 		/// <param name="quoteChar">The char used to quote the string.</param>
 		public FieldQuotedAttribute(char quoteChar):this(quoteChar, QuoteMode.OptionalForRead, MultilineMode.AllowForBoth) 
 		{
 		}
 
-		/// <summary>Indicates that the field must be read and written like a "Quoted String"  (that can be optional depending of the mode).</summary>
+		/// <summary>
+        /// Indicates that the field must be read and written like a "Quoted String"
+        /// (that can be optional depending of the mode).
+        /// </summary>
 		/// <param name="mode">Indicates if the handling of optionals in the quoted field.</param>
 		public FieldQuotedAttribute(QuoteMode mode) : this('\"', mode)
 		{}

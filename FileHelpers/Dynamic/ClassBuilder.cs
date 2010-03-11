@@ -212,7 +212,7 @@ namespace FileHelpers.Dynamic
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
         /// <param name="className">The name of the class to return.</param>
-        /// <param name="lang">The languaje used to compile the class.</param>
+        /// <param name="lang">The language used to compile the class.</param>
         /// <returns>The compiled class.</returns>
         public static Type ClassFromSourceFile(string filename, string className, NetLanguage lang)
         {
@@ -226,7 +226,7 @@ namespace FileHelpers.Dynamic
 
 
         /// <summary>
-        /// Create a class from a encripted source file.
+        /// Create a class from a encrypted source file.
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
         /// <returns>The compiled class.</returns>
@@ -236,10 +236,10 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Create a class from a encripted source file.
+        /// Create a class from a encrypted source file.
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
-        /// <param name="lang">The languaje used to compile the class.</param>
+        /// <param name="lang">The language used to compile the class.</param>
         /// <returns>The compiled class.</returns>
         public static Type ClassFromBinaryFile(string filename, NetLanguage lang)
         {
@@ -247,10 +247,10 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Create a class from a encripted source file.
+        /// Create a class from a encrypted source file.
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
-        /// <param name="lang">The languaje used to compile the class.</param>
+        /// <param name="lang">The language used to compile the class.</param>
         /// <param name="className">The name of the class to return.</param>
         /// <returns>The compiled class.</returns>
         public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang)
@@ -267,7 +267,8 @@ namespace FileHelpers.Dynamic
 
 
         /// <summary>
-        /// Create a class from a Xml file generated with the Wizard or saved using the SaveToXml Method.
+        /// Create a class from a Xml file generated with the Wizard or 
+        /// saved using the SaveToXml Method.
         /// </summary>
         /// <param name="filename">The filename with the Xml definition.</param>
         /// <returns>The compiled class.</returns>
@@ -278,7 +279,7 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Encript the class source code and write it to a file.
+        /// Encrypt the class source code and write it to a file.
         /// </summary>
         /// <param name="filename">The file name to write to.</param>
         /// <param name="classSource">The source code for the class.</param>
@@ -314,14 +315,14 @@ namespace FileHelpers.Dynamic
             writer.Close();
         }
 
-        /// <summary>Write the ENCRIPTED source code of the current class to a file. (In C#)</summary>
+        /// <summary>Write the ENCRYPTED source code of the current class to a file. (In C#)</summary>
         /// <param name="filename">The file to write to.</param>
         public void SaveToBinaryFile(string filename)
         {
             SaveToBinaryFile(filename, NetLanguage.CSharp);
         }
 
-        /// <summary>Write the ENCRIPTED source code of the current class to a file. (In C#)</summary>
+        /// <summary>Write the ENCRYPTED source code of the current class to a file. (In C#)</summary>
         /// <param name="filename">The file to write to.</param>
         /// <param name="lang">The .NET Language used to write the source code.</param>
         public void SaveToBinaryFile(string filename, NetLanguage lang)
@@ -475,10 +476,10 @@ namespace FileHelpers.Dynamic
 
 
         /// <summary>
-        /// Returns the ENCRIPTED code for the current class in the specified language.
+        /// Returns the ENCRYPTED code for the current class in the specified language.
         /// </summary>
         /// <param name="lang">The language for the return code.</param>
-        /// <returns>The ENCRIPTED code for the class that are currently building.</returns>
+        /// <returns>The ENCRYPTED code for the class that are currently building.</returns>
         public string GetClassBinaryCode(NetLanguage lang)
         {
             return Encrypt(GetClassSourceCode(lang), "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");

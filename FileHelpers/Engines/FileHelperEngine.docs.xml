@@ -3,7 +3,9 @@
 	<FileHelperEngine>
 		<summary>
 			<para><b>One of the main classes of the library.</b></para>
-			<para>This engine is responsable to Read/Write the records <b>at once</b> from/to files or streams.</para>
+			<para>This engine is responsible to Read/Write the records <b>at once</b> 
+            from/to files or streams.
+         </para>
 			<para>You can use the <see cref="DelimitedFileEngine"/> or the <see cref="FixedFileEngine"/> if you need to change some options at runtime</para>
 		</summary>
 		<remarks>

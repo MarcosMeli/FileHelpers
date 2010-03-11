@@ -11,7 +11,7 @@ namespace FileHelpers
 		public EnumConverter(Type sourceEnum)
 		{
 			if (sourceEnum.IsEnum == false)
-				throw new BadUsageException("The sourceType must be an Enum and is of type " + sourceEnum.Name);
+				throw new BadUsageException("The Input sourceType must be an Enum but is of type " + sourceEnum.Name);
 
 			mEnumType = sourceEnum;
 		}
@@ -24,7 +24,7 @@ namespace FileHelpers
 			}
 			catch (ArgumentException)
 			{
-				throw new ConvertException(from, mEnumType, "The value don't is on the Enum.");
+				throw new ConvertException(from, mEnumType, "The value given is not present in the Enum.");
 			}
 		}
 		

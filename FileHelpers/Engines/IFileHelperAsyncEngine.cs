@@ -16,7 +16,7 @@ namespace FileHelpers
 
         /// <summary>
         /// An array with the values of each field of the current record
-        /// </summary>
+        /// </summary>D:\
         object[] LastRecordValues { get; }
 
         /// <summary>Allows to change some record layout options at runtime</summary>

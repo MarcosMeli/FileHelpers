@@ -5,7 +5,7 @@ using System;
 namespace FileHelpers
 {
 
-    /// <summary>Allow to declaratively set what records must be included or excluded when reading.</summary>
+    /// <summary>Allow to declaratively set what records must be included or excluded while reading.</summary>
 	/// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
 	/// <seealso href="attributes.html">Attributes list</seealso>
 	/// <seealso href="quick_start.html">Quick start guide</seealso>

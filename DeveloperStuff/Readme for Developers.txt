@@ -3,7 +3,7 @@
    THANKS !!
 ------------------
 
-  Hi to all the developers that help to make this library better !!!
+  A big shout out to all the developers that helped make this library  much better !!!
 
   I can´t do anything without your help !!
 
@@ -18,7 +18,7 @@
 
   FileHelpers Forums:
    
-         http://www.filehelpers.com/forums/
+        http://www.filehelpers.com/forums/
     
 
 -------------------------------
@@ -35,12 +35,12 @@
    Contact and how to help
 -------------------------------
 
-We love to hear feedback so feel free to contact us at 
+We would love to hear your feedback so feel free to contact us at 
 
    feedback@filehelpers.com
    
 and tell us what u think of the lib
-if you want to help, drop us a line with the parts of the library in wich you want to contribute.
+If you want to help, drop us a line with the parts of the library where you want to contribute.
 
 ---
 Cheers

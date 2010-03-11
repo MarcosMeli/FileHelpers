@@ -8,7 +8,10 @@ using System.Text;
 namespace FileHelpers
 {
 
-    /// <summary>Base class for all Field Types. Implements all the basic functionality of a field in a typed file.</summary>
+    /// <summary>
+    /// Base class for all Field Types. 
+    /// Implements all the basic functionality of a field in a typed file.
+    /// </summary>
     internal abstract class FieldBase
     {
 

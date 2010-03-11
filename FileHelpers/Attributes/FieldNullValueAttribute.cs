@@ -4,7 +4,7 @@ using System;
 
 namespace FileHelpers
 {
-	/// <summary>Indicates the value to assign to the field in the case of find a "NULL".</summary>
+	/// <summary>Indicates the value to assign to the field in the case of a NULL value.</summary>
     /// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
     /// <seealso href="attributes.html">Attributes List</seealso>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
@@ -16,8 +16,10 @@ namespace FileHelpers
 //		internal bool NullValueOnWrite = false;
 
 		
-		/// <summary>Indicates directly the null value.</summary>
-		/// <param name="nullValue">The value to assign in the "NULL" case.</param>
+		/// <summary>
+        /// Indicates directly the null value.
+        /// </summary>
+        /// <param name="nullValue">The value to assign the case of a NULL value.</param>
 		public FieldNullValueAttribute(object nullValue)
 		{
 			NullValue = nullValue;

@@ -2,60 +2,62 @@
 
 using System;
 using System.ComponentModel;
-using System.Text;
 using System.Diagnostics;
+using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
 //using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {
-    /// <summary>Base class for the two engines of the library: <see cref="FileHelperEngine"/> and <see cref="FileHelperAsyncEngine"/></summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public abstract class EngineBase 
-        //#if ! MINI
-        //:Component
-        //#endif
-	{
+    /// <summary>Abstact Base class for the two engines of the library: 
+    /// <see cref="FileHelperEngine"/> and 
+    /// <see cref="FileHelperAsyncEngine"/></summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class EngineBase
+    //#if ! MINI
+    //:Component
+    //#endif
+    {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         
         internal readonly IRecordInfo mRecordInfo;
 
-		#region "  Constructor  "
+        #region "  Constructor  "
 
 		internal EngineBase(Type recordType):this(recordType, Encoding.Default)
 		{}
 
-		internal EngineBase(Type recordType, Encoding encoding)
-		{
-			if (recordType == null)
-				throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
+        internal EngineBase(Type recordType, Encoding encoding)
+        {
+            if (recordType == null)
+                throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
 
             if (recordType.IsValueType)
                 throw new BadUsageException(Messages.Errors.StructRecordClass
                                                 .RecordType(recordType.Name)
                                                 .Text);
 
-			mRecordType = recordType;
-		    mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
-		    mEncoding = encoding;
+            mRecordType = recordType;
+            mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
+            mEncoding = encoding;
 
             CreateRecordOptions();
         }
 
-		internal EngineBase(RecordInfo ri)
-		{
-			mRecordType = ri.RecordType;
-			mRecordInfo = ri;
+        internal EngineBase(RecordInfo ri)
+        {
+            mRecordType = ri.RecordType;
+            mRecordInfo = ri;
 
             CreateRecordOptions();
 
-		}
+        }
 
-		
-		#endregion
 
-		#region "  LineNumber  "
+        #endregion
+
+        #region "  LineNumber  "
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -63,115 +65,125 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal int mTotalRecords;
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
-		public int LineNumber
-		{
-			get { return mLineNumber; }
-		}
+        /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
+        public int LineNumber
+        {
+            get { return mLineNumber; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  TotalRecords  "
+        #region "  TotalRecords  "
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/TotalRecords/*'/>
-		public int TotalRecords
-		{
-			get { return mTotalRecords; }
-		}
+        /// <include file='FileHelperEngine.docs.xml' path='doc/TotalRecords/*'/>
+        public int TotalRecords
+        {
+            get { return mTotalRecords; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  RecordType  "
+        #region "  RecordType  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Type mRecordType;
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
-		public Type RecordType
-		{
-			get { return mRecordType; }
-		}
+        /// <include file='FileHelperEngine.docs.xml' path='doc/RecordType/*'/>
+        public Type RecordType
+        {
+            get { return mRecordType; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  HeaderText  "
+        #region "  HeaderText  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal string mHeaderText = String.Empty;
 
-		/// <summary>The read header in the last read operation. If any.</summary>
-		public string HeaderText
-		{
-			get { return mHeaderText; }
-			set { mHeaderText = value; }
-		}
+        /// <summary>The Read Header in the last Read operation. If any.</summary>
+        public string HeaderText
+        {
+            get { return mHeaderText; }
+            set { mHeaderText = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  FooterText"
+        #region "  FooterText"
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal string mFooterText = String.Empty;
 
-		/// <summary>The read footer in the last read operation. If any.</summary>
-		public string FooterText
-		{
-			get { return mFooterText; }
-			set { mFooterText = value; }
-		}
+        /// <summary>The Read Footer in the last Read operation. If any.</summary>
+        public string FooterText
+        {
+            get { return mFooterText; }
+            set { mFooterText = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  Encoding  "
+        #region "  Encoding  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal Encoding mEncoding = Encoding.Default;
 
-        /// <summary>The encoding to Read and Write the streams. Default is the system's current ANSI code page.</summary>
-		/// <value>Default is the system's current ANSI code page.</value>
-		public Encoding Encoding
-		{
-			get { return mEncoding; }
-			set { mEncoding = value; }
-		}
+        /// <summary>
+        /// The encoding to Read and Write the streams. 
+        /// Default is the system's current ANSI code page.
+        /// </summary>
+        /// <value>Default is the system's current ANSI code page.</value>
+        public Encoding Encoding
+        {
+            get { return mEncoding; }
+            set { mEncoding = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "  ErrorManager"
+        #region "  ErrorManager"
 
         /// <summary>This is a common class that manage the errors of the library.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         protected ErrorManager mErrorManager = new ErrorManager();
 
-		/// <summary>This is a common class that manage the errors of the library.</summary>
-		/// <remarks>You can, for example, get the errors, their number, Save them to a file, etc.</remarks>
-		public ErrorManager ErrorManager
-		{
-			get { return mErrorManager; }
-		}
+        /// <summary>This is a common class that manages the errors of the library.</summary>
+        /// <remarks>
+        ///   You can find complete infomation about the errors encountered while processing.
+        ///   For example, you can get the errors, their number and save them to a file, etc.
+        ///   </remarks>
+        ///   <seealso cref="FileHelpers.ErrorManager"/>
+        public ErrorManager ErrorManager
+        {
+            get { return mErrorManager; }
+        }
 
 
-	    /// <summary>Indicates the behavior of the engine when it found an error. (shortcut for ErrorManager.ErrorMode)</summary>
-	    public ErrorMode ErrorMode
-	    {
-	        get { return mErrorManager.ErrorMode; }
-	        set { mErrorManager.ErrorMode = value; }
-	    }
+        /// <summary>
+        /// Indicates the behavior of the engine when it finds an error.
+        /// {Shortcut for <seealso cref="FileHelpers.ErrorManager.ErrorMode"/>)
+        /// </summary>
+        public ErrorMode ErrorMode
+        {
+            get { return mErrorManager.ErrorMode; }
+            set { mErrorManager.ErrorMode = value; }
+        }
 
-	    #endregion
+        #endregion
 
-		#region "  ResetFields  "
+        #region "  ResetFields  "
 
-		internal void ResetFields()
-		{
-			mLineNumber = 0;
-			mErrorManager.ClearErrors();
-			mTotalRecords = 0;
-		}
+        internal void ResetFields()
+        {
+            mLineNumber = 0;
+            mErrorManager.ClearErrors();
+            mTotalRecords = 0;
+        }
 
-		#endregion
+        #endregion
 
-		#if ! MINI
+#if ! MINI
 
         /// <summary>Called to notify progress.</summary>
         public event EventHandler<ProgressEventArgs> Progress;
@@ -199,11 +211,11 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Allows to change some record layout options at runtime
+        /// Allows you to change some record layout options at runtime
         /// </summary>
         public RecordOptions Options { get; private set; }
 
 
-	}
+    }
 }
 

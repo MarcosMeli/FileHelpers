@@ -6,10 +6,16 @@ using System.Text;
 
 namespace FileHelpers
 {
-    /// <summary>Class that provides static methods that returns a default <see cref="ConverterBase">Converter</see> to the basic types.</summary>
-    /// <remarks>Used by the <see cref="FileHelpers.FieldConverterAttribute"/>.</remarks>
+    /// <summary>
+    /// Class that provides static methods that returns a default 
+    /// <see cref="ConverterBase">Converter</see> to the basic types.
+    /// </summary>
+    /// <remarks>
+    ///     Used by the <see cref="FileHelpers.FieldConverterAttribute"/>.
+    /// </remarks>
     internal static class ConvertHelpers
     {
+        
         private const string DefaultDecimalSep = ".";
 
         
@@ -30,7 +36,7 @@ namespace FileHelpers
                 ci.NumberFormat.NumberGroupSeparator = ".";
             }
             else
-                throw new BadUsageException("You can only use '.' or ',' as decimal or grup separators");
+                throw new BadUsageException("You can only use '.' or ',' as decimal or group separators");
 
             return ci;
         }
@@ -115,7 +121,7 @@ namespace FileHelpers
                 return new EnumConverter(fieldType);
 #endif
 
-            throw new BadUsageException("The field: '" + fieldName + "' has the type: " + fieldType.Name + " that is not a system type, so this field need a CustomConverter (check the docs for more info).");
+            throw new BadUsageException("The field: '" + fieldName + "' has the type: " + fieldType.Name + " that is not a system type, so this field need a CustomConverter ( Please Check the docs for more Info).");
         }
 
         #endregion
@@ -374,7 +380,7 @@ namespace FileHelpers
             public DateTimeConverter(string format)
             {
                 if (format == null || format == String.Empty)
-                    throw new BadUsageException("The format of the DateTime Converter can be null or empty.");
+                    throw new BadUsageException("The format of the DateTime Converter cannot be null or empty.");
 
                 try
                 {
@@ -402,13 +408,13 @@ namespace FileHelpers
                     string extra;
 
                     if (from.Length > mFormat.Length)
-                        extra = " There are more chars than in the format string: '" + mFormat + "'";
+                        extra = " There are more chars in the Input String than in the Format string: '" + mFormat + "'";
                     else if (from.Length < mFormat.Length)
-                        extra = " There are less chars than in the format string: '" + mFormat + "'";
+                        extra = " There are less chars in the Input String than in the Format string: '" + mFormat + "'";
                     else
                         extra = " Using the format: '" + mFormat + "'";
 
-
+                    
                     throw new ConvertException(from, typeof(DateTime), extra);
                 }
                 return val;
@@ -474,7 +480,7 @@ namespace FileHelpers
                 catch
                 {
                     string extra;
-                    extra = " Not match any of the formats: " + CreateFormats();
+                    extra = " Not matching any of the given formats: " + CreateFormats();
                     throw new ConvertException(from, typeof(DateTime), extra);
                 }
                 return val;
@@ -551,8 +557,8 @@ namespace FileHelpers
                         case "n":
                         case "f":
 
-                        // I dont thing that this case is posible without overriding the CustomNullHandling
-                        // and maybe is not good to allow empty fields to be false
+                        // I dont thing that this case is possible without overriding the CustomNullHandling
+                        // and maybe It is not good to allow empty fields to be false
                         case "":
                             val = false;
                             break;
@@ -563,7 +569,7 @@ namespace FileHelpers
                 }
                 else
                 {
-                    // The trim in the or part is for performance enhace and dont do useless trims
+                    // The trim in the or part is for performance enhancement as we dont want to unnecessarily trim.
                     if (testTo == mTrueStringLower || testTo.Trim() == mTrueStringLower)
                         val = true;
                     else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)

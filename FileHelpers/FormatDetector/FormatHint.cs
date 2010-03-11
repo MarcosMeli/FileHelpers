@@ -1,7 +1,8 @@
 namespace FileHelpers.Detection
 {
     /// <summary>
-    /// Provides a suggestion to the <see cref="SmartFormatDetector"/> about the records in the file
+    /// Provides a suggestion to the <see cref="SmartFormatDetector"/> 
+    /// about the records in the file
     /// </summary>
     public enum FormatHint
     {
