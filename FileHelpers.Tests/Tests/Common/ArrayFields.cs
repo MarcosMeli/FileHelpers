@@ -117,6 +117,13 @@ namespace FileHelpers.Tests.CommonTests
 			SimpleComparer(res);
 		}
 
+        [Test]
+        [Ignore]
+        public void ArrayFieldsComplex()
+        {
+            var engine = new FileHelperEngine<ArrayComplexType>();
+            var res = engine.ReadString("");
+        }
 
 		[Test]
 		public void ArrayFieldsBad01()
@@ -280,5 +287,24 @@ namespace FileHelpers.Tests.CommonTests
         public string[] Values;
 
     }
+
+
+
+    public class ArrayComplexSubClass
+    {
+        string A;
+        string B;
+        DateTime C;
+    }
+
+    [DelimitedRecord("\t")]
+    public class ArrayComplexType
+    {
+        public string someOtherInfo;
+        public string maybeAnotherThing;
+        
+        [FieldArrayLength(10)]
+        public ArrayComplexSubClass[] internalClasses;
+    } 
 
 }

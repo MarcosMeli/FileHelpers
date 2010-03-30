@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -174,13 +175,19 @@ namespace FileHelpers
         private static FieldBase[] CreateCoreFields(IList<FieldInfo> fields, TypedRecordAttribute recordAttribute)
         {
             var resFields = new List<FieldBase>();
-            
+
+            var automaticFields = 0;
+            var genericFields = 0;
             for (int i = 0; i < fields.Count; i++)
             {
                 FieldBase currentField = FieldBase.CreateField(fields[i], recordAttribute);
-
                 if (currentField == null) 
                     continue;
+
+                if (currentField.mFieldInfo.IsDefined(typeof(CompilerGeneratedAttribute), false))
+                    automaticFields++;
+                else
+                    genericFields++;
 
                 // Add to the result
                 resFields.Add(currentField);
@@ -190,6 +197,13 @@ namespace FileHelpers
                     CheckForOrderProblems(currentField, resFields);
                 }
 
+            }
+
+            if (automaticFields > 0 && genericFields > 0)
+            {
+                throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
+                    .ClassName(resFields[0].mFieldInfo.DeclaringType.Name)
+                    .Text);
             }
 
             SortFieldsByOrder(resFields);

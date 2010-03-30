@@ -63,6 +63,9 @@ public static TypesOfMessages.Errors.StructRecordClassClass StructRecordClass
 private static TypesOfMessages.Errors.TestQuoteClass mTestQuote = new TypesOfMessages.Errors.TestQuoteClass();
 public static TypesOfMessages.Errors.TestQuoteClass TestQuote
 { get { return  mTestQuote; } }
+private static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass mMixOfStandardAndAutoPropertiesFields = new TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass();
+public static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass MixOfStandardAndAutoPropertiesFields
+{ get { return  mMixOfStandardAndAutoPropertiesFields; } }
 
 
 }
@@ -266,6 +269,24 @@ public MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldNam
     {
         var res = SourceText;
         res = StringHelper.ReplaceIgnoringCase(res, "$FieldName$", mFieldName);
+        return res;
+    }
+
+
+}public  partial class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
+{
+
+public MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.") {}
+ private string mClassName = null;
+ public MixOfStandardAndAutoPropertiesFieldsClass ClassName(string value)
+{
+    mClassName = value;
+    return this;
+}
+    protected override string GenerateText() 
+    {
+        var res = SourceText;
+        res = StringHelper.ReplaceIgnoringCase(res, "$ClassName$", mClassName);
         return res;
     }
 

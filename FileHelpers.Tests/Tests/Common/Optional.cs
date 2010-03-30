@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using FileHelpers;
 using NUnit.Framework;
 
@@ -150,6 +151,15 @@ namespace FileHelpers.Tests.CommonTests
 			Assert.AreEqual(8, res.Length);
 		}
 
+
+        [Test]
+        public void OptionalWithAutoProps()
+        {
+            Assert.Throws<BadUsageException>(() =>
+                                             new FileHelperEngine<OptionalWithAutoPropsType>(),
+            "You must only use all standard fields or all automatic properties, but you can't mix them like in the OptionalWithAutoPropsType class.");
+        }
+
 		[FixedLengthRecord]
 		private class OptionalFixed1
 		{
@@ -296,6 +306,25 @@ namespace FileHelpers.Tests.CommonTests
 			[FieldIgnored()]
 			public string Ignored;
 		}
+
+
+
+        [DelimitedRecord("\t")]
+        public class OptionalWithAutoPropsType
+        {
+         
+            public int TiempoRespuestaInMs { get; set; }
+            
+            [FieldOptional]
+            private string mMetodo;
+
+            public string Metodo
+            {
+                get { return mMetodo; }
+                set { mMetodo = value; }
+            }
+
+        }
 
 	}
 }

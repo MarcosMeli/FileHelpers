@@ -81,5 +81,7 @@
     The Message class also allows to use " in any part of the " text " .
   </TestQuote>
 
-
+  <MixOfStandardAndAutoPropertiesFields>
+    You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.
+    </MixOfStandardAndAutoPropertiesFields>
 </Messages>
