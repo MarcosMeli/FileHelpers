@@ -431,7 +431,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public MasterDetails[] ReadString(string source)
 		{
-			StringReader reader = new StringReader(source);
+			var reader = new InternalStringReader(source);
 			MasterDetails[] res = ReadStream(reader);
 			reader.Close();
 			return res;

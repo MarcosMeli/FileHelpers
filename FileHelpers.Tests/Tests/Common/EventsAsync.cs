@@ -1,14 +1,14 @@
 using System;
 using System.IO;
-using FileHelpers;
+using FileHelpers.Events;
 using NUnit.Framework;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests
 {
 	[TestFixture]
 	public class EventsAsync
 	{
-		FileHelperAsyncEngine engine;
+        FileHelperAsyncEngine<SampleType> engine;
 
 		[Test]
 		public void ReadEvents()
@@ -16,11 +16,11 @@ namespace FileHelpersTests.CommonTests
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperAsyncEngine(typeof (SampleType));
-			engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent);
-			engine.AfterReadRecord += new AfterReadRecordHandler(AfterEvent);
+			engine = new FileHelperAsyncEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadRecordHandler<SampleType>(BeforeEvent);
+            engine.AfterReadRecord += new AfterReadRecordHandler<SampleType>(AfterEvent);
 
-            engine.BeginReadFile(Common.TestPath(@"Good\test1.txt"));
+            engine.BeginReadFile(FileTest.Good.Test1.Path);
 
 		    int count = 0;
             foreach (SampleType t in engine)
@@ -39,10 +39,10 @@ namespace FileHelpersTests.CommonTests
 			before = 0;
 			after = 0;
 
-            engine = new FileHelperAsyncEngine(typeof(SampleType));
+            engine = new FileHelperAsyncEngine<SampleType>();
 
-            engine.BeforeWriteRecord += new BeforeWriteRecordHandler(engine_BeforeWriteRecord);
-			engine.AfterWriteRecord += new AfterWriteRecordHandler(engine_AfterWriteRecord);
+            engine.BeforeWriteRecord += new BeforeWriteRecordHandler<SampleType>(engine_BeforeWriteRecord);
+            engine.AfterWriteRecord += new AfterWriteRecordHandler<SampleType>(engine_AfterWriteRecord);
 
             SampleType[] res = new SampleType[2];
 
@@ -77,10 +77,10 @@ namespace FileHelpersTests.CommonTests
 			before = 0;
 			after = 0;
 
-            engine = new FileHelperAsyncEngine(typeof(SampleType));
-			engine.AfterReadRecord += new AfterReadRecordHandler(AfterEvent2);
+            engine = new FileHelperAsyncEngine<SampleType>();
+            engine.AfterReadRecord += new AfterReadRecordHandler<SampleType>(AfterEvent2);
 
-            engine.BeginReadFile(Common.TestPath(@"Good\test1.txt"));
+            engine.BeginReadFile(FileTest.Good.Test1.Path);
 
 		    int count = 0;
             foreach (SampleType t in engine)
@@ -98,10 +98,10 @@ namespace FileHelpersTests.CommonTests
 			before = 0;
 			after = 0;
 
-            engine = new FileHelperAsyncEngine(typeof(SampleType));
-			engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent2);
+            engine = new FileHelperAsyncEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadRecordHandler<SampleType>(BeforeEvent2);
 
-            engine.BeginReadFile(Common.TestPath(@"Good\test1.txt"));
+            engine.BeginReadFile(FileTest.Good.Test1.Path);
 
             int count = 0;
             foreach (SampleType t in engine)
@@ -119,11 +119,11 @@ namespace FileHelpersTests.CommonTests
 			before = 0;
 			after = 0;
 
-            engine = new FileHelperAsyncEngine(typeof(SampleType));
-			engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent2);
-			engine.AfterReadRecord += new AfterReadRecordHandler(AfterEvent2);
+            engine = new FileHelperAsyncEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadRecordHandler<SampleType>(BeforeEvent2);
+            engine.AfterReadRecord += new AfterReadRecordHandler<SampleType>(AfterEvent2);
 
-            engine.BeginReadFile(Common.TestPath(@"Good\test1.txt"));
+            engine.BeginReadFile(FileTest.Good.Test1.Path);
             int count = 0;
             foreach (SampleType t in engine)
                 count++;
@@ -137,7 +137,7 @@ namespace FileHelpersTests.CommonTests
 		int before = 0;
 		int after = 0;
 
-		private void BeforeEvent(EngineBase sender, BeforeReadRecordEventArgs e)
+		private void BeforeEvent(EngineBase sender, BeforeReadRecordEventArgs<SampleType> e)
 		{
 			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
 				e.SkipThisRecord = true;
@@ -145,28 +145,28 @@ namespace FileHelpersTests.CommonTests
 			before++;
 		}
 
-		private void AfterEvent(EngineBase sender, AfterReadRecordEventArgs e)
+        private void AfterEvent(EngineBase sender, AfterReadRecordEventArgs<SampleType> e)
 		{
 			after++;
 		}
 
-		private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteRecordEventArgs e)
+        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteRecordEventArgs<SampleType> e)
 		{
 			before++;
 		}
 
-		private void engine_AfterWriteRecord(EngineBase sender, AfterWriteRecordEventArgs e)
+        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteRecordEventArgs<SampleType> e)
 		{
 			after++;
 		}
-		
-		private void AfterEvent2(EngineBase sender, AfterReadRecordEventArgs e)
+
+        private void AfterEvent2(EngineBase sender, AfterReadRecordEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			after++;
 		}
 
-		private void BeforeEvent2(EngineBase sender, BeforeReadRecordEventArgs e)
+        private void BeforeEvent2(EngineBase sender, BeforeReadRecordEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			before++;
@@ -179,8 +179,8 @@ namespace FileHelpersTests.CommonTests
         public void ChangeLineInEvent()
         {
             string input = "\n\n\n";
-            engine = new FileHelperAsyncEngine(typeof(SampleType));
-            engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEventChange);
+            engine = new FileHelperAsyncEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadRecordHandler<SampleType>(BeforeEventChange);
 
             engine.BeginReadString(input);
             SampleType[] res = (SampleType[]) engine.ReadNexts(3);
@@ -196,7 +196,7 @@ namespace FileHelpersTests.CommonTests
 
         }
 
-	    private static void BeforeEventChange(EngineBase engine, BeforeReadRecordEventArgs e)
+        private static void BeforeEventChange(EngineBase engine, BeforeReadRecordEventArgs<SampleType> e)
 	    {
             Assert.IsFalse(e.RecordLineChanged);
 	        e.RecordLine = "11121314901234";

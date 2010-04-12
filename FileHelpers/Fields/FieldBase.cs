@@ -13,7 +13,48 @@ namespace FileHelpers
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     internal abstract class FieldBase
+        : ICloneable
     {
+
+        #region "  Private & Internal Fields  "
+
+        internal Type FieldType { get; private set; }
+
+        internal int CharsToDiscard { get; set; }
+        internal ConverterBase ConvertProvider { get; private set; }
+        internal Type FieldTypeInternal { get; set; }
+        internal bool IsArray { get; set; }
+        internal Type ArrayType { get; set; }
+        internal int ArrayMinLength { get; set; }
+        internal int ArrayMaxLength { get; set; }
+        internal bool IsFirst { get; set; }
+        internal bool IsLast { get; set; }
+        internal bool TrailingArray { get; set; }
+        internal object NullValue { get; set; }
+        internal bool IsStringField { get; set; }
+        internal FieldInfo FieldInfo { get; set; }
+        internal TrimMode TrimMode { get; set; }
+        internal char[] TrimChars { get; set; }
+        internal bool IsOptional { get; set; }
+        internal bool NextIsOptional { get; set; }
+        internal bool InNewLine { get; set; }
+        internal int? FieldOrder { get; set; }
+        internal bool IsNullableType { get; private set; }
+
+        internal string FieldName
+        {
+            get { return FieldInfo.Name; }
+        }
+
+        // For performance add it here
+        private static readonly char[] mWhitespaceChars = new[] 
+			 { 
+				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
+				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
+			 };
+
+        #endregion
+
 
         #region "  CreateField  "
 
@@ -25,10 +66,7 @@ namespace FileHelpers
 
             FieldBase res = null;
 
-            FieldAttribute[] attributes;
-            FieldAttribute fieldAttb;
-
-            attributes = (FieldAttribute[])fi.GetCustomAttributes(typeof(FieldAttribute), true);
+            var attributes = (FieldAttribute[])fi.GetCustomAttributes(typeof(FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
 
@@ -49,7 +87,7 @@ namespace FileHelpers
 
             if (attributes.Length > 0)
             {
-                fieldAttb = attributes[0];
+                FieldAttribute fieldAttb = attributes[0];
 
                 if (fieldAttb is FieldFixedLengthAttribute)
                 {
@@ -61,7 +99,7 @@ namespace FileHelpers
                     var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(fi);
 
                     res = new FixedLengthField(fi, attbFixedLength.Length, attbAlign);
-                    ((FixedLengthField)res).mFixedMode = ((FixedLengthRecordAttribute)recordAttribute).FixedMode;
+                    ((FixedLengthField)res).FixedMode = ((FixedLengthRecordAttribute)recordAttribute).FixedMode;
                 }
                 else if (fieldAttb is FieldDelimiterAttribute)
                 {
@@ -87,8 +125,8 @@ namespace FileHelpers
                 // FieldTrim
                 Attributes.WorkWithFirst<FieldTrimAttribute>(fi, (x) =>
                                                  {
-                                                     res.mTrimMode = x.TrimMode;
-                                                     res.mTrimChars = x.TrimChars;
+                                                     res.TrimMode = x.TrimMode;
+                                                     res.TrimChars = x.TrimChars;
                                                  });
 
                 // FieldQuoted
@@ -99,11 +137,11 @@ namespace FileHelpers
                                                                                    "The field: '" + fi.Name +
                                                                                    "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
 
-                                                                           ((DelimitedField) res).mQuoteChar =
+                                                                           ((DelimitedField)res).QuoteChar =
                                                                                x.QuoteChar;
-                                                                           ((DelimitedField) res).mQuoteMode =
+                                                                           ((DelimitedField)res).QuoteMode =
                                                                                x.QuoteMode;
-                                                                           ((DelimitedField) res).mQuoteMultiline =
+                                                                           ((DelimitedField)res).QuoteMultiline =
                                                                                x.QuoteMultiline;
                                                                        });
 
@@ -112,34 +150,34 @@ namespace FileHelpers
                 // FieldOrder
                 Attributes.WorkWithFirst<FieldOrderAttribute>(fi, (x) =>
                 {
-                    res.mFieldOrder= x.Order;
+                    res.FieldOrder = x.Order;
                 });
 
 
                 // FieldOptional
-                res.mIsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
+                res.IsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
 
                 // FieldInNewLine
-                res.mInNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
+                res.InNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
 
                 // FieldArrayLength
                 if (fi.FieldType.IsArray)
                 {
-                    res.mIsArray = true;
-                    res.mArrayType = fi.FieldType.GetElementType();
+                    res.IsArray = true;
+                    res.ArrayType = fi.FieldType.GetElementType();
 
                     // MinValue indicates that there is no FieldArrayLength in the array
-                    res.mArrayMinLength = int.MinValue;
-                    res.mArrayMaxLength = int.MaxValue;
+                    res.ArrayMinLength = int.MinValue;
+                    res.ArrayMaxLength = int.MaxValue;
 
                     Attributes.WorkWithFirst<FieldArrayLengthAttribute>(fi, (x) =>
                     {
-                        res.mArrayMinLength = x.mMinLength;
-                        res.mArrayMaxLength = x.mMaxLength;
+                        res.ArrayMinLength = x.mMinLength;
+                        res.ArrayMaxLength = x.mMaxLength;
 
-                        if (res.mArrayMaxLength < res.mArrayMinLength ||
-                            res.mArrayMinLength < 0 ||
-                            res.mArrayMaxLength <= 0)
+                        if (res.ArrayMaxLength < res.ArrayMinLength ||
+                            res.ArrayMinLength < 0 ||
+                            res.ArrayMaxLength <= 0)
                             throw new BadUsageException("The field: " + fi.Name + " has invalid length values in the [FieldArrayLength] attribute.");
                     });
                 }
@@ -152,107 +190,78 @@ namespace FileHelpers
 
         #endregion
 
-        public string FielName
-        {
-            get { return mFieldInfo.Name; }
-        }
-
-        public Type FieldType
-        {
-            get { return mFieldType; }
-        }
-
-        #region "  Private & Internal Fields  "
-
-        private static Type strType = typeof(string);
-
-        private Type mFieldType;
-        internal Type mFieldTypeInternal;
-        internal bool mIsStringField;
-        internal FieldInfo mFieldInfo;
-
-        internal TrimMode mTrimMode = TrimMode.None;
-        internal Char[] mTrimChars = null;
-        internal bool mIsOptional = false;
-        internal bool mNextIsOptional = false;
-        internal bool mInNewLine = false;
-
-        internal int? mFieldOrder = null;
-
-        internal bool mIsFirst = false;
-        internal bool mIsLast = false;
-        internal bool mTrailingArray = false;
-
-        internal bool mIsArray = false;
-        internal Type mArrayType;
-        internal int mArrayMinLength;
-        internal int mArrayMaxLength;
-
-        internal object mNullValue = null;
-        //internal bool mNullValueOnWrite = false;
-
-
-        private bool mIsNullableType = false;
-        #endregion
 
         #region "  Constructor  "
 
+        internal FieldBase()
+        {
+          
+        }
+
         internal FieldBase(FieldInfo fi)
         {
-            mFieldInfo = fi;
-            mFieldType = mFieldInfo.FieldType;
+            IsNullableType = false;
+            TrimMode = TrimMode.None;
+            FieldOrder = null;
+            InNewLine = false;
+            NextIsOptional = false;
+            IsOptional = false;
+            TrimChars = null;
+            NullValue = null;
+            TrailingArray = false;
+            IsLast = false;
+            IsFirst = false;
+            IsArray = false;
+            CharsToDiscard = 0;
+            FieldInfo = fi;
+            FieldType = FieldInfo.FieldType;
 
-            if (mFieldType.IsArray)
-                mFieldTypeInternal = mFieldType.GetElementType();
+            if (FieldType.IsArray)
+                FieldTypeInternal = FieldType.GetElementType();
             else
-                mFieldTypeInternal = mFieldType;
+                FieldTypeInternal = FieldType;
 
-            mIsStringField = mFieldTypeInternal == strType;
+            IsStringField = FieldTypeInternal == typeof(string);
 
             object[] attribs = fi.GetCustomAttributes(typeof(FieldConverterAttribute), true);
 
             if (attribs.Length > 0)
             {
                 FieldConverterAttribute conv = (FieldConverterAttribute)attribs[0];
-                mConvertProvider = conv.Converter;
-                conv.ValidateTypes(mFieldInfo);
+                ConvertProvider = conv.Converter;
+                conv.ValidateTypes(FieldInfo);
             }
             else
-                mConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, mFieldType);
+                ConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, FieldType);
 
-            if (mConvertProvider != null)
-                mConvertProvider.mDestinationType = mFieldTypeInternal;
+            if (ConvertProvider != null)
+                ConvertProvider.mDestinationType = FieldTypeInternal;
 
             attribs = fi.GetCustomAttributes(typeof(FieldNullValueAttribute), true);
 
             if (attribs.Length > 0)
             {
-                mNullValue = ((FieldNullValueAttribute)attribs[0]).NullValue;
+                NullValue = ((FieldNullValueAttribute)attribs[0]).NullValue;
                 //				mNullValueOnWrite = ((FieldNullValueAttribute) attribs[0]).NullValueOnWrite;
 
-                if (mNullValue != null)
+                if (NullValue != null)
                 {
-                    if (!mFieldTypeInternal.IsAssignableFrom(mNullValue.GetType()))
-                        throw new BadUsageException("The NullValue is of type: " + mNullValue.GetType().Name +
-                                                    " that is not asignable to the field " + mFieldInfo.Name + " of type: " +
-                                                    mFieldTypeInternal.Name);
+                    if (!FieldTypeInternal.IsAssignableFrom(NullValue.GetType()))
+                        throw new BadUsageException("The NullValue is of type: " + NullValue.GetType().Name +
+                                                    " that is not asignable to the field " + FieldInfo.Name + " of type: " +
+                                                    FieldTypeInternal.Name);
                 }
             }
 
 
-            mIsNullableType = mFieldTypeInternal.IsValueType &&
-                                    mFieldTypeInternal.IsGenericType &&
-                                    mFieldTypeInternal.GetGenericTypeDefinition() == typeof(Nullable<>);
+            IsNullableType = FieldTypeInternal.IsValueType &&
+                                    FieldTypeInternal.IsGenericType &&
+                                    FieldTypeInternal.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         #endregion
 
 
-        private static char[] WhitespaceChars = new char[] 
-			 { 
-				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
-				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
-			 };
 
 
         #region "  MustOverride (String Handling)  "
@@ -263,7 +272,7 @@ namespace FileHelpers
 
         internal string CreateFieldString(object fieldValue)
         {
-            if (mConvertProvider == null)
+            if (ConvertProvider == null)
             {
                 if (fieldValue == null)
                     return string.Empty;
@@ -273,15 +282,11 @@ namespace FileHelpers
             }
             else
             {
-                return mConvertProvider.FieldToString(fieldValue);
+                return ConvertProvider.FieldToString(fieldValue);
             }
         }
 
-        internal int mCharsToDiscard = 0;
-
         #endregion
-
-        internal ConverterBase mConvertProvider;
 
         #region "  ExtractValue  "
 
@@ -289,58 +294,58 @@ namespace FileHelpers
         {
             //-> extract only what I need
 
-            if (mInNewLine)
+            if (InNewLine)
             {
                 if (line.EmptyFromPos() == false)
                     throw new BadUsageException(line, "Text '" + line.CurrentString +
-                                                "' found before the new line of the field: " + mFieldInfo.Name +
+                                                "' found before the new line of the field: " + FieldInfo.Name +
                                                 " (this is not allowed when you use [FieldInNewLine])");
 
                 line.ReLoad(line.mReader.ReadNextLine());
 
                 if (line.mLineStr == null)
-                    throw new BadUsageException(line, "End of stream found parsing the field " + mFieldInfo.Name +
+                    throw new BadUsageException(line, "End of stream found parsing the field " + FieldInfo.Name +
                                                 ". Please check the class record.");
             }
 
-            if (mIsArray == false)
+            if (IsArray == false)
             {
                 ExtractedInfo info = ExtractFieldString(line);
                 if (info.mCustomExtractedString == null)
                     line.mCurrentPos = info.ExtractedTo + 1;
 
-                line.mCurrentPos += mCharsToDiscard; //total;
+                line.mCurrentPos += CharsToDiscard; //total;
 
                 return AssignFromString(info, line);
             }
             else
             {
-                if (mArrayMinLength <= 0)
-                    mArrayMinLength = 0;
+                if (ArrayMinLength <= 0)
+                    ArrayMinLength = 0;
 
                 int i = 0;
 
-                ArrayList res = new ArrayList(Math.Max(mArrayMinLength, 10));
+                var res = new ArrayList(Math.Max(ArrayMinLength, 10));
 
-                while (line.mCurrentPos - mCharsToDiscard < line.mLine.Length && i < mArrayMaxLength)
+                while (line.mCurrentPos - CharsToDiscard < line.mLine.Length && i < ArrayMaxLength)
                 {
                     ExtractedInfo info = ExtractFieldString(line);
                     if (info.mCustomExtractedString == null)
                         line.mCurrentPos = info.ExtractedTo + 1;
 
-                    line.mCurrentPos += mCharsToDiscard;
+                    line.mCurrentPos += CharsToDiscard;
 
                     res.Add(AssignFromString(info, line));
                     i++;
                 }
 
-                if (res.Count < mArrayMinLength)
-                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}", line.mReader.LineNumber.ToString(), line.mCurrentPos.ToString(), mFieldInfo.Name, res.Count, mArrayMinLength));
+                if (res.Count < ArrayMinLength)
+                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}", line.mReader.LineNumber.ToString(), line.mCurrentPos.ToString(), FieldInfo.Name, res.Count, ArrayMinLength));
 
-                else if (mIsLast && line.IsEOL() == false)
-                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, mFieldInfo.Name, mArrayMaxLength));
+                else if (IsLast && line.IsEOL() == false)
+                    throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, FieldInfo.Name, ArrayMaxLength));
 
-                return res.ToArray(mArrayType);
+                return res.ToArray(ArrayType);
 
             }
 
@@ -352,58 +357,71 @@ namespace FileHelpers
         {
             object val;
 
-            switch (mTrimMode)
+            var extractedString = fieldString.ExtractedString();
+            var trimmedBoth = false;
+            switch (TrimMode)
             {
                 case TrimMode.None:
                     break;
 
                 case TrimMode.Both:
-                    fieldString.TrimBoth(mTrimChars);
+                    extractedString = extractedString.Trim();
+                    trimmedBoth = true;
+                    //fieldString.TrimBoth(TrimChars);
                     break;
 
                 case TrimMode.Left:
-                    fieldString.TrimStart(mTrimChars);
+                    extractedString = extractedString.TrimStart();
+                    //fieldString.TrimStart(TrimChars);
                     break;
 
                 case TrimMode.Right:
-                    fieldString.TrimEnd(mTrimChars);
+                    extractedString = extractedString.TrimEnd();
+                    //fieldString.TrimEnd(TrimChars);
                     break;
             }
 
+            
             try
             {
-
-                if (mConvertProvider == null)
+                if (ConvertProvider == null)
                 {
-                    if (mIsStringField)
-                        val = fieldString.ExtractedString();
+                    if (IsStringField)
+                        val = extractedString;
                     else
                     {
                         // Trim it to use Convert.ChangeType
-                        fieldString.TrimBoth(WhitespaceChars);
+                        if (trimmedBoth == false)
+                            extractedString = extractedString.Trim();
 
-                        if (fieldString.Length == 0)
+                        if (extractedString.Length == 0)
                         {
                             // Empty stand for null
                             val = GetNullValue(line);
                         }
                         else
                         {
-                            val = Convert.ChangeType(fieldString.ExtractedString(), mFieldTypeInternal, null);
+                            val = Convert.ChangeType(extractedString, FieldTypeInternal, null);
                         }
                     }
                 }
                 else
                 {
-                    if (mConvertProvider.CustomNullHandling == false &&
-                        fieldString.HasOnlyThisChars(WhitespaceChars))
+                    var trimmedString = extractedString;
+                    if (trimmedBoth == false)
+                    {
+                        trimmedString = extractedString.Trim();
+                    }
+
+                    if (ConvertProvider.CustomNullHandling == false &&
+                        trimmedString.Length == 0)
                     {
                         val = GetNullValue(line);
                     }
                     else
                     {
-                        string from = fieldString.ExtractedString();
-                        val = mConvertProvider.StringToField(from);
+                        string from = extractedString;
+                        val = ConvertProvider.StringToField(from);
 
                         if (val == null)
                             val = GetNullValue(line);
@@ -415,7 +433,7 @@ namespace FileHelpers
             }
             catch (ConvertException ex)
             {
-                throw ConvertException.ReThrowException(ex, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
+                throw ConvertException.ReThrowException(ex, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
             }
             catch (BadUsageException)
             {
@@ -423,25 +441,25 @@ namespace FileHelpers
             }
             catch (Exception ex)
             {
-                if (mConvertProvider == null || mConvertProvider.GetType().Assembly == typeof(FieldBase).Assembly)
-                    throw new ConvertException(fieldString.ExtractedString(), mFieldTypeInternal, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
+                if (ConvertProvider == null || ConvertProvider.GetType().Assembly == typeof(FieldBase).Assembly)
+                    throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
                 else
-                    throw new ConvertException(fieldString.ExtractedString(), mFieldTypeInternal, mFieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + mConvertProvider.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
+                    throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + ConvertProvider.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
             }
         }
 
         private object GetNullValue(LineInfo line)
         {
-            if (mNullValue == null)
+            if (NullValue == null)
             {
-                if (mFieldTypeInternal.IsValueType)
+                if (FieldTypeInternal.IsValueType)
                 {
 
-                    if (mIsNullableType)
+                    if (IsNullableType)
                         return null;
 
-                    string msg = "Not value found for the value type field: '" + mFieldInfo.Name + "' Class: '" +
-                                 mFieldInfo.DeclaringType.Name + "'. " + Environment.NewLine
+                    string msg = "Not value found for the value type field: '" + FieldInfo.Name + "' Class: '" +
+                                 FieldInfo.DeclaringType.Name + "'. " + Environment.NewLine
                                  +
                                  "You must use the [FieldNullValue] attribute because this is a value type and can´t be null or use a Nullable Type instead of the current type.";
 
@@ -452,7 +470,7 @@ namespace FileHelpers
                     return null;
             }
             else
-                return mNullValue;
+                return NullValue;
         }
 
         #endregion
@@ -465,34 +483,34 @@ namespace FileHelpers
 
             if (fieldValue == null)
             {
-                if (mNullValue == null)
+                if (NullValue == null)
                 {
-                    if (mFieldTypeInternal.IsValueType)
-                        throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + mFieldInfo.Name +
-                                                    " field of type " + mFieldTypeInternal.Name + ", because this is a ValueType.");
+                    if (FieldTypeInternal.IsValueType)
+                        throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + FieldInfo.Name +
+                                                    " field of type " + FieldTypeInternal.Name + ", because this is a ValueType.");
                     else
                         val = null;
                 }
                 else
                 {
-                    val = mNullValue;
+                    val = NullValue;
                 }
             }
-            else if (mFieldTypeInternal == fieldValue.GetType())
+            else if (FieldTypeInternal == fieldValue.GetType())
                 val = fieldValue;
             else
             {
-                if (mConvertProvider == null)
-                    val = Convert.ChangeType(fieldValue, mFieldTypeInternal, null);
+                if (ConvertProvider == null)
+                    val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
                 else
                 {
                     try
                     {
-                        val = Convert.ChangeType(fieldValue, mFieldTypeInternal, null);
+                        val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
                     }
                     catch
                     {
-                        val = mConvertProvider.StringToField(fieldValue.ToString());
+                        val = ConvertProvider.StringToField(fieldValue.ToString());
                     }
                 }
             }
@@ -509,10 +527,10 @@ namespace FileHelpers
 
         internal void AssignToString(StringBuilder sb, object fieldValue)
         {
-            if (this.mInNewLine == true)
+            if (this.InNewLine == true)
                 sb.Append(StringHelper.NewLine);
 
-            if (mIsArray)
+            if (IsArray)
             {
                 if (fieldValue == null)
                     return;
@@ -528,7 +546,35 @@ namespace FileHelpers
 
         #endregion
 
+        public object Clone()
+        {
+            var res = CreateClone();
 
+            res.FieldType = FieldType;
+            res.CharsToDiscard = CharsToDiscard;
+            res.ConvertProvider = ConvertProvider;
+            res.FieldTypeInternal = FieldTypeInternal;
+            res.IsArray = IsArray;
+            res.ArrayType = ArrayType;
+            res.ArrayMinLength = ArrayMinLength;
+            res.ArrayMaxLength = ArrayMaxLength;
+            res.IsFirst = IsFirst;
+            res.IsLast = IsLast;
+            res.TrailingArray = TrailingArray;
+            res.NullValue = NullValue;
+            res.IsStringField = IsStringField;
+            res.FieldInfo = FieldInfo;
+            res.TrimMode = TrimMode;
+            res.TrimChars = TrimChars;
+            res.IsOptional = IsOptional;
+            res.NextIsOptional = NextIsOptional;
+            res.InNewLine = InNewLine;
+            res.FieldOrder = FieldOrder;
+            res.IsNullableType = IsNullableType;
 
+            return res;
+        }
+
+        protected abstract FieldBase CreateClone();
     }
 }

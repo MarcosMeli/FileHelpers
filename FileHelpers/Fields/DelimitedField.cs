@@ -7,20 +7,28 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal sealed class DelimitedField : FieldBase
+	internal sealed class DelimitedField 
+        : FieldBase
 	{
 
 		#region "  Constructor  "
 
         private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
-        
-        internal DelimitedField(FieldInfo fi, string sep)
-            : base(fi)
-		{
-            Separator = sep; // string.Intern(sep);
-		}
 
-		#endregion
+        private DelimitedField()
+            : base()
+        {
+        }
+
+	    internal DelimitedField(FieldInfo fi, string sep)
+            : base(fi)
+	    {
+	        QuoteChar = '\0';
+	        QuoteMultiline = MultilineMode.AllowForBoth;
+	        Separator = sep; // string.Intern(sep);
+	    }
+
+	    #endregion
 
 		#region "  Properties  "
 
@@ -33,49 +41,49 @@ namespace FileHelpers
 			{
 				mSeparator = value;
 
-				if (mIsLast && mIsArray == false)
-					mCharsToDiscard = 0;
+				if (IsLast && IsArray == false)
+					CharsToDiscard = 0;
 				else
-					mCharsToDiscard = mSeparator.Length;
+					CharsToDiscard = mSeparator.Length;
 			}
-		} 
+		}
 
-		internal char mQuoteChar = '\0';
-		internal QuoteMode mQuoteMode;
-		internal MultilineMode  mQuoteMultiline = MultilineMode.AllowForBoth;
+        internal MultilineMode QuoteMultiline { get; set; }
+        internal QuoteMode QuoteMode { get; set; }
+        internal char QuoteChar { get; set; }
 
-		#endregion
+	    #endregion
 
 		#region "  Overrides String Handling  "
          
 
 		internal override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
-			if (mIsOptional && line.IsEOL() )
+			if (IsOptional && line.IsEOL() )
 				return ExtractedInfo.Empty;
             
-			if (mQuoteChar == '\0')
+			if (QuoteChar == '\0')
 				return BasicExtractString(line);
 			else
 			{
-				if (mTrimMode == TrimMode.Both || mTrimMode == TrimMode.Left)
+				if (TrimMode == TrimMode.Both || TrimMode == TrimMode.Left)
 				{
-					line.TrimStart(mTrimChars);
+					line.TrimStart(TrimChars);
 				}
 
-				string quotedStr = mQuoteChar.ToString();
+				string quotedStr = QuoteChar.ToString();
 				if (line.StartsWith(quotedStr))
 				{
-					return StringHelper.ExtractQuotedString(line, mQuoteChar, mQuoteMultiline == MultilineMode.AllowForBoth || mQuoteMultiline == MultilineMode.AllowForRead);
+					return StringHelper.ExtractQuotedString(line, QuoteChar, QuoteMultiline == MultilineMode.AllowForBoth || QuoteMultiline == MultilineMode.AllowForRead);
 				}
 				else
 				{
-					if (mQuoteMode == QuoteMode.OptionalForBoth || mQuoteMode == QuoteMode.OptionalForRead)
+					if (QuoteMode == QuoteMode.OptionalForBoth || QuoteMode == QuoteMode.OptionalForRead)
 						return BasicExtractString(line);
 					else if (line.StartsWithTrim(quotedStr))
-						throw new BadUsageException(string.Format("The field '{0}' has spaces before the QuotedChar at line {1}. Use the TrimAttribute to by pass this error. Field String: {2}", mFieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
+						throw new BadUsageException(string.Format("The field '{0}' has spaces before the QuotedChar at line {1}. Use the TrimAttribute to by pass this error. Field String: {2}", FieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
 					else
-						throw new BadUsageException(string.Format("The field '{0}' not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: {2}", mFieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
+						throw new BadUsageException(string.Format("The field '{0}' not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: {2}", FieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
 				}
 
 			}
@@ -86,7 +94,7 @@ namespace FileHelpers
 		private ExtractedInfo BasicExtractString(LineInfo line)
 		{
 		
-			if (mIsLast && ! mIsArray)
+			if (IsLast && ! IsArray)
 				return new ExtractedInfo(line);
 			else
 			{
@@ -96,17 +104,17 @@ namespace FileHelpers
 
 				if (sepPos == -1)
 				{
-                    if (mIsLast && mIsArray)
+                    if (IsLast && IsArray)
                         return new ExtractedInfo(line);
 
-					if (mNextIsOptional == false)
+					if (NextIsOptional == false)
 					{
 						string msg;
 
-						if (mIsFirst && line.EmptyFromPos())
+						if (IsFirst && line.EmptyFromPos())
 							msg = string.Format("The line {0} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.", line.mReader.LineNumber);
 						else
-							msg = string.Format("Delimiter '{0}' not found after field '{1}' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).", mSeparator, this.mFieldInfo.Name, line.mReader.LineNumber);
+							msg = string.Format("Delimiter '{0}' not found after field '{1}' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).", mSeparator, this.FieldInfo.Name, line.mReader.LineNumber);
 
 						throw new FileHelpersException(line.mReader.LineNumber, line.mCurrentPos, msg);
 
@@ -127,28 +135,38 @@ namespace FileHelpers
 
 			// If have a new line and this is not allowed throw an exception
 			if (hasNewLine &&
-				(mQuoteMultiline == MultilineMode.AllowForRead || 
-				 mQuoteMultiline == MultilineMode.NotAllow))
-				throw new BadUsageException("One value for the field " + this.mFieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
+				(QuoteMultiline == MultilineMode.AllowForRead || 
+				 QuoteMultiline == MultilineMode.NotAllow))
+				throw new BadUsageException("One value for the field " + this.FieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
 
 			// Add Quotes If:
 			//     -  optional == false
 			//     -  is optional and contains the separator 
 			//     -  is optional and contains a new line
 
-			if ((mQuoteChar != '\0') && 
-				(mQuoteMode == QuoteMode.AlwaysQuoted || 
-					mQuoteMode == QuoteMode.OptionalForRead || 
-					( (mQuoteMode == QuoteMode.OptionalForWrite || mQuoteMode == QuoteMode.OptionalForBoth)  
+			if ((QuoteChar != '\0') && 
+				(QuoteMode == QuoteMode.AlwaysQuoted || 
+					QuoteMode == QuoteMode.OptionalForRead || 
+					( (QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)  
 					&& mCompare.IndexOf(field, mSeparator, CompareOptions.Ordinal) >= 0) || hasNewLine))
-				StringHelper.CreateQuotedString(sb, field, mQuoteChar);
+				StringHelper.CreateQuotedString(sb, field, QuoteChar);
 			else
 				sb.Append(field);
 
-			if (mIsLast == false)
+			if (IsLast == false)
 				sb.Append(mSeparator);
 		}
 
-		#endregion
+	    protected override FieldBase CreateClone()
+	    {
+	        var res = new DelimitedField();
+	        res.mSeparator = mSeparator;
+	        res.QuoteChar = QuoteChar;
+            res.QuoteMode = QuoteMode;
+	        res.QuoteMultiline = QuoteMultiline;
+	        return res;
+	    }
+
+	    #endregion
 	}
 }

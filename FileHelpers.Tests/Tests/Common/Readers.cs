@@ -213,7 +213,7 @@ namespace FileHelpers.Tests.CommonTests
 			engine = new FileHelperEngine(typeof (SampleType));
 
 			SampleType[] res;
-			res = (SampleType[]) engine.ReadStream(new StringReader(data));
+            res = (SampleType[])engine.ReadStream(new StringReader(data));
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);

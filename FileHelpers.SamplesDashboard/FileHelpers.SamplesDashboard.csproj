@@ -60,7 +60,8 @@
     </Compile>
     <Compile Include="CategoryTreeNode.cs" />
     <Compile Include="DemoFiles.cs" />
-    <Compile Include="Demos\DemoFactory.cs" />
+    <Compile Include="Demos\WriteFile.cs" />
+    <Compile Include="Demos\ReadFile.cs" />
     <Compile Include="DemoTreeNode.cs" />
     <Compile Include="TreeViewEx.cs">
       <SubType>Component</SubType>
@@ -115,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

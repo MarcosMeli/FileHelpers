@@ -181,7 +181,7 @@ namespace FileHelpers
             if (mAsyncWriter != null)
                 throw new BadUsageException("You can't start to read while you are writing.");
 
-            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
+            var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -203,7 +203,12 @@ namespace FileHelpers
             mAsyncReader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast, mLineNumber);
             mAsyncReader.DiscardForward = true;
             mState = EngineState.Reading;
+            mStreamInfo = new StreamInfoProvider(reader);
+            mCurrentRecord = 0;
 
+#if ! MINI
+            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+#endif
             return this;
         }
 
@@ -224,7 +229,7 @@ namespace FileHelpers
             if (sourceData == null)
                 sourceData = String.Empty;
 
-            BeginReadStream(new StringReader(sourceData));
+            BeginReadStream(new InternalStringReader(sourceData));
             return this;
         }
 
@@ -242,6 +247,8 @@ namespace FileHelpers
 
             return mLastRecord;
         }
+
+        private int mCurrentRecord = 0;
 
         private void ReadNextRecord()
         {
@@ -266,6 +273,7 @@ namespace FileHelpers
                     try
                     {
                         mTotalRecords++;
+                        mCurrentRecord++;
                         line.ReLoad(currentLine);
 
                         bool skip = false;
@@ -276,6 +284,10 @@ namespace FileHelpers
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
                             line.ReLoad(e.RecordLine);
+
+
+                        OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+
 
 #endif
                         if (skip == false)
@@ -359,7 +371,7 @@ namespace FileHelpers
             if (mAsyncReader == null)
                 throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-            ArrayList arr = new ArrayList(numberOfRecords);
+            var arr = new List<T>(numberOfRecords);
 
             for (int i = 0; i < numberOfRecords; i++)
             {
@@ -369,8 +381,7 @@ namespace FileHelpers
                 else
                     break;
             }
-			return (T[])
-arr.ToArray(RecordType);
+			return arr.ToArray();
         }
 
         #endregion
@@ -444,6 +455,12 @@ arr.ToArray(RecordType);
             ResetFields();
             mAsyncWriter = writer;
             WriteHeader();
+            mStreamInfo = new StreamInfoProvider(mAsyncWriter);
+            mCurrentRecord = 0;
+
+#if ! MINI
+            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+#endif
 
             return this;
         }
@@ -484,6 +501,12 @@ arr.ToArray(RecordType);
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
             mState = EngineState.Writing;
+            mStreamInfo = new StreamInfoProvider(mAsyncWriter);
+            mCurrentRecord = 0;
+
+#if ! MINI
+            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+#endif
 
             return this;
         }
@@ -515,10 +538,14 @@ arr.ToArray(RecordType);
             {
                 mLineNumber++;
                 mTotalRecords++;
+                mCurrentRecord++;
 
                 bool skip = false;
 #if !MINI
                 skip = OnBeforeWriteRecord(record);
+
+                OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+
 #endif
 
                 if (skip == false)
@@ -729,6 +756,7 @@ arr.ToArray(RecordType);
         #region "  State  "
 
         private EngineState mState = EngineState.Closed;
+        private StreamInfoProvider mStreamInfo;
 
         /// <summary>
         /// Indicates the current state of the engine.

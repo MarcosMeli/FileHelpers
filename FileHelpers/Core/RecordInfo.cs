@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace FileHelpers
@@ -14,29 +11,16 @@ namespace FileHelpers
 
     /// <summary>An internal class used to store information about the Record Type.</summary>
     /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
-    internal sealed class RecordInfo : IRecordInfo
+    internal sealed partial class RecordInfo 
+        : IRecordInfo
     {
-        #region "  Internal Fields  "
-        // Cache of all the fields that must be used for a Type
-        // More info at:  http://www.filehelpers.com/forums/viewtopic.php?t=387
-        // Thanks Brian for the report, research and fix
-        private static readonly Dictionary<Type, List<FieldInfo>> mCachedRecordFields =
-            new Dictionary<Type, List<FieldInfo>>();
-        public Regex mConditionRegEx;
-        public int mSizeHint = 32;
-        private IRecordOperations mOperations;
-        #endregion
 
         // --------------------------------------
         // Constructor and Init Methods
 
         #region IRecordInfo Members
 
-        public int SizeHint
-        {
-            get { return mSizeHint; }
-        }
-
+        public int SizeHint { get; private set; }
         public Type RecordType { get; private set; }
         public bool IgnoreEmptyLines { get; set; }
         public bool IgnoreEmptySpaces { get; private set; }
@@ -49,13 +33,12 @@ namespace FileHelpers
         public bool NotifyWrite { get; private set; }
         public bool CommentAnyPlace { get; set; }
         public RecordCondition RecordCondition { get; set; }
-
-        public Regex RecordConditionRegEx
-        {
-            get { return mConditionRegEx; }
-        }
-
+        public Regex RecordConditionRegEx { get; private set; }
         public string RecordConditionSelector { get; set; }
+
+        public RecordOperations Operations { get; private set; }
+
+        private Dictionary<string, int> mMapFieldIndex;
 
         public bool IsDelimited
         {
@@ -65,14 +48,19 @@ namespace FileHelpers
 
         #region "  Constructor "
 
+        private RecordInfo()
+        {
+        }
+
         private RecordInfo(Type recordType)
         {
+            SizeHint = 32;
             RecordConditionSelector = String.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
             RecordType = recordType;
             InitRecordFields();
-            mOperations = new RecordOperations(this);
+            Operations = new RecordOperations(this);
         }
 
         private void InitRecordFields()
@@ -123,7 +111,7 @@ namespace FileHelpers
                                                   if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
                                                       RecordCondition == RecordCondition.IncludeIfMatchRegex)
                                                   {
-                                                      mConditionRegEx = new Regex(RecordConditionSelector,
+                                                      RecordConditionRegEx = new Regex(RecordConditionSelector,
                                                                                   RegexOptions.Compiled | RegexOptions.IgnoreCase |
                                                                                   RegexOptions.ExplicitCapture);
                                                   }
@@ -142,14 +130,7 @@ namespace FileHelpers
             // Search for cached fields
             List<FieldInfo> fields;
 
-            lock (mCachedRecordFields)
-            {
-                if (!mCachedRecordFields.TryGetValue(RecordType, out fields))
-                {
-                    fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
-                    mCachedRecordFields.Add(RecordType, fields);
-                }
-            }
+            fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
 
             Fields = CreateCoreFields(fields, recordAttribute);
             FieldCount = Fields.Length;
@@ -162,9 +143,9 @@ namespace FileHelpers
             if (recordAttribute is FixedLengthRecordAttribute)
             {
                 // Defines the initial size of the StringBuilder
-                mSizeHint = 0;
+                SizeHint = 0;
                 for (int i = 0; i < FieldCount; i++)
-                    mSizeHint += ((FixedLengthField) Fields[i]).mFieldLength;
+                    SizeHint += ((FixedLengthField) Fields[i]).FieldLength;
             }
         }
 
@@ -184,7 +165,7 @@ namespace FileHelpers
                 if (currentField == null) 
                     continue;
 
-                if (currentField.mFieldInfo.IsDefined(typeof(CompilerGeneratedAttribute), false))
+                if (currentField.FieldInfo.IsDefined(typeof(CompilerGeneratedAttribute), false))
                     automaticFields++;
                 else
                     genericFields++;
@@ -202,7 +183,7 @@ namespace FileHelpers
             if (automaticFields > 0 && genericFields > 0)
             {
                 throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
-                    .ClassName(resFields[0].mFieldInfo.DeclaringType.Name)
+                    .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
                     .Text);
             }
 
@@ -210,8 +191,8 @@ namespace FileHelpers
 
             if (resFields.Count > 0)
             {
-                resFields[0].mIsFirst = true;
-                resFields[resFields.Count - 1].mIsLast = true;
+                resFields[0].IsFirst = true;
+                resFields[resFields.Count - 1].IsLast = true;
             }
 
             CheckForOptionalAndArrayProblems(resFields);
@@ -231,25 +212,25 @@ namespace FileHelpers
 
                 FieldBase prevField = resFields[i - 1];
 
-                prevField.mNextIsOptional = currentField.mIsOptional;
+                prevField.NextIsOptional = currentField.IsOptional;
 
                 // Check for optional problems
-                if (prevField.mIsOptional && currentField.mIsOptional == false)
+                if (prevField.IsOptional && currentField.IsOptional == false)
                     throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
-                                                    .FieldName(prevField.mFieldInfo.Name)
+                                                    .FieldName(prevField.FieldInfo.Name)
                                                     .Text);
 
                 // Check for array problems
-                if (prevField.mIsArray)
+                if (prevField.IsArray)
                 {
-                    if (prevField.mArrayMinLength == Int32.MinValue)
+                    if (prevField.ArrayMinLength == Int32.MinValue)
                         throw new BadUsageException(Messages.Errors.MissingFieldArrayLenghtInNotLastField
-                                                        .FieldName(prevField.mFieldInfo.Name)
+                                                        .FieldName(prevField.FieldInfo.Name)
                                                         .Text);
 
-                    if (prevField.mArrayMinLength != prevField.mArrayMaxLength)
+                    if (prevField.ArrayMinLength != prevField.ArrayMaxLength)
                         throw new BadUsageException(Messages.Errors.SameMinMaxLengthForArrayNotLastField
-                                                        .FieldName(prevField.mFieldInfo.Name)
+                                                        .FieldName(prevField.FieldInfo.Name)
                                                         .Text);
                 }
 
@@ -258,38 +239,38 @@ namespace FileHelpers
 
         private static void SortFieldsByOrder(List<FieldBase> resFields)
         {
-            if (resFields.FindAll(x => x.mFieldOrder.HasValue).Count > 0)
-                resFields.Sort( (x,y) => x.mFieldOrder.Value.CompareTo(y.mFieldOrder.Value));
+            if (resFields.FindAll(x => x.FieldOrder.HasValue).Count > 0)
+                resFields.Sort( (x,y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
         }
 
         private static void CheckForOrderProblems(FieldBase currentField, List<FieldBase> resFields)
         {
-            if (currentField.mFieldOrder.HasValue)
+            if (currentField.FieldOrder.HasValue)
             {
-                var othersWithoutOrder = resFields.FindAll(x => x.mFieldOrder.HasValue == false);
+                var othersWithoutOrder = resFields.FindAll(x => x.FieldOrder.HasValue == false);
                 if (othersWithoutOrder.Count > 0)
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                                                    .FieldName(othersWithoutOrder[0].mFieldInfo.Name)
+                                                    .FieldName(othersWithoutOrder[0].FieldInfo.Name)
                                                     .Text);
 
                 // Same Number
                 var otherWithSameOrder =
-                    resFields.FindAll(x => x != currentField && x.mFieldOrder == currentField.mFieldOrder);
+                    resFields.FindAll(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
 
                 if (otherWithSameOrder.Count > 0)
                     throw new BadUsageException(Messages.Errors.SameFieldOrder
-                                                    .FieldName1(currentField.mFieldInfo.Name)
-                                                    .FieldName2(otherWithSameOrder[0].mFieldInfo.Name)
+                                                    .FieldName1(currentField.FieldInfo.Name)
+                                                    .FieldName2(otherWithSameOrder[0].FieldInfo.Name)
                                                     .Text);
 
 
             }
             else
             {
-                var othersWithOrder = resFields.FindAll(x => x.mFieldOrder.HasValue).Count;
+                var othersWithOrder = resFields.FindAll(x => x.FieldOrder.HasValue).Count;
                 if (othersWithOrder > 0)
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                                                    .FieldName(currentField.mFieldInfo.Name)
+                                                    .FieldName(currentField.FieldInfo.Name)
                                                     .Text);
 
             }
@@ -299,7 +280,6 @@ namespace FileHelpers
 
 
         #region " FieldIndexes  "
-        private Dictionary<string, int> mMapFieldIndex;
         
         public int GetFieldIndex(string fieldName)
         {
@@ -308,7 +288,7 @@ namespace FileHelpers
                 mMapFieldIndex = new Dictionary<string, int>(FieldCount);
                 for (int i = 0; i < FieldCount; i++)
                 {
-                    mMapFieldIndex.Add(Fields[i].mFieldInfo.Name, i);
+                    mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
                 }
             }
 
@@ -321,336 +301,56 @@ namespace FileHelpers
 
             return res;
         }
+
         #endregion
 
         #region "  GetFieldInfo  "
         public FieldInfo GetFieldInfo(string name)
         {
-            foreach (FieldBase field in Fields)
+            foreach (var field in Fields)
             {
-                if (field.mFieldInfo.Name.ToLower() == name.ToLower())
-                    return field.mFieldInfo;
+                if (field.FieldInfo.Name.ToLower() == name.ToLower())
+                    return field.FieldInfo;
             }
 
             return null;
-        }
-
-        public IRecordOperations Operations
-        {
-            get
-            {
-                return mOperations;
-            }
         }
 
         #endregion
 
         public static IRecordInfo Resolve(Type type)
         {
-            // TODO: CACHE !!!
-            return new RecordInfo(type);
+            return RecordInfoFactory.Resolve(type);
+        }
 
-            // return Container.Resolve<IRecordInfo>(mMasterType);
+        public object Clone()
+        {
+            var res = new RecordInfo();
+
+            res.CommentAnyPlace = CommentAnyPlace;
+            res.CommentMarker = CommentMarker;
+            res.FieldCount = FieldCount;
+            res.IgnoreEmptyLines = IgnoreEmptyLines;
+            res.IgnoreEmptySpaces = IgnoreEmptySpaces;
+            res.IgnoreFirst = IgnoreFirst;
+            res.IgnoreLast = IgnoreLast;
+            res.NotifyRead = NotifyRead;
+            res.NotifyWrite = NotifyWrite;
+            res.Operations = Operations.Clone(res);
+
+            res.RecordCondition = RecordCondition;
+            res.RecordConditionRegEx = RecordConditionRegEx;
+            res.RecordConditionSelector = RecordConditionSelector;
+            res.RecordType = RecordType;
+            res.SizeHint = SizeHint;
+
+            res.Fields = new FieldBase[Fields.Length];
+            for (int i = 0; i < Fields.Length; i++)
+            {
+                res.Fields[i] = (FieldBase) Fields[i].Clone();
+            }
+
+            return res;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        internal sealed class RecordOperations : IRecordOperations
-        {
-            public IRecordInfo RecordInfo { get; private set; }
-
-            public RecordOperations(IRecordInfo recordInfo)
-            {
-                RecordInfo = recordInfo;
-            }
-
-            #region "  StringToRecord  "
-            public object StringToRecord(LineInfo line, object[] values)
-            {
-                if (MustIgnoreLine(line.mLineStr))
-                    return null;
-
-                for (int i = 0; i < RecordInfo.FieldCount; i++)
-                {
-                    values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
-                }
-
-                try
-                {
-                    // Asign all values via dinamic method that creates an object and assign values
-                    return CreateHandler(values);
-                }
-                catch (InvalidCastException)
-                {
-                    // Occurrs when the a custom converter returns an invalid value for the field.
-                    for (int i = 0; i < RecordInfo.FieldCount; i++)
-                    {
-                        if (values[i] != null && !RecordInfo.Fields[i].mFieldTypeInternal.IsInstanceOfType(values[i]))
-                            throw new ConvertException(null,
-                                                       RecordInfo.Fields[i].mFieldTypeInternal,
-                                                       RecordInfo.Fields[i].mFieldInfo.Name,
-                                                       line.mReader.LineNumber,
-                                                       -1,
-                                                       Messages.Errors.WrongConverter
-                                                           .FieldName(RecordInfo.Fields[i].mFieldInfo.Name)
-                                                           .ConverterReturnedType(values[i].GetType().Name)
-                                                           .FieldType(RecordInfo.Fields[i].mFieldInfo.FieldType.Name)
-                                                           .Text
-                                                       ,
-                                                       null);
-                    }
-                    return null;
-                }
-            }
-
-            private bool MustIgnoreLine(string line)
-            {
-                if (RecordInfo.IgnoreEmptyLines)
-                    if ((RecordInfo.IgnoreEmptySpaces && line.TrimStart().Length == 0) ||
-                        line.Length == 0)
-                        return true;
-
-                if (!String.IsNullOrEmpty(RecordInfo.CommentMarker))
-                    if ((RecordInfo.CommentAnyPlace && line.TrimStart().StartsWith(RecordInfo.CommentMarker)) ||
-                        line.StartsWith(RecordInfo.CommentMarker))
-                        return true;
-
-                if (RecordInfo.RecordCondition != RecordCondition.None)
-                {
-                    switch (RecordInfo.RecordCondition)
-                    {
-                        case RecordCondition.ExcludeIfBegins:
-                            return ConditionHelper.BeginsWith(line, RecordInfo.RecordConditionSelector);
-                        case RecordCondition.IncludeIfBegins:
-                            return !ConditionHelper.BeginsWith(line, RecordInfo.RecordConditionSelector);
-
-                        case RecordCondition.ExcludeIfContains:
-                            return ConditionHelper.Contains(line, RecordInfo.RecordConditionSelector);
-                        case RecordCondition.IncludeIfContains:
-                            return !ConditionHelper.Contains(line, RecordInfo.RecordConditionSelector);
-
-                        case RecordCondition.ExcludeIfEnclosed:
-                            return ConditionHelper.Enclosed(line, RecordInfo.RecordConditionSelector);
-                        case RecordCondition.IncludeIfEnclosed:
-                            return !ConditionHelper.Enclosed(line, RecordInfo.RecordConditionSelector);
-
-                        case RecordCondition.ExcludeIfEnds:
-                            return ConditionHelper.EndsWith(line, RecordInfo.RecordConditionSelector);
-                        case RecordCondition.IncludeIfEnds:
-                            return !ConditionHelper.EndsWith(line, RecordInfo.RecordConditionSelector);
-
-                        case RecordCondition.ExcludeIfMatchRegex:
-                            return RecordInfo.RecordConditionRegEx.IsMatch(line);
-
-                        case RecordCondition.IncludeIfMatchRegex:
-                            return !RecordInfo.RecordConditionRegEx.IsMatch(line);
-                    }
-                }
-
-                return false;
-            }
-            #endregion
-
-            #region "  RecordToString  "
-
-            public string RecordToString(object record)
-            {
-                var sb = new StringBuilder(RecordInfo.SizeHint);
-
-                object[] mValues = ObjectToValuesHandler(record);
-
-                for (int f = 0; f < RecordInfo.FieldCount; f++)
-                {
-                    RecordInfo.Fields[f].AssignToString(sb, mValues[f]);
-                }
-
-                return sb.ToString();
-            }
-
-            public string RecordValuesToString(object[] recordValues)
-            {
-                var sb = new StringBuilder(RecordInfo.SizeHint);
-
-                for (int f = 0; f < RecordInfo.FieldCount; f++)
-                {
-                    RecordInfo.Fields[f].AssignToString(sb, recordValues[f]);
-                }
-
-                return sb.ToString();
-            }
-            #endregion
-
-            #region "  ValuesToRecord  "
-            /// <summary>Returns a record formed with the passed values.</summary>
-            /// <param name="values">The source Values.</param>
-            /// <returns>A record formed with the passed values.</returns>
-            public object ValuesToRecord(object[] values)
-            {
-                for (int i = 0; i < RecordInfo.FieldCount; i++)
-                {
-                    if (RecordInfo.Fields[i].mFieldTypeInternal == typeof(DateTime) && values[i] is double)
-                        values[i] = DoubleToDate((int)(double)values[i]);
-
-                    values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
-                }
-
-                // Asign all values via dinamic method that creates an object and assign values
-                return CreateHandler(values);
-            }
-
-            private static DateTime DoubleToDate(int serialNumber)
-            {
-                if (serialNumber < 59)
-                {
-                    // Because of the 29-02-1900 bug, any serial date 
-                    // under 60 is one off... Compensate. 
-                    serialNumber++;
-                }
-
-                return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600));
-            }
-            #endregion
-
-            #region "  RecordToValues  "
-            /// <summary>Get an object[] of the values in the fields of the passed record.</summary>
-            /// <param name="record">The source record.</param>
-            /// <returns>An object[] of the values in the fields.</returns>
-            public object[] RecordToValues(object record)
-            {
-                return ObjectToValuesHandler(record);
-            }
-            #endregion
-
-            #region "  RecordsToDataTable  "
-            public DataTable RecordsToDataTable(ICollection records)
-            {
-                return RecordsToDataTable(records, -1);
-            }
-
-            public DataTable RecordsToDataTable(ICollection records, int maxRecords)
-            {
-                DataTable res = CreateEmptyDataTable();
-
-                res.BeginLoadData();
-
-                res.MinimumCapacity = records.Count;
-
-                if (maxRecords == -1)
-                {
-                    foreach (object r in records)
-                        res.Rows.Add(RecordToValues(r));
-                }
-                else
-                {
-                    int i = 0;
-                    foreach (object r in records)
-                    {
-                        if (i == maxRecords)
-                            break;
-
-                        res.Rows.Add(RecordToValues(r));
-                        i++;
-                    }
-                }
-
-                res.EndLoadData();
-                return res;
-            }
-
-            public DataTable CreateEmptyDataTable()
-            {
-                var res = new DataTable();
-
-                foreach (FieldBase f in RecordInfo.Fields)
-                {
-                    DataColumn column1 = res.Columns.Add(f.mFieldInfo.Name, f.mFieldInfo.FieldType);
-                    column1.ReadOnly = true;
-                }
-                return res;
-            }
-            #endregion
-
-
-
-            #region "  Lightweight code generation (NET 2.0)  "
-
-            // Create on first usage
-            private ValuesToObjectDelegate mCreateHandler;
-            private CreateObjectDelegate mFastConstructor;
-            private ObjectToValuesDelegate mObjectToValuesHandler;
-
-            private ObjectToValuesDelegate ObjectToValuesHandler
-            {
-                get
-                {
-                    if (mObjectToValuesHandler == null)
-                        mObjectToValuesHandler = ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
-                    return mObjectToValuesHandler;
-                }
-            }
-
-
-            private ValuesToObjectDelegate CreateHandler
-            {
-                get
-                {
-                    if (mCreateHandler == null)
-                        mCreateHandler = ReflectionHelper.ValuesToObjectMethod(RecordInfo.RecordType, GetFieldInfoArray());
-                    return mCreateHandler;
-                }
-            }
-
-            public CreateObjectDelegate CreateRecordHandler
-            {
-                get
-                {
-                    if (mFastConstructor == null)
-                        mFastConstructor = ReflectionHelper.CreateFastConstructor(RecordInfo.RecordType);
-                    return mFastConstructor;
-                }
-            }
-
-
-            #endregion
-
-            private FieldInfo[] GetFieldInfoArray()
-            {
-                var res = new FieldInfo[RecordInfo.Fields.Length];
-
-                for (int i = 0; i < RecordInfo.Fields.Length; i++)
-                {
-                    res[i] = RecordInfo.Fields[i].mFieldInfo;
-                }
-                return res;
-            }
-
-
-        }
-
 }

@@ -3,7 +3,7 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 
-#if V_3_0
+//#if V_3_0
 namespace FileHelpers.Mapping
 {
     internal class MappingInfo
@@ -155,4 +155,4 @@ namespace FileHelpers.Mapping
     }
 }
 
-#endif
+//#endif

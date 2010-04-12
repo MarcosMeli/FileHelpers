@@ -2,8 +2,8 @@
 using System.Runtime.InteropServices;
 
 // The version of the Library
-[assembly : AssemblyVersion("2.5.0.0")]
-[assembly : AssemblyFileVersion("2.5.0.0")]
+[assembly : AssemblyVersion("2.9.0.0")]
+[assembly : AssemblyFileVersion("2.9.0.0")]
 
 [assembly : AssemblyDescription("An easy to use file library for .NET that supports automatic formated file read/write operations.")]
 [assembly : AssemblyProduct("FileHelpers   http://www.filehelpers.com")]

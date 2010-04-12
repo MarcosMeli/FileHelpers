@@ -1,0 +1,281 @@
+<#@ template language="C#v3.5" hostSpecific="true" #>
+<#@ output extension=".autogen.cs" #>
+<#@ Assembly Name="System.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+using FileHelpers;
+using System.Diagnostics;
+using System; 
+
+<#
+
+	Process("Demos");
+    
+#>
+
+<#+
+
+private FluentCode Code = new FluentCode();
+
+public void Process(string folder)
+{
+	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+	
+	EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+	
+	/* Retrieve the project in which this template resides. */
+	EnvDTE.ProjectItem containingProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+	Project project = containingProjectItem.ContainingProject;
+	
+	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
+	
+    WriteLine(Code.GenerateCode());
+}
+
+public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
+{
+
+	if (projectItem.ProjectItems.Count == 0)
+	{
+		
+	    if (Path.GetExtension(projectItem.get_FileNames(0).ToLower()) != ".cs")
+	        return;
+		
+		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
+		{ 
+			case "generatedemowrappers.cs":
+			case "filetestbase.cs":
+					break;
+				default:
+					//if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
+						RenderItemCore(projectItem, parent);
+					break;
+		}
+	}
+	else
+	{
+		foreach (ProjectItem childItem in projectItem.ProjectItems)
+		{
+			ProcessProjectItem(childItem, projectItem);
+		}
+	}
+
+}
+
+private void RenderItemCore(ProjectItem item, ProjectItem parent)
+{
+	var filename = item.get_FileNames(0);
+	var name = Path.GetFileNameWithoutExtension(filename);
+    var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
+	
+    Code.Namespace("FileHelpers.Demos")
+		.Class(parent.Name)
+        .Class(name, "DemoCode")
+        .Add(
+            @" protected override string GetFullPathName()
+	   	    { return @" + "\"" + filepath +"\"; }");
+
+    Code.Namespace("FileHelpers.Tests")
+        .Class("FileTest")
+		.Class(parent.Name)
+		.AddStaticReadOnlyPropertyWithBackingField("ClassesFileTest." +parent.Name +"." + name, name);
+
+        
+        }
+
+		private void WriteLine()
+		{
+			WriteLine(string.Empty);
+		}
+		
+		public static string ReplaceIgnoringCase(string original, string oldValue, string newValue)
+        {
+            return Replace(original, oldValue, newValue, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static string Replace(string original, string oldValue, string newValue, StringComparison comparisionType)
+        {
+            string result = original;
+
+            if (!string.IsNullOrEmpty(oldValue))
+            {
+                int index = -1;
+                int lastIndex = 0;
+
+                System.Text.StringBuilder buffer = new System.Text.StringBuilder(original.Length);
+
+                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0)
+                {
+                    buffer.Append(original, lastIndex, index - lastIndex);
+                    buffer.Append(newValue);
+
+                    lastIndex = index + oldValue.Length;
+                }
+                buffer.Append(original, lastIndex, original.Length - lastIndex);
+
+                result = buffer.ToString();
+            }
+
+            return result;
+        }  
+
+    public sealed class FluentCode
+    {
+        private SortedDictionary<string, FluentNamespace> mNamespaces = new SortedDictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
+
+        public FluentNamespace Namespace(string name)
+        {
+            FluentNamespace res;
+
+            if (!mNamespaces.TryGetValue(name, out res))
+            {
+                res = new FluentNamespace(name);
+                mNamespaces.Add(name, res);
+            }
+            return res;
+        }
+
+        public string GenerateCode()
+        {
+            var res = "";
+            foreach (var n in mNamespaces)
+            {
+                res += n.Value.GenerateCode();
+            }
+
+            return res;
+            
+        }
+
+    }
+
+    public sealed class FluentNamespace
+    {
+        public string Name { get; private set; }
+
+        public FluentNamespace(string name)
+        {
+            this.Name = name;
+        }
+
+        private SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+
+     public FluentClass Class(string name)
+  {
+  return Class(name, string.Empty);
+  }
+ 
+        public FluentClass Class(string name, string parent)
+        {
+            FluentClass res;
+
+            if (!mClasses.TryGetValue(name, out res))
+            {
+                res = new FluentClass(name, parent);
+                mClasses.Add(name, res);
+            }
+
+            return res;
+        }
+
+
+        public string GenerateCode()
+        {
+            var res = "namespace " + Name
+                + Environment.NewLine
+                + "{" 
+                + Environment.NewLine;
+
+            foreach (var c in mClasses)
+            {
+                res += c.Value.GenerateCode();
+            }
+                 
+            res += Environment.NewLine +
+                    "}";
+            return res;
+        }
+
+    }
+
+    public sealed class FluentClass
+    {
+        public string Name { get; private set; }
+        public string Parent { get; private set; }
+        
+        public FluentClass(string name, string parent)
+        {
+            this.Name = name;
+            this.Parent = parent;
+        }
+
+        private SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+
+      public FluentClass Class(string name)
+  {
+  return Class(name, string.Empty);
+  }
+  
+        public FluentClass Class(string name, string parent)
+        {
+            FluentClass res;
+
+            if (!mClasses.TryGetValue(name, out res))
+            {
+                res = new FluentClass(name, parent);
+                mClasses.Add(name, res);
+            }
+
+            return res;
+        }
+
+        public string GenerateCode()
+        {
+            var res = "public partial class " + Name
+                + (string.IsNullOrEmpty(Parent) ? "" : ": " + Parent)
+                + Environment.NewLine
+                + "{"
+                + Environment.NewLine;
+
+            foreach (var c in mClasses)
+            {
+                res += c.Value.GenerateCode();
+            }
+
+            res += Environment.NewLine +
+                mCode.ToString()
+                + Environment.NewLine;
+
+            res += Environment.NewLine +
+        "}" + Environment.NewLine;
+            return res;
+        }
+
+        public void Add(string code)
+        {
+            mCode.AppendLine(code);
+        }
+
+        public void AddStaticReadOnlyPropertyWithBackingField(string type, string name)
+        {
+            mCode.AppendLine("private static " + type + " m" + name + " = new " + type + "();");
+            mCode.AppendLine("public static " + type + " " + name);
+            mCode.AppendLine("{ get { return  m" + name + "; } }");
+        }
+
+        private StringBuilder mCode = new StringBuilder();
+    }
+
+	
+#>

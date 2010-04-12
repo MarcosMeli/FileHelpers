@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Collections.Generic;
 //using Container=FileHelpers.Container;
 
-#if V_3_0
+//#if V_3_0
 
 namespace FileHelpers.Mapping
 {
@@ -42,7 +42,7 @@ namespace FileHelpers.Mapping
 
         internal DataMapper(Type recordType)
         {
-            mRecordInfo = Container.Resolve<IRecordInfo>(recordType);
+            mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
         }
 
 	    private int mInitialColumnOffset = 0;
@@ -109,7 +109,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(DataRow dr)
         {
-			T record = (T) mRecordInfo.CreateRecordHandler();
+			T record = (T) mRecordInfo.Operations.CreateRecordHandler();
 			
 			for(int i = 0; i < mMappings.Count; i++)
 			{
@@ -127,7 +127,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(IDataReader dr)
 		{
-            T record = (T) mRecordInfo.CreateRecordHandler();
+            T record = (T) mRecordInfo.Operations.CreateRecordHandler();
             //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 				
 			for(int i = 0; i < mMappings.Count; i++)
@@ -167,7 +167,7 @@ namespace FileHelpers.Mapping
 
 			foreach (DataRow row in dt.Rows)
 			{
-				T record = (T) mRecordInfo.CreateRecordHandler();
+				T record = (T) mRecordInfo.Operations.CreateRecordHandler();
                 //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 				
 				for(int i = 0; i < mMappings.Count; i++)
@@ -369,4 +369,4 @@ namespace FileHelpers.Mapping
 
 }
 
-#endif
+//#endif

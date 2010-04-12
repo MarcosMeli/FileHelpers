@@ -49,43 +49,43 @@ namespace FileHelpers
 			mCustomExtractedString = customExtract;
 		}
 		
-		public void TrimStart(char[] sortedToTrim)
-		{
-			if (mCustomExtractedString != null)
-				mCustomExtractedString = mCustomExtractedString.TrimStart(sortedToTrim);
-			else
-				while (ExtractedFrom <= ExtractedTo &&
-					   Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
-					ExtractedFrom++;
-		}
+        //public void TrimStart(char[] sortedToTrim)
+        //{
+        //    if (mCustomExtractedString != null)
+        //        mCustomExtractedString = mCustomExtractedString.TrimStart(sortedToTrim);
+        //    else
+        //        while (ExtractedFrom <= ExtractedTo &&
+        //               Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
+        //            ExtractedFrom++;
+        //}
 
-		public void TrimEnd(char[] sortedToTrim)
-		{
-			if (mCustomExtractedString != null)
-				mCustomExtractedString = mCustomExtractedString.TrimEnd(sortedToTrim);
-			else
-				while (ExtractedTo >= ExtractedFrom && 
-					   Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
-					ExtractedTo--;
-		}
+        //public void TrimEnd(char[] sortedToTrim)
+        //{
+        //    if (mCustomExtractedString != null)
+        //        mCustomExtractedString = mCustomExtractedString.TrimEnd(sortedToTrim);
+        //    else
+        //        while (ExtractedTo >= ExtractedFrom && 
+        //               Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+        //            ExtractedTo--;
+        //}
 
-		public void TrimBoth(char[] sortedToTrim)
-		{
-			if (mCustomExtractedString != null)
-				mCustomExtractedString = mCustomExtractedString.Trim(sortedToTrim);
-			else
-			{
-				while(ExtractedFrom <= ExtractedTo && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
-				{
-					ExtractedFrom++;
-				}
+        //public void TrimBoth(char[] sortedToTrim)
+        //{
+        //    if (mCustomExtractedString != null)
+        //        mCustomExtractedString = mCustomExtractedString.Trim(sortedToTrim);
+        //    else
+        //    {
+        //        while(ExtractedFrom <= ExtractedTo && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedFrom]) >= 0)
+        //        {
+        //            ExtractedFrom++;
+        //        }
 			
-				while(ExtractedTo >= ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
-				{
-					ExtractedTo--;
-				}
-			}
-		}
+        //        while(ExtractedTo >= ExtractedFrom && Array.BinarySearch(sortedToTrim, mLine.mLine[ExtractedTo]) >= 0)
+        //        {
+        //            ExtractedTo--;
+        //        }
+        //    }
+        //}
 
 		internal static readonly ExtractedInfo Empty = new ExtractedInfo(string.Empty);
 

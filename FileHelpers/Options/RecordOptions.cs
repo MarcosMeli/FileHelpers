@@ -58,7 +58,7 @@ namespace FileHelpers.Options
 				{
 					mFieldNames = new string[mRecordInfo.FieldCount];
 					for (int i = 0; i < mFieldNames.Length; i++)
-						mFieldNames[i] = mRecordInfo.Fields[i].mFieldInfo.Name;
+						mFieldNames[i] = mRecordInfo.Fields[i].FieldInfo.Name;
 				}
 
 				return mFieldNames;
@@ -83,7 +83,7 @@ namespace FileHelpers.Options
 				{
 					mFieldTypes = new Type[mRecordInfo.FieldCount];
 					for (int i = 0; i < mFieldTypes.Length; i++)
-						mFieldTypes[i] = mRecordInfo.Fields[i].mFieldInfo.FieldType;
+						mFieldTypes[i] = mRecordInfo.Fields[i].FieldInfo.FieldType;
 				}
 
 				return mFieldTypes;

@@ -4,8 +4,9 @@ using NUnit.Framework;
 using FileHelpers;
 using System.Net;
 using System.IO;
+using FileHelpers.Tests;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests
 {
 
 		[TestFixture]
@@ -17,9 +18,7 @@ namespace FileHelpersTests.CommonTests
 			[Test]
 			public void GetMSWSReportsFromFile_20060709_28Records()
 			{
-				MSWSDailyReportRecord[] res = null;            
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-					res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, "Good", "EncodingAdv1.txt");
+				var res = FileTest.Good.EncodingAdv1.ReadWithEngine<MSWSDailyReportRecord>();
             
 				Assert.AreEqual(res.Length, 28);
 			}
@@ -27,10 +26,8 @@ namespace FileHelpersTests.CommonTests
 			[Test]
 			public void GetMSWSReportsFromFile_20060720_32Records()
 			{
-				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
-				res = (MSWSDailyReportRecord[]) TestCommon.ReadTest(engine, "Good", "EncodingAdv2.txt");
-
+                var res = FileTest.Good.EncodingAdv2.ReadWithEngine<MSWSDailyReportRecord>();
+			
 				Assert.AreEqual(res.Length, 32);
 			}
              

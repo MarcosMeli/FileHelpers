@@ -347,7 +347,7 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/ReadString/*'/>
 		public object[] ReadString(string source)
 		{
-			StringReader reader = new StringReader(source);
+            var reader = new InternalStringReader(source);
 			object[] res = ReadStream(reader);
 			reader.Close();
 			return res;
@@ -624,7 +624,7 @@ namespace FileHelpers
 			if (sourceData == null)
 				sourceData = String.Empty;
 
-			BeginReadStream(new StringReader(sourceData));
+            BeginReadStream(new InternalStringReader(sourceData));
 		}
 
 		#endregion

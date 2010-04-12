@@ -778,6 +778,14 @@ public partial class EncodingANSI: FileTestBase
 
 
 }
+public partial class EncodingChinese: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\EncodingChinese.txt"; }
+
+
+}
 public partial class EncodingUnicode: FileTestBase
 {
 
@@ -1649,6 +1657,9 @@ public static ClassesFileTest.Good.EncodingAdv3 EncodingAdv3
 private static ClassesFileTest.Good.EncodingANSI mEncodingANSI = new ClassesFileTest.Good.EncodingANSI();
 public static ClassesFileTest.Good.EncodingANSI EncodingANSI
 { get { return  mEncodingANSI; } }
+private static ClassesFileTest.Good.EncodingChinese mEncodingChinese = new ClassesFileTest.Good.EncodingChinese();
+public static ClassesFileTest.Good.EncodingChinese EncodingChinese
+{ get { return  mEncodingChinese; } }
 private static ClassesFileTest.Good.EncodingUnicode mEncodingUnicode = new ClassesFileTest.Good.EncodingUnicode();
 public static ClassesFileTest.Good.EncodingUnicode EncodingUnicode
 { get { return  mEncodingUnicode; } }

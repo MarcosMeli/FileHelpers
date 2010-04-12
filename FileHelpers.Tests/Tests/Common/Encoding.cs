@@ -3,8 +3,9 @@ using System.Collections;
 using System.Text;
 using FileHelpers;
 using NUnit.Framework;
+using FileHelpers.Tests;
 
-namespace FileHelpersTests.CommonTests
+namespace FileHelpers.Tests
 {
     [TestFixture]
 	public class FileEncoding

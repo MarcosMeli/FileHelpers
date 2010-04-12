@@ -23,13 +23,13 @@ namespace FileHelpers.Options
 		{
 			get
 			{
-				return ((FixedLengthField) mRecordInfo.Fields[0]).mFixedMode;
+				return ((FixedLengthField) mRecordInfo.Fields[0]).FixedMode;
 			}
 			set
 			{
 				for(int i = 0; i < mRecordInfo.FieldCount; i++)
 				{
-					((FixedLengthField) mRecordInfo.Fields[i]).mFixedMode = value;
+					((FixedLengthField) mRecordInfo.Fields[i]).FixedMode = value;
 				}
 			}
 		}
@@ -50,7 +50,7 @@ namespace FileHelpers.Options
                 mRecordLength = 0;
                 foreach (FixedLengthField field in mRecordInfo.Fields)
                 {
-                    mRecordLength += field.mFieldLength;
+                    mRecordLength += field.FieldLength;
                 }
 
                 return mRecordLength;

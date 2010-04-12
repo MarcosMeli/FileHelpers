@@ -160,6 +160,7 @@
     <Compile Include="Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\RecordInfo.Factory.cs" />
     <Compile Include="Core\ExtractInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,8 +170,8 @@
     </Compile>
     <Compile Include="Core\IFieldInfoCacheManipulator.cs" />
     <Compile Include="Core\IRecordInfo.cs" />
-    <Compile Include="Core\IRecordOperations.cs" />
     <Compile Include="Core\IRecordReader.cs" />
+    <Compile Include="Core\RecordOperations.cs" />
     <Compile Include="Core\ReflectionHelper.cs" />
     <Compile Include="Dynamic\AttributesBuilder.cs" />
     <Compile Include="Dynamic\ClassBuilder.cs" />
@@ -300,6 +301,7 @@
     <Compile Include="Helpers\ConditionHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\TypeHelper.cs" />
     <Compile Include="Helpers\CsvOptions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -356,6 +358,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
+    <Compile Include="Streams\InternalStringReader.cs" />
+    <Compile Include="Streams\StreamInfoProvider.cs" />
     <Compile Include="VersionInfo.cs" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />

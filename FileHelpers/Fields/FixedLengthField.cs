@@ -6,60 +6,40 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal sealed class FixedLengthField : FieldBase
+	internal sealed class FixedLengthField
+        : FieldBase
 	{
-
 
 		#region "  Properties  "
 
-		internal int mFieldLength;
-		internal FieldAlignAttribute mAlign = new FieldAlignAttribute(AlignMode.Left, ' ');
+        internal int FieldLength { get; private set; }
+        internal FieldAlignAttribute Align { get; private set; }
+        internal FixedMode FixedMode { get; set; }
 
-		internal FixedMode mFixedMode = FixedMode.ExactLength;
-
-
-		#endregion
+	    #endregion
 
 		#region "  Constructor  "
 
-		internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align) : base(fi)
+        private FixedLengthField()
+            :base()
+        {
+        }
+
+	    internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align) : base(fi)
 		{
-			this.mFieldLength = length;
+	        FixedMode = FixedMode.ExactLength;
+	        Align = new FieldAlignAttribute(AlignMode.Left, ' ');
+	        this.FieldLength = length;
 
 			if (align != null)
-				this.mAlign = align;
+				this.Align = align;
 			else
 			{
-                if (IsNumericType(fi.FieldType))
-					mAlign = new FieldAlignAttribute(AlignMode.Right, ' ');
+                if (TypeHelper.IsNumericType(fi.FieldType))
+					Align = new FieldAlignAttribute(AlignMode.Right, ' ');
 			}
 		}
 
-        private bool IsNumericType(Type type)
-        {
-            return  type == typeof(Int16) ||
-                    type == typeof(Int32) ||
-                    type == typeof(Int64) ||
-                    type == typeof(UInt16) ||
-                    type == typeof(UInt32) ||
-                    type == typeof(UInt64) ||
-                    type == typeof(byte) ||
-                    type == typeof(sbyte) ||
-                    type == typeof(decimal) ||
-                    type == typeof(float) ||
-                    type == typeof(double) ||
-                    type == typeof(Int16?) ||
-                    type == typeof(Int32?) ||
-                    type == typeof(Int64?) ||
-                    type == typeof(UInt16?) ||
-                    type == typeof(UInt32?) ||
-                    type == typeof(UInt64?) ||
-                    type == typeof(byte?) ||
-                    type == typeof(sbyte?) ||
-                    type == typeof(decimal?) ||
-                    type == typeof(float?) ||
-                    type == typeof(double?);
-        }
 
 		#endregion
 
@@ -69,28 +49,28 @@ namespace FileHelpers
 		{
 			if (line.CurrentLength == 0)
 			{
-				if (mIsOptional)
+				if (IsOptional)
 					return ExtractedInfo.Empty;
 				else
-					throw new BadUsageException("End Of Line found processing the field: " + mFieldInfo.Name + " at line "+ line.mReader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
+					throw new BadUsageException("End Of Line found processing the field: " + FieldInfo.Name + " at line "+ line.mReader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
 			}
 			
 			ExtractedInfo res;
 
-			if (line.CurrentLength < this.mFieldLength)
-				if (mFixedMode == FixedMode.AllowLessChars || 
-					mFixedMode == FixedMode.AllowVariableLength)
+			if (line.CurrentLength < this.FieldLength)
+				if (FixedMode == FixedMode.AllowLessChars || 
+					FixedMode == FixedMode.AllowVariableLength)
 					res = new ExtractedInfo(line);
 				else
-					throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has less chars than the defined for " + mFieldInfo.Name + " (" + mFieldLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
-			else if (line.CurrentLength > mFieldLength  && 
-						mIsArray == false &&
-                        mIsLast &&
-				        mFixedMode != FixedMode.AllowMoreChars && 
-						mFixedMode != FixedMode.AllowVariableLength)
-				throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has more chars than the defined for the last field " + mFieldInfo.Name + " (" + mFieldLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
+					throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has less chars than the defined for " + FieldInfo.Name + " (" + FieldLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
+			else if (line.CurrentLength > FieldLength  && 
+						IsArray == false &&
+                        IsLast &&
+				        FixedMode != FixedMode.AllowMoreChars && 
+						FixedMode != FixedMode.AllowVariableLength)
+				throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has more chars than the defined for the last field " + FieldInfo.Name + " (" + FieldLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
 			else
-				res = new ExtractedInfo(line, line.mCurrentPos + mFieldLength);
+				res = new ExtractedInfo(line, line.mCurrentPos + FieldLength);
 
 			return res;
 		}
@@ -100,31 +80,40 @@ namespace FileHelpers
 			string field = base.CreateFieldString(fieldValue);
 
             // Discard longer field values
-			if (field.Length > mFieldLength)
-				field = field.Substring(0, mFieldLength); 
+			if (field.Length > FieldLength)
+				field = field.Substring(0, FieldLength); 
 
-			if (mAlign.Align == AlignMode.Left)
+			if (Align.Align == AlignMode.Left)
 			{
 				sb.Append(field);
-				sb.Append(mAlign.AlignChar, mFieldLength - field.Length);
+				sb.Append(Align.AlignChar, FieldLength - field.Length);
 			}
-			else if (mAlign.Align == AlignMode.Right)
+			else if (Align.Align == AlignMode.Right)
 			{
-				sb.Append(mAlign.AlignChar, mFieldLength - field.Length);
+				sb.Append(Align.AlignChar, FieldLength - field.Length);
 				sb.Append(field);
 			}
 			else
 			{
-				int middle = (mFieldLength - field.Length) / 2;
+				int middle = (FieldLength - field.Length) / 2;
 
-				sb.Append(mAlign.AlignChar, middle);
+				sb.Append(Align.AlignChar, middle);
 				sb.Append(field);
-				sb.Append(mAlign.AlignChar,  mFieldLength - field.Length - middle);
+				sb.Append(Align.AlignChar,  FieldLength - field.Length - middle);
 //				if (middle > 0)
 //					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
 			}
 		}
 
-		#endregion
+	    protected override FieldBase CreateClone()
+	    {
+	        var res = new FixedLengthField();
+	        res.Align = Align;
+	        res.FieldLength = FieldLength;
+	        res.FixedMode = FixedMode;
+	        return res;
+	    }
+
+	    #endregion
 	}
 }

@@ -117,6 +117,14 @@ namespace System
             return new FluentAnd<bool>(actual);
         }
 
+        [DebuggerStepThrough]
+        [DebuggerHidden]
+        public static FluentAnd<bool> AssertIsTrue(this bool actual, string message)
+        {
+            Assert.IsTrue(actual, message);
+            return new FluentAnd<bool>(actual);
+        }
+
 
         [DebuggerStepThrough]
         [DebuggerHidden]

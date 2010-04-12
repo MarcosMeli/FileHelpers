@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 namespace FileHelpers
 {
     internal interface IRecordInfo
+        : ICloneable
     {
         bool IsDelimited { get; }
         int FieldCount { get; }
@@ -27,6 +28,6 @@ namespace FileHelpers
         int GetFieldIndex(string fieldName);
         FieldInfo GetFieldInfo(string name);
 
-        IRecordOperations Operations { get; }
+        RecordOperations Operations { get; }
     }
 }

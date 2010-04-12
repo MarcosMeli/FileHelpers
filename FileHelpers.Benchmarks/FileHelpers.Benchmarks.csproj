@@ -108,6 +108,7 @@
     <Compile Include="BenchMark.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FixedSampleRecord.cs" />
     <Compile Include="TestRecord.cs">
       <SubType>Code</SubType>
     </Compile>

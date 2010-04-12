@@ -231,9 +231,6 @@
     <Compile Include="Tests\Common\Orders.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\Performance.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tests\Common\Progress.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -382,9 +379,15 @@
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
+    <Compile Include="Tests\Common\RecordInfoCloneTest.cs" />
+    <Compile Include="Tests\Common\Encoding.cs" />
+    <Compile Include="Tests\Common\EncodingAdv.cs" />
+    <Compile Include="Tests\Common\EncodingChinese.cs" />
+    <Compile Include="Tests\Common\EventsAsync.cs" />
     <Compile Include="Tests\Common\FieldOrderTests.cs" />
     <Compile Include="Tests\Common\FieldAligmentOrder.cs" />
     <Compile Include="Tests\Common\FixedModeTests.cs" />
+    <Compile Include="Helpers\CompareObjects.cs" />
     <Compile Include="Tests\Helpers\MessagesTests.cs" />
     <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
     <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />
@@ -479,6 +482,7 @@
     <Content Include="Data\Good\EncodingAdv2.txt" />
     <Content Include="Data\Good\EncodingAdv3.txt" />
     <Content Include="Data\Good\EncodingANSI.txt" />
+    <Content Include="Data\Good\EncodingChinese.txt" />
     <Content Include="Data\Good\EncodingUnicode.txt" />
     <Content Include="Data\Good\EncodingUnicodeBig.txt" />
     <Content Include="Data\Good\EncodingUTF8.txt" />

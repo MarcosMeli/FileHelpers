@@ -19,7 +19,7 @@ namespace FileHelpers.SamplesDashboard
         {
             base.OnLoad(e);
 
-            treeViewDemos1.LoadDemos(DemoFactory.GetDemos());
+            //treeViewDemos1.LoadDemos(DemoFactory.GetDemos());
         }
     }
 }

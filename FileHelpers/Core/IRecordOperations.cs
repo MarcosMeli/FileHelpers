@@ -25,5 +25,6 @@ namespace FileHelpers
         DataTable RecordsToDataTable(ICollection records, int maxRecords);
         DataTable CreateEmptyDataTable();
 
+        IRecordOperations Clone(RecordInfo ri);
     }
 }

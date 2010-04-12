@@ -15,15 +15,15 @@ namespace FileHelpers
     /// </remarks>
     internal static class ConvertHelpers
     {
-        
+
         private const string DefaultDecimalSep = ".";
 
-        
+
         #region "  CreateCulture  "
 
         static CultureInfo CreateCulture(string decimalSep)
         {
-            CultureInfo ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
+            var ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
 
             if (decimalSep == ".")
             {
@@ -147,18 +147,7 @@ namespace FileHelpers
 
             public sealed override object StringToField(string from)
             {
-                object val;
-
-                try
-                {
-                    val = ParseString(from);
-                }
-                catch
-                {
-                    throw new ConvertException(from, mType);
-                }
-
-                return val;
+                return ParseString(from);
             }
 
             protected abstract object ParseString(string from);
@@ -177,7 +166,12 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Byte.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
+                Byte res;
+                if (!Byte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
+                {
+                    throw new ConvertException(from, mType);
+                }
+                return res;
             }
         }
 
@@ -194,7 +188,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt16.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                UInt16 res;
+                if (!UInt16.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -211,7 +208,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt32.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                UInt32 res;
+                if (!UInt32.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -229,7 +229,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return UInt64.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                UInt64 res;
+                if (!UInt64.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -249,7 +252,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return SByte.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture);
+                SByte res;
+                if (!SByte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -265,7 +271,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int16.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                Int16 res;
+                if (!Int16.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -282,10 +291,13 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int32.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                int res;
+                if (!Int32.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                
+                return res;
             }
         }
-
         internal sealed class Int64Converter : CultureConverter
         {
             public Int64Converter()
@@ -297,7 +309,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Int64.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                Int64 res;
+                if (!Int64.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -322,7 +337,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Decimal.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                Decimal res;
+                if (!Decimal.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -338,7 +356,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Single.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                Single res;
+                if (!Single.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
 
@@ -355,7 +376,10 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
-                return Double.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                Double res;
+                if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    throw new ConvertException(from, mType);
+                return res;
             }
         }
         /// <summary>
@@ -377,16 +401,20 @@ namespace FileHelpers
 
             protected override object ParseString(string from)
             {
+                double res;
                 string tmp = StringHelper.RemoveBlanks(from);
                 if (tmp.EndsWith("%"))
                 {
-                    return (Double.Parse(tmp, NumberStyles.Number | NumberStyles.AllowExponent, mCulture) / 100);
+                    if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                        throw new ConvertException(from, mType);
+                    return res / 100.0;
                 }
                 else
                 {
-                    return Double.Parse(tmp, NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                    if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                        throw new ConvertException(from, mType);
+                    return res;
                 }
-                
             }
         }
 
@@ -428,12 +456,8 @@ namespace FileHelpers
             {
                 if (from == null) from = string.Empty;
 
-                object val;
-                try
-                {
-                    val = DateTime.ParseExact(from.Trim(), mFormat, null);
-                }
-                catch
+                DateTime val;
+                if (!DateTime.TryParseExact(from.Trim(), mFormat, null, DateTimeStyles.None, out val))
                 {
                     string extra;
 
@@ -444,7 +468,7 @@ namespace FileHelpers
                     else
                         extra = " Using the format: '" + mFormat + "'";
 
-                    
+
                     throw new ConvertException(from, typeof(DateTime), extra);
                 }
                 return val;
@@ -502,15 +526,10 @@ namespace FileHelpers
             {
                 if (from == null) from = string.Empty;
 
-                object val;
-                try
+                DateTime val;
+                if (!DateTime.TryParseExact(from.Trim(), mFormats, null, DateTimeStyles.None, out val))
                 {
-                    val = DateTime.ParseExact(from.Trim(), mFormats, null, DateTimeStyles.None);
-                }
-                catch
-                {
-                    string extra;
-                    extra = " Not matching any of the given formats: " + CreateFormats();
+                    string extra = " Not matching any of the given formats: " + CreateFormats();
                     throw new ConvertException(from, typeof(DateTime), extra);
                 }
                 return val;
@@ -723,13 +742,13 @@ namespace FileHelpers
                 }
                 catch
                 {
-                    throw new ConvertException(from, typeof(Guid), "TODO Extra Info");
+                    throw new ConvertException(from, typeof(Guid));
                 }
             }
 
             public override string FieldToString(object from)
             {
-                if (from == null) return String.Empty; 
+                if (from == null) return String.Empty;
                 return ((Guid)from).ToString(mFormat);
             }
         }
@@ -804,4 +823,5 @@ namespace FileHelpers
         #endregion
     }
 }
+
 

@@ -5,10 +5,15 @@ using System.Windows.Forms;
 
 namespace FileHelpers
 {
-    
-    public class DemoCode
+
+    public interface IDemo
     {
-        public DemoCode(string codeTitle, string category)
+        void Run();
+    }
+
+    public abstract class DemoCode
+    {
+        protected DemoCode(string codeTitle, string category)
         {
             CodeTitle = codeTitle;
             Category = category;

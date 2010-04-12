@@ -222,10 +222,10 @@ namespace FileHelpers
 
             int currentRecord = 0;
 
+		    var streamInfo = new StreamInfoProvider(reader);
             using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
-
 
                 string currentLine, completeLine;
 
@@ -235,7 +235,7 @@ namespace FileHelpers
                 currentLine = completeLine;
 
 #if !MINI
-                OnProgress(new ProgressEventArgs(0, -1));
+                OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
 #endif
 
                 if (mRecordInfo.IgnoreFirst > 0)
@@ -267,7 +267,7 @@ namespace FileHelpers
 
                         bool skip;
 #if !MINI
-                        OnProgress(new ProgressEventArgs(currentRecord, -1));
+                        OnProgress(new ProgressEventArgs(currentRecord, -1, streamInfo.Position, streamInfo.TotalBytes));
                     BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
                         skip = OnBeforeReadRecord(e);
                         if (e.RecordLineChanged)
@@ -356,7 +356,7 @@ namespace FileHelpers
 			if (source == null)
 				source = string.Empty;
 
-			using (StringReader reader = new StringReader(source))
+            using (var reader = new InternalStringReader(source))
 			{
 			    var res = ReadStream(reader, maxRecords);
 				reader.Close();
@@ -378,7 +378,7 @@ namespace FileHelpers
             if (source == null)
                 source = string.Empty;
 
-            using (StringReader reader = new StringReader(source))
+            using (var reader = new InternalStringReader(source))
             {
                 var res = ReadStreamAsList(reader, maxRecords);
                 reader.Close();
@@ -620,7 +620,7 @@ namespace FileHelpers
 			if (source == null)
 				source = string.Empty;
 
-			using (StringReader reader = new StringReader(source))
+            using (var reader = new InternalStringReader(source))
 			{
 				DataTable res;
 				res = ReadStreamAsDT(reader, maxRecords);
@@ -661,7 +661,6 @@ namespace FileHelpers
 
 
 	}
-
 }
 
 

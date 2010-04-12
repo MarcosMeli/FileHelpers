@@ -26,7 +26,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void SimpleTest2()
         {
-            FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed));
+            var engine = new FixedFileEngine(typeof(CustomersFixed));
             Assert.AreEqual(91, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             engine.Options.RecordCondition.Condition = RecordCondition.IncludeIfBegins;
