@@ -104,6 +104,10 @@ namespace FileHelpers
 				case ConverterKind.Double:
 					convType = typeof (ConvertHelpers.DoubleConverter);
 					break;
+                // Added by Shreyas Narasimhan 17 March 2010
+                case ConverterKind.PercentDouble:
+                    convType = typeof (ConvertHelpers.PercentDoubleConverter);
+					break;
 				case ConverterKind.Single:
 					convType = typeof (ConvertHelpers.SingleConverter);
 					break;
@@ -118,7 +122,7 @@ namespace FileHelpers
                 case ConverterKind.Guid:
                     convType = typeof(ConvertHelpers.GuidConverter);
                     break;
-				default:
+                default:
 					throw new BadUsageException("Converter '" + converter.ToString() + "' not found, you must specify a valid converter.");
 
 			}
@@ -302,6 +306,9 @@ namespace FileHelpers
                 case ConverterKind.Char:
                 case ConverterKind.Guid:
                     valid = Kind.ToString() == fieldType.UnderlyingSystemType.Name;
+                    break;
+                case ConverterKind.PercentDouble:
+                    valid = typeof(double) == fieldType;
                     break;
 
             }

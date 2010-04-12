@@ -55,6 +55,13 @@ namespace FileHelpers
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
         /// </summary>
         Double,
+        //Added by Shreyas Narasimhan (17 March 2010)
+        /// <summary>
+        /// <para>Convert from/to <b>Double</b> values. Understands Percent '%' symbol 
+        /// and if present returns number /100 only while reading</para>
+        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// </summary>
+        PercentDouble,
         /// <summary>
         /// <para>Convert from/to <b>Single</b> values.</para>
         /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>

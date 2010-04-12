@@ -170,7 +170,6 @@ namespace FileHelpers
 
             //Array.Sort(temp, (x, y) => x.MetadataToken.CompareTo(y.MetadataToken));
 
-
             //Debug.WriteLine(temp.Length);
 
             foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |

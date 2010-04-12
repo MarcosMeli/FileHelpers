@@ -342,7 +342,6 @@ namespace FileHelpers
             }
         }
 
-
         internal sealed class DoubleConverter : CultureConverter
         {
             public DoubleConverter()
@@ -357,6 +356,37 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 return Double.Parse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+            }
+        }
+        /// <summary>
+        /// This Class is specialized version of the Double Converter
+        /// The main difference being that it can handle % sign at the end of the number
+        /// It gives a value which is basically number / 100.
+        /// </summary>
+        /// <remarks>Edited : Shreyas Narasimhan (17 March 2010) </remarks>
+        internal sealed class PercentDoubleConverter : CultureConverter
+        {
+            public PercentDoubleConverter()
+                : this(DefaultDecimalSep)
+            { }
+
+            public PercentDoubleConverter(string decimalSep)
+                : base(typeof(Double), decimalSep)
+            {
+            }
+
+            protected override object ParseString(string from)
+            {
+                string tmp = StringHelper.RemoveBlanks(from);
+                if (tmp.EndsWith("%"))
+                {
+                    return (Double.Parse(tmp, NumberStyles.Number | NumberStyles.AllowExponent, mCulture) / 100);
+                }
+                else
+                {
+                    return Double.Parse(tmp, NumberStyles.Number | NumberStyles.AllowExponent, mCulture);
+                }
+                
             }
         }
 

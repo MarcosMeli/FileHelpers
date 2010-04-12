@@ -226,7 +226,7 @@ namespace FileHelpers.Dynamic
 
 
         /// <summary>
-        /// Create a class from a encrypted source file.
+        /// Create a class from a encrypted source file with the default password
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
         /// <returns>The compiled class.</returns>
@@ -236,7 +236,7 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Create a class from a encrypted source file.
+        /// Create a class from a encrypted source file with the default password
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
         /// <param name="lang">The language used to compile the class.</param>
@@ -247,7 +247,7 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Create a class from a encrypted source file.
+        /// Create a class from a encrypted source file with the default password
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
         /// <param name="lang">The language used to compile the class.</param>
@@ -256,14 +256,30 @@ namespace FileHelpers.Dynamic
         public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang)
         {
 
+           return ClassFromBinaryFile(filename,className,lang,"withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+        }
+
+        /// <summary>
+        /// Create a class from a encrypted source file with the given password
+        /// </summary>
+        /// <remarks>Edited by: Shreyas Narasimhan (17 March 2010)</remarks>
+        /// <param name="filename">The filename with the source of the class.</param>
+        /// <param name="className">The name of the class to return.</param>
+        /// <param name="lang">The language used to compile the class.</param>
+        /// <param name="password">The password used to decrypt the file</param>
+        /// <returns></returns>
+        public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang , string password)
+        {
+
             StreamReader reader = new StreamReader(filename);
             string classDef = reader.ReadToEnd();
             reader.Close();
 
-            classDef = Decrypt(classDef, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+            classDef = Decrypt(classDef, password);
 
             return ClassFromString(classDef, className, lang);
         }
+        
 
 
         /// <summary>
@@ -279,19 +295,29 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Encrypt the class source code and write it to a file.
+        /// Encrypt the class source code with the default password and write it to a file.
         /// </summary>
         /// <param name="filename">The file name to write to.</param>
-        /// <param name="classSource">The source code for the class.</param>
+        /// <param name="classSource">The class source  to write to</param>
         public static void ClassToBinaryFile(string filename, string classSource)
         {
-            classSource = Encrypt(classSource, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+            ClassToBinaryFile(filename,classSource,"withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+        }
 
+        /// <summary>
+        /// Encrypt the class source code with the given password and write it to a file.
+        /// </summary>
+        /// <remarks>Edited by: Shreyas Narasimhan (17 March 2010)</remarks>
+        /// <param name="filename">The file name to write to</param>
+        /// <param name="classSource">The class source  to write to</param>
+        /// <param name="password">The password with which to encrypt the file</param>
+        public static void ClassToBinaryFile(string filename, string classSource , string password)
+        {
+            classSource = Encrypt(classSource, password);
             StreamWriter writer = new StreamWriter(filename);
             writer.Write(classSource);
             writer.Close();
         }
-
 
         #endregion
 
