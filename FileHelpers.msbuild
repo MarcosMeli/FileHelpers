@@ -57,7 +57,30 @@
 		</ItemGroup>
 		<MakeDir Directories="$(MSBuildProjectDirectory)\Coverage" ContinueOnError="True" />
 		<NCover ToolPath="Libs\NCover\" CommandLineExe="Libs\NUnit\nunit-console-x86.exe" CoverageFile="@(CoverageFile)" AssemblyList="FileHelpers" CommandLineArgs="/noshadow FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
-		<NCoverExplorer ToolPath="Libs\NCoverExplorer\" ProjectName="FileHelpers" OutputDir="$(MSBuildProjectDirectory)\Coverage" CoverageFiles="@(CoverageFile)" SatisfactoryCoverage="80" HtmlReportName="CoverageSummary.html" ReportType="ModuleClassFunctionSummary" ShowExcluded="True" />
+		
+		  <PropertyGroup> 
+               <CoverageExclusions> 
+                  <CoverageExclusion>
+                      <ExclusionType>Class</ExclusionType>
+                      <Pattern>.*TypesOfMessages.*</Pattern> 
+                      <IsRegex>true</IsRegex> 
+                  </CoverageExclusion> 
+               </CoverageExclusions> 
+           </PropertyGroup>
+
+
+		<NCoverExplorer 
+				 ToolPath="Libs\NCoverExplorer\" 
+				 ProjectName="FileHelpers"
+				 OutputDir="$(MSBuildProjectDirectory)\Coverage" 
+				 CoverageFiles="@(CoverageFile)" 
+				 SatisfactoryCoverage="80" 
+				 HtmlReportName="CoverageSummary.html" 
+				 Exclusions="$(CoverageExclusions)"
+				 ShowExcluded="False"
+				 ReportType="ModuleClassFunctionSummary" 
+				 />
+		 
 		<Delete Files="@(CoverageFile)" ContinueOnError="True" />
 	</Target>
 </Project>

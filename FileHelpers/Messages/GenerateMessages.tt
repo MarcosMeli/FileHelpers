@@ -124,12 +124,12 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 				var classMsg = msgClassCode			
 					.Class(msgClass, "MessageBase");
 				
-				classMsg.Add("public " + msgClass + "(): base(@\"" + text.Replace("\"", "\"\"") +"\") {}");
+				classMsg.Add("internal " + msgClass + "(): base(@\"" + text.Replace("\"", "\"\"") +"\") {}");
 				
 				foreach(var par in GetParameters(text))
 				{
 					classMsg.Add(@" private string m" + par + " = null;");
-					classMsg.Add(@" public " + msgClass + " " + par +"(string value)");
+					classMsg.Add(@" internal " + msgClass + " " + par +"(string value)");
 					classMsg.Add(@"{");
 					classMsg.Add(@"    m" + par +" = value;");
 					classMsg.Add(@"    return this;");
@@ -230,7 +230,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
   {
   return Class(name, string.Empty);
   }
-
+ 
 public FluentClass InternalClass(string name)
   {
   return InternalClass(name, string.Empty);
@@ -317,7 +317,7 @@ public FluentClass InternalClass(string name)
             return res;
         }
 
-		internal string access = "public ";
+		internal string access = "internal ";
         
 		public string GenerateCode()
         {
@@ -349,7 +349,7 @@ public FluentClass InternalClass(string name)
         public void AddStaticReadOnlyPropertyWithBackingField(string type, string name)
         {
             mCode.AppendLine("private static " + type + " m" + name + " = new " + type + "();");
-            mCode.AppendLine("public static " + type + " " + name);
+            mCode.AppendLine("internal static " + type + " " + name);
             mCode.AppendLine("{ get { return  m" + name + "; } }");
         }
 

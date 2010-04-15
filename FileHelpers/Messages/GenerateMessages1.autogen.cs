@@ -6,65 +6,65 @@ namespace FileHelpers
 {
 internal  partial class Messages
 {
-public  partial class Errors
+internal  partial class Errors
 {
 
 private static TypesOfMessages.Errors.FieldOptionalClass mFieldOptional = new TypesOfMessages.Errors.FieldOptionalClass();
-public static TypesOfMessages.Errors.FieldOptionalClass FieldOptional
+internal static TypesOfMessages.Errors.FieldOptionalClass FieldOptional
 { get { return  mFieldOptional; } }
 private static TypesOfMessages.Errors.InvalidIdentifierClass mInvalidIdentifier = new TypesOfMessages.Errors.InvalidIdentifierClass();
-public static TypesOfMessages.Errors.InvalidIdentifierClass InvalidIdentifier
+internal static TypesOfMessages.Errors.InvalidIdentifierClass InvalidIdentifier
 { get { return  mInvalidIdentifier; } }
 private static TypesOfMessages.Errors.EmptyClassNameClass mEmptyClassName = new TypesOfMessages.Errors.EmptyClassNameClass();
-public static TypesOfMessages.Errors.EmptyClassNameClass EmptyClassName
+internal static TypesOfMessages.Errors.EmptyClassNameClass EmptyClassName
 { get { return  mEmptyClassName; } }
 private static TypesOfMessages.Errors.EmptyFieldNameClass mEmptyFieldName = new TypesOfMessages.Errors.EmptyFieldNameClass();
-public static TypesOfMessages.Errors.EmptyFieldNameClass EmptyFieldName
+internal static TypesOfMessages.Errors.EmptyFieldNameClass EmptyFieldName
 { get { return  mEmptyFieldName; } }
 private static TypesOfMessages.Errors.EmptyFieldTypeClass mEmptyFieldType = new TypesOfMessages.Errors.EmptyFieldTypeClass();
-public static TypesOfMessages.Errors.EmptyFieldTypeClass EmptyFieldType
+internal static TypesOfMessages.Errors.EmptyFieldTypeClass EmptyFieldType
 { get { return  mEmptyFieldType; } }
 private static TypesOfMessages.Errors.ClassWithOutRecordAttributeClass mClassWithOutRecordAttribute = new TypesOfMessages.Errors.ClassWithOutRecordAttributeClass();
-public static TypesOfMessages.Errors.ClassWithOutRecordAttributeClass ClassWithOutRecordAttribute
+internal static TypesOfMessages.Errors.ClassWithOutRecordAttributeClass ClassWithOutRecordAttribute
 { get { return  mClassWithOutRecordAttribute; } }
 private static TypesOfMessages.Errors.ClassWithOutDefaultConstructorClass mClassWithOutDefaultConstructor = new TypesOfMessages.Errors.ClassWithOutDefaultConstructorClass();
-public static TypesOfMessages.Errors.ClassWithOutDefaultConstructorClass ClassWithOutDefaultConstructor
+internal static TypesOfMessages.Errors.ClassWithOutDefaultConstructorClass ClassWithOutDefaultConstructor
 { get { return  mClassWithOutDefaultConstructor; } }
 private static TypesOfMessages.Errors.ClassWithOutFieldsClass mClassWithOutFields = new TypesOfMessages.Errors.ClassWithOutFieldsClass();
-public static TypesOfMessages.Errors.ClassWithOutFieldsClass ClassWithOutFields
+internal static TypesOfMessages.Errors.ClassWithOutFieldsClass ClassWithOutFields
 { get { return  mClassWithOutFields; } }
 private static TypesOfMessages.Errors.ExpectingFieldOptionalClass mExpectingFieldOptional = new TypesOfMessages.Errors.ExpectingFieldOptionalClass();
-public static TypesOfMessages.Errors.ExpectingFieldOptionalClass ExpectingFieldOptional
+internal static TypesOfMessages.Errors.ExpectingFieldOptionalClass ExpectingFieldOptional
 { get { return  mExpectingFieldOptional; } }
 private static TypesOfMessages.Errors.SameFieldOrderClass mSameFieldOrder = new TypesOfMessages.Errors.SameFieldOrderClass();
-public static TypesOfMessages.Errors.SameFieldOrderClass SameFieldOrder
+internal static TypesOfMessages.Errors.SameFieldOrderClass SameFieldOrder
 { get { return  mSameFieldOrder; } }
 private static TypesOfMessages.Errors.PartialFieldOrderClass mPartialFieldOrder = new TypesOfMessages.Errors.PartialFieldOrderClass();
-public static TypesOfMessages.Errors.PartialFieldOrderClass PartialFieldOrder
+internal static TypesOfMessages.Errors.PartialFieldOrderClass PartialFieldOrder
 { get { return  mPartialFieldOrder; } }
 private static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass mMissingFieldArrayLenghtInNotLastField = new TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass();
-public static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass MissingFieldArrayLenghtInNotLastField
+internal static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass MissingFieldArrayLenghtInNotLastField
 { get { return  mMissingFieldArrayLenghtInNotLastField; } }
 private static TypesOfMessages.Errors.SameMinMaxLengthForArrayNotLastFieldClass mSameMinMaxLengthForArrayNotLastField = new TypesOfMessages.Errors.SameMinMaxLengthForArrayNotLastFieldClass();
-public static TypesOfMessages.Errors.SameMinMaxLengthForArrayNotLastFieldClass SameMinMaxLengthForArrayNotLastField
+internal static TypesOfMessages.Errors.SameMinMaxLengthForArrayNotLastFieldClass SameMinMaxLengthForArrayNotLastField
 { get { return  mSameMinMaxLengthForArrayNotLastField; } }
 private static TypesOfMessages.Errors.FieldNotFoundClass mFieldNotFound = new TypesOfMessages.Errors.FieldNotFoundClass();
-public static TypesOfMessages.Errors.FieldNotFoundClass FieldNotFound
+internal static TypesOfMessages.Errors.FieldNotFoundClass FieldNotFound
 { get { return  mFieldNotFound; } }
 private static TypesOfMessages.Errors.WrongConverterClass mWrongConverter = new TypesOfMessages.Errors.WrongConverterClass();
-public static TypesOfMessages.Errors.WrongConverterClass WrongConverter
+internal static TypesOfMessages.Errors.WrongConverterClass WrongConverter
 { get { return  mWrongConverter; } }
 private static TypesOfMessages.Errors.NullRecordClassClass mNullRecordClass = new TypesOfMessages.Errors.NullRecordClassClass();
-public static TypesOfMessages.Errors.NullRecordClassClass NullRecordClass
+internal static TypesOfMessages.Errors.NullRecordClassClass NullRecordClass
 { get { return  mNullRecordClass; } }
 private static TypesOfMessages.Errors.StructRecordClassClass mStructRecordClass = new TypesOfMessages.Errors.StructRecordClassClass();
-public static TypesOfMessages.Errors.StructRecordClassClass StructRecordClass
+internal static TypesOfMessages.Errors.StructRecordClassClass StructRecordClass
 { get { return  mStructRecordClass; } }
 private static TypesOfMessages.Errors.TestQuoteClass mTestQuote = new TypesOfMessages.Errors.TestQuoteClass();
-public static TypesOfMessages.Errors.TestQuoteClass TestQuote
+internal static TypesOfMessages.Errors.TestQuoteClass TestQuote
 { get { return  mTestQuote; } }
 private static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass mMixOfStandardAndAutoPropertiesFields = new TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass();
-public static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass MixOfStandardAndAutoPropertiesFields
+internal static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass MixOfStandardAndAutoPropertiesFields
 { get { return  mMixOfStandardAndAutoPropertiesFields; } }
 
 
@@ -73,14 +73,14 @@ public static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass M
 
 }internal  partial class TypesOfMessages
 {
-public  partial class Errors
+internal  partial class Errors
 {
-public  partial class ClassWithOutDefaultConstructorClass: MessageBase
+internal  partial class ClassWithOutDefaultConstructorClass: MessageBase
 {
 
-public ClassWithOutDefaultConstructorClass(): base(@"The record class $ClassName$ needs a constructor with no args (public or private)") {}
+internal ClassWithOutDefaultConstructorClass(): base(@"The record class $ClassName$ needs a constructor with no args (public or private)") {}
  private string mClassName = null;
- public ClassWithOutDefaultConstructorClass ClassName(string value)
+ internal ClassWithOutDefaultConstructorClass ClassName(string value)
 {
     mClassName = value;
     return this;
@@ -93,12 +93,12 @@ public ClassWithOutDefaultConstructorClass(): base(@"The record class $ClassName
     }
 
 
-}public  partial class ClassWithOutFieldsClass: MessageBase
+}internal  partial class ClassWithOutFieldsClass: MessageBase
 {
 
-public ClassWithOutFieldsClass(): base(@"The record class $ClassName$ don't contains any field") {}
+internal ClassWithOutFieldsClass(): base(@"The record class $ClassName$ don't contains any field") {}
  private string mClassName = null;
- public ClassWithOutFieldsClass ClassName(string value)
+ internal ClassWithOutFieldsClass ClassName(string value)
 {
     mClassName = value;
     return this;
@@ -111,12 +111,12 @@ public ClassWithOutFieldsClass(): base(@"The record class $ClassName$ don't cont
     }
 
 
-}public  partial class ClassWithOutRecordAttributeClass: MessageBase
+}internal  partial class ClassWithOutRecordAttributeClass: MessageBase
 {
 
-public ClassWithOutRecordAttributeClass(): base(@"The record class $ClassName$ must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute") {}
+internal ClassWithOutRecordAttributeClass(): base(@"The record class $ClassName$ must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute") {}
  private string mClassName = null;
- public ClassWithOutRecordAttributeClass ClassName(string value)
+ internal ClassWithOutRecordAttributeClass ClassName(string value)
 {
     mClassName = value;
     return this;
@@ -129,10 +129,10 @@ public ClassWithOutRecordAttributeClass(): base(@"The record class $ClassName$ m
     }
 
 
-}public  partial class EmptyClassNameClass: MessageBase
+}internal  partial class EmptyClassNameClass: MessageBase
 {
 
-public EmptyClassNameClass(): base(@"The ClassName can't be empty") {}
+internal EmptyClassNameClass(): base(@"The ClassName can't be empty") {}
     protected override string GenerateText() 
     {
         var res = SourceText;
@@ -140,12 +140,12 @@ public EmptyClassNameClass(): base(@"The ClassName can't be empty") {}
     }
 
 
-}public  partial class EmptyFieldNameClass: MessageBase
+}internal  partial class EmptyFieldNameClass: MessageBase
 {
 
-public EmptyFieldNameClass(): base(@"The $Position$th field name can't be empty") {}
+internal EmptyFieldNameClass(): base(@"The $Position$th field name can't be empty") {}
  private string mPosition = null;
- public EmptyFieldNameClass Position(string value)
+ internal EmptyFieldNameClass Position(string value)
 {
     mPosition = value;
     return this;
@@ -158,12 +158,12 @@ public EmptyFieldNameClass(): base(@"The $Position$th field name can't be empty"
     }
 
 
-}public  partial class EmptyFieldTypeClass: MessageBase
+}internal  partial class EmptyFieldTypeClass: MessageBase
 {
 
-public EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empty") {}
+internal EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empty") {}
  private string mPosition = null;
- public EmptyFieldTypeClass Position(string value)
+ internal EmptyFieldTypeClass Position(string value)
 {
     mPosition = value;
     return this;
@@ -176,12 +176,12 @@ public EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empty"
     }
 
 
-}public  partial class ExpectingFieldOptionalClass: MessageBase
+}internal  partial class ExpectingFieldOptionalClass: MessageBase
 {
 
-public ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be marked as optional because his previoud field is marked as optional. (Try adding [FieldOptional] to $FieldName$)") {}
+internal ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be marked as optional because his previoud field is marked as optional. (Try adding [FieldOptional] to $FieldName$)") {}
  private string mFieldName = null;
- public ExpectingFieldOptionalClass FieldName(string value)
+ internal ExpectingFieldOptionalClass FieldName(string value)
 {
     mFieldName = value;
     return this;
@@ -194,18 +194,18 @@ public ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be mark
     }
 
 
-}public  partial class FieldNotFoundClass: MessageBase
+}internal  partial class FieldNotFoundClass: MessageBase
 {
 
-public FieldNotFoundClass(): base(@"The field: $FieldName$ was not found in the class: $ClassName$. Remember that this option is case sensitive") {}
+internal FieldNotFoundClass(): base(@"The field: $FieldName$ was not found in the class: $ClassName$. Remember that this option is case sensitive") {}
  private string mFieldName = null;
- public FieldNotFoundClass FieldName(string value)
+ internal FieldNotFoundClass FieldName(string value)
 {
     mFieldName = value;
     return this;
 }
  private string mClassName = null;
- public FieldNotFoundClass ClassName(string value)
+ internal FieldNotFoundClass ClassName(string value)
 {
     mClassName = value;
     return this;
@@ -219,12 +219,12 @@ public FieldNotFoundClass(): base(@"The field: $FieldName$ was not found in the 
     }
 
 
-}public  partial class FieldOptionalClass: MessageBase
+}internal  partial class FieldOptionalClass: MessageBase
 {
 
-public FieldOptionalClass(): base(@"The field: $Field$ must be marked as optional because the previous field is marked with FieldOptional. (Try adding [FieldOptional] to $Field$)") {}
+internal FieldOptionalClass(): base(@"The field: $Field$ must be marked as optional because the previous field is marked with FieldOptional. (Try adding [FieldOptional] to $Field$)") {}
  private string mField = null;
- public FieldOptionalClass Field(string value)
+ internal FieldOptionalClass Field(string value)
 {
     mField = value;
     return this;
@@ -237,12 +237,12 @@ public FieldOptionalClass(): base(@"The field: $Field$ must be marked as optiona
     }
 
 
-}public  partial class InvalidIdentifierClass: MessageBase
+}internal  partial class InvalidIdentifierClass: MessageBase
 {
 
-public InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a valid .NET identifier") {}
+internal InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a valid .NET identifier") {}
  private string mIdentifier = null;
- public InvalidIdentifierClass Identifier(string value)
+ internal InvalidIdentifierClass Identifier(string value)
 {
     mIdentifier = value;
     return this;
@@ -255,12 +255,12 @@ public InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a valid
     }
 
 
-}public  partial class MissingFieldArrayLenghtInNotLastFieldClass: MessageBase
+}internal  partial class MissingFieldArrayLenghtInNotLastFieldClass: MessageBase
 {
 
-public MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because is not the last field") {}
+internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because is not the last field") {}
  private string mFieldName = null;
- public MissingFieldArrayLenghtInNotLastFieldClass FieldName(string value)
+ internal MissingFieldArrayLenghtInNotLastFieldClass FieldName(string value)
 {
     mFieldName = value;
     return this;
@@ -273,12 +273,12 @@ public MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldNam
     }
 
 
-}public  partial class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
+}internal  partial class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
 {
 
-public MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.") {}
+internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.") {}
  private string mClassName = null;
- public MixOfStandardAndAutoPropertiesFieldsClass ClassName(string value)
+ internal MixOfStandardAndAutoPropertiesFieldsClass ClassName(string value)
 {
     mClassName = value;
     return this;
@@ -291,10 +291,10 @@ public MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all
     }
 
 
-}public  partial class NullRecordClassClass: MessageBase
+}internal  partial class NullRecordClassClass: MessageBase
 {
 
-public NullRecordClassClass(): base(@"The record type can't be null") {}
+internal NullRecordClassClass(): base(@"The record type can't be null") {}
     protected override string GenerateText() 
     {
         var res = SourceText;
@@ -302,12 +302,12 @@ public NullRecordClassClass(): base(@"The record type can't be null") {}
     }
 
 
-}public  partial class PartialFieldOrderClass: MessageBase
+}internal  partial class PartialFieldOrderClass: MessageBase
 {
 
-public PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.") {}
+internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.") {}
  private string mFieldName = null;
- public PartialFieldOrderClass FieldName(string value)
+ internal PartialFieldOrderClass FieldName(string value)
 {
     mFieldName = value;
     return this;
@@ -320,18 +320,18 @@ public PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked wi
     }
 
 
-}public  partial class SameFieldOrderClass: MessageBase
+}internal  partial class SameFieldOrderClass: MessageBase
 {
 
-public SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values") {}
+internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values") {}
  private string mFieldName1 = null;
- public SameFieldOrderClass FieldName1(string value)
+ internal SameFieldOrderClass FieldName1(string value)
 {
     mFieldName1 = value;
     return this;
 }
  private string mFieldName2 = null;
- public SameFieldOrderClass FieldName2(string value)
+ internal SameFieldOrderClass FieldName2(string value)
 {
     mFieldName2 = value;
     return this;
@@ -345,12 +345,12 @@ public SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldO
     }
 
 
-}public  partial class SameMinMaxLengthForArrayNotLastFieldClass: MessageBase
+}internal  partial class SameMinMaxLengthForArrayNotLastFieldClass: MessageBase
 {
 
-public SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $FieldName$ must be of a fixed length because is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because") {}
+internal SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $FieldName$ must be of a fixed length because is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because") {}
  private string mFieldName = null;
- public SameMinMaxLengthForArrayNotLastFieldClass FieldName(string value)
+ internal SameMinMaxLengthForArrayNotLastFieldClass FieldName(string value)
 {
     mFieldName = value;
     return this;
@@ -363,12 +363,12 @@ public SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $Fie
     }
 
 
-}public  partial class StructRecordClassClass: MessageBase
+}internal  partial class StructRecordClassClass: MessageBase
 {
 
-public StructRecordClassClass(): base(@"The record type must be a class, and the type: $RecordType$ is a struct.") {}
+internal StructRecordClassClass(): base(@"The record type must be a class, and the type: $RecordType$ is a struct.") {}
  private string mRecordType = null;
- public StructRecordClassClass RecordType(string value)
+ internal StructRecordClassClass RecordType(string value)
 {
     mRecordType = value;
     return this;
@@ -381,10 +381,10 @@ public StructRecordClassClass(): base(@"The record type must be a class, and the
     }
 
 
-}public  partial class TestQuoteClass: MessageBase
+}internal  partial class TestQuoteClass: MessageBase
 {
 
-public TestQuoteClass(): base(@"The Message class also allows to use "" in any part of the "" text "" .") {}
+internal TestQuoteClass(): base(@"The Message class also allows to use "" in any part of the "" text "" .") {}
     protected override string GenerateText() 
     {
         var res = SourceText;
@@ -392,24 +392,24 @@ public TestQuoteClass(): base(@"The Message class also allows to use "" in any p
     }
 
 
-}public  partial class WrongConverterClass: MessageBase
+}internal  partial class WrongConverterClass: MessageBase
 {
 
-public WrongConverterClass(): base(@"The converter for the field: $FieldName$ returns an object of Type: $ConverterReturnedType$  and the field is of type: $FieldType$") {}
+internal WrongConverterClass(): base(@"The converter for the field: $FieldName$ returns an object of Type: $ConverterReturnedType$  and the field is of type: $FieldType$") {}
  private string mFieldName = null;
- public WrongConverterClass FieldName(string value)
+ internal WrongConverterClass FieldName(string value)
 {
     mFieldName = value;
     return this;
 }
  private string mConverterReturnedType = null;
- public WrongConverterClass ConverterReturnedType(string value)
+ internal WrongConverterClass ConverterReturnedType(string value)
 {
     mConverterReturnedType = value;
     return this;
 }
  private string mFieldType = null;
- public WrongConverterClass FieldType(string value)
+ internal WrongConverterClass FieldType(string value)
 {
     mFieldType = value;
     return this;

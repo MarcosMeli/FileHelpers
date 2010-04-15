@@ -12,7 +12,9 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class IgnoreFirstAttribute : Attribute
 	{
-		internal int NumberOfLines;
+        /// <summary>The number of first lines to be discarded.</summary>
+        public int NumberOfLines { get; private set; }
+
 
 
 		/// <summary>Indicates that the first line must be discarded.</summary>

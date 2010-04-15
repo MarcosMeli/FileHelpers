@@ -12,9 +12,10 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class IgnoreLastAttribute : Attribute
 	{
-		internal int NumberOfLines;
+        /// <summary> The number of lines to be discarded at end. </summary>
+	    public int NumberOfLines { get; private set; }
 
-		/// <summary>Indicates that the last line must be discarded.</summary>
+	    /// <summary>Indicates that the last line must be discarded.</summary>
 		public IgnoreLastAttribute() : this(1)
 		{
 		}
@@ -25,5 +26,7 @@ namespace FileHelpers
 		{
 			NumberOfLines = numberOfLines;
 		}
+
+	 
 	}
 }

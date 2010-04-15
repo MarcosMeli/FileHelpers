@@ -13,7 +13,9 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class ConditionalRecordAttribute : Attribute
 	{
+        /// <summary> The condition used to include or exclude each record </summary>
         public RecordCondition Condition { get; private set; }
+        /// <summary> The selector for the condition. </summary>
         public string ConditionSelector { get; private set; }
 
         /// <summary>Allow to declaratively show what records must be included or excluded</summary>
