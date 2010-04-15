@@ -433,7 +433,10 @@ namespace FileHelpers
             }
             catch (ConvertException ex)
             {
-                throw ConvertException.ReThrowException(ex, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1);
+                ex.FieldName = FieldInfo.Name;
+                ex.LineNumber = line.mReader.LineNumber;
+                ex.ColumnNumber = fieldString.ExtractedFrom + 1;
+                throw;
             }
             catch (BadUsageException)
             {

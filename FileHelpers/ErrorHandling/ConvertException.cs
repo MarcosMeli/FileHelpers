@@ -13,73 +13,28 @@ namespace FileHelpers
     {
         #region "  Fields & Property  "
 
+	    /// <summary>The destination type.</summary>
+	    public Type FieldType { get; private set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal string mFieldName = null;
+	    /// <summary>The value that can't be converterd. (null for unknown)</summary>
+	    public string FieldStringValue { get; private set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal int mLineNumber = -1;
+	    /// <summary>Extra info about the error.</summary>
+	    public string MessageExtra { get; private set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal int mColumnNumber = -1;
+	    /// <summary>The message without the Line, Column and FieldName.</summary>
+	    public string MessageOriginal { get; private set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string mFieldStringValue = null;
+	    /// <summary>The name of the field related to the exception. (null for unknown)</summary>
+	    public string FieldName { get; internal set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string mMessageExtra = string.Empty;
+	    /// <summary>The line where the error was found. (-1 is unknown)</summary>
+	    public int LineNumber { get; internal set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string mMessageOriginal = string.Empty;
+	    /// <summary>The estimate column where the error was found. (-1 is unknown)</summary>
+	    public int ColumnNumber { get; internal set; }
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Type mFieldType;
-
-        /// <summary>The destination type.</summary>
-        public Type FieldType
-        {
-            get { return mFieldType; }
-        }
-
-        /// <summary>The value that can't be converterd. (null for unknown)</summary>
-        public string FieldStringValue
-        {
-            get { return mFieldStringValue; }
-        }
-
-        /// <summary>Extra info about the error.</summary>
-        public string MessageExtra
-        {
-            get { return mMessageExtra; }
-        }
-
-        /// <summary>The message without the Line, Column and FieldName.</summary>
-        public string MessageOriginal
-        {
-            get { return mMessageOriginal; }
-        }
-
-
-        /// <summary>The name of the field related to the exception. (null for unknown)</summary>
-        public string FieldName
-        {
-            get { return mFieldName; }
-        }
-
-        /// <summary>The line where the error was found. (-1 is unknown)</summary>
-        public int LineNumber
-        {
-            get { return mLineNumber; }
-        }
-
-        /// <summary>The estimate column where the error was found. (-1 is unknown)</summary>
-        public int ColumnNumber
-        {
-            get { return mColumnNumber; }
-        }
-
-
-        #endregion
+	    #endregion
 
         #region "  Constructors  "
 
@@ -118,28 +73,29 @@ namespace FileHelpers
         public ConvertException(string origValue, Type destType, string fieldName, int lineNumber, int columnNumber, string extraInfo, Exception innerEx)
             : base(MessageBuilder(origValue, destType, fieldName, lineNumber, columnNumber, extraInfo), innerEx)
         {
-            mFieldStringValue = origValue;
-            mFieldType = destType;
-            mLineNumber = lineNumber;
-            mColumnNumber = columnNumber;
-            mFieldName = fieldName;
-            mMessageExtra = extraInfo;
+            MessageOriginal = string.Empty;
+            FieldStringValue = origValue;
+            FieldType = destType;
+            LineNumber = lineNumber;
+            ColumnNumber = columnNumber;
+            FieldName = fieldName;
+            MessageExtra = extraInfo;
 
             if (origValue != null && destType != null)
-                mMessageOriginal = "Error Converting '" + origValue + "' to type: '" + destType.Name + "'. ";
+                MessageOriginal = "Error Converting '" + origValue + "' to type: '" + destType.Name + "'. ";
 
         }
 
         private static string MessageBuilder(string origValue, Type destType, string fieldName, int lineNumber, int columnNumber, string extraInfo)
         {
-            string res = string.Empty;
+            var res = string.Empty;
             if (lineNumber >= 0)
                 res += "Line: " + lineNumber.ToString() + ". ";
 
             if (columnNumber >= 0)
                 res += "Column: " + columnNumber.ToString() + ". ";
 
-            if (fieldName != null && fieldName != string.Empty)
+            if (!string.IsNullOrEmpty(fieldName))
                 res += "Field: " + fieldName + ". ";
 
             if (origValue != null && destType != null)
@@ -150,12 +106,6 @@ namespace FileHelpers
             return res;
         }
 
-
-
-        internal static ConvertException ReThrowException(ConvertException ex, string fieldName, int line, int column)
-        {
-            return new ConvertException(ex.FieldStringValue, ex.mFieldType, fieldName, line, column, ex.mMessageExtra, ex.InnerException);
-        }
 
         #endregion
     }

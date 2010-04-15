@@ -82,17 +82,5 @@ namespace FileHelpers
 			throw new ConvertException(from, mDestinationType, errorMsg);
 		}
 
-//		internal object mDefaultValue;
-//		/// <summary>
-//		/// Indicates 
-//		/// </summary>
-//		protected object DefaultValueFromField
-//		{
-//			get
-//			{
-//				return mDefaultValue;
-//			}
-//		}
-
 	}
 }

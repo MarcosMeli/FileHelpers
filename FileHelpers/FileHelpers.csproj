@@ -325,8 +325,6 @@
     <Compile Include="Interfaces\INotificableRecord.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mapping\DataMapper.cs" />
-    <Compile Include="Mapping\MappingInfo.cs" />
     <Compile Include="MasterDetail\Common.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -358,6 +356,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
+    <Compile Include="Sort\ExternalFileSorter.cs" />
     <Compile Include="Streams\InternalStringReader.cs" />
     <Compile Include="Streams\StreamInfoProvider.cs" />
     <Compile Include="VersionInfo.cs" />

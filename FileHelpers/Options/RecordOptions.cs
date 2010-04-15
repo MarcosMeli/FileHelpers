@@ -25,7 +25,7 @@ namespace FileHelpers.Options
 		}
 
         /// <summary>
-        /// The number of fields of the record type.<
+        /// The number of fields of the record type.
         /// </summary>
 		public int FieldCount
 		{
@@ -41,6 +41,8 @@ namespace FileHelpers.Options
         //        return mRecordInfo.mFields[index].mFieldInfo.Name; 
         //    }
         //}
+
+   
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string[] mFieldNames;
@@ -213,6 +215,18 @@ namespace FileHelpers.Options
 				set { mRecordInfo.CommentAnyPlace = value; }
 			}
 		}
+
+
+        /// <summary>
+        /// Allows the creating of a record string of the given record. Is useful when your want to log errors to a plan text file or database
+        /// </summary>
+        /// <param name="record">The record that will be transformed to string</param>
+        /// <returns>The string representation of the current record</returns>
+        public string RecordToString(object record)
+        {
+            return mRecordInfo.Operations.RecordToString(record);
+        }
+
     }
 
 }
