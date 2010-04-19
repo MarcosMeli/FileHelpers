@@ -9,14 +9,14 @@ namespace FileHelpers.Events
     /// </summary>
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
-    public delegate void BeforeReadRecordHandler<T>(EngineBase engine, BeforeReadRecordEventArgs<T> e);
+    public delegate void BeforeReadHandler<T>(EngineBase engine, BeforeReadEventArgs<T> e) where T : class;
 
     /// <summary>
     /// Called in read operations just after the record was created from a record string.
     /// </summary>
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
-    public delegate void AfterReadRecordHandler<T>(EngineBase engine, AfterReadRecordEventArgs<T> e);
+    public delegate void AfterReadHandler<T>(EngineBase engine, AfterReadEventArgs<T> e) where T : class;
 
 
 
@@ -27,13 +27,13 @@ namespace FileHelpers.Events
     /// </summary>
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
-    public delegate void BeforeWriteRecordHandler<T>(EngineBase engine, BeforeWriteRecordEventArgs<T> e);
+    public delegate void BeforeWriteHandler<T>(EngineBase engine, BeforeWriteEventArgs<T> e) where T : class;
 
     /// <summary>
     /// Called in write operations just after the record was converted to a string.
     /// </summary>
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
-    public delegate void AfterWriteRecordHandler<T>(EngineBase engine, AfterWriteRecordEventArgs<T> e);
+    public delegate void AfterWriteHandler<T>(EngineBase engine, AfterWriteEventArgs<T> e) where T : class;
 
 }

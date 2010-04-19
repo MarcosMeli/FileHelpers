@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using FileHelpers.Events;
 
 namespace FileHelpers
 {
@@ -120,10 +121,10 @@ namespace FileHelpers
 
 
            
-            if (typeof (INotifyRead).IsAssignableFrom(RecordType))
+            if (CheckGenericInterface(RecordType, typeof(INotifyRead<>), RecordType))
                 NotifyRead = true;
 
-            if (typeof (INotifyWrite).IsAssignableFrom(RecordType))
+            if (CheckGenericInterface(RecordType, typeof(INotifyWrite<>), RecordType))
                 NotifyWrite = true;
 
             // Create fields
@@ -351,6 +352,37 @@ namespace FileHelpers
             }
 
             return res;
+        }
+
+        public static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
+        {
+            foreach (var inteImp in type.GetInterfaces())
+            {
+                if (inteImp.IsGenericType &&
+                    inteImp.GetGenericTypeDefinition() == interfaceType)
+                {
+                    var args = inteImp.GetGenericArguments();
+                    
+                    if (args.Length == genericsArgs.Length)
+                    {
+                        bool fail = false;
+                        for (int i = 0; i < args.Length; i++)
+                        {
+                            if (args[i] != genericsArgs[i])
+                            {
+                                fail = true;
+                                break;
+                            }
+                        }
+                        if (!fail)
+                            return true;
+
+                    }
+                    throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
+                                                interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
+                }
+            }
+            return false;
         }
     }
 }

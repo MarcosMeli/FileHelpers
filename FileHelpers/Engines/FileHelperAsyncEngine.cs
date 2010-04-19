@@ -207,7 +207,8 @@ namespace FileHelpers
             mCurrentRecord = 0;
 
 #if ! MINI
-            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 #endif
             return this;
         }
@@ -278,31 +279,36 @@ namespace FileHelpers
 
                         bool skip = false;
 
+                        mLastRecord = (T) mRecordInfo.Operations.CreateRecordHandler();
 #if ! MINI
+                        if (MustNotifyProgress) // Avoid object creation
+                            OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
-                            BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
-                        skip = OnBeforeReadRecord(e);
-                        if (e.RecordLineChanged)
-                            line.ReLoad(e.RecordLine);
+                        BeforeReadEventArgs<T> e = null;
+                        if (MustNotifyRead) // Avoid object creation
+                        {
+                            e = new BeforeReadEventArgs<T>(this, mLastRecord, currentLine, LineNumber);
+                            skip = OnBeforeReadRecord(e);
+                            if (e.RecordLineChanged)
+                                line.ReLoad(e.RecordLine);
+                        }
 
-
-                        OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
 
 #endif
                         if (skip == false)
                         {
-                            mLastRecord = (T)mRecordInfo.Operations.StringToRecord(line, mLastRecordValues);
-
-#if ! MINI
-
-    						skip = OnAfterReadRecord(currentLine, (T) mLastRecord, e.RecordLineChanged);
-#endif
-
-                            if (skip == false && mLastRecord != null)
+                            if (mRecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues))
                             {
-                                byPass = true;
-                                return;
+#if ! MINI
+                                if (MustNotifyRead) // Avoid object creation
+                                    skip = OnAfterReadRecord(currentLine, mLastRecord, e.RecordLineChanged, LineNumber);
+#endif
+                                if (skip == false)
+                                {
+                                    byPass = true;
+                                    return;
+                                }
                             }
                         }
                     }
@@ -316,7 +322,7 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                ErrorInfo err = new ErrorInfo();
+                                var err = new ErrorInfo();
                                 err.mLineNumber = mAsyncReader.LineNumber;
                                 err.mExceptionInfo = ex;
                                 //							err.mColumnNumber = mColumnNum;
@@ -459,7 +465,8 @@ namespace FileHelpers
             mCurrentRecord = 0;
 
 #if ! MINI
-            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 #endif
 
             return this;
@@ -505,7 +512,8 @@ namespace FileHelpers
             mCurrentRecord = 0;
 
 #if ! MINI
-            OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 #endif
 
             return this;
@@ -542,9 +550,12 @@ namespace FileHelpers
 
                 bool skip = false;
 #if !MINI
-                skip = OnBeforeWriteRecord(record);
+                
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
-                OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+                if (MustNotifyWrite)
+                    skip = OnBeforeWriteRecord(record, LineNumber);
 
 #endif
 
@@ -552,7 +563,8 @@ namespace FileHelpers
                 {
                     currentLine = mRecordInfo.Operations.RecordToString(record);
 #if !MINI
-                    currentLine = OnAfterWriteRecord(currentLine, record);
+                    if (MustNotifyWrite)
+                        currentLine = OnAfterWriteRecord(currentLine, record);
 #endif
                     mAsyncWriter.WriteLine(currentLine);
                 }

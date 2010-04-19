@@ -18,7 +18,13 @@ namespace FileHelpers.Benchmarks
             var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
             //TestFixedLengthRecord(engine, file);
 
+            engine.AfterReadRecord += new FileHelpers.Events.AfterReadHandler<FixedSampleRecord>(engine_AfterReadRecord);
+            engine.BeforeReadRecord += new FileHelpers.Events.BeforeReadHandler<FixedSampleRecord>(engine_BeforeReadRecord);
             engine.Progress += new EventHandler<FileHelpers.Events.ProgressEventArgs>(engine_Progress);
+            engine.AfterWriteRecord += new FileHelpers.Events.AfterWriteHandler<FixedSampleRecord>(engine_AfterWriteRecord);
+            engine.BeforeWriteRecord += new FileHelpers.Events.BeforeWriteHandler<FixedSampleRecord>(engine_BeforeWriteRecord);
+
+            System.Threading.Thread.Sleep(2000);
             long start = DateTime.Now.Ticks;
 
 		    TestFixedLengthRecord(engine, file);
@@ -29,6 +35,26 @@ namespace FileHelpers.Benchmarks
             if (args.Length > 0)
 		        Console.ReadLine();
 		}
+
+        static void engine_BeforeWriteRecord(EngineBase engine, FileHelpers.Events.BeforeWriteEventArgs<FixedSampleRecord> e)
+        {
+            
+        }
+
+        static void engine_AfterWriteRecord(EngineBase engine, FileHelpers.Events.AfterWriteEventArgs<FixedSampleRecord> e)
+        {
+            
+        }
+
+        static void engine_BeforeReadRecord(EngineBase engine, FileHelpers.Events.BeforeReadEventArgs<FixedSampleRecord> e)
+        {
+
+        }
+
+        static void engine_AfterReadRecord(EngineBase engine, FileHelpers.Events.AfterReadEventArgs<FixedSampleRecord> e)
+        {
+            
+        }
 
         static void engine_Progress(object sender, FileHelpers.Events.ProgressEventArgs e)
         {

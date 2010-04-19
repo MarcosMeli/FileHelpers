@@ -5,7 +5,8 @@ using System.Reflection.Emit;
 
 namespace FileHelpers
 {
-    internal delegate object ValuesToObjectDelegate(object[] values);
+    internal delegate object CreateAndAssignDelegate(object[] values);
+    internal delegate void AssignDelegate(object record, object[] values);
     internal delegate object[] ObjectToValuesDelegate(object record);
     internal delegate object CreateObjectDelegate();
 
@@ -13,7 +14,7 @@ namespace FileHelpers
     {
         public static ObjectToValuesDelegate ObjectToValuesMethod(Type recordType, FieldInfo[] fields)
         {
-            var dm = new DynamicMethod("_GetAllValues_FH_RT_",
+            var dm = new DynamicMethod("FileHelpersDynamic_GetAllValues",
                                        MethodAttributes.Static | MethodAttributes.Public,
                                        CallingConventions.Standard,
                                        typeof(object[]),
@@ -66,9 +67,9 @@ namespace FileHelpers
                                         new ParameterModifier[] { });
         }
 
-        public static ValuesToObjectDelegate ValuesToObjectMethod(Type recordType, FieldInfo[] fields)
+        public static CreateAndAssignDelegate CreateAndAssignValuesMethod(Type recordType, FieldInfo[] fields)
         {
-            var dm = new DynamicMethod("_CreateAndAssing_FH_RT_",
+            var dm = new DynamicMethod("FileHelpersDynamicCreateAndAssing",
                                        MethodAttributes.Static | MethodAttributes.Public,
                                        CallingConventions.Standard,
                                        typeof(object),
@@ -107,12 +108,55 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ldloc_0);
             generator.Emit(OpCodes.Ret);
 
-            return (ValuesToObjectDelegate)dm.CreateDelegate(typeof(ValuesToObjectDelegate));
+            return (CreateAndAssignDelegate)dm.CreateDelegate(typeof(CreateAndAssignDelegate));
+        }
+
+        public static AssignDelegate AssignValuesMethod(Type recordType, FieldInfo[] fields)
+        {
+            var dm = new DynamicMethod("FileHelpersDynamic_Assing",
+                                       MethodAttributes.Static | MethodAttributes.Public,
+                                       CallingConventions.Standard,
+                                       null,
+                                       new[] {typeof(object), typeof(object[]) },
+                                       recordType,
+                                       true);
+
+            var generator = dm.GetILGenerator();
+
+            generator.DeclareLocal(recordType);
+            generator.Emit(OpCodes.Ldarg_0);
+            generator.Emit(OpCodes.Castclass, recordType);
+            generator.Emit(OpCodes.Stloc_0);
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                var field = fields[i];
+
+                generator.Emit(OpCodes.Ldloc_0);
+                generator.Emit(OpCodes.Ldarg_1);
+                generator.Emit(OpCodes.Ldc_I4, i);
+                generator.Emit(OpCodes.Ldelem_Ref);
+
+                if (field.FieldType.IsValueType)
+                {
+                    generator.Emit(OpCodes.Unbox_Any, field.FieldType);
+                }
+                else
+                {
+                    generator.Emit(OpCodes.Castclass, field.FieldType);
+                }
+
+                generator.Emit(OpCodes.Stfld, field);
+            }
+
+            generator.Emit(OpCodes.Ret);
+
+            return (AssignDelegate)dm.CreateDelegate(typeof(AssignDelegate));
         }
 
         public static CreateObjectDelegate CreateFastConstructor(Type recordType)
         {
-            var dm = new DynamicMethod("_CreateRecordFast_FH_RT_",
+            var dm = new DynamicMethod("FileHelpersDynamicCreateRecordFast",
                                        MethodAttributes.Static | MethodAttributes.Public,
                                        CallingConventions.Standard,
                                        typeof(object),
@@ -130,7 +174,7 @@ namespace FileHelpers
 
         public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
         {
-            var dm = new DynamicMethod("_GetValue" + fi.Name + "_FH_RT_",
+            var dm = new DynamicMethod("FileHelpersDynamic_GetValue" + fi.Name,
                                        MethodAttributes.Static | MethodAttributes.Public,
                                        CallingConventions.Standard,
                                        typeof(object),
@@ -182,5 +226,6 @@ namespace FileHelpers
             }
         }
 
+       
     }
 }

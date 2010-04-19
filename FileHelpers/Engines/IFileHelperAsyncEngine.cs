@@ -100,16 +100,16 @@ namespace FileHelpers
         void WriteNextValues();
 
         /// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        event BeforeReadRecordHandler<T> BeforeReadRecord;
+        event BeforeReadHandler<T> BeforeReadRecord;
 
         /// <summary>Called in read operations just after the record was created from a record string.</summary>
-        event AfterReadRecordHandler<T> AfterReadRecord;
+        event AfterReadHandler<T> AfterReadRecord;
 
         /// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        event BeforeWriteRecordHandler<T> BeforeWriteRecord;
+        event BeforeWriteHandler<T> BeforeWriteRecord;
 
         /// <summary>Called in write operations just after the record was converted to a string.</summary>
-        event AfterWriteRecordHandler<T> AfterWriteRecord;
+        event AfterWriteHandler<T> AfterWriteRecord;
 
         /// <summary>Called to notify progress.</summary>
         event EventHandler<ProgressEventArgs> Progress;

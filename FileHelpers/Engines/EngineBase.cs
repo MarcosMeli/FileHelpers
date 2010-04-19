@@ -188,6 +188,11 @@ namespace FileHelpers
         /// <summary>Called to notify progress.</summary>
         public event EventHandler<ProgressEventArgs> Progress;
 
+        protected bool MustNotifyProgress
+        {
+            get { return Progress != null; }
+        }
+
         /// <summary>
         /// Raises the Progress Event
         /// </summary>

@@ -118,7 +118,7 @@ namespace FileHelpers.Tests.CommonTests
 		int before = 0;
 		int after = 0;
 
-		private void BeforeEvent(EngineBase sender, BeforeReadRecordEventArgs<SampleType> e)
+		private void BeforeEvent(EngineBase sender, BeforeReadEventArgs<SampleType> e)
 		{
 			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
 				e.SkipThisRecord = true;
@@ -126,28 +126,28 @@ namespace FileHelpers.Tests.CommonTests
 			before++;
 		}
 
-        private void AfterEvent(EngineBase sender, AfterReadRecordEventArgs<SampleType> e)
+        private void AfterEvent(EngineBase sender, AfterReadEventArgs<SampleType> e)
 		{
 			after++;
 		}
 
-        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteRecordEventArgs<SampleType> e)
+        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteEventArgs<SampleType> e)
 		{
 			before++;
 		}
 
-        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteRecordEventArgs<SampleType> e)
+        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteEventArgs<SampleType> e)
 		{
 			after++;
 		}
 
-        private void AfterEvent2(EngineBase sender, AfterReadRecordEventArgs<SampleType> e)
+        private void AfterEvent2(EngineBase sender, AfterReadEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			after++;
 		}
 
-        private void BeforeEvent2(EngineBase sender, BeforeReadRecordEventArgs<SampleType> e)
+        private void BeforeEvent2(EngineBase sender, BeforeReadEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			before++;

@@ -7,7 +7,7 @@ using System.Security.Permissions;
 
 [assembly : AssemblyTitle("FileHelpers Library http://www.filehelpers.com")]
 
-[assembly : ReflectionPermission(SecurityAction.RequestMinimum, ReflectionEmit = true)]
+[assembly : ReflectionPermission(SecurityAction.RequestMinimum, ReflectionEmit = true, RestrictedMemberAccess = true)]
 [assembly : SecurityPermission(SecurityAction.RequestMinimum, SerializationFormatter = true)]
 
 

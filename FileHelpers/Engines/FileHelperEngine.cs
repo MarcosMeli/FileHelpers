@@ -221,9 +221,9 @@ namespace FileHelpers
                 result = new List<T>();
 
             int currentRecord = 0;
-
+            
 		    var streamInfo = new StreamInfoProvider(reader);
-            using (ForwardReader freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
+            using (var freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -235,7 +235,8 @@ namespace FileHelpers
                 currentLine = completeLine;
 
 #if !MINI
-                OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
 #endif
 
                 if (mRecordInfo.IgnoreFirst > 0)
@@ -265,33 +266,42 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        bool skip;
+                        var skip = false;
+
+                        T record = (T)mRecordInfo.Operations.CreateRecordHandler();
 #if !MINI
-                        OnProgress(new ProgressEventArgs(currentRecord, -1, streamInfo.Position, streamInfo.TotalBytes));
-                    BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, LineNumber);
-                        skip = OnBeforeReadRecord(e);
-                        if (e.RecordLineChanged)
-                            line.ReLoad(e.RecordLine);
+                        if (MustNotifyProgress) // Avoid object creation
+                            OnProgress(new ProgressEventArgs(currentRecord, -1, streamInfo.Position, streamInfo.TotalBytes));
+
+                        BeforeReadEventArgs<T> e = null;
+                        if (MustNotifyRead)
+                        {
+                            e = new BeforeReadEventArgs<T>(this, record, currentLine, LineNumber);
+                            skip = OnBeforeReadRecord(e);
+                            if (e.RecordLineChanged)
+                                line.ReLoad(e.RecordLine);
+                        }
 #endif
 
                         if (skip == false)
                         {
-                            T record = (T) mRecordInfo.Operations.StringToRecord(line, values);
-
-#if !MINI
-						skip = OnAfterReadRecord(currentLine, (T) record, e.RecordLineChanged);
-#endif
-
-                            if (skip == false && record != null)
+                            if (mRecordInfo.Operations.StringToRecord(record, line, values))
                             {
+#if !MINI
+                                if (MustNotifyRead) // Avoid object creation
+                                    skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
+#endif
+                                if (skip == false)
+                                {
 #if MINI
 								resArray.Add(record);
 #else
-                                if (dt == null)
-                                    result.Add(record);
-                                else
-                                    dt.Rows.Add(mRecordInfo.Operations.RecordToValues(record));
+                                    if (dt == null)
+                                        result.Add(record);
+                                    else
+                                        dt.Rows.Add(mRecordInfo.Operations.RecordToValues(record));
 #endif
+                                }
                             }
                         }
                     }
@@ -305,7 +315,7 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                ErrorInfo err = new ErrorInfo
+                                var err = new ErrorInfo
                                                     {
                                                         mLineNumber = freader.LineNumber,
                                                         mExceptionInfo = ex,
@@ -445,7 +455,8 @@ namespace FileHelpers
 				max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 			#if !MINI
-                OnProgress(new ProgressEventArgs(0, max));
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(0, max));
 			#endif
 
 			int recIndex = 0;
@@ -472,15 +483,19 @@ namespace FileHelpers
 
 					bool skip = false;
 					#if !MINI
+                    if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
-						skip = OnBeforeWriteRecord(rec);
+                    
+                    if (MustNotifyWrite)
+						skip = OnBeforeWriteRecord(rec, LineNumber);
 					#endif
 
 					if (skip == false)
 					{
                         currentLine = mRecordInfo.Operations.RecordToString(rec);
 						#if !MINI
-						currentLine = OnAfterWriteRecord(currentLine, rec);
+                        if (MustNotifyWrite)
+                            currentLine = OnAfterWriteRecord(currentLine, rec);
 						#endif
 						writer.WriteLine(currentLine);
 					}
@@ -517,7 +532,8 @@ namespace FileHelpers
 
     	}
 
-		#endregion
+
+        #endregion
 
 		#region "  WriteString  "
 

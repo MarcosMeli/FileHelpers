@@ -278,7 +278,8 @@ namespace FileHelpers.MasterDetail
                 currentLine = completeLine;
 
 #if !MINI
-                OnProgress(new ProgressEventArgs(0, -1));
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(0, -1));
                 
 #endif
                 int currentRecord = 0;
@@ -319,7 +320,8 @@ namespace FileHelpers.MasterDetail
                         line.ReLoad(currentLine);
 
 #if !MINI
-                        OnProgress(new ProgressEventArgs(currentRecord, -1));
+                        if (MustNotifyProgress) // Avoid object creation
+                            OnProgress(new ProgressEventArgs(currentRecord, -1));
 #endif
 
                         RecordAction action = RecordSelector(currentLine);
@@ -531,7 +533,8 @@ namespace FileHelpers.MasterDetail
                 max = Math.Min(max < 0 ? int.MaxValue : max, ((IList)records).Count);
 
 #if !MINI
-            OnProgress(new ProgressEventArgs(0, max));
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(0, max));
 #endif
 
             int recIndex = 0;
@@ -551,7 +554,8 @@ namespace FileHelpers.MasterDetail
                         throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
 #if !MINI
-                    OnProgress(new ProgressEventArgs(recIndex + 1, max));
+                    if (MustNotifyProgress) // Avoid object creation
+                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
 #endif
 
                     currentLine = mMasterInfo.Operations.RecordToString(rec.mMaster);

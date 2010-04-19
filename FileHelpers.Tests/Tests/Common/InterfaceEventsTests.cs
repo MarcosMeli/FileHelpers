@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FileHelpers;
+using FileHelpers.Events;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -8,6 +9,21 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class InterfaceEventsTests
 	{
+        [Test]
+        public void ReadBadUsage()
+        {
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine<SampleTypeBadRead>());
+
+        }
+
+        [Test]
+        public void WriteBadUsage()
+        {
+            Assert.Throws<BadUsageException>(
+                () => new FileHelperEngine<SampleTypeBadWrite>());
+
+        }
 		[Test]
 		public void ReadEvents()
 		{
@@ -21,6 +37,11 @@ namespace FileHelpers.Tests.CommonTests
 			Assert.AreEqual(true, res[1].AfterReadNotif);
 			Assert.AreEqual(true, res[2].AfterReadNotif);
 			Assert.AreEqual(true, res[3].AfterReadNotif);
+
+            Assert.AreEqual(true, res[0].BeforeReadNotif);
+            Assert.AreEqual(true, res[1].BeforeReadNotif);
+            Assert.AreEqual(true, res[2].BeforeReadNotif);
+            Assert.AreEqual(true, res[3].BeforeReadNotif);
 		}
 		
 
@@ -51,7 +72,7 @@ namespace FileHelpers.Tests.CommonTests
 		}
 
 		[FixedLengthRecord]
-		private class SampleType: INotifyRead, INotifyWrite
+		private class SampleType: INotifyRead<SampleType>, INotifyWrite<SampleType>
 		{
 			[FieldFixedLength(8)]
 			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
@@ -72,16 +93,65 @@ namespace FileHelpers.Tests.CommonTests
 			[FieldIgnored]
 			public bool BeforeWriteNotif = false;
 
-			public void AfterRead(EngineBase engine, string line)
-			{
-				AfterReadNotif = true;
-			}
+            [FieldIgnored]
+            public bool BeforeReadNotif = false;
+            [FieldIgnored]
+            public bool AfterWriteNotif = false;
 
-			public void BeforeWrite(EngineBase engine)
-			{
-				BeforeWriteNotif = true;
-			}
+			
+		    public void AfterRead(AfterReadEventArgs<SampleType> e)
+		    {
+                AfterReadNotif = true;
+		    }
+
+		    public void BeforeRead(BeforeReadEventArgs<SampleType> e)
+		    {
+                BeforeReadNotif = true;
+		    }
+
+		    public void BeforeWrite(BeforeWriteEventArgs<SampleType> e)
+		    {
+                BeforeWriteNotif = true;
+		    }
+
+		    public void AfterWrite(AfterWriteEventArgs<SampleType> e)
+		    {
+                AfterWriteNotif = true;
+		    }
 		}
+
+        [DelimitedRecord(",")]
+        private class SampleTypeBadRead : INotifyRead<SampleType>
+        {
+            public DateTime Field1;
+
+            public void AfterRead(AfterReadEventArgs<SampleType> e)
+            {
+                
+            }
+
+            public void BeforeRead(BeforeReadEventArgs<SampleType> e)
+            {
+                
+            }
+        }
+
+        [DelimitedRecord(",")]
+        private class SampleTypeBadWrite: INotifyWrite<SampleType>
+        {
+            public DateTime Field1;
+
+  
+            public void BeforeWrite(BeforeWriteEventArgs<SampleType> e)
+            {
+                    
+            }
+
+            public void AfterWrite(AfterWriteEventArgs<SampleType> e)
+            {
+                
+            }
+        }
 
 	}
 }

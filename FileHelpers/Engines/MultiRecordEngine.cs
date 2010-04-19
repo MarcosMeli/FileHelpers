@@ -238,7 +238,8 @@ namespace FileHelpers
                 currentLine = completeLine;
 
 #if !MINI
-                OnProgress(new ProgressEventArgs(0 , -1));
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(0, -1));
 #endif
                 int currentRecord = 0;
 
@@ -267,16 +268,7 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        bool skip;
-#if !MINI
-                        OnProgress(new ProgressEventArgs(currentRecord, -1));
-
-                        var e = new BeforeReadRecordEventArgs<object>(currentLine, LineNumber);
-                        skip = OnBeforeReadRecord(e);
-                        if (e.RecordLineChanged)
-                            line.ReLoad(e.RecordLine);
-
-#endif
+                        var skip = false;
 
                         Type currType = mRecordSelector(this, currentLine);
 
@@ -287,17 +279,36 @@ namespace FileHelpers
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
 
-                            if (skip == false)
-                            {
-                                object[] values = new object[info.FieldCount];
-                                object record = info.Operations.StringToRecord(line, values);
+                            var record = info.Operations.CreateRecordHandler();
 
 #if !MINI
-                                skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged);
+                            if (MustNotifyProgress) // Avoid object creation
+                                OnProgress(new ProgressEventArgs(currentRecord, -1));
+
+                            BeforeReadEventArgs<object> e = null;
+                            if (MustNotifyRead) // Avoid object creation
+                            {
+                                e = new BeforeReadEventArgs<object>(this, record, currentLine, LineNumber);
+                                skip = OnBeforeReadRecord(e);
+                                if (e.RecordLineChanged)
+                                    line.ReLoad(e.RecordLine);
+                            }
+
 #endif
 
-                                if (skip == false && record != null)
-                                    resArray.Add(record);
+                            if (skip == false)
+                            {
+                                var values = new object[info.FieldCount];
+                                if (info.Operations.StringToRecord(record, line, values))
+                                {
+#if !MINI
+                                    if (MustNotifyRead) // Avoid object creation
+                                        skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
+#endif
+
+                                    if (skip == false)
+                                        resArray.Add(record);
+                                }
                             }
                         }
                     }
@@ -311,7 +322,7 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                ErrorInfo err = new ErrorInfo();
+                                var err = new ErrorInfo();
                                 err.mLineNumber = freader.LineNumber;
                                 err.mExceptionInfo = ex;
                                 //							err.mColumnNumber = mColumnNum;
@@ -416,7 +427,8 @@ namespace FileHelpers
 
 
 #if !MINI
-            OnProgress(new ProgressEventArgs(0, max));
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(0, max));
                
 #endif
 			int recIndex = 0;
@@ -432,9 +444,11 @@ namespace FileHelpers
 
 					bool skip = false;
 #if !MINI
-                    OnProgress(new ProgressEventArgs(recIndex+1, max));
+                    if (MustNotifyProgress) // Avoid object creation
+                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
-					skip = OnBeforeWriteRecord(rec);
+                    if (MustNotifyWrite)
+                        skip = OnBeforeWriteRecord(rec, LineNumber);
 #endif
 
 					IRecordInfo info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
@@ -446,7 +460,8 @@ namespace FileHelpers
 					{
                         currentLine = info.Operations.RecordToString(rec);
 #if !MINI
-						currentLine = OnAfterWriteRecord(currentLine, rec);
+                        if (MustNotifyWrite)
+                            currentLine = OnAfterWriteRecord(currentLine, rec);
 #endif
 						writer.WriteLine(currentLine);
 					}

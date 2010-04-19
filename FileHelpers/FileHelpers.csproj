@@ -275,15 +275,20 @@
     <Compile Include="ErrorHandling\RunTimeCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\BeforeReadEventArgs.cs" />
+    <Compile Include="Events\BeforeWriteEventArgs.cs" />
     <Compile Include="Events\Delegates.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\ReadEventArgs.cs">
+    <Compile Include="Events\AfterReadEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\WriteEventArgs.cs">
+    <Compile Include="Events\FileHelpersEventArgs.cs" />
+    <Compile Include="Events\ReadEventArgs.cs" />
+    <Compile Include="Events\AfterWriteEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\WriteEventArgs.cs" />
     <Compile Include="Fields\DelimitedField.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -318,11 +323,12 @@
     <Compile Include="Helpers\StringHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\INotifyRead.cs" />
     <Compile Include="Interfaces\ITransformable.cs" />
     <Compile Include="Interfaces\IComparableRecord.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interfaces\INotificableRecord.cs">
+    <Compile Include="Interfaces\INotifyWrite.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MasterDetail\Common.cs">

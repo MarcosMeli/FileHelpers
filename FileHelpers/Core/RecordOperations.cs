@@ -18,6 +18,7 @@ namespace FileHelpers
         }
 
         #region "  StringToRecord  "
+
         public object StringToRecord(LineInfo line, object[] values)
         {
             if (MustIgnoreLine(line.mLineStr))
@@ -33,7 +34,7 @@ namespace FileHelpers
                 // Asign all values via dinamic method that creates an object and assign values
                 return CreateHandler(values);
             }
-            catch (InvalidCastException)
+            catch (InvalidCastException ex)
             {
                 // Occurrs when the a custom converter returns an invalid value for the field.
                 for (int i = 0; i < RecordInfo.FieldCount; i++)
@@ -50,9 +51,48 @@ namespace FileHelpers
                                                        .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
                                                        .Text
                                                    ,
-                                                   null);
+                                                   ex);
                 }
                 return null;
+            }
+        }
+
+        public bool StringToRecord(object record, LineInfo line, object[] values)
+        {
+            if (MustIgnoreLine(line.mLineStr))
+                return false;
+
+            for (int i = 0; i < RecordInfo.FieldCount; i++)
+            {
+                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+            }
+
+            try
+            {
+                // Asign all values via dynamic method that
+                AssignHandler(record, values);
+                return true;
+            }
+            catch (InvalidCastException ex)
+            {
+                // Occurrs when the a custom converter returns an invalid value for the field.
+                for (int i = 0; i < RecordInfo.FieldCount; i++)
+                {
+                    if (values[i] != null && !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i]))
+                        throw new ConvertException(null,
+                                                   RecordInfo.Fields[i].FieldTypeInternal,
+                                                   RecordInfo.Fields[i].FieldInfo.Name,
+                                                   line.mReader.LineNumber,
+                                                   -1,
+                                                   Messages.Errors.WrongConverter
+                                                       .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
+                                                       .ConverterReturnedType(values[i].GetType().Name)
+                                                       .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
+                                                       .Text
+                                                   ,
+                                                   ex);
+                }
+                throw;
             }
         }
 
@@ -230,7 +270,8 @@ namespace FileHelpers
         #region "  Lightweight code generation (NET 2.0)  "
 
         // Create on first usage
-        private ValuesToObjectDelegate mCreateHandler;
+        private CreateAndAssignDelegate mCreateHandler;
+        private AssignDelegate mAssignHandler;
         private CreateObjectDelegate mFastConstructor;
         private ObjectToValuesDelegate mObjectToValuesHandler;
 
@@ -245,16 +286,25 @@ namespace FileHelpers
         }
 
 
-        private ValuesToObjectDelegate CreateHandler
+        private CreateAndAssignDelegate CreateHandler
         {
             get
             {
                 if (mCreateHandler == null)
-                    mCreateHandler = ReflectionHelper.ValuesToObjectMethod(RecordInfo.RecordType, GetFieldInfoArray());
+                    mCreateHandler = ReflectionHelper.CreateAndAssignValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
                 return mCreateHandler;
             }
         }
 
+        private AssignDelegate AssignHandler
+        {
+            get
+            {
+                if (mAssignHandler == null)
+                    mAssignHandler = ReflectionHelper.AssignValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
+                return mAssignHandler;
+            }
+        }
         internal CreateObjectDelegate CreateRecordHandler
         {
             get
