@@ -196,9 +196,9 @@ namespace FileHelpers
 		{
 			TDestination[] tempRes;
 
-			using (StreamReader fs = new StreamReader(sourceFile, mSourceEncoding, true))
+			using (var fs = new StreamReader(sourceFile, mSourceEncoding, true, EngineBase.DefaultReadBufferSize * 10))
 			{
-				using (StreamWriter ds = new StreamWriter(destFile, false, mDestinationEncoding))
+                using (var ds = new StreamWriter(destFile, false, mDestinationEncoding, EngineBase.DefaultWriteBufferSize * 10))
 				{
 					tempRes = CoreTransform(fs, ds);
 					ds.Close();

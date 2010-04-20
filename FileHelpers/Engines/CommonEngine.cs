@@ -629,9 +629,9 @@ namespace FileHelpers
         /// <returns>The first n lines of the file.</returns>
         public static string RawReadFirstLines(string file, int lines)
         {
-            StringBuilder sb = new StringBuilder(Math.Min(lines * 50, 10000));
+            var sb = new StringBuilder(Math.Min(lines * 50, 10000));
 
-            StreamReader reader = new StreamReader(file);
+            var reader = new StreamReader(file);
 
             for (int i = 0; i < lines; i++)
             {
@@ -668,7 +668,7 @@ namespace FileHelpers
         {
 
             var res = new List<string>(lines);
-            using(StreamReader reader = new StreamReader(file, encoding))
+            using(var reader = new StreamReader(file, encoding))
             {
                 for (int i = 0; i < lines; i++)
                 {

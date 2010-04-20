@@ -216,7 +216,7 @@ namespace FileHelpers.Dynamic
         /// <returns>The compiled class.</returns>
         public static Type ClassFromSourceFile(string filename, string className, NetLanguage lang)
         {
-            StreamReader reader = new StreamReader(filename);
+            var reader = new StreamReader(filename);
             string classDef = reader.ReadToEnd();
             reader.Close();
 
@@ -271,7 +271,7 @@ namespace FileHelpers.Dynamic
         public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang , string password)
         {
 
-            StreamReader reader = new StreamReader(filename);
+            var reader = new StreamReader(filename);
             string classDef = reader.ReadToEnd();
             reader.Close();
 
@@ -314,7 +314,7 @@ namespace FileHelpers.Dynamic
         public static void ClassToBinaryFile(string filename, string classSource , string password)
         {
             classSource = Encrypt(classSource, password);
-            StreamWriter writer = new StreamWriter(filename);
+            var writer = new StreamWriter(filename);
             writer.Write(classSource);
             writer.Close();
         }
@@ -336,7 +336,7 @@ namespace FileHelpers.Dynamic
         /// <param name="lang">The .NET Language used to write the source code.</param>
         public void SaveToSourceFile(string filename, NetLanguage lang)
         {
-            StreamWriter writer = new StreamWriter(filename);
+            var writer = new StreamWriter(filename);
             writer.Write(GetClassSourceCode(lang));
             writer.Close();
         }

@@ -197,7 +197,7 @@ namespace FileHelpers
 		/// <returns>The read records of the differents types all mixed.</returns>
 		public object[] ReadFile(string fileName)
 		{
-			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
 			{
 			    return ReadStream(fs);
 			}
@@ -377,7 +377,7 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, IEnumerable records, int maxRecords)
 		{
-			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
 			{
 				WriteStream(fs, records, maxRecords);
 				fs.Close();
@@ -532,7 +532,7 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
 		public void AppendToFile(string fileName, IEnumerable records)
 		{
-			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
+			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
 			{
 				mHeaderText = String.Empty;
 				mFooterText = String.Empty;
@@ -627,7 +627,7 @@ namespace FileHelpers
 		/// <param name="fileName">The source file.</param>
 		public void BeginReadFile(string fileName)
 		{
-			BeginReadStream(new StreamReader(fileName, mEncoding, true));
+            BeginReadStream(new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize));
 		}
 
 		/// <summary>
@@ -1026,7 +1026,7 @@ namespace FileHelpers
 		/// <param name="fileName">The file path to be opened for write.</param>
 		public void BeginWriteFile(string fileName)
 		{
-			BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+            BeginWriteStream(new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize));
 		}
 
 		#endregion
@@ -1040,7 +1040,7 @@ namespace FileHelpers
 		///	<param name="fileName">The file path to be opened to write at the end.</param>
 		public void BeginAppendToFile(string fileName)
 		{
-			mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
+            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, EngineBase.DefaultWriteBufferSize);
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 		}

@@ -97,7 +97,7 @@ namespace FileHelpers
 		/// <param name="options">The options used to write the file</param>
 		public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
 		{
-			using (StreamWriter fs = new StreamWriter(filename, false, options.Encoding))
+            using (var fs = new StreamWriter(filename, false, options.Encoding, EngineBase.DefaultWriteBufferSize))
 			{
 				foreach (DataRow dr in dt.Rows)
 				{

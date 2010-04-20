@@ -65,7 +65,7 @@ namespace FileHelpers
             {
 
                 var writtenBytes = 0;
-                using (var sr = new StreamReader(file, Encoding))
+                using (var sr = new StreamReader(file, Encoding, true,  EngineBase.DefaultReadBufferSize * 10))
                 {
                     while (sr.Peek() >= 0)
                     {
@@ -127,7 +127,7 @@ namespace FileHelpers
             // Open the files
             var readers = new StreamReader[parts.Count];
             for (int i = 0; i < parts.Count; i++)
-                readers[i] = new StreamReader(parts[i], Encoding);
+                readers[i] = new StreamReader(parts[i], Encoding, true, EngineBase.DefaultReadBufferSize * 4);
 
             // Make the queues
             var queues = new Queue<string>[parts.Count];

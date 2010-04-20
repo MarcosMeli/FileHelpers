@@ -220,7 +220,7 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
         public IDisposable BeginReadFile(string fileName)
         {
-            BeginReadStream(new StreamReader(fileName, mEncoding, true));
+            BeginReadStream(new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize));
             return this;
         }
 
@@ -488,7 +488,13 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
         public IDisposable BeginWriteFile(string fileName)
         {
-            BeginWriteStream(new StreamWriter(fileName, false, mEncoding));
+            return BeginWriteFile(fileName, EngineBase.DefaultWriteBufferSize);
+        }
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
+        public IDisposable BeginWriteFile(string fileName, int bufferSize)
+        {
+            BeginWriteStream(new StreamWriter(fileName, false, mEncoding, bufferSize));
 
             return this;
         }
@@ -498,13 +504,18 @@ namespace FileHelpers
 
         #region "  BeginAppendToFile  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
         public IDisposable BeginAppendToFile(string fileName)
+        {
+            return BeginAppendToFile(fileName, EngineBase.DefaultWriteBufferSize);
+        }
+
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
+        public IDisposable BeginAppendToFile(string fileName, int bufferSize)
         {
             if (mAsyncReader != null)
                 throw new BadUsageException("You can't start to write while you are reading.");
 
-            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false);
+            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, bufferSize);
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
             mState = EngineState.Writing;

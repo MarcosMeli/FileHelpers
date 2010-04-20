@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text;
 using FileHelpers.Events;
 
 namespace FileHelpers
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class EventEngineBase <T> 
         : EngineBase
         where T : class

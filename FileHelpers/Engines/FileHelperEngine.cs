@@ -112,7 +112,7 @@ namespace FileHelpers
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
 		public T[] ReadFile(string fileName, int maxRecords)
 		{
-			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+			using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
 			{
 				T[] tempRes;
 
@@ -133,7 +133,7 @@ namespace FileHelpers
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         public List<T> ReadFileAsList(string fileName, int maxRecords)
         {
-            using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
             {
                 var res = ReadStreamAsList(fs, maxRecords);
                 fs.Close();
@@ -408,7 +408,7 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
 		{
-			using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
 			{
 				WriteStream(fs, records, maxRecords);
 				fs.Close();
@@ -568,8 +568,8 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
 		public void AppendToFile(string fileName, IEnumerable<T> records)
 		{
-            
-            using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
+
+            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
             {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;
@@ -603,7 +603,7 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadFileAsDT(string fileName, int maxRecords)
 		{
-			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+			using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
 			{
 				DataTable res;
 				res = ReadStreamAsDT(fs, maxRecords);

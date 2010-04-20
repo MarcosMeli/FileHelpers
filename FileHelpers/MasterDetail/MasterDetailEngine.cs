@@ -216,7 +216,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public MasterDetails[] ReadFile(string fileName)
 		{
-			using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+			using (StreamReader fs = new StreamReader(fileName, mEncoding, true, EngineBase.DefaultReadBufferSize))
 			{
 				MasterDetails[] tempRes;
 				tempRes = ReadStream(fs);
@@ -229,7 +229,7 @@ namespace FileHelpers.MasterDetail
 #else
         public MasterDetails<M, D>[] ReadFile(string fileName)
         {
-            using (StreamReader fs = new StreamReader(fileName, mEncoding, true))
+            using (var fs = new StreamReader(fileName, mEncoding, true, EngineBase.DefaultReadBufferSize))
             {
                 MasterDetails<M, D>[] tempRes;
                 tempRes = ReadStream(fs);
@@ -463,7 +463,7 @@ namespace FileHelpers.MasterDetail
 				/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
 				public void WriteFile(string fileName, MasterDetails[] records, int maxRecords)
 				{
-					using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
+					using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
 					{
 						WriteStream(fs, records, maxRecords);
 						fs.Close();
@@ -480,7 +480,7 @@ namespace FileHelpers.MasterDetail
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
         public void WriteFile(string fileName, IEnumerable<MasterDetails<M, D>> records, int maxRecords)
         {
-            using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
             {
                 WriteStream(fs, records, maxRecords);
                 fs.Close();
@@ -652,7 +652,7 @@ namespace FileHelpers.MasterDetail
         public void AppendToFile(string fileName, IEnumerable<MasterDetails<M, D>> records)
 #endif
         {
-            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false))
+            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
             {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;

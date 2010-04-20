@@ -19,6 +19,10 @@ namespace FileHelpers
     //:Component
     //#endif
     {
+
+        internal const int DefaultReadBufferSize = 100 * 1024;
+        internal const int DefaultWriteBufferSize = 100 * 1024;
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         
         internal readonly IRecordInfo mRecordInfo;

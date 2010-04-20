@@ -18,12 +18,12 @@ namespace FileHelpers
 	internal static class StreamHelper
 	{
 #endif
-		internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd)
-		{
-			return CreateFileAppender(fileName, encode, correctEnd, true);
-		}
+        //internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd)
+        //{
+        //    return CreateFileAppender(fileName, encode, correctEnd, true);
+        //}
 
-		internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd, bool disposeStream)
+		internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd, bool disposeStream, int bufferSize)
 		{
 			TextWriter res;
 
@@ -62,7 +62,7 @@ namespace FileHelpers
                         fs.WriteByte(10);
                     }
 
-				    res = new StreamWriter(fs, encode);
+                    res = new StreamWriter(fs, encode, bufferSize);
 
 				}
 				finally
@@ -73,7 +73,7 @@ namespace FileHelpers
 			}
 			else
 			{
-				res = new StreamWriter(fileName, true, encode);
+                res = new StreamWriter(fileName, true, encode, bufferSize);
 			}
 
 			return res;
