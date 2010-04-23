@@ -605,6 +605,64 @@ namespace FileHelpers.Tests
 
         }
 
+        public class MyCustomConverter : ConverterBase {
+            public override object StringToField(string from) {
+                if (from == "NaN") {
+                    return null;
+                }
+                else {
+                    return Convert.ToInt32(Int32.Parse(from));
+                }
+            }
+
+            public override string FieldToString(object fieldValue) {
+                if (fieldValue == null) {
+                    return "NaN";
+                }
+                else {
+                    return fieldValue.ToString();
+                }
+            }
+        }
+
+        [Test]
+        public void ReadAsDataTableWithCustomConverter() {
+            var fields = new[]
+             {
+                 "FirstName",
+                 "LastName",
+                 "StreetNumber",
+                 "StreetAddress",
+                 "Unit",
+                 "City",
+                 "State",
+             };
+            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+
+            foreach (var f in fields) {
+                cb.AddField(f, typeof(string));
+                cb.LastField.TrimMode = TrimMode.Both;
+                cb.LastField.FieldQuoted = false;
+            }
+
+            cb.AddField("Zip", typeof(int?));
+            cb.LastField.Converter.TypeName = "FileHelpers.Tests.RunTimeClasses.MyCustomConverter";
+
+            engine = new FileHelperEngine(cb.CreateRecordClass());
+
+            string source = "Alex & Jen,Bouquet,1815,Bell Rd,, Batavia,OH,45103" + Environment.NewLine +
+                            "Mark & Lisa K ,Arlinghaus,1817,Bell Rd,, Batavia,OH,NaN" + Environment.NewLine +
+                            "Ed & Karen S ,Craycraft,1819,Bell Rd,, Batavia,OH,45103" + Environment.NewLine;
+
+            var contactData = engine.ReadString(source);
+
+            Assert.AreEqual(3, contactData.Length);
+            var zip = engine.RecordType.GetFields()[7];
+            Assert.AreEqual("Zip", zip.Name);
+            Assert.IsNull(zip.GetValue(contactData[1]));
+            Assert.AreEqual((decimal)45103, zip.GetValue(contactData[2]));
+        } 
+
 		[Test]
 		public void LoopingFields()
 		{
