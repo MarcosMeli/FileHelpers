@@ -85,7 +85,7 @@ namespace FileHelpers
 
 		#region "  TransformFile  " 
 
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile.(use only if you need the array of the transformed records, TransformFileAsync is faster)</summary>
+		/// <summary>Transform the contents of the sourceFile and write them to the destFile.(use only if you need the array of the transformed records, TransformFileFast is faster)</summary>
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The transformed records.</returns>

@@ -43,7 +43,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void CsvToFixedLengthCommonAsync()
 		{
-            CommonEngine.TransformFileAsync<FromClass, ToClass>(FileTest.Good.Transform1.Path, fileOut);
+            CommonEngine.TransformFileFast<FromClass, ToClass>(FileTest.Good.Transform1.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
 			ToClass[] res = (ToClass[]) engine.ReadFile(fileOut);
@@ -112,7 +112,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void CsvToDelimitedCommonAsync()
 		{
-            CommonEngine.TransformFileAsync<FromClass, ToClass2>(FileTest.Good.Transform1.Path, fileOut);
+            CommonEngine.TransformFileFast<FromClass, ToClass2>(FileTest.Good.Transform1.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
             ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
