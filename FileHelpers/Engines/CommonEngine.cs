@@ -13,13 +13,11 @@ using FileHelpers.Options;
 namespace FileHelpers
 {
 	/// <summary>This class only have <b>static methods</b> to work with files and strings (the most common of them)</summary>
-    public sealed class CommonEngine
+    public static class CommonEngine
     {
         // No instanciate
-        private CommonEngine()
-        { }
 
-        #region "  FileHelperEngine  "
+	    #region "  FileHelperEngine  "
 
         /// <summary>
         /// Used to read a file without instanciate the engine.<br />
@@ -176,17 +174,15 @@ namespace FileHelpers
         #endregion
 
         /// <summary><b>Faster way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile.</summary>
-        /// <param name="sourceType">The Type of the records in the source File.</param>
-        /// <param name="destType">The Type of the records in the dest File.</param>
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The number of transformed records</returns>
-        public static int TransformFileAsync<TSource, TDest>(string sourceFile, string destFile) 
+        public static int TransformFileFast<TSource, TDest>(string sourceFile, string destFile) 
             where TSource : class, ITransformable<TDest>
             where TDest : class 
         {
             var engine = new FileTransformEngine<TSource, TDest>();
-            return engine.TransformFileAsync(sourceFile, destFile);
+            return engine.TransformFileFast(sourceFile, destFile);
         }
 
         /// <summary>Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records) WARNING: this is a slower method that the TransformFileAssync.</summary>

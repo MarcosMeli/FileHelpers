@@ -103,16 +103,50 @@ namespace FileHelpers
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The number of transformed records.</returns>
-		public int TransformFileAsync(string sourceFile, string destFile)
+		public int TransformFileFast(string sourceFile, string destFile)
 		{
 			ExHelper.CheckNullParam(sourceFile, "sourceFile");
 			ExHelper.CheckNullParam(destFile, "destFile");
 			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
-			return CoreTransformAsync(sourceFile, destFile);
+            return CoreTransformAsync(new StreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
 		}
 
+        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <param name="sourceStream">The source stream.</param>
+        /// <param name="destFile">The destination file.</param>
+        /// <returns>The number of transformed records.</returns>
+        public int TransformFileFast(StreamReader sourceStream, string destFile)
+        {
+            ExHelper.CheckNullParam(sourceStream, "sourceStream");
+            ExHelper.CheckNullParam(destFile, "destFile");
 
+            return CoreTransformAsync(sourceStream, new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
+        }
+
+        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <param name="sourceStream">The source stream.</param>
+        /// <param name="destStream">The destination stream.</param>
+        /// <returns>The number of transformed records.</returns>
+        public int TransformFileFast(StreamReader sourceStream, StreamWriter destStream)
+        {
+            ExHelper.CheckNullParam(sourceStream, "sourceStream");
+            ExHelper.CheckNullParam(destStream, "destStream");
+
+            return CoreTransformAsync(sourceStream, destStream);
+        }
+
+        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <param name="sourceFile">The source file.</param>
+        /// <param name="destStream">The destination stream.</param>
+        /// <returns>The number of transformed records.</returns>
+        public int TransformFileFast(string sourceFile, StreamWriter destStream)
+        {
+            ExHelper.CheckNullParam(sourceFile, "sourceFile");
+            ExHelper.CheckNullParam(destStream, "destStream");
+
+            return CoreTransformAsync(new StreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), destStream);
+        }
 		#endregion
 
 //		public string TransformString(string sourceData)
@@ -211,7 +245,7 @@ namespace FileHelpers
 			return tempRes;
 	}
 
-		private int CoreTransformAsync(string sourceFile, string destFile)
+		private int CoreTransformAsync(StreamReader sourceFile, StreamWriter destFile)
 		{
             var sourceEngine = new FileHelperAsyncEngine<TSource>();
 			var destEngine = new FileHelperAsyncEngine<TDestination>();
@@ -225,8 +259,8 @@ namespace FileHelpers
 			sourceEngine.Encoding = mSourceEncoding;
 			destEngine.Encoding = mDestinationEncoding;
 
-			sourceEngine.BeginReadFile(sourceFile);
-			destEngine.BeginWriteFile(destFile);
+			sourceEngine.BeginReadStream(sourceFile);
+			destEngine.BeginWriteStream(destFile);
 
 			foreach (TSource record in sourceEngine)
 			{

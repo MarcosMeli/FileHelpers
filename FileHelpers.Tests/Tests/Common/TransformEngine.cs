@@ -148,7 +148,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncCsvToFixedLength()
 		{
             var link = new FileTransformEngine<FromClass, ToClass>();
-            link.TransformFileAsync(FileTest.Good.Transform1.Path, fileOut);
+            link.TransformFileFast(FileTest.Good.Transform1.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
             ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
@@ -162,7 +162,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncCsvToFixedLength2()
 		{
             var link = new FileTransformEngine<FromClass, ToClass>();
-            link.TransformFileAsync(FileTest.Good.Transform2.Path, fileOut);
+            link.TransformFileFast(FileTest.Good.Transform2.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
             ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
@@ -179,7 +179,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncCsvToDelimited()
 		{
             var link = new FileTransformEngine<FromClass, ToClass2>();
-            link.TransformFileAsync(FileTest.Good.Transform1.Path, fileOut);
+            link.TransformFileFast(FileTest.Good.Transform1.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
             ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
@@ -193,7 +193,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncCsvToDelimited2()
 		{
             var link = new FileTransformEngine<FromClass, ToClass2>();
-            link.TransformFileAsync(FileTest.Good.Transform2.Path, fileOut);
+            link.TransformFileFast(FileTest.Good.Transform2.Path, fileOut);
 
 			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
             ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
