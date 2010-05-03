@@ -95,14 +95,33 @@ namespace FileHelpers.Dynamic
 		}
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private bool mFieldIgnored = false;
+        private bool mFieldNotInFile = false;
 
 		/// <summary>Indicates that this field must be ignored by the engine.</summary>
-		public bool FieldIgnored
+		public bool FieldNotInFile
 		{
-			get { return mFieldIgnored; }
-			set { mFieldIgnored = value; }
+			get { return mFieldNotInFile; }
+			set { mFieldNotInFile = value; }
 		}
+
+        /// <summary>Indicates that this field must be ignored by the engine.</summary>
+        [Obsolete("Use [FieldNotInFile] instead")]
+        public bool FieldIgnored
+        {
+            get { return mFieldNotInFile; }
+            set { mFieldNotInFile = value; }
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private bool mFieldValueDiscarded = false;
+
+        /// <summary>Discards the values for the target field.</summary>
+        public bool FieldValueDiscarded
+        {
+            get { return mFieldValueDiscarded; }
+            set { mFieldValueDiscarded = value; }
+        }
+
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool mFieldOptional = false;
@@ -237,8 +256,11 @@ namespace FileHelpers.Dynamic
 			if (mFieldOptional == true)
 				attbs.AddAttribute("FieldOptional()");
 
-			if (mFieldIgnored == true)
-				attbs.AddAttribute("FieldIgnored()");
+			if (mFieldNotInFile == true)
+				attbs.AddAttribute("FieldNotInFile()");
+
+            if (mFieldValueDiscarded== true)
+                attbs.AddAttribute("FieldValueDiscarded()");
 
 			if (mFieldInNewLine == true)
 				attbs.AddAttribute("FieldInNewLine()");
@@ -303,8 +325,9 @@ namespace FileHelpers.Dynamic
 			Converter.WriteXml(writer);
 
 			writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
-			writer.WriteElement("FieldIgnored", this.FieldIgnored);
+			writer.WriteElement("FieldNotInFile", this.FieldNotInFile);
 			writer.WriteElement("FieldOptional", this.FieldOptional);
+            writer.WriteElement("FieldValueDiscarded", this.FieldValueDiscarded);
 			writer.WriteElement("FieldInNewLine", this.FieldInNewLine);
 			writer.WriteElement("TrimChars", this.TrimChars, " \t");
 			writer.WriteElement("TrimMode", this.TrimMode.ToString(), "None");
@@ -336,7 +359,8 @@ namespace FileHelpers.Dynamic
 			ele = node["Visibility"];
 			if (ele != null) Visibility = (NetVisibility) Enum.Parse(typeof(NetVisibility), ele.InnerText);
 
-			FieldIgnored = node["FieldIgnored"] != null;
+            FieldNotInFile = node["FieldIgnored"] != null || node["FieldNotInFile"] != null;
+            FieldValueDiscarded = node["FieldValueDiscarded"] != null;
 			FieldOptional = node["FieldOptional"] != null;
 			FieldInNewLine = node["FieldInNewLine"] != null;
 			
