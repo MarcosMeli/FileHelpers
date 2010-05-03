@@ -107,7 +107,7 @@ namespace FileHelpers.Tests.CommonTests
 		public class SampleInheritEmpty
 		: SampleInheritType
 		{
-			[FieldIgnored]
+			[FieldNotInFile]
 			public int Field5854;
 		}
 
@@ -144,7 +144,7 @@ namespace FileHelpers.Tests.CommonTests
 			public class DelimitedSampleInheritEmpty
 			: DelimitedSampleInheritType
 		{
-			[FieldIgnored]
+			[FieldNotInFile]
 			public int Field5854;
 		}
 

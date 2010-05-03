@@ -283,11 +283,49 @@ namespace FileHelpers.Tests
 			Assert.AreEqual(4, dt.Rows.Count);
 			Assert.AreEqual(4, engine.TotalRecords);
 			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-			
+
+            Assert.AreEqual("Field1", dt.Columns[0].ColumnName);
+            Assert.AreEqual("Field2", dt.Columns[1].ColumnName);
+            Assert.AreEqual("Field3", dt.Columns[2].ColumnName);
+
 			Assert.AreEqual("Hola", dt.Rows[0][1]);
 			Assert.AreEqual(DateTime.Today, dt.Rows[2][0]);
 			
 		}
+
+
+        [Test]
+        public void TestingNameAndTypes()
+        {
+            var cb = new DelimitedClassBuilder("Customers", ",");
+            cb.IgnoreFirstLines = 1;
+            cb.IgnoreEmptyLines = true;
+
+            cb.AddField("Field1", typeof(DateTime));
+            cb.LastField.TrimMode = TrimMode.Both;
+            cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+            cb.LastField.FieldNullValue = DateTime.Today;
+
+            cb.AddField("Field2", typeof(string));
+            cb.LastField.FieldQuoted = true;
+            cb.LastField.QuoteChar = '"';
+
+            cb.AddField("Field3", typeof(int));
+
+            engine = new FileHelperEngine(cb.CreateRecordClass());
+
+            DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test2.txt"));
+
+            Assert.AreEqual("Field1", dt.Columns[0].ColumnName);
+            Assert.AreEqual(typeof(DateTime), dt.Columns[0].DataType);
+            
+            Assert.AreEqual("Field2", dt.Columns[1].ColumnName);
+            Assert.AreEqual(typeof(string), dt.Columns[1].DataType);
+
+            Assert.AreEqual("Field3", dt.Columns[2].ColumnName);
+            Assert.AreEqual(typeof(int), dt.Columns[2].DataType);
+
+        }
 
 		[Test]
 		public void FullClassBuildingFixed()

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
 namespace FileHelpers
 {
-
-    // Based on this code: http://splinter.com.au/blog/?p=142
-
     /// <summary>
     /// This class help to sort really big files using the External Sorting algorithm
     /// http://en.wikipedia.org/wiki/External_sorting
     /// </summary>
-    public sealed class ExternalFileSorter
+    public sealed class BigFileSorter<T>
+        where T: class, IComparable<T>
     {
         /// <summary> The directory for the temp files (by the default the same of sourceFile) </summary>
         public string WorkingDirectory { get; set; }
-        
+
         /// <summary> The Size of each block that will be sorted in memory and later merged all togheter </summary>
         public int BlockFileSize { get; set; }
 
@@ -29,30 +26,30 @@ namespace FileHelpers
 
         private static Encoding DefaultEncoding { get; set; }
 
-        static ExternalFileSorter()
+        static BigFileSorter()
         {
             DefaultEncoding = new UTF8Encoding(false, true);
         }
 
-        public ExternalFileSorter()
-            :this(40 * 1024 * 1024) // 40Mb default size
+        public BigFileSorter()
+            : this(40 * 1024 * 1024) // 40Mb default size
         {
         }
 
-        public ExternalFileSorter(int blockFileSize)
+        public BigFileSorter(int blockFileSizeInBytes)
         {
-            BlockFileSize = blockFileSize;
+            BlockFileSize = blockFileSizeInBytes;
             Encoding = DefaultEncoding;
             DeleteTempFiles = true;
         }
 
-        public void Sort(string sourceFile, string destinationFile, Comparison<string> sorter)
+        public void Sort(string sourceFile, string destinationFile)
         {
-            var parts = SplitAndSortParts(sourceFile, sorter);
-            MergeTheChunks(parts, sorter, destinationFile);
+            var parts = SplitAndSortParts(sourceFile);
+            MergeTheChunks(parts, destinationFile);
         }
 
-        private List<string> SplitAndSortParts(string file, Comparison<string> sorter)
+        private List<string> SplitAndSortParts(string file)
         {
             int partNumber = 1;
             var res = new List<string>();
@@ -60,25 +57,28 @@ namespace FileHelpers
             res.Add(splitName);
             //var sw = CreateStream(splitName, BlockFileSize / 3);
 
-            var lines = new List<string>();
+            var writeEngine = new FileHelperEngine<T>(Encoding);
+            var lines = new List<T>();
+
             try
             {
-
-                var writtenBytes = 0;
-                using (var sr = new StreamReader(file, Encoding, true,  EngineBase.DefaultReadBufferSize * 10))
+                long writtenBytes = 0;
+                var readEngine = new FileHelperAsyncEngine<T>(Encoding);
+                
+                readEngine.Progress += (sender, e) => writtenBytes = e.TotalBytes;
+                
+                using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize * 10))
                 {
-                    while (sr.Peek() >= 0)
+                    foreach (var item in readEngine)
                     {
-                        var line = sr.ReadLine();
-                        lines.Add(line);
-                        writtenBytes += line.Length + 2;
+                        lines.Add(item);
 
-                        if (writtenBytes > BlockFileSize && sr.Peek() >= 0)
+                        if (writtenBytes > BlockFileSize)
                         {
                             splitName = GetSplitName(file, partNumber);
                             res.Add(splitName);
-                            lines.Sort(sorter);
-                            File.WriteAllLines(splitName, lines.ToArray(), Encoding);
+                            lines.Sort();
+                            writeEngine.WriteFile(splitName, lines);
                             partNumber++;
                             writtenBytes = 0;
                             lines.Clear();
@@ -96,8 +96,8 @@ namespace FileHelpers
                 {
                     splitName = GetSplitName(file, partNumber);
                     res.Add(splitName);
-                    lines.Sort(sorter);
-                    File.WriteAllLines(splitName, lines.ToArray(), Encoding);
+                    lines.Sort();
+                    writeEngine.WriteFile(splitName, lines);
                 }
             }
 
@@ -122,17 +122,21 @@ namespace FileHelpers
         }
 
 
-        private void MergeTheChunks(List<string> parts, Comparison<string> sorter, string destinationFile)
+        private void MergeTheChunks(List<string> parts, string destinationFile)
         {
             // Open the files
-            var readers = new StreamReader[parts.Count];
+            var readers = new FileHelperAsyncEngine<T>[parts.Count];
             for (int i = 0; i < parts.Count; i++)
-                readers[i] = new StreamReader(parts[i], Encoding, true, EngineBase.DefaultReadBufferSize * 4);
+            {
+                readers[i] = new FileHelperAsyncEngine<T>(Encoding);
+                readers[i].BeginReadFile(parts[i], EngineBase.DefaultReadBufferSize*4);
+            }
+            
 
             // Make the queues
-            var queues = new Queue<string>[parts.Count];
+            var queues = new Queue<T>[parts.Count];
             for (int i = 0; i < parts.Count; i++)
-                queues[i] = new Queue<string>(parts.Count);
+                queues[i] = new Queue<T>(parts.Count);
 
             // Load the queues
             for (int i = 0; i < parts.Count; i++)
@@ -141,18 +145,19 @@ namespace FileHelpers
             // Merge!
             var sw = CreateStream(destinationFile, BlockFileSize / 2);
             bool done = false;
-            int lowest_index, j= 0;
-            string lowest_value;
+            int lowest_index, j = 0;
+            T lowest_value;
             while (!done)
             {
                 // Find the chunk with the lowest value
                 lowest_index = -1;
-                lowest_value = "";
+                lowest_value = null;
+
                 for (j = 0; j < parts.Count; j++)
                 {
                     if (queues[j] != null)
                     {
-                        if (lowest_index < 0 || sorter(queues[j].Peek(), lowest_value) < 0)
+                        if (lowest_index < 0 || queues[j].Peek().CompareTo(lowest_value) < 0)
                         {
                             lowest_index = j;
                             lowest_value = queues[j].Peek();
@@ -194,19 +199,19 @@ namespace FileHelpers
         /// <summary>
         /// Loads up to a number of records into a queue
         /// </summary>
-        static void LoadQueue(Queue<string> queue, StreamReader file, int maxsize)
+        static void LoadQueue(Queue<T> queue, FileHelperAsyncEngine<T> file, int maxsize)
         {
-            var bytes = 0;
-            while (true)
+            long writtenBytes = 0;
+            file.Progress += (sender, e) => writtenBytes = e.TotalBytes;
+
+            foreach (var item in file)
             {
-                if (file.Peek() < 0 || bytes > maxsize) break;
-                
-                var line = file.ReadLine();
-                bytes += line.Length + 2;
-                queue.Enqueue(line);
+                queue.Enqueue(item);
+                if (writtenBytes > maxsize)
+                    break;
             }
         }
 
- 
+
     }
 }

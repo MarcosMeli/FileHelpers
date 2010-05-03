@@ -48,7 +48,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersQuotedType));
 
-			CustomersQuotedType[] res = (CustomersQuotedType[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers.txt");
+			var res = (CustomersQuotedType[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -62,7 +62,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			engine = new FileHelperEngine(typeof (CustomersQuotedType2));
 
-			CustomersQuotedType2[] res = (CustomersQuotedType2[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers2.txt");
+			var res = (CustomersQuotedType2[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers2.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -142,7 +142,8 @@ namespace FileHelpers.Tests.CommonTests
 		public string CustomerID;
 
 		[FieldQuoted()]
-		[FieldTrim(TrimMode.Both)] public string CompanyName;
+		[FieldTrim(TrimMode.Both)]
+        public string CompanyName;
 
 		public string ContactName;
 		public string ContactTitle;

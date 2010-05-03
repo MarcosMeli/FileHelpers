@@ -220,10 +220,16 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
         public IDisposable BeginReadFile(string fileName)
         {
-            BeginReadStream(new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize));
+            BeginReadFile(fileName, DefaultReadBufferSize);
             return this;
         }
 
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
+        public IDisposable BeginReadFile(string fileName, int bufferSize)
+        {
+            BeginReadStream(new StreamReader(fileName, mEncoding, true, bufferSize));
+            return this;
+        }
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
         public IDisposable BeginReadString(string sourceData)
         {

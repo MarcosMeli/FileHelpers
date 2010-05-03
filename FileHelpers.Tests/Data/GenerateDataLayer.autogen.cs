@@ -1146,6 +1146,14 @@ public partial class OrdersSemiColon: FileTestBase
 
 
 }
+public partial class OrdersSmallVerticalBar: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Good\OrdersSmallVerticalBar.txt"; }
+
+
+}
 public partial class OrdersTab: FileTestBase
 {
 
@@ -1795,6 +1803,9 @@ public static ClassesFileTest.Good.OrdersFixedIgnoreMiddle OrdersFixedIgnoreMidd
 private static ClassesFileTest.Good.OrdersSemiColon mOrdersSemiColon = new ClassesFileTest.Good.OrdersSemiColon();
 public static ClassesFileTest.Good.OrdersSemiColon OrdersSemiColon
 { get { return  mOrdersSemiColon; } }
+private static ClassesFileTest.Good.OrdersSmallVerticalBar mOrdersSmallVerticalBar = new ClassesFileTest.Good.OrdersSmallVerticalBar();
+public static ClassesFileTest.Good.OrdersSmallVerticalBar OrdersSmallVerticalBar
+{ get { return  mOrdersSmallVerticalBar; } }
 private static ClassesFileTest.Good.OrdersTab mOrdersTab = new ClassesFileTest.Good.OrdersTab();
 public static ClassesFileTest.Good.OrdersTab OrdersTab
 { get { return  mOrdersTab; } }

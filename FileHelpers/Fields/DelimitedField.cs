@@ -74,7 +74,16 @@ namespace FileHelpers
 				string quotedStr = QuoteChar.ToString();
 				if (line.StartsWith(quotedStr))
 				{
-					return StringHelper.ExtractQuotedString(line, QuoteChar, QuoteMultiline == MultilineMode.AllowForBoth || QuoteMultiline == MultilineMode.AllowForRead);
+					var res = StringHelper.ExtractQuotedString(line, QuoteChar, QuoteMultiline == MultilineMode.AllowForBoth || QuoteMultiline == MultilineMode.AllowForRead);
+
+                    if (TrimMode == TrimMode.Both || TrimMode == TrimMode.Right)
+                    {
+                        line.TrimStart(TrimChars);
+                    }
+
+                    if (!IsLast && !line.StartsWith(Separator) && !line.IsEOL())
+                        throw new BadUsageException(line, "The field "+ this.FieldInfo.Name + " is quoted but the quoted char: " + quotedStr + " not is just before the separator (You can use [FieldTrim] to avoid this error)");
+				    return res;
 				}
 				else
 				{
@@ -94,8 +103,18 @@ namespace FileHelpers
 		private ExtractedInfo BasicExtractString(LineInfo line)
 		{
 		
-			if (IsLast && ! IsArray)
-				return new ExtractedInfo(line);
+			if (IsLast && !IsArray)
+            {
+                var sepPos = line.IndexOf(mSeparator);
+
+                if (sepPos == -1)
+                    return new ExtractedInfo(line);
+                
+                // Now check for one extra separator
+                var msg = string.Format("Delimiter '{0}' found after the last field '{1}' (the file is wrong or you need to add a field to the record class)", mSeparator, this.FieldInfo.Name, line.mReader.LineNumber);
+
+                throw new BadUsageException(line.mReader.LineNumber, line.mCurrentPos, msg);
+			}
 			else
 			{
 				int sepPos;

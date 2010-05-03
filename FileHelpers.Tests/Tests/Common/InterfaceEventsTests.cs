@@ -88,14 +88,14 @@ namespace FileHelpers.Tests.CommonTests
 			[FieldTrim(TrimMode.Both)]
 			public int Field3;
 
-			[FieldIgnored]
+			[FieldNotInFile]
 			public bool AfterReadNotif = false;
-			[FieldIgnored]
+			[FieldNotInFile]
 			public bool BeforeWriteNotif = false;
 
-            [FieldIgnored]
+            [FieldNotInFile]
             public bool BeforeReadNotif = false;
-            [FieldIgnored]
+            [FieldNotInFile]
             public bool AfterWriteNotif = false;
 
 			

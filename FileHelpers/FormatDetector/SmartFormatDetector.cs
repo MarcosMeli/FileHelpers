@@ -609,7 +609,7 @@ namespace FileHelpers.Detection
             {
                 if (restOfLine.StartsWith(quotedChar.ToString()))
                 {
-                    restOfLine = DiscartUntilQuotedChar(restOfLine, quotedChar);
+                    restOfLine = DiscardUntilQuotedChar(restOfLine, quotedChar);
                 }
                 else
                 {
@@ -628,7 +628,7 @@ namespace FileHelpers.Detection
             return delimitersInLine;
         }
 
-        private static string DiscartUntilQuotedChar(string line, char quoteChar)
+        private static string DiscardUntilQuotedChar(string line, char quoteChar)
         {
             if (line.StartsWith(quoteChar.ToString()))
                 line = line.Substring(1);

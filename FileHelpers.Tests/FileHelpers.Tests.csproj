@@ -152,7 +152,7 @@
     <Compile Include="Tests\Common\FixedEngine.cs" />
     <Compile Include="Tests\Common\DelimitedEngine.cs" />
     <Compile Include="Tests\Common\EventsGenerics.cs" />
-    <Compile Include="Tests\Common\CsvEngine.cs">
+    <Compile Include="Tests\Common\CsvEngineTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\CustomConverter1.cs">
@@ -191,7 +191,7 @@
     <Compile Include="Tests\Common\FieldDelimited.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\FieldIgnored.cs">
+    <Compile Include="Tests\Common\FieldNotInFileTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\IgnoreEmpty.cs">
@@ -379,6 +379,8 @@
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
+    <Compile Include="Tests\Common\DelimitedMoreFieldsTests.cs" />
+    <Compile Include="Tests\Common\FieldValueDiscardedTests.cs" />
     <Compile Include="Tests\Common\RecordInfoCloneTest.cs" />
     <Compile Include="Tests\Common\Encoding.cs" />
     <Compile Include="Tests\Common\EncodingAdv.cs" />
@@ -446,6 +448,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />
     <Content Include="Data\Good\CustomersFixedWithout2Fields.txt" />
     <Content Include="Data\Good\CustomersFixedWithoutLastField.txt" />

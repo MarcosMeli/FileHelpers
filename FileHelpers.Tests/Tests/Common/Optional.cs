@@ -303,7 +303,7 @@ namespace FileHelpers.Tests.CommonTests
 			[FieldQuoted('"', QuoteMode.OptionalForBoth)]
 			[FieldOptional()]
 			public string PAMAlias;
-			[FieldIgnored()]
+			[FieldNotInFile()]
 			public string Ignored;
 		}
 

@@ -18,6 +18,12 @@ namespace FileHelpers
 
         #region "  Private & Internal Fields  "
 
+
+        // --------------------------------------------------------------
+        // WARNING !!!
+        //    Remember to add each of this fields to the clone method !!
+        // --------------------------------------------------------------
+
         internal Type FieldType { get; private set; }
 
         internal int CharsToDiscard { get; set; }
@@ -29,6 +35,7 @@ namespace FileHelpers
         internal int ArrayMaxLength { get; set; }
         internal bool IsFirst { get; set; }
         internal bool IsLast { get; set; }
+        internal bool Discarded { get; set; }
         internal bool TrailingArray { get; set; }
         internal object NullValue { get; set; }
         internal bool IsStringField { get; set; }
@@ -40,6 +47,11 @@ namespace FileHelpers
         internal bool InNewLine { get; set; }
         internal int? FieldOrder { get; set; }
         internal bool IsNullableType { get; private set; }
+
+        // --------------------------------------------------------------
+        // WARNING !!!
+        //    Remember to add each of this fields to the clone method !!
+        // --------------------------------------------------------------
 
         internal string FieldName
         {
@@ -61,7 +73,7 @@ namespace FileHelpers
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
             // If ignored, return null
-            if (fi.IsDefined(typeof(FieldIgnoredAttribute), true))
+            if (fi.IsDefined(typeof(FieldNotInFileAttribute), true))
                 return null;
 
             FieldBase res = null;
@@ -121,6 +133,9 @@ namespace FileHelpers
 
             if (res != null)
             {
+                // FieldDiscarded
+                res.Discarded = fi.IsDefined(typeof(FieldValueDiscardedAttribute), false);
+
 
                 // FieldTrim
                 Attributes.WorkWithFirst<FieldTrimAttribute>(fi, (x) =>
@@ -316,7 +331,10 @@ namespace FileHelpers
 
                 line.mCurrentPos += CharsToDiscard; //total;
 
-                return AssignFromString(info, line);
+                if (Discarded)
+                    return GetDiscardedNullValue();
+                else
+                    return AssignFromString(info, line);
             }
             else
             {
@@ -345,7 +363,10 @@ namespace FileHelpers
                 else if (IsLast && line.IsEOL() == false)
                     throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, FieldInfo.Name, ArrayMaxLength));
 
-                return res.ToArray(ArrayType);
+                if (Discarded)
+                    return null;
+                else
+                    return res.ToArray(ArrayType);
 
             }
 
@@ -476,6 +497,30 @@ namespace FileHelpers
                 return NullValue;
         }
 
+        private object GetDiscardedNullValue()
+        {
+            if (NullValue == null)
+            {
+                if (FieldTypeInternal.IsValueType)
+                {
+                    if (IsNullableType)
+                        return null;
+
+
+                    string msg = "The field: '" + FieldInfo.Name + "' Class: '" +
+                                 FieldInfo.DeclaringType.Name +
+                                 "' is from a value type: "+ FieldInfo.FieldType.Name +" and to be discaded you must provide a [FieldNullValue] attribute.";
+
+                    throw new BadUsageException(msg);
+
+                }
+                else
+                    return null;
+            }
+            else
+                return NullValue;
+        }
+
         #endregion
 
         #region "  CreateValueForField  "
@@ -574,6 +619,7 @@ namespace FileHelpers
             res.InNewLine = InNewLine;
             res.FieldOrder = FieldOrder;
             res.IsNullableType = IsNullableType;
+            res.Discarded = Discarded;
 
             return res;
         }

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
 	[TestFixture]
-	public class FieldIgnored
+	public class FieldNotInFileTests
 	{
 		FileHelperEngine engine;
 
@@ -74,7 +74,7 @@ namespace FileHelpers.Tests.CommonTests
 		[DelimitedRecord("\t")]
 		public class CustomersTabIgnored3
 		{
-			[FieldIgnored()]
+			[FieldNotInFile()]
 			public string CustomerID;
 			public string CompanyName;
 			public string ContactName;
@@ -94,7 +94,7 @@ namespace FileHelpers.Tests.CommonTests
 			public string Address;
 			public string City;
 
-			[FieldIgnored()]
+			[FieldNotInFile()]
 			public string Country;
 		}
 
@@ -103,7 +103,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			public string CustomerID;
 			public string CompanyName;
-			[FieldIgnored()]
+			[FieldNotInFile()]
 			public string ContactName;
 			public string ContactTitle;
 			public string Address;
@@ -120,7 +120,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			[FieldFixedLength(12)] public string CustomerID;
 
-			[FieldIgnored()] public int EmployeeID;
+			[FieldNotInFile()] public int EmployeeID;
 
 			[FieldFixedLength(10)] public DateTime OrderDate;
 
