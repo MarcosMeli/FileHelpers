@@ -73,7 +73,7 @@ namespace FileHelpers
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
             // If ignored, return null
-            if (fi.IsDefined(typeof(FieldNotInFileAttribute), true))
+            if (fi.IsDefined(typeof(FieldNotInFileAttribute), true) || fi.IsDefined(typeof(FieldIgnoredAttribute), true))
                 return null;
 
             FieldBase res = null;
@@ -123,7 +123,7 @@ namespace FileHelpers
 
                 }
                 else
-                    throw new BadUsageException("Custom Record Types are not currently supported. And sure will never be :P (You must not be here)");
+                    throw new BadUsageException("Custom field attributes are not currently supported. Unknown attribute: " + fieldAttb.GetType().Name + " on field: " + fi.Name);
             }
             else // attributes.Length == 0
             {
