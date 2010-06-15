@@ -66,7 +66,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
-        public FileHelperAsyncEngine(Type type, Encoding encoding)
+        protected FileHelperAsyncEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
         }
@@ -413,40 +413,46 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
         public void Close()
         {
-            mState = EngineState.Closed;
-
-            try
+            lock (this)
             {
-                mLastRecordValues = null;
-			mLastRecord = default(T);
+                mState = EngineState.Closed;
 
-                if (mAsyncReader != null)
-                    mAsyncReader.Close();
-
-                mAsyncReader = null;
-            }
-            catch
-            { }
-
-            try
-            {
-                if (mAsyncWriter != null)
+                try
                 {
-                    if (mFooterText != null && mFooterText != string.Empty)
-                        if (mFooterText.EndsWith(StringHelper.NewLine))
-                            mAsyncWriter.Write(mFooterText);
-                        else
-                            mAsyncWriter.WriteLine(mFooterText);
+                    mLastRecordValues = null;
+                    mLastRecord = default(T);
 
-                    mAsyncWriter.Close();
-                    mAsyncWriter = null;
+                    var reader = mAsyncReader;
+                    if (reader != null)
+                    {
+                        reader.Close();
+                        mAsyncReader = null;
+                    }
+                }
+                catch
+                {
+                }
 
+                try
+                {
+                    var writer = mAsyncWriter;
+                    if (writer != null)
+                    {
+                                if (!string.IsNullOrEmpty(mFooterText))
+                                    if (mFooterText.EndsWith(StringHelper.NewLine))
+                                        writer.Write(mFooterText);
+                                    else
+                                        writer.WriteLine(mFooterText);
 
+                                writer.Close();
+                                mAsyncWriter = null;
+                    }
+                }
+                catch
+                {
                 }
 
             }
-            catch
-            { }
         }
 
         #endregion

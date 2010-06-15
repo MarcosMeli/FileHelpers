@@ -379,6 +379,7 @@
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
+    <Compile Include="Tests\Common\SorterTests.cs" />
     <Compile Include="Tests\Common\DelimitedMoreFieldsTests.cs" />
     <Compile Include="Tests\Common\FieldValueDiscardedTests.cs" />
     <Compile Include="Tests\Common\RecordInfoCloneTest.cs" />
@@ -390,6 +391,7 @@
     <Compile Include="Tests\Common\FieldAligmentOrder.cs" />
     <Compile Include="Tests\Common\FixedModeTests.cs" />
     <Compile Include="Helpers\CompareObjects.cs" />
+    <Compile Include="TempFileFactory.cs" />
     <Compile Include="Tests\Helpers\MessagesTests.cs" />
     <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
     <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />

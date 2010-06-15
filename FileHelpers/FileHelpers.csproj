@@ -333,6 +333,8 @@
     <Compile Include="Interfaces\INotifyWrite.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mapping\DataMapper.cs" />
+    <Compile Include="Mapping\MappingInfo.cs" />
     <Compile Include="MasterDetail\Common.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -366,6 +368,7 @@
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
     <Compile Include="Sort\BigFileSorter.cs" />
     <Compile Include="Sort\BigFileSorter.T.cs" />
+    <Compile Include="Sort\SortQueue.T.cs" />
     <Compile Include="Streams\InternalStringReader.cs" />
     <Compile Include="Streams\StreamInfoProvider.cs" />
     <Compile Include="VersionInfo.cs" />

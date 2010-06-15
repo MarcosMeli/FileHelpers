@@ -4,7 +4,8 @@ using FileHelpers;
 namespace FileHelpers.Tests
 {
 	[DelimitedRecord("\t")]
-	public class OrdersTab
+	public class OrdersTab 
+        : IComparable<OrdersTab>
 	{
 		public int OrderID;
 
@@ -21,5 +22,10 @@ namespace FileHelpers.Tests
 		public int ShipVia;
 
 		public decimal Freight;
+	    
+        public int CompareTo(OrdersTab other)
+	    {
+	        return this.OrderID.CompareTo(other.OrderID);
+	    }
 	}
 }

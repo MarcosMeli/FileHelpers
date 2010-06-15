@@ -8,7 +8,8 @@ using FileHelpers.Options;
 namespace FileHelpers
 {
     public interface IFileHelperAsyncEngine<T> 
-        : IEnumerable<T>, IDisposable
+        : IEnumerable<T>
+        , IDisposable
         where T : class
     {
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
