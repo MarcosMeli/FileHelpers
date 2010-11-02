@@ -529,7 +529,7 @@ namespace FileHelpers
                 DateTime val;
                 if (!DateTime.TryParseExact(from.Trim(), mFormats, null, DateTimeStyles.None, out val))
                 {
-                    string extra = " Not matching any of the given formats: " + CreateFormats();
+                    string extra = " does not match any of the given formats: " + CreateFormats();
                     throw new ConvertException(from, typeof(DateTime), extra);
                 }
                 return val;
@@ -606,8 +606,8 @@ namespace FileHelpers
                         case "n":
                         case "f":
 
-                        // I dont thing that this case is possible without overriding the CustomNullHandling
-                        // and maybe It is not good to allow empty fields to be false
+                        // I don't think that this case is possible without overriding the CustomNullHandling
+                        // and it is possible that defaulting empty fields to be false is not correct
                         case "":
                             val = false;
                             break;
@@ -618,13 +618,22 @@ namespace FileHelpers
                 }
                 else
                 {
-                    // The trim in the or part is for performance enhancement as we dont want to unnecessarily trim.
-                    if (testTo == mTrueStringLower || testTo.Trim() == mTrueStringLower)
+                    //  Most of the time the strings should match exactly.  To improve performance
+                    //  we skip the trim if the exact match is true
+                    if (testTo == mTrueStringLower)
                         val = true;
-                    else if (testTo == mFalseStringLower || testTo.Trim() == mFalseStringLower)
+                    else if (testTo == mFalseStringLower)
                         val = false;
                     else
-                        throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
+                    {
+                        testTo = testTo.Trim();
+                        if (testTo == mTrueStringLower)
+                            val = true;
+                        else if (testTo == mFalseStringLower)
+                            val = false;
+                        else
+                            throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
+                    }
                 }
 
                 return val;
@@ -660,6 +669,7 @@ namespace FileHelpers
         {
             int mFormat = 0; //1 Lower, 2 Upper
 
+            //  TODO:  This probably throws an exception,  should this be String.Empty?
             public CharConverter()
                 : this(" ") // xX
             {
@@ -681,8 +691,7 @@ namespace FileHelpers
 
             public override object StringToField(string from)
             {
-                if (from == null) from = string.Empty;
-                if (from.Length == 0)
+                if (string.IsNullOrEmpty(from))
                     return Char.MinValue;
 
                 try
@@ -748,7 +757,8 @@ namespace FileHelpers
 
             public override string FieldToString(object from)
             {
-                if (from == null) return String.Empty;
+                if (from == null)
+                    return String.Empty;
                 return ((Guid)from).ToString(mFormat);
             }
         }

@@ -24,7 +24,7 @@ namespace FileHelpers
 			}
 			catch (ArgumentException)
 			{
-				throw new ConvertException(from, mEnumType, "The value given is not present in the Enum.");
+				throw new ConvertException(from, mEnumType, "The value " + from + " is not present in the Enum.");
 			}
 		}
 		

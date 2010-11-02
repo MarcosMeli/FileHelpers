@@ -61,7 +61,7 @@ namespace FileHelpers
 		}
 
 		/// <summary>
-        /// If the class retures false the engines don´t pass null values to the converter. 
+        /// If the class returns false the engines don't pass null values to the converter. 
         /// If true the engines pass all the values to the converter.
         /// </summary>
 		protected internal virtual bool CustomNullHandling
@@ -72,11 +72,11 @@ namespace FileHelpers
 		internal Type mDestinationType;
 
 		/// <summary>
-		/// Thorws a ConvertException with the passed values
+		/// Throws a ConvertException with the passed values
 		/// </summary>
 		/// <param name="from">The source string.</param>
 		/// <param name="errorMsg" >The custom error msg.</param>
-        /// <exception cref="ConvertException"></exception>
+        /// <exception cref="ConvertException">Throw exception with values</exception>
 		protected void ThrowConvertException(string from, string errorMsg)
 		{
 			throw new ConvertException(from, mDestinationType, errorMsg);
