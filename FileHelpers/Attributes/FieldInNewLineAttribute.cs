@@ -4,7 +4,7 @@ using System;
 
 namespace FileHelpers
 {
-	/// <summary>
+    /// <summary>
     /// Indicates the target field has a new line before this value 
     /// i.e. indicates that the records have multiple lines, 
     /// and this field is in the beginning of a line.

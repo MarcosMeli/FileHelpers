@@ -14,14 +14,14 @@ namespace FileHelpers
 	{
 		internal int Length;
 
-		/// <summary>Indicates the length of a FixedLength field.</summary>
+		/// <summary>Indicates the length of a Fixed Length field.</summary>
 		/// <param name="length">The length of the field.</param>
 		public FieldFixedLengthAttribute(int length)
 		{
 			if (length > 0)
 				this.Length = length;
 			else
-				throw new BadUsageException("The length parameter must be > 0");
+				throw new BadUsageException("The FieldFixedLength attribute must be > 0");
 		}
 
 	}

@@ -15,15 +15,16 @@ namespace FileHelpers
 		internal string mCommentMarker;
 		internal bool mAnyPlace = true;
 
-		/// <summary>Indicates that the engine must ignore commented lines while reading. (The Comment Marker can appear in any place with spaces or tabs at his left)</summary>
+		/// <summary>Indicates that the engine will ignore commented lines while reading.
+        /// (The Comment Marker can have any number of spaces or tabs to the left)</summary>
 		/// <param name="commentMarker">The comment marker used to ignore the lines</param>
 		public IgnoreCommentedLinesAttribute(string commentMarker): this(commentMarker, true)
 		{
 		}
 
-		/// <summary>Indicates that the engine must ignore commented lines while reading.</summary>
+		/// <summary>Indicates that the engine will ignore commented lines while reading.</summary>
 		/// <param name="commentMarker">The comment marker used to ignore the lines</param>
-        /// <param name="anyPlace">Indicates if the comment can have spaces or tabs at left (true by default)</param>
+        /// <param name="anyPlace">Indicates if the comment can have spaces or tabs to the left (true by default)</param>
 		public IgnoreCommentedLinesAttribute(string commentMarker, bool anyPlace)
 		{
 			if (commentMarker == null ||  commentMarker.Trim().Length == 0)
@@ -32,6 +33,5 @@ namespace FileHelpers
 			mCommentMarker = commentMarker.Trim();
             mAnyPlace = anyPlace;
 		}
-
 	}
 }

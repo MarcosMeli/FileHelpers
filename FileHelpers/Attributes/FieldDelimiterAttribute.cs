@@ -17,7 +17,7 @@ namespace FileHelpers
 		public FieldDelimiterAttribute(string separator)
 		{
 			if (separator == null || separator.Length == 0)
-				throw new BadUsageException("The separator parameter of the FieldDelimited attribute can't be null or empty");
+				throw new BadUsageException("The separator parameter of the FieldDelimiter attribute can't be null or empty");
 			else
 				this.Delimiter = separator;
 		}

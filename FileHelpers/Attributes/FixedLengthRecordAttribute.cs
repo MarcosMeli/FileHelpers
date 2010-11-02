@@ -13,13 +13,20 @@ namespace FileHelpers
         /// <summary>Indicates the behavior when variable length records are found.</summary>
 	    public FixedMode FixedMode { get; private set; }
 
-	    /// <summary>Indicates that this class represents a fixed length record. By default requieres that the records has the length equals to the sum of each field length.</summary>
+        /// <summary>Indicates that this class represents a fixed length
+        /// record. By default fixed length files require the records to have
+        /// equal length.
+        /// (ie the record length equals the sum of each field length.
+        /// </summary>
 		public FixedLengthRecordAttribute()
             :this(FixedMode.ExactLength)
 		{}
 
-		/// <summary>Indicates that this class represents a fixed length record with the specified variable record behavior.</summary>
-		/// <param name="fixedMode">The <see cref="FileHelpers.FixedMode"/> used for variable length records. By Default is FixedMode.ExactLenght</param>
+		/// <summary>
+        /// Indicates that this class represents a fixed length record with the
+        /// specified variable length record behavior.
+        /// </summary>
+		/// <param name="fixedMode">The <see cref="FileHelpers.FixedMode"/> used for variable length records. By Default is FixedMode.ExactLength</param>
 		public FixedLengthRecordAttribute(FixedMode fixedMode)
 		{
 		    FixedMode = fixedMode;
