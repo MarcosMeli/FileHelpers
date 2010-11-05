@@ -26,7 +26,7 @@ bgColor=white leftMargin=0 topMargin=0>
 <tr><td><div id=contentdiv> 
   <h2>Record Conditions Example </h2>
   <blockquote>
-          <p>You can now filter the records using a lot of conditions to include or exclude each line.</p>
+          <p>You can now filter the records from a file using a lot of conditions to include or exclude each line.</p>
 		  
 		  <p>If we have this sample data:</p>
           <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>ANTON	Antonio Moreno Taquería	Antonio Moreno	Owner	Mataderos  2312	México D.F.	Mexico
@@ -48,7 +48,7 @@ GROSR	GROSELLA-Restaurante	Manuel Pereira	Owner	5ª Ave. Los Palos Grandes	Caraca
 </TEXTAREA>
           </blockquote>
           <p>
-              We define a record class with an RecordCondition to include all the ones that begin with "F":
+              We define a record class with an RecordCondition to only include all the ones that begin with "F":
           <blockquote><TEXTAREA class=c# name=code>
 [ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
 [DelimitedRecord("\t")]
@@ -65,7 +65,7 @@ public class CustomersTab
 </TEXTAREA>
 
           </blockquote>
-          <p>If now we run:</p>
+          <p>If we now run:</p>
           <blockquote><TEXTAREA class=c# name=code>
 			FileHelperEngine engine = new FileHelperEngine(typeof(CustomersTab));
 			CustomersTab[] res = (CustomersTab[]) engine.ReadFile("sample.txt");
@@ -73,7 +73,7 @@ public class CustomersTab
 </TEXTAREA>
           </blockquote>
 
-          <p>And the resulting array only has&nbsp;these records:</p>
+          <p>And the resulting array only has records beginning with F:</p>
           <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>FISSA	FISSA Fabrica Inter. Salchichas S.A.	Diego Roel	Accounting Manager	C/ Moralzarzal, 86	Madrid	Spain
 FOLIG	Folies gourmandes	Martine Rancé	Assistant Sales Agent	184, chaussée de Tournai	Lille	France
 FOLKO	Folk och fä HB	Maria Larsson	Owner	Åkergatan 24	Bräcke	Sweden

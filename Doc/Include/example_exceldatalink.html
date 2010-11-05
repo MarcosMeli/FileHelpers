@@ -20,10 +20,9 @@
 		<table width="100%" cellpadding="5" cellspacing="5">
 			<tr>
 				<td><div id="contentdiv">
-						<h2>Excel DataLink Example
-						</h2>
+						<h2>Excel DataLink Example</h2>
 						<blockquote>
-							<p>This example shows how to extract and insert records&nbsp;from/to a Microsoft 
+							<p>This example shows how to extract and insert records to and from a Microsoft 
 								Excel Worksheet.
 							</p>
 						</blockquote>
@@ -34,48 +33,46 @@
 							<p>If You want to transfer data from this Excel to a File or other Data Storage you 
 								must follow this steps:
 							</p>
-							<p>For example, with the&nbsp;following worksheet (from the Northwind DB)</p>
+							<p>For example, using the following worksheet (from the Northwind DB)</p>
 							<p><IMG height=414 src="excel.png" width=611></p>
-							<p>&nbsp;</p>
 						</blockquote>
-						<h2>
-							To use Delimited Format</h2>
+
+						<h2>Using a Delimited Format</h2>
 							<p>You must define:</p>
 							<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px"><TEXTAREA class=c# name=code>
-	[DelimitedRecord("|")]
-	public class CustomersVerticalBar
-	{
-		public string CustomerID;
+[DelimitedRecord("|")]
+public class CustomersVerticalBar
+{
+	public string CustomerID;
 
-		public string CompanyName;
+	public string CompanyName;
 
-		public string ContactName;
+	public string ContactName;
 
-		public string ContactTitle;
+	public string ContactTitle;
 
-		public string Address;
+	public string Address;
 
-		public string City;
+	public string City;
 
-		public string Country;
-	}
+	public string Country;
+}
 </TEXTAREA>
 							</BLOCKQUOTE>
 						<h2>The Solution</h2>
-						<p>&nbsp;&nbsp; Finally, use the ExcelDataStorage to Read the records:</p>
-						<blockquote><TEXTAREA class=c# name=code>							
-   ExcelStorage provider = new ExcelStorage(typeof(CustomersVerticalBar));
+						<p>Finally, use the ExcelDataStorage to Read the records:</p>
+<blockquote><TEXTAREA class=c# name=code>
+ExcelStorage provider = new ExcelStorage(typeof(CustomersVerticalBar));
    
-   provider.StartRow = 3;
-   provider.StartColumn = 2;
+provider.StartRow = 3;
+provider.StartColumn = 2;
 			
-   provider.FileName = "Customers.xls";
+provider.FileName = "Customers.xls";
    
-   CustomerVerticalBar[] res = (CustomerVerticalBar[]) provider.ExtractRecords();
-
+CustomerVerticalBar[] res = (CustomerVerticalBar[]) provider.ExtractRecords();
 </TEXTAREA>
 
-						</blockquote>{$FOOTER$}</div>
+</blockquote>{$FOOTER$}</div>
 		
 				</td>
 			</tr>

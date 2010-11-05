@@ -21,17 +21,16 @@ bgColor=white leftMargin=0 topMargin=0>
 
 		{$HEADER$}
 
-
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv> 
   <h2>FileDiffEngine Example </h2>
   <blockquote>
-          <p>The idea of this engine is to parse files with the same record layout and perform a comparison over the records.</p>
+          <p>The idea of this engine is to parse files with the same record layout and perform a comparison of the records.</p>
 
       <p>
-          To work with the DiffEngine your record must implement the interface <A href="FielHelpers.IComparableRecord.html">IComparableRecord</a>: 
+          To use the DiffEngine your record must implement the interface <A href="FielHelpers.IComparableRecord.html">IComparableRecord</a>: 
         </p>
-          <blockquote><TEXTAREA class=c# name=code>
+<blockquote><TEXTAREA class=c# name=code>
 	[DelimitedRecord("|")]
 	public class Customers: IComparableRecord
 	{
@@ -49,30 +48,30 @@ bgColor=white leftMargin=0 topMargin=0>
 			return this.CustomerID == rec.CustomerID;
 		}
 	}
-		
 </TEXTAREA>
 
           </blockquote>
       <p>
           <b>For example, if you want to get the new customers based on two customers files you can use:</b></p>
-          <blockquote><TEXTAREA class=c# name=code>
-		engine = new FileDiffEngine(typeof (Customers));
+<blockquote><TEXTAREA class=c# name=code>
+engine = new FileDiffEngine(typeof (Customers));
 
-		Customers[] res = engine.OnlyNewRecords("customersold.txt", "customernew.txt") as Customers[];
-		
+Customers[] res = engine.OnlyNewRecords( "customersold.txt",
+                                         "customernew.txt")
+                           as Customers[];
 </TEXTAREA>
-
           </blockquote>
           <p>
               In the res array you have all the records in the file customersnew.txt that don't exists in the customersold.txt file</p>
 
       <p>
-          <b>Now you may need to extract the records that apear in both files:</b></p>
-          <blockquote><TEXTAREA class=c# name=code>
-		engine = new FileDiffEngine(typeof (Customers));
+          <b>You may also need to extract the records that appear in both files:</b></p>
+<blockquote><TEXTAREA class=c# name=code>
+engine = new FileDiffEngine(typeof (Customers));
 
-		Customers[] res = engine.OnlyDuplicatedRecords("customersold.txt", "customernew.txt") as Customers[];
-		
+Customers[] res = engine.OnlyDuplicatedRecords( "customersold.txt",
+                                                "customernew.txt")
+                         as Customers[];
 </TEXTAREA>
 
           </blockquote>
@@ -81,23 +80,22 @@ bgColor=white leftMargin=0 topMargin=0>
        
 
       <p>
-          <b>And how many lines you need to write the diff to other file... you are right one line !!</b></p>
+          <b>And how many lines you need to write the diff to other file. One line!</b></p>
           <blockquote><TEXTAREA class=c# name=code>
-		engine = new FileDiffEngine(typeof (Customers));
+engine = new FileDiffEngine(typeof (Customers));
 
-		engine.WriteNewRecords("customersold.txt", "customernew.txt", "onlynews.txt");
+engine.WriteNewRecords( "customersold.txt",
+                        "customernew.txt",
+                        "onlynews.txt");
 		
 </TEXTAREA>
 
           </blockquote>
           </blockquote>
-          
-          
       <p>
          <b>Enjoy it !!!</b></p>
-      <BLOCKQUOTE></BLOCKQUOTE>{$FOOTER$}</div></td>
-
-		
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
 

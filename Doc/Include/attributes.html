@@ -42,7 +42,7 @@
 </div><ul>
     <li><A href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirst</a>: Indicates the <strong>
         numbers of lines to be ignored at the beginning</strong> of a file or
-              stream when the engine read it.<blockquote>
+              stream when the engine reads it.<blockquote>
               <pre>[IgnoreFirst(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
 { ...
@@ -52,7 +52,7 @@
 
           <li><A href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLast</a>: Indicates the <strong>
         numbers of lines to be ignored at the end</strong> of a file or stream
-              when the engine read it.<blockquote>
+              when the engine reads it.<blockquote>
               <pre>[IgnoreLast(<span class="cs-string">2</span>)] 
 <span class="cs-keyword">public class</span> OrdersVerticalBar 
 { ...
@@ -66,7 +66,7 @@
 { ...
 
 </pre>
-            </blockquote><li><A href="FileHelpers.ConditionalRecordAttribute.html">ConditionalRecord</a>: <IMG src="new.gif" border=0> &nbsp;&nbsp;Allow you to add some conditions to tell the library what records to
+            </blockquote><li><A href="FileHelpers.ConditionalRecordAttribute.html">ConditionalRecord</a>: Allows you to add some conditions to tell the library what records to
               process or not in a declarative way, using one of the <A href="FileHelpers.RecordCondition.html">
                   RecordCondition</a>&nbsp;enumerations 
         and a string selector. This is useful where you need to ignore
@@ -120,7 +120,7 @@
 </pre>
 <b>Remember:</b> The default types are 
           automatically converted, so these&nbsp;don't need the explicit [FieldConverter].&nbsp; Use this attribute only when you 
-need to pass them some argument. Check out the <A href="converter_args.html">Default Converters Arguments Page</a>.<br>
+need to pass them some argument. Please see the <A href="converter_args.html">Default Converters Arguments Page</a>.<br>
 For help on 
           defining your own converters -&nbsp;see&nbsp;the <A href="example_customconv.html">Custom Converter Example</a>
 
@@ -150,7 +150,7 @@ For help on
 </pre>
             </blockquote>
           <li><A href="FileHelpers.FieldTrimAttribute.html">FieldTrim</a>: 
-        Indicates what type of trimming must be perfomed after&nbsp; <strong>reading</strong> a field value (see <A href="FileHelpers.TrimMode.html">TrimMode</a>).
+        Indicates what type of trimming must be performed after&nbsp; <strong>reading</strong> a field value (see <A href="FileHelpers.TrimMode.html">TrimMode</a>).
             <blockquote>
               <pre>[FieldTrim(<A href="FileHelpers.TrimMode.html">TrimMode</a>.Both)]<span class="cs-keyword">
 public string</span> CustomerName</pre>
@@ -169,7 +169,7 @@ public int </span>Going_to_the_Right</pre>
     </blockquote>
 
         <li><A href="FileHelpers.FieldInNewLineAttribute.html">FieldInNewLine</a>: Indicates that
-            the field value appears on a new line.<br><b>If you use this attribute, the library requests that new line that not is optional.</b>
+            the field value appears on a new line.<br><b>If you use this attribute, the library requires that new line that not is optional.</b>
     <blockquote>
         <pre>[FieldInNewLine()]
 <span class="cs-keyword">public string </span>I_Wanna_Stay_Alone</pre>

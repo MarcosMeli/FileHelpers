@@ -27,7 +27,8 @@ bgColor=white leftMargin=0 topMargin=0>
   <h2>Master Detail Easy Example</h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote><TEXTAREA class=c# name=code>ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+          <blockquote><TEXTAREA class=c# name=code>
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 10248|ALFKI|5|04071996|01081996|16071996|3|32.38
 10249|ALFKI|6|05071996|16081996|10071996|1|11.61
 10251|ALFKI|3|08071996|05081996|15071996|1|41.34
@@ -54,7 +55,9 @@ public class Customers
    public string City;
    public string Country;
 }
-</TEXTAREA> <TEXTAREA class=c# name=code>
+</TEXTAREA>
+<br/>
+<TEXTAREA class=c# name=code>
 [DelimitedRecord("|")]
 public class Orders
 {
@@ -83,9 +86,11 @@ RecordAction ExampleSelector(string record)
 </TEXTAREA>
           </blockquote>
       <p>
-          Finally, you must to instantiate a MasterDetailEngine and Read/Write files:</p>
+          Finally, you must to instantiate a MasterDetailEngine and read or write files:</p>
           <blockquote><TEXTAREA class=c# name=code>
-MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
+MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers),
+                                                   typeof(Orders),
+                           new MasterDetailSelector(ExampleSelector));
 
 // to Read use:
 MasterDetails[] res = engine.ReadFile("TestIn.txt");
@@ -107,8 +112,7 @@ res[0].Details
 res[0].Details[0]
 </TEXTAREA>
           </blockquote>
-      <p>
-          &nbsp;</p>
+		  <br/>
   </blockquote>{$FOOTER$}</div></td>
 
 		

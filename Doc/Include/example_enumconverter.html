@@ -18,34 +18,35 @@ bgColor=white leftMargin=0 topMargin=0>
 
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv>  <h2>
-    Enum Converter Example </h2>
-        <blockquote>
-          <p>
-               Sometimes you have a string field in your files that can be better handled if you map it like an enum.</p>
+<tr><td><div id=contentdiv>
+<h2>Enum Converter Example</h2>
+<blockquote>
+<p>
+Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
             <p>
-                In this version, and thanks to <b>Derek Fluker,</b> you can automatically use an enum with out defining any
+Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
                 converter. The FileHelpers library parses the field and performs a case insensitive
-                comparison&nbsp;to the enum values and assigns the correct one.</p>
+                comparison to the enum values and assigns the correct one.</p>
             <p>
                 The customer file is an excellent sample:</p>
-          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
+<TEXTAREA class=c#:nogutter:nocontrols name=code>
+ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
 </TEXTAREA>
-          </blockquote>
           <p>The enum is:</p>
-          <blockquote><TEXTAREA class=c# name=code>public enum CustomerTitle
+<TEXTAREA class=c# name=code>
+ public enum CustomerTitle
  {
     Owner,
     SalesRepresentative,
     MarketingManager
-}
+ }
 </TEXTAREA>
-          </blockquote>
-          <p>Later define your record class:</p>
-          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
+          <p>When defining your record class use the enum:</p>
+<TEXTAREA class=c# name=code>
+[DelimitedRecord("|")]
 public class Customers
 {
    public string CustomerID;
@@ -54,9 +55,9 @@ public class Customers
    public CustomerTitle ContactTitle;
 }
 </TEXTAREA>
-          </blockquote>
-          <p>Done !! you can actually parse the file with:</p>
-          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
+          <p>Done !! you parse the file with:</p>
+          <TEXTAREA class=c# name=code>
+FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
 
 Customers[] res = (Customers[]) engine.ReadFile("NameTest.txt");
 
@@ -66,13 +67,9 @@ if (res[0].ContactTitle == CustomerTitle.Owner)
     // SomeAction
     
 </TEXTAREA>
-          </blockquote>
         </blockquote>
       <blockquote>
 		{$FOOTER$}</blockquote></div></td>
-		
 </tr>
 </table>
-
-
 </BODY></HTML>

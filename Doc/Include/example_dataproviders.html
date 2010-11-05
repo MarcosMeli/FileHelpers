@@ -20,7 +20,7 @@ bgColor=white leftMargin=0 topMargin=0>
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv>  <h2>Excel DataLink Example </h2>
       <blockquote>
-        <p>This example shows how to enable the two directional communication between an Excel and a Text File. </p>
+        <p>This example shows how to enable the bi directional communication between an Excel and a Text File. </p>
       </blockquote>
       <h2>The Problem </h2>
   <blockquote>
@@ -32,7 +32,8 @@ bgColor=white leftMargin=0 topMargin=0>
         <h2> To use  Delimited Format</h2>
         <blockquote>
           <p>You must define:</p>
-          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
+          <blockquote><TEXTAREA class=c# name=code>
+[DelimitedRecord("|")]
 public class OrdersVerticalBar
 {
     public int OrderID;
@@ -52,7 +53,8 @@ public class OrdersVerticalBar
         <h2> To use FixedLength Format</h2>
         <blockquote>
           <p>You must define:</p>
-          <blockquote><TEXTAREA class=c# name=code>[FixedLengthRecord]
+          <blockquote><TEXTAREA class=c# name=code>
+[FixedLengthRecord]
 public class OrdersFixed
 {
    [FieldFixedLength(7)]
@@ -85,8 +87,8 @@ public class OrdersFixed
        </blockquote>
         </blockquote>
         <h2>The DataLinkClass</h2>
-        <p> You can see in the <A href="class_diagram.html">Class Diagram</A> you must inherit from <A href="FileHelpers.DataLink.AccessStorage.html">AccessStorage</A> or <A href="FileHelpers.DataLink.SqlServerStorage.html">SqlServerStorage </A> to finish the DataLink.</p>
-        <p>In this example we use the first one, and the resulting code is:</p>
+        <p>As you can see in the <A href="class_diagram.html">Class Diagram</A> you must inherit from <A href="FileHelpers.DataLink.AccessStorage.html">AccessStorage</A> or <A href="FileHelpers.DataLink.SqlServerStorage.html">SqlServerStorage </A> to implement the DataLink.</p>
+        <p>In this example we use the AccessStorage. The resulting code is:</p>
         <blockquote><TEXTAREA class=c# name=code>public class OrdersLinkProvider : AccessStorage
 {
     public override Type RecordType
@@ -173,7 +175,7 @@ public class OrdersFixed
         </blockquote>
         <h2>Finally Call to the DataLinkEngine </h2>
         <blockquote>
-          <p>Finally, you must to instantiate a DataLinkEngine and Read/Write files:</p>
+          <p>Finally, you must to instantiate a DataLinkEngine and read or write files:</p>
           <blockquote><TEXTAREA class=c# name=code>DataLinkEngine mLinkEngine = new DataLinkEngine(new OrdersFixedLinkProvider());
 
 // To extract from the data source to a file write:

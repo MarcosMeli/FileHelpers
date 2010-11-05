@@ -25,11 +25,11 @@ bgColor=white leftMargin=0 topMargin=0>
 <tr><td><div id=contentdiv> 
   <h2>Events Architecture</h2>
   <blockquote>
-          <p> Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
+          <p>Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
 
-          <p>To solve these problems I've add a event architecture in the FileHelperEngine (in the future in all the others) </p>
+          <p>To solve these problems I've added events to the FileHelperEngine (in the future to all the other engines) </p>
 
-          <p>The events are 4 (2 for read and 2 for write ops):</p>
+          <p>There are 4 events.  2 for read and 2 for write operations</p>
           
           <blockquote>
           <ul>
@@ -40,13 +40,15 @@ bgColor=white leftMargin=0 topMargin=0>
           </ul>
 
           </blockquote>
-          <p>The names said all right ?</p>
+          <p>The names say it all right?</p>
             </blockquote>
 
-<h2>The Example</h2>
+<h2>An Example</h2>
             <blockquote>
           <p>Suppose that you need to parse a txt report from a legacy system with this format:</p>
-            <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>-----------------------------------------------------
+	  <blockquote>
+<TEXTAREA class=c#:nogutter:nocontrols name=code>
+-----------------------------------------------------
               XXX Enterprise
 -----------------------------------------------------
 10249   TOMSP  05071996      11.61
@@ -66,8 +68,9 @@ And so on !!
 </TEXTAREA>
 </blockquote>
           <p>You must declare a Record Mapping Class for the main record:</p>
-          <blockquote><TEXTAREA class=c# name=code>[FixedLengthRecord(FixedMode.AllowVariableLength)]
-								
+	  <blockquote>
+<TEXTAREA class=c# name=code>
+ [FixedLengthRecord(FixedMode.AllowVariableLength)]
  [FixedLengthRecord]
  public class OrdersFixed
  {
@@ -85,8 +88,10 @@ And so on !!
  }
 </TEXTAREA>
           </blockquote>
-          <p>So now is the time where we instantiate the engine and hook to the events:</p>
-          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+          <p>When we instantiate the engine we also hook the events as follows:</p>
+	  <blockquote>
+<TEXTAREA class=c# name=code>
+FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent);
 
 Orders[] res = engine.ReadFile("report.txt") as Orders[];
@@ -95,12 +100,15 @@ Orders[] res = engine.ReadFile("report.txt") as Orders[];
           
     </blockquote>
           
-          <p> So in the event method we ignore the lines with spaces and:</p>
-          <blockquote><TEXTAREA class=c# name=code>		private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
-		{
-			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
-				e.SkipThisRecord = true;
-		}
+          <p> So in the event method we ignore the lines that begin with spaces or a dash '-':</p>
+	  <blockquote>
+<TEXTAREA class=c# name=code>
+	private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
+	{
+		if (e.RecordLine.StartsWith(" ")
+       		 || e.RecordLine.StartsWith("-"))
+			e.SkipThisRecord = true;
+	}
 </TEXTAREA>
 
     </blockquote>
@@ -109,8 +117,20 @@ Orders[] res = engine.ReadFile("report.txt") as Orders[];
           
           <TR>
 	<td valign="center" align="middle" class="note">
-        <b>Note: if you change the RecordLine the engine use the changed value<br>This can be useful in some cases but you must be careful</b>
-	</td></TR></table></blockquote>{$FOOTER$}</div></td>
+<b>Note: if you change the RecordLine in the args the engine use the changed value.
+	<br>This can be useful in some cases but you must be careful</b>
+</td></TR></table>
+</blockquote>
+
+<TEXTAREA class=c# name=code>
+	private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
+	{
+		if (e.RecordLine.StartsWith(" "))
+			e.RecordLine = "Be careful!";
+	}
+</TEXTAREA>
+
+{$FOOTER$}</div></td>
 	</tr>
 </table>
 

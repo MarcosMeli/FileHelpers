@@ -261,7 +261,7 @@
 
           	<div class="treeNode">
 			  <img src="treenodedot.gif" class="treeNoLinkImage" />
-			  <a href="diagram_datastorage.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataStorages Diagram</a>
+			  <a href="diagram_datastorage.html" target="main" class="treeUnselected" onclick="clickAnchor(this)">DataStorage Diagram</a>
 			</div>
 
 

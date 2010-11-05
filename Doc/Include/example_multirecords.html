@@ -44,16 +44,18 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;
 </TEXTAREA>
           </blockquote>
           <p>
-              This file contains <b>three</b> record types; Customers (begins with letters, | delimited), Orders (begin with numbers, ';' delimited and the sample type of the first example.</p>
+              This file contains <b>three</b> record types; Customers (begins with letters, | delimited), Orders (begin with numbers, ';' delimited) and the sample type of the first example.</p>
       <p>
           To work with this engine you must create one instance of it in this way:</p>
           <blockquote><TEXTAREA class=c# name=code>
-			MultiRecordEngine engine;
+MultiRecordEngine engine;
 
-			engine = new MultiRecordEngine(typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
-			engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+engine = new MultiRecordEngine( typeof(OrdersVerticalBar),
+                                typeof(CustomersSemiColon),
+                                typeof(SampleType));
+engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
-			object[] res = engine.ReadFile("MultiRecords.txt");
+object[] res = engine.ReadFile("MultiRecords.txt");
 </TEXTAREA>
 
           <p>
@@ -63,25 +65,21 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;
           <p>
                And the Selector Method looks like this:</p>
           <blockquote><TEXTAREA class=c# name=code>
-        Type CustomSelector(MultiRecordEngine engine, string record)
-        {
-            if (Char.IsLetter(record[0]))
-                return typeof(CustomersSemiColon);
-			else if (record.Length == 14)
-				return typeof(SampleType);
-            else
-                return typeof(OrdersVerticalBar);
-        }
+Type CustomSelector(MultiRecordEngine engine, string record)
+{
+    if (Char.IsLetter(record[0]))
+        return typeof(CustomersSemiColon);
+    else if (record.Length == 14)
+        return typeof(SampleType);
+    else
+        return typeof(OrdersVerticalBar);
+}
 </TEXTAREA>
           </blockquote>
           </blockquote>
-      <p>
-         Enjoy it !!!</p>
-      <BLOCKQUOTE></BLOCKQUOTE>{$FOOTER$}</div></td>
-
-		
+      <p>Enjoy it !!!</p>
+      {$FOOTER$}
+</div></td>
 </tr>
 </table>
-
-
 </BODY></HTML>

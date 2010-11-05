@@ -23,12 +23,10 @@ bgColor=white leftMargin=0 topMargin=0>
       Delimited File Engine</h2>
   <blockquote>
           <p>
-             With this cool feature you can change some of the record definitions at run time.</p>
+             With this cool feature you can simply change some of the record definitions at run time.</p>
           <p>
              Lets start with a simple example:</p>
-          <blockquote>
 <textarea name="code" class="c#">
-
 	[DelimitedRecord("\t")]
 	public class CustomersTab
 	{
@@ -40,32 +38,26 @@ bgColor=white leftMargin=0 topMargin=0>
 		public string City;
 		public string Country;
 	}
-
 </textarea>
 
-      <p>
-             You work with this file for a time, and later you need to export the data in this format <b>but also delimited by ";" and "|"</b>
-			 <br />Check how easy this is:</p>
+ <p>
+             After working with this file for a while, and you need to export the data in this format <b>but delimited by ";" and "|"</b>
+ </p>
+<p>This is how easy its is:</p>
 
 			 
-			 <textarea name="code" class="c#">
-
-            DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersTab));
-			engine.WriteFile("RecordsWithTabs.txt", records)
+<textarea name="code" class="c#">
+DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersTab));
+engine.WriteFile("RecordsWithTabs.txt", records)
             
-			engine.Options.Delimiter = ";";
-			engine.WriteFile("RecordsWithSemiColons.txt", records)
+engine.Options.Delimiter = ";";
+engine.WriteFile("RecordsWithSemiColons.txt", records)
 
-			engine.Options.Delimiter = "|";
-			engine.WriteFile("RecordsWithVerticalBar.txt", records)
-
+engine.Options.Delimiter = "|";
+engine.WriteFile("RecordsWithVerticalBar.txt", records)
 </textarea>
-
-  </blockquote>
 
 		{$FOOTER$}
 </tr>
 </table>
-
-
 </BODY></HTML>

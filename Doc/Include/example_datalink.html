@@ -24,21 +24,20 @@
 						</h2>
 						<blockquote>
 							<p>  This example shows how to enable the two directional communication 
-								between an Access&nbsp;database and a&nbsp;text file.
+								between an Access database and a text file.
 							</p>
 						</blockquote>
 						<h2>The Problem
 						</h2>
 						<blockquote>
-							<p>For example, let's say that you want to read/write records from/to the Orders table (from the Northwind DB)</p>
+							<p>For example, let's say that you want to read or write records from/to the Orders table (from the Northwind DB)</p>
 							<p><IMG height=374 src="orders1.png" width=652></p>
-							<p>&nbsp;</p>
 						</blockquote>
-						<h2>
-							To use Delimited Format</h2>
+						<h2>Using a Delimited Format</h2>
 						<blockquote>
 							<p>You must define:</p>
-							<blockquote><TEXTAREA class=c# name=code> [DelimitedRecord("|")]
+							<blockquote><TEXTAREA class=c# name=code>
+ [DelimitedRecord("|")]
  public class OrdersVerticalBar
  {
     public int OrderID;
@@ -54,8 +53,7 @@
  }
  </TEXTAREA>
 							</blockquote></blockquote>
-						<h2>
-							To use FixedLength Format</h2>
+						<h2>Using a FixedLength Format</h2>
 						<blockquote>
 							<p>You must define:</p>
 							<blockquote><TEXTAREA class=c# name=code>								
@@ -96,37 +94,41 @@
 							or <A href="FileHelpers.DataLink.SqlServerStorage.html">SqlServerStorage </A>to 
 							finish the DataLink.</p>
 						<p>In this example we will use AccessStorage, and the resulting code is:</p>
-						<blockquote><TEXTAREA class=c# name=code>    AccessStorage storage = new AccessStorage(typeof(OrdersFixed), "TestData.mdb");
 
-    storage.SelectSql = "SELECT * FROM Orders";
+<TEXTAREA class=c# name=code>
+AccessStorage storage = new AccessStorage(typeof(OrdersFixed), "TestData.mdb");
 
-    storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
+storage.SelectSql = "SELECT * FROM Orders";
 
-    FileDataLink.EasyExtractToFile(storage, "out.txt");
+storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
+
+FileDataLink.EasyExtractToFile(storage, "out.txt");
 
 </TEXTAREA>
-		<h2>The Code of the FillRecordOrders</h2><TEXTAREA class=c# name=code>		protected void FillRecordOrders(object rec, object[] fields)
-		{
-			OrdersFixed record = (OrdersFixed) rec;
+<h2>The Code for the FillRecordOrders</h2>
+<TEXTAREA class=c# name=code>
+    protected void FillRecordOrders(object rec, object[] fields)
+	{
+		OrdersFixed record = (OrdersFixed) rec;
 
-			record.OrderID = (int) fields[0];
-			record.CustomerID = (string) fields[1];
-			record.EmployeeID = (int) fields[2];
-			record.OrderDate = (DateTime) fields[3];
-			record.RequiredDate = (DateTime) fields[4];
+		record.OrderID = (int) fields[0];
+		record.CustomerID = (string) fields[1];
+		record.EmployeeID = (int) fields[2];
+		record.OrderDate = (DateTime) fields[3];
+		record.RequiredDate = (DateTime) fields[4];
 
-			if (fields[5] != DBNull.Value)
-				record.ShippedDate = (DateTime) fields[5];
-			else
-				record.ShippedDate = DateTime.MinValue;
+		if (fields[5] != DBNull.Value)
+			record.ShippedDate = (DateTime) fields[5];
+		else
+			record.ShippedDate = DateTime.MinValue;
 
-			record.ShipVia = (int) fields[6];
-			record.Freight = (decimal) fields[7];
-		}
+		record.ShipVia = (int) fields[6];
+		record.Freight = (decimal) fields[7];
+	}
 </TEXTAREA>
 		
 
-						</blockquote><blockquote> <blockquote>&nbsp;</blockquote></blockquote>
+						</blockquote>
 						<h2>Sample output/input to this code:
 						</h2>
 						<blockquote> <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>10248|VINET|5|04071996|01081996|16071996|3|32.38

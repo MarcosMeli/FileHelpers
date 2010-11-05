@@ -19,20 +19,19 @@ bgColor=white leftMargin=0 topMargin=0>
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><p>
-    <strong>Note: </strong>VB.NET developers browse the <a href="vb_tips.html">Tips for
-        VB.NET</a> first.</p>
+    <strong>Note: </strong>VB.NET developers should look at the
+	<a href="vb_tips.html">Tips for VB.NET</a> first.</p>
         <table width="550" align="center" class="note">
 	<tr><td valign="middle" align="center" width="30px" class="note">
 		<a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="download32.gif" border=0 alt="Download Example Code"></a>
 	</td>
 	<td valign="middle" class="note">
-        <a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="new.gif" width="31" height="12" border=0 >Click here to download two example projects  (C# and VB.NET) </a>
+        <a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="new.gif" width="31" height="12" border=0 >Click here to download the example projects  (C# and VB.NET) </a>
 	</td>
 	</tr>
 </table>
 <br />
-    <h2>
-        Quick Start for fixed length files(easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
+    <h2>Quick Start for Fixed Length files(Easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a><a href="#four"><img src="4.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
     </h2>
     
     <blockquote>
@@ -42,7 +41,12 @@ bgColor=white leftMargin=0 topMargin=0>
     <table width="100%"  border="0">
       <tr>
         <td height="123" valign="top"><a name="first"></a><img src="1.png" width="16" height="16" align="left"> </td>
-        <td width="97%" valign="top"><p>To start using the FileHelpers library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get intellisense support. </p>
+		<td width="97%" valign="top"><p>To start using the FileHelpers library
+		you only need to add a reference in your project to the file:
+		<strong>FileHelpers.dll</strong>. You can find it in the Release
+		directory of the distribution. Tip: remember to leave the
+		<strong>FileHelpers.xml</strong> file to get Visual Studio Intellisense
+		support. </p>
           <blockquote>
             <p><img src="references.png" width="103" height="53"></p>
           </blockquote></td>
@@ -50,9 +54,9 @@ bgColor=white leftMargin=0 topMargin=0>
       <tr>
         <td height="163" valign="top"><a name="two"></a><img src="2.png" width="16" height="16" align="left"></td>
         <td valign="top">
-          <p>Next you need to define a class that maps to the record in the source/detination file.<br>
-            For this example we use a file with this format:</p>
-          <blockquote>
+<p>Next you need to define a class that maps to the record in the source/destination file.</p>
+<p>For this example we use this format file:</p>
+<blockquote>
 <textarea name="code" class="c#:nogutter:nocontrols">
 01732Juan Perez           004350011052002
 00554Pedro Gomez          123423006022004
@@ -60,12 +64,14 @@ bgColor=white leftMargin=0 topMargin=0>
 00924Pablo Ramirez        033213024112002
 ...............    
 </textarea>
-          </blockquote></td>
-      </tr>
+</blockquote></td>
+</tr>
       <tr>
-        <td height="259" valign="top">&nbsp;</td>
-        <td valign="top"><p>So you must write this class:</p>
-          <blockquote> <b>C#</b>
+        <td height="259" valign="top"></td>
+        <td valign="top">
+		<p>First you write this class mapping the fields:</p>
+          <blockquote>
+<h3>C#</h3>
 <textarea name="code" class="c#">
 	[FixedLengthRecord()]
 	public class Customer2
@@ -102,31 +108,30 @@ bgColor=white leftMargin=0 topMargin=0>
 		
 		}
     }
-
-
 </textarea>
-          </blockquote>
-                    <blockquote> <b>VB.NET</b>
+</blockquote>
+<blockquote>
+<h3>VB.NET</h3>
 <textarea name="code" class="vb">
-&lt;FixedLengthRecord()> _
+&lt;FixedLengthRecord()&gt; _
 Public Class Customer2
 
-    &lt;FieldFixedLength(5)> _
+    &lt;FieldFixedLength(5)&gt; _
     Public CustId As Integer
 
     &lt;FieldFixedLength(20), _
-     FieldTrimAttribute(TrimMode.Right)> _
+     FieldTrimAttribute(TrimMode.Right)&gt; _
     Public Name As String
 
     &lt;FieldFixedLength(8), _
-     FieldConverter(GetType(TwoDecimalConverter))> _
+     FieldConverter(GetType(TwoDecimalConverter))&gt; _
     Public Balance As Decimal
 
     &lt;FieldFixedLength(8), _
-    FieldConverter(ConverterKind.Date, "ddMMyyyy")> _
+    FieldConverter(ConverterKind.Date, "ddMMyyyy")&gt; _
     Public AddedDate As DateTime
 
-    '-> Custom Converter
+    '-&gt; Custom Converter
 	Friend Class TwoDecimalConverter
 		Inherits ConverterBase
 	
@@ -143,27 +148,28 @@ Public Class Customer2
 	End Class
 
 End Class
-
-
 </textarea>
-          </blockquote>
-          </td>
-      </tr>
-      <tr>
-        <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Later you need to create a FileHelperEngine and read/write files:                        
-            <blockquote><b>C#</b>
+</blockquote>
+</td>
+</tr>
+<tr>
+<td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
+<td valign="top">
+<p>Next you need to create a FileHelperEngine and read or write the files:                        
+<blockquote>
+<h3>C#</h3>
 <textarea name="code" class="c#">
-FileHelperEngine<Customer> engine = new FileHelperEngine<Customer>();
+FileHelperEngine&lt;Customer&gt; engine = new FileHelperEngine&lt;Customer&gt;();
 
 // To Read Use:
-Customer[] res = engine.ReadFile(&quot;FileIn.txt&quot;) as Customer[];
+Customer[] result = engine.ReadFile(&quot;FileIn.txt&quot;) as Customer[];
 
 // To Write Use:
-engine.WriteFile(&quot;FileOut.txt&quot;, res);
+engine.WriteFile(&quot;FileOut.txt&quot;, result);
 </textarea>
-          </blockquote>
-            <blockquote><b>VB.NET</b>
+</blockquote>
+<blockquote>
+<h3>VB.NET</h3>
 <textarea name="code" class="vb">
 Dim engine As New FileHelperEngine(Of Customer)()
 
@@ -173,39 +179,42 @@ Dim res As  Customer() = DirectCast(engine.ReadFile(&quot;FileIn.txt&quot;), Cus
 ' To Write Use:
 engine.WriteFile(&quot;FileOut.txt&quot;, res)
 </textarea>
-          </blockquote>
-                    </td>
-      </tr>
-      <tr>
-        <td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Finally, we can use the res array to access each item in the file, for example: </p>
-          <blockquote><b>C#</b>
+</blockquote>
+</td>
+</tr>
+<tr>
+<td height="163" valign="top"><a name="four"></a><img src="4.png" width="16" height="16" align="left"></td>
+<td valign="top">
+<p>We can use the result array to access each item in the file, for example:</p>
+<blockquote>
+<h3>C#</h3>
 <textarea name="code" class="c#">
-foreach (Customer cust in res)
+foreach (Customer cust in result)
  {
     Console.WriteLine(&quot;Customer Info:&quot;);
     Console.WriteLine(cust.Name + &quot; - &quot; +
                       cust.AddedDate.ToString(&quot;dd/MM/yy&quot;));
  }
 </textarea>
-          </blockquote>
-          <blockquote><b>VB.NET</b>
+</blockquote>
+<blockquote>
+<h3>VB.NET</h3>
 <textarea name="code" class="vb">
-For Each cust As Customer In res)
+For Each cust As Customer In result)
  
     Console.WriteLine(&quot;Customer Info:&quot;)
     Console.WriteLine(cust.Name + &quot; - &quot; + _
                       cust.AddedDate.ToString(&quot;dd/MM/yy&quot;))
 Next
 </textarea>
-          </blockquote>
-          </td>
-      </tr>
-    </table>      
-                  
-		{$FOOTER$}
-  </td>
+</blockquote>
+</td>
+</tr>
+</table>      
+
+{$FOOTER$}
+</td>
 </tr>
 </table>
-
-</BODY></HTML>
+</body>
+</html>

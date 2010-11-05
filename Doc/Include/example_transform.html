@@ -28,10 +28,11 @@ bgColor=white leftMargin=0 topMargin=0>
       File Transform Engine</h2>
   <blockquote>
           <p>
-               This engine helps to change the record type of a file.&nbsp; For&nbsp;example, if you want to
-              change a CSV file:&nbsp;
+               This engine helps to change the record type of a file. For example, if you want to
+              change a CSV file:
           </p>
-          <blockquote><TEXTAREA class=c# name=code>ALFKI,Alfreds Futterkiste,Maria Anders
+	  <blockquote><TEXTAREA class=c# name=code>
+ALFKI,Alfreds Futterkiste,Maria Anders
 ANATR,Ana Trujillo Emparedados y helados,Ana Trujillo
 ANTON,Antonio Moreno Taquería,Antonio Moreno
 AROUT,Around the Horn,Thomas Hardy
@@ -40,17 +41,19 @@ AROUT,Around the Horn,Thomas Hardy
 </TEXTAREA>
           </blockquote>
           <p>
-              to this fixed length format</p><blockquote><TEXTAREA class=c# name=code>ALFKI     Alfreds Futterkiste                               Maria Anders                                                
+	  to this fixed length format</p><blockquote>
+<TEXTAREA class=c# name=code>
+ALFKI     Alfreds Futterkiste                               Maria Anders                                                
 ANATR     Ana Trujillo Emparedados y helados                Ana Trujillo                                                
 ANTON     Antonio Moreno Taquería                           Antonio Moreno                                              
 AROUT     Around the Horn                                   Thomas Hardy                                                
 ...
-
 </TEXTAREA>
-          </blockquote>
+</blockquote>
       <p>
           You must define this two classes (see the TransformToRecord attribute):</p>
-          <blockquote><TEXTAREA class=c# name=code>    [DelimitedRecord(",")]
+	  <blockquote><TEXTAREA class=c# name=code>
+    [DelimitedRecord(",")]
     private class FromClass
     {
         public string CustomerId;
@@ -90,11 +93,9 @@ link.TransformFile1To2("source.txt", "dest.txt");
 </TEXTAREA>
           </blockquote>
           <p>
-              What more simple ??</p>
+              What could be simpler?</p>
   </blockquote>{$FOOTER$}</div></td>
-
-		
 </tr>
 </table>
-
-</BODY></HTML>
+</BODY>
+</HTML>

@@ -20,17 +20,19 @@ bgColor=white leftMargin=0 topMargin=0>
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv>  <h2>Decimal Custom Converter (for fixed length files)</h2>
         <blockquote>
-        <p>Use the following for&nbsp;fixed length 
-        records&nbsp;where you need to read decimal&nbsp;data and you don't have the decimal&nbsp;because this isn't required. The following steps explain how to read that.</p>
-          <p>If you like to parse a file with a field that has different parsing rules you can define a CustomConverter.&nbsp; For example, if you have the following&nbsp;source file:</p>
-          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>0001250001458800013025
+        <p>For fixed length 
+        records where you need to read decimal data and you don't have an explicit decimal dot (because this isn't required or a Cobol layout). You read it with a customer converter.</p>
+          <p>If you want to parse a file with a field that has different parsing rules you can define a CustomConverter. For example, if you have the following source file:</p>
+          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>
+0001250001458800013025
 0001260012345600234567
 0001270123456702345678
 0001280087654300123456
 </TEXTAREA>
           </blockquote>
-          <p>This is a&nbsp;fixed length&nbsp;record file with&nbsp;6 characters&nbsp;for the ProductId and 8 places for PriceList and ProceOnePay.&nbsp; The record class must be as follows:</p>
-          <blockquote><TEXTAREA class=c# name=code>[FixedLengthRecord]
+          <p>This is a fixed length record file with 6 characters for the ProductId and 8 places for PriceList and PriceEach. The record class would look as follows:</p>
+          <blockquote><TEXTAREA class=c# name=code>
+[FixedLengthRecord]
 public class PriceRecord
 {
     [FieldFixedLength(6)]
@@ -42,7 +44,7 @@ public class PriceRecord
 
     [FieldFixedLength(8)]
     [FieldConverter(typeof(MoneyConverter))]
-    public decimal PriceOnePay;
+    public decimal PriceEach;
 }
 </TEXTAREA>
           </blockquote>
@@ -82,7 +84,7 @@ public class PriceRecord
 }
 </TEXTAREA>
           </blockquote>
-          <p>Done !! you can actually parse the file with:</p>
+          <p>Done !! You actually parse the file with:</p>
           <blockquote><TEXTAREA class=c# name=code>FileHelperEngine  engine = new FileHelperEngine(typeof(PriceRecord));
 
 PriceRecord[] res = (PriceRecord[]) engine.ReadFile("NameTest.txt");
@@ -90,7 +92,6 @@ PriceRecord[] res = (PriceRecord[]) engine.ReadFile("NameTest.txt");
 			
           </blockquote>
         </blockquote>{$FOOTER$}</div></td>
-
 		
 </tr>
 </table>

@@ -19,7 +19,7 @@ rel=stylesheet>
 <BODY   text=black vLink=purple aLink=red link=blue 
 bgColor=white leftMargin=0 topMargin=0>
 
-		{$HEADER$}
+{$HEADER$}
 
 
 <table width="100%" cellpadding="5" cellspacing="5">
@@ -27,7 +27,8 @@ bgColor=white leftMargin=0 topMargin=0>
   <h2>Easy Example (using Generics)</h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote><TEXTAREA class=c# name=code>10248|VINET|04071996|32.38
+          <blockquote><TEXTAREA class=c# name=code>
+10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
@@ -50,7 +51,7 @@ public class Orders
 
 </TEXTAREA>
           </blockquote>
-          <p>Finally you must to instantiate a FileHelperEngine and Read/Write files:</p>
+          <p>Finally you must to instantiate a FileHelperEngine and read or write a file:</p>
           <blockquote><TEXTAREA class=c# name=code>
 FileHelperEngine&lt;Orders&gt; engine = new FileHelperEngine&lt;Orders&gt;();
 
@@ -61,14 +62,14 @@ Orders[] res = engine.ReadFile("TestIn.txt");
 engine.WriteFile("TestOut.txt", res);
 </TEXTAREA>
           </blockquote>
-          <p>Now you have an Orders array named res where every item in the array is an Order object. If you want to access one of the fields let the IntelliSense of the Visual Studio to bring up the options for you. </p>
+          <p>Now you have an Orders array named res where every item in the array is an Order object. If you want to access one of the fields let the
+Visual Studio IntelliSense bring up the fields for you. </p>
           <blockquote>
             <blockquote>
               <p><IMG height=93 src="vs_orders.png" width=165></p>
             </blockquote>
           </blockquote>
   </blockquote>{$FOOTER$}</div></td>
-
 		
 </tr>
 </table>

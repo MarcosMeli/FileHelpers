@@ -24,30 +24,31 @@ bgColor=white leftMargin=0 topMargin=0>
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id=contentdiv> 
-  <h2>
-      Progress Notification</h2>
+  <h2>Progress Notification</h2>
   <blockquote>
-          <p>
-              From the version 1.4.2 you can get notified about the progress of the operations
+          <p>You can get notified about the progress of the operations
               of the engines and DataLinks.</p>
       <p>
-          The already implemented feature
-          can be used in all cases.&nbsp; For example, when you write a file, the engine
-          knows the total records to be written and the record currently being processed.&nbsp; This information is
-          used to provide an accurate notification. &nbsp;However, if you read a file the engine only
-          knows the current record and not the total then informs -1.</p>
+          This can be used in all cases. For example, when you write a file, the engine
+	  knows the total records to be written and the record currently being processed.
+	  This information is
+          used to provide an accurate notification. However, if you read a file and the engine only
+          knows the current record and not the total record then the total count will be -1.</p>
       <p>
-             The usage is simple, you must to instantiate the engine and&nbsp;before&nbsp;any operation,
+             The usage is simple, you must to instantiate the engine and before any operation,
           you must call the SetProgressHandler:</p>
-          <blockquote><TEXTAREA class=c# name=code>    FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+<blockquote><TEXTAREA class=c# name=code>
+FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
 
-    engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
+engine.SetProgressHandler(new ProgressChangeHandler(ProgressChange));
     
-    engine.ReadFile(... 
+engine.ReadFile(... 
 </TEXTAREA>
           </blockquote>
           <p>
-              and in your Progress change method:</p><blockquote><TEXTAREA class=c# name=code>    private void ProgressChange(ProgressEventArgs e)
+	  and in your Progress change method:</p>
+	  <blockquote><TEXTAREA class=c# name=code>
+    private void ProgressChange(ProgressEventArgs e)
     {
         prog1.PositionMax = e.ProgressTotal;
         prog1.Position = e.ProgressCurrent;
@@ -60,10 +61,10 @@ bgColor=white leftMargin=0 topMargin=0>
       <p>
           Check the demo application for an example that looks like:</p>
       <p>
-          <IMG src="progress.png" >&nbsp;</p>
+          <IMG src="progress.png" ></p>
       <p>
-          <strong> In&nbsp;the distribution you can find My XpProgressBar for using it together with
-              the FileHelpers.</strong></p>
+          <strong> In the distribution you can find My XpProgressBar to use with
+              the FileHelpers library.</strong></p>
   </blockquote>{$FOOTER$}</div></td>
 
 		

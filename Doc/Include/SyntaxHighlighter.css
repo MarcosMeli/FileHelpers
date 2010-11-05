@@ -54,6 +54,17 @@
 	text-decoration: underline;
 }
 
+textarea {
+    display:block;     
+    width:600px;
+    height:198px;
+    padding:0;
+    border:1px solid #000;
+    margin:0 auto;
+    overflow:auto;
+ }
+
+
 /* Gutter with line number */
 
 .dp-highlighter .gutter {
