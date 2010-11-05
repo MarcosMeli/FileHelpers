@@ -41,7 +41,7 @@
 
   
   <ExpectingFieldOptional>
-    The field: $FieldName$ must be marked as optional because his previoud field is marked as optional. (Try adding [FieldOptional] to $FieldName$)
+    The field: $FieldName$ must be marked as optional because the previous field is marked as optional. (Try adding [FieldOptional] to $FieldName$)
   </ExpectingFieldOptional>
 
   <SameFieldOrder>
@@ -49,16 +49,16 @@
   </SameFieldOrder>
 
   <PartialFieldOrder>
-    The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.
+    The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.
   </PartialFieldOrder>
 
   <MissingFieldArrayLenghtInNotLastField>
-     The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because is not the last field
+     The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because it is not the last field
   </MissingFieldArrayLenghtInNotLastField>
 
 
   <SameMinMaxLengthForArrayNotLastField>
-    The array field: $FieldName$ must be of a fixed length because is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because
+    The array field: $FieldName$ must be of a fixed length because it is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same.
   </SameMinMaxLengthForArrayNotLastField>
 
   <FieldNotFound>
@@ -82,6 +82,6 @@
   </TestQuote>
 
   <MixOfStandardAndAutoPropertiesFields>
-    You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.
+    You must only use all standard fields or all automatic properties. You cannot mix them like in the $ClassName$ class.
     </MixOfStandardAndAutoPropertiesFields>
 </Messages>
