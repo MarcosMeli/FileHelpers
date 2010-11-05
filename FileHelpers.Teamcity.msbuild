@@ -2,7 +2,7 @@
 
 <Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="NUnit" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
+  
 
   <Import Project="FileHelpers.msbuild"/>
 
