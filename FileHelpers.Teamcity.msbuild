@@ -2,8 +2,6 @@
 
 <Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  
-
   <Import Project="FileHelpers.msbuild"/>
 
   <Target Name="test-team" DependsOnTargets="release" >
@@ -15,6 +13,6 @@
       <CallTarget Targets="Build"/>
   </Target>
 
-  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team;doc;coverage" >
+  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team;doc" >
   </Target>
 </Project>
