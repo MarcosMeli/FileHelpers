@@ -12,6 +12,9 @@ namespace FileHelpers.Tests
         private CountdownEvent flagFinish;
         private Exception initializationException;
 
+        /// <summary>
+        /// Concurrency test to ensure two file helpers asyncs can run at the same time.
+        /// </summary>
         [Test]
         public void AsyncEngineInitialization()
         {
@@ -20,13 +23,17 @@ namespace FileHelpers.Tests
 
             new Thread(InitializeAsyncEngineWhenFlagIsRaised).Start();
             new Thread(InitializeAsyncEngineWhenFlagIsRaised).Start();
-
             flagStart.Set();
+            Console.WriteLine("Async set finished, waiting");
             flagFinish.Wait();
 
-            if (initializationException != null) throw new ApplicationException("Failure during AsyncEngine initialization", initializationException);
+            if (initializationException != null)
+                throw new ApplicationException("Failure during AsyncEngine initialization", initializationException);
         }
 
+        /// <summary>
+        /// Try and create async engine and grab an exception if one occurs
+        /// </summary>
         private void InitializeAsyncEngineWhenFlagIsRaised()
         {
             flagStart.WaitOne();
@@ -38,8 +45,10 @@ namespace FileHelpers.Tests
             {
                 initializationException = e;
             }
-            flagFinish.Decrement();
+            finally
+            {
+                flagFinish.Signal();
+            }
         }
-
     }
 }
