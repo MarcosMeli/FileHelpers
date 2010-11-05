@@ -1,6 +1,5 @@
-<#@ template language="C#v3.5" hostSpecific="true" #>
+<#@ template language="C#" hostSpecific="true" #>
 <#@ output extension=".autogen.cs" #>
-<#@ Assembly Name="System.dll" #>
 <#@ Assembly Name="System.Xml.dll" #>
 <#@ Assembly Name="System.Data.dll" #>
 <#@ assembly name="System.Core" #>

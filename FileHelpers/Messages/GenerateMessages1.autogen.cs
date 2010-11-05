@@ -179,7 +179,7 @@ internal EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empt
 }internal  partial class ExpectingFieldOptionalClass: MessageBase
 {
 
-internal ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be marked as optional because his previoud field is marked as optional. (Try adding [FieldOptional] to $FieldName$)") {}
+internal ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be marked as optional because the previous field is marked as optional. (Try adding [FieldOptional] to $FieldName$)") {}
  private string mFieldName = null;
  internal ExpectingFieldOptionalClass FieldName(string value)
 {
@@ -258,7 +258,7 @@ internal InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a val
 }internal  partial class MissingFieldArrayLenghtInNotLastFieldClass: MessageBase
 {
 
-internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because is not the last field") {}
+internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because it is not the last field") {}
  private string mFieldName = null;
  internal MissingFieldArrayLenghtInNotLastFieldClass FieldName(string value)
 {
@@ -276,7 +276,7 @@ internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldN
 }internal  partial class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
 {
 
-internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties, but you can't mix them like in the $ClassName$ class.") {}
+internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties. You cannot mix them like in the $ClassName$ class.") {}
  private string mClassName = null;
  internal MixOfStandardAndAutoPropertiesFieldsClass ClassName(string value)
 {
@@ -305,7 +305,7 @@ internal NullRecordClassClass(): base(@"The record type can't be null") {}
 }internal  partial class PartialFieldOrderClass: MessageBase
 {
 
-internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it in all.") {}
+internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.") {}
  private string mFieldName = null;
  internal PartialFieldOrderClass FieldName(string value)
 {
@@ -348,7 +348,7 @@ internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same Fiel
 }internal  partial class SameMinMaxLengthForArrayNotLastFieldClass: MessageBase
 {
 
-internal SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $FieldName$ must be of a fixed length because is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same because") {}
+internal SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $FieldName$ must be of a fixed length because it is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same.") {}
  private string mFieldName = null;
  internal SameMinMaxLengthForArrayNotLastFieldClass FieldName(string value)
 {
