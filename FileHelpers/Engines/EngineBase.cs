@@ -87,6 +87,33 @@ namespace FileHelpers
 
         #endregion
 
+        /// <summary>
+        /// Builds a line with the name of the fields, for a delimited fiels it uses the same delimiter, 
+        /// for a fixed length field it writes the fields names separeted with tabs
+        /// </summary>
+        /// <returns></returns>
+        public string GetFileHeader()
+        {
+            var delimiter = "\t";
+
+            if (mRecordInfo.IsDelimited)
+            {
+                delimiter = ((DelimitedRecordOptions)Options).Delimiter;
+            }
+
+            var res = new StringBuilder();
+            for (int i = 0; i < mRecordInfo.Fields.Length; i++)
+			{
+                if (i > 0)
+                    res.Append(delimiter);
+
+                var field = mRecordInfo.Fields[i];
+                res.Append(field.FieldFriendlyName);
+			}
+
+            return res.ToString();
+        }
+
         #region "  RecordType  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

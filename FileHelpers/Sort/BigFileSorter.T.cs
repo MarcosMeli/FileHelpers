@@ -14,8 +14,9 @@ namespace FileHelpers
     {
         static BigFileSorter()
         {
-            DefaultEncoding = new UTF8Encoding(false, true);
+            DefaultEncoding = Encoding.Default;
         }
+
         private const int DefaultBlockSize = 10 * 1024 * 1024;
         private const int MaxBufferSize = 50 * 1024 * 1024;
         private const int MinBlockSize = 2 * 1024 * 1024;
@@ -65,7 +66,7 @@ namespace FileHelpers
         private static Encoding DefaultEncoding { get; set; }
 
         /// <summary> The directory for the temp files (by the default the same of sourceFile) </summary>
-        public string WorkingDirectory { get; set; }
+        public string TempDirectory { get; set; }
 
         /// <summary> The Size of each block that will be sorted in memory and later merged all togheter </summary>
         public int BlockFileSizeInBytes { get; set; }
@@ -106,20 +107,19 @@ namespace FileHelpers
                 long lastWrittenBytes = 0;
                 var readEngine = new FileHelperAsyncEngine<T>(Encoding);
                 
-                readEngine.Progress += (sender, e) => writtenBytes = e.TotalBytes;
+                readEngine.Progress += (sender, e) => writtenBytes = e.CurrentBytes;
                 
-                using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize * 10))
+                using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize * 2))
                 {
                     foreach (var item in readEngine)
                     {
                         lines.Add(item);
 
-                        if ((lastWrittenBytes - writtenBytes) > BlockFileSizeInBytes)
+                        if ((writtenBytes - lastWrittenBytes) > BlockFileSizeInBytes)
                         {
                             WritePart(file, lines, partNumber, res);
                             partNumber++;
-                            lastWrittenBytes += writtenBytes;
-                            writtenBytes = 0;
+                            lastWrittenBytes = writtenBytes;
                             lines.Clear();
 
                             GC.Collect();
@@ -161,7 +161,7 @@ namespace FileHelpers
 
         protected string GetSplitName(string file, int splitNum)
         {
-            var dir = WorkingDirectory;
+            var dir = TempDirectory;
             if (string.IsNullOrEmpty(dir))
             {
                 dir = Path.GetDirectoryName(file);
@@ -218,6 +218,25 @@ namespace FileHelpers
             }
 
 
+        }
+
+
+        /// <summary>
+        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// </summary>
+        public static void SimpleSort(string source, string destination)
+        {
+            var sorter = new BigFileSorter<T>();
+            sorter.Sort(source, destination);
+        }
+
+        /// <summary>
+        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// </summary>
+        public static void SimpleSort(Encoding encoding, string source, string destination)
+        {
+            var sorter = new BigFileSorter<T>(encoding);
+            sorter.Sort(source, destination);
         }
     }
 }

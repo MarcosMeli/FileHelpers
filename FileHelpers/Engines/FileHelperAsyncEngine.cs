@@ -191,7 +191,7 @@ namespace FileHelpers
             {
                 for (int i = 0; i < mRecordInfo.IgnoreFirst; i++)
                 {
-                    string temp = recordReader.ReadRecord();
+                    string temp = recordReader.ReadRecordString();
                     mLineNumber++;
                     if (temp != null)
                         mHeaderText += temp + StringHelper.NewLine;
@@ -227,7 +227,7 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
         public IDisposable BeginReadFile(string fileName, int bufferSize)
         {
-            BeginReadStream(new StreamReader(fileName, mEncoding, true, bufferSize));
+            BeginReadStream(new InternalStreamReader(fileName, mEncoding, true, bufferSize));
             return this;
         }
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>

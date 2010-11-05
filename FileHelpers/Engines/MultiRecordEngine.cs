@@ -605,7 +605,7 @@ namespace FileHelpers
 			{
 				for (int i = 0; i < mRecordInfo.IgnoreFirst; i++)
 				{
-				    string temp = reader.ReadRecord();
+				    string temp = reader.ReadRecordString();
 					mLineNumber++;
 					if (temp != null)
 						mHeaderText += temp + StringHelper.NewLine;

@@ -139,7 +139,7 @@ namespace FileHelpers
 
 					}
 					else
-						sepPos = line.mLine.Length;
+						sepPos = line.mLineStr.Length;
 				}
 
 				return new ExtractedInfo(line, sepPos);

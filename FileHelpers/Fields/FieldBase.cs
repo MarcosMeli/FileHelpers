@@ -47,6 +47,7 @@ namespace FileHelpers
         internal bool InNewLine { get; set; }
         internal int? FieldOrder { get; set; }
         internal bool IsNullableType { get; private set; }
+        internal string FieldFriendlyName { get; set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
@@ -57,6 +58,8 @@ namespace FileHelpers
         {
             get { return FieldInfo.Name; }
         }
+
+        
 
         // For performance add it here
         private static readonly char[] mWhitespaceChars = new[] 
@@ -198,6 +201,17 @@ namespace FileHelpers
                 }
 
             }
+
+            if (fi.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), false))
+            {
+                if (fi.Name.EndsWith("__BackingField") && fi.Name.StartsWith("<") && fi.Name.Contains(">"))
+                {
+                    res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
+                }
+            }
+
+            if (string.IsNullOrEmpty(res.FieldFriendlyName))
+                res.FieldFriendlyName = res.FieldName;
 
             return res;
         }
@@ -345,7 +359,7 @@ namespace FileHelpers
 
                 var res = new ArrayList(Math.Max(ArrayMinLength, 10));
 
-                while (line.mCurrentPos - CharsToDiscard < line.mLine.Length && i < ArrayMaxLength)
+                while (line.mCurrentPos - CharsToDiscard < line.mLineStr.Length && i < ArrayMaxLength)
                 {
                     ExtractedInfo info = ExtractFieldString(line);
                     if (info.mCustomExtractedString == null)
@@ -620,6 +634,7 @@ namespace FileHelpers
             res.FieldOrder = FieldOrder;
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
+            res.FieldFriendlyName = FieldFriendlyName;
 
             return res;
         }

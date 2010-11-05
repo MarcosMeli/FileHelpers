@@ -55,12 +55,12 @@ namespace FileHelpers
 					throw new BadUsageException("End Of Line found processing the field: " + FieldInfo.Name + " at line "+ line.mReader.LineNumber.ToString() + ". (You need to mark it as [FieldOptional] if you want to avoid this exception)");
 			}
 			
-			ExtractedInfo res;
+			//ExtractedInfo res;
 
 			if (line.CurrentLength < this.FieldLength)
 				if (FixedMode == FixedMode.AllowLessChars || 
 					FixedMode == FixedMode.AllowVariableLength)
-					res = new ExtractedInfo(line);
+					return new ExtractedInfo(line);
 				else
 					throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has less chars than the defined for " + FieldInfo.Name + " (" + FieldLength.ToString() + "). You can use the [FixedLengthRecord(FixedMode.AllowLessChars)] to avoid this problem.");
 			else if (line.CurrentLength > FieldLength  && 
@@ -70,9 +70,7 @@ namespace FileHelpers
 						FixedMode != FixedMode.AllowVariableLength)
 				throw new BadUsageException("The string '" + line.CurrentString + "' (length " + line.CurrentLength.ToString() + ") at line "+ line.mReader.LineNumber.ToString() + " has more chars than the defined for the last field " + FieldInfo.Name + " (" + FieldLength.ToString() + ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
 			else
-				res = new ExtractedInfo(line, line.mCurrentPos + FieldLength);
-
-			return res;
+				return new ExtractedInfo(line, line.mCurrentPos + FieldLength);
 		}
 
         internal override void CreateFieldString(StringBuilder sb, object fieldValue)

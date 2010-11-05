@@ -112,7 +112,7 @@ namespace FileHelpers
 		/// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
 		public T[] ReadFile(string fileName, int maxRecords)
 		{
-			using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
 			{
 				T[] tempRes;
 
@@ -133,7 +133,7 @@ namespace FileHelpers
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         public List<T> ReadFileAsList(string fileName, int maxRecords)
         {
-            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
             {
                 var res = ReadStreamAsList(fs, maxRecords);
                 fs.Close();
@@ -399,11 +399,30 @@ namespace FileHelpers
 
 		#region "  WriteFile  "
 
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
+        //public void WriteFileWithHeader(string fileName, IEnumerable<T> records)
+        //{
+        //    WriteFile(fileName, records, -1, true);
+        //}
+
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
+        //public void WriteFileWithHeader(string fileName, IEnumerable<T> records, int maxRecords)
+        //{
+        //    WriteFile(fileName, records, maxRecords, true)
+        //}
+
+
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile/*'/>
 		public void WriteFile(string fileName, IEnumerable<T> records)
 		{
 			WriteFile(fileName, records, -1);
 		}
+
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
+        //public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
+        //{
+        //    WriteFile(fileName, records, maxRecords, false);
+        //}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
@@ -426,6 +445,28 @@ namespace FileHelpers
 		{
 			WriteStream(writer, records, -1);
 		}
+
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
+        //[EditorBrowsable(EditorBrowsableState.Advanced)]
+        //public void WriteStream(TextWriter writer, IEnumerable<T> records, int maxRecords)
+        //{
+        //    WriteStream(writer, records, maxRecords);
+        //}
+
+
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
+        //[EditorBrowsable(EditorBrowsableState.Advanced)]
+        //public void WriteStreamWithHeader(TextWriter writer, IEnumerable<T> records)
+        //{
+        //    WriteStream(writer, records, -1, true);
+        //}
+
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream/*'/>
+        //[EditorBrowsable(EditorBrowsableState.Advanced)]
+        //public void WriteStreamWithHeader(TextWriter writer, IEnumerable<T> records, int maxRecords)
+        //{
+        //    WriteStream(writer, records, maxRecords, true);
+        //}
 
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteStream2/*'/>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -603,7 +644,7 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadFileAsDT(string fileName, int maxRecords)
 		{
-			using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
 			{
 				DataTable res;
 				res = ReadStreamAsDT(fs, maxRecords);

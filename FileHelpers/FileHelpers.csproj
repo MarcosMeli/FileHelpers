@@ -371,6 +371,7 @@
     <Compile Include="Sort\SortQueue.T.cs" />
     <Compile Include="Streams\InternalStringReader.cs" />
     <Compile Include="Streams\StreamInfoProvider.cs" />
+    <Compile Include="Streams\InternalStreamReader.cs" />
     <Compile Include="VersionInfo.cs" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />

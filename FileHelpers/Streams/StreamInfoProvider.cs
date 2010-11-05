@@ -17,10 +17,22 @@ namespace FileHelpers
         {
             if (reader is StreamReader)
             {
+
                 var stream = ((StreamReader)reader).BaseStream;
                 mLength = stream.Length;
+                // Uses the buffer position
                 mPositionCalculator = () => stream.Position;
             }
+            else if (reader is InternalStreamReader)
+            {
+                var reader2 = ((InternalStreamReader)reader);
+                var stream = reader2.BaseStream;
+
+                mLength = stream.Length;
+                // Real Position
+                mPositionCalculator = () => reader2.Position;
+            }
+
             else if (reader is InternalStringReader)
             {
                 var stream = (InternalStringReader)reader;

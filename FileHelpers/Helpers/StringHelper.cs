@@ -27,7 +27,7 @@ namespace FileHelpers
 			if (line.IsEOL())
 				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
 
-			if (line.mLine[line.mCurrentPos] != quoteChar)
+			if (line.mLineStr[line.mCurrentPos] != quoteChar)
 				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
 
 			StringBuilder res = new StringBuilder(32);
@@ -40,9 +40,9 @@ namespace FileHelpers
 
 			while (line.mLineStr != null)
 			{
-				while (i < line.mLine.Length)
+				while (i < line.mLineStr.Length)
 				{
-					if (line.mLine[i] == quoteChar)
+					if (line.mLineStr[i] == quoteChar)
 					{
 						if (firstFound == true)
 						{
@@ -69,7 +69,7 @@ namespace FileHelpers
 						}
 						else
 						{
-							res.Append(line.mLine[i]);
+							res.Append(line.mLineStr[i]);
 						}
 					}
 					i++;

@@ -109,14 +109,14 @@ namespace FileHelpers
 			ExHelper.CheckNullParam(destFile, "destFile");
 			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
-            return CoreTransformAsync(new StreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
+            return CoreTransformAsync(new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
 		}
 
         /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
         /// <param name="sourceStream">The source stream.</param>
         /// <param name="destFile">The destination file.</param>
         /// <returns>The number of transformed records.</returns>
-        public int TransformFileFast(StreamReader sourceStream, string destFile)
+        public int TransformFileFast(TextReader sourceStream, string destFile)
         {
             ExHelper.CheckNullParam(sourceStream, "sourceStream");
             ExHelper.CheckNullParam(destFile, "destFile");
@@ -128,7 +128,7 @@ namespace FileHelpers
         /// <param name="sourceStream">The source stream.</param>
         /// <param name="destStream">The destination stream.</param>
         /// <returns>The number of transformed records.</returns>
-        public int TransformFileFast(StreamReader sourceStream, StreamWriter destStream)
+        public int TransformFileFast(TextReader sourceStream, StreamWriter destStream)
         {
             ExHelper.CheckNullParam(sourceStream, "sourceStream");
             ExHelper.CheckNullParam(destStream, "destStream");
@@ -145,7 +145,7 @@ namespace FileHelpers
             ExHelper.CheckNullParam(sourceFile, "sourceFile");
             ExHelper.CheckNullParam(destStream, "destStream");
 
-            return CoreTransformAsync(new StreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), destStream);
+            return CoreTransformAsync(new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), destStream);
         }
 		#endregion
 
@@ -193,7 +193,7 @@ namespace FileHelpers
 		#region "  Transform Internal Methods  "
 
         			
-        private TDestination[] CoreTransform(StreamReader sourceFile, StreamWriter destFile)
+        private TDestination[] CoreTransform(InternalStreamReader sourceFile, StreamWriter destFile)
         {
 
                 FileHelperEngine<TSource> sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
@@ -230,7 +230,7 @@ namespace FileHelpers
 		{
 			TDestination[] tempRes;
 
-			using (var fs = new StreamReader(sourceFile, mSourceEncoding, true, EngineBase.DefaultReadBufferSize * 10))
+			using (var fs = new InternalStreamReader(sourceFile, mSourceEncoding, true, EngineBase.DefaultReadBufferSize * 10))
 			{
                 using (var ds = new StreamWriter(destFile, false, mDestinationEncoding, EngineBase.DefaultWriteBufferSize * 10))
 				{
@@ -245,7 +245,7 @@ namespace FileHelpers
 			return tempRes;
 	}
 
-		private int CoreTransformAsync(StreamReader sourceFile, StreamWriter destFile)
+        private int CoreTransformAsync(TextReader sourceFile, StreamWriter destFile)
 		{
             var sourceEngine = new FileHelperAsyncEngine<TSource>();
 			var destEngine = new FileHelperAsyncEngine<TDestination>();
