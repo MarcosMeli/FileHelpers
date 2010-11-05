@@ -10,23 +10,29 @@ namespace FileHelpers
     [DebuggerDisplay("{DebuggerDisplayStr()}")]
     internal sealed class LineInfo
 	{
+        //public static readonly LineInfo Empty = new LineInfo(string.Empty);
 		#region "  Constructor  "
 
-		static readonly char[] mEmptyChars = new char[] {};
+		//static readonly char[] mEmptyChars = new char[] {};
 
 		public LineInfo(string line)
 		{
+            mReader = null;
 			mLineStr = line;
-			mLine = line == null ? mEmptyChars : line.ToCharArray();
+			//mLine = line == null ? mEmptyChars : line.ToCharArray();
 			mCurrentPos = 0;
 		}
 
 		#endregion
 
+        public string Substring(int from, int count)
+        {
+            return mLineStr.Substring(from, count);
+        }
 		#region "  Internal Fields  "
 
 		//internal string  mLine;
-		internal char[] mLine;
+		//internal char[] mLine;
 		internal string mLineStr;
 		internal ForwardReader mReader;
 		internal int mCurrentPos;
@@ -51,29 +57,29 @@ namespace FileHelpers
 		{
 			get
 			{
-				return new string(mLine, mCurrentPos, mLine.Length - mCurrentPos);
+				return mLineStr.Substring(mCurrentPos, mLineStr.Length - mCurrentPos);
 			}
 		}
 		
 		public bool IsEOL()
 		{
-			return mCurrentPos >= mLine.Length;
+			return mCurrentPos >= mLineStr.Length;
 		}
 
 		public int CurrentLength
 		{
 			get
 			{
-				return mLine.Length - mCurrentPos;
+				return mLineStr.Length - mCurrentPos;
 			}
 		}
 
 		public bool EmptyFromPos()
 		{
 			// Chek if the chars at pos or right are empty ones
-			int length = mLine.Length;
+			int length = mLineStr.Length;
 			int pos = mCurrentPos;
-			while(pos < length && Array.BinarySearch(WhitespaceChars, mLine[pos]) >= 0)
+			while(pos < length && Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
 			{
 				pos++;
 			}
@@ -95,9 +101,9 @@ namespace FileHelpers
 		private void TrimStartSorted(char[] toTrim)
 		{
 			// Move the pointer to the first non to Trim char
-			int length = mLine.Length;
+			int length = mLineStr.Length;
 			
-			while(mCurrentPos < length && Array.BinarySearch(toTrim, mLine[mCurrentPos]) >= 0)
+			while(mCurrentPos < length && Array.BinarySearch(toTrim, mLineStr[mCurrentPos]) >= 0)
 			{
 				mCurrentPos++;
 			}
@@ -115,10 +121,10 @@ namespace FileHelpers
 
 		public bool StartsWithTrim(string str)
 		{
-			int length = mLine.Length;
+			int length = mLineStr.Length;
 			int pos = mCurrentPos;
 
-			while(pos < length && Array.BinarySearch(WhitespaceChars, mLine[pos]) >= 0)
+			while(pos < length && Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
 			{
 				pos++;
 			}
@@ -130,7 +136,7 @@ namespace FileHelpers
 		public void ReadNextLine()
 		{
 			mLineStr = mReader.ReadNextLine();
-			mLine = mLineStr.ToCharArray();
+            //mLine = mLineStr.ToCharArray();
 			
 			mCurrentPos = 0;
 		}
@@ -165,7 +171,7 @@ namespace FileHelpers
 
 		internal void ReLoad(string line)
 		{
-			mLine = line == null ? mEmptyChars : line.ToCharArray();
+			//mLine = line == null ? mEmptyChars : line.ToCharArray();
 			mLineStr = line;
 			mCurrentPos = 0;
 		}

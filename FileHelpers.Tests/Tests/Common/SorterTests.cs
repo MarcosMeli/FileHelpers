@@ -29,6 +29,11 @@ namespace FileHelpers.Tests.CommonTests
             SortMb(6 * MegaByte, 2 * MegaByte);
         }
 
+        [Test]
+        public void Sort6x35()
+        {
+            SortMb(6 * MegaByte, (int) (3.5 * MegaByte));
+        }
 
         [Test]
         public void Sort6x6()
@@ -66,8 +71,7 @@ namespace FileHelpers.Tests.CommonTests
 
                         var sorter = new BigFileSorter(blockSize);
                         sorter.Sort(temp, temp2);
-
-                        var sorter2 = new BigFileSorter<OrdersTab>();
+                        var sorter2 = new BigFileSorter<OrdersTab>(blockSize);
                         sorter2.Sort(temp, temp3);
 
                         if (!ascending)

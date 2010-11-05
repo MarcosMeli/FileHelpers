@@ -4,7 +4,7 @@ namespace FileHelpers
 {
     public interface IRecordReader
     {
-        string ReadRecord();
+        string ReadRecordString();
         void Close();
     }
 }

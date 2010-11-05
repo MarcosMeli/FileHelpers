@@ -40,7 +40,7 @@ namespace FileHelpers
 
             for (int i = 0; i < mFowardLines + 1; i++)
             {
-                mFowardStrings[i] = mReader.ReadRecord();
+                mFowardStrings[i] = mReader.ReadRecordString();
                 mLineNumber++;
                 if (mFowardStrings[i] == null)
                 {
@@ -118,7 +118,7 @@ namespace FileHelpers
 
                 if (mRemaingLines == (mFowardLines + 1))
                 {
-                    mFowardStrings[mForwardIndex] = mReader.ReadRecord();
+                    mFowardStrings[mForwardIndex] = mReader.ReadRecordString();
                     mLineNumber++;
 
                     if (mFowardStrings[mForwardIndex] == null)

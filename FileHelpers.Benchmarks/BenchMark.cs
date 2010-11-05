@@ -18,14 +18,23 @@ namespace FileHelpers.Benchmarks
             var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
             //TestFixedLengthRecord(engine, file);
 
-            engine.AfterReadRecord += new FileHelpers.Events.AfterReadHandler<FixedSampleRecord>(engine_AfterReadRecord);
-            engine.BeforeReadRecord += new FileHelpers.Events.BeforeReadHandler<FixedSampleRecord>(engine_BeforeReadRecord);
-            engine.Progress += new EventHandler<FileHelpers.Events.ProgressEventArgs>(engine_Progress);
-            engine.AfterWriteRecord += new FileHelpers.Events.AfterWriteHandler<FixedSampleRecord>(engine_AfterWriteRecord);
-            engine.BeforeWriteRecord += new FileHelpers.Events.BeforeWriteHandler<FixedSampleRecord>(engine_BeforeWriteRecord);
+            //engine.AfterReadRecord += new FileHelpers.Events.AfterReadHandler<FixedSampleRecord>(engine_AfterReadRecord);
+            //engine.BeforeReadRecord += new FileHelpers.Events.BeforeReadHandler<FixedSampleRecord>(engine_BeforeReadRecord);
+            //engine.Progress += new EventHandler<FileHelpers.Events.ProgressEventArgs>(engine_Progress);
+            //engine.AfterWriteRecord += new FileHelpers.Events.AfterWriteHandler<FixedSampleRecord>(engine_AfterWriteRecord);
+            //engine.BeforeWriteRecord += new FileHelpers.Events.BeforeWriteHandler<FixedSampleRecord>(engine_BeforeWriteRecord);
 
+
+            
             System.Threading.Thread.Sleep(2000);
             long start = DateTime.Now.Ticks;
+
+
+            if (args.Length > 0)
+            {
+                Console.WriteLine("Press enter to start testing");
+                Console.ReadLine();
+            }
 
 		    TestFixedLengthRecord(engine, file);
 
@@ -33,7 +42,11 @@ namespace FileHelpers.Benchmarks
 
             Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 2));
             if (args.Length > 0)
-		        Console.ReadLine();
+            {
+                Console.WriteLine("Press enter to close");
+                Console.ReadLine();
+            }
+		    
 		}
 
         static void engine_BeforeWriteRecord(EngineBase engine, FileHelpers.Events.BeforeWriteEventArgs<FixedSampleRecord> e)

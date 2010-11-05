@@ -37,7 +37,7 @@ namespace FileHelpers
             this.encoding = encoding;
         }
 
-        public string ReadRecord()
+        public string ReadRecordString()
         {
             int length = 0;
 

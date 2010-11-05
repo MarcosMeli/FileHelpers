@@ -7,15 +7,15 @@ namespace FileHelpers
 {
 
     [DebuggerDisplay("{ExtractedString()} [{ExtractedFrom}-{ExtractedTo}]")]
-	internal sealed class ExtractedInfo
+	internal struct ExtractedInfo
 	{
 
-		internal string mCustomExtractedString = null;
+		internal string mCustomExtractedString;
 
 		public string ExtractedString()
 		{
 			if (mCustomExtractedString == null)
-				return new string(mLine.mLine, ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
+				return mLine.Substring(ExtractedFrom, ExtractedTo - ExtractedFrom + 1);
 			else
 				return mCustomExtractedString;
 		}
@@ -34,7 +34,8 @@ namespace FileHelpers
 		{
 			mLine = line;
 			ExtractedFrom = line.mCurrentPos;
-			ExtractedTo = line.mLine.Length - 1;
+			ExtractedTo = line.mLineStr.Length - 1;
+            mCustomExtractedString = null;
 		}
 
 		public ExtractedInfo(LineInfo line, int extractTo)
@@ -42,10 +43,14 @@ namespace FileHelpers
 			mLine = line;
 			ExtractedFrom = line.mCurrentPos;
 			ExtractedTo = extractTo - 1;
+            mCustomExtractedString = null;
 		}
 		
 		public ExtractedInfo(string customExtract)
 		{
+            mLine = null;
+            ExtractedFrom = 0;
+            ExtractedTo = 0;
 			mCustomExtractedString = customExtract;
 		}
 		
@@ -107,7 +112,7 @@ namespace FileHelpers
 			{
 
 				int pos = ExtractedFrom;
-				while(pos <= ExtractedTo && Array.BinarySearch(sortedArray, mLine.mLine[pos]) >= 0)
+				while(pos <= ExtractedTo && Array.BinarySearch(sortedArray, mLine.mLineStr[pos]) >= 0)
 				{
 					pos++;
 				}

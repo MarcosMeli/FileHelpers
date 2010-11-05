@@ -3,6 +3,7 @@ using System;
 namespace FileHelpers.DataLink
 {
 	/// <summary>Indicates the wrong usage of the ExcelStorage of the library.</summary>
+    [Serializable]
 	public sealed class ExcelBadUsageException : BadUsageException
 	{
 		/// <summary>Creates an instance of an ExcelBadUsageException.</summary>

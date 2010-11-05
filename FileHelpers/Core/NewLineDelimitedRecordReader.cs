@@ -4,7 +4,7 @@ using System.IO;
 
 namespace FileHelpers
 {
-    public sealed class NewLineDelimitedRecordReader : IRecordReader
+    internal sealed class NewLineDelimitedRecordReader : IRecordReader
     {
         private readonly TextReader reader;
 
@@ -13,7 +13,7 @@ namespace FileHelpers
             this.reader = reader;
         }
 
-        public string ReadRecord()
+        public string ReadRecordString()
         {
             return reader.ReadLine();
         }
