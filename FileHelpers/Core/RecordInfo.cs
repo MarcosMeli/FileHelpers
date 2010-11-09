@@ -11,7 +11,7 @@ namespace FileHelpers
 
 
     /// <summary>An internal class used to store information about the Record Type.</summary>
-    /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
+    /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
     internal sealed partial class RecordInfo 
         : IRecordInfo
     {
@@ -21,26 +21,79 @@ namespace FileHelpers
 
         #region IRecordInfo Members
 
+        /// <summary>
+        /// Hint about record size
+        /// </summary>
         public int SizeHint { get; private set; }
+        /// <summary>
+        /// Class we are defining
+        /// </summary>
         public Type RecordType { get; private set; }
+        /// <summary>
+        /// Do we skip empty lines?
+        /// </summary>
         public bool IgnoreEmptyLines { get; set; }
+        /// <summary>
+        /// Do we skip lines with completely blank lines
+        /// </summary>
         public bool IgnoreEmptySpaces { get; private set; }
+        /// <summary>
+        /// Comment prefix
+        /// </summary>
         public string CommentMarker { get; set; }
+        /// <summary>
+        /// Number of fields we are processing
+        /// </summary>
         public int FieldCount { get; private set; }
+        /// <summary>
+        /// List of fields and the extraction details
+        /// </summary>
         public FieldBase[] Fields { get; private set; }
+        /// <summary>
+        /// Number of lines to skip at beginning of file
+        /// </summary>
         public int IgnoreFirst { get; set; }
+        /// <summary>
+        /// Number of lines to skip at end of file
+        /// </summary>
         public int IgnoreLast { get; set; }
+        /// <summary>
+        /// DO we need to issue a Notify read
+        /// </summary>
         public bool NotifyRead { get; private set; }
+        /// <summary>
+        /// Do we need to issue a Notify Write
+        /// </summary>
         public bool NotifyWrite { get; private set; }
+        /// <summary>
+        /// Can the comment prefix have leading whitespace
+        /// </summary>
         public bool CommentAnyPlace { get; set; }
+
+        /// <summary>
+        /// Include or skip a record based upon a defined RecordCondition interface
+        /// </summary>
         public RecordCondition RecordCondition { get; set; }
+        /// <summary>
+        /// Skip or include a record based upon a regular expression
+        /// </summary>
         public Regex RecordConditionRegEx { get; private set; }
+        /// <summary>
+        /// Include or exclude a record based upon presence of a string
+        /// </summary>
         public string RecordConditionSelector { get; set; }
 
+        /// <summary>
+        /// Operations are the functions that perform creation or extraction of data from objects
+        /// these are created dynamically from the record conditions
+        /// </summary>
         public RecordOperations Operations { get; private set; }
 
         private Dictionary<string, int> mMapFieldIndex;
 
+        /// <summary>
+        /// Is this record layout delimited
+        /// </summary>
         public bool IsDelimited
         {
             get { return Fields[0] is DelimitedField; }
@@ -53,6 +106,11 @@ namespace FileHelpers
         {
         }
 
+        /// <summary>
+        /// Read the attributes of the class and create an array
+        /// of how to process the file
+        /// </summary>
+        /// <param name="recordType">Class we are analysing</param>
         private RecordInfo(Type recordType)
         {
             SizeHint = 32;
@@ -64,6 +122,10 @@ namespace FileHelpers
             Operations = new RecordOperations(this);
         }
 
+        /// <summary>
+        /// Create a list of fields we are extracting and set
+        /// the size hint for record I/O
+        /// </summary>
         private void InitRecordFields()
         {
             //Debug.Assert(false, "TODO: Add RecordFilter to the engine.");
@@ -154,11 +216,21 @@ namespace FileHelpers
 
 
         #region "  CreateFields  "
+
+        /// <summary>
+        /// Parse the attributes on the class and create an ordered list of
+        /// fields we are extracting from the record
+        /// </summary>
+        /// <param name="fields">Complete list of fields in class</param>
+        /// <param name="recordAttribute">Type of record, fixed or delimited</param>
+        /// <returns>List of fields we are extracting</returns>
         private static FieldBase[] CreateCoreFields(IList<FieldInfo> fields, TypedRecordAttribute recordAttribute)
         {
             var resFields = new List<FieldBase>();
 
+            // count of Properties
             var automaticFields = 0;
+            // count of normal fields
             var genericFields = 0;
             for (int i = 0; i < fields.Count; i++)
             {
@@ -201,6 +273,12 @@ namespace FileHelpers
             return resFields.ToArray();
         }
 
+        /// <summary>
+        /// Check that once one field is optional all following fields are optional
+        /// <para/>
+        /// Check that arrays in the middle of a record are of fixed length
+        /// </summary>
+        /// <param name="resFields">List of fields to extract</param>
         private static void CheckForOptionalAndArrayProblems(List<FieldBase> resFields)
         {
             for (int i = 0; i < resFields.Count; i++)
@@ -215,13 +293,13 @@ namespace FileHelpers
 
                 prevField.NextIsOptional = currentField.IsOptional;
 
-                // Check for optional problems
+                // Check for optional problems.  Previous is optional but current is not
                 if (prevField.IsOptional && currentField.IsOptional == false)
                     throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
                                                     .FieldName(prevField.FieldInfo.Name)
                                                     .Text);
 
-                // Check for array problems
+                // Check for an array array in the middle of a record that is not a fixed length
                 if (prevField.IsArray)
                 {
                     if (prevField.ArrayMinLength == Int32.MinValue)
@@ -238,12 +316,21 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Sort fields by the order if supplied
+        /// </summary>
+        /// <param name="resFields">List of fields to use</param>
         private static void SortFieldsByOrder(List<FieldBase> resFields)
         {
             if (resFields.FindAll(x => x.FieldOrder.HasValue).Count > 0)
                 resFields.Sort( (x,y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
         }
 
+        /// <summary>
+        /// Confirm all fields are either ordered or unordered
+        /// </summary>
+        /// <param name="currentField">Newest field</param>
+        /// <param name="resFields">Other fields we have found</param>
         private static void CheckForOrderProblems(FieldBase currentField, List<FieldBase> resFields)
         {
             if (currentField.FieldOrder.HasValue)
@@ -282,6 +369,11 @@ namespace FileHelpers
 
         #region " FieldIndexes  "
         
+        /// <summary>
+        /// Get the index number of the fieldname in the field list
+        /// </summary>
+        /// <param name="fieldName">Fieldname to search for</param>
+        /// <returns>Index in field list</returns>
         public int GetFieldIndex(string fieldName)
         {
             if (mMapFieldIndex == null)
@@ -306,6 +398,12 @@ namespace FileHelpers
         #endregion
 
         #region "  GetFieldInfo  "
+
+        /// <summary>
+        /// Get field information base on name
+        /// </summary>
+        /// <param name="name">name to find details for</param>
+        /// <returns>Field information</returns>
         public FieldInfo GetFieldInfo(string name)
         {
             foreach (var field in Fields)
@@ -319,11 +417,20 @@ namespace FileHelpers
 
         #endregion
 
+        /// <summary>
+        /// Return the record type information for the record
+        /// </summary>
+        /// <param name="type">Type of object to create</param>
+        /// <returns>Record info for that type</returns>
         public static IRecordInfo Resolve(Type type)
         {
             return RecordInfoFactory.Resolve(type);
         }
 
+        /// <summary>
+        /// Create an new instance of the record information
+        /// </summary>
+        /// <returns>Deep copy of the RecordInfo class</returns>
         public object Clone()
         {
             var res = new RecordInfo();
@@ -354,6 +461,13 @@ namespace FileHelpers
             return res;
         }
 
+        /// <summary>
+        /// Check whether the type implements the INotifyRead or INotifyWrite interfaces
+        /// </summary>
+        /// <param name="type">Type to check interface</param>
+        /// <param name="interfaceType">Interface generic type we are checking for eg INotifyRead&lt;&gt;</param>
+        /// <param name="genericsArgs">Arguments to pass</param>
+        /// <returns>Whether we found interface</returns>
         public static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
         {
             foreach (var inteImp in type.GetInterfaces())

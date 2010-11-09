@@ -8,6 +8,12 @@ namespace FileHelpers
 {
     internal class FieldInfoCacheManipulator
     {
+        /// <summary>
+        /// Clear the m_fieldInfoCache Cache on the property
+        /// 
+        /// TODO:  I don't think this is actually used
+        /// </summary>
+        /// <param name="type">Type of Object</param>
         public static void ResetFieldInfoCache(Type type)
         {
 
@@ -30,9 +36,7 @@ namespace FileHelpers
                 Debug.Assert(cacheField != null, "There is no m_fieldInfoCache field for the RuntimeTypeCache: " + type.Name);
                 if (cacheField != null)
                     cacheField.SetValue(cacheObject, null);
-
             }
-
         }
     }
 }

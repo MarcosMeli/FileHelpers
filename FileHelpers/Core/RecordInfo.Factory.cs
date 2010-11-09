@@ -10,7 +10,7 @@ namespace FileHelpers
 
 
     /// <summary>An internal class used to store information about the Record Type.</summary>
-    /// <remarks>Is public to provide extensibility of DataSorage from outside the library.</remarks>
+    /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
     internal sealed partial class RecordInfo 
     {
 
@@ -18,10 +18,17 @@ namespace FileHelpers
         {
             private static readonly Dictionary<Type, RecordInfo> mRecordInfoCache = new Dictionary<Type, RecordInfo>();
 
+           /// <summary>
+           /// Return the record information for the type
+           /// </summary>
+           /// <param name="type">Type we want settings for</param>
+           /// <remarks>Threadsafe</remarks>
+           /// <returns>Record Information (settings and functions)</returns>
             public static IRecordInfo Resolve(Type type)
             {
                 RecordInfo res;
 
+                // class check cache / lock / check cache  and create if null algorythm
                 if (!mRecordInfoCache.TryGetValue(type, out res))
                 {
                     lock (type)
@@ -37,9 +44,6 @@ namespace FileHelpers
                 }
                 return (IRecordInfo) res.Clone();
             }
-
         }
-
-
    }
 }

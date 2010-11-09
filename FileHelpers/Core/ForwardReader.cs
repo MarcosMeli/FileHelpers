@@ -10,12 +10,17 @@ namespace FileHelpers
     {
         //internal static readonly char[] mEOF = StringHelper.NewLine.ToCharArray();
 
+        /// <summary>
+        /// Return file record by record
+        /// </summary>
         readonly IRecordReader mReader;
 
+        /// <summary>
+        /// records already read
+        /// </summary>
         private readonly string[] mFowardStrings;
-        private int mForwardIndex = 0;
 
-        internal int mCapacityHint = 64;
+        private int mForwardIndex = 0;
 
         #region "  Constructors  "
 
@@ -24,10 +29,21 @@ namespace FileHelpers
         //    : this(reader, 0, 0)
         //{ }
 
+        /// <summary>
+        /// Read a Record handler forward,  optionally skipping n lines and starting at a record number > 0
+        /// </summary>
+        /// <param name="reader">Reader to get records</param>
+        /// <param name="forwardLines">NUmber of lines to skip before reading</param>
         internal ForwardReader(IRecordReader reader, int forwardLines)
             : this(reader, forwardLines, 0)
         { }
 
+        /// <summary>
+        /// Read a Record handler forward,  optionally skipping n lines and starting at a record number > 0
+        /// </summary>
+        /// <param name="reader">Reader to get records</param>
+        /// <param name="forwardLines">Number of lines to skip before reading</param>
+        /// <param name="startLine">Lines already read from file</param>
         internal ForwardReader(IRecordReader reader, int forwardLines, int startLine) 
         {
             mReader = reader;
@@ -58,6 +74,9 @@ namespace FileHelpers
 
         private int mRemaingLines = 0;
 
+        /// <summary>
+        /// Number of lines in the buffer
+        /// </summary>
         public int RemainingLines
         {
             get { return mRemaingLines; }
@@ -69,6 +88,9 @@ namespace FileHelpers
 
         private int mLineNumber = 0;
 
+        /// <summary>
+        /// Record number within the file - normally the line number
+        /// </summary>
         public int LineNumber
         {
             get { return mLineNumber - 1 - mFowardLines; }
@@ -165,6 +187,9 @@ namespace FileHelpers
 
         #region "  Close  "
 
+        /// <summary>
+        /// Close the record reader, which should in turn close the stream
+        /// </summary>
         public void Close()
         {
             if (mReader != null)
