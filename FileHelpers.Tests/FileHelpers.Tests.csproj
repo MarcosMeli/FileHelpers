@@ -332,6 +332,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Helpers\QuoteHelperTests.cs" />
+    <Compile Include="Tests\Helpers\StringHelperTest.cs" />
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
       <SubType>Code</SubType>
     </Compile>

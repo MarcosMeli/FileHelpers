@@ -402,16 +402,16 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 double res;
-                string tmp = StringHelper.RemoveBlanks(from);
-                if (tmp.EndsWith("%"))
+                var blanksRemoved = StringHelper.RemoveBlanks(from);
+                if (blanksRemoved.EndsWith("%"))
                 {
-                    if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    if (!Double.TryParse(blanksRemoved, NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                         throw new ConvertException(from, mType);
                     return res / 100.0;
                 }
                 else
                 {
-                    if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                    if (!Double.TryParse(blanksRemoved, NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                         throw new ConvertException(from, mType);
                     return res;
                 }
