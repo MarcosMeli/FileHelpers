@@ -172,7 +172,6 @@
     <Compile Include="Core\ForwardReader.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\IFieldInfoCacheManipulator.cs" />
     <Compile Include="Core\IRecordInfo.cs" />
     <Compile Include="Core\IRecordReader.cs" />
     <Compile Include="Core\RecordOperations.cs" />

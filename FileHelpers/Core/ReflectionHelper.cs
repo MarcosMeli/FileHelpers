@@ -268,19 +268,7 @@ namespace FileHelpers
 
             FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
 
-            //var temp = currentType.GetMembers(BindingFlags.Public |
-            //                                  BindingFlags.NonPublic |
-            //                                  BindingFlags.Instance |
-            //                                  BindingFlags.GetField |
-            //                                  BindingFlags.GetProperty |
-            //                                  BindingFlags.DeclaredOnly);
-
-            //Debug.WriteLine(temp.Length);
-
-            //Array.Sort(temp, (x, y) => x.MetadataToken.CompareTo(y.MetadataToken));
-
-            //Debug.WriteLine(temp.Length);
-
+          
             foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
                                                            BindingFlags.NonPublic |
                                                            BindingFlags.Instance |

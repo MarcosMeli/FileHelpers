@@ -14,19 +14,19 @@ namespace FileHelpers
     [EditorBrowsable(EditorBrowsableState.Advanced)]
     public sealed class RecordIndexer
         :IEnumerable<string> 
-        //, INotifyRead
     {
-
+        /// <summary>
+        /// Get the record indexer,  engine will load the lines into an array
+        /// </summary>
         internal RecordIndexer()
         {}
 
         [FieldQuoted(QuoteMode.OptionalForRead, MultilineMode.AllowForRead)]
-        private string[] values;
+        private string[] values = null;
 
         /// <summary>
         /// The number of fields in the record
         /// </summary>
- 
         public int FieldCount
         {
             get { return values.Length; }
@@ -45,12 +45,19 @@ namespace FileHelpers
             }
         }
 
-
+        /// <summary>
+        /// Get the enumerator of the list
+        /// </summary>
+        /// <returns></returns>
         IEnumerator<string> IEnumerable<string>.GetEnumerator()
         {
             return new ArrayEnumerator(values);
         }
 
+        /// <summary>
+        /// Get enumerator of the list
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<string>) this).GetEnumerator();
@@ -69,26 +76,51 @@ namespace FileHelpers
 
         #region "  ArrayEnumerator  "
 
+        /// <summary>
+        /// Create an enumerator off an array of strings
+        /// </summary>
         private sealed class ArrayEnumerator : IEnumerator<string>
         {
+            /// <summary>
+            /// Array to return one at a time
+            /// </summary>
             private string[] mValues;
+
+            /// <summary>
+            /// Position in enumerator,  -1 to start
+            /// </summary>
             private int i;
+
+            /// <summary>
+            /// Create an enumerator off a string array
+            /// </summary>
+            /// <param name="values">values to return one at a time</param>
             public ArrayEnumerator(string[] values)
             {
                 mValues = values;
                 i = -1;
             }
 
+            /// <summary>
+            /// Get the current item we are working on
+            /// </summary>
             string IEnumerator<string>.Current
             {
                 get { return mValues[i]; }
             }
 
+            /// <summary>
+            /// Clean up not needed
+            /// </summary>
             public void Dispose()
             {
 
             }
 
+            /// <summary>
+            /// move the pointer along
+            /// </summary>
+            /// <returns></returns>
             public bool MoveNext()
             {
                 i++;
@@ -99,11 +131,17 @@ namespace FileHelpers
                 return true;
             }
 
+            /// <summary>
+            /// Go back to the start
+            /// </summary>
             public void Reset()
             {
                 i = -1;
             }
 
+            /// <summary>
+            /// Get the current element
+            /// </summary>
             public object Current
             {
                 get { return mValues[i]; }

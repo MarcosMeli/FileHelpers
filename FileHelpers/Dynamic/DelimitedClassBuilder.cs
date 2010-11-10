@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 using System.Data;
@@ -20,9 +18,7 @@ namespace FileHelpers.Dynamic
 			set { mDelimiter = value; }
 		}
 
-		
-		
-		/// <summary>Return the field at the specified index.</summary>
+        /// <summary>Return the field at the specified index.</summary>
 		/// <param name="index">The index of the field.</param>
 		/// <returns>The field at the specified index.</returns>
 		public new DelimitedFieldBuilder FieldByIndex(int index)
@@ -63,8 +59,7 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
-
-		/// <summary>Add a new Delimited field to the current class.</summary>
+        /// <summary>Add a new Delimited field to the current class.</summary>
 		/// <param name="fieldName">The Name of the field.</param>
 		/// <param name="fieldType">The Type of the field.</param>
 		/// <returns>The just created field.</returns>
@@ -113,6 +108,10 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
+        /// <summary>
+        /// Add any attributes to source (currently only the delimiter attribute)
+        /// </summary>
+        /// <param name="attbs">Attributes storage area to add to class</param>
 		internal override void AddAttributesCode(AttributesBuilder attbs)
 		{
 			if (mDelimiter == string.Empty)
@@ -122,6 +121,10 @@ namespace FileHelpers.Dynamic
 			
 		}
 
+        /// <summary>
+        /// Serialise the XML header
+        /// </summary>
+        /// <param name="writer">Writer to serialise to</param>
 		internal override void WriteHeaderElement(XmlHelper writer)
 		{
 			writer.mWriter.WriteStartElement("DelimitedClass");
@@ -130,11 +133,20 @@ namespace FileHelpers.Dynamic
 			writer.mWriter.WriteEndAttribute();
 		}
 
+        /// <summary>
+        /// Write any extra elements (not used)
+        /// </summary>
+        /// <param name="writer"></param>
 		internal override void WriteExtraElements(XmlHelper writer)
 		{
 
 		}
 
+        /// <summary>
+        /// extract delimited class details from xml
+        /// </summary>
+        /// <param name="document">XML document to check</param>
+        /// <returns>delimited class information</returns>
 		internal static DelimitedClassBuilder LoadXmlInternal(XmlDocument document)
 		{
 			DelimitedClassBuilder res;
@@ -146,9 +158,17 @@ namespace FileHelpers.Dynamic
 			return res;
 		}
 
+        /// <summary>
+        /// Extract the class element from the XML document
+        /// </summary>
+        /// <param name="document">XML to extract extra info from</param>
 		internal override void ReadClassElements(XmlDocument document)
 		{}
 
+        /// <summary>
+        /// Get the attributes off the XML element
+        /// </summary>
+        /// <param name="node">Node to read</param>
 		internal override void ReadField(XmlNode node)
 		{
 			AddField(node.Attributes.Item(0).InnerText, node.Attributes.Item(1).InnerText).ReadField(node);

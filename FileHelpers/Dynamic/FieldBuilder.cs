@@ -19,6 +19,11 @@ namespace FileHelpers.Dynamic
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string mFieldType;
 
+        /// <summary>
+        /// Create a field of Name with type
+        /// </summary>
+        /// <param name="fieldName">name of the field</param>
+        /// <param name="fieldType">Type of the field</param>
 		internal FieldBuilder(string fieldName, Type fieldType)
 		{
 			fieldName = fieldName.Trim();
@@ -32,6 +37,11 @@ namespace FileHelpers.Dynamic
 			mFieldType = ClassBuilder.TypeToString(fieldType);
 		}
 
+        /// <summary>
+        /// Create a field of name and type
+        /// </summary>
+        /// <param name="fieldName">Name of the field</param>
+        /// <param name="fieldType">Type of the field</param>
 		internal FieldBuilder(string fieldName, string fieldType)
 		{
 			fieldName = fieldName.Trim();
@@ -83,11 +93,10 @@ namespace FileHelpers.Dynamic
 			get { return mFieldIndex; }
 		}
 
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool mFieldInNewLine = false;
 
-		/// <summary>Indicates that this field is at the begging of a new line.</summary>
+		/// <summary>Indicates that this field is at the beginning of a new line.</summary>
 		public bool FieldInNewLine
 		{
 			get { return mFieldInNewLine; }
@@ -122,7 +131,6 @@ namespace FileHelpers.Dynamic
             set { mFieldValueDiscarded = value; }
         }
 
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool mFieldOptional = false;
 
@@ -133,7 +141,7 @@ namespace FileHelpers.Dynamic
 			set { mFieldOptional = value; }
 		}
 
-		/// <summary>Uset to create the converter for the current field.</summary>
+		/// <summary>Used to create the converter for the current field.</summary>
 		public ConverterBuilder Converter
 		{
 			get { return mConverter; }
@@ -168,6 +176,11 @@ namespace FileHelpers.Dynamic
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private ConverterBuilder mConverter = new ConverterBuilder();
 		
+        /// <summary>
+        /// Create the field with attributes so that it can be added to the class
+        /// </summary>
+        /// <param name="lang">Language C# of Visual Basic</param>
+        /// <returns>Field as text</returns>
 		internal string GetFieldCode(NetLanguage lang)
 		{
 			StringBuilder sb = new StringBuilder(100);
@@ -246,11 +259,21 @@ namespace FileHelpers.Dynamic
 			
 			return sb.ToString();
 		}
-		
-		
-		internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng);
 
-		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage leng)
+        /// <summary>
+        /// Allow child classes to add attributes at the right spot
+        /// </summary>
+        /// <param name="attbs">Attributes added here</param>
+        /// <param name="lang">Language  C# or Visual Basic</param>
+        internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang);
+
+
+        /// <summary>
+        /// Add the general attributes to the field
+        /// </summary>
+        /// <param name="attbs">Attributes added here</param>
+        /// <param name="lang">Language  C# or Visual Basic</param>
+		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage lang)
 		{
 
 			if (mFieldOptional == true)
@@ -274,9 +297,9 @@ namespace FileHelpers.Dynamic
 				{
 					string t = ClassBuilder.TypeToString(mFieldNullValue.GetType());
 					string gt = string.Empty;
-					if (leng == NetLanguage.CSharp)
+					if (lang == NetLanguage.CSharp)
 						gt = "typeof(" + t + ")";
-					else if (leng == NetLanguage.VbNet)
+					else if (lang == NetLanguage.VbNet)
 						gt = "GetType(" + t + ")";
 
 					attbs.AddAttribute("FieldNullValue("+ gt +", \""+ mFieldNullValue.ToString() +"\")");
@@ -284,7 +307,7 @@ namespace FileHelpers.Dynamic
 			}
 
 
-			attbs.AddAttribute(mConverter.GetConverterCode(leng));
+			attbs.AddAttribute(mConverter.GetConverterCode(lang));
 			
 			if (mTrimMode != TrimMode.None)
 			{
@@ -295,7 +318,9 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
-
+        /// <summary>
+        /// Parent class of this field
+        /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal ClassBuilder mClassBuilder;
 
@@ -311,6 +336,10 @@ namespace FileHelpers.Dynamic
 			set { mVisibility = value; }
 		}
 
+        /// <summary>
+        /// Serialise the FiledBuilder to XML
+        /// </summary>
+        /// <param name="writer">writer to add XML to</param>
 		internal void SaveToXml(XmlHelper writer)
 		{
 			writer.mWriter.WriteStartElement("Field");
@@ -348,10 +377,21 @@ namespace FileHelpers.Dynamic
 			writer.mWriter.WriteEndElement();
 
 		}
-
+        /// <summary>
+        /// Write any attributes to the first element
+        /// </summary>
+        /// <param name="writer"></param>
 		internal abstract void WriteHeaderAttributes(XmlHelper writer);
+        /// <summary>
+        /// Write any extra fields to the end of the XML
+        /// </summary>
+        /// <param name="writer">Writer to output XML to</param>
 		internal abstract void WriteExtraElements(XmlHelper writer);
 
+        /// <summary>
+        /// Read the generic XML elements and store in the field details
+        /// </summary>
+        /// <param name="node"></param>
 		internal void ReadField(XmlNode node)
 		{
 			XmlNode ele;
@@ -376,10 +416,13 @@ namespace FileHelpers.Dynamic
 			ele = node["Converter"];
 			if (ele != null) Converter.LoadXml(ele);
 
-			
-			ReadFieldInternal(node);
+            ReadFieldInternal(node);
 		}
 
+        /// <summary>
+        /// Read field details from the main XML element
+        /// </summary>
+        /// <param name="node">Node to read</param>
 		internal abstract void ReadFieldInternal(XmlNode node);
 
 	}

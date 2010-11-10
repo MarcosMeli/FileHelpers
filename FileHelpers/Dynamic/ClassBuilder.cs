@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -189,7 +187,7 @@ namespace FileHelpers.Dynamic
         /// Create a class from a source file.
         /// </summary>
         /// <param name="filename">The filename with the source of the class.</param>
-        /// <param name="lang">The languaje used to compile the class.</param>
+        /// <param name="lang">The language used to compile the class.</param>
         /// <returns>The compiled class.</returns>
         public static Type ClassFromSourceFile(string filename, NetLanguage lang)
         {
@@ -279,14 +277,12 @@ namespace FileHelpers.Dynamic
 
             return ClassFromString(classDef, className, lang);
         }
-        
-
 
         /// <summary>
-        /// Create a class from a Xml file generated with the Wizard or 
+        /// Create a class from a XML file generated with the Wizard or 
         /// saved using the SaveToXml Method.
         /// </summary>
-        /// <param name="filename">The filename with the Xml definition.</param>
+        /// <param name="filename">The filename with the XML definition.</param>
         /// <returns>The compiled class.</returns>
         public static Type ClassFromXmlFile(string filename)
         {
@@ -331,7 +327,7 @@ namespace FileHelpers.Dynamic
             SaveToSourceFile(filename, NetLanguage.CSharp);
         }
 
-        /// <summary>Write the source code of the current class to a file. (In the especified language)</summary>
+        /// <summary>Write the source code of the current class to a file. (In the specified language)</summary>
         /// <param name="filename">The file to write to.</param>
         /// <param name="lang">The .NET Language used to write the source code.</param>
         public void SaveToSourceFile(string filename, NetLanguage lang)
@@ -360,6 +356,10 @@ namespace FileHelpers.Dynamic
 
         #endregion
 
+        /// <summary>
+        /// Create a class with 'classname'
+        /// </summary>
+        /// <param name="className">Name of class to create</param>
         internal ClassBuilder(string className)
         {
             className = className.Trim();
@@ -391,9 +391,16 @@ namespace FileHelpers.Dynamic
             mFields.Clear();
         }
 
+        /// <summary>
+        /// List of all the fields in the class
+        /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal ArrayList mFields = new ArrayList();
 
+        /// <summary>
+        /// Add a field to the class
+        /// </summary>
+        /// <param name="field">Field details to add</param>
         internal void AddFieldInternal(FieldBuilder field)
         {
             field.mFieldIndex = mFields.Add(field);
@@ -450,7 +457,7 @@ namespace FileHelpers.Dynamic
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private int mIgnoreFirstLines = 0;
 
-        /// <summary>Indicates the number of FIRST LINES to be ignored by the engines.</summary>
+        /// <summary>Indicates the number of FIRST LINES or heading records to be ignored by the engines.</summary>
         public int IgnoreFirstLines
         {
             get { return mIgnoreFirstLines; }
@@ -465,7 +472,7 @@ namespace FileHelpers.Dynamic
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private int mIgnoreLastLines = 0;
 
-        /// <summary>Indicates the number of LAST LINES to be ignored by the engines.</summary>
+        /// <summary>Indicates the number of LAST LINES or trailing records to be ignored by the engines.</summary>
         public int IgnoreLastLines
         {
             get { return mIgnoreLastLines; }
@@ -475,7 +482,6 @@ namespace FileHelpers.Dynamic
         #endregion
 
         #region IgnoreEmptyLines
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool mIgnoreEmptyLines = false;
@@ -570,7 +576,6 @@ namespace FileHelpers.Dynamic
 
             return sb.ToString();
 
-
         }
 
         private void ValidateClass()
@@ -595,6 +600,10 @@ namespace FileHelpers.Dynamic
             }
         }
 
+        /// <summary>
+        /// Store the attributes for adding when we write the code to text
+        /// </summary>
+        /// <param name="attbs">Where attributes are stored</param>
         internal abstract void AddAttributesCode(AttributesBuilder attbs);
 
         private void AddAttributesInternal(AttributesBuilder attbs)
@@ -682,9 +691,6 @@ namespace FileHelpers.Dynamic
 
         #endregion
 
-
-
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private NetVisibility mVisibility = NetVisibility.Public;
 
@@ -716,7 +722,12 @@ namespace FileHelpers.Dynamic
             set { mNamespace = value; }
         }
 
-
+        /// <summary>
+        /// Convert visibility type to word needed by the language
+        /// </summary>
+        /// <param name="lang">Language C# or Visual Basic</param>
+        /// <param name="visibility">Public,  internal, protected, etc</param>
+        /// <returns>Visibility correct for the language</returns>
         internal static string GetVisibility(NetLanguage lang, NetVisibility visibility)
         {
             switch (lang)
@@ -753,6 +764,11 @@ namespace FileHelpers.Dynamic
             return string.Empty;
         }
 
+        /// <summary>
+        /// Get the sealed prefix,  if needed
+        /// </summary>
+        /// <param name="lang">Language we are writing in</param>
+        /// <returns>nothing, sealed or NotInheritable</returns>
         private string GetSealed(NetLanguage lang)
         {
             if (mSealedClass == false)
@@ -770,6 +786,11 @@ namespace FileHelpers.Dynamic
             return string.Empty;
         }
 
+        /// <summary>
+        /// Add the namespace to the class details
+        /// </summary>
+        /// <param name="lang">Language type we are generating</param>
+        /// <param name="sb">class text</param>
         private void BeginNamespace(NetLanguage lang, StringBuilder sb)
         {
             if (mNamespace == string.Empty)
@@ -794,6 +815,11 @@ namespace FileHelpers.Dynamic
             sb.Append(StringHelper.NewLine);
         }
 
+        /// <summary>
+        /// Add the end of namespace to text
+        /// </summary>
+        /// <param name="lang">language we are generating</param>
+        /// <param name="sb">class text to add to</param>
         private void EndNamespace(NetLanguage lang, StringBuilder sb)
         {
             if (mNamespace == string.Empty)
@@ -815,7 +841,8 @@ namespace FileHelpers.Dynamic
 
 
         /// <summary>
-        /// Loads the XML representation of a a ClassBuilder inheritor and return it. (for XML saved with SaveToXml method)
+        /// Loads the XML representation of a ClassBuilder inheritor and return
+        /// it. (for XML saved with SaveToXml method)
         /// </summary>
         /// <remarks>
         /// ClassBuilder inheritors: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/>
@@ -831,7 +858,8 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Loads the XML representation of a a ClassBuilder inheritor and return it. (for XML saved with SaveToXml method)
+        /// Loads the XML representation of a ClassBuilder inheritor and return
+        /// it. (for XML saved with SaveToXml method)
         /// </summary>
         /// <remarks>
         /// ClassBuilder inheritors: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/>
@@ -900,12 +928,13 @@ namespace FileHelpers.Dynamic
         }
 
         /// <summary>
-        /// Loads the XML representation of a a ClassBuilder inheritor and return it. (for XML saved with SaveToXml method)
+        /// Loads the XML representation of a ClassBuilder inheritor and return
+        /// it. (for XML saved with SaveToXml method)
         /// </summary>
         /// <remarks>
         /// ClassBuilder inheritors: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/>
         /// </remarks>
-        /// <param name="filename">A file with the Xml representation of the record class.</param>
+        /// <param name="filename">A file with the XML representation of the record class.</param>
         /// <returns>A new instance of a ClassBuilder inheritor: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/> </returns>
         public static ClassBuilder LoadFromXml(string filename)
         {
@@ -999,14 +1028,29 @@ namespace FileHelpers.Dynamic
             xml.EndWrite();
         }
 
+        /// <summary>
+        /// write header information for this class
+        /// </summary>
+        /// <param name="writer">writer to write on</param>
         internal abstract void WriteHeaderElement(XmlHelper writer);
+
+        /// <summary>
+        /// write any extra information for the class
+        /// </summary>
+        /// <param name="writer">writer to put xml on</param>
         internal abstract void WriteExtraElements(XmlHelper writer);
 
+        /// <summary>
+        /// read class elements from xml document
+        /// </summary>
+        /// <param name="document">document to read from</param>
         internal abstract void ReadClassElements(XmlDocument document);
+
+        /// <summary>
+        /// read attribute information for class
+        /// </summary>
+        /// <param name="node"></param>
         internal abstract void ReadField(XmlNode node);
-
-        
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
@@ -1063,8 +1107,10 @@ namespace FileHelpers.Dynamic
             { }
 
             /// <summary>
-            /// <para>Indicates that the engine must ignore the lines with this comment marker.</para>
-            /// <para>An emty string or null indicates that the engine dont look for comments</para>
+	    /// <para>Indicates that the engine must ignore the lines with this
+	    /// comment marker.</para>
+	    /// <para>An empty string or null indicates that the engine does
+	    /// not look for comments</para>
             /// </summary>
             public string CommentMarker
             {
@@ -1088,6 +1134,11 @@ namespace FileHelpers.Dynamic
             private bool mInAnyPlace = true;
         }
 
+        /// <summary>
+        /// Break down a class into a generic or a full type name
+        /// </summary>
+        /// <param name="type">type to get type of</param>
+        /// <returns>Type of the class as a string</returns>
         internal static string TypeToString(Type type)
         {
 

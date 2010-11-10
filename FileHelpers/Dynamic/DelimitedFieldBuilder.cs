@@ -7,13 +7,23 @@ using System.Xml;
 
 namespace FileHelpers.Dynamic
 {
-	/// <summary>Used to create fields that are part of a dilimited record class.</summary>
+	/// <summary>Used to create fields that are part of a delimited record class.</summary>
 	public sealed class DelimitedFieldBuilder: FieldBuilder
 	{
 
+        /// <summary>
+        /// Create a field with name and type
+        /// </summary>
+        /// <param name="fieldName">Field Name to create</param>
+        /// <param name="fieldType">Type of the field</param>
 		internal DelimitedFieldBuilder(string fieldName, string fieldType): base(fieldName, fieldType)
 		{}
 
+        /// <summary>
+        /// Create a field with a name and a type
+        /// </summary>
+        /// <param name="fieldName">Field name to create</param>
+        /// <param name="fieldType">Type of the field</param>
 		internal DelimitedFieldBuilder(string fieldName, Type fieldType): base(fieldName, fieldType)
 		{}
 
@@ -62,20 +72,24 @@ namespace FileHelpers.Dynamic
 		}
 
 
-
-		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage leng)
+        /// <summary>
+        /// Add the attributes to the code text for the class.
+        /// </summary>
+        /// <param name="attbs">Where to add attributes to</param>
+        /// <param name="lang">Language selected</param>
+		internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
 			
 			if (mFieldQuoted == true)
 			{
-				if (leng == NetLanguage.CSharp)
+				if (lang == NetLanguage.CSharp)
 				{
 					string quoteStr = mQuoteChar.ToString();
 					if (mQuoteChar == '\'') quoteStr = @"\'";
 
 					attbs.AddAttribute("FieldQuoted('" + quoteStr + "', QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
 				}
-				else if (leng == NetLanguage.VbNet)
+				else if (lang == NetLanguage.VbNet)
 				{
 					string quoteStr = mQuoteChar.ToString();
 					if (mQuoteChar == '"') quoteStr = "\"\"";
@@ -83,13 +97,20 @@ namespace FileHelpers.Dynamic
 					attbs.AddAttribute("FieldQuoted(\"" + quoteStr + "\"c, QuoteMode." + mQuoteMode.ToString()+", MultilineMode." + mQuoteMultiline.ToString() +")");
 				}
 			}
-			
 		}
 
+        /// <summary>
+        /// Write any header attributes - not used
+        /// </summary>
+        /// <param name="writer">XML writer to add element to</param>
 		internal override void WriteHeaderAttributes(XmlHelper writer)
 		{
 		}
 
+        /// <summary>
+        /// Write the elements for this field to the XML
+        /// </summary>
+        /// <param name="writer"></param>
 		internal override void WriteExtraElements(XmlHelper writer)
 		{
 			writer.WriteElement("FieldQuoted", this.FieldQuoted);
@@ -98,6 +119,10 @@ namespace FileHelpers.Dynamic
 			writer.WriteElement("QuoteMultiline", this.QuoteMultiline.ToString(), "AllowForRead");
 		}
 
+        /// <summary>
+        /// Read the elements from the XML document for this field
+        /// </summary>
+        /// <param name="node">XML node to read elements from</param>
 		internal override void ReadFieldInternal(XmlNode node)
 		{
 			XmlNode ele;
@@ -113,7 +138,6 @@ namespace FileHelpers.Dynamic
 
 			ele = node["QuoteMultiline"];
             if (ele != null && ele.InnerText.Length > 0) QuoteMultiline = (MultilineMode)Enum.Parse(typeof(MultilineMode), ele.InnerText);
-
 		}
 	}
 }

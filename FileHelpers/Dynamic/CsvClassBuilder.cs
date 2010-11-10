@@ -6,7 +6,7 @@ using FileHelpers.Options;
 
 namespace FileHelpers.Dynamic
 {
-	/// <summary>Used to create classes that maps to CSV records (can be quoted, multiplelined quoted, etc).</summary>
+	/// <summary>Used to create classes that maps to CSV records (can be quoted, multiple lines, quoted, etc).</summary>
 	public sealed class CsvClassBuilder: DelimitedClassBuilder
 	{
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
@@ -26,7 +26,7 @@ namespace FileHelpers.Dynamic
 		{}
 
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
-		/// <param name="options">The specifications for the Csv file.</param>
+		/// <param name="options">The specifications for the CSV file.</param>
 		public CsvClassBuilder(CsvOptions options)
             : base(options.RecordClassName, options.Delimiter.ToString())
 		{
@@ -86,17 +86,17 @@ namespace FileHelpers.Dynamic
 		/// <summary>
 		/// Adds to the class the specified number of fields.
 		/// </summary>
-		/// <param name="number">The number of fileds to add.</param>
+		/// <param name="number">The number of fields to add.</param>
 		public override void AddFields(int number)
 		{
 			AddFields(number, "Field");
 		}
 
 		/// <summary>
-		/// Adds to the class the specified number of fileds.
+		/// Adds to the class the specified number of fields.
 		/// </summary>
 		/// <param name="prefix">The prefix used for the fields.</param>
-		/// <param name="number">The number of fileds to add.</param>
+		/// <param name="number">The number of fields to add.</param>
 		public void AddFields(int number, string prefix)
 		{
 			int initFields = mFields.Count;
@@ -107,7 +107,5 @@ namespace FileHelpers.Dynamic
 				AddField(prefix + (current).ToString());
 			}
 		}
-
-
 	}
 }

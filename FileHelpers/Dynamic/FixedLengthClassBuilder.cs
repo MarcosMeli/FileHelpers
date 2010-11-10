@@ -31,7 +31,11 @@ namespace FileHelpers.Dynamic
 		{
 		}
 
-		/// <summary>Used to create classes that maps to Fixed Length records and automatic instanciate many string fields as values are passed in the lengths arg. </summary>
+		/// <summary>
+		/// Used to create classes that maps to Fixed Length records
+		/// and automatically instantiate many string fields as values
+		/// are passed in the lengths arg.
+		/// </summary>
 		/// <param name="className">A valid class name.</param>
 		/// <param name="lengths">The lengths of the fields (one string field will be create for each length)</param>
 		public FixedLengthClassBuilder(string className, params int[] lengths): base(className)
@@ -103,12 +107,19 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
-
+        /// <summary>
+        /// add attributes to the class text
+        /// </summary>
+        /// <param name="attbs"></param>
 		internal override void AddAttributesCode(AttributesBuilder attbs)
 		{
 			attbs.AddAttribute("FixedLengthRecord(FixedMode."+ mFixedMode.ToString()+ ")");
 		}
 		
+        /// <summary>
+        /// write the fixed length XML to document
+        /// </summary>
+        /// <param name="writer">writer to put XML on</param>
 		internal override void WriteHeaderElement(XmlHelper writer)
 		{
 			writer.mWriter.WriteStartElement("FixedLengthClass");
@@ -117,6 +128,10 @@ namespace FileHelpers.Dynamic
 			writer.mWriter.WriteEndAttribute();			
 		}
 
+        /// <summary>
+        /// write any extra elements required
+        /// </summary>
+        /// <param name="writer"></param>
 		internal override void WriteExtraElements(XmlHelper writer)
 		{}
 
@@ -143,15 +158,28 @@ namespace FileHelpers.Dynamic
 			set { mFixedMode = value; }
 		}
 
+        /// <summary>
+        /// read elements from XML for class
+        /// </summary>
+        /// <param name="document"></param>
 		internal override void ReadClassElements(XmlDocument document)
 		{
 		}
 
+        /// <summary>
+        /// read attributes from element
+        /// </summary>
+        /// <param name="node">node to read</param>
 		internal override void ReadField(XmlNode node)
 		{
 			AddField(node.Attributes.Item(0).InnerText, int.Parse(node.Attributes.Item(2).InnerText), node.Attributes.Item(1).InnerText).ReadField(node);
 		}	
 		
+        /// <summary>
+        /// load details of fixed length from XML
+        /// </summary>
+        /// <param name="document">document to check</param>
+        /// <returns>fixed length details</returns>
 		internal static FixedLengthClassBuilder LoadXmlInternal(XmlDocument document)
 		{
 			// Note: for some reason, ReSharper complains about the use of the 2-argument form
