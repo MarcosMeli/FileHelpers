@@ -21,7 +21,14 @@
 		<Delete Files="@(DebugFiles)" />
 		<Delete Files="@(ReleaseFiles)" />
 		<Delete Files="@(OutputFiles)" />
+		
+		<Exec Command="RmDir /S /Q Debug" />
+		<Exec Command="RmDir /S /Q Release" />
+		<Exec Command="RmDir /S /Q Output" />
+		
 		<MakeDir Directories="Output" ContinueOnError="True" />
+		<MakeDir Directories="Release" ContinueOnError="True" />
+		<MakeDir Directories="Debug" ContinueOnError="True" />
 	</Target>
 
 	<Target Name="release" DependsOnTargets="common">
