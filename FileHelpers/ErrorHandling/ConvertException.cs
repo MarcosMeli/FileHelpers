@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 
@@ -16,7 +14,7 @@ namespace FileHelpers
 	    /// <summary>The destination type.</summary>
 	    public Type FieldType { get; private set; }
 
-	    /// <summary>The value that can't be converterd. (null for unknown)</summary>
+	    /// <summary>The value that can't be converted. (null for unknown)</summary>
 	    public string FieldStringValue { get; private set; }
 
 	    /// <summary>Extra info about the error.</summary>
@@ -54,7 +52,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="origValue">The value to convert.</param>
         /// <param name="destType">The destination Type.</param>
-        /// <param name="extraInfo">Aditional info of the error.</param>
+        /// <param name="extraInfo">Additional info of the error.</param>
         public ConvertException(string origValue, Type destType, string extraInfo)
             : this(origValue, destType, string.Empty, -1, -1, extraInfo, null)
         {
@@ -65,7 +63,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="origValue">The value to convert.</param>
         /// <param name="destType">The destination Type.</param>
-        /// <param name="extraInfo">Aditional info of the error.</param>
+        /// <param name="extraInfo">Additional info of the error.</param>
         /// <param name="columnNumber">The estimated column number.</param>
         /// <param name="lineNumber">The line where the error was found.</param>
         /// <param name="fieldName">The name of the field with the error</param>
@@ -105,7 +103,6 @@ namespace FileHelpers
 
             return res;
         }
-
 
         #endregion
     }

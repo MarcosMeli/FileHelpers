@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace FileHelpers
@@ -23,7 +21,9 @@ namespace FileHelpers
 		{
 		}
 
-		internal BadUsageException(LineInfo line, string message) 
+        /// <summary>Creates an instance of an BadUsageException.</summary>
+        /// <param name="message">The exception Message</param>
+        internal BadUsageException(LineInfo line, string message) 
 			: this(line.mReader.LineNumber, line.mCurrentPos, message)
 		{
 		}

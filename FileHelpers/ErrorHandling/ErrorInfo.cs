@@ -1,20 +1,26 @@
-
-
 using System;
 using System.Diagnostics;
 
 namespace FileHelpers
 {
-	/// <summary>Contains error information of the <see cref="FileHelperEngine"/> class.</summary>
+	/// <summary>
+    /// Contains error information of the <see cref="FileHelperEngine"/> class.
+    /// </summary>
 	[DelimitedRecord("|")]
 	[IgnoreFirst(2)]
     [DebuggerDisplay("Line: {LineNumber}. Error: {ExceptionInfo.Message}.")]
     public sealed class ErrorInfo
 	{
-		internal ErrorInfo()
+        /// <summary>
+        /// Contains error information of the <see cref="FileHelperEngine"/> class.
+        /// </summary>
+        internal ErrorInfo()
 		{
 		}
 
+        /// <summary>
+        /// Line number of the error
+        /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal int mLineNumber;
 
@@ -24,6 +30,7 @@ namespace FileHelpers
 			get { return mLineNumber; }
 		}
 
+        /// <summary>The string of the record of the error.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [FieldQuoted(QuoteMode.OptionalForBoth)]
 		internal string mRecordString = string.Empty;
@@ -34,7 +41,7 @@ namespace FileHelpers
 			get { return mRecordString; }
 		}
 
-
+        /// <summary>The exception that indicates the error.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [FieldConverter(typeof(ExceptionConverter))] 
 		[FieldQuoted(QuoteMode.OptionalForBoth)]
@@ -46,8 +53,16 @@ namespace FileHelpers
 			get { return mExceptionInfo; }
 		}
 
+        /// <summary>
+        /// Converter exception
+        /// </summary>
 		internal class ExceptionConverter : ConverterBase
 		{
+            /// <summary>
+            /// Convert a field definition to a string
+            /// </summary>
+            /// <param name="from">Convert exception object</param>
+            /// <returns>Field as a string or null</returns>
 			public override string FieldToString(object from)
 			{
 				if (from == null)
@@ -61,6 +76,11 @@ namespace FileHelpers
 				}
 			}
 
+            /// <summary>
+            /// Convert a general exception to a string
+            /// </summary>
+            /// <param name="from">exception to convert</param>
+            /// <returns>Exception from field</returns>
 			public override object StringToField(string from)
 			{
 				return new Exception(from);

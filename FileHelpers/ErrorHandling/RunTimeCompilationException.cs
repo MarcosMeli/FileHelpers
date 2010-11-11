@@ -11,7 +11,13 @@ namespace FileHelpers.Dynamic
 	[Serializable]
 	public sealed class RunTimeCompilationException : FileHelpersException
 	{
-		internal RunTimeCompilationException(string message, string sourceCode, CompilerErrorCollection errors) : base(message)
+        /// <summary>
+        /// Compilation exception happen loading a dynamic class
+        /// </summary>
+        /// <param name="message">Message for the error</param>
+        /// <param name="sourceCode">Source code reference???</param>
+        /// <param name="errors">Errors from compiler</param>
+        internal RunTimeCompilationException(string message, string sourceCode, CompilerErrorCollection errors) : base(message)
 		{
 			mSourceCode = sourceCode;
 			mCompilerErrors = errors;

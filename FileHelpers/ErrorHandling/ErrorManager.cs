@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,18 +6,27 @@ using System.Diagnostics;
 
 namespace FileHelpers
 {
-	/// <summary>This is the class that handles the errors of the engines process.</summary>
-	/// <remarks>All the engines and DataStorages contains a ErrorManager.</remarks>
+	/// <summary>
+    /// This is the class that handles the errors of the engines process.
+    /// </summary>
+	/// <remarks>
+    /// All the engines and DataStorage utilities contains an ErrorManager.
+    /// </remarks>
     [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
     public sealed class ErrorManager
         :IEnumerable
 	{
-		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class.</summary>
+		/// <summary>
+        /// Initializes a new instance of the <see cref="ErrorManager"/> class.
+        /// </summary>
 		public ErrorManager()
 		{
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="ErrorManager"/> class. with the specified <see cref="ErrorMode"/>.</summary>
+		/// <summary>
+        /// Initializes a new instance of the <see cref="ErrorManager"/> class.
+        /// with the specified <see cref="ErrorMode"/>.
+        /// </summary>
 		/// <param name="mode">Indicates the error behavior of the class.</param>
 		public ErrorManager(ErrorMode mode)
 		{
@@ -40,7 +47,10 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         ArrayList mErrorsArray = new ArrayList();
 
-		/// <summary>Is an array of <see cref="ErrorInfo"/> that contains the errors of the last operation in this class.</summary>
+		/// <summary>
+        /// Is an array of <see cref="ErrorInfo"/> that contains the
+        /// errors of the last operation in this class.
+        /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public ErrorInfo[] Errors
 		{
@@ -52,7 +62,10 @@ namespace FileHelpers
         private ErrorMode mErrorMode = ErrorMode.ThrowException;
 		
 
-		/// <summary>Indicates the behavior of the <see cref="FileHelperEngine"/> when it found an error.</summary>
+		/// <summary>
+        /// Indicates the behavior of the <see cref="FileHelperEngine"/>
+        /// when it found an error.
+        /// </summary>
 		public ErrorMode ErrorMode
 		{
 			get { return mErrorMode; }
@@ -136,11 +149,11 @@ namespace FileHelpers
 		}
 
         ///<summary>
-        ///Returns an enumerator that iterates through a collection.
+        /// Returns an enumerator that iterates through a collection.
         ///</summary>
-        ///
         ///<returns>
-        ///An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+        /// An <see cref="T:System.Collections.IEnumerator"></see>
+        /// object that can be used to iterate through the collection.
         ///</returns>
         ///<filterpriority>2</filterpriority>
         public IEnumerator GetEnumerator()
