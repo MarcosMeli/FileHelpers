@@ -4,7 +4,7 @@
 
 	<FileHelperEngine>
 		<example>
-			This example show the basic use of the library with minimun code:
+			This example shows a simple example of use of the library with a minimum of code:
 <code>
 
 	using FileHelpers;
@@ -64,7 +64,7 @@
 
 	<WriteFile>
 		<example>
-			This example show the basic use of the library with minimun code:
+			This example shows a simple example of use of the library with a minimum of code:
 <code>
 
 
@@ -108,7 +108,7 @@
 
 	<AppendFile>
 		<example>
-			This example show the basic use of the library with minimun code:
+			This example shows a simple example of use of the library with a minimum of code:
 <code>
 
 
@@ -151,7 +151,7 @@
 
 	<ReadFile>
 		<example>
-			This example show the basic use of the library with minimun code:
+			This example shows a simple example of use of the library with a minimum of code:
 <code>
 
 
@@ -191,14 +191,9 @@
 
 
 
-
-
-
-
-
 	<FileHelperAsyncEngine>
 		<example>
-			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+			This example shows a simple example use of the async methods in the FileHelperAsymcEngine:
 <code>
 
 
@@ -261,7 +256,7 @@
 
 	<WriteAsync>
 		<example>
-			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+			This example shows a simple example of use of the async methods in the FileHelperAsymcEngine:
 <code>
 
 
@@ -305,11 +300,9 @@
 
 
 
-
-
 	<ReadAsync>
 		<example>
-			This example show the basic use of the async methods in the FileHelperAsymcEngine:
+			This example shows a simple example of use of the async methods in the FileHelperAsymcEngine:
 <code>
 
 
@@ -349,8 +342,6 @@
 		</code>
 		</example>
 	</ReadAsync>
-
-
 
 </examples>
 </doc>

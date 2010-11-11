@@ -1,6 +1,3 @@
-
-
-
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -19,15 +16,14 @@ using System.Data;
 namespace FileHelpers
 {
 
-
-	/// <summary>A class to read generic CSV files delimited for any char.</summary>
+    /// <summary>A class to read generic CSV files delimited for any char.</summary>
     [DebuggerDisplay("CsvEngine. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class CsvEngine : FileHelperEngine
 	{
 
 		#region "  Static Methods  "
 
-		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+		/// <summary>Reads a CSV File and return their contents as DataTable (The file must have the field names in the first row)</summary>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="filename">The file to read.</param>
 		/// <returns>The contents of the file as a DataTable</returns>
@@ -36,7 +32,11 @@ namespace FileHelpers
 			return CsvToDataTable(filename, "RecorMappingClass", delimiter, true);
 		}
 
-		/// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+		/// <summary>
+		/// Reads a CSV File and return their contents as DataTable
+		/// (The file must have the field names in the first
+		/// row)
+		/// </summary>
 		/// <param name="classname">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="filename">The file to read.</param>
@@ -47,7 +47,9 @@ namespace FileHelpers
 		}
 
 
-		/// <summary>Reads a Csv File and return their contents as DataTable</summary>
+		/// <summary>
+		/// Reads a CSV File and return their contents as DataTable
+		/// </summary>
 		/// <param name="classname">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="filename">The file to read.</param>
@@ -60,7 +62,10 @@ namespace FileHelpers
 			return CsvToDataTable(filename, options);
 		}
 
-		/// <summary>Reads a Csv File and return their contents as DataTable</summary>
+		/// <summary>
+		/// Reads a CSV File and return their contents as
+		/// DataTable
+		/// </summary>
 		/// <param name="filename">The file to read.</param>
 		/// <param name="options">The options used to create the record mapping class.</param>
 		/// <returns>The contents of the file as a DataTable</returns>
@@ -72,7 +77,10 @@ namespace FileHelpers
 
 
 				
-		/// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+		/// <summary>
+		/// Simply dumps the DataTable contents to a delimited file
+		/// using a ',' as delimiter.
+		/// </summary>
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
 		public static void DataTableToCsv(DataTable dt, string filename)
@@ -81,7 +89,10 @@ namespace FileHelpers
 		}
 
 
-        /// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+        /// <summary>
+	/// Simply dumps the DataTable contents to a delimited file using a ','
+	/// as delimiter.
+	/// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         /// <param name="delimiter">The delimiter to be used on the file</param>
@@ -91,7 +102,10 @@ namespace FileHelpers
         }
 
         
-        /// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
+        /// <summary>
+	/// Simply dumps the DataTable contents to a delimited file. Only
+	/// allows to set the delimiter.
+	/// </summary>
 		/// <param name="dt">The source Data Table</param>
 		/// <param name="filename">The destination file.</param>
 		/// <param name="options">The options used to write the file</param>
@@ -146,7 +160,10 @@ namespace FileHelpers
             : this(new CsvOptions(className, delimiter, numberOfFields))
 		{}
 
-		/// <summary>Create a CsvEngine using the specified sample file with their headers.</summary>
+		/// <summary>
+		/// Create a CsvEngine using the specified sample file with
+		/// their headers.
+		/// </summary>
 		/// <param name="options">The options used to create the record mapping class.</param>
 		public CsvEngine(CsvOptions options)
             : base(GetMappingClass(options))
@@ -161,7 +178,5 @@ namespace FileHelpers
 			return cb.CreateRecordClass();
 		}
 	}
-
-
 }
 

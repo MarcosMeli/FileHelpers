@@ -3,12 +3,15 @@
 	<FileHelperAsyncEngine>
 		<summary>
 			<para><b>One of the main classes of the library.</b></para>
-			<para>This engine is responsable to Read/Write the records <b>One by One</b> from/to files or streams.</para>
+			<para>This engine is responsible to Read/Write the records <b>One by One</b> from/to files or streams.</para>
 		</summary>
 		<remarks>
-		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can retrive them with the <see cref="ErrorManager.Errors"/> property.</para>
-		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the <a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
-		 <para>Or you can browse the <a href="examples.html">Examples Seccion</a> for more code.</para>
+		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class to find
+			 out when there is an error. Retrieve them with the <see cref="ErrorManager.Errors"/>
+			 property.</para>
+		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the
+			<a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
+		 <para>Or you can browse the <a href="examples.html">Examples Section</a> for more code.</para>
 		</remarks>
 		<seealso href="quick_start.html">Quick Start Guide</seealso>
 		<seealso href="class_diagram.html">Class Diagram</seealso>
@@ -43,10 +46,10 @@
 		<remarks>
 		<para>This method only open the file.</para>
 		<para>To read record by record use <b><see cref="ReadNext" /></b> method.</para>
-		<para>When you stop to read the file you must call <b><see cref="Close" /></b> method.</para>
+		<para>When you stop reading the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="fileName">The file path to be read.</param>
-		<returns>True if the file is succefully opened. False otherway.</returns>
+		<returns>True if the file is successfully opened. False otherwise</returns>
 		<include file='Examples.xml' path='doc/examples/ReadAsync/*'/>
 	</BeginReadFile>
 
@@ -55,9 +58,9 @@
 		Open a specified stream and seek to the first record.
 		</summary>
 		<remarks>
-		<para>This method only seek to the first record.</para>
+		<para>This method only seeks to the first record.</para>
 		<para>To read record by record use <b><see cref="ReadNext" /></b> method.</para>
-		<para>When you stop to read the file you must call <b><see cref="Close" /></b> method.</para>
+		<para>When you stop reading the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="reader">The TextReader of the stream.</param>
 		<include file='Examples.xml' path='doc/examples/ReadAsync/*'/>
@@ -65,10 +68,11 @@
 
 	<ReadNext>
 		<summary>
-		Reads the next record of a file opened with the <see cref="BeginReadFile" /> or <see cref="BeginReadStream" /> method.
+			Reads the next record of a file opened with the
+		       <see cref="BeginReadFile" /> or <see cref="BeginReadStream" /> method.
 		</summary>
 		<remarks>
-		<para>This method not only returns the current record, also moves to the next.</para>
+		<para>This method returns the current record and moves to the next.</para>
 		<para>If the end of file is reached this method return <b>null</b>.</para>
   	    </remarks>
 		<returns>The current record of the opened file.</returns>
@@ -78,21 +82,25 @@
 
 	<ReadNexts>
 		<summary>
-		Reads the specified number of records from a file or stream opened with the <see cref="BeginReadFile" /> or <see cref="BeginReadStream" /> method.
+			Reads the specified number of records from a file or stream opened with the
+		       <see cref="BeginReadFile" /> or <see cref="BeginReadStream" /> method.
 		</summary>
 		<remarks>
-		If there are less records in the source, read to the end.
+		If there are less records than requested in the source, the file will be read to the end.
   	    </remarks>
-		<param name="numberOfRecords">The number of records to read. If there are less records in the source, read to the end.</param>
-		<returns>The nexts records of the opened file or stream.</returns>
+	    <param name="numberOfRecords">
+		    The number of records to read. If there are less records than requested in the
+		    source, the file will be read to the end.
+	    </param>
+		<returns>The next records of the opened file or stream.</returns>
 	</ReadNexts>
 
 	<Close>
 		<summary>
-			Close all opened stream readers and writters (if any).
+			Close all opened stream readers and writers (if any).
 		</summary>
 		<remarks>
-		<para>This method must be called when you finish to process a file to dispose the opened streams.</para>
+		<para>This method must be called when you finish processing a file to dispose of the opened streams.</para>
   	    </remarks>
 		<include file='Examples.xml' path='doc/examples/ReadAsync/*'/>
 	</Close>
@@ -104,19 +112,21 @@
 		</summary>
 		<remarks>
 		<para>This method open and seek ends the file.</para>
-		<para>When you finish to append to the file you must call <b><see cref="Close" /></b> method.</para>
+		<para>When you finish appending to the file you must call <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="fileName">The file path to be opened to write at the end.</param>
 	</BeginAppendToFile>
 
 	<BeginWriteFile>
 		<summary>
-		Open a file to write it. If exist the engine override it
+			Open a file to write it.
+			If the file exists the engine will over write it
 		</summary>
 		<remarks>
-		<para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para>
+			<para>When you finish writing to the file you must call
+			       the <b><see cref="Close" /></b> method.</para>
 		</remarks>
-		<param name="fileName">The file path to be opened to write.</param>
+		<param name="fileName">The file path to be opened for write.</param>
 		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
 	</BeginWriteFile>
 
@@ -125,7 +135,8 @@
 		  Set the stream to be used in the <see cref="WriteNext(object)" /> operation.
 		</summary>
 		<remarks>
-		<para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para>
+		<para>When you finished writing to the file you must call 
+				the <b><see cref="Close" /></b> method.</para>
 		</remarks>
 		<param name="writer">To stream to writes to.</param>
 		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
@@ -133,7 +144,8 @@
 
 	<WriteNext>
 		<summary>
-		Write the next record to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.
+			Write the next record to a file or stream opened with <see cref="BeginWriteFile" />,
+			<see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.
 		</summary>
 		<param name="record">The record to write.</param>
 		<include file='Examples.xml' path='doc/examples/WriteAsync/*'/>
@@ -141,7 +153,8 @@
 
 	<WriteNexts>
 		<summary>
-		Write the nexts records to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.
+			Write the next records to a file or stream opened with <see cref="BeginWriteFile" />,
+			<see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.
 		</summary>
 		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 	</WriteNexts>

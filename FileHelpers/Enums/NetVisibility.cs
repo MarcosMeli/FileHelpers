@@ -7,13 +7,13 @@ namespace FileHelpers
 	/// <summary>Indicates the visibility of a member.</summary>
 	public enum NetVisibility
 	{
-		/// <summary>Public visivility.</summary>
+		/// <summary>Public visibility.</summary>
 		Public = 0,
-		/// <summary>Internal visivility. (Friend in VB.NET)</summary>
+		/// <summary>Internal visibility. (Friend in VB.NET)</summary>
 		Internal,
-		/// <summary>Protected visivility.</summary>
+		/// <summary>Protected visibility.</summary>
 		Protected,
-		/// <summary>Private visivility.</summary>
+		/// <summary>Private visibility.</summary>
 		Private
 	}
 }

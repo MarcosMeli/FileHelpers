@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -9,11 +7,12 @@ namespace FileHelpers
 {
 
 	/// <summary>
-	/// Is a version of the <see cref="FileHelperEngine"/> exclusive for 
-	/// fixed length records that allow you to change the delimiter an other options at runtime
+    /// This version of the <see cref="FileHelperEngine"/> is exclusively for 
+    /// fixed length records. It allows you to change options at runtime
 	/// </summary>
 	/// <remarks>
-	/// Useful when you need to export or import the same info with little different options.
+    /// Useful when you need to export or import the same info with slightly
+    /// different options.
 	/// </remarks>
     [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class FixedFileEngine : FileHelperEngine
@@ -22,11 +21,12 @@ namespace FileHelpers
         #region "  Constructor  "
 
 		/// <summary>
-		/// Creates a version of the <see cref="FileHelperEngine"/> exclusive for 
-		/// fixed length records that allow you to change the delimiter an other options at runtime
+        /// This version of the <see cref="FileHelperEngine"/> is exclusively for 
+        /// fixed length records. It allows you to change options at runtime
 		/// </summary>
 		/// <remarks>
-		/// Useful when you need to export or import the same info with little different options.
+        /// Useful when you need to export or import the same info with
+        /// slightly different options.
 		/// </remarks>
 		/// <param name="recordType">The record mapping class.</param>
 		public FixedFileEngine(Type recordType)
@@ -36,6 +36,11 @@ namespace FileHelpers
 				throw new BadUsageException("The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
 		}
 
+        /// <summary>
+        /// Read a record with fixed length fields
+        /// </summary>
+        /// <param name="recordType">record type to read</param>
+        /// <param name="encoding">Encoding to use</param>
         public FixedFileEngine(Type recordType, Encoding encoding)
             : this(recordType)
         {
@@ -53,11 +58,12 @@ namespace FileHelpers
 
 
 	/// <summary>
-	/// Is a version of the <see cref="FileHelperEngine"/> exclusive for 
-	/// fixed length records that allow you to change the delimiter an other options at runtime
+    /// This version of the <see cref="FileHelperEngine"/> is exclusively for 
+    /// fixed length records. It allows you to change options at runtime
 	/// </summary>
 	/// <remarks>
-	/// Useful when you need to export or import the same info with little different options.
+    /// Useful when you need to export or import the same info with slightly
+    /// different options.
 	/// </remarks>
     [DebuggerDisplay("FixedFileEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class FixedFileEngine<T>
@@ -68,11 +74,12 @@ namespace FileHelpers
 	#region "  Constructor  "
 
 		/// <summary>
-		/// Creates a version of the <see cref="FileHelperEngine"/> exclusive for 
-		/// fixed length records that allow you to change the delimiter an other options at runtime
+        /// Creates a version of the <see cref="FileHelperEngine"/> exclusively
+        /// for fixed length records that allow you to change options at runtime
 		/// </summary>
 		/// <remarks>
-		/// Useful when you need to export or import the same info with little different options.
+        /// Useful when you need to export or import the same info with
+        /// slightly different options.
 		/// </remarks>
 		public FixedFileEngine()
 			: base()
@@ -81,6 +88,15 @@ namespace FileHelpers
 				throw new BadUsageException("The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
 		}
 
+        /// <summary>
+        /// Creates a version of the <see cref="FileHelperEngine"/> exclusively
+        /// for fixed length records that allow you to change options at runtime
+        /// </summary>
+        /// <remarks>
+        /// Useful when you need to export or import the same info with
+        /// slightly different options.
+        /// </remarks>
+        /// <param name="encoding">Encoding of file to be read</param>
         public FixedFileEngine(Encoding encoding)
             : this()
         {

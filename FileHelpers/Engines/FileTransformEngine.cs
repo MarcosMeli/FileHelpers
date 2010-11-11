@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,9 +16,9 @@ namespace FileHelpers
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
+    /// <typeparam name="TSource">The source record type.</typeparam>
+    /// <typeparam name="TDestination">The destination record type.</typeparam>
     [DebuggerDisplay("FileTransformanEngine for types: {SourceType.Name} --> {DestinationType.Name}. Source Encoding: {SourceEncoding.EncodingName}. Destination Encoding: {DestinationEncoding.EncodingName}")]
-    /// <typeparam name="Source">The source record type.</typeparam>
-    /// <typeparam name="Destination">The destination record type.</typeparam>
     public sealed class FileTransformEngine<TSource, TDestination>
         where TSource: class, ITransformable<TDestination> 
         where TDestination: class
@@ -48,7 +46,7 @@ namespace FileHelpers
 
         private ErrorMode mErrorMode;
 
-        /// <summary>Indicates the behavior of the engine when it found an error.</summary>
+        /// <summary>Indicates the behavior of the engine when an error is found.</summary>
         public ErrorMode ErrorMode
         {
             get { return mErrorMode; }
@@ -63,7 +61,8 @@ namespace FileHelpers
         private ErrorManager mSourceErrorManager = new ErrorManager();
 
         /// <summary>
-        /// Allow access the <see cref="ErrorManager"/> of the engine used to read the source file, is null before transform any file
+        /// Allow access the <see cref="ErrorManager"/> of the engine used to
+        /// read the source file, is null before any file is transformed
         /// </summary>
         public ErrorManager SourceErrorManager
         {
@@ -73,7 +72,8 @@ namespace FileHelpers
         private ErrorManager mDestinationErrorManager = new ErrorManager();
 
         /// <summary>
-        /// Allow access the <see cref="ErrorManager"/> of the engine used to write the destination file, is null before transform any file
+        /// Allow access the <see cref="ErrorManager"/> of the engine used to
+        /// write the destination file, is null before any file is transformed
         /// </summary>
         public ErrorManager DestinationErrorManager
         {
@@ -85,7 +85,11 @@ namespace FileHelpers
 
 		#region "  TransformFile  " 
 
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile.(use only if you need the array of the transformed records, TransformFileFast is faster)</summary>
+		/// <summary>
+        /// Transform the contents of the sourceFile and write them to the
+        /// destFile.(use only if you need the array of the transformed
+        /// records, TransformFileFast is faster)
+        /// </summary>
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The transformed records.</returns>
@@ -99,7 +103,11 @@ namespace FileHelpers
 		}
 
 
-		/// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+		/// <summary>
+        /// Transform the contents of the sourceFile and write them to the
+        /// destFile. (faster and uses less memory, best choice for big
+        /// files)
+        /// </summary>
 		/// <param name="sourceFile">The source file.</param>
 		/// <param name="destFile">The destination file.</param>
 		/// <returns>The number of transformed records.</returns>
@@ -112,7 +120,11 @@ namespace FileHelpers
             return CoreTransformAsync(new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
 		}
 
-        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <summary>
+        /// Transform the contents of the sourceFile and write them to the
+        /// destFile. (faster and uses less memory, best choice for big
+        /// files)
+        /// </summary>
         /// <param name="sourceStream">The source stream.</param>
         /// <param name="destFile">The destination file.</param>
         /// <returns>The number of transformed records.</returns>
@@ -124,7 +136,11 @@ namespace FileHelpers
             return CoreTransformAsync(sourceStream, new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
         }
 
-        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <summary>
+        /// Transform the contents of the sourceFile and write them to the
+        /// destFile. (faster and uses less memory, best choice for big
+        /// files)
+        /// </summary>
         /// <param name="sourceStream">The source stream.</param>
         /// <param name="destStream">The destination stream.</param>
         /// <returns>The number of transformed records.</returns>
@@ -136,7 +152,11 @@ namespace FileHelpers
             return CoreTransformAsync(sourceStream, destStream);
         }
 
-        /// <summary>Transform the contents of the sourceFile and write them to the destFile. (faster and use less memory, best choice for big files)</summary>
+        /// <summary>
+        /// Transform the contents of the sourceFile and write them to the
+        /// destFile. (faster and uses less memory, best choice for big
+        /// files)
+        /// </summary>
         /// <param name="sourceFile">The source file.</param>
         /// <param name="destStream">The destination stream.</param>
         /// <returns>The number of transformed records.</returns>
@@ -158,7 +178,9 @@ namespace FileHelpers
 //		}
 
 
-		/// <summary>Transform an array of records from the source type to the destination type</summary>
+		/// <summary>
+        /// Transforms an array of records from the source type to the destination type
+        /// </summary>
 		/// <param name="sourceRecords">An array of the source records.</param>
 		/// <returns>The transformed records.</returns>
 		public TDestination[] TransformRecords(TSource[] sourceRecords)
@@ -167,7 +189,9 @@ namespace FileHelpers
 			//return CoreTransformAsync(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
 		}
 
-		/// <summary>Transform a file that contains source records to an array of the destination type</summary>
+		/// <summary>
+        /// Transform a file that contains source records to an array of the destination type
+        /// </summary>
 		/// <param name="sourceFile">A file containing the source records.</param>
 		/// <returns>The transformed records.</returns>
 
@@ -303,9 +327,7 @@ namespace FileHelpers
 			set { mDestinationEncoding = value; }
 		}
 
-
 		#endregion
-
 
 	}
 }

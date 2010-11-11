@@ -11,9 +11,9 @@ namespace FileHelpers
 		NotifyPercent,
 		/// <summary>Notify the Record completed.</summary>
 		NotifyRecords,
-		/// <summary>Notify the bytes readed.</summary>
+		/// <summary>Notify the bytes read so far</summary>
 		NotifyBytes,
-		/// <summary>Dont call to the progress handler.</summary>
+		/// <summary>Don't call to the progress handler.</summary>
 		DontNotify = 0
 	}
 }

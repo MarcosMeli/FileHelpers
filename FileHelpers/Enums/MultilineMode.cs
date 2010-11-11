@@ -14,7 +14,7 @@ namespace FileHelpers
 		AllowForRead,
 		/// <summary>The engine can handle multiline values only for write.</summary>
 		AllowForWrite,
-		/// <summary>The engine don´t allow multiline values for this field.</summary>
+		/// <summary>The engine don't allow multiline values for this field.</summary>
 		NotAllow
 	} 
 }

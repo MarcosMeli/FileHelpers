@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Data;
@@ -12,16 +10,19 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
-	/// <summary>This class only have <b>static methods</b> to work with files and strings (the most common of them)</summary>
+    /// <summary>
+    /// This class only has <b>static methods</b> to work with files and
+    /// strings (most of the common tools)
+    /// </summary>
     public static class CommonEngine
     {
-        // No instanciate
+        // Nothing to instantiate
 
-	    #region "  FileHelperEngine  "
+        #region "  FileHelperEngine  "
 
         /// <summary>
-        /// Used to read a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="fileName">The file name</param>
@@ -32,8 +33,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to read a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="fileName">The file name</param>
@@ -45,42 +46,35 @@ namespace FileHelpers
             return engine.ReadFile(fileName, maxRecords);
         }
 
-
-
-
-
-
         /// <summary>
-        /// Used to read a file as a DataTable without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file as a DataTable without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>The datatable representing all the read records.</returns>
+        /// <returns>The DataTable representing all the read records.</returns>
         public static DataTable ReadFileAsDT(Type recordClass, string fileName)
         {
             return ReadFileAsDT(recordClass, fileName, -1);
         }
 
         /// <summary>
-        /// Used to read a file as a DataTable without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file as a DataTable without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="fileName">The file name</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-        /// <returns>The datatable representing all the read records.</returns>
+        /// <returns>The DataTable representing all the read records.</returns>
         public static DataTable ReadFileAsDT(Type recordClass, string fileName, int maxRecords)
         {
             var engine = new FileHelperEngine(recordClass);
             return engine.ReadFileAsDT(fileName, maxRecords);
         }
 
-
-
         /// <summary>
-        /// Used to read a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <returns>The read records.</returns>
@@ -90,8 +84,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to read a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a file without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
@@ -103,8 +97,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to read a string without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a string without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="input">The input string.</param>
@@ -115,8 +109,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to read a string without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a string without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="recordClass">The record class.</param>
         /// <param name="input">The input string.</param>
@@ -129,8 +123,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to read a string without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to read a string without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <returns>The read records.</returns>
@@ -141,8 +135,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Used to write a file without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// Used to write a file without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="fileName">The file name</param>
         /// <param name="records">The records to write (Can be an array, List, etc)</param>
@@ -152,19 +146,12 @@ namespace FileHelpers
             engine.WriteFile(fileName, records);
         }
 
-
-        [Obsolete("Your must use WriteString<T>(IEnumerable<T>) without the type parameter", true)]
-                public static string WriteString(Type type, IEnumerable records)
-                {
-                    return null;
-                }
-
-	    /// <summary>
-        /// Used to write a string without instanciate the engine.<br />
-        /// <b>This is feature limited method try to use the non static methods.</b>
+        /// <summary>
+        /// Used to write a string without instantiating the engine.<br />
+        /// <b>This method has limited features.  We recommend using the non static methods.</b>
         /// </summary>
         /// <param name="records">The records to write (Can be an array, List, etc)</param>
-        /// <returns>The string with the writen records.</returns>
+        /// <returns>The string with the written records.</returns>
         public static string WriteString<T>(IEnumerable<T> records) where T : class
         {
             FileHelperEngine<T> engine = new FileHelperEngine<T>();
@@ -173,7 +160,11 @@ namespace FileHelpers
 
         #endregion
 
-        /// <summary><b>Faster way</b> to Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile.</summary>
+        /// <summary>
+	/// <b>Faster way</b> to Transform the records of type sourceType in
+	/// the sourceFile in records of type destType and write them to the
+	/// destFile.
+	/// </summary>
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The number of transformed records</returns>
@@ -185,9 +176,12 @@ namespace FileHelpers
             return engine.TransformFileFast(sourceFile, destFile);
         }
 
-        /// <summary>Transform the records of type sourceType in the sourceFile in records of type destType and write them to the destFile. (but returns the transformed records) WARNING: this is a slower method that the TransformFileAssync.</summary>
-        /// <param name="sourceType">The Type of the records in the source File.</param>
-        /// <param name="destType">The Type of the records in the dest File.</param>
+        /// <summary>
+	/// Transform the records of type sourceType in the sourceFile in
+	/// records of type destType and write them to the destFile. (but
+	/// returns the transformed records) WARNING: this is a slower method
+	/// that the TransformFileAssync.
+	/// </summary>
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The transformed records.</returns>
@@ -203,7 +197,10 @@ namespace FileHelpers
         /// <summary>
         /// Read the contents of a file and sort the records.
         /// </summary>
-        /// <param name="recordClass">Record Class (remember that need to implement the IComparer interface, or you can use SortFileByfield)</param>
+        /// <param name="recordClass">
+	/// Record Class (remember that need to implement the IComparer
+	/// interface, or you can use SortFileByfield)
+	/// </param>
         /// <param name="fileName">The file to read.</param>
         public static object[] ReadSortedFile(Type recordClass, string fileName)
         {
@@ -223,7 +220,10 @@ namespace FileHelpers
         /// <summary>
         /// Sort the contents of the source file and write them to the destination file. 
         /// </summary>
-        /// <param name="recordClass">Record Class (remember that need to implement the IComparable interface or use the SortFileByfield instead)</param>
+        /// <param name="recordClass">
+	/// Record Class (remember that need to implement the IComparable
+	/// interface or use the SortFileByfield instead)
+	/// </param>
         /// <param name="sourceFile">The source file.</param>
         /// <param name="sortedFile">The destination File.</param>
         public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
@@ -267,7 +267,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Sort the Record Array based in the field name provided. (for advanced sorting use SortRecords)
+	/// Sort the Record Array using the field name provided. (for
+	/// advanced sorting use SortRecords)
         /// </summary>
         /// <param name="fieldName">The field name.</param>
         /// <param name="records">The records Array.</param>
@@ -277,7 +278,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Sort the Record Array based in the field name provided. (for advanced sorting use SortRecords)
+	/// Sort the Record Array using the field name provided. (for
+	/// advanced sorting use SortRecords)
         /// </summary>
         /// <param name="fieldName">The field name.</param>
         /// <param name="records">The records Array.</param>
@@ -299,7 +301,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Sort the Record Array. The records must be of a Type that implements the IComparable interface.
+	/// Sort the Record Array. The records must be of a Type that
+	/// implements the IComparable interface.
         /// </summary>
         /// <param name="records">The records Array.</param>
         public static void SortRecords(object[] records)
@@ -317,6 +320,9 @@ namespace FileHelpers
 
         #region "  FieldComparer  "
 
+        /// <summary>
+        /// Compare one field to another
+        /// </summary>
         internal class FieldComparer : IComparer
         {
             FieldInfo mFieldInfo;
@@ -327,10 +333,16 @@ namespace FileHelpers
                 mFieldInfo = fi;
                 mAscending = asc ? 1 : -1;
                 if (typeof(IComparable).IsAssignableFrom(mFieldInfo.FieldType) == false)
-                    throw new BadUsageException("The field " + mFieldInfo.Name + " need to implement the interface IComparable");
+                    throw new BadUsageException("The field " + mFieldInfo.Name + " needs to implement the interface IComparable");
 
             }
 
+            /// <summary>
+            /// Compare object 1 to object 2
+            /// </summary>
+            /// <param name="x">First object to test</param>
+            /// <param name="y">Second object to test</param>
+            /// <returns>0 if equal, -1 if x &lt; y, 1 otherwise</returns>
             public int Compare(object x, object y)
             {
 
@@ -358,18 +370,26 @@ namespace FileHelpers
 
 #if ! MINI
 
-        /// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
+        /// <summary>
+	/// Converts any collection of records to a DataTable using reflection.
+	/// WARNING: this methods returns null if the number of records is 0,
+	/// pass the Type of the records to get an empty DataTable.
+	/// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The datatable containing the records as DataRows</returns>
+        /// <returns>The DataTable containing the records as DataRows</returns>
         public static DataTable RecordsToDataTable(ICollection records)
         {
             return RecordsToDataTable(records, -1);
         }
 
-        /// <summary>Converts any collection of records to a DataTebla using reflection. WARNING: this methods returns null if the number of records is 0, pass the Type of the records to get an empty DataTable.</summary>
+        /// <summary>
+	/// Converts any collection of records to a DataTable using reflection.
+	/// WARNING: this methods returns null if the number of records is 0,
+	/// pass the Type of the records to get an empty DataTable.
+	/// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
-        /// <param name="maxRecords">The max number of records to add to the datatable. -1 for all.</param>
-        /// <returns>The datatable containing the records as DataRows</returns>
+        /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
+        /// <returns>The DataTable containing the records as DataRows</returns>
         public static DataTable RecordsToDataTable(ICollection records, int maxRecords)
         {
 
@@ -389,19 +409,29 @@ namespace FileHelpers
             return ri.Operations.RecordsToDataTable(records, maxRecords);
         }
 
-        /// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
+        /// <summary>
+	/// Converts any collection of records to a DataTable using reflection.
+	/// If the number of records is 0 this methods returns an empty
+	/// DataTable with the columns based on the fields of the
+	/// Type.
+	/// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The datatable containing the records as DataRows</returns>
+        /// <returns>The DataTable containing the records as DataRows</returns>
         /// <param name="recordType">The type of the inner records.</param>
         public static DataTable RecordsToDataTable(ICollection records, Type recordType)
         {
             return RecordsToDataTable(records, recordType, -1);
         }
 
-        /// <summary>Converts any collection of records to a DataTebla using reflection. If the number of records is 0 this methods returns an empty DataTable with the columns based on the fields of the Type.</summary>
+        /// <summary>
+	/// Converts any collection of records to a DataTable using reflection.
+	/// If the number of records is 0 this methods returns an empty
+	/// DataTable with the columns based on the fields of the
+	/// Type.
+	/// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The datatable containing the records as DataRows</returns>
-        /// <param name="maxRecords">The max number of records to add to the datatable. -1 for all.</param>
+        /// <returns>The DataTable containing the records as DataRows</returns>
+        /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
         /// <param name="recordType">The type of the inner records.</param>
         public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
         {
@@ -412,7 +442,8 @@ namespace FileHelpers
 #endif
 
         /// <summary>
-        /// Reads the file1 and file2 using the recordType and write it to destinationFile
+	/// Reads the file1 and file2 using the recordType and write it to
+	/// destinationFile
         /// </summary>
         public static void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
         {
@@ -490,7 +521,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Merge the contents of 2 files and write them sorted to a destination file.
+	/// Merge the contents of 2 files and write them sorted to a
+	/// destination file.
         /// </summary>
         /// <param name="recordType">The record Type.</param>
         /// <param name="file1">File with contents to be merged.</param>
@@ -514,7 +546,10 @@ namespace FileHelpers
         }
 
 
-	    /// <summary>Simply dumps the DataTable contents to a delimited file using a ',' as delimiter.</summary>
+        /// <summary>
+	/// Simply dumps the DataTable contents to a delimited file using a ','
+	/// as delimiter.
+	/// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         public static void DataTableToCsv(DataTable dt, string filename)
@@ -533,7 +568,10 @@ namespace FileHelpers
         }
 
 
-        /// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
+        /// <summary>
+	/// Simply dumps the DataTable contents to a delimited file. Only
+	/// allows to set the delimiter.
+	/// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         /// <param name="options">The options used to write the file</param>
@@ -542,7 +580,10 @@ namespace FileHelpers
             CsvEngine.DataTableToCsv(dt, filename, options);
         }
 
-        /// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+        /// <summary>
+	/// Reads a CSV File and return their contents as DataTable (The file
+	/// must have the field names in the first row)
+	/// </summary>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="filename">The file to read.</param>
         /// <returns>The contents of the file as a DataTable</returns>
@@ -551,7 +592,10 @@ namespace FileHelpers
             return CsvEngine.CsvToDataTable(filename, delimiter);
         }
 
-        /// <summary>Reads a Csv File and return their contents as DataTable (The file must have the field names in the first row)</summary>
+        /// <summary>
+	/// Reads a CSV File and return their contents as DataTable (The file
+	/// must have the field names in the first row)
+	/// </summary>
         /// <param name="classname">The name of the record class</param>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="filename">The file to read.</param>
@@ -653,7 +697,7 @@ namespace FileHelpers
                     return RawReadFirstLinesArray(file, lines, Encoding.Default);
                 }
 
-	    /// <summary>
+        /// <summary>
         /// Shortcut method to read the first n lines of a text file as array.
         /// </summary>
         /// <param name="file">The file name</param>
@@ -682,12 +726,11 @@ namespace FileHelpers
 
         #region "  ReadCSV  "
 
-
-
         /// <summary>
-        /// A fast way to read record by record a CSV file delimited by ','. The fields can be quoted.
+	/// A fast way to read record by record a CSV file delimited by ','.
+	/// The fields can be quoted.
         /// </summary>
-        /// <param name="filename">The csv file to read</param>
+        /// <param name="filename">The CSV file to read</param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename)
         {
@@ -695,9 +738,10 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to read record by record a CSV file with a custom delimiter. The fields can be quoted.
+	/// A fast way to read record by record a CSV file with a custom
+	/// delimiter. The fields can be quoted.
         /// </summary>
-        /// <param name="filename">The csv file to read</param>
+        /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter)
@@ -706,9 +750,10 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to read record by record a CSV file with a custom delimiter. The fields can be quoted.
+	/// A fast way to read record by record a CSV file with a custom
+	/// delimiter. The fields can be quoted.
         /// </summary>
-        /// <param name="filename">The csv file to read</param>
+        /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
         /// <param name="headerLines">The number of header lines in the CSV file</param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
@@ -718,9 +763,10 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to read record by record a CSV file with a custom delimiter. The fields can be quoted.
+	/// A fast way to read record by record a CSV file with a custom
+	/// delimiter. The fields can be quoted.
         /// </summary>
-        /// <param name="filename">The csv file to read</param>
+        /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
         /// <param name="encoding">The file <see cref="Encoding"/></param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
@@ -730,9 +776,10 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to read record by record a CSV file with a custom delimiter. The fields can be quoted.
+	/// A fast way to read record by record a CSV file with a custom
+	/// delimiter. The fields can be quoted.
         /// </summary>
-        /// <param name="filename">The csv file to read</param>
+        /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
         /// <param name="encoding">The file <see cref="Encoding"/></param>
         /// <param name="headerLines">The number of header lines in the CSV file</param>
@@ -747,7 +794,7 @@ namespace FileHelpers
             return engine;
         }
 
-		#endregion
+        #endregion
     }
 
 #if ! (MINI)

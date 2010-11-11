@@ -20,7 +20,7 @@ namespace FileHelpers
 		/// <summary>Include the record if it begins and ends with selector string.</summary>
 		IncludeIfEnclosed,
 #if ! MINI
-		/// <summary>Include the record if it matchs the regular expression passed as selector.</summary>
+		/// <summary>Include the record if it matches the regular expression passed as selector.</summary>
 		IncludeIfMatchRegex,
 #endif
 
@@ -34,7 +34,7 @@ namespace FileHelpers
 		ExcludeIfEnclosed
 #if ! MINI
 			,
-		/// <summary>Exclude the record if it matchs the regular expression passed as selector.</summary>
+		/// <summary>Exclude the record if it matches the regular expression passed as selector.</summary>
 		ExcludeIfMatchRegex
 #endif
 	

@@ -9,6 +9,10 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Interface for The fileHelpers generic engine
+    /// </summary>
+    /// <typeparam name="T">Type of object array to return</typeparam>
     public interface IFileHelperEngine<T> where T : class
     {
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
@@ -137,7 +141,10 @@ namespace FileHelpers
         /// <summary>The read footer in the last read operation. If any.</summary>
         string FooterText { get; set; }
 
-        /// <summary>The encoding to Read and Write the streams. Default is the system's current ANSI code page.</summary>
+        /// <summary>
+        /// The encoding to Read and Write the streams. Default is the system's
+        /// current ANSI code page.
+        /// </summary>
         /// <value>Default is the system's current ANSI code page.</value>
         Encoding Encoding { get; set; }
 
@@ -145,7 +152,10 @@ namespace FileHelpers
         /// <remarks>You can, for example, get the errors, their number, Save them to a file, etc.</remarks>
         ErrorManager ErrorManager { get; }
 
-        /// <summary>Indicates the behavior of the engine when it found an error. (shortcut for ErrorManager.ErrorMode)</summary>
+        /// <summary>
+        /// Indicates the behavior of the engine when it found an error.
+        /// (shortcut for ErrorManager.ErrorMode)
+        /// </summary>
         ErrorMode ErrorMode { get; set; }
 
         /// <summary>Called to notify progress.</summary>

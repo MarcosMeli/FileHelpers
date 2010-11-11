@@ -5,7 +5,8 @@
 		Read a file and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method open, read and close the file (don't open or close the file before or after to call this method)
+			This method opens, reads and closes the file
+			(don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
 		<param name="fileName">The file path to be read.</param>
@@ -17,7 +18,7 @@
 		Read a Stream and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method only uses the stream and dont close them after use it, you must do it.
+		This method only uses the stream and does not close the stream after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
 		<param name="reader">The reader of the source stream.</param>
@@ -37,7 +38,8 @@
 		Append a record to the specified file.
 		</summary>
 		<remarks>
-		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+			This method opens, seeks to the end, writes and closes the file
+			(don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/AppendFile/*'/>
 		<param name="fileName">The file path to be written at end.</param>
@@ -50,7 +52,8 @@
 		Append an array of records to the specified file.
 		</summary>
 		<remarks>
-		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+			This method opens, seeks to the end, writes and closes the file
+			(don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/AppendFile/*'/>
 	
@@ -64,8 +67,9 @@
 		Write an array of records to the specified file.
 		</summary>
 		<remarks>
-		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
-		<para>This method overrides existing files.</para>
+			<para>This method opens, writes and closes the file
+			(don't open or close the file before or after calling this method)</para>
+		<para>This method over writes existing files.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="fileName">The file path to be write.</param>
@@ -78,8 +82,9 @@
 		Write the specified number of records from the array to a file.
 		</summary>
 		<remarks>
-		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
-		<para>This method overrides existing files.</para>
+			<para>This method opens, writes and closes the file
+			(don't open or close the file before or after calling this method)</para>
+		<para>This method over writes existing files.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="fileName">The file path to be write.</param>
@@ -93,7 +98,7 @@
 		Write an array of records to the specified Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and don't close them after use it, you must do it.
+		This method only uses the stream and does not close the stream after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
@@ -106,7 +111,7 @@
 		Write the specified number of records in the array to the Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and don't close them after use it, you must do it.
+		This method only uses the stream and does not close the stream after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
@@ -142,7 +147,8 @@
 	</ColumnNum>
 
 	<TotalRecords>
-		<summary>The total numbers of records in the last read/written file (only works with whole read/write).</summary>
+		<summary>The total numbers of records in the last file read or written
+			(only works with whole read/write).</summary>
 	</TotalRecords>
 
 	<RecordType>

@@ -1,6 +1,4 @@
 
-
-
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -12,6 +10,10 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Async engine,  reads records from file in background,
+    /// returns them record by record in foreground
+    /// </summary>
     public sealed class FileHelperAsyncEngine :
         FileHelperAsyncEngine<object>
     {
@@ -36,8 +38,8 @@ namespace FileHelpers
 
     /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
     /// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
-    [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     /// <typeparam name="T">The record type.</typeparam>
+    [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public class FileHelperAsyncEngine<T> :
         EventEngineBase<T>,
         IFileHelperAsyncEngine<T>
@@ -52,6 +54,8 @@ namespace FileHelpers
         {
         }
 
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <param name="type">Type of object to be handled</param>
         protected FileHelperAsyncEngine(Type type)
             : base(type)
         {
@@ -66,6 +70,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
+        /// <param name="type">Type of record to read</param>
         protected FileHelperAsyncEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
@@ -166,8 +171,6 @@ namespace FileHelpers
             }
         }
 
-
-
         #endregion
 
         #region "  BeginReadStream"
@@ -225,6 +228,7 @@ namespace FileHelpers
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadFile/*'/>
+        /// <param name="bufferSize">Buffer size to read</param>
         public IDisposable BeginReadFile(string fileName, int bufferSize)
         {
             BeginReadStream(new InternalStreamReader(fileName, mEncoding, true, bufferSize));
@@ -371,7 +375,10 @@ namespace FileHelpers
             }
         }
 
-
+        /// <summary>
+        /// Return array of object for all data to end of the file
+        /// </summary>
+        /// <returns>Array of objects created from data on file</returns>
         public T[] ReadToEnd()
         {
             return ReadNexts(int.MaxValue);
@@ -402,7 +409,8 @@ namespace FileHelpers
 
         /// <summary>
         /// Save all the buffered data for write to the disk. 
-        /// Useful to opened async engines that wants to save pending values to disk or for engines used for logging.
+        /// Useful to opened async engines that wants to save pending values to
+        /// disk or for engines used for logging.
         /// </summary>
         public void Flush()
         {
@@ -504,6 +512,7 @@ namespace FileHelpers
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
+        /// <param name="bufferSize">Size of the write buffer</param>
         public IDisposable BeginWriteFile(string fileName, int bufferSize)
         {
             BeginWriteStream(new StreamWriter(fileName, false, mEncoding, bufferSize));
@@ -516,12 +525,18 @@ namespace FileHelpers
 
         #region "  BeginAppendToFile  "
 
+        /// <summary>
+        /// Begin the append to an existing file
+        /// </summary>
+        /// <param name="fileName">Filename to append to</param>
+        /// <returns>Object to append  TODO:  ???</returns>
         public IDisposable BeginAppendToFile(string fileName)
         {
             return BeginAppendToFile(fileName, EngineBase.DefaultWriteBufferSize);
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
+        /// <param name="bufferSize">Size of the buffer for writing</param>
         public IDisposable BeginAppendToFile(string fileName, int bufferSize)
         {
             if (mAsyncReader != null)
@@ -644,7 +659,8 @@ namespace FileHelpers
         #region "  WriteNext for LastRecordValues  "
 
         /// <summary>
-        /// Write the current record values in the buffer. You can use engine[0] or engine["YourField"] to set the values.
+        /// Write the current record values in the buffer. You can use
+        /// engine[0] or engine["YourField"] to set the values.
         /// </summary>
         public void WriteNextValues()
         {
@@ -786,8 +802,6 @@ namespace FileHelpers
 
         #endregion
 
-      
-
         #region "  State  "
 
         private EngineState mState = EngineState.Closed;
@@ -802,9 +816,7 @@ namespace FileHelpers
             set { mState = value; }
         }
 
-
         #endregion
-
 
     }
 }

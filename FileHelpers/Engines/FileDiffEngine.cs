@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -7,16 +5,18 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
 
-	/// <summary>Engine used to create diff files based on the <see cref="IComparableRecord"/> interface.</summary>
-    [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
+	/// <summary>
+    /// Engine used to create diff files based on the
+    /// <see cref="IComparableRecord"/> interface.
+    /// </summary>
     /// <typeparam name="T">The record type.</typeparam>
+    [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class FileDiffEngine<T>: EngineBase
 		where T: class, IComparableRecord<T>
     {
 		/// <summary>
 		/// Creates a new <see cref="FileDiffEngine"/>
 		/// </summary>
-		/// <param name="recordType">The record type class that implements the <see cref="IComparableRecord"/> interface.</param>
 		public FileDiffEngine():base(typeof(T))
 		{
 		}
@@ -78,8 +78,8 @@ namespace FileHelpers
 		/// <summary>
 		/// Returns the duplicated records in both files.
 		/// </summary>
-		/// <param name="file1">A file with record.</param>
-		/// <param name="file2">A file with record.</param>
+		/// <param name="file1">A file with records.</param>
+		/// <param name="file2">A file with records.</param>
 		/// <returns>The records that appear in both files.</returns>
 		public T[] OnlyDuplicatedRecords(string file1, string file2)
 		{
@@ -175,7 +175,11 @@ namespace FileHelpers
     
 		} 
 
-		/// <summary>Read the source file, the new file, get the new records and write them to a destination file.</summary>
+		/// <summary>
+        /// Read the source file, the new File, get the records and write
+        /// them to a destination file.  (record not in first file but in
+        /// second will be written to the third)
+        /// </summary>
 		/// <param name="sourceFile">The file with the source records.</param>
 		/// <param name="newFile">The file with the new records.</param>
 		/// <param name="destFile">The destination file.</param>

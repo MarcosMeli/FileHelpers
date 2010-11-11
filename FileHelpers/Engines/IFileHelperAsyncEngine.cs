@@ -7,6 +7,10 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Interface for the FileHelper Async Engine
+    /// </summary>
+    /// <typeparam name="T">Type of record to be read</typeparam>
     public interface IFileHelperAsyncEngine<T> 
         : IEnumerable<T>
         , IDisposable
@@ -17,7 +21,7 @@ namespace FileHelpers
 
         /// <summary>
         /// An array with the values of each field of the current record
-        /// </summary>D:\
+        /// </summary>
         object[] LastRecordValues { get; }
 
         /// <summary>Allows to change some record layout options at runtime</summary>
@@ -43,7 +47,10 @@ namespace FileHelpers
         /// <summary>The read footer in the last read operation. If any.</summary>
         string FooterText { get; set; }
 
-        /// <summary>The encoding to Read and Write the streams. Default is the system's current ANSI code page.</summary>
+        /// <summary>
+        /// The encoding to Read and Write the streams.
+        /// Default is the system's current ANSI code page.
+        /// </summary>
         /// <value>Default is the system's current ANSI code page.</value>
         Encoding Encoding { get; set; }
 
@@ -51,7 +58,10 @@ namespace FileHelpers
         /// <remarks>You can, for example, get the errors, their number, Save them to a file, etc.</remarks>
         ErrorManager ErrorManager { get; }
 
-        /// <summary>Indicates the behavior of the engine when it found an error. (shortcut for ErrorManager.ErrorMode)</summary>
+        /// <summary>
+        /// Indicates the behavior of the engine when it found an error.
+        /// (shortcut for ErrorManager.ErrorMode)
+        /// </summary>
         ErrorMode ErrorMode { get; set; }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadStream/*'/>
@@ -66,6 +76,10 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
         T ReadNext();
 
+        /// <summary>
+        /// Read the file to the end,  returning an array of records
+        /// </summary>
+        /// <returns>Records left to process</returns>
         T[] ReadToEnd();
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
@@ -73,7 +87,8 @@ namespace FileHelpers
 
         /// <summary>
         /// Save all the buffered data for write to the disk. 
-        /// Useful to opened async engines that wants to save pending values to disk or for engines used for logging.
+        /// Useful with opened async engines when you want to save pending values to disk.
+        /// Expecially for engines used for logging.
         /// </summary>
         void Flush();
 

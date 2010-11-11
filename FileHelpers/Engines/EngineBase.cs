@@ -1,5 +1,3 @@
-
-
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,7 +8,7 @@ using FileHelpers.Options;
 
 namespace FileHelpers
 {
-    /// <summary>Abstact Base class for the two engines of the library: 
+    /// <summary>Abstract Base class for the engines of the library: 
     /// <see cref="FileHelperEngine"/> and 
     /// <see cref="FileHelperAsyncEngine"/></summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -24,14 +22,22 @@ namespace FileHelpers
         internal const int DefaultWriteBufferSize = 100 * 1024;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        
         internal readonly IRecordInfo mRecordInfo;
 
         #region "  Constructor  "
 
+        /// <summary>
+        /// Create an engine on record type, with default encoding
+        /// </summary>
+        /// <param name="recordType">Class to base engine on</param>
 		internal EngineBase(Type recordType):this(recordType, Encoding.Default)
 		{}
 
+        /// <summary>
+        /// Create and engine on type with specified encoding
+        /// </summary>
+        /// <param name="recordType">Class to base engine on</param>
+        /// <param name="encoding">encoding of the file</param>
         internal EngineBase(Type recordType, Encoding encoding)
         {
             if (recordType == null)
@@ -49,13 +55,16 @@ namespace FileHelpers
             CreateRecordOptions();
         }
 
+        /// <summary>
+        /// Create an engine on the record info provided
+        /// </summary>
+        /// <param name="ri">Record information</param>
         internal EngineBase(RecordInfo ri)
         {
             mRecordType = ri.RecordType;
             mRecordInfo = ri;
 
             CreateRecordOptions();
-
         }
 
 
@@ -88,10 +97,11 @@ namespace FileHelpers
         #endregion
 
         /// <summary>
-        /// Builds a line with the name of the fields, for a delimited fiels it uses the same delimiter, 
-        /// for a fixed length field it writes the fields names separeted with tabs
+        /// Builds a line with the name of the fields, for a delimited files it
+        /// uses the same delimiter, for a fixed length field it writes the
+        /// fields names separated with tabs
         /// </summary>
-        /// <returns></returns>
+        /// <returns>field names structured for the heading of the file</returns>
         public string GetFileHeader()
         {
             var delimiter = "\t";
@@ -103,13 +113,13 @@ namespace FileHelpers
 
             var res = new StringBuilder();
             for (int i = 0; i < mRecordInfo.Fields.Length; i++)
-			{
+            {
                 if (i > 0)
                     res.Append(delimiter);
 
                 var field = mRecordInfo.Fields[i];
                 res.Append(field.FieldFriendlyName);
-			}
+            }
 
             return res.ToString();
         }
@@ -143,8 +153,9 @@ namespace FileHelpers
 
         #region "  FooterText"
 
+        /// <summary>The Read Footer in the last Read operation. If any.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal string mFooterText = String.Empty;
+        protected string mFooterText = String.Empty;
 
         /// <summary>The Read Footer in the last Read operation. If any.</summary>
         public string FooterText
@@ -157,8 +168,12 @@ namespace FileHelpers
 
         #region "  Encoding  "
 
+        /// <summary>
+        /// The encoding to Read and Write the streams. 
+        /// Default is the system's current ANSI code page.
+        /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal Encoding mEncoding = Encoding.Default;
+        protected Encoding mEncoding = Encoding.Default;
 
         /// <summary>
         /// The encoding to Read and Write the streams. 
@@ -181,7 +196,7 @@ namespace FileHelpers
 
         /// <summary>This is a common class that manages the errors of the library.</summary>
         /// <remarks>
-        ///   You can find complete infomation about the errors encountered while processing.
+        ///   You can find complete information about the errors encountered while processing.
         ///   For example, you can get the errors, their number and save them to a file, etc.
         ///   </remarks>
         ///   <seealso cref="FileHelpers.ErrorManager"/>
@@ -205,6 +220,9 @@ namespace FileHelpers
 
         #region "  ResetFields  "
 
+        /// <summary>
+        /// Reset back to the beginning
+        /// </summary>
         internal void ResetFields()
         {
             mLineNumber = 0;
@@ -216,9 +234,12 @@ namespace FileHelpers
 
 #if ! MINI
 
-        /// <summary>Called to notify progress.</summary>
+        /// <summary>Event handler called to notify progress.</summary>
         public event EventHandler<ProgressEventArgs> Progress;
 
+        /// <summary>
+        /// Determine whether a progress call is needed
+        /// </summary>
         protected bool MustNotifyProgress
         {
             get { return Progress != null; }
@@ -237,7 +258,6 @@ namespace FileHelpers
         }
 #endif
 
-
         private void CreateRecordOptions()
         {
             if (mRecordInfo.IsDelimited)
@@ -250,7 +270,6 @@ namespace FileHelpers
         /// Allows you to change some record layout options at runtime
         /// </summary>
         public RecordOptions Options { get; private set; }
-
 
     }
 }

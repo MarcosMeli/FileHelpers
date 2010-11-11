@@ -1,5 +1,4 @@
 
-
 #undef GENERICS
 //#define GENERICS
 //#if NET_2_0
@@ -29,7 +28,8 @@ namespace FileHelpers
 
 	#endregion
 
-	/// <summary><para>This engine allows you to parse and write files that contain
+	/// <summary>
+    /// <para>This engine allows you to parse and write files that contain
     /// records of different types and that are in a linear relationship</para>
     /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
 	/// </summary>
@@ -97,7 +97,10 @@ namespace FileHelpers
 
 		/// <summary>Create a new instance of the MultiRecordEngine</summary>
 		/// <param name="recordTypes">The Types of the records that this engine can handle.</param>
-		/// <param name="recordSelector">Used only in read operations. The selector indicates to the engine what Type to use in each read line.</param>
+		/// <param name="recordSelector">
+        /// Used only in read operations. The selector indicates to the engine
+        /// what Type to use in each read line.
+        /// </param>
 		public MultiRecordEngine(RecordTypeSelector recordSelector, params Type[] recordTypes) : base(GetFirstType(recordTypes))
 		{
 			mTypes = recordTypes;
@@ -194,7 +197,7 @@ namespace FileHelpers
 		/// Read a File and returns the records.
 		/// </summary>
 		/// <param name="fileName">The file with the records.</param>
-		/// <returns>The read records of the differents types all mixed.</returns>
+		/// <returns>The read records of different types all mixed.</returns>
 		public object[] ReadFile(string fileName)
 		{
             using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
@@ -206,6 +209,11 @@ namespace FileHelpers
 		#endregion
 
 		#region "  ReadStream  "
+        /// <summary>
+        /// Read an array of objects from a stream
+        /// </summary>
+        /// <param name="reader">Stream we are reading from</param>
+        /// <returns>Array of objects</returns>
         public object[] ReadStream(TextReader reader)
         {
             return ReadStream(new NewLineDelimitedRecordReader(reader));
@@ -392,8 +400,8 @@ namespace FileHelpers
 		/// <summary>
 		/// Write the records to a file
 		/// </summary>
-		/// <param name="writer"></param>
-		/// <param name="records"></param>
+		/// <param name="writer">Where data is written</param>
+		/// <param name="records">records to write to the file</param>
 		public void WriteStream(TextWriter writer, IEnumerable records)
 		{
 			WriteStream(writer, records, -1);
@@ -582,13 +590,19 @@ namespace FileHelpers
 
 		#region "  BeginReadStream"
 
+        /// <summary>
+        /// Read a generic file as delimited by newlines
+        /// </summary>
+        /// <param name="reader">Text reader</param>
         public void BeginReadStream(TextReader reader)
         {
             BeginReadStream(new NewLineDelimitedRecordReader(reader));
         }
 
 		/// <summary>
-		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+        /// Method used to use this engine in Async mode. Work together with
+        /// <see cref="ReadNext"/>. (Remember to call Close after read the
+        /// data)
 		/// </summary>
 		/// <param name="reader">The source Reader.</param>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
@@ -622,7 +636,9 @@ namespace FileHelpers
 		#region "  BeginReadFile  "
 
 		/// <summary>
-		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+        /// Method used to use this engine in Async mode. Work together with
+        /// <see cref="ReadNext"/>. (Remember to call Close after read the
+        /// data)
 		/// </summary>
 		/// <param name="fileName">The source file.</param>
 		public void BeginReadFile(string fileName)
@@ -631,7 +647,9 @@ namespace FileHelpers
 		}
 
 		/// <summary>
-		/// Method used to use this engine in Async mode. Work together with <see cref="ReadNext"/>. (Remember to call Close after read the data)
+        /// Method used to use this engine in Async mode. Work together with
+        /// <see cref="ReadNext"/>. (Remember to call Close after read the
+        /// data)
 		/// </summary>
 		/// <param name="sourceData">The source String</param>
 		public void BeginReadString(string sourceData)
@@ -646,8 +664,9 @@ namespace FileHelpers
 		
 
 		/// <summary>
-		/// Save all the buffered data for write to the disk. 
-		/// Useful to long opened async engines that wants to save pending values or for engines used for logging.
+        /// Save all the buffered data for write to the disk. 
+        /// Useful to long opened async engines that wants to save pending
+        /// values or for engines used for logging.
 		/// </summary>
 		public void Flush()
 		{
@@ -898,7 +917,11 @@ namespace FileHelpers
 
 
 		#region "  WriteNext  "
-		/// <summary>Write the next record to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.</summary>
+		/// <summary>
+        /// Write the next record to a file or stream opened with
+        /// <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or
+        /// <see cref="BeginAppendToFile" /> method.
+        /// </summary>
 		/// <param name="record">The record to write.</param>
 		public void WriteNext(object record)
 		{
@@ -911,7 +934,11 @@ namespace FileHelpers
 			WriteRecord(record);
 		}
 		
-		/// <summary>Write the nexts records to a file or stream opened with <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or <see cref="BeginAppendToFile" /> method.</summary>
+		/// <summary>
+        /// Write the nexts records to a file or stream opened with
+        /// <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or
+        /// <see cref="BeginAppendToFile" /> method.
+        /// </summary>
 		/// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
 		public void WriteNexts(IEnumerable records)
 		{
@@ -932,11 +959,6 @@ namespace FileHelpers
 				WriteRecord(rec);
 			}
 		}
-
-
-
-
-
 
 
 		private void WriteRecord(object record)
@@ -991,12 +1013,13 @@ namespace FileHelpers
 		#endregion
 
 
-
-
 		#region "  BeginWriteStream"
 
 		///	<summary>Set the stream to be used in the <see cref="WriteNext" /> operation.</summary>
-		///	<remarks><para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		///	<remarks>
+        ///	<para>When you finish to write to the file you must call
+        ///	<b><see cref="Close" /></b> method.</para>
+        ///	</remarks>
 		///	<param name="writer">To stream to writes to.</param>
 		public void BeginWriteStream(TextWriter writer)
 		{
@@ -1021,8 +1044,15 @@ namespace FileHelpers
 
 		#region "  BeginWriteFile  "
 
-		///	<summary>Open a file for write operations. If exist the engine override it. You can use <see cref="WriteNext"/> or <see cref="WriteNexts"/> to write records.</summary>
-		///	<remarks><para>When you finish to write to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		///	<summary>
+        ///	Open a file for write operations. If exist the engine override it.
+        ///	You can use <see cref="WriteNext"/> or <see cref="WriteNexts"/> to
+        ///	write records.
+        ///	</summary>
+		///	<remarks>
+        ///	<para>When you finish to write to the file you must call
+        ///	<b><see cref="Close" /></b> method.</para>
+        ///	</remarks>
 		/// <param name="fileName">The file path to be opened for write.</param>
 		public void BeginWriteFile(string fileName)
 		{
@@ -1036,7 +1066,8 @@ namespace FileHelpers
 
 		///	<summary>Open a file to be appended at the end.</summary>
 		///	<remarks><para>This method open and seek to the end the file.</para>
-		///	<para>When you finish to append to the file you must call <b><see cref="Close" /></b> method.</para></remarks>
+		///	<para>When you finish to append to the file you must call
+        ///	<b><see cref="Close" /></b> method.</para></remarks>
 		///	<param name="fileName">The file path to be opened to write at the end.</param>
 		public void BeginAppendToFile(string fileName)
 		{

@@ -2,7 +2,7 @@
 
 namespace FileHelpers
 {
-    ///<summary>Represents a record/field length indicator strategy</summary>
+    ///<summary>Represents a record or field length indicator strategy</summary>
     public enum LengthIndicatorType
     {
         ///<summary>Least Significant Byte first (Little-Endian) integer</summary>

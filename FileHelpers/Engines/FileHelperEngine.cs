@@ -1,6 +1,3 @@
-
-
-
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -11,6 +8,7 @@ using System.Text;
 using System.Collections.Generic;
 
 #if ! MINI
+
 using System.Data;
 using FileHelpers.Events;
 using FileHelpers.Options;
@@ -22,7 +20,12 @@ using FileHelpers.Dynamic;
 namespace FileHelpers
 {
 
-
+    /// <summary>
+    /// Basic engine to read record by record
+    /// </summary>
+#if ! DEBUG
+    [Obsolete("Please use generics version FileHelperEngine<type>")]
+#endif
     public class FileHelperEngine
         : FileHelperEngine<object>
     {
@@ -35,15 +38,15 @@ namespace FileHelpers
         { }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-        /// <param name="recordType">The Type of the record class</param>
         /// <param name="encoding">The Encoding used by the engine.</param>
-        /// 
         public FileHelperEngine(Type recordType, Encoding encoding)
 			: base(recordType, encoding)
         {
             
         }
 
+        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        /// <param name="ri">Record information on new type</param>
         internal FileHelperEngine(RecordInfo ri)
             : base(ri)
         {
@@ -84,14 +87,19 @@ namespace FileHelpers
 		    mObjectEngine = typeof (T) == typeof (object);
 		}
 
+        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        /// <param name="encoding">The Encoding used by the engine.</param>
+        /// <param name="type">Type of record we are reading</param>
         protected FileHelperEngine(Type type, Encoding encoding)
             : base(type, encoding)
         {
             mObjectEngine = typeof(T) == typeof(object);
         }
-		
 
-		internal FileHelperEngine(RecordInfo ri)
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        /// <param name="ri">Record information</param>
+        internal FileHelperEngine(RecordInfo ri)
 			: base(ri)
 		{
             mObjectEngine = typeof(T) == typeof(object);
@@ -716,8 +724,6 @@ namespace FileHelpers
 
 		#endregion
 
-
-	}
+    }
 }
-
 
