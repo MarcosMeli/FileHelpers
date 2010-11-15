@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace FileHelpers.Events
@@ -10,18 +8,50 @@ namespace FileHelpers.Events
 	public class ProgressEventArgs
         :EventArgs
 	{
+        /// <summary>
+        /// Percentage of the file complete (estimate or completion time)
+        /// </summary>
 	    public double Percent { get; private set; }
+
+        /// <summary>
+        /// Number of the record being processed
+        /// </summary>
         public int CurrentRecord { get; private set; }
+
 	    //public int ReadBytes { get; private set; }
+
+        /// <summary>
+        /// Total records in the file  (-1 is unknown)
+        /// </summary>
 	    public int TotalRecords { get; private set; }
+
+        /// <summary>
+        /// Current position in the file
+        /// </summary>
 	    public long CurrentBytes { get; private set; }
+
+        /// <summary>
+        /// Total bytes in the file
+        /// </summary>
 	    public long TotalBytes { get; private set; }
 
+        /// <summary>
+        /// Create a progress event argument
+        /// </summary>
+        /// <param name="currentRecord">Current record in file</param>
+        /// <param name="totalRecords">Total records in file</param>
 	    internal ProgressEventArgs(int currentRecord, int totalRecords)
                     :this (currentRecord, totalRecords, -1, -1)
         	    {
         	    }
 
+        /// <summary>
+        /// Create a progress event argument
+        /// </summary>
+        /// <param name="currentRecord">Current record in file</param>
+        /// <param name="totalRecords">Total number of records in file</param>
+        /// <param name="currentBytes">Current position in bytes</param>
+        /// <param name="totalBytes">Total bytes in file</param>
 	    internal ProgressEventArgs(int currentRecord, int totalRecords, long currentBytes, long totalBytes)
         {
             CurrentRecord = currentRecord;
@@ -41,4 +71,5 @@ namespace FileHelpers.Events
 	}
 
 #endif
+
 }

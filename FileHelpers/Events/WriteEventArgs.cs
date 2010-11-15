@@ -8,6 +8,12 @@ namespace FileHelpers.Events
         : FileHelpersEventArgs<T> 
         where T : class
     {
+        /// <summary>
+        /// Write events are based on this
+        /// </summary>
+        /// <param name="engine">Engine parsing data</param>
+        /// <param name="record">Object we are creating / populating</param>
+        /// <param name="lineNumber">Record number</param>
         internal WriteEventArgs(EventEngineBase<T> engine, T record, int lineNumber)
             :base(engine, lineNumber)
         {

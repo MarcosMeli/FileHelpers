@@ -9,6 +9,14 @@ namespace FileHelpers.Events
         //    : this(engine, line, lineChanged, newRecord, -1)
         //{}
 
+        /// <summary>
+        /// After the record is read,  allow details to be inspected.
+        /// </summary>
+        /// <param name="engine">Engine that parsed the record</param>
+        /// <param name="line">Record that was analysed</param>
+        /// <param name="lineChanged">Was it changed before</param>
+        /// <param name="newRecord">Object created</param>
+        /// <param name="lineNumber">Record number read</param>
         internal AfterReadEventArgs(EventEngineBase<T> engine, string line, bool lineChanged, T newRecord, int lineNumber)
             : base(engine, line, lineNumber)
 		{
@@ -21,6 +29,4 @@ namespace FileHelpers.Events
         public T Record { get; set; }
 
 	}
-
-
 }
