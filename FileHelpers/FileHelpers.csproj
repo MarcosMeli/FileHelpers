@@ -345,7 +345,7 @@
     <Compile Include="MasterDetail\MasterDetails.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MasterDetail\RecordAccion.cs">
+    <Compile Include="MasterDetail\RecordAction.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Messages\GenerateMessages1.autogen.cs">
