@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace FileHelpers
@@ -15,5 +13,4 @@ namespace FileHelpers
 		/// </summary>
 		T TransformTo();
 	}
-
 }

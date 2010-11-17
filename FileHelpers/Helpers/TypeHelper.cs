@@ -8,8 +8,16 @@ using System.Globalization;
 namespace FileHelpers
 {
 
+    /// <summary>
+    /// extensions to help with types
+    /// </summary>
 	internal static class TypeHelper
 	{
+        /// <summary>
+        /// Is this type any sort of numeric
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static bool IsNumericType(Type type)
         {
             return type == typeof(Int16) ||

@@ -10,7 +10,7 @@ namespace FileHelpers.Options
 	public sealed class CsvOptions
 	{
 
-		/// <summary>Create a Csv Wrapper using the specified number of fields.</summary>
+		/// <summary>Create a CSV Wrapper using the specified number of fields.</summary>
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="numberOfFields">The number of fields of each record</param>
@@ -19,7 +19,7 @@ namespace FileHelpers.Options
 		{
 		}
 
-        /// <summary>Create a Csv Wrapper using the specified number of fields.</summary>
+        /// <summary>Create a CSV Wrapper using the specified number of fields.</summary>
         /// <param name="className">The name of the record class</param>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="numberOfFields">The number of fields of each record</param>
@@ -32,7 +32,7 @@ namespace FileHelpers.Options
             mNumberOfFields = numberOfFields;
         }
 
-		/// <summary>Create a Csv Wrapper using the specified sample file with their headers.</summary>
+		/// <summary>Create a CSV Wrapper using the specified sample file with their headers.</summary>
 		/// <param name="className">The name of the record class</param>
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
@@ -43,7 +43,7 @@ namespace FileHelpers.Options
 			mSampleFileName = sampleFile;
 		}
 
-        /// <summary>Create a Csv Wrapper using the specified sample file with their headers.</summary>
+        /// <summary>Create a CSV Wrapper using the specified sample file with their headers.</summary>
         /// <param name="className">The name of the record class</param>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
@@ -66,7 +66,7 @@ namespace FileHelpers.Options
 		private string mDateFormat= "dd/MM/yyyy";
 		private string mDecimalSeparator = ".";
 		private Encoding mEncoding = Encoding.Default;
-		
+
 
 		/// <summary>A sample file from where to read the field names and number.</summary>
 		public string SampleFileName
@@ -82,7 +82,7 @@ namespace FileHelpers.Options
 			set { mDelimiter = value; }
 		}
 
-		/// <summary>The delimiter for each fiel name in the header.</summary>
+		/// <summary>The delimiter for each file name in the header.</summary>
 		public char HeaderDelimiter
 		{
 			get { return mHeaderDelimiter; }
@@ -117,7 +117,7 @@ namespace FileHelpers.Options
 			set { mHeaderLines = value; }
 		}
 
-		/// <summary>The DateFormat used to read and write datetime values</summary>
+		/// <summary>The DateFormat used to read and write DateTime values</summary>
 		public string DateFormat
 		{
 			get { return mDateFormat; }
@@ -131,7 +131,7 @@ namespace FileHelpers.Options
 			set { mDecimalSeparator = value; }
 		}
 
-		
+
 		/// <summary>
 		/// Encoding used when handling the CSV files.
 		/// </summary>
@@ -146,6 +146,11 @@ namespace FileHelpers.Options
 		ConvertHelpers.SingleConverter mSingleConv;
 		ConvertHelpers.DateTimeConverter mDateConv;
 
+        /// <summary>
+        /// Convert a field to a string
+        /// </summary>
+        /// <param name="o">object we want to convert</param>
+        /// <returns>string representation of the string</returns>
 		internal string ValueToString(object o)
 		{
 			if (mDecimalConv == null)
@@ -155,7 +160,7 @@ namespace FileHelpers.Options
 				mSingleConv = new ConvertHelpers.SingleConverter(DecimalSeparator);
 				mDateConv= new ConvertHelpers.DateTimeConverter(DateFormat);
 			}
-			
+
 			if (o == null)
 				return string.Empty;
 			else if (o is DateTime)
@@ -166,9 +171,8 @@ namespace FileHelpers.Options
 				return mDoubleConv.FieldToString(o);
 			else if (o is Single)
 				return mSingleConv.FieldToString(o);
-			else 
+			else
 				return o.ToString();
-			
 		}
 	}
 }

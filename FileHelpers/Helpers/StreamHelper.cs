@@ -1,5 +1,3 @@
-
-
 using System.IO;
 using System.Text;
 
@@ -23,7 +21,16 @@ namespace FileHelpers
         //    return CreateFileAppender(fileName, encode, correctEnd, true);
         //}
 
-		internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd, bool disposeStream, int bufferSize)
+        /// <summary>
+        /// open a stream with optional trim extra blank lines
+        /// </summary>
+        /// <param name="fileName">Filename to open</param>
+        /// <param name="encode">encoding of the file</param>
+        /// <param name="correctEnd">do we trim blank lines from end?</param>
+        /// <param name="disposeStream">do we close stream after trimming</param>
+        /// <param name="bufferSize">Buffer size to read</param>
+        /// <returns>TextWriter ready to write to</returns>
+        internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd, bool disposeStream, int bufferSize)
 		{
 			TextWriter res;
 
@@ -35,8 +42,10 @@ namespace FileHelpers
 				{
 					fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
+                    //  TODO:  This assumes \r\n for line ends, wont work properly for Linux or Macintosh
                     if (fs.Length >= 2)
                     {
+
 #if MINI
                         fs.Seek(2, SeekOrigin.End);
 #else
@@ -78,6 +87,5 @@ namespace FileHelpers
 
 			return res;
 		}
-
 	}
 }

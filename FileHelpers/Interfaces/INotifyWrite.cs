@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace FileHelpers.Events
@@ -28,17 +26,18 @@ namespace FileHelpers.Events
         where T : class
     {
 		/// <summary>
-		/// Method called by the engines before write a record to the destination stream.
+        /// Method called by the engines before write a record to the
+        /// destination stream.
 		/// </summary>
         /// <param name="e">The Event Info</param>
         void BeforeWrite(BeforeWriteEventArgs<T> e);
 
         /// <summary>
-        /// Method called by the engines after write a record to the destination stream.
+        /// Method called by the engines after write a record to the
+        /// destination stream.
         /// </summary>
         /// <param name="e">The Event Info</param>
         void AfterWrite(AfterWriteEventArgs<T> e);
 
     }
-
 }
