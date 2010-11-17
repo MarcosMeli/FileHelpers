@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.Reflection;
@@ -9,7 +7,7 @@ namespace FileHelpers
 {
 
     /// <summary>
-    /// Base class for all Field Types. 
+    /// Base class for all Field Types.
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     internal abstract class FieldBase
@@ -21,50 +19,130 @@ namespace FileHelpers
 
         // --------------------------------------------------------------
         // WARNING !!!
-        //    Remember to add each of this fields to the clone method !!
+        //    Remember to add each of these fields to the clone method !!
         // --------------------------------------------------------------
 
+        /// <summary>
+        /// type of object to be created,  eg DateTime
+        /// </summary>
         internal Type FieldType { get; private set; }
 
+        /// <summary>
+        /// Number of extra characters used,  delimiters and quote characters
+        /// </summary>
         internal int CharsToDiscard { get; set; }
+        /// <summary>
+        /// Provider to convert to and from text
+        /// </summary>
         internal ConverterBase ConvertProvider { get; private set; }
+        /// <summary>
+        /// Field type of an array or it is just fieldType.
+        /// What actual object will be created
+        /// </summary>
         internal Type FieldTypeInternal { get; set; }
+        /// <summary>
+        /// Is this field an array?
+        /// </summary>
         internal bool IsArray { get; set; }
+        /// <summary>
+        /// Seems to be duplicate of FieldTypeInternal except it is ONLY set
+        /// for an array
+        /// </summary>
         internal Type ArrayType { get; set; }
+        /// <summary>
+        /// Array must have this many entries
+        /// </summary>
         internal int ArrayMinLength { get; set; }
+        /// <summary>
+        /// Array may have this many entries,  if equal to ArrayMinLength then
+        /// it is a fixed length array
+        /// </summary>
         internal int ArrayMaxLength { get; set; }
+        /// <summary>
+        /// Am I the first field in an array list
+        /// </summary>
         internal bool IsFirst { get; set; }
+        /// <summary>
+        /// Am I the last field in the array list
+        /// </summary>
         internal bool IsLast { get; set; }
+        /// <summary>
+        /// Do we process this field but not store the value
+        /// </summary>
         internal bool Discarded { get; set; }
+        /// <summary>
+        /// Unused!
+        /// </summary>
         internal bool TrailingArray { get; set; }
+        /// <summary>
+        /// Value to use if input is null or empty
+        /// </summary>
         internal object NullValue { get; set; }
+        /// <summary>
+        /// Are we a simple string field we can just assign to
+        /// </summary>
         internal bool IsStringField { get; set; }
+        /// <summary>
+        /// Details about the extraction criteria
+        /// </summary>
         internal FieldInfo FieldInfo { get; set; }
+        /// <summary>
+        /// indicates whether we trim leading and/or trailing whitespace
+        /// </summary>
         internal TrimMode TrimMode { get; set; }
+        /// <summary>
+        /// Character to chop off front and / rear of the string
+        /// </summary>
         internal char[] TrimChars { get; set; }
+        /// <summary>
+        /// The field may not be present on the input data (line not long enough)
+        /// </summary>
         internal bool IsOptional { get; set; }
+        /// <summary>
+        /// The next field along is optional,  optimise processing next records
+        /// </summary>
         internal bool NextIsOptional { get; set; }
+        /// <summary>
+        /// Set from the FieldInNewLIneAtribute.  This field begins on a new
+        /// line of the file
+        /// </summary>
         internal bool InNewLine { get; set; }
+        /// <summary>
+        /// Order of the field in the file layout
+        /// </summary>
         internal int? FieldOrder { get; set; }
+        /// <summary>
+        /// Can null be assigned to this value type, for example not int or
+        /// DateTime
+        /// </summary>
         internal bool IsNullableType { get; private set; }
+        /// <summary>
+        /// Name of the field without extra characters (eg property)
+        /// </summary>
         internal string FieldFriendlyName { get; set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
-        //    Remember to add each of this fields to the clone method !!
+        //    Remember to add each of these fields to the clone method !!
         // --------------------------------------------------------------
 
+        /// <summary>
+        /// Fieldname of the field we are storing
+        /// </summary>
         internal string FieldName
         {
             get { return FieldInfo.Name; }
         }
 
-        
+
 
         // For performance add it here
-        private static readonly char[] mWhitespaceChars = new[] 
-			 { 
-				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
+        /// <summary>
+        /// List the various whitespace characters in Unicode
+        /// </summary>
+        private static readonly char[] mWhitespaceChars = new[]
+			 {
+				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008',
 				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
 			 };
 
@@ -73,6 +151,13 @@ namespace FileHelpers
 
         #region "  CreateField  "
 
+        /// <summary>
+        /// Check the Attributes on the field and return a structure containing
+        /// the settings for this file.
+        /// </summary>
+        /// <param name="fi">Information about this field</param>
+        /// <param name="recordAttribute">Type of record we are reading</param>
+        /// <returns>Null if not used</returns>
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
             // If ignored, return null
@@ -85,6 +170,7 @@ namespace FileHelpers
 
             // CHECK USAGE ERRORS !!!
 
+            // Fixed length record and no attributes at all
             if (recordAttribute is FixedLengthRecordAttribute && attributes.Length == 0)
                 throw new BadUsageException("The field: '" + fi.Name + "' must be marked the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
 
@@ -92,7 +178,7 @@ namespace FileHelpers
                 throw new BadUsageException("The field: '" + fi.Name + "' has a FieldFixedLength and a FieldDelimiter attribute.");
 
             if (recordAttribute is DelimitedRecordAttribute && fi.IsDefined(typeof(FieldAlignAttribute), false))
-                throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpouse.");
+                throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpose.");
 
             if (fi.FieldType.IsArray == false && fi.IsDefined(typeof(FieldArrayLengthAttribute), false))
                 throw new BadUsageException("The field: '" + fi.Name + "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
@@ -222,11 +308,18 @@ namespace FileHelpers
 
         #region "  Constructor  "
 
+        /// <summary>
+        /// Create a field base without any configuration
+        /// </summary>
         internal FieldBase()
         {
-          
         }
 
+        /// <summary>
+        /// Create a field base from a fieldinfo object
+        /// Verify the settings against the actual field to ensure it will work.
+        /// </summary>
+        /// <param name="fi">Field Info Object</param>
         internal FieldBase(FieldInfo fi)
         {
             IsNullableType = false;
@@ -282,7 +375,6 @@ namespace FileHelpers
                 }
             }
 
-
             IsNullableType = FieldTypeInternal.IsValueType &&
                                     FieldTypeInternal.IsGenericType &&
                                     FieldTypeInternal.GetGenericTypeDefinition() == typeof(Nullable<>);
@@ -295,10 +387,26 @@ namespace FileHelpers
 
         #region "  MustOverride (String Handling)  "
 
+        /// <summary>
+        /// Extract the string from the underlying data, removes quotes
+        /// characters for example
+        /// </summary>
+        /// <param name="line">Line to parse data from</param>
+        /// <returns>Slightly processed string from the data</returns>
         internal abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
+        /// <summary>
+        /// Create a text block containing the field from definition
+        /// </summary>
+        /// <param name="sb">Append string to output</param>
+        /// <param name="fieldValue">Field we are adding</param>
         internal abstract void CreateFieldString(StringBuilder sb, object fieldValue);
 
+        /// <summary>
+        /// Convert a field value to a string representation
+        /// </summary>
+        /// <param name="fieldValue">Object containing data</param>
+        /// <returns>String representation of field</returns>
         internal string CreateFieldString(object fieldValue)
         {
             if (ConvertProvider == null)
@@ -307,7 +415,6 @@ namespace FileHelpers
                     return string.Empty;
                 else
                     return fieldValue.ToString();
-
             }
             else
             {
@@ -319,12 +426,18 @@ namespace FileHelpers
 
         #region "  ExtractValue  "
 
+        /// <summary>
+        /// Get the data out of the records
+        /// </summary>
+        /// <param name="line">Line handler containing text</param>
+        /// <returns></returns>
         internal object ExtractFieldValue(LineInfo line)
         {
             //-> extract only what I need
 
             if (InNewLine)
             {
+                // Any trailing characters, terminate
                 if (line.EmptyFromPos() == false)
                     throw new BadUsageException(line, "Text '" + line.CurrentString +
                                                 "' found before the new line of the field: " + FieldInfo.Name +
@@ -377,22 +490,30 @@ namespace FileHelpers
                 else if (IsLast && line.IsEOL() == false)
                     throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, FieldInfo.Name, ArrayMaxLength));
 
+                // TODO:   is there a reason we go through all the array processing then discard it
                 if (Discarded)
                     return null;
                 else
                     return res.ToArray(ArrayType);
-
             }
-
         }
 
         #region "  AssignFromString  "
 
+        /// <summary>
+        /// Create field object after extracting the string from the underlying
+        /// input data
+        /// </summary>
+        /// <param name="fieldString">Information extracted?</param>
+        /// <param name="line">Underlying input data</param>
+        /// <returns>Object to assign to field</returns>
         internal object AssignFromString(ExtractedInfo fieldString, LineInfo line)
         {
             object val;
 
             var extractedString = fieldString.ExtractedString();
+
+            // TODO:  look at the trimming and optimise it
             var trimmedBoth = false;
             switch (TrimMode)
             {
@@ -402,21 +523,18 @@ namespace FileHelpers
                 case TrimMode.Both:
                     extractedString = extractedString.Trim();
                     trimmedBoth = true;
-                    //fieldString.TrimBoth(TrimChars);
                     break;
 
                 case TrimMode.Left:
                     extractedString = extractedString.TrimStart();
-                    //fieldString.TrimStart(TrimChars);
                     break;
 
                 case TrimMode.Right:
                     extractedString = extractedString.TrimEnd();
-                    //fieldString.TrimEnd(TrimChars);
                     break;
             }
 
-            
+
             try
             {
                 if (ConvertProvider == null)
@@ -486,6 +604,12 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Convert a null value into a representation,
+        /// allows for a null value override
+        /// </summary>
+        /// <param name="line">input line to read, used for error messages</param>
+        /// <returns>Null value for object</returns>
         private object GetNullValue(LineInfo line)
         {
             if (NullValue == null)
@@ -499,7 +623,7 @@ namespace FileHelpers
                     string msg = "Not value found for the value type field: '" + FieldInfo.Name + "' Class: '" +
                                  FieldInfo.DeclaringType.Name + "'. " + Environment.NewLine
                                  +
-                                 "You must use the [FieldNullValue] attribute because this is a value type and can´t be null or use a Nullable Type instead of the current type.";
+                                 "You must use the [FieldNullValue] attribute because this is a value type and can't be null or use a Nullable Type instead of the current type.";
 
                     throw new BadUsageException(line, msg);
 
@@ -511,6 +635,10 @@ namespace FileHelpers
                 return NullValue;
         }
 
+        /// <summary>
+        /// Get the null value that represent a discarded value
+        /// </summary>
+        /// <returns>null value of discard?</returns>
         private object GetDiscardedNullValue()
         {
             if (NullValue == null)
@@ -523,7 +651,7 @@ namespace FileHelpers
 
                     string msg = "The field: '" + FieldInfo.Name + "' Class: '" +
                                  FieldInfo.DeclaringType.Name +
-                                 "' is from a value type: "+ FieldInfo.FieldType.Name +" and to be discaded you must provide a [FieldNullValue] attribute.";
+                                 "' is from a value type: "+ FieldInfo.FieldType.Name +" and is discarded (null) you must provide a [FieldNullValue] attribute.";
 
                     throw new BadUsageException(msg);
 
@@ -539,6 +667,11 @@ namespace FileHelpers
 
         #region "  CreateValueForField  "
 
+        /// <summary>
+        /// Convert a field value into a write able value
+        /// </summary>
+        /// <param name="fieldValue">object value to convert</param>
+        /// <returns>converted value</returns>
         public object CreateValueForField(object fieldValue)
         {
             object val = null;
@@ -587,6 +720,12 @@ namespace FileHelpers
 
         #region "  AssignToString  "
 
+        /// <summary>
+        /// convert field to string value and assign to a string builder
+        /// buffer for output
+        /// </summary>
+        /// <param name="sb">buffer to collect record</param>
+        /// <param name="fieldValue">value to convert</param>
         internal void AssignToString(StringBuilder sb, object fieldValue)
         {
             if (this.InNewLine == true)
@@ -608,6 +747,10 @@ namespace FileHelpers
 
         #endregion
 
+        /// <summary>
+        /// Copy the field object
+        /// </summary>
+        /// <returns>a complete copy of the Field object</returns>
         public object Clone()
         {
             var res = CreateClone();
@@ -639,6 +782,10 @@ namespace FileHelpers
             return res;
         }
 
+        /// <summary>
+        /// Add the extra details that derived classes create
+        /// </summary>
+        /// <returns>field clone of right type</returns>
         protected abstract FieldBase CreateClone();
     }
 }

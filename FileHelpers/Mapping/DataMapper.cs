@@ -11,9 +11,17 @@ using System.Collections.Generic;
 namespace FileHelpers.Mapping
 {
 
+    /// <summary>
+    /// <para>A class to provide DataTable - DataReader - Records operations.</para>
+    /// <para>(Use it at your own risk, API can change a lot in future version)</para>
+    /// </summary>
     public sealed class DataMapper
         :DataMapper<object>
     {
+        /// <summary>
+        /// Create a new mapping object
+        /// </summary>
+        /// <param name="recordType"></param>
         public DataMapper(Type recordType)
             :base(recordType)
         {
@@ -29,7 +37,7 @@ namespace FileHelpers.Mapping
     public class DataMapper<T>
     {
 		internal IRecordInfo mRecordInfo;
-		
+
 
         /// <summary>
 		/// Create a new Mapping for the record Type 't'.
@@ -37,9 +45,13 @@ namespace FileHelpers.Mapping
 		public DataMapper()
             :this(typeof(T))
 		{
-			
+
 		}
 
+        /// <summary>
+        /// Read a type of record
+        /// </summary>
+        /// <param name="recordType">Reference to record type</param>
         internal DataMapper(Type recordType)
         {
             mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
@@ -57,9 +69,11 @@ namespace FileHelpers.Mapping
         }
 
 		/// <summary>
-		/// Add a new mapping between column at <paramref>columnIndex</paramref> and the fieldName with the specified <paramref>fieldName</paramref> name.
+        /// Add a new mapping between column at
+        /// <paramref>columnIndex</paramref> and the fieldName with the
+        /// specified <paramref>fieldName</paramref> name.
 		/// </summary>
-		/// <param name="columnIndex">The index in the Datatable</param>
+		/// <param name="columnIndex">The index in the DataTable</param>
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(int columnIndex, string fieldName)
 		{
@@ -67,9 +81,11 @@ namespace FileHelpers.Mapping
 			map.mDataColumnIndex = columnIndex + mInitialColumnOffset;
 			mMappings.Add(map);
 		}
-		
+
 		/// <summary>
-		/// Add a new mapping between column with <paramref>columnName</paramref> and the fieldName with the specified <paramref>fieldName</paramref> name.
+        /// Add a new mapping between column with
+        /// <paramref>columnName</paramref> and the fieldName with the
+        /// specified <paramref>fieldName</paramref> name.
 		/// </summary>
 		/// <param name="columnName">The name of the Column</param>
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
@@ -79,13 +95,13 @@ namespace FileHelpers.Mapping
 			map.mDataColumnName = columnName;
 			mMappings.Add(map);
 		}
-		
+
 		private ArrayList mMappings  = new ArrayList();
-		
+
 		/// <summary>
-		/// For each row in the datatable create a record.
+		/// For each row in the DataTable create a record.
 		/// </summary>
-		/// <param name="dt">The source Datatable</param>
+		/// <param name="dt">The source DataTable</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
 		public T[] MapDataTable2Records(DataTable dt)
         {
@@ -96,7 +112,7 @@ namespace FileHelpers.Mapping
 			{
 				arr.Add(MapRow2Record(row));
 			}
-			
+
 			return arr.ToArray();
         }
 
@@ -110,7 +126,7 @@ namespace FileHelpers.Mapping
 		public T MapRow2Record(DataRow dr)
         {
 			T record = (T) mRecordInfo.Operations.CreateRecordHandler();
-			
+
 			for(int i = 0; i < mMappings.Count; i++)
 			{
 				((MappingInfo) mMappings[i]).DataToField(dr, record);
@@ -129,7 +145,7 @@ namespace FileHelpers.Mapping
 		{
             T record = (T) mRecordInfo.Operations.CreateRecordHandler();
             //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
-				
+
 			for(int i = 0; i < mMappings.Count; i++)
 			{
 				((MappingInfo) mMappings[i]).DataToField(dr, record);
@@ -139,10 +155,10 @@ namespace FileHelpers.Mapping
 		}
 
 		/// <summary>
-		/// Create an automatic mapping for each column in the dt and each record field 
-		/// (the mapping is made by Index)
+        /// Create an automatic mapping for each column in the DataTable and
+        /// each record field (the mapping is made by Index)
 		/// </summary>
-		/// <param name="dt">The source Datatable</param>
+		/// <param name="dt">The source DataTable</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
         public T[] AutoMapDataTable2RecordsByIndex(DataTable dt)
 		{
@@ -151,47 +167,47 @@ namespace FileHelpers.Mapping
             FieldInfo[] fields =
 				mRecordInfo.RecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField |
 				BindingFlags.Instance | BindingFlags.IgnoreCase);
-			
+
 
 			if (fields.Length > dt.Columns.Count)
 				throw new FileHelpersException("The data table has less fields than fields in the Type: " +
 					mRecordInfo.RecordType.Name);
-			
+
 			for(int i = 0; i < fields.Length; i++)
 			{
 				MappingInfo map = new MappingInfo(fields[i]);
 				map.mDataColumnIndex = i;
 				mMappings.Add(map);
 			}
-			
+
 
 			foreach (DataRow row in dt.Rows)
 			{
 				T record = (T) mRecordInfo.Operations.CreateRecordHandler();
                 //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
-				
+
 				for(int i = 0; i < mMappings.Count; i++)
 				{
 					((MappingInfo) mMappings[i]).DataToField(row, record);
 				}
-				
+
 				arr.Add(record);
 			}
-			
+
             return arr.ToArray();
         }
 
-	
+
 		/// <summary>
-		/// For each row in the datatable create a record.
+		/// For each row in the DataTable create a record.
 		/// </summary>
 		/// <param name="connection">A valid connection (Opened or not)</param>
-		/// <param name="selectSql">The Sql statement used to return the records.</param>
+		/// <param name="selectSql">The SQL statement used to return the records.</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
         public T[] MapDataReader2Records(IDbConnection connection, string selectSql)
         {
             T[] res;
-            
+
             ExHelper.CheckNullParam(connection, "connection");
 			ExHelper.CheckNullOrEmpty(selectSql, "selectSql");
 
@@ -223,9 +239,9 @@ namespace FileHelpers.Mapping
 
 			return res;
 		}
-	
+
 		/// <summary>
-		/// For each row in the data reader create a record and return them.
+		/// For each row in the DataReader create a record and return them.
 		/// </summary>
 		/// <param name="dr">The source DataReader</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
@@ -235,7 +251,7 @@ namespace FileHelpers.Mapping
             ExHelper.CheckNullParam(dr, "dr");
 
 			mMappings.TrimToSize();
-			
+
 			if (HasRows(dr))
 			{
 				while (dr.Read())
@@ -250,7 +266,7 @@ namespace FileHelpers.Mapping
 
 #if NET_2_0
         /// <summary>
-		/// For each row in the data reader create a record and return them.
+		/// For each row in the DataReader create a record and return them.
 		/// </summary>
 		/// <param name="dr">The source DataReader</param>
 		/// <returns>The mapped records contained in the DataTable</returns>
@@ -259,7 +275,7 @@ namespace FileHelpers.Mapping
             ExHelper.CheckNullParam(dr, "dr");
 
 			mMappings.TrimToSize();
-			
+
 			if (HasRows(dr))
 			{
 				while (dr.Read())
@@ -270,10 +286,10 @@ namespace FileHelpers.Mapping
         }
 
 #endif
-        
+
 
 		/// <summary>
-		/// For each row in the data reader create a record and write them to the file
+		/// For each row in the DataReader create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
 		/// <param name="dr">The source DataReader</param>
@@ -281,9 +297,9 @@ namespace FileHelpers.Mapping
 		{
 			MapDataReader2File(dr, filename, false);
 		}
-	
+
 		/// <summary>
-		/// For each row in the data reader create a record and write them to the file
+		/// For each row in the DataReader create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
 		/// <param name="dr">The source DataReader</param>
@@ -294,7 +310,7 @@ namespace FileHelpers.Mapping
 			ExHelper.CheckNullOrEmpty(filename, "filename");
 
 			mMappings.TrimToSize();
-			
+
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
 
 			if (append)
@@ -317,7 +333,7 @@ namespace FileHelpers.Mapping
 		/// For each row in the data table create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
-		/// <param name="dt">The source Datatable</param>
+		/// <param name="dt">The source DataTable</param>
 		public void MapDataTable2File(DataTable dt, string filename)
 		{
 			MapDataTable2File(dt, filename, false);
@@ -326,7 +342,7 @@ namespace FileHelpers.Mapping
 		/// For each row in the data table create a record and write them to the file
 		/// </summary>
 		/// <param name="filename">The destination file path</param>
-		/// <param name="dt">The source Datatable</param>
+		/// <param name="dt">The source DataTable</param>
 		/// <param name="append">Indicates if the engine must append to the file or create a new one</param>
 		public void MapDataTable2File(DataTable dt, string filename, bool append)
 		{
@@ -334,9 +350,9 @@ namespace FileHelpers.Mapping
 			ExHelper.CheckNullOrEmpty(filename, "filename");
 
 			mMappings.TrimToSize();
-			
+
 			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
-			
+
 			if (append)
 				engine.BeginAppendToFile(filename);
 			else
@@ -363,10 +379,7 @@ namespace FileHelpers.Mapping
 #endif
 			return true;
 		}
-		
 	}
-
-
 }
 
 //#endif

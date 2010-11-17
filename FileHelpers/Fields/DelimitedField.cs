@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -7,7 +5,10 @@ using System.Text;
 
 namespace FileHelpers
 {
-	internal sealed class DelimitedField 
+    /// <summary>
+    /// Define a field that is delimited, eg CSV and may be quoted
+    /// </summary>
+	internal sealed class DelimitedField
         : FieldBase
 	{
 
@@ -15,11 +16,19 @@ namespace FileHelpers
 
         private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
 
+        /// <summary>
+        /// Create an empty delimited field structure
+        /// </summary>
         private DelimitedField()
             : base()
         {
         }
 
+        /// <summary>
+        /// Create a delimited field with defined separator
+        /// </summary>
+        /// <param name="fi">field info structure</param>
+        /// <param name="sep">field separator</param>
 	    internal DelimitedField(FieldInfo fi, string sep)
             : base(fi)
 	    {
@@ -34,6 +43,10 @@ namespace FileHelpers
 
 		private string mSeparator;
 
+        /// <summary>
+        /// Set the separator string
+        /// </summary>
+        /// <remarks>Also sets the discard count</remarks>
 		internal string Separator
 		{
 			get { return mSeparator; }
@@ -48,20 +61,36 @@ namespace FileHelpers
 			}
 		}
 
+        /// <summary>
+        /// allow a quoted multiline format
+        /// </summary>
         internal MultilineMode QuoteMultiline { get; set; }
+
+        /// <summary>
+        /// whether quotes are optional for read and / or write
+        /// </summary>
         internal QuoteMode QuoteMode { get; set; }
+
+        /// <summary>
+        /// quote character around field (and repeated within it)
+        /// </summary>
         internal char QuoteChar { get; set; }
 
 	    #endregion
 
 		#region "  Overrides String Handling  "
-         
 
+        /// <summary>
+        /// Extract the field from the delimited file, removing separators and quotes
+        /// and any duplicate quotes within the record
+        /// </summary>
+        /// <param name="line">line containing record input</param>
+        /// <returns>Extract information</returns>
 		internal override ExtractedInfo ExtractFieldString(LineInfo line)
 		{
 			if (IsOptional && line.IsEOL() )
 				return ExtractedInfo.Empty;
-            
+
 			if (QuoteChar == '\0')
 				return BasicExtractString(line);
 			else
@@ -94,22 +123,19 @@ namespace FileHelpers
 					else
 						throw new BadUsageException(string.Format("The field '{0}' not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: {2}", FieldInfo.Name, line.mReader.LineNumber, line.CurrentString));
 				}
-
 			}
-
-
 		}
 
 		private ExtractedInfo BasicExtractString(LineInfo line)
 		{
-		
+
 			if (IsLast && !IsArray)
             {
                 var sepPos = line.IndexOf(mSeparator);
 
                 if (sepPos == -1)
                     return new ExtractedInfo(line);
-                
+
                 // Now check for one extra separator
                 var msg = string.Format("Delimiter '{0}' found after the last field '{1}' (the file is wrong or you need to add a field to the record class)", mSeparator, this.FieldInfo.Name, line.mReader.LineNumber);
 
@@ -146,27 +172,32 @@ namespace FileHelpers
 			}
 		}
 
+        /// <summary>
+        /// Output the field string adding delimiters and any required quotes
+        /// </summary>
+        /// <param name="sb">buffer to add field to</param>
+        /// <param name="fieldValue">value object to add</param>
         internal override void CreateFieldString(StringBuilder sb, object fieldValue)
 		{
 			string field = base.CreateFieldString(fieldValue);
 
             bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
 
-			// If have a new line and this is not allowed throw an exception
+			// If have a new line and this is not allowed.  We throw an exception
 			if (hasNewLine &&
-				(QuoteMultiline == MultilineMode.AllowForRead || 
+				(QuoteMultiline == MultilineMode.AllowForRead ||
 				 QuoteMultiline == MultilineMode.NotAllow))
 				throw new BadUsageException("One value for the field " + this.FieldInfo.Name + " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
 
 			// Add Quotes If:
 			//     -  optional == false
-			//     -  is optional and contains the separator 
+			//     -  is optional and contains the separator
 			//     -  is optional and contains a new line
 
-			if ((QuoteChar != '\0') && 
-				(QuoteMode == QuoteMode.AlwaysQuoted || 
-					QuoteMode == QuoteMode.OptionalForRead || 
-					( (QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)  
+			if ((QuoteChar != '\0') &&
+				(QuoteMode == QuoteMode.AlwaysQuoted ||
+					QuoteMode == QuoteMode.OptionalForRead ||
+					( (QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)
 					&& mCompare.IndexOf(field, mSeparator, CompareOptions.Ordinal) >= 0) || hasNewLine))
 				StringHelper.CreateQuotedString(sb, field, QuoteChar);
 			else
@@ -176,6 +207,11 @@ namespace FileHelpers
 				sb.Append(mSeparator);
 		}
 
+        /// <summary>
+        /// create a field base class and populate the delimited values
+        /// base class will add its own values
+        /// </summary>
+        /// <returns>fieldbase ready to be populated with extra info</returns>
 	    protected override FieldBase CreateClone()
 	    {
 	        var res = new DelimitedField();
