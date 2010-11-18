@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 using System.ComponentModel;
@@ -16,8 +14,13 @@ namespace FileHelpers.Options
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal IRecordInfo mRecordInfo;
-	
-		internal RecordOptions(IRecordInfo info)
+
+        /// <summary>
+        /// This class allows you to set some options of the records at runtime.
+        /// With these options the library is now more flexible than ever.
+        /// </summary>
+        /// <param name="info">Record information</param>
+        internal RecordOptions(IRecordInfo info)
 		{
 			mRecordInfo = info;
             mRecordConditionInfo = new RecordConditionInfo(info);
@@ -36,19 +39,19 @@ namespace FileHelpers.Options
         //[System.Runtime.CompilerServices.IndexerName("FieldNames")]
         //public string this[int index]
         //{
-        //    get 
+        //    get
         //    {
-        //        return mRecordInfo.mFields[index].mFieldInfo.Name; 
+        //        return mRecordInfo.mFields[index].mFieldInfo.Name;
         //    }
         //}
 
-   
+
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string[] mFieldNames;
 
         /// <summary>
-        /// Returns an string array with the fields names. 
+        /// Returns an string array with the fields names.
         /// Note : Do NOT change the values of the array, clone it first if needed
         /// </summary>
         /// <returns>An string array with the fields names.</returns>
@@ -67,14 +70,13 @@ namespace FileHelpers.Options
 			}
         }
 
-        
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Type[] mFieldTypes;
 
         /// <summary>
-        /// Returns a Type[] array with the fields types. 
-        /// Note : Do NOT change the values of the array, clone it first if needed
+        /// Returns a Type[] array with the fields types.
+        /// Note : Do NOT change the values of the array, clone it first if
+        /// needed
         /// </summary>
         /// <returns>An Type[] array with the fields types.</returns>
         public Type[] FieldsTypes
@@ -114,7 +116,9 @@ namespace FileHelpers.Options
 			}
 		}
 
-		/// <summary>Indicates the number of lines at the end of file to be discarded.</summary>
+		/// <summary>
+        /// Indicates the number of lines at the end of file to be discarded.
+        /// </summary>
 		public int IgnoreLastLines
 		{
 			get { return mRecordInfo.IgnoreLast; }
@@ -125,7 +129,10 @@ namespace FileHelpers.Options
 			}
 		}
 
-		/// <summary>Indicates that the engine must ignore the empty lines while reading.</summary>
+		/// <summary>
+        /// Indicates that the engine must ignore the empty lines while
+        /// reading.
+        /// </summary>
 		public bool IgnoreEmptyLines
 		{
 			get { return mRecordInfo.IgnoreEmptyLines; }
@@ -135,7 +142,10 @@ namespace FileHelpers.Options
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordConditionInfo mRecordConditionInfo;
 
-        /// <summary>Used to tell the engine which records must be included or excluded while reading.</summary>
+        /// <summary>
+        /// Used to tell the engine which records must be included or excluded
+        /// while reading.
+        /// </summary>
         public RecordConditionInfo RecordCondition
         {
             get { return mRecordConditionInfo; }
@@ -145,32 +155,47 @@ namespace FileHelpers.Options
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private IgnoreCommentInfo mIgnoreCommentInfo;
 
-		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+		/// <summary>
+        /// Indicates that the engine must ignore the lines with this comment
+        /// marker.
+        /// </summary>
 		public IgnoreCommentInfo IgnoreCommentedLines
 		{
 			get { return mIgnoreCommentInfo; }
 		}
 
-        /// <summary>Used to tell the engine which records must be included or excluded while reading.</summary>
+        /// <summary>
+        /// Used to tell the engine which records must be included or excluded
+        /// while reading.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class RecordConditionInfo
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             IRecordInfo mRecordInfo;
 
+            /// <summary>
+            /// Used to tell the engine which records must be included or
+            /// excluded while reading.
+            /// </summary>
+            /// <param name="ri">Record information</param>
             internal RecordConditionInfo(IRecordInfo ri)
             {
                 mRecordInfo = ri;
             }
 
-            /// <summary>The condition used to include or exclude records.</summary>
+            /// <summary>
+            /// The condition used to include or exclude records.
+            /// </summary>
             public RecordCondition Condition
             {
                 get { return mRecordInfo.RecordCondition; }
                 set { mRecordInfo.RecordCondition = value; }
             }
 
-            /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
+            /// <summary>
+            /// The selector used by the <see cref="RecordCondition"/>.
+            /// </summary>
             public string Selector
             {
                 get { return mRecordInfo.RecordConditionSelector; }
@@ -178,24 +203,32 @@ namespace FileHelpers.Options
             }
         }
 
-
-
-		/// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
+        /// <summary>
+        /// Indicates that the engine must ignore the lines with this comment
+        /// marker.
+        /// </summary>
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public sealed class IgnoreCommentInfo
 		{
 
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             IRecordInfo mRecordInfo;
-			
+
+            /// <summary>
+            /// Indicates that the engine must ignore the lines with this
+            /// comment marker.
+            /// </summary>
+            /// <param name="ri">Record information</param>
             internal IgnoreCommentInfo(IRecordInfo ri)
 			{
 				mRecordInfo = ri;
 			}
 
 			/// <summary>
-			/// <para>Indicates that the engine must ignore the lines with this comment marker.</para>
-			/// <para>An empty string or null indicates that the engine doesn't look for comments</para>
+            /// <para>Indicates that the engine must ignore the lines with this
+            /// comment marker.</para>
+            /// <para>An empty string or null indicates that the engine doesn't
+            /// look for comments</para>
 			/// </summary>
 			public string CommentMarker
 			{
@@ -208,7 +241,10 @@ namespace FileHelpers.Options
 				}
 			}
 
-			/// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
+			/// <summary>
+            /// Indicates if the comment can have spaces or tabs at left (true
+            /// by default)
+            /// </summary>
 			public bool InAnyPlace
 			{
 				get { return mRecordInfo.CommentAnyPlace; }
@@ -218,15 +254,16 @@ namespace FileHelpers.Options
 
 
         /// <summary>
-        /// Allows the creating of a record string of the given record. Is useful when your want to log errors to a plan text file or database
+        /// Allows the creating of a record string of the given record. Is
+        /// useful when your want to log errors to a plan text file or database
         /// </summary>
-        /// <param name="record">The record that will be transformed to string</param>
+        /// <param name="record">
+        /// The record that will be transformed to string
+        /// </param>
         /// <returns>The string representation of the current record</returns>
         public string RecordToString(object record)
         {
             return mRecordInfo.Operations.RecordToString(record);
         }
-
     }
-
 }

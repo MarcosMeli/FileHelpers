@@ -3,7 +3,7 @@
 namespace FileHelpers
 {
 	/// <summary>
-	/// Indicates the trimming behavior of the trailing characters.
+	/// Indicates the trimming behavior of the leading and trailing whitespace.
 	/// </summary>
 	public enum TrimMode
 	{

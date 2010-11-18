@@ -5,6 +5,10 @@ using System.Text;
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Encapsulate stream reader provide some extra caching, and byte by byte
+    /// read
+    /// </summary>
     [Serializable]
     internal sealed class InternalStreamReader : TextReader
     {
@@ -30,19 +34,37 @@ namespace FileHelpers
         private const int MinBufferSize = 0x80;
         private Stream stream;
 
-        // Methods
+        /// <summary>
+        /// Create stream reader to be initialised later
+        /// </summary>
         internal InternalStreamReader()
         {
         }
 
+        /// <summary>
+        /// Create a stream reader on a text file (assume UTF8)
+        /// </summary>
+        /// <param name="path">filename to reader</param>
         public InternalStreamReader(string path) : this(path, Encoding.UTF8)
         {
         }
 
+        /// <summary>
+        /// Create a stream reader specifying path and encoding
+        /// </summary>
+        /// <param name="path">path to the filename</param>
+        /// <param name="encoding">encoding of the file</param>
         public InternalStreamReader(string path, Encoding encoding) : this(path, encoding, true, DefaultBufferSize)
         {
         }
 
+        /// <summary>
+        /// Open a file for reading allowing encoding,  detecting type and buffersize
+        /// </summary>
+        /// <param name="path">Filename to read</param>
+        /// <param name="encoding">Encoding of file,  eg UTF8</param>
+        /// <param name="detectEncodingFromByteOrderMarks">Detect type of file from contents</param>
+        /// <param name="bufferSize">Buffer size for the read</param>
         public InternalStreamReader(string path, Encoding encoding, bool detectEncodingFromByteOrderMarks, int bufferSize)
         {
             if ((path == null) || (encoding == null))
@@ -61,7 +83,10 @@ namespace FileHelpers
             this.Init(stream, encoding, detectEncodingFromByteOrderMarks, bufferSize);
         }
 
-  
+
+        /// <summary>
+        /// Close the stream, cleanup
+        /// </summary>
         public override void Close()
         {
             this.Dispose(true);
@@ -75,6 +100,10 @@ namespace FileHelpers
             this.byteLen -= n;
         }
 
+        /// <summary>
+        /// Open the file and check the first few bytes for Unicode encoding
+        /// values
+        /// </summary>
         private void DetectEncoding()
         {
             if (this.byteLen >= 2)
@@ -125,6 +154,9 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Discard all data inside the internal buffer
+        /// </summary>
         public void DiscardBufferedData()
         {
             this.byteLen = 0;
@@ -134,6 +166,10 @@ namespace FileHelpers
             this._isBlocked = false;
         }
 
+        /// <summary>
+        /// clean up the stream object
+        /// </summary>
+        /// <param name="disposing">first call or second</param>
         protected override void Dispose(bool disposing)
         {
             try
@@ -164,7 +200,7 @@ namespace FileHelpers
             this.stream = stream;
             this.encoding = encoding;
             this.decoder = encoding.GetDecoder();
-            
+
             if (bufferSize < MinBufferSize)
                 bufferSize = MinBufferSize;
 
@@ -208,6 +244,10 @@ namespace FileHelpers
             return this._checkPreamble;
         }
 
+        /// <summary>
+        /// Return the byte at the current position
+        /// </summary>
+        /// <returns>byte at current position or -1 on error</returns>
         public override int Peek()
         {
             if (this.stream == null)
@@ -221,6 +261,10 @@ namespace FileHelpers
             return -1;
         }
 
+        /// <summary>
+        /// Read a byte from the stream
+        /// </summary>
+        /// <returns></returns>
         public override int Read()
         {
             if (this.stream == null)
@@ -236,11 +280,14 @@ namespace FileHelpers
             return num;
         }
 
+        /// <summary>
+        /// Position within the file
+        /// </summary>
         public long Position
         {
             get
             {
-                return 
+                return
                      stream.Position + charPos - charLen;
             }
         }
@@ -459,6 +506,9 @@ namespace FileHelpers
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Is the stream able to be closed
+        /// </summary>
         internal bool Closable
         {
             get
@@ -467,6 +517,9 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// What is the streams current encoding
+        /// </summary>
         public Encoding CurrentEncoding
         {
             get
@@ -475,6 +528,9 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// What is the underlying stream on input file
+        /// </summary>
         public Stream BaseStream
         {
             get
@@ -483,6 +539,9 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Check that the stream has ended,  all data read
+        /// </summary>
         public bool EndOfStream
         {
             get
@@ -498,6 +557,5 @@ namespace FileHelpers
                 return (this.ReadBuffer() == 0);
             }
         }
-
     }
 }

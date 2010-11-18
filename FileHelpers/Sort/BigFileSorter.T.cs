@@ -9,40 +9,80 @@ namespace FileHelpers
     /// This class help to sort really big files using the External Sorting algorithm
     /// http://en.wikipedia.org/wiki/External_sorting
     /// </summary>
-    public class BigFileSorter<T> 
+    /// <typeparam name="T">Type of record to sort</typeparam>
+    public class BigFileSorter<T>
         where T: class, IComparable<T>
     {
+        /// <summary>
+        /// set the default encoding to the default encoding for C#
+        /// </summary>
         static BigFileSorter()
         {
             DefaultEncoding = Encoding.Default;
         }
 
+        /// <summary>
+        /// Default block size,  10 meg
+        /// </summary>
         private const int DefaultBlockSize = 10 * 1024 * 1024;
+
+        /// <summary>
+        /// Maximum block size,  50 meg
+        /// </summary>
         private const int MaxBufferSize = 50 * 1024 * 1024;
+
+        /// <summary>
+        /// Minimum block size 2 meg
+        /// </summary>
         private const int MinBlockSize = 2 * 1024 * 1024;
+
+        /// <summary>
+        /// Comparison operator for this sort
+        /// </summary>
         private readonly Comparison<T> mSorter;
 
+        /// <summary>
+        /// Sort big files using the External Sorting algorithm
+        /// </summary>
         public BigFileSorter()
             : this(0)
         {
         }
 
+        /// <summary>
+        /// Sort a large file
+        /// </summary>
+        /// <param name="blockFileSizeInBytes">block size for sort to work on</param>
         public BigFileSorter(int blockFileSizeInBytes)
             :this(null , blockFileSizeInBytes)
         {
         }
 
+        /// <summary>
+        /// Large file sorter
+        /// </summary>
+        /// <param name="encoding">Encoding of the file</param>
         public BigFileSorter(Encoding encoding)
             : this(encoding, 0)
         {
         }
 
+        /// <summary>
+        /// Large file sorter
+        /// </summary>
+        /// <param name="encoding">Encoding of the file</param>
+        /// <param name="blockFileSizeInBytes">Size of the blocks in bytes</param>
         public BigFileSorter(Encoding encoding, int blockFileSizeInBytes)
             :this(null, encoding, blockFileSizeInBytes)
         {
-            
         }
 
+        /// <summary>
+        /// Large file sorter specifying the comparison operator
+        /// </summary>
+        /// <param name="sorter">Comparison operator</param>
+        /// <param name="encoding">Encoding of the file</param>
+        /// <param name="blockFileSizeInBytes">Block size to work on</param>
         internal BigFileSorter(Comparison<T> sorter, Encoding encoding, int blockFileSizeInBytes)
         {
             mSorter = sorter;
@@ -63,20 +103,35 @@ namespace FileHelpers
 
         }
 
+
         private static Encoding DefaultEncoding { get; set; }
 
-        /// <summary> The directory for the temp files (by the default the same of sourceFile) </summary>
+        /// <summary>
+        /// The directory for the temp files (by the default the same directory
+        /// as sourceFile)
+        /// </summary>
         public string TempDirectory { get; set; }
 
-        /// <summary> The Size of each block that will be sorted in memory and later merged all togheter </summary>
+        /// <summary>
+        /// The Size of each block that will be sorted in memory which are
+        /// later merged together
+        /// </summary>
         public int BlockFileSizeInBytes { get; set; }
 
-        /// <summary> Indicates if the temporary files will be deleted (True by default) </summary>
+        /// <summary>
+        /// Indicates if the temporary files will be deleted (True by default)
+        /// </summary>
         public bool DeleteTempFiles { get; set; }
 
         /// <summary> The Encoding used to read and write the files </summary>
         public Encoding Encoding { get; set; }
 
+        /// <summary>
+        /// Sort a file from one filename to another filename
+        /// </summary>
+        /// <remarks>Handles very large files</remarks>
+        /// <param name="sourceFile">File to read in</param>
+        /// <param name="destinationFile">File to write out</param>
         public void Sort(string sourceFile, string destinationFile)
         {
             var parts = SplitAndSortParts(sourceFile);
@@ -106,9 +161,9 @@ namespace FileHelpers
                 long writtenBytes = 0;
                 long lastWrittenBytes = 0;
                 var readEngine = new FileHelperAsyncEngine<T>(Encoding);
-                
+
                 readEngine.Progress += (sender, e) => writtenBytes = e.CurrentBytes;
-                
+
                 using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize * 2))
                 {
                     foreach (var item in readEngine)
@@ -153,12 +208,24 @@ namespace FileHelpers
             writeEngine.WriteFile(splitName, lines);
         }
 
-
+        /// <summary>
+        /// Create a StreamWriter given the filename and buffer size
+        /// </summary>
+        /// <param name="filename">Filename to write</param>
+        /// <param name="bufferSize">Buffer size</param>
+        /// <returns>StreamWriter object</returns>
         protected StreamWriter CreateStream(string filename, int bufferSize)
         {
             return new StreamWriter(filename, false, Encoding, Math.Min(MaxBufferSize, bufferSize));
         }
 
+        /// <summary>
+        /// Create a part of a file,  files are split into chunks for sort
+        /// processing
+        /// </summary>
+        /// <param name="file">Filename (prefix)</param>
+        /// <param name="splitNum">This chunk number</param>
+        /// <returns>revised filename to write</returns>
         protected string GetSplitName(string file, int splitNum)
         {
             var dir = TempDirectory;
@@ -171,9 +238,14 @@ namespace FileHelpers
                                 Path.GetFileNameWithoutExtension(file) + ".part" + splitNum.ToString().PadLeft(4, '0'));
         }
 
+        /// <summary>
+        /// Large files are sorted in chunk then merged together in the final process
+        /// </summary>
+        /// <param name="queues">list of chunks to merge</param>
+        /// <param name="destinationFile">output filename</param>
         internal void MergeTheChunks(SortQueue<T>[] queues, string destinationFile)
         {
-   
+
             try
             {
                 // Merge!
@@ -216,13 +288,12 @@ namespace FileHelpers
                 for (int i = 0; i < queues.Length; i++)
                     queues[i].Dispose();
             }
-
-
         }
 
 
         /// <summary>
-        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// A fast way to sort a big file. For more options you need to
+        /// instantiate the BigFileSorter class instead of using static methods
         /// </summary>
         public static void SimpleSort(string source, string destination)
         {
@@ -231,7 +302,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// A fast way to sort a big file. For more options you need to
+        /// instantiate the BigFileSorter class instead of using static methods
         /// </summary>
         public static void SimpleSort(Encoding encoding, string source, string destination)
         {

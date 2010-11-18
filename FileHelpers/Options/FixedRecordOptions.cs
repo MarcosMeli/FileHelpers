@@ -6,19 +6,30 @@ using System.Diagnostics;
 namespace FileHelpers.Options
 {
 	/// <summary>
-	/// This class allows you to set some options of the fixed length records but at runtime.
+    /// This class allows you to set some options of the fixed length records
+    /// but at runtime.
 	/// With this options the library is more flexible than never.
 	/// </summary>
 	public sealed class FixedRecordOptions: RecordOptions
 	{
-		
+
+        /// <summary>
+        /// This class allows you to set some options of the fixed length
+        /// records but at runtime.
+        /// With this options the library is more flexible than never.
+        /// </summary>
+        /// <param name="info">Record information</param>
 		internal FixedRecordOptions(IRecordInfo info)
 				:base(info)
 		{
 		}
 
 
-		/// <summary>Indicates the behavior when variable length records are found in a [<see cref="FixedLengthRecordAttribute"/>]. (Note: nothing in common with [FieldOptional])</summary>
+		/// <summary>
+        /// Indicates the behavior when variable length records are found in a
+        /// [<see cref="FixedLengthRecordAttribute"/>]. (Note: nothing in
+        /// common with [FieldOptional])
+        /// </summary>
 		public FixedMode FixedMode
 		{
 			get
@@ -38,11 +49,11 @@ namespace FileHelpers.Options
         private int mRecordLength = int.MinValue;
 
         /// <summary>
-        /// The sum of the indivial field lengths.
+        /// The sum of the individual field lengths.
         /// </summary>
         public int RecordLength
         {
-            get 
+            get
             {
                 if (mRecordLength != int.MinValue)
                     return mRecordLength;
@@ -56,8 +67,5 @@ namespace FileHelpers.Options
                 return mRecordLength;
             }
         }
-
-		
-	
 	}
 }

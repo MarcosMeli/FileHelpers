@@ -152,11 +152,6 @@ namespace FileHelpers.Detection
         {
             if (format.ClassBuilder is FixedLengthClassBuilder)
                 return;
-
-
-
-
-
         }
 
         private void DetectTypes(RecordFormatInfo format, string[][] data)
@@ -208,11 +203,19 @@ namespace FileHelpers.Detection
             res.Add(format);
         }
 
+        /// <summary>
+        /// start and length of fixed length column
+        /// </summary>
         private class FixedColumnInfo
         {
+            /// <summary>
+            /// start position of column
+            /// </summary>
             public int Start;
+            /// <summary>
+            /// Length of column
+            /// </summary>
             public int Length;
-            public byte Confidence;
         }
 
         private void CreateFixedLengthFields(string[][] data, FixedLengthClassBuilder builder)
@@ -239,7 +242,6 @@ namespace FileHelpers.Detection
             foreach (string line in lines)
             {
                 List<FixedColumnInfo> candidates = new List<FixedColumnInfo>();
-                int filled = 0;
                 int blanks = 0;
 
                 FixedColumnInfo col = null;
@@ -267,8 +269,6 @@ namespace FileHelpers.Detection
                                 col.Length = i - col.Start;
                             }
                             candidates.Add(col);
-                            // col anterior termina
-                            filled = 1;
                             blanks = 0;
                         }
                     }
@@ -414,7 +414,12 @@ namespace FileHelpers.Detection
             return lines;
         }
 
-
+        /// <summary>
+        /// Calculate statistics based on sample data for the delimitter supplied
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="delimiter"></param>
+        /// <returns></returns>
         private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
 
@@ -508,10 +513,24 @@ namespace FileHelpers.Detection
 
         }
 
+        /// <summary>
+        /// Collection of statistics about fields found
+        /// </summary>
         private class Indicators
         {
+            /// <summary>
+            /// Maximum number of fields found
+            /// </summary>
             public int Max = int.MinValue;
+
+            /// <summary>
+            /// Mimumim number of fields found
+            /// </summary>
             public int Min = int.MaxValue;
+
+            /// <summary>
+            /// Average number of delimiters foudn per line
+            /// </summary>
             public double Avg = 0;
         }
 
@@ -553,7 +572,7 @@ namespace FileHelpers.Detection
         /// Gets or sets the quoted char.
         /// </summary>
         /// <value>The quoted char.</value>
-        protected char QuotedChar { get; set; }
+        private char QuotedChar { get; set; }
 
         private double CalculateAverageLineWidth(string[][] data)
         {
@@ -590,19 +609,26 @@ namespace FileHelpers.Detection
             bigSum = Math.Sqrt(bigSum);
 
             return bigSum;
-
         }
 
         #endregion
 
     }
-    
+
+    /// <summary>
+    /// Find the number of delimiters in a class
+    /// </summary>
     internal static class QuoteHelper
     {
+        /// <summary>
+        /// If we use this quote character and this delimitter how many fields do we get
+        /// </summary>
+        /// <param name="line">Line we are testing against</param>
+        /// <param name="delimiter">delimiter for fields</param>
+        /// <param name="quotedChar">quote value</param>
+        /// <returns>number of fields</returns>
         public static int CountNumberOfDelimiters(string line, char delimiter, char quotedChar)
         {
-           // Debug.Assert(false, "TODO: This dont work yet");
-
             int delimitersInLine = 0;
             var restOfLine = line;
             while (!string.IsNullOrEmpty(restOfLine))
@@ -622,14 +648,20 @@ namespace FileHelpers.Detection
                         restOfLine = restOfLine.Substring(index + 1);
                     }
                 }
-
             }
-
             return delimitersInLine;
         }
 
+        /// <summary>
+        /// skip data until we have matching quote
+        /// </summary>
+        /// <param name="line">line to test</param>
+        /// <param name="quoteChar">quote char to use</param>
+        /// <returns>string after field</returns>
         private static string DiscardUntilQuotedChar(string line, char quoteChar)
         {
+
+            //  TODO:  Does not handle two quotes within a field  for example 'o''clock'
             if (line.StartsWith(quoteChar.ToString()))
                 line = line.Substring(1);
             

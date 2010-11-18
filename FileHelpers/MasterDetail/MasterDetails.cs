@@ -1,5 +1,3 @@
-
-
 using System.ComponentModel;
 using System.Diagnostics;
 //using System.ComponentModel.TypeConverter;
@@ -8,12 +6,20 @@ using System.Diagnostics;
 namespace FileHelpers.MasterDetail
 {
 
+    /// <summary>
+    /// Records are read which one is the master and the following records
+    /// are details, eg an order and the items ordered.
+    /// </summary>
     [DebuggerDisplay("Master: {Master.ToString()} - Details: {Details.Length}")]
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class MasterDetails
         : MasterDetails<object, object>
     {
-
+        /// <summary>
+        /// records which have master and details
+        /// </summary>
+        /// <param name="master">Master record</param>
+        /// <param name="details">Collection of detail records</param>
         public MasterDetails(object master, object[] details)
             :base(master, details)
         {
@@ -31,7 +37,7 @@ namespace FileHelpers.MasterDetail
     }
 
 	/// <summary>
-	/// <para>This class contains information of a Master record an their Details records.</para>
+	/// <para>This class contains information of a Master record and its Details records.</para>
 	/// <para>This class is used for the Read and Write operations of the <see cref="MasterDetailEngine"/>.</para>
 	/// </summary>
 	public class MasterDetails<M,D>
@@ -54,6 +60,7 @@ namespace FileHelpers.MasterDetail
 			mDetails = details;
 		}
 
+        /// <summary>The canonical empty MasterDetail object.</summary>
 		private static MasterDetails<M,D> mEmpty = new MasterDetails<M,D>(null, new D[] {});
 
 		/// <summary>Returns a canonical empty MasterDetail object.</summary>
@@ -62,7 +69,10 @@ namespace FileHelpers.MasterDetail
 			get { return mEmpty; }
 		}
 
-		internal M mMaster;
+        /// <summary>
+        /// Master record for this group
+        /// </summary>
+		protected M mMaster;
 
 		/// <summary>The Master record.</summary>
 		public M Master
@@ -71,7 +81,10 @@ namespace FileHelpers.MasterDetail
 			set { mMaster = value; }
 		}
 
-		internal D[] mDetails;
+        /// <summary>
+        /// An Array with the Detail records.
+        /// </summary>
+		protected D[] mDetails;
 
 		/// <summary>An Array with the Detail records.</summary>
 		public D[] Details
@@ -79,7 +92,6 @@ namespace FileHelpers.MasterDetail
 			get { return mDetails; }
 			set { mDetails = value; }
 		}
-
 	}
 }
 

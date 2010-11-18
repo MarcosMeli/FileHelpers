@@ -15,12 +15,14 @@ namespace FileHelpers
 	{
         /// <summary> The condition used to include or exclude each record </summary>
         public RecordCondition Condition { get; private set; }
-        /// <summary> The selector for the condition. </summary>
+
+        /// <summary> The selector (match string) for the condition. </summary>
+        /// <remarks>The string will have a condition, included, excluded start with etc</remarks>
         public string ConditionSelector { get; private set; }
 
         /// <summary>Allow to declaratively show what records must be included or excluded</summary>
-		/// <param name="condition">The condition used to include or exclude each record</param>
-        /// <param name="conditionSelector">The selector for the condition.</param>
+		/// <param name="condition">The condition used to include or exclude each record <see cref="RecordCondition"/>conditions</param>
+        /// <param name="conditionSelector">The selector (match string) for the condition.</param>
 		public ConditionalRecordAttribute(RecordCondition condition, string conditionSelector)
 		{
             Condition = condition;

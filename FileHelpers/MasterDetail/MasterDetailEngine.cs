@@ -16,6 +16,12 @@ using FileHelpers.Events;
 namespace FileHelpers.MasterDetail
 {
 
+    /// <summary>
+    /// Read a master detail file, eg Orders followed by detail records
+    /// </summary>
+#if ! DEBUG
+    [Obsolete("Please use generic version MasterDetail<type,Type> instead")]
+#endif
     public sealed class MasterDetailEngine
         : MasterDetailEngine<object, object>
     {
@@ -40,14 +46,11 @@ namespace FileHelpers.MasterDetail
         {
         }
 
-        #endregion
-
-
-       
+        #endregion       
     }
+
     /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
     /// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
-
     /// <typeparam name="M">The Master Record Type</typeparam>
     /// <typeparam name="D">The Detail Record Type</typeparam>
     public class MasterDetailEngine<M, D> 
@@ -58,7 +61,7 @@ namespace FileHelpers.MasterDetail
 
         #region "  Constructor  "
 
-                /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine()
             : this(null)
         {
@@ -71,6 +74,7 @@ namespace FileHelpers.MasterDetail
         {
         }
 
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         internal MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
             : base(detailType)
         {
@@ -79,14 +83,13 @@ namespace FileHelpers.MasterDetail
             mRecordSelector = recordSelector;
         }
 
-
-
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         public MasterDetailEngine(CommonSelector action, string selector)
             : this(typeof(M), typeof(D), action, selector)
         {
         }
 
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         internal MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
             : base(detailType)
         {
@@ -99,8 +102,6 @@ namespace FileHelpers.MasterDetail
         }
 
         #endregion
-
-
 
         #region CommonSelectorInternal
 
@@ -185,17 +186,21 @@ namespace FileHelpers.MasterDetail
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private readonly IRecordInfo mMasterInfo;
+
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private MasterDetailSelector mRecordSelector;
+
 
 #if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
         private readonly Type mMasterType;
 
-        /// <summary>Returns the type of the master records handled by this engine.</summary>
+        /// <summary>
+        /// the type of the master records handled by this engine.
+        /// </summary>
         public Type MasterType
         {
             get { return mMasterType; }
@@ -334,7 +339,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                     record.mDetails = tmpDetails.ToArray();
 #else
-                                record.mDetails = (D[])tmpDetails.ToArray(typeof(D));
+                                record.Details = (D[])tmpDetails.ToArray(typeof(D));
 #endif
                                     resArray.Add(record);
                                 }
@@ -353,7 +358,7 @@ namespace FileHelpers.MasterDetail
 #endif
 
                                 if (lastMaster != null)
-                                    record.mMaster = lastMaster;
+                                    record.Master = lastMaster;
 
                                 break;
 
@@ -408,7 +413,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                     record.mDetails = tmpDetails.ToArray();
 #else
-                record.mDetails = (D[])tmpDetails.ToArray(typeof(D));
+                record.Details = (D[])tmpDetails.ToArray(typeof(D));
 #endif
                     resArray.Add(record);
                 }
@@ -558,13 +563,13 @@ namespace FileHelpers.MasterDetail
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 #endif
 
-                    currentLine = mMasterInfo.Operations.RecordToString(rec.mMaster);
+                    currentLine = mMasterInfo.Operations.RecordToString(rec.Master);
                     writer.WriteLine(currentLine);
 
-                    if (rec.mDetails != null)
-                        for (int d = 0; d < rec.mDetails.Length; d++)
+                    if (rec.Details != null)
+                        for (int d = 0; d < rec.Details.Length; d++)
                         {
-                            currentLine = mRecordInfo.Operations.RecordToString(rec.mDetails[d]);
+                            currentLine = mRecordInfo.Operations.RecordToString(rec.Details[d]);
                             writer.WriteLine(currentLine);
                         }
                 }

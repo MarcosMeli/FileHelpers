@@ -7,15 +7,26 @@ using System.Text;
 
 namespace FileHelpers
 {
-
-    // Based on this code: http://splinter.com.au/blog/?p=142
+    /// <summary>
+    /// Sort a group of records from a file
+    ///
+    ///Based on this code: http://splinter.com.au/blog/?p=142
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     [DelimitedRecord("\r\n")]
-    public sealed class SorterRecord 
+    public sealed class SorterRecord
         : IComparable<SorterRecord>
     {
+        /// <summary>
+        /// Value of the string
+        /// </summary>
         internal string Value;
 
+        /// <summary>
+        /// Compare to the sorter record
+        /// </summary>
+        /// <param name="other">Record to compare</param>
+        /// <returns>Comparison</returns>
         public int CompareTo(SorterRecord other)
         {
             return Value.CompareTo(other.Value);
@@ -29,36 +40,67 @@ namespace FileHelpers
     public sealed class BigFileSorter
         : BigFileSorter<SorterRecord>
     {
+        /// <summary>
+        /// Create a big file sorter with the minimum buffer size
+        /// </summary>
         public BigFileSorter()
             :this(0) // 20Mb default size
         {
         }
 
+        /// <summary>
+        /// Create a big file sorter using the block size
+        /// </summary>
+        /// <param name="blockFileSizeInBytes">Block size to work on</param>
         public BigFileSorter(int blockFileSizeInBytes)
             :this(null, null, blockFileSizeInBytes)
         {
         }
 
+        /// <summary>
+        /// Create a big file sorter using and encoding
+        /// </summary>
+        /// <param name="encoding">Encoding of the file</param>
         public BigFileSorter(Encoding encoding)
             : this(null, encoding, 0)
         {
         }
 
+        /// <summary>
+        /// Create a big file sorter using comparison operator
+        /// </summary>
+        /// <param name="sorter">Comparison operator</param>
         public BigFileSorter(Comparison<string> sorter)
             : this(sorter, 0)
         {
         }
 
+        /// <summary>
+        /// Create a big file sorter with a comparison operator and block size
+        /// </summary>
+        /// <param name="sorter">Comparison operator</param>
+        /// <param name="blockFileSizeInBytes">Block size to work on file</param>
         public BigFileSorter(Comparison<string> sorter, int blockFileSizeInBytes)
             : this(sorter, null, blockFileSizeInBytes)
         {
         }
 
+        /// <summary>
+        /// Create a bug file sorter
+        /// </summary>
+        /// <param name="sorter">Comparison operator</param>
+        /// <param name="encoding">encoding of the file</param>
+        /// <param name="blockFileSizeInBytes">Block size to work on</param>
         public BigFileSorter(Comparison<string> sorter, Encoding encoding, int blockFileSizeInBytes)
             :base(CreateSorter(sorter), encoding, blockFileSizeInBytes)
         {
         }
 
+        /// <summary>
+        /// Create a record sorter based on string value
+        /// </summary>
+        /// <param name="sorter">string sorter to convert</param>
+        /// <returns>new record comparison sorter</returns>
         private static Comparison<SorterRecord> CreateSorter(Comparison<string> sorter)
         {
             if (sorter == null)
@@ -68,7 +110,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// A fast way to sort a big file. For more options you need to
+        /// instantiate the BigFileSorter class instead of using static methods
         /// </summary>
         public static void SimpleSort(string source, string destination)
         {
@@ -76,8 +119,11 @@ namespace FileHelpers
             sorter.Sort(source, destination);
         }
 
+        //  TODO:   OVERRIDE HERE !!!!
+
         /// <summary>
-        /// A fast way to sort a big file. For more options you need to instanciate the BigFileSorter class instead of using static methods
+        /// A fast way to sort a big file. For more options you need to
+        /// instantiate the BigFileSorter class instead of using static methods
         /// </summary>
         public static void SimpleSort(Encoding encoding, string source, string destination)
         {
@@ -85,5 +131,4 @@ namespace FileHelpers
             sorter.Sort(source, destination);
         }
     }
-
 }

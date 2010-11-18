@@ -12,7 +12,14 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class IgnoreCommentedLinesAttribute : Attribute
 	{
+        /// <summary>
+        /// Comment marker string
+        /// </summary>
 		internal string mCommentMarker;
+
+        /// <summary>
+        /// Can the comment marker have preceding spaces
+        /// </summary>
 		internal bool mAnyPlace = true;
 
 		/// <summary>Indicates that the engine will ignore commented lines while reading.

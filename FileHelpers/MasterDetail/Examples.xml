@@ -16,7 +16,7 @@ RecordAction ExampleSelector(string record)
 }
                       
 		</code>
-Finally you must to instanciate a MasterDetailEngine and Read/Write files:
+Finally you must to instantiate a MasterDetailEngine and Read/Write files:
 
 		<code>
 MaterDetailEngine engine = new MaterDetailEngine(typeof(Customers), typeof(Orders), new MasterDetailSelector(ExampleSelector));
@@ -30,8 +30,5 @@ engine.WriteFile("TestOut.txt", res);
 		</code>
 		</example>
 	</MasterDetail>
-
-
-
 </examples>
 </doc>

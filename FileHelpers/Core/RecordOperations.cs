@@ -212,6 +212,7 @@ namespace FileHelpers
         #endregion
 
         #region "  ValuesToRecord  "
+
         /// <summary>Returns a record formed with the passed values.</summary>
         /// <param name="values">The source Values.</param>
         /// <returns>A record formed with the passed values.</returns>
@@ -229,6 +230,11 @@ namespace FileHelpers
             return CreateHandler(values);
         }
 
+        /// <summary>
+        /// TODO:  Explain what date logic this covers???
+        /// </summary>
+        /// <param name="serialNumber">TODO: define this date serial number</param>
+        /// <returns>Date time from a numerical reference time</returns>
         private static DateTime DoubleToDate(int serialNumber)
         {
             if (serialNumber < 59)
@@ -243,6 +249,7 @@ namespace FileHelpers
         #endregion
 
         #region "  RecordToValues  "
+
         /// <summary>Get an object[] of the values in the fields of the instance.</summary>
         /// <param name="record">Instance of the type.</param>
         /// <returns>An object[] of the values in the fields.</returns>
@@ -253,6 +260,7 @@ namespace FileHelpers
         #endregion
 
         #region "  RecordsToDataTable  "
+
         /// <summary>
         /// Create a datatable based on a collection of records
         /// </summary>
@@ -302,7 +310,7 @@ namespace FileHelpers
         /// <summary>
         /// Create an empty datatable based upon the record layout
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Datatable defined based on the record definition</returns>
         public DataTable CreateEmptyDataTable()
         {
             var res = new DataTable();

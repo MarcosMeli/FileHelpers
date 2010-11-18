@@ -1,5 +1,3 @@
-
-
 using System;
 using System.ComponentModel;
 using System.Text;
@@ -7,31 +5,43 @@ using System.Globalization;
 
 namespace FileHelpers
 {
-
+    /// <summary>
+    /// Helper classes for strings
+    /// </summary>
 	internal static class StringHelper
 	{
+        /// <summary>
+        /// New line variable
+        /// </summary>
 		#if ! MINI
 			internal static readonly string NewLine = Environment.NewLine;
 		#else
 			internal static readonly string NewLine = "\r\n";
 		#endif
-        
+
 
 		#region "  ExtractQuotedString  "
 
+        /// <summary>
+        /// Extract a string from a quoted string, allows for doubling the quotes
+        /// for example 'o''clock'
+        /// </summary>
+        /// <param name="line">Line to extract from (with extra info)</param>
+        /// <param name="quoteChar">Quote char to remove</param>
+        /// <param name="allowMultiline">can we have a new line in middle of string</param>
+        /// <returns>Extracted information</returns>
 		internal static ExtractedInfo ExtractQuotedString(LineInfo line, char quoteChar, bool allowMultiline)
 		{
 			//			if (line.mReader == null)
 			//				throw new BadUsageException("The reader can´t be null");
 
 			if (line.IsEOL())
-				throw new BadUsageException("An empty String found and can be parsed like a QuotedString try to use SafeExtractQuotedString");
+				throw new BadUsageException("An empty String found. This can not be parsed like a QuotedString try to use SafeExtractQuotedString");
 
 			if (line.mLineStr[line.mCurrentPos] != quoteChar)
-				throw new BadUsageException("The source string not begins with the quote char: " + quoteChar);
+				throw new BadUsageException("The source string does not begin with the quote char: " + quoteChar);
 
 			StringBuilder res = new StringBuilder(32);
-			//int lines = 0;
 
 			bool firstFound = false;
 
@@ -60,12 +70,8 @@ namespace FileHelpers
 						if (firstFound)
 						{
 							// This was the end of the string
-
 							line.mCurrentPos = i;
 							return new ExtractedInfo(res.ToString());
-//							ExtractedInfo ei = ;
-//							return ei;
-
 						}
 						else
 						{
@@ -84,7 +90,7 @@ namespace FileHelpers
 				else
 				{
 					if (allowMultiline == false)
-						throw new BadUsageException("The current field has an UnClosed quoted string. Complete line: " + res.ToString());
+						throw new BadUsageException("The current field has an unclosed quoted string. Complete line: " + res.ToString());
 
 					line.ReadNextLine();
 					res.Append(StringHelper.NewLine);
@@ -100,6 +106,13 @@ namespace FileHelpers
 
 		#region "  CreateQuotedString  "
 
+        /// <summary>
+        /// Convert a string to a string with quotes around it,
+        /// if the quote appears within the string it is doubled
+        /// </summary>
+        /// <param name="sb">Where string is added</param>
+        /// <param name="source">String to be added</param>
+        /// <param name="quoteChar">quote character to use, eg "</param>
 		internal static void CreateQuotedString(StringBuilder sb, string source, char quoteChar)
 		{
 			if (source == null) source = string.Empty;
@@ -116,6 +129,12 @@ namespace FileHelpers
 
 		#region "  RemoveBlanks  "
 
+        // TODO:  is this correct or even necessary...
+        /// <summary>
+        /// remove leading blanks and blanks after the plus or minus sign from a string,
+        /// </summary>
+        /// <param name="source">source to trim</param>
+        /// <returns>String without blanks</returns>
         internal static string RemoveBlanks(string source)
         {
             StringBuilder sb = null;
@@ -149,6 +168,11 @@ namespace FileHelpers
 		#endregion
 
 	    private static CultureInfo mCulture;
+
+        /// <summary>
+        /// Create an invariant culture comparison operator
+        /// </summary>
+        /// <returns>Comparison operations</returns>
         internal static CompareInfo CreateComparer()
         {
             if (mCulture == null)
@@ -157,7 +181,13 @@ namespace FileHelpers
             return mCulture.CompareInfo;
         }
 
-
+        /// <summary>
+        /// replace the one string with another, and keep doing it
+        /// </summary>
+        /// <param name="original">Original string</param>
+        /// <param name="oldValue">Value to replace</param>
+        /// <param name="newValue">value to replace with</param>
+        /// <returns>String with all multiple occurrences replaced</returns>
         internal static string ReplaceRecursive(string original, string oldValue, string newValue)
         {
             const int maxTries = 1000;
@@ -178,6 +208,11 @@ namespace FileHelpers
             return res;
         }
 
+        /// <summary>
+        /// convert a string into a valid identifier
+        /// </summary>
+        /// <param name="original">Original string</param>
+        /// <returns>valid identifier  Original_string</returns>
         internal static string ToValidIdentifier(string original)
         {
             if (original.Length == 0)
@@ -203,14 +238,28 @@ namespace FileHelpers
                 identifier = "_" + identifier;
 
             return identifier;
-
         }
 
+        /// <summary>
+        /// Replace string with another ignoring the case of the string
+        /// </summary>
+        /// <param name="original">Original string</param>
+        /// <param name="oldValue">string to replace</param>
+        /// <param name="newValue">string to insert</param>
+        /// <returns>string with values replaced</returns>
         public static string ReplaceIgnoringCase(string original, string oldValue, string newValue)
         {
             return Replace(original, oldValue, newValue, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// String replace with a comparison function, eg OridinalIgnoreCase
+        /// </summary>
+        /// <param name="original">Original string</param>
+        /// <param name="oldValue">Value to be replaced</param>
+        /// <param name="newValue">value to replace with</param>
+        /// <param name="comparisionType">Comparison type (enum)</param>
+        /// <returns>String with values replaced</returns>
         public static string Replace(string original, string oldValue, string newValue, StringComparison comparisionType)
         {
             string result = original;
@@ -235,10 +284,6 @@ namespace FileHelpers
             }
 
             return result;
-        }  
-
-
-
-
+        }
     }
 }

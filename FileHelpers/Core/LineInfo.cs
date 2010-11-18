@@ -9,6 +9,12 @@ namespace FileHelpers
     /// <summary>
     /// Record read from the file for processing
     /// </summary>
+    /// <remarks>
+    /// The data inside the LIneInfo may be reset during processing,
+    /// for example on read next line.  Do not rely on this class
+    /// containing all data from a record for all time.  It is designed
+    /// to read data sequentially.
+    /// </remarks>
     [DebuggerDisplay("{DebuggerDisplayStr()}")]
     internal sealed class LineInfo
 	{
@@ -112,7 +118,7 @@ namespace FileHelpers
 		}
 
         /// <summary>
-        /// IS there only whitespace left in the record?
+        /// Is there only whitespace left in the record?
         /// </summary>
         /// <returns>True if only whitespace</returns>
 		public bool EmptyFromPos()
@@ -236,6 +242,7 @@ namespace FileHelpers
         /// <summary>
         /// Reset the string back to the original line and reset the line pointer
         /// </summary>
+        /// <remarks>If the input is multi line, this will read next record and remove the original data</remarks>
         /// <param name="line">Line to use</param>
 		internal void ReLoad(string line)
 		{

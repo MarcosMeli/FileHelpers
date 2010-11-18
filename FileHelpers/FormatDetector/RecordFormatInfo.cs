@@ -7,6 +7,9 @@ namespace FileHelpers.Detection
     /// </summary>
     public sealed class RecordFormatInfo
     {
+        /// <summary>
+        /// A number between 0 to 100 that indicates how acurate is the Record Format
+        /// </summary>
         internal int mConfidence = 0;
 
         /// <summary>
@@ -42,6 +45,5 @@ namespace FileHelpers.Detection
         {
             get { return mClassBuilder as DelimitedClassBuilder; }
         }
-
     }
 }

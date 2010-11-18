@@ -2,22 +2,36 @@
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Calculate statistics on stream,  position and total size
+    /// </summary>
     internal sealed class StreamInfoProvider
     {
+        /// <summary>
+        /// Delegate to the stream values returned
+        /// </summary>
+        /// <returns></returns>
         private delegate long GetValue();
 
-
-        //private readonly bool mHasInfo;
-        //private readonly Stream mStream;
-        //private readonly GetValue mLengthCalculator = () => -1;
+        /// <summary>
+        /// Position within the stream -1 is beginning
+        /// </summary>
         private readonly GetValue mPositionCalculator = () => -1;
+
+        /// <summary>
+        /// Length of the stream -1 is unknown
+        /// </summary>
         private readonly long mLength = -1;
 
+        /// <summary>
+        /// Provide as much information about the input stream as we can,  size
+        /// and position
+        /// </summary>
+        /// <param name="reader">reader we are analysing</param>
         public StreamInfoProvider(TextReader reader)
         {
             if (reader is StreamReader)
             {
-
                 var stream = ((StreamReader)reader).BaseStream;
                 mLength = stream.Length;
                 // Uses the buffer position
@@ -39,8 +53,14 @@ namespace FileHelpers
                 mLength = stream.Length;
                 mPositionCalculator = () => stream.Position;
             }
+            //  else unknown   -1 and -1.
         }
 
+        /// <summary>
+        /// Provide as much information about the output stream as we can,
+        /// size and position
+        /// </summary>
+        /// <param name="reader">writer we are analysing</param>
         public StreamInfoProvider(TextWriter writer)
         {
             if (writer is StreamWriter)
@@ -52,11 +72,17 @@ namespace FileHelpers
 
         }
 
+        /// <summary>
+        /// Position within the stream
+        /// </summary>
         public long Position
         {
             get { return mPositionCalculator(); }
         }
 
+        /// <summary>
+        /// Total number of bytes within the stream
+        /// </summary>
         public long TotalBytes
         {
             get { return mLength; }

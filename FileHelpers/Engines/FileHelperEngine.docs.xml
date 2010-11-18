@@ -43,7 +43,7 @@
 		Read a file and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method open, read and close the file (don't open or close the file before or after to call this method)
+		This method opens, reads and closes the file (don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
 		<param name="fileName">The file path to be read.</param>
@@ -105,7 +105,7 @@
 		</summary>
 		<remarks>
 			<para>This method opens, writes and closes the file
-			(don't open or close the file before or after to call this method)</para>
+			(don't open or close the file before or after calling this method)</para>
 		<para>This method over writes any existing files.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
@@ -119,7 +119,9 @@
 		Write the specified number of records from the array to a file.
 		</summary>
 		<remarks>
-		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
+		<para>This method opens, writes and closes the file (don't open
+			or close the file before or after calling this
+			method)</para>
 		<para>This method over writes any existing files.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>

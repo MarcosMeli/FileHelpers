@@ -3,12 +3,15 @@
 	<MasterDetailEngine>
 		<summary>
 			<para><b>One of the main classes of the library.</b></para>
-			<para>This engine is responsable to Read/Write <b>Master-Details</b> records from/to files or streams.</para>
+			<para>This engine is responsible for reading and writing <b>Master-Details</b> records to or from files or streams.</para>
 		</summary>
 		<remarks>
-		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can retrive them with the <see cref="ErrorManager.Errors"/> property.</para>
-		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the <a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
-		 <para>Or you can browse the <a href="examples.html">Examples Seccion</a> for more code.</para>
+		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class to
+         defined how to handle an error.
+         Errors can be retrieved with the <see cref="ErrorManager.Errors"/> property if set appropriately.</para>
+		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and
+         in the <a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
+		 <para>Or you can browse the <a href="examples.html">Examples Section</a> for more code.</para>
 		</remarks>
 		<seealso href="quick_start.html">Quick Start Guide</seealso>
 		<seealso href="class_diagram.html">Class Diagram</seealso>
@@ -33,7 +36,7 @@
 		<param name="masterType">The master record class.</param>
 		<param name="detailType">The detail record class.</param>
 		<param name="action">The <see cref="CommonSelector" /> used by the engine (only for read operations)</param>
-		<param name="selector">The string passed to the selector.</param>
+		<param name="selector">The string passed as the selector.</param>
 	</MasterDetailEngineCtr2>
 
 	<ReadFile>
@@ -41,7 +44,7 @@
 		Read a file and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method open, read and close the file (don't open or close the file before or after to call this method)
+		This method opens, reads and closes the file (don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="fileName">The file path to be read.</param>
@@ -53,7 +56,7 @@
 		Read a Stream and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method only uses the stream and dont close them after use it, you must do it.
+		This method only uses the stream and does not close it after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="reader">The reader of the source stream.</param>
@@ -73,7 +76,8 @@
 		Append a record to the specified file.
 		</summary>
 		<remarks>
-		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+		This method opens, seek to the end, writes and closes the file
+        (don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="fileName">The file path to be written at end.</param>
@@ -86,7 +90,8 @@
 		Append an array of records to the specified file.
 		</summary>
 		<remarks>
-		This method open, seek ends, write and close the file (don't open or close the file before or after to call this method)
+		This method opens, seek to the end, writes and closes the file
+        (don't open or close the file before or after calling this method)
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 	
@@ -100,8 +105,9 @@
 		Write an array of records to the specified file.
 		</summary>
 		<remarks>
-		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
-		<para>This method overrides existing files.</para>
+		<para>This method opens, writes and closes the file
+        (don't open or close the file before or after calling this method)</para>
+		<para>This method over writes any existing file.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="fileName">The file path to be write.</param>
@@ -114,8 +120,9 @@
 		Write the specified number of records from the array to a file.
 		</summary>
 		<remarks>
-		<para>This method open, write and close the file (don't open or close the file before or after to call this method)</para>
-		<para>This method overrides existing files.</para>
+		<para>This method opens, writes and closes the file
+        (don't open or close the file before or after calling this method)</para>
+		<para>This method over writes existing files.</para>
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="fileName">The file path to be write.</param>
@@ -129,7 +136,7 @@
 		Write an array of records to the specified Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and don't close them after use it, you must do it.
+		This method only uses the stream and does not close it after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="writer">The writer of the source stream.</param>
@@ -142,7 +149,7 @@
 		Write the specified number of records in the array to the Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and don't close them after use it, you must do it.
+		This method only uses the stream and does not close it after using it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/MasterDetail/*'/>
 		<param name="writer">The writer of the source stream.</param>
@@ -178,7 +185,10 @@
 	</ColumnNum>
 
 	<TotalRecords>
-		<summary>The total numbers of records in the last read/written file (only works with whole read/write).</summary>
+		<summary>
+            The total number of records in the last file that was read or written
+            (only works with whole read/write).
+        </summary>
 	</TotalRecords>
 
 	<RecordType>
