@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyVersion("2.9.9.0")]
 [assembly : AssemblyFileVersion("2.9.9.0")]
 
-[assembly : AssemblyDescription("An easy to use file library for .NET that supports automatic formated file read or write operations.")]
+[assembly : AssemblyDescription("An easy to use file library for .NET that supports automatic formated file read/write operations.")]
 [assembly : AssemblyProduct("FileHelpers   http://www.filehelpers.com")]
 
 [assembly : AssemblyCompany("Devoo")]

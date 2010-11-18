@@ -2,13 +2,14 @@
 
 <Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="FileHelpers.msbuild"/>
+  <Import Project="FileHelpers.msbuild" />
 
   <Target Name="test-team" DependsOnTargets="release" >
     <NUnitTeamCity Assemblies="FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
   </Target>
 
   <Import Project="FileHelpers.shfbproj" />
+  
   <Target Name="doc" DependsOnTargets="release" >
       <CallTarget Targets="Build"/>
   </Target>
