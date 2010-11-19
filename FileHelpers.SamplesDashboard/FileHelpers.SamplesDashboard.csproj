@@ -77,12 +77,12 @@
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="CategoryTreeNode.cs" />
-    <Compile Include="DemoFiles.cs" />
-    <Compile Include="Demos\WriteFile.cs" />
-    <Compile Include="Demos\ReadFile.cs" />
-    <Compile Include="DemoTreeNode.cs" />
-    <Compile Include="TreeViewEx.cs">
+    <Compile Include="Demos\ExampleParser.cs" />
+    <Compile Include="Framework\CategoryTreeNode.cs" />
+    <Compile Include="Framework\DemoFiles.cs" />
+    <Compile Include="Core\Basic\ReadFileDelimited.cs" />
+    <Compile Include="Framework\DemoTreeNode.cs" />
+    <Compile Include="Framework\TreeViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -90,10 +90,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TreeViewDemos.cs">
+    <Compile Include="Framework\TreeViewDemos.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DemoCode.cs" />
+    <Compile Include="Framework\DemoCode.cs" />
     <Compile Include="frmSamples.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,10 +137,14 @@
     <None Include="Resources\arrow_right.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
+    <Folder Include="Core\DynamicRecords\" />
+    <Folder Include="Core\ErrorHandling\" />
+    <Folder Include="Core\Events\" />
+    <Folder Include="Core\MasterDetail\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

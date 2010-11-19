@@ -247,6 +247,7 @@ namespace FileHelpers.WizardApp
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picDonate = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdDetectFormatWithHeader = new System.Windows.Forms.Button();
             this.cmdfileDesigner = new System.Windows.Forms.Button();
             this.cmdDetectFormat = new System.Windows.Forms.Button();
             this.picCurrStep = new System.Windows.Forms.PictureBox();
@@ -259,7 +260,6 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
-            this.cmdDetectFormatWithHeader = new System.Windows.Forms.Button();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1411,9 +1411,9 @@ namespace FileHelpers.WizardApp
             this.picDonate.Size = new System.Drawing.Size(100, 36);
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\n" +
-                    "how you can donate to the project.\r\n\r\nSome money will help keep FileHelpers active" +
-                    "\r\n\r\nThanks");
+            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
+                    "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+                    "anks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // panel1
@@ -1438,6 +1438,20 @@ namespace FileHelpers.WizardApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 366);
             this.panel1.TabIndex = 9;
+            // 
+            // cmdDetectFormatWithHeader
+            // 
+            this.cmdDetectFormatWithHeader.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdDetectFormatWithHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdDetectFormatWithHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdDetectFormatWithHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdDetectFormatWithHeader.Location = new System.Drawing.Point(9, 329);
+            this.cmdDetectFormatWithHeader.Name = "cmdDetectFormatWithHeader";
+            this.cmdDetectFormatWithHeader.Size = new System.Drawing.Size(155, 25);
+            this.cmdDetectFormatWithHeader.TabIndex = 1103;
+            this.cmdDetectFormatWithHeader.Text = "Auto Detect With Heeaders";
+            this.cmdDetectFormatWithHeader.UseVisualStyleBackColor = false;
+            this.cmdDetectFormatWithHeader.Click += new System.EventHandler(this.cmdDetectFormatWithHeader_Click);
             // 
             // cmdfileDesigner
             // 
@@ -1575,20 +1589,6 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
             // 
-            // cmdDetectFormatWithHeader
-            // 
-            this.cmdDetectFormatWithHeader.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.cmdDetectFormatWithHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDetectFormatWithHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.cmdDetectFormatWithHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDetectFormatWithHeader.Location = new System.Drawing.Point(9, 329);
-            this.cmdDetectFormatWithHeader.Name = "cmdDetectFormatWithHeader";
-            this.cmdDetectFormatWithHeader.Size = new System.Drawing.Size(155, 25);
-            this.cmdDetectFormatWithHeader.TabIndex = 1103;
-            this.cmdDetectFormatWithHeader.Text = "Auto Detect With Heeaders";
-            this.cmdDetectFormatWithHeader.UseVisualStyleBackColor = false;
-            this.cmdDetectFormatWithHeader.Click += new System.EventHandler(this.cmdDetectFormatWithHeader_Click);
-            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
@@ -1609,8 +1609,8 @@ namespace FileHelpers.WizardApp
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FileHelpers - Record Class Wizard v2.0";
-            this.Load += new System.EventHandler(this.frmWizard_Load);
             this.Activated += new System.EventHandler(this.frmWizard_Activated);
+            this.Load += new System.EventHandler(this.frmWizard_Load);
             this.Resize += new System.EventHandler(this.frmWizard_Resize);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();

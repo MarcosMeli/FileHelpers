@@ -68,7 +68,7 @@
 		<ItemGroup>
 			<ReleaseFiles2 Include="Release\**\*.*" />
 		</ItemGroup>
-		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).zip" />
+		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
 	</Target>
 
 	<Target Name="pack-debug" DependsOnTargets="debug">
@@ -76,7 +76,7 @@
 			<DebugFiles2 Include="Debug\**\*.*" />
 		</ItemGroup>
 
-		<Zip Files="@(DebugFiles2)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip" />
+		<Zip Files="@(DebugFiles2)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_$(CurrentVersion)_DebugBuild.zip" />
 	</Target>
 
 	<PropertyGroup>

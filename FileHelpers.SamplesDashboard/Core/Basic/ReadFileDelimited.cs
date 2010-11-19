@@ -5,11 +5,15 @@ using FileHelpers;
 
 namespace Demos
 {
+    //-> {Example.Name:Read Delimited File}
+    //-> {Example.Description:Example of how to read a Delimited File}
+
     public class ReadFile
         :IDemo
     {
         public void Run()
         {
+            //-> {Example.File:Example.cs}
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("");
 
@@ -19,8 +23,10 @@ namespace Demos
                 Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 Console.WriteLine(record.Freight);
             }
+            //-> {/Example.File}
         }
 
+        //-> {Example.File:OrdersRecord.cs}
         [DelimitedRecord("|")]
         public class Orders
         {
@@ -32,6 +38,7 @@ namespace Demos
 
             public decimal Freight;
         }
+        //-> {/Example.File}
 
     }
 
