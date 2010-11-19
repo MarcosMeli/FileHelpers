@@ -29,21 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSamples));
+            Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tcCodeFiles = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
             this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
-            this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tcCodeFiles.SuspendLayout();
@@ -68,10 +70,12 @@
             this.reflectionHeader1.Header.Color.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.reflectionHeader1.Header.Color.Direction = Devoo.WinForms.GradientDirection.Vertical;
             this.reflectionHeader1.Header.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Bold);
-            this.reflectionHeader1.Header.Position = new System.Drawing.Point(17, 14);
+            this.reflectionHeader1.Header.Position = new System.Drawing.Point(80, 17);
             this.reflectionHeader1.Header.ReflectionLevel = ((byte)(100));
             this.reflectionHeader1.Header.ReflectionOpacity = ((byte)(200));
             this.reflectionHeader1.Header.Text = "FileHelpers Examples";
+            this.reflectionHeader1.Images.AddRange(new Devoo.WinForms.ImageShape[] {
+            new Devoo.WinForms.ImageShape(((System.Drawing.Bitmap)(resources.GetObject("reflectionHeader1.Images"))), true, ((byte)(255)), new System.Drawing.Point(3, 1), ((byte)(0)), 0)});
             this.reflectionHeader1.Location = new System.Drawing.Point(0, 0);
             this.reflectionHeader1.Name = "reflectionHeader1";
             this.reflectionHeader1.Size = new System.Drawing.Size(871, 85);
@@ -111,6 +115,24 @@
             this.splitContainer1.Size = new System.Drawing.Size(871, 415);
             this.splitContainer1.SplitterDistance = 290;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // imgTreeView
+            // 
+            this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
+            this.imgTreeView.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgTreeView.Images.SetKeyName(0, "application_cascade.png");
+            this.imgTreeView.Images.SetKeyName(1, "application_double.png");
+            this.imgTreeView.Images.SetKeyName(2, "application_form.png");
+            this.imgTreeView.Images.SetKeyName(3, "application_osx_terminal.png");
+            this.imgTreeView.Images.SetKeyName(4, "demo");
+            this.imgTreeView.Images.SetKeyName(5, "application_view_xp_terminal.png");
+            this.imgTreeView.Images.SetKeyName(6, "application2.png");
+            this.imgTreeView.Images.SetKeyName(7, "folder.png");
+            this.imgTreeView.Images.SetKeyName(8, "folder");
+            this.imgTreeView.Images.SetKeyName(9, "note.png");
+            this.imgTreeView.Images.SetKeyName(10, "projection_screen.png");
+            this.imgTreeView.Images.SetKeyName(11, "projection_screen_present.png");
+            this.imgTreeView.Images.SetKeyName(12, "wand.png");
             // 
             // splitContainer2
             // 
@@ -176,24 +198,6 @@
             this.treeViewDemos1.Size = new System.Drawing.Size(290, 415);
             this.treeViewDemos1.TabIndex = 0;
             // 
-            // imgTreeView
-            // 
-            this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
-            this.imgTreeView.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgTreeView.Images.SetKeyName(0, "application_cascade.png");
-            this.imgTreeView.Images.SetKeyName(1, "application_double.png");
-            this.imgTreeView.Images.SetKeyName(2, "application_form.png");
-            this.imgTreeView.Images.SetKeyName(3, "application_osx_terminal.png");
-            this.imgTreeView.Images.SetKeyName(4, "demo");
-            this.imgTreeView.Images.SetKeyName(5, "application_view_xp_terminal.png");
-            this.imgTreeView.Images.SetKeyName(6, "application2.png");
-            this.imgTreeView.Images.SetKeyName(7, "folder.png");
-            this.imgTreeView.Images.SetKeyName(8, "folder");
-            this.imgTreeView.Images.SetKeyName(9, "note.png");
-            this.imgTreeView.Images.SetKeyName(10, "projection_screen.png");
-            this.imgTreeView.Images.SetKeyName(11, "projection_screen_present.png");
-            this.imgTreeView.Images.SetKeyName(12, "wand.png");
-            // 
             // frmSamples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,13 +206,16 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.reflectionHeader1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSamples";
-            this.Text = "frmSamples";
+            this.Text = "FileHelpers Examples";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.tcCodeFiles.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
