@@ -49,8 +49,17 @@
 	</Target>
 
 	<Target Name="debug" DependsOnTargets="common">
-		<MSBuild Projects="FileHelpers.sln" 
-		Properties="Configuration=Debug;TargetFrameworkVersion=v2.0" />
+		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Debug" />
+		
+		<MakeDir Directories="Debug\Lib\2.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D Debug\Library\*.* Debug\Lib\2.0"/>
+		<Exec Command="RmDir /S /Q Debug\Library" />
+		
+		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Debug "/>
+		
+		<MakeDir Directories="Debug\Lib\4.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D Debug\Library\*.* Debug\Lib\4.0"/>
+		<Exec Command="RmDir /S /Q Debug\Library" />
 	</Target>
 
 	<Target Name="pack-release" DependsOnTargets="release">
