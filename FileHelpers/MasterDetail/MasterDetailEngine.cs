@@ -19,9 +19,6 @@ namespace FileHelpers.MasterDetail
     /// <summary>
     /// Read a master detail file, eg Orders followed by detail records
     /// </summary>
-#if ! DEBUG
-    [Obsolete("Please use generic version MasterDetail<type,Type> instead")]
-#endif
     public sealed class MasterDetailEngine
         : MasterDetailEngine<object, object>
     {

@@ -23,9 +23,6 @@ namespace FileHelpers
     /// <summary>
     /// Basic engine to read record by record
     /// </summary>
-#if ! DEBUG
-    [Obsolete("Please use generics version FileHelperEngine<type>")]
-#endif
     public class FileHelperEngine
         : FileHelperEngine<object>
     {
