@@ -6,7 +6,15 @@ using System.Windows.Forms;
 using FileHelpers;
 
 namespace FileHelpersSamples
-{
+	{
+    /// <summary>
+    /// Example application that sorts
+    /// the input file by various criteria
+    /// </summary>
+    /// <remarks>
+    /// You might consider using Linq to sort the
+    /// file after input as an alternative to this.
+    /// </remarks>
 	public class frmSort : FileHelpersSamples.frmFather
 	{
 		private System.Windows.Forms.PropertyGrid grid1;
@@ -108,7 +116,7 @@ namespace FileHelpersSamples
 			this.cmdRun.Size = new System.Drawing.Size(160, 34);
 			this.cmdRun.TabIndex = 6;
 			this.cmdRun.Text = "Sort By City >";
-			this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
+			this.cmdRun.Click += new System.EventHandler(this.SortByCity_Click);
 			// 
 			// button1
 			// 
@@ -120,7 +128,7 @@ namespace FileHelpersSamples
 			this.button1.Size = new System.Drawing.Size(160, 34);
 			this.button1.TabIndex = 7;
 			this.button1.Text = "Sort By ID >";
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.button1.Click += new System.EventHandler(this.SortByCustomerId_Click);
 			// 
 			// button2
 			// 
@@ -132,7 +140,7 @@ namespace FileHelpersSamples
 			this.button2.Size = new System.Drawing.Size(160, 34);
 			this.button2.TabIndex = 8;
 			this.button2.Text = "Sort By Company >";
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.button2.Click += new System.EventHandler(this.SortByCompanyName_Click);
 			// 
 			// button3
 			// 
@@ -144,7 +152,7 @@ namespace FileHelpersSamples
 			this.button3.Size = new System.Drawing.Size(160, 34);
 			this.button3.TabIndex = 9;
 			this.button3.Text = "Sort By Name >";
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.button3.Click += new System.EventHandler(this.SortByContactName_Click);
 			// 
 			// button4
 			// 
@@ -156,7 +164,7 @@ namespace FileHelpersSamples
 			this.button4.Size = new System.Drawing.Size(160, 34);
 			this.button4.TabIndex = 10;
 			this.button4.Text = "Sort By Country >";
-			this.button4.Click += new System.EventHandler(this.button4_Click);
+			this.button4.Click += new System.EventHandler(this.SortByCountry_Click);
 			// 
 			// textBox1
 			// 
@@ -214,6 +222,9 @@ namespace FileHelpersSamples
 		}
 		#endregion
 
+        /// <summary>
+        /// Data we are going to read and sort
+        /// </summary>
 		string SampleData = @"BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
 ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
 BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbourg|France
@@ -224,17 +235,29 @@ AROUT|Around the Horn|Thomas Hardy|Sales Representative|120 Hanover Sq.|London|U
 BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain";
 
 
+        /// <summary>
+        /// Sort by field (eg mCountry) and display result in a
+        /// grid, replaces the previous sort
+        /// </summary>
+        /// <param name="field">Field to sort on</param>
 		void SortBy(string field)
 		{
+            // first character of field is always m, remove it.
 			txtSortedBy.Text = "Sorted By " + field.Substring(1);
+
 			CustomersVerticalBar[] res2 = (CustomersVerticalBar[]) mRecords.Clone();
 			CommonEngine.SortRecordsByField(res2, field);
 			grid2.SelectedObject = res2;
-
 		}
 
+        /// <summary>
+        /// records parsed by the engine, will be read and sorted
+        /// </summary>
 		CustomersVerticalBar[] mRecords;
 		
+        /// <summary>
+        /// Open file and read into array,  display unsorted
+        /// </summary>
 		private void frmSort_Load(object sender, System.EventArgs e)
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
@@ -252,31 +275,30 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 //		private string mCity;
 //		private string mCountry;
 		
-		private void button1_Click(object sender, System.EventArgs e)
+		private void SortByCustomerId_Click(object sender, System.EventArgs e)
 		{
 			SortBy("mCustomerID");
 		}
 
-		private void cmdRun_Click(object sender, System.EventArgs e)
+		private void SortByCity_Click(object sender, System.EventArgs e)
 		{
 			SortBy("mCity");
 		}
 
-		private void button2_Click(object sender, System.EventArgs e)
+		private void SortByCompanyName_Click(object sender, System.EventArgs e)
 		{
 			SortBy("mCompanyName");
 		}
 
-		private void button3_Click(object sender, System.EventArgs e)
+		private void SortByContactName_Click(object sender, System.EventArgs e)
 		{
 			SortBy("mContactName");
 		}
 
-		private void button4_Click(object sender, System.EventArgs e)
+		private void SortByCountry_Click(object sender, System.EventArgs e)
 		{
 			SortBy("mCountry");
 		}
-
 	}
 }
 

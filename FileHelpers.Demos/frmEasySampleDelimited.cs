@@ -9,7 +9,8 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// Run the engine over a delimited file and
+    /// show the result in a grid
 	/// </summary>
 	public class frmEasySampleDelimited : frmFather
 	{
@@ -220,6 +221,9 @@ namespace FileHelpersSamples
 
 		#endregion
 
+        /// <summary>
+        /// Run the engine into an array and show data on a grid
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			var engine = new FileHelperEngine<CustomersVerticalBar>();
@@ -228,7 +232,5 @@ namespace FileHelpersSamples
 			grid1.SelectedObject = res;
 	
 		}
-		
-	
 		}
 	}

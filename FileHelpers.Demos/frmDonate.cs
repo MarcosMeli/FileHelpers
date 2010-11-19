@@ -78,7 +78,7 @@ namespace FileHelpersSamples
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(356, 183);
 			this.label1.TabIndex = 4;
-			this.label1.Text = @"Every day, this project grows larger and adds more features.  As a result, I need to spend a lot of my time to maintain it.  Please bear this in mind as you use the library; if you find it useful I ask you to consider donating a small amount of money to the project.  Any amount you can donate will allow me to spend less time doing consulting work and more time on this project, adding new features and enhancing existing functionality.  Thanks!";
+			this.label1.Text = @"Every day, this project grows larger and adds more features.  As a result, I spend a lot of my time maintaining it.  Please bear this in mind as you use the library; if you find it useful I ask you to consider donating a small amount of money to the project.  Any amount you can donate will allow me to spend less time doing consulting work and more time on this project, adding new features and enhancing existing functionality.  Thanks!";
 			// 
 			// pictureBox4
 			// 
@@ -137,7 +137,7 @@ namespace FileHelpersSamples
 			this.chkPopup.Name = "chkPopup";
 			this.chkPopup.Size = new System.Drawing.Size(264, 22);
 			this.chkPopup.TabIndex = 11;
-			this.chkPopup.Text = "Dont show me this popup anymore";
+			this.chkPopup.Text = "Don't show me this popup anymore";
 			// 
 			// cmdDonate
 			// 
@@ -167,7 +167,7 @@ namespace FileHelpersSamples
 			this.linkLabel3.Size = new System.Drawing.Size(344, 16);
 			this.linkLabel3.TabIndex = 102;
 			this.linkLabel3.TabStop = true;
-			this.linkLabel3.Text = "Or Donate a book from the Amazon Whis List";
+			this.linkLabel3.Text = "Or Donate a book from the Amazon Wish List";
 			this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
 			// 
@@ -320,9 +320,6 @@ namespace FileHelpersSamples
             key.SetValue(keyName, value);
             key.Close();
         }
-
-
     }
-
 }
 

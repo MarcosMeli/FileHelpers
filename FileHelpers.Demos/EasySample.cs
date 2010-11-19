@@ -3,8 +3,15 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
+    /// <summary>
+    /// Create an easy example of processing
+    /// with the Async engine without any form code
+    /// </summary>
 	public class EasySample
 	{
+        /// <summary>
+        /// Layout tour data, fields are in file order
+        /// </summary>
 		[DelimitedRecord("|")]
 		public class Orders
 		{
@@ -13,7 +20,13 @@ namespace FileHelpersSamples
 			[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime OrderDate;
 			public decimal Freight;
 		}
-
+        /// <summary>
+        /// Process the delimited file twice,
+        /// once with the simple engine, once with Async
+        /// </summary>
+        /// <remarks>
+        /// TODO:  Check is this code redundant?
+        /// </remarks>
 		public void ReadWrite()
 		{
 			
@@ -46,6 +59,5 @@ namespace FileHelpersSamples
 
 			}
 		}
-
 	}
 }

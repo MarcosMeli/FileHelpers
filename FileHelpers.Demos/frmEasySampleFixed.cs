@@ -7,7 +7,8 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// Run the engine over a fixed length file
+    /// and display the result in a grid
 	/// </summary>
 	public class frmEasySampleFixed : frmFather
 	{
@@ -218,6 +219,11 @@ namespace FileHelpersSamples
 
 		#endregion
 
+
+        /// <summary>
+        /// Run the engine over a grid and display
+        /// the result in a grid
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
             var engine = new FileHelperEngine<CustomersFixed>();

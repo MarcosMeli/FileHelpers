@@ -8,8 +8,14 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmSamples.
+    /// Menu of available sample forms.
+    /// Allows a new user to walk through the facilities of
+    /// the engine.
 	/// </summary>
+    /// <remarks>
+    /// This sample code will test whether the sample is the
+    /// latest available version.
+    /// </remarks>
 	public class frmSamples : frmFather
 	{
 		private Button cmdEasy;
@@ -596,12 +602,20 @@ namespace FileHelpersSamples
 
 			mFirstTime = false;
 
+            // check versions with internet ones in background
             System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(BuscarVersion));
  
-	
 		}
 
+        /// <summary>
+        /// Version details from the Internet
+        /// </summary>
         VersionData mLastVersion;
+
+        /// <summary>
+        /// Load the current version details from the Internet
+        /// Then check the version of the engine against it.
+        /// </summary>
         private void BuscarVersion(object target)
         {
             try
@@ -614,6 +628,12 @@ namespace FileHelpersSamples
 
         }
 
+        /// <summary>
+        /// Confirm the working version against the latest one on the web
+        /// </summary>
+        /// <remarks>
+        /// Displays a 'current version' image or another image to encourage an update.
+        /// </remarks>
         private void MostrarVersion()
         {
             if (mLastVersion == null)
@@ -664,8 +684,5 @@ namespace FileHelpersSamples
 			frm.ShowDialog();
 			frm.Dispose();
 		}
-
 	}
-
-
 }

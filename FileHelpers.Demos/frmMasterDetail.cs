@@ -11,8 +11,15 @@ using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+    /// Sample of the master detail engine
 	/// </summary>
+    /// <remarks>
+	/// Many files have one record as a header and many records as detail.
+    ///
+    ///This sample shows how you can read this master detail file
+    ///into a master class which contains a list of the detail
+    ///classes.  An extremely nice feature of FileHelpers.
+    /// </remarks>
 	public class frmMasterDetail : frmFather
 	{
 		private TextBox txtClass;
@@ -310,6 +317,16 @@ public class Orders
 
 		#endregion
 
+        /// <summary>
+        /// Read master detail records into an array of
+        /// Master records (customers) which in turn
+        /// contain an array of detail records (orders)
+        /// 
+        /// The ExampleSelector tells the engine which
+        /// record type to use.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers), 
@@ -461,6 +478,5 @@ public class Orders
 			}
 
 		}
-
 		}
 	}

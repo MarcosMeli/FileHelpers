@@ -3,6 +3,10 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
+    /// <summary>
+    /// Sample class that processes a flat file layout
+    /// Each field has an attribute with its length on it.
+    /// </summary>
 	[FixedLengthRecord]
 	[TypeConverter(typeof (ExpandableObjectConverter))]
 	public class CustomersFixed

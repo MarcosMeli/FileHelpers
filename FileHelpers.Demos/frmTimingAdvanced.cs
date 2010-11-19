@@ -8,7 +8,7 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmSamples.
+	/// Perform a number of timing tests
 	/// </summary>
 	public class frmTimmingAdvanced : frmFather
 	{
@@ -195,6 +195,10 @@ namespace FileHelpersSamples
 			this.Close();
 		}
 
+        /// <summary>
+        /// Run a test for a certain number of records
+        /// </summary>
+        /// <param name="records"></param>
 		void RunTestFor(int records)
 		{
 			Application.DoEvents();
@@ -205,11 +209,13 @@ namespace FileHelpersSamples
 
 			if (File.Exists("tempFile.tmp"))
 				File.Delete("tempFile.tmp");
-
-
 		}
 
 
+        /// <summary>
+        /// Run a series of tests with different record counts
+        /// from 10 to 100,000
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			cmdRun.Enabled = false;
@@ -248,6 +254,9 @@ namespace FileHelpersSamples
 			cmdRun.Enabled = true;
 		}
 
+        /// <summary>
+        /// Create a new test reference
+        /// </summary>
 		void AdvanceProgress()
 		{
 			pb.Position++;
@@ -258,6 +267,12 @@ namespace FileHelpersSamples
 		FileHelperAsyncEngine mAsyncEngine = new FileHelperAsyncEngine(typeof (OrdersVerticalBar));
 		FileHelperEngine mEngine = new FileHelperEngine(typeof (OrdersVerticalBar));
 
+        /// <summary>
+        /// Run a single timing test with data provided.
+        /// Will display statistics to the windows grid
+        /// </summary>
+        /// <param name="records">number of record to process</param>
+        /// <param name="data">Data to process</param>
 		private void RunTest(int records, string data)
 		{
 
@@ -305,12 +320,13 @@ namespace FileHelpersSamples
 			Application.DoEvents();
 		}
 
+        /// <summary>
+        /// Form is closed ensure that our temp file is cleaned up.
+        /// </summary>
 		private void frmTimming_Closed(object sender, EventArgs e)
 		{
 			if (File.Exists("tempFile.tmp"))
 				File.Delete("tempFile.tmp");
 		}
-
-
 	}
 }

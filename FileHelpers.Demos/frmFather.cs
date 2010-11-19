@@ -9,8 +9,12 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmFather.
+	/// Base class for the other forms.
+    /// has the banner bar and footer bar on it
 	/// </summary>
+    /// <remarks>
+    /// Has some logic for links and other things in here.
+    /// </remarks>
 	public class frmFather : Form
 	{
 		private PictureBox pictureBox1;
@@ -298,6 +302,5 @@ namespace FileHelpersSamples
 	 			 this.Invalidate();
 			}
 		}
-
 	}
 }

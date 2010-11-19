@@ -6,7 +6,16 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace FileHelpersSamples
-{
+	{
+    /// <summary>
+    /// Show the latest version of the software
+    /// from details on the internet.
+    /// </summary>
+    /// <remarks>
+    /// The VersionData class has information downloaded
+    /// from FileHelpers on the current version.  This
+    /// screen displays in in a nice human readable format.
+    /// </remarks>
 	public class frmLastVersion : FileHelpersSamples.frmFather
 	{
 		private System.Windows.Forms.TextBox txtHistory;
@@ -29,6 +38,11 @@ namespace FileHelpersSamples
 			// TODO: Add any initialization after the InitializeComponent call
 		}
 
+        /// <summary>
+        /// Start the version screen with details downloaded
+        /// from teh web earlier.
+        /// </summary>
+        /// <param name="version">Internet version information</param>
 		public frmLastVersion(VersionData version):this()
 		{
 			mLastVersion = version;
@@ -235,18 +249,31 @@ namespace FileHelpersSamples
 		}
 		#endregion
 
+        /// <summary>
+        /// Current Version data from the Internet
+        /// </summary>
 		public VersionData mLastVersion;
 
+        /// <summary>
+        /// Open a browser (explorer) at the download location
+        /// </summary>
 		private void cmdDownload_Click(object sender, System.EventArgs e)
 		{
+            // TODO:  I think that just running the URL will open the default browser...
 				Process.Start("explorer", "\""+ mLastVersion.DownloadUrl +"\"");
 		}
 
+        /// <summary>
+        /// Open a browser on the download other link
+        /// </summary>
 		private void button1_Click(object sender, System.EventArgs e)
 		{
 			Process.Start("explorer", "\""+ mLastVersion.DownloadOthers +"\"");
 		}
 
+        /// <summary>
+        /// On start up add information on the internet version
+        /// </summary>
 		private void frmLastVersion_Load(object sender, System.EventArgs e)
 		{
 			txtDescription.Text = mLastVersion.Description;
@@ -255,9 +282,6 @@ namespace FileHelpersSamples
 			lblVersion.Text = mLastVersion.Version;
 			lblDate.Text = mLastVersion.ReleaseDate.ToString("dd-MMM-yyyy");
 		}
-
-
-
 	}
 }
 

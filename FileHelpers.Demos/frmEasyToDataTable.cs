@@ -7,7 +7,10 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// Read a fixed length file as a DataTable and
+    /// show it on a grid.
+    /// <para/>
+    /// This is useful for Crystal reports.
 	/// </summary>
 	public class frmEasyToDataTable : frmFather
 	{
@@ -185,6 +188,9 @@ namespace FileHelpersSamples
 
 		#endregion
 
+        /// <summary>
+        /// Read the file as a data table
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersFixed));

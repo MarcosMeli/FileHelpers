@@ -9,7 +9,8 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// Sample data is pipe delimited
+    /// Shows the data in semi colon delimited and tab delimited format
 	/// </summary>
 	public class frmEasyMulti : frmFather
 	{
@@ -246,12 +247,20 @@ engine.WriteFile(""Out_Tab.txt"", customers)";
 
 		#endregion
 
+        /// <summary>
+        /// Sample data,  shown in area 1
+        /// </summary>
 		string tempCustomers = @"ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
 BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
 BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
 BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain";
+
+        /// <summary>
+        /// Take sample data and convert it into two other 
+        /// delimitted representations
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			CustomersVerticalBar[] customers = (CustomersVerticalBar[]) grid1.SelectedObject;
@@ -274,6 +283,5 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"
 			grid1.SelectedObject = customers;
 	
 		}
-
 		}
 	}

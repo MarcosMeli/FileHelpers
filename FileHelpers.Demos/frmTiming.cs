@@ -8,7 +8,8 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmSamples.
+	/// Process a number of records showing times
+    /// of the various engines.
 	/// </summary>
 	public class frmTimming : frmFather
 	{
@@ -105,7 +106,7 @@ namespace FileHelpersSamples
 			this.button1.Size = new System.Drawing.Size(192, 32);
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Exit";
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.button1.Click += new System.EventHandler(this.CloseButton_Click);
 			// 
 			// cmdRun
 			// 
@@ -261,12 +262,19 @@ namespace FileHelpersSamples
 
 		#endregion
 
-		private void button1_Click(object sender, EventArgs e)
+		private void CloseButton_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
 
+        /// <summary>
+        /// Created sample data for processing
+        /// </summary>
 		string mSourceString;
+
+        /// <summary>
+        /// Create a set of data for time testing
+        /// </summary>
 		private void cmdCreateFile_Click(object sender, EventArgs e)
 		{
 			cmdCreateFile.Enabled = false;
@@ -281,8 +289,9 @@ namespace FileHelpersSamples
 			cmdRun.Enabled = true;
 		}
 
-
-
+        /// <summary>
+        /// Run the timing test for reading the records
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			cmdCreateFile.Enabled = false;
@@ -334,7 +343,9 @@ namespace FileHelpersSamples
 			lblTimeAsync.Text = Math.Round(span.TotalSeconds, 4).ToString() + " sec.";
 			Application.DoEvents();
 		}
-
+        /// <summary>
+        /// On close check for my temp file and delete it
+        /// </summary>
 		private void frmTimming_Closed(object sender, EventArgs e)
 		{
 			if (File.Exists("tempFile.tmp"))

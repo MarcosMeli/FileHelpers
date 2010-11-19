@@ -9,7 +9,8 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// Run the engine in Async mode to speed
+    /// the processing times of the file up.
 	/// </summary>
 	public class frmEasySampleAsync : frmFather
 	{
@@ -188,6 +189,9 @@ namespace FileHelpersSamples
 
 		#endregion
 
+        /// <summary>
+        /// Run the Async engine with a vertical bar file
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			txtOut.Text = string.Empty;
@@ -206,6 +210,5 @@ namespace FileHelpersSamples
 			engine.Close();
 	
 		}
-		
 	}
 	}

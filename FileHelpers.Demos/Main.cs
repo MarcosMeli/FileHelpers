@@ -17,12 +17,20 @@ namespace FileHelpersSamples
             //    frmDon.Dispose();
             //}
 
+            // Show the menu screen, allows the user to navigate to
+            // what they want to see.
 			frmSamples frm = new frmSamples();
 			frm.ShowDialog();
 			frm.Dispose();
 		}
 
+        /// <summary>
+        /// Customers test file
+        /// </summary>
 		public const string GlobalTestFile = @"Customers.txt";
+        /// <summary>
+        /// Database file for SQL connections
+        /// </summary>
 		public const string GlobalTestMdb = @"..\TestData.mdb";
 
 	}

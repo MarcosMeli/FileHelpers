@@ -9,7 +9,7 @@ using FileHelpers.Events;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+	/// This example show how progress bars work
 	/// </summary>
 	public class frmProgressSample: frmFather
 	{
@@ -229,9 +229,16 @@ private void ProgressChange(ProgressEventArgs e)
 
 		#endregion
 
+        /// <summary>
+        /// Run the engine with a progress bar
+        /// hooked into it to give the user a visual
+        /// cue on how things are progressing.
+        /// </summary>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
+            // Disable the button, don't want it clicked twice
 			cmdRun.Enabled = false;
+
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
 			object[] records = engine.ReadFile(MainClass.GlobalTestFile);
 
@@ -239,10 +246,15 @@ private void ProgressChange(ProgressEventArgs e)
 
 			engine.Progress += ProgressChange;
 			engine.WriteString(records);
+
+            // enable the button again we have finished.
 			cmdRun.Enabled = true;
 		}
 
-
+        /// <summary>
+        /// Set the progress bars data, how it is used is
+        /// up to the progress bars themselves.
+        /// </summary>
 		private void ProgressChange(object sender, ProgressEventArgs e)
 		{
 			prog1.PositionMax = e.TotalRecords;
@@ -262,5 +274,4 @@ private void ProgressChange(ProgressEventArgs e)
 			Thread.Sleep(10);
 		}
 	}
-
 }

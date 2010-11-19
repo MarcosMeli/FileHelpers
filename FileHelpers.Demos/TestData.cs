@@ -9,6 +9,9 @@ namespace FileHelpersSamples
 	public class TestData
 	{
 		
+	    /// <summary>
+	    /// Block of sample data that will be repeated
+	    /// </summary>
 		public static string mCustomersTest = @"ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany" + "\r\n" +
 			@"ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico" + "\r\n" +
 			@"ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico" + "\r\n" +
@@ -18,6 +21,9 @@ namespace FileHelpersSamples
 			@"BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbourg|France" + "\r\n" +
 			@"BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain" + "\r\n";
 		
+        /// <summary>
+        /// Block of sample numercial data
+        /// </summary>
 		static string mTestData = "10248|VINET|5|04071996|01081996|16071996|3|32.38|101248|VINET|5|04071996|01081996|16071996|3|352.38" + Environment.NewLine +
 		"10249|TOMSP|6|05071996|16081996|10071996|1|111.61|102348|VINET|5|04071996|01081996|16071996|3|3432.38" + Environment.NewLine +
 		"10250|HANAR|4|08071996|05081996|12071996|2|125.83|1043248|VINET|5|04071996|01081996|16071996|3|3422.38" + Environment.NewLine +
@@ -40,6 +46,11 @@ namespace FileHelpersSamples
 //		"10256|WELLI|3|2|13.97" + Environment.NewLine +
 //		"10257|HILAA|4|3|81.91" + Environment.NewLine;
 //
+        /// <summary>
+        /// Create a huge chunk of random data for testing
+        /// </summary>
+        /// <param name="records">Number of records to create</param>
+        /// <returns>data as a string</returns>
 		public static string CreateDelimitedString(int records)
 		{
 			StringBuilder sb = new StringBuilder(mTestData.Length * records);
@@ -51,6 +62,5 @@ namespace FileHelpersSamples
 
 			return sb.ToString();
 		}
-
 	}
 }

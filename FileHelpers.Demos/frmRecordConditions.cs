@@ -9,7 +9,10 @@ using FileHelpers;
 namespace FileHelpersSamples
 {
 	/// <summary>
-	/// Summary description for frmEasySample.
+    /// Example of reading a file with a selection criteria
+    /// on the records.
+    /// Read customer details beginning with F and display
+    /// on a grid.
 	/// </summary>
 	public class frmRecordConditions: frmFather
 	{
@@ -338,6 +341,17 @@ public class CustomersVerticalBar
 
 		#endregion
 
+        /// <summary>
+        /// Extract all records beginning with F (criteria)
+        /// and display them on a grid
+        /// </summary>
+        /// <remarks>
+        /// As an alternative to this
+        /// you can also use the multi record engine and
+        /// skip records from being selected.
+        /// 
+        /// There is always more than one way to do it.
+        /// </remarks>
 		private void cmdRun_Click(object sender, EventArgs e)
 		{
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
@@ -347,7 +361,10 @@ public class CustomersVerticalBar
 	
 		}
 		
-	
+        /// <summary>
+        /// Create a customer record with a
+        /// selection criteria of begins with 'F'
+        /// </summary>
 		[DelimitedRecord("|")]
 		[TypeConverter(typeof (ExpandableObjectConverter))]
 		[ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
@@ -409,8 +426,6 @@ public class CustomersVerticalBar
 			{
 				return CustomerID + " - " + CompanyName + ", " + ContactName;
 			}
-
 		}
-
 		}
 	}

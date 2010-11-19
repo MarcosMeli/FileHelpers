@@ -3,6 +3,11 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
+    /// <summary>
+    /// Sample Orders class delimited by a vertical bar.
+    /// Used by most examples to break up data and display
+    /// it
+    /// </summary>
 	[DelimitedRecord("|")]
 	public sealed class OrdersVerticalBar
 	{
@@ -22,7 +27,6 @@ namespace FileHelpersSamples
 
 		public string Freight;
 		
-		
 		public string OrderID2;
 
 		public string CustomerID2;
@@ -39,6 +43,4 @@ namespace FileHelpersSamples
 
 		public string Freight2;
 	}
-
-
 }

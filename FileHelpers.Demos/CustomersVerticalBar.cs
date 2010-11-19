@@ -3,6 +3,9 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
+    /// <summary>
+    /// Sample class with a few delimited fields so we can load data into it.
+    /// </summary>
 	[DelimitedRecord("|")]
 	[TypeConverter(typeof (ExpandableObjectConverter))]
 	public class CustomersVerticalBar
@@ -63,7 +66,5 @@ namespace FileHelpersSamples
 		{
 			return CustomerID + " - " + CompanyName + ", " + ContactName;
 		}
-
 	}
-
 }
