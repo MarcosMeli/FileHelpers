@@ -17,8 +17,8 @@
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>FileHelpers</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="Release\Net 2.0\FileHelpers.dll" />
-<DocumentationSource sourceFile="Release\Net 2.0\FileHelpers.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="Release\Lib\2.0\FileHelpers.dll" />
+<DocumentationSource sourceFile="Release\Lib\2.0\FileHelpers.xml" /></DocumentationSources>
     <HelpFileFormat>HtmlHelp1x</HelpFileFormat>
     <HelpTitle>FileHelpers Documentation</HelpTitle>
     <NamespaceSummaries>
