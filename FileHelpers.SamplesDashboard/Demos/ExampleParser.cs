@@ -38,8 +38,8 @@ namespace FileHelpers.SamplesDashboard
 
 
             var filesMatch = Regex.Matches(demoText,
-                                           @"\/\/\-\>\s*\{Example\.File\s*\:(?<filename>.+)\}\s*(?<filecode>[^\s.$]+?)\s*\/\/",
-                                           regexOptions | RegexOptions.Multiline);
+                                           @"\/\/\-\>\s*\{Example\.File\s*\:(?<filename>.*?)\}\s*(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
+                                           regexOptions | RegexOptions.Singleline);
 
             foreach (Match fileMatch in filesMatch)
             {
