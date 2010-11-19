@@ -11,6 +11,7 @@
 	<ItemGroup>
 		<DebugFiles Include="Debug\**\*.*" />
 		<ReleaseFiles Include="Release\**\*.*" />
+	
 		<OutputFiles Include="Output\**\*.*" />
 	</ItemGroup>
 
@@ -33,10 +34,23 @@
 
 	<Target Name="release" DependsOnTargets="common">
 		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Release" />
+		
+		<MakeDir Directories="Release\Lib\2.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D Release\Library\*.* Release\Lib\2.0"/>
+		<Exec Command="RmDir /S /Q Release\Library" />
+		
+		<Exec Command="msbuild FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0  /toolsversion:4.0 /t:rebuild /p:Configuration=Release "/>
+		
+		<MakeDir Directories="Release\Lib\4.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D Release\Library\*.* Release\Lib\4.0"/>
+		<Exec Command="RmDir /S /Q Release\Library" />
+		
+		
 	</Target>
 
 	<Target Name="debug" DependsOnTargets="common">
-		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Debug" />
+		<MSBuild Projects="FileHelpers.sln" 
+		Properties="Configuration=Debug;TargetFrameworkVersion=v2.0" />
 	</Target>
 
 	<Target Name="pack-release" DependsOnTargets="release">
