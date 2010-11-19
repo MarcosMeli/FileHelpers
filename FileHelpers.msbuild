@@ -39,7 +39,8 @@
 		<Exec Command="copy /Y /D Release\Library\*.* Release\Lib\2.0"/>
 		<Exec Command="RmDir /S /Q Release\Library" />
 		
-		<Exec Command="msbuild FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0  /toolsversion:4.0 /t:rebuild /p:Configuration=Release "/>
+		<Exec WorkingDirectory=".\"
+			Command="msbuild FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0  /toolsversion:4.0 /t:rebuild /p:Configuration=Release "/>
 		
 		<MakeDir Directories="Release\Lib\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Library\*.* Release\Lib\4.0"/>
