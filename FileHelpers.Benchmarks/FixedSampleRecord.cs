@@ -2,7 +2,9 @@ using System;
 
 namespace FileHelpers.Benchmarks
 {
-
+    /// <summary>
+    /// Sample fixed length record for testing
+    /// </summary>
     [FixedLengthRecord()]
     public class FixedSampleRecord
     {

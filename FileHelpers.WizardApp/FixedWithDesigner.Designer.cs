@@ -53,7 +53,7 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdShowInfo.Name = "cmdShowInfo";
             this.cmdShowInfo.Size = new System.Drawing.Size(189, 22);
-            this.cmdShowInfo.Text = "Show Extendend Info";
+            this.cmdShowInfo.Text = "Show Extended Info";
             // 
             // toolStripSeparator1
             // 

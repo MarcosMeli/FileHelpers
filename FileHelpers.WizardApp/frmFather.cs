@@ -139,7 +139,7 @@ namespace FileHelpers.WizardApp
             this.linkLabel2.Size = new System.Drawing.Size(158, 16);
             this.linkLabel2.TabIndex = 100;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "(c) 2005-07 to Marcos Meli";
+            this.linkLabel2.Text = "(c) 2005-10 to Marcos Meli";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel1

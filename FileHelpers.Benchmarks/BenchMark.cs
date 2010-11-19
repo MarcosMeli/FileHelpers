@@ -6,10 +6,16 @@ using FileHelpers;
 
 namespace FileHelpers.Benchmarks
 {
+    /// <summary>
+    /// Benchmark the application so that we can check performance
+    /// </summary>
 	class Benchmark
 	{
 
-
+        /// <summary>
+        /// Performs a series of tests to show time differences
+        /// </summary>
+        /// <param name="args">Command line arguments</param>
 		[STAThread]
 		static void Main(string[] args)
 		{
@@ -24,11 +30,8 @@ namespace FileHelpers.Benchmarks
             //engine.AfterWriteRecord += new FileHelpers.Events.AfterWriteHandler<FixedSampleRecord>(engine_AfterWriteRecord);
             //engine.BeforeWriteRecord += new FileHelpers.Events.BeforeWriteHandler<FixedSampleRecord>(engine_BeforeWriteRecord);
 
-
-            
             System.Threading.Thread.Sleep(2000);
             long start = DateTime.Now.Ticks;
-
 
             if (args.Length > 0)
             {
@@ -73,6 +76,11 @@ namespace FileHelpers.Benchmarks
         {
         }
 
+        /// <summary>
+        /// Use a simple loop mechanism to read a file sequentially
+        /// </summary>
+        /// <param name="engine">Engine to parse record</param>
+        /// <param name="file">File to process</param>
 	    private static void TestFixedLengthRecord(FileHelperAsyncEngine<FixedSampleRecord> engine, string file)
 	    {
 			using (engine.BeginReadFile(file))
@@ -84,6 +92,9 @@ namespace FileHelpers.Benchmarks
             }
 	    }
 
+        /// <summary>
+        /// Sample data that will be repeated until we have the right count of records
+        /// </summary>
 	    private static string mFixedSample =
 	        @"20000000109PANIAGUA JOSE                                                                                                                                                   0     
 20000000125ACOSTA MARCOS                                                                                                                                                   0     
@@ -105,6 +116,12 @@ namespace FileHelpers.Benchmarks
 20000000885CHOQUE RAMON FELIX                                                                                                                                              0     
 20000000923AQUINO VILLASANTI NICASIO                                                                                                                                       0     
 ";
+
+        /// <summary>
+        /// Create a file containing records base on count
+        /// </summary>
+        /// <param name="file">File to create with sample</param>
+        /// <param name="records">Number of records to create</param>
         private static void CreateSampleFixedString(string file, int records)
 	    {
 	        using (var stream = new StreamWriter(file))
@@ -116,15 +133,7 @@ namespace FileHelpers.Benchmarks
                 {
                     stream.Write(mFixedSample);
                 }
-	            
 	        }
 	    }
 	}
-	
-	internal interface IRecordAssigner
-			{
-				object CreateAndAssign(object[] values);
-			}
-	
-	
 }

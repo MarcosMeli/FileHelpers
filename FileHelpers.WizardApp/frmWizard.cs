@@ -839,8 +839,8 @@ namespace FileHelpers.WizardApp
             this.chkSealed.Name = "chkSealed";
             this.chkSealed.Size = new System.Drawing.Size(168, 31);
             this.chkSealed.TabIndex = 1013;
-            this.chkSealed.Text = "Mark the class as sealed\r\n(better performance)";
-            this.toolTip1.SetToolTip(this.chkSealed, "Enhace a bit the performance with this option");
+            this.chkSealed.Text = "Mark the class as sealed\r\n(for better performance)";
+            this.toolTip1.SetToolTip(this.chkSealed, "Enhance the performance a bit with this option");
             this.chkSealed.UseVisualStyleBackColor = true;
             this.chkSealed.CheckedChanged += new System.EventHandler(this.chkSealed_CheckedChanged);
             // 
@@ -1411,8 +1411,8 @@ namespace FileHelpers.WizardApp
             this.picDonate.Size = new System.Drawing.Size(100, 36);
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to know a little about\r\nabo" +
-                    "ut what you can donate to the project.\r\n\r\nSome money will keep FileHelpers alive" +
+            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\n" +
+                    "how you can donate to the project.\r\n\r\nSome money will help keep FileHelpers active" +
                     "\r\n\r\nThanks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
@@ -1773,7 +1773,8 @@ namespace FileHelpers.WizardApp
             ClassBuilder ant = mWizardInfo.ClassBuilder;
             if (radFixed.Checked)
             {
-                if (mWizardInfo.FixedLengthBuilder != null) return true;
+                if (mWizardInfo.FixedLengthBuilder != null)
+                      return true;
 
                 mWizardInfo.ClassBuilder = new FixedLengthClassBuilder(txtClassName.Text);
                 mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode)cboFixedMode2.SelectedItem;
@@ -2756,8 +2757,5 @@ namespace FileHelpers.WizardApp
             frm.ShowDialog();
             frm.Dispose();
         }
-
-
-
     }
 }

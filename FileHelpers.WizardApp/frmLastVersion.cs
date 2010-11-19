@@ -257,9 +257,6 @@ namespace FileHelpers.WizardApp
 			lblVersion.Text = mLastVersion.Version;
 			lblDate.Text = mLastVersion.ReleaseDate.ToString("dd-MMM-yyyy");
 		}
-
-
-
 	}
 }
 
