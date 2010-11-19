@@ -11,7 +11,6 @@
 	<ItemGroup>
 		<DebugFiles Include="Debug\**\*.*" />
 		<ReleaseFiles Include="Release\**\*.*" />
-	
 		<OutputFiles Include="Output\**\*.*" />
 	</ItemGroup>
 
@@ -62,12 +61,22 @@
 		<Exec Command="RmDir /S /Q Debug\Library" />
 	</Target>
 
+	<Target Name="pack-all" DependsOnTargets="common;pack-release;pack-debug">
+	</Target>
+
 	<Target Name="pack-release" DependsOnTargets="release">
-		<Zip Files="@(ReleaseFiles)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).zip" />
+		<ItemGroup>
+			<ReleaseFiles2 Include="Release\**\*.*" />
+		</ItemGroup>
+		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_Release_$(CurrentVersion).zip" />
 	</Target>
 
 	<Target Name="pack-debug" DependsOnTargets="debug">
-		<Zip Files="@(DebugFiles)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip" />
+		<ItemGroup>
+			<DebugFiles2 Include="Debug\**\*.*" />
+		</ItemGroup>
+
+		<Zip Files="@(DebugFiles2)" WorkingDirectory="Debug" ZipFileName="Output\FileHelpers_Debug_$(CurrentVersion).zip" />
 	</Target>
 
 	<PropertyGroup>
