@@ -80,11 +80,11 @@
       <Link>VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Basic\20.WriteFileDelimited.cs" />
-    <Compile Include="Demos\ExampleParser.cs" />
-    <Compile Include="Demos\DemoGenerator2.autogen.cs">
+    <Compile Include="Core\Advanced\10.MultipleDelimiters.cs" />
+    <Compile Include="Demos\DemoGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DemoGenerator2.tt</DependentUpon>
+      <DependentUpon>DemoGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Framework\CategoryTreeNode.cs" />
     <Compile Include="Framework\DemoFiles.cs" />
@@ -127,9 +127,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demos\DemoGenerator2.tt">
+    <None Include="Demos\DemoGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DemoGenerator2.autogen.cs</LastGenOutput>
+      <LastGenOutput>DemoGenerator.autogen.cs</LastGenOutput>
     </None>
     <None Include="Resources\stop.png" />
   </ItemGroup>

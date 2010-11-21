@@ -34,13 +34,13 @@
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.tcCodeFiles = new System.Windows.Forms.TabControl();
             this.txtCode = new ICSharpCode.TextEditor.TextEditorControl();
+            this.tcCodeFiles = new System.Windows.Forms.TabControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
-            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,6 +115,18 @@
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 2;
             // 
+            // treeViewDemos1
+            // 
+            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDemos1.ImageIndex = 0;
+            this.treeViewDemos1.ImageList = this.imgTreeView;
+            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
+            this.treeViewDemos1.Name = "treeViewDemos1";
+            this.treeViewDemos1.SelectedImageIndex = 0;
+            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
+            this.treeViewDemos1.TabIndex = 0;
+            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
+            // 
             // imgTreeView
             // 
             this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
@@ -149,16 +161,6 @@
             this.splitContainer2.SplitterDistance = 423;
             this.splitContainer2.TabIndex = 0;
             // 
-            // tcCodeFiles
-            // 
-            this.tcCodeFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcCodeFiles.Location = new System.Drawing.Point(0, 25);
-            this.tcCodeFiles.Name = "tcCodeFiles";
-            this.tcCodeFiles.SelectedIndex = 0;
-            this.tcCodeFiles.Size = new System.Drawing.Size(586, 398);
-            this.tcCodeFiles.TabIndex = 0;
-            this.tcCodeFiles.SelectedIndexChanged += new System.EventHandler(this.tcCodeFiles_SelectedIndexChanged);
-            // 
             // txtCode
             // 
             this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -173,6 +175,16 @@
             this.txtCode.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.txtCode.Visible = false;
             this.txtCode.VRulerRow = 0;
+            // 
+            // tcCodeFiles
+            // 
+            this.tcCodeFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcCodeFiles.Location = new System.Drawing.Point(0, 25);
+            this.tcCodeFiles.Name = "tcCodeFiles";
+            this.tcCodeFiles.SelectedIndex = 0;
+            this.tcCodeFiles.Size = new System.Drawing.Size(586, 398);
+            this.tcCodeFiles.TabIndex = 0;
+            this.tcCodeFiles.SelectedIndexChanged += new System.EventHandler(this.tcCodeFiles_SelectedIndexChanged);
             // 
             // toolStrip2
             // 
@@ -191,18 +203,7 @@
             this.cmdRunDemo.Name = "cmdRunDemo";
             this.cmdRunDemo.Size = new System.Drawing.Size(83, 22);
             this.cmdRunDemo.Text = "Run Demo";
-            // 
-            // treeViewDemos1
-            // 
-            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewDemos1.ImageIndex = 0;
-            this.treeViewDemos1.ImageList = this.imgTreeView;
-            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
-            this.treeViewDemos1.Name = "treeViewDemos1";
-            this.treeViewDemos1.SelectedImageIndex = 0;
-            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
-            this.treeViewDemos1.TabIndex = 0;
-            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
+            this.cmdRunDemo.Click += new System.EventHandler(this.cmdRunDemo_Click);
             // 
             // frmSamples
             // 

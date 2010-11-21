@@ -13,14 +13,16 @@ namespace FileHelpers
 
     public sealed class DemoCode
     {
-        public DemoCode(string codeTitle, string category)
+        public DemoCode(IDemo demo, string codeTitle, string category)
         {
             CodeTitle = codeTitle;
+            Demo = demo;
             Category = category;
             Files = new List<DemoFile>();
         }
 
-        public string CodeTitle { get; set; }
+        public IDemo Demo { get; private set; }
+        public string CodeTitle { get; private set; }
         public string CodeDescription { get; set; }
         public string Code { get; set; }
 

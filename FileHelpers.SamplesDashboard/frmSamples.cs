@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Document;
+using Demos;
 
 namespace FileHelpers.SamplesDashboard
 {
@@ -25,23 +26,22 @@ namespace FileHelpers.SamplesDashboard
 
         private void treeViewDemos1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            var demo = treeViewDemos1.SelectedDemo;
-            if (demo == null)
+            if (CurrentDemo == null)
             {
                 Clear();
                 return;
             }
 
-            ShowDemo(demo);
+            ShowDemo();
 
         }
 
-        private void ShowDemo(DemoCode demo)
+        private void ShowDemo()
         {
             this.SuspendLayout();
             tcCodeFiles.TabPages.Clear();
 
-            foreach (var file in demo.Files)
+            foreach (var file in CurrentDemo.Files)
             {
                 var tp = new TabPage();
                 tp.Text = file.Filename;
@@ -81,9 +81,25 @@ namespace FileHelpers.SamplesDashboard
             txtCode.Refresh();
 
         }
+
+        public DemoCode CurrentDemo
+        {
+            get
+            {
+                return treeViewDemos1.SelectedDemo;
+            }
+        }
         private void tcCodeFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowDemoFile();
+        }
+
+        private void cmdRunDemo_Click(object sender, EventArgs e)
+        {
+            if (CurrentDemo == null)
+                return;
+
+            CurrentDemo.Demo.Run();
         }
 
     }

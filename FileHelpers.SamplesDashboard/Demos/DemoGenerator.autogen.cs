@@ -1,10 +1,10 @@
-﻿using FileHelpers;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FileHelpers;
 
-namespace FileHelpers.SamplesDashboard
+namespace Demos
 {
     public class DemoFactory
     {
@@ -12,22 +12,59 @@ namespace FileHelpers.SamplesDashboard
         {
 		    var demos = new List<DemoCode>();
             DemoCode demo;
-demo = new DemoCode("Read Delimited File", "Basic");
+demo = new DemoCode(new MultipleDelimiters(), "Multiple Delimiters", "Advanced");
+demo.CodeDescription = @"Write a file with different delimiters using the same record";
+demos.Add(demo);
+demo.Files.Add(new DemoFile("Example.cs"));
+demo.LastFile.Contents = @"var customers = CreateCustomers();
+
+DelimitedFileEngine<CustomersVerticalBar> engine = new DelimitedFileEngine<CustomersVerticalBar>();
+engine.WriteFile(""Out_Vertical.txt"", customers);
+
+engine.Options.Delimiter = "";"";
+engine.WriteFile(""Out_SemiColon.txt"", customers);
+
+engine.Options.Delimiter = ""\t"";
+engine.WriteFile(""Out_Tab.txt"", customers);
+";
+demo.Files.Add(new DemoFile("CustomersVerticalBar.cs"));
+demo.LastFile.Contents = @"[DelimitedRecord(""|"")]
+public class CustomersVerticalBar
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public string ContactTitle;
+    public string Address;
+    public string City;
+    public string Country;
+
+    //-> To display in the PropertyGrid.
+    public override string ToString()
+    {
+        return CustomerID + "" - "" + CompanyName + "", "" + ContactName;
+    }
+}
+";
+
+demo = new DemoCode(new ReadFile(), "Read Delimited File", "Basic");
 demo.CodeDescription = @"Example of how to read a Delimited File";
 demos.Add(demo);
 demo.Files.Add(new DemoFile("Example.cs"));
-demo.LastFile.Contents = @"var engine = new FileHelperEngine<Orders>();
-var records = engine.ReadFile("""");
-
-foreach (var record in records)
+demo.LastFile.Contents = @"public void Run()
 {
-    Console.WriteLine(record.CustomerID);
-    Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
-    Console.WriteLine(record.Freight);
+    var engine = new FileHelperEngine<Orders>();
+    var records = engine.ReadFile(""Input.txt"");
+
+    foreach (var record in records)
+    {
+        Console.WriteLine(record.CustomerID);
+        Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
+        Console.WriteLine(record.Freight);
+    }
 }
-";
-demo.Files.Add(new DemoFile("OrdersRecord.cs"));
-demo.LastFile.Contents = @"[DelimitedRecord(""|"")]
+
+[DelimitedRecord(""|"")]
 public class Orders
 {
     public int OrderID;
@@ -39,7 +76,7 @@ public class Orders
     public decimal Freight;
 }
 ";
-demo.Files.Add(new DemoFile("SampleFile.txt"));
+demo.Files.Add(new DemoFile("Input.txt"));
 demo.LastFile.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
@@ -50,7 +87,7 @@ BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbo
 BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain
 ";
 
-demo = new DemoCode("Write Delimited File", "Basic");
+demo = new DemoCode(new WriteFile(), "Write Delimited File", "Basic");
 demo.CodeDescription = @"Example of how to write a Delimited File";
 demos.Add(demo);
 demo.Files.Add(new DemoFile("Example.cs"));

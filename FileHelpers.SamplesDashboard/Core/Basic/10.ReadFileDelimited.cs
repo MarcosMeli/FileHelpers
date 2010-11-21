@@ -12,11 +12,12 @@ namespace Demos
         :IDemo
     {
 
+        //-> {Example.File:Example.cs}
+
         public void Run()
         {
-            //-> {Example.File:Example.cs}
             var engine = new FileHelperEngine<Orders>();
-            var records = engine.ReadFile("");
+            var records = engine.ReadFile("Input.txt");
 
             foreach (var record in records)
             {
@@ -24,10 +25,8 @@ namespace Demos
                 Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 Console.WriteLine(record.Freight);
             }
-            //-> {/Example.File}
         }
 
-        //-> {Example.File:OrdersRecord.cs}
         [DelimitedRecord("|")]
         public class Orders
         {
@@ -41,7 +40,7 @@ namespace Demos
         }
         //-> {/Example.File}
 
-        //-> {Example.File:SampleFile.txt}
+        //-> {Example.File:Input.txt}
 /*ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
@@ -52,6 +51,8 @@ BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbo
 BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain*/
         //-> {/Example.File}
     }
+
+    
 
 
 }

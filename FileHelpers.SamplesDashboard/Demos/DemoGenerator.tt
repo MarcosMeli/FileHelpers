@@ -1,11 +1,41 @@
-﻿<#@ template language="C#" inherits="T4Toolbox.Template" #>
+﻿<#@ template language="C#" hostSpecific="true" #>
+<#@ output extension=".autogen.cs" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ assembly name="System.Core" #>
 <#@ assembly name="EnvDTE" #>
 <#@ import namespace="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using FileHelpers;
+
+namespace Demos
+{
+    public class DemoFactory
+    {
+        public static List<DemoCode> GetDemos()
+        {
+		    var demos = new List<DemoCode>();
+            DemoCode demo;
 <#
-
-Process("Core");
-
+	Process("Core");
 #>
+		
+           return demos;
+        }
+    }
+}
+
+
 <#+
 
 public void Process(string folder)
@@ -20,7 +50,6 @@ public void Process(string folder)
 	
 	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
 	
-    WriteLine(Code.GenerateCode());
 }
 
 public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
@@ -52,4 +81,114 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 	}
 
 }
+
+private void RenderItemCore(ProjectItem item, ProjectItem parent)
+{
+	var filename = item.get_FileNames(0);
+	
+	var res = ParseExample(File.ReadAllText(filename), parent.Name);
+	
+	WriteLine(res);
+	
+	var name = Path.GetFileNameWithoutExtension(filename);
+    //var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
+	
+        
+        }
+
+		private void WriteLine()
+		{
+			WriteLine(string.Empty);
+		}
+		
+	
+       public static string ParseExample(string demoText, string category)
+        {
+            var res = new StringBuilder();
+            var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
+
+            var name = "Demo";
+            var match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Name\s*:(?<name>.*)\}", regexOptions);
+            if (match.Success)
+            {
+                name = match.Groups["name"].Value.Trim();
+            }
+
+			var className = "";
+            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*IDemo", regexOptions | RegexOptions.Singleline);
+            if (match.Success)
+            {
+                className = match.Groups["classname"].Value.Trim();
+            }
+
+            var description = "";
+
+            match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Description\s*:(?<description>.*)\}", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+                description = match.Groups["description"].Value.Trim();
+            }
+
+            res.AppendLine(@"demo = new DemoCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
+            if (!string.IsNullOrEmpty(description))
+            {
+                res.AppendLine(@"demo.CodeDescription = @""" + description + @""";");
+            }
+
+            res.AppendLine(@"demos.Add(demo);");
+
+
+            var filesMatch = Regex.Matches(demoText,
+                                           @"\/\/\-\>\s*\{Example\.File\s*\:(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
+                                           regexOptions | RegexOptions.Singleline);
+
+            foreach (Match fileMatch in filesMatch)
+            {
+                res.AppendLine(@"demo.Files.Add(new DemoFile(""" + fileMatch.Groups["filename"].Value + @"""));");
+                res.AppendLine(@"demo.LastFile.Contents = @""" + GetFileCode(fileMatch.Groups["filecode"].Value) + @""";");
+            }
+
+
+            //demo.Files.Add(new DemoFile());
+            //demo.LastFile.Contents = "Bla bla .bla";
+            //res.Add(demo);
+
+            return res.ToString();
+        }
+
+        public static string GetFileCode(string contents)
+        {
+            contents = contents.Replace("\"", "\"\"")
+                .Replace("*/", "")
+                .Replace("/*", "");
+
+            int? ident = null;
+
+            foreach (var line in contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None))
+	        {
+                if (line.Trim().Length == 0)
+                    continue;
+
+                var spaces = line.Length - line.TrimStart().Length;
+
+                if (ident == null)
+                    ident = spaces;
+                else
+                    ident = Math.Min(ident.Value, spaces);
+	        }
+
+            var res = new StringBuilder();
+            
+            foreach (var line in contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None))
+	        {
+                if (line.Length < ident)
+                    res.AppendLine(line);
+                else
+                    res.AppendLine(line.Substring(ident.Value));
+	        }
+
+            return res.ToString();
+        }
+    
+
 #>
