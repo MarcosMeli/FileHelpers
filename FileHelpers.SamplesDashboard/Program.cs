@@ -12,16 +12,6 @@ namespace FileHelpers.SamplesDashboard
         [STAThread]
         public static void Main()
         {
-            var demos = new StringBuilder();
-            demos.AppendLine("var demos = new List<DemoCode>();\r\n");
-                
-
-            demos.AppendLine(
-                ExampleParser.Parse(
-                    File.ReadAllText(
-                        @"d:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.SamplesDashboard\Core\Basic\ReadFileDelimited.cs")));
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmSamples());

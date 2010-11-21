@@ -37,11 +37,10 @@
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tcCodeFiles = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtCode = new ICSharpCode.TextEditor.TextEditorControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
             this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
-            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,8 +48,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.tcCodeFiles.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +77,7 @@
             new Devoo.WinForms.ImageShape(((System.Drawing.Bitmap)(resources.GetObject("reflectionHeader1.Images"))), true, ((byte)(255)), new System.Drawing.Point(3, 1), ((byte)(0)), 0)});
             this.reflectionHeader1.Location = new System.Drawing.Point(0, 0);
             this.reflectionHeader1.Name = "reflectionHeader1";
-            this.reflectionHeader1.Size = new System.Drawing.Size(871, 85);
+            this.reflectionHeader1.Size = new System.Drawing.Size(884, 85);
             this.reflectionHeader1.Text = "FileHelpers Examples";
             textShape1.Color.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             textShape1.Color.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
@@ -97,7 +94,7 @@
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 85);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(871, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(884, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -114,8 +111,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(871, 415);
-            this.splitContainer1.SplitterDistance = 290;
+            this.splitContainer1.Size = new System.Drawing.Size(884, 502);
+            this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 2;
             // 
             // imgTreeView
@@ -145,32 +142,37 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.txtCode);
             this.splitContainer2.Panel1.Controls.Add(this.tcCodeFiles);
             this.splitContainer2.Panel1.Controls.Add(this.toolStrip2);
-            this.splitContainer2.Size = new System.Drawing.Size(577, 415);
-            this.splitContainer2.SplitterDistance = 192;
+            this.splitContainer2.Size = new System.Drawing.Size(586, 502);
+            this.splitContainer2.SplitterDistance = 423;
             this.splitContainer2.TabIndex = 0;
             // 
             // tcCodeFiles
             // 
-            this.tcCodeFiles.Controls.Add(this.tabPage2);
             this.tcCodeFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcCodeFiles.Location = new System.Drawing.Point(0, 25);
             this.tcCodeFiles.Name = "tcCodeFiles";
             this.tcCodeFiles.SelectedIndex = 0;
-            this.tcCodeFiles.Size = new System.Drawing.Size(577, 167);
+            this.tcCodeFiles.Size = new System.Drawing.Size(586, 398);
             this.tcCodeFiles.TabIndex = 0;
+            this.tcCodeFiles.SelectedIndexChanged += new System.EventHandler(this.tcCodeFiles_SelectedIndexChanged);
             // 
-            // tabPage2
+            // txtCode
             // 
-            this.tabPage2.Controls.Add(this.textEditorControl1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(569, 141);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "File1";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCode.IndentStyle = ICSharpCode.TextEditor.Document.IndentStyle.None;
+            this.txtCode.IsReadOnly = false;
+            this.txtCode.Location = new System.Drawing.Point(7, 49);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(572, 367);
+            this.txtCode.TabIndex = 0;
+            this.txtCode.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.txtCode.Visible = false;
+            this.txtCode.VRulerRow = 0;
             // 
             // toolStrip2
             // 
@@ -178,7 +180,7 @@
             this.cmdRunDemo});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(577, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(586, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -198,23 +200,15 @@
             this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
             this.treeViewDemos1.Name = "treeViewDemos1";
             this.treeViewDemos1.SelectedImageIndex = 0;
-            this.treeViewDemos1.Size = new System.Drawing.Size(290, 415);
+            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
             this.treeViewDemos1.TabIndex = 0;
-            // 
-            // textEditorControl1
-            // 
-            this.textEditorControl1.IsReadOnly = false;
-            this.textEditorControl1.Location = new System.Drawing.Point(6, 6);
-            this.textEditorControl1.Name = "textEditorControl1";
-            this.textEditorControl1.Size = new System.Drawing.Size(560, 135);
-            this.textEditorControl1.TabIndex = 0;
-            this.textEditorControl1.Text = "textEditorControl1";
+            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
             // 
             // frmSamples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 525);
+            this.ClientSize = new System.Drawing.Size(884, 612);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.reflectionHeader1);
@@ -229,8 +223,6 @@
             this.splitContainer2.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.tcCodeFiles.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -246,10 +238,9 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private TreeViewDemos treeViewDemos1;
         private System.Windows.Forms.TabControl tcCodeFiles;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
         private System.Windows.Forms.ImageList imgTreeView;
-        private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
+        private ICSharpCode.TextEditor.TextEditorControl txtCode;
     }
 }

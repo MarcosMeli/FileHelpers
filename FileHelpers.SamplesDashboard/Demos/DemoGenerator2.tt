@@ -1,13 +1,108 @@
-﻿using System;
+﻿<#@ template language="C#" hostSpecific="true" #>
+<#@ output extension=".autogen.cs" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+using FileHelpers;
+using System.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace FileHelpers.SamplesDashboard
 {
-    public class ExampleParser
+    public class DemoFactory
     {
-        public static string ParseExample(string demoText, string category)
+        public static List<DemoCode> GetDemos()
+        {
+		    var demos = new List<DemoCode>();
+            DemoCode demo;
+<#
+	Process("Core");
+#>
+		
+           return demos;
+        }
+    }
+}
+
+
+<#+
+
+public void Process(string folder)
+{
+	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+	
+	EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+	
+	/* Retrieve the project in which this template resides. */
+	EnvDTE.ProjectItem containingProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+	Project project = containingProjectItem.ContainingProject;
+	
+	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
+	
+}
+
+public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
+{
+
+	if (projectItem.ProjectItems.Count == 0)
+	{
+		
+	    if (Path.GetExtension(projectItem.get_FileNames(0).ToLower()) != ".cs")
+	        return;
+		
+		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
+		{ 
+			case "generatedemowrappers.cs":
+			case "filetestbase.cs":
+					break;
+				default:
+					//if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
+						RenderItemCore(projectItem, parent);
+					break;
+		}
+	}
+	else
+	{
+		foreach (ProjectItem childItem in projectItem.ProjectItems)
+		{
+			ProcessProjectItem(childItem, projectItem);
+		}
+	}
+
+}
+
+private void RenderItemCore(ProjectItem item, ProjectItem parent)
+{
+	var filename = item.get_FileNames(0);
+	
+	var res = ParseExample(File.ReadAllText(filename), parent.Name);
+	
+	WriteLine(res);
+	
+	var name = Path.GetFileNameWithoutExtension(filename);
+    //var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
+	
+        
+        }
+
+		private void WriteLine()
+		{
+			WriteLine(string.Empty);
+		}
+		
+	
+       public static string ParseExample(string demoText, string category)
         {
             var res = new StringBuilder();
             var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
@@ -82,10 +177,11 @@ namespace FileHelpers.SamplesDashboard
                 if (line.Length < ident)
                     res.AppendLine(line);
                 else
-                    res.AppendLine(line.Substring(ident.Value - 1));
+                    res.AppendLine(line.Substring(ident.Value));
 	        }
 
             return res.ToString();
         }
-    }
-}
+    
+
+#>

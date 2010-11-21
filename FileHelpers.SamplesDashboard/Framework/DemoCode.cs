@@ -11,9 +11,9 @@ namespace FileHelpers
         void Run();
     }
 
-    public abstract class DemoCode
+    public sealed class DemoCode
     {
-        protected DemoCode(string codeTitle, string category)
+        public DemoCode(string codeTitle, string category)
         {
             CodeTitle = codeTitle;
             Category = category;
@@ -28,6 +28,7 @@ namespace FileHelpers
         /// Can be of the form "Async/Delimited" with multiple categories
         /// </summary>
         public string Category { get; set; }
+
         public List<DemoFile> Files { get; set; }
         public DemoFile LastFile
         {

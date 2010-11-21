@@ -1,0 +1,55 @@
+﻿<#@ template language="C#" inherits="T4Toolbox.Template" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#
+
+Process("Core");
+
+#>
+<#+
+
+public void Process(string folder)
+{
+	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+	
+	EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+	
+	/* Retrieve the project in which this template resides. */
+	EnvDTE.ProjectItem containingProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+	Project project = containingProjectItem.ContainingProject;
+	
+	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
+	
+    WriteLine(Code.GenerateCode());
+}
+
+public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
+{
+
+	if (projectItem.ProjectItems.Count == 0)
+	{
+		
+	    if (Path.GetExtension(projectItem.get_FileNames(0).ToLower()) != ".cs")
+	        return;
+		
+		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
+		{ 
+			case "generatedemowrappers.cs":
+			case "filetestbase.cs":
+					break;
+				default:
+					//if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
+						RenderItemCore(projectItem, parent);
+					break;
+		}
+	}
+	else
+	{
+		foreach (ProjectItem childItem in projectItem.ProjectItems)
+		{
+			ProcessProjectItem(childItem, projectItem);
+		}
+	}
+
+}
+#>

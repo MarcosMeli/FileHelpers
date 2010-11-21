@@ -49,5 +49,17 @@ namespace FileHelpers
 
             return previous;
         }
+
+        public DemoCode SelectedDemo
+        {
+            get
+            {
+                var node = this.SelectedNode as DemoTreeNode;
+                if (node == null)
+                    return null;
+                
+                return node.Demo;
+            }
+        }
     }
 }

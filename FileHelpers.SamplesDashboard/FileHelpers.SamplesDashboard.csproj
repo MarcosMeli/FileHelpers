@@ -67,20 +67,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\TextEditor\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="T4Toolbox.10.0, Version=10.3.7.1, Culture=neutral, PublicKeyToken=7e313accbcce84dc, processorArchitecture=x86" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Basic\20.WriteFileDelimited.cs" />
     <Compile Include="Demos\ExampleParser.cs" />
+    <Compile Include="Demos\DemoGenerator2.autogen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DemoGenerator2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Framework\CategoryTreeNode.cs" />
     <Compile Include="Framework\DemoFiles.cs" />
-    <Compile Include="Core\Basic\ReadFileDelimited.cs" />
+    <Compile Include="Core\Basic\10.ReadFileDelimited.cs" />
     <Compile Include="Framework\DemoTreeNode.cs" />
     <Compile Include="Framework\TreeViewEx.cs">
       <SubType>Component</SubType>
@@ -119,6 +127,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Demos\DemoGenerator2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DemoGenerator2.autogen.cs</LastGenOutput>
+    </None>
     <None Include="Resources\stop.png" />
   </ItemGroup>
   <ItemGroup>
