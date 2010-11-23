@@ -287,6 +287,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Converters\AllConverters.cs" />
+    <Compile Include="Tests\Converters\ConverterCharText.cs" />
     <Compile Include="Tests\Converters\DateFormat.cs">
       <SubType>Code</SubType>
     </Compile>

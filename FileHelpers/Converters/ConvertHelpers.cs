@@ -15,12 +15,15 @@ namespace FileHelpers
     /// </remarks>
     internal static class ConvertHelpers
     {
-
         private const string DefaultDecimalSep = ".";
-
 
         #region "  CreateCulture  "
 
+        /// <summary>
+        /// Return culture information for with comma decimal separator or comma decimal separator
+        /// </summary>
+        /// <param name="decimalSep">Decimal separator string</param>
+        /// <returns>Cultural information based on separator</returns>
         static CultureInfo CreateCulture(string decimalSep)
         {
             var ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
@@ -45,6 +48,12 @@ namespace FileHelpers
 
         #region "  GetDefaultConverter  "
 
+        /// <summary>
+        /// Check the type of the field and then return a converter for that particular type
+        /// </summary>
+        /// <param name="fieldName">Fieldname to check</param>
+        /// <param name="fieldType">Type of the field to check</param>
+        /// <returns>Converter for this particular field</returns>
         internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType)
         {
             if (fieldType.IsArray)
@@ -126,17 +135,38 @@ namespace FileHelpers
 
         #endregion
 
+        /// <summary>
+        /// Convert a numeric value with separators into a value
+        /// </summary>
         internal abstract class CultureConverter
             : ConverterBase
         {
+            /// <summary>
+            /// Culture information based on the separator
+            /// </summary>
             protected CultureInfo mCulture;
+
+            /// <summary>
+            /// Type fo field being converted
+            /// </summary>
             protected Type mType;
+
+            /// <summary>
+            /// Convert to a type given a decimal separator
+            /// </summary>
+            /// <param name="T">type we are converting</param>
+            /// <param name="decimalSep">Separator</param>
             public CultureConverter(Type T, string decimalSep)
             {
                 mCulture = CreateCulture(decimalSep);
                 mType = T;
             }
 
+            /// <summary>
+            /// Convert the field to a string representation
+            /// </summary>
+            /// <param name="from">Object to convert</param>
+            /// <returns>string representation</returns>
             public sealed override string FieldToString(object from)
             {
                 if (from == null)
@@ -145,25 +175,50 @@ namespace FileHelpers
                 return ((IConvertible)from).ToString(mCulture);
             }
 
+            /// <summary>
+            /// Convert a string to the object type
+            /// </summary>
+            /// <param name="from">String to convert</param>
+            /// <returns>Object converted to</returns>
             public sealed override object StringToField(string from)
             {
                 return ParseString(from);
             }
 
+            /// <summary>
+            /// Convert a string into the return object required
+            /// </summary>
+            /// <param name="from">Value to convert (string)</param>
+            /// <returns>Converted object</returns>
             protected abstract object ParseString(string from);
 
         }
 
+        /// <summary>
+        /// COnvert a string into a byte value
+        /// </summary>
         internal sealed class ByteConverter : CultureConverter
         {
+            /// <summary>
+            /// Convert a string to a byte value using the default decimal separator
+            /// </summary>
             public ByteConverter()
                 : this(DefaultDecimalSep)
             { }
-
+            
+            /// <summary>
+            /// Convert a string to a byte
+            /// </summary>
+            /// <param name="decimalSep">decimal separator to use '.' or ','</param>
             public ByteConverter(string decimalSep)
                 : base(typeof(Byte), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to a byte value
+            /// </summary>
+            /// <param name="from">string to parse</param>
+            /// <returns>byte value</returns>
             protected override object ParseString(string from)
             {
                 Byte res;
@@ -175,17 +230,31 @@ namespace FileHelpers
             }
         }
 
-
+        /// <summary>
+        /// Convert a string to a short integer
+        /// </summary>
         internal sealed class UInt16Converter : CultureConverter
         {
+            /// <summary>
+            /// Convert a number to a short integer
+            /// </summary>
             public UInt16Converter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a number to a short integer
+            /// </summary>
+            /// <param name="decimalSep">Decimal separator</param>
             public UInt16Converter(string decimalSep)
                 : base(typeof(UInt16), decimalSep)
             { }
 
+            /// <summary>
+            /// Parse a string to a short integer
+            /// </summary>
+            /// <param name="from">string representing short integer</param>
+            /// <returns>short integer value</returns>
             protected override object ParseString(string from)
             {
                 UInt16 res;
@@ -195,17 +264,31 @@ namespace FileHelpers
             }
         }
 
-
+        /// <summary>
+        /// Unsigned integer converter
+        /// </summary>
         internal sealed class UInt32Converter : CultureConverter
         {
+            /// <summary>
+            /// Unsigned integer converter
+            /// </summary>
             public UInt32Converter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Unsigned integer converter with a decimal separator
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for to separate decimal</param>
             public UInt32Converter(string decimalSep)
                 : base(typeof(UInt32), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to a unsigned integer value
+            /// </summary>
+            /// <param name="from">String value to parse</param>
+            /// <returns>Unsigned integer object</returns>
             protected override object ParseString(string from)
             {
                 UInt32 res;
@@ -215,18 +298,31 @@ namespace FileHelpers
             }
         }
 
-
-
+        /// <summary>
+        /// Unsigned long converter
+        /// </summary>
         internal sealed class UInt64Converter : CultureConverter
         {
+            /// <summary>
+            /// Unsigned long converter
+            /// </summary>
             public UInt64Converter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Unsigned long with decimal separator
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public UInt64Converter(string decimalSep)
                 : base(typeof(UInt64), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an unsigned integer long
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Unsigned long value</returns>
             protected override object ParseString(string from)
             {
                 UInt64 res;
@@ -240,16 +336,31 @@ namespace FileHelpers
 
         #region "  Convert Classes  "
 
+        /// <summary>
+        /// Signed byte converter (8 bit signed integer)
+        /// </summary>
         internal sealed class SByteConverter : CultureConverter
         {
+            /// <summary>
+            /// Signed byte converter (8 bit signed integer)
+            /// </summary>
             public SByteConverter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Signed byte converter (8 bit signed integer)
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public SByteConverter(string decimalSep)
                 : base(typeof(SByte), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an signed byte
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Signed byte value</returns>
             protected override object ParseString(string from)
             {
                 SByte res;
@@ -259,16 +370,31 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Convert a value to a short integer
+        /// </summary>
         internal sealed class Int16Converter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a short integer
+            /// </summary>
             public Int16Converter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a value to a short integer
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public Int16Converter(string decimalSep)
                 : base(typeof(Int16), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an short integer
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Short signed value</returns>
             protected override object ParseString(string from)
             {
                 Int16 res;
@@ -278,17 +404,31 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Convert a value to a integer
+        /// </summary>
         internal sealed class Int32Converter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a integer
+            /// </summary>
             public Int32Converter()
                 : this(DefaultDecimalSep)
             { }
 
-
+            /// <summary>
+            /// Convert a value to a integer
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public Int32Converter(string decimalSep)
                 : base(typeof(Int32), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an integer
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>integer value</returns>
             protected override object ParseString(string from)
             {
                 int res;
@@ -298,15 +438,32 @@ namespace FileHelpers
                 return res;
             }
         }
+
+        /// <summary>
+        /// Convert a value to a long integer
+        /// </summary>
         internal sealed class Int64Converter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a long integer
+            /// </summary>
             public Int64Converter()
                 : this(DefaultDecimalSep)
             { }
+
+            /// <summary>
+            /// Convert a value to a long integer
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public Int64Converter(string decimalSep)
                 : base(typeof(Int64), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an integer long
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Long value</returns>
             protected override object ParseString(string from)
             {
                 Int64 res;
@@ -324,17 +481,32 @@ namespace FileHelpers
 
         #region "  Convert Classes  "
 
+        /// <summary>
+        /// Convert a value to a decimal value
+        /// </summary>
         internal sealed class DecimalConverter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a decimal value
+            /// </summary>
             public DecimalConverter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a value to a decimal value
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public DecimalConverter(string decimalSep)
                 : base(typeof(Decimal), decimalSep)
             {
             }
 
+            /// <summary>
+            /// Convert a string to a decimal
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>decimal value</returns>
             protected override object ParseString(string from)
             {
                 Decimal res;
@@ -344,16 +516,31 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Convert a value to a single floating point
+        /// </summary>
         internal sealed class SingleConverter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a single floating point
+            /// </summary>
             public SingleConverter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a value to a single floating point
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public SingleConverter(string decimalSep)
                 : base(typeof(Single), decimalSep)
             { }
 
+            /// <summary>
+            /// Convert a string to an single precision floating point
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Single floating point value</returns>
             protected override object ParseString(string from)
             {
                 Single res;
@@ -363,17 +550,32 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Convert a value to a single floating point
+        /// </summary>
         internal sealed class DoubleConverter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a floating point
+            /// </summary>
             public DoubleConverter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a value to a floating point
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public DoubleConverter(string decimalSep)
                 : base(typeof(Double), decimalSep)
             {
             }
 
+            /// <summary>
+            /// Convert a string to an floating point
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>Floating point value</returns>
             protected override object ParseString(string from)
             {
                 Double res;
@@ -390,15 +592,27 @@ namespace FileHelpers
         /// <remarks>Edited : Shreyas Narasimhan (17 March 2010) </remarks>
         internal sealed class PercentDoubleConverter : CultureConverter
         {
+            /// <summary>
+            /// Convert a value to a floating point from a percentage
+            /// </summary>
             public PercentDoubleConverter()
                 : this(DefaultDecimalSep)
             { }
 
+            /// <summary>
+            /// Convert a value to a floating point from a percentage
+            /// </summary>
+            /// <param name="decimalSep">dot or comma for separator</param>
             public PercentDoubleConverter(string decimalSep)
                 : base(typeof(Double), decimalSep)
             {
             }
 
+            /// <summary>
+            /// Convert a string to an floating point from percentage
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>floating point value</returns>
             protected override object ParseString(string from)
             {
                 double res;
@@ -426,15 +640,25 @@ namespace FileHelpers
 
         #region "  Convert Classes  "
 
+        /// <summary>
+        /// Convert a value to a date time value
+        /// </summary>
         internal sealed class DateTimeConverter : ConverterBase
         {
             readonly string mFormat;
 
+            /// <summary>
+            /// Convert a value to a date time value
+            /// </summary>
             public DateTimeConverter()
                 : this(DefaultDateTimeFormat)
             {
             }
 
+            /// <summary>
+            /// Convert a value to a date time value
+            /// </summary>
+            /// <param name="format">date format see .Net documentation</param>
             public DateTimeConverter(string format)
             {
                 if (format == null || format == String.Empty)
@@ -452,9 +676,15 @@ namespace FileHelpers
                 mFormat = format;
             }
 
+            /// <summary>
+            /// Convert a string to a date time value
+            /// </summary>
+            /// <param name="from">String value to convert</param>
+            /// <returns>DateTime value</returns>
             public override object StringToField(string from)
             {
-                if (from == null) from = string.Empty;
+                if (from == null)
+                    from = string.Empty;
 
                 DateTime val;
                 if (!DateTime.TryParseExact(from.Trim(), mFormat, null, DateTimeStyles.None, out val))
@@ -474,6 +704,11 @@ namespace FileHelpers
                 return val;
             }
 
+            /// <summary>
+            /// Convert a date time value to a string
+            /// </summary>
+            /// <param name="from">DateTime value to convert</param>
+            /// <returns>string DateTime value</returns>
             public override string FieldToString(object from)
             {
                 if (from == null)
@@ -487,21 +722,34 @@ namespace FileHelpers
 
         #region "  Convert Classes  "
 
+        /// <summary>
+        /// Convert a value to a date time value
+        /// </summary>
         internal sealed class DateTimeMultiFormatConverter : ConverterBase
         {
             readonly string[] mFormats;
 
 
+            /// <summary>
+            /// Convert a value to a date time value using multiple formats
+            /// </summary>
             public DateTimeMultiFormatConverter(string format1, string format2)
                 : this(new string[] { format1, format2 })
             {
             }
 
+            /// <summary>
+            /// Convert a value to a date time value using multiple formats
+            /// </summary>
             public DateTimeMultiFormatConverter(string format1, string format2, string format3)
                 : this(new string[] { format1, format2, format3 })
             {
             }
 
+            /// <summary>
+            /// Convert a date time value to a string
+            /// </summary>
+            /// <param name="formats">list of formats to try</param>
             private DateTimeMultiFormatConverter(string[] formats)
             {
                 for (int i = 0; i < formats.Length; i++)
@@ -522,9 +770,15 @@ namespace FileHelpers
                 mFormats = formats;
             }
 
+            /// <summary>
+            /// Convert a date time value to a string
+            /// </summary>
+            /// <param name="from">DateTime value to convert</param>
+            /// <returns>string DateTime value</returns>
             public override object StringToField(string from)
             {
-                if (from == null) from = string.Empty;
+                if (from == null)
+                    from = string.Empty;
 
                 DateTime val;
                 if (!DateTime.TryParseExact(from.Trim(), mFormats, null, DateTimeStyles.None, out val))
@@ -535,6 +789,11 @@ namespace FileHelpers
                 return val;
             }
 
+            /// <summary>
+            /// Create a list of formats to pass to the DateTime tryparse function
+            /// </summary>
+            /// <param name="from">DateTime value to convert</param>
+            /// <returns>string DateTime value</returns>
             private string CreateFormats()
             {
                 StringBuilder sb = new StringBuilder();
@@ -550,6 +809,11 @@ namespace FileHelpers
                 return sb.ToString();
             }
 
+            /// <summary>
+            /// Convert a date time value to a string (uses first format for output
+            /// </summary>
+            /// <param name="from">DateTime value to convert</param>
+            /// <returns>string DateTime value</returns>
             public override string FieldToString(object from)
             {
                 return Convert.ToDateTime(from).ToString(mFormats[0]);
@@ -565,6 +829,9 @@ namespace FileHelpers
 
         #region "  Convert Classes  "
 
+        /// <summary>
+        /// Convert an input value to a boolean,  allows for true false values
+        /// </summary>
         internal sealed class BooleanConverter : ConverterBase
         {
             private readonly string mTrueString = null;
@@ -572,10 +839,18 @@ namespace FileHelpers
             private readonly string mTrueStringLower = null;
             private readonly string mFalseStringLower = null;
 
+            /// <summary>
+            /// Simple boolean converter
+            /// </summary>
             public BooleanConverter()
             {
             }
 
+            /// <summary>
+            /// Boolean converter with true false values
+            /// </summary>
+            /// <param name="trueStr">True string</param>
+            /// <param name="falseStr">False string</param>
             public BooleanConverter(string trueStr, string falseStr)
             {
                 mTrueString = trueStr;
@@ -584,6 +859,11 @@ namespace FileHelpers
                 mFalseStringLower = falseStr.ToLower();
             }
 
+            /// <summary>
+            /// convert a string to a boolean value
+            /// </summary>
+            /// <param name="from">string to convert</param>
+            /// <returns>boolean value</returns>
             public override object StringToField(string from)
             {
                 object val;
@@ -613,7 +893,8 @@ namespace FileHelpers
                             break;
 
                         default:
-                            throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using default true/false values.");
+                            throw new ConvertException(from, typeof(bool), "The string: " + from
+                                + " can't be recognized as boolean using default true/false values.");
                     }
                 }
                 else
@@ -632,13 +913,19 @@ namespace FileHelpers
                         else if (testTo == mFalseStringLower)
                             val = false;
                         else
-                            throw new ConvertException(from, typeof(bool), "The string: " + from + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
+                            throw new ConvertException(from, typeof(bool), "The string: " + from
+                                + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" + mFalseString);
                     }
                 }
 
                 return val;
             }
 
+            /// <summary>
+            /// Convert to a true false string
+            /// </summary>
+            /// <param name="from"></param>
+            /// <returns></returns>
             public override string FieldToString(object from)
             {
                 bool b = Convert.ToBoolean(from);
@@ -661,34 +948,79 @@ namespace FileHelpers
         #endregion
 
         #region "  GUID, Char, String Converters  "
-        // Added by Alexander Obolonkov 2007.11.08
 
         #region "  Convert Classes  "
-        // Added by Alexander Obolonkov 2007.11.08
+
+        /// <summary>
+        /// Allow characters to be converted to upper and lower case automatically.
+        /// </summary>
         internal sealed class CharConverter : ConverterBase
         {
-            int mFormat = 0; //1 Lower, 2 Upper
+            /// <summary>
+            /// whether we upper or lower case the character on input
+            /// </summary>
+            private enum CharFormat
+            {
+                /// <summary>
+                /// Don't change the case
+                /// </summary>
+                NoChange = 0,
+                /// <summary>
+                /// Change to lower case
+                /// </summary>
+                Lower,
+                /// <summary>
+                /// change to upper case
+                /// </summary>
+                Upper,
+            }
 
-            //  TODO:  This probably throws an exception,  should this be String.Empty?
+            /// <summary>
+            /// default to not upper or lower case
+            /// </summary>
+            CharFormat mFormat = CharFormat.NoChange;
+
+
+            /// <summary>
+            /// Create a single character converter that does not upper or lower case result
+            /// </summary>
             public CharConverter()
-                : this(" ") // xX
+                : this("") // default,  no upper or lower case conversion
             {
             }
 
+            /// <summary>
+            /// Single character converter that optionally makes it upper (X) or lower case (x)
+            /// </summary>
+            /// <param name="format"> empty string for no upper or lower,  x for lower case,  X for Upper case</param>
             public CharConverter(string format)
             {
-                format = format.Trim();
+                switch (format.Trim())
+                {
+                    case "x":
+                    case "lower":
+                        mFormat = CharFormat.Lower;
+                        break;
 
-                if (format == "x")
-                    mFormat = 1;
-                else if (format == "X")
-                    mFormat = 2;
-                else if (string.IsNullOrEmpty(format))
-                    mFormat = 0;
-                else
-                    throw new BadUsageException("The format of the Char Converter must be \"\", \"x\" for lower or \"X\" for upper");
+                    case "X":
+                    case "upper":
+                        mFormat = CharFormat.Upper;
+                        break;
+
+                    case "":
+                        mFormat = CharFormat.NoChange;
+                        break;
+
+                    default:
+                        throw new BadUsageException("The format of the Char Converter must be \"\", \"x\" or \"lower\" for lower case, \"X\" or \"upper\" for upper case");
+                }
             }
 
+            /// <summary>
+            /// Extract the first character with optional upper or lower case
+            /// </summary>
+            /// <param name="from">String contents</param>
+            /// <returns>Character (may be upper or lower case)</returns>
             public override object StringToField(string from)
             {
                 if (string.IsNullOrEmpty(from))
@@ -696,37 +1028,75 @@ namespace FileHelpers
 
                 try
                 {
-                    char res = from[0];
+                    switch (mFormat)
+                    {
+                        case CharFormat.NoChange:
+                            return from[0];
 
-                    if (mFormat == 1)
-                        res = char.ToLower(res);
-                    else if (mFormat == 2)
-                        res = char.ToUpper(res);
+                        case CharFormat.Lower:
+                            return char.ToLower(from[0]);
 
-                    return res;
+                        case CharFormat.Upper:
+                            return char.ToUpper(from[0]);
+
+                        default:
+                            throw new ConvertException(from, typeof(Char), "Unknown char convert flag " + mFormat.ToString());
+                    }
                 }
                 catch
                 {
-                    throw new ConvertException(from, typeof(Char), "TODO Extra Info");
+                    throw new ConvertException(from, typeof(Char), "Upper or lower case of input string failed");
                 }
             }
 
+            /// <summary>
+            /// Convert from a character to a string for output
+            /// </summary>
+            /// <param name="from">Character to convert from</param>
+            /// <returns>String containing the character</returns>
             public override string FieldToString(object from)
             {
-                return Convert.ToChar(from).ToString();
+                switch (mFormat)
+                {
+                    case CharFormat.NoChange:
+                        return Convert.ToChar(from).ToString();;
+
+                    case CharFormat.Lower:
+                        return char.ToLower(Convert.ToChar(from)).ToString();
+
+                    case CharFormat.Upper:
+                        return char.ToUpper(Convert.ToChar(from)).ToString();
+
+                    default:
+                        throw new ConvertException("", typeof(Char), "Unknown char convert flag " + mFormat.ToString());
+                }
+                
             }
         }
 
-        // Added by Alexander Obolonkov 2007.11.08
+        /// <summary>
+        ///  Convert a GUID to and from a field value
+        /// </summary>
         internal sealed class GuidConverter : ConverterBase
         {
+            /// <summary>
+            /// D or N or B or P (default is D: see Guid.ToString(string format))
+            /// </summary>
             string mFormat;
 
+            /// <summary>
+            /// Create a GUID converter with the default format code "D"
+            /// </summary>
             public GuidConverter()
                 : this("D") // D or N or B or P (default is D: see Guid.ToString(string format))
             {
             }
 
+            /// <summary>
+            /// Create a GUID converter with formats as defined for GUID
+            /// N, D, B or P
+            /// </summary>
+            /// <param name="format">Format code for GUID</param>
             public GuidConverter(string format)
             {
                 if (String.IsNullOrEmpty(format))
@@ -740,6 +1110,11 @@ namespace FileHelpers
                 mFormat = format;
             }
 
+            /// <summary>
+            /// Convert a GUID string to a GUID object for the record object
+            /// </summary>
+            /// <param name="from">String representation of the GUID</param>
+            /// <returns>GUID object or GUID empty</returns>
             public override object StringToField(string from)
             {
                 if (String.IsNullOrEmpty(from))
@@ -755,6 +1130,11 @@ namespace FileHelpers
                 }
             }
 
+            /// <summary>
+            /// Output GUID as a string field
+            /// </summary>
+            /// <param name="from">Guid object</param>
+            /// <returns>GUID as a string depending on format</returns>
             public override string FieldToString(object from)
             {
                 if (from == null)

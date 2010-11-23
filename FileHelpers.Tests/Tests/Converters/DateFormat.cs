@@ -10,7 +10,7 @@ namespace FileHelpers.Tests.Converters
 		FileHelperEngine engine;
 
 		[Test]
-		public void DiferentSpanishFormat()
+		public void DifferentSpanishFormat()
 		{
 			engine = new FileHelperEngine(typeof (DateFormatType1));
 
@@ -36,7 +36,7 @@ namespace FileHelpers.Tests.Converters
 		}
 
 		[Test]
-		public void DiferentEnglishFormat()
+		public void DifferentEnglishFormat()
 		{
 			engine = new FileHelperEngine(typeof (DateFormatType2));
 
@@ -62,9 +62,35 @@ namespace FileHelpers.Tests.Converters
 		}
 
 
+        [Test]
+        public void NullDateFormat()
+        {
+            String data = "23/11/2010,24/11/2010\n,\n          ,          \n";
+
+            FileHelperEngine<NullDateFormat> engine = new FileHelperEngine<NullDateFormat>();
+            NullDateFormat[] result = engine.ReadString(data);
+            Assert.AreEqual(new DateTime(2010, 11, 23), result[0].OrderDate, "Order date should be 23/11/2010 from first line" );
+            Assert.AreEqual(new DateTime(2010, 11, 24), result[0].ShipDate, "Ship date should be 24/11/2010 from first line");
+            Assert.AreEqual(null, result[1].OrderDate, "Order date should be null on second line");
+            Assert.AreEqual(null, result[1].ShipDate, "Ship date should be null on second line");
+            Assert.AreEqual(null, result[2].OrderDate, "Order date should be null on third line with blanks");
+            Assert.AreEqual(null, result[2].ShipDate, "Ship date should be null on third line with blanks");
+        }
+
 	}
 
-	[DelimitedRecord(",")]
+
+    [DelimitedRecord(",")]
+    public class NullDateFormat
+    {
+        [FieldConverter(ConverterKind.Date, "dd/MM/yyyy")]
+        public DateTime? OrderDate;
+
+        [FieldConverter(ConverterKind.Date, "dd/MM/yyyy")]
+        public Nullable<DateTime> ShipDate;
+    }
+
+    [DelimitedRecord(",")]
 	public class DateFormatType1
 	{
 		public int OrderID;
@@ -83,5 +109,4 @@ namespace FileHelpers.Tests.Converters
 		[FieldConverter(ConverterKind.Date, "MMddyyyy")] public DateTime RequiredDate;
 		[FieldConverter(ConverterKind.Date, "M/d/yy")] public DateTime ShippedDate;
 	}
-
 }
