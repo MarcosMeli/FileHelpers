@@ -104,6 +104,9 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 	
        public static string ParseExample(string demoText, string category)
         {
+			if (category.Contains("."))
+				category = category.Substring(category.IndexOf(".") + 1);
+
             var res = new StringBuilder();
             var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 

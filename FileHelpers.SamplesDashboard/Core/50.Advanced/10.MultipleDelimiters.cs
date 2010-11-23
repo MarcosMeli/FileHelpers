@@ -12,12 +12,12 @@ namespace Demos
         :IDemo
     {
 
+        //-> {Example.File:Example.cs}
         public void Run()
         {
-            //-> {Example.File:Example.cs}
             var customers = CreateCustomers();
 
-            DelimitedFileEngine<CustomersVerticalBar> engine = new DelimitedFileEngine<CustomersVerticalBar>();
+            var engine = new DelimitedFileEngine<CustomersVerticalBar>();
             engine.WriteFile("Out_Vertical.txt", customers);
 
             engine.Options.Delimiter = ";";
@@ -26,7 +26,6 @@ namespace Demos
             engine.Options.Delimiter = "\t";
             engine.WriteFile("Out_Tab.txt", customers);
 
-            //-> {/Example.File}
         }
 
         private CustomersVerticalBar[] CreateCustomers()
@@ -39,6 +38,7 @@ BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
 BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain";
             return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
         }
+        //-> {/Example.File}
 
         //-> {Example.File:CustomersVerticalBar.cs}
         [DelimitedRecord("|")]
