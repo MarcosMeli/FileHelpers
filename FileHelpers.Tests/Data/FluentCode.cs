@@ -6,14 +6,19 @@ using System.Collections.Generic;
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Simple Generate code interface
+    /// </summary>
     public interface ICodeGenerator
     {
         string GenerateCode();
 
     }
+
+
     public sealed class FluentCode
     {
-        private SortedDictionary<string, FluentNamespace> mNamespaces = new SortedDictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
+        private Dictionary<string, FluentNamespace> mNamespaces = new Dictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
 
         public FluentNamespace Namespace(string name)
         {
@@ -54,7 +59,7 @@ namespace FileHelpers
 
         public FluentClass Class(string name)
         {
-            FluentClass res;
+            FluentClass res = null;
 
             if (!mClasses.TryGetValue(name, out res))
             {
@@ -85,6 +90,9 @@ namespace FileHelpers
 
     }
 
+    /// <summary>
+    /// Create a class from a template
+    /// </summary>
     public sealed class FluentClass
     {
         public string Name { get; private set; }
@@ -96,6 +104,11 @@ namespace FileHelpers
 
         private SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
 
+        /// <summary>
+        /// Create a class of "name"
+        /// </summary>
+        /// <param name="name">Name of resulting class</param>
+        /// <returns></returns>
         public FluentClass Class(string name)
         {
             FluentClass res;
@@ -130,18 +143,34 @@ namespace FileHelpers
             return res;
         }
 
+        /// <summary>
+        /// Append a line of code to the output
+        /// </summary>
+        /// <param name="code">Code to add</param>
         public void AddCode(string code)
         {
             mCode.AppendLine(code);
         }
 
+        /// <summary>
+        /// Add a static readonly property with the member property having a prefix of m
+        /// </summary>
+        /// <param name="type">Type of varaible to create</param>
+        /// <param name="name">Name of property</param>
+        /// <remarks>
+        /// private static String mX = new String();
+        /// public static String X
+        /// { get { return  mX; } }
+        /// </remarks>
         public void AddStaticReadOnlyPropertyWithBackingField(string type, string name)
         {
             mCode.AppendLine("private static " + type + " m" + name + " = new " + type + "();");
             mCode.AppendLine("public static " + type + " " + name);
             mCode.AppendLine("{ get { return  m" + name + "; } }");
         }
-
+        /// <summary>
+        /// Internal result of parsing the data
+        /// </summary>
         private StringBuilder mCode = new StringBuilder();
     }
 }
