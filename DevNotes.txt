@@ -30,16 +30,16 @@
   Licence
 -----------
 
- FileHelpers Library is @ Copyright 2005-2006 to Marcos Meli but it's source code and the binaries are free for commercial and non commercial use.
+ FileHelpers Library is @ Copyright 2005-2010 to Marcos Meli but it's source
+code and the binaries are free for commercial and non commercial use.
 
 ---------------------
   Contact and Ideas
 ---------------------
 
- If you find that there is a feature that I must include, or you have a new idea 
- (for the API, Source Code or Examples), only let me know, sending an e-mail 
- to marcos@filehelpers.com or entering the FileHelpers Forums at
-
+ If you find that there is a feature that I should include, or you have a new idea 
+ (for the API, Source Code or Examples), please let me know, by sending an e-mail 
+ to marcos@filehelpers.com or leaving a message at the FileHelpers Forums:
   
          http://www.filehelpers.com/forums/
     
@@ -47,7 +47,7 @@
   Full Sources and Updates
 ----------------------------
 
- If you want to help in the develpment of the library please go to
+ If you want to help in the development of the library please go to
  
     http://sourceforge.net/project/showfiles.php?group_id=152382&package_id=169468
     

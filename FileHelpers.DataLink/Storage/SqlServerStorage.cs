@@ -1,34 +1,49 @@
 
 
 #if ! MINI
+
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace FileHelpers.DataLink
 {
-	/// <summary>This is a base class that implements the <see cref="DataStorage"/> for Microsoft SqlServer.</summary>
+	/// <summary>
+    /// This is a base class that implements the <see cref="DataStorage"/> for
+    /// Microsoft SqlServer.
+    /// </summary>
 	public sealed class SqlServerStorage : DatabaseStorage
 	{
 		
 		#region "  Constructors  "
 
-		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
+		/// <summary>
+        /// Create a new instance of the SqlServerStorage based on the record
+        /// type provided.
+        /// </summary>
 		/// <param name="recordType">The type of the record class.</param>
 		public SqlServerStorage(Type recordType)
             : this(recordType, string.Empty)
 		{}
 
-		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided.</summary>
+		/// <summary>
+        /// Create a new instance of the SqlServerStorage based on the record
+        /// type provided.
+        /// </summary>
 		/// <param name="recordType">The type of the record class.</param>
-		/// <param name="connectionStr">The full conection string used to connect to the sql server.</param>
+		/// <param name="connectionStr">
+        /// The full connection string used to connect to the SQL server.
+        /// </param>
 		public SqlServerStorage(Type recordType, string connectionStr)
             : base(recordType)
 		{
 			ConnectionString = connectionStr;
 		}
 
-		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses windows auth)</summary>
+		/// <summary>
+        /// Create a new instance of the SqlServerStorage based on the record
+        /// type provided (uses windows auth)
+        /// </summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="server">The server name or IP of the sqlserver</param>
 		/// <param name="database">The database name into the server.</param>
@@ -37,12 +52,15 @@ namespace FileHelpers.DataLink
 		{
 		}
 
-		/// <summary>Create a new instance of the SqlServerStorage based on the record type provided (uses SqlServer auth)</summary>
+		/// <summary>
+        /// Create a new instance of the SqlServerStorage based on the record
+        /// type provided (uses SqlServer auth)
+        /// </summary>
 		/// <param name="recordType">The type of the record class.</param>
 		/// <param name="server">The server name or IP of the sqlserver</param>
 		/// <param name="database">The database name into the server.</param>
-		/// <param name="user">The sql username to login into the server.</param>
-		/// <param name="pass">The pass of the sql username to login into the server.</param>
+		/// <param name="user">The SQL username to login into the server.</param>
+		/// <param name="pass">The pass of the SQL username to login into the server.</param>
 		public SqlServerStorage(Type recordType, string server, string database, string user, string pass)
             : this(recordType,  DataBaseHelper.SqlConnectionString(server, database, user, pass))
 		{
@@ -56,18 +74,18 @@ namespace FileHelpers.DataLink
 
 		#region "  Create Connection and Command  "
 
-		/// <summary>Must create an abstract connection object.</summary>
-		/// <returns>An Abstract Connection Object.</returns>
+		/// <summary>Create a connection object to the database</summary>
+		/// <returns>SQL server Connection Object.</returns>
 		protected sealed override IDbConnection CreateConnection()
 		{
 			string conString;
 			if (ConnectionString == string.Empty)
 			{
 				if (mServerName == null || mServerName == string.Empty)
-					throw new BadUsageException("The ServerName can´t be null or empty.");
+					throw new BadUsageException("The ServerName can't be null or empty.");
 
 				if (mDatabaseName == null || mDatabaseName == string.Empty)
-					throw new BadUsageException("The DatabaseName can´t be null or empty.");
+					throw new BadUsageException("The DatabaseName can't be null or empty.");
 
 				conString = DataBaseHelper.SqlConnectionString(ServerName, DatabaseName, UserName, UserPass);
 			}
@@ -148,7 +166,7 @@ namespace FileHelpers.DataLink
 
 		#region "  ExecuteInBatch  "
 
-		/// <summary></summary>
+		/// <summary>do we get groups of records or singularly</summary>
 		protected override bool ExecuteInBatch
 		{
 			get { return true; }

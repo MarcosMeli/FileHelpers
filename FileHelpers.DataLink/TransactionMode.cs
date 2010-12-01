@@ -3,7 +3,8 @@
 namespace FileHelpers.DataLink
 {
 	/// <summary>
-	/// Define the diferent Modes of Transaction that uses the <see cref="DatabaseStorage" />
+	/// Define the different Modes of Transaction that are
+    /// used by the <see cref="DatabaseStorage" />
 	/// </summary>
 	public enum TransactionMode
 	{

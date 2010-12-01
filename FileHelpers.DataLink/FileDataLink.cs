@@ -6,7 +6,7 @@ using System.IO;
 namespace FileHelpers.DataLink
 {
 	/// <summary>
-	/// This class has the responsability to enable the two directional
+	/// This class has the responsibility to enable the two directional
 	/// transformation.
 	/// <list type="bullet">
 	/// <item> File &lt;-> DataStorage </item>
@@ -14,7 +14,9 @@ namespace FileHelpers.DataLink
 	/// </summary>
 	/// <remarks>
 	/// <para>Uses an <see cref="DataStorage"/> to accomplish this task.</para>
-	/// <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the <a href="example_datalink.html">DataLink Sample</a> for more Info.</para>
+	/// <para>See in the <a href="class_diagram.html">Class Diagram</a>
+    /// and in the <a href="example_datalink.html">DataLink Sample</a>
+    /// for more Info.</para>
 	/// </remarks>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="class_diagram.html">Class Diagram</seealso>
@@ -26,14 +28,15 @@ namespace FileHelpers.DataLink
 		#region "  Constructor  "
 
 		/// <summary>Create a new instance of the class.</summary>
-		/// <param name="provider">The <see cref="DataLink.DataStorage"/> used to performs the transformation.</param>
+		/// <param name="provider">The <see cref="DataLink.DataStorage"/>
+        /// used to performs the transformation.</param>
 		public FileDataLink(DataStorage provider)
 		{
 			mProvider = provider;
 			if (mProvider != null)
 				mHelperEngine = new FileHelperEngine(mProvider.RecordType);
 			else
-				throw new ArgumentException("provider can´t be null", "provider");
+				throw new ArgumentException("provider can't be null", "provider");
 		}
 
 		#endregion
@@ -42,7 +45,8 @@ namespace FileHelpers.DataLink
 
 		private FileHelperEngine mHelperEngine;
 
-		/// <summary> The internal <see cref="T:FileHelpers.FileHelperEngine"/> used to the file or stream ops. </summary>
+		/// <summary> The internal <see cref="T:FileHelpers.FileHelperEngine"/>
+        /// used to the file or stream ops. </summary>
 		public FileHelperEngine FileHelperEngine
 		{
 			get { return mHelperEngine; }
@@ -89,7 +93,9 @@ namespace FileHelpers.DataLink
 		#region "  ExtractTo File/Stream   "
 
 		/// <summary>
-		/// Extract records from the data source and insert them to the specified file using the DataLinkProvider <see cref="DataLink.DataStorage.ExtractRecords"/> method.
+        /// Extract records from the data source and insert them to the
+        /// specified file using the DataLinkProvider
+        /// <see cref="DataLink.DataStorage.ExtractRecords"/> method.
 		/// </summary>
 		/// <param name="fileName">The files where the records be written.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
@@ -102,7 +108,9 @@ namespace FileHelpers.DataLink
 		}
 
 		/// <summary>
-		/// Extract records from the data source and insert them to the specified stream using the DataLinkProvider <see cref="DataLink.DataStorage.ExtractRecords"/> method.
+        /// Extract records from the data source and insert them to the
+        /// specified stream using the DataLinkProvider
+        /// <see cref="DataLink.DataStorage.ExtractRecords"/> method.
 		/// </summary>
 		/// <param name="writer">The stream where the records be written.</param>
 		/// <returns>The extracted records</returns>
@@ -118,7 +126,11 @@ namespace FileHelpers.DataLink
 
 		#region "  InsertFromFile  "
 
-		/// <summary>Extract records from a file and insert them to the data source using the DataLinkProvider <see cref="DataLink.DataStorage.InsertRecords"/> method.</summary>
+		/// <summary>
+        /// Extract records from a file and insert them to the data source
+        /// using the DataLinkProvider
+        /// <see cref="DataLink.DataStorage.InsertRecords"/> method.
+        /// </summary>
 		/// <param name="fileName">The file with the source records.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
 		public object[] InsertFromFile(string fileName)
@@ -129,7 +141,11 @@ namespace FileHelpers.DataLink
 			return mLastInsertedRecords;
 		}
 
-		/// <summary>Extract records from a stream and insert them to the data source using the DataLinkProvider <see cref="DataLink.DataStorage.InsertRecords"/> method.</summary>
+		/// <summary>
+        /// Extract records from a stream and insert them to the data source
+        /// using the DataLinkProvider
+        /// <see cref="DataLink.DataStorage.InsertRecords"/> method.
+        /// </summary>
 		/// <param name="reader">The stream with the source records.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
 		public object[] InsertFromStream(StreamReader reader)
@@ -162,6 +178,5 @@ namespace FileHelpers.DataLink
 			FileDataLink link = new FileDataLink(storage);
 			return link.InsertFromFile(filename);
 		}
-
 	}
 }

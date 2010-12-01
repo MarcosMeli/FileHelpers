@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-10 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -9,7 +9,7 @@ using System;
 namespace FileHelpers.DataLink
 {
 	/// <summary>
-	/// This class has the responsability to enable the two directional
+	/// This class has the responsibility to enable the two directional
 	/// transformation.
 	/// <list type="bullet">
 	/// <item> Excel &lt;-> DataStorage</item>
@@ -91,7 +91,9 @@ namespace FileHelpers.DataLink
 		#region "  ExtractTo File/Stream   "
 
 		/// <summary>
-		/// Extract records from the data source and insert them to the specified file using the DataLinkProvider <see cref="DataLink.DataStorage.ExtractRecords"/> method.
+        /// Extract records from the data source and insert them to the
+        /// specified file using the DataLinkProvider <see
+        /// cref="DataLink.DataStorage.ExtractRecords"/> method.
 		/// </summary>
 		/// <param name="fileName">The files where the records be written.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
@@ -107,7 +109,11 @@ namespace FileHelpers.DataLink
 
 		#region "  InsertFromFile  "
 
-		/// <summary>Extract records from a file and insert them to the data source using the DataLinkProvider <see cref="DataLink.DataStorage.InsertRecords"/> method.</summary>
+		/// <summary>
+        /// Extract records from a file and insert them to the data source
+        /// using the DataLinkProvider
+        /// <see cref="DataLink.DataStorage.InsertRecords"/> method.
+        /// </summary>
 		/// <param name="excelFileName">The file with the source records.</param>
 		/// <returns>True if the operation is successful. False otherwise.</returns>
 		public bool InsertFromExcel(string excelFileName)

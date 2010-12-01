@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -11,19 +9,31 @@ namespace FileHelpers.DataLink
 
 	#region "  Delegates  "
 
-	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to get the SQL for the insert or update statement.</summary>
+	/// <summary>
+    /// Delegate used by the <see cref="DatabaseStorage"/> to get the SQL for
+    /// the insert or update statement.
+    /// </summary>
 	/// <param name="record">The record to insert</param>
-	/// <return>The Sql string to insert the record.</return>
+	/// <return>The SQL string to insert the record.</return>
 	public delegate string InsertSqlHandler(object record);
-	/// <summary>Delegate used by the <see cref="DatabaseStorage"/> to fill the values of a new record from the db (you only need to assing hte values.</summary>
+
+	/// <summary>
+    /// Delegate used by the <see cref="DatabaseStorage"/> to fill the values
+    /// of a new record from the db (you only need to assign the values.
+    /// </summary>
 	/// <param name="record">The record to fill.</param>
-	/// <param name="fieldValues">The values read from the database, you need to use these to fill the record.</param>
+	/// <param name="fieldValues">
+    /// The values read from the database, you need to use these to fill the record.
+    /// </param>
 	public delegate void FillRecordHandler(object record, object[] fieldValues);
 
 	#endregion
 
 
-	/// <summary>This class implements the <see cref="DataStorage"/> and is the base class for Data Base storages.</summary>
+	/// <summary>
+    /// This class implements the <see cref="DataStorage"/> and is the base
+    /// class for Data Base storages.
+    /// </summary>
 	[EditorBrowsable(EditorBrowsableState.Advanced)]
 	public abstract class DatabaseStorage : DataStorage
 	{
@@ -38,13 +48,16 @@ namespace FileHelpers.DataLink
 		#endregion
 
 		#region FillRecord
-		/// <summary>This method recives the fields values as an array and must return a record object.</summary>
+		/// <summary>
+        /// This method receives the fields values as an array and returns
+        /// a record object.
+        /// </summary>
 		/// <param name="fieldValues">The record fields values.</param>
 		/// <returns>The record object.</returns>
 		private object FillRecord(object[] fieldValues)
 		{
 			if (FillRecordCallback == null)
-				throw new BadUsageException("You can´t extract records a null FillRecordCallback. Check the docs for help.");
+				throw new BadUsageException("You can't extract records with a null FillRecordCallback. Check the docs for help.");
 
             object res = mRecordInfo.Operations.CreateRecordHandler();
 			FillRecordCallback(res, fieldValues);
@@ -53,19 +66,24 @@ namespace FileHelpers.DataLink
 		#endregion
 
 		#region SelectSql
-		/// <summary>Must return the Select Sql used to Fetch the records to Extract.</summary>
+
+		/// <summary>
+        /// Must return the Select SQL used to Fetch the records to Extract.
+        /// </summary>
 		/// <returns>The SQL statement.</returns>
 		private string GetSelectSql()
 		{
 			if (mSelectSql == null || mSelectSql == string.Empty)
-				throw new BadUsageException("The SelectSql property is empty, please set it before try to get the records.");
+				throw new BadUsageException("The SelectSql property is empty, please set it before trying to get the records.");
 
 			return mSelectSql;
 		}
 
 		private string mSelectSql = string.Empty;
 
-		/// <summary>Indicates the Sql statment used to get the records.</summary>
+		/// <summary>
+        /// Get or set the SQL statement used to get the records.
+        /// </summary>
 		public string SelectSql
 		{
 			get { return mSelectSql; }
@@ -76,13 +94,15 @@ namespace FileHelpers.DataLink
 
 		#region GetInsertSql
 
-		/// <summary>Must return a SQL string with the insert statement for the records.</summary>
+		/// <summary>
+        /// Return a SQL string with the insert statement for the records.
+        /// </summary>
 		/// <param name="record">The record to insert.</param>
-		/// <returns>The Sql string to used to insert the record.</returns>
+		/// <returns>The SQL string to used to insert the record.</returns>
 		private string GetInsertSql(object record)
 		{
 			if (mInsertSqlCallback == null)
-				throw new BadUsageException("You can´t insert records with a null GetInsertSqlCallback. Check the docs for help.");
+				throw new BadUsageException("You can't insert records with a null GetInsertSqlCallback. Check the docs for help.");
 
 			return mInsertSqlCallback(record);
 		}
@@ -91,8 +111,8 @@ namespace FileHelpers.DataLink
 
 		#region MustOverride Methods
 		
-		/// <summary>Must create an abstract connection object.</summary>
-		/// <returns>An Abstract Connection Object.</returns>
+		/// <summary>Create connection object for the datasource.</summary>
+		/// <returns>An Connection Object.</returns>
 		protected abstract IDbConnection CreateConnection();
 
 		#endregion
@@ -113,7 +133,9 @@ namespace FileHelpers.DataLink
 
 		#region "  SelectRecords  "
 
-		/// <summary>Must Return the records from the DataSource (DB, Excel, etc)</summary>
+		/// <summary>
+        /// Must return the records from the DataSource (DB, Excel, etc)
+        /// </summary>
 		/// <returns>The extracted records.</returns>
 		public override object[] ExtractRecords()
 		{
@@ -166,7 +188,10 @@ namespace FileHelpers.DataLink
 
 		#region ExecuteInBatch
 
-		/// <summary>Indicates if the underlaying Conexion allow more than one instruction per execute.</summary>
+		/// <summary>
+        /// Indicates if the underlying Connection allows more than one
+        /// instruction per execute.
+        /// </summary>
 		protected virtual bool ExecuteInBatch
 		{
 			get { return false; }
@@ -176,7 +201,9 @@ namespace FileHelpers.DataLink
 
 		#region "  InsertRecords  "
 
-		/// <summary>Must Insert the records in a DataSource (DB, Excel, etc)</summary>
+		/// <summary>
+        /// Insert the records in a DataSource (DB, Excel, etc)
+        /// </summary>
 		/// <param name="records">The records to insert.</param>
 		public override void InsertRecords(object[] records)
 		{
@@ -296,7 +323,9 @@ namespace FileHelpers.DataLink
 
 		private InsertSqlHandler mInsertSqlCallback;
 
-		/// <summary>Delegate used to get the SQL for the insert or update statement.</summary>
+		/// <summary>
+        /// Delegate used to get the SQL for the insert or update statement.
+        /// </summary>
 		public InsertSqlHandler InsertSqlCallback
 		{
 			get { return mInsertSqlCallback; }
@@ -308,7 +337,9 @@ namespace FileHelpers.DataLink
 		#region FillRecordCallback
 
 		private FillRecordHandler mFillRecordCallback;
-		/// <summary>Delegate used to fill the values of a new record from the db.</summary>
+		/// <summary>
+        /// Delegate used to fill the values of a new record from the db.
+        /// </summary>
 		public FillRecordHandler FillRecordCallback
 		{
 			get { return mFillRecordCallback; }
@@ -321,7 +352,11 @@ namespace FileHelpers.DataLink
 
 		private int mExecuteInBatchSize = 100;
 
-		/// <summary>Indicates the max number of instruction of each execution. High numbers help reduce the round trips to the db and so help tp improve performance.</summary>
+		/// <summary>
+        /// Indicates the max number of instruction for each execution. High
+        /// numbers helps reduce the round trips to the db and so
+        /// improves performance.
+        /// </summary>
 		public int ExecuteInBatchSize
 		{
 			get { return mExecuteInBatchSize; }

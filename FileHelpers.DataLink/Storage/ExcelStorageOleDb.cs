@@ -1,4 +1,4 @@
-#region "  © Copyright 2005-06 to Marcos Meli - http://www.marcosmeli.com.ar" 
+#region "  © Copyright 2005-10 to Marcos Meli - http://www.marcosmeli.com.ar" 
 
 // Errors, suggestions, contributions, send a mail to: marcos@filehelpers.com.
 
@@ -14,7 +14,10 @@ using System.Text;
 
 namespace FileHelpers.DataLink
 {
-	/// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files using a OleDbConnection</para></summary>
+	/// <summary>
+    /// This class implements the <see cref="DataStorage"/> for Microsoft Excel
+    /// Files using a OleDbConnection
+    /// </summary>
 	public sealed class ExcelStorageOleDb : DataStorage
 	{
         static string CreateConnectionString(string file, bool hasHeaders)
@@ -35,12 +38,16 @@ namespace FileHelpers.DataLink
 
 		#region "  Constructors  "
 
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
+		/// <summary>
+        /// Create a new ExcelStorage to work with the specified type
+        /// </summary>
 		/// <param name="recordType">The type of records.</param>
 		public ExcelStorageOleDb(Type recordType):base(recordType)
 		{}
 
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
+		/// <summary>
+        /// Create a new ExcelStorage to work with the specified type
+        /// </summary>
 		/// <param name="recordType">The type of records.</param>
 		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
@@ -50,7 +57,9 @@ namespace FileHelpers.DataLink
 			mStartRow = startRow;
 		}
 
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
+		/// <summary>
+        /// Create a new ExcelStorage to work with the specified type
+        /// </summary>
 		/// <param name="recordType">The type of records.</param>
 		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
@@ -114,7 +123,9 @@ namespace FileHelpers.DataLink
 			set { mFileName = value; }
 		}
 
-		/// <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
+		/// <summary>
+        /// The Excel Sheet Name, if empty means the current worksheet in the file.
+        /// </summary>
 		public string SheetName
 		{
 			get { return mSheetName; }
@@ -555,12 +566,13 @@ namespace FileHelpers.DataLink
 
 
         /// <summary>
-        /// An useful method to direct extract a DataTable from an Excel File without need to instanciate anything.
+        /// An useful method to direct extract a DataTable from an Excel File
+        /// without need to instantiate anything.
         /// </summary>
         /// <param name="file">The Excel file to read.</param>
         /// <param name="row">The initial row (the first is 1)</param>
         /// <param name="col">The initial column (the first is 1)</param>
-        /// <param name="hasHeader">Indicates is there ir a header row.</param>
+        /// <param name="hasHeader">Indicates there is a header row.</param>
         /// <returns>The DataTable generated reading the excel file at the specified position.</returns>
 		public static DataTable ExtractDataTable(string file, int row, int col, bool hasHeader)
 		{
@@ -583,8 +595,6 @@ namespace FileHelpers.DataLink
 
 			connExcel.Close();
 			return res;
-
 		}
-
     }
 }

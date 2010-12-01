@@ -92,7 +92,6 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 	
 	var name = Path.GetFileNameWithoutExtension(filename);
     //var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
-	
         
         }
 

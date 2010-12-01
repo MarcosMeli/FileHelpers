@@ -43,14 +43,14 @@ namespace FileHelpers.DataLink
 		public abstract string DataBaseName { get; }
 
 		/// <summary> The user name used to logon to the SqlServer. </summary>
-		/// <remarks> Leave empty for WIndows Authentication. </remarks>
+		/// <remarks> Leave empty for Windows Authentication. </remarks>
 		public virtual string UserName
 		{
 			get { return String.Empty; }
 		}
 
 		/// <summary> The user pass used to logon to the SqlServer. </summary>
-		/// <remarks> Leave empty for WIndows Authentication. </remarks>
+		/// <remarks> Leave empty for Windows Authentication. </remarks>
 		public virtual string UserPass
 		{
 			get { return String.Empty; }
