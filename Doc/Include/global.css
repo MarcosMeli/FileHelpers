@@ -18,8 +18,8 @@ UL {	LIST-STYLE-IMAGE: none}
 OL {	LIST-STYLE-IMAGE: none}
 TH {	FONT-WEIGHT: bold}
 H1 {	FONT-SIZE: 16pt; FONT-WEIGHT: bold; }
-H2 {	FONT-WEIGHT: bold; color: Yellow; FONT-SIZE: 13pt; margin: 10px; background-color: Green; padding:10px;}
-H3 {	FONT-WEIGHT: bold; color: Fuchsia; FONT-SIZE: 11pt; FONT-FAMILY: Arial, sans-serif; /* margin-left: 20px; */ }
+H2 {	FONT-WEIGHT: bold; color: #E80; FONT-SIZE: 13pt; margin: 10px; /*background-color: Green; */ padding:10px;}
+H3 {	FONT-WEIGHT: bold; color: #F90; FONT-SIZE: 11pt; FONT-FAMILY: Arial, sans-serif; /* margin-left: 20px; */ }
 H4 {	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 2px; margin-left: 20px; }
 H5 {	FONT-WEIGHT: bold; COLOR: #ff9900; FONT-SIZE: 9pt; MARGIN-BOTTOM: 2px; margin-left: 20px; }
 H6 {	FONT-WEIGHT: normal; FONT-SIZE: 65%; COLOR: #626262; margin-left: 20px; }

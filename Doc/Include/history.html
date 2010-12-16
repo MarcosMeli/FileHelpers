@@ -518,29 +518,30 @@ function unhide(divID) {
 		</ul>
 	</div>
 	</li>						 
-	<li><a href="javascript:unhide('v220');">2.2 (Jul-2007)</a>
+	<li><a href="javascript:unhide('v300');">3.0 (-2011)</a>
 	<div id="v220" class="hidden">
 		<div class="note" style="text-align:center;">
-			<p>Thanks everyone again !!</p>
-			<p>This is a maintenance release but there are some interesting additions and
-			performance improvements for .NET 2.0</p>
-			<p>We are working on some big internal changes to allow move the next features
-			level of the version 3.0, for that we need to rewrite some stream level readers
-			and writers. So, this will be a very busy time</p>
-			<p>We are working very hard to support users.  You can see that our forums are
-			free, but your donations are always welcome via:<br />
-			<a href="http://sourceforge.net/donate/index.php?group_id=152382"><b>PayPal</b></a>  or 
-			<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&amp;filter=all&amp;sort=priority&amp;layout=standard&amp;x=10&amp;y=9"><b>Amazon Book List</b></a>
+			<p>Hi everyone again !!</p>
+			<p>The FileHelpers reached a big Milestone today, we are releasing the 3.0 Version !! with full support for .NET 4.0 and with a ton of news and enhacements</p>
 		</div>
 		<ul>                                        
 			<li>Main changes
 			<ul>
+				<li>The core code of the library was refactored to make easier to extend it</li>
 				<li>The error messages have been made more meaningful.  In all exceptions you get; the FieldName, ColumnNumber, LineNumber, etc.</li>
+
+
 				<li>ADD: FieldIndexers you can now get the values in the AsyncEngine like in the DataReader of ADO.NET =)
 				You can access them via index or fieldName (at the moment case sensitive)<br />
 				This also complete the RunTime records support</li>
 			</ul>
 			</li>
+			<li>Breaking Changes
+			<ul>
+				<li>Excel : new UpdateLinks property, allow you to specify how the library must handle workbook links.</li>
+			</ul>
+			</li>
+
 			<li>API changes and extensions
 			<ul>
 				<li>Excel : new UpdateLinks property, allow you to specify how the library must handle workbook links.</li>

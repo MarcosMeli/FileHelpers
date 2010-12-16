@@ -47,10 +47,8 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 <a href="http://www.jetbrains.com/resharper/?dotnet_filehelpers.com"><img src="resharper.png" style="width:89;height:31;border:0;" alt="Thanks Jetbrains for support us !!"/></a>
 <a href="http://www.bbsoftware.co.uk/BBFlashBack.aspx"><img src="bbflashback.png" style="width:137;height:31;border:0;" alt="Thanks BB Software for support us !!"/></a>
 <a href="http://testdriven.net/Default.aspx?ReferrerId=10181"><img src="testdriven.gif" alt="TestDriven.NET" style="border:0;width:150;height:31;"/></a>
-<a href="http://www.cenqua.com/clover.net"><img src="clovernet.gif" style="border:0;" alt="Code Coverage by Clover.NET"/></a>
 <a href="http://www.codeproject.com/KB/database/filehelpers.aspx"><img src="codeproject.gif" style="width:100;height:30;border:0;" alt="Code Project Article"/></a>
-<a href="http://www.larkware.com"><img src="larkware.png" style="width:100;height:30;border:0;" alt="Larkware News"/></a>
-<a href="http://sharptoolbox.com"><img src="sharptoolbox.png" alt="Sharp Toolbox" style="border:0;width:83;height:30;"/></a>
+<a href="http://sharptoolbox.com/tools/filehelpers"><img src="sharptoolbox.png" alt="Sharp Toolbox" style="border:0;width:83;height:30;"/></a>
 </center>
 </div>
 <script type="text/javascript" src="shCore.js"></script>
