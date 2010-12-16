@@ -1,119 +1,103 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+{$HEADER$}
 
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
+<p class="note"> <strong>Note: </strong>VB.NET developers browse the
+<a href="vb_tips.html">Tips for VB.NET</a> first.</p>
 
-		{$HEADER$}
+<p class="note"><a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="download32.gif" border="0" alt=""/>
+Click HERE To download two example projects  (C# and VB.NET) </a>
+</p>
+
+<h2> Quick start for record by record operations (easy
+<a href="#first"><img src="1.png" width="16" height="16" border="0" align="bottom" alt="1"/></a>
+<a href="#two"><img src="2.png" width="16" height="16" border="0" align="bottom" alt="2"/></a>
+<a href="#three"><img src="3.png" width="16" height="16" border="0" align="bottom" alt="3"/></a> steps)
+</h2>
+
+<blockquote>
+Or check the <a href="quick_start_fixed.html">Fixed length file example</a> or <a href="quick_start.html">Delimited file example</a><br /><br />
 
 
-<table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><p>
-    <strong>Note: </strong>VB.NET developers browse the <a href="vb_tips.html">Tips for
-        VB.NET</a> first.</p>
-        <table width="550" align="center" class="note">
-	<tr><td valign="middle" align="center" width="30px" class="note">
-		<a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="download32.gif" border=0 alt="Download Example Code"></a>
-	</td>
-	<td valign="middle" class="note">
-        <a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="new.gif" width="31" height="12" border=0 >Click HERE To download two example projects  (C# and VB.NET) </a>
-	</td>
-	</tr>
-</table>
-<br />
-    <h2>
-        Quick start for record by record operations (easy <a href="#first"><img src="1.png" width="16" height="16" border="0" align="absbottom"></a><a href="#two"><img src="2.png" width="16" height="16" border="0" align="absbottom"></a><a href="#three"><img src="3.png" width="16" height="16" border="0" align="absbottom" ></a> steps) 
-    </h2>
-    
-    <blockquote>
-    Or check the <a href="quick_start_fixed.html">Fixed length file example</a> or <a href="quick_start.html">Delimited file example</a><br /><br />
-    </blockquote>
+<h3><a name="first"></a><img src="1.png" width="16" height="16" align="left" alt="1"/>Step one</h3>
+<td width="97%" valign="top"><p>To start using the FileHelpers library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get intellisense support. </p>
 
-    <table width="100%"  border="0">
-      <tr>
-        <td height="123" valign="top"><a name="first"></a><img src="1.png" width="16" height="16" align="left"> </td>
-        <td width="97%" valign="top"><p>To start using the FileHelpers library you only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>. you can find it in the Release directory of the distribution. Tip: remember to left the <strong>FileHelpers.xml</strong> file to get intellisense support. </p>
-          <blockquote>
-            <p><img src="references.png" width="103" height="53"></p>
-          </blockquote></td>
-      </tr>
-      <tr>
-        <td height="163" valign="top"><a name="two"></a><img src="2.png" width="16" height="16" align="left"></td>
-        <td valign="top">
-          <p> Next you need to define a class that maps to the record in the source/destination file.<br>
-            For this example we use a file with this format delimited by a ',':</p>
-          <blockquote>
-<textarea name="code" class="c#:nogutter:nocontrols">
+<blockquote>
+<img src="references.png" width="103" height="53" alt="Add references"/>
+</blockquote>
+
+<h3><a name="two"></a><img src="2.png" width="16" height="16" align="left" alt="2"/>Step two</h3>
+
+<p> Next you need to define a class that maps to the record in the source/destination file.<br/>
+For this example we use a file with this format delimited by a ',':</p>
+
+<textarea name="code" class="c#:nogutter:nocontrols" cols="60" rows="6">
 1732,Juan Perez,435.00,11-05-2002
 554,Pedro Gomez,12342.30,06-02-2004
 112,Ramiro Politti,0.00,01-02-2000
 924,Pablo Ramirez,3321.30,24-11-2002
-...............    
+...............
 </textarea>
-          </blockquote></td>
-      </tr>
-      <tr>
-        <td height="259" valign="top">&nbsp;</td>
-        <td valign="top"><p>So you must write this class:</p>
-          <blockquote> <b>C#</b>
-<textarea name="code" class="c#">
-	[DelimitedRecord(&quot;,")]
-	public class Customer
-	{
-		public int CustId;
-		
-		public string Name;
 
-		public decimal Balance;
+<p>You write this class:</p>
+<h4>C#</h4>
 
-		[FieldConverter(ConverterKind.Date, &quot;dd-MM-yyyy&quot;)]
-		public DateTime AddedDate;
+<textarea name="code" class="c#" cols="80" rows="14">
+[DelimitedRecord(",")]
+public class Customer
+{
+	public int CustId;
 
-	}
+	public string Name;
 
+	public decimal Balance;
+
+	[FieldConverter(ConverterKind.Date, &quot;dd-MM-yyyy&quot;)]
+	public DateTime AddedDate;
+
+}
 </textarea>
-          </blockquote>
-                    <blockquote> <b>VB.NET</b>
-<textarea name="code" class="vb">
+
+<h4>VB.NET</h4>
+
+<textarea name="code" class="vb" rows="14" cols="80">
 &lt;DelimitedRecord(",")&gt; _
 Public Class Customer
 
     Public CustId As Integer
-    
+
     Public Name As String
-    
+
     Public Balance As Decimal
-    
+
     &lt;FieldConverter(ConverterKind.Date, "dd-MM-yyyy")&gt; _
     Public AddedDate As DateTime
-  
+
 End Class
 </textarea>
-          </blockquote>
-          </td>
-      </tr>
-      <tr>
-        <td height="185" valign="top"><a name="three"></a><img src="3.png" width="16" height="16" align="left"></td>
-        <td valign="top"><p>Later you need to create a FileHelperAsync and use it:
-            <blockquote><b>C#</b>
-<textarea name="code" class="c#">
 
-FileHelperAsyncEngine<Customer> engine = new FileHelperAsyncEngine<Customer>();
+<h3><a name="three"></a><img src="3.png" width="16" height="16" align="left" alt="3"/>Step three</h3>
+<p>Later you need to create a FileHelperAsync and use it:</p>
+
+<h4>C#</h4>
+
+<textarea name="code" class="c#" rows="24" cols="80">
+FileHelperAsyncEngine&lt;Customer&gt; engine = new FileHelperAsyncEngine&lt;Customer&gt;();
 
 // Read
 engine.BeginReadFile(&quot;TestIn.txt&quot;);
 
-// The engine is IEnumerable 
+// The engine is IEnumerable
 foreach(Customer cust in engine)
 {
    // your code here
@@ -131,18 +115,17 @@ foreach(Customer cust in arrayCustomers)
 }
 
 engine.Close();
-
 </textarea>
-          </blockquote>
-            <blockquote><b>VB.NET</b>
-<textarea name="code" class="vb">
 
+<h4>VB.NET</h4>
+
+<textarea name="code" class="vb" cols="80" rows="22">
 Dim engine As New FileHelperAsyncEngine(Of Customer)()
 
 ' Read
 engine.BeginReadFile(&quot;TestIn.txt&quot;)
 
-' The engine is IEnumerable 
+' The engine is IEnumerable
 For Each cust As Customer In engine)
    ' your code here
    Console.WriteLine(cust.Name)
@@ -158,16 +141,7 @@ For Each cust As Customer In arrayCustomers)
 Next
 
 engine.Close()
-
 </textarea>
-          </blockquote>
-                    </td>
-      </tr>
-    </table>      
-                  
-		{$FOOTER$}
-  </td>
-</tr>
-</table>
-
-</BODY></HTML>
+</blockquote>
+{$FOOTER$}
+</body></html>

@@ -1,36 +1,28 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style1 {color: #FFFFFF}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
-  <h2>
-      Using the Different Error Modes</h2>
-  <blockquote>
-          <p>
-              The FileHelpers library has support for 3 kinds of error handling.</p>
-      <p>
-          In the standard mode you can catch the exceptions when something fail.</p>
-          <blockquote><TEXTAREA class=c# name=code>try
+<tr><td><div id="contentdiv"> 
+<h2>Using the Different Error Modes</h2>
+
+<blockquote>
+<p>The FileHelpers library has support for 3 kinds of error handling.</p>
+
+<p>In the standard mode you can catch the exceptions when something fail.</p>
+
+<textarea class="c#" name="code" cols="80" rows="9">
+try
 {
   records = engine.Read...
 }
@@ -38,15 +30,15 @@ catch(Exception ex)
 {
   Console.WriteLine(ex.ToString());
 }
-</TEXTAREA>
-          </blockquote>
-          <p>
-              This approach not is bad but you lose some information about the current record and you
-              can't use the records array because is not assigned.</p>
-      <p>
-          A more intelligent way is usign the <A href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
-          of the ErrorManager:</p>
-      <blockquote><TEXTAREA class=c# name=code>
+</textarea>
+
+<p>This approach not is bad but you lose some information about the current record and you
+can't use the records array because is not assigned.</p>
+
+<p>A more intelligent way is usign the <a href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
+of the ErrorManager:</p>
+
+<textarea class="c#" name="code" rows="13" cols="80">
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
 records = engine.ReadFile(...
@@ -59,49 +51,44 @@ if (engine.ErrorManager.HasErrors)
       Console.WriteLine(err.ExceptionInfo.ToString());`
    }
  
-</TEXTAREA>
-          </blockquote>
-          <p>
-              Using the engine like this you have the good records in the records array and in
-              the ErrorManager you have the records with errors and can do wherever you want.</p>
-      <p>
-            Another option is to ignore the errors and continue.&nbsp; Here is an example:</p>
-          <blockquote><TEXTAREA class=c# name=code>engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
+</textarea>
+
+<p>Using the engine like this you have the good records in the records array and in
+the ErrorManager you have the records with errors and can do wherever you want.</p>
+
+<p>Another option is to ignore the errors and continue. Here is an example:</p>
+
+<textarea class="c#" name="code" cols="80" rows="4">
+engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
 
 records = engine.ReadFile(...
-</TEXTAREA>
-          </blockquote>
-          <p>
-              In the records array you only have the good records.</p>
-  </blockquote>
-    <h2>
-        Saving and Loading Errors</h2>
-    <blockquote>
-        <p>
-            One
-            intersting feature is the method in the ErrorManager to save the errors to a file,
-            you can do this as follows:</p>
-        <blockquote><TEXTAREA class=c# name=code>engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+</textarea>
+
+<p>In the records array you only have the good records.</p>
+
+<h3>Saving and Loading Errors</h3>
+
+<p>One interesting feature is the method in the ErrorManager to save the errors to a file,
+you can do this as follows:</p>
+
+<textarea class="c#" name="code" cols="80" rows="7">
+engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
 records = engine.ReadFile(...
 
 if (engine.ErrorManager.HasErrors)
    engine.ErrorManager.SaveErrors("errors.txt"); 
-</TEXTAREA>
-        </blockquote>
-        <p>
-            To load a file with errors you can use the static method:
-        </p>
-        <blockquote><TEXTAREA class=c# name=code>   
+</textarea>
+
+<p>To load a file with errors you can use the static method:</p>
+
+<textarea class="c#" name="code" cols="80" rows="3">   
    ErrorInfo[] errores = ErrorManager.LoadErrors("errors.txt");
+</textarea>
 
-</TEXTAREA>
-        </blockquote>
-    </blockquote>{$FOOTER$}</div></td>
-
-		
+</blockquote>
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-
-
-</BODY></HTML>
+</body></html>

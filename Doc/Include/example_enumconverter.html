@@ -1,51 +1,50 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv>
+<tr><td><div id="contentdiv">
 <h2>Enum Converter Example</h2>
 <blockquote>
-<p>
-Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
-            <p>
-Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
-                converter. The FileHelpers library parses the field and performs a case insensitive
-                comparison to the enum values and assigns the correct one.</p>
-            <p>
-                The customer file is an excellent sample:</p>
-<TEXTAREA class=c#:nogutter:nocontrols name=code>
+<p>Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
+
+<p>Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
+converter. The FileHelpers library parses the field and performs a case insensitive
+comparison to the enum values and assigns the correct one.</p>
+
+<p>The customer file is an excellent sample:</p>
+
+<textarea class="c#:nogutter:nocontrols" name="code" cols="70" rows="5">
 ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-</TEXTAREA>
-          <p>The enum is:</p>
-<TEXTAREA class=c# name=code>
+</textarea>
+ 
+<p>The enum is:</p>
+
+<textarea class="c#" name="code" rows="7" cols="80">
  public enum CustomerTitle
  {
     Owner,
     SalesRepresentative,
     MarketingManager
  }
-</TEXTAREA>
-          <p>When defining your record class use the enum:</p>
-<TEXTAREA class=c# name=code>
+</textarea>
+
+<p>When defining your record class use the enum:</p>
+
+<textarea class="c#" name="code" cols="80" rows="9">
 [DelimitedRecord("|")]
 public class Customers
 {
@@ -54,22 +53,24 @@ public class Customers
    public string ContactName;
    public CustomerTitle ContactTitle;
 }
-</TEXTAREA>
-          <p>Done !! you parse the file with:</p>
-          <TEXTAREA class=c# name=code>
-FileHelperEngine  engine = new FileHelperEngine(typeof(Customers));
+</textarea>
 
-Customers[] res = (Customers[]) engine.ReadFile("NameTest.txt");
+<p>Done !! you parse the file with:</p>
+
+<textarea class="c#" name="code" rows="9" cols="80">
+var  engine = new FileHelperEngine&lt;Customers&gt;();
+
+Customers[] res = engine.ReadFile("NameTest.txt");
 
 // You can access your enum value
 
 if (res[0].ContactTitle == CustomerTitle.Owner)
     // SomeAction
-    
-</TEXTAREA>
-        </blockquote>
-      <blockquote>
-		{$FOOTER$}</blockquote></div></td>
+</textarea>
+</blockquote>
+
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-</BODY></HTML>
+</body></html>

@@ -1,4 +1,3 @@
-
 .dp-highlighter {
 	width: 100%;
 	overflow: auto;
@@ -53,17 +52,6 @@
 	color: #000044;
 	text-decoration: underline;
 }
-
-textarea {
-    display:block;     
-    width:600px;
-    height:198px;
-    padding:0;
-    border:1px solid #000;
-    margin:0 auto;
-    overflow:auto;
- }
-
 
 /* Gutter with line number */
 
@@ -178,10 +166,10 @@ textarea {
 .dp-py {}
 .dp-py .comment { color: green; }
 .dp-py .string { color: red; }
-.dp-py .docstring { color: brown; }
+.dp-py .docstring { color: #EE9A4D; }
 .dp-py .keyword { color: blue; font-weight: bold;}
 .dp-py .builtins { color: #ff1493; }
 .dp-py .magicmethods { color: #808080; }
-.dp-py .exceptions { color: brown; }
-.dp-py .types { color: brown; font-style: italic; }
+.dp-py .exceptions { color: #EE9A4D; }
+.dp-py .types { color: #EE9A4D; font-style: italic; }
 .dp-py .commonlibs { color: #8A2BE2; font-style: italic; }

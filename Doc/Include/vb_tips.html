@@ -1,48 +1,39 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style2 {color: #990000}
-.style3 {color: #999999}
-.style4 {color: #666666}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
 {$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td>
-<h2>Tips for VB.NET Developers &nbsp;<img src="vbnet.png" /></h2>
+<h2>Tips for VB.NET Developers <img src="vbnet.png" alt="Visual Basic"/></h2>
 <blockquote>
-<p>
-I come from the VB world, but in the .NET context I develop the libraries and
+<p>I come from the VB world, but in the .NET context I develop the libraries and
 controls in C# and the other layers in VB.NET.</p>
-<p>
-This library has nearly all the examples and snippets in C# in the future I
+
+<p>This library has nearly all the examples and snippets in C# in the future I
 plan to add the VB.NET examples. For now, I want to write some tips to
 translate the code and use of the library in VB.</p>
 </blockquote>
     
 <br />
-<table width="500" align="center" height="45" class="note">
+<table width="500" align="center"class="note">
+<tr>
 	<td valign="middle" align="center" class="note">
     <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">Check out these excellent <b>VB.NET - C# comparison cheat sheets</b></a>
 	</td>
 	</tr>
 </table>
 
-<table width="500" align="center" height="45" class="note">
+<table width="500" align="center" class="note">
+<tr>
 <td valign="middle" align="center" class="note">
 You can use one of these excellent converters between C# &lt;-&gt; VB.Net <br/>
 <a href="http://www.developerfusion.co.uk/utilities/convertcsharptovb.aspx">Developer Fusion (online)</a><br />
@@ -52,7 +43,8 @@ You can use one of these excellent converters between C# &lt;-&gt; VB.Net <br/>
 </tr>
 </table>
 
-<h2>Tips</h2>
+<blockquote>
+<h3>Tips</h3>
 <ol>
 	<li>The <span class="cs-keyword"><strong>using</strong></span> directive in
 	C# is the <span class="cs-keyword"> <strong>Imports</strong></span>
@@ -65,7 +57,7 @@ in VB.NET</p></li>
 the Attributes.</p>
 <p>In C# the attributes are enclosed between <strong>[]</strong> while in
 VB.NET you need to use <strong>&lt;&gt;</strong></p>
-<h3>C# example:</h3>
+<h4>C# example:</h4>
 <blockquote>
 <code>
 <strong>[</strong> FixedLengthRecord <strong>];</strong><br />
@@ -73,7 +65,7 @@ VB.NET you need to use <strong>&lt;&gt;</strong></p>
 </code>
 </blockquote>
 
-<h3>VB.NET example:</h3>
+<h4>VB.NET example:</h4>
 <blockquote>
 <code>
 <strong>&lt;</strong> FixedLengthRecord <strong>&gt; _</strong><br/>
@@ -87,7 +79,7 @@ you put the definition that continues onto the next line.</p>
 
 <li>Other difference is the <strong>type conversion</strong> instruction.
 <p>In <strong>C#</strong> the cast is the destination type enclosed between ()</p>
-<h3>C# example</h3>
+<h4>C# example</h4>
 <blockquote>
 <code>
 Orders[] res = <span class="cs-keyword">(Orders[])</span> engine.ReadFile(<span class="cs-string">@"Test.txt"</span>);<br />
@@ -96,13 +88,13 @@ Orders[] res = engine.ReadFile(<span class="cs-string">@"Test.txt"</span>) <span
 </blockquote>
 <p>In <strong>VB.NET</strong> we can use <span class="vb-keyword">DirectCast</span> or <span class="vb-keyword">CType</span> to do the same
 thing.</p>
-<h3>VB.Net example</h3>
+<h4>VB.Net example</h4>
 <blockquote>
 <code>
-Dim res As Orders() = <span class="vb-keyword">CType</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
+<span class="vb-keyword">Dim</span> res <span class="vb-keyword">As</span> Orders() = <span class="vb-keyword">CType</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
             <span class="vb-keyword">Orders()</span>)<br />
             <br />
-Dim res As Orders() = <span class="vb-keyword">DirectCast</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
+<span class="vb-keyword">Dim</span> res <span class="vb-keyword">As</span> Orders() = <span class="vb-keyword">DirectCast</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
             <span class="vb-keyword">Orders()</span>)<br />
             </code>
 </blockquote>
@@ -110,21 +102,22 @@ Dim res As Orders() = <span class="vb-keyword">DirectCast</span>(engine.ReadFile
 clearer.</p></li>
 <li>The last difference is about generics<br />
 <p>In <strong>C#</strong> the generics class are defined:</p>
-<h3>C# example</h3>
+<h4>C# example</h4>
 <blockquote>
 <code>
-FileHelperEngine&lt;Orders&gt; engine  = new FileHelperEngine&lt;Orders&gt;();<br />
+FileHelperEngine<span class="cs-keyword">&lt;</span>Orders<span class="cs-keyword">&gt;</span> engine  <span class="cs-keyword">= new</span> FileHelperEngine&lt;Orders&gt;();<br />
 </code>
 </blockquote>
 <p>In <strong>VB.NET</strong> In this other way:</p>
-<h3>VB.Net example</h3>
+<h4>VB.Net example</h4>
 <blockquote>
 <code>
-Dim engine As New FileHelperEngine(Of Orders)()<br />
+<span class="vb-keyword">Dim</span> engine <span class="vb-keyword">As New</span> FileHelperEngine(Of Orders)()<br />
 </code>
 </blockquote>
 </li>
 </ol>
+</blockquote>
 {$FOOTER$}
 </td>
 </tr>

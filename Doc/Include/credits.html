@@ -1,35 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
 
 <style type="text/css">
 <!--
 .style2 {color: #990000}
-.style3 {color: #999999}
-.style4 {color: #666666}
 -->
 </style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
+</head>
+<body>
 
-		{$HEADER$}
+{$HEADER$}
 
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td>
-    <h2>Contact and Ideas</h2>
-    <blockquote>
-      <p>
-          For ideas,
-          suggestions, problems, bugs please go to the&nbsp; <a href="http://www.filehelpers.com/forums/">
-              <strong>FileHelpers Forums</strong> <IMG src="forumsmall.gif" border=0 ></a>&nbsp; or send an e-mail to either 										<script type="text/javascript" language="javascript">
+<h2>Contact and Ideas</h2>
+<blockquote>
+<p>For ideas, suggestions, problems, bugs please go to the
+<a href="http://www.filehelpers.com/forums/">
+<strong>FileHelpers Forums</strong> <img src="forumsmall.gif" border="0" alt=""/></a> or send an e-mail to either 										<script type="text/javascript" language="javascript">
 <!--
 ML="\"mf@ cp/rt:s<aol.>ie=h";
 MI="<=4E8C2D01=B?9>:1=85>;32B?CEC?6C8;@5>10A1=85>;32B?CEC?6C8;@5>1<7=A";
@@ -40,153 +35,133 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 // --></script>
 
                   </p>
-    </blockquote>
 
-    <h2>Contributors</h2>
-    <blockquote>
-      <p>We have worked hard to get the library ready and updated, but couldn't have done it without the help of a lot of people.</p>
-      <p><b>Thanks to all the people that sent us ideas, errors and suggestions.</b></p>
+<h3>Contributors</h3>
 
-	  <h2>FileHelpers Team:</h2>
+<p>We have worked hard to get the library ready and updated, but couldn't have
+done it without the help of a lot of people.</p>
+<p><b>Thanks to all the people that sent us ideas, errors and suggestions.</b></p>
+
+<h3>FileHelpers Team:</h3>
       <ul>
 <li><b>Marcos Meli</b> - The 
           creator of the FileHelpers and one of the most workaholic people that 
           you can find :P 
-          
+  </li>       
 <li><b>Matt Campbell</b> - 
           The most active co-developer and now project leader too. Matt also works on the infrastructure of the SVN, Trac, Hosting, etc.</li>
 		      </ul>
       
 	  <p>Active contributors to the project:</p>
       <ul>
-        <li>My wife, Patricia ( for her motivation, love 
-          and paaaaaatience =) 
-          
-		<li>Brian Demarzo - Important feedback and bug 
-          fixes 
-          
-		<li>Dale E. Moore - A lot of help in the Mono 
-          port of the library 
- 
- 		<li>Jan-Willem Wilson - A lot of ideas and doc corrections
-		
-        <li>Emmanuel Stalldecker 
-          
-		<li>Antoine Marie 
-          
-		<li>Espen Schaathun 
- 
-        <li><a href="http://www.vemn.com.ar/">Daniel Laco</a>
+        <li>My wife, Patricia ( for her motivation, love and paaaaaatience =)</li>
+		<li>Brian Demarzo - Important feedback and bug fixes</li> 
+		<li>Dale E. Moore - A lot of help in the Mono port of the library</li>
+ 		<li>Jan-Willem Wilson - A lot of ideas and doc corrections</li>
+        <li>Emmanuel Stalldecker</li>
+		<li>Antoine Marie</li>
+		<li>Espen Schaathun</li>
+        <li><a href="http://www.vemn.com.ar/">Daniel Laco</a></li>
         <li>David Sandor</li>
       </ul>
 
       <p>These are the others contributors:</p>
       <ul>
-        <li><a href="http://www.larkware.com/">Mike Gunderloy</a>
-        <li><a href="http://tinyurl.com/capja">Jose Maria Selesan</a>
-        <li><a href="http://www.presys.co.za">Pierre Anderson</a>
-        <li><a href="http://www.mohundro.com/blog/">David Mohundro</a>
-        <li>Guillermo Montangie 
- 
-        <li><a href="http://weblogs.shockbyte.com.ar/rodolfof/">Rodolfo Finochietti</a>
-        <li><a href="http://www.clancrosby.com/">Josh Crosby</a>
-		<li>Mark Raduenzel 
- 
-        <li>John Cardinal 
- 
-        <li>Scott D.W. Rankin 
- 
-        <li>Francis de Fouchier 
- 
-        <li>Mark Izendooren 
- 
-        <li>Gerhardt Scriven 
- 
-        <li>Julian Turner 
- 
-        <li><a href="http://www.cnblogs.com/margiex">Margiex Cai</a>
-          <li>Derek Fluker 
-          <li><a href="http://www.wheelmud.net">Hector Sosa</a>
-          <li><a href="http://www.threetier.com">James McEachern</a>
-          <li>Permjeet Pandha 
-          <li>Matt Tracey 
-          <li>Anatoly Kleyman 
-          <li>Jack Starke 
-          <li>Tim Johnston 
-          <li><a href="http://jawn.net">Bernard Vander Beken</a>
-          <li>Rob Trainer 
-          <li>Adrian Mok 
-          <li>Yuri Astrakhan 
-          <li>ScottieR 
-          <li>Mariano Ballesteros 
-          <li><a href="http://wagnerblog.com">Thomas Wagner</a>
-          <li>Kevin Marchand 
- 
-		  <li>Todd Woodhouse 
-          <li>Nicola Tufarelli 
- 
-		  <li>Aleksandar Lalic 
-          <li>Preky 
-          <li><a href="http://www.mymacaronilife.com/">Frank Burcaw</a>
-          <li>Jarbas Ugarte</li>
-          
+        <li><a href="http://www.larkware.com/">Mike Gunderloy</a></li>
+        <li><a href="http://tinyurl.com/capja">Jose Maria Selesan</a></li>
+        <li><a href="http://www.presys.co.za">Pierre Anderson</a></li>
+        <li><a href="http://www.mohundro.com/blog/">David Mohundro</a></li>
+        <li>Guillermo Montangie </li>
+        <li><a href="http://weblogs.shockbyte.com.ar/rodolfof/">Rodolfo Finochietti</a></li>
+        <li><a href="http://www.clancrosby.com/">Josh Crosby</a></li>
+		<li>Mark Raduenzel</li>
+        <li>John Cardinal</li>
+        <li>Scott D.W. Rankin</li>
+        <li>Francis de Fouchier</li>
+        <li>Mark Izendooren</li> 
+        <li>Gerhardt Scriven</li>
+        <li>Julian Turner</li>
+        <li><a href="http://www.cnblogs.com/margiex">Margiex Cai</a></li>
+        <li>Derek Fluker</li>
+        <li><a href="http://www.wheelmud.net">Hector Sosa</a></li>
+        <li><a href="http://www.threetier.com">James McEachern</a></li>
+        <li>Permjeet Pandha</li>
+        <li>Matt Tracey</li>
+        <li>Anatoly Kleyman</li>
+        <li>Jack Starke</li>
+        <li>Tim Johnston</li>
+        <li><a href="http://jawn.net">Bernard Vander Beken</a></li>
+        <li>Rob Trainer</li>
+        <li>Adrian Mok </li>
+        <li>Yuri Astrakhan</li>
+        <li>ScottieR</li>
+        <li>Mariano Ballesteros</li>
+        <li><a href="http://wagnerblog.com">Thomas Wagner</a></li>
+        <li>Kevin Marchand</li>
+		<li>Todd Woodhouse</li>
+        <li>Nicola Tufarelli</li>
+		<li>Aleksandar Lalic</li>
+        <li>Preky</li>
+        <li><a href="http://www.mymacaronilife.com/">Frank Burcaw</a></li>
+        <li>Jarbas Ugarte</li>
       </ul>
-        <p>If you are in the list and have a home page please send me the address to me and I'll add it.<br 
-        >
-            Also if you want to be removed do the same...</p>
-      </blockquote>    
+        <p>If you are in the list and have a home page please send me the address to me and I'll add it.
+        <br/>
+         Also if you want to be removed do the same...</p>
 
+<h3>Credits</h3>
 
-<h2>Credits</h2>
-    <blockquote>
-      <p>I've wanted to  write this library for a long time, but with the motivation of the <a href="http://www.larkware.com">Larkware contest</a> 
-        I sat down and dedicated the needed time to finish it. I want thank Mike for this.</p>
-      <table  border="1" align="center" cellpadding="10" bordercolor="#666666">
-        <tr>
-          <td bordercolor="#999999" bgcolor="#ffffcc" style="HEIGHT: 48px"><p align="center">
-            The FileHelpers <span class="style2">won the second prize</span> in the 
-              <br >
-              <a href="http://www.larkware.com/contests/Contest2005Winners.html">Larkware Contest 2005</a>.
-              Now to enjoy the gifts !!</p>
-            </td>
-        </tr>
-      </table>
-      <div align="center"></div>
-      <p>Another important motivation is the <a href="http://www.codeproject.com/KB/database/filehelpers.aspx">Code Project</a> 
-        site.  This is an example of a good and practical site, it's easy to find the articles, and even easier to post, there is a submission wizard that's fantastic. Congratulations to the creators.<br>
-        <span class="style2">Warning it can become addictive when you begin to post :)</span></p>
-      </blockquote>
-    <h2>Licence</h2>
-    <blockquote>
-      <p>FileHelpers Library is @Copyright 2005 to <a href="http://www.marcosmeli.com.ar">Marcos Meli</a> but it's source code and the binaries are <strong> free for commercial and non commercial use</strong>.</p>
-        
-        <center>
-        <table border="0" cellpadding="5" cellspacing="0" style="WIDTH: 544px">
-            <tr>
-                <td style="WIDTH: 26px; HEIGHT: 72px">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9" 
-             >
-                    <IMG src="working.gif" border=0 ></a></td>
-                <td style="WIDTH: 529px; HEIGHT: 72px" align="middle">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9" 
-             >
-                    If you want to support the library...<br 
-              >
-                    some .NET books are in the <strong>Amazon Wish List</strong> ;)</a></td>
-                <td align="middle" style="HEIGHT: 72px">
-                    <a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9" 
-             >
-                    <IMG src="gift.gif" border=0 ></a></td>
-            </tr>
-        </table>
-        </center>
-    <hr align="left" >
-    </blockquote>
-								{$FOOTER$}
+<p>I've wanted to  write this library for a long time, but with the motivation
+of the <a href="http://www.larkware.com">Larkware contest</a> I sat down and
+dedicated the needed time to finish it. I want thank Mike for this.</p>
+
+<table border="1" align="center" cellpadding="10" bordercolor="#666666">
+<tr>
+<td bordercolor="#999999" bgcolor="#ffffcc" style="HEIGHT: 48px"><p align="center">
+The FileHelpers <span class="style2">won the second prize</span> in the 
+<br/>
+<a href="http://www.larkware.com/contests/Contest2005Winners.html">Larkware Contest 2005</a>.
+Now to enjoy the gifts !!</p>
 </td>
 </tr>
 </table>
+<div align="center"></div>
+<p>Another important motivation is the
+<a href="http://www.codeproject.com/KB/database/filehelpers.aspx">Code Project</a> 
+site.  This is an example of a good and practical site, it's easy to find the
+articles, and even easier to post, there is a submission wizard that's
+fantastic. Congratulations to the creators.<br/>
+        <span class="style2">Warning it can become addictive when you begin to post :)</span></p>
 
-<span style="VISIBILITY: hidden"><IMG src="pageback.gif" ></span>
+<h3>Licence</h3>
 
-</BODY></HTML>
+<p>FileHelpers Library is @Copyright 2010 to
+<a href="http://www.marcosmeli.com.ar">Marcos Meli</a> but it's source
+code and the binaries are <strong> free for commercial and non commercial
+use</strong>.</p>
+        
+<center>
+<table border="0" cellpadding="5" cellspacing="0" style="WIDTH: 544px">
+<tr>
+<td style="WIDTH: 26px; HEIGHT: 72px">
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9" 
+>
+<img src="working.gif" border="0" alt="working man"/></a></td>
+<td style="width: 529px; height: 72px" align="center">
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9">
+If you want to support the library...
+<br/>
+some .NET books are in the <strong>Amazon Wish List</strong> ;)</a></td>
+<td align="center" style="height: 72px">
+<a href="http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9">
+<img src="gift.gif" border="0" alt="A gift"/></a></td>
+</tr>
+</table>
+</center>
+<hr align="left" />
+</blockquote>
+{$FOOTER$}
+</td>
+</tr>
+</table>
+</body></html>

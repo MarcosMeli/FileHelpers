@@ -1,38 +1,37 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK
-href="global.css" type=text/css
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style1 {color: #FFFFFF}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue
- bgColor=white leftMargin=0 topMargin=0>
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv>
+<tr><td><div id="contentdiv">
+
 <h2>Asynchronous Read  Example </h2>
+
 <blockquote>
 <p>If you have a source file like this, separated by a |:</p>
-<blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>10248|VINET|04071996|32.38
+
+<textarea class="c#:nogutter:nocontrols" name="code" rows="6" cols="50">
+10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 ...............
-</TEXTAREA>
-</blockquote>
+</textarea>
+
 <p>You must declare a Record Mapping Class:</p>
-<blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
+
+<textarea class="c#" name="code" rows="13" cols="80">
+[DelimitedRecord("|")]
 public class Orders
 {
   public int OrderID;
@@ -44,11 +43,12 @@ public class Orders
 
   public decimal Freight;
 }
-</TEXTAREA>
-</blockquote>
-<p>Finally, you can do&nbsp;record by record processing:</p>
-<blockquote><TEXTAREA class=c# name=code>
-FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders));
+</textarea>
+
+<p>Finally, you can do record by record processing:</p>
+
+<textarea class="c#" name="code" rows="13" cols="80">
+var engine = new FileHelperAsyncEngine&lt;Orders&gt;();
 
 engine.BeginReadFile("TestIn.txt");
 
@@ -60,12 +60,12 @@ foreach(Orders ord in engine)
 }
 
 engine.Close();
+</textarea>
 
-</TEXTAREA>
-</blockquote>
 <p>The Async can be used like an IDisposable object with the using directive:</p>
-<blockquote><TEXTAREA class=c# name=code>
-using(FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders)))
+
+<textarea class="c#" name="code" rows="10" cols="80">
+using(var engine = new FileHelperAsyncEngine&lt;Orders&gt;())
 {
 	engine.BeginReadFile("TestIn.txt");
 
@@ -74,15 +74,11 @@ using(FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(Orders)))
 	   // your code here
 	}
 } // Auto Closed
+</textarea>
 
-</TEXTAREA>
 </blockquote>
-<blockquote><blockquote>&nbsp;</blockquote>
-</blockquote>
-</blockquote>{$FOOTER$}</div></td>
-		
-
-		</tr>
+{$FOOTER$}
+</div></td>
+</tr>
 </table>
-
-</BODY></HTML>
+</body></html>

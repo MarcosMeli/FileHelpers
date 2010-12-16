@@ -1,32 +1,24 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style1 {color: #FFFFFF}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
+<tr><td><div id="contentdiv"> 
   <h2>Master Details</h2>
   <blockquote>
           <p>If you have a source file like this, separated by a |:</p>
-          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>
+
+<textarea class="c#:nogutter:nocontrols" name="code" rows="9" cols="120">
 @ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
 10248|ALFKI|5|04071996|01081996|16071996|3|32.38
 10249|ALFKI|6|05071996|16081996|10071996|1|11.61
@@ -35,14 +27,13 @@ bgColor=white leftMargin=0 topMargin=0>
 10252|ANATR|4|09071996|06081996|11071996|2|51.3
 @ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
 ...............
-</TEXTAREA>
-          </blockquote>
-          <p>
-              where the <strong>lines that contain @ are the Customers </strong>(master records) and
+</textarea>
+
+<p>where the <strong>lines that contain @ are the Customers </strong>(master records) and
               the others are the Orders (details records)</p>
-      <p>
-          The two Mapping Classes are:</p>
-          <blockquote><TEXTAREA class=c# name=code>
+<p>The two Mapping Classes are:</p>
+
+<textarea class="c#" name="code" cols="80" rows="12">
 [DelimitedRecord("|")]
 public class Customers
 {
@@ -54,9 +45,9 @@ public class Customers
    public string City;
    public string Country;
 }
-</TEXTAREA>
-<br/>
-<TEXTAREA class=c# name=code>
+</textarea>
+<p/>
+<textarea class="c#" name="code" cols="80" rows="13">
 [DelimitedRecord("|")]
 public class Orders
 {
@@ -69,27 +60,25 @@ public class Orders
    public int ShipVia;
    public decimal Freight;
 }      
+</textarea>
 
-</TEXTAREA>
-        
-          </blockquote>
-      <p>
-          Finally, you must to instantiate a MasterDetailEngine and Read/Write files:</p>
-          <blockquote><TEXTAREA class=c# name=code>
-MasterDetailEngine engine = new MasterDetailEngine(typeof(Customers),
-                                                   typeof(Orders),
-                             CommonActions.MasterIfContains, "@");
+<p>Finally, you must to instantiate a MasterDetailEngine and Read/Write files:</p>
+
+<textarea class="c#" name="code" cols="80" rows="9">
+MasterDetailEngine engine = new MasterDetailEngine&lt;Customers,Orders&gt;
+                             (CommonActions.MasterIfContains, "@");
 
 // to Read use:
 MasterDetails[] res = engine.ReadFile("TestIn.txt");
 
 // to Write use:
 engine.WriteFile("TestOut.txt", res);
-</TEXTAREA>
-          </blockquote>
-          <p>Now you have a MasterDetails array named <span class="cs-literal">res</span> where every item in the array is a MasterDetails object.<br >
-              If you want to access the Master or Detail objects you can use:</p>
-          <blockquote><TEXTAREA class=c# name=code>
+</textarea>
+
+<p>Now you have a MasterDetails array named <span class="cs-literal">res</span> where every item in the array is a MasterDetails object.<br/>
+If you want to access the Master or Detail objects you can use:</p>
+
+<textarea class="c#" name="code" cols="80" rows="9">
 // The master record
 res[0].Master  
 
@@ -98,14 +87,11 @@ res[0].Details
 
 // The first detail record
 res[0].Details[0]
-</TEXTAREA>
-          </blockquote>
-      <p>
-          &nbsp;</p>
-  </blockquote>{$FOOTER$}</div></td>
+</textarea>
 
-		
+</blockquote>
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-
-</BODY></HTML>
+</body></html>

@@ -1,4 +1,3 @@
-
 <center>
 <script type="text/javascript"><!--
 google_ad_client = "pub-0287496280465709";
@@ -29,4 +28,4 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 var pageTracker = _gat._getTracker("UA-361500-2");
 pageTracker._trackPageview();
 </script>
-</BODY>
+</body>

@@ -1,53 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
-  <h2>
-      Delimited File Engine</h2>
-  <blockquote>
-          <p>
-             With this cool feature you can simply change some of the record definitions at run time.</p>
-          <p>
-             Lets start with a simple example:</p>
-<textarea name="code" class="c#">
-	[DelimitedRecord("\t")]
-	public class CustomersTab
-	{
-		public string CustomerID;
-		public string CompanyName;
-		public string ContactName;
-		public string ContactTitle;
-		public string Address;
-		public string City;
-		public string Country;
-	}
+<tr><td><div id="contentdiv"> 
+<h2>Delimited File Engine</h2>
+<blockquote>
+<p>With this cool feature you can simply change some of the record definitions at run time.</p>
+
+<p>Lets start with a simple example:</p>
+
+<textarea name="code" class="c#" rows="12" cols="80">
+[DelimitedRecord("\t")]
+public class CustomersTab
+{
+	public string CustomerID;
+	public string CompanyName;
+	public string ContactName;
+	public string ContactTitle;
+	public string Address;
+	public string City;
+	public string Country;
+}
 </textarea>
 
- <p>
-             After working with this file for a while, and you need to export the data in this format <b>but delimited by ";" and "|"</b>
- </p>
-<p>This is how easy its is:</p>
+<p>After working with this file for a while, and you need to export the data in this format <b>but delimited by ";" and "|"</b>
+</p>
 
-			 
-<textarea name="code" class="c#">
-DelimitedFileEngine engine = new DelimitedFileEngine(typeof(CustomersTab));
+<p>This is how easy its is:</p>
+		 
+<textarea name="code" class="c#" rows="9" cols="80">
+var engine = new DelimitedFileEngine&lt;CustomersTab&gt;();
 engine.WriteFile("RecordsWithTabs.txt", records)
             
 engine.Options.Delimiter = ";";
@@ -56,8 +49,10 @@ engine.WriteFile("RecordsWithSemiColons.txt", records)
 engine.Options.Delimiter = "|";
 engine.WriteFile("RecordsWithVerticalBar.txt", records)
 </textarea>
-
-		{$FOOTER$}
+</blockquote>
+{$FOOTER$}
+</div>
+</td>
 </tr>
 </table>
-</BODY></HTML>
+</body></html>

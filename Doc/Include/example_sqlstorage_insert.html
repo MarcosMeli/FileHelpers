@@ -1,37 +1,31 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-	<HEAD>
-		<TITLE>FileHelpers Library - Marcos Meli</TITLE>
-		<LINK href="/favicon.ico" rel="SHORTCUT ICON">
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli"/>
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-			<LINK href="global.css" type="text/css" rel="stylesheet">
-				<meta NAME="Description" content="FileHelpers are an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources.">
-				<meta name="Author" content="Marcos Meli">
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-				<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-	</HEAD>
-	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
-		 topMargin="0">
+{$HEADER$}
 
-		{$HEADER$}
-
-
-		<table width="100%" cellpadding="5" cellspacing="5">
-			<tr>
-				<td><div id="contentdiv">
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr>
+<td><div id="contentdiv">
 <h2>SqlServerStorage InsertRecords Example</h2>
 <blockquote>
 <p>This example shows how to write records to a SQL server database</p>
-</blockquote>
-<h2>The Problem</h2>
-<blockquote>
+
+<h3>The Problem</h3>
 <p>For example, let's say that you want to insert records into the Customers table on the Northwind database</p>
-</blockquote>
-<h2>Using Delimited Format</h2>
-<blockquote>
-<p>You must define:<BR>
-<TEXTAREA class=c# name=code>
+
+<h3>Using Delimited Format</h3>
+<p>You must define:</p>
+
+<textarea class="c#" name="code" rows="10" cols="80">
 	[DelimitedRecord("|")]
 	public class CustomersVerticalBar
 	{
@@ -43,27 +37,27 @@
 		public string City;
 		public string Country;
 	}
-</TEXTAREA></p></blockquote>
+</textarea>
 
-<h2>The SqlServerStorage</h2>
-<blockquote>
-<p>
- The idea is very simple, you create the SqlServerStorage with your record class</p>
- <p><TEXTAREA class=c# name=code>
-   SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
-			
-   storage.ServerName = "NEON-64";
-   storage.DatabaseName = "Northwind";
+<h3>The SqlServerStorage</h3>
 
-   // Comment this for Windows Auth
-   storage.UserName = "Marcos";
-   storage.UserPass = "private :)";   
-</TEXTAREA>
+<p>The idea is very simple, you create the SqlServerStorage with your record class</p>
+
+<textarea class="c#" name="code" rows="8" cols="80">
+SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
+
+storage.ServerName = "NEON-64";
+storage.DatabaseName = "Northwind";
+
+// Comment this for Windows Auth
+storage.UserName = "Marcos";
+storage.UserPass = "private :)";   
+</textarea>
                     
-<p>
-After these lines if you want to insert records 
-to your database you need these lines:<BR>
-<TEXTAREA class=c# name=code>
+<p>After these lines if you want to insert records 
+to your database you need these lines:</p>
+
+<textarea class="c#" name="code" rows="8" cols="80">
 storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
 CustomersVerticalBar[] res = CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt") as CustomerVerticalBar[];
@@ -72,10 +66,10 @@ storage.InsertRecords(res);
 // or directly:
 
 storage.InsertRecords(CommonEngine.ReadFile(typeof(CustomersVerticalBar), "infile.txt"));
-</TEXTAREA>
-<p>
-The GetInsertSql method must look something like this:<BR>
-<TEXTAREA class=c# name=code>
+</textarea>
+<p>The GetInsertSql method must look something like this:</p>
+
+<textarea class="c#" name="code" rows="6" cols="80">
 protected string GetInsertSqlCust(object record)
 {
 	CustomersVerticalBar obj = (CustomersVerticalBar) record;
@@ -92,27 +86,26 @@ protected string GetInsertSqlCust(object record)
 		);
 
 }
-</TEXTAREA></p>
-</blockquote>                     
-<h2>Read the data from a File</h2>
-<blockquote>
-You need this code for that task:<br >
-<TEXTAREA class=c# name=code>    
+</textarea>
+                    
+<h3>Read the data from a File</h3>
+
+<p>You need this code for that task:</p >
+
+<textarea class="c#" name="code" rows="6" cols="80">    
   FileDataLink.EasyInsertFromFile(storage, "infile.txt");
   
   // or
 
   FileDataLink link = new FileDataLink(storage); 
   link.InsertFromToFile("infile.txt");     
-</TEXTAREA>
+</textarea>
 
 </blockquote>
-<br >
-<blockquote>
-	{$FOOTER$}
-</blockquote></div>
+{$FOOTER$}
+</div>
 </td>
 </tr>
 </table>
-</BODY>
-</HTML>
+</body>
+</html>

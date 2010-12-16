@@ -1,35 +1,35 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv>  <h2>Custom Converter Example </h2>
-        <blockquote>
-          <p>If you&nbsp;want to parse a file with a field that has different parsing rules, you can define a CustomConverter.&nbsp; For example, if you have this source file:</p>
-          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>Argentina|Meli, Marcos|25
+<tr><td><div id="contentdiv">
+
+<h2>Custom Converter Example </h2>
+
+<blockquote>
+<p>If you want to parse a file with a field that has different parsing rules, you can define a CustomConverter. For example, if you have this source file:</p>
+
+<textarea class="c#:nogutter:nocontrols" name="code" cols="30" rows="4">
+Argentina|Meli, Marcos|25
 Argentina|Meli, Luciano|25
 Argentina|Perez, Juan|25
-Chile|Salas, Marcelo|25
-</TEXTAREA>
+Chile|Salas, Marcelo|25</textarea>
 
-          </blockquote>
-          <p>The solution is to define a class for the Name part:</p>
-          <blockquote><TEXTAREA class=c# name=code>public class NameField
+<p>The solution is to define a class for the Name part:</p>
+
+<textarea class="c#" name="code" rows="10" cols="80">
+ public class NameField
  {
      public string FirstName;
      public string LastName;
@@ -38,11 +38,12 @@ Chile|Salas, Marcelo|25
      {
          return LastName + ", " + FirstName;
      }
-}
-</TEXTAREA>
-          </blockquote>
-          <p>Next&nbsp;define your record class:</p>
-          <blockquote><TEXTAREA class=c# name=code>[DelimitedRecord("|")]
+}</textarea>
+
+<p>Next define your record class:</p>
+
+<textarea class="c#" name="code" rows="11" cols="80">
+[DelimitedRecord("|")]
 public class CustomConvClass
 {
    public string Country;
@@ -51,12 +52,12 @@ public class CustomConvClass
    public NameField Names;
 
    public int Age;
-}&lt;/pre&gt;
-</TEXTAREA>
+}</textarea>
 
-          </blockquote>
-          <p>The most important step is to define the converter you must inherit from the <A href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
-          <blockquote><TEXTAREA class=c# name=code>public class NameConverter: ConverterBase
+<p>The most important step is to define the converter you must inherit from the <a href="FileHelpers.ConverterBase.html">ConverterBase</a> </p>
+
+<textarea class="c#" name="code" rows="13" cols="80">
+public class NameConverter: ConverterBase
 {
    public override object StringToField(string from)
    {
@@ -68,28 +69,26 @@ public class CustomConvClass
 
        return res;
    }
-}
-</TEXTAREA>
+}</textarea>
 
-          </blockquote>
-          <p> Done. You can now parse the file with:</p>
-          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine  engine = new FileHelperEngine(typeof(CustomConvClass));
+<p> Done. You can now parse the file with:</p>
 
-CustomConvClass[] res = (CustomConvClass[]) engine.ReadFile("NameTest.txt");
+<textarea class="c#" name="code" rows="10" cols="80">
+FileHelperEngine  engine = new FileHelperEngine&lt;CustomConvClass&gt;();
+
+CustomConvClass[] res = engine.ReadFile("NameTest.txt");
 
 // You can access your custom field like this
 
   res[0].Country
   res[0].Names.LastName
   res[i].Names.FirstName
-  res[i].Age
-</TEXTAREA>
-  
-          </blockquote>
-        </blockquote>{$FOOTER$}</div></td>
+  res[i].Age</textarea>
 
-		
+</blockquote>
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-
-</BODY></HTML>
+</body></html>
+s

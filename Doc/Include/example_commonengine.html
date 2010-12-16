@@ -1,33 +1,27 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
-  <h2>
-      CommonEngine</h2>
-  <blockquote>
-          <p>
-              You can use this class as a shortcut for common operations. Currently it only has basic
-              methods but in the future it will contains a full list of common operations.</p>
-      <p>
-          You can use this class like this</p>
-          <blockquote><TEXTAREA class=c# name=code>
+<tr><td><div id="contentdiv"> 
+
+<h2>CommonEngine</h2>
+<blockquote>
+<p>You can use this class as a shortcut for common operations. Currently it only has basic
+methods but in the future it will contains a full list of common operations.</p>
+<p>You can use this class like this</p>
+
+<textarea class="c#" name="code" rows="33" cols="100">
 // to read use:
 Orders[] res = CommonEngine.ReadFile(typeof(Orders),"TestIn.txt") as Orders[];
 
@@ -59,16 +53,14 @@ Customers[] distinct = CommonEngine.RemoveDuplicateRecords(customersArray);
 DataTable dt = CommonEngine.RecordsToDataTable(records);
 
 // only 25 records
-DataTable dt = CommonEngine.RecordsToDataTable(records, 25); 
+DataTable dt = CommonEngine.RecordsToDataTable(records, 25);
+</textarea>
 
-</TEXTAREA>
-          </blockquote>
-          <b>Remember that you lose functionality if you use this engine, for example encoding, error handling and others.</b>
-  </blockquote>{$FOOTER$}</div></td>
+<p><b>Remember that you lose functionality if you use this engine, for example encoding, error handling and others.</b></p>
 
-		
+</blockquote>
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-
-
-</BODY></HTML>
+</body></html>

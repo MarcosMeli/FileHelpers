@@ -1,81 +1,80 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-	<HEAD>
-		<TITLE>FileHelpers Library - Marcos Meli</TITLE>
-		<LINK href="/favicon.ico" rel="SHORTCUT ICON">
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli"/>
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-			<LINK href="global.css" type="text/css" rel="stylesheet">
-				<meta NAME="Description" content="FileHelpers are an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources.">
-				<meta name="Author" content="Marcos Meli">
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-				<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-	</HEAD>
-	<BODY text="black" vLink="purple" aLink="red" link="blue" bgColor="white" leftMargin="0"
-		 topMargin="0">
+{$HEADER$}
 
-		{$HEADER$}
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr>
+<td><div id="contentdiv">
 
-
-		<table width="100%" cellpadding="5" cellspacing="5">
-			<tr>
-				<td><div id="contentdiv">
 <h2>SqlServerStorage ExtractRecords Example</h2>
 <blockquote>
 <p>This example shows how to read records from a SQL server storage and later write
 it to a file.
 </p>
-</blockquote>
-<h2>The Problem</h2>
-<blockquote>
+
+<h3>The Problem</h3>
+
 <p>For example, if you want to extract the records from the Orders table in the Northwind database</p>
-<p><IMG height=374 src="orders1.png" width=652></p>
-</blockquote>
-<h2>Using Delimited Format</h2>
-<blockquote>
+<blockquote><img height="374" src="orders1.png" width="652" alt="orders spreadsheet"/></blockquote>
+
+<h3>Using Delimited Format</h3>
+
 <p>You must define:</p>
-<blockquote><TEXTAREA class=c# name=code>
+
+<textarea class="c#" name="code" cols="80" rows="15">
 [DelimitedRecord("|")]
 public class OrdersVerticalBar
 {
     public int OrderID;
     public string CustomerID;
-    public int EmployeeID; 
+    public int EmployeeID;
     public DateTime OrderDate;
     public DateTime RequiredDate;
-    
+
     [FieldNullValue(typeof(DateTime), "2005-1-1")]
-    public DateTime ShippedDate; 
-    public int ShipVia; 
+    public DateTime ShippedDate;
+    public int ShipVia;
     public decimal Freight;
 }
-</TEXTAREA>
-</blockquote></blockquote>
-<h2>The SqlServerStorage</h2>
-<blockquote>
-<p>
-The idea is simple, you create a SqlServerStorage instance with your record class.</p>
-<p><TEXTAREA class=c# name=code> 
-   SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
-			
-   storage.ServerName = "NEON-64";
-   storage.DatabaseName = "Northwind";
+</textarea>
 
-   // Comment this for Windows Auth
-   storage.UserName = "Marcos";
-   storage.UserPass = "private :)";   
-</TEXTAREA>                    
-                    						<p>
-After these lines if you want to get the records 
-from the database you need these lines:<BR>
-<TEXTAREA class=c# name=code>  
-   storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);  
-   
-   OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
-</TEXTAREA>
-<p>
-The FillRecord method is something like this:<BR>
-<TEXTAREA class=c# id=TEXTAREA1 onclick="return TEXTAREA1_onclick()" name=code>
+<h3>The SqlServerStorage</h3>
+
+<p>The idea is simple, you create a SqlServerStorage instance with your record class.</p>
+
+<textarea class="c#" name="code" rows="9" cols="80">
+SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			
+storage.ServerName = "NEON-64";
+storage.DatabaseName = "Northwind";
+
+// Comment this for Windows Auth
+storage.UserName = "Marcos";
+storage.UserPass = "private :)";
+</textarea>
+
+<p>After these lines if you want to get the records
+from the database you need these lines:</p>
+
+<textarea class="c#" name="code" cols="80" rows="5">
+storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
+
+OrdersVerticalBar[] res = storage.ExtractRecords() as OrdersVerticalBar[];
+</textarea>
+
+<p>The FillRecord method is something like this:</p>
+
+<textarea class="c#" id="TEXTAREA1" onclick="return TEXTAREA1_onclick()" name="code" cols="80" rows="19">
 protected void FillRecordOrder(object rec, object[] fields)
 {
 	OrdersVerticalBar record = (OrdersVerticalBar) rec;
@@ -94,26 +93,27 @@ protected void FillRecordOrder(object rec, object[] fields)
 	record.ShipVia = (int) fields[6];
 	record.Freight = (decimal) fields[7];
 }
-</TEXTAREA></p>
-</blockquote>                     
-<h2>Write the results direct to a File</h2>
-You need this code for the task:<br >
-                    
-<blockquote><TEXTAREA class=c# name=code>   
+</textarea>
+
+<h3>Write the results direct to a File</h3>
+
+<p>You need this code for the task:</p>
+
+<textarea class="c#" name="code" rows="7" cols="80">
   FileDataLink.EasyExtractToFile(storage, "outfile.txt");
 
   // or
 
-  FileDataLink link = new FileDataLink(storage); 
-  link.ExtractToFile("outfile.txt");     
-</TEXTAREA>
+  FileDataLink link = new FileDataLink(storage);
+  link.ExtractToFile("outfile.txt");
+</textarea>
 </blockquote>
-<br >
-<blockquote>
-	{$FOOTER$}
-</blockquote></div>
+
+{$FOOTER$}
+
+</div>
 </td>
 </tr>
 </table>
-</BODY>
-</HTML>
+</body>
+</html>

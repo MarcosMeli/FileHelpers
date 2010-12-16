@@ -1,64 +1,54 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<style type="text/css">
-<!--
-.style2 {color: #990000}
-.style3 {color: #999999}
-.style4 {color: #666666}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td style="HEIGHT: 720px">
-    <h2>.NET 2.0 Generics Support</h2>
-    <blockquote>
-      <p>
-The FileHelpers supports the use of generics with the engines.</p>
-        <p>
-            The names of the classes are the same that without generics, so you can use either:</p>
+<h2>.NET 2.0 Generics Support</h2>
+<blockquote>
+<p>The FileHelpers supports the use of generics with the engines.</p>
+<p>The names of the classes are the same that without generics, so you can use
+either:</p>
 <h3>C# 2.0</h3>
-<TEXTAREA class=c# name=code>
-// Standard Way 
+<textarea class="c#" name="code" rows="5" cols="80">
+// Object Way 
 FileHelperEngine engine = new FileHelperEngine(typeof(Customers));
 
 // Generics Way
 FileHelperEngine&lt;Customers&gt; engine = new FileHelperEngine&lt;Customers&gt;();
-</TEXTAREA>
+</textarea>
 
 <h3>VB.NET 2.0</h3>
-<TEXTAREA class=vb name=code>
+<textarea class="vb" name="code" rows="5" cols="80">
 ' Standard Way 
 Dim engine As New FileHelperEngine(GetType(Customers))
 
 ' Generics Way
 Dim engine As New FileHelperEngine(Of Customers)()
-</TEXTAREA>
+</textarea>
         <p>
-	<strong>The main diference is that you don't need to cast the engine results:</strong></p><TEXTAREA class=c# name=code>
+	<strong>The main diference is that you don't need to cast the engine results:</strong></p>
+<textarea class="c#" name="code" rows="5" cols="80">
 // Standard Way 
 Customers[] res = (Customers[]) engine.ReadFile("File.txt");
 
 // Generics Way
 Customers[] res = engine.ReadFile("File.txt");
-</TEXTAREA>
+</textarea>
 <p>Any other ideas are welcome !!!</p>
 </blockquote>
-		{$FOOTER$}
+{$FOOTER$}
 </td>
 </tr>
 </table>
-</BODY></HTML>
+</body></html>

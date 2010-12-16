@@ -1,53 +1,41 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
+{$HEADER$}
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style1 {color: #FFFFFF}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
-<table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
-  <h2>Events Architecture</h2>
+<div id="contentdiv"> 
+<h2>Events Architecture</h2>
   <blockquote>
-          <p>Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
+<p>Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
 
-          <p>To solve these problems I've added events to the FileHelperEngine (in the future to all the other engines) </p>
+<p>To solve these problems I've added events to the FileHelperEngine (in the future to all the other engines) </p>
 
-          <p>There are 4 events.  2 for read and 2 for write operations</p>
+<p>There are 4 events.  2 for read and 2 for write operations</p>
           
-          <blockquote>
+<blockquote>
           <ul>
-			<li>BeforeReadRecord
-			<li>AfterReadRecord
-			<li>BeforeWriteRecord
+			<li>BeforeReadRecord</li>
+			<li>AfterReadRecord</li>
+			<li>BeforeWriteRecord</li>
 			<li>AfterWriteRecord</li>			
           </ul>
+</blockquote>
 
-          </blockquote>
-          <p>The names say it all right?</p>
-            </blockquote>
+<p>The names say it all right?</p>
 
-<h2>An Example</h2>
-            <blockquote>
-          <p>Suppose that you need to parse a txt report from a legacy system with this format:</p>
-	  <blockquote>
-<TEXTAREA class=c#:nogutter:nocontrols name=code>
+<h3>An Example</h3>
+
+<p>Suppose that you need to parse a txt report from a legacy system with this format:</p>
+
+<textarea class="c#:nogutter:nocontrols" name="code" rows="18" cols="60">
 -----------------------------------------------------
               XXX Enterprise
 -----------------------------------------------------
@@ -65,11 +53,11 @@ bgColor=white leftMargin=0 topMargin=0>
 ...............          
                                        Page 2
 And so on !!                                       
-</TEXTAREA>
-</blockquote>
-          <p>You must declare a Record Mapping Class for the main record:</p>
-	  <blockquote>
-<TEXTAREA class=c# name=code>
+</textarea>
+
+<p>You must declare a Record Mapping Class for the main record:</p>
+
+<textarea class="c#" name="code" rows="17" cols="80">
  [FixedLengthRecord(FixedMode.AllowVariableLength)]
  [FixedLengthRecord]
  public class OrdersFixed
@@ -86,52 +74,42 @@ And so on !!
    [FieldFixedLength(11)]
    public decimal Freight;
  }
-</TEXTAREA>
-          </blockquote>
-          <p>When we instantiate the engine we also hook the events as follows:</p>
-	  <blockquote>
-<TEXTAREA class=c# name=code>
-FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
-engine.BeforeReadRecord += new BeforeReadRecordHandler(BeforeEvent);
+</textarea>
 
-Orders[] res = engine.ReadFile("report.txt") as Orders[];
+<p>When we instantiate the engine we also hook the events as follows:</p>
 
-</TEXTAREA>
-          
-    </blockquote>
-          
-          <p> So in the event method we ignore the lines that begin with spaces or a dash '-':</p>
-	  <blockquote>
-<TEXTAREA class=c# name=code>
-	private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
-	{
-		if (e.RecordLine.StartsWith(" ")
-       		 || e.RecordLine.StartsWith("-"))
-			e.SkipThisRecord = true;
-	}
-</TEXTAREA>
+<textarea class="c#" name="code" rows="6" cols="80">
+var engine = new FileHelperEngine&lt;Orders&gt;();
+engine.BeforeReadRecord += new BeforeReadRecordHandler&lt;Orders&gt;(BeforeEvent);
 
-    </blockquote>
-          
-<table width="500" align="center" class="note">
-          
-          <TR>
-	<td valign="center" align="middle" class="note">
-<b>Note: if you change the RecordLine in the args the engine use the changed value.
-	<br>This can be useful in some cases but you must be careful</b>
-</td></TR></table>
+Orders[] res = engine.ReadFile("report.txt");
+
+</textarea>
+
+<p> So in the event method we ignore the lines that begin with spaces or a dash '-':</p>
+
+<textarea class="c#" name="code" rows="7" cols="80">
+private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs&lt;Orders&gt; e)
+{
+	if (e.RecordLine.StartsWith(" ")
+       	 || e.RecordLine.StartsWith("-"))
+		e.SkipThisRecord = true;
+}
+</textarea>
+
+<p class="note" style="width:550">
+<b>Note: Changing the RecordLine in the args the engine will use the changed value.
+<br/>This can be useful in some cases but you must be careful</b>
+</p>
+
+<textarea class="c#" name="code" rows="6" cols="80">
+private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs&lt;Orders&gt; e)
+{
+	if (e.RecordLine.StartsWith(" "))
+		e.RecordLine = "Be careful!";
+}
+</textarea>
 </blockquote>
-
-<TEXTAREA class=c# name=code>
-	private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs e)
-	{
-		if (e.RecordLine.StartsWith(" "))
-			e.RecordLine = "Be careful!";
-	}
-</TEXTAREA>
-
-{$FOOTER$}</div></td>
-	</tr>
-</table>
-
-</BODY></HTML>
+{$FOOTER$}
+</div>
+</body></html>

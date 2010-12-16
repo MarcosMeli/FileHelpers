@@ -1,42 +1,34 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>FileHelpers Library - Marcos Meli</TITLE>
-<LINK href="/favicon.ico" rel="SHORTCUT ICON"><LINK 
-href="global.css" type=text/css 
-rel=stylesheet>
-<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"></link>
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
 
-<meta NAME="Description"        content="An easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
-<meta name="Author"             content="Marcos Meli" />
-<meta NAME="keywords" Content="filehelpers,CSV,Marcos_Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
-<meta NAME="Copyright" CONTENT="Copyright 2005-07 to Marcos Meli - www.Devoo.net. All Rights Reserved.">
-
-<style type="text/css">
-<!--
-.style1 {color: #FFFFFF}
--->
-</style>
-</HEAD>
-<BODY   text=black vLink=purple aLink=red link=blue 
-bgColor=white leftMargin=0 topMargin=0>
-
-		{$HEADER$}
-
+{$HEADER$}
 
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id=contentdiv> 
-  <h2>Easy Example </h2>
+<tr><td><div id="contentdiv"> 
+<h2>Easy Example </h2>
   <blockquote>
-          <p>If you have a source file like this, separated by a |:</p>
-          <blockquote><TEXTAREA class=c#:nogutter:nocontrols name=code>
+<p>If you have a source file like this, separated by a |:</p>
+
+<textarea class="c#:nogutter:nocontrols" name="code" cols="30" rows="6">
 10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 ...............          
-</TEXTAREA>
-</blockquote>
-          <p>You first declare a Record Mapping Class:</p>
-          <blockquote><TEXTAREA class=c# name=code>
+</textarea>
+
+<p>You first declare a Record Mapping Class:</p>
+
+<textarea class="c#" name="code" cols="80" rows="11">
 [DelimitedRecord("|")]
 public class Orders
 {
@@ -47,29 +39,30 @@ public class Orders
 
    public decimal Freight;
 }
-</TEXTAREA>
-          </blockquote>
-          <p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-          <blockquote><TEXTAREA class=c# name=code>FileHelperEngine engine = new FileHelperEngine(typeof(Orders));
+</textarea>
+
+<p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
+
+<textarea class="c#" name="code" rows="8" cols="80">
+var engine = new FileHelperEngine&lt;Orders&gt;();
 
 // to Read use:
-Orders[] res = engine.ReadFile("TestIn.txt") as Orders[];
+Orders[] res = engine.ReadFile("TestIn.txt");
 
 // to Write use:
 engine.WriteFile("TestOut.txt", res);
+</textarea>
 
-</TEXTAREA>
+<p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the
+Visual Studio IntelliSense bring up the field names for you.</p>
 
-          </blockquote>
-          <p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the
-Visual Studio IntelliSense
-bring up the field names for you.</p>
-          <blockquote>
-            <blockquote>
-              <p><IMG height=93 src="vs_orders.png" width=165></p>
-            </blockquote>
-          </blockquote>
-  </blockquote>{$FOOTER$}</div></td>
+<blockquote>
+<img height="93" src="vs_orders.png" width="165" alt="Visual studio intellisense"/>
+</blockquote>
+
+</blockquote>
+{$FOOTER$}
+</div></td>
 </tr>
 </table>
-</BODY></HTML>
+</body></html>
