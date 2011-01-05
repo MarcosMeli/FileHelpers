@@ -409,7 +409,7 @@ function unhide(divID) {
 			<li>Breaking Changes
 			<ul>
 				<li>The constructor of the MultiRecordEngine was changed to allow params args,
-				and to allow users to not pass the RecordSelector (in write operations where it was not needed)</b>.</li>
+				and to allow users to not pass the RecordSelector (in write operations where it was not needed).</li>
 				<li>EndsRead and EndsWrite deleted, now you have a Close() operation
 				to simplify the API and to make it similar to the System.Data namespace. (The async engines also implement IDisposable)</li>
 				<li>Rename FileHelperException --&gt; FileHelpers Exception a better
@@ -519,21 +519,21 @@ function unhide(divID) {
 	</div>
 	</li>						 
 	<li><a href="javascript:unhide('v300');">3.0 (-2011)</a>
-	<div id="v220" class="hidden">
+	<div id="v300" class="unhidden">
 		<div class="note" style="text-align:center;">
 			<p>Hi everyone again !!</p>
-			<p>The FileHelpers reached a big Milestone today, we are releasing the 3.0 Version !! with full support for .NET 4.0 and with a ton of news and enhacements</p>
+			<p>The FileHelpers has reached a big Milestone today,
+			we are releasing the 3.0 Version! With full support
+			for .NET 4.0 and with a ton of news and enhancements</p>
 		</div>
 		<ul>                                        
 			<li>Main changes
 			<ul>
 				<li>The core code of the library was refactored to make easier to extend it</li>
 				<li>The error messages have been made more meaningful.  In all exceptions you get; the FieldName, ColumnNumber, LineNumber, etc.</li>
-
-
 				<li>ADD: FieldIndexers you can now get the values in the AsyncEngine like in the DataReader of ADO.NET =)
 				You can access them via index or fieldName (at the moment case sensitive)<br />
-				This also complete the RunTime records support</li>
+				This also completes the RunTime records support</li>
 			</ul>
 			</li>
 			<li>Breaking Changes
@@ -552,13 +552,15 @@ function unhide(divID) {
 				<li>ADD: UpdateLinks properties, allow to specify how the library must handle Workbook links (thanks to Stefan Schälle)</li>
 				<li><a href="examples.html">Some new examples.</a></li>
 				<li>FIX: A little problem with the quoted fields in the wizard</li>
+                <li>More documentation has been added to the Library source code.
+                It is now even easier to get involved in development!</li>
+				<li>Lots of minor documentation updates</li>
 			</ul>
 			</li>
 			</ul>
 	</div>
 	</li>
 </ul>
-
 {$FOOTER$}
 </td>
 </tr>

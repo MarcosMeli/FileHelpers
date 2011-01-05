@@ -65,11 +65,11 @@ public class Orders
 <p>Finally, you must to instantiate a MasterDetailEngine and Read/Write files:</p>
 
 <textarea class="c#" name="code" cols="80" rows="9">
-MasterDetailEngine engine = new MasterDetailEngine&lt;Customers,Orders&gt;
-                             (CommonActions.MasterIfContains, "@");
+var engine = new MasterDetailEngine&lt;Customers,Orders&gt;
+                             (CommonSelector.MasterIfContains, "@");
 
 // to Read use:
-MasterDetails[] res = engine.ReadFile("TestIn.txt");
+var res = engine.ReadFile("TestIn.txt");
 
 // to Write use:
 engine.WriteFile("TestOut.txt", res);

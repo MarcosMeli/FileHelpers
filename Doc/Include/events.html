@@ -59,7 +59,6 @@ And so on !!
 
 <textarea class="c#" name="code" rows="17" cols="80">
  [FixedLengthRecord(FixedMode.AllowVariableLength)]
- [FixedLengthRecord]
  public class OrdersFixed
  {
    [FieldFixedLength(7)]
@@ -76,20 +75,24 @@ And so on !!
  }
 </textarea>
 
+<p class="note">YOu must include an extra using statement<br/>
+using FileHelpers.Events;
+</p>
+
 <p>When we instantiate the engine we also hook the events as follows:</p>
 
 <textarea class="c#" name="code" rows="6" cols="80">
-var engine = new FileHelperEngine&lt;Orders&gt;();
-engine.BeforeReadRecord += new BeforeReadRecordHandler&lt;Orders&gt;(BeforeEvent);
+var engine = new FileHelperEngine&lt;OrdersFixed&gt;();
+engine.BeforeReadRecord += new BeforeReadHandler&lt;OrdersFixed&gt;(BeforeEvent);
 
-Orders[] res = engine.ReadFile("report.txt");
+OrdersFixed[] res = engine.ReadFile("report.txt");
 
 </textarea>
 
 <p> So in the event method we ignore the lines that begin with spaces or a dash '-':</p>
 
 <textarea class="c#" name="code" rows="7" cols="80">
-private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs&lt;Orders&gt; e)
+private void BeforeEvent(EngineBase engine, BeforeReadEventArgs&lt;OrdersFixed&gt; e)
 {
 	if (e.RecordLine.StartsWith(" ")
        	 || e.RecordLine.StartsWith("-"))
@@ -103,7 +106,7 @@ private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs&lt;Orders&
 </p>
 
 <textarea class="c#" name="code" rows="6" cols="80">
-private void BeforeEvent(EngineBase engine, BeforeReadRecordEventArgs&lt;Orders&gt; e)
+private void BeforeEvent(EngineBase engine, BeforeReadEventArgs&lt;OrdersFixed&gt; e)
 {
 	if (e.RecordLine.StartsWith(" "))
 		e.RecordLine = "Be careful!";
