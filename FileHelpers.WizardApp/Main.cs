@@ -7,16 +7,14 @@ namespace FileHelpers.WizardApp
 	public class MainClass
 	{
         [STAThread]
-		public static void Main()
+        public static void Main(string[] args)
 		{
-            Application.EnableVisualStyles();
+            string destFile = null;
 
-            //if (RegConfig.GetStringValue(frmDonate.WizardDonateRegKey, "1") == "1")
-            //{
-            //    frmDonate frmDon = new frmDonate();
-            //    frmDon.ShowDialog();
-            //    frmDon.Dispose();
-            //}
+            if (args.Length > 1)
+                destFile = args[0];
+
+            Application.EnableVisualStyles();
 
             frmWizard frm = new frmWizard();
 			frm.ShowDialog();

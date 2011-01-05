@@ -14,24 +14,40 @@ namespace FileHelpers.WizardApp
     public class WizardInfo
     {
 
-        //public void LoadFields(Control.ControlCollection col)
-        //{
-        //    mFields = new ArrayList(col.Count);
+        /// <summary>
+        /// Allow the application to track the change of Language
+        /// </summary>
+        public event EventHandler<EventArgs> LanguageUpdated;
 
-        //    foreach (FieldBaseControl ctrl in col)
-        //    {
-        //        mFields.Add(ctrl.FieldInfo);
-        //    }
-        //}
+        private NetLanguage mLanguage;
+
+        public NetLanguage Language
+        {
+            get { return mLanguage; }
+            set
+            {
+                if (mLanguage == value)
+                    return;
+                mLanguage = value;
+                if (LanguageUpdated != null)
+                    LanguageUpdated(this, new EventArgs());
+            }
+        }
 
         private ClassBuilder mClassBuilder;
 
+        /// <summary>
+        /// Contains compiler and source management functions
+        /// </summary>
         public ClassBuilder ClassBuilder
         {
             get { return mClassBuilder; }
             set { mClassBuilder = value; }
         }
 
+        /// <summary>
+        /// Complete class information about a delimited record
+        /// </summary>
         public DelimitedClassBuilder DelimitedBuilder
         {
             get 
@@ -43,6 +59,9 @@ namespace FileHelpers.WizardApp
             }
         }
 
+        /// <summary>
+        /// Complete class information about a fixed length record
+        /// </summary>
         public FixedLengthClassBuilder FixedLengthBuilder
         {
             get
@@ -56,19 +75,24 @@ namespace FileHelpers.WizardApp
 
         private NetVisibility mFieldVisibility = NetVisibility.Public;
 
+        /// <summary>
+        /// Visibility of the fields created as a whole,  public, internal, protected or private
+        /// </summary>
         public NetVisibility FieldVisibility
         {
             get { return mFieldVisibility; }
             set { mFieldVisibility = value; }
         }
 
-        //private NetVisibility mClassVisibility = NetVisibility.Public;
 
-        //public NetVisibility ClassVisibility
-        //{
-        //    get { return mClassVisibility; }
-        //    set { mClassVisibility = value; }
-        //}
+        /// <summary>
+        /// Get and set the visibility of the class as a whole,  internal or public
+        /// </summary>
+        public NetVisibility ClassVisibility
+        {
+            get { return mClassBuilder.Visibility; }
+            set { mClassBuilder.Visibility = value; }
+        }
 
 
         public string WizardOutput(NetLanguage lang)
@@ -94,7 +118,6 @@ namespace FileHelpers.WizardApp
             get { return mDefaultType; }
             set { mDefaultType = value; }
         }
-
 
     }
 }

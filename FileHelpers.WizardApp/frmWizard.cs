@@ -15,7 +15,8 @@ using FileHelpers.Detection;
 namespace FileHelpers.WizardApp
 {
     /// <summary>
-    /// Summary description for Form1.
+    /// This is the main wizard form that allows you to
+    /// create and modify a layout of record.
     /// </summary>
     public class frmWizard : System.Windows.Forms.Form
     {
@@ -77,7 +78,7 @@ namespace FileHelpers.WizardApp
         private Button cmdCopyClass;
         private Label label5;
         private PictureBox pictureBox4;
-        private ComboBox cboClassLeng;
+        private ComboBox cboClassLanguage;
         private Label label7;
         private Button cmdSave;
         private SaveFileDialog dlgSaveWizard;
@@ -150,9 +151,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -229,7 +230,7 @@ namespace FileHelpers.WizardApp
             this.cmdNext = new System.Windows.Forms.Button();
             this.cmdReset = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
-            this.cboClassLeng = new System.Windows.Forms.ComboBox();
+            this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -668,8 +669,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender1;
+            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender3;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -712,9 +713,6 @@ namespace FileHelpers.WizardApp
             // 
             this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.Items.AddRange(new object[] {
-            "C#",
-            "VB.NET"});
             this.cboLanguage.Location = new System.Drawing.Point(309, 43);
             this.cboLanguage.Name = "cboLanguage";
             this.cboLanguage.Size = new System.Drawing.Size(77, 21);
@@ -1239,7 +1237,7 @@ namespace FileHelpers.WizardApp
             this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panPreview.Controls.Add(this.cboClassLeng);
+            this.panPreview.Controls.Add(this.cboClassLanguage);
             this.panPreview.Controls.Add(this.label7);
             this.panPreview.Controls.Add(this.pictureBox4);
             this.panPreview.Controls.Add(this.label5);
@@ -1249,28 +1247,25 @@ namespace FileHelpers.WizardApp
             this.panPreview.Controls.Add(this.chkProperties);
             this.panPreview.Location = new System.Drawing.Point(568, 0);
             this.panPreview.Name = "panPreview";
-            this.panPreview.Size = new System.Drawing.Size(2, 412);
+            this.panPreview.Size = new System.Drawing.Size(441, 412);
             this.panPreview.TabIndex = 1002;
             // 
-            // cboClassLeng
+            // cboClassLanguage
             // 
-            this.cboClassLeng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboClassLeng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboClassLeng.FormattingEnabled = true;
-            this.cboClassLeng.Items.AddRange(new object[] {
-            "C#",
-            "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(-63, 30);
-            this.cboClassLeng.Name = "cboClassLeng";
-            this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
-            this.cboClassLeng.TabIndex = 1004;
-            this.cboClassLeng.SelectedIndexChanged += new System.EventHandler(this.cboClassLeng_SelectedIndexChanged);
+            this.cboClassLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboClassLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboClassLanguage.FormattingEnabled = true;
+            this.cboClassLanguage.Location = new System.Drawing.Point(372, 30);
+            this.cboClassLanguage.Name = "cboClassLanguage";
+            this.cboClassLanguage.Size = new System.Drawing.Size(60, 21);
+            this.cboClassLanguage.TabIndex = 1004;
+            this.cboClassLanguage.SelectedIndexChanged += new System.EventHandler(this.cboClassLanguage_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-120, 34);
+            this.label7.Location = new System.Drawing.Point(315, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -1340,8 +1335,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender1;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1351,7 +1346,7 @@ namespace FileHelpers.WizardApp
             this.txtOutput.ShowGutterMargin = false;
             this.txtOutput.ShowLineNumbers = false;
             this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(0, 312);
+            this.txtOutput.Size = new System.Drawing.Size(435, 312);
             this.txtOutput.SmoothScroll = false;
             this.txtOutput.SplitView = false;
             this.txtOutput.SplitviewH = -4;
@@ -1445,7 +1440,7 @@ namespace FileHelpers.WizardApp
             this.cmdDetectFormatWithHeader.Name = "cmdDetectFormatWithHeader";
             this.cmdDetectFormatWithHeader.Size = new System.Drawing.Size(155, 25);
             this.cmdDetectFormatWithHeader.TabIndex = 1103;
-            this.cmdDetectFormatWithHeader.Text = "Auto Detect With Heeaders";
+            this.cmdDetectFormatWithHeader.Text = "Auto Detect With Headers";
             this.cmdDetectFormatWithHeader.UseVisualStyleBackColor = false;
             this.cmdDetectFormatWithHeader.Click += new System.EventHandler(this.cmdDetectFormatWithHeader_Click);
             // 
@@ -1588,7 +1583,7 @@ namespace FileHelpers.WizardApp
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(569, 402);
+            this.ClientSize = new System.Drawing.Size(1008, 402);
             this.Controls.Add(this.picDonate);
             this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
@@ -1657,7 +1652,9 @@ namespace FileHelpers.WizardApp
 
   
 
-
+        /// <summary>
+        /// Class information stored here.
+        /// </summary>
         WizardInfo mWizardInfo = new WizardInfo();
 
 
@@ -1668,9 +1665,14 @@ namespace FileHelpers.WizardApp
             cboFixedMode2.DataSource = Enum.GetValues(typeof(FixedMode));
             
             cboFieldVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
-           
             cboClassVisibility.DataSource = new NetVisibility[] { NetVisibility.Public, NetVisibility.Internal};
             cboRecordCondition.DataSource = Enum.GetValues(typeof(RecordCondition));
+            cboLanguage.Items.Clear();
+            cboLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
+            cboLanguage.SelectedIndex = 0;
+            cboClassLanguage.Items.Clear();
+            cboClassLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
+            cboClassLanguage.SelectedIndex = 0;
             mMoving = false;
             picCurrStep.BringToFront();
 
@@ -1775,7 +1777,7 @@ namespace FileHelpers.WizardApp
                 mWizardInfo.ClassBuilder = new FixedLengthClassBuilder(txtClassName.Text);
                 mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode)cboFixedMode2.SelectedItem;
 
-                mWizardInfo.ClassBuilder.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboClassVisibility.Text);
+                mWizardInfo.ClassBuilder.Visibility = (NetVisibility) cboClassVisibility.SelectedItem;
                 mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
 
                 mControlType = typeof(FieldFixedControl);
@@ -1867,7 +1869,7 @@ namespace FileHelpers.WizardApp
             cboFieldVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
             cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility;
 
-            cboClassVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
+            // cboClassVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
             cboClassVisibility.SelectedItem = mWizardInfo.ClassBuilder.Visibility;
 
             return true;
@@ -1972,58 +1974,35 @@ namespace FileHelpers.WizardApp
             return true;
         }
 
-
-        //ArrayList mTemplates = new ArrayList();
-
         private void ReloadTemplates()
         {
             mLoading = true;
 
-            if (cboLanguage.SelectedIndex == 0)
-            {
-                CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.VBNET);
-                CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.CSharp);
-            }
-            else
-            {
-                CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.CSharp);
-                CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, SyntaxLanguage.VBNET);
-            }
+            CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, mWizardInfo.Language.ToFireball());
 
-            string lengPrefix;
+            string languagePrefix;
 
-            switch (cboLanguage.SelectedIndex)
+            switch (mWizardInfo.Language)
             {
-                case 0:
-                    lengPrefix = "CS -";
+                case NetLanguage.CSharp:
+                    languagePrefix = "CS -";
                     break;
 
-                case 1:
-                    lengPrefix = "VB -";
+                case NetLanguage.VbNet:
+                    languagePrefix = "VB -";
                     break;
 
                 default:
-                    lengPrefix = "";
+                    languagePrefix = "";
                     break;
             }
 
             DirectoryInfo di = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Templates");
 
-            FileInfo[] files = di.GetFiles(lengPrefix + "*.tpl");
-
-            TemplateInfo[] templates = new TemplateInfo[files.Length];
-
-            for (int i = 0; i < files.Length; i++)
-            {
-                templates[i] = new TemplateInfo();
-                templates[i].TemplateName = files[i].Name.Remove(0, lengPrefix.Length).Replace(".tpl", "").Trim();
-                templates[i].TemplateBody = File.ReadAllText(files[i].FullName);
-            }
-
             cboTemplate.Items.Clear();
-            foreach (TemplateInfo temp in templates)
+            foreach (var file in di.GetFiles(languagePrefix + "*.tpl"))
             {
-                cboTemplate.Items.Add(temp);
+                cboTemplate.Items.Add(new TemplateInfo(file.FullName));
             }
 
             mLoading = false;
@@ -2031,10 +2010,7 @@ namespace FileHelpers.WizardApp
             if (cboTemplate.Items.Count > 0)
             {
                 cboTemplate.SelectedIndex = 0;
-                ShowTemplate((TemplateInfo)cboTemplate.SelectedItem);
             }
-
-
         }
 
         #endregion
@@ -2141,8 +2117,8 @@ namespace FileHelpers.WizardApp
 
                 mExpanded = true;
                 cmdPreview.Text = "<< &Preview";
-                if (cboClassLeng.SelectedIndex == -1)
-                    cboClassLeng.SelectedIndex = 0;
+                if (cboClassLanguage.SelectedIndex == -1)
+                    cboClassLanguage.SelectedIndex = 0;
 
                 panPreview.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             }
@@ -2155,34 +2131,15 @@ namespace FileHelpers.WizardApp
             if (mLoadingFile != false)
                 return;
 
-            string output;
-            switch (cboClassLeng.SelectedIndex)
-            {
-                case 0:
-                    output = mWizardInfo.WizardOutput(NetLanguage.CSharp);
+            cboLanguage.SelectedItem = cboClassLanguage.SelectedItem;
+            NetLanguageList.LanguageType selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
+            string output = mWizardInfo.WizardOutput(selected.Language);
 
-                    if (sdClassOut.Text == output)
-                        return;
+            if (sdClassOut.Text == output)
+                return;
 
-                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
-                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
-                    sdClassOut.Text = output;
-                    break;
-
-                case 1:
-                    output = mWizardInfo.WizardOutput(NetLanguage.VbNet);
-
-                    if (sdClassOut.Text == output)
-                        return;
-
-                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.CSharp);
-                    CodeEditorSyntaxLoader.SetSyntax(txtOutput, SyntaxLanguage.VBNET);
-                    sdClassOut.Text = output;
-                    break;
-
-                default:
-                    break;
-            }
+            CodeEditorSyntaxLoader.SetSyntax(txtOutput, selected.Language.ToFireball());
+            sdClassOut.Text = output;
         }
 
         private void radDelimited_CheckedChanged(object sender, EventArgs e)
@@ -2197,7 +2154,7 @@ namespace FileHelpers.WizardApp
 
         private void cboTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mLoading == false)
+            if (cboTemplate.SelectedItem != null)
                 ShowTemplate((TemplateInfo)cboTemplate.SelectedItem);
         }
 
@@ -2208,7 +2165,8 @@ namespace FileHelpers.WizardApp
             else
             {
                 string res = templ.TemplateBody;
-                res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
+                if( mWizardInfo.ClassBuilder != null )
+                    res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
 
                 sdTemplOut.Text = res;
                 //txtTemplOut.Text = res;
@@ -2219,6 +2177,11 @@ namespace FileHelpers.WizardApp
 
         private void cboLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
+            NetLanguageList.LanguageType selected = cboLanguage.SelectedItem as NetLanguageList.LanguageType;
+
+            mWizardInfo.Language = selected.Language;
+            cboClassLanguage.SelectedItem = selected;
+
             ReloadTemplates();
         }
 
@@ -2263,7 +2226,8 @@ namespace FileHelpers.WizardApp
             catch 
             {}
 
-            dlgSaveToFile.FilterIndex = cboClassLeng.SelectedIndex + 1;
+            //  1 for C#,  2 for vb.
+            dlgSaveToFile.FilterIndex = cboClassLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = txtClassName.Text;
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
@@ -2273,7 +2237,7 @@ namespace FileHelpers.WizardApp
             }
         }
 
-        private void cboClassLeng_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboClassLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReLoadPreview();
         }
@@ -2319,6 +2283,27 @@ namespace FileHelpers.WizardApp
             }
         }
 
+        private void LoadFile(string pFileName)
+        {
+            string extension = System.IO.Path.GetExtension(pFileName);
+            ClassBuilder builder;
+            switch (extension.ToLower())
+            {
+                case "cs":
+                    builder = ClassBuilder.LoadFromXml(pFileName);
+                    break;
+
+                case "xml":
+                case "whs":
+                    builder = ClassBuilder.LoadFromXml(pFileName);
+                    break;
+
+                default:
+                    return;
+            }
+            ClassBuilderToWizard(builder);
+        }
+
         private void cmdLoad_Click(object sender, EventArgs e)
         {
             dlgOpenWizard.FileName = "";
@@ -2344,6 +2329,8 @@ namespace FileHelpers.WizardApp
             }
 
         }
+
+
 
         private void ClassBuilderToWizard(ClassBuilder builder)
         {
@@ -2466,7 +2453,7 @@ namespace FileHelpers.WizardApp
         {
             if (mMoving == false && mWizardInfo.ClassBuilder != null)
             {
-                mWizardInfo.ClassBuilder.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboClassVisibility.Text);
+                mWizardInfo.ClassBuilder.Visibility = (NetVisibility)cboClassVisibility.SelectedItem;
                 ReLoadPreview();
             }
 
@@ -2510,7 +2497,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdTestClass_Click(object sender, EventArgs e)
         {
-            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, cboClassLeng.SelectedIndex);
+            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
             frm.ShowDialog();
             frm.Dispose();
         }
@@ -2746,7 +2733,7 @@ namespace FileHelpers.WizardApp
 
             ClassBuilderToWizard(formats[0].ClassBuilder);
 
-            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, cboClassLeng.SelectedIndex);
+            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
             frm.HasHeaders = hasHeaders;
             frm.txtInput.Text = File.ReadAllText(dialog.FileName);
             frm.AutoRunTest = true;

@@ -29,12 +29,12 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataPreview));
             this.dgPreview = new System.Windows.Forms.DataGridView();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cboClassLeng = new System.Windows.Forms.ComboBox();
+            this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtClass = new Fireball.Windows.Forms.CodeEditorControl();
             this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
@@ -58,9 +58,11 @@ namespace FileHelpers.WizardApp
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -83,7 +85,7 @@ namespace FileHelpers.WizardApp
             this.dgPreview.ReadOnly = true;
             this.dgPreview.RowHeadersVisible = false;
             this.dgPreview.ShowEditingIcon = false;
-            this.dgPreview.Size = new System.Drawing.Size(483, 208);
+            this.dgPreview.Size = new System.Drawing.Size(620, 209);
             this.dgPreview.TabIndex = 0;
             // 
             // toolStripContainer1
@@ -93,11 +95,11 @@ namespace FileHelpers.WizardApp
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
             this.toolStripContainer1.ContentPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(782, 436);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1002, 436);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(782, 461);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1002, 461);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -113,32 +115,32 @@ namespace FileHelpers.WizardApp
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.cboClassLeng);
+            this.splitContainer1.Panel1.Controls.Add(this.cboClassLanguage);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.txtClass);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(782, 436);
-            this.splitContainer1.SplitterDistance = 296;
+            this.splitContainer1.Size = new System.Drawing.Size(1002, 436);
+            this.splitContainer1.SplitterDistance = 379;
             this.splitContainer1.SplitterIncrement = 4;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 1;
             // 
-            // cboClassLeng
+            // cboClassLanguage
             // 
-            this.cboClassLeng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboClassLeng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboClassLeng.FormattingEnabled = true;
-            this.cboClassLeng.Items.AddRange(new object[] {
+            this.cboClassLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboClassLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboClassLanguage.FormattingEnabled = true;
+            this.cboClassLanguage.Items.AddRange(new object[] {
             "C#",
             "VB.NET"});
-            this.cboClassLeng.Location = new System.Drawing.Point(233, 3);
-            this.cboClassLeng.Name = "cboClassLeng";
-            this.cboClassLeng.Size = new System.Drawing.Size(60, 21);
-            this.cboClassLeng.TabIndex = 1007;
-            this.cboClassLeng.SelectedIndexChanged += new System.EventHandler(this.cboClassLeng_SelectedIndexChanged);
+            this.cboClassLanguage.Location = new System.Drawing.Point(316, 3);
+            this.cboClassLanguage.Name = "cboClassLanguage";
+            this.cboClassLanguage.Size = new System.Drawing.Size(60, 21);
+            this.cboClassLanguage.TabIndex = 1007;
+            this.cboClassLanguage.SelectedIndexChanged += new System.EventHandler(this.cboClassLanguage_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -149,7 +151,7 @@ namespace FileHelpers.WizardApp
             this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(296, 30);
+            this.label3.Size = new System.Drawing.Size(379, 30);
             this.label3.TabIndex = 1013;
             this.label3.Text = "Class Source";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,8 +176,8 @@ namespace FileHelpers.WizardApp
             this.txtClass.InfoTipPosition = null;
             this.txtClass.InfoTipSelectedIndex = 1;
             this.txtClass.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
-            this.txtClass.LineMarginRender = lineMarginRender2;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
+            this.txtClass.LineMarginRender = lineMarginRender1;
             this.txtClass.Location = new System.Drawing.Point(0, 29);
             this.txtClass.LockCursorUpdate = false;
             this.txtClass.Name = "txtClass";
@@ -183,7 +185,7 @@ namespace FileHelpers.WizardApp
             this.txtClass.Saved = true;
             this.txtClass.ShowGutterMargin = false;
             this.txtClass.ShowScopeIndicator = false;
-            this.txtClass.Size = new System.Drawing.Size(296, 407);
+            this.txtClass.Size = new System.Drawing.Size(379, 407);
             this.txtClass.SmoothScroll = false;
             this.txtClass.SplitView = false;
             this.txtClass.SplitviewH = -4;
@@ -220,7 +222,7 @@ namespace FileHelpers.WizardApp
             this.splitContainer2.Panel2.Controls.Add(this.cmdReadTest);
             this.splitContainer2.Panel2.Controls.Add(this.dgPreview);
             this.splitContainer2.Panel2.Controls.Add(this.label2);
-            this.splitContainer2.Size = new System.Drawing.Size(483, 436);
+            this.splitContainer2.Size = new System.Drawing.Size(620, 436);
             this.splitContainer2.SplitterDistance = 196;
             this.splitContainer2.SplitterIncrement = 4;
             this.splitContainer2.SplitterWidth = 3;
@@ -232,7 +234,7 @@ namespace FileHelpers.WizardApp
             this.txtPasteData.BackColor = System.Drawing.Color.Transparent;
             this.txtPasteData.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
             this.txtPasteData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtPasteData.Location = new System.Drawing.Point(308, 1);
+            this.txtPasteData.Location = new System.Drawing.Point(445, 1);
             this.txtPasteData.Name = "txtPasteData";
             this.txtPasteData.Size = new System.Drawing.Size(84, 28);
             this.txtPasteData.TabIndex = 1015;
@@ -247,7 +249,7 @@ namespace FileHelpers.WizardApp
             this.txtClearData.BackColor = System.Drawing.Color.Transparent;
             this.txtClearData.Image = global::FileHelpers.WizardApp.Properties.Resources.stop;
             this.txtClearData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtClearData.Location = new System.Drawing.Point(396, 1);
+            this.txtClearData.Location = new System.Drawing.Point(533, 1);
             this.txtClearData.Name = "txtClearData";
             this.txtClearData.Size = new System.Drawing.Size(84, 28);
             this.txtClearData.TabIndex = 1014;
@@ -265,7 +267,7 @@ namespace FileHelpers.WizardApp
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(483, 30);
+            this.label1.Size = new System.Drawing.Size(620, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "Sample Data";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -282,7 +284,7 @@ namespace FileHelpers.WizardApp
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
             this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtInput.Size = new System.Drawing.Size(483, 166);
+            this.txtInput.Size = new System.Drawing.Size(620, 166);
             this.txtInput.TabIndex = 0;
             this.txtInput.WordWrap = false;
             // 
@@ -290,7 +292,7 @@ namespace FileHelpers.WizardApp
             // 
             this.lblResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResults.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblResults.Location = new System.Drawing.Point(355, 6);
+            this.lblResults.Location = new System.Drawing.Point(492, 6);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(127, 20);
             this.lblResults.TabIndex = 1013;
@@ -319,7 +321,7 @@ namespace FileHelpers.WizardApp
             this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(483, 30);
+            this.label2.Size = new System.Drawing.Size(620, 30);
             this.label2.TabIndex = 1012;
             this.label2.Text = "Results";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -337,7 +339,7 @@ namespace FileHelpers.WizardApp
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(433, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(463, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
@@ -345,7 +347,7 @@ namespace FileHelpers.WizardApp
             this.toolStripButton1.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(110, 22);
             this.toolStripButton1.Text = "Load XML Class";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -354,7 +356,7 @@ namespace FileHelpers.WizardApp
             this.toolStripButton3.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(114, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(122, 22);
             this.toolStripButton3.Text = "Load Source Class";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -368,7 +370,7 @@ namespace FileHelpers.WizardApp
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(82, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(85, 22);
             this.toolStripButton2.Text = "Paste Class";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -382,7 +384,7 @@ namespace FileHelpers.WizardApp
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(113, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(122, 22);
             this.toolStripButton4.Text = "Load Sample Data";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -397,15 +399,15 @@ namespace FileHelpers.WizardApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 461);
+            this.ClientSize = new System.Drawing.Size(1002, 461);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDataPreview";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Record Class Tester - Results Preview";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmDataPreview_Load);
             this.Activated += new System.EventHandler(this.frmDataPreview_Activated);
+            this.Load += new System.EventHandler(this.frmDataPreview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -414,10 +416,12 @@ namespace FileHelpers.WizardApp
             this.toolStripContainer1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -435,7 +439,7 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ComboBox cboClassLeng;
+        private System.Windows.Forms.ComboBox cboClassLanguage;
         private Fireball.Windows.Forms.CodeEditorControl txtClass;
         private Fireball.Syntax.SyntaxDocument sdClassOut;
         private System.Windows.Forms.OpenFileDialog dlgOpenTest;

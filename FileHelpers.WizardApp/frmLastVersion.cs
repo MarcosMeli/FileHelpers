@@ -21,7 +21,7 @@ namespace FileHelpers.WizardApp
 		private System.Windows.Forms.Button button1;
 		private System.ComponentModel.IContainer components = null;
 
-		public frmLastVersion()
+		private frmLastVersion()
 		{
 			// This call is required by the Windows Form Designer.
 			InitializeComponent();

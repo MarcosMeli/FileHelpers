@@ -12,13 +12,25 @@ using Fireball.CodeEditor.SyntaxFiles;
 
 namespace FileHelpers.WizardApp
 {
+    /// <summary>
+    /// Load some data and test against the built class
+    /// </summary>
     public partial class frmDataPreview : Form
     {
-        public frmDataPreview(string data, int index)
+        #region Work areas and parameters
+
+        WizardInfo info = new WizardInfo();
+
+        #endregion
+
+        public frmDataPreview(string data, NetLanguage Language)
         {
             InitializeComponent();
             sdClassOut.Text = data;
-            cboClassLeng.SelectedIndex = index;
+            cboClassLanguage.Items.Clear();
+            cboClassLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
+            NetLanguageList.LanguageType selected = NetLanguageList.Languages.Find(x => x.Language == Language);
+            cboClassLanguage.SelectedItem = selected;
         }
 
         public bool AutoRunTest { get; set; }
@@ -40,21 +52,9 @@ namespace FileHelpers.WizardApp
             try
             {
                 string classStr = sdClassOut.Text;
-                Type mType = null;
 
-                switch (cboClassLeng.SelectedIndex)
-                {
-                    case 0:
-                        mType = ClassBuilder.ClassFromString(classStr, NetLanguage.CSharp);
-                        break;
-
-                    case 1:
-                        mType = ClassBuilder.ClassFromString(classStr, NetLanguage.VbNet);
-                        break;
-
-                    default:
-                        break;
-                }
+                NetLanguageList.LanguageType selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
+                Type mType = ClassBuilder.ClassFromString(classStr, selected.Language);
 
                 try
                 {
@@ -80,18 +80,16 @@ namespace FileHelpers.WizardApp
             sdClassOut.Text = Clipboard.GetText(TextDataFormat.Text);
         }
 
-        private void cboClassLeng_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboClassLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             string output = sdClassOut.Text;
-            switch (cboClassLeng.SelectedIndex)
+            switch (cboClassLanguage.SelectedIndex)
             {
                 case 0:
-                    CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.VBNET);
                     CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.CSharp);
                     break;
 
                 case 1:
-                    CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.CSharp);
                     CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.VBNET);
                     break;
 
@@ -155,8 +153,8 @@ namespace FileHelpers.WizardApp
 
         private void frmDataPreview_Load(object sender, EventArgs e)
         {
-            if (cboClassLeng.SelectedIndex < 0)
-                cboClassLeng.SelectedIndex = 0;
+            if (cboClassLanguage.SelectedIndex < 0)
+                cboClassLanguage.SelectedIndex = 0;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)

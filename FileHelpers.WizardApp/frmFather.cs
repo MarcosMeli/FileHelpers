@@ -9,7 +9,9 @@ using FileHelpers;
 namespace FileHelpers.WizardApp
 {
 	/// <summary>
-	/// Summary description for frmFather.
+	/// This is the underlying form for all presentations.
+    /// It handles the various links to FileHelpers website
+    /// and gives a consistent look across the application.
 	/// </summary>
 	public class frmFather : Form
 	{

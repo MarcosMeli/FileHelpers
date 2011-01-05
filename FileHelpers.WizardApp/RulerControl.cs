@@ -8,8 +8,8 @@
   PARTICULAR PURPOSE.
 
   LYQUIDITY SOLUTIONS LIMITED DOES NOT IMPOSE ANY LIMITATION ON THE
-  USE OF THIS CODE AND IT AN BE USED IN COMMERCIAL APPLICATIONS.  LYQUIDIY
-  ACCEPTS NO RESPONSIBLY FOR ANY LIABILTY WHATEVER AND WILL NOT PROVIDE
+  USE OF THIS CODE AND IT AN BE USED IN COMMERCIAL APPLICATIONS.  LYQUIDITY
+  ACCEPTS NO RESPONSIBLY FOR ANY LIABILITY WHATEVER AND WILL NOT PROVIDE
   ANY SUPPORT TO USER OR THEIR CLIENTS.
 =======================================================================*/
 
@@ -144,7 +144,7 @@ namespace MyControls
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		#region Constrcutors/Destructors
+		#region Constructors/Destructors
 
 		public RulerControl()
 		{
@@ -221,7 +221,7 @@ namespace MyControls
 
 				HooverValueEventArgs eHoover = null;
 
-				// Work out whether the mouse is within the Y-axis bounds of a vertital ruler or 
+				// Work out whether the mouse is within the Y-axis bounds of a vertical ruler or 
 				// within the X-axis bounds of a horizontal ruler
 
 				if (this.Orientation == OrientationMode.Horizontal)

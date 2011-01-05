@@ -319,6 +319,9 @@ namespace FileHelpers.WizardApp
 
 	}
 
+    /// <summary>
+    /// Store settings for user in the registry under Software\FileHelpers\
+    /// </summary>
     public class RegConfig
     {
 
