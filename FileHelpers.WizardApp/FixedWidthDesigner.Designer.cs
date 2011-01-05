@@ -1,6 +1,6 @@
 namespace FileHelpers.WizardApp
 {
-    partial class FixedWithDesigner
+    partial class FixedWidthDesigner
     {
         /// <summary> 
         /// Required designer variable.

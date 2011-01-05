@@ -30,7 +30,7 @@ namespace FileHelpers.WizardApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataFile));
             this.rulerControl2 = new MyControls.RulerControl();
-            this.txtData = new FileHelpers.WizardApp.FixedWithDesigner();
+            this.txtData = new FileHelpers.WizardApp.FixedWidthDesigner();
             this.rulerControl1 = new MyControls.RulerControl();
             this.SuspendLayout();
             // 
@@ -113,6 +113,6 @@ namespace FileHelpers.WizardApp
 
         private MyControls.RulerControl rulerControl1;
         private MyControls.RulerControl rulerControl2;
-        private FixedWithDesigner txtData;
+        private FixedWidthDesigner txtData;
     }
 }

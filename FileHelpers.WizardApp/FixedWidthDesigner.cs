@@ -9,8 +9,8 @@ using System.Windows.Forms.Design;
 
 namespace FileHelpers.WizardApp
 {
-    [Designer(typeof(FixedWithDesigner.FileBrowserDesigner))]
-    public partial class FixedWithDesigner : UserControl
+    [Designer(typeof(FixedWidthDesigner.FileBrowserDesigner))]
+    public partial class FixedWidthDesigner : UserControl
     {
 
         private class FileBrowserDesigner : ControlDesigner
@@ -310,7 +310,7 @@ namespace FileHelpers.WizardApp
         }
 
 
-        public FixedWithDesigner()
+        public FixedWidthDesigner()
         {
             InitializeComponent();
 
@@ -353,7 +353,7 @@ namespace FileHelpers.WizardApp
 
         public class ColumnInfo
         {
-            internal FixedWithDesigner mFileBrowser;
+            internal FixedWidthDesigner mFileBrowser;
 
             private int mWidth;
 

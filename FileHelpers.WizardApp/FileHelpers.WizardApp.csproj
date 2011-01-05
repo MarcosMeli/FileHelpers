@@ -215,11 +215,11 @@
     <Compile Include="FileBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FixedWithDesigner.cs">
+    <Compile Include="FixedWidthDesigner.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FixedWithDesigner.Designer.cs">
-      <DependentUpon>FixedWithDesigner.cs</DependentUpon>
+    <Compile Include="FixedWidthDesigner.Designer.cs">
+      <DependentUpon>FixedWidthDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDataFile.cs">
       <SubType>Form</SubType>
