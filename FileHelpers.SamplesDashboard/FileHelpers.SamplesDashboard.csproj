@@ -73,7 +73,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="T4Toolbox.10.0, Version=10.3.7.1, Culture=neutral, PublicKeyToken=7e313accbcce84dc, processorArchitecture=x86" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\FileHelpers\VersionInfo.cs">

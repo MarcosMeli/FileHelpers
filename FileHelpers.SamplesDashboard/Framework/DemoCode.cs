@@ -21,9 +21,24 @@ namespace FileHelpers
             Files = new List<DemoFile>();
         }
 
+        /// <summary>
+        /// Demo class that runs
+        /// </summary>
         public IDemo Demo { get; private set; }
+
+        /// <summary>
+        /// Title set from code
+        /// </summary>
         public string CodeTitle { get; private set; }
+
+        /// <summary>
+        /// Description set from code
+        /// </summary>
         public string CodeDescription { get; set; }
+
+        /// <summary>
+        /// Code from file.
+        /// </summary>
         public string Code { get; set; }
 
         /// <summary>
@@ -31,7 +46,14 @@ namespace FileHelpers
         /// </summary>
         public string Category { get; set; }
 
+        /// <summary>
+        /// List of logical files extracted from the code
+        /// </summary>
         public List<DemoFile> Files { get; set; }
+
+        /// <summary>
+        /// last file extracted, generally sample data
+        /// </summary>
         public DemoFile LastFile
         {
             get
@@ -43,6 +65,9 @@ namespace FileHelpers
             }
         }
 
+        /// <summary>
+        /// Control???
+        /// </summary>
         public UserControl Control  { get; set; }
 
     }

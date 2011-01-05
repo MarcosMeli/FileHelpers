@@ -8,9 +8,15 @@ namespace Demos
     //-> {Example.Name:Write Delimited File}
     //-> {Example.Description:Example of how to write a Delimited File}
 
+    /// <summary>
+    /// Example of writing a delimited file using the generic engine
+    /// </summary>
     public class WriteFile
         :IDemo
     {
+        /// <summary>
+        /// Execute engine and write out records we define in memory delimited by |
+        /// </summary>
         public void Run()
         {
             //-> {Example.File:Example.cs}
@@ -24,17 +30,21 @@ namespace Demos
             orders.Add(order1);
             orders.Add(order2);
 
-            engine.WriteFile("", orders);
+            engine.WriteFile("Output.Txt", orders);
             //-> {/Example.File}
         }
 
         //-> {Example.File:RecordClass.cs}
+        /// <summary>
+        /// Layout for a file delimited by |
+        /// </summary>
         [DelimitedRecord("|")]
         public class Orders
         {
             public int OrderID;
 
             public string CustomerID;
+
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
@@ -42,6 +52,8 @@ namespace Demos
         }
         //-> {/Example.File}
 
+        //-> {Example.File: Output.Txt}
+        //-> {/Example.File}
     }
 
 

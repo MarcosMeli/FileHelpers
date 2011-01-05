@@ -5,13 +5,28 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+
 using ICSharpCode.TextEditor.Document;
 using Demos;
 
 namespace FileHelpers.SamplesDashboard
 {
+    /// <summary>
+    /// Display all the sample code and allow it to be run in realtime
+    /// </summary>
     public partial class frmSamples : Form
     {
+        /// <summary>
+        /// Where data will be written and expected to be read by the samples
+        /// </summary>
+        public const string InputFilename = "Input.txt";
+
+        /// <summary>
+        /// Where samples will write output to be read by the application and shown up
+        /// </summary>
+        public const string OutputFilename = "Output.txt";
+
         public frmSamples()
         {
             InitializeComponent();
@@ -43,10 +58,7 @@ namespace FileHelpers.SamplesDashboard
 
             foreach (var file in CurrentDemo.Files)
             {
-                var tp = new TabPage();
-                tp.Text = file.Filename;
-                tp.Tag = file;
-                tcCodeFiles.TabPages.Add(tp);
+                CreateNewDemoFile(file);
 
                 //if (tcCodeFiles.TabPages.Count == 1)
                 //    tcCodeFiles.SelectedTab = tp;
@@ -56,9 +68,16 @@ namespace FileHelpers.SamplesDashboard
             this.ResumeLayout();
         }
 
+        private void CreateNewDemoFile(DemoFile file)
+        {
+            var tp = new TabPage();
+            tp.Text = file.Filename;
+            tp.Tag = file;
+            tcCodeFiles.TabPages.Add(tp);
+        }
+
         private void Clear()
         {
-            
         }
 
         public void ShowDemoFile()
@@ -98,8 +117,32 @@ namespace FileHelpers.SamplesDashboard
         {
             if (CurrentDemo == null)
                 return;
-
-            CurrentDemo.Demo.Run();
+            try
+            {
+                foreach (DemoFile file in CurrentDemo.Files)
+                {
+                    if (file.Status == DemoFile.FileType.InputFile)
+                        File.WriteAllText(file.Filename, file.Contents);
+                }
+                CurrentDemo.Demo.Run();
+            }
+            finally
+            {
+                foreach (DemoFile file in CurrentDemo.Files)
+                {
+                    if (file.Status == DemoFile.FileType.InputFile)
+                    {
+                        File.Delete(file.Filename);
+                    }
+                    if (file.Status == DemoFile.FileType.OutputFile)
+                    {
+                        if (File.Exists(file.Filename))
+                        {
+                            file.Contents = File.ReadAllText(file.Filename);
+                        }
+                    }
+                }
+            }
         }
 
     }

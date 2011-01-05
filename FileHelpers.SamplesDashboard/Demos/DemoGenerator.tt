@@ -22,6 +22,8 @@ namespace Demos
 {
     public class DemoFactory
     {
+	    static DemoFile work;
+
         public static List<DemoCode> GetDemos()
         {
 		    var demos = new List<DemoCode>();
@@ -110,12 +112,14 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
             var name = "Demo";
+			// Grabs text after "Example.Name" as 'name'
             var match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Name\s*:(?<name>.*)\}", regexOptions);
             if (match.Success)
             {
                 name = match.Groups["name"].Value.Trim();
             }
 
+			// Grabs class name that implements IDemo interface as 'classname'
 			var className = "";
             match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*IDemo", regexOptions | RegexOptions.Singleline);
             if (match.Success)
@@ -125,12 +129,14 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
             var description = "";
 
+			//  Grabs text after Example.Description as 'description'
             match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Description\s*:(?<description>.*)\}", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
                 description = match.Groups["description"].Value.Trim();
             }
 
+			// line is: demo = new DemoCode(new class(), "description", "category");
             res.AppendLine(@"demo = new DemoCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
             if (!string.IsNullOrEmpty(description))
             {
@@ -140,14 +146,58 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             res.AppendLine(@"demos.Add(demo);");
 
 
+			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
             var filesMatch = Regex.Matches(demoText,
-                                           @"\/\/\-\>\s*\{Example\.File\s*\:(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
+                                           @"\/\/\-\>\s*\{Example\.File\s*\:\s*(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
                                            regexOptions | RegexOptions.Singleline);
 
+            // regex above may return multiple sample files.  
             foreach (Match fileMatch in filesMatch)
             {
-                res.AppendLine(@"demo.Files.Add(new DemoFile(""" + fileMatch.Groups["filename"].Value + @"""));");
-                res.AppendLine(@"demo.LastFile.Contents = @""" + GetFileCode(fileMatch.Groups["filecode"].Value) + @""";");
+			    String filename = fileMatch.Groups["filename"].Value;
+                res.AppendFormat(@"work = new DemoFile(""{0}"");", filename);
+				filename = filename.ToLower();
+				res.AppendLine();
+                res.AppendFormat(@"work.Contents = @""{0}"";", GetFileCode(fileMatch.Groups["filecode"].Value));
+				res.AppendLine();
+				String Ext = Path.GetExtension(filename);
+				if( filename.StartsWith("input"))
+					Ext = "inp";
+				if( filename.StartsWith("output"))
+					Ext = "out";
+
+				switch(Ext)
+				{
+					case "cs":
+						res.AppendLine(@"work.Status = DemoFile.FileType.Input;");
+						break;
+					case "vb":
+						res.AppendLine(@"work.Language = NetLanguage.VBNET;");
+						break;
+					case "inp":
+						res.AppendLine(@"work.Status = DemoFile.FileType.InputFile;");
+						break;
+					case "out":
+						res.AppendLine(@"work.Status = DemoFile.FileType.OutputFile;");
+						break;
+					default:
+						break; // defaults to CS
+				}
+                res.AppendLine(@"demo.Files.Add(work);");
+            }
+
+
+			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
+            var inputFilesMatch = Regex.Matches(demoText,
+                                           @"\/\/\-\>\s*\{Input\.File\s*\:(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Input\.File\s*\}",
+                                           regexOptions | RegexOptions.Singleline);
+
+            // regex above may return multiple sample files.  
+            foreach (Match fileMatch in inputFilesMatch)
+            {
+                res.AppendLine(@"work = new DemoFile(""" + fileMatch.Groups["filename"].Value + @""");");
+                res.AppendLine(@"work.Contents = @""" + GetFileCode(fileMatch.Groups["filecode"].Value) + @""";");
+                res.AppendLine(@"demo.Files.Add(work);");
             }
 
 
@@ -160,33 +210,42 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
         public static string GetFileCode(string contents)
         {
+		    if( String.IsNullOrEmpty( contents ))
+			    return string.Empty;
+		    // double quotes are doubled so that @" "" becomes a single quote.
             contents = contents.Replace("\"", "\"\"")
+			//  strip old style C comments from code
                 .Replace("*/", "")
                 .Replace("/*", "");
 
-            int? ident = null;
+            int? indent = null;
 
-            foreach (var line in contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None))
+			// Grab contents of the file and trim leading blanks based on whitepsace on first record.
+			var lineDetail = contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+			// loop through and work out the indent length that covers all records.
+            foreach (var line in lineDetail)
 	        {
-                if (line.Trim().Length == 0)
+			    string trimstart = line.TrimStart();
+                if (trimstart.Length == 0)
                     continue;
 
-                var spaces = line.Length - line.TrimStart().Length;
+                var spaces = line.Length - trimstart.Length;
 
-                if (ident == null)
-                    ident = spaces;
+                if (indent == null)
+                    indent = spaces;
                 else
-                    ident = Math.Min(ident.Value, spaces);
+                    indent = Math.Min(indent.Value, spaces);
 	        }
 
             var res = new StringBuilder();
             
-            foreach (var line in contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None))
+			// Output each line as text trimmed of leading blanks
+            foreach (var line in lineDetail)
 	        {
-                if (line.Length < ident)
-                    res.AppendLine(line);
+                if (line.Length < indent)
+                    res.AppendLine();
                 else
-                    res.AppendLine(line.Substring(ident.Value));
+                    res.AppendLine(line.Substring(indent.Value));
 	        }
 
             return res.ToString();

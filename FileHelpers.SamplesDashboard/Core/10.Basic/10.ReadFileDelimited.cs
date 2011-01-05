@@ -8,12 +8,18 @@ namespace Demos
     //-> {Example.Name:Read Delimited File}
     //-> {Example.Description:Example of how to read a Delimited File}
 
+    /// <summary>
+    /// Example of reading a simple file delimited by | using the Generic Engine
+    /// </summary>
     public class ReadFile
         :IDemo
     {
 
         //-> {Example.File:Example.cs}
 
+        /// <summary>
+        /// Execute the engine and get some results
+        /// </summary>
         public void Run()
         {
             var engine = new FileHelperEngine<Orders>();
@@ -26,13 +32,20 @@ namespace Demos
                 Console.WriteLine(record.Freight);
             }
         }
+        //-> {/Example.File}
 
+        //-> {Example.File:RecordClass.cs}
+
+        /// <summary>
+        /// Our class we are reading using FileHelpers,  the record breakdown
+        /// </summary>
         [DelimitedRecord("|")]
         public class Orders
         {
             public int OrderID;
 
             public string CustomerID;
+
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
@@ -41,18 +54,11 @@ namespace Demos
         //-> {/Example.File}
 
         //-> {Example.File:Input.txt}
-/*ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
-AROUT|Around the Horn|Thomas Hardy|Sales Representative|120 Hanover Sq.|London|UK
-BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
-BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
-BLONP|Blondesddsl père et fils|Frédérique Citeaux|Manager|24, Kléber|Strasbourg|France
-BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain*/
+        /*10248|VINET|04071996|32.38
+        10249|TOMSP|05071996|11.61
+        10250|HANAR|08071996|65.83
+        10251|VICTE|08071996|41.34*/
         //-> {/Example.File}
     }
-
-    
-
 
 }

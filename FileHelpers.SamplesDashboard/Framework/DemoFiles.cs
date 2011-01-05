@@ -22,6 +22,17 @@
 
         public string Filename { get; set; }
         public string Contents { get; set; }
+        public enum FileType
+        {
+            SourceFile,
+            InputFile,
+            OutputFile,
+        }
+
+        /// <summary>
+        /// Type of file to list
+        /// </summary>
+        public FileType Status = FileType.SourceFile;
         public NetLanguage Language { get; set; }
     }
 }
