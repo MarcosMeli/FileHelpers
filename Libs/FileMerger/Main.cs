@@ -75,8 +75,8 @@ namespace FileMerger
 
 		private static void ShowSyntaxs()
 		{
-			Console.WriteLine("Syntaxis:");
-			Console.WriteLine("");
+			Console.WriteLine("Syntax is:");
+			Console.WriteLine();
 			Console.WriteLine("FileMerger.exe destFile srcFile destPos");
 
 		}

@@ -89,10 +89,10 @@ namespace FileReplace
 
         private static void ShowSyntaxs()
         {
-            Console.WriteLine("Syntaxis:");
-            Console.WriteLine("");
+            Console.WriteLine("Syntax is:");
+            Console.WriteLine();
             Console.WriteLine("FileReplace.exe destFile srcString destString");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("   or");
             Console.WriteLine("FileReplace.exe destFile srcString -f destSourceFile");
             Console.WriteLine("   with escaped string");

@@ -33,6 +33,12 @@ namespace FileHelpers.Tests
             return engine.ReadFile(GetPath(pathElements));
         }
 
+        public static T[] ReadTest<T>(FileHelperEngine<T> engine, params string[] pathElements) where T : class
+        {
+            return engine.ReadFile(GetPath(pathElements));
+        }
+
+
         public static object[] ReadAllAsync(FileHelperAsyncEngine engine, params string[] pathElements)
         {
             ArrayList arr = new ArrayList();
