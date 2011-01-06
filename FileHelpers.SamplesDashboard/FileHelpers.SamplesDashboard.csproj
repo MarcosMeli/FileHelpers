@@ -80,6 +80,17 @@
     </Compile>
     <Compile Include="Core\10.Basic\20.WriteFileDelimited.cs" />
     <Compile Include="Core\50.Advanced\10.MultipleDelimiters.cs" />
+    <Compile Include="Core\50.Advanced\50.EnumConverter.cs" />
+    <Compile Include="Core\ErrorHandling\10.ErrorHandling.cs" />
+    <Compile Include="Core\ErrorHandling\20.ErrorHandlingErrorMode.cs" />
+    <Compile Include="Core\ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
+    <Compile Include="Core\ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
+    <Compile Include="Core\Events\10.ReadBeforeEvent.cs" />
+    <Compile Include="Core\Events\20.ReadAfterEventSample.cs" />
+    <Compile Include="Core\Events\30.WriteBeforeEventSample.cs" />
+    <Compile Include="Core\Events\40.WriteAfterEventSample.cs" />
+    <Compile Include="Core\MasterDetail\10.SimpleMasterDetail.cs" />
+    <Compile Include="Core\MasterDetail\20.MasterDetailSample2.cs" />
     <Compile Include="Demos\DemoGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,9 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\DynamicRecords\" />
-    <Folder Include="Core\ErrorHandling\" />
-    <Folder Include="Core\Events\" />
-    <Folder Include="Core\MasterDetail\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

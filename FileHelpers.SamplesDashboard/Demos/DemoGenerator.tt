@@ -162,14 +162,14 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 				res.AppendLine();
 				String Ext = Path.GetExtension(filename);
 				if( filename.StartsWith("input"))
-					Ext = "inp";
+					Ext = ".inp";
 				if( filename.StartsWith("output"))
-					Ext = "out";
+					Ext = ".out";
 
-				switch(Ext)
+				switch(Ext.Substring(1))
 				{
 					case "cs":
-						res.AppendLine(@"work.Status = DemoFile.FileType.Input;");
+						res.AppendLine(@"work.Language = NetLanguage.CSharp;");
 						break;
 					case "vb":
 						res.AppendLine(@"work.Language = NetLanguage.VBNET;");
@@ -181,6 +181,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 						res.AppendLine(@"work.Status = DemoFile.FileType.OutputFile;");
 						break;
 					default:
+						res.AppendLine("// unknown extension "+ Ext);
 						break; // defaults to CS
 				}
                 res.AppendLine(@"demo.Files.Add(work);");
@@ -250,6 +251,5 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
             return res.ToString();
         }
-    
 
 #>
