@@ -6,15 +6,13 @@ namespace FileHelpers.Tests.Converters
 	[TestFixture]
 	public class DecimalNumbers
 	{
-		FileHelperEngine engine;
 
-		[Test]
+        [Test]
 		public void Decimals1()
 		{
-			engine = new FileHelperEngine(typeof (DecimalType));
+			var engine = new FileHelperEngine<DecimalType>();
 
-			DecimalType[] res;
-			res = (DecimalType[]) TestCommon.ReadTest(engine, "Good", "NumberFormat.txt");
+			var res = TestCommon.ReadTest<DecimalType>(engine, "Good", "NumberFormat.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -42,10 +40,9 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void NegativeNumbers()
 		{
-			engine = new FileHelperEngine(typeof (DecimalType));
+			var engine = new FileHelperEngine<DecimalType>();
 
-			DecimalType[] res;
-			res = (DecimalType[]) TestCommon.ReadTest(engine, "Good", "NumberNegative.txt");
+			var res = TestCommon.ReadTest<DecimalType>(engine, "Good", "NumberNegative.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -73,15 +70,13 @@ namespace FileHelpers.Tests.Converters
 
 		}
 
-
-
         [Test]
         public void DecimalsWithExponents()
         {
-            engine = new FileHelperEngine(typeof(DecimalType));
+            var engine = new FileHelperEngine<DecimalType>();
 
             DecimalType[] res;
-            res = (DecimalType[])TestCommon.ReadTest(engine, "Good", "NumberFormat2.txt");
+            res = TestCommon.ReadTest<DecimalType>(engine, "Good", "NumberFormat2.txt");
 
             Assert.AreEqual(4, res.Length);
 

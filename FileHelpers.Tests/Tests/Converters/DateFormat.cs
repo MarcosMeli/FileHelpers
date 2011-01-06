@@ -7,14 +7,12 @@ namespace FileHelpers.Tests.Converters
 	[TestFixture]
 	public class DateFormat
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void DifferentSpanishFormat()
 		{
-			engine = new FileHelperEngine(typeof (DateFormatType1));
+			var engine = new FileHelperEngine<DateFormatType1>();
 
-			DateFormatType1[] res = (DateFormatType1[]) TestCommon.ReadTest(engine, "Good", "DateFormat1.txt");
+			var res = TestCommon.ReadTest<DateFormatType1>(engine, "Good", "DateFormat1.txt");
 
 			Assert.AreEqual(6, res.Length);
 
@@ -38,9 +36,9 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void DifferentEnglishFormat()
 		{
-			engine = new FileHelperEngine(typeof (DateFormatType2));
+			var engine = new FileHelperEngine<DateFormatType2>();
 
-			DateFormatType2[] res = (DateFormatType2[]) TestCommon.ReadTest(engine, "Good", "DateFormat2.txt");
+            var res = TestCommon.ReadTest<DateFormatType2>(engine, "Good", "DateFormat2.txt");
 
 			Assert.AreEqual(6, res.Length);
 

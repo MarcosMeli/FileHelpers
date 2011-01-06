@@ -7,8 +7,6 @@ namespace FileHelpers.Tests.Converters
 	[TestFixture]
 	public class EnumConverter
 	{
-		FileHelperEngine engine;
-        
 		[Test]
 		public void EnumSingleCase()
 		{
@@ -55,10 +53,10 @@ namespace FileHelpers.Tests.Converters
 		[Test]
 		public void EnumValueNotFound()
 		{
-			engine = new FileHelperEngine(typeof (EnumType2));
+			var engine = new FileHelperEngine<EnumType2>();
 			engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-			EnumType2[] res = (EnumType2[]) TestCommon.ReadTest(engine, "Good", "EnumConverter3.txt");
+            EnumType2[] res = TestCommon.ReadTest<EnumType2>(engine, "Good", "EnumConverter3.txt");
 
 			Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
 			Assert.AreEqual(3, engine.ErrorManager.Errors[0].LineNumber);
