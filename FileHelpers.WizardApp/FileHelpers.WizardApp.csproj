@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <None Include="app.config" />
     <None Include="Resources\disk.png" />
     <None Include="Resources\folder_table.png" />
     <None Include="Resources\page_copy.png" />
@@ -246,6 +247,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Enums.cs" />
+    <Compile Include="LanguageSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="NetLanguageList.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
