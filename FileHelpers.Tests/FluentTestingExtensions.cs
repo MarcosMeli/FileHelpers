@@ -4,6 +4,9 @@ using System.Diagnostics;
 
 namespace System
 {
+    /// <summary>
+    /// Fluent Asserts that allow chaining of "And" between tests
+    /// </summary>
     public static class FluentTestingExtensions
     {
 
@@ -12,9 +15,9 @@ namespace System
         /// <summary>
         /// Asserts that the string contains the <paramref name="containedString"/> value. (Case Insensitive)
         /// </summary>
-        /// <param name="actual"></param>
+        /// <param name="actual">String to test</param>
         /// <param name="containedString">The string to search inside the testTarget</param>
-        /// <returns></returns>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<string> AssertContains(this string actual, string containedString)
@@ -26,9 +29,9 @@ namespace System
         /// <summary>
         /// Checks that the string contains the <paramref name="containedString"/> value. (Case Sensitive)
         /// </summary>
-        /// <param name="actual"></param>
+        /// <param name="actual">String to test</param>
         /// <param name="containedString">The string to search inside the testTarget</param>
-        /// <returns></returns>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<string> AssertContainsCaseSensitive(this string actual, string containedString)
@@ -40,8 +43,8 @@ namespace System
         /// <summary>
         /// Checks that the string is string.Empty (if null it fails)
         /// </summary>
-        /// <param name="actual"></param>
-        /// <returns></returns>
+        /// <param name="actual">String to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<string> AssertIsEmpty(this string actual)
@@ -55,8 +58,8 @@ namespace System
         /// <summary>
         /// Checks that the string is null or string.Empty
         /// </summary>
-        /// <param name="actual"></param>
-        /// <returns></returns>
+        /// <param name="actual">String to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<string> AssertIsNullOrEmpty(this string actual)
@@ -68,9 +71,9 @@ namespace System
         /// <summary>
         /// Checks that value is null
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="actual"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertIsNull<T>(this T actual)
@@ -82,9 +85,9 @@ namespace System
         /// <summary>
         /// Checks that value is not null
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="actual"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Type we are checking for Null</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertIsNotNull<T>(this T actual)
@@ -93,6 +96,13 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// Test a value with a predicate
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="predicate">Predicate we are testing</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertCondition<T>(this T actual, Predicate<T> predicate)
@@ -101,6 +111,13 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// Test a predicate is false
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="predicate">Predicate we are testing</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertConditionIsFalse<T>(this T actual, Predicate<T> predicate)
@@ -108,7 +125,11 @@ namespace System
             Assert.IsFalse(predicate.Invoke(actual));
             return new FluentAnd<T>(actual);
         }
-
+        /// <summary>
+        /// Assert the boolean is true
+        /// </summary>
+        /// <param name="actual">Value to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<bool> AssertIsTrue(this bool actual)
@@ -117,6 +138,12 @@ namespace System
             return new FluentAnd<bool>(actual);
         }
 
+        /// <summary>
+        /// Assert boolean is true and display message on failure
+        /// </summary>
+        /// <param name="actual">Value to test</param>
+        /// <param name="message">Message to display on error</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<bool> AssertIsTrue(this bool actual, string message)
@@ -125,7 +152,11 @@ namespace System
             return new FluentAnd<bool>(actual);
         }
 
-
+        /// <summary>
+        /// Assert value is false
+        /// </summary>
+        /// <param name="actual">Value to test</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<bool> AssertIsFalse(this bool actual)
@@ -134,7 +165,13 @@ namespace System
             return new FluentAnd<bool>(actual);
         }
 
-
+        /// <summary>
+        /// Assert two values are true
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertEqualTo<T>(this T actual, T comparisonObject)
@@ -143,18 +180,42 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// Assert two bytes are equal
+        /// </summary>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
+        [DebuggerStepThrough]
+        [DebuggerHidden]
         public static FluentAnd<byte> AssertEqualTo(this byte actual, byte comparisonObject)
         {
             Assert.AreEqual(comparisonObject, actual);
             return new FluentAnd<byte>(actual);
         }
 
+        /// <summary>
+        /// Assert two shorts are equal
+        /// </summary>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
+        [DebuggerStepThrough]
+        [DebuggerHidden]
         public static FluentAnd<short> AssertEqualTo(this short actual, short comparisonObject)
         {
             Assert.AreEqual(comparisonObject, actual);
             return new FluentAnd<short>(actual);
         }
 
+        /// <summary>
+        /// Assert two values are equal, display message on failure
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <param name="msg">Message to display on error</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertEqualTo<T>(this T actual, T comparisonObject, string msg)
@@ -163,6 +224,13 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// Assert two values are different
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertDifferentTo<T>(this T actual, T comparisonObject)
@@ -170,7 +238,13 @@ namespace System
             Assert.AreNotEqual(comparisonObject, actual);
             return new FluentAnd<T>(actual);
         }
-
+        /// <summary>
+        /// Assert two values are the same (Equal)
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertSameObjectAs<T>(this T actual, Object comparisonObject)
@@ -179,6 +253,13 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// Assert that the new objects are not the same object
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
+        /// <param name="actual">Value to test</param>
+        /// <param name="comparisonObject">What we are comparing to</param>
+        /// <returns>And condition</returns>
         [DebuggerStepThrough]
         [DebuggerHidden]
         public static FluentAnd<T> AssertDifferentObjectAs<T>(this T actual, Object comparisonObject)
@@ -187,15 +268,27 @@ namespace System
             return new FluentAnd<T>(actual);
         }
 
+        /// <summary>
+        /// And condition allows chaining of tests
+        /// </summary>
+        /// <typeparam name="T">type we are passing eg string</typeparam>
         public sealed class FluentAnd<T>
         {
+            /// <summary>
+            /// Value we are passing through, shows as And in test.
+            /// </summary>
             public T And { get; private set; }
 
+            /// <summary>
+            /// Create a Fluent And condition
+            /// </summary>
+            /// <param name="target">Value to pass through</param>
+            [DebuggerStepThrough]
+            [DebuggerHidden]
             public FluentAnd(T target)
             {
                 this.And = target;
             }
         }
     }
-
 }
