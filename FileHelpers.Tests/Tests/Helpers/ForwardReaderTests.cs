@@ -13,7 +13,7 @@ namespace FileHelpers.Tests
     [TestFixture]
     public class ForwardReaderTests
     {
-        [Test]
+        [Test(Description="Check if we read forward 0,0 it discards nothing")]
         public void BasicProperties()
         {
             var reader = new ForwardReader(new NewLineDelimitedRecordReader(new StreamReader(FileTest.Good.CustomersTab.Path)), 0, 0);
@@ -27,6 +27,6 @@ namespace FileHelpers.Tests
 
         }
 
+        //  TODO:   Add more tests for forward reader
     }
-
 }
