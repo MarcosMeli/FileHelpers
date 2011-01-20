@@ -5,7 +5,8 @@ namespace FileHelpersSamples
 {
     /// <summary>
     /// Create an easy example of processing
-    /// with the Async engine without any form code
+    /// with the Async engine without any code to break up records
+    /// or interpret the individual fields
     /// </summary>
 	public class EasySample
 	{
@@ -15,25 +16,43 @@ namespace FileHelpersSamples
 		[DelimitedRecord("|")]
 		public class Orders
 		{
+            /// <summary>
+            /// Field before the first bar, must be numeric
+            /// </summary>
 			public int OrderID;
+
+            /// <summary>
+            /// Field after second bar
+            /// </summary>
 			public string CustomerID;
-			[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime OrderDate;
+
+            /// <summary>
+            /// Field after the second bar must be in format ddMMyyyy
+            /// </summary>
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime OrderDate;
+
+            /// <summary>
+            /// Field after third bar, must be a numeric with optional decimal point
+            /// </summary>
 			public decimal Freight;
 		}
+
+
         /// <summary>
         /// Process the delimited file twice,
         /// once with the simple engine, once with Async
         /// </summary>
         /// <remarks>
-        /// TODO:  Check is this code redundant?
+        /// This is a simple sample of using the Normal engine and the Async engine
         /// </remarks>
 		public void ReadWrite()
 		{
 			
-			FileHelperEngine engine = new FileHelperEngine(typeof (Orders));
+			var engine = new FileHelperEngine<Orders>();
  
 			// to Read use:
-			Orders[] res = (Orders[]) engine.ReadFile(@"C:\TestIn.txt");
+			Orders[] res = engine.ReadFile(@"C:\TestIn.txt");
 
 			// to Write use:
 			engine.WriteFile(@"C:\TestOut.txt", res);
@@ -45,7 +64,7 @@ namespace FileHelpersSamples
 					order.OrderDate.ToString("dd/MM/yy"));
 			}
 
-			FileHelperAsyncEngine asyncEngine = new FileHelperAsyncEngine(typeof (Orders));
+			var asyncEngine = new FileHelperAsyncEngine<Orders>();
 
 			asyncEngine.BeginReadFile(@"C:\TestIn.txt");
 
@@ -53,10 +72,9 @@ namespace FileHelpersSamples
 
 			while (asyncEngine.ReadNext() != null)
 			{
-				ord = (Orders) asyncEngine.LastRecord;
+				ord = asyncEngine.LastRecord;
 				// your code here
 				Console.WriteLine(ord.CustomerID);
-
 			}
 		}
 	}
