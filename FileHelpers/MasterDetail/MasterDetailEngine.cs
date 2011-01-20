@@ -325,8 +325,15 @@ namespace FileHelpers.MasterDetail
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1));
 #endif
-
-                        RecordAction action = RecordSelector(currentLine);
+                        RecordAction action = RecordAction.Skip;
+                        try
+                        {
+                            action = RecordSelector(currentLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Supplied Record selector failed to process record",ex);
+                        }
 
                         switch (action)
                         {

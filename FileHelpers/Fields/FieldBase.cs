@@ -513,39 +513,15 @@ namespace FileHelpers
 
             var extractedString = fieldString.ExtractedString();
 
-            // TODO:  look at the trimming and optimise it
-            var trimmedBoth = false;
-            switch (TrimMode)
-            {
-                case TrimMode.None:
-                    break;
-
-                case TrimMode.Both:
-                    extractedString = extractedString.Trim();
-                    trimmedBoth = true;
-                    break;
-
-                case TrimMode.Left:
-                    extractedString = extractedString.TrimStart();
-                    break;
-
-                case TrimMode.Right:
-                    extractedString = extractedString.TrimEnd();
-                    break;
-            }
-
-
             try
             {
                 if (ConvertProvider == null)
                 {
                     if (IsStringField)
-                        val = extractedString;
+                        val = TrimString(extractedString);
                     else
                     {
-                        // Trim it to use Convert.ChangeType
-                        if (trimmedBoth == false)
-                            extractedString = extractedString.Trim();
+                        extractedString = extractedString.Trim();
 
                         if (extractedString.Length == 0)
                         {
@@ -560,11 +536,7 @@ namespace FileHelpers
                 }
                 else
                 {
-                    var trimmedString = extractedString;
-                    if (trimmedBoth == false)
-                    {
-                        trimmedString = extractedString.Trim();
-                    }
+                    var trimmedString = extractedString.Trim();
 
                     if (ConvertProvider.CustomNullHandling == false &&
                         trimmedString.Length == 0)
@@ -573,12 +545,13 @@ namespace FileHelpers
                     }
                     else
                     {
-                        string from = extractedString;
-                        val = ConvertProvider.StringToField(from);
+                        if (TrimMode == FileHelpers.TrimMode.Both)
+                            val = ConvertProvider.StringToField(trimmedString);
+                        else
+                            val = ConvertProvider.StringToField(TrimString(extractedString));
 
                         if (val == null)
                             val = GetNullValue(line);
-
                     }
                 }
 
@@ -601,6 +574,27 @@ namespace FileHelpers
                     throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
                 else
                     throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + ConvertProvider.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
+            }
+        }
+
+        private String TrimString(string extractedString)
+        {
+            switch (TrimMode)
+            {
+                case TrimMode.None:
+                    return extractedString;
+
+                case TrimMode.Both:
+                    return extractedString.Trim();
+
+                case TrimMode.Left:
+                    return extractedString.TrimStart();
+
+                case TrimMode.Right:
+                    return extractedString.TrimEnd();
+
+                default:
+                    throw new Exception("Trim mode invalid in FieldBase.TrimString -> " + TrimMode.ToString());
             }
         }
 

@@ -277,8 +277,15 @@ namespace FileHelpers
                         line.ReLoad(currentLine);
 
                         var skip = false;
-
-                        Type currType = mRecordSelector(this, currentLine);
+                        Type currType = null;
+                        try
+                        {
+                            currType = mRecordSelector(this, currentLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Selector failed to process correctly", ex);
+                        }
 
                         if (currType != null)
                         {

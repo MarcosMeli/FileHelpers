@@ -658,10 +658,13 @@ namespace FileHelpers.Detection
         /// <param name="line">line to test</param>
         /// <param name="quoteChar">quote char to use</param>
         /// <returns>string after field</returns>
+        /// <remarks>
+        /// This logic does not handle two quotes in a row.  The
+        /// logic that calls this will call the same code again to get
+        /// the next chunk between delimitters anyway so it is not needed
+        /// </remarks>
         private static string DiscardUntilQuotedChar(string line, char quoteChar)
         {
-
-            //  TODO:  Does not handle two quotes within a field  for example 'o''clock'
             if (line.StartsWith(quoteChar.ToString()))
                 line = line.Substring(1);
             

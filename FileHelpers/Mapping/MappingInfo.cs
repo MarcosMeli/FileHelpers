@@ -160,7 +160,7 @@ namespace FileHelpers.Mapping
         /// <summary>
         /// Assign cell from DataTable reader into an object
         /// </summary>
-        /// <param name="row">date reader to extract cell from</param>
+        /// <param name="dr">date reader to extract cell from</param>
         /// <param name="record">Field record to update</param>
         public void DataToField(IDataReader dr, object record) // TypedReference t)
         {

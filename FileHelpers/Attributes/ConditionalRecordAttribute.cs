@@ -10,6 +10,18 @@ namespace FileHelpers
 	/// <seealso href="attributes.html">Attributes list</seealso>
 	/// <seealso href="quick_start.html">Quick start guide</seealso>
 	/// <seealso href="examples.html">Examples of use</seealso>
+    /// <example>
+    /// [DelimitedRecord(",")] 
+    /// [ConditionalRecord(RecordCondition.ExcludeIfBegins, "//")] 
+    /// public class ConditionalType1 
+    /// { 
+    /// 
+    /// // Using Regular Expressions example
+    /// [DelimitedRecord(",")]
+    /// [ConditionalRecord(RecordCondition.IncludeIfMatchRegex, ".*abc??")]
+    /// public class ConditionalType3
+    /// { 
+    /// </example>
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class ConditionalRecordAttribute : Attribute
 	{
@@ -28,9 +40,6 @@ namespace FileHelpers
             Condition = condition;
             ConditionSelector = conditionSelector;
             ExHelper.CheckNullOrEmpty(conditionSelector, "conditionSelector");
-
 		}
-
 	}
-
 }

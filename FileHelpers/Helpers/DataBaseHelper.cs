@@ -69,6 +69,8 @@ namespace FileHelpers
         /// </summary>
         /// <param name="server">SQL server connection</param>
         /// <param name="dbName">database name to connect to</param>
+        /// <param name="pass">Database password</param>
+        /// <param name="user">databsae user name</param>
         /// <returns>SQL server connection string</returns>
         public static string SqlConnectionString(string server, string dbName, string user, string pass)
 		{

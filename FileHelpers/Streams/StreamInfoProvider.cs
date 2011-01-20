@@ -60,7 +60,7 @@ namespace FileHelpers
         /// Provide as much information about the output stream as we can,
         /// size and position
         /// </summary>
-        /// <param name="reader">writer we are analysing</param>
+        /// <param name="writer">writer we are analysing</param>
         public StreamInfoProvider(TextWriter writer)
         {
             if (writer is StreamWriter)

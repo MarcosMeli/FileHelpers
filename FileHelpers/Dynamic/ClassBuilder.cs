@@ -63,6 +63,8 @@ namespace FileHelpers.Dynamic
         /// <param name="lang">One of the .NET Languages</param>
         public static Type ClassFromString(string classStr, string className, NetLanguage lang)
         {
+            if (classStr.Length < 4)
+                throw new BadUsageException("There is not enough text to be a proper class, load your class and try again");
 
             CompilerParameters cp = new CompilerParameters();
             //cp.ReferencedAssemblies.Add("System.dll");
@@ -165,7 +167,7 @@ namespace FileHelpers.Dynamic
                             return t;
                     }
 
-                throw new BadUsageException("The Compiled assembly don´t have any Type inside.");
+                throw new BadUsageException("The compiled assembly does not have any type inside.");
             }
         }
 
@@ -692,6 +694,16 @@ namespace FileHelpers.Dynamic
         #endregion
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string mCommentText = null;
+
+        /// <summary>Comment text placed above the class definition<summary>
+        public string CommentText
+        {
+            get { return mCommentText; }
+            set { mCommentText = value; }
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private NetVisibility mVisibility = NetVisibility.Public;
 
         /// <summary>The Visibility for the class.</summary>
@@ -907,6 +919,9 @@ namespace FileHelpers.Dynamic
             node = document.DocumentElement["RecordConditionSelector"];
             if (node != null) res.RecordCondition.Selector = node.InnerText;
 
+            node = document.DocumentElement["CommentText"];
+            if (node != null) res.CommentText = node.InnerText;
+
             res.ReadClassElements(document);
 
             node = document.DocumentElement["Fields"];
@@ -923,8 +938,6 @@ namespace FileHelpers.Dynamic
             }
 
             return res;
-
-
         }
 
         /// <summary>
