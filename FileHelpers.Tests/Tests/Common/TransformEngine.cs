@@ -19,8 +19,8 @@ namespace FileHelpers.Tests.CommonTests
 			var link = new FileTransformEngine<FromClass, ToClass>();
 			link.TransformFile(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-            ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+            ToClass[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -32,8 +32,8 @@ namespace FileHelpers.Tests.CommonTests
 		{
             CommonEngine.TransformFile<FromClass, ToClass>(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-			ToClass[] res = (ToClass[]) engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+			ToClass[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -45,8 +45,8 @@ namespace FileHelpers.Tests.CommonTests
 		{
             CommonEngine.TransformFileFast<FromClass, ToClass>(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-			ToClass[] res = (ToClass[]) engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+			ToClass[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -60,8 +60,8 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass>();
             link.TransformFile(FileTest.Good.Transform2.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-            ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+            ToClass[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -88,8 +88,8 @@ namespace FileHelpers.Tests.CommonTests
 			var link = new FileTransformEngine<FromClass, ToClass2>();
             link.TransformFile(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -101,8 +101,8 @@ namespace FileHelpers.Tests.CommonTests
 		{
             CommonEngine.TransformFile<FromClass, ToClass2>(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -114,8 +114,8 @@ namespace FileHelpers.Tests.CommonTests
 		{
             CommonEngine.TransformFileFast<FromClass, ToClass2>(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -128,8 +128,8 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass2>();
             link.TransformFile(FileTest.Good.Transform2.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -150,10 +150,11 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass>();
             link.TransformFileFast(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-            ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+            ToClass[] res = engine.ReadFile(fileOut);
 
-            if (File.Exists(fileOut)) File.Delete(fileOut);
+            if (File.Exists(fileOut))
+                File.Delete(fileOut);
 
 			Assert.AreEqual(6, res.Length);
 		}
@@ -164,8 +165,8 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass>();
             link.TransformFileFast(FileTest.Good.Transform2.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass));
-            ToClass[] res = (ToClass[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass>();
+            ToClass[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -181,8 +182,8 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass2>();
             link.TransformFileFast(FileTest.Good.Transform1.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 
@@ -195,8 +196,8 @@ namespace FileHelpers.Tests.CommonTests
             var link = new FileTransformEngine<FromClass, ToClass2>();
             link.TransformFileFast(FileTest.Good.Transform2.Path, fileOut);
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ToClass2));
-            ToClass2[] res = (ToClass2[])engine.ReadFile(fileOut);
+			var engine = new FileHelperEngine<ToClass2>();
+            ToClass2[] res = engine.ReadFile(fileOut);
 
             if (File.Exists(fileOut)) File.Delete(fileOut);
 

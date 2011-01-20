@@ -9,14 +9,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class MultiLine
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void MultilineFull()
 		{
-			engine = new FileHelperEngine(typeof(FHClient));
+			var engine = new FileHelperEngine<FHClient>();
 
-            object[] res = engine.ReadFile(TestCommon.GetPath("Good", "MultilineFull.txt"));
+            var res = engine.ReadFile(TestCommon.GetPath("Good", "MultilineFull.txt"));
 
             Assert.AreEqual(16, res.Length);
             Assert.AreEqual(16, engine.TotalRecords);

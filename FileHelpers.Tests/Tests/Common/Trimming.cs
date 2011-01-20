@@ -6,14 +6,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class Trimming
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void TrimLeft()
 		{
-			engine = new FileHelperEngine(typeof (TrimClass));
+			var engine = new FileHelperEngine<TrimClass>();
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
+			var res = TestCommon.ReadTest<TrimClass>(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("ALFKI      ", res[0].CustomerID);
@@ -28,9 +26,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void TrimRigth()
 		{
-			engine = new FileHelperEngine(typeof (TrimClass));
+			var engine = new FileHelperEngine<TrimClass>();
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
+            TrimClass[] res = TestCommon.ReadTest<TrimClass>(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Alfreds Futterkiste", res[0].CompanyName);
@@ -45,9 +43,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void TrimBoth()
 		{
-			engine = new FileHelperEngine(typeof (TrimClass));
+			var engine = new FileHelperEngine<TrimClass>();
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
+            var res = TestCommon.ReadTest<TrimClass>(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Maria Anders", res[0].ContactName);
@@ -62,9 +60,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void TrimNone()
 		{
-			engine = new FileHelperEngine(typeof (TrimClass));
+			var engine = new FileHelperEngine<TrimClass>();
 
-			TrimClass[] res = (TrimClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
+            var res = TestCommon.ReadTest<TrimClass>(engine, "Good", "Trim1.txt");
 
 			Assert.AreEqual(7, res.Length);
 			Assert.AreEqual("Sales Representative                  ", res[0].ContactTitle);

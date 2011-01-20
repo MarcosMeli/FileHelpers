@@ -14,10 +14,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords01()
 		{
-			var engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
-			res = (SampleType[]) engine.ReadFile(FileTest.Good.Test1.Path, 2);
+			res = engine.ReadFile(FileTest.Good.Test1.Path, 2);
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);
@@ -37,7 +37,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadFileMaxRecords02()
 		{
-			var engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
             res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, int.MaxValue);
@@ -51,10 +51,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords03()
 		{
-			var engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
-            res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, -1);
+            res = engine.ReadFile(FileTest.Good.Test1.Path, -1);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -64,10 +64,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadMaxRecords04()
 		{
-            var engine = new FileHelperEngine(typeof (SampleType));
+            var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
-			res = (SampleType[]) engine.ReadFile(FileTest.Good.Test1.Path, -1283623);
+			res = engine.ReadFile(FileTest.Good.Test1.Path, -1283623);
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -77,7 +77,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadMaxRecords05()
 		{
-			var engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 		    var res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, 0);
 
@@ -89,10 +89,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
         public void ReadFileMaxRecords06()
 		{
-			var engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
-            res = (SampleType[])engine.ReadFile(FileTest.Good.Test1.Path, 1);
+            res = engine.ReadFile(FileTest.Good.Test1.Path, 1);
 
 			Assert.AreEqual(1, res.Length);
 			Assert.AreEqual(1, engine.TotalRecords);

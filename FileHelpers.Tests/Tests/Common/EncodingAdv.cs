@@ -38,7 +38,7 @@ namespace FileHelpers.Tests
 				DateTime date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
+				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
 					byte[] data;
 				using (WebClient webClient = new WebClient())
 				{
@@ -46,7 +46,7 @@ namespace FileHelpers.Tests
 					data = webClient.DownloadData(url);
 					System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
 					string dataString = encoding.GetString(data);
-					res = (MSWSDailyReportRecord[]) engine.ReadString(dataString);
+					res = engine.ReadString(dataString);
 				}
 				
 				Assert.AreEqual(res.Length, 32);
@@ -59,7 +59,7 @@ namespace FileHelpers.Tests
 				DateTime date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
+				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
 
 					using (WebClient webClient = new WebClient())
 					{
@@ -77,7 +77,7 @@ namespace FileHelpers.Tests
 				DateTime date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
-				FileHelperEngine engine = new FileHelperEngine(typeof(MSWSDailyReportRecord));
+				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
 
 					// make request 
 					HttpWebRequest webReq = null;
@@ -89,7 +89,7 @@ namespace FileHelpers.Tests
 					webResp = (HttpWebResponse)webReq.GetResponse();
 					Encoding encode = Encoding.GetEncoding("utf-8");
 					reader = new StreamReader(webResp.GetResponseStream(), encode);
-					res = (MSWSDailyReportRecord[]) engine.ReadStream(reader);
+					res = engine.ReadStream(reader);
 				}
 				catch 
 				{

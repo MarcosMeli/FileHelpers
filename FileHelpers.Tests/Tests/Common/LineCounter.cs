@@ -6,16 +6,14 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class LineCounter
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
 
-		[Test]
+        [Test]
 		public void ReadFile()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+			res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(5, engine.LineNumber);
@@ -25,12 +23,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncRead()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (SampleType));
+			var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
 			SampleType rec1, rec2;
 
 			Assert.AreEqual(0, asyncEngine.LineNumber);
-			TestCommon.BeginReadTest(asyncEngine, "Good", "Test1.txt");
+			TestCommon.BeginReadTest<SampleType>(asyncEngine, "Good", "Test1.txt");
 
 			rec1 = (SampleType) asyncEngine.ReadNext();
 			Assert.IsNotNull(rec1);

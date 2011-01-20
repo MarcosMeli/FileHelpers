@@ -9,19 +9,17 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class Progress
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void ReadFileNotifyRecord()
 		{
 			actual = 0;
 			actualAdd = 1;
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			engine.Progress += ProgressChange;
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -34,7 +32,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			actual = 0;
 			actualAdd = 1; 
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
             engine.Progress += ProgressChange;
 
 			SampleType[] res = new SampleType[2];
@@ -63,7 +61,7 @@ namespace FileHelpers.Tests.CommonTests
 			actualPerc = 0;
 			actualAdd = 50;
 
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
             engine.Progress += ProgressChangePercent;
 
 			var res = new SampleType[2];

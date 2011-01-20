@@ -9,19 +9,17 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class Events
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void ReadEvents()
 		{
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperEngine(typeof (SampleType));
-			engine.BeforeReadRecord += new BeforeReadHandler<object>(BeforeEvent);
-            engine.AfterReadRecord += new AfterReadHandler<object>(AfterEvent);
+			var engine = new FileHelperEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent);
+            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent);
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            object[] res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -36,10 +34,10 @@ namespace FileHelpers.Tests.CommonTests
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
-            engine.BeforeWriteRecord += new BeforeWriteHandler<object>(engine_BeforeWriteRecord);
-            engine.AfterWriteRecord += new AfterWriteHandler<object>(engine_AfterWriteRecord);
+            engine.BeforeWriteRecord += new BeforeWriteHandler<SampleType>(engine_BeforeWriteRecord);
+            engine.AfterWriteRecord += new AfterWriteHandler<SampleType>(engine_AfterWriteRecord);
 
             SampleType[] res = new SampleType[2];
 
@@ -69,10 +67,10 @@ namespace FileHelpers.Tests.CommonTests
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperEngine(typeof (SampleType));
-            engine.AfterReadRecord += new AfterReadHandler<object>(AfterEvent2);
+			var engine = new FileHelperEngine<SampleType>();
+            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent2);
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            object[] res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -86,10 +84,10 @@ namespace FileHelpers.Tests.CommonTests
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperEngine(typeof (SampleType));
-            engine.BeforeReadRecord += new BeforeReadHandler<object>(BeforeEvent2);
+			var engine = new FileHelperEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent2);
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            var res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -103,11 +101,11 @@ namespace FileHelpers.Tests.CommonTests
 			before = 0;
 			after = 0;
 
-			engine = new FileHelperEngine(typeof (SampleType));
-            engine.BeforeReadRecord += new BeforeReadHandler<object>(BeforeEvent2);
-            engine.AfterReadRecord += new AfterReadHandler<object>(AfterEvent2);
+			var engine = new FileHelperEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent2);
+            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent2);
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            var res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(0, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -118,8 +116,8 @@ namespace FileHelpers.Tests.CommonTests
 		int before = 0;
 		int after = 0;
 
-        
-		private void BeforeEvent(EngineBase sender, BeforeReadEventArgs<object> e)
+
+        private void BeforeEvent(EngineBase sender, BeforeReadEventArgs<SampleType> e)
 		{
 			if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
 				e.SkipThisRecord = true;
@@ -127,28 +125,28 @@ namespace FileHelpers.Tests.CommonTests
 			before++;
 		}
 
-		private void AfterEvent(EngineBase sender, AfterReadEventArgs<object> e)
+        private void AfterEvent(EngineBase sender, AfterReadEventArgs<SampleType> e)
 		{
 			after++;
 		}
 
-        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteEventArgs<object> e)
+        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteEventArgs<SampleType> e)
 		{
 			before++;
 		}
 
-        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteEventArgs<object> e)
+        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteEventArgs<SampleType> e)
 		{
 			after++;
 		}
 
-        private void AfterEvent2(EngineBase sender, AfterReadEventArgs<object> e)
+        private void AfterEvent2(EngineBase sender, AfterReadEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			after++;
 		}
 
-        private void BeforeEvent2(EngineBase sender, BeforeReadEventArgs<object> e)
+        private void BeforeEvent2(EngineBase sender, BeforeReadEventArgs<SampleType> e)
 		{
 			e.SkipThisRecord = true;
 			before++;
@@ -161,8 +159,8 @@ namespace FileHelpers.Tests.CommonTests
         public void ChangeLineInEvent()
         {
             string input = "\n\n\n";
-            engine = new FileHelperEngine(typeof(SampleType));
-            engine.BeforeReadRecord += new BeforeReadHandler<object>(BeforeEventChange);
+            var engine = new FileHelperEngine<SampleType>();
+            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEventChange);
 
             SampleType[] res = (SampleType[]) engine.ReadString(input);
 
@@ -177,7 +175,7 @@ namespace FileHelpers.Tests.CommonTests
 
         }
 
-        private static void BeforeEventChange(EngineBase engine, BeforeReadEventArgs<object> e)
+        private static void BeforeEventChange(EngineBase engine, BeforeReadEventArgs<SampleType> e)
 	    {
             Assert.IsFalse(e.RecordLineChanged);
 	        e.RecordLine = "11121314901234";

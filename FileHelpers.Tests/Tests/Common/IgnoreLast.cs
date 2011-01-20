@@ -11,16 +11,14 @@ namespace FileHelpers.Tests.CommonTests
 	{
 	    private readonly string expectedLongFooterText = "you can get this lines" + Environment.NewLine +
 	                                        "with the FileHelperEngine.FooterText property" + Environment.NewLine;
-	    FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
 	    private readonly string expectedShortFooterText = "This is a new Footer....\r\n";
 
 	    [Test]
 		public void DiscardLast1()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType0));
+			var engine = new FileHelperEngine<DiscardLastType0>();
 
-			DiscardLastType0[] res = (DiscardLastType0[]) TestCommon.ReadTest(engine, "Good", "DiscardLast0.txt");
+            var res = TestCommon.ReadTest<DiscardLastType0>(engine, "Good", "DiscardLast0.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -29,9 +27,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void DiscardLast2()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType1));
+			var engine = new FileHelperEngine<DiscardLastType1>();
 
-			DiscardLastType1[] res = (DiscardLastType1[]) TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
+            var res = TestCommon.ReadTest<DiscardLastType1>(engine, "Good", "DiscardLast1.txt");
 
             Assert.AreEqual(engine.TotalRecords, res.Length);
 
@@ -42,9 +40,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardLast2bis()
         {
-            engine = new FileHelperEngine(typeof(DiscardLastType1bis));
+            var engine = new FileHelperEngine<DiscardLastType1bis>();
 
-            DiscardLastType1bis[] res = (DiscardLastType1bis[])TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
+            var res = TestCommon.ReadTest<DiscardLastType1bis>(engine, "Good", "DiscardLast1.txt");
 
             Assert.AreEqual(engine.TotalRecords, res.Length);
 
@@ -55,9 +53,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
 		public void DiscardLast3()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType11));
+			var engine = new FileHelperEngine<DiscardLastType11>();
 
-			DiscardLastType11[] res = (DiscardLastType11[]) TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
+            DiscardLastType11[] res = TestCommon.ReadTest<DiscardLastType11>(engine, "Good", "DiscardLast1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -66,9 +64,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void DiscardLast4()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType2));
+			var engine = new FileHelperEngine<DiscardLastType2>();
 
-			DiscardLastType2[] res = (DiscardLastType2[]) TestCommon.ReadTest(engine, "Good", "DiscardLast2.txt");
+            DiscardLastType2[] res = TestCommon.ReadTest<DiscardLastType2>(engine, "Good", "DiscardLast2.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -78,9 +76,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void DiscardLast5()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType2));
+			var engine = new FileHelperEngine<DiscardLastType2>();
 
-			DiscardLastType2[] res = (DiscardLastType2[]) TestCommon.ReadTest(engine, "Good", "DiscardLast3.txt");
+            DiscardLastType2[] res = TestCommon.ReadTest<DiscardLastType2>(engine, "Good", "DiscardLast3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
@@ -89,9 +87,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void DiscardLast6()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (DiscardLastType2));
+			var asyncEngine = new FileHelperAsyncEngine<DiscardLastType2>();
 
-			TestCommon.BeginReadTest(asyncEngine, "Good", "DiscardLast2.txt");
+            TestCommon.BeginReadTest<DiscardLastType2>(asyncEngine, "Good", "DiscardLast2.txt");
 
             ArrayList arr = new ArrayList();
             while (asyncEngine.ReadNext() != null)
@@ -111,16 +109,16 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void DiscardWriteRead()
 		{
-			engine = new FileHelperEngine(typeof (DiscardLastType1));
+			var engine = new FileHelperEngine<DiscardLastType1>();
 
-			DiscardLastType1[] res = (DiscardLastType1[]) TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
+            DiscardLastType1[] res = TestCommon.ReadTest<DiscardLastType1>(engine, "Good", "DiscardLast1.txt");
 			engine.FooterText = expectedShortFooterText;
 
 			engine.WriteFile("tempo.txt", res);
 			
             engine.FooterText = "none none";
 
-			DiscardLastType1[] res2 = (DiscardLastType1[]) engine.ReadFile(@"tempo.txt");
+			DiscardLastType1[] res2 = engine.ReadFile(@"tempo.txt");
 
 			Assert.AreEqual(res.Length, res2.Length);
 			Assert.AreEqual(expectedShortFooterText, engine.FooterText);
@@ -134,12 +132,12 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardWriteRead2()
         {
-            engine = new FileHelperEngine(typeof(DiscardLastType1));
+            var engine = new FileHelperEngine<DiscardLastType1>();
 
-            DiscardLastType1[] res = (DiscardLastType1[])TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
+            DiscardLastType1[] res = TestCommon.ReadTest<DiscardLastType1>(engine, "Good", "DiscardLast1.txt");
 
 
-            asyncEngine = new FileHelperAsyncEngine(typeof(DiscardLastType1));
+            var asyncEngine = new FileHelperAsyncEngine<DiscardLastType1>();
 
             asyncEngine.FooterText = "This is a new Footer....";
 
@@ -164,9 +162,6 @@ namespace FileHelpers.Tests.CommonTests
 
             if (File.Exists("tempo.txt")) File.Delete("tempo.txt");
         }
-
-
-
 	}
 
 	[FixedLengthRecord]

@@ -8,14 +8,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class ConditionalRecords
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void Conditional1()
 		{
-			engine = new FileHelperEngine(typeof (ConditionalType1));
+			var engine = new FileHelperEngine<ConditionalType1>();
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "ConditionalRecords1.txt");
+			var res = TestCommon.ReadTest<ConditionalType1>(engine, "Good", "ConditionalRecords1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -24,9 +22,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Conditional2()
 		{
-			engine = new FileHelperEngine(typeof (ConditionalType2));
+			var engine = new FileHelperEngine<ConditionalType2>();
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "ConditionalRecords2.txt");
+            var res = TestCommon.ReadTest<ConditionalType2>(engine, "Good", "ConditionalRecords2.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -36,9 +34,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Conditional3()
 		{
-			engine = new FileHelperEngine(typeof (ConditionalType3));
+			var engine = new FileHelperEngine<ConditionalType3>();
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "ConditionalRecords3.txt");
+            var res = TestCommon.ReadTest<ConditionalType3>(engine, "Good", "ConditionalRecords3.txt");
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -48,9 +46,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void Conditional4()
         {
-            engine = new FileHelperEngine(typeof(ConditionalType4));
+            var engine = new FileHelperEngine<ConditionalType4>();
 
-            ConditionalType4[] res = (ConditionalType4[]) TestCommon.ReadTest(engine, "Good", "ConditionalRecords4.txt");
+            ConditionalType4[] res = TestCommon.ReadTest<ConditionalType4>(engine, "Good", "ConditionalRecords4.txt");
 
             Assert.AreEqual(2, res.Length);
             Assert.AreEqual(5, engine.LineNumber);

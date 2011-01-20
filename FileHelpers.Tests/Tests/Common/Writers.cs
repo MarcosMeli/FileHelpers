@@ -9,13 +9,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class Writers
 	{
-		FileHelperEngine engine;
 	    private readonly int newLineLen = Environment.NewLine.Length;
 
 		[Test]
 		public void WriteFile()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -63,7 +62,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteStream()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -91,7 +90,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteString()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -140,7 +139,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test] 
         public void WriteStringNullableGuid() 
         { 
-            engine = new FileHelperEngine(typeof(SampleTypeNullableGuid)); 
+            var engine = new FileHelperEngine<SampleTypeNullableGuid>(); 
   
             string resStr = engine.WriteString(new []{new SampleTypeNullableGuid()}); 
  

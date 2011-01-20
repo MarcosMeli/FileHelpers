@@ -7,14 +7,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class FieldNotInFileTests
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void IgnoreFirst()
 		{
-			engine = new FileHelperEngine(typeof (CustomersTabIgnored3));
+			var engine = new FileHelperEngine<CustomersTabIgnored3>();
 			
-			CustomersTabIgnored3[] res = (CustomersTabIgnored3[]) TestCommon.ReadTest(engine, "Good", "CustomersTabIgnoreFirst.txt");
+			var res = TestCommon.ReadTest<CustomersTabIgnored3>(engine, "Good", "CustomersTabIgnoreFirst.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored3 record in res)
@@ -28,9 +26,9 @@ namespace FileHelpers.Tests.CommonTests
 		public void IgnoreMiddle()
 		{
 
-			engine = new FileHelperEngine(typeof (CustomersTabIgnored2));
-			
-			CustomersTabIgnored2[] res = (CustomersTabIgnored2[]) TestCommon.ReadTest(engine, "Good", "CustomersTabIgnoreMiddle.txt");
+			var engine = new FileHelperEngine<CustomersTabIgnored2>();
+
+            var  res = TestCommon.ReadTest<CustomersTabIgnored2>(engine, "Good", "CustomersTabIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored2 record in res)
@@ -42,9 +40,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreLast()
 		{
-			engine = new FileHelperEngine(typeof (CustomersTabIgnored));
-			
-			CustomersTabIgnored[] res = (CustomersTabIgnored[]) TestCommon.ReadTest(engine, "Good", "CustomersTabIgnoreLast.txt");
+			var engine = new FileHelperEngine<CustomersTabIgnored>();
+
+            CustomersTabIgnored[] res = TestCommon.ReadTest<CustomersTabIgnored>(engine, "Good", "CustomersTabIgnoreLast.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (CustomersTabIgnored record in res)
@@ -57,9 +55,9 @@ namespace FileHelpers.Tests.CommonTests
 		public void IgnoreMiddle2()
 		{
 
-			engine = new FileHelperEngine(typeof (OrdersFixedIgnore));
-			
-			OrdersFixedIgnore[] res = (OrdersFixedIgnore[]) TestCommon.ReadTest(engine, "Good", "OrdersFixedIgnoreMiddle.txt");
+			var engine = new FileHelperEngine<OrdersFixedIgnore>();
+
+            OrdersFixedIgnore[] res = TestCommon.ReadTest<OrdersFixedIgnore>(engine, "Good", "OrdersFixedIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
 			foreach (OrdersFixedIgnore record in res)

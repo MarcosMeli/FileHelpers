@@ -15,8 +15,7 @@ namespace FileHelpers.Tests
         [Test]
         public void EncodingTest()
 		{
-            var lines = File.ReadAllLines(FileTest.Good.EncodingChinese.Path, Encoding.GetEncoding(950));
-            Console.WriteLine(lines[0].Length);
+            // var lines = File.ReadAllLines(FileTest.Good.EncodingChinese.Path, Encoding.GetEncoding(950));
 
             //var engine = new FileHelperEngine<ChineseRecord>(Encoding.GetEncoding(950));
             var engine = new FileHelperEngine<ChineseRecord>();

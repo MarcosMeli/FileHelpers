@@ -6,19 +6,17 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class FieldAligment
 	{
-		FileHelperEngine engine;
 		AlignClass2[] res;
 
-
-		private void RunAlignTest()
+        private void RunAlignTest()
 		{
-			engine = new FileHelperEngine(typeof (AlignClass));
-			AlignClass[] resTemp = (AlignClass[]) TestCommon.ReadTest(engine, "Good", "Trim1.txt");
+			var engine = new FileHelperEngine<AlignClass>();
+			var resTemp = TestCommon.ReadTest<AlignClass>(engine, "Good", "Trim1.txt");
 
 			string tmp = engine.WriteString(resTemp);
 
-			engine = new FileHelperEngine(typeof (AlignClass2));
-			res = (AlignClass2[]) engine.ReadString(tmp);
+			var engine2 = new FileHelperEngine<AlignClass2>();
+			res = engine2.ReadString(tmp);
 		}
 
 		[Test]

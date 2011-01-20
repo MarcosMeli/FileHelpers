@@ -9,8 +9,8 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
 	public class FileEncoding
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
+        FileHelperEngine<CustomersVerticalBar> engine;
+        FileHelperAsyncEngine<CustomersVerticalBar> asyncEngine;
 	    private const string expectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
 	    private const string expectedTextWithEGrave = "Blondesddsl p\u00e8re et fils";
 	    private const string expectedTextWithEAcute1 = "Fr\u00e9d\u00e9rique Citeaux";
@@ -22,49 +22,49 @@ namespace FileHelpers.Tests.CommonTests
 
         private void RunTests(Encoding enc, params string[] pathElements)
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
+			engine = new FileHelperEngine<CustomersVerticalBar>();
 			engine.Encoding = enc;
-			Assert.AreEqual(enc, engine.Encoding);
+			enc.AssertEqualTo<Encoding>(engine.Encoding, "Normal engine encoding mismatch, runtests" );
 			CoreRunTest(pathElements);
 		}
 
         private void RunConstructor(Encoding enc, params string[] pathElements)
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar), enc);
-			Assert.AreEqual(enc, engine.Encoding);
+			engine = new FileHelperEngine<CustomersVerticalBar>(enc);
+            enc.AssertEqualTo<Encoding>(engine.Encoding, "Normal engine encoding mismatch, runconstructor");
 			CoreRunTest(pathElements);
 		}
 
         private void CoreRunTest(params string[] pathElements)
 		{
+
+            CustomersVerticalBar[] res = TestCommon.ReadTest<CustomersVerticalBar>(engine, pathElements);
 	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, pathElements);
+			ExpectedRecords.AssertEqualTo<int>( res.Length, "Length Mismatch");
+			ExpectedRecords.AssertEqualTo<int>( engine.TotalRecords, "Record count mismatch");
+
+            expectedTextWithNTilde.AssertEqualTo<String>(res[1].CompanyName);
+			expectedTextWithEGrave.AssertEqualTo<String>( res[6].CompanyName);
+			expectedTextWithEAcute1.AssertEqualTo<String>( res[6].ContactName);
 	
-			Assert.AreEqual(ExpectedRecords, res.Length);
-			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
-	
-			Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
-			Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
-			Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
-	
-			Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
-			Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
-			Assert.AreEqual(expectedTextWithARing, res[4].City);
+			expectedTextWithEAcute2.AssertEqualTo<String>( res[6].Address);
+            expectedTextWithADiaeresis.AssertEqualTo<String>(res[4].Address);
+            expectedTextWithARing.AssertEqualTo<String>( res[4].City);
 		}
 
 		private void RunAsyncTests(Encoding enc, params string[] pathElements)
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar));
+			asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>();
 			asyncEngine.Encoding = enc;
-			Assert.AreEqual(enc, asyncEngine.Encoding);
+            enc.AssertEqualTo<Encoding>(asyncEngine.Encoding, "Async engine encoding mismatch, runasyncTests");
 
 			CoreRunAsync(pathElements);
 		}
 
 		private void RunAsyncConstructor(Encoding enc, params string[] pathElements)
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar), enc);
-			Assert.AreEqual(enc, asyncEngine.Encoding);
+			asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>(enc);
+            enc.AssertEqualTo<Encoding>(asyncEngine.Encoding, "Async encoding mismatch");
 
 			CoreRunAsync(pathElements);
 		}
@@ -81,16 +81,16 @@ namespace FileHelpers.Tests.CommonTests
 			}
 	
 			CustomersVerticalBar[] res = (CustomersVerticalBar[]) arr.ToArray(typeof (CustomersVerticalBar));
-			Assert.AreEqual(ExpectedRecords, res.Length);
-			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
+			ExpectedRecords.AssertEqualTo<int>( res.Length, "Length is not equal");
+			ExpectedRecords.AssertEqualTo<int>( asyncEngine.TotalRecords, "Total number of records not equal");
 	
-			Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
-			Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
-			Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
+			expectedTextWithNTilde.AssertEqualTo<String>( res[1].CompanyName);
+            expectedTextWithEGrave.AssertEqualTo<String>(res[6].CompanyName);
+			expectedTextWithEAcute1.AssertEqualTo<String>( res[6].ContactName);
 	
-			Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
-			Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
-			Assert.AreEqual(expectedTextWithARing, res[4].City);
+			expectedTextWithEAcute2.AssertEqualTo<String>( res[6].Address);
+			expectedTextWithADiaeresis.AssertEqualTo<String>( res[4].Address);
+			expectedTextWithARing.AssertEqualTo<String>( res[4].City);
 		}
 
 		[Test]

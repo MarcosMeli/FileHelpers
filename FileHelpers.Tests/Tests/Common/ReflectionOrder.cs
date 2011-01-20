@@ -24,7 +24,7 @@ namespace FileHelpers.Tests.CommonTests
             for (int i = 0; i < 10; i++)
 			{
                 typeof(SampleType).GetField("Field2");
-                FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+                var engine = new FileHelperEngine<SampleType>();
                 typeof(SampleType).GetField("Field2");
 
             Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
@@ -32,7 +32,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
 			SampleType[] res;
-			res = (SampleType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -68,7 +68,7 @@ namespace FileHelpers.Tests.CommonTests
             for (int i = 0; i < 10; i++)
             {
                 typeof(SampleType).GetField("Field2");
-                FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+                var engine = new FileHelperEngine<SampleType>();
                 typeof(SampleType).GetField("Field2");
 
                 Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
@@ -76,7 +76,7 @@ namespace FileHelpers.Tests.CommonTests
                 Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
                 SampleType[] res;
-                res = (SampleType[])TestCommon.ReadTest(engine, "Good", "Test1.txt");
+                res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
                 Assert.AreEqual(4, res.Length);
                 Assert.AreEqual(4, engine.TotalRecords);
@@ -102,14 +102,14 @@ namespace FileHelpers.Tests.CommonTests
 
             for (int i = 0; i < 10; i++)
             {
-                FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+                var engine = new FileHelperEngine<SampleType>();
 
                 Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
                 Assert.AreEqual("Field2", engine.Options.FieldsNames[1]);
                 Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
                 SampleType[] res;
-                res = (SampleType[])TestCommon.ReadTest(engine, "Good", "Test1.txt");
+                res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
 
                 Assert.AreEqual(4, res.Length);
                 Assert.AreEqual(4, engine.TotalRecords);

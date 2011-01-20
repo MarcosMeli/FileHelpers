@@ -11,9 +11,6 @@ namespace FileHelpers.Tests
 	[TestFixture]
 	public class RunTimeClassesExtra
 	{
-		FileHelperEngine engine;
-
-
 		[Test]
 		public void ReadAsDataTable1()
 		{
@@ -54,7 +51,7 @@ namespace FileHelpers.Tests
 			cb.LastField.TrimMode = TrimMode.Both; 
 			cb.LastField.FieldQuoted = false; 
 
-			engine = new FileHelperEngine(cb.CreateRecordClass()); 
+			var engine = new FileHelperEngine(cb.CreateRecordClass()); 
 
 			string source = "Alex & Jen,Bouquet,1815,Bell Rd,, Batavia,OH,45103" + Environment.NewLine + 
 							"Mark & Lisa K ,Arlinghaus,1817,Bell Rd,, Batavia,OH,45103" + Environment.NewLine +
@@ -113,7 +110,7 @@ namespace FileHelpers.Tests
 			cb.LastField.TrimMode = TrimMode.Both; 
 			cb.LastField.FieldQuoted = false; 
 
-			engine = new FileHelperEngine(cb.CreateRecordClass()); 
+			var engine = new FileHelperEngine(cb.CreateRecordClass()); 
 
 			DataTable contactData = engine.ReadFileAsDT(TestCommon.GetPath("Good", "ReadAsDataTable.txt"));
 

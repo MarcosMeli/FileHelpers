@@ -25,15 +25,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
     public class CustomConverterExceptions
 	{
-		FileHelperEngine engine;
-
-
         string testTo = "sad23\nverybad\n";
 
 		[Test]
         public void ExceptionsTestsPriceConverterTest()
 		{
-			engine = new FileHelperEngine(typeof (CustomConvType));
+			var engine = new FileHelperEngine<CustomConvType>();
 
             Assert.Throws<ConvertException>(
                 () => engine.ReadString(testTo));
@@ -44,8 +41,8 @@ namespace FileHelpers.Tests.CommonTests
         {
             try
             {
-                engine = new FileHelperEngine(typeof(CustomConvType));
-                PriceRecord[] res = (PriceRecord[])engine.ReadString(testTo);
+                var engine = new FileHelperEngine<CustomConvType>();
+                object[] res = engine.ReadString(testTo);
             }
             catch (ConvertException ex)
             {

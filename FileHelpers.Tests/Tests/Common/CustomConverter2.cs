@@ -81,14 +81,12 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class CustomConvertAddress
     {
-        FileHelperEngine engine;
-
         [Test]
         public void NameConverterTest()
         {
-            engine = new FileHelperEngine(typeof(AddressConvClass));
+            var engine = new FileHelperEngine<AddressConvClass>();
 
-            AddressConvClass[] res = (AddressConvClass[])TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
+            AddressConvClass[] res = TestCommon.ReadTest<AddressConvClass>(engine, "Good", "CustomConverter2.txt");
 
             Assert.AreEqual(4, res.Length);
 
@@ -114,9 +112,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void NameConverterTest2()
         {
-            engine = new FileHelperEngine(typeof(AddressConvClass2));
+            var engine = new FileHelperEngine<AddressConvClass2>();
 
-            AddressConvClass2[] res = (AddressConvClass2[])TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
+            AddressConvClass2[] res = TestCommon.ReadTest<AddressConvClass2>(engine, "Good", "CustomConverter2.txt");
 
             Assert.AreEqual(4, res.Length);
 
@@ -167,7 +165,7 @@ namespace FileHelpers.Tests.CommonTests
         public void NameConverterBad1()
         {
             var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof(AddressBadClass1)));
+                () => new FileHelperEngine<AddressBadClass1>());
 
             Assert.AreEqual(
                 "Constructor for converter: AddressConverter2 with these arguments: (String) was not found. You must add a constructor with this signature (can be public or private)"
@@ -178,7 +176,7 @@ namespace FileHelpers.Tests.CommonTests
         public void NameConverterBad2()
         {
             var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof(AddressBadClass2)));
+                () => new FileHelperEngine<AddressBadClass2>());
 
             Assert.AreEqual(
                 "Empty constructor for converter: AddressConverter2 was not found. You must add a constructor without args (can be public or private)"
@@ -189,7 +187,7 @@ namespace FileHelpers.Tests.CommonTests
         public void NameConverterBad3()
         {
             var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof(AddressBadClass3)));
+                () => new FileHelperEngine<AddressBadClass3>());
 
             Assert.AreEqual(
                 "Constructor for converter: AddressConverter2 with these arguments: (Int32, Double) was not found. You must add a constructor with this signature (can be public or private)"

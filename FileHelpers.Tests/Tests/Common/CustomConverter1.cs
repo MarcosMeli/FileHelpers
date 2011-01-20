@@ -48,14 +48,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class CustomConverterName
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void NameConverterTest()
 		{
-			engine = new FileHelperEngine(typeof (CustomConvClass));
+			var engine = new FileHelperEngine<CustomConvClass>();
 
-			CustomConvClass[] res = (CustomConvClass[]) TestCommon.ReadTest(engine, "Good", "CustomConverter1.txt");
+            CustomConvClass[] res = TestCommon.ReadTest<CustomConvClass>(engine, "Good", "CustomConverter1.txt");
 
 			Assert.AreEqual(5, res.Length);
 
@@ -72,9 +70,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void NameConverterTest2()
 		{
-			engine = new FileHelperEngine(typeof (CustomConvClass));
+			var engine = new FileHelperEngine<CustomConvClass>();
 
-			CustomConvClass[] res = (CustomConvClass[]) TestCommon.ReadTest(engine, "Good", "CustomConverter1.txt");
+            CustomConvClass[] res = TestCommon.ReadTest<CustomConvClass>(engine, "Good", "CustomConverter1.txt");
 			Assert.AreEqual(5, res.Length);
 
 			engine.WriteFile("tmpCC.txt", res);

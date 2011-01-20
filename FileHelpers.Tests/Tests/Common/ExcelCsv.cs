@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using FileHelpers;
 using NUnit.Framework;
@@ -10,14 +11,12 @@ namespace FileHelpers.Tests.CommonTests
 	public class ExcelCsv
 	{
 
-		FileHelperEngine engine;
-
-		[Test]
+        [Test]
 		public void ReadExcelCsv1()
 		{
-			engine = new FileHelperEngine(typeof (ExcelCsv1Type));
+			var engine = new FileHelperEngine<ExcelCsv1Type>();
 
-			ExcelCsv1Type[] res = (ExcelCsv1Type[]) TestCommon.ReadTest(engine, "Good", "ExcelCsv1.txt");
+            ExcelCsv1Type[] res = TestCommon.ReadTest<ExcelCsv1Type>(engine, "Good", "ExcelCsv1.txt");
 
 			Assert.AreEqual(4, res.Length);
 
@@ -36,9 +35,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadExcelCsv2()
 		{
-			engine = new FileHelperEngine(typeof (ExcelCsv2Type));
+			var engine = new FileHelperEngine<ExcelCsv2Type>();
 
-			ExcelCsv2Type[] res = (ExcelCsv2Type[]) TestCommon.ReadTest(engine, "Good", "ExcelCsv2.txt");
+            ExcelCsv2Type[] res = TestCommon.ReadTest<ExcelCsv2Type>(engine, "Good", "ExcelCsv2.txt");
 
 			Assert.AreEqual(4, res.Length);
 
@@ -57,7 +56,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteExcelCsv1()
 		{
-			ArrayList arr = new ArrayList();
+			List<ExcelCsv1Type> arr = new List<ExcelCsv1Type>();
 			ExcelCsv1Type record;
 
 			record = new ExcelCsv1Type();
@@ -80,10 +79,10 @@ namespace FileHelpers.Tests.CommonTests
 			record.TestField = "Test 4";
 			arr.Add(record);
 
-			engine = new FileHelperEngine(typeof (ExcelCsv1Type));
+			var engine = new FileHelperEngine<ExcelCsv1Type>();
 
 			string tmp = engine.WriteString(arr.ToArray());
-			ExcelCsv1Type[] res = (ExcelCsv1Type[]) engine.ReadString(tmp);
+			ExcelCsv1Type[] res = engine.ReadString(tmp);
             
 			Assert.AreEqual(4, res.Length);
 
@@ -102,7 +101,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteExcelCsv2()
 		{
-			ArrayList arr = new ArrayList();
+            List<ExcelCsv2Type> arr = new List<ExcelCsv2Type>();
 			ExcelCsv2Type record;
 
 			record = new ExcelCsv2Type();
@@ -125,10 +124,10 @@ namespace FileHelpers.Tests.CommonTests
 			record.TestField = "Test 4";
 			arr.Add(record);
 
-			engine = new FileHelperEngine(typeof (ExcelCsv2Type));
+			var engine = new FileHelperEngine<ExcelCsv2Type>();
 
 			string tmp = engine.WriteString(arr.ToArray());
-			ExcelCsv2Type[] res = (ExcelCsv2Type[]) engine.ReadString(tmp);
+			ExcelCsv2Type[] res = engine.ReadString(tmp);
             
 			Assert.AreEqual(4, res.Length);
 
@@ -147,15 +146,15 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadExcelCsv3()
 		{
-			engine = new FileHelperEngine(typeof (ExcelCsv3Type));
-			TestCommon.ReadTest(engine, "Good", "ExcelCsv2.txt");
+			var engine = new FileHelperEngine<ExcelCsv3Type>();
+            TestCommon.ReadTest<ExcelCsv3Type>(engine, "Good", "ExcelCsv2.txt");
 		}
 
 
         [Test]
         public void ReadIrregularExcelCsv()
         {
-            engine = new FileHelperEngine(typeof(RecipientImport));
+            var engine = new FileHelperEngine<RecipientImport>();
             RecipientImport[] records = (RecipientImport[]) engine.ReadString(mSampleData);
 
             for (int i = 0; i < records.Length; i++)

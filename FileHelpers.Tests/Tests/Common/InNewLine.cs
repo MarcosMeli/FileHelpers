@@ -9,14 +9,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class InNewLineTest
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void InNewLine0()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType0));
+			var engine = new FileHelperEngine<InNewLineType0>();
 
-			InNewLineType0[] res = (InNewLineType0[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLine0.txt"));
+			InNewLineType0[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLine0.txt"));
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -30,9 +28,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine0rw()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType0));
+			var engine = new FileHelperEngine<InNewLineType0>();
 
-			InNewLineType0[] res = (InNewLineType0[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLine0.txt"));
+			InNewLineType0[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLine0.txt"));
 
   		    string tmp = engine.WriteString(res);
 			res = (InNewLineType0[]) engine.ReadString(tmp);
@@ -48,9 +46,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine1()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType1));
+			var engine = new FileHelperEngine<InNewLineType1>();
 
-            InNewLineType1[] res = (InNewLineType1[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLine1.txt"));
+            InNewLineType1[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLine1.txt"));
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);
@@ -64,9 +62,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine1rw()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType1));
+			var engine = new FileHelperEngine<InNewLineType1>();
 
-			InNewLineType1[] res = (InNewLineType1[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLine1.txt"));
+			InNewLineType1[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLine1.txt"));
 
 			string tmp = engine.WriteString(res);
 			res = (InNewLineType1[]) engine.ReadString(tmp);
@@ -84,9 +82,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLineFixed1()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineFixedType1));
+			var engine = new FileHelperEngine<InNewLineFixedType1>();
 
-			InNewLineFixedType1[] res = (InNewLineFixedType1[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed1.txt"));
+			InNewLineFixedType1[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed1.txt"));
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -100,12 +98,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLineFixed1rw()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineFixedType1));
+			var engine = new FileHelperEngine<InNewLineFixedType1>();
 
-			InNewLineFixedType1[] res = (InNewLineFixedType1[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed1.txt"));
+			InNewLineFixedType1[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed1.txt"));
 
 			string tmp = engine.WriteString(res);
-			res = (InNewLineFixedType1[]) engine.ReadString(tmp);
+			res = engine.ReadString(tmp);
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -120,9 +118,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine2()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType2));
+			var engine = new FileHelperEngine<InNewLineType2>();
 
-			InNewLineType2[] res = (InNewLineType2[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLine2.txt"));
+			InNewLineType2[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLine2.txt"));
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -139,9 +137,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine2rw()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType2));
+			var engine = new FileHelperEngine<InNewLineType2>();
 
-			InNewLineType2[] res = (InNewLineType2[]) engine.ReadString(engine.WriteString(engine.ReadFile(TestCommon.GetPath("Good", "InNewLine2.txt"))));
+			InNewLineType2[] res = engine.ReadString(engine.WriteString(engine.ReadFile(TestCommon.GetPath("Good", "InNewLine2.txt"))));
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -159,9 +157,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLineFixed2()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineFixedType2));
+			var engine = new FileHelperEngine<InNewLineFixedType2>();
 
-			InNewLineFixedType2[] res = (InNewLineFixedType2[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed2.txt"));
+			InNewLineFixedType2[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed2.txt"));
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -178,12 +176,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLineFixed2rw()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineFixedType2));
+			var engine = new FileHelperEngine<InNewLineFixedType2>();
 
-			InNewLineFixedType2[] res = (InNewLineFixedType2[]) engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed2.txt"));
+			InNewLineFixedType2[] res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLineFixed2.txt"));
 
 			string tmp = engine.WriteString(res);
-			res = (InNewLineFixedType2[]) engine.ReadString(tmp);
+			res = engine.ReadString(tmp);
 
 			Assert.AreEqual(3, res.Length);
 			Assert.AreEqual(3, engine.TotalRecords);
@@ -200,7 +198,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine3Bad()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType2));
+			var engine = new FileHelperEngine<InNewLineType2>();
 
 			Assert.Throws<BadUsageException>(() => 
                 engine.ReadFile(TestCommon.GetPath("Bad", "InNewLine3.txt")));
@@ -209,7 +207,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InNewLine4Bad()
 		{
-			engine = new FileHelperEngine(typeof(InNewLineType2));
+			var engine = new FileHelperEngine<InNewLineType2>();
 			Assert.Throws<BadUsageException>(() => 
                 engine.ReadFile(TestCommon.GetPath("Bad", "InNewLine4.txt")));
 		}

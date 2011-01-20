@@ -23,11 +23,11 @@ namespace FileHelpers.Tests.CommonTests
 			bmp.SetPixel(10, 7, Color.Navy);
 			ima.MyImage = bmp;
 
-			FileHelperEngine engine = new FileHelperEngine(typeof(ImageClass));
+			var engine = new FileHelperEngine<ImageClass>();
 
-			string data = engine.WriteString(new object[] {ima});
+            string data = engine.WriteString(new ImageClass[] { ima });
 			
-			ImageClass[] res = (ImageClass[]) engine.ReadString(data);
+			ImageClass[] res =  engine.ReadString(data);
 			
 			Assert.AreEqual(1, res.Length);
 			Assert.IsNotNull(res[0].MyImage);
@@ -46,8 +46,8 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			string data = "iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAB1JREFUOE9jYBgFQzcE7ty583+wu75h0LuQuBAEAD0wBRO2X3TEAAAAAElFTkSuQmCC";
 			
-			FileHelperEngine engine = new FileHelperEngine(typeof(ImageClass));
-			ImageClass[] res = (ImageClass[]) engine.ReadString(data);
+			var engine = new FileHelperEngine<ImageClass>();
+			ImageClass[] res = engine.ReadString(data);
 			
 			Assert.AreEqual(1, res.Length);
 			Assert.IsNotNull(res[0].MyImage);

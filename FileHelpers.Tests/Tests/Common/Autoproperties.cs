@@ -9,8 +9,10 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class Autoproperties
     {
+        /// <summary>
+        /// Test an all properties class is supported
+        /// </summary>
         [Test]
-        [Ignore]
         public void AutopropertiesSimple()
         {
             var engine = new FileHelperEngine<AutoPropertiesSimple>();
@@ -23,7 +25,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
-        [Ignore]
+        [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesLastIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesLastIsField>();
@@ -38,7 +40,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
-        [Ignore]
+        [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesFirstIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesFirstIsField>();
@@ -51,7 +53,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
-        [Ignore]
+        [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesMidIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesMidIsField>();

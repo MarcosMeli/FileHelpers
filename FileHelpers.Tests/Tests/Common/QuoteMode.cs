@@ -10,7 +10,6 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class QuoteModeTests
 	{
-		FileHelperEngine engine;
 		private const int ExpectedRecords = 6;
 		private readonly string[] ExpectedNames = new string[] {"VINET", "TO,SP", "HA\"AR", "VICTE", "S\"U\"P,\"\"", "HA,,,NAR"};
 
@@ -32,24 +31,24 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadOptionalRead()
 		{
-			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = TestCommon.ReadTest(engine, "Good", "QuoteMode1.txt") as QuoteMode1[];
+			var engine = new FileHelperEngine<QuoteMode1>();
+            QuoteMode1[] res = TestCommon.ReadTest<QuoteMode1>(engine, "Good", "QuoteMode1.txt") as QuoteMode1[];
 			ValidateData(res);
 		}
 
 		[Test]
 		public void ReadOptionalWrite()
 		{
-			engine = new FileHelperEngine(typeof (QuoteMode2));
-            Assert.Throws<BadUsageException>(() 
-                => TestCommon.ReadTest(engine, "Good", "QuoteMode1.txt"));
+			var engine = new FileHelperEngine<QuoteMode2>();
+            Assert.Throws<BadUsageException>(()
+                => TestCommon.ReadTest<QuoteMode2>(engine, "Good", "QuoteMode1.txt"));
 		}
 
 		[Test]
 		public void WriteOptionalRead()
 		{
-			engine = new FileHelperEngine(typeof (QuoteMode1));
-			QuoteMode1[] res = TestCommon.ReadTest(engine, "Good", "QuoteMode1.txt") as QuoteMode1[];
+			var engine = new FileHelperEngine<QuoteMode1>();
+            QuoteMode1[] res = TestCommon.ReadTest<QuoteMode1>(engine, "Good", "QuoteMode1.txt");
 
 			engine.WriteFile("quotetemp1.txt",res);
 

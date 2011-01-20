@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using NUnit.Framework;
 using FileHelpers;
-using System.Net;
+// using System.Net;
 using System.IO;
 
 namespace FileHelpers.Tests.CommonTests
@@ -16,8 +16,8 @@ namespace FileHelpers.Tests.CommonTests
         public void EncodingAdvanced1()
         {
             EncodingRecord[] res = null;
-            FileHelperEngine engine = new FileHelperEngine(typeof(EncodingRecord));
-            res = (EncodingRecord[])TestCommon.ReadTest(engine, "Good", "EncodingAdv1.txt");
+            var engine = new FileHelperEngine<EncodingRecord>();
+            res = TestCommon.ReadTest<EncodingRecord>(engine, "Good", "EncodingAdv1.txt");
 
             Assert.AreEqual(res.Length, 28);
         }
@@ -26,8 +26,8 @@ namespace FileHelpers.Tests.CommonTests
         public void EncodingAdvanced2()
         {
             EncodingRecord[] res = null;
-            FileHelperEngine engine = new FileHelperEngine(typeof(EncodingRecord));
-            res = (EncodingRecord[])TestCommon.ReadTest(engine, "Good", "EncodingAdv2.txt");
+            var engine = new FileHelperEngine<EncodingRecord>();
+            res = TestCommon.ReadTest<EncodingRecord>(engine, "Good", "EncodingAdv2.txt");
 
             Assert.AreEqual(res.Length, 32);
         }
@@ -35,11 +35,11 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingAdvanced3()
         {
-            var engine = new FileHelperEngine(typeof(EncodingRecord));
+            var engine = new FileHelperEngine<EncodingRecord>();
             byte[] data = File.ReadAllBytes(FileTest.Good.EncodingAdv3.Path);
             var encoding = new System.Text.ASCIIEncoding();
             string dataString = encoding.GetString(data);
-            var res = (EncodingRecord[])engine.ReadString(dataString);
+            var res = engine.ReadString(dataString);
 
             Assert.AreEqual(res.Length, 18);
         }
@@ -47,9 +47,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingAdvanced4()
         {
-            var engine = new FileHelperEngine(typeof(EncodingRecord));
+            var engine = new FileHelperEngine<EncodingRecord>();
 
-            var res = (EncodingRecord[])engine.ReadFile(FileTest.Good.EncodingAdv3.Path);
+            var res = engine.ReadFile(FileTest.Good.EncodingAdv3.Path);
 
             Assert.AreEqual(res.Length, 18);
         }
@@ -57,11 +57,11 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingAdvanced5()
         {
-            var engine = new FileHelperEngine(typeof(EncodingRecord));
+            var engine = new FileHelperEngine<EncodingRecord>();
 
             var encode = Encoding.GetEncoding("utf-8");
             var reader = new StreamReader(FileTest.Good.EncodingAdv3.Path, encode);
-            var res = (EncodingRecord[])engine.ReadStream(reader);
+            var res = engine.ReadStream(reader);
 
             Assert.AreEqual(res.Length, 18);
         }

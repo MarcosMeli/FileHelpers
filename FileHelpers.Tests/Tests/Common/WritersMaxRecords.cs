@@ -9,13 +9,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class WritersMaxRecords
 	{
-		FileHelperEngine engine;
 	    private readonly int newLineLen = Environment.NewLine.Length;
 
 		[Test]
 		public void WriteFile()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -45,7 +44,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteStream()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -73,7 +72,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteString()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -99,7 +98,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteFile2()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -129,7 +128,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteStream2()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -157,7 +156,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteString2()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -178,7 +177,5 @@ namespace FileHelpers.Tests.CommonTests
 			Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
 
 		}
-
-
 	}
 }

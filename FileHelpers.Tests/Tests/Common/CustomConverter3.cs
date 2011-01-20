@@ -33,14 +33,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class CustomConvertPrice
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void PriceConverterTest()
 		{
-			engine = new FileHelperEngine(typeof (PriceRecord));
+			var engine = new FileHelperEngine<PriceRecord>();
 
-			PriceRecord[] res = (PriceRecord[]) TestCommon.ReadTest(engine, "Good", "PriceConverter.txt");
+			PriceRecord[] res = TestCommon.ReadTest<PriceRecord>(engine, "Good", "PriceConverter.txt");
 
 			Assert.AreEqual(4, res.Length);
 

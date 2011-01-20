@@ -6,16 +6,14 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class CustomConverterBad
     {
-        FileHelperEngine engine;
-
         [Test]
         public void PriceConverterTest()
         {
-            engine = new FileHelperEngine(typeof (GodRecord));
+            var engine = new FileHelperEngine<GodRecord>();
 
             ConvertException ex = 
                 Assert.Throws<ConvertException>(
-                () => TestCommon.ReadTest(engine, "Good", "PriceConverter.txt"));
+                () => TestCommon.ReadTest<GodRecord>(engine, "Good", "PriceConverter.txt"));
 
             Assert.AreEqual(1, ex.LineNumber);
             Assert.AreEqual("PriceList", ex.FieldName);

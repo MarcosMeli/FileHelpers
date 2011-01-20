@@ -7,14 +7,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class QuotedStringEntities
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void OrdersQuoted()
 		{
-			engine = new FileHelperEngine(typeof (OrdersQuotedType));
+			var engine = new FileHelperEngine<OrdersQuotedType>();
 
-			OrdersQuotedType[] res = (OrdersQuotedType[]) TestCommon.ReadTest(engine, "Good", "QuotedOrders.txt");
+			OrdersQuotedType[] res = TestCommon.ReadTest<OrdersQuotedType>(engine, "Good", "QuotedOrders.txt");
 
 			Assert.AreEqual(6, res.Length);
 
@@ -29,9 +27,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void OrdersQuoted2()
 		{
-			engine = new FileHelperEngine(typeof (OrdersQuoted2Type));
+			var engine = new FileHelperEngine<OrdersQuoted2Type>();
 
-			OrdersQuoted2Type[] res = (OrdersQuoted2Type[]) TestCommon.ReadTest(engine, "Good", "QuotedOrders2.txt");
+            var res = TestCommon.ReadTest<OrdersQuoted2Type>(engine, "Good", "QuotedOrders2.txt");
 
 			Assert.AreEqual(6, res.Length);
 
@@ -46,9 +44,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void CustomersQuoted()
 		{
-			engine = new FileHelperEngine(typeof (CustomersQuotedType));
+			var engine = new FileHelperEngine<CustomersQuotedType>();
 
-			var res = (CustomersQuotedType[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers.txt");
+            var res = TestCommon.ReadTest<CustomersQuotedType>(engine, "Good", "QuotedCustomers.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -60,9 +58,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void CustomersQuoted2()
 		{
-			engine = new FileHelperEngine(typeof (CustomersQuotedType2));
+			var engine = new FileHelperEngine<CustomersQuotedType2>();
 
-			var res = (CustomersQuotedType2[]) TestCommon.ReadTest(engine, "Good", "QuotedCustomers2.txt");
+            var res = TestCommon.ReadTest<CustomersQuotedType2>(engine, "Good", "QuotedCustomers2.txt");
 
 			Assert.AreEqual(10, res.Length);
 
@@ -75,9 +73,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void OrdersQuotedWrite()
 		{
-			engine = new FileHelperEngine(typeof (OrdersQuotedType));
+			var engine = new FileHelperEngine<OrdersQuotedType>();
 
-			OrdersQuotedType[] res = (OrdersQuotedType[]) TestCommon.ReadTest(engine, "Good", "QuotedOrders.txt");
+            OrdersQuotedType[] res = TestCommon.ReadTest<OrdersQuotedType>(engine, "Good", "QuotedOrders.txt");
 			engine.WriteFile("temp2.txt", res);
 			res = (OrdersQuotedType[]) engine.ReadFile("temp2.txt");
 

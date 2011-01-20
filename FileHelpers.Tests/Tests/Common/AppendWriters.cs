@@ -9,12 +9,10 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class AppendWriters
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void AppendToFile()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -44,7 +42,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AppendOneToFile()
 		{ 
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -83,7 +81,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			File.Copy(TestCommon.GetPath("Good", "TestEmpty.txt"), "tempEmpty.txt", true);
 			
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[1];
 
@@ -108,10 +106,8 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AppendToEmptyAsync()
 		{
-
-			
-			FileHelperEngine engineOld = new FileHelperEngine(typeof (SampleType));
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof (SampleType));
+			var engineOld = new FileHelperEngine<SampleType>();
+			var engine = new FileHelperAsyncEngine<SampleType>();
 
 			SampleType rec = new SampleType();
 
@@ -140,7 +136,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void BadAppend()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			File.Copy(TestCommon.GetPath("Bad", "BadAdd1.txt"), "BadAddTemp1.txt", true);
 
@@ -161,7 +157,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void BadAppend2()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			File.Copy(TestCommon.GetPath("Bad", "BadAdd2.txt"), "BadAddTemp2.txt", true);
 
@@ -178,7 +174,5 @@ namespace FileHelpers.Tests.CommonTests
 			Assert.AreEqual("AS", res2[3].Field2);
 			Assert.AreEqual(66, res2[3].Field3);
 		}
-
-
 	}
 }

@@ -10,16 +10,14 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class ChineseSupport
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void ReadString()
 		{
-			engine = new FileHelperEngine(typeof (ChineseTest));
+			var engine = new FileHelperEngine<ChineseTest>();
 
 			ChineseTest[] res;
 			engine.Encoding = Encoding.Unicode;
-			res = (ChineseTest[]) engine.ReadString(@"A123456789台北市民權東東路3號           20061008
+			res = engine.ReadString(@"A123456789台北市民權東東路3號           20061008
 A987654321台北市民權東東路5號           20061008");
 
 			Assert.AreEqual(2, res.Length);
@@ -34,11 +32,11 @@ A987654321台北市民權東東路5號           20061008");
 		[Test]
 		public void ReadFile()
 		{
-			engine = new FileHelperEngine(typeof (ChineseTest));
+			var engine = new FileHelperEngine<ChineseTest>();
 
 			ChineseTest[] res;
 			//engine.Encoding = Encoding.Unicode;
-			res = (ChineseTest[]) TestCommon.ReadTest(engine, "Good", "Chinese.txt");
+            res = TestCommon.ReadTest<ChineseTest>(engine, "Good", "Chinese.txt");
 
 			Assert.AreEqual(2, res.Length);
 			Assert.AreEqual(2, engine.TotalRecords);

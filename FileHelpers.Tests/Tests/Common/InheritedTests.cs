@@ -9,12 +9,10 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class InheritedTests
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void Inherited1()
 		{
-			engine = new FileHelperEngine(typeof (SampleInheritType));
+			var engine = new FileHelperEngine<SampleInheritType>();
 
             Assert.AreEqual(3, engine.Options.FieldCount);
 
@@ -23,7 +21,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
 			SampleInheritType[] res;
-			res = (SampleInheritType[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleInheritType>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -42,10 +40,10 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InheritedEmpty()
 		{
-			engine = new FileHelperEngine(typeof (SampleInheritEmpty));
+			var engine = new FileHelperEngine<SampleInheritEmpty>();
 
 			SampleInheritEmpty[] res;
-			res = (SampleInheritEmpty[]) TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleInheritEmpty>(engine, "Good", "Test1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(4, engine.TotalRecords);
@@ -67,7 +65,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Inherited2()
 		{
-			engine = new FileHelperEngine(typeof (DelimitedSampleInheritType));
+			var engine = new FileHelperEngine<DelimitedSampleInheritType>();
 
 
 		}
@@ -75,7 +73,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void InheritedEmptyDelimited()
 		{
-			engine = new FileHelperEngine(typeof (DelimitedSampleInheritEmpty));
+			var engine = new FileHelperEngine<DelimitedSampleInheritEmpty>();
 		}
 
 
@@ -557,12 +555,12 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void IgnoreInherited1()
         {
-            engine = new FileHelperEngine(typeof(SampleInheritIgnoreType));
+            var engine = new FileHelperEngine<SampleInheritIgnoreType>();
 
             Assert.AreEqual(3, engine.Options.FieldCount);
 
             SampleInheritIgnoreType[] res;
-            res = (SampleInheritIgnoreType[])TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleInheritIgnoreType>(engine, "Good", "Test1.txt");
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -582,13 +580,13 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void IgnoreInherited2()
         {
-            engine = new FileHelperEngine(typeof(SampleInheritIgnoreType2));
+            var engine = new FileHelperEngine<SampleInheritIgnoreType2>();
 
             Assert.AreEqual(4, engine.Options.FieldCount);
             Assert.AreEqual("Field4", engine.Options.FieldsNames[3]);
 
             SampleInheritIgnoreType2[] res;
-            res = (SampleInheritIgnoreType2[])TestCommon.ReadTest(engine, "Good", "Test1.txt");
+            res = TestCommon.ReadTest<SampleInheritIgnoreType2>(engine, "Good", "Test1.txt");
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);

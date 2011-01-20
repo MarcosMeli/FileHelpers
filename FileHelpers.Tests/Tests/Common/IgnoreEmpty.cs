@@ -8,15 +8,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class IgnoreEmpties
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
-
 		[Test]
 		public void IgnoreEmpty1()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+			var engine = new FileHelperEngine<IgnoreEmptyType1>();
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty1.txt");
+            var res = TestCommon.ReadTest<IgnoreEmptyType1>(engine, "Good", "IgnoreEmpty1.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -25,7 +22,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreEmpty2()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+			var engine = new FileHelperEngine<IgnoreEmptyType1>();
 
 			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty2.txt");
 
@@ -36,9 +33,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreEmpty3()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+			var engine = new FileHelperEngine<IgnoreEmptyType1>();
 
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty3.txt");
+            var res = TestCommon.ReadTest<IgnoreEmptyType1>(engine, "Good", "IgnoreEmpty3.txt");
 
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(8, engine.LineNumber);
@@ -47,46 +44,46 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreEmpty1Async()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
+			var asyncEngine = new FileHelperAsyncEngine<IgnoreEmptyType1>();
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "IgnoreEmpty1.txt");
+            var res = TestCommon.ReadAllAsync<IgnoreEmptyType1>(asyncEngine, "Good", "IgnoreEmpty1.txt");
 
-			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(4, res.Count);
 			Assert.AreEqual(8, asyncEngine.LineNumber);
 		}
 
 		[Test]
 		public void IgnoreEmpty3Async()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
+			var asyncEngine = new FileHelperAsyncEngine<IgnoreEmptyType1>();
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "IgnoreEmpty3.txt");
+            var res = TestCommon.ReadAllAsync<IgnoreEmptyType1>(asyncEngine, "Good", "IgnoreEmpty3.txt");
 
-			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(4, res.Count);
 			Assert.AreEqual(7, asyncEngine.LineNumber);
 		}
 
 		[Test]
 		public void IgnoreEmpty4Bad()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1));
+			var engine = new FileHelperEngine<IgnoreEmptyType1>();
 			Assert.Throws<BadUsageException>(
-                () => TestCommon.ReadTest(engine, "Good", "IgnoreEmpty4.txt"));
+                () => TestCommon.ReadTest<IgnoreEmptyType1>(engine, "Good", "IgnoreEmpty4.txt"));
 		}
 
 		[Test]
 		public void IgnoreEmpty4BadAsync()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreEmptyType1));
+			var asyncEngine = new FileHelperAsyncEngine<IgnoreEmptyType1>();
             Assert.Throws<BadUsageException>(
-                () => TestCommon.ReadAllAsync(asyncEngine, "Good", "IgnoreEmpty4.txt"));
+                () => TestCommon.ReadAllAsync<IgnoreEmptyType1>(asyncEngine, "Good", "IgnoreEmpty4.txt"));
 		}
 
 		[Test]
 		public void IgnoreEmpty4()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1Spaces));
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty4.txt");
+			var engine = new FileHelperEngine<IgnoreEmptyType1Spaces>();
+            object[] res = TestCommon.ReadTest<IgnoreEmptyType1Spaces>(engine, "Good", "IgnoreEmpty4.txt");
 			
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -95,8 +92,8 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreEmpty5()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreEmptyType1Spaces));
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty5.txt");
+			var engine = new FileHelperEngine<IgnoreEmptyType1Spaces>();
+            var res = TestCommon.ReadTest<IgnoreEmptyType1Spaces>(engine, "Good", "IgnoreEmpty5.txt");
 			
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -105,8 +102,8 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreComment1()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreCommentsType));
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreComments1.txt");
+			var engine = new FileHelperEngine<IgnoreCommentsType>();
+            object[] res = TestCommon.ReadTest<IgnoreCommentsType>(engine, "Good", "IgnoreComments1.txt");
 			
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -115,17 +112,17 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreComment1Async()
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (IgnoreCommentsType));
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "IgnoreComments1.txt");
+            var asyncEngine = new FileHelperAsyncEngine<IgnoreCommentsType>();
+            var res = TestCommon.ReadAllAsync<IgnoreCommentsType>(asyncEngine, "Good", "IgnoreComments1.txt");
 			
-			Assert.AreEqual(4, res.Length);
+			Assert.AreEqual(4, res.Count);
 			Assert.AreEqual(7, asyncEngine.LineNumber);
 		}
 		[Test]
 		public void IgnoreComment2()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreCommentsType));
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreComments2.txt");
+			var engine = new FileHelperEngine<IgnoreCommentsType>();
+            var res = TestCommon.ReadTest<IgnoreCommentsType>(engine, "Good", "IgnoreComments2.txt");
 			
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -135,8 +132,8 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreComment3()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreCommentsType2));
-			object[] res = TestCommon.ReadTest(engine, "Good", "IgnoreComments1.txt");
+			var engine = new FileHelperEngine<IgnoreCommentsType2>();
+            var res = TestCommon.ReadTest<IgnoreCommentsType2>(engine, "Good", "IgnoreComments1.txt");
 			
 			Assert.AreEqual(4, res.Length);
 			Assert.AreEqual(7, engine.LineNumber);
@@ -145,9 +142,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void IgnoreComment4()
 		{
-			engine = new FileHelperEngine(typeof (IgnoreCommentsType2));
+			var engine = new FileHelperEngine<IgnoreCommentsType2>();
             Assert.Throws<ConvertException>(
-                () =>  TestCommon.ReadTest(engine, "Good", "IgnoreComments2.txt"));
+                () => TestCommon.ReadTest<IgnoreCommentsType2>(engine, "Good", "IgnoreComments2.txt"));
 			
 			Assert.AreEqual(3, engine.LineNumber);
 		}

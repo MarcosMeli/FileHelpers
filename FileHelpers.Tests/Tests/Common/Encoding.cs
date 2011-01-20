@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using FileHelpers;
 using NUnit.Framework;
@@ -10,9 +11,8 @@ namespace FileHelpers.Tests
     [TestFixture]
 	public class FileEncoding
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
-	    private const string expectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
+
+        private const string expectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
 	    private const string expectedTextWithEGrave = "Blondesddsl p\u00e8re et fils";
 	    private const string expectedTextWithEAcute1 = "Fr\u00e9d\u00e9rique Citeaux";
 	    private const string expectedTextWithEAcute2 = "24, place Kl\u00e9ber";
@@ -23,23 +23,22 @@ namespace FileHelpers.Tests
 
         private void RunTests(Encoding enc, params string[] pathElements)
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
+			var engine = new FileHelperEngine<CustomersVerticalBar>();
 			engine.Encoding = enc;
 			Assert.AreEqual(enc, engine.Encoding);
-			CoreRunTest(pathElements);
+            CoreRunTest(engine,pathElements);
 		}
 
         private void RunConstructor(Encoding enc, params string[] pathElements)
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar), enc);
+			var engine = new FileHelperEngine<CustomersVerticalBar>( enc);
 			Assert.AreEqual(enc, engine.Encoding);
-			CoreRunTest(pathElements);
+            CoreRunTest(engine,pathElements);
 		}
 
-        private void CoreRunTest(params string[] pathElements)
+        private void CoreRunTest(FileHelperEngine<CustomersVerticalBar> engine, params string[] pathElements)
 		{
-	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) TestCommon.ReadTest(engine, pathElements);
+            CustomersVerticalBar[] res = TestCommon.ReadTest<CustomersVerticalBar>(engine, pathElements);
 	
 			Assert.AreEqual(ExpectedRecords, res.Length);
 			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
@@ -53,37 +52,40 @@ namespace FileHelpers.Tests
 			Assert.AreEqual(expectedTextWithARing, res[4].City);
 		}
 
-		private void RunAsyncTests(Encoding enc, params string[] pathElements)
+		private void RunAsyncTests(FileHelperEngine<CustomersVerticalBar> engine, Encoding enc, params string[] pathElements)
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar));
+			var asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>();
 			asyncEngine.Encoding = enc;
 			Assert.AreEqual(enc, asyncEngine.Encoding);
 
-			CoreRunAsync(pathElements);
+            CoreRunAsync(asyncEngine, engine, pathElements);
 		}
 
 		private void RunAsyncConstructor(Encoding enc, params string[] pathElements)
 		{
-			asyncEngine = new FileHelperAsyncEngine(typeof (CustomersVerticalBar), enc);
+			var asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>( enc);
 			Assert.AreEqual(enc, asyncEngine.Encoding);
 
-			CoreRunAsync(pathElements);
+            var engine = new FileHelperEngine<CustomersVerticalBar>();
+            CoreRunAsync(asyncEngine, engine, pathElements);
 		}
 
-		private void CoreRunAsync(params string[] pathElements)
+        private void CoreRunAsync(FileHelperAsyncEngine<CustomersVerticalBar> asyncEngine,
+                                  FileHelperEngine<CustomersVerticalBar> engine, 
+                                  params string[] pathElements)
 		{
-			ArrayList arr = new ArrayList();
-	
-			TestCommon.BeginReadTest(asyncEngine, pathElements);
+            List<CustomersVerticalBar> arr = new List<CustomersVerticalBar>();
 
-			foreach (object record in asyncEngine)
+            TestCommon.BeginReadTest<CustomersVerticalBar>(asyncEngine, pathElements);
+
+			foreach (var record in asyncEngine)
 			{
 				arr.Add(record);
 			}
 	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) arr.ToArray(typeof (CustomersVerticalBar));
-			Assert.AreEqual(ExpectedRecords, res.Length);
-			Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
+			CustomersVerticalBar[] res = arr.ToArray();
+            ExpectedRecords.AssertEqualTo<int>(res.Length, "Length mismatch in Encoding-CoreRunAsync");
+            ExpectedRecords.AssertEqualTo<int>(asyncEngine.TotalRecords, "Total record count mismatch in Encoding-CoreRunAsync");
 	
 			Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
 			Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
@@ -115,31 +117,35 @@ namespace FileHelpers.Tests
 		[Test]
 		public void EncodingAsyncUnicodeBig()
 		{
-			RunAsyncTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
+            var engine = new FileHelperEngine<CustomersVerticalBar>();
+            RunAsyncTests(engine, Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncANSI()
 		{
-			RunAsyncTests(Encoding.Default, "Good", "EncodingANSI.txt");
+            var engine = new FileHelperEngine<CustomersVerticalBar>();
+            RunAsyncTests(engine, Encoding.Default, "Good", "EncodingANSI.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUTF8()
 		{
-			RunAsyncTests(Encoding.UTF8, "Good", "EncodingUTF8.txt");
+            var engine = new FileHelperEngine<CustomersVerticalBar>();
+			RunAsyncTests(engine, Encoding.UTF8, "Good", "EncodingUTF8.txt");
 		}
 
 		[Test]
 		public void EncodingAsyncUnicode()
 		{
-			RunAsyncTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            var engine = new FileHelperEngine<CustomersVerticalBar>();
+            RunAsyncTests(engine, Encoding.Unicode, "Good", "EncodingUnicode.txt");
 		}
 
 		[Test]
 		public void EncodingUnicodeBig()
 		{
-			RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
+            RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
 		}
 
 

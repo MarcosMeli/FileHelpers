@@ -117,8 +117,14 @@ namespace FileHelpers.Tests.CommonTests
 			SimpleComparer(res);
 		}
 
+
+        /// <summary>
+        /// TODO:  Implement layout engine to handle this ArrayFieldsComplex test case.
+        /// Test a class containing an array of other objects
+        /// Objects are delimitted and finite so in theory should be parsable.
+        /// </summary>
         [Test]
-        [Ignore]
+        [Ignore("Class containing an array in turn containing many fields is not yet supported")]
         public void ArrayFieldsComplex()
         {
             var engine = new FileHelperEngine<ArrayComplexType>();
@@ -129,7 +135,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void ArrayFieldsBad01()
 		{
             Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof (ArrayTypeBad1)));
+                () => new FileHelperEngine<ArrayTypeBad1>());
 
 		}
 
@@ -138,7 +144,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void ArrayFieldsBad02()
 		{
 			Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof (ArrayTypeBad2)));
+                () => new FileHelperEngine<ArrayTypeBad2>());
 		}
 
         [Test]
@@ -146,28 +152,28 @@ namespace FileHelpers.Tests.CommonTests
         public void ArrayFieldsBad03()
         {
             Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof (ArrayTypeBad3)));
+                () => new FileHelperEngine<ArrayTypeBad3>());
         }
 
 	    [Test]
 		public void ArrayFieldsBad04()
 		{
             Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof (ArrayTypeBad4)));
+                () => new FileHelperEngine<ArrayTypeBad4>());
 		}
 
 		[Test]
 		public void ArrayFieldsBad05()
 		{
             Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof (ArrayTypeBad5)));
+                () => new FileHelperEngine<ArrayTypeBad5>());
 		}
 
 		[Test]
 		public void ArrayFieldsBad06()
 		{
             Assert.Throws<BadUsageException>(
-                () =>  new FileHelperEngine(typeof (ArrayTypeBad6)));
+                () =>  new FileHelperEngine<ArrayTypeBad6>());
 		}
 
 		[Test]
@@ -292,9 +298,9 @@ namespace FileHelpers.Tests.CommonTests
 
     public class ArrayComplexSubClass
     {
-        string A;
-        string B;
-        DateTime C;
+        public string A;
+        public string B;
+        public DateTime C;
     }
 
     [DelimitedRecord("\t")]

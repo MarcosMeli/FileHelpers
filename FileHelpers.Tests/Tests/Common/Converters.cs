@@ -67,27 +67,25 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class ConvertersStuff
 	{
-		FileHelperEngine engine;
-
         [Test]
         public void BadConverterOver()
         {
             Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine(typeof(BadConverter)));
+                () => new FileHelperEngine<BadConverter>());
         }
 
         [Test]
         public void AllConverters()
         {
-            engine = new FileHelperEngine(typeof(AllConvertersType));
+            var engine = new FileHelperEngine<AllConvertersType>();
         }
 
 		[Test]
 		public void NameConverterTest()
 		{
-			engine = new FileHelperEngine(typeof (DecimalConvType));
+			var engine = new FileHelperEngine<DecimalConvType>();
 
-			DecimalConvType[] res = (DecimalConvType[]) TestCommon.ReadTest(engine, "Good", "ConverterDecimals1.txt");
+            DecimalConvType[] res = TestCommon.ReadTest<DecimalConvType>(engine, "Good", "ConverterDecimals1.txt");
 
 			Assert.AreEqual(5, res.Length);
 
@@ -103,9 +101,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void NameConverterTest2()
 		{
-			engine = new FileHelperEngine(typeof (DecimalConvType2));
+			var engine = new FileHelperEngine<DecimalConvType2>();
 
-			DecimalConvType2[] res = (DecimalConvType2[]) TestCommon.ReadTest(engine, "Good", "ConverterDecimals2.txt");
+            DecimalConvType2[] res = TestCommon.ReadTest<DecimalConvType2>(engine, "Good", "ConverterDecimals2.txt");
 
 			Assert.AreEqual(5, res.Length);
 

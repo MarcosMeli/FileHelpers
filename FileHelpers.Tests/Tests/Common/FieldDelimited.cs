@@ -7,14 +7,13 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class FieldDelimited
 	{
-		FileHelperEngine engine;
 
 		[Test]
 		public void CustomDelimiter()
 		{
-			engine = new FileHelperEngine(typeof (SOXLog));
+			var engine = new FileHelperEngine<SOXLog>();
 			
-			SOXLog[] res = (SOXLog[]) TestCommon.ReadTest(engine, "Good", "FieldIgnoredAdvanced.txt");
+			SOXLog[] res = TestCommon.ReadTest<SOXLog>(engine, "Good", "FieldIgnoredAdvanced.txt");
 			Assert.AreEqual(5, res.Length);
 
 			Assert.AreEqual(ActionEnum.Deleted, res[0].ActionType);	
@@ -59,9 +58,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AnotherDelimiterTest()
 		{
-				engine = new FileHelperEngine(typeof (AnotherDelimiterType));
+				var engine = new FileHelperEngine<AnotherDelimiterType>();
 
-				AnotherDelimiterType[] res = (AnotherDelimiterType[]) TestCommon.ReadTest(engine, "Good", "CustomConverter2.txt");
+                var res = TestCommon.ReadTest<AnotherDelimiterType>(engine, "Good", "CustomConverter2.txt");
 
 				Assert.AreEqual(4, res.Length);
 

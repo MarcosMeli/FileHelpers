@@ -10,8 +10,6 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class IntegerSeparators
     {
-        FileHelperEngine engine;
-
         string toTest = @"123|456|78910" + "\n" +
                         @"1,234|4,056|78,910" + "\n" +
                         @"0|1|2";
@@ -23,9 +21,9 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void ReadFileDefault()
         {
-            engine = new FileHelperEngine(typeof(SampleIntegerType));
+            var engine = new FileHelperEngine<SampleIntegerType>();
 
-            SampleIntegerType[] res = (SampleIntegerType[]) engine.ReadString(toTest);
+            SampleIntegerType[] res = engine.ReadString(toTest);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);
@@ -45,7 +43,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void ReadFileDefined()
         {
-            engine = new FileHelperEngine(typeof(SampleIntegerTypeDefined));
+            var engine = new FileHelperEngine<SampleIntegerTypeDefined>();
 
             SampleIntegerTypeDefined[] res = (SampleIntegerTypeDefined[])engine.ReadString(toTestMixed);
 

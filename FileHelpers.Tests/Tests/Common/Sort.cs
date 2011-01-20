@@ -9,14 +9,12 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class SortRecords
 	{
-		FileHelperEngine engine;
-
 		[Test]
 		public void Sort1()
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
+			var engine = new FileHelperEngine<CustomersVerticalBar>();
 
-			CustomersVerticalBar[] res =  engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersVerticalBar[];
+            CustomersVerticalBar[] res = engine.ReadFile(FileTest.Good.Sort1.Path);
 
 			Assert.AreEqual(8, res.Length);
 
@@ -32,7 +30,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Sort2()
 		{
-			engine = new FileHelperEngine(typeof (CustomersSort));
+			var engine = new FileHelperEngine<CustomersSort>();
 
             CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
 
@@ -50,10 +48,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Sort3()
 		{
-			engine = new FileHelperEngine(typeof (CustomersVerticalBar));
+			var engine = new FileHelperEngine<CustomersVerticalBar>();
 
-            object[] res = engine.ReadFile(FileTest.Good.Sort1.Path);
-
+            var res = engine.ReadFile(FileTest.Good.Sort1.Path);
 
             Assert.Throws<BadUsageException>(()
                  => CommonEngine.SortRecords(res));
@@ -62,7 +59,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Sort4()
 		{
-			engine = new FileHelperEngine(typeof (CustomersSort));
+			var engine = new FileHelperEngine<CustomersSort>();
 
             CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
 
@@ -80,9 +77,9 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void Sort5()
 		{
-			engine = new FileHelperEngine(typeof (CustomersSort));
+			var engine = new FileHelperEngine<CustomersSort>();
 
-            CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
+            CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path);
 			Assert.AreEqual(8, res.Length);
 
             Assert.Throws<BadUsageException>(()
