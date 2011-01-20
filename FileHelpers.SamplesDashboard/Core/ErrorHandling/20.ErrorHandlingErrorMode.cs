@@ -9,7 +9,7 @@ namespace Demos
     /// Simple class with use the error mode for a value not in the enumerator
     /// </summary>
     public class ErrorModeErrorHandlingDemo
-        :IDemo
+        : DemoParent
     {
         //-> {Example.Name:ErrorMode Error handling}
         //-> {Example.Description:Read the file rejecting bad records}
@@ -22,14 +22,14 @@ namespace Demos
         /// <remarks>
         /// In the standard mode you can catch the exceptions when something fails.
         /// </remarks>
-        public void Run()
+        public override void Run()
         {
             var engine = new DelimitedFileEngine<Customer>();
 
             // Switch error mode on
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            //  This fails with not in enumeration error
+            //  Only record that fails will not be present
             Customer[] customers = engine.ReadFile("Input.txt");
 
             // This will display error from line 2 of the file.
@@ -77,6 +77,17 @@ namespace Demos
             SalesRepresentative,
             MarketingManager
         }
+        //-> {/Example.File}
+
+        //-> {Example.File:example_errors_errormode.html}
+        /* <h2>ErorMode Error Handling</h2>
+         * <p><p>A more intelligent way is using the
+         * <a href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
+         * of the ErrorManager:</p>
+         * ${RunEngine.cs}
+         * <p>Using the engine like this you have the good records in the records array and in
+         * the ErrorManager you have the records with errors and can do wherever you want.</p>
+         */
         //-> {/Example.File}
     }
 }

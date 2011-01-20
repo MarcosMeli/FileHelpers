@@ -11,7 +11,7 @@ namespace Demos
     /// Example of the Read Before event
     /// </summary>
     public class ReadBeforeEventSample
-        : IDemo
+        : DemoParent
     {
 
         //-> {Example.Name:Read Before Event Handling}
@@ -21,7 +21,7 @@ namespace Demos
         /// <summary>
         /// reads report.inp and skips all the records that are not detail records using a simple criteria
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
             engine.BeforeReadRecord += new BeforeReadHandler<OrdersFixed>(BeforeEvent);

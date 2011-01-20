@@ -2,9 +2,16 @@
 
 namespace FileHelpers
 {
+    /// <summary>
+    /// Container for category as a tree node leaf
+    /// </summary>
     public class CategoryTreeNode
-        : TreeNode
+        : TreeNode, IHTMLwriter
     {
+        /// <summary>
+        /// Create a category tree node using text description
+        /// </summary>
+        /// <param name="text"></param>
         public CategoryTreeNode(string text)
             : base(text)
         {
@@ -12,7 +19,28 @@ namespace FileHelpers
             this.ImageKey = "demo";
         }
 
-        public DemoCode Demo { get; set; }
 
+        /// <summary>
+        /// Output HTML,  in this case a heading
+        /// </summary>
+        /// <param name="index"></param>
+        public void OutputHtml(System.Text.StringBuilder index, int indent)
+        {
+            index.Append("<h3>");
+            index.Append(this.Text);
+            index.AppendLine("</h3>");
+
+            if (Nodes.Count > 0)
+            {
+                int newIndent = indent + 1;
+                index.AppendLine("<blockquote><dl>");
+                foreach (var node in this.Nodes)
+                {
+                    if (node is IHTMLwriter)
+                        ((IHTMLwriter)node).OutputHtml(index, newIndent);
+                }
+                index.AppendLine("</dl></blockquote>");
+            }
+        }
     }
 }

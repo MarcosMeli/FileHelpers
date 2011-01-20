@@ -119,9 +119,9 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
                 name = match.Groups["name"].Value.Trim();
             }
 
-			// Grabs class name that implements IDemo interface as 'classname'
+			// Grabs class name that implements DemoParent class as 'classname'
 			var className = "";
-            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*IDemo", regexOptions | RegexOptions.Singleline);
+            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*DemoParent", regexOptions | RegexOptions.Singleline);
             if (match.Success)
             {
                 className = match.Groups["classname"].Value.Trim();
@@ -180,6 +180,9 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 					case "out":
 						res.AppendLine(@"work.Status = DemoFile.FileType.OutputFile;");
 						break;
+					case "html":
+						res.AppendLine(@"work.Status = DemoFile.FileType.HtmlFile;");
+						break;
 					default:
 						res.AppendLine("// unknown extension "+ Ext);
 						break; // defaults to CS
@@ -209,15 +212,21 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             return res.ToString();
         }
 
+		static Regex LeadingAster = new Regex( @"^\s*\* ", RegexOptions.Compiled| RegexOptions.Multiline );
+
         public static string GetFileCode(string contents)
         {
 		    if( String.IsNullOrEmpty( contents ))
 			    return string.Empty;
-		    // double quotes are doubled so that @" "" becomes a single quote.
-            contents = contents.Replace("\"", "\"\"")
+		    //  the leading aster is for C comments with an asterisk in front of every line,
+			//  they are automatically added by editor so automatically removed
+            contents = LeadingAster.Replace(
+			// double quotes are doubled so that @" "" becomes a single quote.
+			    contents.Replace("\"", "\"\"")
 			//  strip old style C comments from code
                 .Replace("*/", "")
-                .Replace("/*", "");
+                .Replace("/*", "")
+				.Replace("this.Console","Console"), "");
 
             int? indent = null;
 

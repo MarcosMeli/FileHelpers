@@ -12,12 +12,12 @@ namespace Demos
     /// Example of writing a delimited file using the generic engine
     /// </summary>
     public class WriteFile
-        :IDemo
+        : DemoParent
     {
         /// <summary>
         /// Execute engine and write out records we define in memory delimited by |
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             //-> {Example.File:Example.cs}
             var engine = new FileHelperEngine<Orders>();
@@ -54,7 +54,19 @@ namespace Demos
 
         //-> {Example.File: Output.Txt}
         //-> {/Example.File}
+
+        //-> {Example.File: example_easy_write.html}
+        /*<h2>Easy Write Example</h2>
+         * <blockquote>
+         * <p>To write an output file separated by a |:</p>
+         * ${Output.Txt}
+         * <p>You use the same Record Mapping Class as you would to read it:</p>
+         * ${RecordClass.cs}
+         * <p>Finally you must to instantiate a FileHelperEngine and write the file:</p>
+         * ${Example.cs}
+         * <p>The classes you use could come from anywhere,  Linq to Entities,
+         * SQL database reads, or in this case classes created within an application.
+        */
+        //-> {/Example.File}
     }
-
-
 }

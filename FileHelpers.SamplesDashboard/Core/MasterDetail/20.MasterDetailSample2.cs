@@ -11,7 +11,7 @@ namespace Demos
     /// Example of the Master Detail processing
     /// </summary>
     public class SecondMasterDetailSample
-        : IDemo
+        : DemoParent
     {
 
         //-> {Example.Name:Master Detail sample}
@@ -21,7 +21,7 @@ namespace Demos
         /// <summary>
         /// Run a record through engine using a Common selector where master contains a characrter to create a master detail input
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new MasterDetailEngine<Customers, Orders>
                                          (CommonSelector.MasterIfContains, "@");

@@ -10,7 +10,7 @@ namespace Demos
     /// Saving error output and recovering it
     /// </summary>
     public class ErrorSaveErrorHandlingDemo
-        :IDemo
+        : DemoParent
     {
         //-> {Example.Name:ErrorMode saving Errors}
         //-> {Example.Description:Read the file saving bad records}
@@ -20,7 +20,7 @@ namespace Demos
         /// Run an example of running a file with an error using the
         /// ErrorMode option to capture bad records and then saving them
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new DelimitedFileEngine<Customer>();
 
@@ -32,6 +32,16 @@ namespace Demos
 
             if (engine.ErrorManager.HasErrors)
                 engine.ErrorManager.SaveErrors("errors.out");
+            LoadErrors();
+        }
+        //-> {/Example.File}
+
+        //-> {Example.File:LoadErrors.cs}
+        /// <summary>
+        /// Load errors and display on console
+        /// </summary>
+        private void LoadErrors()
+        {
 
             // sometime later you can read it back
             ErrorInfo[] errors = ErrorManager.LoadErrors("errors.out");
@@ -39,10 +49,10 @@ namespace Demos
             // This will display error from line 2 of the file.
             foreach (var err in errors)
             {
-                Console.WriteLine();
-                Console.WriteLine("Error on Line number: {0}", err.LineNumber);
-                Console.WriteLine("Record causing the problem: {0}", err.RecordString);
-                Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
+                this.Console.WriteLine();
+                this.Console.WriteLine("Error on Line number: {0}", err.LineNumber);
+                this.Console.WriteLine("Record causing the problem: {0}", err.RecordString);
+                this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
         //-> {/Example.File}
@@ -85,5 +95,18 @@ namespace Demos
 
         //-> {Example.File:Errors.out}
         //-> {/Example.File}
+
+        //-> {Example.File:example_errors_save.html}
+        /* <h2>Saving and Loading Errors</h2>
+         * <blockquote>
+         * <p>One interesting feature is the method in the ErrorManager to save the errors to a file,
+         * you can do this as follows:</p>
+         * ${RunEngine.cs}
+         * <p>To load a file with errors you can use the static method:</p>
+         * ${LoadErrors.cs}
+         * </blockquote>
+         */
+        //-> {/Example.File}
+
     }
 }

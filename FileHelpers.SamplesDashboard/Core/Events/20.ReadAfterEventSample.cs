@@ -11,7 +11,7 @@ namespace Demos
     /// Example of the Read After event
     /// </summary>
     public class ReadAfterEventSample
-        : IDemo
+        : DemoParent
     {
 
         //-> {Example.Name:Read After Event Handling}
@@ -21,7 +21,7 @@ namespace Demos
         /// <summary>
         /// Read a simple file and ignore zero value freight using a Read After Event
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
             engine.AfterReadRecord += new AfterReadHandler<OrdersFixed>(AfterEvent);

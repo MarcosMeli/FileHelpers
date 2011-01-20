@@ -9,7 +9,7 @@ namespace Demos
     //-> {Example.Description:Write a file with different delimiters using the same record}
 
     public class MultipleDelimiters
-        :IDemo
+        : DemoParent
     {
 
         //-> {Example.File:RunEngine.cs}
@@ -17,7 +17,7 @@ namespace Demos
         /// Run an example of writing a delimited file and 
         /// changing the delimiter to show how it is done.
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var customers = CreateCustomers();
 
@@ -80,6 +80,18 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
                 return CustomerID + " - " + CompanyName + ", " + ContactName;
             }
         }
+        //-> {/Example.File}
+
+        //-> {Example.File:example_delimited_engine.html}
+        /*<h2>Delimited File Engine</h2>
+         *<p>With this cool feature you can simply change some of the record definitions at run time.</p>
+         *<p>Lets start with a simple example:</p>
+         *${CustomersVerticalBar.cs}
+         *<p>After working with this file for a while, and you need to export the
+         *data in this format <b>but delimited by ";" and "|"</b></p>
+         *<p>This is how easy its is:</p>
+         *${RunEngine.cs}
+         */
         //-> {/Example.File}
     }
 }

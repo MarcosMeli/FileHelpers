@@ -11,7 +11,7 @@ namespace Demos
     /// Example of the Master Detail processing
     /// </summary>
     public class SimpleMasterDetailSample
-        : IDemo
+        : DemoParent
     {
 
         //-> {Example.Name:Simple Master Detail sample}
@@ -21,7 +21,7 @@ namespace Demos
         /// <summary>
         /// Run a record through engine using a selector to create a master detail input
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new MasterDetailEngine<Customers, Orders>(new MasterDetailSelector(ExampleSelector));
 

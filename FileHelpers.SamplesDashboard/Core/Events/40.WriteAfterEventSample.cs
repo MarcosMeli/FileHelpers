@@ -11,7 +11,7 @@ namespace Demos
     /// Example of the Write After event
     /// </summary>
     public class WriteAfterEventSample
-        : IDemo
+        : DemoParent
     {
 
         //-> {Example.Name:Write After Event Handling}
@@ -21,7 +21,7 @@ namespace Demos
         /// <summary>
         /// Run a record through engine using the write event to filter out unwanted details
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
 

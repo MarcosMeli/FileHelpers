@@ -34,13 +34,17 @@
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.InfoSheet = new System.Windows.Forms.WebBrowser();
             this.txtCode = new ICSharpCode.TextEditor.TextEditorControl();
             this.tcCodeFiles = new System.Windows.Forms.TabControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
+            this.TestDescription = new System.Windows.Forms.Label();
+            this.extracthtml = new System.Windows.Forms.ToolStripButton();
+            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -92,6 +96,8 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extracthtml});
             this.toolStrip1.Location = new System.Drawing.Point(0, 85);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(884, 25);
@@ -114,18 +120,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(884, 502);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // treeViewDemos1
-            // 
-            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewDemos1.ImageIndex = 0;
-            this.treeViewDemos1.ImageList = this.imgTreeView;
-            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
-            this.treeViewDemos1.Name = "treeViewDemos1";
-            this.treeViewDemos1.SelectedImageIndex = 0;
-            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
-            this.treeViewDemos1.TabIndex = 0;
-            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
             // 
             // imgTreeView
             // 
@@ -154,12 +148,21 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
             this.splitContainer2.Panel1.Controls.Add(this.txtCode);
             this.splitContainer2.Panel1.Controls.Add(this.tcCodeFiles);
             this.splitContainer2.Panel1.Controls.Add(this.toolStrip2);
             this.splitContainer2.Size = new System.Drawing.Size(586, 502);
             this.splitContainer2.SplitterDistance = 423;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // InfoSheet
+            // 
+            this.InfoSheet.Location = new System.Drawing.Point(88, 6);
+            this.InfoSheet.MinimumSize = new System.Drawing.Size(20, 20);
+            this.InfoSheet.Name = "InfoSheet";
+            this.InfoSheet.Size = new System.Drawing.Size(572, 367);
+            this.InfoSheet.TabIndex = 6;
             // 
             // txtCode
             // 
@@ -205,17 +208,50 @@
             this.cmdRunDemo.Text = "Run Demo";
             this.cmdRunDemo.Click += new System.EventHandler(this.cmdRunDemo_Click);
             // 
+            // TestDescription
+            // 
+            this.TestDescription.AutoSize = true;
+            this.TestDescription.Location = new System.Drawing.Point(427, 100);
+            this.TestDescription.Name = "TestDescription";
+            this.TestDescription.Size = new System.Drawing.Size(92, 13);
+            this.TestDescription.TabIndex = 4;
+            this.TestDescription.Text = "Description of test";
+            // 
+            // extracthtml
+            // 
+            this.extracthtml.Image = global::FileHelpers.SamplesDashboard.Properties.Resources.arrow_right;
+            this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.extracthtml.Name = "extracthtml";
+            this.extracthtml.Size = new System.Drawing.Size(98, 22);
+            this.extracthtml.Text = "Extract HTML";
+            this.extracthtml.Click += new System.EventHandler(this.extracthtml_Click);
+            // 
+            // treeViewDemos1
+            // 
+            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDemos1.ImageIndex = 0;
+            this.treeViewDemos1.ImageList = this.imgTreeView;
+            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
+            this.treeViewDemos1.Name = "treeViewDemos1";
+            this.treeViewDemos1.SelectedImageIndex = 0;
+            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
+            this.treeViewDemos1.TabIndex = 0;
+            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
+            // 
             // frmSamples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 612);
+            this.Controls.Add(this.TestDescription);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.reflectionHeader1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSamples";
             this.Text = "FileHelpers Examples";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -243,5 +279,8 @@
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
         private System.Windows.Forms.ImageList imgTreeView;
         private ICSharpCode.TextEditor.TextEditorControl txtCode;
+        private System.Windows.Forms.Label TestDescription;
+        private System.Windows.Forms.WebBrowser InfoSheet;
+        private System.Windows.Forms.ToolStripButton extracthtml;
     }
 }

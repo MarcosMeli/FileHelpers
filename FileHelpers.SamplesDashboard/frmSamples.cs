@@ -27,9 +27,17 @@ namespace FileHelpers.SamplesDashboard
         /// </summary>
         public const string OutputFilename = "Output.txt";
 
+
         public frmSamples()
         {
             InitializeComponent();
+            this.InfoSheet.Visible = false;
+            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
+            this.InfoSheet.Location = new System.Drawing.Point(7, 49);
+            this.InfoSheet.BringToFront();
+#if ! DEBUG
+            this.extracthtml.Visible = false;
+#endif
         }
 
         protected override void OnLoad(EventArgs e)
@@ -55,6 +63,8 @@ namespace FileHelpers.SamplesDashboard
         {
             this.SuspendLayout();
             tcCodeFiles.TabPages.Clear();
+
+            this.TestDescription.Text = CurrentDemo.CodeDescription;
 
             foreach (var file in CurrentDemo.Files)
             {
@@ -89,16 +99,36 @@ namespace FileHelpers.SamplesDashboard
             if (demo == null)
                 return;
 
+            if (demo.Status == DemoFile.FileType.HtmlFile)
+            {
+                //  Hide the code editor
+                txtCode.Visible = false;
+                this.InfoSheet.Visible = true;
+
+                HtmlWrapper html = new HtmlWrapper(demo.Contents, CurrentDemo.Files);
+                string text = html.ToString();
+                this.InfoSheet.DocumentText = text;
+                int retries = 0;
+                while (this.InfoSheet.DocumentText != text && retries < 10)
+                {
+                    System.Threading.Thread.Sleep(200);
+                    retries++;
+                }
+                this.InfoSheet.Invalidate();
+                return;
+            }
+            this.InfoSheet.Visible = false;
+            this.txtCode.Visible = true;
+
             txtCode.IsReadOnly = true;
             var doc = new ICSharpCode.TextEditor.Document.DocumentFactory();
             var doc2 = doc.CreateDocument();
             doc2.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
             doc2.TextContent = demo.Contents;
+            doc2.ReadOnly = true;
             txtCode.Document = doc2;
-
-            txtCode.Show();
-            txtCode.Refresh();
-
+            txtCode.Refresh(); 
+            
         }
 
         public DemoCode CurrentDemo
@@ -117,32 +147,19 @@ namespace FileHelpers.SamplesDashboard
         {
             if (CurrentDemo == null)
                 return;
-            try
-            {
-                foreach (DemoFile file in CurrentDemo.Files)
-                {
-                    if (file.Status == DemoFile.FileType.InputFile)
-                        File.WriteAllText(file.Filename, file.Contents);
-                }
-                CurrentDemo.Demo.Run();
-            }
-            finally
-            {
-                foreach (DemoFile file in CurrentDemo.Files)
-                {
-                    if (file.Status == DemoFile.FileType.InputFile)
-                    {
-                        File.Delete(file.Filename);
-                    }
-                    if (file.Status == DemoFile.FileType.OutputFile)
-                    {
-                        if (File.Exists(file.Filename))
-                        {
-                            file.Contents = File.ReadAllText(file.Filename);
-                        }
-                    }
-                }
-            }
+            CurrentDemo.AddedFile += new EventHandler<DemoCode.NewFile>(FileHandler);
+            CurrentDemo.Test();
+            CurrentDemo.AddedFile -= FileHandler;
+        }
+
+        private void FileHandler( object sender, DemoCode.NewFile file )
+        {
+            CreateNewDemoFile(file.details);
+        }
+
+        private void extracthtml_Click(object sender, EventArgs e)
+        {
+            treeViewDemos1.ProcessDocumentation();
         }
 
     }

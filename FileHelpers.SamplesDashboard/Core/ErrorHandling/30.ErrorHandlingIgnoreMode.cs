@@ -9,7 +9,7 @@ namespace Demos
     /// Simple class with use the error mode for a value not in the enumerator
     /// </summary>
     public class IgnoreModeErrorHandlingDemo
-        :IDemo
+        : DemoParent
     {
         //-> {Example.Name:Ignore Mode Error handling}
         //-> {Example.Description:Read the file dropping bad records}
@@ -19,7 +19,7 @@ namespace Demos
         /// Run an example of running a file with an error using the
         /// IgnoreMode option to silently drop bad records
         /// </summary>
-        public void Run()
+        public override void Run()
         {
             var engine = new DelimitedFileEngine<Customer>();
 
@@ -80,6 +80,14 @@ namespace Demos
             SalesRepresentative,
             MarketingManager
         }
+        //-> {/Example.File}
+
+        //-> {Example.File:example_errors_ignore.html}
+        /* <h2>Ignore and Continue Error Handling</h2>
+         * <p>Another option is to ignore the errors and continue. Here is an example:</p>
+         * ${RunEngine.cs}
+         * <p>In the records array you only have the good records.</p>
+         */
         //-> {/Example.File}
     }
 }

@@ -9,12 +9,10 @@ namespace Demos
     /// Simple class with try catch and a value not in the enumerator
     /// </summary>
     public class SimpleErrorHandlingDemo
-        :IDemo
+        : DemoParent
     {
         //-> {Example.Name:Simple Error handling}
         //-> {Example.Description:Read the file or reject the whole file}
-
-
 
         //-> {Example.File:RunEngine.cs}
         /// <summary>
@@ -24,7 +22,7 @@ namespace Demos
         /// <remarks>
         /// In the standard mode you can catch the exceptions when something fails.
         /// </remarks>
-        public void Run()
+        public override void Run()
         {
             try
             {
@@ -36,12 +34,15 @@ namespace Demos
                 // this will not happen because of the exception
                 foreach (var cust in customers)
                 {
-                    Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
+                    Console.WriteLine("Customer name {0} is a {1}",
+                                      cust.ContactName,
+                                      cust.ContactTitle);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                // Console.WriteLine(ex.ToString()); // with stack trace
+                this.Console.WriteLine(ex.Message);
             }
         }
         //-> {/Example.File}
@@ -80,6 +81,19 @@ namespace Demos
             SalesRepresentative,
             MarketingManager
         }
+        //-> {/Example.File}
+
+        //-> {Example.File:example_errors_simple.html}
+        /* <h2>Simple Error Handling</h2>
+         * <blockquote>
+         * <p>In the standard mode you can catch the exceptions when something fail.</p>
+         * ${RunEngine.cs}
+         * <p>This approach not is bad but you lose some information about the current record
+         * and you can't use the records array because is not assigned.</p>
+         * <p>Example exception is:</p>
+         * ${Console}
+         * </blockquote>
+         */
         //-> {/Example.File}
     }
 }

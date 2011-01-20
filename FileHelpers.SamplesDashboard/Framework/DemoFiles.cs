@@ -27,6 +27,7 @@
             SourceFile,
             InputFile,
             OutputFile,
+            HtmlFile,
         }
 
         /// <summary>
