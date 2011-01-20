@@ -9,13 +9,10 @@ namespace FileHelpers.Tests.Errors
 	[TestFixture]
 	public class OtherErrors
 	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine engine2;
-
 		[Test]
 		public void FileNotFound()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 			Assert.Throws<FileNotFoundException>(()
                 => engine.ReadFile("No foun343333d this file.txt"));
 		}
@@ -23,7 +20,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullReader()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 			Assert.Throws<ArgumentNullException>(()
                 => engine.ReadStream(null));
 		}
@@ -31,14 +28,14 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullString()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 			engine.ReadString(null);
 		}
 
 		[Test]
 		public void NullWriter()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 			Assert.Throws<ArgumentNullException>(()
                 => engine.WriteStream(null, null));
 		}
@@ -47,7 +44,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullRecords()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 			Assert.Throws<ArgumentNullException>(()
                 => engine.WriteStream(new StringWriter(new StringBuilder()), null));
 		}
@@ -60,7 +57,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void FileNotFound2()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			Assert.Throws<FileNotFoundException>(()
                 => engine2.BeginReadFile("No fouffffnd this file.txt"));
 		}
@@ -68,7 +65,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void FileNotFound3()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			Assert.Throws<ArgumentNullException>(()
                 => engine2.BeginAppendToFile(null));
 		}
@@ -76,7 +73,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullReader2()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			Assert.Throws<ArgumentNullException>(()
                 => engine2.BeginReadStream(null));
 		}
@@ -84,14 +81,14 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullString2()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			engine2.BeginReadString(null);
 		}
 
 		[Test]
 		public void NullWriter2()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			Assert.Throws<ArgumentException>(()
                 => engine2.BeginWriteStream(null));
 		}
@@ -100,7 +97,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void NullRecords2()
 		{
-			engine2 = new FileHelperAsyncEngine(typeof (SampleType));
+			var engine2 = new FileHelperAsyncEngine<SampleType>();
 			engine2.BeginWriteStream(new StringWriter(new StringBuilder()));
 
 			Assert.Throws<ArgumentNullException>(()

@@ -116,9 +116,9 @@ namespace FileHelpers.Tests.Errors
 
 			engine.ErrorManager.SaveErrors(filename);
 
-			FileHelperEngine e2 = new FileHelperEngine(typeof(ErrorInfo));
+			var e2 = new FileHelperEngine<ErrorInfo>();
 
-			ErrorInfo[] errors = (ErrorInfo[]) e2.ReadFile(filename);
+			ErrorInfo[] errors = e2.ReadFile(filename);
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
             File.Delete(filename);

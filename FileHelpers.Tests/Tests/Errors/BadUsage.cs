@@ -23,7 +23,7 @@ namespace FileHelpers.Tests.Errors
 		public void DuplicatedDefinition()
 		{
             Assert.Throws<BadUsageException>(() 
-                => new FileHelperEngine(typeof (TestDupli)));
+                => new FileHelperEngine<TestDupli>());
 		}
 
 		#endregion
@@ -48,14 +48,14 @@ namespace FileHelpers.Tests.Errors
 		public void SwitchedAttb1()
 		{
             Assert.Throws<BadUsageException>(() 
-                => new FileHelperEngine(typeof (SwitchedAttributes1)));
+                => new FileHelperEngine<SwitchedAttributes1>());
 		}
 
 		[Test]
 		public void SwitchedAttb2()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(SwitchedAttributes2)));
+                => new FileHelperEngine<SwitchedAttributes2>());
 		}
 
 		#endregion
@@ -72,7 +72,7 @@ namespace FileHelpers.Tests.Errors
 		public void NullValue1()
 		{
             Assert.Throws<BadUsageException>(() 
-                => new FileHelperEngine(typeof (NullValue1Type)));
+                => new FileHelperEngine<NullValue1Type>());
 		}
 
 		#endregion
@@ -88,7 +88,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoMarked()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoMarkedClass)));
+                => new FileHelperEngine<NoMarkedClass>());
 		}
 
 		#endregion
@@ -105,7 +105,7 @@ namespace FileHelpers.Tests.Errors
 		public void FixedWithOutLength()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(FixedWithOutLengthClass)));
+                => new FileHelperEngine<FixedWithOutLengthClass>());
 		}
 
 		#endregion
@@ -121,7 +121,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoFields()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoFieldsClass)));
+                => new FileHelperEngine<NoFieldsClass>());
 		}
 
 		#endregion
@@ -139,7 +139,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoFields2()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoFieldsClass2)));
+                => new FileHelperEngine<NoFieldsClass2>());
 		}
 
 		#endregion
@@ -160,7 +160,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoFields3()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoFieldsClass3)));
+                => new FileHelperEngine<NoFieldsClass3>());
 		}
 
 		#endregion
@@ -183,7 +183,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoConstructor()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoConstructorClass)));
+                => new FileHelperEngine<NoConstructorClass>());
 		}
 
 		#endregion
@@ -214,7 +214,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoConstructorConverter()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoConstructorConvClass)));
+                => new FileHelperEngine<NoConstructorConvClass>());
 		}
 
 
@@ -229,7 +229,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoConstructorConverter2()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoConstructorConvClass2)));
+                => new FileHelperEngine<NoConstructorConvClass2>());
 		}
 
 
@@ -244,7 +244,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoConstructorConverter3()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoConstructorConvClass3)));
+                => new FileHelperEngine<NoConstructorConvClass3>());
 		}
 
 		[DelimitedRecord(",")]
@@ -262,7 +262,7 @@ namespace FileHelpers.Tests.Errors
 		public void NoConstructorConverter4()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NoConstructorConvClass4)));
+                => new FileHelperEngine<NoConstructorConvClass4>());
 		}
 
 		#endregion
@@ -292,14 +292,14 @@ namespace FileHelpers.Tests.Errors
 		public void BadDateFormat1()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(DateFormat1Class)));
+                => new FileHelperEngine<DateFormat1Class>());
 		}
 
 		[Test]
 		public void BadDateFormat2()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(DateFormat2Class)));
+                => new FileHelperEngine<DateFormat2Class>());
 		}
 
 //		[Test]
@@ -340,7 +340,7 @@ namespace FileHelpers.Tests.Errors
 		public void AlignError()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(AlignClass)));
+                => new FileHelperEngine<AlignClass>());
 		}
 
 		#endregion
@@ -358,7 +358,7 @@ namespace FileHelpers.Tests.Errors
 		public void NonSystemType()
 		{
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(NonSystemTypeClass)));
+                => new FileHelperEngine<NonSystemTypeClass>());
 		}
 
 		#endregion
@@ -393,7 +393,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void BadRecordType()
 		{
-            FileHelperEngine engine = new FileHelperEngine(typeof(BadRecordTypeClass));
+            var engine = new FileHelperEngine(typeof(BadRecordTypeClass));
 			Assert.Throws<BadUsageException>(() 
                 => engine.WriteString(new [] {"hola"}));
             
@@ -411,7 +411,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void WriteBadUsage()
 		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res = new SampleType[2];
 
@@ -428,7 +428,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void WriteBadUsage2()
 		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (SampleType));
+			var engine = new FileHelperEngine<SampleType>();
             Assert.Throws<ArgumentNullException>(() 
                 => engine.WriteString(null));
 		}

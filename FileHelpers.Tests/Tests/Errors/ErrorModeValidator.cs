@@ -8,19 +8,19 @@ namespace FileHelpers.Tests.Errors
 	[TestFixture]
 	public class ErrorModeValidator
 	{
-		FileHelperEngine engine;
+		FileHelperEngine<SampleType> engine;
 
 		[SetUp]
 		public void Setup()
 		{
-			engine = new FileHelperEngine(typeof (SampleType));
+			engine = new FileHelperEngine<SampleType>();
 		}
 
 		[Test]
 		public void IgnoreAndContinue()
 		{
 			engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
-			TestCommon.ReadTest(engine, "Bad", "BadDate1.txt");
+            TestCommon.ReadTest<SampleType>(engine, "Bad", "BadDate1.txt");
 			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 		}
 
@@ -60,11 +60,11 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void SaveAndContinue2()
         {
-            engine = new FileHelperEngine(typeof(SampleTypeIgnoreFirst));
+            var engine = new FileHelperEngine<SampleTypeIgnoreFirst>();
 
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1Ignore.txt").Length);
+            Assert.AreEqual(3, TestCommon.ReadTest<SampleTypeIgnoreFirst>(engine, "Bad", "BadDate1Ignore.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -78,11 +78,11 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void SaveAndContinue3()
         {
-            engine = new FileHelperEngine(typeof(SampleTypeIgnoreFirstLast));
+            var engine = new FileHelperEngine<SampleTypeIgnoreFirstLast>();
 
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1IgnoreLast.txt").Length);
+            Assert.AreEqual(3, TestCommon.ReadTest<SampleTypeIgnoreFirstLast>(engine, "Bad", "BadDate1IgnoreLast.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -95,11 +95,11 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void SaveAndContinue4()
         {
-            engine = new FileHelperEngine(typeof(SampleTypeIgnoreFirstLast));
+            var engine = new FileHelperEngine<SampleTypeIgnoreFirstLast>();
 
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1IgnoreLast2.txt").Length);
+            Assert.AreEqual(3, TestCommon.ReadTest<SampleTypeIgnoreFirstLast>(engine, "Bad", "BadDate1IgnoreLast2.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -184,9 +184,9 @@ namespace FileHelpers.Tests.Errors
 
 		    engine.ErrorManager.SaveErrors(filename);
 
-			FileHelperEngine e2 = new FileHelperEngine(typeof(ErrorInfo));
+			var e2 = new FileHelperEngine<ErrorInfo>();
 
-            ErrorInfo[] errors = (ErrorInfo[])e2.ReadFile(filename);
+            ErrorInfo[] errors = e2.ReadFile(filename);
 
 			Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
             File.Delete(filename);
@@ -208,7 +208,5 @@ namespace FileHelpers.Tests.Errors
             File.Delete(filename);
 
 		}
-
-
 	}
 }
