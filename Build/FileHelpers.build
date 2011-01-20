@@ -85,7 +85,7 @@
 		</copy>
 
        
-       <zip zipfile="..\..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_source_2003_2005.zip" ziplevel="9">
+       <zip zipfile="..\..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_source_2003_2010.zip" ziplevel="9">
            <fileset basedir="${source.path}\..">
                <include name="${source.dir}/**/*" />
                <exclude name=".svn" />
@@ -139,7 +139,7 @@
            </fileset>
        </copy>
 
-   	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;&lt;/BODY&gt;&quot; -f &quot;add_ads.txt&quot; -v" workingdir="..\Doc" />
+   	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;&lt;/body&gt;&quot; -f &quot;add_ads.txt&quot; -v" workingdir="..\Doc" />
    	   <exec program="..\Libs\FileReplace.exe " commandline="&quot;..\..\Release\Docs\*.html&quot; &quot;img src='sf.gif&quot; &quot;img src='http://sflogo.sourceforge.net/sflogo.php?group_id=152382&amp;type=1&quot; -v" workingdir="..\Doc" />
 
 	   
