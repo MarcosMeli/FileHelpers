@@ -72,6 +72,7 @@
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
@@ -81,8 +82,7 @@
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE;NET_2_0</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>Release\FileHelpers.Tests.XML</DocumentationFile>
     <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
@@ -104,9 +104,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\nunit\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <Name>System</Name>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -116,6 +114,8 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -333,6 +333,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Helpers\QuoteHelperTests.cs" />
+    <Compile Include="Tests\Helpers\StreamHelperTest.cs" />
     <Compile Include="Tests\Helpers\StringHelperTest.cs" />
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
       <SubType>Code</SubType>
@@ -579,6 +580,11 @@
     <Folder Include="Tests\CoreUnitTests\" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -587,7 +593,7 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
