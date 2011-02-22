@@ -132,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
-    <None Include="app.config" />
     <None Include="Resources\disk.png" />
     <None Include="Resources\folder_table.png" />
     <None Include="Resources\page_copy.png" />
