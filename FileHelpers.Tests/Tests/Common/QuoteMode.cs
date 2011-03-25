@@ -106,5 +106,34 @@ namespace FileHelpers.Tests.CommonTests
 
         }
 
+        [Test]
+        public void OptionalForReadOnEmptyFields()
+        {
+            var eng = new FileHelperEngine<OptionalForReadOnEmptyFieldsClass>();
+            var records = eng.ReadString(@"id,text,number
+121,""""""not good"""" line"", 4456
+120,""good line this one"",789
+122,,5446");
+
+            records.Length.AssertEqualTo(3);
+
+            records[0].Text.AssertEqualTo("\"not good\" line");
+            records[2].Text.AssertEqualTo("");
+
+        }
+
+        [IgnoreFirst(1)]
+        [IgnoreEmptyLines()]
+        [DelimitedRecord(",")]
+        public sealed class OptionalForReadOnEmptyFieldsClass
+        {
+            public Int32 Id;
+
+            [FieldQuoted('"', QuoteMode.OptionalForRead, MultilineMode.NotAllow)]
+            public string Text;
+
+            public Int32? Number;
+        }
+
 	}
 }

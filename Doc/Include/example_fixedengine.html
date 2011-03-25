@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html><head><title>FileHelpers Library - Marcos Meli</title>
 <link href="/favicon.ico" rel="SHORTCUT ICON"/>
 <link href="global.css" type="text/css" rel="stylesheet"/>
@@ -9,49 +10,47 @@
 <meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
 </head>
 <body>
-
 {$HEADER$}
-
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id="contentdiv">
-  <h2>Fixed File Engine</h2>
-<blockquote>
-<p>With this cool feature you can change some of the record definitions at run time.</p>
-<p>Lets start with a simple example:</p>
-
-<textarea name="code" class="c#" cols="80" rows="15">
+<h2>Fixed File Engine</h2>
+<p>Lets start with a simple data:</p>
+<textarea name="code" rows="6" cols="44" class="data">01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquer&#237;a      21042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbk&#246;p           02111999
+</textarea>
+<p>An simple example layout:</p>
+<textarea name="code" rows="19" cols="80" class="c#">/// &lt;summary&gt;
+/// Our class we are reading using FileHelpers,  the record breakdown
+/// &lt;/summary&gt;
 [FixedLengthRecord()]
 public class Customer
 {
-	[FieldFixedLength(5)]
-	public int CustId;
-	
-	[FieldFixedLength(20)]
-	public string Name;
+    [FieldFixedLength(5)]
+    public int CustId;
 
-	[FieldFixedLength(8)]
-	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-	public DateTime AddedDate;
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
+
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)]
+    public DateTime AddedDate;
 
 }
 </textarea>
-
-<p>You work with this file for a time, and later you need to ignore some lines or get only some that validate some condition, so:</p>
-
-<textarea name="code" class="c#" rows="9" cols="80" readonly="readonly">
-var engine = new FixedFileEngine&lt;Customer&gt;();
-Customer[] res = engine.ReadFile("input.txt");
-
-engine.Options.IgnoreFirstLines = 10;
-Customer[] res = engine.ReadFile("input.txt");
-
-engine.Options.IgnoreFirstLines = 0;
-engine.Options.= 0;
+<p>Let see the result:</p>
+<textarea name="code" rows="6" cols="50" class="data"> Client: 1010,  Name: Alfreds Futterkiste
+ Client: 12399,  Name: Ana Trujillo Emparedados y
+ Client: 11,  Name: Antonio Moreno Taquer&#237;a
+ Client: 51677,  Name: Around the Horn
+ Client: 99999,  Name: Berglunds snabbk&#246;p
 </textarea>
-</blockquote>
-{$FOOTER$}
-</div>
-</td>
+
+${FOOTER}
+</div></td>
 </tr>
 </table>
 </body></html>

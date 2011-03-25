@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html><head><title>FileHelpers Library - Marcos Meli</title>
 <link href="/favicon.ico" rel="SHORTCUT ICON"/>
 <link href="global.css" type="text/css" rel="stylesheet"/>
@@ -9,59 +10,58 @@
 <meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
 </head>
 <body>
-
 {$HEADER$}
-
 <table width="100%" cellpadding="5" cellspacing="5">
-<tr><td><div id="contentdiv"> 
+<tr><td><div id="contentdiv">
 <h2>Easy Example </h2>
-  <blockquote>
+<blockquote>
 <p>If you have a source file like this, separated by a |:</p>
-
-<textarea class="c#:nogutter:nocontrols" name="code" cols="30" rows="6">
-10248|VINET|04071996|32.38
+<textarea name="code" rows="5" cols="27" class="data">10248|VINET|04071996|32.38
 10249|TOMSP|05071996|11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
-...............          
 </textarea>
-
 <p>You first declare a Record Mapping Class:</p>
-
-<textarea class="c#" name="code" cols="80" rows="11">
-[DelimitedRecord("|")]
+<textarea name="code" rows="16" cols="80" class="c#">/// &lt;summary&gt;
+/// Our class we are reading using FileHelpers,  the record breakdown
+/// &lt;/summary&gt;
+[DelimitedRecord(&quot;|&quot;)]
 public class Orders
 {
-   public int OrderID;
+    public int OrderID;
 
-   public string CustomerID;
-   [FieldConverter(ConverterKind.Date, "ddMMyyyy")]   public DateTime OrderDate;
+    public string CustomerID;
 
-   public decimal Freight;
+    [FieldConverter(ConverterKind.Date, &quot;ddMMyyyy&quot;)]
+    public DateTime OrderDate;
+
+    public decimal Freight;
 }
 </textarea>
-
 <p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
+<textarea name="code" rows="16" cols="80" class="c#">/// &lt;summary&gt;
+/// Execute the engine and get some results
+/// &lt;/summary&gt;
+public override void Run()
+{
+    var engine = new FileHelperEngine&lt;Orders&gt;();
+    var records = engine.ReadFile(&quot;Input.txt&quot;);
 
-<textarea class="c#" name="code" rows="8" cols="80">
-var engine = new FileHelperEngine&lt;Orders&gt;();
-
-// to Read use:
-Orders[] res = engine.ReadFile("TestIn.txt");
-
-// to Write use:
-engine.WriteFile("TestOut.txt", res);
+    foreach (var record in records)
+    {
+        Console.WriteLine(record.CustomerID);
+        Console.WriteLine(record.OrderDate.ToString(&quot;dd/MM/yyyy&quot;));
+        Console.WriteLine(record.Freight);
+    }
+}
 </textarea>
-
-<p>Now you have an Orders array named <span class="cs-literal">res</span> where every item in the array is an Order object. If you want to access one of the fields let the
-Visual Studio IntelliSense bring up the field names for you.</p>
-
+<p>Now you have an Orders array named <span class="cs-literal">res</span> where
+every item in the array is an Order object. If you want to access one of the fields
+let the Visual Studio IntelliSense bring up the field names for you.</p>
 <blockquote>
 <img height="93" src="vs_orders.png" width="165" alt="Visual studio intellisense"/>
 </blockquote>
-
-</blockquote>
-{$FOOTER$}
+${FOOTER}
 </div></td>
 </tr>
 </table>

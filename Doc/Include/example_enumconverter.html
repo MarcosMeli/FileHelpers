@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html><head><title>FileHelpers Library - Marcos Meli</title>
 <link href="/favicon.ico" rel="SHORTCUT ICON"/>
 <link href="global.css" type="text/css" rel="stylesheet"/>
@@ -9,67 +10,68 @@
 <meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
 </head>
 <body>
-
 {$HEADER$}
-
 <table width="100%" cellpadding="5" cellspacing="5">
 <tr><td><div id="contentdiv">
 <h2>Enum Converter Example</h2>
 <blockquote>
 <p>Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
-
 <p>Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
 converter. The FileHelpers library parses the field and performs a case insensitive
 comparison to the enum values and assigns the correct one.</p>
-
 <p>The customer file is an excellent sample:</p>
-
-<textarea class="c#:nogutter:nocontrols" name="code" cols="70" rows="5">
-ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
+<textarea name="code" rows="5" cols="60" class="data">ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
+ANTON|Antonio Moreno Taquer&#237;a|Antonio Moreno|Owner
 </textarea>
- 
 <p>The enum is:</p>
-
-<textarea class="c#" name="code" rows="7" cols="80">
- public enum CustomerTitle
- {
+<textarea name="code" rows="10" cols="80" class="c#">/// &lt;summary&gt;
+/// Different titles describing position in company
+/// &lt;/summary&gt;
+public enum CustomerTitle
+{
     Owner,
     SalesRepresentative,
     MarketingManager
- }
-</textarea>
-
-<p>When defining your record class use the enum:</p>
-
-<textarea class="c#" name="code" cols="80" rows="9">
-[DelimitedRecord("|")]
-public class Customers
-{
-   public string CustomerID;
-   public string CompanyName;
-   public string ContactName;
-   public CustomerTitle ContactTitle;
 }
 </textarea>
-
+<p>When defining your record class use the enum:</p>
+<textarea name="code" rows="15" cols="80" class="c#">/// &lt;summary&gt;
+/// Sample customer class that is delimited by | default
+/// &lt;/summary&gt;
+/// &lt;remarks&gt;
+/// Notice last feild is our enumerator
+/// &lt;/remarks&gt;
+[DelimitedRecord(&quot;|&quot;)]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public CustomerTitle ContactTitle;
+}
+</textarea>
 <p>Done !! you parse the file with:</p>
+<textarea name="code" rows="17" cols="80" class="c#">/// &lt;summary&gt;
+/// Run an example of writing a delimited file and 
+/// changing the delimiter to show how it is done.
+/// &lt;/summary&gt;
+public override void Run()
+{
+    var engine = new DelimitedFileEngine&lt;Customer&gt;();
 
-<textarea class="c#" name="code" rows="9" cols="80">
-var  engine = new FileHelperEngine&lt;Customers&gt;();
+    //  Read input records, enumeration automatically converted
+    Customer[] customers =  engine.ReadFile(&quot;Input.txt&quot;);
 
-Customers[] res = engine.ReadFile("NameTest.txt");
-
-// You can access your enum value
-
-if (res[0].ContactTitle == CustomerTitle.Owner)
-    // SomeAction
+    foreach (var cust in customers)
+    {
+        Console.WriteLine(&quot;Customer name {0} is a {1}&quot;, cust.ContactName, cust.ContactTitle);
+    }
+}
 </textarea>
 </blockquote>
-
-{$FOOTER$}
+${FOOTER}
 </div></td>
 </tr>
 </table>

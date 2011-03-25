@@ -54,7 +54,7 @@ namespace FileHelpers
 				{
 					if (line.mLineStr[i] == quoteChar)
 					{
-						if (firstFound == true)
+						if (firstFound)
 						{
 							// Is an escaped quoted char
 							res.Append(quoteChar);
