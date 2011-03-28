@@ -13,12 +13,15 @@
 
   SVN Repository:
   
-        https://svn.sourceforge.net/svnroot/filehelpers/trunk
-      
+       https://svn.sourceforge.net/svnroot/filehelpers/trunk
+
+  Build Server:
+  
+       http://teamcity.codebetter.com/viewType.html?buildTypeId=bt65&tab=buildTypeStatusDiv&guest=1
 
   FileHelpers Forums:
    
-        http://www.filehelpers.com/forums/
+       http://www.filehelpers.com/forums/
     
 
 -------------------------------
@@ -28,8 +31,10 @@
   - TortoiseSVN
   - MSBuild
   - NUnit
-  - NDoc
+  - Sandcastle
   - FxCop
+  - TestDriven
+  - Resharper
 
 -------------------------------
    Contact and how to help

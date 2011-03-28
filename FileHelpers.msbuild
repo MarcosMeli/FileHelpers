@@ -6,7 +6,7 @@
 	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NCover" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
 	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NUnitProject" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
 
-	<Import Project="CurrentVersion.msbuild" />
+	<Import Project="Build\CurrentVersion.msbuild" />
 
 	<ItemGroup>
 		<DebugFiles Include="Debug\**\*.*" />
@@ -16,7 +16,7 @@
 
 	<Target Name="common">
 		<Message Text="##teamcity[buildNumber '$(CurrentVersion) ({build.number})']" />
-		<Copy SourceFiles="VersionInfo.cs" DestinationFolder="FileHelpers" />
+		<Copy SourceFiles="Build\VersionInfo.cs" DestinationFolder="FileHelpers" />
 		<Exec Command="Libs\FileReplace.exe &quot;FileHelpers\VersionInfo.cs&quot; &quot;-CustomVersion-&quot; &quot;$(FullCurrentVersion)&quot;" />
 		<Delete Files="@(DebugFiles)" />
 		<Delete Files="@(ReleaseFiles)" />

@@ -1,93 +1,14 @@
 <?xml version="1.0"?>
 <!--EXTERNAL_PROPERTIES: LibraryVersion;LibraryFileVersion-->
-<project name="DevFramework" default="build2005">
+<project name="DevFramework" default="document">
    <property name="BaseDir" value="&quot;.\&quot;" />
    
    <include buildfile="Config.build.txt" />
 
    <property name="source.dir" value="FileHelpers_Source" />
    <property name="source.path" value="..\..\FileHelpers_Source" />
-
-   <target name="clean">
-    
-       <delete>
-           <fileset basedir="..\..\AutoBuild\${LibraryVersion}">
-               <include name="*/**" />
-           </fileset>
-       </delete>
-
-       <delete>
-           <fileset basedir="..\..\Release">
-               <include name="*/**" />
-           </fileset>
-       </delete>
-   </target>
-
-   <target name="common" depends="clean">
-       
-		<readregistry property="Vs8Path" 
-			key="SOFTWARE\Microsoft\VisualStudio\7.1\InstallDir" 
-			hive="LocalMachine" failonerror="false" />
-
-		<readregistry property="Vs9Path" 
-			key="SOFTWARE\Microsoft\VisualStudio\8.0\InstallDir" 
-			hive="LocalMachine" failonerror="false" />
-
-       <copy file="..\Doc\Include\roadmap.html" tofile="..\Doc\Include\roadmap2.html" overwrite="true" />
-
-	</target>
    
-   <target name="generate2003" depends="build2003">
-
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers">
-           <fileset>
-               <include name="..\*.url" />
-           </fileset>
-       </copy>
-
-       <copy file="..\DevNotes.txt" todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers" />
-
-       <copy file="..\FileHelpers.Tests\Data\TestData.mdb" todir="..\..\Release\Demos" />
-       <copy file="..\FileHelpers.Tests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\..\Release\Demos\Customers.txt"  />
-
-       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet.sln&quot;" workingdir=".." failonerror="true" />
-       <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp.sln&quot;" workingdir=".." failonerror="true" />
-   
-  
-       <exec program="DelTemps.bat" workingdir="." failonerror="false" />
-       
-       <delete>
-           <fileset basedir="${source.path}">
-               <include name="*/**" />
-           </fileset>
-       </delete>
-
-	   <copy todir="${source.path}">
-           <fileset basedir="..\.">
-               <include name="**/*" />
-               <exclude name=".svn" />
-           </fileset>
-		</copy>
-
-       
-       <zip zipfile="..\..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_source_2003_2010.zip" ziplevel="9">
-           <fileset basedir="${source.path}\..">
-               <include name="${source.dir}/**/*" />
-               <exclude name=".svn" />
-               <exclude name="obj" />
-			   <exclude name="bin" />
-           </fileset>
-       </zip>
-
-       <delete>
-           <fileset basedir="${source.path}">
-               <include name="*/**" />
-           </fileset>
-       </delete>
-	   
-   </target>
-
-   <target name="document" depends="build2003, generate2003">
+   <target name="document" >
    
        <exec program="..\Libs\ndoc\NDocConsole.exe " commandline="-project=&quot;FileHelpers.ndoc&quot;" workingdir="..\Doc" />
        <exec program="..\Libs\FileMerger.exe " commandline="&quot;..\..\Release\Docs\FileHelpers.hhc&quot; &quot;add_to_hhc_file.txt&quot;  216" workingdir="..\Doc" />
@@ -137,100 +58,4 @@
        
    </target>
    
-   <target name="build2005" depends="common">
-   <if test="${not property::exists('Vs9Path')}">
-		<if test="${property::exists('Vs8Path')}">
-			<echo message="-----------------------------------------------------------" />
-			<echo message="" />
-			<echo message="You dont have Visual Studio 2005 installed on your system" />
-			<echo message="But you have Visual Studio 2003 so you can try running the Build2003.bat" />
-			<echo message="" />
-			<echo message="-----------------------------------------------------------" />
-			<fail />
-		</if>
-			<echo message="-----------------------------------------------------------" />
-			<echo message="" />
-			<echo message="You dont have any Visual Studio installed on your system." />
-			<echo message="This build requires VS2005" />
-			<echo message="" />
-			<echo message="-----------------------------------------------------------" />
-			<fail />
-	</if>
-
-	
-    <exec program="DelTemps.bat" workingdir="." failonerror="false" />
-	
-	<exec program="${Vs9Path}\devenv.exe " commandline=" /rebuild release &quot;FileHelpers.vs2005.sln" workingdir=".." failonerror="true" />
-       <delete>
-           <fileset basedir="..\..\Release\Wizard">
-               <include name="FileHelpers.xml" />
-           </fileset>
-       </delete>
-
-   </target>
-
-   <target name="generate2005" depends="build2005">
-
-	   <copy todir="..\..\Release\Demos\DotNet_2.0\IronPython">
-		   <fileset basedir="..\FileHelpers.Demos\IronPython">
-			   <include name="*.*" />
-			   <exclude name=".svn" />
-		   </fileset>
-	   </copy>
-
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Demos">
-           <fileset basedir="..\..\Release\Demos">
-               <include name="**/*.dll" />
-               <include name="**/*.exe" />
-           </fileset>
-       </copy>
-
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Demos">
-           <fileset basedir="..\..\Release\Demos">
-               <include name="*.*" />
-               <include name="**/*.py" />
-               <include name="**/*.bat" />
-               <include name="**/*.xml" />
-               <include name="**/READ ME.txt" />
-           </fileset>
-       </copy>
-
-       <copy file="..\FileHelpers.WizardApp\Readme.txt" todir="..\..\Release\Wizard" overwrite="true" />
-
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Wizard">
-           <fileset basedir="..\..\Release\WIzard">
-               <include name="*\**" />
-           </fileset>
-       </copy>
-
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_1.1">
-           <fileset basedir="..\..\Release\DotNet_1.1">
-               <include name="*\**" />
-           </fileset>
-       </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_1.1_PPC">
-           <fileset basedir="..\..\Release\DotNet_1.1_PPC">
-               <include name="*\**" />
-           </fileset>
-       </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_2.0">
-           <fileset basedir="..\..\Release\DotNet_2.0">
-               <include name="*\**" />
-           </fileset>
-       </copy>
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Binaries\DotNet_2.0_PPC">
-           <fileset basedir="..\..\Release\DotNet_2.0_PPC">
-               <include name="*\**" />
-           </fileset>
-       </copy>
-
-       <zip zipfile="..\..\AutoBuild\${LibraryVersion}\FileHelpers_${LibraryFileVersion}_bin_doc_wizard.zip" ziplevel="9">
-           <fileset basedir="..\..\AutoBuild\${LibraryVersion}">
-               <include name="FileHelpers/**" />
-           </fileset>
-       </zip>
-
-   </target>
-   
-   <target name="all" depends="generate2003,document,generate2005" />
 </project>

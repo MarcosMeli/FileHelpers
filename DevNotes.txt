@@ -4,7 +4,7 @@
 
   http://www.filehelpers.com  - SourceForge Home: http://sf.net/projects/filehelpers
 
-  The FileHelpers are an easy to use library to import/export data from fixed length or delimited files.
+  The FileHelpers are a free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams
  
   If you want to start using the library go directly to the Quick Start Guide in the CHM.
 
@@ -21,17 +21,12 @@
   This library aims to provide an easy and reliable way to accomplish this task.
 
 -----------
-  History
+  License
 -----------
 
-   Check The docs for the History (is hard to mantain two copies =) 
-
------------
-  Licence
------------
-
- FileHelpers Library is @ Copyright 2005-2010 to Marcos Meli but it's source
-code and the binaries are free for commercial and non commercial use.
+ The FileHelpers are licensed under the new BSD or LPGL, pick the best for you
+ 
+ FileHelpers Library source and binaries are completely free for commercial and non commercial use.
 
 ---------------------
   Contact and Ideas
@@ -42,14 +37,3 @@ code and the binaries are free for commercial and non commercial use.
  to marcos@filehelpers.com or leaving a message at the FileHelpers Forums:
   
          http://www.filehelpers.com/forums/
-    
-----------------------------
-  Full Sources and Updates
-----------------------------
-
- If you want to help in the development of the library please go to
- 
-    http://sourceforge.net/project/showfiles.php?group_id=152382&package_id=169468
-    
- and download the AllInOne DevPack with the binaries of NUnit, NAnt and NDoc.
- 
