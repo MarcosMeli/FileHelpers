@@ -10,6 +10,8 @@
 
 	<ItemGroup>
 		<DebugFiles Include="Debug\**\*.*" />
+		<RootFiles Include="*.url" />
+		<RootFiles2 Include="*.txt" />
 		<ReleaseFiles Include="Release\**\*.*" />
 		<OutputFiles Include="Output\**\*.*" />
 	</ItemGroup>
@@ -43,7 +45,9 @@
 		<MakeDir Directories="Release\Lib\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Library\*.* Release\Lib\4.0"/>
 		<Exec Command="RmDir /S /Q Release\Library" />
-		
+
+		<Copy SourceFiles="@(RootFiles)" DestinationFolder="Release" />		
+		<Copy SourceFiles="@(RootFiles2)" DestinationFolder="Release" />		
 		
 	</Target>
 
@@ -59,6 +63,9 @@
 		<MakeDir Directories="Debug\Lib\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Debug\Library\*.* Debug\Lib\4.0"/>
 		<Exec Command="RmDir /S /Q Debug\Library" />
+		
+	    <Copy SourceFiles="@(RootFiles)" DestinationFolder="Debug" />		
+	    <Copy SourceFiles="@(RootFiles2)" DestinationFolder="Debug" />		
 	</Target>
 
 	<Target Name="pack-all" DependsOnTargets="common;pack-release;pack-debug">
