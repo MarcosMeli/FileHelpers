@@ -22,7 +22,7 @@ namespace Demos
                 (x, y) => 
                     {
                         // You can add here any custom function
-                        return x.Length.CompareTo(y.Length);
+                        return x.Length.CompareTo(y.Length) ;
                     });
             sorter.DeleteTempFiles = true;
             sorter.Sort("unsorted.txt", "sorted.txt");
