@@ -50,21 +50,6 @@
        <copy file="..\FileHelpers.Tests\Data\TestData.mdb" todir="..\..\Release\Demos" />
        <copy file="..\FileHelpers.Tests\Data\Good\CustomersVerticalBarDemo.txt" tofile="..\..\Release\Demos\Customers.txt"  />
 
-       <copy todir="..\..\AutoBuild\${LibraryVersion}\FileHelpers\Examples">
-           <fileset basedir="..\FileHelpers.CodeExamples">
-               <include name="**/*" />
-               <exclude name=".svn" />
-               <exclude name="**/*.suo" />
-               <exclude name="**/*.resharperoptions" />
-			   <exclude name="*.resharperoptions" />
-               <exclude name="**/*.user" />
-			   <exclude name="*.user" />
-               <exclude name="FileHelpers.CodeExamples\Example CSharp\obj/**"  />
-               <exclude name="FileHelpers.CodeExamples\Example VbNet\obj/**"  />
-               <exclude name="Release/**"  />
-           </fileset>
-       </copy>
-
        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example VbNet.sln&quot;" workingdir=".." failonerror="true" />
        <exec program="${Vs8Path}\devenv.exe " commandline=" /REBUILD Release &quot;FileHelpers.CodeExamples\Example Csharp.sln&quot;" workingdir=".." failonerror="true" />
    
