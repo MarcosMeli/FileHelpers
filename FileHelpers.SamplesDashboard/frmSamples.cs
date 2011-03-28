@@ -9,6 +9,7 @@ using System.IO;
 
 using ICSharpCode.TextEditor.Document;
 using Demos;
+using FileHelpers.SamplesDashboard.Properties;
 
 namespace FileHelpers.SamplesDashboard
 {
@@ -62,7 +63,7 @@ namespace FileHelpers.SamplesDashboard
         private void ShowDemo()
         {
             this.SuspendLayout();
-            tcCodeFiles.TabPages.Clear();
+            Clear();
 
             this.TestDescription.Text = CurrentDemo.CodeDescription;
 
@@ -75,6 +76,7 @@ namespace FileHelpers.SamplesDashboard
             }
 
             ShowDemoFile();
+            cmdRunDemo.Visible = CurrentDemo.Runnable;
             this.ResumeLayout();
         }
 
@@ -88,6 +90,10 @@ namespace FileHelpers.SamplesDashboard
 
         private void Clear()
         {
+            tcCodeFiles.TabPages.Clear();
+            this.TestDescription.Text = string.Empty;
+            this.txtCode.Visible = false;
+
         }
 
         public void ShowDemoFile()
@@ -160,6 +166,12 @@ namespace FileHelpers.SamplesDashboard
         private void extracthtml_Click(object sender, EventArgs e)
         {
             treeViewDemos1.ProcessDocumentation();
+        }
+
+        private void cmdHistory_Click(object sender, EventArgs e)
+        {
+            InfoSheet.DocumentText = Resources.history;
+            InfoSheet.Show();
         }
 
     }

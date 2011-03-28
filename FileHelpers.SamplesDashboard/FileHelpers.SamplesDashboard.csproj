@@ -84,17 +84,20 @@
     <Compile Include="Core\50.Advanced\10.MultipleDelimiters.cs" />
     <Compile Include="Core\50.Advanced\30.MultiRecordSample.cs" />
     <Compile Include="Core\50.Advanced\50.EnumConverter.cs" />
-    <Compile Include="Core\ErrorHandling\10.ErrorHandling.cs" />
-    <Compile Include="Core\ErrorHandling\20.ErrorHandlingErrorMode.cs" />
-    <Compile Include="Core\ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
-    <Compile Include="Core\ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
-    <Compile Include="Core\Events\10.ReadBeforeEvent.cs" />
-    <Compile Include="Core\Events\20.ReadAfterEventSample.cs" />
-    <Compile Include="Core\Events\30.WriteBeforeEventSample.cs" />
-    <Compile Include="Core\Events\40.WriteAfterEventSample.cs" />
-    <Compile Include="Core\MasterDetail\10.SimpleMasterDetail.cs" />
-    <Compile Include="Core\MasterDetail\20.MasterDetailSample2.cs" />
-    <Compile Include="Demos\DemoGenerator.autogen.cs">
+    <Compile Include="Core\60.Sorting\10.SortBigFiles.cs" />
+    <Compile Include="Core\25.ErrorHandling\10.ErrorHandling.cs" />
+    <Compile Include="Core\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
+    <Compile Include="Core\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
+    <Compile Include="Core\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
+    <Compile Include="Core\20.Events\10.ReadBeforeEvent.cs" />
+    <Compile Include="Core\20.Events\20.ReadAfterEventSample.cs" />
+    <Compile Include="Core\20.Events\30.WriteBeforeEventSample.cs" />
+    <Compile Include="Core\20.Events\40.WriteAfterEventSample.cs" />
+    <Compile Include="Core\60.Sorting\20.SortBigFilesString.cs" />
+    <Compile Include="Core\60.Sorting\30.SortBigFilesString2.cs" />
+    <Compile Include="Core\90.MasterDetail\10.SimpleMasterDetail.cs" />
+    <Compile Include="Core\90.MasterDetail\20.MasterDetailSample2.cs" />
+    <Compile Include="Core\DemoGenerator.autogen.cs">
       <DependentUpon>DemoGenerator.tt</DependentUpon>
       <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
@@ -135,6 +138,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +148,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demos\DemoGenerator.tt">
+    <None Include="Core\DemoGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DemoGenerator.autogen.cs</LastGenOutput>
     </None>
@@ -170,7 +174,7 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\DynamicRecords\" />
+    <Folder Include="Core\80.DynamicRecords\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -67,6 +67,21 @@ namespace FileHelpers.SamplesDashboard.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;
+        ///&lt;html&gt;&lt;head&gt;&lt;title&gt;FileHelpers Library - Marcos Meli&lt;/title&gt;
+        ///&lt;link href=&quot;/favicon.ico&quot; rel=&quot;SHORTCUT ICON&quot;/&gt;
+        ///&lt;link href=&quot;global.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;/&gt;
+        ///&lt;meta name=&quot;Description&quot; content=&quot;FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources.&quot; /&gt;
+        ///&lt;meta name=&quot;Author&quot; content=&quot;Marcos Meli&quot;/&gt;
+        ///&lt;meta name=&quot;keyw [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string history {
+            get {
+                return ResourceManager.GetString("history", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap plugin {
             get {
                 object obj = ResourceManager.GetObject("plugin", resourceCulture);

@@ -65,7 +65,8 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 		
 		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
 		{ 
-			case "generatedemowrappers.cs":
+			case "demogenerator.cs":
+			case "demogenerator.autogen.cs":
 			case "filetestbase.cs":
 					break;
 				default:
@@ -143,6 +144,13 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
                 res.AppendLine(@"demo.CodeDescription = @""" + description + @""";");
             }
 
+			match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Runnable\s*:(?<runnable>.*)\}", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+				res.AppendLine(@"demo.Runnable = " + match.Groups["runnable"].Value.Trim() + @";");
+            }
+
+			
             res.AppendLine(@"demos.Add(demo);");
 
 

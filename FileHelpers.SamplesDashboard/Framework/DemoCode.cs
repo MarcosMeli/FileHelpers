@@ -37,6 +37,7 @@ namespace FileHelpers
             CodeTitle = codeTitle;
             Demo = demo;
             Category = category;
+            Runnable = true;
             Files = new List<DemoFile>();
         }
 
@@ -88,6 +89,11 @@ namespace FileHelpers
         /// Whether this test has been run before
         /// </summary>
         public bool TestRun { get { return Demo.TestRun; } }
+
+        /// <summary>
+        /// Is this test runnable
+        /// </summary>
+        public bool Runnable { get; set; }
 
         /// <summary>
         /// Control???  - Not used

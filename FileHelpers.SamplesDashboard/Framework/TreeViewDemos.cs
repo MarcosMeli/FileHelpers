@@ -9,6 +9,12 @@ namespace FileHelpers
     public class TreeViewDemos
         : TreeViewEx
     {
+
+        public TreeViewDemos()
+        {
+         
+        }
+
         /// <summary>
         /// Load all the demos into the Tree View control on the LHS
         /// </summary>

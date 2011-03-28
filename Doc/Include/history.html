@@ -530,21 +530,38 @@ function unhide(divID) {
 			<li>Main changes
 			<ul>
 				<li>The core code of the library was refactored to make easier to extend it</li>
+				<li>Better performance, mostly for FixedLenght records</li>
 				<li>The error messages have been made more meaningful.  In all exceptions you get; the FieldName, ColumnNumber, LineNumber, etc.</li>
-				<li>ADD: FieldIndexers you can now get the values in the AsyncEngine like in the DataReader of ADO.NET =)
+				<li>Docs rewritten thanks to the work of Ken Foskey</li>
+				<li>CHANGED: Removed support for </li>
+				<li>CHANGED: Better caching of internal classes</li>
+				<li>NEW: Full .NET 2.0 & 4.0 support)</li>
+				<li>NEW: FieldOrder: a new attribute to override the default order of fields</li>
+				<li>NEW: Async Methods returns IDisposable to allow using() statements that autoclose files on ends or exception</li>
+				<li>NEW: Async Methods returns IDisposable to allow using() statements</li>
+				<li>NEW: ReadFileAsList: new methods to directly get a List<T> instead of an array</li>
+				<li>NEW: Events for the Async engines</li>
+				<li>NEW: The events args now have TotalBytes and CurrentBytes to allow you show progress while reading or writting</li>
+				<li>NEW: FieldIndexers you can now get the values in the AsyncEngine like in the DataReader of ADO.NET =)
 				You can access them via index or fieldName (at the moment case sensitive)<br />
 				This also completes the RunTime records support</li>
-			</ul>
+				<li>NEW: FormatDetector: A class designed to discover the format of delimited and flat files based on sample files. It is integrated with the wizzard</li>
+				<li>NEW: Better Delited validations to make sure that the file contains the right number of fields</li>
+				<li>NEW: FieldValueDiscarted: a new attribute to allow the value of a particular field to be read but not stored in the record class (this was a very requested feature)</li>			
+				
+
+
+				</ul>
 			</li>
 			<li>Breaking Changes
 			<ul>
-				<li>Excel : new UpdateLinks property, allow you to specify how the library must handle workbook links.</li>
+				<li></li>
 			</ul>
 			</li>
 
 			<li>API changes and extensions
 			<ul>
-				<li>Excel : new UpdateLinks property, allow you to specify how the library must handle workbook links.</li>
+				<li></li>
 			</ul>
 			</li>
 			<li>Minor Changes

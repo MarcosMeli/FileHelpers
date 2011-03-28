@@ -33,7 +33,10 @@
             Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.extracthtml = new System.Windows.Forms.ToolStripButton();
+            this.cmdHistory = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
@@ -42,8 +45,6 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
             this.TestDescription = new System.Windows.Forms.Label();
-            this.extracthtml = new System.Windows.Forms.ToolStripButton();
-            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -97,12 +98,30 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extracthtml});
+            this.extracthtml,
+            this.cmdHistory});
             this.toolStrip1.Location = new System.Drawing.Point(0, 85);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(884, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // extracthtml
+            // 
+            this.extracthtml.Image = global::FileHelpers.SamplesDashboard.Properties.Resources.arrow_right;
+            this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.extracthtml.Name = "extracthtml";
+            this.extracthtml.Size = new System.Drawing.Size(98, 22);
+            this.extracthtml.Text = "Extract HTML";
+            this.extracthtml.Click += new System.EventHandler(this.extracthtml_Click);
+            // 
+            // cmdHistory
+            // 
+            this.cmdHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdHistory.Name = "cmdHistory";
+            this.cmdHistory.Size = new System.Drawing.Size(81, 22);
+            this.cmdHistory.Text = "Show History";
+            this.cmdHistory.Click += new System.EventHandler(this.cmdHistory_Click);
             // 
             // splitContainer1
             // 
@@ -120,6 +139,18 @@
             this.splitContainer1.Size = new System.Drawing.Size(884, 502);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // treeViewDemos1
+            // 
+            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDemos1.ImageIndex = 0;
+            this.treeViewDemos1.ImageList = this.imgTreeView;
+            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
+            this.treeViewDemos1.Name = "treeViewDemos1";
+            this.treeViewDemos1.SelectedImageIndex = 0;
+            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
+            this.treeViewDemos1.TabIndex = 0;
+            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
             // 
             // imgTreeView
             // 
@@ -206,6 +237,7 @@
             this.cmdRunDemo.Name = "cmdRunDemo";
             this.cmdRunDemo.Size = new System.Drawing.Size(83, 22);
             this.cmdRunDemo.Text = "Run Demo";
+            this.cmdRunDemo.Visible = false;
             this.cmdRunDemo.Click += new System.EventHandler(this.cmdRunDemo_Click);
             // 
             // TestDescription
@@ -216,27 +248,6 @@
             this.TestDescription.Size = new System.Drawing.Size(92, 13);
             this.TestDescription.TabIndex = 4;
             this.TestDescription.Text = "Description of test";
-            // 
-            // extracthtml
-            // 
-            this.extracthtml.Image = global::FileHelpers.SamplesDashboard.Properties.Resources.arrow_right;
-            this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.extracthtml.Name = "extracthtml";
-            this.extracthtml.Size = new System.Drawing.Size(98, 22);
-            this.extracthtml.Text = "Extract HTML";
-            this.extracthtml.Click += new System.EventHandler(this.extracthtml_Click);
-            // 
-            // treeViewDemos1
-            // 
-            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewDemos1.ImageIndex = 0;
-            this.treeViewDemos1.ImageList = this.imgTreeView;
-            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
-            this.treeViewDemos1.Name = "treeViewDemos1";
-            this.treeViewDemos1.SelectedImageIndex = 0;
-            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
-            this.treeViewDemos1.TabIndex = 0;
-            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
             // 
             // frmSamples
             // 
@@ -282,5 +293,6 @@
         private System.Windows.Forms.Label TestDescription;
         private System.Windows.Forms.WebBrowser InfoSheet;
         private System.Windows.Forms.ToolStripButton extracthtml;
+        private System.Windows.Forms.ToolStripButton cmdHistory;
     }
 }
