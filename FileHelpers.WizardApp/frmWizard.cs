@@ -151,9 +151,9 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender3 = new Fireball.Windows.Forms.LineMarginRender();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
             Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -669,8 +669,8 @@ namespace FileHelpers.WizardApp
             this.txtTemplOut.InfoTipPosition = null;
             this.txtTemplOut.InfoTipSelectedIndex = 1;
             this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender3.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender3;
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtTemplOut.LineMarginRender = lineMarginRender1;
             this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
             this.txtTemplOut.LockCursorUpdate = false;
             this.txtTemplOut.Name = "txtTemplOut";
@@ -1234,8 +1234,8 @@ namespace FileHelpers.WizardApp
             // 
             // panPreview
             // 
-            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panPreview.Controls.Add(this.cboClassLanguage);
             this.panPreview.Controls.Add(this.label7);
@@ -1322,8 +1322,8 @@ namespace FileHelpers.WizardApp
             // txtOutput
             // 
             this.txtOutput.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOutput.AutoListPosition = null;
             this.txtOutput.AutoListSelectedText = "a123";
             this.txtOutput.AutoListVisible = false;
@@ -1335,8 +1335,8 @@ namespace FileHelpers.WizardApp
             this.txtOutput.InfoTipPosition = null;
             this.txtOutput.InfoTipSelectedIndex = 1;
             this.txtOutput.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender1;
+            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.txtOutput.LineMarginRender = lineMarginRender2;
             this.txtOutput.Location = new System.Drawing.Point(3, 53);
             this.txtOutput.LockCursorUpdate = false;
             this.txtOutput.Name = "txtOutput";
@@ -1403,8 +1403,8 @@ namespace FileHelpers.WizardApp
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
             this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-                    "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-                    "anks");
+        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+        "anks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // panel1
@@ -2717,23 +2717,23 @@ namespace FileHelpers.WizardApp
 
         private void AutoDetectFormat(bool hasHeaders)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog();
             dialog.Multiselect = false;
             dialog.Title = "Select a Sample File";
             if (dialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            SmartFormatDetector detector = new SmartFormatDetector();
+            var detector = new SmartFormatDetector();
             detector.FileHasHeaders = hasHeaders;
             detector.MaxSampleLines = 100;
-            RecordFormatInfo[] formats = detector.DetectFileFormat(dialog.FileName);
+            var formats = detector.DetectFileFormat(dialog.FileName);
 
             if (formats.Length == 0)
                 return;
 
             ClassBuilderToWizard(formats[0].ClassBuilder);
 
-            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
+            var frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
             frm.HasHeaders = hasHeaders;
             frm.txtInput.Text = File.ReadAllText(dialog.FileName);
             frm.AutoRunTest = true;
