@@ -18,7 +18,7 @@ namespace FileHelpers.Tests.Errors
 		public void DelimitedBad2()
 		{
 			var engine = new FileHelperEngine<OptionalBad2>();
-            Assert.Throws<BadUsageException>(()
+            Assert.Throws<NullValueNotFoundException>(()
                 => TestCommon.ReadTest<OptionalBad2>(engine, "Bad", "OptionalBad1.txt"));
 		}
 
