@@ -109,7 +109,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="sb">buffer to add field to</param>
         /// <param name="fieldValue">value we are updating with</param>
-        internal override void CreateFieldString(StringBuilder sb, object fieldValue)
+        internal override void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
 		{
 			string field = base.CreateFieldString(fieldValue);
 

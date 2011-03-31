@@ -400,7 +400,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="sb">Append string to output</param>
         /// <param name="fieldValue">Field we are adding</param>
-        internal abstract void CreateFieldString(StringBuilder sb, object fieldValue);
+        internal abstract void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast);
 
         /// <summary>
         /// Convert a field value to a string representation
@@ -461,7 +461,7 @@ namespace FileHelpers
                 if (Discarded)
                     return GetDiscardedNullValue();
                 else
-                    return AssignFromString(info, line);
+                    return AssignFromString(info, line).Value;
             }
             else
             {
@@ -480,7 +480,22 @@ namespace FileHelpers
 
                     line.mCurrentPos += CharsToDiscard;
 
-                    res.Add(AssignFromString(info, line));
+                    try
+                    {
+                        var value = AssignFromString(info, line);
+
+                        if (value.NullValueUsed && i == 0 && line.IsEOL())
+                            break;
+
+                        res.Add(value.Value);
+                    }
+                    catch (NullValueNotFoundException)
+                    {
+                        if (i == 0)
+                            break;
+                        else
+                            throw;
+                    }
                     i++;
                 }
 
@@ -500,6 +515,11 @@ namespace FileHelpers
 
         #region "  AssignFromString  "
 
+        private struct AssignResult
+        {
+            public object Value;
+            public bool NullValueUsed;
+        }
         /// <summary>
         /// Create field object after extracting the string from the underlying
         /// input data
@@ -507,7 +527,7 @@ namespace FileHelpers
         /// <param name="fieldString">Information extracted?</param>
         /// <param name="line">Underlying input data</param>
         /// <returns>Object to assign to field</returns>
-        internal object AssignFromString(ExtractedInfo fieldString, LineInfo line)
+        private AssignResult AssignFromString(ExtractedInfo fieldString, LineInfo line)
         {
             object val;
 
@@ -525,8 +545,7 @@ namespace FileHelpers
 
                         if (extractedString.Length == 0)
                         {
-                            // Empty stand for null
-                            val = GetNullValue(line);
+                            return new AssignResult { Value = GetNullValue(line), NullValueUsed = true };
                         }
                         else
                         {
@@ -541,7 +560,7 @@ namespace FileHelpers
                     if (ConvertProvider.CustomNullHandling == false &&
                         trimmedString.Length == 0)
                     {
-                        val = GetNullValue(line);
+                        return new AssignResult { Value = GetNullValue(line), NullValueUsed = true };
                     }
                     else
                     {
@@ -551,11 +570,11 @@ namespace FileHelpers
                             val = ConvertProvider.StringToField(TrimString(extractedString));
 
                         if (val == null)
-                            val = GetNullValue(line);
+                            return new AssignResult { Value = GetNullValue(line), NullValueUsed = true};
                     }
                 }
 
-                return val;
+                return new AssignResult {Value = val};
             }
             catch (ConvertException ex)
             {
@@ -610,7 +629,6 @@ namespace FileHelpers
             {
                 if (FieldTypeInternal.IsValueType)
                 {
-
                     if (IsNullableType)
                         return null;
 
@@ -619,7 +637,7 @@ namespace FileHelpers
                                  +
                                  "You must use the [FieldNullValue] attribute because this is a value type and can't be null or use a Nullable Type instead of the current type.";
 
-                    throw new BadUsageException(line, msg);
+                    throw new NullValueNotFoundException(line, msg);
 
                 }
                 else
@@ -728,15 +746,29 @@ namespace FileHelpers
             if (IsArray)
             {
                 if (fieldValue == null)
-                    return;
-
-                foreach (object val in (Array)fieldValue)
                 {
-                    CreateFieldString(sb, val);
+                    if (0 < this.ArrayMinLength)
+                        throw new InvalidOperationException(string.Format("Field: {0}. The array is null, but the minimum length is {1}", FieldInfo.Name, ArrayMinLength));
+
+                    return;
+                }
+
+                var array = (IList)fieldValue;
+
+                if (array.Count < this.ArrayMinLength)
+                    throw new InvalidOperationException(string.Format("Field: {0}. The array has {1} values, but the minimum length is {2}",  FieldInfo.Name, array.Count, ArrayMinLength));
+
+                if (array.Count > this.ArrayMaxLength)
+                    throw new InvalidOperationException(string.Format("Field: {0}. The array has {1} values, but the maximum length is {2}", FieldInfo.Name, array.Count, ArrayMaxLength));
+
+                for (int i = 0; i < array.Count; i++)
+                {
+                    object val = array[i];
+                    CreateFieldString(sb, val, IsLast && i == array.Count - 1);
                 }
             }
             else
-                CreateFieldString(sb, fieldValue);
+                CreateFieldString(sb, fieldValue, IsLast);
         }
 
         #endregion

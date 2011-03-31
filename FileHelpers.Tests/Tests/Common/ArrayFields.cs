@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using FileHelpers;
 using NUnit.Framework;
@@ -190,6 +191,215 @@ namespace FileHelpers.Tests.CommonTests
 			Assert.AreEqual("Line: 1 Column: 33 Field: BuyedArts. The array has only 4 values, less than the minimum length of 5", engine.ErrorManager.Errors[0].ExceptionInfo.Message);
 			Assert.AreEqual("Line: 2 Column: 40 Field: BuyedArts. The array has more values than the maximum length of 5", engine.ErrorManager.Errors[1].ExceptionInfo.Message);
 		}
+
+        [Test]
+        public void ArrayWriteMinErrorNull()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                {
+                    var engine = new DelimitedFileEngine<ArrayModel2To4>();
+                    var res =
+                        engine.WriteString(new[]
+                                                   {
+                                                       new ArrayModel2To4()
+                                                           {Id = 1, Name = "name1", Weighting = null}
+                                                   });
+                });
+        }
+
+        [Test]
+        public void ArrayWriteMinError0()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                {
+                    var engine = new DelimitedFileEngine<ArrayModel2To4>();
+                    var res =
+                        engine.WriteString(new[]
+                                                   {
+                                                       new ArrayModel2To4()
+                                                           {Id = 1, Name = "name1", Weighting = new float[] {}}
+                                                   });
+                });
+        }
+
+        [Test]
+        public void ArrayWriteMinError1()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                    {
+                        var engine = new DelimitedFileEngine<ArrayModel2To4>();
+                        var res =
+                            engine.WriteString(new[]
+                                                   {
+                                                       new ArrayModel2To4()
+                                                           {Id = 1, Name = "name1", Weighting = new float[] {10.2f}}
+                                                   });
+                    });
+        }
+
+
+        [Test]
+        public void ArrayWriteMaxError5()
+        {
+            Assert.Throws<InvalidOperationException>(
+                () =>
+                {
+                    var engine = new DelimitedFileEngine<ArrayModel2To4>();
+                    var res =
+                        engine.WriteString(new[]
+                                                   {
+                                                       new ArrayModel2To4()
+                                                           {Id = 1, Name = "name1", Weighting = new float[] {10.2f, 1,2,3,4}}
+                                                   });
+                });
+        }
+
+
+        [Test]
+        public void ArrayWriteFloatFieldsNull()
+        {
+            var dataToExport = new List<ArrayModel1>();
+            dataToExport.Add(new ArrayModel1() { Id = 1, Name = "name1", Weighting = null });
+
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.WriteString(dataToExport);
+
+            Assert.AreEqual("1,name1," + Environment.NewLine, res);
+
+            var vals = engine.ReadString(res);
+            vals.Length.AssertEqualTo(1);
+            vals[0].Weighting.Length.AssertEqualTo(0);
+        }
+
+
+        [Test]
+        public void ArrayReadFieldsNull()
+        {
+            var info = "1,name1,10.2,,30.5";
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.ReadString(info);
+
+            res.Length.AssertEqualTo(1);
+            res[0].Weighting.Length.AssertEqualTo(3);
+            res[0].Weighting[1].AssertEqualTo(-5f);
+        }
+
+        [Test]
+        public void ArrayReadFieldsNullAndNullable()
+        {
+            var info = "1,name1,10.2,,30.5";
+            var engine = new DelimitedFileEngine<ArrayModelNullable>();
+            var res = engine.ReadString(info);
+
+            res.Length.AssertEqualTo(1);
+            res[0].Weighting.Length.AssertEqualTo(3);
+            res[0].Weighting[1].AssertEqualTo(null);
+        }
+
+        [Test]
+        public void ArrayWriteFloatFields0()
+        {
+            var dataToExport = new List<ArrayModel1>();
+            dataToExport.Add(new ArrayModel1() { Id = 1, Name = "name1", Weighting = new float[] { } });
+
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.WriteString(dataToExport);
+
+            Assert.AreEqual("1,name1," + Environment.NewLine, res);
+
+            var vals = engine.ReadString(res);
+            vals.Length.AssertEqualTo(1);
+            vals[0].Weighting.Length.AssertEqualTo(0);
+        }
+
+        [Test]
+        public void ArrayWriteFloatFieldsNullable()
+        {
+            var dataToExport = new List<ArrayModelNullable>();
+            dataToExport.Add(new ArrayModelNullable() { Id = 1, Name = "name1", Weighting = new float?[] { } });
+
+            var engine = new DelimitedFileEngine<ArrayModelNullable>();
+            var res = engine.WriteString(dataToExport);
+
+            Assert.AreEqual("1,name1," + Environment.NewLine, res);
+
+            var vals = engine.ReadString(res);
+            vals.Length.AssertEqualTo(1);
+            vals[0].Weighting.Length.AssertEqualTo(0);
+        }
+
+        [Test]
+        public void ArrayWriteFloatFields1()
+        {
+            var dataToExport = new List<ArrayModel1>();
+            dataToExport.Add(new ArrayModel1() { Id = 1, Name = "name1", Weighting = new float[] { 10.2f} });
+
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.WriteString(dataToExport);
+
+			Assert.AreEqual("1,name1,10.2" + Environment.NewLine, res);
+		}
+
+        [Test]
+        public void ArrayWriteFloatFields2()
+        {
+            var dataToExport = new List<ArrayModel1>();
+            dataToExport.Add(new ArrayModel1() { Id = 1, Name = "name1", Weighting = new float[] { 10.2f, 30.5f } });
+
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.WriteString(dataToExport);
+
+            Assert.AreEqual("1,name1,10.2,30.5" + Environment.NewLine, res);
+        }
+
+
+        [Test]
+        public void ArrayWriteFloatFields3()
+        {
+            var dataToExport = new List<ArrayModel1>();
+            dataToExport.Add(new ArrayModel1() { Id = 1, Name = "name1", Weighting = new float[] { 10.2f, 30.5f, 11f } });
+
+            var engine = new DelimitedFileEngine<ArrayModel1>();
+            var res = engine.WriteString(dataToExport);
+
+            Assert.AreEqual("1,name1,10.2,30.5,11" + Environment.NewLine, res);
+        }
+
+        [DelimitedRecord(",")]
+        public class ArrayModel1
+        {
+            public int Id;
+            public string Name;
+
+            [FieldNullValue(-5f)]
+            [FieldArrayLength(0, 15)]
+            public float[] Weighting;
+        }
+
+
+        [DelimitedRecord(",")]
+        public class ArrayModelNullable
+        {
+            public int Id;
+            public string Name;
+
+            [FieldArrayLength(0, 15)]
+            public float?[] Weighting;
+        }
+
+        [DelimitedRecord(",")]
+        public class ArrayModel2To4
+        {
+            public int Id;
+            public string Name;
+
+            [FieldArrayLength(2, 4)]
+            public float[] Weighting;
+        }
+       
 
 		[FixedLengthRecord(FixedMode.ExactLength)]
         public class ArrayType1

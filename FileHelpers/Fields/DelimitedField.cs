@@ -177,7 +177,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="sb">buffer to add field to</param>
         /// <param name="fieldValue">value object to add</param>
-        internal override void CreateFieldString(StringBuilder sb, object fieldValue)
+        internal override void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
 		{
 			string field = base.CreateFieldString(fieldValue);
 
@@ -203,7 +203,7 @@ namespace FileHelpers
 			else
 				sb.Append(field);
 
-			if (IsLast == false)
+            if (isLast == false)
 				sb.Append(mSeparator);
 		}
 

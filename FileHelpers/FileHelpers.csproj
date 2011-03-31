@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-<Choose>
-<When Condition=" '$(TargetFrameworkVersion)'=='' ">
-  <PropertyGroup>
-   <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-  </PropertyGroup>
-</When>
-</Choose>
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)'=='' ">
+      <PropertyGroup>
+        <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+      </PropertyGroup>
+    </When>
+  </Choose>
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -280,6 +280,7 @@
     <Compile Include="ErrorHandling\FileHelpersException.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
     <Compile Include="ErrorHandling\RunTimeCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
