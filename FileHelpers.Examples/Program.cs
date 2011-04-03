@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FileHelpers.SamplesDashboard
+namespace FileHelpersExamples
 {
     
     public class Program

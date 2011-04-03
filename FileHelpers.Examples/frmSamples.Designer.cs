@@ -1,4 +1,5 @@
-﻿namespace FileHelpers.SamplesDashboard
+﻿using FileHelpers;
+namespace FileHelpersExamples
 {
     partial class frmSamples
     {
@@ -108,7 +109,7 @@
             // 
             // extracthtml
             // 
-            this.extracthtml.Image = global::FileHelpers.SamplesDashboard.Properties.Resources.arrow_right;
+            this.extracthtml.Image = global::FileHelpersExamples.Properties.Resources.arrow_right;
             this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.extracthtml.Name = "extracthtml";
             this.extracthtml.Size = new System.Drawing.Size(98, 22);
@@ -232,7 +233,7 @@
             // 
             // cmdRunDemo
             // 
-            this.cmdRunDemo.Image = global::FileHelpers.SamplesDashboard.Properties.Resources.arrow_right;
+            this.cmdRunDemo.Image = global::FileHelpersExamples.Properties.Resources.arrow_right;
             this.cmdRunDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdRunDemo.Name = "cmdRunDemo";
             this.cmdRunDemo.Size = new System.Drawing.Size(83, 22);

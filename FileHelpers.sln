@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.DataLink", "FileHelpers.DataLink\FileHelpers.DataLink.csproj", "{94B329D5-E42A-42E4-AAC1-05DA361FFF53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.SamplesDashboard", "FileHelpers.SamplesDashboard\FileHelpers.SamplesDashboard.csproj", "{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Examples", "FileHelpers.Examples\FileHelpers.Examples.csproj", "{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

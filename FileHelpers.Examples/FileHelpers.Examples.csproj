@@ -8,8 +8,8 @@
     <ProjectGuid>{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FileHelpers.SamplesDashboard</RootNamespace>
-    <AssemblyName>ExamplesDashboard</AssemblyName>
+    <RootNamespace>FileHelpersExamples</RootNamespace>
+    <AssemblyName>FileHelpersExamples</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>

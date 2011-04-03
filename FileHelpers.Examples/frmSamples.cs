@@ -9,9 +9,11 @@ using System.IO;
 
 using ICSharpCode.TextEditor.Document;
 using Demos;
-using FileHelpers.SamplesDashboard.Properties;
+using FileHelpers;
+using FileHelpersExamples.Properties;
 
-namespace FileHelpers.SamplesDashboard
+
+namespace FileHelpersExamples
 {
     /// <summary>
     /// Display all the sample code and allow it to be run in realtime
