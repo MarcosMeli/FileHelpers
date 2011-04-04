@@ -73,14 +73,15 @@
 
 	<Target Name="pack-release" DependsOnTargets="release">
 		<ItemGroup>
-			<ReleaseFiles2 Include="Release\**\*.*" />
-		</ItemGroup>
-		
-		<ItemGroup>
         	<DocFile Include="Help\FileHelpers.chm"/>
     	</ItemGroup>
 
         <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
+
+		<ItemGroup>
+			<ReleaseFiles2 Include="Release\**\*.*" />
+		</ItemGroup>
+		
 		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
 	</Target>
 
