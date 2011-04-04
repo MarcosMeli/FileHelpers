@@ -76,7 +76,11 @@
 			<ReleaseFiles2 Include="Release\**\*.*" />
 		</ItemGroup>
 		
-        <Copy SourceFile="Help\FileHelpers.chm" DestinationFolder="Release\Docs" />
+		<ItemGroup>
+        	<DocFile Include="a.cs;b.cs;c.cs"/>
+    	</ItemGroup>
+
+        <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
 		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
 	</Target>
 
