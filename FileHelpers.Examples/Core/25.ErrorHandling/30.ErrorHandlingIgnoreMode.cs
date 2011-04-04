@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Simple class with use the error mode for a value not in the enumerator
     /// </summary>
     public class IgnoreModeErrorHandlingDemo
-        : DemoParent
+        : ExampleBase
     {
         //-> {Example.Name:Ignore Mode Error handling}
         //-> {Example.Description:Read the file dropping bad records}

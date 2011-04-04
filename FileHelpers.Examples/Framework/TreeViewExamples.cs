@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     
-    public class TreeViewDemos
+    public class TreeViewExamples
         : TreeViewEx
     {
 
-        public TreeViewDemos()
+        public TreeViewExamples()
         {
          
         }
@@ -19,14 +19,14 @@ namespace FileHelpers
         /// Load all the demos into the Tree View control on the LHS
         /// </summary>
         /// <param name="demos">List of demos created by DemoGenerator </param>
-        public void LoadDemos(IEnumerable<DemoCode> demos)
+        public void LoadDemos(IEnumerable<ExampleCode> demos)
         {
             mCategories = new Dictionary<string, CategoryTreeNode>();
             foreach (var demo in demos)
             {
                 var cat = LeafCategory(demo);
 
-                var demoNode = new DemoTreeNode(demo);
+                var demoNode = new ExampleTreeNode(demo);
                 cat.Nodes.Add(demoNode);
             }
 
@@ -41,11 +41,11 @@ namespace FileHelpers
         /// <summary>
         /// Create a leaf categories supplied in the demo code
         /// </summary>
-        /// <param name="demo">Demo to create </param>
+        /// <param name="example">Demo to create </param>
         /// <returns>Categorynode</returns>
-        private CategoryTreeNode LeafCategory(DemoCode demo)
+        private CategoryTreeNode LeafCategory(ExampleCode example)
         {
-            var categories = demo.Category.Split('/');
+            var categories = example.Category.Split('/');
             CategoryTreeNode previous = null;
             foreach (var categ in categories)
             {
@@ -70,15 +70,15 @@ namespace FileHelpers
         /// <summary>
         /// Demo selected by user on the treeview
         /// </summary>
-        public DemoCode SelectedDemo
+        public ExampleCode SelectedExample
         {
             get
             {
-                var node = this.SelectedNode as DemoTreeNode;
+                var node = this.SelectedNode as ExampleTreeNode;
                 if (node == null)
                     return null;
                 
-                return node.Demo;
+                return node.Example;
             }
         }
 

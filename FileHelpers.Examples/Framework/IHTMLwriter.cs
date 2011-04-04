@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     /// <summary>
     /// Enable object to output itself as HTML code

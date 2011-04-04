@@ -4,18 +4,18 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
-    public sealed class DemoCode
+    public sealed class ExampleCode
     {
         /// <summary>
         /// Message when new file is added to the list
         /// </summary>
         public class NewFile : EventArgs
         {
-            public DemoFile details;
+            public ExampleFile details;
 
-            internal NewFile(DemoFile pfile)
+            internal NewFile(ExampleFile pfile)
             {
                 this.details = pfile;
             }
@@ -32,19 +32,19 @@ namespace FileHelpers
         /// <param name="demo">Demo structure from template parse</param>
         /// <param name="codeTitle">Title from TODO:</param>
         /// <param name="category">Category from TODO:</param>
-        public DemoCode(DemoParent demo, string codeTitle, string category)
+        public ExampleCode(ExampleBase demo, string codeTitle, string category)
         {
             CodeTitle = codeTitle;
             Demo = demo;
             Category = category;
             Runnable = true;
-            Files = new List<DemoFile>();
+            Files = new List<ExampleFile>();
         }
 
         /// <summary>
         /// Demo class that runs
         /// </summary>
-        public DemoParent Demo { get; private set; }
+        public ExampleBase Demo { get; private set; }
 
         /// <summary>
         /// Title set from code
@@ -69,12 +69,12 @@ namespace FileHelpers
         /// <summary>
         /// List of logical files extracted from the code
         /// </summary>
-        public List<DemoFile> Files { get; set; }
+        public List<ExampleFile> Files { get; set; }
 
         /// <summary>
         /// last file extracted, generally sample data
         /// </summary>
-        public DemoFile LastFile
+        public ExampleFile LastFile
         {
             get
             {
@@ -105,9 +105,9 @@ namespace FileHelpers
                         try
             {
 
-            foreach (DemoFile file in this.Files)
+            foreach (ExampleFile file in this.Files)
             {
-                if (file.Status == DemoFile.FileType.InputFile)
+                if (file.Status == ExampleFile.FileType.InputFile)
                     File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
             }
             this.Demo.Test();
@@ -119,18 +119,18 @@ namespace FileHelpers
                         finally
                         {
                             bool ConsoleFound = false;
-                            foreach (DemoFile file in this.Files)
+                            foreach (ExampleFile file in this.Files)
                             {
                                 if (file.Filename == "Console")
                                 {
                                     file.Contents = this.Demo.Output;
                                     ConsoleFound = true;
                                 }
-                                if (file.Status == DemoFile.FileType.InputFile)
+                                if (file.Status == ExampleFile.FileType.InputFile)
                                 {
                                     File.Delete(file.Filename);
                                 }
-                                if (file.Status == DemoFile.FileType.OutputFile)
+                                if (file.Status == ExampleFile.FileType.OutputFile)
                                 {
                                     if (File.Exists(file.Filename))
                                     {
@@ -140,9 +140,9 @@ namespace FileHelpers
                             }
                             if ((!ConsoleFound) && !String.IsNullOrEmpty(this.Demo.Output))
                             {
-                                DemoFile console = new DemoFile("Console");
+                                ExampleFile console = new ExampleFile("Console");
                                 console.Contents = this.Demo.Output;
-                                console.Status = DemoFile.FileType.OutputFile;
+                                console.Status = ExampleFile.FileType.OutputFile;
                                 this.Files.Add(console);
                                 if (AddedFile != null)
                                     AddedFile(this,new NewFile(console));

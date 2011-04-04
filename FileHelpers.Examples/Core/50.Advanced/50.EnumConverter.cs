@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
-    public class EnumConverterDemo : DemoParent
+    public class EnumConverterDemo : ExampleBase
     {
         //-> {Example.Name:Enum Converter Example}
         //-> {Example.Description:When you have a string field in your files that can be better handled if you map it to an enum.}

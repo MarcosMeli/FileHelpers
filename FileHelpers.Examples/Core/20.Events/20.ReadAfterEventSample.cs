@@ -5,13 +5,13 @@ using System.Text;
 using FileHelpers;
 using FileHelpers.Events;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Example of the Read After event
     /// </summary>
     public class ReadAfterEventSample
-        : DemoParent
+        : ExampleBase
     {
 
         //-> {Example.Name:Read After Event Handling}

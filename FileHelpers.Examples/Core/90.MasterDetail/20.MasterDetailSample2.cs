@@ -5,13 +5,13 @@ using System.Text;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Example of the Master Detail processing
     /// </summary>
     public class SecondMasterDetailSample
-        : DemoParent
+        : ExampleBase
     {
 
         //-> {Example.Name:Master Detail sample}

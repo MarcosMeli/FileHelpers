@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
-    public abstract class DemoParent
+    public abstract class ExampleBase
     {
         /// <summary>
         /// Used to capture the Console output
@@ -29,7 +29,7 @@ namespace FileHelpers
         /// <summary>
         /// Create a Demo class an initialise variables
         /// </summary>
-        public DemoParent()
+        public ExampleBase()
         {
             TestRun = false;
         }

@@ -2,22 +2,22 @@
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     /// <summary>
     /// Create a demo code container
     /// </summary>
-    public class DemoTreeNode
+    public class ExampleTreeNode
         : TreeNode, IHTMLwriter
     {
         /// <summary>
         /// Create a demo tree node with text based on CodeTitle
         /// </summary>
-        /// <param name="demo">DemoCode value to base node upon</param>
-        public DemoTreeNode(DemoCode demo)
-            : base(demo.CodeTitle)
+        /// <param name="example">DemoCode value to base node upon</param>
+        public ExampleTreeNode(ExampleCode example)
+            : base(example.CodeTitle)
         {
-            this.Demo = demo;
+            this.Example = example;
             this.SelectedImageKey = "folder";
             this.ImageKey = "folder";
         }
@@ -25,7 +25,7 @@ namespace FileHelpers
         /// <summary>
         /// demo to create detail from
         /// </summary>
-        public DemoCode Demo { get; set; }
+        public ExampleCode Example { get; set; }
 
 
         /// <summary>
@@ -38,8 +38,8 @@ namespace FileHelpers
             Exception MyException = null;
             try
             {
-                if (!Demo.TestRun)
-                    Demo.Test();
+                if (!Example.TestRun)
+                    Example.Test();
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace FileHelpers
                 MyException = ex;
             }
             bool found = false;
-            foreach (DemoFile file in Demo.Files.Where(x => x.Status == DemoFile.FileType.HtmlFile))
+            foreach (ExampleFile file in Example.Files.Where(x => x.Status == ExampleFile.FileType.HtmlFile))
             {
                 //  overview files should come first and be on their own...
                 //  they are intended to display on the screen and be
@@ -63,7 +63,7 @@ namespace FileHelpers
                     index.Append("<dt><a href=\"");
                     index.Append(file.Filename);
                     index.Append("\">");
-                    index.Append(Demo.CodeTitle);
+                    index.Append(Example.CodeTitle);
                     index.AppendLine("</a></dt>");
                     index.Append("<dd>");
                     if (error)
@@ -72,10 +72,10 @@ namespace FileHelpers
                         index.Append(MyException.ToString());
                         index.Append("</p>");
                     }
-                    index.Append(Demo.CodeDescription);
+                    index.Append(Example.CodeDescription);
                     index.AppendLine("</dd>");
 
-                    HtmlWrapper wrapper = new HtmlWrapper(file.Contents, Demo.Files);
+                    HtmlWrapper wrapper = new HtmlWrapper(file.Contents, Example.Files);
                     wrapper.Export(file.Filename);
                     found = true;
                 }
@@ -84,10 +84,10 @@ namespace FileHelpers
             if (!found)
             {
                 index.Append("<dt><u>Missing</u> ");
-                index.Append(Demo.CodeTitle);
+                index.Append(Example.CodeTitle);
                 index.AppendLine("</dt>");
                 index.Append("<dd>");
-                index.Append(Demo.CodeDescription);
+                index.Append(Example.CodeDescription);
                 index.AppendLine("</dd>");
             }
         }

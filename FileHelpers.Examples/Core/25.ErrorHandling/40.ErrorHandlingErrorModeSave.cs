@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Simple class with use the error mode for a value not in the enumerator
     /// Saving error output and recovering it
     /// </summary>
     public class ErrorSaveErrorHandlingDemo
-        : DemoParent
+        : ExampleBase
     {
         //-> {Example.Name:ErrorMode saving Errors}
         //-> {Example.Description:Read the file saving bad records}

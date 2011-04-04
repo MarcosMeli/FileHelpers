@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     //-> {Example.Name:Multi Record Processing}
     //-> {Example.Description:Read or write a file with many different layouts}
 
     public class MultiRecordSample
-        : DemoParent
+        : ExampleBase
     {
         //-> {Example.File:Input.txt}
         /*10248|VINET|5|04071996|01081996|16071996|3|32.38  

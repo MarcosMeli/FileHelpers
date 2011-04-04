@@ -12,13 +12,21 @@
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
-using System.Diagnostics;
+<#
+    // Configuration of the Examples Generation:
+
+    ExamplesFolder = "Core";
+    ExamplesNamespace = "Examples";
+
+#>
+
 using System;
 using System.Collections.Generic;
 using System.Text;
-using FileHelpers;
+using ExamplesFramework;
 
-namespace Demos
+
+namespace <#= ExamplesNamespace #>
 {
     public class DemoFactory
     {
@@ -29,7 +37,7 @@ namespace Demos
 		    var demos = new List<DemoCode>();
             DemoCode demo;
 <#
-	Process("Core");
+	Process(ExamplesFolder);
 #>
 		
            return demos;
@@ -40,6 +48,9 @@ namespace Demos
 
 <#+
 
+	public string ExamplesFolder { get; set; }
+	public string ExamplesNamespace { get; set; }
+	
 public void Process(string folder)
 {
 	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
@@ -67,6 +78,8 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 		{ 
 			case "demogenerator.cs":
 			case "demogenerator.autogen.cs":
+			case "examplegenerator.tt":
+			case "examplegenerator.autogen.cs":
 			case "filetestbase.cs":
 					break;
 				default:
@@ -120,9 +133,9 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
                 name = match.Groups["name"].Value.Trim();
             }
 
-			// Grabs class name that implements DemoParent class as 'classname'
+			// Grabs class name that implements ExampleBase class as 'classname'
 			var className = "";
-            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*DemoParent", regexOptions | RegexOptions.Singleline);
+            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*ExampleBase", regexOptions | RegexOptions.Singleline);
             if (match.Success)
             {
                 className = match.Groups["classname"].Value.Trim();

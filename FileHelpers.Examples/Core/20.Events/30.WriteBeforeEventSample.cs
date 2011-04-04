@@ -5,13 +5,13 @@ using System.Text;
 using FileHelpers;
 using FileHelpers.Events;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Example of the Write Before event
     /// </summary>
     public class WriteBeforeEventSample
-        : DemoParent
+        : ExampleBase
     {
 
         //-> {Example.Name:Write Before Event Handling}

@@ -6,19 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
+using Examples;
+using ExamplesFramework.Properties;
 using ICSharpCode.TextEditor.Document;
-using Demos;
 using FileHelpers;
-using FileHelpersExamples.Properties;
 
 
-namespace FileHelpersExamples
+namespace ExamplesFramework
 {
     /// <summary>
     /// Display all the sample code and allow it to be run in realtime
     /// </summary>
-    public partial class frmSamples : Form
+    public partial class frmExamples : Form
     {
         /// <summary>
         /// Where data will be written and expected to be read by the samples
@@ -31,7 +30,7 @@ namespace FileHelpersExamples
         public const string OutputFilename = "Output.txt";
 
 
-        public frmSamples()
+        public frmExamples()
         {
             InitializeComponent();
             this.InfoSheet.Visible = false;
@@ -52,7 +51,7 @@ namespace FileHelpersExamples
 
         private void treeViewDemos1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (CurrentDemo == null)
+            if (CurrentExample == null)
             {
                 Clear();
                 return;
@@ -67,9 +66,9 @@ namespace FileHelpersExamples
             this.SuspendLayout();
             Clear();
 
-            this.TestDescription.Text = CurrentDemo.CodeDescription;
+            this.TestDescription.Text = CurrentExample.CodeDescription;
 
-            foreach (var file in CurrentDemo.Files)
+            foreach (var file in CurrentExample.Files)
             {
                 CreateNewDemoFile(file);
 
@@ -78,11 +77,11 @@ namespace FileHelpersExamples
             }
 
             ShowDemoFile();
-            cmdRunDemo.Visible = CurrentDemo.Runnable;
+            cmdRunDemo.Visible = CurrentExample.Runnable;
             this.ResumeLayout();
         }
 
-        private void CreateNewDemoFile(DemoFile file)
+        private void CreateNewDemoFile(ExampleFile file)
         {
             var tp = new TabPage();
             tp.Text = file.Filename;
@@ -103,17 +102,17 @@ namespace FileHelpersExamples
             if (tcCodeFiles.SelectedTab == null)
                 return;
 
-            var demo = tcCodeFiles.SelectedTab.Tag as DemoFile;
+            var demo = tcCodeFiles.SelectedTab.Tag as ExampleFile;
             if (demo == null)
                 return;
 
-            if (demo.Status == DemoFile.FileType.HtmlFile)
+            if (demo.Status == ExampleFile.FileType.HtmlFile)
             {
                 //  Hide the code editor
                 txtCode.Visible = false;
                 this.InfoSheet.Visible = true;
 
-                HtmlWrapper html = new HtmlWrapper(demo.Contents, CurrentDemo.Files);
+                HtmlWrapper html = new HtmlWrapper(demo.Contents, CurrentExample.Files);
                 string text = html.ToString();
                 this.InfoSheet.DocumentText = text;
                 int retries = 0;
@@ -139,11 +138,11 @@ namespace FileHelpersExamples
             
         }
 
-        public DemoCode CurrentDemo
+        public ExampleCode CurrentExample
         {
             get
             {
-                return treeViewDemos1.SelectedDemo;
+                return treeViewDemos1.SelectedExample;
             }
         }
         private void tcCodeFiles_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,14 +152,14 @@ namespace FileHelpersExamples
 
         private void cmdRunDemo_Click(object sender, EventArgs e)
         {
-            if (CurrentDemo == null)
+            if (CurrentExample == null)
                 return;
-            CurrentDemo.AddedFile += new EventHandler<DemoCode.NewFile>(FileHandler);
-            CurrentDemo.Test();
-            CurrentDemo.AddedFile -= FileHandler;
+            CurrentExample.AddedFile += new EventHandler<ExampleCode.NewFile>(FileHandler);
+            CurrentExample.Test();
+            CurrentExample.AddedFile -= FileHandler;
         }
 
-        private void FileHandler( object sender, DemoCode.NewFile file )
+        private void FileHandler( object sender, ExampleCode.NewFile file )
         {
             CreateNewDemoFile(file.details);
         }

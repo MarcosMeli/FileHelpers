@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     //-> {Example.Name:Write Delimited File}
     //-> {Example.Description:Example of how to write a Delimited File}
@@ -12,7 +12,7 @@ namespace Demos
     /// Example of writing a delimited file using the generic engine
     /// </summary>
     public class WriteFile
-        : DemoParent
+        : ExampleBase
     {
         /// <summary>
         /// Execute engine and write out records we define in memory delimited by |

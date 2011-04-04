@@ -5,13 +5,13 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Read Delimited File}
-    //-> {Example.Description:Example of how to read a Delimited File}
+    //-> {Example.Name:DelimitedRecord}
+    //-> {Example.Description:Example of how to use DelimitedRecord attribute}
 
     /// <summary>
     /// Example of reading a simple file delimited by | using the Generic Engine
     /// </summary>
-    public class ReadFile
+    public class DelimitedRecord
         : ExampleBase
     {
 

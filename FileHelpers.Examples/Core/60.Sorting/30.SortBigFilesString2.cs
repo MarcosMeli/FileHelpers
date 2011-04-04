@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     //-> {Example.Name:Sort Big File without Record Class 2}
     //-> {Example.Runnable:false}
     //-> {Example.Description:Shows how to sort a big file without a record class}
 
     public class BigFileSortString2
-        : DemoParent
+        : ExampleBase
     {
 
         //-> {Example.File:SortingWithoutRecord.cs}

@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     /// <summary>
     /// Wrapper class for handling the HTML output
@@ -52,7 +52,7 @@ namespace FileHelpers
         /// <summary>
         /// Demo Files attached to this sample
         /// </summary>
-        public List<DemoFile> Files;
+        public List<ExampleFile> Files;
 
         static Regex LeadingAster = new Regex(@"^\s\* ", RegexOptions.Compiled | RegexOptions.Multiline);
 
@@ -65,7 +65,7 @@ namespace FileHelpers
         /// Create a HTML wrapper with a template (before expansion)
         /// </summary>
         /// <param name="pBody">Html content that appears between body tags</param>
-        public HtmlWrapper(  String pBody, List<DemoFile> pFiles)
+        public HtmlWrapper(  String pBody, List<ExampleFile> pFiles)
         {
             this.Body = pBody;
             this.Files = pFiles;
@@ -121,13 +121,13 @@ namespace FileHelpers
                         String cssClass = "data";
                         switch (details.Status)
                         {
-                            case DemoFile.FileType.InputFile:
+                            case ExampleFile.FileType.InputFile:
                                 cssClass = "data";
                                 break;
-                            case DemoFile.FileType.OutputFile:
+                            case ExampleFile.FileType.OutputFile:
                                 cssClass = "data";
                                 break;
-                            case DemoFile.FileType.SourceFile:
+                            case ExampleFile.FileType.SourceFile:
                                 switch (details.Language)
                                 {
                                     case NetLanguage.CSharp:

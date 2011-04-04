@@ -1,7 +1,8 @@
-﻿using FileHelpers;
-namespace FileHelpersExamples
+﻿using ExamplesFramework.Properties;
+using FileHelpers;
+namespace ExamplesFramework
 {
-    partial class frmSamples
+    partial class frmExamples
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +31,14 @@ namespace FileHelpersExamples
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSamples));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExamples));
             Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.extracthtml = new System.Windows.Forms.ToolStripButton();
             this.cmdHistory = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeViewDemos1 = new FileHelpers.TreeViewDemos();
+            this.treeViewDemos1 = new TreeViewExamples();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
@@ -109,7 +110,7 @@ namespace FileHelpersExamples
             // 
             // extracthtml
             // 
-            this.extracthtml.Image = global::FileHelpersExamples.Properties.Resources.arrow_right;
+            this.extracthtml.Image = Resources.arrow_right;
             this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.extracthtml.Name = "extracthtml";
             this.extracthtml.Size = new System.Drawing.Size(98, 22);
@@ -233,7 +234,7 @@ namespace FileHelpersExamples
             // 
             // cmdRunDemo
             // 
-            this.cmdRunDemo.Image = global::FileHelpersExamples.Properties.Resources.arrow_right;
+            this.cmdRunDemo.Image = Resources.arrow_right;
             this.cmdRunDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdRunDemo.Name = "cmdRunDemo";
             this.cmdRunDemo.Size = new System.Drawing.Size(83, 22);
@@ -285,7 +286,7 @@ namespace FileHelpersExamples
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private TreeViewDemos treeViewDemos1;
+        private TreeViewExamples treeViewDemos1;
         private System.Windows.Forms.TabControl tcCodeFiles;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton cmdRunDemo;

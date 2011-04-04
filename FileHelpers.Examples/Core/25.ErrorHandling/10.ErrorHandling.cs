@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     /// <summary>
     /// Simple class with try catch and a value not in the enumerator
     /// </summary>
     public class SimpleErrorHandlingDemo
-        : DemoParent
+        : ExampleBase
     {
         //-> {Example.Name:Simple Error handling}
         //-> {Example.Description:Read the file or reject the whole file}

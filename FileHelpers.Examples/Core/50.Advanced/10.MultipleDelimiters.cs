@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace Demos
+namespace ExamplesFramework
 {
     //-> {Example.Name:Multiple Delimiters}
     //-> {Example.Description:Write a file with different delimiters using the same record}
 
     public class MultipleDelimiters
-        : DemoParent
+        : ExampleBase
     {
 
         //-> {Example.File:RunEngine.cs}

@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     // Quick Search, right clicking, menu, etc
     public class TreeViewEx

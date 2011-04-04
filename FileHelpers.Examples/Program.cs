@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using ExamplesFramework;
 
-namespace FileHelpersExamples
+namespace ExamplesFramework
 {
     
     public class Program
@@ -14,7 +15,7 @@ namespace FileHelpersExamples
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmSamples());
+            Application.Run(new frmExamples());
         }
 
     }

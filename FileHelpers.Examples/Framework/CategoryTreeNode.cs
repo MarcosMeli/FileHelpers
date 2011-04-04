@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace FileHelpers
+namespace ExamplesFramework
 {
     /// <summary>
     /// Container for category as a tree node leaf

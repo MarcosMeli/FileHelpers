@@ -1,19 +1,20 @@
-﻿namespace FileHelpers
+﻿
+namespace ExamplesFramework
 {
-    public class DemoFile
+    public class ExampleFile
     {
 
-        public DemoFile()
+        public ExampleFile()
             :this("demo.cs", NetLanguage.CSharp)
         {
         }
 
-        public DemoFile(string filename)
+        public ExampleFile(string filename)
             : this(filename, NetLanguage.CSharp)
         {
         }
 
-        public DemoFile(string filename, NetLanguage language)
+        public ExampleFile(string filename, NetLanguage language)
         {
             Filename = filename;
             Language = language;
