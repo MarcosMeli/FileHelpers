@@ -77,7 +77,7 @@
 		</ItemGroup>
 		
 		<ItemGroup>
-        	<DocFile Include="a.cs;b.cs;c.cs"/>
+        	<DocFile Include="Help\FileHelpers.chm"/>
     	</ItemGroup>
 
         <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
