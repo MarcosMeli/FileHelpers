@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-<Choose>
-<When Condition=" '$(TargetFrameworkVersion)'=='' ">
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)'=='' ">
+      <PropertyGroup>
+        <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+      </PropertyGroup>
+    </When>
+  </Choose>
   <PropertyGroup>
-   <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-  </PropertyGroup>
-</When>
-</Choose>
-<PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -38,7 +38,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\Debug\Library\</OutputPath>
+    <OutputPath>..\Debug\Binaries\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -61,7 +61,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\Release\Library\</OutputPath>
+    <OutputPath>..\Release\Binaries\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>

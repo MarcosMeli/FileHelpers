@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<Choose>
-<When Condition=" '$(TargetFrameworkVersion)'=='' ">
-  <PropertyGroup>
-   <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-  </PropertyGroup>
-</When>
-</Choose>
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)'=='' ">
+      <PropertyGroup>
+        <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+      </PropertyGroup>
+    </When>
+  </Choose>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -17,7 +17,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileHelpers.DataLink</RootNamespace>
     <AssemblyName>FileHelpers.DataLink</AssemblyName>
-    
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
@@ -31,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\Library\</OutputPath>
+    <OutputPath>..\Debug\Binaries\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,7 +40,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\Library\</OutputPath>
+    <OutputPath>..\Release\Binaries\</OutputPath>
     <DefineConstants>TRACE;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
