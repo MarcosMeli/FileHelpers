@@ -9,7 +9,7 @@ namespace ExamplesFramework
     /// Simple class with use the error mode for a value not in the enumerator
     /// Saving error output and recovering it
     /// </summary>
-    public class ErrorSaveErrorHandlingDemo
+    public class ErrorSaveErrorHandlingExample
         : ExampleBase
     {
         //-> {Example.Name:ErrorMode saving Errors}

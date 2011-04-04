@@ -6,7 +6,7 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    public class EnumConverterDemo : ExampleBase
+    public class EnumConverterExample : ExampleBase
     {
         //-> {Example.Name:Enum Converter Example}
         //-> {Example.Description:When you have a string field in your files that can be better handled if you map it to an enum.}

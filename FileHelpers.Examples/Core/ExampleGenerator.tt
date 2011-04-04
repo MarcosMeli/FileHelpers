@@ -28,19 +28,19 @@ using ExamplesFramework;
 
 namespace <#= ExamplesNamespace #>
 {
-    public class DemoFactory
+    public class ExampleFactory
     {
-	    static DemoFile work;
+	    static ExampleFile work;
 
-        public static List<DemoCode> GetDemos()
+        public static List<ExampleCode> GetExamples()
         {
-		    var demos = new List<DemoCode>();
-            DemoCode demo;
+		    var examples = new List<ExampleCode>();
+            ExampleCode example;
 <#
 	Process(ExamplesFolder);
 #>
 		
-           return demos;
+           return examples;
         }
     }
 }
@@ -76,8 +76,6 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 		
 		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
 		{ 
-			case "demogenerator.cs":
-			case "demogenerator.autogen.cs":
 			case "examplegenerator.tt":
 			case "examplegenerator.autogen.cs":
 			case "filetestbase.cs":
@@ -117,7 +115,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 		}
 		
 	
-       public static string ParseExample(string demoText, string category)
+       public static string ParseExample(string exampleText, string category)
         {
 			if (category.Contains("."))
 				category = category.Substring(category.IndexOf(".") + 1);
@@ -125,9 +123,9 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             var res = new StringBuilder();
             var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
 
-            var name = "Demo";
+            var name = "Example";
 			// Grabs text after "Example.Name" as 'name'
-            var match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Name\s*:(?<name>.*)\}", regexOptions);
+            var match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Name\s*:(?<name>.*)\}", regexOptions);
             if (match.Success)
             {
                 name = match.Groups["name"].Value.Trim();
@@ -135,7 +133,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
 			// Grabs class name that implements ExampleBase class as 'classname'
 			var className = "";
-            match = Regex.Match(demoText, @"public\s+class\s+(?<classname>.*)\s*:\s*ExampleBase", regexOptions | RegexOptions.Singleline);
+            match = Regex.Match(exampleText, @"public\s+class\s+(?<classname>.*)\s*:\s*ExampleBase", regexOptions | RegexOptions.Singleline);
             if (match.Success)
             {
                 className = match.Groups["classname"].Value.Trim();
@@ -144,31 +142,31 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             var description = "";
 
 			//  Grabs text after Example.Description as 'description'
-            match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Description\s*:(?<description>.*)\}", regexOptions | RegexOptions.Multiline);
+            match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Description\s*:(?<description>.*)\}", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
                 description = match.Groups["description"].Value.Trim();
             }
 
-			// line is: demo = new DemoCode(new class(), "description", "category");
-            res.AppendLine(@"demo = new DemoCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
+			// line is: example = new ExampleCode(new class(), "description", "category");
+            res.AppendLine(@"example = new ExampleCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
             if (!string.IsNullOrEmpty(description))
             {
-                res.AppendLine(@"demo.CodeDescription = @""" + description + @""";");
+                res.AppendLine(@"example.CodeDescription = @""" + description + @""";");
             }
 
-			match = Regex.Match(demoText, @"\/\/\-\>\s*\{Example\.Runnable\s*:(?<runnable>.*)\}", regexOptions | RegexOptions.Multiline);
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Runnable\s*:(?<runnable>.*)\}", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
-				res.AppendLine(@"demo.Runnable = " + match.Groups["runnable"].Value.Trim() + @";");
+				res.AppendLine(@"example.Runnable = " + match.Groups["runnable"].Value.Trim() + @";");
             }
 
 			
-            res.AppendLine(@"demos.Add(demo);");
+            res.AppendLine(@"examples.Add(example);");
 
 
 			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
-            var filesMatch = Regex.Matches(demoText,
+            var filesMatch = Regex.Matches(exampleText,
                                            @"\/\/\-\>\s*\{Example\.File\s*\:\s*(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
                                            regexOptions | RegexOptions.Singleline);
 
@@ -176,7 +174,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             foreach (Match fileMatch in filesMatch)
             {
 			    String filename = fileMatch.Groups["filename"].Value;
-                res.AppendFormat(@"work = new DemoFile(""{0}"");", filename);
+                res.AppendFormat(@"work = new ExampleFile(""{0}"");", filename);
 				filename = filename.ToLower();
 				res.AppendLine();
                 res.AppendFormat(@"work.Contents = @""{0}"";", GetFileCode(fileMatch.Groups["filecode"].Value));
@@ -196,39 +194,39 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 						res.AppendLine(@"work.Language = NetLanguage.VBNET;");
 						break;
 					case "inp":
-						res.AppendLine(@"work.Status = DemoFile.FileType.InputFile;");
+						res.AppendLine(@"work.Status = ExampleFile.FileType.InputFile;");
 						break;
 					case "out":
-						res.AppendLine(@"work.Status = DemoFile.FileType.OutputFile;");
+						res.AppendLine(@"work.Status = ExampleFile.FileType.OutputFile;");
 						break;
 					case "html":
-						res.AppendLine(@"work.Status = DemoFile.FileType.HtmlFile;");
+						res.AppendLine(@"work.Status = ExampleFile.FileType.HtmlFile;");
 						break;
 					default:
 						res.AppendLine("// unknown extension "+ Ext);
 						break; // defaults to CS
 				}
-                res.AppendLine(@"demo.Files.Add(work);");
+                res.AppendLine(@"example.Files.Add(work);");
             }
 
 
 			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
-            var inputFilesMatch = Regex.Matches(demoText,
+            var inputFilesMatch = Regex.Matches(exampleText,
                                            @"\/\/\-\>\s*\{Input\.File\s*\:(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Input\.File\s*\}",
                                            regexOptions | RegexOptions.Singleline);
 
             // regex above may return multiple sample files.  
             foreach (Match fileMatch in inputFilesMatch)
             {
-                res.AppendLine(@"work = new DemoFile(""" + fileMatch.Groups["filename"].Value + @""");");
+                res.AppendLine(@"work = new ExampleFile(""" + fileMatch.Groups["filename"].Value + @""");");
                 res.AppendLine(@"work.Contents = @""" + GetFileCode(fileMatch.Groups["filecode"].Value) + @""";");
-                res.AppendLine(@"demo.Files.Add(work);");
+                res.AppendLine(@"example.Files.Add(work);");
             }
 
 
-            //demo.Files.Add(new DemoFile());
-            //demo.LastFile.Contents = "Bla bla .bla";
-            //res.Add(demo);
+            //example.Files.Add(new ExampleFile());
+            //example.LastFile.Contents = "Bla bla .bla";
+            //res.Add(example);
 
             return res.ToString();
         }

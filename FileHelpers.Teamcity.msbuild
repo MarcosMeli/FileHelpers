@@ -14,6 +14,6 @@
       <CallTarget Targets="Build"/>
   </Target>
 
-  <Target Name="continuous-build" DependsOnTargets="pack-release;pack-debug;test-team;doc" >
+  <Target Name="continuous-build" DependsOnTargets="pack-debug;test-team;doc;pack-release" >
   </Target>
 </Project>

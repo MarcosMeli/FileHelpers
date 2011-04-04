@@ -8,7 +8,7 @@ namespace ExamplesFramework
     /// <summary>
     /// Simple class with try catch and a value not in the enumerator
     /// </summary>
-    public class SimpleErrorHandlingDemo
+    public class SimpleErrorHandlingExample
         : ExampleBase
     {
         //-> {Example.Name:Simple Error handling}

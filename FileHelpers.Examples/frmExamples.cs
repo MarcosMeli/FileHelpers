@@ -46,7 +46,7 @@ namespace ExamplesFramework
         {
             base.OnLoad(e);
 
-            treeViewDemos1.LoadDemos(DemoFactory.GetDemos());
+            treeViewDemos1.LoadDemos(ExampleFactory.GetExamples());
         }
 
         private void treeViewDemos1_AfterSelect(object sender, TreeViewEventArgs e)

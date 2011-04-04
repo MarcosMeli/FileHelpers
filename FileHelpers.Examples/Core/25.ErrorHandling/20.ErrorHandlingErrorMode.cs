@@ -8,7 +8,7 @@ namespace ExamplesFramework
     /// <summary>
     /// Simple class with use the error mode for a value not in the enumerator
     /// </summary>
-    public class ErrorModeErrorHandlingDemo
+    public class ErrorModeErrorHandlingExample
         : ExampleBase
     {
         //-> {Example.Name:ErrorMode Error handling}

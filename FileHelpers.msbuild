@@ -68,13 +68,15 @@
 	    <Copy SourceFiles="@(RootFiles2)" DestinationFolder="Debug" />		
 	</Target>
 
-	<Target Name="pack-all" DependsOnTargets="common;pack-release;pack-debug">
+	<Target Name="pack-all" DependsOnTargets="common;pack-debug;pack-release">
 	</Target>
 
 	<Target Name="pack-release" DependsOnTargets="release">
 		<ItemGroup>
 			<ReleaseFiles2 Include="Release\**\*.*" />
 		</ItemGroup>
+		
+        <Copy SourceFile="Help\FileHelpers.chm" DestinationFolder="Release\Docs" />
 		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
 	</Target>
 
