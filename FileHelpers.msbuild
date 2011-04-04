@@ -36,13 +36,13 @@
 	<Target Name="release" DependsOnTargets="common">
 		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Release" />
 		
-		<MakeDir Directories="Release\Lib\2.0" ContinueOnError="True" />
+		<MakeDir Directories="Release\Binaries\2.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Binaries\*.* Release\Binaries\2.0"/>
 		<Exec Command="RmDir /S /Q Release\Binaries" />
 		
 		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Release "/>
 		
-		<MakeDir Directories="Release\Lib\4.0" ContinueOnError="True" />
+		<MakeDir Directories="Release\Binaries\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Binaries\*.* Release\Binaries\4.0"/>
 		<Exec Command="RmDir /S /Q Release\Binaries" />
 
@@ -54,13 +54,13 @@
 	<Target Name="debug" DependsOnTargets="common">
 		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Debug" />
 		
-		<MakeDir Directories="Debug\Lib\2.0" ContinueOnError="True" />
+		<MakeDir Directories="Debug\Binaries\2.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Debug\Binaries\*.* Debug\Binaries\2.0"/>
 		<Exec Command="RmDir /S /Q Debug\Binaries" />
 		
 		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Debug "/>
 		
-		<MakeDir Directories="Debug\Lib\4.0" ContinueOnError="True" />
+		<MakeDir Directories="Debug\Binaries\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Debug\Binaries\*.* Debug\Binaries\4.0"/>
 		<Exec Command="RmDir /S /Q Debug\Binaries" />
 		
