@@ -34,13 +34,13 @@
 	</Target>
 
 	<Target Name="release" DependsOnTargets="common">
-		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Release" />
+		<MSBuild Projects="FileHelpers.OnlyLib.sln" Properties="Configuration=Release" />
 		
 		<MakeDir Directories="Release\Binaries\2.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Bin\*.* Release\Binaries\2.0"/>
 		<Exec Command="RmDir /S /Q Release\Bin" />
 		
-		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Release "/>
+		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Release "/>
 		
 		<MakeDir Directories="Release\Binaries\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Release\Bin\*.* Release\Binaries\4.0"/>
@@ -51,14 +51,18 @@
 		
 	</Target>
 
+	<Target Name="compilerelease2" DependsOnTargets="common">
+		<MSBuild Projects="FileHelpers.OnlyLib.sln" Properties="Configuration=Release" />
+	</Target>
+
 	<Target Name="debug" DependsOnTargets="common">
-		<MSBuild Projects="FileHelpers.sln" Properties="Configuration=Debug" />
+		<MSBuild Projects="FileHelpers.OnlyLib.sln" Properties="Configuration=Debug" />
 		
 		<MakeDir Directories="Debug\Binaries\2.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Debug\Bin\*.* Debug\Binaries\2.0"/>
 		<Exec Command="RmDir /S /Q Debug\Bin" />
 		
-		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.OnlyLib.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Debug "/>
+		<Exec Command="$(MSBuildToolsPath)\msbuild.exe FileHelpers.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Debug "/>
 		
 		<MakeDir Directories="Debug\Binaries\4.0" ContinueOnError="True" />
 		<Exec Command="copy /Y /D Debug\Bin\*.* Debug\Binaries\4.0"/>
@@ -77,6 +81,15 @@
     	</ItemGroup>
 
         <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
+
+		<ItemGroup>
+			<DeleteXml Include="Examples\FileHelpers.xml" />
+			<DeleteXml Include="ExamplesOld\FileHelpers.xml" />
+			<DeleteXml Include="ExamplesOld\FileHelpers.DataLink.xml" />
+			<DeleteXml Include="ExamplesOld\IronPython\FileHelpers.xml" />
+			<DeleteXml Include="Wizard\FileHelpers.xml" />
+		</ItemGroup>
+		<Delete Files="@(DeleteXml)" />
 
 		<ItemGroup>
 			<ReleaseFiles2 Include="Release\**\*.*" />

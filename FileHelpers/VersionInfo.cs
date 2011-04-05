@@ -2,8 +2,8 @@
 using System.Runtime.InteropServices;
 
 // The version of the Library
-[assembly : AssemblyVersion("2.9.9.0")]
-[assembly : AssemblyFileVersion("2.9.9.0")]
+[assembly : AssemblyVersion("2.9.10.0")]
+[assembly : AssemblyFileVersion("2.9.10.0")]
 
 [assembly : AssemblyDescription("A free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams")]
 [assembly : AssemblyProduct("FileHelpers   http://www.filehelpers.com")]
