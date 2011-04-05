@@ -38,7 +38,6 @@ namespace ExamplesFramework
             this.extracthtml = new System.Windows.Forms.ToolStripButton();
             this.cmdHistory = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeViewDemos1 = new TreeViewExamples();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
@@ -46,7 +45,12 @@ namespace ExamplesFramework
             this.tcCodeFiles = new System.Windows.Forms.TabControl();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
-            this.TestDescription = new System.Windows.Forms.Label();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblTestDescription = new System.Windows.Forms.ToolStripLabel();
+            this.treeViewDemos1 = new ExamplesFramework.TreeViewExamples();
+            this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -84,7 +88,7 @@ namespace ExamplesFramework
             new Devoo.WinForms.ImageShape(((System.Drawing.Bitmap)(resources.GetObject("reflectionHeader1.Images"))), true, ((byte)(255)), new System.Drawing.Point(3, 1), ((byte)(0)), 0)});
             this.reflectionHeader1.Location = new System.Drawing.Point(0, 0);
             this.reflectionHeader1.Name = "reflectionHeader1";
-            this.reflectionHeader1.Size = new System.Drawing.Size(884, 85);
+            this.reflectionHeader1.Size = new System.Drawing.Size(854, 85);
             this.reflectionHeader1.Text = "FileHelpers Examples";
             textShape1.Color.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             textShape1.Color.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
@@ -100,17 +104,21 @@ namespace ExamplesFramework
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.txtSearch,
+            this.toolStripSeparator2,
             this.extracthtml,
+            this.toolStripSeparator1,
             this.cmdHistory});
             this.toolStrip1.Location = new System.Drawing.Point(0, 85);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(884, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(854, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // extracthtml
             // 
-            this.extracthtml.Image = Resources.arrow_right;
+            this.extracthtml.Image = global::ExamplesFramework.Properties.Resources.arrow_right;
             this.extracthtml.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.extracthtml.Name = "extracthtml";
             this.extracthtml.Size = new System.Drawing.Size(98, 22);
@@ -121,8 +129,8 @@ namespace ExamplesFramework
             // 
             this.cmdHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdHistory.Name = "cmdHistory";
-            this.cmdHistory.Size = new System.Drawing.Size(81, 22);
-            this.cmdHistory.Text = "Show History";
+            this.cmdHistory.Size = new System.Drawing.Size(120, 22);
+            this.cmdHistory.Text = "Show Library History";
             this.cmdHistory.Click += new System.EventHandler(this.cmdHistory_Click);
             // 
             // splitContainer1
@@ -138,21 +146,9 @@ namespace ExamplesFramework
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(884, 502);
-            this.splitContainer1.SplitterDistance = 294;
+            this.splitContainer1.Size = new System.Drawing.Size(854, 425);
+            this.splitContainer1.SplitterDistance = 284;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // treeViewDemos1
-            // 
-            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewDemos1.ImageIndex = 0;
-            this.treeViewDemos1.ImageList = this.imgTreeView;
-            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
-            this.treeViewDemos1.Name = "treeViewDemos1";
-            this.treeViewDemos1.SelectedImageIndex = 0;
-            this.treeViewDemos1.Size = new System.Drawing.Size(294, 502);
-            this.treeViewDemos1.TabIndex = 0;
-            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
             // 
             // imgTreeView
             // 
@@ -181,12 +177,12 @@ namespace ExamplesFramework
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
             this.splitContainer2.Panel1.Controls.Add(this.txtCode);
             this.splitContainer2.Panel1.Controls.Add(this.tcCodeFiles);
             this.splitContainer2.Panel1.Controls.Add(this.toolStrip2);
-            this.splitContainer2.Size = new System.Drawing.Size(586, 502);
-            this.splitContainer2.SplitterDistance = 423;
+            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
+            this.splitContainer2.Size = new System.Drawing.Size(566, 425);
+            this.splitContainer2.SplitterDistance = 358;
             this.splitContainer2.TabIndex = 0;
             // 
             // InfoSheet
@@ -199,14 +195,14 @@ namespace ExamplesFramework
             // 
             // txtCode
             // 
-            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.IndentStyle = ICSharpCode.TextEditor.Document.IndentStyle.None;
             this.txtCode.IsReadOnly = false;
             this.txtCode.Location = new System.Drawing.Point(7, 49);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(572, 367);
+            this.txtCode.Size = new System.Drawing.Size(552, 302);
             this.txtCode.TabIndex = 0;
             this.txtCode.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.txtCode.Visible = false;
@@ -218,23 +214,24 @@ namespace ExamplesFramework
             this.tcCodeFiles.Location = new System.Drawing.Point(0, 25);
             this.tcCodeFiles.Name = "tcCodeFiles";
             this.tcCodeFiles.SelectedIndex = 0;
-            this.tcCodeFiles.Size = new System.Drawing.Size(586, 398);
+            this.tcCodeFiles.Size = new System.Drawing.Size(566, 333);
             this.tcCodeFiles.TabIndex = 0;
             this.tcCodeFiles.SelectedIndexChanged += new System.EventHandler(this.tcCodeFiles_SelectedIndexChanged);
             // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmdRunDemo});
+            this.cmdRunDemo,
+            this.lblTestDescription});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(586, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(566, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // cmdRunDemo
             // 
-            this.cmdRunDemo.Image = Resources.arrow_right;
+            this.cmdRunDemo.Image = global::ExamplesFramework.Properties.Resources.arrow_right;
             this.cmdRunDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdRunDemo.Name = "cmdRunDemo";
             this.cmdRunDemo.Size = new System.Drawing.Size(83, 22);
@@ -242,27 +239,58 @@ namespace ExamplesFramework
             this.cmdRunDemo.Visible = false;
             this.cmdRunDemo.Click += new System.EventHandler(this.cmdRunDemo_Click);
             // 
-            // TestDescription
+            // toolStripLabel1
             // 
-            this.TestDescription.AutoSize = true;
-            this.TestDescription.Location = new System.Drawing.Point(427, 100);
-            this.TestDescription.Name = "TestDescription";
-            this.TestDescription.Size = new System.Drawing.Size(92, 13);
-            this.TestDescription.TabIndex = 4;
-            this.TestDescription.Text = "Description of test";
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel1.Text = "Search:";
             // 
-            // frmSamples
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lblTestDescription
+            // 
+            this.lblTestDescription.Name = "lblTestDescription";
+            this.lblTestDescription.Size = new System.Drawing.Size(0, 22);
+            // 
+            // treeViewDemos1
+            // 
+            this.treeViewDemos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewDemos1.ImageIndex = 0;
+            this.treeViewDemos1.ImageList = this.imgTreeView;
+            this.treeViewDemos1.Location = new System.Drawing.Point(0, 0);
+            this.treeViewDemos1.Name = "treeViewDemos1";
+            this.treeViewDemos1.SelectedImageIndex = 0;
+            this.treeViewDemos1.Size = new System.Drawing.Size(284, 425);
+            this.treeViewDemos1.TabIndex = 0;
+            this.treeViewDemos1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDemos1_AfterSelect);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(121, 25);
+            // 
+            // frmExamples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 612);
-            this.Controls.Add(this.TestDescription);
+            this.ClientSize = new System.Drawing.Size(854, 535);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.reflectionHeader1);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmSamples";
+            this.Name = "frmExamples";
             this.Text = "FileHelpers Examples";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmExamples_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -292,9 +320,13 @@ namespace ExamplesFramework
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
         private System.Windows.Forms.ImageList imgTreeView;
         private ICSharpCode.TextEditor.TextEditorControl txtCode;
-        private System.Windows.Forms.Label TestDescription;
         private System.Windows.Forms.WebBrowser InfoSheet;
         private System.Windows.Forms.ToolStripButton extracthtml;
         private System.Windows.Forms.ToolStripButton cmdHistory;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel lblTestDescription;
+        private System.Windows.Forms.ToolStripTextBox txtSearch;
     }
 }

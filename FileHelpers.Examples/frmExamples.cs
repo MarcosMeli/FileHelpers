@@ -66,7 +66,7 @@ namespace ExamplesFramework
             this.SuspendLayout();
             Clear();
 
-            this.TestDescription.Text = CurrentExample.CodeDescription;
+            this.lblTestDescription.Text = CurrentExample.CodeDescription;
 
             foreach (var file in CurrentExample.Files)
             {
@@ -92,8 +92,9 @@ namespace ExamplesFramework
         private void Clear()
         {
             tcCodeFiles.TabPages.Clear();
-            this.TestDescription.Text = string.Empty;
+            this.lblTestDescription.Text = string.Empty;
             this.txtCode.Visible = false;
+            cmdRunDemo.Visible = false;
 
         }
 
@@ -173,6 +174,11 @@ namespace ExamplesFramework
         {
             InfoSheet.DocumentText = Resources.history;
             InfoSheet.Show();
+        }
+
+        private void frmExamples_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
