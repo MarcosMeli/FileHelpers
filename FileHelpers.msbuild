@@ -83,11 +83,11 @@
         <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
 
 		<ItemGroup>
-			<DeleteXml Include="Examples\FileHelpers.xml" />
-			<DeleteXml Include="ExamplesOld\FileHelpers.xml" />
-			<DeleteXml Include="ExamplesOld\FileHelpers.DataLink.xml" />
-			<DeleteXml Include="ExamplesOld\IronPython\FileHelpers.xml" />
-			<DeleteXml Include="Wizard\FileHelpers.xml" />
+			<DeleteXml Include="Release\Examples\FileHelpers.xml" />
+			<DeleteXml Include="Release\ExamplesOld\FileHelpers.xml" />
+			<DeleteXml Include="Release\ExamplesOld\FileHelpers.DataLink.xml" />
+			<DeleteXml Include="Release\ExamplesOld\IronPython\FileHelpers.xml" />
+			<DeleteXml Include="Release\Wizard\FileHelpers.xml" />
 		</ItemGroup>
 		<Delete Files="@(DeleteXml)" />
 
@@ -99,6 +99,33 @@
 	</Target>
 
 	<Target Name="pack-debug" DependsOnTargets="debug">
+	
+		<ItemGroup>
+        	<DocFile Include="Help\FileHelpers.chm"/>
+    	</ItemGroup>
+
+        <Copy SourceFiles="@(DocFile)" DestinationFolder="Debug\Docs" />
+        
+		<ItemGroup>
+			<DeleteXml Include="Debug\Examples\FileHelpers.xml" />
+			<DeleteXml Include="Debug\ExamplesOld\FileHelpers.xml" />
+			<DeleteXml Include="Debug\ExamplesOld\FileHelpers.DataLink.xml" />
+			<DeleteXml Include="Debug\ExamplesOld\IronPython\FileHelpers.xml" />
+			<DeleteXml Include="Debug\Wizard\FileHelpers.xml" />
+
+			<DeleteXml Include="Debug\Examples\FileHelpers.pdb" />
+			<DeleteXml Include="Debug\ExamplesOld\FileHelpers.pdb" />
+			<DeleteXml Include="Debug\ExamplesOld\FileHelpers.DataLink.pdb" />
+			<DeleteXml Include="Debug\ExamplesOld\FileHelpers.Demos.pdb" />
+			<DeleteXml Include="Debug\ExamplesOld\IronPython\Demo.IronPython.Hosting.pdb" />
+			<DeleteXml Include="Debug\ExamplesOld\IronPython\FileHelpers.pdb" />
+			<DeleteXml Include="Debug\Wizard\FileHelpers.pdb" />
+			<DeleteXml Include="Debug\Wizard\FileHelpersWizard.pdb" />
+			<DeleteXml Include="Debug\Examples\FileHelpersExamples.pdb" />
+			
+		</ItemGroup>
+		<Delete Files="@(DeleteXml)" />
+		
 		<ItemGroup>
 			<DebugFiles2 Include="Debug\**\*.*" />
 		</ItemGroup>
