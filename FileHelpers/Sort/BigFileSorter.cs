@@ -1,38 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
 using System.Text;
 
 namespace FileHelpers
 {
-    /// <summary>
-    /// Sort a group of records from a file
-    ///
-    ///Based on this code: http://splinter.com.au/blog/?p=142
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    [DelimitedRecord("\r\n")]
-    public sealed class SorterRecord
-        : IComparable<SorterRecord>
-    {
-        /// <summary>
-        /// Value of the string
-        /// </summary>
-        internal string Value;
-
-        /// <summary>
-        /// Compare to the sorter record
-        /// </summary>
-        /// <param name="other">Record to compare</param>
-        /// <returns>Comparison</returns>
-        public int CompareTo(SorterRecord other)
-        {
-            return Value.CompareTo(other.Value);
-        }
-    }
-
     /// <summary>
     /// This class help to sort really big files using the External Sorting algorithm
     /// http://en.wikipedia.org/wiki/External_sorting
@@ -109,26 +79,26 @@ namespace FileHelpers
             return (x, y) => sorter(x.Value, y.Value);
         }
 
-        /// <summary>
-        /// A fast way to sort a big file. For more options you need to
-        /// instantiate the BigFileSorter class instead of using static methods
-        /// </summary>
-        public static void SimpleSort(string source, string destination)
-        {
-            var sorter = new BigFileSorter();
-            sorter.Sort(source, destination);
-        }
+        ///// <summary>
+        ///// A fast way to sort a big file. For more options you need to
+        ///// instantiate the BigFileSorter class instead of using static methods
+        ///// </summary>
+        //public static void SimpleSort(string source, string destination)
+        //{
+        //    var sorter = new BigFileSorter();
+        //    sorter.Sort(source, destination);
+        //}
 
-        //  TODO:   OVERRIDE HERE !!!!
+        ////  TODO:   OVERRIDE HERE !!!!
 
-        /// <summary>
-        /// A fast way to sort a big file. For more options you need to
-        /// instantiate the BigFileSorter class instead of using static methods
-        /// </summary>
-        public static void SimpleSort(Encoding encoding, string source, string destination)
-        {
-            var sorter = new BigFileSorter(encoding);
-            sorter.Sort(source, destination);
-        }
+        ///// <summary>
+        ///// A fast way to sort a big file. For more options you need to
+        ///// instantiate the BigFileSorter class instead of using static methods
+        ///// </summary>
+        //public static void SimpleSort(Encoding encoding, string source, string destination)
+        //{
+        //    var sorter = new BigFileSorter(encoding);
+        //    sorter.Sort(source, destination);
+        //}
     }
 }

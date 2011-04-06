@@ -792,11 +792,10 @@ namespace FileHelpers
             /// <summary>
             /// Create a list of formats to pass to the DateTime tryparse function
             /// </summary>
-            /// <param name="from">DateTime value to convert</param>
             /// <returns>string DateTime value</returns>
             private string CreateFormats()
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
                 for (int i = 0; i < mFormats.Length; i++)
                 {

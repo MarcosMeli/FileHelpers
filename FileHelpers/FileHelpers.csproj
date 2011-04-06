@@ -373,6 +373,7 @@
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
     <Compile Include="Sort\BigFileSorter.cs" />
     <Compile Include="Sort\BigFileSorter.T.cs" />
+    <Compile Include="Sort\SorterRecord.cs" />
     <Compile Include="Sort\SortQueue.T.cs" />
     <Compile Include="Streams\InternalStringReader.cs" />
     <Compile Include="Streams\StreamInfoProvider.cs" />

@@ -55,9 +55,9 @@ namespace FileHelpers
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
-        /// <param name="type">Type of object to be handled</param>
-        protected FileHelperAsyncEngine(Type type)
-            : base(type)
+        /// <param name="recordType">Type of object to be handled</param>
+        protected FileHelperAsyncEngine(Type recordType)
+            : base(recordType)
         {
         }
 
@@ -70,9 +70,9 @@ namespace FileHelpers
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
-        /// <param name="type">Type of record to read</param>
-        protected FileHelperAsyncEngine(Type type, Encoding encoding)
-            : base(type, encoding)
+        /// <param name="recordType">Type of record to read</param>
+        protected FileHelperAsyncEngine(Type recordType, Encoding encoding)
+            : base(recordType, encoding)
         {
         }
 

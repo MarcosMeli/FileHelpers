@@ -10,6 +10,7 @@ namespace FileHelpers.Dynamic
     /// XML wrapper to make life a little easier
     /// </summary>
 	internal sealed class XmlHelper
+        :IDisposable
 	{
 		/// <summary>
 		/// XML writer
@@ -115,11 +116,22 @@ namespace FileHelpers.Dynamic
         /// Close the writer to flush XML
         /// </summary>
 		public void EndWrite()
-		{
-			mWriter.Close();
-			mWriter = null;
-		}
-		
+        {
+            if (mWriter != null) 
+                mWriter.Close();
+            mWriter = null;
+        }
+
+        /// <summary>
+        /// Close the reader
+        /// </summary>
+        public void EndRead()
+        {
+            if (mReader != null) 
+                mReader.Close();
+            mReader = null;
+        }
+
         /// <summary>
         /// Read the XML to the end of the element (skip attributes)
         /// </summary>
@@ -129,5 +141,11 @@ namespace FileHelpers.Dynamic
 				if (mReader.NodeType == XmlNodeType.Element)
 					return;
 		}
+
+        public void Dispose()
+        {
+            EndRead();
+            EndWrite();
+        }
 	}
 }

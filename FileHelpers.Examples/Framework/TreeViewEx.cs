@@ -12,10 +12,10 @@ namespace ExamplesFramework
     {
         public TreeViewEx()
         {
-            DoubleBuffered(true);
+            DoubleBuffer(true);
         }
 
-        private void DoubleBuffered(bool setting)
+        private void DoubleBuffer(bool setting)
         {
             Type dgvType = this.GetType();
             var pi = dgvType.GetProperty("DoubleBuffered",

@@ -161,7 +161,9 @@ namespace FileHelpers
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
             // If ignored, return null
+#pragma warning disable 612,618 // disable obsole warning
             if (fi.IsDefined(typeof(FieldNotInFileAttribute), true) || fi.IsDefined(typeof(FieldIgnoredAttribute), true))
+#pragma warning restore 612,618
                 return null;
 
             FieldBase res = null;
@@ -400,6 +402,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="sb">Append string to output</param>
         /// <param name="fieldValue">Field we are adding</param>
+        /// <param name="isLast">Indicates if we are processing last field</param>
         internal abstract void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast);
 
         /// <summary>

@@ -64,8 +64,7 @@ namespace FileHelpers
         where T : class
     {
         
-
-                    private bool mObjectEngine;
+       private bool mObjectEngine;
 
 		#region "  Constructor  "
 
@@ -86,9 +85,9 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="encoding">The Encoding used by the engine.</param>
-        /// <param name="type">Type of record we are reading</param>
-        protected FileHelperEngine(Type type, Encoding encoding)
-            : base(type, encoding)
+        /// <param name="recordType">Type of record we are reading</param>
+        protected FileHelperEngine(Type recordType, Encoding encoding)
+            : base(recordType, encoding)
         {
             mObjectEngine = typeof(T) == typeof(object);
         }

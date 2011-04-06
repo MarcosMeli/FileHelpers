@@ -48,12 +48,12 @@ namespace FileHelpers.MasterDetail
 
     /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngine/*'/>
     /// <include file='Examples.xml' path='doc/examples/MasterDetailEngine/*'/>
-    /// <typeparam name="M">The Master Record Type</typeparam>
-    /// <typeparam name="D">The Detail Record Type</typeparam>
-    public class MasterDetailEngine<M, D> 
+    /// <typeparam name="TMaster">The Master Record Type</typeparam>
+    /// <typeparam name="TDetail">The Detail Record Type</typeparam>
+    public class MasterDetailEngine<TMaster, TDetail> 
         : EngineBase
-        where M : class
-        where D : class
+        where TMaster : class
+        where TDetail : class
     {
 
         #region "  Constructor  "
@@ -67,7 +67,7 @@ namespace FileHelpers.MasterDetail
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine(MasterDetailSelector recordSelector)
-            : this(typeof(M), typeof(D), recordSelector)
+            : this(typeof(TMaster), typeof(TDetail), recordSelector)
         {
         }
 
@@ -82,7 +82,7 @@ namespace FileHelpers.MasterDetail
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         public MasterDetailEngine(CommonSelector action, string selector)
-            : this(typeof(M), typeof(D), action, selector)
+            : this(typeof(TMaster), typeof(TDetail), action, selector)
         {
         }
 
@@ -229,11 +229,11 @@ namespace FileHelpers.MasterDetail
 
 		}
 #else
-        public MasterDetails<M, D>[] ReadFile(string fileName)
+        public MasterDetails<TMaster, TDetail>[] ReadFile(string fileName)
         {
             using (var fs = new StreamReader(fileName, mEncoding, true, EngineBase.DefaultReadBufferSize))
             {
-                MasterDetails<M, D>[] tempRes;
+                MasterDetails<TMaster, TDetail>[] tempRes;
                 tempRes = ReadStream(fs);
                 fs.Close();
 
@@ -251,7 +251,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public MasterDetails[] ReadStream(TextReader reader)
 #else
-        public MasterDetails<M, D>[] ReadStream(TextReader reader)
+        public MasterDetails<TMaster, TDetail>[] ReadStream(TextReader reader)
 #endif
         {
             if (reader == null)
@@ -302,7 +302,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                 MasterDetails record = null;
 #else
-            MasterDetails<M, D> record = null;
+            MasterDetails<TMaster, TDetail> record = null;
 #endif
                 ArrayList tmpDetails = new ArrayList();
 
@@ -343,7 +343,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                     record.mDetails = tmpDetails.ToArray();
 #else
-                                record.Details = (D[])tmpDetails.ToArray(typeof(D));
+                                record.Details = (TDetail[])tmpDetails.ToArray(typeof(TDetail));
 #endif
                                     resArray.Add(record);
                                 }
@@ -352,13 +352,13 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 record = new MasterDetails();
 #else
-                            record = new MasterDetails<M, D>();
+                            record = new MasterDetails<TMaster, TDetail>();
 #endif
                                 tmpDetails.Clear();
 #if ! GENERICS
                                 object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
-                                M lastMaster = (M)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
+                                TMaster lastMaster = (TMaster)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
 #endif
 
                                 if (lastMaster != null)
@@ -370,7 +370,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-                                D lastChild = (D)mRecordInfo.Operations.StringToRecord(line, valuesDetail);
+                                TDetail lastChild = (TDetail)mRecordInfo.Operations.StringToRecord(line, valuesDetail);
 #endif
 
                                 if (lastChild != null)
@@ -417,7 +417,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                     record.mDetails = tmpDetails.ToArray();
 #else
-                record.Details = (D[])tmpDetails.ToArray(typeof(D));
+                record.Details = (TDetail[])tmpDetails.ToArray(typeof(TDetail));
 #endif
                     resArray.Add(record);
                 }
@@ -430,7 +430,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 			return (MasterDetails[]) resArray.ToArray(typeof (MasterDetails));
 #else
-            return (MasterDetails<M, D>[])resArray.ToArray(typeof(MasterDetails<M, D>));
+            return (MasterDetails<TMaster, TDetail>[])resArray.ToArray(typeof(MasterDetails<TMaster, TDetail>));
 #endif
         }
 
@@ -448,10 +448,10 @@ namespace FileHelpers.MasterDetail
 			return res;
 		}
 #else
-        public MasterDetails<M, D>[] ReadString(string source)
+        public MasterDetails<TMaster, TDetail>[] ReadString(string source)
         {
             StringReader reader = new StringReader(source);
-            MasterDetails<M, D>[] res = ReadStream(reader);
+            MasterDetails<TMaster, TDetail>[] res = ReadStream(reader);
             reader.Close();
             return res;
         }
@@ -481,13 +481,13 @@ namespace FileHelpers.MasterDetail
 				}
 #else
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
-        public void WriteFile(string fileName, IEnumerable<MasterDetails<M, D>> records)
+        public void WriteFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records)
         {
             WriteFile(fileName, records, -1);
         }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
-        public void WriteFile(string fileName, IEnumerable<MasterDetails<M, D>> records, int maxRecords)
+        public void WriteFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
         {
             using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
             {
@@ -507,7 +507,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public void WriteStream(TextWriter writer, MasterDetails[] records)
 #else
-        public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<M, D>> records)
+        public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<TMaster, TDetail>> records)
 #endif
         {
             WriteStream(writer, records, -1);
@@ -517,7 +517,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public void WriteStream(TextWriter writer, MasterDetails[] records, int maxRecords)
 #else
-        public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<M, D>> records, int maxRecords)
+        public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
 #endif
         {
             if (writer == null)
@@ -551,7 +551,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 			foreach(MasterDetails rec in records)
 #else
-            foreach (MasterDetails<M, D> rec in records)
+            foreach (MasterDetails<TMaster, TDetail> rec in records)
 #endif
             {
                 if (recIndex == maxRecords)
@@ -616,7 +616,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public string WriteString(MasterDetails[] records)
 #else
-        public string WriteString(IEnumerable<MasterDetails<M, D>> records)
+        public string WriteString(IEnumerable<MasterDetails<TMaster, TDetail>> records)
 #endif
         {
             return WriteString(records, -1);
@@ -626,7 +626,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public string WriteString(MasterDetails[] records, int maxRecords)
 #else
-        public string WriteString(IEnumerable<MasterDetails<M, D>> records, int maxRecords)
+        public string WriteString(IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
 #endif
         {
             StringBuilder sb = new StringBuilder();
@@ -648,9 +648,9 @@ namespace FileHelpers.MasterDetail
 			AppendToFile(fileName, new MasterDetails[] {record});
 		}
 #else
-        public void AppendToFile(string fileName, MasterDetails<M, D> record)
+        public void AppendToFile(string fileName, MasterDetails<TMaster, TDetail> record)
         {
-            AppendToFile(fileName, new MasterDetails<M, D>[] { record });
+            AppendToFile(fileName, new MasterDetails<TMaster, TDetail>[] { record });
         }
 #endif
 
@@ -658,7 +658,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 		public void AppendToFile(string fileName, MasterDetails[] records)
 #else
-        public void AppendToFile(string fileName, IEnumerable<MasterDetails<M, D>> records)
+        public void AppendToFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records)
 #endif
         {
             using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))

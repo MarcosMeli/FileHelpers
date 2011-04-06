@@ -49,8 +49,8 @@ namespace FileHelpers
                 {
                     fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
-                    bool CarriageReturn = false;
-                    bool LineFeed = false;
+                    //bool CarriageReturn = false;
+                    //bool LineFeed = false;
 
                     // read the file backwards using SeekOrigin.Begin...
                     long offset;
@@ -61,12 +61,12 @@ namespace FileHelpers
                         if (value == '\r')
                         {
                             // Console.Write("\\r");
-                            CarriageReturn = true;
+                            //CarriageReturn = true;
                         }
                         else if (value == '\n')
                         {
                             // Console.Write("\\n");
-                            LineFeed = true;
+                            //LineFeed = true;
                         }
                         else
                             break;

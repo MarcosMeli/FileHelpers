@@ -696,7 +696,7 @@ namespace FileHelpers.Dynamic
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string mCommentText = null;
 
-        /// <summary>Comment text placed above the class definition<summary>
+        /// <summary>Comment text placed above the class definition</summary>
         public string CommentText
         {
             get { return mCommentText; }

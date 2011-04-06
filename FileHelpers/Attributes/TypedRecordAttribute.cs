@@ -10,8 +10,10 @@ namespace FileHelpers
 	/// <seealso href="attributes.html">Attributes list</seealso>
 	/// <seealso href="quick_start.html">Quick start guide</seealso>
 	/// <seealso href="examples.html">Examples of use</seealso>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public abstract class TypedRecordAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Class)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+	public abstract class TypedRecordAttribute 
+        : Attribute
 	{
 		#region "  Constructors  "
 

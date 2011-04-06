@@ -5,9 +5,9 @@ namespace FileHelpers.Events
 {
     /// <summary>
     /// Base class of 
-    /// <see cref="BeforeReadEventArgs{T}(T)"/>
+    /// <see cref="BeforeReadEventArgs{T}"/>
     /// and 
-    /// <see cref="AfterReadEventArgs{T}(T)"/>
+    /// <see cref="AfterReadEventArgs{T}"/>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ReadEventArgs<T>

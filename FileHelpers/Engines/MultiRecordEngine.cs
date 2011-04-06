@@ -1,8 +1,3 @@
-
-#undef GENERICS
-//#define GENERICS
-//#if NET_2_0
-
 using System;
 using System.Diagnostics;
 using System.Collections;
@@ -11,7 +6,6 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
-//using Container=FileHelpers.Container;
 
 namespace FileHelpers
 {
@@ -38,13 +32,10 @@ namespace FileHelpers
 	/// <seealso href="examples.html">Examples of Use</seealso>
 	/// <seealso href="attributes.html">Attributes List</seealso>
     [DebuggerDisplay("MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-#if ! GENERICS
 	public sealed class MultiRecordEngine : 
-		EventEngineBase<object>, IEnumerable, IDisposable
-#else
-	public sealed class MultiRecordEngine<M,D> : 
-		EngineBase, IEnumerable, IDisposable
-#endif
+		EventEngineBase<object>,
+        IEnumerable,
+        IDisposable
 	{
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

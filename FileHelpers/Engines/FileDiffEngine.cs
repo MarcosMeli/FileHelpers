@@ -7,7 +7,7 @@ namespace FileHelpers
 
 	/// <summary>
     /// Engine used to create diff files based on the
-    /// <see cref="IComparableRecord"/> interface.
+    /// <see cref="IComparableRecord{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The record type.</typeparam>
     [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
@@ -15,7 +15,7 @@ namespace FileHelpers
 		where T: class, IComparableRecord<T>
     {
 		/// <summary>
-		/// Creates a new <see cref="FileDiffEngine"/>
+        /// Creates a new <see cref="FileDiffEngine{T}"/>
 		/// </summary>
 		public FileDiffEngine():base(typeof(T))
 		{
