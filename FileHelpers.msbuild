@@ -9,7 +9,7 @@
 	<Import Project="Build\CurrentVersion.msbuild" />
 
 	<ItemGroup>
-		<DebugFiles Include="Debug\**\*.*" />
+    <DebugFiles Include="Debug\**\*.*" />
 		<RootFiles Include="*.url" />
 		<RootFiles2 Include="*.txt" />
 		<ReleaseFiles Include="Release\**\*.*" />
