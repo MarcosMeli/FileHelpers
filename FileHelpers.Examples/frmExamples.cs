@@ -37,6 +37,7 @@ namespace ExamplesFramework
             this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
             this.InfoSheet.Location = new System.Drawing.Point(7, 49);
             this.InfoSheet.BringToFront();
+
 #if ! DEBUG
             this.extracthtml.Visible = false;
 #endif
@@ -46,128 +47,32 @@ namespace ExamplesFramework
         {
             base.OnLoad(e);
 
-            treeViewDemos1.LoadDemos(ExampleFactory.GetExamples());
+            tvExamples.LoadDemos(ExampleFactory.GetExamples());
         }
 
-        private void treeViewDemos1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void tvExamples_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (CurrentExample == null)
             {
-                Clear();
+                exampleRenderer.Clear();
                 return;
             }
 
-            ShowDemo();
-
+            exampleRenderer.Example = CurrentExample;
         }
 
-        private void ShowDemo()
-        {
-            this.SuspendLayout();
-            Clear();
-
-            this.lblTestDescription.Text = CurrentExample.CodeDescription;
-
-            foreach (var file in CurrentExample.Files)
-            {
-                CreateNewDemoFile(file);
-
-                //if (tcCodeFiles.TabPages.Count == 1)
-                //    tcCodeFiles.SelectedTab = tp;
-            }
-
-            ShowDemoFile();
-            cmdRunDemo.Visible = CurrentExample.Runnable;
-            this.ResumeLayout();
-        }
-
-        private void CreateNewDemoFile(ExampleFile file)
-        {
-            var tp = new TabPage();
-            tp.Text = file.Filename;
-            tp.Tag = file;
-            tcCodeFiles.TabPages.Add(tp);
-        }
-
-        private void Clear()
-        {
-            tcCodeFiles.TabPages.Clear();
-            this.lblTestDescription.Text = string.Empty;
-            this.txtCode.Visible = false;
-            cmdRunDemo.Visible = false;
-
-        }
-
-        public void ShowDemoFile()
-        {
-            if (tcCodeFiles.SelectedTab == null)
-                return;
-
-            var demo = tcCodeFiles.SelectedTab.Tag as ExampleFile;
-            if (demo == null)
-                return;
-
-            if (demo.Status == ExampleFile.FileType.HtmlFile)
-            {
-                //  Hide the code editor
-                txtCode.Visible = false;
-                this.InfoSheet.Visible = true;
-
-                HtmlWrapper html = new HtmlWrapper(demo.Contents, CurrentExample.Files);
-                string text = html.ToString();
-                this.InfoSheet.DocumentText = text;
-                int retries = 0;
-                while (this.InfoSheet.DocumentText != text && retries < 10)
-                {
-                    System.Threading.Thread.Sleep(200);
-                    retries++;
-                }
-                this.InfoSheet.Invalidate();
-                return;
-            }
-            this.InfoSheet.Visible = false;
-            this.txtCode.Visible = true;
-
-            txtCode.IsReadOnly = true;
-            var doc = new ICSharpCode.TextEditor.Document.DocumentFactory();
-            var doc2 = doc.CreateDocument();
-            doc2.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
-            doc2.TextContent = demo.Contents;
-            doc2.ReadOnly = true;
-            txtCode.Document = doc2;
-            txtCode.Refresh(); 
-            
-        }
 
         public ExampleCode CurrentExample
         {
             get
             {
-                return treeViewDemos1.SelectedExample;
+                return tvExamples.SelectedExample;
             }
-        }
-        private void tcCodeFiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShowDemoFile();
-        }
-
-        private void cmdRunDemo_Click(object sender, EventArgs e)
-        {
-            if (CurrentExample == null)
-                return;
-            CurrentExample.AddedFile += new EventHandler<ExampleCode.NewFile>(FileHandler);
-            CurrentExample.Test();
-            CurrentExample.AddedFile -= FileHandler;
-        }
-
-        private void FileHandler( object sender, ExampleCode.NewFile file )
-        {
-            CreateNewDemoFile(file.details);
         }
 
         private void extracthtml_Click(object sender, EventArgs e)
         {
-            treeViewDemos1.ProcessDocumentation();
+            tvExamples.ProcessDocumentation();
         }
 
         private void cmdHistory_Click(object sender, EventArgs e)
@@ -178,7 +83,41 @@ namespace ExamplesFramework
 
         private void frmExamples_Load(object sender, EventArgs e)
         {
+            cboSearchMode.SelectedIndex = 1;
+        }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            tvExamples.SearchText = txtSearch.Text;
+        }
+
+        private void cboSearchMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cboSearchMode.SelectedIndex)
+            {
+                case 0:
+                    tvExamples.SearchMode = ExamplesSearchMode.Name;
+                    break;
+                case 1:
+                    tvExamples.SearchMode = ExamplesSearchMode.NameDescription;
+                    break;
+                case 2:
+                    tvExamples.SearchMode = ExamplesSearchMode.All;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+        }
+
+        private void cmdCollapse_Click(object sender, EventArgs e)
+        {
+            tvExamples.CollapseAll();
+        }
+
+        private void cmdExpand_Click(object sender, EventArgs e)
+        {
+            tvExamples.ExpandAll();
         }
 
     }

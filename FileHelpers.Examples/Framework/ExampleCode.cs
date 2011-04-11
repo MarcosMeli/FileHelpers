@@ -34,7 +34,7 @@ namespace ExamplesFramework
         /// <param name="category">Category from TODO:</param>
         public ExampleCode(ExampleBase demo, string codeTitle, string category)
         {
-            CodeTitle = codeTitle;
+            Name = codeTitle;
             Demo = demo;
             Category = category;
             Runnable = true;
@@ -49,17 +49,17 @@ namespace ExamplesFramework
         /// <summary>
         /// Title set from code
         /// </summary>
-        public string CodeTitle { get; private set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Description set from code
         /// </summary>
-        public string CodeDescription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Code from file.
         /// </summary>
-        public string Code { get; set; }
+        public string SourceCode { get; set; }
 
         /// <summary>
         /// Can be of the form "Async/Delimited" with multiple categories
@@ -96,58 +96,63 @@ namespace ExamplesFramework
         public bool Runnable { get; set; }
 
         /// <summary>
+        /// Indicates if the Example has Console Output
+        /// </summary>
+        public bool HasOutput { get; set; }
+
+        /// <summary>
         /// Control???  - Not used
         /// </summary>
         public UserControl Control  { get; set; }
 
         public void Test()
         {
-                        try
+            try
             {
 
-            foreach (ExampleFile file in this.Files)
+                foreach (ExampleFile file in this.Files)
+                {
+                    if (file.Status == ExampleFile.FileType.InputFile)
+                        File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
+                }
+                this.Demo.Test();
+            }
+            catch (Exception ex)
             {
-                if (file.Status == ExampleFile.FileType.InputFile)
-                    File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
+                this.Demo.Output += ex.ToString();
             }
-            this.Demo.Test();
+            finally
+            {
+                bool ConsoleFound = false;
+                foreach (ExampleFile file in this.Files)
+                {
+                    if (file.Filename == "Console")
+                    {
+                        file.Contents = this.Demo.Output;
+                        ConsoleFound = true;
+                    }
+                    if (file.Status == ExampleFile.FileType.InputFile)
+                    {
+                        File.Delete(file.Filename);
+                    }
+                    if (file.Status == ExampleFile.FileType.OutputFile)
+                    {
+                        if (File.Exists(file.Filename))
+                        {
+                            file.Contents = File.ReadAllText(file.Filename);
+                        }
+                    }
+                }
+                if ((!ConsoleFound) && !String.IsNullOrEmpty(this.Demo.Output))
+                {
+                    ExampleFile console = new ExampleFile("Console");
+                    console.Contents = this.Demo.Output;
+                    console.Status = ExampleFile.FileType.OutputFile;
+                    this.Files.Add(console);
+                    if (AddedFile != null)
+                        AddedFile(this, new NewFile(console));
+                }
             }
-                        catch (Exception ex)
-                        {
-                            this.Demo.Output += ex.ToString();
-                        }
-                        finally
-                        {
-                            bool ConsoleFound = false;
-                            foreach (ExampleFile file in this.Files)
-                            {
-                                if (file.Filename == "Console")
-                                {
-                                    file.Contents = this.Demo.Output;
-                                    ConsoleFound = true;
-                                }
-                                if (file.Status == ExampleFile.FileType.InputFile)
-                                {
-                                    File.Delete(file.Filename);
-                                }
-                                if (file.Status == ExampleFile.FileType.OutputFile)
-                                {
-                                    if (File.Exists(file.Filename))
-                                    {
-                                        file.Contents = File.ReadAllText(file.Filename);
-                                    }
-                                }
-                            }
-                            if ((!ConsoleFound) && !String.IsNullOrEmpty(this.Demo.Output))
-                            {
-                                ExampleFile console = new ExampleFile("Console");
-                                console.Contents = this.Demo.Output;
-                                console.Status = ExampleFile.FileType.OutputFile;
-                                this.Files.Add(console);
-                                if (AddedFile != null)
-                                    AddedFile(this,new NewFile(console));
-                            }
-                        }
 
         }
     }

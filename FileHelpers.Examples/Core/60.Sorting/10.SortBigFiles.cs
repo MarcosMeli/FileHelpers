@@ -7,6 +7,7 @@ namespace ExamplesFramework
 {
     //-> {Example.Name:Sort Big File with Record Class}
     //-> {Example.Runnable:false}
+    //-> {Example.HasOutput:false}
     //-> {Example.Description:Shows how to sort a big file using a record class}
 
     public class BigFileSort

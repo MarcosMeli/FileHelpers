@@ -16,7 +16,7 @@ namespace Examples
 		    var examples = new List<ExampleCode>();
             ExampleCode example;
 example = new ExampleCode(new ReadFile(), "Read Delimited File", "Basic");
-example.CodeDescription = @"Example of how to read a Delimited File";
+example.Description = @"Example of how to read a Delimited File";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
 work.Contents = @"/// <summary>
@@ -85,7 +85,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new WriteFile(), "Write Delimited File", "Basic");
-example.CodeDescription = @"Example of how to write a Delimited File";
+example.Description = @"Example of how to write a Delimited File";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
 work.Contents = @"var engine = new FileHelperEngine<Orders>();
@@ -142,7 +142,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new ReadFixedFile(), "Read Fixed File", "Basic");
-example.CodeDescription = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
+example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
 work.Contents = @"/// <summary>
@@ -207,7 +207,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new DelimitedRecord(), "DelimitedRecord", "Attributes Record Class");
-example.CodeDescription = @"Example of how to use DelimitedRecord attribute";
+example.Description = @"Example of how to use DelimitedRecord attribute";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
 work.Contents = @"/// <summary>
@@ -276,7 +276,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new DemoFieldLength(), "[FieldLength]", "Attributes Fields");
-example.CodeDescription = @"Example of how to use [FieldLength] attribute";
+example.Description = @"Example of how to use [FieldLength] attribute";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
 work.Contents = @"/// <summary>
@@ -329,7 +329,7 @@ work.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new ReadBeforeEventSample(), "Read Before Event Handling", "Events");
-example.CodeDescription = @"Show how to implement read before event";
+example.Description = @"Show how to implement read before event";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -410,7 +410,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new ReadAfterEventSample(), "Read After Event Handling", "Events");
-example.CodeDescription = @"Show how to implement read after event";
+example.Description = @"Show how to implement read after event";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -477,7 +477,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new WriteBeforeEventSample(), "Write Before Event Handling", "Events");
-example.CodeDescription = @"Show how to implement write before event";
+example.Description = @"Show how to implement write before event";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -546,7 +546,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new WriteAfterEventSample(), "Write After Event Handling", "Events");
-example.CodeDescription = @"Show how to implement write after event";
+example.Description = @"Show how to implement write after event";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -616,7 +616,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new SimpleErrorHandlingExample(), "Simple Error handling", "ErrorHandling");
-example.CodeDescription = @"Read the file or reject the whole file";
+example.Description = @"Read the file or reject the whole file";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -707,7 +707,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new ErrorModeErrorHandlingExample(), "ErrorMode Error handling", "ErrorHandling");
-example.CodeDescription = @"Read the file rejecting bad records";
+example.Description = @"Read the file rejecting bad records";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -792,7 +792,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "Ignore Mode Error handling", "ErrorHandling");
-example.CodeDescription = @"Read the file dropping bad records";
+example.Description = @"Read the file dropping bad records";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -877,7 +877,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode saving Errors", "ErrorHandling");
-example.CodeDescription = @"Read the file saving bad records";
+example.Description = @"Read the file saving bad records";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -981,7 +981,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new MultipleDelimiters(), "Multiple Delimiters", "Advanced");
-example.CodeDescription = @"Write a file with different delimiters using the same record";
+example.Description = @"Write a file with different delimiters using the same record";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -1071,7 +1071,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new MultiRecordSample(), "Multi Record Processing", "Advanced");
-example.CodeDescription = @"Read or write a file with many different layouts";
+example.Description = @"Read or write a file with many different layouts";
 examples.Add(example);
 work = new ExampleFile("Input.txt");
 work.Contents = @"10248|VINET|5|04071996|01081996|16071996|3|32.38  
@@ -1247,7 +1247,7 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new EnumConverterExample(), "Enum Converter Example", "Advanced");
-example.CodeDescription = @"When you have a string field in your files that can be better handled if you map it to an enum.";
+example.Description = @"When you have a string field in your files that can be better handled if you map it to an enum.";
 examples.Add(example);
 work = new ExampleFile("TheEnumerator.cs");
 work.Contents = @"/// <summary>
@@ -1330,8 +1330,9 @@ work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new BigFileSort(), "Sort Big File with Record Class", "Sorting");
-example.CodeDescription = @"Shows how to sort a big file using a record class";
+example.Description = @"Shows how to sort a big file using a record class";
 example.Runnable = false;
+example.HasOutput = false;
 examples.Add(example);
 work = new ExampleFile("SortingWithRecord.cs");
 work.Contents = @"public override void Run()
@@ -1387,7 +1388,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new BigFileSortString1(), "Sort Big File without Record Class 1", "Sorting");
-example.CodeDescription = @"Shows how to sort a big file without a record class";
+example.Description = @"Shows how to sort a big file without a record class";
 example.Runnable = false;
 examples.Add(example);
 work = new ExampleFile("SortingWithoutRecord.cs");
@@ -1405,7 +1406,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new BigFileSortString2(), "Sort Big File without Record Class 2", "Sorting");
-example.CodeDescription = @"Shows how to sort a big file without a record class";
+example.Description = @"Shows how to sort a big file without a record class";
 example.Runnable = false;
 examples.Add(example);
 work = new ExampleFile("SortingWithoutRecord.cs");
@@ -1427,7 +1428,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new SimpleMasterDetailSample(), "Simple Master Detail sample", "MasterDetail");
-example.CodeDescription = @"Show how to implement Master detail reading using a selection subroutine";
+example.Description = @"Show how to implement Master detail reading using a selection subroutine";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>
@@ -1523,7 +1524,7 @@ work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 
 example = new ExampleCode(new SecondMasterDetailSample(), "Master Detail sample", "MasterDetail");
-example.CodeDescription = @"Show how to implement Master detail reading where record contains characters";
+example.Description = @"Show how to implement Master detail reading where record contains characters";
 examples.Add(example);
 work = new ExampleFile("RunEngine.cs");
 work.Contents = @"/// <summary>

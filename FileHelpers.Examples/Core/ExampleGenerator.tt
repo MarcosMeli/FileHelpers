@@ -152,7 +152,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             res.AppendLine(@"example = new ExampleCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
             if (!string.IsNullOrEmpty(description))
             {
-                res.AppendLine(@"example.CodeDescription = @""" + description + @""";");
+                res.AppendLine(@"example.Description = @""" + description + @""";");
             }
 
 			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Runnable\s*:(?<runnable>.*)\}", regexOptions | RegexOptions.Multiline);
@@ -161,6 +161,11 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 				res.AppendLine(@"example.Runnable = " + match.Groups["runnable"].Value.Trim() + @";");
             }
 
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.HasOutput\s*:(?<hasoutput>.*)\}", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+				res.AppendLine(@"example.HasOutput = " + match.Groups["hasoutput"].Value.Trim() + @";");
+            }
 			
             res.AppendLine(@"examples.Add(example);");
 
