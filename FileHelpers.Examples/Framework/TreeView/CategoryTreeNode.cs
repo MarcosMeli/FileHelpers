@@ -8,6 +8,16 @@ namespace ExamplesFramework
     public class CategoryTreeNode
         : TreeNode, IHTMLwriter
     {
+        public CategoryTreeNode()
+        {
+            this.SelectedImageKey = "demo";
+            this.ImageKey = "demo";
+        }
+
+        public override object Clone()
+        {
+            return new CategoryTreeNode(Text);
+        }
         /// <summary>
         /// Create a category tree node using text description
         /// </summary>

@@ -8,18 +8,23 @@ namespace ExamplesFramework
     /// Create a demo code container
     /// </summary>
     public class ExampleTreeNode
-        : TreeNode, IHTMLwriter
+        : TreeNode, IHTMLwriter, ISearchableNode
     {
         /// <summary>
-        /// Create a demo tree node with text based on CodeTitle
+        /// Create a demo tree node with text based on Name
         /// </summary>
         /// <param name="example">DemoCode value to base node upon</param>
         public ExampleTreeNode(ExampleCode example)
-            : base(example.CodeTitle)
+            : base(example.Name)
         {
             this.Example = example;
             this.SelectedImageKey = "folder";
             this.ImageKey = "folder";
+        }
+
+        public override object Clone()
+        {
+            return new ExampleTreeNode(Example);
         }
 
         /// <summary>
@@ -63,7 +68,7 @@ namespace ExamplesFramework
                     index.Append("<dt><a href=\"");
                     index.Append(file.Filename);
                     index.Append("\">");
-                    index.Append(Example.CodeTitle);
+                    index.Append(Example.Name);
                     index.AppendLine("</a></dt>");
                     index.Append("<dd>");
                     if (error)
@@ -72,7 +77,7 @@ namespace ExamplesFramework
                         index.Append(MyException.ToString());
                         index.Append("</p>");
                     }
-                    index.Append(Example.CodeDescription);
+                    index.Append(Example.Description);
                     index.AppendLine("</dd>");
 
                     HtmlWrapper wrapper = new HtmlWrapper(file.Contents, Example.Files);
@@ -84,13 +89,27 @@ namespace ExamplesFramework
             if (!found)
             {
                 index.Append("<dt><u>Missing</u> ");
-                index.Append(Example.CodeTitle);
+                index.Append(Example.Name);
                 index.AppendLine("</dt>");
                 index.Append("<dd>");
-                index.Append(Example.CodeDescription);
+                index.Append(Example.Description);
                 index.AppendLine("</dd>");
             }
         }
 
+        string ISearchableNode.GetName()
+        {
+            return this.Example.Name;
+        }
+
+        string ISearchableNode.GetDescription()
+        {
+            return this.Example.Description;
+        }
+
+        public string GetDescriptionExtra()
+        {
+            return this.Example.Description;
+        }
     }
 }
