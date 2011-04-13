@@ -14,7 +14,19 @@ namespace ExamplesFramework
 {
     public partial class FileRenderer : UserControl
     {
-        public ExampleFile File { get; set; }
+        private ExampleFile mFile;
+        public ExampleFile File
+        {
+            get { return mFile; }
+            set
+            {
+                if (mFile == value)
+                    return;
+
+                mFile = value;
+                RenderFile();
+            }
+        }
 
         public FileRenderer()
         {
@@ -27,7 +39,6 @@ namespace ExamplesFramework
              :this()
          {
              File = file;
-             RenderFile();
          }
 
         private void RenderFile()
@@ -52,16 +63,10 @@ namespace ExamplesFramework
             //}
 
             //this.InfoSheet.Visible = false;
-            //this.txtCode.Visible = true;
+            
             lblFileName.Text = File.Filename;
-            txtCode.IsReadOnly = true;
-            var doc = new ICSharpCode.TextEditor.Document.DocumentFactory();
-            var doc2 = doc.CreateDocument();
-            doc2.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
-            doc2.TextContent = File.Contents;
-            doc2.ReadOnly = true;
-            txtCode.Document = doc2;
-            txtCode.Refresh();
+            txtCode.Text = File.Contents;
+
         }
 
         #region "  Label Paint  "

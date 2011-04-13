@@ -1,4 +1,4 @@
-<#@ template language="C#" hostSpecific="true" #>
+﻿<#@ template language="C#" hostSpecific="true" #>
 <#@ output extension=".autogen.cs" #>
 <#@ Assembly Name="System.Xml.dll" #>
 <#@ Assembly Name="System.Data.dll" #>
@@ -49,8 +49,8 @@ public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
 	{
 		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
 		{ 
-			case "generatedatalayer.tt":
-			case "generatedatalayer.autogen.cs":
+			case "generatetestdata.tt":
+			case "generatetestdata.autogen.cs":
 			case "fluentcode.cs":
 			case "filetestbase.cs":
 					break;

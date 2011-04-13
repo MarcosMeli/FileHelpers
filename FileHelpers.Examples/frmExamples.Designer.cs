@@ -32,7 +32,7 @@ namespace ExamplesFramework
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExamples));
-            Devoo.WinForms.TextShape textShape2 = new Devoo.WinForms.TextShape();
+            Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.cmdCollapse = new System.Windows.Forms.ToolStripButton();
@@ -47,19 +47,15 @@ namespace ExamplesFramework
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdHistory = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tvExamples = new ExamplesFramework.TreeViewExamples();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
+            this.tvExamples = new ExamplesFramework.TreeViewExamples();
             this.exampleRenderer = new ExamplesFramework.ExampleRenderer();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // reflectionHeader1
@@ -90,16 +86,16 @@ namespace ExamplesFramework
             this.reflectionHeader1.Name = "reflectionHeader1";
             this.reflectionHeader1.Size = new System.Drawing.Size(934, 85);
             this.reflectionHeader1.Text = "FileHelpers Examples";
-            textShape2.Color.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            textShape2.Color.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            textShape2.Color.Direction = Devoo.WinForms.GradientDirection.Vertical;
-            textShape2.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            textShape2.Position = new System.Drawing.Point(615, 67);
-            textShape2.ReflectionLevel = ((byte)(100));
-            textShape2.ReflectionOpacity = ((byte)(0));
-            textShape2.Text = "All FileHelpers Demos in one place";
+            textShape1.Color.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            textShape1.Color.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            textShape1.Color.Direction = Devoo.WinForms.GradientDirection.Vertical;
+            textShape1.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            textShape1.Position = new System.Drawing.Point(615, 67);
+            textShape1.ReflectionLevel = ((byte)(100));
+            textShape1.ReflectionOpacity = ((byte)(0));
+            textShape1.Text = "All FileHelpers Demos in one place";
             this.reflectionHeader1.Texts.AddRange(new Devoo.WinForms.TextShape[] {
-            textShape2});
+            textShape1});
             // 
             // toolStrip1
             // 
@@ -209,6 +205,7 @@ namespace ExamplesFramework
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 119);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -218,24 +215,11 @@ namespace ExamplesFramework
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Controls.Add(this.InfoSheet);
+            this.splitContainer1.Panel2.Controls.Add(this.exampleRenderer);
             this.splitContainer1.Size = new System.Drawing.Size(934, 543);
-            this.splitContainer1.SplitterDistance = 310;
+            this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // tvExamples
-            // 
-            this.tvExamples.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvExamples.ImageIndex = 0;
-            this.tvExamples.ImageList = this.imgTreeView;
-            this.tvExamples.Location = new System.Drawing.Point(0, 0);
-            this.tvExamples.Name = "tvExamples";
-            this.tvExamples.SearchMode = ExamplesFramework.ExamplesSearchMode.Name;
-            this.tvExamples.SearchText = null;
-            this.tvExamples.SelectedImageIndex = 0;
-            this.tvExamples.Size = new System.Drawing.Size(310, 543);
-            this.tvExamples.TabIndex = 0;
-            this.tvExamples.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvExamples_AfterSelect);
             // 
             // imgTreeView
             // 
@@ -255,35 +239,37 @@ namespace ExamplesFramework
             this.imgTreeView.Images.SetKeyName(11, "projection_screen_present.png");
             this.imgTreeView.Images.SetKeyName(12, "wand.png");
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.exampleRenderer);
-            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
-            this.splitContainer2.Size = new System.Drawing.Size(620, 543);
-            this.splitContainer2.SplitterDistance = 457;
-            this.splitContainer2.TabIndex = 0;
-            // 
             // InfoSheet
             // 
-            this.InfoSheet.Location = new System.Drawing.Point(413, 3);
+            this.InfoSheet.Location = new System.Drawing.Point(288, 76);
             this.InfoSheet.MinimumSize = new System.Drawing.Size(20, 20);
             this.InfoSheet.Name = "InfoSheet";
-            this.InfoSheet.Size = new System.Drawing.Size(572, 367);
-            this.InfoSheet.TabIndex = 6;
+            this.InfoSheet.Size = new System.Drawing.Size(250, 250);
+            this.InfoSheet.TabIndex = 8;
+            this.InfoSheet.Visible = false;
+            // 
+            // tvExamples
+            // 
+            this.tvExamples.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvExamples.ImageIndex = 0;
+            this.tvExamples.ImageList = this.imgTreeView;
+            this.tvExamples.Location = new System.Drawing.Point(0, 0);
+            this.tvExamples.Name = "tvExamples";
+            this.tvExamples.SearchMode = ExamplesFramework.ExamplesSearchMode.Name;
+            this.tvExamples.SearchText = null;
+            this.tvExamples.SelectedImageIndex = 0;
+            this.tvExamples.Size = new System.Drawing.Size(293, 543);
+            this.tvExamples.TabIndex = 0;
+            this.tvExamples.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvExamples_AfterSelect);
             // 
             // exampleRenderer
             // 
             this.exampleRenderer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exampleRenderer.Example = null;
+            this.exampleRenderer.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exampleRenderer.Location = new System.Drawing.Point(0, 0);
             this.exampleRenderer.Name = "exampleRenderer";
-            this.exampleRenderer.Size = new System.Drawing.Size(620, 457);
+            this.exampleRenderer.Size = new System.Drawing.Size(637, 543);
             this.exampleRenderer.TabIndex = 7;
             // 
             // frmExamples
@@ -306,9 +292,6 @@ namespace ExamplesFramework
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,10 +301,8 @@ namespace ExamplesFramework
         private Devoo.WinForms.ReflectionHeader reflectionHeader1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private TreeViewExamples tvExamples;
         private System.Windows.Forms.ImageList imgTreeView;
-        private System.Windows.Forms.WebBrowser InfoSheet;
         private System.Windows.Forms.ToolStripButton extracthtml;
         private System.Windows.Forms.ToolStripButton cmdHistory;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -334,5 +315,6 @@ namespace ExamplesFramework
         private System.Windows.Forms.ToolStripButton cmdExpand;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private ExampleRenderer exampleRenderer;
+        private System.Windows.Forms.WebBrowser InfoSheet;
     }
 }

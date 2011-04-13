@@ -35,53 +35,70 @@ namespace FileHelpers.WizardApp
             this.cmdDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.txtColumnName = new System.Windows.Forms.ToolStripTextBox();
+            this.addColumnHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.cmnuOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmnuOptions
             // 
             this.cmnuOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addColumnHereToolStripMenuItem,
+            this.toolStripSeparator3,
             this.cmdShowInfo,
             this.toolStripSeparator1,
             this.cmdDeleteColumn,
             this.toolStripSeparator2,
             this.txtColumnName});
             this.cmnuOptions.Name = "contextMenuStrip1";
-            this.cmnuOptions.Size = new System.Drawing.Size(190, 105);
+            this.cmnuOptions.Size = new System.Drawing.Size(179, 113);
             // 
             // cmdShowInfo
             // 
             this.cmdShowInfo.Name = "cmdShowInfo";
-            this.cmdShowInfo.Size = new System.Drawing.Size(189, 22);
+            this.cmdShowInfo.Size = new System.Drawing.Size(178, 22);
             this.cmdShowInfo.Text = "Show Extended Info";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
             // cmdDeleteColumn
             // 
             this.cmdDeleteColumn.Name = "cmdDeleteColumn";
-            this.cmdDeleteColumn.Size = new System.Drawing.Size(189, 22);
+            this.cmdDeleteColumn.Size = new System.Drawing.Size(178, 22);
             this.cmdDeleteColumn.Text = "Delete Column";
             this.cmdDeleteColumn.Click += new System.EventHandler(this.cmdDeleteColumn_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(175, 6);
             // 
             // txtColumnName
             // 
             this.txtColumnName.Name = "txtColumnName";
-            this.txtColumnName.Size = new System.Drawing.Size(100, 21);
+            this.txtColumnName.Size = new System.Drawing.Size(100, 23);
             this.txtColumnName.Text = "Mi Name";
             this.txtColumnName.ToolTipText = "Change the name of the column";
             // 
-            // FixedWithDesigner
+            // addColumnHereToolStripMenuItem
             // 
-            this.Name = "FixedWithDesigner";
+            this.addColumnHereToolStripMenuItem.Name = "addColumnHereToolStripMenuItem";
+            this.addColumnHereToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.addColumnHereToolStripMenuItem.Text = "AddColumnHere";
+            this.addColumnHereToolStripMenuItem.Click += new System.EventHandler(this.addColumnHereToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(175, 6);
+            // 
+            // FixedWidthDesigner
+            // 
+            this.Name = "FixedWidthDesigner";
+            this.Size = new System.Drawing.Size(830, 420);
             this.cmnuOptions.ResumeLayout(false);
             this.cmnuOptions.PerformLayout();
             this.ResumeLayout(false);
@@ -89,5 +106,8 @@ namespace FileHelpers.WizardApp
         }
 
         #endregion
+
+        private System.Windows.Forms.ToolStripMenuItem addColumnHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

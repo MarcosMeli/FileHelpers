@@ -19,28 +19,21 @@ example = new ExampleCode(new ReadFile(), "Read Delimited File", "Basic");
 example.Description = @"Example of how to read a Delimited File";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
-work.Contents = @"/// <summary>
-/// Execute the engine and get some results
-/// </summary>
-public override void Run()
-{
-    var engine = new FileHelperEngine<Orders>();
-    var records = engine.ReadFile(""Input.txt"");
+work.Contents = @"var engine = new FileHelperEngine<Orders>();
+var records = engine.ReadFile(""Input.txt"");
 
-    foreach (var record in records)
-    {
-        Console.WriteLine(record.CustomerID);
-        Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
-        Console.WriteLine(record.Freight);
-    }
+foreach (var record in records)
+{
+    Console.WriteLine(record.CustomerID);
+    Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
+    Console.WriteLine(record.Freight);
 }
 ";
 work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 work = new ExampleFile("RecordClass.cs");
-work.Contents = @"/// <summary>
-/// Our class we are reading using FileHelpers,  the record breakdown
-/// </summary>
+work.Contents = @"/// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
+
 [DelimitedRecord(""|"")]
 public class Orders
 {
@@ -145,27 +138,19 @@ example = new ExampleCode(new ReadFixedFile(), "Read Fixed File", "Basic");
 example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
-work.Contents = @"/// <summary>
-/// Execute the engine and get some results
-/// </summary>
-public override void Run()
+work.Contents = @"var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile(""input.txt"");
+
+foreach (var detail in result)
 {
-    var engine = new FixedFileEngine<Customer>();
-    Customer[] result = engine.ReadFile(""input.txt"");
-
-    foreach (var detail in result)
-    {
-        Console.WriteLine("" Client: {0},  Name: {1}"", detail.CustId, detail.Name);
-    }
-
+    Console.WriteLine("" Client: {0},  Name: {1}"", detail.CustId, detail.Name);
 }
 ";
 work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 work = new ExampleFile("RecordClass.cs");
-work.Contents = @"/// <summary>
-/// Our class we are reading using FileHelpers,  the record breakdown
-/// </summary>
+work.Contents = @"/// <summary>Our class we are reading using FileHelpers,  the record breakdown</summary>
+
 [FixedLengthRecord()]
 public class Customer
 {

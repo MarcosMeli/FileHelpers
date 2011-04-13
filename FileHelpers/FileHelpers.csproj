@@ -309,6 +309,7 @@
     </Compile>
     <Compile Include="FormatDetector\DelimiterInfo.cs" />
     <Compile Include="FormatDetector\FormatHint.cs" />
+    <Compile Include="FormatDetector\QuoteHelper.cs" />
     <Compile Include="FormatDetector\RecordFormatInfo.cs" />
     <Compile Include="FormatDetector\SmartFormatDetector.cs" />
     <Compile Include="Helpers\Attributes.cs" />

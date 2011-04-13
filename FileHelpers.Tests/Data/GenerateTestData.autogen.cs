@@ -1,4 +1,4 @@
-using FileHelpers;
+﻿using FileHelpers;
 using System.Diagnostics;
 using System; 
 
@@ -369,6 +369,22 @@ public partial class Locations: FileTestBase
 
  protected override string GetFullPathName()
 	   	    { return @"Detection\Locations.txt"; }
+
+
+}
+public partial class OnColumnFixed: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Detection\OnColumnFixed.txt"; }
+
+
+}
+public partial class OnColumnNonFixed: FileTestBase
+{
+
+ protected override string GetFullPathName()
+	   	    { return @"Detection\OnColumnNonFixed.txt"; }
 
 
 }
@@ -1509,6 +1525,12 @@ public static ClassesFileTest.Detection.DelimitedMedium DelimitedMedium
 private static ClassesFileTest.Detection.Locations mLocations = new ClassesFileTest.Detection.Locations();
 public static ClassesFileTest.Detection.Locations Locations
 { get { return  mLocations; } }
+private static ClassesFileTest.Detection.OnColumnFixed mOnColumnFixed = new ClassesFileTest.Detection.OnColumnFixed();
+public static ClassesFileTest.Detection.OnColumnFixed OnColumnFixed
+{ get { return  mOnColumnFixed; } }
+private static ClassesFileTest.Detection.OnColumnNonFixed mOnColumnNonFixed = new ClassesFileTest.Detection.OnColumnNonFixed();
+public static ClassesFileTest.Detection.OnColumnNonFixed OnColumnNonFixed
+{ get { return  mOnColumnNonFixed; } }
 private static ClassesFileTest.Detection.SampleData mSampleData = new ClassesFileTest.Detection.SampleData();
 public static ClassesFileTest.Detection.SampleData SampleData
 { get { return  mSampleData; } }

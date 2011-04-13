@@ -15,12 +15,12 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.File:Example.cs}
         /// <summary>
         /// Execute the engine and get some results
         /// </summary>
         public override void Run()
         {
+            //-> {Example.File:Example.cs}
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
@@ -30,14 +30,12 @@ namespace ExamplesFramework
                 this.Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 this.Console.WriteLine(record.Freight);
             }
+            //-> {/Example.File}
         }
-        //-> {/Example.File}
 
         //-> {Example.File:RecordClass.cs}
+        /// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
 
-        /// <summary>
-        /// Our class we are reading using FileHelpers,  the record breakdown
-        /// </summary>
         [DelimitedRecord("|")]
         public class Orders
         {

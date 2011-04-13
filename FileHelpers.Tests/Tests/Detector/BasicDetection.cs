@@ -12,9 +12,11 @@ namespace FileHelpers.Tests.Detector
     [TestFixture]
     public class BasicDetection
     {
+        #region "  Asserts  "
+
         private void AssertDelimitedFormat(string file, string delimiter, int fields, int confidence, int numFormats)
         {
-            SmartFormatDetector detector = new SmartFormatDetector();
+            var detector = new SmartFormatDetector();
             RecordFormatInfo[] formats;
 
             detector.MaxSampleLines = 10;
@@ -50,6 +52,8 @@ namespace FileHelpers.Tests.Detector
             Assert.AreEqual(fields, formats[0].ClassBuilder.FieldCount);
         }
 
+        #endregion
+
         [Test]
         public void DelimitedTab()
         {
@@ -79,8 +83,8 @@ namespace FileHelpers.Tests.Detector
         [Test]
         public void FixedLength()
         {
-            SmartFormatDetector detector = new SmartFormatDetector();
-            RecordFormatInfo[] formats = detector.DetectFileFormat(FileTest.Detection.CustomersFixed.Path);
+            var detector = new SmartFormatDetector();
+            var formats = detector.DetectFileFormat(FileTest.Detection.CustomersFixed.Path);
 
             Assert.AreEqual(1, formats.Length);
             Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);
@@ -88,7 +92,7 @@ namespace FileHelpers.Tests.Detector
             Assert.AreEqual(7, formats[0].ClassBuilder.FieldCount);
 
 
-            FixedLengthClassBuilder builder = formats[0].ClassBuilder as FixedLengthClassBuilder;
+            var builder = formats[0].ClassBuilder as FixedLengthClassBuilder;
             Assert.AreEqual(11, builder.Fields[0].FieldLength);
             Assert.AreEqual(38, builder.Fields[1].FieldLength);
             Assert.AreEqual(22, builder.Fields[2].FieldLength);
@@ -98,6 +102,33 @@ namespace FileHelpers.Tests.Detector
             Assert.AreEqual(15, builder.Fields[6].FieldLength);
 
         }
+
+
+        [Test]
+        public void OneColumnFixed()
+        {
+            var detector = new SmartFormatDetector();
+            var formats = detector.DetectFileFormat(FileTest.Detection.OnColumnFixed.Path);
+
+            Assert.AreEqual(1, formats.Length);
+            Assert.IsTrue(formats[0].ClassBuilder is FixedLengthClassBuilder);
+            Assert.AreEqual(100, formats[0].Confidence);
+            Assert.AreEqual(1, formats[0].ClassBuilder.FieldCount);
+
+
+            var builder = (FixedLengthClassBuilder) formats[0].ClassBuilder;
+            Assert.AreEqual(10, builder.Fields[0].FieldLength);
+        }
+
+        [Test]
+        public void OneColumnNonFixed()
+        {
+            var detector = new SmartFormatDetector();
+            RecordFormatInfo[] formats = detector.DetectFileFormat(FileTest.Detection.OnColumnNonFixed.Path);
+
+            Assert.AreEqual(0, formats.Length);
+        }
+
 
         [Test]
         public void Cities()
@@ -127,10 +158,7 @@ namespace FileHelpers.Tests.Detector
         //[Test]
         //public void QuotedMore()
         //{
-        //    string file;
-        //    file = "SuperQuoted2.txt";
-        //    AssertDelimitedFormat(file, ",", 12, 90, 0);
-
+        //    AssertDelimitedFormat(FileTest.Detection.SuperQuoted2.Path, ",", 12, 90, 0);
         //}
 
     }

@@ -165,7 +165,7 @@ namespace FileHelpers.WizardApp
                 ColumnInfo col = mColumns[closer];
 
                 if (closer > 0)
-                { 
+                {
                     if (col.CloserToLeft(Control.MousePosition.X))
                         col = mColumns[closer - 1];
                 }
@@ -181,7 +181,7 @@ namespace FileHelpers.WizardApp
         private void CalculateCharWidth(Graphics g)
         {
             if (mCharWidth == -1)
-                mCharWidth = (int)g.MeasureString("m", this.Font).Width - 5;
+                mCharWidth = (int)g.MeasureString("m", this.Font).Width - 4;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -238,6 +238,7 @@ namespace FileHelpers.WizardApp
 
             if (e.Button == MouseButtons.Right)
             {
+                mPosMouseDown = e.Location;
                 cmnuOptions.Show(this, e.Location);
                 txtColumnName.Text = mCloserColumn.Name;
             }
@@ -288,6 +289,7 @@ namespace FileHelpers.WizardApp
         int mOriginalWidth = -1;
         int mOriginalLeftWidth = -1;
         ColumnInfo mCloserLeftColumn = null;
+        private Point mPosMouseDown;
 
         private int CalculateColumn(int x)
         {
@@ -345,86 +347,101 @@ namespace FileHelpers.WizardApp
             mColumns.RemoveAt(closer);
             RecalculatePositions();
             this.Invalidate();
+
+        }
+
+        private void addColumnHereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ColumnInfo colAnte = null;
+            //foreach (var col in Columns.ToArray())
+            //{
+            //    if (col.ContainsPoint(mPosMouseDown.X))
+            //    {
+            //        Columns.Insert(Columns.IndexOf(col), new ColumnInfo());
+            //    }
+            //    mPosMouseDown    
+            //}
             
         }
 
+
     }
 
 
-        public class ColumnInfo
+    public class ColumnInfo
+    {
+        internal FixedWidthDesigner mFileBrowser;
+
+        private int mWidth;
+
+        public int Width
         {
-            internal FixedWidthDesigner mFileBrowser;
-
-            private int mWidth;
-
-            public int Width
+            get { return mWidth; }
+            set
             {
-                get { return mWidth; }
-                set
-                {
-                    if (mWidth == value)
-                        return;
+                if (mWidth == value)
+                    return;
 
-                    mWidth = value;
-                    if (mFileBrowser != null)
-                        mFileBrowser.RecalculatePositions();
-                }
-            }
-
-            private string mName = string.Empty;
-
-            public string Name
-            {
-                get { return mName; }
-                set { mName = value; }
-            }
-
-            private Color mColor;
-
-            public Color Color
-            {
-                get { return mColor; }
-                set { mColor = value; }
-            }
-
-            public static bool even = false;
-
-            public ColumnInfo()
-            {
-                if (even)
-                    Color = Color.AliceBlue;
-                else
-                    Color = Color.White;
-                even = !even;
-            }
-
-            public ColumnInfo(int width)
-                : this()
-            {
-                this.Width = width;
-            }
-
-            internal int mControlLeft;
-            internal int mControlWith;
-
-            internal bool ContainsPoint(int x)
-            {
-                return x >= mControlLeft && x < mControlLeft + mControlWith;
-            }
-
-            internal int CalculateDistance(int x)
-            {
-                return Math.Min(Math.Abs(mControlLeft - x), Math.Abs((mControlWith + mControlLeft) - x));
-            }
-
-
-            internal bool CloserToLeft(int x)
-            {
-                if (Math.Abs(mControlLeft - x) < Math.Abs((mControlWith + mControlLeft) - x))
-                    return true;
-                else
-                    return false;
+                mWidth = value;
+                if (mFileBrowser != null)
+                    mFileBrowser.RecalculatePositions();
             }
         }
+
+        private string mName = string.Empty;
+
+        public string Name
+        {
+            get { return mName; }
+            set { mName = value; }
+        }
+
+        private Color mColor;
+
+        public Color Color
+        {
+            get { return mColor; }
+            set { mColor = value; }
+        }
+
+        public static bool even = false;
+
+        public ColumnInfo()
+        {
+            if (even)
+                Color = Color.AliceBlue;
+            else
+                Color = Color.White;
+            even = !even;
+        }
+
+        public ColumnInfo(int width)
+            : this()
+        {
+            this.Width = width;
+        }
+
+        internal int mControlLeft;
+        internal int mControlWith;
+
+        internal bool ContainsPoint(int x)
+        {
+            return x >= mControlLeft && x < mControlLeft + mControlWith;
+        }
+
+        internal int CalculateDistance(int x)
+        {
+            return Math.Min(Math.Abs(mControlLeft - x), Math.Abs((mControlWith + mControlLeft) - x));
+        }
+
+
+        internal bool CloserToLeft(int x)
+        {
+            if (Math.Abs(mControlLeft - x) < Math.Abs((mControlWith + mControlLeft) - x))
+                return true;
+            else
+                return false;
+        }
     }
+}
 

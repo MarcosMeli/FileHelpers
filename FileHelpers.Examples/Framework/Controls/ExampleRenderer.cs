@@ -15,6 +15,7 @@ namespace ExamplesFramework
         public ExampleRenderer()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         private ExampleCode mExample;
@@ -34,10 +35,13 @@ namespace ExamplesFramework
         private void RenderExample()
         {
             this.SuspendLayout();
+            
             Clear();
 
             this.lblTestDescription.Text = Example.Description;
+            cmdRunDemo.Visible = Example.Runnable;
 
+            splitFiles.Panel2Collapsed = true;
             tableLayoutPanel1.RowCount = Example.Files.Count;
             for (int i = 0; i < Example.Files.Count; i++)
             {
@@ -45,7 +49,6 @@ namespace ExamplesFramework
                 CreateNewDemoFile(i, file);
             }
 
-            cmdRunDemo.Visible = Example.Runnable;
             this.ResumeLayout();
         }
 
@@ -54,6 +57,7 @@ namespace ExamplesFramework
         {
             this.lblTestDescription.Text = string.Empty;
             cmdRunDemo.Visible = false;
+            tableLayoutPanel1.Controls.Clear();
         }
 
         private void cmdRunDemo_Click(object sender, EventArgs e)
@@ -66,9 +70,15 @@ namespace ExamplesFramework
 
         }
 
-        private void FileHandler(object sender, ExampleCode.NewFile file)
+        private void FileHandler(object sender, ExampleCode.NewFileEventArgs e)
         {
-            CreateNewDemoFile(int.MaxValue, file.details);
+            if (e.File.Status == ExampleFile.FileType.OutputFile)
+            {
+                fileOutput.File = e.File;
+                splitFiles.Panel2Collapsed = false;
+            }
+            else
+                CreateNewDemoFile(int.MaxValue, e.File);
         }
 
         private void CreateNewDemoFile(int i, ExampleFile file)

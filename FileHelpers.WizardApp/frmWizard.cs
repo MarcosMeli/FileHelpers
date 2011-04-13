@@ -228,7 +228,6 @@ namespace FileHelpers.WizardApp
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
-            this.cmdReset = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
             this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -253,6 +252,7 @@ namespace FileHelpers.WizardApp
             this.lblStep2 = new System.Windows.Forms.Label();
             this.lblStep3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmdReset = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
@@ -1216,26 +1216,10 @@ namespace FileHelpers.WizardApp
             this.cmdNext.UseVisualStyleBackColor = true;
             this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
             // 
-            // cmdReset
-            // 
-            this.cmdReset.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.cmdReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.cmdReset.Image = ((System.Drawing.Image)(resources.GetObject("cmdReset.Image")));
-            this.cmdReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdReset.Location = new System.Drawing.Point(38, 172);
-            this.cmdReset.Name = "cmdReset";
-            this.cmdReset.Size = new System.Drawing.Size(83, 25);
-            this.cmdReset.TabIndex = 1100;
-            this.cmdReset.Text = "      Reset All";
-            this.cmdReset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdReset.UseVisualStyleBackColor = false;
-            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
-            // 
             // panPreview
             // 
-            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panPreview.Controls.Add(this.cboClassLanguage);
             this.panPreview.Controls.Add(this.label7);
@@ -1322,8 +1306,8 @@ namespace FileHelpers.WizardApp
             // txtOutput
             // 
             this.txtOutput.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOutput.AutoListPosition = null;
             this.txtOutput.AutoListSelectedText = "a123";
             this.txtOutput.AutoListVisible = false;
@@ -1403,8 +1387,8 @@ namespace FileHelpers.WizardApp
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
             this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-        "anks");
+                    "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+                    "anks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // panel1
@@ -1452,10 +1436,11 @@ namespace FileHelpers.WizardApp
             this.cmdfileDesigner.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdfileDesigner.Location = new System.Drawing.Point(8, 267);
             this.cmdfileDesigner.Name = "cmdfileDesigner";
-            this.cmdfileDesigner.Size = new System.Drawing.Size(148, 25);
+            this.cmdfileDesigner.Size = new System.Drawing.Size(156, 25);
             this.cmdfileDesigner.TabIndex = 1102;
             this.cmdfileDesigner.Text = "Fixed Width Designer";
             this.cmdfileDesigner.UseVisualStyleBackColor = false;
+            this.cmdfileDesigner.Visible = false;
             this.cmdfileDesigner.Click += new System.EventHandler(this.cmdfileDesigner_Click);
             // 
             // cmdDetectFormat
@@ -1535,6 +1520,22 @@ namespace FileHelpers.WizardApp
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            // 
+            // cmdReset
+            // 
+            this.cmdReset.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdReset.Image = ((System.Drawing.Image)(resources.GetObject("cmdReset.Image")));
+            this.cmdReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReset.Location = new System.Drawing.Point(38, 172);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(83, 25);
+            this.cmdReset.TabIndex = 1100;
+            this.cmdReset.Text = "      Reset All";
+            this.cmdReset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdReset.UseVisualStyleBackColor = false;
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
             // 
             // pictureBox3
             // 

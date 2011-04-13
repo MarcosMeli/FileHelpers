@@ -15,13 +15,12 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.File:Example.cs}
-
         /// <summary>
         /// Execute the engine and get some results
         /// </summary>
         public override void Run()
         {
+            //-> {Example.File:Example.cs}
             var engine = new FixedFileEngine<Customer>();
             Customer[] result = engine.ReadFile("input.txt");
 
@@ -30,13 +29,12 @@ namespace ExamplesFramework
                 this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
             }
 
+            //-> {/Example.File}
         }
-        //-> {/Example.File}
 
         //-> {Example.File:RecordClass.cs}
-        /// <summary>
-        /// Our class we are reading using FileHelpers,  the record breakdown
-        /// </summary>
+        /// <summary>Our class we are reading using FileHelpers,  the record breakdown</summary>
+
         [FixedLengthRecord()]
         public class Customer
         {

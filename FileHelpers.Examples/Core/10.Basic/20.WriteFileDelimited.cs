@@ -31,7 +31,10 @@ namespace ExamplesFramework
             orders.Add(order2);
 
             engine.WriteFile("Output.Txt", orders);
+
             //-> {/Example.File}
+            Console.WriteLine(engine.WriteString(orders));
+
         }
 
         //-> {Example.File:RecordClass.cs}

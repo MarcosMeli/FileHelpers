@@ -11,20 +11,20 @@ namespace ExamplesFramework
         /// <summary>
         /// Message when new file is added to the list
         /// </summary>
-        public class NewFile : EventArgs
+        public class NewFileEventArgs : EventArgs
         {
-            public ExampleFile details;
+            public ExampleFile File { get; private set; }
 
-            internal NewFile(ExampleFile pfile)
+            internal NewFileEventArgs(ExampleFile file)
             {
-                this.details = pfile;
+                this.File = file;
             }
         }
 
         /// <summary>
         /// Notify application that a new file has been created
         /// </summary>
-        public event EventHandler<NewFile> AddedFile;
+        public event EventHandler<NewFileEventArgs> AddedFile;
 
         /// <summary>
         /// Create a new demo class
@@ -150,7 +150,7 @@ namespace ExamplesFramework
                     console.Status = ExampleFile.FileType.OutputFile;
                     this.Files.Add(console);
                     if (AddedFile != null)
-                        AddedFile(this, new NewFile(console));
+                        AddedFile(this, new NewFileEventArgs(console));
                 }
             }
 

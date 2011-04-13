@@ -34,7 +34,6 @@ namespace ExamplesFramework
         {
             InitializeComponent();
             this.InfoSheet.Visible = false;
-            this.splitContainer2.Panel1.Controls.Add(this.InfoSheet);
             this.InfoSheet.Location = new System.Drawing.Point(7, 49);
             this.InfoSheet.BringToFront();
 

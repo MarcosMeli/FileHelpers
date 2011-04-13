@@ -134,10 +134,10 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\GenerateDataLayer.autogen.cs">
+    <Compile Include="Data\GenerateTestData.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GenerateDataLayer.tt</DependentUpon>
+      <DependentUpon>GenerateTestData.tt</DependentUpon>
     </Compile>
     <Compile Include="Tests\ClassBuilder\ClassFromFile.cs" />
     <Compile Include="Tests\Common.cs">
@@ -377,9 +377,9 @@
     <None Include="Data\Bad\IntWithSpaces1.txt" />
     <None Include="Data\Bad\IntWithSpaces2.txt" />
     <None Include="Data\Classes\SampleBinaryClass.fhc" />
-    <None Include="Data\GenerateDataLayer.tt">
+    <None Include="Data\GenerateTestData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GenerateDataLayer.autogen.cs</LastGenOutput>
+      <LastGenOutput>GenerateTestData.autogen.cs</LastGenOutput>
       <CustomToolNamespace>Prueba</CustomToolNamespace>
     </None>
   </ItemGroup>
@@ -448,6 +448,8 @@
     <Content Include="Data\Detection\Cities.txt" />
     <Content Include="Data\Detection\Cities2.txt" />
     <Content Include="Data\Detection\CityRates.txt" />
+    <Content Include="Data\Detection\OnColumnNonFixed.txt" />
+    <Content Include="Data\Detection\OnColumnFixed.txt" />
     <Content Include="Data\Detection\CustomersComma.txt" />
     <Content Include="Data\Detection\CustomersFixed.txt" />
     <Content Include="Data\Detection\CustomersSemiColon.txt" />

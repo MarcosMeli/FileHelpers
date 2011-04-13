@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCode = new ICSharpCode.TextEditor.TextEditorControl();
             this.lblFileName = new System.Windows.Forms.Label();
             this.cmdCopy = new System.Windows.Forms.Button();
+            this.txtCode = new ExamplesFramework.Framework.Controls.TextEditor();
             this.SuspendLayout();
-            // 
-            // txtCode
-            // 
-            this.txtCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCode.IndentStyle = ICSharpCode.TextEditor.Document.IndentStyle.None;
-            this.txtCode.IsReadOnly = false;
-            this.txtCode.Location = new System.Drawing.Point(0, 23);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(494, 178);
-            this.txtCode.TabIndex = 2;
-            this.txtCode.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.txtCode.VRulerRow = 0;
             // 
             // lblFileName
             // 
@@ -67,12 +55,21 @@
             this.cmdCopy.UseVisualStyleBackColor = true;
             this.cmdCopy.Click += new System.EventHandler(this.cmdCopy_Click);
             // 
+            // txtCode
+            // 
+            this.txtCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCode.Location = new System.Drawing.Point(0, 23);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(494, 178);
+            this.txtCode.TabIndex = 5;
+            // 
             // FileRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cmdCopy);
             this.Controls.Add(this.txtCode);
+            this.Controls.Add(this.cmdCopy);
             this.Controls.Add(this.lblFileName);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FileRenderer";
@@ -83,8 +80,8 @@
 
         #endregion
 
-        private ICSharpCode.TextEditor.TextEditorControl txtCode;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Button cmdCopy;
+        private Framework.Controls.TextEditor txtCode;
     }
 }

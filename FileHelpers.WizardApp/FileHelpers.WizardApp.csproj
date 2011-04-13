@@ -274,6 +274,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>FieldFixedControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FixedWidthDesigner.resx">
+      <DependentUpon>FixedWidthDesigner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataFile.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmDataFile.cs</DependentUpon>

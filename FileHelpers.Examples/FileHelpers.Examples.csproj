@@ -108,17 +108,23 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Framework\Controls\ExampleRenderer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Framework\Controls\ExampleRenderer.Designer.cs">
+      <DependentUpon>ExampleRenderer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Framework\Controls\FileRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Framework\Controls\FileRenderer.Designer.cs">
       <DependentUpon>FileRenderer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Framework\Controls\ExampleRenderer.cs">
+    <Compile Include="Framework\Controls\TextEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Framework\Controls\ExampleRenderer.Designer.cs">
-      <DependentUpon>ExampleRenderer.cs</DependentUpon>
+    <Compile Include="Framework\Controls\TextEditor.Designer.cs">
+      <DependentUpon>TextEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Framework\TreeView\ExampleSearchMode.cs" />
     <Compile Include="Framework\TreeView\CategoryTreeNode.cs" />
@@ -152,11 +158,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Framework\Controls\ExampleRenderer.resx">
+      <DependentUpon>ExampleRenderer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Framework\Controls\FileRenderer.resx">
       <DependentUpon>FileRenderer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Framework\Controls\ExampleRenderer.resx">
-      <DependentUpon>ExampleRenderer.cs</DependentUpon>
+    <EmbeddedResource Include="Framework\Controls\TextEditor.resx">
+      <DependentUpon>TextEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmExamples.resx">
       <DependentUpon>frmExamples.cs</DependentUpon>
