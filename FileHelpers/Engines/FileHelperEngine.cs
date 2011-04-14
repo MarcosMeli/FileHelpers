@@ -261,8 +261,12 @@ namespace FileHelpers
                 LineInfo line = new LineInfo(currentLine) {mReader = freader};
 
                 object[] values = new object[mRecordInfo.FieldCount];
+
                 while (currentLine != null && currentRecord < maxRecords)
                 {
+                    //Alireza Kousha 4/14/2011 : Fix Reported on: http://www.filehelpers.com/forums/viewtopic.php?f=4&t=1109 adding the following line:
+                    completeLine = currentLine;  // <------------------------------
+
                     try
                     {
                         mTotalRecords++;
@@ -336,7 +340,6 @@ namespace FileHelpers
                         if (byPass == false)
                         {
                             currentLine = freader.ReadNextLine();
-                            completeLine = currentLine;
                             mLineNumber++;
                         }
                     }
