@@ -8,15 +8,9 @@ namespace ExamplesFramework
     //-> {Example.Name:Write Delimited File}
     //-> {Example.Description:Example of how to write a Delimited File}
 
-    /// <summary>
-    /// Example of writing a delimited file using the generic engine
-    /// </summary>
     public class WriteFile
         : ExampleBase
     {
-        /// <summary>
-        /// Execute engine and write out records we define in memory delimited by |
-        /// </summary>
         public override void Run()
         {
             //-> {Example.File:Example.cs}
@@ -24,11 +18,21 @@ namespace ExamplesFramework
             
             var orders = new List<Orders>();
 
-            var order1 = new Orders() {OrderID = 1, CustomerID = "AIRG", Freight = 82.43M, OrderDate = new DateTime(2009,05,01)};
-            var order2 = new Orders() {OrderID = 2, CustomerID = "JSYV", Freight = 12.22M, OrderDate = new DateTime(2009,05,02)};
+            orders.Add(new Orders()
+                             {
+                                 OrderID = 1,
+                                 CustomerID = "AIRG", 
+                                 Freight = 82.43M, 
+                                 OrderDate = new DateTime(2009,05,01)
+                             });
 
-            orders.Add(order1);
-            orders.Add(order2);
+            orders.Add(new Orders()
+                             {
+                                 OrderID = 2, 
+                                 CustomerID = "JSYV", 
+                                 Freight = 12.22M,
+                                 OrderDate = new DateTime(2009,05,02)
+                             });
 
             engine.WriteFile("Output.Txt", orders);
 

@@ -5,12 +5,13 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Read Fixed File}
+    //-> {Example.Name:FixedLengthRecord}
     //-> {Example.Description:Example of how to read a Fixed Length layout file (eg Cobol output)}
 
-    public class ReadFixedFile
+    public class FixedLengthRecordExample
         : ExampleBase
     {
+
         /// <summary>
         /// Execute the engine and get some results
         /// </summary>
@@ -54,16 +55,6 @@ namespace ExamplesFramework
         99999 Berglunds snabbköp           02111999*/
         //-> {/Example.File}
 
-        //-> {Example.File:example_fixedengine.html}
-        /* <h2>Fixed File Engine</h2>
-         * <p>Lets start with a simple data:</p>
-         * ${Input.txt}
-         * <p>An simple example layout:</p>
-         * ${RecordClass.cs}
-         * <p>Let see the result:</p>
-         * ${Console}
-         */
-        //-> {/Example.File}
     }
 
 }

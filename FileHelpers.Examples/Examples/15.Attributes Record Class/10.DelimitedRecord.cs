@@ -5,7 +5,7 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:DelimitedRecord}
+    //-> {Example.Name:[DelimitedRecord(delimiter)]}
     //-> {Example.Description:Example of how to use DelimitedRecord attribute}
 
     /// <summary>

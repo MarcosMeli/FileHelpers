@@ -47,9 +47,9 @@ namespace ExamplesFramework
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdHistory = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tvExamples = new ExamplesFramework.TreeViewExamples();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
-            this.tvExamples = new ExamplesFramework.TreeViewExamples();
             this.exampleRenderer = new ExamplesFramework.ExampleRenderer();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -221,6 +221,20 @@ namespace ExamplesFramework
             this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 2;
             // 
+            // tvExamples
+            // 
+            this.tvExamples.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvExamples.ImageIndex = 0;
+            this.tvExamples.ImageList = this.imgTreeView;
+            this.tvExamples.Location = new System.Drawing.Point(0, 0);
+            this.tvExamples.Name = "tvExamples";
+            this.tvExamples.SearchMode = ExamplesFramework.ExamplesSearchMode.Name;
+            this.tvExamples.SearchText = null;
+            this.tvExamples.SelectedImageIndex = 0;
+            this.tvExamples.Size = new System.Drawing.Size(293, 543);
+            this.tvExamples.TabIndex = 0;
+            this.tvExamples.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvExamples_AfterSelect);
+            // 
             // imgTreeView
             // 
             this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
@@ -247,20 +261,6 @@ namespace ExamplesFramework
             this.InfoSheet.Size = new System.Drawing.Size(250, 250);
             this.InfoSheet.TabIndex = 8;
             this.InfoSheet.Visible = false;
-            // 
-            // tvExamples
-            // 
-            this.tvExamples.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvExamples.ImageIndex = 0;
-            this.tvExamples.ImageList = this.imgTreeView;
-            this.tvExamples.Location = new System.Drawing.Point(0, 0);
-            this.tvExamples.Name = "tvExamples";
-            this.tvExamples.SearchMode = ExamplesFramework.ExamplesSearchMode.Name;
-            this.tvExamples.SearchText = null;
-            this.tvExamples.SelectedImageIndex = 0;
-            this.tvExamples.Size = new System.Drawing.Size(293, 543);
-            this.tvExamples.TabIndex = 0;
-            this.tvExamples.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvExamples_AfterSelect);
             // 
             // exampleRenderer
             // 

@@ -8,16 +8,10 @@ namespace ExamplesFramework
     //-> {Example.Name:Read Delimited File}
     //-> {Example.Description:Example of how to read a Delimited File}
 
-    /// <summary>
-    /// Example of reading a simple file delimited by | using the Generic Engine
-    /// </summary>
     public class ReadFile
         : ExampleBase
     {
 
-        /// <summary>
-        /// Execute the engine and get some results
-        /// </summary>
         public override void Run()
         {
             //-> {Example.File:Example.cs}
@@ -26,9 +20,9 @@ namespace ExamplesFramework
 
             foreach (var record in records)
             {
-                this.Console.WriteLine(record.CustomerID);
-                this.Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
-                this.Console.WriteLine(record.Freight);
+                Console.WriteLine(record.CustomerID);
+                Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
+                Console.WriteLine(record.Freight);
             }
             //-> {/Example.File}
         }

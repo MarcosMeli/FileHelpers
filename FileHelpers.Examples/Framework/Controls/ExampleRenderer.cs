@@ -65,7 +65,7 @@ namespace ExamplesFramework
             if (Example == null)
                 return;
             Example.AddedFile += FileHandler;
-            Example.Test();
+            Example.RunExample();
             Example.AddedFile -= FileHandler;
 
         }

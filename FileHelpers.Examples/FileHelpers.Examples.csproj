@@ -92,7 +92,10 @@
     <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
+    <Compile Include="Examples\10.Basic\40.WriteFileFixed.cs" />
     <Compile Include="Examples\15.Attributes Record Class\10.DelimitedRecord.cs" />
+    <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecord.cs" />
+    <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecordLastVariable.cs" />
     <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
     <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
     <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />

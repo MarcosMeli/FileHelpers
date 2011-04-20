@@ -37,7 +37,7 @@ namespace ExamplesFramework
         /// <summary>
         /// Execute the test run
         /// </summary>
-        public void Test()
+        public void RunExample()
         {
             TestRun = true;
 

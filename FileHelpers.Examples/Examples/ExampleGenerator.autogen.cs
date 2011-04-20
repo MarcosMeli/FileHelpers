@@ -85,11 +85,21 @@ work.Contents = @"var engine = new FileHelperEngine<Orders>();
 
 var orders = new List<Orders>();
 
-var order1 = new Orders() {OrderID = 1, CustomerID = ""AIRG"", Freight = 82.43M, OrderDate = new DateTime(2009,05,01)};
-var order2 = new Orders() {OrderID = 2, CustomerID = ""JSYV"", Freight = 12.22M, OrderDate = new DateTime(2009,05,02)};
+orders.Add(new Orders()
+                 {
+                     OrderID = 1,
+                     CustomerID = ""AIRG"", 
+                     Freight = 82.43M, 
+                     OrderDate = new DateTime(2009,05,01)
+                 });
 
-orders.Add(order1);
-orders.Add(order2);
+orders.Add(new Orders()
+                 {
+                     OrderID = 2, 
+                     CustomerID = ""JSYV"", 
+                     Freight = 12.22M,
+                     OrderDate = new DateTime(2009,05,02)
+                 });
 
 engine.WriteFile(""Output.Txt"", orders);
 ";
@@ -149,9 +159,7 @@ foreach (var detail in result)
 work.Language = NetLanguage.CSharp;
 example.Files.Add(work);
 work = new ExampleFile("RecordClass.cs");
-work.Contents = @"/// <summary>Our class we are reading using FileHelpers,  the record breakdown</summary>
-
-[FixedLengthRecord()]
+work.Contents = @"[FixedLengthRecord()]
 public class Customer
 {
     [FieldFixedLength(5)]
@@ -191,7 +199,49 @@ ${Console}
 work.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(work);
 
-example = new ExampleCode(new DelimitedRecord(), "DelimitedRecord", "Attributes Record Class");
+example = new ExampleCode(new WriteFileFixed(), "Write Fixed File", "Basic");
+example.Description = @"Example of how to write a Fixed Record File";
+examples.Add(example);
+work = new ExampleFile("Example.cs");
+work.Contents = @"var engine = new FileHelperEngine<Customer>();
+
+var customers = new List<Customer>();
+
+var order1 = new Customer() { CustId = 1, Name = ""Antonio Moreno Taquería"", AddedDate = new DateTime(2009, 05, 01) };
+var order2 = new Customer() { CustId = 2, Name = ""Berglunds snabbköp"", AddedDate = new DateTime(2009, 05, 02) };
+
+customers.Add(order1);
+customers.Add(order2);
+
+engine.WriteFile(""Output.Txt"", customers);
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+work = new ExampleFile("Output.Txt");
+work.Contents = @"";
+work.Status = ExampleFile.FileType.OutputFile;
+example.Files.Add(work);
+work = new ExampleFile("RecordClass.cs");
+work.Contents = @"[FixedLengthRecord()]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
+
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
+
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
+    public DateTime AddedDate;
+
+}
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+
+example = new ExampleCode(new DelimitedRecord(), "[DelimitedRecord(delimiter)]", "Attributes Record Class");
 example.Description = @"Example of how to use DelimitedRecord attribute";
 examples.Add(example);
 work = new ExampleFile("Example.cs");
@@ -258,6 +308,92 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
          
 ";
 work.Status = ExampleFile.FileType.HtmlFile;
+example.Files.Add(work);
+
+example = new ExampleCode(new FixedLengthRecordExample(), "FixedLengthRecord", "Attributes Record Class");
+example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
+examples.Add(example);
+work = new ExampleFile("Example.cs");
+work.Contents = @"var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile(""input.txt"");
+
+foreach (var detail in result)
+{
+    Console.WriteLine("" Client: {0},  Name: {1}"", detail.CustId, detail.Name);
+}
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+work = new ExampleFile("RecordClass.cs");
+work.Contents = @"[FixedLengthRecord()]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
+
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
+
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
+    public DateTime AddedDate;
+
+}
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+work = new ExampleFile("Input.txt");
+work.Contents = @"01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquería      21042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbköp           02111999
+";
+work.Status = ExampleFile.FileType.InputFile;
+example.Files.Add(work);
+
+example = new ExampleCode(new FixedLengthRecordLastVariableExample(), "FixedLengthRecord FixedMode.AllowLessChars", "Attributes Record Class");
+example.Description = @"Example of how to use the FixedLengthRecord";
+examples.Add(example);
+work = new ExampleFile("Example.cs");
+work.Contents = @"var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile(""input.txt"");
+
+foreach (var detail in result)
+{
+    Console.WriteLine("" Client: {0},  Name: {1}"", detail.CustId, detail.Name);
+}
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+work = new ExampleFile("RecordClass.cs");
+work.Contents = @"[FixedLengthRecord(FixedMode.AllowLessChars)]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
+
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
+
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.DateMultiFormat, ""ddMMyyyy"", ""MMyyyy"")]
+    public DateTime AddedDate;
+
+}
+";
+work.Language = NetLanguage.CSharp;
+example.Files.Add(work);
+work = new ExampleFile("Input.txt");
+work.Contents = @"01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquería      042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbköp           111999
+";
+work.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(work);
 
 example = new ExampleCode(new DemoFieldLength(), "[FieldLength]", "Attributes Fields");

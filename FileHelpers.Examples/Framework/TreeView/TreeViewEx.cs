@@ -135,9 +135,10 @@ namespace ExamplesFramework
                     return node.GetName().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                            node.GetDescription().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
                 case ExamplesSearchMode.All:
+                    var code = node.GetDescriptionExtra();
                     return node.GetName().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                            node.GetDescription().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                           node.GetDescriptionExtra().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+                           (code != null && code.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

@@ -105,17 +105,24 @@ namespace ExamplesFramework
         /// </summary>
         public UserControl Control  { get; set; }
 
-        public void Test()
+        private static string TempPath
+        {
+            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp"); }
+        }
+
+        public void RunExample()
         {
             try
             {
-
+                EnsureDirectoryExists(TempPath);
+                Environment.CurrentDirectory = TempPath;
+                
                 foreach (ExampleFile file in this.Files)
                 {
                     if (file.Status == ExampleFile.FileType.InputFile)
                         File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
                 }
-                this.Demo.Test();
+                this.Demo.RunExample();
             }
             catch (Exception ex)
             {
@@ -154,6 +161,12 @@ namespace ExamplesFramework
                 }
             }
 
+        }
+
+        private void EnsureDirectoryExists(string tempPath)
+        {
+            if (!Directory.Exists(tempPath))
+                Directory.CreateDirectory(tempPath);
         }
     }
 }

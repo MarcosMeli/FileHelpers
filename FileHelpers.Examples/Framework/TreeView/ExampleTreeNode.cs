@@ -44,7 +44,7 @@ namespace ExamplesFramework
             try
             {
                 if (!Example.TestRun)
-                    Example.Test();
+                    Example.RunExample();
             }
             catch (Exception ex)
             {
@@ -107,9 +107,9 @@ namespace ExamplesFramework
             return this.Example.Description;
         }
 
-        public string GetDescriptionExtra()
+        string ISearchableNode.GetDescriptionExtra()
         {
-            return this.Example.Description;
+            return this.Example.SourceCode;
         }
     }
 }
