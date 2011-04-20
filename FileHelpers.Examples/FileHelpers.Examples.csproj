@@ -59,12 +59,19 @@
     <ApplicationIcon>Demos.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AvalonDock, Version=1.2.2691.0, Culture=neutral, PublicKeyToken=85a1e0ada7ec13e4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\TextEditor\AvalonDock.dll</HintPath>
+    </Reference>
     <Reference Include="Devoo.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Devoo\Devoo.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="FileHelpersExamples, Version=2.9.10.0, Culture=neutral, processorArchitecture=x86">
       <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\References\TextEditor\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.TextEditor, Version=3.1.0.4890, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,31 +89,31 @@
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\10.Basic\20.WriteFileDelimited.cs" />
-    <Compile Include="Core\10.Basic\30.ReadFileFixed.cs" />
-    <Compile Include="Core\15.Attributes Record Class\10.DelimitedRecord.cs" />
-    <Compile Include="Core\16.Attributes Fields\10.FieldLength.cs" />
-    <Compile Include="Core\50.Advanced\10.MultipleDelimiters.cs" />
-    <Compile Include="Core\50.Advanced\30.MultiRecordSample.cs" />
-    <Compile Include="Core\50.Advanced\50.EnumConverter.cs" />
-    <Compile Include="Core\60.Sorting\10.SortBigFiles.cs" />
-    <Compile Include="Core\25.ErrorHandling\10.ErrorHandling.cs" />
-    <Compile Include="Core\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
-    <Compile Include="Core\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
-    <Compile Include="Core\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
-    <Compile Include="Core\20.Events\10.ReadBeforeEvent.cs" />
-    <Compile Include="Core\20.Events\20.ReadAfterEventSample.cs" />
-    <Compile Include="Core\20.Events\30.WriteBeforeEventSample.cs" />
-    <Compile Include="Core\20.Events\40.WriteAfterEventSample.cs" />
-    <Compile Include="Core\60.Sorting\20.SortBigFilesString.cs" />
-    <Compile Include="Core\60.Sorting\30.SortBigFilesString2.cs" />
-    <Compile Include="Core\90.MasterDetail\10.SimpleMasterDetail.cs" />
-    <Compile Include="Core\90.MasterDetail\20.MasterDetailSample2.cs" />
-    <Compile Include="Core\ExampleGenerator.autogen.cs">
-      <DependentUpon>ExampleGenerator.tt</DependentUpon>
-      <SubType>Code</SubType>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
+    <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
+    <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
+    <Compile Include="Examples\15.Attributes Record Class\10.DelimitedRecord.cs" />
+    <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
+    <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
+    <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />
+    <Compile Include="Examples\20.Events\30.WriteBeforeEventSample.cs" />
+    <Compile Include="Examples\20.Events\40.WriteAfterEventSample.cs" />
+    <Compile Include="Examples\25.ErrorHandling\10.ErrorHandling.cs" />
+    <Compile Include="Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
+    <Compile Include="Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
+    <Compile Include="Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
+    <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
+    <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
+    <Compile Include="Examples\50.Advanced\50.EnumConverter.cs" />
+    <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
+    <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
+    <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
+    <Compile Include="Examples\90.MasterDetail\10.SimpleMasterDetail.cs" />
+    <Compile Include="Examples\90.MasterDetail\20.MasterDetailSample2.cs" />
+    <Compile Include="Examples\ExampleGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExampleGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Framework\Controls\ExampleRenderer.cs">
       <SubType>UserControl</SubType>
@@ -129,7 +136,6 @@
     <Compile Include="Framework\TreeView\ExampleSearchMode.cs" />
     <Compile Include="Framework\TreeView\CategoryTreeNode.cs" />
     <Compile Include="Framework\ExampleFile.cs" />
-    <Compile Include="Core\10.Basic\10.ReadFileDelimited.cs" />
     <Compile Include="Framework\ExampleBase.cs" />
     <Compile Include="Framework\TreeView\ExampleTreeNode.cs" />
     <Compile Include="Framework\HtmlWrapper.cs" />
@@ -183,7 +189,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\ExampleGenerator.tt">
+    <None Include="Examples\ExampleGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ExampleGenerator.autogen.cs</LastGenOutput>
     </None>
@@ -209,7 +215,7 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\80.DynamicRecords\" />
+    <Folder Include="Examples\80.DynamicRecords\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

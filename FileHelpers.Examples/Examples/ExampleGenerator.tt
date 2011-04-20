@@ -15,7 +15,7 @@
 <#
     // Configuration of the Examples Generation:
 
-    ExamplesFolder = "Core";
+    ExamplesFolder = "Examples";
     ExamplesNamespace = "Examples";
 
 #>
