@@ -60,6 +60,7 @@
     <Compile Include="GenericDataLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\AccessStorage.cs" />
+    <Compile Include="DataBaseHelper.cs" />
     <Compile Include="Storage\DataBaseStorage.cs" />
     <Compile Include="Storage\DataStorage.cs" />
     <Compile Include="Storage\FileStorage.cs" />

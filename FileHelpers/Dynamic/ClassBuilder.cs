@@ -67,6 +67,7 @@ namespace FileHelpers.Dynamic
                 throw new BadUsageException("There is not enough text to be a proper class, load your class and try again");
 
             CompilerParameters cp = new CompilerParameters();
+            
             //cp.ReferencedAssemblies.Add("System.dll");
             //cp.ReferencedAssemblies.Add("System.Data.dll");
             //cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
@@ -145,7 +146,7 @@ namespace FileHelpers.Dynamic
 
             if (cr.Errors.HasErrors)
             {
-                StringBuilder error = new StringBuilder();
+                var error = new StringBuilder();
                 error.Append("Error Compiling Expression: " + StringHelper.NewLine);
                 foreach (CompilerError err in cr.Errors)
                 {

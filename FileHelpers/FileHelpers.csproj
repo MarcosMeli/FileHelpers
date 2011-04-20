@@ -320,9 +320,6 @@
     <Compile Include="Helpers\CsvOptions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\DataBaseHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Helpers\ExHelper.cs">
       <SubType>Code</SubType>
     </Compile>
