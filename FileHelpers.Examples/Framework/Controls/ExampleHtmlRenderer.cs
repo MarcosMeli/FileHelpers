@@ -39,7 +39,6 @@ namespace ExamplesFramework
             
             Clear();
 
-            this.lblTestDescription.Text = Example.Description;
             //lblDescription.Text = Example.Description;
             cmdRunDemo.Visible = Example.Runnable;
             browserExample.DocumentText = ExampleToHtml();
@@ -71,7 +70,14 @@ namespace ExamplesFramework
 
             AddHeader(consoleRes);
 
-            consoleRes.AppendLine(@"<body style=""margin:0px;background-color:#000;color:#DDD;"">");//            consoleRes.AppendLine(@"<div class=""FileLeft"">&nbsp;</div>//<div class=""FileMiddle"">Console</div>//<div class=""FileRight"">&nbsp;</div><br/>//<div style=""clear:both""></div>");consoleRes.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.Console.Output + "</pre></div></body>");
+            consoleRes.AppendLine(@"<body style=""margin:0px;background-color:#000;color:#DDD;"">");
+
+//            consoleRes.AppendLine(@"<div class=""FileLeft"">&nbsp;</div>
+//<div class=""FileMiddle"">Console</div>
+//<div class=""FileRight"">&nbsp;</div><br/>
+//<div style=""clear:both""></div>");
+
+consoleRes.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.Console.Output + "</pre></div></body>");
             browserOutput.DocumentText = consoleRes.ToString();
 
             splitContainer1.Panel2Collapsed = false;
@@ -102,7 +108,12 @@ namespace ExamplesFramework
                 var file = Example.Files[i];
                 //res.AppendLine("<BR/>");
 
-                res.AppendLine(@"<div class=""FileLeft"">&nbsp;</div><div class=""FileMiddle"">" + file.Filename + @"</div><div class=""FileRight"">&nbsp;</div><br/><div style=""clear:both""></div>");
+                res.AppendLine(@"
+<div class=""FileLeft"">&nbsp;</div>
+<div class=""FileMiddle"">" + file.Filename + @"</div>
+<div class=""FileRight"">&nbsp;</div><br/>
+<div style=""clear:both""></div>
+");
                 //mColorizer.Colorize()
                 res.AppendLine(mColorizer.Colorize(file.Contents, Languages.CSharp));
                 
@@ -115,14 +126,21 @@ namespace ExamplesFramework
         private void AddHeader(StringBuilder res)
         {
             res.AppendLine(@"
-<style type=""text/css"">body, div, th, td, form {
+<style type=""text/css"">
+
+
+body, div, th, td, form {
 font-family: Verdana, Helvetica, Arial;
 font-size: 12px;
-}h2 {
+}
+h2 {
 font-size: 14pt;
 font-weight: bold;
 color: #07A;
-}pre {background-color: #EEF3F9;
+}
+
+pre {
+background-color: #EEF3F9;
 border: 1px dashed grey;
 font-family: Consolas,""Courier New"",Courier,Monospace !important;
 font-size: 12px !important;
@@ -131,11 +149,20 @@ padding: 6px 6px 6px 6px;
 height: auto;
 overflow: auto;
 width: 100% !important;
-}.FileLeft {width: 20px;
+}
+
+.FileLeft {
+width: 20px;
 height: 20px;
 background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURTFyADR3ADd7ADp/AD2DAEqNDFCSEFOWEFaaEFmeEV2UMF+XMGSVP2KaMGCkF2irH2yiOnGnPXCyKHiwPni4MH61Q4C+OYS7SYjEQY/JSovAUJHFV5bOUqvWd7DafbrQqtzvxfL37/T48Pb68fb68v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO/tYtUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAXdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41vUWjyQAAAH1JREFUKFNtykkWwjAMA1BByjwUAh0YS0J8/ytiKu/qv7GkZ3zezwm8blPoHWgduFIpD0t6EEmk3C3GiJpE5NtZrnEkHSU3VrCh/yj5woI1jaNkFqzIRhYsiY9nFixo3E5WUJFu6WC5QiDddhZDwJxS2lrSg5kDrr23Ds76AwmLFuNBIOa/AAAAAElFTkSuQmCC);
 background-repeat: no-repeat;
-float: left;}.FileMiddle{font-family: Consolas,""Courier New"",Courier,Monospace !important;
+float: left;}
+
+
+
+.FileMiddle
+{
+font-family: Consolas,""Courier New"",Courier,Monospace !important;
 font-size: 17px !important;
 width: 250px;
 height: 20px;
@@ -143,14 +170,18 @@ background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAMAA
 background-repeat: repeat-x;
 float: left;
 color: white;
-text-align: left;}.FileRight {
+text-align: left;}
+
+.FileRight {
 width: 20px;
 height: 20px;
 background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURTFyADR3ADd7ADp/AD2DAEqNDFCSEFOWEFaaEFmeEWSVP2CkF2irH3CyKHi4MIC+OYjEQY/JSpbOUqvWd7DafbrQqtzvxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUnrx4AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAXdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41vUWjyQAAAD9JREFUKFONyscBgCAAwMAgFsSCff9RGYA8vPdxNZ6Ps3VzCIpgF2yCVbAIZkESTIJRMAh6QRR0giD4K0vMbwXF4QzGlCzu7wAAAABJRU5ErkJggg%3D%3D);
 background-repeat: no-repeat;
 float: left;
-}
-.DescriptionBox {
+}
+
+
+.DescriptionBox {
 border: 1px solid #D4D4D4;
 margin: 10px;
 padding: 5px;
@@ -184,7 +215,6 @@ float:left:
 
         public void Clear()
         {
-            this.lblTestDescription.Text = string.Empty;
             cmdRunDemo.Visible = false;
             browserExample.DocumentText = string.Empty;
             browserOutput.DocumentText = string.Empty;

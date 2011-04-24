@@ -30,7 +30,6 @@
         {
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
-            this.lblTestDescription = new System.Windows.Forms.ToolStripLabel();
             this.browserExample = new System.Windows.Forms.WebBrowser();
             this.browserOutput = new System.Windows.Forms.WebBrowser();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -44,11 +43,10 @@
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmdRunDemo,
-            this.lblTestDescription});
+            this.cmdRunDemo});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(866, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(866, 28);
             this.toolStrip2.TabIndex = 3;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -63,18 +61,13 @@
             this.cmdRunDemo.Visible = false;
             this.cmdRunDemo.Click += new System.EventHandler(this.cmdRunDemo_Click);
             // 
-            // lblTestDescription
-            // 
-            this.lblTestDescription.Name = "lblTestDescription";
-            this.lblTestDescription.Size = new System.Drawing.Size(0, 22);
-            // 
             // browserExample
             // 
             this.browserExample.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browserExample.Location = new System.Drawing.Point(0, 0);
             this.browserExample.MinimumSize = new System.Drawing.Size(20, 20);
             this.browserExample.Name = "browserExample";
-            this.browserExample.Size = new System.Drawing.Size(866, 400);
+            this.browserExample.Size = new System.Drawing.Size(866, 397);
             this.browserExample.TabIndex = 9;
             // 
             // browserOutput
@@ -83,13 +76,13 @@
             this.browserOutput.Location = new System.Drawing.Point(0, 0);
             this.browserOutput.MinimumSize = new System.Drawing.Size(20, 20);
             this.browserOutput.Name = "browserOutput";
-            this.browserOutput.Size = new System.Drawing.Size(866, 108);
+            this.browserOutput.Size = new System.Drawing.Size(150, 46);
             this.browserOutput.TabIndex = 10;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -101,7 +94,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.browserOutput);
             this.splitContainer1.Panel2Collapsed = true;
-            this.splitContainer1.Size = new System.Drawing.Size(866, 400);
+            this.splitContainer1.Size = new System.Drawing.Size(866, 397);
             this.splitContainer1.SplitterDistance = 288;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -130,7 +123,6 @@
 
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
-        private System.Windows.Forms.ToolStripLabel lblTestDescription;
         private System.Windows.Forms.WebBrowser browserExample;
         private System.Windows.Forms.WebBrowser browserOutput;
         private System.Windows.Forms.SplitContainer splitContainer1;

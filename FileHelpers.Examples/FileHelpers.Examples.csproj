@@ -59,9 +59,6 @@
     <ApplicationIcon>Demos.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ColorCode">
-      <HintPath>..\References\SyntaxColoring\ColorCode.dll</HintPath>
-    </Reference>
     <Reference Include="Devoo.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Devoo\Devoo.WinForms.dll</HintPath>
@@ -113,6 +110,50 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExampleGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Framework\ColorCode\CodeColorizer.cs" />
+    <Compile Include="Framework\ColorCode\Common\ExtensionMethods.cs" />
+    <Compile Include="Framework\ColorCode\Common\Guard.cs" />
+    <Compile Include="Framework\ColorCode\Common\ILanguageRepository.cs" />
+    <Compile Include="Framework\ColorCode\Common\LanguageId.cs" />
+    <Compile Include="Framework\ColorCode\Common\LanguageRepository.cs" />
+    <Compile Include="Framework\ColorCode\Common\ScopeName.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\CompiledLanguage.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\ILanguageCompiler.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\LanguageCompiler.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Asax.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Ashx.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Aspx.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\AspxCs.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\AspxVb.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Cpp.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\CSharp.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Css.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Html.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Java.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\JavaScript.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Php.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\PowerShell.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Sql.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\VbDotNet.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\Languages\Xml.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\RuleCaptures.cs" />
+    <Compile Include="Framework\ColorCode\Compilation\RuleFormats.cs" />
+    <Compile Include="Framework\ColorCode\Formatters.cs" />
+    <Compile Include="Framework\ColorCode\Formatting\HtmlFormatter.cs" />
+    <Compile Include="Framework\ColorCode\Formatting\TextInsertion.cs" />
+    <Compile Include="Framework\ColorCode\ICodeColorizer.cs" />
+    <Compile Include="Framework\ColorCode\IFormatter.cs" />
+    <Compile Include="Framework\ColorCode\ILanguage.cs" />
+    <Compile Include="Framework\ColorCode\IStyleSheet.cs" />
+    <Compile Include="Framework\ColorCode\LanguageRule.cs" />
+    <Compile Include="Framework\ColorCode\Languages.cs" />
+    <Compile Include="Framework\ColorCode\Parsing\ILanguageParser.cs" />
+    <Compile Include="Framework\ColorCode\Parsing\LanguageParser.cs" />
+    <Compile Include="Framework\ColorCode\Parsing\Scope.cs" />
+    <Compile Include="Framework\ColorCode\Style.cs" />
+    <Compile Include="Framework\ColorCode\StyleDictionary.cs" />
+    <Compile Include="Framework\ColorCode\StyleSheets.cs" />
+    <Compile Include="Framework\ColorCode\Styling\StyleSheets\DefaultStyleSheet.cs" />
     <Compile Include="Framework\Controls\ExampleHtmlRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>

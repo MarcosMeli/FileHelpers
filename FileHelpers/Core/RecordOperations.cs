@@ -317,7 +317,15 @@ namespace FileHelpers
 
             foreach (FieldBase f in RecordInfo.Fields)
             {
-                DataColumn column1 = res.Columns.Add(f.FieldInfo.Name, f.FieldInfo.FieldType);
+                DataColumn column1;
+                if (f.IsNullableType)
+                {
+                    column1 = res.Columns.Add(f.FieldInfo.Name, Nullable.GetUnderlyingType(f.FieldInfo.FieldType));
+                    column1.AllowDBNull = true;
+                }
+                else
+                    column1 = res.Columns.Add(f.FieldInfo.Name, f.FieldInfo.FieldType);
+
                 column1.ReadOnly = true;
             }
             return res;
