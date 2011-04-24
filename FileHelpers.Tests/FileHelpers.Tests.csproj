@@ -157,6 +157,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\MultiThreading.cs" />
+    <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
     <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
     <Compile Include="Tests\Common\ReflectionOrder.cs" />
     <Compile Include="Tests\Common\FastReadCsv.cs" />

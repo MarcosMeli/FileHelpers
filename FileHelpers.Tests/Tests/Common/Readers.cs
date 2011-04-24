@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
+    [TestFixture]
 	public class Readers
 	{
 		FileHelperAsyncEngine asyncEngine;
@@ -15,7 +15,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadFile()
 		{
-			var engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
             res = TestCommon.ReadTest<SampleType>(engine, "Good", "Test1.txt");
