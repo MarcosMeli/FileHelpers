@@ -6,7 +6,7 @@ namespace ExamplesFramework
     /// Container for category as a tree node leaf
     /// </summary>
     public class CategoryTreeNode
-        : TreeNode, IHTMLwriter
+        : TreeNode, IHtmlWriter
     {
         public CategoryTreeNode()
         {
@@ -46,8 +46,8 @@ namespace ExamplesFramework
                 index.AppendLine("<blockquote><dl>");
                 foreach (var node in this.Nodes)
                 {
-                    if (node is IHTMLwriter)
-                        ((IHTMLwriter)node).OutputHtml(index, newIndent);
+                    if (node is IHtmlWriter)
+                        ((IHtmlWriter)node).OutputHtml(index, newIndent);
                 }
                 index.AppendLine("</dl></blockquote>");
             }

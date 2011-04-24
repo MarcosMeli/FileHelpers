@@ -5,11 +5,10 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Read Delimited File}
-    //-> {Example.Description:Example of how to read a Delimited File}
-    //-> {Example.AutoRun:true}
+    //-> {Example.Name: Read File with Nullable Types}
+    //-> {Example.Description:Example of how to read a file with some missing values and use <b>Nullable Types</b>}
 
-    public class ReadFile
+    public class ReadFileNullable
         : ExampleBase
     {
 
@@ -22,15 +21,16 @@ namespace ExamplesFramework
             foreach (var record in records)
             {
                 Console.WriteLine(record.CustomerID);
-                Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
+                if (record.OrderDate.HasValue)
+                    Console.WriteLine(record.OrderDate.Value.ToString("dd/MM/yyyy"));
+                else
+                    Console.WriteLine("No Date");
                 Console.WriteLine(record.Freight);
             }
             //-> {/Example.File}
         }
 
         //-> {Example.File:RecordClass.cs}
-        /// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
-
         [DelimitedRecord("|")]
         public class Orders
         {
@@ -39,7 +39,7 @@ namespace ExamplesFramework
             public string CustomerID;
 
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime OrderDate;
+            public DateTime? OrderDate;
 
             public decimal Freight;
         }
@@ -47,7 +47,7 @@ namespace ExamplesFramework
 
         //-> {Example.File:Input.txt}
         /*10248|VINET|04071996|32.38
-        10249|TOMSP|05071996|11.61
+        10249|TOMSP||11.61
         10250|HANAR|08071996|65.83
         10251|VICTE|08071996|41.34*/
         //-> {/Example.File}

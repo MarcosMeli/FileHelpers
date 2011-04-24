@@ -39,6 +39,7 @@ namespace ExamplesFramework
             Clear();
 
             this.lblTestDescription.Text = Example.Description;
+            //lblDescription.Text = Example.Description;
             cmdRunDemo.Visible = Example.Runnable;
 
             splitFiles.Panel2Collapsed = true;

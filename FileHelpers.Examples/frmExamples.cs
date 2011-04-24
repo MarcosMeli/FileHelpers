@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using Examples;
 using ExamplesFramework.Properties;
-using ICSharpCode.TextEditor.Document;
+
 using FileHelpers;
 
 
@@ -58,6 +58,8 @@ namespace ExamplesFramework
             }
 
             exampleRenderer.Example = CurrentExample;
+            if (CurrentExample.AutoRun)
+                CurrentExample.RunExample();
         }
 
 

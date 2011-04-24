@@ -7,6 +7,7 @@ namespace ExamplesFramework
 {
     //-> {Example.Name:Write Delimited File}
     //-> {Example.Description:Example of how to write a Delimited File}
+    //-> {Example.AutoRun:true}
 
     public class WriteFile
         : ExampleBase

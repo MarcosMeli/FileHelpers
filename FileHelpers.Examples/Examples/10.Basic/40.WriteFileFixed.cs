@@ -7,6 +7,7 @@ namespace ExamplesFramework
 {
     //-> {Example.Name:Write Fixed File}
     //-> {Example.Description:Example of how to write a Fixed Record File}
+    //-> {Example.AutoRun:true}
 
     public class WriteFileFixed
         : ExampleBase

@@ -59,9 +59,8 @@
     <ApplicationIcon>Demos.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AvalonDock, Version=1.2.2691.0, Culture=neutral, PublicKeyToken=85a1e0ada7ec13e4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\TextEditor\AvalonDock.dll</HintPath>
+    <Reference Include="ColorCode">
+      <HintPath>..\References\SyntaxColoring\ColorCode.dll</HintPath>
     </Reference>
     <Reference Include="Devoo.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -69,13 +68,6 @@
     </Reference>
     <Reference Include="FileHelpersExamples, Version=2.9.10.0, Culture=neutral, processorArchitecture=x86">
       <ExecutableExtension>.exe</ExecutableExtension>
-    </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit">
-      <HintPath>..\References\TextEditor\ICSharpCode.AvalonEdit.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.TextEditor, Version=3.1.0.4890, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\TextEditor\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TextTemplating.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -93,9 +85,12 @@
     <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
     <Compile Include="Examples\10.Basic\40.WriteFileFixed.cs" />
+    <Compile Include="Examples\12.Empty Values\20.ReadFileNullable.cs" />
+    <Compile Include="Examples\12.Empty Values\10.ReadFileFieldNullValue.cs" />
+    <Compile Include="Examples\12.Empty Values\05.ReadFileMissingValue.cs" />
     <Compile Include="Examples\15.Attributes Record Class\10.DelimitedRecord.cs" />
     <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecord.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecordLastVariable.cs" />
+    <Compile Include="Examples\15.Attributes Record Class\31.FixedLengthRecordLastVariable.cs" />
     <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
     <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
     <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />
@@ -107,7 +102,7 @@
     <Compile Include="Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
     <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
-    <Compile Include="Examples\50.Advanced\50.EnumConverter.cs" />
+    <Compile Include="Examples\18.Converters\50.EnumConverter.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
     <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
@@ -118,23 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExampleGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Framework\Controls\ExampleRenderer.cs">
+    <Compile Include="Framework\Controls\ExampleHtmlRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Framework\Controls\ExampleRenderer.Designer.cs">
-      <DependentUpon>ExampleRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\Controls\FileRenderer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\Controls\FileRenderer.Designer.cs">
-      <DependentUpon>FileRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\Controls\TextEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\Controls\TextEditor.Designer.cs">
-      <DependentUpon>TextEditor.cs</DependentUpon>
+    <Compile Include="Framework\Controls\ExampleHtmlRenderer.Designer.cs">
+      <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
     </Compile>
     <Compile Include="Framework\TreeView\ExampleSearchMode.cs" />
     <Compile Include="Framework\TreeView\CategoryTreeNode.cs" />
@@ -142,7 +125,7 @@
     <Compile Include="Framework\ExampleBase.cs" />
     <Compile Include="Framework\TreeView\ExampleTreeNode.cs" />
     <Compile Include="Framework\HtmlWrapper.cs" />
-    <Compile Include="Framework\IHTMLwriter.cs" />
+    <Compile Include="Framework\IHtmlWriter.cs" />
     <Compile Include="Framework\NetLanguage.cs" />
     <Compile Include="Framework\TreeView\ISearchableNode.cs" />
     <Compile Include="Framework\TreeView\TreeViewEx.cs">
@@ -167,14 +150,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Framework\Controls\ExampleRenderer.resx">
-      <DependentUpon>ExampleRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\Controls\FileRenderer.resx">
-      <DependentUpon>FileRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\Controls\TextEditor.resx">
-      <DependentUpon>TextEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Framework\Controls\ExampleHtmlRenderer.resx">
+      <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmExamples.resx">
       <DependentUpon>frmExamples.cs</DependentUpon>

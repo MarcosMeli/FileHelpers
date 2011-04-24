@@ -8,6 +8,16 @@ namespace ExamplesFramework
 {
     public sealed class ExampleCode
     {
+        public class ExampleEventArgs : EventArgs
+        {
+            public ExampleCode Example { get; private set; }
+
+            internal ExampleEventArgs(ExampleCode example)
+            {
+                this.Example = example;
+            }
+        }
+
         /// <summary>
         /// Message when new file is added to the list
         /// </summary>
@@ -29,22 +39,36 @@ namespace ExamplesFramework
         /// <summary>
         /// Create a new demo class
         /// </summary>
-        /// <param name="demo">Demo structure from template parse</param>
-        /// <param name="codeTitle">Title from TODO:</param>
+        /// <param name="example">Demo structure from template parse</param>
+        /// <param name="name">Title from TODO:</param>
         /// <param name="category">Category from TODO:</param>
-        public ExampleCode(ExampleBase demo, string codeTitle, string category)
+        public ExampleCode(ExampleBase example, string name, string category)
         {
-            Name = codeTitle;
-            Demo = demo;
+            Example = example;
+            Example.Console.Changed += new EventHandler(Console_Changed); Name = name;
             Category = category;
             Runnable = true;
+            AutoRun = false;
             Files = new List<ExampleFile>();
         }
 
+        internal event EventHandler ConsoleChanged;
+
+        private void OnConsoleChanged()
+        {
+            EventHandler handler = ConsoleChanged;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        void Console_Changed(object sender, EventArgs e)
+        {
+            OnConsoleChanged();
+        }
+
         /// <summary>
-        /// Demo class that runs
+        /// Example class that runs
         /// </summary>
-        public ExampleBase Demo { get; private set; }
+        public ExampleBase Example { get; private set; }
 
         /// <summary>
         /// Title set from code
@@ -71,39 +95,21 @@ namespace ExamplesFramework
         /// </summary>
         public List<ExampleFile> Files { get; set; }
 
-        /// <summary>
-        /// last file extracted, generally sample data
-        /// </summary>
-        public ExampleFile LastFile
-        {
-            get
-            {
-                if (Files.Count == 0)
-                    return null;
-                else
-                    return Files[Files.Count - 1];
-            }
-        }
-
-        /// <summary>
-        /// Whether this test has been run before
-        /// </summary>
-        public bool TestRun { get { return Demo.TestRun; } }
-
+      
         /// <summary>
         /// Is this test runnable
         /// </summary>
         public bool Runnable { get; set; }
 
         /// <summary>
+        /// Is this test runnable
+        /// </summary>
+        public bool AutoRun { get; set; }
+
+        /// <summary>
         /// Indicates if the Example has Console Output
         /// </summary>
         public bool HasOutput { get; set; }
-
-        /// <summary>
-        /// Control???  - Not used
-        /// </summary>
-        public UserControl Control  { get; set; }
 
         private static string TempPath
         {
@@ -122,22 +128,16 @@ namespace ExamplesFramework
                     if (file.Status == ExampleFile.FileType.InputFile)
                         File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
                 }
-                this.Demo.RunExample();
+                this.Example.RunExample();
             }
             catch (Exception ex)
             {
-                this.Demo.Output += ex.ToString();
+                this.Example.Exception = ex;
             }
             finally
             {
-                bool ConsoleFound = false;
                 foreach (ExampleFile file in this.Files)
                 {
-                    if (file.Filename == "Console")
-                    {
-                        file.Contents = this.Demo.Output;
-                        ConsoleFound = true;
-                    }
                     if (file.Status == ExampleFile.FileType.InputFile)
                     {
                         File.Delete(file.Filename);
@@ -150,15 +150,7 @@ namespace ExamplesFramework
                         }
                     }
                 }
-                if ((!ConsoleFound) && !String.IsNullOrEmpty(this.Demo.Output))
-                {
-                    ExampleFile console = new ExampleFile("Console");
-                    console.Contents = this.Demo.Output;
-                    console.Status = ExampleFile.FileType.OutputFile;
-                    this.Files.Add(console);
-                    if (AddedFile != null)
-                        AddedFile(this, new NewFileEventArgs(console));
-                }
+             
             }
 
         }

@@ -7,13 +7,22 @@ namespace ExamplesFramework
 {
     //-> {Example.Name:Read Fixed File}
     //-> {Example.Description:Example of how to read a Fixed Length layout file (eg Cobol output)}
+    //-> {Example.AutoRun:true}
 
     public class ReadFixedFile
         : ExampleBase
     {
-        /// <summary>
-        /// Execute the engine and get some results
-        /// </summary>
+
+        //-> {Example.Output("Lets start with a simple file:")}
+
+        //-> {Example.File:Input.txt}
+        /*01010 Alfreds Futterkiste          13122005
+        12399 Ana Trujillo Emparedados y   23012000
+        00011 Antonio Moreno Taquería      21042001
+        51677 Around the Horn              13051998
+        99999 Berglunds snabbköp           02111999*/
+        //-> {/Example.File}
+
         public override void Run()
         {
             //-> {Example.File:Example.cs}
@@ -46,13 +55,6 @@ namespace ExamplesFramework
         }
         //-> {/Example.File}
 
-        //-> {Example.File:Input.txt}
-        /*01010 Alfreds Futterkiste          13122005
-        12399 Ana Trujillo Emparedados y   23012000
-        00011 Antonio Moreno Taquería      21042001
-        51677 Around the Horn              13051998
-        99999 Berglunds snabbköp           02111999*/
-        //-> {/Example.File}
 
         //-> {Example.File:example_fixedengine.html}
         /* <h2>Fixed File Engine</h2>

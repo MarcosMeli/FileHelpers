@@ -1,6 +1,6 @@
 ﻿namespace ExamplesFramework
 {
-    partial class ExampleRenderer
+    partial class ExampleHtmlRenderer
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,14 +31,14 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.cmdRunDemo = new System.Windows.Forms.ToolStripButton();
             this.lblTestDescription = new System.Windows.Forms.ToolStripLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitFiles = new System.Windows.Forms.SplitContainer();
-            this.fileOutput = new ExamplesFramework.FileRenderer();
+            this.browserExample = new System.Windows.Forms.WebBrowser();
+            this.browserOutput = new System.Windows.Forms.WebBrowser();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitFiles)).BeginInit();
-            this.splitFiles.Panel1.SuspendLayout();
-            this.splitFiles.Panel2.SuspendLayout();
-            this.splitFiles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip2
@@ -68,67 +68,59 @@
             this.lblTestDescription.Name = "lblTestDescription";
             this.lblTestDescription.Size = new System.Drawing.Size(0, 22);
             // 
-            // tableLayoutPanel1
+            // browserExample
             // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(866, 400);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.browserExample.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserExample.Location = new System.Drawing.Point(0, 0);
+            this.browserExample.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserExample.Name = "browserExample";
+            this.browserExample.Size = new System.Drawing.Size(866, 400);
+            this.browserExample.TabIndex = 9;
             // 
-            // splitFiles
+            // browserOutput
             // 
-            this.splitFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitFiles.Location = new System.Drawing.Point(0, 25);
-            this.splitFiles.Name = "splitFiles";
+            this.browserOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserOutput.Location = new System.Drawing.Point(0, 0);
+            this.browserOutput.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserOutput.Name = "browserOutput";
+            this.browserOutput.Size = new System.Drawing.Size(866, 108);
+            this.browserOutput.TabIndex = 10;
             // 
-            // splitFiles.Panel1
+            // splitContainer1
             // 
-            this.splitFiles.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitFiles.Panel2
+            // splitContainer1.Panel1
             // 
-            this.splitFiles.Panel2.Controls.Add(this.fileOutput);
-            this.splitFiles.Panel2Collapsed = true;
-            this.splitFiles.Size = new System.Drawing.Size(866, 400);
-            this.splitFiles.SplitterDistance = 557;
-            this.splitFiles.TabIndex = 5;
+            this.splitContainer1.Panel1.Controls.Add(this.browserExample);
             // 
-            // fileOutput
+            // splitContainer1.Panel2
             // 
-            this.fileOutput.ColorBotton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.fileOutput.ColorTop = System.Drawing.Color.Green;
-            this.fileOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileOutput.File = null;
-            this.fileOutput.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileOutput.Location = new System.Drawing.Point(0, 0);
-            this.fileOutput.Name = "fileOutput";
-            this.fileOutput.Size = new System.Drawing.Size(96, 100);
-            this.fileOutput.TabIndex = 0;
+            this.splitContainer1.Panel2.Controls.Add(this.browserOutput);
+            this.splitContainer1.Panel2Collapsed = true;
+            this.splitContainer1.Size = new System.Drawing.Size(866, 400);
+            this.splitContainer1.SplitterDistance = 288;
+            this.splitContainer1.TabIndex = 11;
             // 
-            // ExampleRenderer
+            // ExampleHtmlRenderer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitFiles);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip2);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.Name = "ExampleRenderer";
+            this.Name = "ExampleHtmlRenderer";
             this.Size = new System.Drawing.Size(866, 425);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.splitFiles.Panel1.ResumeLayout(false);
-            this.splitFiles.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitFiles)).EndInit();
-            this.splitFiles.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,8 +131,8 @@
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton cmdRunDemo;
         private System.Windows.Forms.ToolStripLabel lblTestDescription;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.SplitContainer splitFiles;
-        private FileRenderer fileOutput;
+        private System.Windows.Forms.WebBrowser browserExample;
+        private System.Windows.Forms.WebBrowser browserOutput;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

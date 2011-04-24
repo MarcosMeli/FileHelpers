@@ -8,7 +8,7 @@ namespace ExamplesFramework
     /// <summary>
     /// Enable object to output itself as HTML code
     /// </summary>
-    public interface IHTMLwriter
+    public interface IHtmlWriter
     {
         /// <summary>
         /// Generate the HTML for the index details to the

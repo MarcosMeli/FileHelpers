@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ExamplesFramework
@@ -8,7 +9,7 @@ namespace ExamplesFramework
     /// Create a demo code container
     /// </summary>
     public class ExampleTreeNode
-        : TreeNode, IHTMLwriter, ISearchableNode
+        : TreeNode, IHtmlWriter, ISearchableNode
     {
         /// <summary>
         /// Create a demo tree node with text based on Name
@@ -43,8 +44,7 @@ namespace ExamplesFramework
             Exception MyException = null;
             try
             {
-                if (!Example.TestRun)
-                    Example.RunExample();
+                Example.RunExample();
             }
             catch (Exception ex)
             {
@@ -109,7 +109,13 @@ namespace ExamplesFramework
 
         string ISearchableNode.GetDescriptionExtra()
         {
-            return this.Example.SourceCode;
+            var sb = new StringBuilder();
+            sb.AppendLine(Example.SourceCode);
+            foreach (var file in Example.Files)
+            {
+                sb.AppendLine(file.Contents);
+            }
+            return sb.ToString();
         }
     }
 }

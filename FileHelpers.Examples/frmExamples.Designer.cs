@@ -50,7 +50,7 @@ namespace ExamplesFramework
             this.tvExamples = new ExamplesFramework.TreeViewExamples();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
             this.InfoSheet = new System.Windows.Forms.WebBrowser();
-            this.exampleRenderer = new ExamplesFramework.ExampleRenderer();
+            this.exampleRenderer = new ExamplesFramework.ExampleHtmlRenderer();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -267,6 +267,7 @@ namespace ExamplesFramework
             this.exampleRenderer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.exampleRenderer.Example = null;
             this.exampleRenderer.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exampleRenderer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.exampleRenderer.Location = new System.Drawing.Point(0, 0);
             this.exampleRenderer.Name = "exampleRenderer";
             this.exampleRenderer.Size = new System.Drawing.Size(637, 543);
@@ -314,7 +315,7 @@ namespace ExamplesFramework
         private System.Windows.Forms.ToolStripButton cmdCollapse;
         private System.Windows.Forms.ToolStripButton cmdExpand;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private ExampleRenderer exampleRenderer;
+        private ExampleHtmlRenderer exampleRenderer;
         private System.Windows.Forms.WebBrowser InfoSheet;
     }
 }

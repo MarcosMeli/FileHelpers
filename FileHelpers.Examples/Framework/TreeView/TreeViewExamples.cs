@@ -94,8 +94,8 @@ namespace ExamplesFramework
             index.AppendLine(Heading);
             foreach (var node in this.Nodes)
             {
-                if (node is IHTMLwriter)
-                    ((IHTMLwriter)node).OutputHtml(index, newIndent);
+                if (node is IHtmlWriter)
+                    ((IHtmlWriter)node).OutputHtml(index, newIndent);
             }
             index.AppendLine(Footing);
 
