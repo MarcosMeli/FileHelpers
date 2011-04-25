@@ -28,16 +28,12 @@ namespace FileHelpers.WizardApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDataPreview));
             this.dgPreview = new System.Windows.Forms.DataGridView();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtClass = new Fireball.Windows.Forms.CodeEditorControl();
-            this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtPasteData = new System.Windows.Forms.Button();
             this.txtClearData = new System.Windows.Forms.Button();
@@ -54,6 +50,7 @@ namespace FileHelpers.WizardApp
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
+            this.browserCode = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -74,9 +71,9 @@ namespace FileHelpers.WizardApp
             this.dgPreview.AllowUserToAddRows = false;
             this.dgPreview.AllowUserToDeleteRows = false;
             this.dgPreview.AllowUserToResizeRows = false;
-            this.dgPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgPreview.ColumnHeadersHeight = 25;
             this.dgPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -85,7 +82,7 @@ namespace FileHelpers.WizardApp
             this.dgPreview.ReadOnly = true;
             this.dgPreview.RowHeadersVisible = false;
             this.dgPreview.ShowEditingIcon = false;
-            this.dgPreview.Size = new System.Drawing.Size(620, 209);
+            this.dgPreview.Size = new System.Drawing.Size(620, 210);
             this.dgPreview.TabIndex = 0;
             // 
             // toolStripContainer1
@@ -115,9 +112,9 @@ namespace FileHelpers.WizardApp
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.browserCode);
             this.splitContainer1.Panel1.Controls.Add(this.cboClassLanguage);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.txtClass);
             // 
             // splitContainer1.Panel2
             // 
@@ -155,52 +152,6 @@ namespace FileHelpers.WizardApp
             this.label3.TabIndex = 1013;
             this.label3.Text = "Class Source";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtClass
-            // 
-            this.txtClass.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.txtClass.AllowBreakPoints = false;
-            this.txtClass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClass.AutoListAutoSelect = false;
-            this.txtClass.AutoListPosition = null;
-            this.txtClass.AutoListSelectedText = "a123";
-            this.txtClass.AutoListVisible = false;
-            this.txtClass.CopyAsRTF = false;
-            this.txtClass.Document = this.sdClassOut;
-            this.txtClass.FontSize = 9F;
-            this.txtClass.GutterMarginWidth = 0;
-            this.txtClass.Indent = Fireball.Windows.Forms.CodeEditor.IndentStyle.Smart;
-            this.txtClass.InfoTipCount = 1;
-            this.txtClass.InfoTipPosition = null;
-            this.txtClass.InfoTipSelectedIndex = 1;
-            this.txtClass.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 18, 14);
-            this.txtClass.LineMarginRender = lineMarginRender1;
-            this.txtClass.Location = new System.Drawing.Point(0, 29);
-            this.txtClass.LockCursorUpdate = false;
-            this.txtClass.Name = "txtClass";
-            this.txtClass.ParseOnPaste = true;
-            this.txtClass.Saved = true;
-            this.txtClass.ShowGutterMargin = false;
-            this.txtClass.ShowScopeIndicator = false;
-            this.txtClass.Size = new System.Drawing.Size(379, 407);
-            this.txtClass.SmoothScroll = false;
-            this.txtClass.SplitView = false;
-            this.txtClass.SplitviewH = -4;
-            this.txtClass.SplitviewV = -4;
-            this.txtClass.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(234)))));
-            this.txtClass.TabIndex = 1008;
-            this.txtClass.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
-            // 
-            // sdClassOut
-            // 
-            this.sdClassOut.Lines = new string[] {
-        " "};
-            this.sdClassOut.MaxUndoBufferSize = 1;
-            this.sdClassOut.Modified = false;
-            this.sdClassOut.UndoStep = 0;
             // 
             // splitContainer2
             // 
@@ -274,9 +225,9 @@ namespace FileHelpers.WizardApp
             // 
             // txtInput
             // 
-            this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInput.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtInput.Location = new System.Drawing.Point(-1, 29);
@@ -395,6 +346,15 @@ namespace FileHelpers.WizardApp
             this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
             this.dlgOpenTest.Title = "Load a Test File";
             // 
+            // browserCode
+            // 
+            this.browserCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserCode.Location = new System.Drawing.Point(0, 30);
+            this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserCode.Name = "browserCode";
+            this.browserCode.Size = new System.Drawing.Size(379, 406);
+            this.browserCode.TabIndex = 1014;
+            // 
             // frmDataPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -440,8 +400,6 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ComboBox cboClassLanguage;
-        private Fireball.Windows.Forms.CodeEditorControl txtClass;
-        private Fireball.Syntax.SyntaxDocument sdClassOut;
         private System.Windows.Forms.OpenFileDialog dlgOpenTest;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
@@ -454,5 +412,6 @@ namespace FileHelpers.WizardApp
         private System.Windows.Forms.Button txtPasteData;
         internal System.Windows.Forms.TextBox txtInput;
         internal System.Windows.Forms.Button cmdReadTest;
+        private System.Windows.Forms.WebBrowser browserCode;
     }
 }

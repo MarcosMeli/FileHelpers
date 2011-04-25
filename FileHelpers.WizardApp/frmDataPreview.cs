@@ -1,4 +1,5 @@
 using System;
+using ColorCode;
 using FileHelpers;
 using FileHelpers.Dynamic;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Fireball.CodeEditor.SyntaxFiles;
 
 namespace FileHelpers.WizardApp
 {
@@ -23,14 +23,54 @@ namespace FileHelpers.WizardApp
 
         #endregion
 
-        public frmDataPreview(string data, NetLanguage Language)
+        public frmDataPreview(string data, NetLanguage language)
         {
             InitializeComponent();
-            sdClassOut.Text = data;
+            ShowCode(data, language);
+            //sdClassOut.Text = data;
             cboClassLanguage.Items.Clear();
             cboClassLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
-            NetLanguageList.LanguageType selected = NetLanguageList.Languages.Find(x => x.Language == Language);
+            NetLanguageList.LanguageType selected = NetLanguageList.Languages.Find(x => x.Language == language);
             cboClassLanguage.SelectedItem = selected;
+        }
+
+        private string mLastCode;
+        private void ShowCode(string code, NetLanguage language)
+        {
+            mLastCode = code;
+            var colorizer = new CodeColorizer();
+            switch (language)
+            {
+                case NetLanguage.CSharp:
+                    browserCode.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
+                    break;
+                case NetLanguage.VbNet:
+                    browserCode.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("language");
+            }
+            
+        }
+
+        private string GetDefaultCss()
+        {
+            return
+                @"
+<style type=""text/css"">
+pre {
+/*background-color: #EEF3F9;
+border: 1px dashed grey;*/
+font-family: Consolas,""Courier New"",Courier,Monospace !important;
+font-size: 12px !important;
+margin-top: 0;
+padding: 6px 6px 6px 6px;
+/*height: auto;
+overflow: auto;
+width: 100% !important;*/
+}
+</style>
+";
         }
 
         public bool AutoRunTest { get; set; }
@@ -51,9 +91,9 @@ namespace FileHelpers.WizardApp
         {
             try
             {
-                string classStr = sdClassOut.Text;
+                string classStr = mLastCode;
 
-                NetLanguageList.LanguageType selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
+                var selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
                 Type mType = ClassBuilder.ClassFromString(classStr, selected.Language);
 
                 try
@@ -77,27 +117,24 @@ namespace FileHelpers.WizardApp
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            sdClassOut.Text = Clipboard.GetText(TextDataFormat.Text);
+            ShowCode(Clipboard.GetText(TextDataFormat.Text), NetLanguage.CSharp);
         }
 
         private void cboClassLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string output = sdClassOut.Text;
             switch (cboClassLanguage.SelectedIndex)
             {
                 case 0:
-                    CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.CSharp);
+                    ShowCode(mLastCode, NetLanguage.CSharp);
                     break;
 
                 case 1:
-                    CodeEditorSyntaxLoader.SetSyntax(txtClass, SyntaxLanguage.VBNET);
+                    ShowCode(mLastCode, NetLanguage.VbNet);
                     break;
 
                 default:
                     break;
             }
-
-            sdClassOut.Text = output;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -124,7 +161,7 @@ namespace FileHelpers.WizardApp
             
             ClassBuilder sb = ClassBuilder.LoadFromXml(dlgOpenTest.FileName);
 
-            sdClassOut.Text = sb.GetClassSourceCode(NetLanguage.CSharp);
+            ShowCode(sb.GetClassSourceCode(NetLanguage.CSharp), NetLanguage.CSharp);
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -148,7 +185,7 @@ namespace FileHelpers.WizardApp
 
             RegConfig.SetStringValue("WizardOpenTest", Path.GetDirectoryName(dlgOpenTest.FileName));
 
-            sdClassOut.Text = File.ReadAllText(dlgOpenTest.FileName);
+            ShowCode(File.ReadAllText(dlgOpenTest.FileName), NetLanguage.CSharp);
         }
 
         private void frmDataPreview_Load(object sender, EventArgs e)

@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.IO;
+using ColorCode;
 using FileHelpers.Dynamic;
 using System.Xml.Serialization;
-using Fireball.CodeEditor.SyntaxFiles;
 using System.Diagnostics;
 using FileHelpers.Detection;
 
@@ -91,11 +91,7 @@ namespace FileHelpers.WizardApp
         private Label label17;
         private Label label20;
         private GroupBox groupBox3;
-        private Fireball.Windows.Forms.CodeEditorControl txtTemplOut;
         private IContainer components;
-        private Fireball.Syntax.SyntaxDocument sdTemplOut;
-        private Fireball.Windows.Forms.CodeEditorControl txtOutput;
-        private Fireball.Syntax.SyntaxDocument sdClassOut;
         private ToolTip toolTip1;
         private CheckBox chkProperties;
         private CheckBox chkIgnoreEmpty;
@@ -125,6 +121,10 @@ namespace FileHelpers.WizardApp
         private Button cmdDetectFormat;
         private Button cmdfileDesigner;
         private Button cmdDetectFormatWithHeader;
+        private WebBrowser browserCode;
+        private WebBrowser browserTemplate;
+        private Panel panel3;
+        private Panel panel4;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -151,9 +151,7 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -183,8 +181,7 @@ namespace FileHelpers.WizardApp
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panStep3 = new System.Windows.Forms.Panel();
-            this.txtTemplOut = new Fireball.Windows.Forms.CodeEditorControl();
-            this.sdTemplOut = new Fireball.Syntax.SyntaxDocument(this.components);
+            this.browserTemplate = new System.Windows.Forms.WebBrowser();
             this.cboTemplate = new System.Windows.Forms.ComboBox();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -229,14 +226,13 @@ namespace FileHelpers.WizardApp
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
+            this.browserCode = new System.Windows.Forms.WebBrowser();
             this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmdSaveClass = new System.Windows.Forms.Button();
             this.cmdCopyClass = new System.Windows.Forms.Button();
-            this.txtOutput = new Fireball.Windows.Forms.CodeEditorControl();
-            this.sdClassOut = new Fireball.Syntax.SyntaxDocument(this.components);
             this.chkProperties = new System.Windows.Forms.CheckBox();
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
@@ -257,6 +253,8 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -284,6 +282,8 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panStep1
@@ -641,7 +641,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panStep3.BackColor = System.Drawing.Color.White;
             this.panStep3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panStep3.Controls.Add(this.txtTemplOut);
+            this.panStep3.Controls.Add(this.panel3);
             this.panStep3.Controls.Add(this.cboTemplate);
             this.panStep3.Controls.Add(this.cboLanguage);
             this.panStep3.Controls.Add(this.label4);
@@ -656,47 +656,14 @@ namespace FileHelpers.WizardApp
             this.panStep3.TabStop = true;
             this.panStep3.Visible = false;
             // 
-            // txtTemplOut
+            // browserTemplate
             // 
-            this.txtTemplOut.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.txtTemplOut.AutoListPosition = null;
-            this.txtTemplOut.AutoListSelectedText = "a123";
-            this.txtTemplOut.AutoListVisible = false;
-            this.txtTemplOut.CopyAsRTF = true;
-            this.txtTemplOut.Document = this.sdTemplOut;
-            this.txtTemplOut.Indent = Fireball.Windows.Forms.CodeEditor.IndentStyle.Smart;
-            this.txtTemplOut.InfoTipCount = 1;
-            this.txtTemplOut.InfoTipPosition = null;
-            this.txtTemplOut.InfoTipSelectedIndex = 1;
-            this.txtTemplOut.InfoTipVisible = false;
-            lineMarginRender1.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtTemplOut.LineMarginRender = lineMarginRender1;
-            this.txtTemplOut.Location = new System.Drawing.Point(18, 70);
-            this.txtTemplOut.LockCursorUpdate = false;
-            this.txtTemplOut.Name = "txtTemplOut";
-            this.txtTemplOut.ParseOnPaste = true;
-            this.txtTemplOut.ReadOnly = true;
-            this.txtTemplOut.Saved = true;
-            this.txtTemplOut.ShowGutterMargin = false;
-            this.txtTemplOut.ShowLineNumbers = false;
-            this.txtTemplOut.ShowScopeIndicator = false;
-            this.txtTemplOut.Size = new System.Drawing.Size(367, 258);
-            this.txtTemplOut.SmoothScroll = true;
-            this.txtTemplOut.SplitView = false;
-            this.txtTemplOut.SplitviewH = -4;
-            this.txtTemplOut.SplitviewV = -4;
-            this.txtTemplOut.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(234)))));
-            this.txtTemplOut.TabIndex = 11;
-            this.txtTemplOut.Text = "codeEditorControl1";
-            this.txtTemplOut.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
-            // 
-            // sdTemplOut
-            // 
-            this.sdTemplOut.Lines = new string[] {
-        " "};
-            this.sdTemplOut.MaxUndoBufferSize = 1;
-            this.sdTemplOut.Modified = false;
-            this.sdTemplOut.UndoStep = 0;
+            this.browserTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserTemplate.Location = new System.Drawing.Point(0, 0);
+            this.browserTemplate.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserTemplate.Name = "browserTemplate";
+            this.browserTemplate.Size = new System.Drawing.Size(364, 254);
+            this.browserTemplate.TabIndex = 1009;
             // 
             // cboTemplate
             // 
@@ -1218,21 +1185,30 @@ namespace FileHelpers.WizardApp
             // 
             // panPreview
             // 
-            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panPreview.Controls.Add(this.panel4);
             this.panPreview.Controls.Add(this.cboClassLanguage);
             this.panPreview.Controls.Add(this.label7);
             this.panPreview.Controls.Add(this.pictureBox4);
             this.panPreview.Controls.Add(this.label5);
             this.panPreview.Controls.Add(this.cmdSaveClass);
             this.panPreview.Controls.Add(this.cmdCopyClass);
-            this.panPreview.Controls.Add(this.txtOutput);
             this.panPreview.Controls.Add(this.chkProperties);
             this.panPreview.Location = new System.Drawing.Point(568, 0);
             this.panPreview.Name = "panPreview";
             this.panPreview.Size = new System.Drawing.Size(441, 412);
             this.panPreview.TabIndex = 1002;
+            // 
+            // browserCode
+            // 
+            this.browserCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserCode.Location = new System.Drawing.Point(0, 0);
+            this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserCode.Name = "browserCode";
+            this.browserCode.Size = new System.Drawing.Size(416, 294);
+            this.browserCode.TabIndex = 1008;
             // 
             // cboClassLanguage
             // 
@@ -1303,51 +1279,6 @@ namespace FileHelpers.WizardApp
             this.cmdCopyClass.UseVisualStyleBackColor = true;
             this.cmdCopyClass.Click += new System.EventHandler(this.cmdCopyClass_Click);
             // 
-            // txtOutput
-            // 
-            this.txtOutput.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOutput.AutoListPosition = null;
-            this.txtOutput.AutoListSelectedText = "a123";
-            this.txtOutput.AutoListVisible = false;
-            this.txtOutput.CopyAsRTF = false;
-            this.txtOutput.Document = this.sdClassOut;
-            this.txtOutput.FontSize = 9F;
-            this.txtOutput.Indent = Fireball.Windows.Forms.CodeEditor.IndentStyle.Smart;
-            this.txtOutput.InfoTipCount = 1;
-            this.txtOutput.InfoTipPosition = null;
-            this.txtOutput.InfoTipSelectedIndex = 1;
-            this.txtOutput.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.txtOutput.LineMarginRender = lineMarginRender2;
-            this.txtOutput.Location = new System.Drawing.Point(3, 53);
-            this.txtOutput.LockCursorUpdate = false;
-            this.txtOutput.Name = "txtOutput";
-            this.txtOutput.ParseOnPaste = true;
-            this.txtOutput.ReadOnly = true;
-            this.txtOutput.Saved = true;
-            this.txtOutput.ShowGutterMargin = false;
-            this.txtOutput.ShowLineNumbers = false;
-            this.txtOutput.ShowScopeIndicator = false;
-            this.txtOutput.Size = new System.Drawing.Size(435, 312);
-            this.txtOutput.SmoothScroll = false;
-            this.txtOutput.SplitView = false;
-            this.txtOutput.SplitviewH = -4;
-            this.txtOutput.SplitviewV = -4;
-            this.txtOutput.TabGuideColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(234)))));
-            this.txtOutput.TabIndex = 1006;
-            this.txtOutput.TabSize = 3;
-            this.txtOutput.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
-            // 
-            // sdClassOut
-            // 
-            this.sdClassOut.Lines = new string[] {
-        " "};
-            this.sdClassOut.MaxUndoBufferSize = 1;
-            this.sdClassOut.Modified = false;
-            this.sdClassOut.UndoStep = 0;
-            // 
             // chkProperties
             // 
             this.chkProperties.AutoSize = true;
@@ -1387,8 +1318,8 @@ namespace FileHelpers.WizardApp
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
             this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-                    "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-                    "anks");
+        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+        "anks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // panel1
@@ -1581,18 +1512,42 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.browserTemplate);
+            this.panel3.Location = new System.Drawing.Point(18, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(368, 258);
+            this.panel3.TabIndex = 1010;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.browserCode);
+            this.panel4.Location = new System.Drawing.Point(6, 59);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(420, 298);
+            this.panel4.TabIndex = 1009;
+            // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(1008, 402);
             this.Controls.Add(this.picDonate);
-            this.Controls.Add(this.panPreview);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panStep2);
             this.Controls.Add(this.panStep3);
             this.Controls.Add(this.panStep0);
             this.Controls.Add(this.panStep1);
+            this.Controls.Add(this.panPreview);
+            this.Controls.Add(this.panStep2);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
@@ -1603,7 +1558,6 @@ namespace FileHelpers.WizardApp
             this.Text = "FileHelpers - Record Class Wizard v2.0";
             this.Activated += new System.EventHandler(this.frmWizard_Activated);
             this.Load += new System.EventHandler(this.frmWizard_Load);
-            this.Resize += new System.EventHandler(this.frmWizard_Resize);
             this.panStep1.ResumeLayout(false);
             this.panStep1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1644,6 +1598,8 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1979,8 +1935,6 @@ namespace FileHelpers.WizardApp
         {
             mLoading = true;
 
-            CodeEditorSyntaxLoader.SetSyntax(txtTemplOut, mWizardInfo.Language.ToFireball());
-
             string languagePrefix;
 
             switch (mWizardInfo.Language)
@@ -2136,12 +2090,68 @@ namespace FileHelpers.WizardApp
             NetLanguageList.LanguageType selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
             string output = mWizardInfo.WizardOutput(selected.Language);
 
-            if (sdClassOut.Text == output)
-                return;
-
-            CodeEditorSyntaxLoader.SetSyntax(txtOutput, selected.Language.ToFireball());
-            sdClassOut.Text = output;
+            ShowCode(output, selected.Language);
         }
+
+        private string mLastCode;
+        private void ShowCode(string code, NetLanguage language)
+        {
+            mLastCode = code;
+            var colorizer = new CodeColorizer();
+            switch (language)
+            {
+                case NetLanguage.CSharp:
+                    browserCode.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
+                    break;
+                case NetLanguage.VbNet:
+                    browserCode.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("language");
+            }
+
+        }
+
+        private string mLastTemplateCode;
+        private void ShowTemplate(string code, NetLanguage language)
+        {
+            mLastTemplateCode = code;
+            var colorizer = new CodeColorizer();
+            switch (language)
+            {
+                case NetLanguage.CSharp:
+                    browserTemplate.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
+                    break;
+                case NetLanguage.VbNet:
+                    browserTemplate.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("language");
+            }
+
+        }
+
+
+        private string GetDefaultCss()
+        {
+            return
+                @"
+<style type=""text/css"">
+pre {
+/*background-color: #EEF3F9;
+border: 1px dashed grey;*/
+font-family: Consolas,""Courier New"",Courier,Monospace !important;
+font-size: 12px !important;
+margin-top: 0;
+padding: 6px 6px 6px 6px;
+/*height: auto;
+overflow: auto;
+width: 100% !important;*/
+}
+</style>
+";
+        }
+
 
         private void radDelimited_CheckedChanged(object sender, EventArgs e)
         {
@@ -2162,16 +2172,14 @@ namespace FileHelpers.WizardApp
         private void ShowTemplate(TemplateInfo templ)
         {
             if (templ == null)
-                sdTemplOut.Text = "";
+                ShowTemplate("", (cboLanguage.SelectedItem as NetLanguageList.LanguageType).Language);
             else
             {
                 string res = templ.TemplateBody;
                 if( mWizardInfo.ClassBuilder != null )
                     res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
 
-                sdTemplOut.Text = res;
-                //txtTemplOut.Text = res;
-
+                ShowTemplate(res, (cboLanguage.SelectedItem as NetLanguageList.LanguageType).Language);
             }
 
         }
@@ -2188,7 +2196,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdToClipboard_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(sdTemplOut.Text);
+            Clipboard.SetText(mLastTemplateCode);
         }
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
@@ -2206,7 +2214,7 @@ namespace FileHelpers.WizardApp
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(dlgSaveToFile.FileName, sdTemplOut.Text);
+                File.WriteAllText(dlgSaveToFile.FileName, mLastTemplateCode);
                 RegConfig.SetStringValue("WizardTemplatePath", Path.GetDirectoryName(dlgSaveToFile.FileName));
             }
 
@@ -2214,7 +2222,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdCopyClass_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(sdClassOut.Text);
+            Clipboard.SetText(mLastCode);
         }
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
@@ -2233,7 +2241,7 @@ namespace FileHelpers.WizardApp
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(dlgSaveToFile.FileName, sdClassOut.Text);
+                File.WriteAllText(dlgSaveToFile.FileName, mLastTemplateCode);
                 RegConfig.SetStringValue("WizardClassDir", Path.GetDirectoryName(dlgSaveToFile.FileName));
             }
         }
@@ -2498,9 +2506,11 @@ namespace FileHelpers.WizardApp
 
         private void cmdTestClass_Click(object sender, EventArgs e)
         {
-            frmDataPreview frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
-            frm.ShowDialog();
-            frm.Dispose();
+            using (var frm = new frmDataPreview(mLastCode, mWizardInfo.Language))
+            {
+                frm.ShowDialog();
+                frm.Dispose();
+            }
         }
 
 
@@ -2603,11 +2613,7 @@ namespace FileHelpers.WizardApp
             }
         }
 
-        private void frmWizard_Resize(object sender, EventArgs e)
-        {
-            txtOutput.Width = this.Width - 585;
-        }
-
+       
         private void cmdReset_Click(object sender, EventArgs e)
         {
             mWizardInfo.ClassBuilder = null;
@@ -2640,9 +2646,8 @@ namespace FileHelpers.WizardApp
             mExpanded = false;
             cmdPreview.Text = "&Preview >>";
             cmdPreview.Enabled = false;
-            
-            sdClassOut.Text = string.Empty;
 
+            ShowCode("", NetLanguage.CSharp);
         }
 
         private void chkAllOptional_CheckedChanged(object sender, EventArgs e)
@@ -2734,7 +2739,7 @@ namespace FileHelpers.WizardApp
 
             ClassBuilderToWizard(formats[0].ClassBuilder);
 
-            var frm = new frmDataPreview(sdClassOut.Text, mWizardInfo.Language);
+            var frm = new frmDataPreview(mLastCode, mWizardInfo.Language);
             frm.HasHeaders = hasHeaders;
             frm.txtInput.Text = File.ReadAllText(dialog.FileName);
             frm.AutoRunTest = true;

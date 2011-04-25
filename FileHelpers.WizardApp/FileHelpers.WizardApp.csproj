@@ -97,22 +97,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fireball.CodeEditor, Version=1.0.0.1, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Fireball\Fireball.CodeEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Fireball.CodeEditor.SyntaxFiles, Version=1.0.0.2, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Fireball\Fireball.CodeEditor.SyntaxFiles.dll</HintPath>
-    </Reference>
-    <Reference Include="Fireball.SyntaxDocument, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Fireball\Fireball.SyntaxDocument.dll</HintPath>
-    </Reference>
-    <Reference Include="Fireball.Windows.Forms, Version=1.9.0.0, Culture=neutral, PublicKeyToken=f84d0e3f884fb1e4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Fireball\Fireball.Windows.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -123,6 +107,7 @@
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms">
       <Name>System.Windows.Forms</Name>
     </Reference>
@@ -138,6 +123,7 @@
     <None Include="Resources\door_out.png" />
     <None Include="Resources\tick.png" />
     <None Include="Resources\stop.png" />
+    <None Include="ColorCode\ColorCode-License.txt" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />
@@ -193,7 +179,50 @@
       <Link>VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="ColorCode\CodeColorizer.cs" />
+    <Compile Include="ColorCode\Common\ExtensionMethods.cs" />
+    <Compile Include="ColorCode\Common\Guard.cs" />
+    <Compile Include="ColorCode\Common\ILanguageRepository.cs" />
+    <Compile Include="ColorCode\Common\LanguageId.cs" />
+    <Compile Include="ColorCode\Common\LanguageRepository.cs" />
+    <Compile Include="ColorCode\Common\ScopeName.cs" />
+    <Compile Include="ColorCode\Compilation\CompiledLanguage.cs" />
+    <Compile Include="ColorCode\Compilation\ILanguageCompiler.cs" />
+    <Compile Include="ColorCode\Compilation\LanguageCompiler.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Asax.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Ashx.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Aspx.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\AspxCs.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\AspxVb.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Cpp.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\CSharp.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Css.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Html.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Java.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\JavaScript.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Php.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\PowerShell.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Sql.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\VbDotNet.cs" />
+    <Compile Include="ColorCode\Compilation\Languages\Xml.cs" />
+    <Compile Include="ColorCode\Compilation\RuleCaptures.cs" />
+    <Compile Include="ColorCode\Compilation\RuleFormats.cs" />
+    <Compile Include="ColorCode\Formatters.cs" />
+    <Compile Include="ColorCode\Formatting\HtmlFormatter.cs" />
+    <Compile Include="ColorCode\Formatting\TextInsertion.cs" />
+    <Compile Include="ColorCode\ICodeColorizer.cs" />
+    <Compile Include="ColorCode\IFormatter.cs" />
+    <Compile Include="ColorCode\ILanguage.cs" />
+    <Compile Include="ColorCode\IStyleSheet.cs" />
+    <Compile Include="ColorCode\LanguageRule.cs" />
+    <Compile Include="ColorCode\Languages.cs" />
+    <Compile Include="ColorCode\Parsing\ILanguageParser.cs" />
+    <Compile Include="ColorCode\Parsing\LanguageParser.cs" />
+    <Compile Include="ColorCode\Parsing\Scope.cs" />
+    <Compile Include="ColorCode\Style.cs" />
+    <Compile Include="ColorCode\StyleDictionary.cs" />
+    <Compile Include="ColorCode\StyleSheets.cs" />
+    <Compile Include="ColorCode\Styling\StyleSheets\DefaultStyleSheet.cs" />
     <Compile Include="FieldDelimitedControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

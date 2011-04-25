@@ -33,6 +33,7 @@ namespace ExamplesFramework
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExamples));
             Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
+            ExamplesFramework.DefaultExampleTheme defaultExampleTheme1 = new ExamplesFramework.DefaultExampleTheme();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.cmdCollapse = new System.Windows.Forms.ToolStripButton();
@@ -272,6 +273,7 @@ namespace ExamplesFramework
             this.exampleRenderer.Name = "exampleRenderer";
             this.exampleRenderer.Size = new System.Drawing.Size(637, 543);
             this.exampleRenderer.TabIndex = 7;
+            this.exampleRenderer.Theme = defaultExampleTheme1;
             // 
             // frmExamples
             // 
