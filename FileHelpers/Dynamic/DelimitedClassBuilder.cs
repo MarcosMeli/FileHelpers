@@ -108,20 +108,41 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
-        /// <summary>
-        /// Add any attributes to source (currently only the delimiter attribute)
-        /// </summary>
-        /// <param name="attbs">Attributes storage area to add to class</param>
-		internal override void AddAttributesCode(AttributesBuilder attbs)
+	    /// <summary>
+	    /// Add any attributes to source (currently only the delimiter attribute)
+	    /// </summary>
+	    /// <param name="attbs">Attributes storage area to add to class</param>
+	    /// <param name="lang"></param>
+	    internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
 			if (mDelimiter == string.Empty)
 				throw new BadUsageException("The Delimiter of the DelimiterClassBuilder can't be null or empty.");
 			else
-				attbs.AddAttribute("DelimitedRecord(\""+ mDelimiter +"\")");
+				attbs.AddAttribute("DelimitedRecord("+ GetDelimiter(mDelimiter, lang) +")");
 			
 		}
 
-        /// <summary>
+	    private static string GetDelimiter(string delimiter, NetLanguage lang)
+	    {
+	        switch (lang)
+	        {
+	            case NetLanguage.CSharp:
+                    if (delimiter == "\t")
+                        return "\"\\t\"";
+                    else
+                        return "\"" + delimiter + "\"";
+
+	            case NetLanguage.VbNet:
+                    if (delimiter == "\t")
+                        return "VbTab";
+                    else
+                        return "\"" + delimiter + "\"";
+                default:
+	                throw new ArgumentOutOfRangeException("lang");
+	        }
+	    }
+
+	    /// <summary>
         /// Serialise the XML header
         /// </summary>
         /// <param name="writer">Writer to serialise to</param>

@@ -111,7 +111,6 @@ namespace FileHelpers.WizardApp
             this.lblUp.Name = "lblUp";
             this.lblUp.Size = new System.Drawing.Size(22, 13);
             this.lblUp.TabIndex = 1000;
-            this.lblUp.TabStop = true;
             this.lblUp.Text = "Up";
             this.lblUp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblUp_LinkClicked);
             // 
@@ -125,7 +124,6 @@ namespace FileHelpers.WizardApp
             this.lblDown.Name = "lblDown";
             this.lblDown.Size = new System.Drawing.Size(38, 13);
             this.lblDown.TabIndex = 1001;
-            this.lblDown.TabStop = true;
             this.lblDown.Text = "Down";
             this.lblDown.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDown_LinkClicked);
             // 
@@ -139,7 +137,6 @@ namespace FileHelpers.WizardApp
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(38, 13);
             this.lblDelete.TabIndex = 1003;
-            this.lblDelete.TabStop = true;
             this.lblDelete.Text = "Delete";
             this.lblDelete.VisitedLinkColor = System.Drawing.Color.Red;
             this.lblDelete.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDelete_LinkClicked);

@@ -17,8 +17,6 @@ using System.Collections.Specialized;
 namespace FileHelpers.Dynamic
 {
 
-    //-> REGIONS !!!!
-
     /// <summary>The MAIN class to work with runtime defined records.</summary>
     public abstract class ClassBuilder
     {
@@ -66,7 +64,7 @@ namespace FileHelpers.Dynamic
             if (classStr.Length < 4)
                 throw new BadUsageException("There is not enough text to be a proper class, load your class and try again");
 
-            CompilerParameters cp = new CompilerParameters();
+            var cp = new CompilerParameters();
             
             //cp.ReferencedAssemblies.Add("System.dll");
             //cp.ReferencedAssemblies.Add("System.Data.dll");
@@ -102,7 +100,7 @@ namespace FileHelpers.Dynamic
             cp.GenerateInMemory = true;
             cp.IncludeDebugInformation = false;
 
-            StringBuilder code = new StringBuilder();
+            var code = new StringBuilder();
 
             switch (lang)
             {
@@ -536,7 +534,7 @@ namespace FileHelpers.Dynamic
             AttributesBuilder attbs = new AttributesBuilder(lang);
 
             AddAttributesInternal(attbs);
-            AddAttributesCode(attbs);
+            AddAttributesCode(attbs, lang);
 
             sb.Append(attbs.GetAttributesCode());
 
@@ -607,7 +605,8 @@ namespace FileHelpers.Dynamic
         /// Store the attributes for adding when we write the code to text
         /// </summary>
         /// <param name="attbs">Where attributes are stored</param>
-        internal abstract void AddAttributesCode(AttributesBuilder attbs);
+        /// <param name="lang"></param>
+        internal abstract void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang);
 
         private void AddAttributesInternal(AttributesBuilder attbs)
         {

@@ -107,11 +107,12 @@ namespace FileHelpers.Dynamic
 			}
 		}
 
-        /// <summary>
-        /// add attributes to the class text
-        /// </summary>
-        /// <param name="attbs"></param>
-		internal override void AddAttributesCode(AttributesBuilder attbs)
+	    /// <summary>
+	    /// add attributes to the class text
+	    /// </summary>
+	    /// <param name="attbs"></param>
+	    /// <param name="lang"></param>
+	    internal override void AddAttributesCode(AttributesBuilder attbs, NetLanguage lang)
 		{
 			attbs.AddAttribute("FixedLengthRecord(FixedMode."+ mFixedMode.ToString()+ ")");
 		}

@@ -20,7 +20,8 @@ namespace FileHelpers.Benchmarks
 		static void Main(string[] args)
 		{
 		    string file = Path.GetTempFileName();
-            CreateSampleFixedString(file, 200000);
+            var records = 200000;
+            CreateSampleFixedString(file, records);
             var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
             //TestFixedLengthRecord(engine, file);
 
@@ -44,6 +45,8 @@ namespace FileHelpers.Benchmarks
             var ts = new TimeSpan(DateTime.Now.Ticks - start);
 
             Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 2));
+            Console.WriteLine("Records: " + records);
+
             if (args.Length > 0)
             {
                 Console.WriteLine("Press enter to close");

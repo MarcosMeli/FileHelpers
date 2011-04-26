@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
 		FileHelpers.msbuild = FileHelpers.msbuild
 		FileHelpers.Teamcity.msbuild = FileHelpers.Teamcity.msbuild
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{747EBEDD-59D1-4F54-A2DE-DCA768339C9C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples - Demos", "Examples - Demos", "{747EBEDD-59D1-4F54-A2DE-DCA768339C9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.WizardApp", "FileHelpers.WizardApp\FileHelpers.WizardApp.csproj", "{8997A588-1D83-4211-980D-28D8BF0CDA8E}"
 EndProject
