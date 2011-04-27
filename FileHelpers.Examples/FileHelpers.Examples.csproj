@@ -154,11 +154,20 @@
     <Compile Include="Framework\ColorCode\StyleDictionary.cs" />
     <Compile Include="Framework\ColorCode\StyleSheets.cs" />
     <Compile Include="Framework\ColorCode\Styling\StyleSheets\DefaultStyleSheet.cs" />
+    <Compile Include="Framework\Controls\ExampleContainerWithHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Framework\Controls\ExampleHtmlRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Framework\Controls\ExampleHtmlRenderer.Designer.cs">
       <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\Controls\ExamplesContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Framework\Controls\ExamplesContainer.Designer.cs">
+      <DependentUpon>ExamplesContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Framework\Themes\ExampleThemeBase.cs" />
     <Compile Include="Framework\TreeView\ExampleSearchMode.cs" />
@@ -192,8 +201,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Framework\Controls\ExampleContainerWithHeader.resx">
+      <DependentUpon>ExampleContainerWithHeader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Framework\Controls\ExampleHtmlRenderer.resx">
       <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\Controls\ExamplesContainer.resx">
+      <DependentUpon>ExamplesContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmExamples.resx">
       <DependentUpon>frmExamples.cs</DependentUpon>
@@ -258,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demos.ico" />
+    <None Include="Resources\page_down.gif" />
+    <None Include="Resources\page_up.gif" />
+    <None Include="Resources\page_left.gif" />
     <None Include="Framework\ColorCode\ColorCode-License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -580,7 +580,6 @@
     <Content Include="Data\RunTime\VendorImport.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EmbeddedIoC\" />
     <Folder Include="Tests\CoreUnitTests\" />
   </ItemGroup>
   <ItemGroup>

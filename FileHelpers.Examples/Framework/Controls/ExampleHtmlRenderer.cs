@@ -21,6 +21,12 @@ namespace ExamplesFramework
             //DoubleBuffered = true;
         }
 
+        public void ShowCustomHtml(string html)
+        {
+            splitContainer1.Panel2Collapsed = true;
+            browserExample.DocumentText = html;
+        }
+
         private ExampleCode mExample;
         public ExampleCode Example
         {
