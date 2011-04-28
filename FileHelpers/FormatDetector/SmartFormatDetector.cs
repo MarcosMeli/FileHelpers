@@ -246,7 +246,7 @@ namespace FileHelpers.Detection
                 FixedColumnInfo col = null;
                 for (int i = 1; i < line.Length; i++)
                 {
-                    if (Char.IsWhiteSpace(line[i]))
+                    if (char.IsWhiteSpace(line[i]))
                     {
                         blanks += 1;
                     }
@@ -446,7 +446,7 @@ namespace FileHelpers.Detection
                     {
                         char c = line[ci];
 
-                        if (Char.IsLetterOrDigit(c)
+                        if (char.IsLetterOrDigit(c)
                             || c == ' ')
                             continue;
 

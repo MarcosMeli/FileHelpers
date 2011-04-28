@@ -145,7 +145,7 @@ namespace FileHelpers
             
             int i = 0;
 
-            while (i < source.Length && Char.IsWhiteSpace(source[i]))
+            while (i < source.Length && char.IsWhiteSpace(source[i]))
             {
                 i++;
             }
@@ -159,14 +159,14 @@ namespace FileHelpers
             if (source[i] == '+' || source[i] == '-')
             {
                 i++;
-                if (!Char.IsWhiteSpace(source[i]))
+                if (!char.IsWhiteSpace(source[i]))
                     return source;  //  sign is followed by text so just return it
 
                 // start out with the sign
-                StringBuilder sb = new StringBuilder(source[i - 1].ToString());
+                var sb = new StringBuilder(source[i - 1].ToString());
 
                 i++;  // I am on whitepsace so skip it
-                while (i < source.Length && Char.IsWhiteSpace(source[i]))
+                while (i < source.Length && char.IsWhiteSpace(source[i]))
                 {
                     i++;
                 }

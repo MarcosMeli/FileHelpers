@@ -1,12 +1,12 @@
-using FileHelpers;
+﻿using FileHelpers;
 using System.Diagnostics;
 using System; 
 
 namespace FileHelpers
 {
-internal  partial class Messages
+internal class Messages
 {
-internal  partial class Errors
+internal class Errors
 {
 
 private static TypesOfMessages.Errors.FieldOptionalClass mFieldOptional = new TypesOfMessages.Errors.FieldOptionalClass();
@@ -71,11 +71,11 @@ internal static TypesOfMessages.Errors.MixOfStandardAndAutoPropertiesFieldsClass
 }
 
 
-}internal  partial class TypesOfMessages
+}internal class TypesOfMessages
 {
-internal  partial class Errors
+internal class Errors
 {
-internal  partial class ClassWithOutDefaultConstructorClass: MessageBase
+internal class ClassWithOutDefaultConstructorClass: MessageBase
 {
 
 internal ClassWithOutDefaultConstructorClass(): base(@"The record class $ClassName$ needs a constructor with no args (public or private)") {}
@@ -93,7 +93,7 @@ internal ClassWithOutDefaultConstructorClass(): base(@"The record class $ClassNa
     }
 
 
-}internal  partial class ClassWithOutFieldsClass: MessageBase
+}internal class ClassWithOutFieldsClass: MessageBase
 {
 
 internal ClassWithOutFieldsClass(): base(@"The record class $ClassName$ don't contains any field") {}
@@ -111,7 +111,7 @@ internal ClassWithOutFieldsClass(): base(@"The record class $ClassName$ don't co
     }
 
 
-}internal  partial class ClassWithOutRecordAttributeClass: MessageBase
+}internal class ClassWithOutRecordAttributeClass: MessageBase
 {
 
 internal ClassWithOutRecordAttributeClass(): base(@"The record class $ClassName$ must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute") {}
@@ -129,7 +129,7 @@ internal ClassWithOutRecordAttributeClass(): base(@"The record class $ClassName$
     }
 
 
-}internal  partial class EmptyClassNameClass: MessageBase
+}internal class EmptyClassNameClass: MessageBase
 {
 
 internal EmptyClassNameClass(): base(@"The ClassName can't be empty") {}
@@ -140,7 +140,7 @@ internal EmptyClassNameClass(): base(@"The ClassName can't be empty") {}
     }
 
 
-}internal  partial class EmptyFieldNameClass: MessageBase
+}internal class EmptyFieldNameClass: MessageBase
 {
 
 internal EmptyFieldNameClass(): base(@"The $Position$th field name can't be empty") {}
@@ -158,7 +158,7 @@ internal EmptyFieldNameClass(): base(@"The $Position$th field name can't be empt
     }
 
 
-}internal  partial class EmptyFieldTypeClass: MessageBase
+}internal class EmptyFieldTypeClass: MessageBase
 {
 
 internal EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empty") {}
@@ -176,7 +176,7 @@ internal EmptyFieldTypeClass(): base(@"The $Position$th field type can't be empt
     }
 
 
-}internal  partial class ExpectingFieldOptionalClass: MessageBase
+}internal class ExpectingFieldOptionalClass: MessageBase
 {
 
 internal ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be marked as optional because the previous field is marked as optional. (Try adding [FieldOptional] to $FieldName$)") {}
@@ -194,7 +194,7 @@ internal ExpectingFieldOptionalClass(): base(@"The field: $FieldName$ must be ma
     }
 
 
-}internal  partial class FieldNotFoundClass: MessageBase
+}internal class FieldNotFoundClass: MessageBase
 {
 
 internal FieldNotFoundClass(): base(@"The field: $FieldName$ was not found in the class: $ClassName$. Remember that this option is case sensitive") {}
@@ -219,7 +219,7 @@ internal FieldNotFoundClass(): base(@"The field: $FieldName$ was not found in th
     }
 
 
-}internal  partial class FieldOptionalClass: MessageBase
+}internal class FieldOptionalClass: MessageBase
 {
 
 internal FieldOptionalClass(): base(@"The field: $Field$ must be marked as optional because the previous field is marked with FieldOptional. (Try adding [FieldOptional] to $Field$)") {}
@@ -237,7 +237,7 @@ internal FieldOptionalClass(): base(@"The field: $Field$ must be marked as optio
     }
 
 
-}internal  partial class InvalidIdentifierClass: MessageBase
+}internal class InvalidIdentifierClass: MessageBase
 {
 
 internal InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a valid .NET identifier") {}
@@ -255,7 +255,7 @@ internal InvalidIdentifierClass(): base(@"The string '$Identifier$' not is a val
     }
 
 
-}internal  partial class MissingFieldArrayLenghtInNotLastFieldClass: MessageBase
+}internal class MissingFieldArrayLenghtInNotLastFieldClass: MessageBase
 {
 
 internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because it is not the last field") {}
@@ -273,7 +273,7 @@ internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldN
     }
 
 
-}internal  partial class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
+}internal class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
 {
 
 internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties. You cannot mix them like in the $ClassName$ class.") {}
@@ -291,7 +291,7 @@ internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use a
     }
 
 
-}internal  partial class NullRecordClassClass: MessageBase
+}internal class NullRecordClassClass: MessageBase
 {
 
 internal NullRecordClassClass(): base(@"The record type can't be null") {}
@@ -302,7 +302,7 @@ internal NullRecordClassClass(): base(@"The record type can't be null") {}
     }
 
 
-}internal  partial class PartialFieldOrderClass: MessageBase
+}internal class PartialFieldOrderClass: MessageBase
 {
 
 internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.") {}
@@ -320,7 +320,7 @@ internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked 
     }
 
 
-}internal  partial class SameFieldOrderClass: MessageBase
+}internal class SameFieldOrderClass: MessageBase
 {
 
 internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values") {}
@@ -345,7 +345,7 @@ internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same Fiel
     }
 
 
-}internal  partial class SameMinMaxLengthForArrayNotLastFieldClass: MessageBase
+}internal class SameMinMaxLengthForArrayNotLastFieldClass: MessageBase
 {
 
 internal SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $FieldName$ must be of a fixed length because it is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same.") {}
@@ -363,7 +363,7 @@ internal SameMinMaxLengthForArrayNotLastFieldClass(): base(@"The array field: $F
     }
 
 
-}internal  partial class StructRecordClassClass: MessageBase
+}internal class StructRecordClassClass: MessageBase
 {
 
 internal StructRecordClassClass(): base(@"The record type must be a class, and the type: $RecordType$ is a struct.") {}
@@ -381,7 +381,7 @@ internal StructRecordClassClass(): base(@"The record type must be a class, and t
     }
 
 
-}internal  partial class TestQuoteClass: MessageBase
+}internal class TestQuoteClass: MessageBase
 {
 
 internal TestQuoteClass(): base(@"The Message class also allows to use "" in any part of the "" text "" .") {}
@@ -392,7 +392,7 @@ internal TestQuoteClass(): base(@"The Message class also allows to use "" in any
     }
 
 
-}internal  partial class WrongConverterClass: MessageBase
+}internal class WrongConverterClass: MessageBase
 {
 
 internal WrongConverterClass(): base(@"The converter for the field: $FieldName$ returns an object of Type: $ConverterReturnedType$  and the field is of type: $FieldType$") {}

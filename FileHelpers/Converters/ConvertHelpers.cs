@@ -117,11 +117,11 @@ namespace FileHelpers
             if (fieldType == typeof(DateTime))
                 return new DateTimeConverter();
 
-            if (fieldType == typeof(Boolean))
+            if (fieldType == typeof(bool))
                 return new BooleanConverter();
 
             // Added by Alexander Obolonkov 2007.11.08 (the next three)
-            if (fieldType == typeof(Char))
+            if (fieldType == typeof(char))
                 return new CharConverter();
             if (fieldType == typeof(Guid))
                 return new GuidConverter();
@@ -221,7 +221,7 @@ namespace FileHelpers
             /// <returns>byte value</returns>
             protected override object ParseString(string from)
             {
-                Byte res;
+                byte res;
                 if (!Byte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
                 {
                     throw new ConvertException(from, mType);
@@ -257,7 +257,7 @@ namespace FileHelpers
             /// <returns>short integer value</returns>
             protected override object ParseString(string from)
             {
-                UInt16 res;
+                ushort res;
                 if (!UInt16.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -291,7 +291,7 @@ namespace FileHelpers
             /// <returns>Unsigned integer object</returns>
             protected override object ParseString(string from)
             {
-                UInt32 res;
+                uint res;
                 if (!UInt32.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -325,7 +325,7 @@ namespace FileHelpers
             /// <returns>Unsigned long value</returns>
             protected override object ParseString(string from)
             {
-                UInt64 res;
+                ulong res;
                 if (!UInt64.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -363,7 +363,7 @@ namespace FileHelpers
             /// <returns>Signed byte value</returns>
             protected override object ParseString(string from)
             {
-                SByte res;
+                sbyte res;
                 if (!SByte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -397,7 +397,7 @@ namespace FileHelpers
             /// <returns>Short signed value</returns>
             protected override object ParseString(string from)
             {
-                Int16 res;
+                short res;
                 if (!Int16.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -466,7 +466,7 @@ namespace FileHelpers
             /// <returns>Long value</returns>
             protected override object ParseString(string from)
             {
-                Int64 res;
+                long res;
                 if (!Int64.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -509,8 +509,8 @@ namespace FileHelpers
             /// <returns>decimal value</returns>
             protected override object ParseString(string from)
             {
-                Decimal res;
-                if (!Decimal.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                decimal res;
+                if (!decimal.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
             }
@@ -543,7 +543,7 @@ namespace FileHelpers
             /// <returns>Single floating point value</returns>
             protected override object ParseString(string from)
             {
-                Single res;
+                float res;
                 if (!Single.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -578,7 +578,7 @@ namespace FileHelpers
             /// <returns>Floating point value</returns>
             protected override object ParseString(string from)
             {
-                Double res;
+                double res;
                 if (!Double.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
@@ -734,7 +734,7 @@ namespace FileHelpers
             /// Convert a value to a date time value using multiple formats
             /// </summary>
             public DateTimeMultiFormatConverter(string format1, string format2)
-                : this(new string[] { format1, format2 })
+                : this(new[] { format1, format2 })
             {
             }
 
@@ -742,7 +742,7 @@ namespace FileHelpers
             /// Convert a value to a date time value using multiple formats
             /// </summary>
             public DateTimeMultiFormatConverter(string format1, string format2, string format3)
-                : this(new string[] { format1, format2, format3 })
+                : this(new[] { format1, format2, format3 })
             {
             }
 

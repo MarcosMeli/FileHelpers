@@ -30,7 +30,7 @@ namespace FileHelpers
             if (string.IsNullOrEmpty(id))
                 return false;
 
-            if (Char.IsLetter(id[0]) == false && id[0] != '_')
+            if (char.IsLetter(id[0]) == false && id[0] != '_')
                 return false;
 
             for (int i = 1; i < id.Length; i++)
@@ -42,7 +42,7 @@ namespace FileHelpers
                         continue;
                 }
 
-                if (id[i] != '_' && Char.IsLetterOrDigit(id[i]) == false)
+                if (id[i] != '_' && char.IsLetterOrDigit(id[i]) == false)
                     return false;
             }
 

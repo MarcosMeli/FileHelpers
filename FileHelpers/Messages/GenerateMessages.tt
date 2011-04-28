@@ -1,4 +1,4 @@
-<#@ template language="C#" hostSpecific="true" #>
+﻿<#@ template language="C#" hostSpecific="true" #>
 <#@ output extension=".autogen.cs" #>
 <#@ Assembly Name="System.Xml.dll" #>
 <#@ Assembly Name="System.Data.dll" #>
@@ -320,7 +320,7 @@ public FluentClass InternalClass(string name)
         
 		public string GenerateCode()
         {
-            var res = access + " partial class " + Name
+            var res = access + "class " + Name
                 + (string.IsNullOrEmpty(Parent) ? "" : ": " + Parent)
                 + Environment.NewLine
                 + "{"
