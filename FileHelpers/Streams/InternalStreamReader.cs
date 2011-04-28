@@ -271,10 +271,12 @@ namespace FileHelpers
             {
                 throw new ObjectDisposedException(null, "The reader is closed");
             }
+
             if ((this.charPos == this.charLen) && (this.ReadBuffer() == 0))
             {
                 return -1;
             }
+
             int num = this.charBuffer[this.charPos];
             this.charPos++;
             return num;
@@ -349,6 +351,7 @@ namespace FileHelpers
             {
                 this.byteLen = 0;
             }
+
             do
             {
                 if (this._checkPreamble)

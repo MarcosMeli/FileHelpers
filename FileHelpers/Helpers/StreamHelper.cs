@@ -5,13 +5,13 @@ using System.Text;
 namespace FileHelpers
 {
 
-                        internal enum LineEnd
-                    {
-                        Dos,
-                        Unix,
-                        Macintosh,
-                        other,
-                        }
+    internal enum LineEnd
+    {
+        Dos,
+        Unix,
+        Macintosh,
+        Other
+    }
 
 
 #if MINI

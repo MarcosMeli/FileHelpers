@@ -77,7 +77,6 @@ namespace FileHelpers.Dynamic
 			{
 				if (lang == NetLanguage.CSharp)
 					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", '"+ mAlignChar.ToString() +"')");
-
 				else if (lang == NetLanguage.VbNet)
 					attbs.AddAttribute("FieldAlign(AlignMode."+ mAlignMode.ToString()+", \""+ mAlignChar.ToString() +"\"c)");
 			}

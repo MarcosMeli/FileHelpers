@@ -48,14 +48,17 @@ namespace FileHelpers
 
 		//internal string  mLine;
 		//internal char[] mLine;
+
         /// <summary>
         /// Record read from reader
         /// </summary>
 		internal string mLineStr;
+
         /// <summary>
         /// Reader that got the string
         /// </summary>
 		internal ForwardReader mReader;
+
         /// <summary>
         /// Where we are processing records from
         /// </summary>

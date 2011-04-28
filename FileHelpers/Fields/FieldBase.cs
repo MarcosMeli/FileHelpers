@@ -31,57 +31,70 @@ namespace FileHelpers
         /// Number of extra characters used,  delimiters and quote characters
         /// </summary>
         internal int CharsToDiscard { get; set; }
+
         /// <summary>
         /// Provider to convert to and from text
         /// </summary>
         internal ConverterBase ConvertProvider { get; private set; }
+
         /// <summary>
         /// Field type of an array or it is just fieldType.
         /// What actual object will be created
         /// </summary>
         internal Type FieldTypeInternal { get; set; }
+
         /// <summary>
         /// Is this field an array?
         /// </summary>
         internal bool IsArray { get; set; }
+
         /// <summary>
         /// Seems to be duplicate of FieldTypeInternal except it is ONLY set
         /// for an array
         /// </summary>
         internal Type ArrayType { get; set; }
+
         /// <summary>
         /// Array must have this many entries
         /// </summary>
         internal int ArrayMinLength { get; set; }
+
         /// <summary>
         /// Array may have this many entries,  if equal to ArrayMinLength then
         /// it is a fixed length array
         /// </summary>
         internal int ArrayMaxLength { get; set; }
+
         /// <summary>
         /// Am I the first field in an array list
         /// </summary>
         internal bool IsFirst { get; set; }
+
         /// <summary>
         /// Am I the last field in the array list
         /// </summary>
         internal bool IsLast { get; set; }
+
         /// <summary>
         /// Do we process this field but not store the value
         /// </summary>
         internal bool Discarded { get; set; }
+
         /// <summary>
         /// Unused!
         /// </summary>
         internal bool TrailingArray { get; set; }
+
         /// <summary>
         /// Value to use if input is null or empty
         /// </summary>
         internal object NullValue { get; set; }
+
         /// <summary>
         /// Are we a simple string field we can just assign to
         /// </summary>
         internal bool IsStringField { get; set; }
+
         /// <summary>
         /// Details about the extraction criteria
         /// </summary>
@@ -90,32 +103,39 @@ namespace FileHelpers
         /// indicates whether we trim leading and/or trailing whitespace
         /// </summary>
         internal TrimMode TrimMode { get; set; }
+
         /// <summary>
         /// Character to chop off front and / rear of the string
         /// </summary>
         internal char[] TrimChars { get; set; }
+
         /// <summary>
         /// The field may not be present on the input data (line not long enough)
         /// </summary>
         internal bool IsOptional { get; set; }
+
         /// <summary>
         /// The next field along is optional,  optimise processing next records
         /// </summary>
         internal bool NextIsOptional { get; set; }
+
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
         /// line of the file
         /// </summary>
         internal bool InNewLine { get; set; }
+
         /// <summary>
         /// Order of the field in the file layout
         /// </summary>
         internal int? FieldOrder { get; set; }
+
         /// <summary>
         /// Can null be assigned to this value type, for example not int or
         /// DateTime
         /// </summary>
         internal bool IsNullableType { get; private set; }
+
         /// <summary>
         /// Name of the field without extra characters (eg property)
         /// </summary>
@@ -504,7 +524,6 @@ namespace FileHelpers
 
                 if (res.Count < ArrayMinLength)
                     throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}", line.mReader.LineNumber.ToString(), line.mCurrentPos.ToString(), FieldInfo.Name, res.Count, ArrayMinLength));
-
                 else if (IsLast && line.IsEOL() == false)
                     throw new InvalidOperationException(string.Format("Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}", line.mReader.LineNumber, line.mCurrentPos, FieldInfo.Name, ArrayMaxLength));
 

@@ -166,7 +166,6 @@ namespace FileHelpers.Detection
 
         #region "  Create Options Methods  "
 
-
         // UNKNOWN
         private void CreateMixedOptions(string[][] data, List<RecordFormatInfo> res)
         {
@@ -183,7 +182,6 @@ namespace FileHelpers.Detection
             //    CreateFixedLengthOptions(data, res);
 
         }
-
 
         // FIXED LENGTH
         private void CreateFixedLengthOptions(string[][] data, List<RecordFormatInfo> res)
@@ -272,7 +270,6 @@ namespace FileHelpers.Detection
                         }
                     }
                         
-
                 }
 
                 if (col == null)
@@ -344,7 +341,6 @@ namespace FileHelpers.Detection
                         f.FieldOptional = true;
                 }
                 
-
                 format.mClassBuilder = builder;
 
                 res.Add(format);
@@ -366,7 +362,6 @@ namespace FileHelpers.Detection
                 case '.': // Avoid the decimal separator to be selected
                     format.mConfidence = (int)(format.Confidence * 0.4);
                     break;
-
 
                 case '@': // Avoid the mails separator to be selected
                 case '&': // Avoid this is near a letter and URLS
@@ -462,7 +457,6 @@ namespace FileHelpers.Detection
                 }
             }
 
-
             List<DelimiterInfo> candidates = new List<DelimiterInfo>();
             foreach (KeyValuePair<char, int> pair in frecuency)
             {
@@ -478,7 +472,6 @@ namespace FileHelpers.Detection
 
             return candidates;
         }
-
 
         #endregion
 

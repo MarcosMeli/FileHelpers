@@ -46,14 +46,12 @@ namespace FileHelpers
                 // Real Position
                 mPositionCalculator = () => reader2.Position;
             }
-
             else if (reader is InternalStringReader)
             {
                 var stream = (InternalStringReader)reader;
                 mLength = stream.Length;
                 mPositionCalculator = () => stream.Position;
             }
-            //  else unknown   -1 and -1.
         }
 
         /// <summary>

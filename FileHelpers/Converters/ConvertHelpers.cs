@@ -220,7 +220,7 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 byte res;
-                if (!Byte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
+                if (!byte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
                 {
                     throw new ConvertException(from, mType);
                 }
@@ -378,15 +378,17 @@ namespace FileHelpers
             /// </summary>
             public Int16Converter()
                 : this(DefaultDecimalSep)
-            { }
+            {
+            }
 
             /// <summary>
             /// Convert a value to a short integer
             /// </summary>
             /// <param name="decimalSep">dot or comma for separator</param>
             public Int16Converter(string decimalSep)
-                : base(typeof(Int16), decimalSep)
-            { }
+                : base(typeof(short), decimalSep)
+            {
+            }
 
             /// <summary>
             /// Convert a string to an short integer
@@ -396,7 +398,7 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 short res;
-                if (!Int16.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                if (!short.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
             }
@@ -412,15 +414,17 @@ namespace FileHelpers
             /// </summary>
             public Int32Converter()
                 : this(DefaultDecimalSep)
-            { }
+            {
+            }
 
             /// <summary>
             /// Convert a value to a integer
             /// </summary>
             /// <param name="decimalSep">dot or comma for separator</param>
             public Int32Converter(string decimalSep)
-                : base(typeof(Int32), decimalSep)
-            { }
+                : base(typeof(int), decimalSep)
+            {
+            }
 
             /// <summary>
             /// Convert a string to an integer
@@ -430,7 +434,7 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 int res;
-                if (!Int32.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                if (!int.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 
                 return res;
@@ -454,7 +458,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSep">dot or comma for separator</param>
             public Int64Converter(string decimalSep)
-                : base(typeof(Int64), decimalSep)
+                : base(typeof(long), decimalSep)
             { }
 
             /// <summary>
@@ -465,7 +469,7 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 long res;
-                if (!Int64.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
+                if (!long.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
             }
@@ -496,7 +500,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSep">dot or comma for separator</param>
             public DecimalConverter(string decimalSep)
-                : base(typeof(Decimal), decimalSep)
+                : base(typeof(decimal), decimalSep)
             {
             }
 

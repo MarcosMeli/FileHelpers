@@ -65,7 +65,6 @@ namespace FileHelpers.Options
 		private string mDecimalSeparator = ".";
 		private Encoding mEncoding = Encoding.Default;
 
-
 		/// <summary>A sample file from where to read the field names and number.</summary>
 		public string SampleFileName
 		{
@@ -128,7 +127,6 @@ namespace FileHelpers.Options
 			get { return mDecimalSeparator; }
 			set { mDecimalSeparator = value; }
 		}
-
 
 		/// <summary>
 		/// Encoding used when handling the CSV files.
