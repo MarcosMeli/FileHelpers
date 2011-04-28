@@ -63,11 +63,11 @@ namespace FileHelpers
 			switch (converter)
 			{
 				case ConverterKind.Date:
-					convType = typeof (ConvertHelpers.DateTimeConverter);
+			        convType = typeof (ConvertHelpers.DateTimeConverter);
 					break;
 
                 case ConverterKind.DateMultiFormat:
-                    convType = typeof(ConvertHelpers.DateTimeMultiFormatConverter);
+                    convType = typeof (ConvertHelpers.DateTimeMultiFormatConverter);
                     break;
 
 				case ConverterKind.Byte:
