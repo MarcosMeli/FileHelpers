@@ -635,7 +635,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write can´t be null.");
 
             bool first = true;
 

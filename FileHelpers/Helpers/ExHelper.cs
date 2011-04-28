@@ -26,7 +26,7 @@ namespace FileHelpers
 		public static void CheckNullParam(string param, string paramName)
 		{
 			if (string.IsNullOrEmpty(param))
-				throw new ArgumentNullException(paramName + " can't be neither null nor empty", paramName);
+                throw new ArgumentNullException(paramName, paramName + " can't be neither null nor empty");
 		}
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace FileHelpers
         public static void CheckNullParam(object param, string paramName)
 		{
 			if (param == null)
-				throw new ArgumentNullException(paramName + " can't be null", paramName);
+                throw new ArgumentNullException(paramName, paramName + " can't be null");
 		}
 
         /// <summary>

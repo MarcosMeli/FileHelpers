@@ -631,14 +631,13 @@ namespace FileHelpers.Dynamic
 
         #region "  EncDec  "
 
-        private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV)
+        private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] iv)
         {
             MemoryStream ms = new MemoryStream();
             Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
-            alg.IV = IV;
-            CryptoStream cs = new CryptoStream(ms,
-                alg.CreateEncryptor(), CryptoStreamMode.Write);
+            alg.Key = key;
+            alg.IV = iv;
+            var cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
             cs.Write(clearData, 0, clearData.Length);
             cs.Close();
             byte[] encryptedData = ms.ToArray();

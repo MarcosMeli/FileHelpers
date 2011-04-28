@@ -16,14 +16,14 @@ namespace FileHelpers
 		/// <param name="separator">The separator string used to split the fields of the record.</param>
 		public FieldDelimiterAttribute(string separator)
 		{
-			if (separator == null || separator.Length == 0)
+			if (string.IsNullOrEmpty(separator))
 				throw new BadUsageException("The separator parameter of the FieldDelimiter attribute can't be null or empty");
 			else
 				this.Delimiter = separator;
 		}
 
         /// <summary>
-        /// The Delimiter for this field
+        /// Gets the Delimiter for this field
         /// </summary>
 	    public string Delimiter { get; private set; }
 	}
