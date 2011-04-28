@@ -439,7 +439,8 @@ namespace FileHelpers.Dynamic
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string mClassName;
-        /// <summary>The name of the Class.</summary>
+
+        /// <summary>Gets or sets the name of the Class.</summary>
         public string ClassName
         {
             get { return mClassName; }
@@ -658,33 +659,33 @@ namespace FileHelpers.Dynamic
 
 
         // Decrypt a byte array into a byte array using a key and an IV 
-        private static byte[] Decrypt(byte[] cipherData,
-            byte[] Key, byte[] IV)
+        private static byte[] Decrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
             MemoryStream ms = new MemoryStream();
             Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
-            alg.IV = IV;
+            alg.Key = key;
+            alg.IV = iv;
 
-            CryptoStream cs = new CryptoStream(ms,
-                alg.CreateDecryptor(), CryptoStreamMode.Write);
+            var cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
 
             cs.Write(cipherData, 0, cipherData.Length);
             cs.Close();
 
-            byte[] decryptedData = ms.ToArray();
+            var decryptedData = ms.ToArray();
 
             return decryptedData;
         }
 
-        private static string Decrypt(string cipherText, string Password)
+        private static string Decrypt(string cipherText, string password)
         {
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password,
-                new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 
-							   0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
-            byte[] decryptedData = Decrypt(cipherBytes,
-                pdb.GetBytes(32), pdb.GetBytes(16));
+            var cipherBytes = Convert.FromBase64String(cipherText);
+            var pdb = new PasswordDeriveBytes(password,
+                                              new byte[]
+                                                  {
+                                                      0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64,
+                                                      0x65, 0x76
+                                                  });
+            var decryptedData = Decrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
             return Encoding.Unicode.GetString(decryptedData);
         }
 
@@ -960,11 +961,14 @@ namespace FileHelpers.Dynamic
         /// <summary>
         /// Creates the XML representation of the current record class.
         /// </summary>
+        /// <returns>
+        /// The representation of the current record class as xml string.
+        /// </returns>
         public string SaveToXmlString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            using (StringWriter writer = new StringWriter(sb))
+            using (var writer = new StringWriter(sb))
             {
                 SaveToXml(writer);
             }

@@ -44,6 +44,8 @@
     <StyleCopOverrideSettingsFile>Settings.StyleCop</StyleCopOverrideSettingsFile>
     <StyleCopCacheResults>false</StyleCopCacheResults>
     <StyleCopOutputFile>StyleCop.xml</StyleCopOutputFile>
+    <ForceFullAnalysis>true</ForceFullAnalysis>
+    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Debug\Bin\</OutputPath>

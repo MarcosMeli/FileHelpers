@@ -416,7 +416,7 @@ namespace FileHelpers
 
 			ResetFields();
 
-			if (mHeaderText != null && mHeaderText.Length != 0)
+			if (!string.IsNullOrEmpty(mHeaderText))
 				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					writer.Write(mHeaderText);
 				else
