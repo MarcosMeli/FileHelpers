@@ -41,6 +41,9 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
+    <StyleCopOverrideSettingsFile>Settings.StyleCop</StyleCopOverrideSettingsFile>
+    <StyleCopCacheResults>false</StyleCopCacheResults>
+    <StyleCopOutputFile>StyleCop.xml</StyleCopOutputFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Debug\Bin\</OutputPath>
@@ -414,6 +417,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\Libs\StyleCop\StyleCop.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
