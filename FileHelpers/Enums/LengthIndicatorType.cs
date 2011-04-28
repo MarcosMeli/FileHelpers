@@ -1,5 +1,3 @@
-
-
 namespace FileHelpers
 {
     ///<summary>Represents a record or field length indicator strategy</summary>

@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace FileHelpers
@@ -13,6 +11,7 @@ namespace FileHelpers
 	public sealed class IgnoreEmptyLinesAttribute : Attribute
 	{
 		internal bool mIgnoreSpaces = false;
+
 		/// <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
 		public IgnoreEmptyLinesAttribute()
 		{}

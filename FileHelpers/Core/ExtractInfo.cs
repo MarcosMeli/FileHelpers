@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Diagnostics;
 
@@ -45,10 +43,12 @@ namespace FileHelpers
         /// Contains the line of data read
         /// </summary>
         public LineInfo mLine;
+
         /// <summary>
         /// Position of first character of the field in mLine.mLine
         /// </summary>
         public int ExtractedFrom;
+
         /// <summary>
         /// Position of last character of the field in mLine.mLine
         /// </summary>

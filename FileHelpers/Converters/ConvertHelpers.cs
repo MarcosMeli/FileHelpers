@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Globalization;
 using System.Text;
@@ -584,6 +582,7 @@ namespace FileHelpers
                 return res;
             }
         }
+
         /// <summary>
         /// This Class is specialized version of the Double Converter
         /// The main difference being that it can handle % sign at the end of the number
@@ -964,10 +963,12 @@ namespace FileHelpers
                 /// Don't change the case
                 /// </summary>
                 NoChange = 0,
+
                 /// <summary>
                 /// Change to lower case
                 /// </summary>
                 Lower,
+
                 /// <summary>
                 /// change to upper case
                 /// </summary>
@@ -1212,5 +1213,3 @@ namespace FileHelpers
         #endregion
     }
 }
-
-

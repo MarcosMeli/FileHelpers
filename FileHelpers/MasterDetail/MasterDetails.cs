@@ -94,4 +94,3 @@ namespace FileHelpers.MasterDetail
 		}
 	}
 }
-

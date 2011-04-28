@@ -11,18 +11,21 @@ namespace FileHelpers
     /// <param name="values">Values that are assigned to instance</param>
     /// <returns>Instance of object initialised</returns>
     internal delegate object CreateAndAssignDelegate(object[] values);
+
     /// <summary>
     /// Assign values to a known object
     /// </summary>
     /// <param name="record">Record to assign</param>
     /// <param name="values">Values to assign to the record</param>
     internal delegate void AssignDelegate(object record, object[] values);
+
     /// <summary>
     /// Extract the values from the object (function created based on FieldInfo
     /// </summary>
     /// <param name="record">instance to extract from</param>
     /// <returns>Values from the instance</returns>
     internal delegate object[] ObjectToValuesDelegate(object record);
+
     /// <summary>
     /// Create an object (function created based upon a type)
     /// </summary>

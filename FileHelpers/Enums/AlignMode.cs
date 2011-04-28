@@ -1,5 +1,3 @@
-
-
 namespace FileHelpers
 {
 	/// <summary>Indicates the align of the field when the <see cref="T:FileHelpers.FileHelperEngine"/> <b>writes</b> the record.</summary>
