@@ -15,8 +15,6 @@
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #>
-using FileHelpers;
-using System.Diagnostics;
 using System; 
 
 <#
@@ -347,7 +345,7 @@ public FluentClass InternalClass(string name)
 
         public void AddStaticReadOnlyPropertyWithBackingField(string type, string name)
         {
-            mCode.AppendLine("private static " + type + " m" + name + " = new " + type + "();");
+            mCode.AppendLine("private static readonly " + type + " m" + name + " = new " + type + "();");
             mCode.AppendLine("internal static " + type + " " + name);
             mCode.AppendLine("{ get { return  m" + name + "; } }");
         }

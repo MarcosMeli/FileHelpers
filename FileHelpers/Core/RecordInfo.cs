@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -8,7 +7,6 @@ using FileHelpers.Events;
 
 namespace FileHelpers
 {
-
 
     /// <summary>An internal class used to store information about the Record Type.</summary>
     /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
@@ -25,59 +23,72 @@ namespace FileHelpers
         /// Hint about record size
         /// </summary>
         public int SizeHint { get; private set; }
+
         /// <summary>
         /// Class we are defining
         /// </summary>
         public Type RecordType { get; private set; }
+
         /// <summary>
         /// Do we skip empty lines?
         /// </summary>
         public bool IgnoreEmptyLines { get; set; }
+
         /// <summary>
         /// Do we skip lines with completely blank lines
         /// </summary>
         public bool IgnoreEmptySpaces { get; private set; }
+
         /// <summary>
         /// Comment prefix
         /// </summary>
         public string CommentMarker { get; set; }
+
         /// <summary>
         /// Number of fields we are processing
         /// </summary>
         public int FieldCount { get; private set; }
+
         /// <summary>
         /// List of fields and the extraction details
         /// </summary>
         public FieldBase[] Fields { get; private set; }
+
         /// <summary>
         /// Number of lines to skip at beginning of file
         /// </summary>
         public int IgnoreFirst { get; set; }
+
         /// <summary>
         /// Number of lines to skip at end of file
         /// </summary>
         public int IgnoreLast { get; set; }
+
         /// <summary>
         /// DO we need to issue a Notify read
         /// </summary>
         public bool NotifyRead { get; private set; }
+
         /// <summary>
         /// Do we need to issue a Notify Write
         /// </summary>
         public bool NotifyWrite { get; private set; }
+
         /// <summary>
         /// Can the comment prefix have leading whitespace
         /// </summary>
         public bool CommentAnyPlace { get; set; }
-
+        
         /// <summary>
         /// Include or skip a record based upon a defined RecordCondition interface
         /// </summary>
         public RecordCondition RecordCondition { get; set; }
+
         /// <summary>
         /// Skip or include a record based upon a regular expression
         /// </summary>
         public Regex RecordConditionRegEx { get; private set; }
+
         /// <summary>
         /// Include or exclude a record based upon presence of a string
         /// </summary>
@@ -141,48 +152,50 @@ namespace FileHelpers
                 throw new BadUsageException(Messages.Errors.ClassWithOutDefaultConstructor
                                                 .ClassName(RecordType.Name)
                                                 .Text);
-            
-            Attributes.WorkWithFirst<IgnoreFirstAttribute>(RecordType, 
+
+            Attributes.WorkWithFirst<IgnoreFirstAttribute>(
+                RecordType,
                 a => IgnoreFirst = a.NumberOfLines);
-            
-            Attributes.WorkWithFirst<IgnoreLastAttribute>(RecordType,
+
+            Attributes.WorkWithFirst<IgnoreLastAttribute>(
+                RecordType,
                 a => IgnoreLast = a.NumberOfLines);
 
-            Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(RecordType,
-                                                                  (a) =>
-                                                                      {
-                                                                          IgnoreEmptyLines = true;
-                                                                          IgnoreEmptySpaces = a.mIgnoreSpaces;
-                                                                      });
+            Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(
+                RecordType,
+                a =>
+                    {
+                        IgnoreEmptyLines = true;
+                        IgnoreEmptySpaces = a.mIgnoreSpaces;
+                    });
 
 
-            Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(RecordType,
-                                                          (a) =>
-                                                          {
-                                                              IgnoreEmptyLines = true;
-                                                              CommentMarker = a.mCommentMarker;
-                                                              CommentAnyPlace = a.mAnyPlace;
-                                                          });
+            Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
+                RecordType,
+                a =>
+                    {
+                        IgnoreEmptyLines = true;
+                        CommentMarker = a.mCommentMarker;
+                        CommentAnyPlace = a.mAnyPlace;
+                    });
 
 
-            Attributes.WorkWithFirst<ConditionalRecordAttribute>(RecordType,
-                                              (a) =>
-                                              {
-                                                  RecordCondition = a.Condition;
-                                                  RecordConditionSelector = a.ConditionSelector;
+            Attributes.WorkWithFirst<ConditionalRecordAttribute>(
+                RecordType,
+                a =>
+                    {
+                        RecordCondition = a.Condition;
+                        RecordConditionSelector = a.ConditionSelector;
 
-                                                  if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
-                                                      RecordCondition == RecordCondition.IncludeIfMatchRegex)
-                                                  {
-                                                      RecordConditionRegEx = new Regex(RecordConditionSelector,
-                                                                                  RegexOptions.Compiled | RegexOptions.IgnoreCase |
-                                                                                  RegexOptions.ExplicitCapture);
-                                                  }
+                        if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
+                            RecordCondition == RecordCondition.IncludeIfMatchRegex)
+                        {
+                            RecordConditionRegEx = new Regex(RecordConditionSelector,
+                                                             RegexOptions.Compiled | RegexOptions.IgnoreCase |
+                                                             RegexOptions.ExplicitCapture);
+                        }
+                    });
 
-                                              });
-
-
-           
             if (CheckGenericInterface(RecordType, typeof(INotifyRead<>), RecordType))
                 NotifyRead = true;
 
@@ -191,9 +204,8 @@ namespace FileHelpers
 
             // Create fields
             // Search for cached fields
-            List<FieldInfo> fields;
 
-            fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
+            var fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
 
             Fields = CreateCoreFields(fields, recordAttribute);
             FieldCount = Fields.Length;
@@ -230,6 +242,7 @@ namespace FileHelpers
 
             // count of Properties
             var automaticFields = 0;
+
             // count of normal fields
             var genericFields = 0;
             for (int i = 0; i < fields.Count; i++)

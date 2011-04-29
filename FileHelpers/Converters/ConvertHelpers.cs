@@ -100,13 +100,13 @@ namespace FileHelpers
             if (fieldType == typeof(UInt64))
                 return new UInt64Converter();
 
-            if (fieldType == typeof(Byte))
+            if (fieldType == typeof(byte))
                 return new ByteConverter();
 
-            if (fieldType == typeof(Decimal))
+            if (fieldType == typeof(decimal))
                 return new DecimalConverter();
 
-            if (fieldType == typeof(Double))
+            if (fieldType == typeof(double))
                 return new DoubleConverter();
 
             if (fieldType == typeof(Single))

@@ -5,8 +5,10 @@ namespace FileHelpers
 	{
 		/// <summary>Aligns the field to the left.</summary>
 		Left,
+
 		/// <summary>Aligns the field to the center.</summary>
 		Center,
+
 		/// <summary>Aligns the field to the right.</summary>
 		Right
 	}
