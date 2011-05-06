@@ -5,7 +5,9 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
+    using FileHelpers.Dynamic;
+
+    [TestFixture]
 	public class NullWriters
 	{
 
@@ -192,6 +194,34 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
+        [Test]
+        public void RunTimeEmptyGuidProperties()
+        {
+            var builder = new DelimitedClassBuilder("EntityWithGuid", "\t");
+            builder.AddField("Name", typeof(string));
+            builder.AddField("Id", typeof(Guid));
+            builder.LastField.FieldNullValue = Guid.Empty;
+
+            var engine = new FileHelperEngine(builder.CreateRecordClass())
+            {
+                Options = { IgnoreFirstLines = 1 }
+            };
+
+            const string inputValue = @"Name	Id
+first	
+second	";
+
+            var records = engine.ReadString(inputValue);
+            records.Length.AssertEqualTo(2);
+
+            dynamic record = records[0];
+            ((Guid)record.Id).AssertEqualTo(Guid.Empty);
+            ((string)record.Name).AssertEqualTo("first");
+            
+            record = records[1];
+            ((Guid)record.Id).AssertEqualTo(Guid.Empty);
+            ((string)record.Name).AssertEqualTo("second");
+        }
 
 	}
 }

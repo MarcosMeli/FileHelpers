@@ -2,6 +2,8 @@ using System;
 
 namespace FileHelpers
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Indicates the value to assign to the field in the case of a NULL value.
     /// A default value if none supplied in the field itself.
@@ -50,7 +52,7 @@ namespace FileHelpers
 		/// <param name="type">The type of the null value.</param>
 		/// <param name="nullValue">The string to be converted to the specified type.</param>
 		public FieldNullValueAttribute(Type type, string nullValue)
-                :this(Convert.ChangeType(nullValue, type, null))
+            : this(TypeDescriptor.GetConverter(type).ConvertFromString(nullValue))
 		{}
 	}
 }
