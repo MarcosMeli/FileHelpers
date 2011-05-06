@@ -14,52 +14,104 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void Sort6xhalf()
         {
-            SortMb(6 * MegaByte, (int) (0.2 * MegaByte));
+            SortMb<OrdersTab>(4 * MegaByte, (int) (0.5 * MegaByte));
         }
 
         [Test]
         public void Sort6x1()
         {
-            SortMb(6 * MegaByte, 1 * MegaByte);
+            SortMb<OrdersTab>(4 * MegaByte, 1 * MegaByte);
         }
 
         [Test]
         public void Sort6x2()
         {
-            SortMb(6 * MegaByte, 2 * MegaByte);
+            SortMb<OrdersTab>(4 * MegaByte, 2 * MegaByte);
         }
 
         [Test]
         public void Sort6x35()
         {
-            SortMb(6 * MegaByte, (int) (3.5 * MegaByte));
+            SortMb<OrdersTab>(4 * MegaByte, (int)(3.5 * MegaByte));
         }
 
         [Test]
         public void Sort6x6()
         {
-            SortMb(6 * MegaByte, 6 * MegaByte);
+            SortMb<OrdersTab>(4 * MegaByte, 4 * MegaByte);
         }
 
         [Test]
         public void Sort6x7()
         {
-            SortMb(6 * MegaByte, 7 * MegaByte);
+            SortMb<OrdersTab>(4 * MegaByte, 7 * MegaByte);
         }
 
         [Test]
         public void Sort6x20()
         {
-            SortMb(6 * MegaByte, 20 * MegaByte);
+            SortMb<OrdersTab>(4 * MegaByte, 20 * MegaByte);
         }
 
         [Test]
         public void Sort6x2Reverse()
         {
-            SortMb(6 * MegaByte, 20 * MegaByte, false);
+            SortMb<OrdersTab>(4 * MegaByte, 20 * MegaByte, false);
         }
 
-        private void SortMb(int totalSize, int blockSize, bool ascending)
+
+        [Test]
+        public void Sort6xhalfHeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, (int)(0.5 * MegaByte));
+        }
+
+
+        [Test]
+        public void Sort6x1HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 1 * MegaByte);
+        }
+
+        [Test]
+        public void Sort6x2HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 2 * MegaByte);
+        }
+
+        [Test]
+        public void Sort6x35HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, (int)(3.5 * MegaByte));
+        }
+
+        [Test]
+        public void Sort6x6HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 4 * MegaByte);
+        }
+
+        [Test]
+        public void Sort6x7HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 4 * MegaByte);
+        }
+
+        [Test]
+        public void Sort6x20HeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 20 * MegaByte);
+        }
+
+        [Test]
+        public void Sort6x2ReverseHeaderFooter()
+        {
+            SortMb<OrdersTabHeaderFooter>(4 * MegaByte, 20 * MegaByte, false);
+        }
+        
+
+        private void SortMb<T>(int totalSize, int blockSize, bool ascending)
+            where T : class, IComparable<T>
         {
             using (var temp = new TempFileFactory())
             {
@@ -67,18 +119,21 @@ namespace FileHelpers.Tests.CommonTests
                 {
                     using (var temp3 = new TempFileFactory())
                     {
-                        CreateTempFile(totalSize, temp, ascending);
+                        if (typeof(T) == typeof(OrdersTab)) 
+                            CreateTempFile(totalSize, temp, ascending);
+                        else
+                            CreateTempFileHeaderFooter(totalSize, temp, ascending);
 
                         var sorter = new BigFileSorter(blockSize);
                         sorter.Sort(temp, temp2);
-                        var sorter2 = new BigFileSorter<OrdersTab>(blockSize);
+
+                        var sorter2 = new BigFileSorter<T>(blockSize);
                         sorter2.Sort(temp, temp3);
 
-                        if (!ascending)
-                            ReverseFile(temp);
+                        if (!ascending) ReverseFile(temp);
 
-                            AssertSameFile(temp, temp2);
-                            AssertSameFile(temp, temp3);
+                        AssertSameFile(temp, temp2);
+                        AssertSameFile(temp, temp3);
 
                     }
                 }
@@ -92,9 +147,9 @@ namespace FileHelpers.Tests.CommonTests
             File.WriteAllLines(temp, data);
         }
 
-        public void SortMb(int totalSize, int blockSize)
-		{
-		   SortMb(totalSize, blockSize, true);
+        public void SortMb<T>(int totalSize, int blockSize) where T : class, IComparable<T>
+        {
+		   SortMb<T>(totalSize, blockSize, true);
 		}
 
 
@@ -152,10 +207,70 @@ namespace FileHelpers.Tests.CommonTests
                     i++;
                 }
             }
-	        
-
-
 	    }
+
+
+        private void CreateTempFileHeaderFooter(int sizeOfFile, string fileName, bool ascending)
+        {
+            int size = 0;
+            var engine = new FileHelperAsyncEngine<OrdersTabHeaderFooter>();
+            engine.AfterWriteRecord += (sender, e) => size += e.RecordLine.Length;
+
+            engine.HeaderText = "Test Header, Test Header \r\nAnotherLine";
+            engine.FooterText = "Footer Text";
+            using (engine.BeginWriteFile(fileName))
+            {
+                var i = 1;
+                while (size < sizeOfFile)
+                {
+                    var order = new OrdersTabHeaderFooter();
+                    order.CustomerID = "sdads";
+                    order.EmployeeID = 123;
+                    order.Freight = 123;
+                    order.OrderDate = new DateTime(2009, 10, 23);
+                    if (ascending)
+                        order.OrderID = 1000000 + i;
+                    else
+                        order.OrderID = 1000000 - i;
+                    order.RequiredDate = new DateTime(2009, 10, 20);
+                    order.ShippedDate = new DateTime(2009, 10, 21);
+                    order.ShipVia = 123;
+
+                    engine.WriteNext(order);
+                    i++;
+                }
+            }
+        }
+
+        [DelimitedRecord("\t")]
+        [IgnoreFirst(2)]
+        [IgnoreLast(2)]
+        public class OrdersTabHeaderFooter
+            : IComparable<OrdersTabHeaderFooter>
+        {
+            public int OrderID;
+
+            public string CustomerID;
+
+            public int EmployeeID;
+
+            public DateTime OrderDate;
+
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime RequiredDate;
+
+            [FieldNullValue(typeof(DateTime), "2005-1-1")]
+            public DateTime ShippedDate;
+
+            public int ShipVia;
+
+            public decimal Freight;
+
+            public int CompareTo(OrdersTabHeaderFooter other)
+            {
+                return this.OrderID.CompareTo(other.OrderID);
+            }
+        }
 
 	}
 }

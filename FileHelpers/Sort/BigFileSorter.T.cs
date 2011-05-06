@@ -99,8 +99,8 @@ namespace FileHelpers
                 encoding = DefaultEncoding;
 
             Encoding = encoding;
+            RunGcCollectForEachPart = true;
             DeleteTempFiles = true;
-
         }
 
 
@@ -126,6 +126,9 @@ namespace FileHelpers
         /// <summary> The Encoding used to read and write the files </summary>
         public Encoding Encoding { get; set; }
 
+        /// <summary> Indicates if the Sorter run a GC.Collect() after sort and write each part. Default is true.</summary>
+        public bool RunGcCollectForEachPart{ get; set; }
+
         /// <summary>
         /// Sort a file from one filename to another filename
         /// </summary>
@@ -134,9 +137,10 @@ namespace FileHelpers
         /// <param name="destinationFile">File to write out</param>
         public void Sort(string sourceFile, string destinationFile)
         {
-            var parts = SplitAndSortParts(sourceFile);
+            var parts = new List<string>();
+            var engine = SplitAndSortParts(sourceFile, parts);
             var queues = CreateQueues(parts);
-            MergeTheChunks(queues, destinationFile);
+            MergeTheChunks(queues, destinationFile, engine.HeaderText, engine.FooterText);
         }
 
         private SortQueue<T>[] CreateQueues(List<string> parts)
@@ -149,10 +153,9 @@ namespace FileHelpers
             return res;
         }
 
-        private List<string> SplitAndSortParts(string file)
+        private FileHelperAsyncEngine<T> SplitAndSortParts(string file, List<string> res)
         {
             int partNumber = 1;
-            var res = new List<string>();
 
             var lines = new List<T>();
 
@@ -175,14 +178,11 @@ namespace FileHelpers
                             WritePart(file, lines, partNumber, res);
                             partNumber++;
                             lastWrittenBytes = writtenBytes;
-                            lines.Clear();
-
-                            GC.Collect();
                         }
                     }
                 }
 
-                return res;
+                return readEngine;
             }
             finally
             {
@@ -205,7 +205,14 @@ namespace FileHelpers
                 lines.Sort();
 
             var writeEngine = new FileHelperEngine<T>(Encoding);
+            writeEngine.Options.IgnoreFirstLines = 0;
+            writeEngine.Options.IgnoreLastLines = 0;
             writeEngine.WriteFile(splitName, lines);
+
+            lines.Clear();
+
+            if (RunGcCollectForEachPart)
+                GC.Collect();
         }
 
         /// <summary>
@@ -243,7 +250,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="queues">list of chunks to merge</param>
         /// <param name="destinationFile">output filename</param>
-        internal void MergeTheChunks(SortQueue<T>[] queues, string destinationFile)
+        internal void MergeTheChunks(SortQueue<T>[] queues, string destinationFile, string headerText, string footerText)
         {
 
             try
@@ -251,6 +258,8 @@ namespace FileHelpers
                 // Merge!
                 using (var sw = new FileHelperAsyncEngine<T>(Encoding))
                 {
+                    sw.HeaderText = headerText;
+                    sw.FooterText = footerText;
                     sw.BeginWriteFile(destinationFile, EngineBase.DefaultWriteBufferSize * 4);
                     while (true)
                     {
