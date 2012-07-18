@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Project DefaultTargets="pack-release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="pack-release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 	<Import Project="Libs\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
 	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NCoverExplorer" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
 	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NCover" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />

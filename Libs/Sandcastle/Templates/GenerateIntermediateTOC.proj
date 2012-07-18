@@ -1,7 +1,7 @@
-﻿<Project DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://www.codeplex.com/SHFB -->
+﻿<Project DefaultTargets="Generate" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
   <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.XslTransform"
-    AssemblyFile="..\..\Libs\Sandcastle\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
 
   <!-- Task properties -->
   <PropertyGroup>
@@ -24,14 +24,14 @@
   <!-- The Generate Intermediate TOC target -->
   <Target Name="GenerateIntermediateTOC">
     <!-- Transform the reflection output based on the presentation style -->
-    <XslTransform Condition="'$(PresentationStyle)' == 'prototype'"
+    <SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' == 'prototype'"
       SandcastlePath="$(SandcastlePath)"
       WorkingFolder="$(WorkingFolder)"
       Transformations="ProductionTransforms\CreatePrototypeToc.xsl"
       InputFile="reflection.xml"
       OutputFile="toc.xml" />
 
-    <XslTransform Condition="'$(PresentationStyle)' != 'prototype'"
+    <SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' != 'prototype'"
       SandcastlePath="$(SandcastlePath)"
       WorkingFolder="$(WorkingFolder)"
       Transformations="ProductionTransforms\CreateVSToc.xsl"

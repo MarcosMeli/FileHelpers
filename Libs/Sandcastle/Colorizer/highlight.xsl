@@ -14,6 +14,10 @@
 <span class="highlight-comment">/*<xsl:value-of select="text()" disable-output-escaping="yes" />*/</span>
 </xsl:template>
 
+<xsl:template match="fsblockcomment">
+<span class="highlight-comment">(*<xsl:value-of select="text()" disable-output-escaping="yes" />*)</span>
+</xsl:template>
+
 <xsl:template match="cpp-linecomment">
 <span class="highlight-comment">//<xsl:value-of select="text()" disable-output-escaping="yes" /></span>
 </xsl:template>

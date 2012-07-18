@@ -6,8 +6,13 @@ using FileHelpers.DataLink;
 namespace FileHelpers.ExcelNPOIStorage {
 
 	public class ExcelNPOIStorage :DataStorage{
+	    
+        public ExcelNPOIStorage(Type recordClass)
+	        : base(recordClass)
+	    {
+	    }
 
-		public override object[] ExtractRecords() {
+	    public override object[] ExtractRecords() {
 			throw new NotImplementedException();
 		}
 
