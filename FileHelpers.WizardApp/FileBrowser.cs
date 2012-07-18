@@ -104,9 +104,8 @@ namespace FileHelpers.WizardApp
 
         protected override void OnPaint(PaintEventArgs e)
         {
-
             if (mCharWidth == -1)
-                  mCharWidth = (int)e.Graphics.MeasureString("m", this.Font).Width - 5;
+                  mCharWidth = (int) TextRenderer.MeasureText("m", this.Font).Width - 5;
 
             int width;
             int left = mTextLeft;

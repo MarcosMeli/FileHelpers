@@ -10,7 +10,7 @@ namespace FileHelpers
     /// Base class for all Field Types.
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
-    internal abstract class FieldBase
+    public abstract class FieldBase
         : ICloneable
     {
 
@@ -25,17 +25,17 @@ namespace FileHelpers
         /// <summary>
         /// type of object to be created,  eg DateTime
         /// </summary>
-        internal Type FieldType { get; private set; }
-
-        /// <summary>
-        /// Number of extra characters used,  delimiters and quote characters
-        /// </summary>
-        internal int CharsToDiscard { get; set; }
+        public Type FieldType { get; private set; }
 
         /// <summary>
         /// Provider to convert to and from text
         /// </summary>
-        internal ConverterBase ConvertProvider { get; private set; }
+        public ConverterBase Converter { get; private set; }
+        
+        /// <summary>
+        /// Number of extra characters used,  delimiters and quote characters
+        /// </summary>
+        internal int CharsToDiscard { get; set; }
 
         /// <summary>
         /// Field type of an array or it is just fieldType.
@@ -46,7 +46,18 @@ namespace FileHelpers
         /// <summary>
         /// Is this field an array?
         /// </summary>
-        internal bool IsArray { get; set; }
+        public bool IsArray { get; private set; }
+
+        /// <summary>
+        /// Array must have this many entries
+        /// </summary>
+        public int ArrayMinLength { get; set; }
+
+        /// <summary>
+        /// Array may have this many entries,  if equal to ArrayMinLength then
+        /// it is a fixed length array
+        /// </summary>
+        public int ArrayMaxLength { get; set; }
 
         /// <summary>
         /// Seems to be duplicate of FieldTypeInternal except it is ONLY set
@@ -54,16 +65,6 @@ namespace FileHelpers
         /// </summary>
         internal Type ArrayType { get; set; }
 
-        /// <summary>
-        /// Array must have this many entries
-        /// </summary>
-        internal int ArrayMinLength { get; set; }
-
-        /// <summary>
-        /// Array may have this many entries,  if equal to ArrayMinLength then
-        /// it is a fixed length array
-        /// </summary>
-        internal int ArrayMaxLength { get; set; }
 
         /// <summary>
         /// Am I the first field in an array list
@@ -78,7 +79,7 @@ namespace FileHelpers
         /// <summary>
         /// Do we process this field but not store the value
         /// </summary>
-        internal bool Discarded { get; set; }
+        public bool Discarded { get; set; }
 
         /// <summary>
         /// Unused!
@@ -99,10 +100,11 @@ namespace FileHelpers
         /// Details about the extraction criteria
         /// </summary>
         internal FieldInfo FieldInfo { get; set; }
+
         /// <summary>
         /// indicates whether we trim leading and/or trailing whitespace
         /// </summary>
-        internal TrimMode TrimMode { get; set; }
+        public TrimMode TrimMode { get; set; }
 
         /// <summary>
         /// Character to chop off front and / rear of the string
@@ -112,7 +114,7 @@ namespace FileHelpers
         /// <summary>
         /// The field may not be present on the input data (line not long enough)
         /// </summary>
-        internal bool IsOptional { get; set; }
+        public bool IsOptional { get; set; }
 
         /// <summary>
         /// The next field along is optional,  optimise processing next records
@@ -153,8 +155,6 @@ namespace FileHelpers
         {
             get { return FieldInfo.Name; }
         }
-
-
 
         // For performance add it here
         /// <summary>
@@ -372,14 +372,14 @@ namespace FileHelpers
             if (attribs.Length > 0)
             {
                 FieldConverterAttribute conv = (FieldConverterAttribute)attribs[0];
-                ConvertProvider = conv.Converter;
+                this.Converter = conv.Converter;
                 conv.ValidateTypes(FieldInfo);
             }
             else
-                ConvertProvider = ConvertHelpers.GetDefaultConverter(fi.Name, FieldType);
+                this.Converter = ConvertHelpers.GetDefaultConverter(fi.Name, FieldType);
 
-            if (ConvertProvider != null)
-                ConvertProvider.mDestinationType = FieldTypeInternal;
+            if (this.Converter != null)
+                this.Converter.mDestinationType = FieldTypeInternal;
 
             attribs = fi.GetCustomAttributes(typeof(FieldNullValueAttribute), true);
 
@@ -432,7 +432,7 @@ namespace FileHelpers
         /// <returns>String representation of field</returns>
         internal string CreateFieldString(object fieldValue)
         {
-            if (ConvertProvider == null)
+            if (this.Converter == null)
             {
                 if (fieldValue == null)
                     return string.Empty;
@@ -441,7 +441,7 @@ namespace FileHelpers
             }
             else
             {
-                return ConvertProvider.FieldToString(fieldValue);
+                return this.Converter.FieldToString(fieldValue);
             }
         }
 
@@ -557,7 +557,7 @@ namespace FileHelpers
 
             try
             {
-                if (ConvertProvider == null)
+                if (this.Converter == null)
                 {
                     if (IsStringField)
                         val = TrimString(extractedString);
@@ -579,7 +579,7 @@ namespace FileHelpers
                 {
                     var trimmedString = extractedString.Trim();
 
-                    if (ConvertProvider.CustomNullHandling == false &&
+                    if (this.Converter.CustomNullHandling == false &&
                         trimmedString.Length == 0)
                     {
                         return new AssignResult { Value = GetNullValue(line), NullValueUsed = true };
@@ -587,9 +587,9 @@ namespace FileHelpers
                     else
                     {
                         if (TrimMode == FileHelpers.TrimMode.Both)
-                            val = ConvertProvider.StringToField(trimmedString);
+                            val = this.Converter.StringToField(trimmedString);
                         else
-                            val = ConvertProvider.StringToField(TrimString(extractedString));
+                            val = this.Converter.StringToField(TrimString(extractedString));
 
                         if (val == null)
                             return new AssignResult { Value = GetNullValue(line), NullValueUsed = true};
@@ -611,10 +611,10 @@ namespace FileHelpers
             }
             catch (Exception ex)
             {
-                if (ConvertProvider == null || ConvertProvider.GetType().Assembly == typeof(FieldBase).Assembly)
+                if (this.Converter == null || this.Converter.GetType().Assembly == typeof(FieldBase).Assembly)
                     throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, ex.Message, ex);
                 else
-                    throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + ConvertProvider.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
+                    throw new ConvertException(extractedString, FieldTypeInternal, FieldInfo.Name, line.mReader.LineNumber, fieldString.ExtractedFrom + 1, "Your custom converter: " + this.Converter.GetType().Name + " throws an " + ex.GetType().Name + " with the message: " + ex.Message, ex);
             }
         }
 
@@ -729,7 +729,7 @@ namespace FileHelpers
                 val = fieldValue;
             else
             {
-                if (ConvertProvider == null)
+                if (this.Converter == null)
                     val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
                 else
                 {
@@ -739,7 +739,7 @@ namespace FileHelpers
                     }
                     catch
                     {
-                        val = ConvertProvider.StringToField(fieldValue.ToString());
+                        val = this.Converter.StringToField(fieldValue.ToString());
                     }
                 }
             }
@@ -805,7 +805,7 @@ namespace FileHelpers
 
             res.FieldType = FieldType;
             res.CharsToDiscard = CharsToDiscard;
-            res.ConvertProvider = ConvertProvider;
+            res.Converter = this.Converter;
             res.FieldTypeInternal = FieldTypeInternal;
             res.IsArray = IsArray;
             res.ArrayType = ArrayType;

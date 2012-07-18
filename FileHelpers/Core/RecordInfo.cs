@@ -47,7 +47,13 @@ namespace FileHelpers
         /// <summary>
         /// Number of fields we are processing
         /// </summary>
-        public int FieldCount { get; private set; }
+        public int FieldCount
+        {
+            get
+            {
+                return this.Fields.Length;
+            }
+        }
 
         /// <summary>
         /// List of fields and the extraction details
@@ -208,7 +214,6 @@ namespace FileHelpers
             var fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
 
             Fields = CreateCoreFields(fields, recordAttribute);
-            FieldCount = Fields.Length;
 
             if (FieldCount == 0)
                 throw new BadUsageException(Messages.Errors.ClassWithOutFields
@@ -421,7 +426,7 @@ namespace FileHelpers
         {
             foreach (var field in Fields)
             {
-                if (field.FieldInfo.Name.ToLower() == name.ToLower())
+                if (field.FieldInfo.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                     return field.FieldInfo;
             }
 
@@ -450,7 +455,6 @@ namespace FileHelpers
 
             res.CommentAnyPlace = CommentAnyPlace;
             res.CommentMarker = CommentMarker;
-            res.FieldCount = FieldCount;
             res.IgnoreEmptyLines = IgnoreEmptyLines;
             res.IgnoreEmptySpaces = IgnoreEmptySpaces;
             res.IgnoreFirst = IgnoreFirst;

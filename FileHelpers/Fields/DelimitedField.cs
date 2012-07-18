@@ -8,7 +8,7 @@ namespace FileHelpers
     /// <summary>
     /// Define a field that is delimited, eg CSV and may be quoted
     /// </summary>
-	internal sealed class DelimitedField
+	public sealed class DelimitedField
         : FieldBase
 	{
 

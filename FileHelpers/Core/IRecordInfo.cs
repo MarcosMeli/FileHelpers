@@ -108,5 +108,7 @@ namespace FileHelpers
         /// Cache of routines to handle various operations on the record
         /// </summary>
         RecordOperations Operations { get; }
+
+        void RemoveField(string fieldname);
     }
 }

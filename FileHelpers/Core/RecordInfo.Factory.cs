@@ -45,5 +45,12 @@ namespace FileHelpers
                 return (IRecordInfo) res.Clone();
             }
         }
-   }
+
+        public void RemoveField(string fieldname)
+        {
+            var index = GetFieldIndex(fieldname);
+            Fields[index] = null;
+            Fields = Array.FindAll(Fields, x => x != null);
+        }
+    }
 }

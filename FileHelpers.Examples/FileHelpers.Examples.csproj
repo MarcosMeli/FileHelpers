@@ -96,6 +96,7 @@
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
     <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs" />
+    <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
     <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />

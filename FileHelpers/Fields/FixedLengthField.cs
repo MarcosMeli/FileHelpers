@@ -7,7 +7,7 @@ namespace FileHelpers
     /// <summary>
     /// Fixed length field that has length and alignment
     /// </summary>
-	internal sealed class FixedLengthField
+	public sealed class FixedLengthField
         : FieldBase
 	{
 

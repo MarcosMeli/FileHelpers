@@ -6,7 +6,8 @@ namespace FileHelpers.Options
     /// This class allows you to set some options of the delimited records
     /// at runtime. With options the library is more flexible.
 	/// </summary>
-	public sealed class DelimitedRecordOptions: RecordOptions
+	public sealed class DelimitedRecordOptions
+        : RecordOptions
 	{
 
 		/// <summary>
@@ -33,5 +34,7 @@ namespace FileHelpers.Options
 					((DelimitedField) mRecordInfo.Fields[i]).Separator = value;
 			}
 		}
+
+	  
 	}
 }

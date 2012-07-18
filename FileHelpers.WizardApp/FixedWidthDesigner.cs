@@ -181,7 +181,7 @@ namespace FileHelpers.WizardApp
         private void CalculateCharWidth(Graphics g)
         {
             if (mCharWidth == -1)
-                mCharWidth = (int)g.MeasureString("m", this.Font).Width - 4;
+                mCharWidth = (int)TextRenderer.MeasureText("m", this.Font).Width - 4;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

@@ -4,6 +4,8 @@ using System.ComponentModel;
 
 namespace FileHelpers.Options
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// This class allows you to set some options of the records at runtime.
     /// With these options the library is now more flexible than ever.
@@ -14,6 +16,7 @@ namespace FileHelpers.Options
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal IRecordInfo mRecordInfo;
+
 
         /// <summary>
         /// This class allows you to set some options of the records at runtime.
@@ -26,6 +29,20 @@ namespace FileHelpers.Options
             mRecordConditionInfo = new RecordConditionInfo(info);
 			mIgnoreCommentInfo = new IgnoreCommentInfo(info);
 		}
+
+
+        public FieldBaseCollection Fields
+        {
+            get
+            {
+                return new FieldBaseCollection(mRecordInfo.Fields);
+            }
+        }
+
+        public void RemoveField(string fieldname)
+        {
+            mRecordInfo.RemoveField(fieldname);
+        }
 
         /// <summary>
         /// The number of fields of the record type.
@@ -44,7 +61,6 @@ namespace FileHelpers.Options
         //        return mRecordInfo.mFields[index].mFieldInfo.Name;
         //    }
         //}
-
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -264,6 +280,16 @@ namespace FileHelpers.Options
         public string RecordToString(object record)
         {
             return mRecordInfo.Operations.RecordToString(record);
+        }
+    }
+
+    public sealed class FieldBaseCollection
+        :List<FieldBase>
+    {
+        internal FieldBaseCollection(FieldBase[] fields)
+            :base(fields)
+        {
+            
         }
     }
 }
