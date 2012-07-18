@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.DataLink", "Fil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Examples", "FileHelpers.Examples\FileHelpers.Examples.csproj", "{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelNPOIStorage", "FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj", "{BEB0D823-6A7E-47FD-A275-1B3314F8412D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
