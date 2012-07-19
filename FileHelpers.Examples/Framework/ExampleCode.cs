@@ -42,10 +42,14 @@ namespace ExamplesFramework
         /// <param name="example">Demo structure from template parse</param>
         /// <param name="name">Title from TODO:</param>
         /// <param name="category">Category from TODO:</param>
-        public ExampleCode(ExampleBase example, string name, string category)
+        /// <param name="solutionFile">The solutionfilename</param>
+        public ExampleCode(ExampleBase example, string name, string category, string solutionFile)
         {
             Example = example;
-            Example.Console.Changed += new EventHandler(Console_Changed); Name = name;
+            Example.Console.Changed += new EventHandler(Console_Changed); 
+            Example.InputFileChanged += new EventHandler(Input_Changed); 
+            Name = name;
+            OriginalFileName = solutionFile;
             Category = category;
             Runnable = true;
             AutoRun = false;
@@ -65,6 +69,20 @@ namespace ExamplesFramework
             OnConsoleChanged();
         }
 
+
+        internal event EventHandler InputChanged;
+
+        private void OnInputChanged()
+        {
+            EventHandler handler = InputChanged;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        void Input_Changed(object sender, EventArgs e)
+        {
+            OnInputChanged();
+        }
+
         /// <summary>
         /// Example class that runs
         /// </summary>
@@ -74,6 +92,8 @@ namespace ExamplesFramework
         /// Title set from code
         /// </summary>
         public string Name { get; private set; }
+        
+        public string OriginalFileName { get; private set; }
 
         /// <summary>
         /// Description set from code
@@ -106,28 +126,18 @@ namespace ExamplesFramework
         /// </summary>
         public bool AutoRun { get; set; }
 
-        /// <summary>
-        /// Indicates if the Example has Console Output
-        /// </summary>
-        public bool HasOutput { get; set; }
+        ///// <summary>
+        ///// Indicates if the Example has Console Output
+        ///// </summary>
+        //public bool HasOutput { get; set; }
 
-        private static string TempPath
-        {
-            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Temp"); }
-        }
-
+        
         public void RunExample()
         {
             try
             {
-                EnsureDirectoryExists(TempPath);
-                Environment.CurrentDirectory = TempPath;
-                
-                foreach (ExampleFile file in this.Files)
-                {
-                    if (file.Status == ExampleFile.FileType.InputFile)
-                        File.WriteAllText(file.Filename, file.Contents, Encoding.UTF8);
-                }
+                ExamplesEnvironment.InitEnvironment(this);
+
                 this.Example.RunExample();
             }
             catch (Exception ex)
@@ -155,10 +165,10 @@ namespace ExamplesFramework
 
         }
 
-        private void EnsureDirectoryExists(string tempPath)
+        public void OnNewFileCreated(string fullPath)
         {
-            if (!Directory.Exists(tempPath))
-                Directory.CreateDirectory(tempPath);
+            var name = Path.GetFileName(fullPath);
+
         }
     }
 }

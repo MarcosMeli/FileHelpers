@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name: Read File with FieldNullValue}
-    //-> {Example.Description:Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute}
+    //-> Name: Read File with FieldNullValue
+    //-> Description:Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute
 
     public class ReadFileFieldNullValue
         : ExampleBase
@@ -14,7 +14,7 @@ namespace ExamplesFramework
 
         public override void Run()
         {
-            //-> {Example.File:Example.cs}
+            //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
@@ -27,10 +27,10 @@ namespace ExamplesFramework
                     Console.WriteLine("No Date");
                 Console.WriteLine(record.Freight);
             }
-            //-> {/Example.File}
+            //-> /File
         }
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
         [DelimitedRecord("|")]
         public class Orders
         {
@@ -44,16 +44,16 @@ namespace ExamplesFramework
 
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*10248|VINET|04071996|32.38
         10249|TOMSP||11.61
         10250|HANAR|08071996|65.83
         10251|VICTE|08071996|41.34*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_easy.html}
+        //-> File:example_easy.html
         /*<h2>Easy Example </h2>
          * <blockquote>
          * <p>If you have a source file like this, separated by a |:</p>
@@ -69,6 +69,6 @@ namespace ExamplesFramework
          * <img height="93" src="${URL}vs_orders.png" width="165" alt="Visual studio intellisense"/>
          * </blockquote>
          */
-        //-> {/Example.File}
+        //-> /File
     }
 }

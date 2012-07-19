@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name: Engine Options}
-    //-> {Example.Description: Change the options of the engines at run time}
+    //-> Name: Engine Options
+    //-> Description: Change the options of the engines at run time
 
     public class EngineOptions
         : ExampleBase
@@ -25,9 +25,9 @@ namespace ExamplesFramework
             //engine.ReadString(customers)
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:CreateCustomers.cs}
+        //-> File:CreateCustomers.cs
         /// <summary>
         /// This routine reads the data and creates an array of Customers for our samples
         /// </summary>
@@ -45,9 +45,9 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
             // use the common engine to break down the records above
             return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:CustomersVerticalBar.cs}
+        //-> File:CustomersVerticalBar.cs
         /// <summary>
         /// Sample class that is delimited by | default
         /// </summary>
@@ -72,7 +72,7 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
                 return CustomerID + " - " + CompanyName + ", " + ContactName;
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
     }
 }

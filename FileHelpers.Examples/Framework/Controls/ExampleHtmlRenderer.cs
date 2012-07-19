@@ -23,7 +23,7 @@ namespace ExamplesFramework
 
         public void ShowCustomHtml(string html)
         {
-            splitContainer1.Panel2Collapsed = true;
+            splitOutHorizontal.Panel2Collapsed = true;
             browserExample.DocumentText = html;
         }
 
@@ -65,6 +65,7 @@ namespace ExamplesFramework
             try
             {
                 Example.ConsoleChanged += Example_ConsoleChanged;
+                Example.ConsoleChanged += Example_InputChanged;
                 Example.AddedFile += FileHandler;
                 Example.RunExample();
             }
@@ -72,6 +73,7 @@ namespace ExamplesFramework
             {
                 Example.AddedFile -= FileHandler;
                 Example.ConsoleChanged -= Example_ConsoleChanged;
+                Example.ConsoleChanged -= Example_InputChanged;
             }}
 
         
@@ -91,7 +93,7 @@ namespace ExamplesFramework
 sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.Console.Output + "</pre></div></body>");
             browserOutput.DocumentText = sb.ToString();
 
-            splitContainer1.Panel2Collapsed = false;
+            splitOutHorizontal.Panel2Collapsed = false;
 
             //var console = browserOutput.Document.GetElementById("consola");
 
@@ -99,6 +101,31 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
             //    console.InnerHtml = "<pre>"+  Example.Example.Console.Output + "</pre>";
         }
 
+
+        void Example_InputChanged(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+
+            Theme.AddHeaderStyles(sb);
+
+            sb.AppendLine(@"<body style=""margin:0px;background-color:#000;color:#DDD;"">");
+
+            //            consoleRes.AppendLine(@"<div class=""FileLeft"">&nbsp;</div>
+            //<div class=""FileMiddle"">Console</div>
+            //<div class=""FileRight"">&nbsp;</div><br/>
+            //<div style=""clear:both""></div>");
+
+            sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.InputFile + "</pre></div></body>");
+            browserInput.DocumentText = sb.ToString();
+            
+            splitOutHorizontal.Panel2Collapsed = false;
+            splitBottom.Panel1Collapsed = false;
+
+            //var console = browserOutput.Document.GetElementById("consola");
+
+            //if (console != null)
+            //    console.InnerHtml = "<pre>"+  Example.Example.Console.Output + "</pre>";
+        }
         
         private string ExampleToHtml()
         {
@@ -108,16 +135,41 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
 
             Theme.AddExampleTitle(res, Example);
 
-            for (int i = 0; i < Example.Files.Count; i++)
+            if (string.IsNullOrEmpty(Example.Example.HtmlBody))
             {
-                var file = Example.Files[i];
-                //res.AppendLine("<BR/>");
 
-                Theme.AddFile(res, file);
-                
-                res.AppendLine("<BR/>");
+                for (int i = 0; i < Example.Files.Count; i++)
+                {
+                    var file = Example.Files[i];
+
+                    if (file.Status ==
+                        ExampleFile.FileType.OutputFile)
+                        continue;
+
+                    Theme.AddFile(res, file);
+
+                    res.AppendLine("<BR/>");
+                }
             }
-            
+            else
+            {
+                var html = Example.Example.HtmlBody;
+                
+                for (int i = 0; i < Example.Files.Count; i++)
+                {
+                    var file = Example.Files[i];
+
+                    if (file.Status == ExampleFile.FileType.OutputFile)
+                        continue;
+
+                    var filecontents = Theme.AddFile(file);
+                    html = html.Replace("${" + file.Filename + "}", filecontents);
+                    
+                }
+
+                res.AppendLine(html);
+            }
+
             Theme.AddExampleFooter(res, Example);
 
             return res.ToString();
@@ -129,7 +181,7 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
             cmdRunDemo.Visible = false;
             browserExample.DocumentText = string.Empty;
             browserOutput.DocumentText = string.Empty;
-            splitContainer1.Panel2Collapsed = true;
+            splitOutHorizontal.Panel2Collapsed = true;
         }
 
         private void cmdRunDemo_Click(object sender, EventArgs e)

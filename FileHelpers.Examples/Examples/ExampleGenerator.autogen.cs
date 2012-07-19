@@ -15,26 +15,20 @@ namespace Examples
         {
 		    var examples = new List<ExampleCode>();
             ExampleCode example;
-example = new ExampleCode(new ReadFile(), "Read Delimited File", "Basic");
+example = new ExampleCode(new ReadFile(), "Read Delimited File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\10.Basic\10.ReadFileDelimited.cs");
 example.Description = @"Example of how to read a Delimited File";
 example.AutoRun = true;
 examples.Add(example);
-file = new ExampleFile("Example.cs");
-file.Contents = @"var engine = new FileHelperEngine<Orders>();
-var records = engine.ReadFile(""Input.txt"");
-
-foreach (var record in records)
-{
-    Console.WriteLine(record.CustomerID);
-    Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
-    Console.WriteLine(record.Freight);
-}
+file = new ExampleFile("Input.txt");
+file.Contents = @"10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAS|08071996|65.83
+10251|VICTE|08071996|41.34
 ";
-file.Language = NetLanguage.CSharp;
+file.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(file);
 file = new ExampleFile("RecordClass.cs");
 file.Contents = @"/// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
-
 [DelimitedRecord(""|"")]
 public class Orders
 {
@@ -50,35 +44,21 @@ public class Orders
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"10248|VINET|04071996|32.38
-10249|TOMSP|05071996|11.61
-10250|HANAR|08071996|65.83
-10251|VICTE|08071996|41.34
+file = new ExampleFile("Example.cs");
+file.Contents = @"var engine = new FileHelperEngine<Orders>();
+var records = engine.ReadFile(""Input.txt"");
+
+foreach (var record in records)
+{
+    Console.WriteLine(record.CustomerID);
+    Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
+    Console.WriteLine(record.Freight);
+}
 ";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("example_easy.html");
-file.Contents = @"        <h2>Easy Example </h2>
-<blockquote>
-<p>If you have a source file like this, separated by a |:</p>
-${Input.txt}
-<p>You first declare a Record Mapping Class:</p>
-${RecordClass.cs}
-<p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-${Example.cs}
-<p>Now you have an Orders array named <span class=""cs-literal"">res</span> where
-every item in the array is an Order object. If you want to access one of the fields
-let the Visual Studio IntelliSense bring up the field names for you.</p>
-<blockquote>
-<img height=""93"" src=""${URL}vs_orders.png"" width=""165"" alt=""Visual studio intellisense""/>
-</blockquote>
-         
-";
-file.Status = ExampleFile.FileType.HtmlFile;
+file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new WriteFile(), "Write Delimited File", "Basic");
+example = new ExampleCode(new WriteFile(), "Write Delimited File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\10.Basic\20.WriteFileDelimited.cs");
 example.Description = @"Example of how to write a Delimited File";
 example.AutoRun = true;
 examples.Add(example);
@@ -146,7 +126,7 @@ SQL database reads, or in this case classes created within an application.
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadFixedFile(), "Read Fixed File", "Basic");
+example = new ExampleCode(new ReadFixedFile(), "Read Fixed File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\10.Basic\30.ReadFileFixed.cs");
 example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
 example.AutoRun = true;
 examples.Add(example);
@@ -202,7 +182,7 @@ ${Console}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new WriteFileFixed(), "Write Fixed File", "Basic");
+example = new ExampleCode(new WriteFileFixed(), "Write Fixed File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\10.Basic\40.WriteFileFixed.cs");
 example.Description = @"Example of how to write a Fixed Record File";
 example.AutoRun = true;
 examples.Add(example);
@@ -245,7 +225,7 @@ public class Customer
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadFileMissingValue(), "Error when reading file with missing values", "Empty Values");
+example = new ExampleCode(new ReadFileMissingValue(), "Error when reading file with missing values", "Empty Values", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\12.Empty Values\05.ReadFileMissingValue.cs");
 example.Description = @"Example of the error you get when read a file with some missing values and use the FieldNullValue attribute";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -305,7 +285,7 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadFileFieldNullValue(), "Read File with FieldNullValue", "Empty Values");
+example = new ExampleCode(new ReadFileFieldNullValue(), "Read File with FieldNullValue", "Empty Values", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\12.Empty Values\10.ReadFileFieldNullValue.cs");
 example.Description = @"Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -369,7 +349,7 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadFileNullable(), "Read File with Nullable Types", "Empty Values");
+example = new ExampleCode(new ReadFileNullable(), "Read File with Nullable Types", "Empty Values", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\12.Empty Values\20.ReadFileNullable.cs");
 example.Description = @"Example of how to read a file with some missing values and use <b>Nullable Types</b>";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -432,7 +412,7 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new DelimitedRecord(), "[DelimitedRecord(delimiter)]", "Attributes Record Class");
+example = new ExampleCode(new DelimitedRecord(), "[DelimitedRecord(delimiter)]", "Attributes Record Class", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\15.Attributes Record Class\10.DelimitedRecord.cs");
 example.Description = @"Example of how to use DelimitedRecord attribute";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -501,7 +481,7 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new FixedLengthRecordExample(), "FixedLengthRecord", "Attributes Record Class");
+example = new ExampleCode(new FixedLengthRecordExample(), "FixedLengthRecord", "Attributes Record Class", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\15.Attributes Record Class\30.FixedLengthRecord.cs");
 example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -544,7 +524,7 @@ file.Contents = @"01010 Alfreds Futterkiste          13122005
 file.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new FixedLengthRecordLastVariableExample(), "FixedLengthRecord FixedMode.AllowLessChars", "Attributes Record Class");
+example = new ExampleCode(new FixedLengthRecordLastVariableExample(), "FixedLengthRecord FixedMode.AllowLessChars", "Attributes Record Class", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\15.Attributes Record Class\31.FixedLengthRecordLastVariable.cs");
 example.Description = @"Example of how to use the FixedLengthRecord";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -587,7 +567,7 @@ file.Contents = @"01010 Alfreds Futterkiste          13122005
 file.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new DemoFieldLength(), "[FieldLength]", "Attributes Fields");
+example = new ExampleCode(new DemoFieldLength(), "[FieldLength]", "Attributes Fields", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\16.Attributes Fields\10.FieldLength.cs");
 example.Description = @"Example of how to use [FieldLength] attribute";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
@@ -640,7 +620,7 @@ file.Contents = @"01010 Alfreds Futterkiste          13122005
 file.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new EnumConverterExample(), "Enum Converter Example", "Converters");
+example = new ExampleCode(new EnumConverterExample(), "Enum Converter Example", "Converters", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\18.Converters\50.EnumConverter.cs");
 example.Description = @"When you have a string field in your files that can be better handled if you map it to an enum.";
 examples.Add(example);
 file = new ExampleFile("TheEnumerator.cs");
@@ -723,7 +703,7 @@ ${RunEngine.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadBeforeEventSample(), "Read Before Event Handling", "Events");
+example = new ExampleCode(new ReadBeforeEventSample(), "Read Before Event Handling", "Events", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\20.Events\10.ReadBeforeEvent.cs");
 example.Description = @"Show how to implement read before event";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -804,7 +784,7 @@ file.Contents = @"private void BeforeEvent(EngineBase engine, BeforeReadEventArg
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new ReadAfterEventSample(), "Read After Event Handling", "Events");
+example = new ExampleCode(new ReadAfterEventSample(), "Read After Event Handling", "Events", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\20.Events\20.ReadAfterEventSample.cs");
 example.Description = @"Show how to implement read after event";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -871,7 +851,7 @@ file.Contents = @"private void AfterEvent(EngineBase engine, AfterReadEventArgs<
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new WriteBeforeEventSample(), "Write Before Event Handling", "Events");
+example = new ExampleCode(new WriteBeforeEventSample(), "Write Before Event Handling", "Events", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\20.Events\30.WriteBeforeEventSample.cs");
 example.Description = @"Show how to implement write before event";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -940,7 +920,7 @@ public class OrdersFixed
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new WriteAfterEventSample(), "Write After Event Handling", "Events");
+example = new ExampleCode(new WriteAfterEventSample(), "Write After Event Handling", "Events", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\20.Events\40.WriteAfterEventSample.cs");
 example.Description = @"Show how to implement write after event";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -957,11 +937,8 @@ public override void Run()
     engine.AfterWriteRecord += new AfterWriteHandler<OrdersFixed>(AfterWriteEvent);
     engine.WriteFile(""output.txt"", result);
 }
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("EventHandler.cs");
-file.Contents = @"private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
+
+private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
 {
    //  We only want clients with large frieght values
     if (e.Record.CustomerID == ""HANAR"" )
@@ -1010,7 +987,7 @@ public class OrdersFixed
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SimpleErrorHandlingExample(), "Simple Error handling", "ErrorHandling");
+example = new ExampleCode(new SimpleErrorHandlingExample(), "Simple Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\25.ErrorHandling\10.ErrorHandling.cs");
 example.Description = @"Read the file or reject the whole file";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1101,7 +1078,7 @@ ${Console}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ErrorModeErrorHandlingExample(), "ErrorMode Error handling", "ErrorHandling");
+example = new ExampleCode(new ErrorModeErrorHandlingExample(), "ErrorMode Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs");
 example.Description = @"Read the file rejecting bad records";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1186,7 +1163,7 @@ the ErrorManager you have the records with errors and can do wherever you want.<
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "Ignore Mode Error handling", "ErrorHandling");
+example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "Ignore Mode Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs");
 example.Description = @"Read the file dropping bad records";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1271,7 +1248,7 @@ ${RunEngine.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode saving Errors", "ErrorHandling");
+example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode saving Errors", "ErrorHandling", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs");
 example.Description = @"Read the file saving bad records";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1375,7 +1352,60 @@ ${LoadErrors.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new MultipleDelimiters(), "Multiple Delimiters", "Advanced");
+example = new ExampleCode(new EngineOptions(), "Engine Options", "Advanced", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\50.Advanced\05.DynamicChangeOptions.cs");
+example.Description = @"Change the options of the engines at run time";
+examples.Add(example);
+file = new ExampleFile("CreateCustomers.cs");
+file.Contents = @"        /// <summary>
+        /// This routine reads the data and creates an array of Customers for our samples
+        /// </summary>
+        /// <returns>Array of customers</returns>
+        private CustomersVerticalBar[] CreateCustomers()
+        {
+            //  6 records of sample data to parse
+            string tempCustomers = @""ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
+BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
+BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"";
+
+            // use the common engine to break down the records above
+            return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
+        }
+";
+file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
+file = new ExampleFile("CustomersVerticalBar.cs");
+file.Contents = @"/// <summary>
+/// Sample class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Order of fields in the class is the same as the order in the file
+/// </remarks>
+[DelimitedRecord(""|"")]
+public class CustomersVerticalBar
+{
+    public string CustomerID;
+    public string DummyField;
+    public string CompanyName;
+    public string ContactName;
+    public string ContactTitle;
+    public string Address;
+    public string City;
+    public string Country;
+
+    //-> To display in the PropertyGrid.
+    public override string ToString()
+    {
+        return CustomerID + "" - "" + CompanyName + "", "" + ContactName;
+    }
+}
+";
+file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
+
+example = new ExampleCode(new MultipleDelimiters(), "Multiple Delimiters", "Advanced", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\50.Advanced\10.MultipleDelimiters.cs");
 example.Description = @"Write a file with different delimiters using the same record";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1465,7 +1495,7 @@ file.Contents = @"<h2>Delimited File Engine</h2>
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new MultiRecordSample(), "Multi Record Processing", "Advanced");
+example = new ExampleCode(new MultiRecordSample(), "Multi Record Processing", "Advanced", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\50.Advanced\30.MultiRecordSample.cs");
 example.Description = @"Read or write a file with many different layouts";
 examples.Add(example);
 file = new ExampleFile("Input.txt");
@@ -1641,10 +1671,9 @@ ${Orders.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new BigFileSort(), "Sort Big File with Record Class", "Sorting");
+example = new ExampleCode(new BigFileSort(), "Sort Big File with Record Class", "Sorting", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\60.Sorting\10.SortBigFiles.cs");
 example.Description = @"Shows how to sort a big file using a record class";
 example.Runnable = false;
-example.HasOutput = false;
 examples.Add(example);
 file = new ExampleFile("SortingWithRecord.cs");
 file.Contents = @"public override void Run()
@@ -1699,7 +1728,7 @@ public class OrdersTab
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new BigFileSortString1(), "Sort Big File without Record Class 1", "Sorting");
+example = new ExampleCode(new BigFileSortString1(), "Sort Big File without Record Class 1", "Sorting", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\60.Sorting\20.SortBigFilesString.cs");
 example.Description = @"Shows how to sort a big file without a record class";
 example.Runnable = false;
 examples.Add(example);
@@ -1717,7 +1746,7 @@ file.Contents = @"public override void Run()
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new BigFileSortString2(), "Sort Big File without Record Class 2", "Sorting");
+example = new ExampleCode(new BigFileSortString2(), "Sort Big File without Record Class 2", "Sorting", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\60.Sorting\30.SortBigFilesString2.cs");
 example.Description = @"Shows how to sort a big file without a record class";
 example.Runnable = false;
 examples.Add(example);
@@ -1739,7 +1768,7 @@ file.Contents = @"public override void Run()
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SimpleMasterDetailSample(), "Simple Master Detail sample", "MasterDetail");
+example = new ExampleCode(new SimpleMasterDetailSample(), "Simple Master Detail sample", "MasterDetail", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\90.MasterDetail\10.SimpleMasterDetail.cs");
 example.Description = @"Show how to implement Master detail reading using a selection subroutine";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -1835,7 +1864,7 @@ public class Orders
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SecondMasterDetailSample(), "Master Detail sample", "MasterDetail");
+example = new ExampleCode(new SecondMasterDetailSample(), "Master Detail sample", "MasterDetail", @"D:\Desarrollo\Devoo\FileHelpers\trunk\FileHelpers.Examples\Examples\90.MasterDetail\20.MasterDetailSample2.cs");
 example.Description = @"Show how to implement Master detail reading where record contains characters";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");

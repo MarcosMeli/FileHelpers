@@ -5,16 +5,16 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Write Delimited File}
-    //-> {Example.Description:Example of how to write a Delimited File}
-    //-> {Example.AutoRun:true}
+    //-> Name:Write Delimited File
+    //-> Description:Example of how to write a Delimited File
+    //-> AutoRun:true
 
     public class WriteFile
         : ExampleBase
     {
         public override void Run()
         {
-            //-> {Example.File:Example.cs}
+            //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             
             var orders = new List<Orders>();
@@ -37,12 +37,12 @@ namespace ExamplesFramework
 
             engine.WriteFile("Output.Txt", orders);
 
-            //-> {/Example.File}
+            //-> /File
             Console.WriteLine(engine.WriteString(orders));
 
         }
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
         /// <summary>
         /// Layout for a file delimited by |
         /// </summary>
@@ -58,12 +58,12 @@ namespace ExamplesFramework
 
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File: Output.Txt}
-        //-> {/Example.File}
+        //-> File: Output.Txt
+        //-> /File
 
-        //-> {Example.File: example_easy_write.html}
+        //-> File: example_easy_write.html
         /*<h2>Easy Write Example</h2>
          * <blockquote>
          * <p>To write an output file separated by a |:</p>
@@ -75,6 +75,6 @@ namespace ExamplesFramework
          * <p>The classes you use could come from anywhere,  Linq to Entities,
          * SQL database reads, or in this case classes created within an application.
         */
-        //-> {/Example.File}
+        //-> /File
     }
 }

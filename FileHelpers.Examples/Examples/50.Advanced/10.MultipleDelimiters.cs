@@ -5,14 +5,14 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Multiple Delimiters}
-    //-> {Example.Description:Write a file with different delimiters using the same record}
+    //-> Name:Multiple Delimiters
+    //-> Description:Write a file with different delimiters using the same record
 
     public class MultipleDelimiters
         : ExampleBase
     {
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run an example of writing a delimited file and 
         /// changing the delimiter to show how it is done.
@@ -34,9 +34,9 @@ namespace ExamplesFramework
             engine.WriteFile("Out_Tab.txt", customers);
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:CreateCustomers.cs}
+        //-> File:CreateCustomers.cs
         /// <summary>
         /// This routine reads the data and creates an array of Customers for our samples
         /// </summary>
@@ -54,9 +54,9 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
             // use the common engine to break down the records above
             return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:CustomersVerticalBar.cs}
+        //-> File:CustomersVerticalBar.cs
         /// <summary>
         /// Sample class that is delimited by | default
         /// </summary>
@@ -80,9 +80,9 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
                 return CustomerID + " - " + CompanyName + ", " + ContactName;
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_delimited_engine.html}
+        //-> File:example_delimited_engine.html
         /*<h2>Delimited File Engine</h2>
          *<p>With this cool feature you can simply change some of the record definitions at run time.</p>
          *<p>Lets start with a simple example:</p>
@@ -92,6 +92,6 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
          *<p>This is how easy its is:</p>
          *${RunEngine.cs}
          */
-        //-> {/Example.File}
+        //-> /File
     }
 }

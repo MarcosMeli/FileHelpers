@@ -14,10 +14,10 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.Name:Read Before Event Handling}
-        //-> {Example.Description:Show how to implement read before event}
+        //-> Name:Read Before Event Handling
+        //-> Description:Show how to implement read before event
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// reads report.inp and skips all the records that are not detail records using a simple criteria
         /// </summary>
@@ -32,9 +32,9 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:report.inp}
+        //-> File:report.inp
         /*-----------------------------------------------------
                       XXX Enterprise
         -----------------------------------------------------
@@ -49,9 +49,9 @@ namespace ExamplesFramework
         10230   HANAR  08071996      65.83
         10151   VICTE  08071996      41.34
         */
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Report layout.cs}
+        //-> File:Report layout.cs
         /// <summary>
         /// Layout of the records we want for the report in report.inp
         /// </summary>
@@ -74,9 +74,9 @@ namespace ExamplesFramework
             [FieldFixedLength(11)]
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:EventHandler.cs}
+        //-> File:EventHandler.cs
         private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
         {
             if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
@@ -89,7 +89,7 @@ namespace ExamplesFramework
             //   e.RecordLine = "Be careful!";
         }
 
-        //-> {/Example.File}
+        //-> /File
 
 
     }

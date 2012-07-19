@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:[FieldLength]}
-    //-> {Example.Description:Example of how to use [FieldLength] attribute}
+    //-> Name:[FieldLength]
+    //-> Description:Example of how to use [FieldLength] attribute
 
     /// <summary>
     /// Example of reading a simple file delimited by | using the Generic Engine
@@ -15,7 +15,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.File:Example.cs}
+        //-> File:Example.cs
 
         /// <summary>
         /// Execute the engine and get some results
@@ -31,9 +31,9 @@ namespace ExamplesFramework
             }
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
         /// <summary>
         /// Our class we are reading using FileHelpers,  the record breakdown
         /// </summary>
@@ -52,15 +52,15 @@ namespace ExamplesFramework
             public DateTime AddedDate;
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*01010 Alfreds Futterkiste          13122005
         12399 Ana Trujillo Emparedados y   23012000
         00011 Antonio Moreno Taquería      21042001
         51677 Around the Horn              13051998
         99999 Berglunds snabbköp           02111999*/
-        //-> {/Example.File}
+        //-> /File
 
     }
 

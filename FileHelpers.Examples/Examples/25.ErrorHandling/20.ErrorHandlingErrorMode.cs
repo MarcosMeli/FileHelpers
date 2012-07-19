@@ -11,10 +11,10 @@ namespace ExamplesFramework
     public class ErrorModeErrorHandlingExample
         : ExampleBase
     {
-        //-> {Example.Name:ErrorMode Error handling}
-        //-> {Example.Description:Read the file rejecting bad records}
+        //-> Name:ErrorMode Error handling
+        //-> Description:Read the file rejecting bad records
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run an example of running a file with an error using the
         /// ErrorMode option to capture bad records
@@ -41,9 +41,9 @@ namespace ExamplesFramework
                 Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Customers with Enum.cs}
+        //-> File:Customers with Enum.cs
         /// <summary>
         /// Sample customer class that is delimited by | default
         /// </summary>
@@ -58,16 +58,16 @@ namespace ExamplesFramework
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
         ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
         FRANR|France restauration|Carine Schmitt|MarketingManager
         ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:TheEnumerator.cs}
+        //-> File:TheEnumerator.cs
         /// <summary>
         /// Different titles describing position in company
         /// </summary>
@@ -77,9 +77,9 @@ namespace ExamplesFramework
             SalesRepresentative,
             MarketingManager
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_errors_errormode.html}
+        //-> File:example_errors_errormode.html
         /* <h2>ErorMode Error Handling</h2>
          * <p><p>A more intelligent way is using the
          * <a href="FileHelpers.ErrorMode.html">ErrorMode</a>.SaveAndContinue
@@ -88,6 +88,6 @@ namespace ExamplesFramework
          * <p>Using the engine like this you have the good records in the records array and in
          * the ErrorManager you have the records with errors and can do wherever you want.</p>
          */
-        //-> {/Example.File}
+        //-> /File
     }
 }

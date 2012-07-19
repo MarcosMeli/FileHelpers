@@ -5,16 +5,15 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Sort Big File with Record Class}
-    //-> {Example.Runnable:false}
-    //-> {Example.HasOutput:false}
-    //-> {Example.Description:Shows how to sort a big file using a record class}
+    //-> Name:Sort Big File with Record Class
+    //-> Runnable:false
+    //-> Description:Shows how to sort a big file using a record class
 
     public class BigFileSort
         : ExampleBase
     {
 
-        //-> {Example.File:SortingWithRecord.cs}
+        //-> File:SortingWithRecord.cs
         public override void Run()
         {
             // Implements http://en.wikipedia.org/wiki/External_sorting
@@ -25,10 +24,10 @@ namespace ExamplesFramework
             sorter.Sort("unsorted.txt", "sorted.txt");
         }
 
-        //-> {/Example.File}
+        //-> /File
 
 
-        //-> {Example.File:OrdersTab.cs}
+        //-> File:OrdersTab.cs
         /// <summary>
         /// Sample class that is delimited by tab
         /// </summary>
@@ -64,7 +63,7 @@ namespace ExamplesFramework
 
             #endregion
         }
-        //-> {/Example.File}
+        //-> /File
 
     }
 }

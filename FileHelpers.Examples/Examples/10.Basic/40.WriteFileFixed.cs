@@ -5,9 +5,9 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Write Fixed File}
-    //-> {Example.Description:Example of how to write a Fixed Record File}
-    //-> {Example.AutoRun:true}
+    //-> Name:Write Fixed File
+    //-> Description:Example of how to write a Fixed Record File
+    //-> AutoRun:true
 
     public class WriteFileFixed
         : ExampleBase
@@ -17,7 +17,7 @@ namespace ExamplesFramework
         /// </summary>
         public override void Run()
         {
-            //-> {Example.File:Example.cs}
+            //-> File:Example.cs
             var engine = new FileHelperEngine<Customer>();
 
             var customers = new List<Customer>();
@@ -30,15 +30,15 @@ namespace ExamplesFramework
 
             engine.WriteFile("Output.Txt", customers);
 
-            //-> {/Example.File}
+            //-> /File
             Console.WriteLine(engine.WriteString(customers));
 
         }
 
-        //-> {Example.File: Output.Txt}
-        //-> {/Example.File}
+        //-> File: Output.Txt
+        //-> /File
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
         [FixedLengthRecord()]
         public class Customer
         {
@@ -54,7 +54,7 @@ namespace ExamplesFramework
             public DateTime AddedDate;
 
         }
-        //-> {/Example.File}
+        //-> /File
 
      
     }

@@ -97,6 +97,12 @@ namespace ExamplesFramework
         /// </summary>
         public VirtualConsole Console { get; private set; }
 
+        public string InputFile { get; private set; }
+        
+        public string HtmlBody { get; protected set; }
+        
+        internal event EventHandler InputFileChanged;
+
         
         private Exception mException;
 

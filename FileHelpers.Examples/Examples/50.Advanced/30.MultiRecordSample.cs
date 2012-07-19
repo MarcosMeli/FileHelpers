@@ -6,13 +6,13 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Multi Record Processing}
-    //-> {Example.Description:Read or write a file with many different layouts}
+    //-> Name:Multi Record Processing
+    //-> Description:Read or write a file with many different layouts
 
     public class MultiRecordSample
         : ExampleBase
     {
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*10248|VINET|5|04071996|01081996|16071996|3|32.38  
         10249|TOMSP|6|05071996|16081996|10071996|1|11.61
         ALFKI;Alfreds Futterkiste;Maria Anders;Sales Representative;Obere Str. 57;Berlin;Germany
@@ -26,9 +26,9 @@ namespace ExamplesFramework
         ANTON;Antonio Moreno Taquería;Antonio Moreno;Owner;Mataderos  2312;México D.F.;Mexico
         BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;Luleå;Sweden
         */
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// The idea of this engine is to parse files with different record types
         /// (this engine doesn't use any hierarical structure like the
@@ -51,9 +51,9 @@ namespace ExamplesFramework
                 this.Console.WriteLine(res.ToString());
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Selector.cs}
+        //-> File:Selector.cs
         /// <summary>
         /// This is the selector that determines the record type based on
         /// whatever criteria you write
@@ -73,9 +73,9 @@ namespace ExamplesFramework
             else
                 return typeof(Orders);
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Customer.cs}
+        //-> File:Customer.cs
         /// <summary>
         /// Sample class that is delimited by | default
         /// </summary>
@@ -99,9 +99,9 @@ namespace ExamplesFramework
                 return CustomerID + " - " + CompanyName + ", " + ContactName;
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:SampleType.cs}
+        //-> File:SampleType.cs
         /// <summary>
         /// Sample class that is Fixed length and has vrious data
         /// </summary>
@@ -122,10 +122,10 @@ namespace ExamplesFramework
             [FieldTrim(TrimMode.Both)]
             public int Field3;
         }
-        //-> {/Example.File}
+        //-> /File
 
 
-        //-> {Example.File:Orders.cs}
+        //-> File:Orders.cs
         /// <summary>
         /// Sample class that is breaks up a vertical bar delimitted file
         /// </summary>
@@ -149,9 +149,9 @@ namespace ExamplesFramework
 
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_multirecords.html}
+        //-> File:example_multirecords.html
         /*<h2>Multi Record Engine Example</h2>
          * <blockquote>
          * <p>The idea of this engine is to parse files with different record types
@@ -176,7 +176,7 @@ namespace ExamplesFramework
          * <p>Hope you find this useful.</p>
          * </blockquote>
          */
-        //-> {/Example.File}
+        //-> /File
 
 
     }

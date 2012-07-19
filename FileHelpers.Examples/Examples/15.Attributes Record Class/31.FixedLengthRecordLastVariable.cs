@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:FixedLengthRecord FixedMode.AllowLessChars}
-    //-> {Example.Description: Example of how to use the FixedLengthRecord}
+    //-> Name:FixedLengthRecord FixedMode.AllowLessChars
+    //-> Description: Example of how to use the FixedLengthRecord
 
     public class FixedLengthRecordLastVariableExample
         : ExampleBase
@@ -14,7 +14,7 @@ namespace ExamplesFramework
 
         public override void Run()
         {
-            //-> {Example.File:Example.cs}
+            //-> File:Example.cs
             var engine = new FixedFileEngine<Customer>();
             Customer[] result = engine.ReadFile("input.txt");
 
@@ -23,10 +23,10 @@ namespace ExamplesFramework
                 this.Console.WriteLine(" Client: {0},  Date: {1}", detail.CustId, detail.AddedDate.ToString("dd-MM-yyyy"));
             }
 
-            //-> {/Example.File}
+            //-> /File
         }
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
         [FixedLengthRecord(FixedMode.AllowLessChars)]
         public class Customer
         {
@@ -42,15 +42,15 @@ namespace ExamplesFramework
             public DateTime AddedDate;
 
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*01010 Alfreds Futterkiste          13122005
         12399 Ana Trujillo Emparedados y   23012000
         00011 Antonio Moreno Taquería      042001
         51677 Around the Horn              13051998
         99999 Berglunds snabbköp           111999*/
-        //-> {/Example.File}
+        //-> /File
 
     }
 

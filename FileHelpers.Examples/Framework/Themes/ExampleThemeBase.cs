@@ -13,6 +13,14 @@ namespace ExamplesFramework
         public abstract void AddExampleTitle(StringBuilder sb, ExampleCode example);
         public abstract void AddExampleFooter(StringBuilder sb, ExampleCode example);
         public abstract void AddFile(StringBuilder sb, ExampleFile file);
+        public string AddFile(ExampleFile file)
+        {
+            var sb = new StringBuilder();
+            AddFile(sb, file);
+            return sb.ToString();
+            
+        }
+
         protected string ColorizeFile(ExampleFile file)
         {
             var fileLower = file.Filename.ToLower();

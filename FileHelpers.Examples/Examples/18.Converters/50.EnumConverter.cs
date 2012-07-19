@@ -8,10 +8,10 @@ namespace ExamplesFramework
 {
     public class EnumConverterExample : ExampleBase
     {
-        //-> {Example.Name:Enum Converter Example}
-        //-> {Example.Description:When you have a string field in your files that can be better handled if you map it to an enum.}
+        //-> Name:Enum Converter Example
+        //-> Description:When you have a string field in your files that can be better handled if you map it to an enum.
 
-        //-> {Example.File:TheEnumerator.cs}
+        //-> File:TheEnumerator.cs
         /// <summary>
         /// Different titles describing position in company
         /// </summary>
@@ -21,10 +21,10 @@ namespace ExamplesFramework
             SalesRepresentative,
             MarketingManager
         }
-        //-> {/Example.File}
+        //-> /File
 
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run an example of writing a delimited file and 
         /// changing the delimiter to show how it is done.
@@ -41,9 +41,9 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Customers with Enum.cs}
+        //-> File:Customers with Enum.cs
         /// <summary>
         /// Sample customer class that is delimited by | default
         /// </summary>
@@ -58,16 +58,16 @@ namespace ExamplesFramework
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
         ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
         FRANR|France restauration|Carine Schmitt|MarketingManager
         ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_enumconverter.html}
+        //-> File:example_enumconverter.html
         /* <h2>Enum Converter Example</h2>
          * <blockquote>
          * <p>Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
@@ -84,7 +84,7 @@ namespace ExamplesFramework
          * ${RunEngine.cs}
          * </blockquote>
          */
-        //-> {/Example.File}
+        //-> /File
     }
 
 }

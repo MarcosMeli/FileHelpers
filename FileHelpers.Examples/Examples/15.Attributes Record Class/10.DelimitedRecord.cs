@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:[DelimitedRecord(delimiter)]}
-    //-> {Example.Description:Example of how to use DelimitedRecord attribute}
+    //-> Name:[DelimitedRecord(delimiter)]
+    //-> Description:Example of how to use DelimitedRecord attribute
 
     /// <summary>
     /// Example of reading a simple file delimited by | using the Generic Engine
@@ -15,7 +15,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.File:Example.cs}
+        //-> File:Example.cs
         /// <summary>
         /// Execute the engine and get some results
         /// </summary>
@@ -31,9 +31,9 @@ namespace ExamplesFramework
                 this.Console.WriteLine(record.Freight);
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:RecordClass.cs}
+        //-> File:RecordClass.cs
 
         /// <summary>
         /// Our class we are reading using FileHelpers,  the record breakdown
@@ -50,16 +50,16 @@ namespace ExamplesFramework
 
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*10248|VINET|04071996|32.38
         10249|TOMSP|05071996|11.61
         10250|HANAR|08071996|65.83
         10251|VICTE|08071996|41.34*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_easy.html}
+        //-> File:example_easy.html
         /*<h2>Easy Example </h2>
          * <blockquote>
          * <p>If you have a source file like this, separated by a |:</p>
@@ -75,6 +75,6 @@ namespace ExamplesFramework
          * <img height="93" src="${URL}vs_orders.png" width="165" alt="Visual studio intellisense"/>
          * </blockquote>
          */
-        //-> {/Example.File}
+        //-> /File
     }
 }

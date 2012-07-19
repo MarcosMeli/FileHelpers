@@ -14,10 +14,10 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.Name:Read After Event Handling}
-        //-> {Example.Description:Show how to implement read after event}
+        //-> Name:Read After Event Handling
+        //-> Description:Show how to implement read after event
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Read a simple file and ignore zero value freight using a Read After Event
         /// </summary>
@@ -33,9 +33,9 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*10249   TOMSP  05071996      11.61
         10250   HANAR  08071996       0.00
         10251   VICTE  08071996      41.34
@@ -43,9 +43,9 @@ namespace ExamplesFramework
         10230   HANAR  08071996      65.83
         10151   VICTE  08071996      41.34
         */
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Report layout.cs}
+        //-> File:Report layout.cs
         /// <summary>
         /// Layout of the all input records from Input.txt
         /// </summary>
@@ -65,15 +65,15 @@ namespace ExamplesFramework
             [FieldFixedLength(11)]
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:EventHandler.cs}
+        //-> File:EventHandler.cs
         private void AfterEvent(EngineBase engine, AfterReadEventArgs<OrdersFixed> e)
         {
             //  we want to drop all records with no freight
             if (e.Record.Freight == 0)
                 e.SkipThisRecord = true;
         }
-        //-> {/Example.File}
+        //-> /File
     }
 }

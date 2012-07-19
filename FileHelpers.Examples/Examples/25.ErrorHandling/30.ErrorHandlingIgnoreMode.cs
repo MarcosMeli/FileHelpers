@@ -11,10 +11,10 @@ namespace ExamplesFramework
     public class IgnoreModeErrorHandlingExample
         : ExampleBase
     {
-        //-> {Example.Name:Ignore Mode Error handling}
-        //-> {Example.Description:Read the file dropping bad records}
+        //-> Name:Ignore Mode Error handling
+        //-> Description:Read the file dropping bad records
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run an example of running a file with an error using the
         /// IgnoreMode option to silently drop bad records
@@ -44,9 +44,9 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Customers with Enum.cs}
+        //-> File:Customers with Enum.cs
         /// <summary>
         /// Sample customer class that is delimited by | default
         /// </summary>
@@ -61,16 +61,16 @@ namespace ExamplesFramework
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
         ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
         FRANR|France restauration|Carine Schmitt|MarketingManager
         ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:TheEnumerator.cs}
+        //-> File:TheEnumerator.cs
         /// <summary>
         /// Different titles describing position in company
         /// </summary>
@@ -80,14 +80,14 @@ namespace ExamplesFramework
             SalesRepresentative,
             MarketingManager
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:example_errors_ignore.html}
+        //-> File:example_errors_ignore.html
         /* <h2>Ignore and Continue Error Handling</h2>
          * <p>Another option is to ignore the errors and continue. Here is an example:</p>
          * ${RunEngine.cs}
          * <p>In the records array you only have the good records.</p>
          */
-        //-> {/Example.File}
+        //-> /File
     }
 }

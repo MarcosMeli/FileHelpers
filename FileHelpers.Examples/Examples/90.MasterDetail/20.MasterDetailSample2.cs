@@ -14,10 +14,10 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> {Example.Name:Master Detail sample}
-        //-> {Example.Description:Show how to implement Master detail reading where record contains characters}
+        //-> Name:Master Detail sample
+        //-> Description:Show how to implement Master detail reading where record contains characters
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run a record through engine using a Common selector where master contains a characrter to create a master detail input
         /// </summary>
@@ -31,9 +31,9 @@ namespace ExamplesFramework
             // to Write use:
             engine.WriteFile("Output.txt", res);
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*@ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
         10248|ALFKI|5|04071996|01081996|16071996|3|32.38
         10249|ALFKI|6|05071996|16081996|10071996|1|11.61
@@ -42,12 +42,12 @@ namespace ExamplesFramework
         10252|ANATR|4|09071996|06081996|11071996|2|51.3
         @ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
         */
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Output.txt}
-        //-> {/Example.File}
+        //-> File:Output.txt
+        //-> /File
 
-        //-> {Example.File:Master layout.cs}
+        //-> File:Master layout.cs
         /// <summary>
         /// Layout of the master records beginning with alpha characters in input
         /// </summary>
@@ -63,9 +63,9 @@ namespace ExamplesFramework
             public string City;
             public string Country;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Detail layout.cs}
+        //-> File:Detail layout.cs
         /// <summary>
         /// Layout of the detail records beginning with numerics in input
         /// </summary>
@@ -81,6 +81,6 @@ namespace ExamplesFramework
             public int ShipVia;
             public decimal Freight;
         }
-        //-> {/Example.File}
+        //-> /File
     }
 }

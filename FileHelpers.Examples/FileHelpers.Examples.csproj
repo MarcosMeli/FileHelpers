@@ -166,6 +166,7 @@
     <Compile Include="Framework\Controls\ExamplesContainer.Designer.cs">
       <DependentUpon>ExamplesContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Framework\ExamplesEnvironment.cs" />
     <Compile Include="Framework\Themes\ExampleThemeBase.cs" />
     <Compile Include="Framework\TreeView\ExampleSearchMode.cs" />
     <Compile Include="Framework\TreeView\CategoryTreeNode.cs" />

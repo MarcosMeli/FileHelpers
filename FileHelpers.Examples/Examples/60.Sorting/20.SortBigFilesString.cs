@@ -5,15 +5,15 @@ using FileHelpers;
 
 namespace ExamplesFramework
 {
-    //-> {Example.Name:Sort Big File without Record Class 1}
-    //-> {Example.Runnable:false}
-    //-> {Example.Description:Shows how to sort a big file without a record class}
+    //-> Name:Sort Big File without Record Class 1
+    //-> Runnable:false
+    //-> Description:Shows how to sort a big file without a record class
 
     public class BigFileSortString1
         : ExampleBase
     {
 
-        //-> {Example.File:SortingWithoutRecord.cs}
+        //-> File:SortingWithoutRecord.cs
         public override void Run()
         {
             // Implements http://en.wikipedia.org/wiki/External_sorting
@@ -24,7 +24,7 @@ namespace ExamplesFramework
             sorter.Sort("unsorted.txt", "sorted.txt");
         }
 
-        //-> {/Example.File}
+        //-> /File
 
     }
 }

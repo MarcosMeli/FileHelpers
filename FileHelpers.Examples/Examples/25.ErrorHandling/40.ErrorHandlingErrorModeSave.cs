@@ -12,10 +12,10 @@ namespace ExamplesFramework
     public class ErrorSaveErrorHandlingExample
         : ExampleBase
     {
-        //-> {Example.Name:ErrorMode saving Errors}
-        //-> {Example.Description:Read the file saving bad records}
+        //-> Name:ErrorMode saving Errors
+        //-> Description:Read the file saving bad records
 
-        //-> {Example.File:RunEngine.cs}
+        //-> File:RunEngine.cs
         /// <summary>
         /// Run an example of running a file with an error using the
         /// ErrorMode option to capture bad records and then saving them
@@ -34,9 +34,9 @@ namespace ExamplesFramework
                 engine.ErrorManager.SaveErrors("errors.out");
             LoadErrors();
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:LoadErrors.cs}
+        //-> File:LoadErrors.cs
         /// <summary>
         /// Load errors and display on console
         /// </summary>
@@ -55,9 +55,9 @@ namespace ExamplesFramework
                 this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Customers with Enum.cs}
+        //-> File:Customers with Enum.cs
         /// <summary>
         /// Sample customer class that is delimited by | default
         /// </summary>
@@ -72,16 +72,16 @@ namespace ExamplesFramework
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Input.txt}
+        //-> File:Input.txt
         /*ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
         ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
         FRANR|France restauration|Carine Schmitt|MarketingManager
         ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner*/
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:TheEnumerator.cs}
+        //-> File:TheEnumerator.cs
         /// <summary>
         /// Different titles describing position in company
         /// </summary>
@@ -91,12 +91,12 @@ namespace ExamplesFramework
             SalesRepresentative,
             MarketingManager
         }
-        //-> {/Example.File}
+        //-> /File
 
-        //-> {Example.File:Errors.out}
-        //-> {/Example.File}
+        //-> File:Errors.out
+        //-> /File
 
-        //-> {Example.File:example_errors_save.html}
+        //-> File:example_errors_save.html
         /* <h2>Saving and Loading Errors</h2>
          * <blockquote>
          * <p>One interesting feature is the method in the ErrorManager to save the errors to a file,
@@ -106,7 +106,7 @@ namespace ExamplesFramework
          * ${LoadErrors.cs}
          * </blockquote>
          */
-        //-> {/Example.File}
+        //-> /File
 
     }
 }

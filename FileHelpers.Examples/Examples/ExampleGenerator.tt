@@ -100,7 +100,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 {
 	var filename = item.get_FileNames(0);
 	
-	var res = ParseExample(File.ReadAllText(filename), parent.Name);
+	var res = ParseExample(File.ReadAllText(filename), parent.Name, filename);
 	
 	WriteLine(res);
 	
@@ -115,7 +115,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 		}
 		
 	
-       public static string ParseExample(string exampleText, string category)
+       public static string ParseExample(string exampleText, string category, string solutionfilename)
         {
 			if (category.Contains("."))
 				category = category.Substring(category.IndexOf(".") + 1);
@@ -125,7 +125,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
             var name = "Example";
 			// Grabs text after "Example.Name" as 'name'
-            var match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Name\s*:(?<name>.*)\}", regexOptions);
+            var match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Name\s*:(?<name>.*)", regexOptions);
             if (match.Success)
             {
                 name = match.Groups["name"].Value.Trim();
@@ -142,43 +142,37 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
             var description = "";
 
 			//  Grabs text after Example.Description as 'description'
-            match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Description\s*:(?<description>.*)\}", regexOptions | RegexOptions.Multiline);
+            match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Description\s*:(?<description>.*)", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
                 description = match.Groups["description"].Value.Trim();
             }
 
-			// line is: example = new ExampleCode(new class(), "description", "category");
-            res.AppendLine(@"example = new ExampleCode(new " + className + @"(), """ + name + @""", """ + category + @""");");
+			// line is: example = new ExampleCode(new class(), "description", "category", @"filename");
+            res.AppendLine(@"example = new ExampleCode(new " + className + @"(), """ + name + @""", """ + category + @""", @""" + solutionfilename + @""");");
             if (!string.IsNullOrEmpty(description))
             {
                 res.AppendLine(@"example.Description = @""" + description + @""";");
             }
 
-			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.Runnable\s*:(?<runnable>.*)\}", regexOptions | RegexOptions.Multiline);
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Runnable\s*:(?<runnable>.*)", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
 				res.AppendLine(@"example.Runnable = " + match.Groups["runnable"].Value.Trim() + ";");
             }
 
-			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.AutoRun\s*:(?<autorun>.*)\}", regexOptions | RegexOptions.Multiline);
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?AutoRun\s*:(?<autorun>.*)", regexOptions | RegexOptions.Multiline);
             if (match.Success)
             {
 				res.AppendLine(@"example.AutoRun = " + match.Groups["autorun"].Value.Trim() + ";");
             }
-
-			match = Regex.Match(exampleText, @"\/\/\-\>\s*\{Example\.HasOutput\s*:(?<hasoutput>.*)\}", regexOptions | RegexOptions.Multiline);
-            if (match.Success)
-            {
-				res.AppendLine(@"example.HasOutput = " + match.Groups["hasoutput"].Value.Trim() + @";");
-            }
-			
+						
             res.AppendLine(@"examples.Add(example);");
 
 
 			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
             var filesMatch = Regex.Matches(exampleText,
-                                           @"\/\/\-\>\s*\{Example\.File\s*\:\s*(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Example\.File\s*\}",
+                                           @"\/\/\-\>\s*(Example\.)?File\s*\:\s*(?<filename>.*?)\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\/(Example\.)?File\s*",
                                            regexOptions | RegexOptions.Singleline);
 
             // regex above may return multiple sample files.  
@@ -223,7 +217,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
 
 			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
             var inputFilesMatch = Regex.Matches(exampleText,
-                                           @"\/\/\-\>\s*\{Input\.File\s*\:(?<filename>.*?)\}\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\{\/Input\.File\s*\}",
+                                           @"\/\/\-\>\s*Input\.File\s*\:(?<filename>.*?)\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\/Input\.File\s*",
                                            regexOptions | RegexOptions.Singleline);
 
             // regex above may return multiple sample files.  
