@@ -2,9 +2,6 @@
 
 <Project DefaultTargets="pack-release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 	<Import Project="Libs\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
-	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NCoverExplorer" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
-	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NCover" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
-	<UsingTask TaskName="NCoverExplorer.MSBuildTasks.NUnitProject" AssemblyFile="Libs\NCoverExplorer\NCoverExplorer.MSBuildTasks.dll" />
 
 	<Import Project="Build\CurrentVersion.msbuild" />
 
@@ -142,38 +139,4 @@
 		<CallTarget Targets="Build" />
 	</Target>
 
-	<Target Name="test-gallio" DependsOnTargets="release"></Target>
-
-	<Target Name="coverage" DependsOnTargets="debug">
-		<ItemGroup>
-			<CoverageFile Include="$(MSBuildProjectDirectory)\Coverage\Coverage.xml" />
-		</ItemGroup>
-		<MakeDir Directories="$(MSBuildProjectDirectory)\Coverage" ContinueOnError="True" />
-		<NCover ToolPath="Libs\NCover\" CommandLineExe="Libs\NUnit\nunit-console-x86.exe" CoverageFile="@(CoverageFile)" AssemblyList="FileHelpers" CommandLineArgs="/noshadow FileHelpers.Tests\Release\FileHelpers.Tests.dll" />
-		
-		  <PropertyGroup> 
-               <CoverageExclusions> 
-                  <CoverageExclusion>
-                      <ExclusionType>Class</ExclusionType>
-                      <Pattern>.*TypesOfMessages.*</Pattern> 
-                      <IsRegex>true</IsRegex> 
-                  </CoverageExclusion> 
-               </CoverageExclusions> 
-           </PropertyGroup>
-
-
-		<NCoverExplorer 
-				 ToolPath="Libs\NCoverExplorer\" 
-				 ProjectName="FileHelpers"
-				 OutputDir="$(MSBuildProjectDirectory)\Coverage" 
-				 CoverageFiles="@(CoverageFile)" 
-				 SatisfactoryCoverage="80" 
-				 HtmlReportName="CoverageSummary.html" 
-				 Exclusions="$(CoverageExclusions)"
-				 ShowExcluded="False"
-				 ReportType="ModuleClassFunctionSummary" 
-				 />
-		 
-		<Delete Files="@(CoverageFile)" ContinueOnError="True" />
-	</Target>
 </Project>
