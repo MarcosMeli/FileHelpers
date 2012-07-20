@@ -144,9 +144,7 @@ namespace FileHelpers
 			}
 			else
 			{
-				int sepPos;
-
-				sepPos = line.IndexOf(mSeparator);
+			    int sepPos = line.IndexOf(mSeparator);
 
 				if (sepPos == -1)
 				{
@@ -216,12 +214,14 @@ namespace FileHelpers
         /// <returns>fieldbase ready to be populated with extra info</returns>
 	    protected override FieldBase CreateClone()
 	    {
-	        var res = new DelimitedField();
-	        res.mSeparator = mSeparator;
-	        res.QuoteChar = QuoteChar;
-            res.QuoteMode = QuoteMode;
-	        res.QuoteMultiline = QuoteMultiline;
-	        return res;
+	        var res = new DelimitedField
+	            {
+	                mSeparator = mSeparator,
+	                QuoteChar = QuoteChar,
+	                QuoteMode = QuoteMode,
+	                QuoteMultiline = QuoteMultiline
+	            };
+            return res;
 	    }
 
 	    #endregion

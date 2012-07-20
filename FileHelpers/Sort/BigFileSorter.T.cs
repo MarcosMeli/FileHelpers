@@ -205,9 +205,14 @@ namespace FileHelpers
             else
                 lines.Sort();
 
-            var writeEngine = new FileHelperEngine<T>(Encoding);
-            writeEngine.Options.IgnoreFirstLines = 0;
-            writeEngine.Options.IgnoreLastLines = 0;
+            var writeEngine = new FileHelperEngine<T>(Encoding)
+                {
+                    Options =
+                        {
+                            IgnoreFirstLines = 0,
+                            IgnoreLastLines = 0
+                        }
+                };
             writeEngine.WriteFile(splitName, lines);
 
             lines.Clear();

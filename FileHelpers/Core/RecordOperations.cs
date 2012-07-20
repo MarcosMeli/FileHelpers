@@ -184,11 +184,11 @@ namespace FileHelpers
         {
             var sb = new StringBuilder(RecordInfo.SizeHint);
 
-            object[] mValues = ObjectToValuesHandler(record);
+            var values = ObjectToValuesHandler(record);
 
             for (int f = 0; f < RecordInfo.FieldCount; f++)
             {
-                RecordInfo.Fields[f].AssignToString(sb, mValues[f]);
+                RecordInfo.Fields[f].AssignToString(sb, values[f]);
             }
 
             return sb.ToString();
@@ -351,11 +351,10 @@ namespace FileHelpers
         /// </summary>
         private ObjectToValuesDelegate ObjectToValuesHandler
         {
-            get
-            {
-                if (mObjectToValuesHandler == null)
-                    mObjectToValuesHandler = ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
-                return mObjectToValuesHandler;
+            get {
+                return mObjectToValuesHandler ??
+                       (mObjectToValuesHandler =
+                        ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));
             }
         }
 

@@ -254,15 +254,19 @@ namespace FileHelpers.Detection
                         {
                             if (col == null)
                             {
-                                col = new FixedColumnInfo();
-                                col.Start = 0;
-                                col.Length = i;
+                                col = new FixedColumnInfo
+                                    {
+                                        Start = 0,
+                                        Length = i
+                                    };
                             }
                             else
                             {
                                 FixedColumnInfo prevCol = col;
-                                col = new FixedColumnInfo();
-                                col.Start = prevCol.Start + prevCol.Length;
+                                col = new FixedColumnInfo
+                                    {
+                                        Start = prevCol.Start + prevCol.Length
+                                    };
                                 col.Length = i - col.Start;
                             }
                             candidates.Add(col);
@@ -274,15 +278,19 @@ namespace FileHelpers.Detection
 
                 if (col == null)
                 {
-                    col = new FixedColumnInfo();
-                    col.Start = 0;
-                    col.Length = line.Length;
+                    col = new FixedColumnInfo
+                        {
+                            Start = 0,
+                            Length = line.Length
+                        };
                 }
                 else
                 {
                     FixedColumnInfo prevCol = col;
-                    col = new FixedColumnInfo();
-                    col.Start = prevCol.Start + prevCol.Length;
+                    col = new FixedColumnInfo
+                        {
+                            Start = prevCol.Start + prevCol.Length
+                        };
                     col.Length = line.Length - col.Start;
                 }
 
@@ -307,12 +315,8 @@ namespace FileHelpers.Detection
         }
 
         // DELIMITED
-        private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res)
-        {
-            CreateDelimiterOptions(sampleData, res, '\0');
-        }
 
-        private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res, char delimiter)
+        private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res, char delimiter = '\0')
         {
             var delimiters = new List<DelimiterInfo>();
 
@@ -323,12 +327,16 @@ namespace FileHelpers.Detection
 
             foreach (var info in delimiters)
             {
-                var format = new RecordFormatInfo();
-                format.mConfidence = (int)((1 - info.Deviation ) * 100);
+                var format = new RecordFormatInfo
+                    {
+                        mConfidence = (int) ((1 - info.Deviation)*100)
+                    };
                 AdjustConfidence(format, info);
 
-                var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
-                builder.IgnoreFirstLines = FileHasHeaders ? 1 : 0;
+                var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString())
+                    {
+                        IgnoreFirstLines = FileHasHeaders ? 1 : 0
+                    };
                 var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
                 for (int i = 0; i < info.Max + 1; i++)
                 {

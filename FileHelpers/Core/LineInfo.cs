@@ -69,7 +69,7 @@ namespace FileHelpers
         /// <summary>
         /// List of whitespace characters that we want to skip
         /// </summary>
-		private static readonly char[] WhitespaceChars = new char[] 
+		private static readonly char[] mWhitespaceChars = new char[] 
 			{ 
 				'\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
 				'\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
@@ -129,7 +129,7 @@ namespace FileHelpers
 			// Check if the chars at pos or right are empty ones
 			int length = mLineStr.Length;
 			int pos = mCurrentPos;
-			while(pos < length && Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
+			while(pos < length && Array.BinarySearch(mWhitespaceChars, mLineStr[pos]) >= 0)
 			{
 				pos++;
 			}
@@ -142,7 +142,7 @@ namespace FileHelpers
         /// </summary>
 		public void TrimStart()
 		{
-			TrimStartSorted(WhitespaceChars);
+			TrimStartSorted(mWhitespaceChars);
 		}
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace FileHelpers
 			int length = mLineStr.Length;
 			int pos = mCurrentPos;
 
-			while(pos < length && Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
+			while(pos < length && Array.BinarySearch(mWhitespaceChars, mLineStr[pos]) >= 0)
 			{
 				pos++;
 			}

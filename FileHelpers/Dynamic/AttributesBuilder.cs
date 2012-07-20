@@ -42,7 +42,7 @@ namespace FileHelpers.Dynamic
 		/// <param name="attribute"></param>
 		public void AddAttribute(string attribute)
 		{
-			if (attribute == null || attribute == string.Empty)
+			if (string.IsNullOrEmpty(attribute))
 				return;
 			
 			if (mFirst)

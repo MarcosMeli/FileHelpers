@@ -130,15 +130,15 @@ namespace FileHelpers.Dynamic
 			else
 				return string.Empty;
 
-			if (mArg1 != null && mArg1 != string.Empty)
+			if (!string.IsNullOrEmpty(mArg1))
 			{
 				sb.Append(", \"" + mArg1 + "\"");
 
-				if (mArg2 != null && mArg2 != string.Empty)
+				if (!string.IsNullOrEmpty(mArg2))
 				{
 					sb.Append(", \"" + mArg2 + "\"");
 
-					if (mArg3 != null && mArg3 != string.Empty)
+					if (!string.IsNullOrEmpty(mArg3))
 					{
 						sb.Append(", \"" + mArg3 + "\"");
 					}

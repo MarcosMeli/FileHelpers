@@ -95,9 +95,11 @@ namespace FileHelpers.Mapping
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(string columnName, string fieldName)
 		{
-			var map = new MappingInfo(mRecordInfo.RecordType, fieldName);
-			map.mDataColumnName = columnName;
-			mMappings.Add(map);
+			var map = new MappingInfo(mRecordInfo.RecordType, fieldName)
+			    {
+			        mDataColumnName = columnName
+			    };
+		    mMappings.Add(map);
 		}
 
 		private readonly ArrayList mMappings  = new ArrayList();
@@ -179,9 +181,11 @@ namespace FileHelpers.Mapping
 
 			for(int i = 0; i < fields.Length; i++)
 			{
-				var map = new MappingInfo(fields[i]);
-				map.mDataColumnIndex = i;
-				mMappings.Add(map);
+				var map = new MappingInfo(fields[i])
+				    {
+				        mDataColumnIndex = i
+				    };
+			    mMappings.Add(map);
 			}
 
 

@@ -201,8 +201,10 @@ namespace FileHelpers
                 }
             }
 
-            mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber);
-            mAsyncReader.DiscardForward = true;
+            mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber)
+                {
+                    DiscardForward = true
+                };
             mState = EngineState.Reading;
             mStreamInfo = new StreamInfoProvider(reader);
             mCurrentRecord = 0;
@@ -269,8 +271,10 @@ namespace FileHelpers
             mLastRecord = default(T); 
 
 
-            var line = new LineInfo(string.Empty);
-            line.mReader = mAsyncReader;
+            var line = new LineInfo(string.Empty)
+                {
+                    mReader = mAsyncReader
+                };
 
             if (mLastRecordValues == null)
                 mLastRecordValues = new object[RecordInfo.FieldCount];
@@ -330,11 +334,13 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo();
-                                err.mLineNumber = mAsyncReader.LineNumber;
-                                err.mExceptionInfo = ex;
+                                var err = new ErrorInfo
+                                    {
+                                        mLineNumber = mAsyncReader.LineNumber,
+                                        mExceptionInfo = ex,
+                                        mRecordString = currentLine
+                                    };
                                 //							err.mColumnNumber = mColumnNum;
-                                err.mRecordString = currentLine;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -492,7 +498,7 @@ namespace FileHelpers
 
         private void WriteHeader()
         {
-            if (mHeaderText != null && mHeaderText != string.Empty)
+            if (!string.IsNullOrEmpty(mHeaderText))
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     mAsyncWriter.Write(mHeaderText);
                 else
@@ -614,11 +620,13 @@ namespace FileHelpers
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo();
-                        err.mLineNumber = mLineNumber;
-                        err.mExceptionInfo = ex;
+                        var err = new ErrorInfo
+                            {
+                                mLineNumber = mLineNumber,
+                                mExceptionInfo = ex,
+                                mRecordString = currentLine
+                            };
                         //							err.mColumnNumber = mColumnNum;
-                        err.mRecordString = currentLine;
                         mErrorManager.AddError(err);
                         break;
                 }
@@ -687,11 +695,13 @@ namespace FileHelpers
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo();
-                        err.mLineNumber = mLineNumber;
-                        err.mExceptionInfo = ex;
+                        var err = new ErrorInfo
+                            {
+                                mLineNumber = mLineNumber,
+                                mExceptionInfo = ex,
+                                mRecordString = currentLine
+                            };
                         //							err.mColumnNumber = mColumnNum;
-                        err.mRecordString = currentLine;
                         mErrorManager.AddError(err);
                         break;
                 }

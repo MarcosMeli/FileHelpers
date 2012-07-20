@@ -256,8 +256,10 @@ namespace FileHelpers
 
                 bool byPass = false;
 
-                var line = new LineInfo(currentLine);
-                line.mReader = freader;
+                var line = new LineInfo(currentLine)
+                    {
+                        mReader = freader
+                    };
 
                 while (currentLine != null)
                 {
@@ -329,11 +331,13 @@ namespace FileHelpers
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo();
-                                err.mLineNumber = freader.LineNumber;
-                                err.mExceptionInfo = ex;
+                                var err = new ErrorInfo
+                                    {
+                                        mLineNumber = freader.LineNumber,
+                                        mExceptionInfo = ex,
+                                        mRecordString = completeLine
+                                    };
                                 //							err.mColumnNumber = mColumnNum;
-                                err.mRecordString = completeLine;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -483,12 +487,14 @@ namespace FileHelpers
 						case ErrorMode.IgnoreAndContinue:
 							break;
 						case ErrorMode.SaveAndContinue:
-							var err = new ErrorInfo();
-							err.mLineNumber = mLineNumber;
-							err.mExceptionInfo = ex;
-							//							err.mColumnNumber = mColumnNum;
-							err.mRecordString = currentLine;
-							mErrorManager.AddError(err);
+							var err = new ErrorInfo
+							    {
+							        mLineNumber = mLineNumber,
+							        mExceptionInfo = ex,
+							        mRecordString = currentLine
+							    };
+					        //							err.mColumnNumber = mColumnNum;
+					        mErrorManager.AddError(err);
 							break;
 					}
 				}
@@ -497,7 +503,7 @@ namespace FileHelpers
 
 			mTotalRecords = recIndex;
 
-			if (mFooterText != null && mFooterText != string.Empty)
+			if (!string.IsNullOrEmpty(mFooterText))
 				if (mFooterText.EndsWith(StringHelper.NewLine))
 					writer.Write(mFooterText);
 				else
@@ -694,7 +700,7 @@ namespace FileHelpers
 			{
 				if (mAsyncWriter != null)
 				{
-					if (mFooterText != null && mFooterText != string.Empty)
+					if (!string.IsNullOrEmpty(mFooterText))
 						if (mFooterText.EndsWith(StringHelper.NewLine))
 							mAsyncWriter.Write(mFooterText);
 						else
@@ -738,11 +744,13 @@ namespace FileHelpers
 
 			mLastRecord = null;
 
-			var line = new LineInfo(currentLine);
-			line.mReader = mAsyncReader;
-			
-		
-			while (true)
+			var line = new LineInfo(currentLine)
+			    {
+			        mReader = mAsyncReader
+			    };
+
+
+		    while (true)
 			{
 				if (currentLine != null)
 				{
@@ -781,13 +789,15 @@ namespace FileHelpers
 							case ErrorMode.IgnoreAndContinue:
 								break;
 							case ErrorMode.SaveAndContinue:
-								var err = new ErrorInfo();
-								err.mLineNumber = mAsyncReader.LineNumber;
-								err.mExceptionInfo = ex;
-								//							err.mColumnNumber = mColumnNum;
-								err.mRecordString = currentLine;
+								var err = new ErrorInfo
+								    {
+								        mLineNumber = mAsyncReader.LineNumber,
+								        mExceptionInfo = ex,
+								        mRecordString = currentLine
+								    };
+						        //							err.mColumnNumber = mColumnNum;
 
-								mErrorManager.AddError(err);
+						        mErrorManager.AddError(err);
 								break;
 						}
 					}
@@ -966,12 +976,6 @@ namespace FileHelpers
 
 			try
 			{
-				bool skip = false;
-//#if !MINI
-//				ProgressHelper.Notify(mNotifyHandler, mProgressMode, i+1, max);
-//				skip = OnBeforeWriteRecord(records[i]);
-//#endif
-
 				mLineNumber++;
 				mTotalRecords++;
 
@@ -980,11 +984,8 @@ namespace FileHelpers
 				if (info == null)
 					throw new BadUsageException("A record is of type '" + record.GetType().Name+ "' and the engine dont handle this type. You can add it to the constructor.");
 
-				if (skip == false)
-				{
-                    currentLine = info.Operations.RecordToString(record);
-					mAsyncWriter.WriteLine(currentLine);
-				}
+                currentLine = info.Operations.RecordToString(record);
+				mAsyncWriter.WriteLine(currentLine);
 
 			}
 			catch (Exception ex)
@@ -996,12 +997,14 @@ namespace FileHelpers
 					case ErrorMode.IgnoreAndContinue:
 						break;
 					case ErrorMode.SaveAndContinue:
-						var err = new ErrorInfo();
-						err.mLineNumber = mLineNumber;
-						err.mExceptionInfo = ex;
-						//							err.mColumnNumber = mColumnNum;
-						err.mRecordString = currentLine;
-						mErrorManager.AddError(err);
+						var err = new ErrorInfo
+						    {
+						        mLineNumber = mLineNumber,
+						        mExceptionInfo = ex,
+						        mRecordString = currentLine
+						    };
+				        //							err.mColumnNumber = mColumnNum;
+				        mErrorManager.AddError(err);
 						break;
 				}
 			}
@@ -1032,7 +1035,7 @@ namespace FileHelpers
 
 		private void WriteHeader()
 		{
-			if (mHeaderText != null && mHeaderText != string.Empty)
+			if (!string.IsNullOrEmpty(mHeaderText))
 				if (mHeaderText.EndsWith(StringHelper.NewLine))
 					mAsyncWriter.Write(mHeaderText);
 				else

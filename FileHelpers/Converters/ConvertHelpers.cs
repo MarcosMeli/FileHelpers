@@ -666,7 +666,7 @@ namespace FileHelpers
             /// <param name="format">date format see .Net documentation</param>
             public DateTimeConverter(string format)
             {
-                if (format == null || format == String.Empty)
+                if (string.IsNullOrEmpty(format))
                     throw new BadUsageException("The format of the DateTime Converter cannot be null or empty.");
 
                 try
@@ -1065,7 +1065,7 @@ namespace FileHelpers
                 switch (mFormat)
                 {
                     case CharFormat.NoChange:
-                        return Convert.ToChar(from).ToString();;
+                        return Convert.ToChar(from).ToString();
 
                     case CharFormat.Lower:
                         return char.ToLower(Convert.ToChar(from)).ToString();

@@ -545,12 +545,14 @@ namespace FileHelpers
 						case ErrorMode.IgnoreAndContinue:
 							break;
 						case ErrorMode.SaveAndContinue:
-							var err = new ErrorInfo();
-							err.mLineNumber = mLineNumber;
-							err.mExceptionInfo = ex;
+							var err = new ErrorInfo
+							    {
+							        mLineNumber = mLineNumber,
+							        mExceptionInfo = ex,
+							        mRecordString = currentLine
+							    };
 //							err.mColumnNumber = mColumnNum;
-							err.mRecordString = currentLine;
-							mErrorManager.AddError(err);
+					        mErrorManager.AddError(err);
 							break;
 					}
 				}
@@ -560,7 +562,7 @@ namespace FileHelpers
 
 			mTotalRecords = recIndex;
 
-			if (mFooterText != null && mFooterText != string.Empty)
+			if (!string.IsNullOrEmpty(mFooterText))
 				if (mFooterText.EndsWith(StringHelper.NewLine))
 					writer.Write(mFooterText);
 				else

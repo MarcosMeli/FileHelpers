@@ -269,12 +269,10 @@ namespace FileHelpers.MasterDetail
             {
                 freader.DiscardForward = true;
 
-                string currentLine, completeLine;
-
                 mLineNumber = 1;
 
-                completeLine = freader.ReadNextLine();
-                currentLine = completeLine;
+                var completeLine = freader.ReadNextLine();
+                var currentLine = completeLine;
 
 #if !MINI
                 if (MustNotifyProgress) // Avoid object creation
@@ -303,8 +301,10 @@ namespace FileHelpers.MasterDetail
 #endif
                 var tmpDetails = new ArrayList();
 
-                var line = new LineInfo(currentLine);
-                line.mReader = freader;
+                var line = new LineInfo(currentLine)
+                    {
+                        mReader = freader
+                    };
 
 
                 var valuesMaster = new object[mMasterInfo.FieldCount];
@@ -388,11 +388,13 @@ namespace FileHelpers.MasterDetail
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo();
-                                err.mLineNumber = mLineNumber;
-                                err.mExceptionInfo = ex;
+                                var err = new ErrorInfo
+                                    {
+                                        mLineNumber = mLineNumber,
+                                        mExceptionInfo = ex,
+                                        mRecordString = completeLine
+                                    };
                                 //							err.mColumnNumber = mColumnNum;
-                                err.mRecordString = completeLine;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -525,7 +527,7 @@ namespace FileHelpers.MasterDetail
 
             ResetFields();
 
-            if (mHeaderText != null && mHeaderText.Length != 0)
+            if (!string.IsNullOrEmpty(mHeaderText))
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     writer.Write(mHeaderText);
                 else
@@ -583,11 +585,13 @@ namespace FileHelpers.MasterDetail
                         case ErrorMode.IgnoreAndContinue:
                             break;
                         case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo();
-                            err.mLineNumber = mLineNumber;
-                            err.mExceptionInfo = ex;
+                            var err = new ErrorInfo
+                                {
+                                    mLineNumber = mLineNumber,
+                                    mExceptionInfo = ex,
+                                    mRecordString = currentLine
+                                };
                             //							err.mColumnNumber = mColumnNum;
-                            err.mRecordString = currentLine;
                             mErrorManager.AddError(err);
                             break;
                     }
@@ -597,7 +601,7 @@ namespace FileHelpers.MasterDetail
 
             mTotalRecords = recIndex;
 
-            if (mFooterText != null && mFooterText != string.Empty)
+            if (!string.IsNullOrEmpty(mFooterText))
                 if (mFooterText.EndsWith(StringHelper.NewLine))
                     writer.Write(mFooterText);
                 else

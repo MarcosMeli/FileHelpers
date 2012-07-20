@@ -122,8 +122,6 @@ namespace FileHelpers.Dynamic
 
             code.Append(classStr);
 
-            CompilerResults cr;
-
             CodeDomProvider prov = null;
 
             switch (lang)
@@ -137,7 +135,7 @@ namespace FileHelpers.Dynamic
                     break;
             }
 
-            cr = prov.CompileAssemblyFromSource(cp, code.ToString());
+            var cr = prov.CompileAssemblyFromSource(cp, code.ToString());
 
             if (cr.Errors.HasErrors)
             {
@@ -615,13 +613,13 @@ namespace FileHelpers.Dynamic
             if (mIgnoreLastLines != 0)
                 attbs.AddAttribute("IgnoreLast(" + mIgnoreLastLines.ToString() + ")");
 
-            if (mIgnoreEmptyLines == true)
+            if (mIgnoreEmptyLines)
                 attbs.AddAttribute("IgnoreEmptyLines()");
 
             if (mRecordConditionInfo.Condition != FileHelpers.RecordCondition.None)
                 attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() + ", \"" + mRecordConditionInfo.Selector + "\")");
 
-            if (mIgnoreCommentInfo.CommentMarker != null && mIgnoreCommentInfo.CommentMarker.Length > 0)
+            if (!string.IsNullOrEmpty(mIgnoreCommentInfo.CommentMarker))
                 attbs.AddAttribute("IgnoreCommentedLines(\"" + mIgnoreCommentInfo.CommentMarker + "\", " + mIgnoreCommentInfo.InAnyPlace.ToString().ToLower() + ")");
 
         }
@@ -908,10 +906,10 @@ namespace FileHelpers.Dynamic
             if (node != null) res.Namespace = node.InnerText;
 
             node = document.DocumentElement["Visibility"];
-            if (node != null) res.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), node.InnerText); ;
+            if (node != null) res.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), node.InnerText); 
 
             node = document.DocumentElement["RecordCondition"];
-            if (node != null) res.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); ;
+            if (node != null) res.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); 
 
             node = document.DocumentElement["RecordConditionSelector"];
             if (node != null) res.RecordCondition.Selector = node.InnerText;

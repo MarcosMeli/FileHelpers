@@ -8,13 +8,14 @@ namespace FileHelpers
 {
     internal class FieldInfoCacheManipulator
     {
+        private static PropertyInfo mCacheProperty;
+
         /// <summary>
-        /// Clear the m_fieldInfoCache Cache on the property
-        /// 
-        /// TODO:  I don't think this is actually used
+        /// Very importat to avoid out of order reflection
+        /// The CLR caches previous fields access to speed up reflection but can return the fields in wrong order
+        /// Clearing the m_fieldInfoCache of the Cache property resolves the issue
         /// </summary>
         /// <param name="type">Type of Object</param>
-        private static PropertyInfo mCacheProperty;
         public static void ResetFieldInfoCache(Type type)
         {
             if (mCacheProperty == null)
