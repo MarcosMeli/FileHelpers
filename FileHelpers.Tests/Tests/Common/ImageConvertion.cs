@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Data;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
-using FileHelpers;
-using FileHelpers.Dynamic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -17,8 +16,8 @@ namespace FileHelpers.Tests.CommonTests
 		public void WriteReadImage()
 		{
 			
-			ImageClass ima = new ImageClass();
-			Bitmap bmp  = new Bitmap(20, 10);
+			var ima = new ImageClass();
+			var bmp  = new Bitmap(20, 10);
 			bmp.SetPixel(10, 5, Color.Gainsboro);
 			bmp.SetPixel(10, 7, Color.Navy);
 			ima.MyImage = bmp;
@@ -81,15 +80,15 @@ namespace FileHelpers.Tests.CommonTests
 				{
 					Byte[] bitmapData; 
 					bitmapData = Convert.FromBase64String(from); 
-					System.IO.MemoryStream streamBitmap = new MemoryStream(bitmapData); 
+					var streamBitmap = new MemoryStream(bitmapData); 
 					return Image.FromStream(streamBitmap); 
 				}
 				
 				public override string FieldToString(object from)
 				{
-					Image ima = (Image) from;
-					MemoryStream ms = new MemoryStream(); 
-					ima.Save(ms, System.Drawing.Imaging.ImageFormat.Png); 
+					var ima = (Image) from;
+					var ms = new MemoryStream(); 
+					ima.Save(ms, ImageFormat.Png); 
 					return Convert.ToBase64String(ms.ToArray()); 
 					
 				}

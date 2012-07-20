@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Data;
-using System.IO;
-using FileHelpers;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -19,7 +17,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncFieldIndex1()
 		{
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 			foreach (SampleType rec in engine)
@@ -44,7 +42,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 			while(engine.ReadNext() != null)
@@ -62,7 +60,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 			while(engine.ReadNext() != null)
@@ -79,7 +77,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncFieldIndex4()
 		{
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 			Assert.AreEqual(3, engine.Options.FieldCount);
@@ -96,7 +94,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncFieldIndexBad1()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 			while(engine.ReadNext() != null)
@@ -111,7 +109,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncFieldIndexBad2()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 
 		    Assert.Throws<BadUsageException>(()
@@ -131,7 +129,7 @@ namespace FileHelpers.Tests.CommonTests
 		
 		public void AsyncFieldIndexBad3()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			  Assert.Throws<BadUsageException>(()
                  => { object val = engine[2]; });
 		}
@@ -139,7 +137,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncFieldIndexBad4()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			  Assert.Throws<BadUsageException>(()
                  => { object val = engine["Field1"]; });
 		}
@@ -147,7 +145,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncFieldIndexBad5()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			engine.BeginReadString(data);
 			while(engine.ReadNext() != null)
 			{
@@ -162,7 +160,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void FieldNames()
         {
-            FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+            var engine = new FileHelperAsyncEngine(typeof(SampleType));
             string[] names = engine.Options.FieldsNames;
 
             Assert.AreEqual(3, names.Length);
@@ -175,7 +173,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void FieldTypes()
 		{
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 			Type[] types = engine.Options.FieldsTypes;
 
 			Assert.AreEqual(3, types.Length);

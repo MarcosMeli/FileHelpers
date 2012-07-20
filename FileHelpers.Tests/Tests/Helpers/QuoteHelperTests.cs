@@ -1,9 +1,8 @@
 ﻿using System;
-using FileHelpers;
-using FileHelpers.Detection;
-using FileHelpers.Dynamic;
-using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
+using FileHelpers.Detection;
+using NUnit.Framework;
 
 
 namespace FileHelpers.Tests

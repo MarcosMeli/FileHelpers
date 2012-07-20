@@ -1,8 +1,9 @@
 #if ! MINI
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.OleDb;
-using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ namespace FileHelpers.Tests.DataLink
 		
 		protected void FillRecordOrders(object rec, object[] fields)
 		{
-			OrdersFixed record = (OrdersFixed) rec;
+			var record = (OrdersFixed) rec;
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -41,7 +42,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersDbToFile()
 		{
-			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
 
@@ -49,7 +50,7 @@ namespace FileHelpers.Tests.DataLink
 			mLink.ExtractToFile(@"..\data\temp.txt");
 			int extractNum = mLink.LastExtractedRecords.Length;
 
-			OrdersFixed[] records = (OrdersFixed[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
+			var records = (OrdersFixed[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
 
 			Assert.AreEqual(extractNum, records.Length);
 		}
@@ -58,11 +59,11 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersDbToFileEasy()
 		{
-			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrders);
 
-			OrdersFixed[] records = (OrdersFixed[]) FileDataLink.EasyExtractToFile(storage,@"..\data\temp.txt");
+			var records = (OrdersFixed[]) FileDataLink.EasyExtractToFile(storage,@"..\data\temp.txt");
 			
 			int extractNum = records.Length;
 
@@ -74,7 +75,7 @@ namespace FileHelpers.Tests.DataLink
 		
 		private void FillRecordCustomers(object rec, object[] fields)
 		{
-			CustomersVerticalBar record = (CustomersVerticalBar) rec;
+			var record = (CustomersVerticalBar) rec;
 
 			record.CustomerID = (string) fields[0];
 			record.CompanyName = (string) fields[1];
@@ -88,7 +89,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void CustomersDbToFile()
 		{
-			AccessStorage storage = new AccessStorage(typeof (CustomersVerticalBar), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof (CustomersVerticalBar), @"..\data\TestData.mdb");
 			storage.SelectSql =  "SELECT * FROM Customers";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordCustomers);
 
@@ -96,14 +97,14 @@ namespace FileHelpers.Tests.DataLink
 			mLink.ExtractToFile(@"..\data\temp.txt");
 			int extractNum = mLink.LastExtractedRecords.Length;
 
-			CustomersVerticalBar[] records = (CustomersVerticalBar[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
+			var records = (CustomersVerticalBar[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
 
 			Assert.AreEqual(extractNum, records.Length);
 		}
 
 		private object FillRecord(object[] fields)
 		{
-			CustomersVerticalBar record = new CustomersVerticalBar();
+			var record = new CustomersVerticalBar();
 
 			record.CustomerID = (string) fields[0];
 			record.CompanyName = (string) fields[1];
@@ -122,7 +123,7 @@ namespace FileHelpers.Tests.DataLink
 
 		protected string GetInsertSqlCust(object record)
 		{
-			CustomersVerticalBar obj = (CustomersVerticalBar) record;
+			var obj = (CustomersVerticalBar) record;
 
 			return String.Format("INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
 				" VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\"  ); ",
@@ -142,7 +143,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void CustomersFileToDb()
 		{
-			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlCust);
 
 			mLink = new FileDataLink(storage);
@@ -163,7 +164,7 @@ namespace FileHelpers.Tests.DataLink
 			
 		protected object FillRecordOrder(object[] fields)
 		{
-			OrdersFixed record = new OrdersFixed();
+			var record = new OrdersFixed();
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -185,7 +186,7 @@ namespace FileHelpers.Tests.DataLink
 
 		protected string GetInsertSqlOrder(object record)
 		{
-			OrdersFixed obj = (OrdersFixed) record;
+			var obj = (OrdersFixed) record;
 
 			return String.Format("INSERT INTO OrdersTemp (CustomerID, EmployeeID, Freight, OrderDate, OrderID, RequiredDate, ShippedDate, ShipVia) " +
 				" VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\" , \"{7}\"  ) ",
@@ -207,7 +208,7 @@ namespace FileHelpers.Tests.DataLink
 		public void OrdersFileToDb()
 		{
 
-			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlOrder);
 
 			mLink = new FileDataLink(storage);
@@ -229,8 +230,8 @@ namespace FileHelpers.Tests.DataLink
 		public void ClearData(string fileName, string table)
 		{
 			string conString = AccessConnStr.Replace("<BASE>", fileName);
-			OleDbConnection conn = new OleDbConnection(conString);
-			OleDbCommand cmd = new OleDbCommand("DELETE FROM " + table, conn);
+			var conn = new OleDbConnection(conString);
+			var cmd = new OleDbCommand("DELETE FROM " + table, conn);
 			conn.Open();
 			cmd.ExecuteNonQuery();
 			conn.Close();
@@ -240,10 +241,10 @@ namespace FileHelpers.Tests.DataLink
 		public int Count(string fileName, string table)
 		{
 			string conString = AccessConnStr.Replace("<BASE>", fileName);
-			OleDbConnection conn = new OleDbConnection(conString);
-			OleDbCommand cmd = new OleDbCommand("SELECT COUNT (*) FROM " + table, conn);
+			var conn = new OleDbConnection(conString);
+			var cmd = new OleDbCommand("SELECT COUNT (*) FROM " + table, conn);
 			conn.Open();
-			int res = (int) cmd.ExecuteScalar();
+			var res = (int) cmd.ExecuteScalar();
 			conn.Close();
 			return res;
 		}

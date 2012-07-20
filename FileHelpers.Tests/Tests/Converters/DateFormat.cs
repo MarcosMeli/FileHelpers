@@ -1,5 +1,6 @@
 using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Converters
@@ -65,7 +66,7 @@ namespace FileHelpers.Tests.Converters
         {
             String data = "23/11/2010,24/11/2010\n,\n          ,          \n";
 
-            FileHelperEngine<NullDateFormat> engine = new FileHelperEngine<NullDateFormat>();
+            var engine = new FileHelperEngine<NullDateFormat>();
             NullDateFormat[] result = engine.ReadString(data);
             Assert.AreEqual(new DateTime(2010, 11, 23), result[0].OrderDate, "Order date should be 23/11/2010 from first line" );
             Assert.AreEqual(new DateTime(2010, 11, 24), result[0].ShipDate, "Ship date should be 24/11/2010 from first line");

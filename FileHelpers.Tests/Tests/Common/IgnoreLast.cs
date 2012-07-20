@@ -1,8 +1,8 @@
 using System;
-using System.IO;
-using FileHelpers;
-using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -91,7 +91,7 @@ namespace FileHelpers.Tests.CommonTests
 
             TestCommon.BeginReadTest<DiscardLastType2>(asyncEngine, "Good", "DiscardLast2.txt");
 
-            ArrayList arr = new ArrayList();
+            var arr = new ArrayList();
             while (asyncEngine.ReadNext() != null)
             {
                 arr.Add(asyncEngine.LastRecord);

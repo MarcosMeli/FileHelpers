@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using FileHelpers;
 using NUnit.Framework;
-using FileHelpers.Tests;
 
 namespace FileHelpers.Tests
 {
@@ -74,7 +72,7 @@ namespace FileHelpers.Tests
                                   FileHelperEngine<CustomersVerticalBar> engine, 
                                   params string[] pathElements)
 		{
-            List<CustomersVerticalBar> arr = new List<CustomersVerticalBar>();
+            var arr = new List<CustomersVerticalBar>();
 
             TestCommon.BeginReadTest<CustomersVerticalBar>(asyncEngine, pathElements);
 

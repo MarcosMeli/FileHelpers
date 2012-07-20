@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
-using FileHelpers;
 using FileHelpers.DataLink;
 using NUnit.Framework;
-using System.Data.SqlClient;
 
 namespace FileHelpers.Tests.DataLink
 {
@@ -14,7 +15,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtract()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
 			storage.ServerName = "NEON-64";
 			storage.DatabaseName = "Northwind";
@@ -50,7 +51,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtractToFile()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
 			storage.ServerName = "NEON-64";
 			storage.DatabaseName = "Northwind";
@@ -74,10 +75,10 @@ namespace FileHelpers.Tests.DataLink
 			}
 
 
-			FileDataLink link = new FileDataLink(storage);
+			var link = new FileDataLink(storage);
 			link.ExtractToFile("tempord.txt");
 
-			OrdersVerticalBar[] res = CommonEngine.ReadFile(typeof(OrdersVerticalBar), "tempord.txt") as OrdersVerticalBar[];
+			var res = CommonEngine.ReadFile(typeof(OrdersVerticalBar), "tempord.txt") as OrdersVerticalBar[];
 
 			if (File.Exists("tempord.txt")) File.Delete("tempord.txt");
 
@@ -92,7 +93,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtract2()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
@@ -124,7 +125,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtractBad1()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
 			
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 			
@@ -135,7 +136,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtractBad2()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
@@ -149,7 +150,7 @@ namespace FileHelpers.Tests.DataLink
 		[Ignore]
 		public void OrdersExtractBad3()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "Northwind");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
@@ -172,7 +173,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtractBad4()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "SureThatThisDontExist");
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar), "NEON-64", "SureThatThisDontExist");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
@@ -184,7 +185,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersExtractBad5()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar), "WhereIsThisServer", "Northwind");
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar), "WhereIsThisServer", "Northwind");
 			
 			storage.SelectSql = "SELECT TOP 100 * FROM Orders";
 
@@ -194,7 +195,7 @@ namespace FileHelpers.Tests.DataLink
 
 		protected void FillRecordOrder(object rec, object[] fields)
 		{
-			OrdersVerticalBar record = (OrdersVerticalBar) rec;
+			var record = (OrdersVerticalBar) rec;
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -212,7 +213,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void CustomerInsert()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
+			var storage = new SqlServerStorage(typeof(CustomersVerticalBar));
 			
 			storage.ServerName = "NEON-64";
 			storage.DatabaseName = "Northwind";
@@ -240,7 +241,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void CustomersInsertEasy()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(CustomersVerticalBar));
+			var storage = new SqlServerStorage(typeof(CustomersVerticalBar));
 			
 			storage.ServerName = "NEON-64";
 			storage.DatabaseName = "Northwind";
@@ -266,14 +267,14 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersInsertBad()
 		{
-			SqlServerStorage storage = new SqlServerStorage(typeof(OrdersVerticalBar));
+			var storage = new SqlServerStorage(typeof(OrdersVerticalBar));
 			
 			storage.ServerName = "NEON-64";
 			storage.DatabaseName = "Northwind";
 
 			storage.InsertSqlCallback = new InsertSqlHandler(GetInsertSqlOrder);
-			OrdersVerticalBar[] res = (OrdersVerticalBar[]) CommonEngine.ReadFile(typeof(OrdersVerticalBar), TestCommon.GetPath("Good", "OrdersVerticalBar.txt"));
-			OrdersVerticalBar[] res2 = new OrdersVerticalBar[1];
+			var res = (OrdersVerticalBar[]) CommonEngine.ReadFile(typeof(OrdersVerticalBar), TestCommon.GetPath("Good", "OrdersVerticalBar.txt"));
+			var res2 = new OrdersVerticalBar[1];
 			res2[0] = res[0];
 
 			//storage.ExecuteInBatchSize
@@ -300,7 +301,7 @@ namespace FileHelpers.Tests.DataLink
 
 		protected string GetInsertSqlCust(object record)
 		{
-			CustomersVerticalBar obj = (CustomersVerticalBar) record;
+			var obj = (CustomersVerticalBar) record;
 
 			return String.Format("INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
 				" VALUES ( '{0}' , '{1}' , '{2}' , '{3}' , '{4}' , '{5}' , '{6}'  ); ",
@@ -318,7 +319,7 @@ namespace FileHelpers.Tests.DataLink
 		
 		protected string GetInsertSqlOrder(object record)
 		{
-			OrdersVerticalBar obj = (OrdersVerticalBar) record;
+			var obj = (OrdersVerticalBar) record;
 
 			return String.Format("INSERT INTO OrdersTemp (CustomerId, OrderDate) " +
 				" VALUES ('{0}' , '{1}'); ",

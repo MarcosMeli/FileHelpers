@@ -1,9 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using FileHelpers;
 using FileHelpers.Options;
-using FileHelpers.Dynamic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -30,10 +29,10 @@ namespace FileHelpers.Tests.CommonTests
             string classname = "CustomerComma";
             char delimiter = ',';
         
-            CsvOptions options = new CsvOptions(classname, delimiter, file);
+            var options = new CsvOptions(classname, delimiter, file);
             options.HeaderLines = 0;
             
-            CsvEngine engine = new CsvEngine(options);
+            var engine = new CsvEngine(options);
 
             Assert.AreEqual(classname, engine.RecordType.Name);
 
@@ -53,10 +52,10 @@ namespace FileHelpers.Tests.CommonTests
             string classname = "CustomerComma";
             char delimiter = ',';
 
-            CsvOptions options = new CsvOptions(classname, delimiter, file);
+            var options = new CsvOptions(classname, delimiter, file);
             options.HeaderLines = 2;
 
-            CsvEngine engine = new CsvEngine(options);
+            var engine = new CsvEngine(options);
 
             Assert.AreEqual(classname, engine.RecordType.Name);
 
@@ -109,8 +108,8 @@ namespace FileHelpers.Tests.CommonTests
 			string classname = "CustomerVerticalBar";
 			char delimiter = '|';
 
-			CsvEngine engine = new CsvEngine(classname, delimiter, file);
-			CsvEngine engine2 = new CsvEngine(classname, delimiter, file);
+			var engine = new CsvEngine(classname, delimiter, file);
+			var engine2 = new CsvEngine(classname, delimiter, file);
 
 		}
 
@@ -121,9 +120,9 @@ namespace FileHelpers.Tests.CommonTests
 
 		private void RunTest(string file, char delimiter, char delimiterHdr, string classname)
 		{
-			CsvOptions options = new CsvOptions(classname, delimiter, file);
+			var options = new CsvOptions(classname, delimiter, file);
 			options.HeaderDelimiter = delimiterHdr;
-			CsvEngine engine = new CsvEngine(options);
+			var engine = new CsvEngine(options);
 	
 			Assert.AreEqual(classname, engine.RecordType.Name);
 	

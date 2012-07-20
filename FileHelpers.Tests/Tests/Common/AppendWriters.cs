@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -14,7 +14,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -30,7 +30,7 @@ namespace FileHelpers.Tests.CommonTests
 			engine.WriteFile(@"test.txt", res);
 			engine.AppendToFile(@"test.txt", res);
 
-			SampleType[] res2 = (SampleType[]) engine.ReadFile(@"test.txt");
+			var res2 = (SampleType[]) engine.ReadFile(@"test.txt");
 
 			Assert.AreEqual(4, res2.Length);
 			Assert.AreEqual(res[0].Field1, res2[0].Field1);
@@ -44,7 +44,7 @@ namespace FileHelpers.Tests.CommonTests
 		{ 
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -59,7 +59,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			engine.WriteFile(@"test.txt", res);
 
-			SampleType record = new SampleType();
+			var record = new SampleType();
 
 			record.Field1 = DateTime.Now.Date;
 			record.Field2 = "h2";
@@ -67,7 +67,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			engine.AppendToFile(@"test.txt", record);
 
-			SampleType[] res2 = (SampleType[]) engine.ReadFile(@"test.txt");
+			var res2 = (SampleType[]) engine.ReadFile(@"test.txt");
 
 			Assert.AreEqual(3, res2.Length);
 			Assert.AreEqual(res[0].Field1, res2[0].Field1);
@@ -83,7 +83,7 @@ namespace FileHelpers.Tests.CommonTests
 			
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[1];
+			var res = new SampleType[1];
 
 			res[0] = new SampleType();
 
@@ -93,7 +93,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			engine.AppendToFile(@"tempEmpty.txt", res);
 
-			SampleType[] res2 = (SampleType[]) engine.ReadFile(@"tempEmpty.txt");
+			var res2 = (SampleType[]) engine.ReadFile(@"tempEmpty.txt");
 
 			Assert.AreEqual(1, res2.Length);
 			Assert.AreEqual(res[0].Field1, res2[0].Field1);
@@ -109,7 +109,7 @@ namespace FileHelpers.Tests.CommonTests
 			var engineOld = new FileHelperEngine<SampleType>();
 			var engine = new FileHelperAsyncEngine<SampleType>();
 
-			SampleType rec = new SampleType();
+			var rec = new SampleType();
 
 			rec.Field1 = DateTime.Now.AddDays(1).Date;
 			rec.Field2 = "je";
@@ -121,7 +121,7 @@ namespace FileHelpers.Tests.CommonTests
 			engine.WriteNext(rec);
 			engine.Close();
 
-			SampleType[] res2 = (SampleType[]) engineOld.ReadFile(@"tempEmpty.txt");
+			var res2 = (SampleType[]) engineOld.ReadFile(@"tempEmpty.txt");
 
 			Assert.AreEqual(1, res2.Length);
 			Assert.AreEqual(rec.Field1, res2[0].Field1);
@@ -140,7 +140,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			File.Copy(TestCommon.GetPath("Bad", "BadAdd1.txt"), "BadAddTemp1.txt", true);
 
-			SampleType record = new SampleType();
+			var record = new SampleType();
 
 			record.Field1 = DateTime.Now.Date;
 			record.Field2 = "AS";
@@ -148,7 +148,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			engine.AppendToFile(@"BadAddTemp1.txt", record);
 
-			SampleType[] res2 = (SampleType[]) engine.ReadFile(@"BadAddTemp1.txt");
+			var res2 = (SampleType[]) engine.ReadFile(@"BadAddTemp1.txt");
 			Assert.AreEqual(4, res2.Length);
 			Assert.AreEqual("AS", res2[3].Field2);
 			Assert.AreEqual(66, res2[3].Field3);
@@ -161,7 +161,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			File.Copy(TestCommon.GetPath("Bad", "BadAdd2.txt"), "BadAddTemp2.txt", true);
 
-			SampleType record = new SampleType();
+			var record = new SampleType();
 
 			record.Field1 = DateTime.Now.Date;
 			record.Field2 = "AS";
@@ -169,7 +169,7 @@ namespace FileHelpers.Tests.CommonTests
 
 			engine.AppendToFile(@"BadAddTemp2.txt", record);
 
-			SampleType[] res2 = (SampleType[]) engine.ReadFile(@"BadAddTemp2.txt");
+			var res2 = (SampleType[]) engine.ReadFile(@"BadAddTemp2.txt");
 			Assert.AreEqual(4, res2.Length);
 			Assert.AreEqual("AS", res2[3].Field2);
 			Assert.AreEqual(66, res2[3].Field3);

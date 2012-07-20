@@ -1,5 +1,6 @@
 using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -15,7 +16,7 @@ namespace FileHelpers.Tests.CommonTests
 			var res = TestCommon.ReadTest<CustomersTabIgnored3>(engine, "Good", "CustomersTabIgnoreFirst.txt");
 
 			Assert.AreEqual(10, res.Length);
-			foreach (CustomersTabIgnored3 record in res)
+			foreach (var record in res)
 			{
 				Assert.AreEqual(null, record.CustomerID);	
 			}
@@ -31,7 +32,7 @@ namespace FileHelpers.Tests.CommonTests
             var  res = TestCommon.ReadTest<CustomersTabIgnored2>(engine, "Good", "CustomersTabIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
-			foreach (CustomersTabIgnored2 record in res)
+			foreach (var record in res)
 			{
 				Assert.AreEqual(null, record.ContactName);	
 			}
@@ -45,7 +46,7 @@ namespace FileHelpers.Tests.CommonTests
             CustomersTabIgnored[] res = TestCommon.ReadTest<CustomersTabIgnored>(engine, "Good", "CustomersTabIgnoreLast.txt");
 
 			Assert.AreEqual(10, res.Length);
-			foreach (CustomersTabIgnored record in res)
+			foreach (var record in res)
 			{
 				Assert.AreEqual(null, record.Country);	
 			}
@@ -60,7 +61,7 @@ namespace FileHelpers.Tests.CommonTests
             OrdersFixedIgnore[] res = TestCommon.ReadTest<OrdersFixedIgnore>(engine, "Good", "OrdersFixedIgnoreMiddle.txt");
 
 			Assert.AreEqual(10, res.Length);
-			foreach (OrdersFixedIgnore record in res)
+			foreach (var record in res)
 			{
 				Assert.AreEqual(0, record.EmployeeID);	
 			}

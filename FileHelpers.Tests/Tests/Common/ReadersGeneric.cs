@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -14,7 +14,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadFile()
 		{
-			FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+			var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
 			res = engine.ReadFile(FileTest.Good.Test1.Path);
@@ -57,7 +57,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncRead()
 		{
 
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
 			SampleType rec1, rec2;
             asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
@@ -85,7 +85,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncReadMoreAndMore()
 		{
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
             SampleType rec1;
             asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
@@ -109,7 +109,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			SampleType rec1;
 
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
             asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
             int lineAnt = asyncEngine.LineNumber;
@@ -129,12 +129,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncReadEnumerable()
 		{
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
             asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
 			int lineAnt = asyncEngine.LineNumber;
 			
-			foreach (SampleType rec1 in asyncEngine)
+			foreach (var rec1 in asyncEngine)
 			{
 				Assert.IsNotNull(rec1);
 				Assert.AreEqual(lineAnt + 1, asyncEngine.LineNumber);
@@ -151,12 +151,12 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncReadEnumerableBad()
 		{
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
             Assert.Throws<FileHelpersException>(()
                     =>
             {
-                foreach (SampleType rec1 in asyncEngine)
+                foreach (var rec1 in asyncEngine)
                 {
                     rec1.ToString();
                 }
@@ -167,13 +167,13 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void AsyncReadEnumerable2()
 		{
-            using (FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>())
+            using (var asyncEngine = new FileHelperAsyncEngine<SampleType>())
 			{
                 asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
                 int lineAnt = asyncEngine.LineNumber;
 			
-				foreach (SampleType rec1 in asyncEngine)
+				foreach (var rec1 in asyncEngine)
 				{
 					Assert.IsNotNull(rec1);
 					Assert.AreEqual(lineAnt + 1, asyncEngine.LineNumber);
@@ -190,7 +190,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncReadEnumerableAutoDispose()
 		{
 
-            FileHelperAsyncEngine<SampleType> asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
             asyncEngine.BeginReadFile(FileTest.Good.Test1.Path);
 			
 			asyncEngine.ReadNext();
@@ -205,7 +205,7 @@ namespace FileHelpers.Tests.CommonTests
 				"11101314123456" + Environment.NewLine +
 				"10101314234567" + Environment.NewLine;
 
-            FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
 			res = engine.ReadStream(new StringReader(data));
@@ -232,7 +232,7 @@ namespace FileHelpers.Tests.CommonTests
 				"11101314123456" + Environment.NewLine +
 				"10101314234567" + Environment.NewLine;
 
-            FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
             SampleType[] res;
             res = engine.ReadFile(FileTest.Good.Test1.Path);
@@ -283,7 +283,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			string data = "";
 
-            FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
 			SampleType[] res;
 			res = engine.ReadStream(new StringReader(data));
@@ -297,7 +297,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadEmptyStream()
 		{
-            FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
             SampleType[] res;
             res = engine.ReadFile(TestCommon.GetPath("Good", "TestEmpty.txt"));
@@ -312,7 +312,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void ReadFileAsDataTable()
 		{
-            FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+            var engine = new FileHelperEngine<SampleType>();
 
 			DataTable res;
 			res = engine.ReadFileAsDT(FileTest.Good.Test1.Path);

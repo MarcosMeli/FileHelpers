@@ -1,8 +1,7 @@
 using System;
-using System.IO;
-using FileHelpers;
-using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {

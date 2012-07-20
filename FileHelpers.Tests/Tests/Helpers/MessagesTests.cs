@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-using FileHelpers;
-using FileHelpers.Detection;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 
 namespace FileHelpers.Tests

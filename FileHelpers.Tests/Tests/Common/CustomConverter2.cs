@@ -1,4 +1,6 @@
-using FileHelpers;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -25,7 +27,7 @@ namespace FileHelpers.Tests.CommonTests
             string[] splited1 = from.Split(',');
             string[] splited2 = splited1[0].Split('-');
 
-            AddressField res = new AddressField();
+            var res = new AddressField();
             res.Street = splited2[0].Trim();
             res.Number = splited2[1].Trim();
             res.City = splited1[1].Trim();
@@ -37,8 +39,8 @@ namespace FileHelpers.Tests.CommonTests
     // CUSTOM CONVERTER
     public class AddressConverter2 : ConverterBase
     {
-        char mSep1;
-        char mSep2;
+        readonly char mSep1;
+        readonly char mSep2;
         public AddressConverter2(string sep1, string sep2)
         {
             mSep1 = sep1[0];
@@ -49,7 +51,7 @@ namespace FileHelpers.Tests.CommonTests
             string[] splited1 = from.Split(mSep1);
             string[] splited2 = splited1[0].Split(mSep2);
 
-            AddressField res = new AddressField();
+            var res = new AddressField();
             res.Street = splited2[0].Trim();
             res.Number = splited2[1].Trim();
             res.City = splited1[1].Trim();

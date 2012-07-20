@@ -1,10 +1,11 @@
 ﻿#region Includes
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Collections;
 using System.Data;
+using System.Reflection;
+using System.Text;
+
 #endregion
 
 //This software is provided free of charge from from Kellerman Software.
@@ -53,7 +54,7 @@ namespace KellermanSoftware.CompareNetObjects
     {
         #region Class Variables
         private List<String> _differences = new List<String>();
-        private List<object> _parents = new List<object>();
+        private readonly List<object> _parents = new List<object>();
         private List<string> _elementsToIgnore = new List<string>();
         private bool _comparePrivateProperties = false;
         private bool _comparePrivateFields = false;
@@ -162,11 +163,11 @@ namespace KellermanSoftware.CompareNetObjects
         {
             get
             {
-                StringBuilder sb = new StringBuilder(4096);
+                var sb = new StringBuilder(4096);
 
                 sb.Append("\r\nBegin Differences:\r\n");
 
-                foreach (string item in Differences)
+                foreach (var item in Differences)
                 {
                     sb.AppendFormat("{0}\r\n", item);
                 }
@@ -288,8 +289,8 @@ namespace KellermanSoftware.CompareNetObjects
 
         private void CompareDataRow(object object1, object object2, string breadCrumb)
         {
-            DataRow dataRow1 = object1 as DataRow;
-            DataRow dataRow2 = object2 as DataRow;
+            var dataRow1 = object1 as DataRow;
+            var dataRow2 = object2 as DataRow;
 
             if (dataRow1 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -335,8 +336,8 @@ namespace KellermanSoftware.CompareNetObjects
 
         private void CompareDataTable(object object1, object object2, string breadCrumb)
         {
-            DataTable dataTable1 = object1 as DataTable;
-            DataTable dataTable2 = object2 as DataTable;
+            var dataTable1 = object1 as DataTable;
+            var dataTable2 = object2 as DataTable;
 
             if (dataTable1 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -381,8 +382,8 @@ namespace KellermanSoftware.CompareNetObjects
 
         private void CompareDataset(object object1, object object2, string breadCrumb)
         {
-            DataSet dataSet1 = object1 as DataSet;
-            DataSet dataSet2 = object2 as DataSet;
+            var dataSet1 = object1 as DataSet;
+            var dataSet2 = object2 as DataSet;
 
             if (dataSet1 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -538,7 +539,7 @@ namespace KellermanSoftware.CompareNetObjects
             if (object2 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object2");
 
-            IComparable valOne = object1 as IComparable;
+            var valOne = object1 as IComparable;
 
             if (valOne == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -565,7 +566,7 @@ namespace KellermanSoftware.CompareNetObjects
             //Compare the fields
             FieldInfo[] currentFields = t1.GetFields();
 
-            foreach (FieldInfo item in currentFields)
+            foreach (var item in currentFields)
             {
                 //Only compare simple types within structs (Recursion Problems)
                 if (!ValidStructSubType(item.FieldType))
@@ -639,7 +640,7 @@ namespace KellermanSoftware.CompareNetObjects
             else
                 currentFields= t1.GetFields(); //Default is public instance
                         
-            foreach (FieldInfo item in currentFields)
+            foreach (var item in currentFields)
             {
                 //Skip if this is a shallow compare
                 if (!CompareChildren && IsChildType(item.FieldType))
@@ -695,7 +696,7 @@ namespace KellermanSoftware.CompareNetObjects
             else
                 currentProperties =  t1.GetProperties(); //Default is public instance            
 
-            foreach (PropertyInfo info in currentProperties)
+            foreach (var info in currentProperties)
             {
                 //If we can't read it, skip it
                 if (info.CanRead == false)
@@ -773,8 +774,8 @@ namespace KellermanSoftware.CompareNetObjects
         private void CompareIndexer(PropertyInfo info, object object1, object object2, string breadCrumb)
         {
             string currentCrumb;
-            int indexerCount1 = (int)info.ReflectedType.GetProperty("Count").GetGetMethod().Invoke(object1, new object[] { });
-            int indexerCount2 = (int)info.ReflectedType.GetProperty("Count").GetGetMethod().Invoke(object2, new object[] { });
+            var indexerCount1 = (int)info.ReflectedType.GetProperty("Count").GetGetMethod().Invoke(object1, new object[] { });
+            var indexerCount2 = (int)info.ReflectedType.GetProperty("Count").GetGetMethod().Invoke(object2, new object[] { });
 
             //Indexers must be the same length
             if (indexerCount1 != indexerCount2)
@@ -808,8 +809,8 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="breadCrumb"></param>
         private void CompareIDictionary(object object1, object object2, string breadCrumb)
         {
-            IDictionary iDict1 = object1 as IDictionary;
-            IDictionary iDict2 = object2 as IDictionary;
+            var iDict1 = object1 as IDictionary;
+            var iDict2 = object2 as IDictionary;
 
             if (iDict1 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -891,8 +892,8 @@ namespace KellermanSoftware.CompareNetObjects
         /// <param name="breadCrumb"></param>
         private void CompareIList(object object1, object object2, string breadCrumb)
         {
-            IList ilist1 = object1 as IList;
-            IList ilist2 = object2 as IList;
+            var ilist1 = object1 as IList;
+            var ilist2 = object2 as IList;
 
             if (ilist1 == null) //This should never happen, null check happens one level up
                 throw new ArgumentNullException("object1");
@@ -952,7 +953,7 @@ namespace KellermanSoftware.CompareNetObjects
         {
             bool useIndex = !String.IsNullOrEmpty(index);
             bool useName= name.Length > 0;
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append(existing);
 

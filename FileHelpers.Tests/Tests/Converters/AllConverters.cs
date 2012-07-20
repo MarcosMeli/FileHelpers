@@ -1,5 +1,6 @@
 using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Converters
@@ -7,7 +8,7 @@ namespace FileHelpers.Tests.Converters
     [TestFixture]
     public class AllConverters
     {
-        FileHelperEngine<AllTypesClass> engine = new FileHelperEngine<AllTypesClass>();
+        readonly FileHelperEngine<AllTypesClass> engine = new FileHelperEngine<AllTypesClass>();
 
         [Test]
         public void Test()
@@ -32,35 +33,35 @@ namespace FileHelpers.Tests.Converters
             [FieldConverter(ConverterKind.Boolean, "1", "0")]
             public Boolean fldBoolean;
 
-            public System.Byte fldByte;
+            public Byte fldByte;
 
-            public System.SByte fldSByte;
+            public SByte fldSByte;
 
-            public System.Int16 fldInt16;
+            public Int16 fldInt16;
 
-            public System.UInt16 fldUInt16;
+            public UInt16 fldUInt16;
 
-            public System.Int32 fldInt32;
+            public Int32 fldInt32;
 
-            public System.UInt32 fldUInt32;
+            public UInt32 fldUInt32;
 
-            public System.Int64 fldInt64;
+            public Int64 fldInt64;
 
-            public System.UInt64 fldUInt64;
+            public UInt64 fldUInt64;
 
-            public System.Single fldSingle;
+            public Single fldSingle;
 
-            public System.Double fldDouble;
+            public Double fldDouble;
 
-            public System.Decimal fldDecimal;
+            public Decimal fldDecimal;
 
             [FieldConverter(ConverterKind.Date, "dd.MM.yyyy HH:mm:ss")]
-            public System.DateTime fldDateTime;
+            public DateTime fldDateTime;
 
-            public System.Char fldChar;
+            public Char fldChar;
 
             [FieldConverter(ConverterKind.Guid, "D")]
-            public System.Guid fldGuid;
+            public Guid fldGuid;
 
 
         }

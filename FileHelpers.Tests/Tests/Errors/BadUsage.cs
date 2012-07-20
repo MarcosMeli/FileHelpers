@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Errors
@@ -413,7 +413,7 @@ namespace FileHelpers.Tests.Errors
 		{
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 

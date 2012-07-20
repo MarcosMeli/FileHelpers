@@ -1,4 +1,6 @@
-using FileHelpers;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -11,7 +13,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<GodRecord>();
 
-            ConvertException ex = 
+            var ex = 
                 Assert.Throws<ConvertException>(
                 () => TestCommon.ReadTest<GodRecord>(engine, "Good", "PriceConverter.txt"));
 

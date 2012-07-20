@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using FileHelpers;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
 
@@ -261,7 +262,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void FullClassBuilding()
 		{
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			var cb = new DelimitedClassBuilder("Customers", ",");
 			cb.IgnoreFirstLines = 1;
 			cb.IgnoreEmptyLines = true;
 			
@@ -330,7 +331,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void FullClassBuildingFixed()
 		{
-			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+			var cb = new FixedLengthClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -359,7 +360,7 @@ namespace FileHelpers.Tests
 
 		public ClassBuilder CommonCreate()
 		{
-			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+			var cb = new FixedLengthClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -428,7 +429,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void SaveLoadXmlFileFixed()
 		{
-			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+			var cb = new FixedLengthClassBuilder("Customers");
 
 			cb.FixedMode = FixedMode.ExactLength;
 			cb.AddField("Field1", 8, typeof(DateTime));
@@ -448,7 +449,7 @@ namespace FileHelpers.Tests
 			
 			cb.SaveToXml(@"runtime.xml");
 
-			FixedLengthClassBuilder loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+			var loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
 
 			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
 			Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
@@ -470,7 +471,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void SaveLoadXmlFileFixed2()
 		{
-			FixedLengthClassBuilder cb = new FixedLengthClassBuilder("Customers");
+			var cb = new FixedLengthClassBuilder("Customers");
 
 			cb.AddField("Field1", 8, typeof(DateTime));
 			cb.LastField.Converter.Kind = ConverterKind.Date;
@@ -499,7 +500,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void SaveLoadXmlFileDelimited()
 		{
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			var cb = new DelimitedClassBuilder("Customers", ",");
 			cb.IgnoreFirstLines = 1;
 			cb.IgnoreEmptyLines = true;
 			
@@ -516,7 +517,7 @@ namespace FileHelpers.Tests
 
 			cb.SaveToXml(@"runtime.xml");
 			
-			DelimitedClassBuilder loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+			var loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
 			
 			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
 			Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
@@ -537,7 +538,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void SaveLoadXmlFileDelimited2()
 		{
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+			var cb = new DelimitedClassBuilder("Customers", ",");
 			cb.IgnoreFirstLines = 1;
 			cb.IgnoreEmptyLines = true;
 			
@@ -565,7 +566,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void SaveLoadXmlOptions()
 		{
-			DelimitedClassBuilder cbOrig = new DelimitedClassBuilder("Customers", ",");
+			var cbOrig = new DelimitedClassBuilder("Customers", ",");
 			cbOrig.AddField("Field1", typeof(DateTime));
 			cbOrig.AddField("FieldTwo", typeof(string));
 
@@ -606,7 +607,7 @@ namespace FileHelpers.Tests
         [Test]
         public void SaveLoadXmlOptionsString()
         {
-            DelimitedClassBuilder cbOrig = new DelimitedClassBuilder("Customers", ",");
+            var cbOrig = new DelimitedClassBuilder("Customers", ",");
             cbOrig.AddField("Field1", typeof(DateTime));
             cbOrig.AddField("FieldTwo", typeof(string));
 
@@ -675,7 +676,7 @@ namespace FileHelpers.Tests
                  "City",
                  "State",
              };
-            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+            var cb = new DelimitedClassBuilder("ImportContact", ",");
 
             foreach (var f in fields) {
                 cb.AddField(f, typeof(string));
@@ -704,7 +705,7 @@ namespace FileHelpers.Tests
 		[Test]
 		public void LoopingFields()
 		{
-			DelimitedClassBuilder  cb = new DelimitedClassBuilder("MyClass", ",");
+			var  cb = new DelimitedClassBuilder("MyClass", ",");
 			 
 			string[] lst = { "fieldOne", "fieldTwo", "fieldThree" }; 
 
@@ -713,7 +714,7 @@ namespace FileHelpers.Tests
 				cb.AddField(lst[i].ToString(), typeof(string)); 
 			} 
 
-			FileHelperEngine engineTemp = new FileHelperEngine(cb.CreateRecordClass()); 
+			var engineTemp = new FileHelperEngine(cb.CreateRecordClass()); 
 		}
 		
 		[Test]

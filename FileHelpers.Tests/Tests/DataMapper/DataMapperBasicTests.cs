@@ -1,10 +1,8 @@
 #if ! MINI
 
 using System;
-using System.Data.OleDb;
-using FileHelpers;
-using FileHelpers.DataLink;
-using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
 
 #if V_3_0
 

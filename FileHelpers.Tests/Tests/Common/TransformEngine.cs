@@ -1,9 +1,9 @@
 #if ! MINI
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
-using FileHelpers.DataLink;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -11,7 +11,7 @@ namespace FileHelpers.Tests.CommonTests
 	[TestFixture]
 	public class TransformEngine
 	{
-        string fileOut = TestCommon.GetTempFile("transformout.txt");
+	    readonly string fileOut = TestCommon.GetTempFile("transformout.txt");
 
 		[Test]
 		public void CsvToFixedLength()
@@ -218,7 +218,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		    ToClass ITransformable<ToClass>.TransformTo()
 		    {
-                ToClass res = new ToClass();
+                var res = new ToClass();
                 res.CustomerId = CustomerId;
                 res.CompanyName = CompanyName;
                 res.CustomerName = CustomerName;
@@ -228,7 +228,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		    ToClass2 ITransformable<ToClass2>.TransformTo()
 		    {
-                ToClass2 res = new ToClass2();
+                var res = new ToClass2();
                 res.CustomerId = CustomerId;
                 res.CompanyName = CompanyName;
                 res.CustomerName = CustomerName;

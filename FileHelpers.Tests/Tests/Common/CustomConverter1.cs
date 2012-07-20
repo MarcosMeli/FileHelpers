@@ -1,5 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -24,7 +26,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			string[] splited = from.Split(',');
 
-			NameField res = new NameField();
+			var res = new NameField();
 			res.LastName = splited[0].Trim();
 			res.FirstName = splited[1].Trim();
 

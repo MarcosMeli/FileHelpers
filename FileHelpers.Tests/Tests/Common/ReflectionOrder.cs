@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Data;
-using System.IO;
-using FileHelpers;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -53,7 +51,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void ReadFileBulk()
         {
-            ArrayList temp  = new ArrayList();
+            var temp  = new ArrayList();
             for (int i = 0; i < 1000000; i++)
             {
                 temp.Add(typeof(SampleType).GetField("Field2"));
@@ -135,7 +133,7 @@ namespace FileHelpers.Tests.CommonTests
             for (int i = 0; i < 10; i++)
             {
 
-                FileHelperEngine<SampleType> engine = new FileHelperEngine<SampleType>();
+                var engine = new FileHelperEngine<SampleType>();
 
                 SampleType[] res;
                 res = engine.ReadFile(FileTest.Good.Test1.Path);

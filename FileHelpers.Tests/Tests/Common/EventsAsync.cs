@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using FileHelpers.Events;
 using NUnit.Framework;
@@ -23,7 +25,7 @@ namespace FileHelpers.Tests
             engine.BeginReadFile(FileTest.Good.Test1.Path);
 
 		    int count = 0;
-            foreach (SampleType t in engine)
+            foreach (var t in engine)
 		        count++;
 
 			Assert.AreEqual(4, count);
@@ -44,7 +46,7 @@ namespace FileHelpers.Tests
             engine.BeforeWriteRecord += new BeforeWriteHandler<SampleType>(engine_BeforeWriteRecord);
             engine.AfterWriteRecord += new AfterWriteHandler<SampleType>(engine_AfterWriteRecord);
 
-            SampleType[] res = new SampleType[2];
+            var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -83,7 +85,7 @@ namespace FileHelpers.Tests
             engine.BeginReadFile(FileTest.Good.Test1.Path);
 
 		    int count = 0;
-            foreach (SampleType t in engine)
+            foreach (var t in engine)
 		        count++;
 
 			Assert.AreEqual(0, count);
@@ -104,7 +106,7 @@ namespace FileHelpers.Tests
             engine.BeginReadFile(FileTest.Good.Test1.Path);
 
             int count = 0;
-            foreach (SampleType t in engine)
+            foreach (var t in engine)
                 count++;
 
             Assert.AreEqual(0, count);
@@ -125,7 +127,7 @@ namespace FileHelpers.Tests
 
             engine.BeginReadFile(FileTest.Good.Test1.Path);
             int count = 0;
-            foreach (SampleType t in engine)
+            foreach (var t in engine)
                 count++;
 
 			Assert.AreEqual(0, count);
@@ -183,7 +185,7 @@ namespace FileHelpers.Tests
             engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEventChange);
 
             engine.BeginReadString(input);
-            SampleType[] res = (SampleType[]) engine.ReadNexts(3);
+            var res = (SampleType[]) engine.ReadNexts(3);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);

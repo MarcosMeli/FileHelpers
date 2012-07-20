@@ -1,12 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
+using FileHelpers.Dynamic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-    using FileHelpers.Dynamic;
-
     [TestFixture]
 	public class NullWriters
 	{
@@ -16,7 +16,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
             var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[3];
+			var res = new SampleType[3];
 			res[0] = new SampleType();
 			res[1] = new SampleType();
 			res[2] = new SampleType();
@@ -48,7 +48,7 @@ namespace FileHelpers.Tests.CommonTests
 			asyncEngine.Close();
 
 			asyncEngine.BeginReadFile("tempNull.txt");
-			SampleType[] res = (SampleType[]) asyncEngine.ReadNexts(5000);
+			var res = (SampleType[]) asyncEngine.ReadNexts(5000);
 			asyncEngine.Close();
 
 			Assert.AreEqual(3, res.Length);
@@ -92,7 +92,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<NullableType>();
 
-            var toWrite = new System.Collections.Generic.List<NullableType>();
+            var toWrite = new List<NullableType>();
 
             NullableType record;
 
@@ -169,23 +169,23 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void WriteNullableTypes2()
         {
-            var orders = new System.Collections.Generic.List<TestOrder>();
+            var orders = new List<TestOrder>();
 
-            TestOrder or1 = new TestOrder();
+            var or1 = new TestOrder();
             or1.OrderID = 1;
             or1.OrderDate = null;
             or1.RequiredDate = new DateTime(2007, 1, 2);
             or1.ShipVia = null;
             orders.Add(or1);
 
-            TestOrder or2 = new TestOrder();
+            var or2 = new TestOrder();
             or2.OrderID = 2;
             or2.OrderDate = new DateTime(2007, 2, 1);
             or2.RequiredDate = null;
             or2.ShipVia = 1;
             orders.Add(or2);
 
-            FileHelperEngine<TestOrder> fileHelperEngine = new FileHelperEngine<TestOrder>();
+            var fileHelperEngine = new FileHelperEngine<TestOrder>();
             TestOrder[] res = fileHelperEngine.ReadString(fileHelperEngine.WriteString(orders));
 
             Assert.IsNull(res[0].OrderDate);

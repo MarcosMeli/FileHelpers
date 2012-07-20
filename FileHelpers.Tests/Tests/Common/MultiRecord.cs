@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
-using FileHelpers;
-using FileHelpers.MasterDetail;
-using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests
 {
@@ -33,9 +32,9 @@ namespace FileHelpers.Tests
 		{
 			engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector), typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
-			ArrayList res = new ArrayList();
+			var res = new ArrayList();
             engine.BeginReadFile(FileTest.Good.MultiRecord1.Path);
-			foreach (object o in engine)
+			foreach (var o in engine)
 			{
 				res.Add(o);
 			}
@@ -58,7 +57,7 @@ namespace FileHelpers.Tests
             object[] records = engine.ReadFile(FileTest.Good.MultiRecord1.Path);
 
 			engine.BeginWriteFile("tempoMulti.txt");
-			foreach (object o in records)
+			foreach (var o in records)
 			{
 				engine.WriteNext(o);
 			}
@@ -87,7 +86,7 @@ namespace FileHelpers.Tests
 		    Assert.Throws<FileHelpersException>(
 		        () =>
 		            {
-		                foreach (object o in engine)
+		                foreach (var o in engine)
 		                {
 		                    o.ToString();
 		                }

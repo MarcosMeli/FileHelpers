@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using FileHelpers;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
-using System.IO;
 using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests.MasterDetail
@@ -84,15 +82,15 @@ namespace FileHelpers.Tests.MasterDetail
         }
 
 
-	    private OrdersVerticalBar[] colDetails = new OrdersVerticalBar[] {};
+	    private readonly OrdersVerticalBar[] colDetails = new OrdersVerticalBar[] {};
         
         [Test]
         public void CustomerOrdersWrite2()
         {
-            MasterDetailEngine<CustomersVerticalBar, OrdersVerticalBar> masterDetEng = new MasterDetailEngine<CustomersVerticalBar, OrdersVerticalBar>();
+            var masterDetEng = new MasterDetailEngine<CustomersVerticalBar, OrdersVerticalBar>();
 
             MasterDetails<CustomersVerticalBar, OrdersVerticalBar> record;
-            List<MasterDetails<CustomersVerticalBar, OrdersVerticalBar>> records = new List<MasterDetails<CustomersVerticalBar,OrdersVerticalBar>>();
+            var records = new List<MasterDetails<CustomersVerticalBar,OrdersVerticalBar>>();
 
             // Create the master detail item
             record = new MasterDetails<CustomersVerticalBar, OrdersVerticalBar>();
@@ -104,8 +102,8 @@ namespace FileHelpers.Tests.MasterDetail
             record.Master.Country = "Argentina";
 
             // Create the details object
-            List<OrdersVerticalBar> orders = new List<OrdersVerticalBar>();
-            foreach (OrdersVerticalBar det in colDetails)
+            var orders = new List<OrdersVerticalBar>();
+            foreach (var det in colDetails)
             {
                 orders.Add(det);
             }
@@ -122,7 +120,7 @@ namespace FileHelpers.Tests.MasterDetail
             record.Master.Country = "Argentina";
 
             orders = new List<OrdersVerticalBar>();
-            foreach (OrdersVerticalBar det in colDetails)
+            foreach (var det in colDetails)
             {
                 orders.Add(det);
             }

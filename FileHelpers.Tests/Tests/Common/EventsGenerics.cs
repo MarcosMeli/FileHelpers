@@ -1,6 +1,6 @@
 using System;
-using System.IO;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 using NUnit.Framework;
 
@@ -41,7 +41,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.BeforeWriteRecord += engine_BeforeWriteRecord;
 			engine.AfterWriteRecord += engine_AfterWriteRecord;
 
-            SampleType[] res = new SampleType[2];
+            var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();

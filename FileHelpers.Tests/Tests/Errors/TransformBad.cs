@@ -1,9 +1,9 @@
 #if ! MINI
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
-using FileHelpers.DataLink;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -33,7 +33,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		    public ToClass2 TransformTo()
 		    {
-                ToClass2 res = new ToClass2();
+                var res = new ToClass2();
                 res.Field1 = Field1;
                 res.Field2 = Field2;
                 res.Field3 = Field3;
@@ -52,7 +52,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		    public ToClass1 TransformTo()
 		    {
-                ToClass1 res = new ToClass1();
+                var res = new ToClass1();
                 res.Field1 = Field1;
                 res.Field2 = Field2;
                 res.Field3 = Field3;

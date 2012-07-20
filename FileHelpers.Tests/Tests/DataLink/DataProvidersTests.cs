@@ -1,6 +1,8 @@
 #if ! MINI
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.DataLink;
 using NUnit.Framework;
 
@@ -13,7 +15,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void OrdersProvider()
 		{
-			AccessStorage storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(OrdersFixed), @"..\data\TestData.mdb");
 			storage.SelectSql = "SELECT * FROM Orders";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordOrder);
 
@@ -27,7 +29,7 @@ namespace FileHelpers.Tests.DataLink
 		
 		protected void FillRecordOrder(object rec, object[] fields)
 		{
-			OrdersFixed record = (OrdersFixed) rec;
+			var record = (OrdersFixed) rec;
 
 			record.OrderID = (int) fields[0];
 			record.CustomerID = (string) fields[1];
@@ -45,7 +47,7 @@ namespace FileHelpers.Tests.DataLink
 
 		private void FillRecordCust(object rec, object[] fields)
 		{
-			CustomersVerticalBar record = (CustomersVerticalBar) rec;
+			var record = (CustomersVerticalBar) rec;
 
 			record.CustomerID = (string) fields[0];
 			record.CompanyName = (string) fields[1];
@@ -59,7 +61,7 @@ namespace FileHelpers.Tests.DataLink
 		[Test]
 		public void CustomersProvider()
 		{
-			AccessStorage storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
+			var storage = new AccessStorage(typeof(CustomersVerticalBar), @"..\data\TestData.mdb");
 			storage.SelectSql = "SELECT * FROM Customers";
 			storage.FillRecordCallback = new FillRecordHandler(FillRecordCust);
 

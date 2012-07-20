@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using FileHelpers;
 using FileHelpers.Options;
 using NUnit.Framework;
 
@@ -32,7 +33,7 @@ namespace FileHelpers.Tests.CommonTests
 		public void ReadOptionalRead()
 		{
 			var engine = new FileHelperEngine<QuoteMode1>();
-            QuoteMode1[] res = TestCommon.ReadTest<QuoteMode1>(engine, "Good", "QuoteMode1.txt") as QuoteMode1[];
+            var res = TestCommon.ReadTest<QuoteMode1>(engine, "Good", "QuoteMode1.txt") as QuoteMode1[];
 			ValidateData(res);
 		}
 
@@ -99,7 +100,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AutoRemoveQuotes()
         {
-            CsvEngine eng = new CsvEngine(new CsvOptions("YourClass", ',', 2, 0));
+            var eng = new CsvEngine(new CsvOptions("YourClass", ',', 2, 0));
             DataTable dt = eng.ReadFileAsDT(TestCommon.GetPath("Good", "QuoteMode1.txt"));
 
             Assert.AreEqual("VINET", dt.Rows[0][1]);

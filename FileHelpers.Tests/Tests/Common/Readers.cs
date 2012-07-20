@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -345,7 +345,7 @@ namespace FileHelpers.Tests.CommonTests
 			var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 			asyncEngine.BeginReadString(data);
 
-			foreach (SampleType rec in asyncEngine)
+			foreach (var rec in asyncEngine)
 			{
 				Assert.AreEqual(rec.Field1, asyncEngine[0]);
 				Assert.AreEqual(rec.Field2, asyncEngine[1]);

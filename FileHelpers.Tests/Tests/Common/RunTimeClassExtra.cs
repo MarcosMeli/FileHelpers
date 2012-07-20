@@ -1,10 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using FileHelpers;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace FileHelpers.Tests
 {
@@ -15,12 +14,12 @@ namespace FileHelpers.Tests
 		public void ReadAsDataTable1()
 		{
 
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ","); 
+			var cb = new DelimitedClassBuilder("ImportContact", ","); 
 			cb.IgnoreEmptyLines = true; 
 			cb.GenerateProperties = true; 
 			
 			cb.AddField("FirstName", typeof(string)); 
-			cb.LastField.TrimMode = FileHelpers.TrimMode.Both; 
+			cb.LastField.TrimMode = TrimMode.Both; 
 			cb.LastField.FieldQuoted = false; 
 
 			cb.AddField("LastName", typeof(string)); 
@@ -74,12 +73,12 @@ namespace FileHelpers.Tests
 		public void ReadAsDataTable2()
 		{
 
-			DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ","); 
+			var cb = new DelimitedClassBuilder("ImportContact", ","); 
 			cb.IgnoreEmptyLines = true; 
 			cb.GenerateProperties = true; 
 			
 			cb.AddField("FirstName", typeof(string)); 
-			cb.LastField.TrimMode = FileHelpers.TrimMode.Both; 
+			cb.LastField.TrimMode = TrimMode.Both; 
 			cb.LastField.FieldQuoted = false; 
 
 			cb.AddField("LastName", typeof(string)); 
@@ -128,7 +127,7 @@ namespace FileHelpers.Tests
         [Test]
         public void RunTimeNullableFields()
         {
-            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+            var cb = new DelimitedClassBuilder("ImportContact", ",");
 
             cb.AddField("Field1", "int?");
             cb.AddField("Field2", typeof(int?));
@@ -141,7 +140,7 @@ namespace FileHelpers.Tests
         [Test]
         public void RunTimeGenerics()
         {
-            DelimitedClassBuilder cb = new DelimitedClassBuilder("ImportContact", ",");
+            var cb = new DelimitedClassBuilder("ImportContact", ",");
 
             cb.AddField("Field2", typeof(Dictionary<int, List<string>>));
             cb.AddField("Field1", "List<int>");

@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -129,7 +130,7 @@ namespace FileHelpers.Tests.CommonTests
 			engine.WriteFile("tempo.txt", res);
 			engine.HeaderText = "none none";
 
-			DiscardType1[] res2 = (DiscardType1[]) engine.ReadFile(@"tempo.txt");
+			var res2 = (DiscardType1[]) engine.ReadFile(@"tempo.txt");
 
 			Assert.AreEqual(res.Length, res2.Length);
 			Assert.AreEqual(mExpectedShortHeaderText, engine.HeaderText);

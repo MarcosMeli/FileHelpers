@@ -1,6 +1,6 @@
 using System;
-using System.IO;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 using NUnit.Framework;
 
@@ -39,7 +39,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.BeforeWriteRecord += new BeforeWriteHandler<SampleType>(engine_BeforeWriteRecord);
             engine.AfterWriteRecord += new AfterWriteHandler<SampleType>(engine_AfterWriteRecord);
 
-            SampleType[] res = new SampleType[2];
+            var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -162,7 +162,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<SampleType>();
             engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEventChange);
 
-            SampleType[] res = (SampleType[]) engine.ReadString(input);
+            var res = (SampleType[]) engine.ReadString(input);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);

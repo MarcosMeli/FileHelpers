@@ -1,5 +1,6 @@
 using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -38,7 +39,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void SimpleTest3()
 		{
-			FixedFileEngine engine = new FixedFileEngine(typeof(CustomersFixed2));
+			var engine = new FixedFileEngine(typeof(CustomersFixed2));
 			Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 		}
 

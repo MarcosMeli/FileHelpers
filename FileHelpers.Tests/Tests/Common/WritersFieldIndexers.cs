@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using System.Data;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -20,9 +19,9 @@ namespace FileHelpers.Tests.CommonTests
 		public void AsyncFieldIndex1()
 		{
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+			var engine = new FileHelperAsyncEngine(typeof(SampleType));
 
-		    StringWriter sw = new StringWriter();
+		    var sw = new StringWriter();
             engine.BeginWriteStream(sw);
 
 		    engine[0] = new DateTime(2003, 2, 1);
@@ -53,7 +52,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AsyncFieldIndexBad1()
         {
-            FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+            var engine = new FileHelperAsyncEngine(typeof(SampleType));
             Assert.Throws<BadUsageException>(()
                  => engine[0] = new DateTime(2003, 2, 1));
         }
@@ -61,7 +60,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AsyncFieldIndexBad2()
         {
-            FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+            var engine = new FileHelperAsyncEngine(typeof(SampleType));
             
             Assert.Throws<BadUsageException>(()
                  => engine.WriteNextValues());
@@ -70,8 +69,8 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AsyncFieldIndexBad3()
         {
-            FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
-            StringWriter sw = new StringWriter();
+            var engine = new FileHelperAsyncEngine(typeof(SampleType));
+            var sw = new StringWriter();
             engine.BeginWriteStream(sw);
             
             Assert.Throws<BadUsageException>(()

@@ -1,11 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-
 using NUnit.Framework;
-using FileHelpers;
 
 namespace FileHelpers.Tests.Helpers
 {
@@ -20,7 +17,7 @@ namespace FileHelpers.Tests.Helpers
         [Test(Description = "A basic Windows windows CR/LF file")]
         public void TestDosFile()
         {
-            SimpleData testdata = new SimpleData()
+            var testdata = new SimpleData()
             {
 
                 Record = "one record only"

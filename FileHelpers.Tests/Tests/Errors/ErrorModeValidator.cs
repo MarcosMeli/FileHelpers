@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Errors
@@ -27,7 +28,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void Constructors()
 		{
-			ErrorManager err = new ErrorManager(ErrorMode.IgnoreAndContinue);
+			var err = new ErrorManager(ErrorMode.IgnoreAndContinue);
 			Assert.AreEqual(ErrorMode.IgnoreAndContinue, err.ErrorMode);
 			Assert.AreEqual(0, err.ErrorCount);
 			Assert.AreEqual(0, err.Errors.Length);
@@ -36,7 +37,7 @@ namespace FileHelpers.Tests.Errors
 		[Test]
 		public void Constructors2()
 		{
-			ErrorManager err = new ErrorManager();
+			var err = new ErrorManager();
 			Assert.AreEqual(ErrorMode.ThrowException, err.ErrorMode);
 			Assert.AreEqual(0, err.ErrorCount);
 			Assert.AreEqual(0, err.Errors.Length);

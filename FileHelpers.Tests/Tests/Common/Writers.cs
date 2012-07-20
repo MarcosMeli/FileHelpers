@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -16,7 +17,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -39,7 +40,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteFileStatic()
 		{
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -64,7 +65,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -77,8 +78,8 @@ namespace FileHelpers.Tests.CommonTests
 			res[1].Field2 = "ho";
 			res[1].Field3 = 2;
 
-			StringBuilder sb = new StringBuilder();
-			StringWriter writer = new StringWriter(sb);
+			var sb = new StringBuilder();
+			var writer = new StringWriter(sb);
 			engine.WriteStream(writer, res);
 
 			Assert.AreEqual(14 + newLineLen + 14 + newLineLen, sb.ToString().Length);
@@ -92,7 +93,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<SampleType>();
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();
@@ -115,7 +116,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteStringStatic()
 		{
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();

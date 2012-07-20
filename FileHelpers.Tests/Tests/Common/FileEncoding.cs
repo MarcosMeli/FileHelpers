@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -71,7 +71,7 @@ namespace FileHelpers.Tests.CommonTests
 
 		private void CoreRunAsync(params string[] pathElements)
 		{
-			ArrayList arr = new ArrayList();
+			var arr = new ArrayList();
 	
 			TestCommon.BeginReadTest(asyncEngine, pathElements);
 
@@ -80,7 +80,7 @@ namespace FileHelpers.Tests.CommonTests
 				arr.Add(record);
 			}
 	
-			CustomersVerticalBar[] res = (CustomersVerticalBar[]) arr.ToArray(typeof (CustomersVerticalBar));
+			var res = (CustomersVerticalBar[]) arr.ToArray(typeof (CustomersVerticalBar));
 			ExpectedRecords.AssertEqualTo<int>( res.Length, "Length is not equal");
 			ExpectedRecords.AssertEqualTo<int>( asyncEngine.TotalRecords, "Total number of records not equal");
 	

@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using FileHelpers;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -56,7 +54,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteExcelCsv1()
 		{
-			List<ExcelCsv1Type> arr = new List<ExcelCsv1Type>();
+			var arr = new List<ExcelCsv1Type>();
 			ExcelCsv1Type record;
 
 			record = new ExcelCsv1Type();
@@ -101,7 +99,7 @@ namespace FileHelpers.Tests.CommonTests
 		[Test]
 		public void WriteExcelCsv2()
 		{
-            List<ExcelCsv2Type> arr = new List<ExcelCsv2Type>();
+            var arr = new List<ExcelCsv2Type>();
 			ExcelCsv2Type record;
 
 			record = new ExcelCsv2Type();
@@ -155,7 +153,7 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadIrregularExcelCsv()
         {
             var engine = new FileHelperEngine<RecipientImport>();
-            RecipientImport[] records = (RecipientImport[]) engine.ReadString(mSampleData);
+            var records = (RecipientImport[]) engine.ReadString(mSampleData);
 
             for (int i = 0; i < records.Length; i++)
             {

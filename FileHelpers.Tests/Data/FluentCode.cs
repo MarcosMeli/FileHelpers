@@ -1,8 +1,7 @@
-using FileHelpers;
 using System;
-using System.IO;
-using System.Text;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -18,7 +17,7 @@ namespace FileHelpers
 
     public sealed class FluentCode
     {
-        private Dictionary<string, FluentNamespace> mNamespaces = new Dictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, FluentNamespace> mNamespaces = new Dictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
 
         public FluentNamespace Namespace(string name)
         {
@@ -55,7 +54,7 @@ namespace FileHelpers
             this.Name = name;
         }
 
-        private SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+        private readonly SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
 
         public FluentClass Class(string name)
         {
@@ -102,7 +101,7 @@ namespace FileHelpers
             this.Name = name;
         }
 
-        private SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+        private readonly SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Create a class of "name"
@@ -171,6 +170,6 @@ namespace FileHelpers
         /// <summary>
         /// Internal result of parsing the data
         /// </summary>
-        private StringBuilder mCode = new StringBuilder();
+        private readonly StringBuilder mCode = new StringBuilder();
     }
 }

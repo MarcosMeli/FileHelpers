@@ -1,8 +1,9 @@
 using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using FileHelpers.MasterDetail;
 using NUnit.Framework;
-using System.IO;
 using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests.MasterDetail

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.IO;
-using FileHelpers;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -32,7 +31,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<CustomersSort>();
 
-            CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
+            var res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -61,7 +60,7 @@ namespace FileHelpers.Tests.CommonTests
 		{
 			var engine = new FileHelperEngine<CustomersSort>();
 
-            CustomersSort[] res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
+            var res = engine.ReadFile(FileTest.Good.Sort1.Path) as CustomersSort[];
 
 			Assert.AreEqual(8, res.Length);
 
@@ -103,7 +102,7 @@ namespace FileHelpers.Tests.CommonTests
 			{
 				if (this == obj) return 0;
 				
-				CustomersSort to = (CustomersSort) obj;
+				var to = (CustomersSort) obj;
 
 				if (to == null) return int.MaxValue;
 

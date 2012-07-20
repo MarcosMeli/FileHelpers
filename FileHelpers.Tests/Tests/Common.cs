@@ -1,11 +1,7 @@
 using System;
-using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-
-using FileHelpers;
-using FileHelpers.MasterDetail;
 using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests
@@ -77,7 +73,7 @@ namespace FileHelpers.Tests
         /// <returns>objects from file</returns>
         public static object[] ReadAllAsync(FileHelperAsyncEngine engine, params string[] pathElements)
         {
-            ArrayList arr = new ArrayList();
+            var arr = new ArrayList();
 
             using (engine.BeginReadFile(GetPath(pathElements)))
             {
@@ -97,7 +93,7 @@ namespace FileHelpers.Tests
         /// <returns>objects from file</returns>
         public static List<T> ReadAllAsync<T>(FileHelperAsyncEngine<T> engine, params string[] pathElements) where T : class
         {
-            List<T> arr = new List<T>();
+            var arr = new List<T>();
 
             using (engine.BeginReadFile(GetPath(pathElements)))
             {

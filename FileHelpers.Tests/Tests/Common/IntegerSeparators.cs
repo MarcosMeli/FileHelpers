@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Data;
-using System.IO;
-using FileHelpers;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -45,7 +43,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<SampleIntegerTypeDefined>();
 
-            SampleIntegerTypeDefined[] res = (SampleIntegerTypeDefined[])engine.ReadString(toTestMixed);
+            var res = (SampleIntegerTypeDefined[])engine.ReadString(toTestMixed);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);

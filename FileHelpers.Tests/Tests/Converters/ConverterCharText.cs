@@ -1,10 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
-
-using FileHelpers;
 
 namespace FileHelpers.Tests.Converters
 {
@@ -48,8 +45,8 @@ namespace FileHelpers.Tests.Converters
         private class NoChangeCharClass
         {
 
-            public System.Char fldChar;
-            public System.Char fldChar2;
+            public Char fldChar;
+            public Char fldChar2;
         }
 
         [DelimitedRecord(";")]
@@ -57,10 +54,10 @@ namespace FileHelpers.Tests.Converters
         {
 
             [FieldConverter(ConverterKind.Char, "x")]
-            public System.Char fldChar;
+            public Char fldChar;
 
             [FieldConverter(ConverterKind.Char, "lower")]
-            public System.Char fldChar2;
+            public Char fldChar2;
         }
 
         [DelimitedRecord(";")]
@@ -68,10 +65,10 @@ namespace FileHelpers.Tests.Converters
         {
 
             [FieldConverter(ConverterKind.Char, "X")]
-            public System.Char fldChar;
+            public Char fldChar;
 
             [FieldConverter(ConverterKind.Char, "upper")]
-            public System.Char fldChar2;
+            public Char fldChar2;
         }
 
         [DelimitedRecord(";")]
@@ -79,7 +76,7 @@ namespace FileHelpers.Tests.Converters
         {
 
             [FieldConverter(ConverterKind.Char, "Rubbish")]
-            public System.Char fldChar;
+            public Char fldChar;
         }
     }
 }

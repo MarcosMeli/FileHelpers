@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using FileHelpers;
 using FileHelpers.Events;
 using NUnit.Framework;
 
@@ -35,7 +36,7 @@ namespace FileHelpers.Tests.CommonTests
 			var engine = new FileHelperEngine<SampleType>();
             engine.Progress += ProgressChange;
 
-			SampleType[] res = new SampleType[2];
+			var res = new SampleType[2];
 
 			res[0] = new SampleType();
 			res[1] = new SampleType();

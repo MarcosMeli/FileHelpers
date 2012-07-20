@@ -1,10 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Text;
 using NUnit.Framework;
-using FileHelpers;
-using System.Net;
-using System.IO;
-using FileHelpers.Tests;
 
 namespace FileHelpers.Tests
 {
@@ -35,16 +35,16 @@ namespace FileHelpers.Tests
             [Ignore]
 			public void GetMSWSReportsFromURL_AsData_20060709_28Records()
 			{
-				DateTime date = new DateTime(2006, 7, 20);
+				var date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
 				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
 					byte[] data;
-				using (WebClient webClient = new WebClient())
+				using (var webClient = new WebClient())
 				{
 					//webClient.Encoding = System.Text.Encoding.ASCII;                
 					data = webClient.DownloadData(url);
-					System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+					var encoding = new ASCIIEncoding();
 					string dataString = encoding.GetString(data);
 					res = engine.ReadString(dataString);
 				}
@@ -56,12 +56,12 @@ namespace FileHelpers.Tests
             [Ignore]
 			public void GetMSWSReportsFromURL_AsString_20060709_28Records()
 			{
-				DateTime date = new DateTime(2006, 7, 20);
+				var date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
 				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
 
-					using (WebClient webClient = new WebClient())
+					using (var webClient = new WebClient())
 					{
 						webClient.DownloadFile(url, "tempotemp.txt");
 						res = (MSWSDailyReportRecord[]) engine.ReadFile("tempotemp.txt");
@@ -74,7 +74,7 @@ namespace FileHelpers.Tests
             [Ignore]
 			public void GetMSWSReportsFromURL_AsStream_20060709_28Records()
 			{
-				DateTime date = new DateTime(2006, 7, 20);
+				var date = new DateTime(2006, 7, 20);
 				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
 				MSWSDailyReportRecord[] res = null;
 				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
@@ -107,7 +107,7 @@ namespace FileHelpers.Tests
 
 		}
 
-	[FixedLengthRecordAttribute()]
+	[FixedLengthRecord()]
 	[IgnoreFirst(7)]
 	[IgnoreLast(5)]
 	public sealed class MSWSDailyReportRecord

@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using FileHelpers;
-using FileHelpers.Dynamic;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -18,9 +14,9 @@ namespace FileHelpers.Tests.CommonTests
 		{
             string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
 
-            List<RecordIndexer> res = new List<RecordIndexer>();
+            var res = new List<RecordIndexer>();
             
-            foreach (RecordIndexer record in CommonEngine.ReadCsv(file))
+            foreach (var record in CommonEngine.ReadCsv(file))
 		    {
                 res.Add(record);
 		    }
@@ -42,9 +38,9 @@ namespace FileHelpers.Tests.CommonTests
         {
             string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
 
-            List<RecordIndexer> res = new List<RecordIndexer>();
+            var res = new List<RecordIndexer>();
 
-            foreach (RecordIndexer record in CommonEngine.ReadCsv(file, ',', 1))
+            foreach (var record in CommonEngine.ReadCsv(file, ',', 1))
             {
                 res.Add(record);
             }
@@ -65,9 +61,9 @@ namespace FileHelpers.Tests.CommonTests
         {
             string file = TestCommon.GetPath("Good", "RealCsvTab1.txt");
 
-            List<RecordIndexer> res = new List<RecordIndexer>();
+            var res = new List<RecordIndexer>();
 
-            foreach (RecordIndexer record in CommonEngine.ReadCsv(file, '\t', 1))
+            foreach (var record in CommonEngine.ReadCsv(file, '\t', 1))
             {
                 res.Add(record);
             }
@@ -89,9 +85,9 @@ namespace FileHelpers.Tests.CommonTests
         {
             string file = TestCommon.GetPath("Good", "RealCsvTab2.txt");
 
-            List<RecordIndexer> res = new List<RecordIndexer>();
+            var res = new List<RecordIndexer>();
 
-            foreach (RecordIndexer record in CommonEngine.ReadCsv(file, '\t', 0))
+            foreach (var record in CommonEngine.ReadCsv(file, '\t', 0))
             {
                 res.Add(record);
             }

@@ -1,6 +1,8 @@
-using FileHelpers;
-using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests.Errors
 {
@@ -145,7 +147,7 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void BeginReadWhileWriting()
         {
-            FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
+            var eng = new FileHelperAsyncEngine(typeof(SampleType));
 
             var filename = TestCommon.GetTempFile("TempWrite.txt");
 
@@ -169,7 +171,7 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void BeginWriteWhileReading()
         {
-            FileHelperAsyncEngine eng = new FileHelperAsyncEngine(typeof(SampleType));
+            var eng = new FileHelperAsyncEngine(typeof(SampleType));
             eng.BeginReadString("jejjeje");
 
             var filename = TestCommon.GetTempFile("TempWrite.txt");

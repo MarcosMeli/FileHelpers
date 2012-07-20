@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using NUnit.Framework;
-using FileHelpers;
 // using System.Net;
-using System.IO;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -37,7 +38,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<EncodingRecord>();
             byte[] data = File.ReadAllBytes(FileTest.Good.EncodingAdv3.Path);
-            var encoding = new System.Text.ASCIIEncoding();
+            var encoding = new ASCIIEncoding();
             string dataString = encoding.GetString(data);
             var res = engine.ReadString(dataString);
 
@@ -67,7 +68,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
-        [FixedLengthRecordAttribute()]
+        [FixedLengthRecord()]
         [IgnoreFirst(7)]
         [IgnoreLast(5)]
         public sealed class EncodingRecord
