@@ -156,7 +156,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="T">type we are converting</param>
             /// <param name="decimalSep">Separator</param>
-            public CultureConverter(Type T, string decimalSep)
+            protected CultureConverter(Type T, string decimalSep)
             {
                 mCulture = CreateCulture(decimalSep);
                 mType = T;

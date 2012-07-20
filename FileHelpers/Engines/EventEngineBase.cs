@@ -20,7 +20,7 @@ namespace FileHelpers
         /// Define an event based on an egine, based on a record
         /// </summary>
         /// <param name="recordType">Type of the record</param>
-        public EventEngineBase(Type recordType)
+        protected EventEngineBase(Type recordType)
             : base(recordType)
         {
         }
@@ -30,7 +30,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="recordType">Type of the record</param>
         /// <param name="encoding">Encoding specified</param>
-        public EventEngineBase(Type recordType, Encoding encoding)
+        protected EventEngineBase(Type recordType, Encoding encoding)
             : base(recordType, encoding)
         {
         }
