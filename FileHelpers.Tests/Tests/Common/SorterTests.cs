@@ -6,6 +6,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
     [TestFixture]
+    [Category("BigSorter")]
 	public class SorterTests
 	{
         private const int MegaByte = 1024 *1024;
