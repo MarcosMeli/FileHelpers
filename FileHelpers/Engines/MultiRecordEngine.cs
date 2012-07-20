@@ -105,7 +105,7 @@ namespace FileHelpers
 				if (mRecordInfoHash.Contains(mTypes[i]))
 					throw new BadUsageException("The type '"+ mTypes[i].Name + " is already in the engine. You can't pass the same type twice to the constructor.");
 
-			    mMultiRecordInfo[i] = RecordInfo.Resolve(mTypes[i]);
+			    mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
 			    mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
 			}
 			mRecordSelector = recordSelector;
@@ -613,9 +613,9 @@ namespace FileHelpers
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 
-			if (mRecordInfo.IgnoreFirst > 0)
+			if (RecordInfo.IgnoreFirst > 0)
 			{
-				for (int i = 0; i < mRecordInfo.IgnoreFirst; i++)
+				for (int i = 0; i < RecordInfo.IgnoreFirst; i++)
 				{
 				    string temp = reader.ReadRecordString();
 					mLineNumber++;
@@ -626,7 +626,7 @@ namespace FileHelpers
 				}
 			}
 
-			mAsyncReader = new ForwardReader(reader, mRecordInfo.IgnoreLast, mLineNumber) {DiscardForward = true};
+			mAsyncReader = new ForwardReader(reader, RecordInfo.IgnoreLast, mLineNumber) {DiscardForward = true};
 		}
 
 		#endregion
@@ -804,7 +804,7 @@ namespace FileHelpers
 					mLastRecord = null;
 
 
-					if (mRecordInfo.IgnoreLast > 0)
+					if (RecordInfo.IgnoreLast > 0)
 						mFooterText = mAsyncReader.RemainingText;
 
 					try

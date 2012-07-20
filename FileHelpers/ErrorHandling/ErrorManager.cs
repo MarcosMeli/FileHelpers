@@ -130,7 +130,7 @@ namespace FileHelpers
 		/// <param name="header">The header line of the errors file.</param>
 		public void SaveErrors(string fileName, string header)
 		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (ErrorInfo));
+			var engine = new FileHelperEngine(typeof (ErrorInfo));
 
 			if (header.IndexOf(StringHelper.NewLine) == header.LastIndexOf(StringHelper.NewLine))
 				header +=  StringHelper.NewLine;
@@ -144,7 +144,7 @@ namespace FileHelpers
 		/// <param name="fileName">The file that contains the errors.</param>
 		public static ErrorInfo[] LoadErrors(string fileName)
 		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (ErrorInfo));
+			var engine = new FileHelperEngine(typeof (ErrorInfo));
 			return (ErrorInfo[]) engine.ReadFile(fileName);
 		}
 

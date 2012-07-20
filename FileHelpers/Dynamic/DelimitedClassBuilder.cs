@@ -65,7 +65,7 @@ namespace FileHelpers.Dynamic
 		/// <returns>The just created field.</returns>
 		public virtual DelimitedFieldBuilder AddField(string fieldName, string fieldType)
 		{
-			DelimitedFieldBuilder fb = new DelimitedFieldBuilder(fieldName, fieldType);
+			var fb = new DelimitedFieldBuilder(fieldName, fieldType);
 			AddFieldInternal(fb);
 			return fb;
 		}
@@ -148,10 +148,10 @@ namespace FileHelpers.Dynamic
         /// <param name="writer">Writer to serialise to</param>
 		internal override void WriteHeaderElement(XmlHelper writer)
 		{
-			writer.mWriter.WriteStartElement("DelimitedClass");
-			writer.mWriter.WriteStartAttribute("Delimiter", "");
-			writer.mWriter.WriteString(this.Delimiter);
-			writer.mWriter.WriteEndAttribute();
+			writer.Writer.WriteStartElement("DelimitedClass");
+			writer.Writer.WriteStartAttribute("Delimiter", "");
+			writer.Writer.WriteString(this.Delimiter);
+			writer.Writer.WriteEndAttribute();
 		}
 
         /// <summary>

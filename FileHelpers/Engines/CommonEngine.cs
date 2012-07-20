@@ -42,7 +42,7 @@ namespace FileHelpers
         /// <returns>The read records.</returns>
         public static object[] ReadFile(Type recordClass, string fileName, int maxRecords)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             return engine.ReadFile(fileName, maxRecords);
         }
 
@@ -92,7 +92,7 @@ namespace FileHelpers
         /// <returns>The read records.</returns>
         public static T[] ReadFile<T>(string fileName, int maxRecords) where T: class
         {
-            FileHelperEngine<T> engine = new FileHelperEngine<T>();
+            var engine = new FileHelperEngine<T>();
             return engine.ReadFile(fileName, maxRecords);
         }
 
@@ -118,7 +118,7 @@ namespace FileHelpers
         /// <returns>The read records.</returns>
         public static object[] ReadString(Type recordClass, string input, int maxRecords)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             return engine.ReadString(input, maxRecords);
         }
 
@@ -130,7 +130,7 @@ namespace FileHelpers
         /// <returns>The read records.</returns>
         public static T[] ReadString<T>(string input) where T : class
         {
-            FileHelperEngine<T> engine = new FileHelperEngine<T>();
+            var engine = new FileHelperEngine<T>();
             return engine.ReadString(input);
         }
 
@@ -253,7 +253,7 @@ namespace FileHelpers
         {
 
             FileHelperEngine engine = new FileHelperEngine(recordClass);
-            FieldInfo fi = engine.mRecordInfo.GetFieldInfo(fieldName);
+            FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
             if (fi == null)
                 throw new BadUsageException("The record class not contains the field " + fieldName);
@@ -289,7 +289,7 @@ namespace FileHelpers
             if (records.Length > 0 && records[0] != null)
             {
                 FileHelperEngine engine = new FileHelperEngine(records[0].GetType());
-                FieldInfo fi = engine.mRecordInfo.GetFieldInfo(fieldName);
+                FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
                 if (fi == null)
                     throw new BadUsageException("The record class not contains the field " + fieldName);
@@ -447,36 +447,36 @@ namespace FileHelpers
         /// </summary>
         public static void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
         {
-            FileHelperAsyncEngine engineRead = new FileHelperAsyncEngine(recordType);
-            FileHelperAsyncEngine engineWrite = new FileHelperAsyncEngine(recordType);
-
-            engineWrite.BeginWriteFile(destinationFile);
-
-            object[] readRecords;
-
-            // Read FILE 1
-            engineRead.BeginReadFile(file1);
-
-            readRecords = engineRead.ReadNexts(50);
-            while (readRecords.Length > 0)
+            using (var engineRead = new FileHelperAsyncEngine(recordType))
             {
-                engineWrite.WriteNexts(readRecords);
-                readRecords = engineRead.ReadNexts(50);
+                using (var engineWrite = new FileHelperAsyncEngine(recordType))
+                {
+                    engineWrite.BeginWriteFile(destinationFile);
+
+                    object[] readRecords;
+
+                    // Read FILE 1
+                    engineRead.BeginReadFile(file1);
+
+                    readRecords = engineRead.ReadNexts(50);
+                    while (readRecords.Length > 0)
+                    {
+                        engineWrite.WriteNexts(readRecords);
+                        readRecords = engineRead.ReadNexts(50);
+                    }
+                    engineRead.Close();
+
+                    // Read FILE 2
+                    engineRead.BeginReadFile(file2);
+
+                    readRecords = engineRead.ReadNexts(50);
+                    while (readRecords.Length > 0)
+                    {
+                        engineWrite.WriteNexts(readRecords);
+                        readRecords = engineRead.ReadNexts(50);
+                    }
+                }
             }
-            engineRead.Close();
-
-            // Read FILE 2
-            engineRead.BeginReadFile(file2);
-
-            readRecords = engineRead.ReadNexts(50);
-            while (readRecords.Length > 0)
-            {
-                engineWrite.WriteNexts(readRecords);
-                readRecords = engineRead.ReadNexts(50);
-            }
-            engineRead.Close();
-
-            engineWrite.Close();
         }
 
         /// <summary>

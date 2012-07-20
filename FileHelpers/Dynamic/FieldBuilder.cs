@@ -181,9 +181,9 @@ namespace FileHelpers.Dynamic
         /// <returns>Field as text</returns>
 		internal string GetFieldCode(NetLanguage lang)
 		{
-			StringBuilder sb = new StringBuilder(100);
+			var sb = new StringBuilder(100);
 			
-			AttributesBuilder attbs = new AttributesBuilder(lang);
+			var attbs = new AttributesBuilder(lang);
 			
 			AddAttributesInternal(attbs, lang);
 			AddAttributesCode(attbs, lang);
@@ -274,16 +274,16 @@ namespace FileHelpers.Dynamic
 		private void AddAttributesInternal(AttributesBuilder attbs, NetLanguage lang)
 		{
 
-			if (mFieldOptional == true)
+			if (mFieldOptional)
 				attbs.AddAttribute("FieldOptional()");
 
-			if (mFieldNotInFile == true)
+			if (mFieldNotInFile)
 				attbs.AddAttribute("FieldNotInFile()");
 
-            if (mFieldValueDiscarded== true)
+            if (mFieldValueDiscarded)
                 attbs.AddAttribute("FieldValueDiscarded()");
 
-			if (mFieldInNewLine == true)
+			if (mFieldInNewLine)
 				attbs.AddAttribute("FieldInNewLine()");
 
 
@@ -340,13 +340,13 @@ namespace FileHelpers.Dynamic
         /// <param name="writer">writer to add XML to</param>
 		internal void SaveToXml(XmlHelper writer)
 		{
-			writer.mWriter.WriteStartElement("Field");
-			writer.mWriter.WriteStartAttribute("Name", "");
-			writer.mWriter.WriteString(mFieldName);
-			writer.mWriter.WriteEndAttribute();
-			writer.mWriter.WriteStartAttribute("Type", "");
-			writer.mWriter.WriteString(mFieldType);
-			writer.mWriter.WriteEndAttribute();
+			writer.Writer.WriteStartElement("Field");
+			writer.Writer.WriteStartAttribute("Name", "");
+			writer.Writer.WriteString(mFieldName);
+			writer.Writer.WriteEndAttribute();
+			writer.Writer.WriteStartAttribute("Type", "");
+			writer.Writer.WriteString(mFieldType);
+			writer.Writer.WriteEndAttribute();
 			WriteHeaderAttributes(writer);
 
 			Converter.WriteXml(writer);
@@ -361,18 +361,18 @@ namespace FileHelpers.Dynamic
 
 			if (FieldNullValue != null)
 			{
-				writer.mWriter.WriteStartElement("FieldNullValue");
-				writer.mWriter.WriteStartAttribute("Type", "");
-				writer.mWriter.WriteString(ClassBuilder.TypeToString(mFieldNullValue.GetType()));
-				writer.mWriter.WriteEndAttribute();
+				writer.Writer.WriteStartElement("FieldNullValue");
+				writer.Writer.WriteStartAttribute("Type", "");
+				writer.Writer.WriteString(ClassBuilder.TypeToString(mFieldNullValue.GetType()));
+				writer.Writer.WriteEndAttribute();
 				
-				writer.mWriter.WriteString(mFieldNullValue.ToString());
+				writer.Writer.WriteString(mFieldNullValue.ToString());
 
-				writer.mWriter.WriteEndElement();				
+				writer.Writer.WriteEndElement();				
 			}
 
 			WriteExtraElements(writer);
-			writer.mWriter.WriteEndElement();
+			writer.Writer.WriteEndElement();
 
 		}
         /// <summary>

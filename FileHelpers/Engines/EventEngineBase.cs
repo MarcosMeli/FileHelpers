@@ -72,7 +72,7 @@ namespace FileHelpers
             {
                 return BeforeReadRecord != null ||
                        AfterReadRecord != null ||
-                       mRecordInfo.NotifyRead;
+                       RecordInfo.NotifyRead;
             }
         }
 
@@ -85,7 +85,7 @@ namespace FileHelpers
             {
                 return BeforeWriteRecord != null ||
                        AfterWriteRecord != null ||
-                       mRecordInfo.NotifyWrite;
+                       RecordInfo.NotifyWrite;
             }
         }
 #if ! MINI
@@ -97,7 +97,7 @@ namespace FileHelpers
         /// <returns>True if record to be skipped</returns>
         protected bool OnBeforeReadRecord(BeforeReadEventArgs<T> e)
         {
-            if (mRecordInfo.NotifyRead)
+            if (RecordInfo.NotifyRead)
                 ((INotifyRead<T>)e.Record).BeforeRead(e);
 
             if (BeforeReadRecord != null)
@@ -118,7 +118,7 @@ namespace FileHelpers
         {
             var e = new AfterReadEventArgs<T>(this, line, lineChanged, record, lineNumber);
 
-            if (mRecordInfo.NotifyRead)
+            if (RecordInfo.NotifyRead)
                 ((INotifyRead<T>)record).AfterRead(e);
 
             if (AfterReadRecord != null)
@@ -138,7 +138,7 @@ namespace FileHelpers
         {
             var e = new BeforeWriteEventArgs<T>(this, record, lineNumber);
 
-            if (mRecordInfo.NotifyWrite)
+            if (RecordInfo.NotifyWrite)
                 ((INotifyWrite<T>)record).BeforeWrite(e);
 
             if (BeforeWriteRecord != null)
@@ -157,7 +157,7 @@ namespace FileHelpers
         {
             var e = new AfterWriteEventArgs<T>(this, record, LineNumber, line);
 
-            if (mRecordInfo.NotifyWrite)
+            if (RecordInfo.NotifyWrite)
                 ((INotifyWrite<T>)record).AfterWrite(e);
 
             if (AfterWriteRecord != null)

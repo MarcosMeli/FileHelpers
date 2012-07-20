@@ -88,9 +88,9 @@ namespace FileHelpers.Dynamic
         /// <param name="writer"></param>
 		internal override void WriteHeaderAttributes(XmlHelper writer)
 		{
-			writer.mWriter.WriteStartAttribute("Length", "");
-			writer.mWriter.WriteString(mFieldLength.ToString());
-			writer.mWriter.WriteEndAttribute();
+			writer.Writer.WriteStartAttribute("Length", "");
+			writer.Writer.WriteString(mFieldLength.ToString());
+			writer.Writer.WriteEndAttribute();
 		}
 
         /// <summary>

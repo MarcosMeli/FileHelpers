@@ -69,7 +69,7 @@ namespace FileHelpers.Dynamic
 		/// <returns>The just created field.</returns>
 		public FixedFieldBuilder AddField(string fieldName, int length, string fieldType)
 		{
-			FixedFieldBuilder fb = new FixedFieldBuilder(fieldName, length, fieldType);
+			var fb = new FixedFieldBuilder(fieldName, length, fieldType);
 			AddFieldInternal(fb);
 			return fb;
 		}
@@ -121,10 +121,10 @@ namespace FileHelpers.Dynamic
         /// <param name="writer">writer to put XML on</param>
 		internal override void WriteHeaderElement(XmlHelper writer)
 		{
-			writer.mWriter.WriteStartElement("FixedLengthClass");
-			writer.mWriter.WriteStartAttribute("FixedMode", "");
-			writer.mWriter.WriteString(mFixedMode.ToString());
-			writer.mWriter.WriteEndAttribute();			
+			writer.Writer.WriteStartElement("FixedLengthClass");
+			writer.Writer.WriteStartAttribute("FixedMode", "");
+			writer.Writer.WriteString(mFixedMode.ToString());
+			writer.Writer.WriteEndAttribute();			
 		}
 
         /// <summary>

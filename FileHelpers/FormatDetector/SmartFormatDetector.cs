@@ -22,8 +22,8 @@ namespace FileHelpers.Detection
 
         #region "  Constants  "
 
-        private const int MIN_SAMPLE_DATA = 15;
-        private const double MIN_DELIMITED_DEVIATION = 0.2;
+        private const int MinSampleData = 15;
+        private const double MinDelimitedDeviation = 0.2;
 
         #endregion
 
@@ -100,7 +100,7 @@ namespace FileHelpers.Detection
         /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(IEnumerable<string> files)
         {
-            List<RecordFormatInfo> res = new List<RecordFormatInfo>();
+            var res = new List<RecordFormatInfo>();
             string[][] sampleData = GetSampleLines(files, MaxSampleLines);
 
             switch (mFormatHint)
@@ -172,7 +172,7 @@ namespace FileHelpers.Detection
             double average = CalculateAverageLineWidth(data);
             double deviation = CalculateDeviationLineWidth(data, average);
         
-            if (deviation / average <= FixedLengthDeviationTolerance * Math.Min(1, NumberOfLines(data) / MIN_SAMPLE_DATA))
+            if (deviation / average <= FixedLengthDeviationTolerance * Math.Min(1, NumberOfLines(data) / MinSampleData))
                 CreateFixedLengthOptions(data, res);
 
             CreateDelimiterOptions(data, res);
@@ -464,9 +464,9 @@ namespace FileHelpers.Detection
                 double deviation = CalculateDeviation(pair.Key, data, indicators.Avg);
 
                 // Adjust based on the number of lines
-                deviation = deviation * Math.Min(1, ((double) lines)/MIN_SAMPLE_DATA);
+                deviation = deviation * Math.Min(1, ((double) lines)/MinSampleData);
 
-                if (indicators.Avg > 1 && deviation < MIN_DELIMITED_DEVIATION)
+                if (indicators.Avg > 1 && deviation < MinDelimitedDeviation)
                     candidates.Add(new DelimiterInfo(pair.Key, indicators.Avg, indicators.Max, indicators.Min, deviation));
             }
 

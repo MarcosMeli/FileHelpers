@@ -75,7 +75,7 @@ namespace FileHelpers.Dynamic
             {
                 if (mReferences == null)
                 {
-                     ArrayList arr = new ArrayList();
+                     var arr = new ArrayList();
 
                     foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
@@ -1033,14 +1033,14 @@ namespace FileHelpers.Dynamic
 
             WriteExtraElements(xml);
 
-            xml.mWriter.WriteStartElement("Fields");
+            xml.Writer.WriteStartElement("Fields");
 
             for (int i = 0; i < mFields.Count; i++)
                 ((FieldBuilder)mFields[i]).SaveToXml(xml);
 
-            xml.mWriter.WriteEndElement();
+            xml.Writer.WriteEndElement();
 
-            xml.mWriter.WriteEndElement();
+            xml.Writer.WriteEndElement();
             xml.EndWrite();
         }
 

@@ -18,9 +18,9 @@ namespace FileHelpers.Tests.CommonTests
 			var engine = new FileHelperEngine<SampleType>();
             var engine2 = new FileHelperEngine<SampleType>();
 
-		    engine.mRecordInfo.AssertDifferentObjectAs(engine2.mRecordInfo);
+		    engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
-		    CompareRecordInfo(engine.mRecordInfo, engine2.mRecordInfo);
+		    CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
 
 		}
         
@@ -34,9 +34,9 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.IgnoreFirstLines = 0;
             engine.Options.IgnoreLastLines = 0;
 
-            engine.mRecordInfo.AssertDifferentObjectAs(engine2.mRecordInfo);
+            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
-            CompareRecordInfo(engine.mRecordInfo, engine2.mRecordInfo);
+            CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
 
         }
 
@@ -50,9 +50,9 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.RecordCondition.Condition = RecordCondition.None;
             engine.Options.RecordCondition.Selector = string.Empty;
 
-            engine.mRecordInfo.AssertDifferentObjectAs(engine2.mRecordInfo);
+            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
-            CompareRecordInfo(engine.mRecordInfo, engine2.mRecordInfo);
+            CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
 
         }
 

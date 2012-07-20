@@ -25,14 +25,14 @@ namespace FileHelpers
             {
                 try
                 {
-                    DateTime.Now.ToString(value);
+                    var temp = DateTime.Now.ToString(value);
                 }
                 catch
                 {
                     throw new BadUsageException("The format: '" + value + " is invalid for the DateTime Converter.");
                 }
 
-                mDefaultDateTimeFormat= value;
+                mDefaultDateTimeFormat = value;
             }
         }
 

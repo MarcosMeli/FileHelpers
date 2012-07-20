@@ -20,7 +20,6 @@ namespace FileHelpers
         /// Create an empty delimited field structure
         /// </summary>
         private DelimitedField()
-            : base()
         {
         }
 

@@ -27,9 +27,14 @@ namespace FileHelpers
         {
             mFile = file;
             mDeleteFile = deleteFile;
-            Engine = new FileHelperAsyncEngine<T>(encoding);
-            Engine.Options.IgnoreFirstLines = 0;
-            Engine.Options.IgnoreLastLines = 0;
+            Engine = new FileHelperAsyncEngine<T>(encoding)
+                {
+                    Options =
+                        {
+                            IgnoreFirstLines = 0,
+                            IgnoreLastLines = 0
+                        }
+                };
             Engine.BeginReadFile(file, EngineBase.DefaultReadBufferSize*4);
 
             MoveNext();

@@ -36,7 +36,6 @@ namespace FileHelpers
         /// Simple fixed length field constructor
         /// </summary>
         private FixedLengthField()
-            :base()
         {
         }
 
@@ -148,11 +147,13 @@ namespace FileHelpers
         /// the base settings</returns>
 	    protected override FieldBase CreateClone()
 	    {
-	        var res = new FixedLengthField();
-	        res.Align = Align;
-	        res.FieldLength = FieldLength;
-	        res.FixedMode = FixedMode;
-	        return res;
+	        var res = new FixedLengthField
+	            {
+	                Align = Align,
+	                FieldLength = FieldLength,
+	                FixedMode = FixedMode
+	            };
+            return res;
 	    }
 
 	    #endregion

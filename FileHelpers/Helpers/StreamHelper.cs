@@ -86,7 +86,7 @@ namespace FileHelpers
                         //else
                         //        ending=LineEnd.other;
 
-                        byte[] newline = new byte[StringHelper.NewLine.Length];
+                        var newline = new byte[StringHelper.NewLine.Length];
                         int count=0;
                         foreach (char ch in StringHelper.NewLine)
                         {

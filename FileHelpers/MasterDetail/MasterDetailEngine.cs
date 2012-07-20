@@ -74,7 +74,7 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = RecordInfo.Resolve(mMasterType); // Container.Resolve<IRecordInfo>(mMasterType);
+            mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType); // Container.Resolve<IRecordInfo>(mMasterType);
             mRecordSelector = recordSelector;
         }
 
@@ -89,9 +89,9 @@ namespace FileHelpers.MasterDetail
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = RecordInfo.Resolve(mMasterType);
+            mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType);
 
-            MasterDetailEngine.CommonSelectorInternal sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || mRecordInfo.IgnoreEmptyLines);
+            var sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || RecordInfo.IgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 
         }
@@ -304,12 +304,12 @@ namespace FileHelpers.MasterDetail
 #endif
                 ArrayList tmpDetails = new ArrayList();
 
-                LineInfo line = new LineInfo(currentLine);
+                var line = new LineInfo(currentLine);
                 line.mReader = freader;
 
 
                 object[] valuesMaster = new object[mMasterInfo.FieldCount];
-                object[] valuesDetail = new object[mRecordInfo.FieldCount];
+                object[] valuesDetail = new object[RecordInfo.FieldCount];
 
                 while (currentLine != null)
                 {
@@ -368,7 +368,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-                                TDetail lastChild = (TDetail)mRecordInfo.Operations.StringToRecord(line, valuesDetail);
+                                TDetail lastChild = (TDetail)RecordInfo.Operations.StringToRecord(line, valuesDetail);
 #endif
 
                                 if (lastChild != null)
@@ -571,7 +571,7 @@ namespace FileHelpers.MasterDetail
                     if (rec.Details != null)
                         for (int d = 0; d < rec.Details.Length; d++)
                         {
-                            currentLine = mRecordInfo.Operations.RecordToString(rec.Details[d]);
+                            currentLine = RecordInfo.Operations.RecordToString(rec.Details[d]);
                             writer.WriteLine(currentLine);
                         }
                 }

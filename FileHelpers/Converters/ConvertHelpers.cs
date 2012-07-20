@@ -669,7 +669,7 @@ namespace FileHelpers
 
                 try
                 {
-                    DateTime.Now.ToString(format);
+                    var temp = DateTime.Now.ToString(format);
                 }
                 catch
                 {
@@ -762,7 +762,7 @@ namespace FileHelpers
 
                     try
                     {
-                        DateTime.Now.ToString(formats[i]);
+                        var temp = DateTime.Now.ToString(formats[i]);
                     }
                     catch
                     {

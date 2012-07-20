@@ -26,7 +26,7 @@ namespace FileHelpers
                 throw new ArgumentNullException("s");
             }
             this.mS = s;
-            this.Length = (s == null) ? 0 : s.Length;
+            this.Length = s.Length;
         }
 
         /// <summary>

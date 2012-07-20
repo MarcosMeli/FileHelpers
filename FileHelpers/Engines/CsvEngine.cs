@@ -57,7 +57,7 @@ namespace FileHelpers
 		/// <returns>The contents of the file as a DataTable</returns>
 		public static DataTable CsvToDataTable(string filename, string classname, char delimiter, bool hasHeader)
 		{
-			CsvOptions options = new CsvOptions(classname, delimiter, filename);
+			var options = new CsvOptions(classname, delimiter, filename);
 			if (hasHeader == false) options.HeaderLines = 0;
 			return CsvToDataTable(filename, options);
 		}
@@ -71,7 +71,7 @@ namespace FileHelpers
 		/// <returns>The contents of the file as a DataTable</returns>
 		public static DataTable CsvToDataTable(string filename, CsvOptions options)
 		{
-			CsvEngine engine = new CsvEngine(options);
+			var engine = new CsvEngine(options);
 			return engine.ReadFileAsDT(filename);
 		}
 

@@ -170,7 +170,7 @@ namespace FileHelpers
         {
             get
             {
-                StringBuilder sb = new StringBuilder(100);
+                var sb = new StringBuilder(100);
 
                 for (int i = 0; i < mRemaingLines + 1; i++)
                 {

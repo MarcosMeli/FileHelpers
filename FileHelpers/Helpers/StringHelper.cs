@@ -41,7 +41,7 @@ namespace FileHelpers
 			if (line.mLineStr[line.mCurrentPos] != quoteChar)
 				throw new BadUsageException("The source string does not begin with the quote char: " + quoteChar);
 
-			StringBuilder res = new StringBuilder(32);
+			var res = new StringBuilder(32);
 
 			bool firstFound = false;
 

@@ -7,7 +7,7 @@ namespace FileHelpers
     /// </summary>
     internal sealed class NewLineDelimitedRecordReader : IRecordReader
     {
-        private readonly TextReader reader;
+        private readonly TextReader mReader;
 
         /// <summary>
         /// Read a file line by line from the specified textreader
@@ -15,7 +15,7 @@ namespace FileHelpers
         /// <param name="reader">TextReader to read and process</param>
         public NewLineDelimitedRecordReader(TextReader reader)
         {
-            this.reader = reader;
+            this.mReader = reader;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace FileHelpers
         /// <returns>unprocessed record</returns>
         public string ReadRecordString()
         {
-            return reader.ReadLine();
+            return mReader.ReadLine();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace FileHelpers
         /// </summary>
         public void Close()
         {
-            reader.Close();
+            mReader.Close();
         }
     }
 }

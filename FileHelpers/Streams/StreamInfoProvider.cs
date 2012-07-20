@@ -61,13 +61,13 @@ namespace FileHelpers
         /// <param name="writer">writer we are analysing</param>
         public StreamInfoProvider(TextWriter writer)
         {
-            if (writer is StreamWriter)
-            {
-                var stream = ((StreamWriter)writer).BaseStream;
-                mLength = stream.Length;
-                mPositionCalculator = () => stream.Position;
-            }
+            var streamWriter = writer as StreamWriter;
+            if (streamWriter == null)
+                return;
 
+            var stream = streamWriter.BaseStream;
+            mLength = stream.Length;
+            mPositionCalculator = () => stream.Position;
         }
 
         /// <summary>

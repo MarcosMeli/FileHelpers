@@ -129,19 +129,19 @@ namespace FileHelpers
                     throw new BadUsageException("You must be writting something to set a record value. Try calling BeginWriteFile first.");
 
                 if (mLastRecordValues == null)
-                    mLastRecordValues = new object[mRecordInfo.FieldCount];
+                    mLastRecordValues = new object[RecordInfo.FieldCount];
 
                 if (value == null)
                 {
-                    if (mRecordInfo.Fields[fieldIndex].FieldType.IsValueType)
+                    if (RecordInfo.Fields[fieldIndex].FieldType.IsValueType)
                         throw new BadUsageException("You can't assing null to a value type.");
 
                     mLastRecordValues[fieldIndex] = null;
                 }
                 else
                 {
-                    if (!mRecordInfo.Fields[fieldIndex].FieldType.IsInstanceOfType(value))
-                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}", value.GetType().Name, mRecordInfo.Fields[fieldIndex].FieldType.Name));
+                    if (!RecordInfo.Fields[fieldIndex].FieldType.IsInstanceOfType(value))
+                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}", value.GetType().Name, RecordInfo.Fields[fieldIndex].FieldType.Name));
 
                     mLastRecordValues[fieldIndex] = value;
                 }
@@ -160,12 +160,12 @@ namespace FileHelpers
                 if (mLastRecordValues == null)
                     throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
 
-                int index = mRecordInfo.GetFieldIndex(fieldName);
+                int index = RecordInfo.GetFieldIndex(fieldName);
                 return mLastRecordValues[index];
             }
             set
             {
-                int index = mRecordInfo.GetFieldIndex(fieldName);
+                int index = RecordInfo.GetFieldIndex(fieldName);
                 this[index] = value;
             }
         }
@@ -189,9 +189,9 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            if (mRecordInfo.IgnoreFirst > 0)
+            if (RecordInfo.IgnoreFirst > 0)
             {
-                for (int i = 0; i < mRecordInfo.IgnoreFirst; i++)
+                for (int i = 0; i < RecordInfo.IgnoreFirst; i++)
                 {
                     string temp = recordReader.ReadRecordString();
                     mLineNumber++;
@@ -202,7 +202,7 @@ namespace FileHelpers
                 }
             }
 
-            mAsyncReader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast, mLineNumber);
+            mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber);
             mAsyncReader.DiscardForward = true;
             mState = EngineState.Reading;
             mStreamInfo = new StreamInfoProvider(reader);
@@ -274,7 +274,7 @@ namespace FileHelpers
             line.mReader = mAsyncReader;
 
             if (mLastRecordValues == null)
-                mLastRecordValues = new object[mRecordInfo.FieldCount];
+                mLastRecordValues = new object[RecordInfo.FieldCount];
 
             while (true)
             {
@@ -288,7 +288,7 @@ namespace FileHelpers
 
                         bool skip = false;
 
-                        mLastRecord = (T) mRecordInfo.Operations.CreateRecordHandler();
+                        mLastRecord = (T) RecordInfo.Operations.CreateRecordHandler();
 #if ! MINI
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
@@ -307,7 +307,7 @@ namespace FileHelpers
 #endif
                         if (skip == false)
                         {
-                            if (mRecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues))
+                            if (RecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues))
                             {
 #if ! MINI
                                 if (MustNotifyRead) // Avoid object creation
@@ -357,7 +357,7 @@ namespace FileHelpers
 					mLastRecord = default(T);
 
 
-                    if (mRecordInfo.IgnoreLast > 0)
+                    if (RecordInfo.IgnoreLast > 0)
                         mFooterText = mAsyncReader.RemainingText;
 
                     try
@@ -598,7 +598,7 @@ namespace FileHelpers
 
                 if (skip == false)
                 {
-                    currentLine = mRecordInfo.Operations.RecordToString(record);
+                    currentLine = RecordInfo.Operations.RecordToString(record);
 #if !MINI
                     if (MustNotifyWrite)
                         currentLine = OnAfterWriteRecord(currentLine, record);
@@ -676,7 +676,7 @@ namespace FileHelpers
                 mLineNumber++;
                 mTotalRecords++;
 
-                currentLine = mRecordInfo.Operations.RecordValuesToString(this.mLastRecordValues);
+                currentLine = RecordInfo.Operations.RecordValuesToString(this.mLastRecordValues);
                 mAsyncWriter.WriteLine(currentLine);
             }
             catch (Exception ex)

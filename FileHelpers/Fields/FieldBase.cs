@@ -238,8 +238,10 @@ namespace FileHelpers
             }
             else // attributes.Length == 0
             {
-                if (recordAttribute is DelimitedRecordAttribute)
-                    res = new DelimitedField(fi, ((DelimitedRecordAttribute)recordAttribute).Separator);
+                var delimitedRecordAttribute = recordAttribute as DelimitedRecordAttribute;
+                
+                if (delimitedRecordAttribute != null)
+                    res = new DelimitedField(fi, delimitedRecordAttribute.Separator);
             }
 
             if (res != null)
@@ -274,10 +276,7 @@ namespace FileHelpers
 
 
                 // FieldOrder
-                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, (x) =>
-                {
-                    res.FieldOrder = x.Order;
-                });
+                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
 
 
                 // FieldOptional

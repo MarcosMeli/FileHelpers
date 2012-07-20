@@ -69,7 +69,7 @@ namespace FileHelpers.Dynamic
 		{
 			if (mKind == ConverterKind.None && mTypeName == string.Empty) return;
 
-			writer.mWriter.WriteStartElement("Converter");
+			writer.Writer.WriteStartElement("Converter");
 
 			writer.WriteAttribute("Kind", Kind.ToString(), "None");
 			writer.WriteAttribute("TypeName", mTypeName.ToString(), string.Empty);
@@ -78,7 +78,7 @@ namespace FileHelpers.Dynamic
 			writer.WriteAttribute("Arg2", Arg2, string.Empty);
 			writer.WriteAttribute("Arg3", Arg3, string.Empty);
 
-			writer.mWriter.WriteEndElement();
+			writer.Writer.WriteEndElement();
 
 		}
 
@@ -114,7 +114,7 @@ namespace FileHelpers.Dynamic
         /// <returns>Converter attribute in appropriate language</returns>
 		internal string GetConverterCode(NetLanguage lang)
 		{
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 
 			if (mKind != ConverterKind.None)
 				sb.Append("FieldConverter(ConverterKind." + mKind.ToString());

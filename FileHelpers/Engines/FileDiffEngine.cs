@@ -30,12 +30,12 @@ namespace FileHelpers
 		{
 			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 			
-			T[] olds = engine.ReadFile(sourceFile);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-			T[] currents = engine.ReadFile(newFile);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
+			var olds = engine.ReadFile(sourceFile);
+			ErrorManager.AddErrors(engine.ErrorManager);
+			var currents = engine.ReadFile(newFile);
+			ErrorManager.AddErrors(engine.ErrorManager);
             
-			List<T> news = new List<T>();
+			var news = new List<T>();
 			ApplyDiffOnlyIn1(currents, olds, news);
 
 			return news.ToArray();
@@ -56,7 +56,7 @@ namespace FileHelpers
 			T[] currents = engine.ReadFile(newFile);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
             
-			List<T> news = new List<T>();
+			var news = new List<T>();
 
 			ApplyDiffOnlyIn1(olds, currents, news);
 
@@ -65,10 +65,12 @@ namespace FileHelpers
 		
 		private FileHelperEngine<T> CreateEngineAndClearErrors()
 		{
-			FileHelperEngine<T> engine = new FileHelperEngine<T>();
-			engine.Encoding = this.Encoding;
+			var engine = new FileHelperEngine<T>
+			    {
+			        Encoding = this.Encoding
+			    };
 
-			ErrorManager.ClearErrors();
+		    ErrorManager.ClearErrors();
 			engine.ErrorManager.ErrorMode = this.ErrorManager.ErrorMode;
 			
 			return engine;
@@ -165,7 +167,7 @@ namespace FileHelpers
 			T[] currents = engine.ReadFile(file2);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
             
-			List<T> news = new List<T>();
+			var news = new List<T>();
 
 			ApplyDiffOnlyIn1(currents, olds, news);
 

@@ -22,7 +22,8 @@ namespace FileHelpers
         internal const int DefaultWriteBufferSize = 100 * 1024;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal readonly IRecordInfo mRecordInfo;
+        internal IRecordInfo RecordInfo { get; private set; }
+        //private readonly IRecordInfo mRecordInfo;
 
         #region "  Constructor  "
 
@@ -49,7 +50,7 @@ namespace FileHelpers
                                                 .Text);
 
             mRecordType = recordType;
-            mRecordInfo = RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
+            RecordInfo = FileHelpers.RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
             mEncoding = encoding;
 
             CreateRecordOptions();
@@ -62,7 +63,7 @@ namespace FileHelpers
         internal EngineBase(RecordInfo ri)
         {
             mRecordType = ri.RecordType;
-            mRecordInfo = ri;
+            RecordInfo = ri;
 
             CreateRecordOptions();
         }
@@ -79,7 +80,7 @@ namespace FileHelpers
         internal int mTotalRecords;
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
-        public int LineNumber
+        public int LineNumber 
         {
             get { return mLineNumber; }
         }
@@ -106,18 +107,18 @@ namespace FileHelpers
         {
             var delimiter = "\t";
 
-            if (mRecordInfo.IsDelimited)
+            if (RecordInfo.IsDelimited)
             {
                 delimiter = ((DelimitedRecordOptions)Options).Delimiter;
             }
 
             var res = new StringBuilder();
-            for (int i = 0; i < mRecordInfo.Fields.Length; i++)
+            for (int i = 0; i < RecordInfo.Fields.Length; i++)
             {
                 if (i > 0)
                     res.Append(delimiter);
 
-                var field = mRecordInfo.Fields[i];
+                var field = RecordInfo.Fields[i];
                 res.Append(field.FieldFriendlyName);
             }
 
@@ -260,10 +261,10 @@ namespace FileHelpers
 
         private void CreateRecordOptions()
         {
-            if (mRecordInfo.IsDelimited)
-                Options = new DelimitedRecordOptions(mRecordInfo);
+            if (RecordInfo.IsDelimited)
+                Options = new DelimitedRecordOptions(RecordInfo);
             else
-                Options = new FixedRecordOptions(mRecordInfo);
+                Options = new FixedRecordOptions(RecordInfo);
         }
 
         /// <summary>

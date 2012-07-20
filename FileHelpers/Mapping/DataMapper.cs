@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Reflection;
 using System.Collections.Generic;
 //using Container=FileHelpers.Container;
@@ -77,9 +78,11 @@ namespace FileHelpers.Mapping
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(int columnIndex, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.RecordType, fieldName);
-			map.mDataColumnIndex = columnIndex + mInitialColumnOffset;
-			mMappings.Add(map);
+			var map = new MappingInfo(mRecordInfo.RecordType, fieldName)
+			    {
+			        mDataColumnIndex = columnIndex + mInitialColumnOffset
+			    };
+		    mMappings.Add(map);
 		}
 
 		/// <summary>
@@ -91,7 +94,7 @@ namespace FileHelpers.Mapping
 		/// <param name="fieldName">The name of a fieldName in the Record Class</param>
 		public void AddMapping(string columnName, string fieldName)
 		{
-			MappingInfo map = new MappingInfo(mRecordInfo.RecordType, fieldName);
+			var map = new MappingInfo(mRecordInfo.RecordType, fieldName);
 			map.mDataColumnName = columnName;
 			mMappings.Add(map);
 		}
@@ -105,7 +108,7 @@ namespace FileHelpers.Mapping
 		/// <returns>The mapped records contained in the DataTable</returns>
 		public T[] MapDataTable2Records(DataTable dt)
         {
-			List<T> arr = new List<T>(dt.Rows.Count);
+			var arr = new List<T>(dt.Rows.Count);
 
             mMappings.TrimToSize();
             foreach (DataRow row in dt.Rows)
@@ -125,7 +128,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(DataRow dr)
         {
-			T record = (T) mRecordInfo.Operations.CreateRecordHandler();
+			var record = (T) mRecordInfo.Operations.CreateRecordHandler();
 
 			for(int i = 0; i < mMappings.Count; i++)
 			{
@@ -143,7 +146,7 @@ namespace FileHelpers.Mapping
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public T MapRow2Record(IDataReader dr)
 		{
-            T record = (T) mRecordInfo.Operations.CreateRecordHandler();
+            var record = (T) mRecordInfo.Operations.CreateRecordHandler();
             //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 
 			for(int i = 0; i < mMappings.Count; i++)
@@ -162,7 +165,7 @@ namespace FileHelpers.Mapping
 		/// <returns>The mapped records contained in the DataTable</returns>
         public T[] AutoMapDataTable2RecordsByIndex(DataTable dt)
 		{
-            List<T> arr = new List<T>(dt.Rows.Count);
+            var arr = new List<T>(dt.Rows.Count);
 
             FieldInfo[] fields =
 				mRecordInfo.RecordType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField |
@@ -175,7 +178,7 @@ namespace FileHelpers.Mapping
 
 			for(int i = 0; i < fields.Length; i++)
 			{
-				MappingInfo map = new MappingInfo(fields[i]);
+				var map = new MappingInfo(fields[i]);
 				map.mDataColumnIndex = i;
 				mMappings.Add(map);
 			}
@@ -183,7 +186,7 @@ namespace FileHelpers.Mapping
 
 			foreach (DataRow row in dt.Rows)
 			{
-				T record = (T) mRecordInfo.Operations.CreateRecordHandler();
+				var record = (T) mRecordInfo.Operations.CreateRecordHandler();
                 //TypedReference t = TypedReference.MakeTypedReference(record, new FieldInfo[]) null);
 
 				for(int i = 0; i < mMappings.Count; i++)
@@ -369,8 +372,9 @@ namespace FileHelpers.Mapping
 		private static bool HasRows(IDataReader dr)
 		{
 #if NET_2_0
-			if (dr is System.Data.Common.DbDataReader)
-                return ((System.Data.Common.DbDataReader)dr).HasRows;
+		    var dbDataReader = dr as DbDataReader;
+		    if (dbDataReader != null)
+		        return dbDataReader.HasRows;
 #else
 			if (dr is System.Data.SqlClient.SqlDataReader)
 				return ((System.Data.SqlClient.SqlDataReader) dr).HasRows;

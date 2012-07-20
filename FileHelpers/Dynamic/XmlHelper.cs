@@ -13,11 +13,11 @@ namespace FileHelpers.Dynamic
 		/// <summary>
 		/// XML writer
 		/// </summary>
-		internal XmlTextWriter mWriter;
+		internal XmlTextWriter Writer;
         /// <summary>
         /// XML reader
         /// </summary>
-		internal XmlTextReader mReader;
+		internal XmlTextReader Reader;
 		
         /// <summary>
         /// Open file in create more to add XML to it
@@ -34,9 +34,11 @@ namespace FileHelpers.Dynamic
         /// <param name="writer">writer to put XML onto</param>
         public void BeginWriteStream(TextWriter writer)
         {
-            mWriter = new XmlTextWriter(writer);
-            mWriter.Formatting = Formatting.Indented;
-            mWriter.Indentation = 4;
+            Writer = new XmlTextWriter(writer)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 4
+                };
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace FileHelpers.Dynamic
         /// <param name="filename">filename to read</param>
 		public void BeginReadFile(string filename)
 		{
-			mReader = new XmlTextReader(new StreamReader(filename));
+			Reader = new XmlTextReader(new StreamReader(filename));
 		}
 
         /// <summary>
@@ -55,9 +57,9 @@ namespace FileHelpers.Dynamic
         /// <param name="valueStr">Value of element</param>
 		public void WriteElement(string element, string valueStr)
 		{
-			mWriter.WriteStartElement(element);
-			mWriter.WriteString(valueStr);
-			mWriter.WriteEndElement();
+			Writer.WriteStartElement(element);
+			Writer.WriteString(valueStr);
+			Writer.WriteEndElement();
 		}
 
         /// <summary>
@@ -81,8 +83,8 @@ namespace FileHelpers.Dynamic
 		{
             if (mustWrite)
 			{
-				mWriter.WriteStartElement(element);
-				mWriter.WriteEndElement();
+				Writer.WriteStartElement(element);
+				Writer.WriteEndElement();
 			}
 		}
 
@@ -105,9 +107,9 @@ namespace FileHelpers.Dynamic
         /// <param name="valueStr">value of the attribute</param>
 		public void WriteAttribute(string attb, string valueStr)
 		{
-			mWriter.WriteStartAttribute(attb, string.Empty);
-			mWriter.WriteString(valueStr);
-			mWriter.WriteEndAttribute();
+			Writer.WriteStartAttribute(attb, string.Empty);
+			Writer.WriteString(valueStr);
+			Writer.WriteEndAttribute();
 		}
 
         /// <summary>
@@ -115,9 +117,9 @@ namespace FileHelpers.Dynamic
         /// </summary>
 		public void EndWrite()
         {
-            if (mWriter != null) 
-                mWriter.Close();
-            mWriter = null;
+            if (Writer != null) 
+                Writer.Close();
+            Writer = null;
         }
 
         /// <summary>
@@ -125,9 +127,9 @@ namespace FileHelpers.Dynamic
         /// </summary>
         public void EndRead()
         {
-            if (mReader != null) 
-                mReader.Close();
-            mReader = null;
+            if (Reader != null) 
+                Reader.Close();
+            Reader = null;
         }
 
         /// <summary>
@@ -135,8 +137,8 @@ namespace FileHelpers.Dynamic
         /// </summary>
 		public void ReadToNextElement()
 		{
-			while(mReader.Read())
-				if (mReader.NodeType == XmlNodeType.Element)
+			while(Reader.Read())
+				if (Reader.NodeType == XmlNodeType.Element)
 					return;
 		}
 

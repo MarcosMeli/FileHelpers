@@ -166,23 +166,16 @@ namespace FileHelpers
 
             if (mObjectEngine)
             {
-                return (T[])((ArrayList)result).ToArray(mRecordInfo.RecordType);
+                return (T[])((ArrayList)result).ToArray(RecordInfo.RecordType);
             }
             else
                 return ((List<T>)result).ToArray();
 		}
 
 
-        private T[] ReadStream(TextReader reader, int maxRecords, DataTable dt)
+        private void ReadStream(TextReader reader, int maxRecords, DataTable dt)
         {
-            var result = ReadStreamAsList(reader, maxRecords, dt);
-
-            if (mObjectEngine)
-            {
-                return (T[]) ((ArrayList) result).ToArray(mRecordInfo.RecordType);
-            }
-            else
-                return ((List<T>)result).ToArray();
+            ReadStreamAsList(reader, maxRecords, dt);
         }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
@@ -227,7 +220,7 @@ namespace FileHelpers
             int currentRecord = 0;
             
 		    var streamInfo = new StreamInfoProvider(reader);
-            using (var freader = new ForwardReader(recordReader, mRecordInfo.IgnoreLast))
+            using (var freader = new ForwardReader(recordReader, RecordInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -243,9 +236,9 @@ namespace FileHelpers
                     OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
 #endif
 
-                if (mRecordInfo.IgnoreFirst > 0)
+                if (RecordInfo.IgnoreFirst > 0)
                 {
-                    for (int i = 0; i < mRecordInfo.IgnoreFirst && currentLine != null; i++)
+                    for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++)
                     {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
@@ -260,7 +253,7 @@ namespace FileHelpers
 
                 LineInfo line = new LineInfo(currentLine) {mReader = freader};
 
-                object[] values = new object[mRecordInfo.FieldCount];
+                object[] values = new object[RecordInfo.FieldCount];
 
                 while (currentLine != null && currentRecord < maxRecords)
                 {
@@ -276,7 +269,7 @@ namespace FileHelpers
 
                         var skip = false;
 
-                        T record = (T)mRecordInfo.Operations.CreateRecordHandler();
+                        T record = (T)RecordInfo.Operations.CreateRecordHandler();
 #if !MINI
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1, streamInfo.Position, streamInfo.TotalBytes));
@@ -293,7 +286,7 @@ namespace FileHelpers
 
                         if (skip == false)
                         {
-                            if (mRecordInfo.Operations.StringToRecord(record, line, values))
+                            if (RecordInfo.Operations.StringToRecord(record, line, values))
                             {
 #if !MINI
                                 if (MustNotifyRead) // Avoid object creation
@@ -307,7 +300,7 @@ namespace FileHelpers
                                     if (dt == null)
                                         result.Add(record);
                                     else
-                                        dt.Rows.Add(mRecordInfo.Operations.RecordToValues(record));
+                                        dt.Rows.Add(RecordInfo.Operations.RecordToValues(record));
 #endif
                                 }
                             }
@@ -345,7 +338,7 @@ namespace FileHelpers
                     }
                 }
 
-                if (mRecordInfo.IgnoreLast > 0)
+                if (RecordInfo.IgnoreLast > 0)
                 {
                     mFooterText = freader.RemainingText;
                 }
@@ -524,8 +517,8 @@ namespace FileHelpers
 					if (first)
 					{
 						first = false;
-						if (mRecordInfo.RecordType.IsInstanceOfType(rec) == false)
-							throw new BadUsageException("This engine works with record of type " + mRecordInfo.RecordType.Name + " and you use records of type " + rec.GetType().Name );
+						if (RecordInfo.RecordType.IsInstanceOfType(rec) == false)
+							throw new BadUsageException("This engine works with record of type " + RecordInfo.RecordType.Name + " and you use records of type " + rec.GetType().Name );
 					}
 
 
@@ -540,7 +533,7 @@ namespace FileHelpers
 
 					if (skip == false)
 					{
-                        currentLine = mRecordInfo.Operations.RecordToString(rec);
+                        currentLine = RecordInfo.Operations.RecordToString(rec);
 						#if !MINI
                         if (MustNotifyWrite)
                             currentLine = OnAfterWriteRecord(currentLine, rec);
@@ -711,7 +704,7 @@ namespace FileHelpers
 		/// <returns>The DataTable with the read records.</returns>
 		public DataTable ReadStreamAsDT(TextReader reader, int maxRecords)
 		{
-            DataTable dt = mRecordInfo.Operations.CreateEmptyDataTable();
+            DataTable dt = RecordInfo.Operations.CreateEmptyDataTable();
 			dt.BeginLoadData();
 			ReadStream(reader, maxRecords, dt);
 			dt.EndLoadData();
