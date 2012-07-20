@@ -77,7 +77,7 @@
         	<DocFile Include="Help\FileHelpers.chm"/>
     	</ItemGroup>
 
-        <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" />
+        <Copy SourceFiles="@(DocFile)" DestinationFolder="Release\Docs" ContinueOnError="True" />
 
 		<ItemGroup>
 			<DeleteXml Include="Release\Examples\FileHelpers.xml" />
@@ -101,7 +101,7 @@
         	<DocFile Include="Help\FileHelpers.chm"/>
     	</ItemGroup>
 
-        <Copy SourceFiles="@(DocFile)" DestinationFolder="Debug\Docs" />
+        <Copy SourceFiles="@(DocFile)" DestinationFolder="Debug\Docs" ContinueOnError="True" />
         
 		<ItemGroup>
 			<DeleteXml Include="Debug\Examples\FileHelpers.xml" />
