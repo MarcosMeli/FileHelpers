@@ -1,4 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
 
 namespace ExamplesFramework
 {
@@ -34,7 +38,7 @@ namespace ExamplesFramework
         /// Output HTML,  in this case a heading
         /// </summary>
         /// <param name="index"></param>
-        public void OutputHtml(System.Text.StringBuilder index, int indent)
+        public void OutputHtml(StringBuilder index, int indent)
         {
             index.Append("<h3>");
             index.Append(this.Text);

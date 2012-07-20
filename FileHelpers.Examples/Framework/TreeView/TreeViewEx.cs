@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace ExamplesFramework
 {
@@ -87,7 +86,7 @@ namespace ExamplesFramework
             var resultNodes = new List<TreeNode>();
             var filtered = SearchInNodes(mAllNodes);
 
-            foreach (TreeNode nodeFiltered in filtered)
+            foreach (var nodeFiltered in filtered)
             {
                 this.Nodes.Add(nodeFiltered);
             }
@@ -114,7 +113,7 @@ namespace ExamplesFramework
                     {
                         var nodeClone = (TreeNode) node.Clone();
 
-                        foreach (TreeNode nodeFiltered in filtered)
+                        foreach (var nodeFiltered in filtered)
                         {
                             nodeClone.Nodes.Add((TreeNode) nodeFiltered.Clone());
                         }

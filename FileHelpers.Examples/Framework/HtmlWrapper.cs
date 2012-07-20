@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace ExamplesFramework
 {
@@ -57,8 +59,8 @@ namespace ExamplesFramework
         static Regex LeadingAster = new Regex(@"^\s\* ", RegexOptions.Compiled | RegexOptions.Multiline);
 
         
-        static Regex FileNames = new Regex(@"(\${.*?})", RegexOptions.Compiled);
-        static Regex Blockquote = new Regex(@"\</?blockquote\>", RegexOptions.Compiled|RegexOptions.IgnoreCase);
+        static readonly Regex FileNames = new Regex(@"(\${.*?})", RegexOptions.Compiled);
+        static readonly Regex Blockquote = new Regex(@"\</?blockquote\>", RegexOptions.Compiled|RegexOptions.IgnoreCase);
         static Regex TrailingLines = new Regex("[\r\n]*$", RegexOptions.Compiled);
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace ExamplesFramework
             this.Files = pFiles;
 
 #if DEBUG
-            System.Uri url = new Uri(Path.GetFullPath(DocsOutput), UriKind.Absolute);
+            var url = new Uri(Path.GetFullPath(DocsOutput), UriKind.Absolute);
             this.URLprefix = url.ToString() + "/";
 #endif
         }
@@ -82,7 +84,7 @@ namespace ExamplesFramework
         /// <returns></returns>
         public override string ToString()
         {
-            StringBuilder html = new StringBuilder();
+            var html = new StringBuilder();
             html.Append("<html>");
             html.Append("<body>");
             ProcessBody(html);
@@ -93,7 +95,7 @@ namespace ExamplesFramework
 
         private void ProcessBody(StringBuilder html)
         {
-            foreach (string part in FileNames.Split(Body))
+            foreach (var part in FileNames.Split(Body))
             {
                 if (part.StartsWith("${"))
                 {
@@ -150,7 +152,7 @@ namespace ExamplesFramework
                         html.Append(@""">");
 
                         //  Encode the <>& etc to html elements.
-                        html.Append(System.Web.HttpUtility.HtmlEncode(details.Contents));
+                        html.Append(HttpUtility.HtmlEncode(details.Contents));
                         html.AppendLine("</textarea>");
                     }
                 }
@@ -175,10 +177,10 @@ namespace ExamplesFramework
                 this.UseBlockQuotes = true;
                 GetHeadAndFoot();
                 string output = Path.Combine(DocsOutput, filename);
-                using (StreamWriter writer = new StreamWriter(output))
+                using (var writer = new StreamWriter(output))
                 {
                     writer.Write(Heading);
-                    StringBuilder body = new StringBuilder();
+                    var body = new StringBuilder();
                     ProcessBody( body);
                     writer.Write(body);
                     writer.Write(Footing);
@@ -197,7 +199,7 @@ namespace ExamplesFramework
             if (Heading == null)
             {
                 string path = Path.Combine(Docs, Template);
-                using (StreamReader reader = new StreamReader(path))
+                using (var reader = new StreamReader(path))
                 {
                     string[] temp = { "${BODY}" };
                     string[] parts = reader.ReadToEnd().Split(temp, StringSplitOptions.None);

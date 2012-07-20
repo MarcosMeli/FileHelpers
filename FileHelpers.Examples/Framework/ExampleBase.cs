@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.IO;
 
 namespace ExamplesFramework
 {
@@ -13,7 +12,7 @@ namespace ExamplesFramework
 
         public class VirtualConsole
         {
-            private StringBuilder mStream;
+            private readonly StringBuilder mStream;
             internal event EventHandler Changed;
 
             public void Clear()

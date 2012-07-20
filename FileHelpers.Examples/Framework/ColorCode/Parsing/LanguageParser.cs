@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ColorCode.Common;
@@ -75,7 +76,7 @@ namespace ColorCode.Parsing
             var capturedStyleTree = new List<Scope>(capturedStyles.Count);
             Scope currentScope = null;
 
-            foreach (Scope capturedStyle in capturedStyles)
+            foreach (var capturedStyle in capturedStyles)
             {
                 if (currentScope == null)
                 {
@@ -170,7 +171,7 @@ namespace ColorCode.Parsing
                         List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch, 0, nestedCompiledLanguage);
                         List<Scope> capturedStyleTree = CreateCapturedStyleTree(capturedStylesForMatchedFragment);
 
-                        foreach (Scope nestedCapturedStyle in capturedStyleTree)
+                        foreach (var nestedCapturedStyle in capturedStyleTree)
                         {
                             IncreaseCapturedStyleIndicies(capturedStyleTree, offset);
                             capturedStyles.Add(nestedCapturedStyle);

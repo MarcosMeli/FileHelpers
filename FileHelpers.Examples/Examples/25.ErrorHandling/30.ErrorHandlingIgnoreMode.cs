@@ -30,7 +30,7 @@ namespace ExamplesFramework
             Customer[] customers = engine.ReadFile("Input.txt");
 
             // This wont display anything, we have dropped it
-            foreach (ErrorInfo err in engine.ErrorManager.Errors)
+            foreach (var err in engine.ErrorManager.Errors)
             {
                 Console.WriteLine();
                 Console.WriteLine("Error on Line number: {0}", err.LineNumber);

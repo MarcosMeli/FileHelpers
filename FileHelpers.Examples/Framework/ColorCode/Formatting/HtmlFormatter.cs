@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web;
 using ColorCode.Common;
 using ColorCode.Parsing;
-using ColorCode.Styling;
 
 namespace ColorCode.Formatting
 {
@@ -19,14 +20,14 @@ namespace ColorCode.Formatting
         {
             var styleInsertions = new List<TextInsertion>();
 
-            foreach (Scope scope in scopes)
+            foreach (var scope in scopes)
                 GetStyleInsertionsForCapturedStyle(scope, styleInsertions);
 
             styleInsertions.SortStable((x, y) => x.Index.CompareTo(y.Index));
 
             int offset = 0;
 
-            foreach (TextInsertion styleInsertion in styleInsertions)
+            foreach (var styleInsertion in styleInsertions)
             {
                 textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
                 if (string.IsNullOrEmpty(styleInsertion.Text))
@@ -69,7 +70,7 @@ namespace ColorCode.Formatting
                                                   });
 
 
-            foreach (Scope childScope in scope.Children)
+            foreach (var childScope in scope.Children)
                 GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
 
             styleInsertions.Add(new TextInsertion {

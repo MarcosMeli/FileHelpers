@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -96,7 +97,7 @@ namespace ColorCode.Compilation
                                          out Regex regex,
                                          out IList<string> captures)
         {
-            StringBuilder regexBuilder = new StringBuilder();
+            var regexBuilder = new StringBuilder();
             captures = new List<string>();
 
             regexBuilder.AppendLine("(?x)");
@@ -132,7 +133,7 @@ namespace ColorCode.Compilation
             {
                 string scope = null;
 
-                foreach (int captureIndex in languageRule.Captures.Keys)
+                foreach (var captureIndex in languageRule.Captures.Keys)
                 {
                     if (i == captureIndex)
                     {

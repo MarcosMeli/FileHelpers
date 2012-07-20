@@ -1,10 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ColorCode.Common;
 using ColorCode.Compilation;
-using ColorCode.Formatting;
 using ColorCode.Parsing;
 
 namespace ColorCode

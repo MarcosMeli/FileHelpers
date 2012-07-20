@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 
@@ -43,15 +42,15 @@ namespace ExamplesFramework
         /// </summary>
         /// <param name="record">Alpha characters coming in</param>
         /// <returns>Selector for master or detail record</returns>
-        FileHelpers.MasterDetail.RecordAction ExampleSelector(string record)
+        RecordAction ExampleSelector(string record)
         {
             if (record.Length < 2)
                 return RecordAction.Skip;
 
             if (Char.IsLetter(record[0]))
-                return FileHelpers.MasterDetail.RecordAction.Master;
+                return RecordAction.Master;
             else
-                return FileHelpers.MasterDetail.RecordAction.Detail;
+                return RecordAction.Detail;
         }
         //-> /File
 

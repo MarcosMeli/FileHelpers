@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ExamplesFramework
 {
@@ -146,7 +145,7 @@ namespace ExamplesFramework
             }
             finally
             {
-                foreach (ExampleFile file in this.Files)
+                foreach (var file in this.Files)
                 {
                     if (file.Status == ExampleFile.FileType.InputFile)
                     {

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using ColorCode;
 
@@ -8,7 +8,7 @@ namespace ExamplesFramework
 {
     public abstract class ExampleThemeBase
     {
-        CodeColorizer mColorizer = new CodeColorizer();
+        readonly CodeColorizer mColorizer = new CodeColorizer();
         public abstract void AddHeaderStyles(StringBuilder sb);
         public abstract void AddExampleTitle(StringBuilder sb, ExampleCode example);
         public abstract void AddExampleFooter(StringBuilder sb, ExampleCode example);

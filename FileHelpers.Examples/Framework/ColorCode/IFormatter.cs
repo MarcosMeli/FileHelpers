@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using ColorCode.Parsing;

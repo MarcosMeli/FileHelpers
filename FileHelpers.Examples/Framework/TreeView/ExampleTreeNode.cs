@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -38,7 +40,7 @@ namespace ExamplesFramework
         /// Output HTML,  in this case a heading
         /// </summary>
         /// <param name="index"></param>
-        public void OutputHtml(System.Text.StringBuilder index, int indent)
+        public void OutputHtml(StringBuilder index, int indent)
         {
             bool error = false;
             Exception MyException = null;
@@ -52,7 +54,7 @@ namespace ExamplesFramework
                 MyException = ex;
             }
             bool found = false;
-            foreach (ExampleFile file in Example.Files.Where(x => x.Status == ExampleFile.FileType.HtmlFile))
+            foreach (var file in Example.Files.Where(x => x.Status == ExampleFile.FileType.HtmlFile))
             {
                 //  overview files should come first and be on their own...
                 //  they are intended to display on the screen and be
@@ -80,7 +82,7 @@ namespace ExamplesFramework
                     index.Append(Example.Description);
                     index.AppendLine("</dd>");
 
-                    HtmlWrapper wrapper = new HtmlWrapper(file.Contents, Example.Files);
+                    var wrapper = new HtmlWrapper(file.Contents, Example.Files);
                     wrapper.Export(file.Filename);
                     found = true;
                 }

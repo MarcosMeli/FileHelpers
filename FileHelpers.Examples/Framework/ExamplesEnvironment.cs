@@ -51,7 +51,7 @@ namespace ExamplesFramework
             {}
         }
 
-        private static object mInitLock = new object();
+        private static readonly object mInitLock = new object();
 
         private static ExampleSandbox mLastSandbox;
 
@@ -77,7 +77,7 @@ namespace ExamplesFramework
                     Environment.CurrentDirectory = sandbox.Path;
                 }
 
-                foreach (ExampleFile file in exampleCode.Files)
+                foreach (var file in exampleCode.Files)
                 {
                     if (file.Status == ExampleFile.FileType.InputFile)
                         File.WriteAllText(Path.Combine(sandbox.Path, file.Filename), file.Contents, Encoding.UTF8);

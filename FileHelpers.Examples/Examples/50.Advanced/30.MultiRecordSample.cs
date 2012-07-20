@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FileHelpers;
 
 namespace ExamplesFramework
@@ -47,7 +46,7 @@ namespace ExamplesFramework
 
             object[] res = engine.ReadFile("Input.txt");
 
-            foreach (object rec in res)
+            foreach (var rec in res)
                 this.Console.WriteLine(res.ToString());
 
         }

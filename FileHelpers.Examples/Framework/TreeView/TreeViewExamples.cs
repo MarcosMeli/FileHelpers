@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -84,7 +85,7 @@ namespace ExamplesFramework
 
         public void ProcessDocumentation()
         {
-            StringBuilder index = new StringBuilder();
+            var index = new StringBuilder();
             int newIndent = 1;
 
             string Heading;
@@ -100,7 +101,7 @@ namespace ExamplesFramework
             index.AppendLine(Footing);
 
             string filename = Path.Combine(HtmlWrapper.DocsOutput, "example_index.html");
-            using (StreamWriter writer = new System.IO.StreamWriter(filename))
+            using (var writer = new StreamWriter(filename))
             {
                 writer.Write(index);
             }
@@ -109,7 +110,7 @@ namespace ExamplesFramework
         private static void GetHeadAndFoot(out string Heading, out string Footing)
         {
                 string path = Path.Combine(HtmlWrapper.Docs, "example_index_template.html");
-                using (StreamReader reader = new StreamReader(path))
+                using (var reader = new StreamReader(path))
                 {
                     string[] temp = { "${BODY}" };
                     string[] parts = reader.ReadToEnd().Split(temp, StringSplitOptions.None);

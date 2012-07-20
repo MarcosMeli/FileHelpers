@@ -33,7 +33,7 @@ namespace ExamplesFramework
             Customer[] customers = engine.ReadFile("Input.txt");
 
             // This will display error from line 2 of the file.
-            foreach (ErrorInfo err in engine.ErrorManager.Errors)
+            foreach (var err in engine.ErrorManager.Errors)
             {
                 Console.WriteLine();
                 Console.WriteLine("Error on Line number: {0}", err.LineNumber);
