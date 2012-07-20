@@ -338,8 +338,6 @@
     <Compile Include="Interfaces\INotifyWrite.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mapping\DataMapper.cs" />
-    <Compile Include="Mapping\MappingInfo.cs" />
     <Compile Include="MasterDetail\Common.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Project DefaultTargets="pack-release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="pack-release" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 	<Import Project="Libs\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
 
 	<Import Project="Build\CurrentVersion.msbuild" />
@@ -93,7 +93,7 @@
 		</ItemGroup>
 		
 		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="Release" ZipFileName="Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
-	</Target>
+	</Target>	
 
 	<Target Name="pack-debug" DependsOnTargets="debug">
 	
