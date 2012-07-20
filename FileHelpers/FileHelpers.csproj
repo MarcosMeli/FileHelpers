@@ -41,9 +41,6 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
-    <StyleCopOverrideSettingsFile>Settings.StyleCop</StyleCopOverrideSettingsFile>
-    <StyleCopCacheResults>true</StyleCopCacheResults>
-    <StyleCopOutputFile>StyleCop.xml</StyleCopOutputFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Debug\Bin\</OutputPath>
@@ -357,7 +354,6 @@
     </Compile>
     <Compile Include="Messages\GenerateMessages1.autogen.cs">
       <AutoGen>True</AutoGen>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateMessages.tt</DependentUpon>
     </Compile>
@@ -420,7 +416,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\Libs\StyleCop\StyleCop.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
