@@ -1,6 +1,6 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using FileHelpers.Dynamic;
 
@@ -127,7 +127,7 @@ namespace FileHelpers.Detection
                     throw new InvalidOperationException("Unsuported FormatHint value.");
             }
 
-            foreach (RecordFormatInfo option in res)
+            foreach (var option in res)
             {
                 DetectOptionals(option, sampleData);
                 DetectTypes(option, sampleData);
@@ -186,13 +186,13 @@ namespace FileHelpers.Detection
         // FIXED LENGTH
         private void CreateFixedLengthOptions(string[][] data, List<RecordFormatInfo> res)
         {
-            RecordFormatInfo format = new RecordFormatInfo();
+            var format = new RecordFormatInfo();
             double average = CalculateAverageLineWidth(data);
             double deviation = CalculateDeviationLineWidth(data, average);
 
             format.mConfidence = (int)(Math.Max(0, 1 - deviation / average) * 100);
 
-            FixedLengthClassBuilder builder = new FixedLengthClassBuilder("AutoDetectedClass");
+            var builder = new FixedLengthClassBuilder("AutoDetectedClass");
             CreateFixedLengthFields(data, builder);
 
             format.mClassBuilder = builder;
@@ -219,7 +219,7 @@ namespace FileHelpers.Detection
         {
             List<FixedColumnInfo> res = null;
             
-            foreach (string[] dataFile in data)
+            foreach (var dataFile in data)
             {
                 List<FixedColumnInfo> candidates = CreateFixedLengthCandidates(dataFile);
                 res = JoinFixedColCandidates(res, candidates);
@@ -236,9 +236,9 @@ namespace FileHelpers.Detection
         {
             List<FixedColumnInfo> res = null;
 
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                List<FixedColumnInfo> candidates = new List<FixedColumnInfo>();
+                var candidates = new List<FixedColumnInfo>();
                 int blanks = 0;
 
                 FixedColumnInfo col = null;
@@ -314,20 +314,20 @@ namespace FileHelpers.Detection
 
         private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res, char delimiter)
         {
-            List<DelimiterInfo> delimiters = new List<DelimiterInfo>();
+            var delimiters = new List<DelimiterInfo>();
 
             if (delimiter == '\0')
                 delimiters = GetDelimiters(sampleData);
             else
                 delimiters.Add(GetDelimiterInfo(sampleData, delimiter));
 
-            foreach (DelimiterInfo info in delimiters)
+            foreach (var info in delimiters)
             {
-                RecordFormatInfo format = new RecordFormatInfo();
+                var format = new RecordFormatInfo();
                 format.mConfidence = (int)((1 - info.Deviation ) * 100);
                 AdjustConfidence(format, info);
 
-                DelimitedClassBuilder builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
+                var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString());
                 builder.IgnoreFirstLines = FileHasHeaders ? 1 : 0;
                 var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
                 for (int i = 0; i < info.Max + 1; i++)
@@ -388,9 +388,9 @@ namespace FileHelpers.Detection
         
         private string[][] GetSampleLines(IEnumerable<string> files, int nroOfLines)
         {
-            List<string[]> res = new List<string[]>();
+            var res = new List<string[]>();
 
-            foreach (string file in files)
+            foreach (var file in files)
             {
                 res.Add(CommonEngine.RawReadFirstLinesArray(file, nroOfLines, mEncoding));
             }
@@ -401,7 +401,7 @@ namespace FileHelpers.Detection
         private int NumberOfLines(string[][] data)
         {
             int lines = 0;
-            foreach (string[] fileData in data)
+            foreach (var fileData in data)
             {
                 lines += fileData.Length;
             }
@@ -426,7 +426,7 @@ namespace FileHelpers.Detection
 
         private List<DelimiterInfo> GetDelimiters(string[][] data)
         {
-            Dictionary<char, int> frecuency = new Dictionary<char, int>();
+            var frecuency = new Dictionary<char, int>();
             int lines = 0;
             for (int i = 0; i < data.Length; i++)
             {
@@ -457,8 +457,8 @@ namespace FileHelpers.Detection
                 }
             }
 
-            List<DelimiterInfo> candidates = new List<DelimiterInfo>();
-            foreach (KeyValuePair<char, int> pair in frecuency)
+            var candidates = new List<DelimiterInfo>();
+            foreach (var pair in frecuency)
             {
                 var indicators = CalculateIndicators(pair.Key, data);
                 double deviation = CalculateDeviation(pair.Key, data, indicators.Avg);
@@ -481,14 +481,14 @@ namespace FileHelpers.Detection
         {
             double bigSum = 0.0;
             int lines = 0;
-            foreach (string[] fileData in data)
+            foreach (var fileData in data)
             {
-                foreach (string line in fileData)
+                foreach (var line in fileData)
                 {
                     lines++;
 
                     int sum = 0;
-                    foreach (char candidate in line)
+                    foreach (var candidate in line)
                     {
                         if (candidate == c)
                             sum += 1;
@@ -532,10 +532,10 @@ namespace FileHelpers.Detection
             int totalDelimiters = 0;
             int lines = 0;
 
-            foreach (string[] fileData in data)
+            foreach (var fileData in data)
             {
                 
-                foreach (string line in fileData)
+                foreach (var line in fileData)
                 {
                     if (string.IsNullOrEmpty(line))
                         continue;
@@ -571,9 +571,9 @@ namespace FileHelpers.Detection
             double sum = 0;
             int lines = 0;
 
-            foreach (string[] fileData in data)
+            foreach (var fileData in data)
             {
-                foreach (string line in fileData)
+                foreach (var line in fileData)
                 {
                     lines++;
                     sum += line.Length;
@@ -588,9 +588,9 @@ namespace FileHelpers.Detection
             double bigSum = 0.0;
             int lines = 0;
 
-            foreach (string[] fileData in data)
+            foreach (var fileData in data)
             {
-                foreach (string line in fileData)
+                foreach (var line in fileData)
                 {
                     lines++;
                     bigSum = Math.Pow(line.Length - average, 2);

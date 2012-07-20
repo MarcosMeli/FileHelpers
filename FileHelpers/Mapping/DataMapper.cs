@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Reflection;
-using System.Collections.Generic;
+
 //using Container=FileHelpers.Container;
 
 //#if V_3_0
@@ -99,7 +100,7 @@ namespace FileHelpers.Mapping
 			mMappings.Add(map);
 		}
 
-		private ArrayList mMappings  = new ArrayList();
+		private readonly ArrayList mMappings  = new ArrayList();
 
 		/// <summary>
 		/// For each row in the DataTable create a record.
@@ -250,7 +251,7 @@ namespace FileHelpers.Mapping
 		/// <returns>The mapped records contained in the DataTable</returns>
 		public T[] MapDataReader2Records(IDataReader dr)
         {
-            List<T> arr = new List<T>();
+            var arr = new List<T>();
             ExHelper.CheckNullParam(dr, "dr");
 
 			mMappings.TrimToSize();
@@ -314,7 +315,7 @@ namespace FileHelpers.Mapping
 
 			mMappings.TrimToSize();
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
+			var engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
 
 			if (append)
 				engine.BeginAppendToFile(filename);
@@ -354,7 +355,7 @@ namespace FileHelpers.Mapping
 
 			mMappings.TrimToSize();
 
-			FileHelperAsyncEngine engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
+			var engine = new FileHelperAsyncEngine(mRecordInfo.RecordType);
 
 			if (append)
 				engine.BeginAppendToFile(filename);

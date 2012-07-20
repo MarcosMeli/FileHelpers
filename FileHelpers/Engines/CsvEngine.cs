@@ -1,15 +1,13 @@
 using System;
-using System.Diagnostics;
 using System.Collections;
-using System.ComponentModel;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using FileHelpers.Options;
-using FileHelpers.Dynamic;
-
-#if ! MINI
+using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
+using FileHelpers.Dynamic;
+using FileHelpers.Options;
+#if ! MINI
+
 #endif
 
 
@@ -111,7 +109,7 @@ namespace FileHelpers
 		/// <param name="options">The options used to write the file</param>
 		public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
 		{
-            using (var fs = new StreamWriter(filename, false, options.Encoding, EngineBase.DefaultWriteBufferSize))
+            using (var fs = new StreamWriter(filename, false, options.Encoding, DefaultWriteBufferSize))
 			{
 				foreach (DataRow dr in dt.Rows)
 				{
@@ -174,7 +172,7 @@ namespace FileHelpers
 
 		private static Type GetMappingClass(CsvOptions options)
 		{
-			CsvClassBuilder cb = new CsvClassBuilder(options);
+			var cb = new CsvClassBuilder(options);
 			return cb.CreateRecordClass();
 		}
 	}

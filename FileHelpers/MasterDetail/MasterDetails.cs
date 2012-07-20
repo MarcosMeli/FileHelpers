@@ -1,5 +1,9 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+
 //using System.ComponentModel.TypeConverter;
 
 
@@ -61,7 +65,7 @@ namespace FileHelpers.MasterDetail
 		}
 
         /// <summary>The canonical empty MasterDetail object.</summary>
-		private static MasterDetails<M,D> mEmpty = new MasterDetails<M,D>(null, new D[] {});
+		private static readonly MasterDetails<M,D> mEmpty = new MasterDetails<M,D>(null, new D[] {});
 
 		/// <summary>Returns a canonical empty MasterDetail object.</summary>
 		public static MasterDetails<M,D> Empty

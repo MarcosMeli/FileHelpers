@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -88,7 +90,7 @@ namespace FileHelpers
 
                         var newline = new byte[StringHelper.NewLine.Length];
                         int count=0;
-                        foreach (char ch in StringHelper.NewLine)
+                        foreach (var ch in StringHelper.NewLine)
                         {
                             newline[count] = Convert.ToByte(ch);
                             count++;

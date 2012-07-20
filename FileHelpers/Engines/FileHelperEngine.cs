@@ -1,18 +1,13 @@
 using System;
-using System.Diagnostics;
 using System.Collections;
-using System.ComponentModel;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Collections.Generic;
-
-#if ! MINI
-
+using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 using FileHelpers.Events;
-using FileHelpers.Options;
-using FileHelpers.Dynamic;
+#if ! MINI
 
 #endif
 
@@ -64,7 +59,7 @@ namespace FileHelpers
         where T : class
     {
         
-       private bool mObjectEngine;
+       private readonly bool mObjectEngine;
 
 		#region "  Constructor  "
 
@@ -204,7 +199,7 @@ namespace FileHelpers
 #endif
             if (reader == null)
                 throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
-            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
+            var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -251,9 +246,9 @@ namespace FileHelpers
                 if (maxRecords < 0)
                     maxRecords = int.MaxValue;
 
-                LineInfo line = new LineInfo(currentLine) {mReader = freader};
+                var line = new LineInfo(currentLine) {mReader = freader};
 
-                object[] values = new object[RecordInfo.FieldCount];
+                var values = new object[RecordInfo.FieldCount];
 
                 while (currentLine != null && currentRecord < maxRecords)
                 {
@@ -269,7 +264,7 @@ namespace FileHelpers
 
                         var skip = false;
 
-                        T record = (T)RecordInfo.Operations.CreateRecordHandler();
+                        var record = (T)RecordInfo.Operations.CreateRecordHandler();
 #if !MINI
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1, streamInfo.Position, streamInfo.TotalBytes));
@@ -427,7 +422,7 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
 		{
-            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
 			{
 				WriteStream(fs, records, maxRecords);
 				fs.Close();
@@ -503,7 +498,7 @@ namespace FileHelpers
 			int recIndex = 0;
 
 			bool first = true;
-            foreach (T rec in records)
+            foreach (var rec in records)
 			{
 				if (recIndex == maxRecords)
 					break;
@@ -550,7 +545,7 @@ namespace FileHelpers
 						case ErrorMode.IgnoreAndContinue:
 							break;
 						case ErrorMode.SaveAndContinue:
-							ErrorInfo err = new ErrorInfo();
+							var err = new ErrorInfo();
 							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 //							err.mColumnNumber = mColumnNum;
@@ -587,8 +582,8 @@ namespace FileHelpers
 		/// <include file='FileHelperEngine.docs.xml' path='doc/WriteString2/*'/>
 		public string WriteString(IEnumerable<T> records, int maxRecords)
 		{
-			StringBuilder sb = new StringBuilder();
-            using (StringWriter writer = new StringWriter(sb))
+			var sb = new StringBuilder();
+            using (var writer = new StringWriter(sb))
             {
                 WriteStream(writer, records, maxRecords);
                 string res = writer.ToString();
@@ -610,7 +605,7 @@ namespace FileHelpers
 		public void AppendToFile(string fileName, IEnumerable<T> records)
 		{
 
-            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
+            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, DefaultWriteBufferSize))
             {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;

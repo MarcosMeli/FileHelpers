@@ -1,4 +1,8 @@
-﻿namespace FileHelpers.Events
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace FileHelpers.Events
 {
     /// <summary>Arguments for the <see cref="BeforeReadHandler{T}"/></summary>
     public sealed class BeforeReadEventArgs<T>

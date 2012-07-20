@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.Xml;
 using System.Diagnostics;
+using System.Xml;
 
 namespace FileHelpers.Dynamic
 {
@@ -184,7 +186,7 @@ namespace FileHelpers.Dynamic
 			// Note: for some reason, ReSharper complains about the use of the 2-argument form
 			// of Enum.Parse() used here (and elsewhere).  ReSharper marks it as a fatal error,
 			// despite the fact that the code compiles just fine, with no warnings.
-			FixedMode mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.SelectNodes("/FixedLengthClass")[0].Attributes["FixedMode"].Value);
+			var mode = (FixedMode)Enum.Parse(typeof(FixedMode), document.SelectNodes("/FixedLengthClass")[0].Attributes["FixedMode"].Value);
 			string className = document.SelectNodes("/FixedLengthClass/ClassName")[0].InnerText;
 			
 			return new FixedLengthClassBuilder(className, mode);

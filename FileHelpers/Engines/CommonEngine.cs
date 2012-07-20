@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
-using System.Collections.Generic;
 using FileHelpers.Options;
 
 namespace FileHelpers
@@ -142,7 +141,7 @@ namespace FileHelpers
         /// <param name="records">The records to write (Can be an array, List, etc)</param>
         public static void WriteFile<T>(string fileName, IEnumerable<T> records) where T : class
         {
-            FileHelperEngine<T> engine = new FileHelperEngine<T>();
+            var engine = new FileHelperEngine<T>();
             engine.WriteFile(fileName, records);
         }
 
@@ -154,7 +153,7 @@ namespace FileHelpers
         /// <returns>The string with the written records.</returns>
         public static string WriteString<T>(IEnumerable<T> records) where T : class
         {
-            FileHelperEngine<T> engine = new FileHelperEngine<T>();
+            var engine = new FileHelperEngine<T>();
             return engine.WriteString(records);
         }
 
@@ -207,7 +206,7 @@ namespace FileHelpers
             if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
                 throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
 
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             object[] res = engine.ReadFile(fileName);
 
             if (res.Length == 0)
@@ -231,7 +230,7 @@ namespace FileHelpers
             if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
                 throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
 
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             object[] res = engine.ReadFile(sourceFile);
 
             if (res.Length == 0)
@@ -252,7 +251,7 @@ namespace FileHelpers
         public static void SortFileByField(Type recordClass, string fieldName, bool asc, string sourceFile, string sortedFile)
         {
 
-            FileHelperEngine engine = new FileHelperEngine(recordClass);
+            var engine = new FileHelperEngine(recordClass);
             FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
             if (fi == null)
@@ -288,7 +287,7 @@ namespace FileHelpers
         {
             if (records.Length > 0 && records[0] != null)
             {
-                FileHelperEngine engine = new FileHelperEngine(records[0].GetType());
+                var engine = new FileHelperEngine(records[0].GetType());
                 FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
                 if (fi == null)
@@ -325,8 +324,8 @@ namespace FileHelpers
         /// </summary>
         internal class FieldComparer : IComparer
         {
-            FieldInfo mFieldInfo;
-            int mAscending;
+            readonly FieldInfo mFieldInfo;
+            readonly int mAscending;
 
             public FieldComparer(FieldInfo fi, bool asc)
             {
@@ -394,7 +393,7 @@ namespace FileHelpers
         {
 
             IRecordInfo ri = null;
-            foreach (object obj in records)
+            foreach (var obj in records)
             {
                 if (obj != null)
                 {
@@ -505,7 +504,7 @@ namespace FileHelpers
         /// <returns>The merged and sorted records.</returns>
         public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field, bool ascending)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordType);
+            var engine = new FileHelperEngine(recordType);
 
             var list = engine.ReadFileAsList(file1);
             list.AddRange(engine.ReadFileAsList(file2));
@@ -513,7 +512,7 @@ namespace FileHelpers
             var res = list.ToArray();
             list = null; // <- better performance (memory)
 
-            CommonEngine.SortRecordsByField(res, field, ascending);
+            SortRecordsByField(res, field, ascending);
 
             engine.WriteFile(destFile, res);
 
@@ -531,7 +530,7 @@ namespace FileHelpers
         /// <returns>The merged and sorted records.</returns>
         public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile)
         {
-            FileHelperEngine engine = new FileHelperEngine(recordType);
+            var engine = new FileHelperEngine(recordType);
 
             var list = engine.ReadFileAsList(file1);
             list.AddRange(engine.ReadFileAsList(file2));
@@ -539,7 +538,7 @@ namespace FileHelpers
             var res = list.ToArray();
             list = null; // <- better performance (memory)
 
-            CommonEngine.SortRecords(res);
+            SortRecords(res);
 
             engine.WriteFile(destFile, res);
             return res;
@@ -638,7 +637,7 @@ namespace FileHelpers
             if (arr == null || arr.Length <= 1)
                 return arr;
 
-            List<T> nodup = new List<T>();
+            var nodup = new List<T>();
 
             for (int i = 0; i < arr.Length; i++)
             {
@@ -786,7 +785,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines, Encoding encoding)
         {
-            FileHelperAsyncEngine<RecordIndexer> engine = new FileHelperAsyncEngine<RecordIndexer>(encoding);
+            var engine = new FileHelperAsyncEngine<RecordIndexer>(encoding);
             ((DelimitedRecordOptions)engine.Options).Delimiter = delimiter.ToString();
             engine.Options.IgnoreFirstLines = headerLines;
             engine.BeginReadFile(filename);

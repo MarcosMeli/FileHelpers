@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace FileHelpers
 {
@@ -22,7 +21,7 @@ namespace FileHelpers
         {}
 
         [FieldQuoted(QuoteMode.OptionalForRead, MultilineMode.AllowForRead)]
-        private string[] values = null;
+        private readonly string[] values = null;
 
         /// <summary>
         /// The number of fields in the record
@@ -84,7 +83,7 @@ namespace FileHelpers
             /// <summary>
             /// Array to return one at a time
             /// </summary>
-            private string[] mValues;
+            private readonly string[] mValues;
 
             /// <summary>
             /// Position in enumerator,  -1 to start

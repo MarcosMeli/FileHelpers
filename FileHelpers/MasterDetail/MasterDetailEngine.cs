@@ -4,11 +4,10 @@
 
 using System;
 using System.Collections;
-using System.ComponentModel;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Diagnostics;
-using System.Collections.Generic;
 using FileHelpers.Events;
 
 namespace FileHelpers.MasterDetail
@@ -91,7 +90,7 @@ namespace FileHelpers.MasterDetail
             mMasterType = masterType;
             mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType);
 
-            var sel = new MasterDetailEngine.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || RecordInfo.IgnoreEmptyLines);
+            var sel = new MasterDetailEngine<object, object>.CommonSelectorInternal(action, selector, mMasterInfo.IgnoreEmptyLines || RecordInfo.IgnoreEmptyLines);
             mRecordSelector = new MasterDetailSelector(sel.CommonSelectorMethod);
 
         }
@@ -229,7 +228,7 @@ namespace FileHelpers.MasterDetail
 #else
         public MasterDetails<TMaster, TDetail>[] ReadFile(string fileName)
         {
-            using (var fs = new StreamReader(fileName, mEncoding, true, EngineBase.DefaultReadBufferSize))
+            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
             {
                 MasterDetails<TMaster, TDetail>[] tempRes;
                 tempRes = ReadStream(fs);
@@ -258,15 +257,15 @@ namespace FileHelpers.MasterDetail
             if (RecordSelector == null)
                 throw new BadUsageException("The RecordSelector can't be null on read operations.");
 
-            NewLineDelimitedRecordReader recordReader = new NewLineDelimitedRecordReader(reader);
+            var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            ArrayList resArray = new ArrayList();
+            var resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast))
+            using (var freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -302,14 +301,14 @@ namespace FileHelpers.MasterDetail
 #else
             MasterDetails<TMaster, TDetail> record = null;
 #endif
-                ArrayList tmpDetails = new ArrayList();
+                var tmpDetails = new ArrayList();
 
                 var line = new LineInfo(currentLine);
                 line.mReader = freader;
 
 
-                object[] valuesMaster = new object[mMasterInfo.FieldCount];
-                object[] valuesDetail = new object[RecordInfo.FieldCount];
+                var valuesMaster = new object[mMasterInfo.FieldCount];
+                var valuesDetail = new object[RecordInfo.FieldCount];
 
                 while (currentLine != null)
                 {
@@ -323,7 +322,7 @@ namespace FileHelpers.MasterDetail
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1));
 #endif
-                        RecordAction action = RecordAction.Skip;
+                        var action = RecordAction.Skip;
                         try
                         {
                             action = RecordSelector(currentLine);
@@ -356,7 +355,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
 #else
-                                TMaster lastMaster = (TMaster)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
+                                var lastMaster = (TMaster)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
 #endif
 
                                 if (lastMaster != null)
@@ -368,7 +367,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
                                 object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
 #else
-                                TDetail lastChild = (TDetail)RecordInfo.Operations.StringToRecord(line, valuesDetail);
+                                var lastChild = (TDetail)RecordInfo.Operations.StringToRecord(line, valuesDetail);
 #endif
 
                                 if (lastChild != null)
@@ -389,7 +388,7 @@ namespace FileHelpers.MasterDetail
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                ErrorInfo err = new ErrorInfo();
+                                var err = new ErrorInfo();
                                 err.mLineNumber = mLineNumber;
                                 err.mExceptionInfo = ex;
                                 //							err.mColumnNumber = mColumnNum;
@@ -448,7 +447,7 @@ namespace FileHelpers.MasterDetail
 #else
         public MasterDetails<TMaster, TDetail>[] ReadString(string source)
         {
-            StringReader reader = new StringReader(source);
+            var reader = new StringReader(source);
             MasterDetails<TMaster, TDetail>[] res = ReadStream(reader);
             reader.Close();
             return res;
@@ -487,7 +486,7 @@ namespace FileHelpers.MasterDetail
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
         public void WriteFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
         {
-            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
             {
                 WriteStream(fs, records, maxRecords);
                 fs.Close();
@@ -549,7 +548,7 @@ namespace FileHelpers.MasterDetail
 #if ! GENERICS
 			foreach(MasterDetails rec in records)
 #else
-            foreach (MasterDetails<TMaster, TDetail> rec in records)
+            foreach (var rec in records)
 #endif
             {
                 if (recIndex == maxRecords)
@@ -584,7 +583,7 @@ namespace FileHelpers.MasterDetail
                         case ErrorMode.IgnoreAndContinue:
                             break;
                         case ErrorMode.SaveAndContinue:
-                            ErrorInfo err = new ErrorInfo();
+                            var err = new ErrorInfo();
                             err.mLineNumber = mLineNumber;
                             err.mExceptionInfo = ex;
                             //							err.mColumnNumber = mColumnNum;
@@ -627,8 +626,8 @@ namespace FileHelpers.MasterDetail
         public string WriteString(IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
 #endif
         {
-            StringBuilder sb = new StringBuilder();
-            StringWriter writer = new StringWriter(sb);
+            var sb = new StringBuilder();
+            var writer = new StringWriter(sb);
             WriteStream(writer, records, maxRecords);
             string res = writer.ToString();
             writer.Close();
@@ -659,7 +658,7 @@ namespace FileHelpers.MasterDetail
         public void AppendToFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records)
 #endif
         {
-            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
+            using (TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, DefaultWriteBufferSize))
             {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;

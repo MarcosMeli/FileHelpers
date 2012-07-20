@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Dynamic;
 
 namespace FileHelpers.Detection

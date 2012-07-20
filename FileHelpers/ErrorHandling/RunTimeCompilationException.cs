@@ -1,5 +1,7 @@
 using System;
 using System.CodeDom.Compiler;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace FileHelpers.Dynamic
 {
@@ -21,7 +23,7 @@ namespace FileHelpers.Dynamic
 			mCompilerErrors = errors;
 		}
 
-		private string mSourceCode;
+		private readonly string mSourceCode;
 
 		/// <summary>
 		/// The source code that generates the Exception
@@ -31,7 +33,7 @@ namespace FileHelpers.Dynamic
 			get { return mSourceCode; }
 		}
 
-		private CompilerErrorCollection mCompilerErrors;
+		private readonly CompilerErrorCollection mCompilerErrors;
 
 		/// <summary>
 		/// The errors returned from the compiler.

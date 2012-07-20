@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace FileHelpers
 {
@@ -229,7 +230,7 @@ namespace FileHelpers
 			if (args == null)
 				throw new BadUsageException("The args to the constructor can be null, if you do not want to pass anything into them.");
 
-			Type[] res = new Type[args.Length];
+			var res = new Type[args.Length];
 
 			for (int i = 0; i < args.Length; i++)
 			{

@@ -1,7 +1,8 @@
 using System;
-using System.ComponentModel;
-using System.Text;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -93,7 +94,7 @@ namespace FileHelpers
 						throw new BadUsageException("The current field has an unclosed quoted string. Complete line: " + res.ToString());
 
 					line.ReadNextLine();
-					res.Append(StringHelper.NewLine);
+					res.Append(NewLine);
 					//lines++;
 					i = 0;
 				}
@@ -233,7 +234,7 @@ namespace FileHelpers
             if (original.Length == 0)
                 return string.Empty;
 
-            StringBuilder res = new StringBuilder(original.Length + 1);
+            var res = new StringBuilder(original.Length + 1);
             if (!char.IsLetter(original[0]) && original[0] != '_')
                 res.Append('_');
 
@@ -284,7 +285,7 @@ namespace FileHelpers
                 int index = -1;
                 int lastIndex = 0;
 
-                StringBuilder buffer = new StringBuilder(original.Length);
+                var buffer = new StringBuilder(original.Length);
 
                 while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0)
                 {

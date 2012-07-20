@@ -1,11 +1,10 @@
 using System;
-using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
 using FileHelpers.Events;
-using FileHelpers.Options;
 
 namespace FileHelpers
 {
@@ -270,7 +269,7 @@ namespace FileHelpers
             mLastRecord = default(T); 
 
 
-            LineInfo line = new LineInfo(string.Empty);
+            var line = new LineInfo(string.Empty);
             line.mReader = mAsyncReader;
 
             if (mLastRecordValues == null)
@@ -507,7 +506,7 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
         public IDisposable BeginWriteFile(string fileName)
         {
-            return BeginWriteFile(fileName, EngineBase.DefaultWriteBufferSize);
+            return BeginWriteFile(fileName, DefaultWriteBufferSize);
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginWriteFile/*'/>
@@ -531,7 +530,7 @@ namespace FileHelpers
         /// <returns>Object to append  TODO:  ???</returns>
         public IDisposable BeginAppendToFile(string fileName)
         {
-            return BeginAppendToFile(fileName, EngineBase.DefaultWriteBufferSize);
+            return BeginAppendToFile(fileName, DefaultWriteBufferSize);
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginAppendToFile/*'/>
@@ -615,7 +614,7 @@ namespace FileHelpers
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        ErrorInfo err = new ErrorInfo();
+                        var err = new ErrorInfo();
                         err.mLineNumber = mLineNumber;
                         err.mExceptionInfo = ex;
                         //							err.mColumnNumber = mColumnNum;
@@ -639,7 +638,7 @@ namespace FileHelpers
             bool first = true;
 
 
-			foreach (T rec in records)
+			foreach (var rec in records)
             {
                 if (first)
                 {
@@ -688,7 +687,7 @@ namespace FileHelpers
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        ErrorInfo err = new ErrorInfo();
+                        var err = new ErrorInfo();
                         err.mLineNumber = mLineNumber;
                         err.mExceptionInfo = ex;
                         //							err.mColumnNumber = mColumnNum;
@@ -745,7 +744,7 @@ namespace FileHelpers
                 mEngine.Close();
             }
 
-			FileHelperAsyncEngine<T> mEngine;
+		    readonly FileHelperAsyncEngine<T> mEngine;
 			public AsyncEnumerator(FileHelperAsyncEngine<T> engine)
             {
                 mEngine = engine;

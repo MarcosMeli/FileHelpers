@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace FileHelpers
@@ -45,7 +44,7 @@ namespace FileHelpers
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ArrayList mErrorsArray = new ArrayList();
+        readonly ArrayList mErrorsArray = new ArrayList();
 
 		/// <summary>
         /// Is an array of <see cref="ErrorInfo"/> that contains the

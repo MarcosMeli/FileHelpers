@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -263,7 +264,7 @@ namespace FileHelpers
         {
             // If we are inherited and we have not stopped recursion, get parent types
             if (currentType.BaseType != null && !currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
-                foreach (FieldInfo item in RecursiveGetFields(currentType.BaseType))
+                foreach (var item in RecursiveGetFields(currentType.BaseType))
                     yield return item;
 
             if (currentType == typeof(object))
@@ -272,7 +273,7 @@ namespace FileHelpers
             FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
 
           
-            foreach (FieldInfo fi in currentType.GetFields(BindingFlags.Public |
+            foreach (var fi in currentType.GetFields(BindingFlags.Public |
                                                            BindingFlags.NonPublic |
                                                            BindingFlags.Instance |
                                                            BindingFlags.DeclaredOnly))

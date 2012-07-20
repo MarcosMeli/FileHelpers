@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace FileHelpers
 {
@@ -13,7 +15,7 @@ namespace FileHelpers
 
 		internal Char[] TrimChars;
 		internal TrimMode TrimMode;
-		private static char[] WhitespaceChars = new char[] 
+		private static readonly char[] WhitespaceChars = new char[] 
 			 { 
 				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 
 				 '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'

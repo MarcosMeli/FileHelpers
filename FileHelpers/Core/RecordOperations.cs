@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Text;
@@ -287,13 +288,13 @@ namespace FileHelpers
 
             if (maxRecords == -1)
             {
-                foreach (object r in records)
+                foreach (var r in records)
                     res.Rows.Add(RecordToValues(r));
             }
             else
             {
                 int i = 0;
-                foreach (object r in records)
+                foreach (var r in records)
                 {
                     if (i == maxRecords)
                         break;
@@ -315,7 +316,7 @@ namespace FileHelpers
         {
             var res = new DataTable();
 
-            foreach (FieldBase f in RecordInfo.Fields)
+            foreach (var f in RecordInfo.Fields)
             {
                 DataColumn column1;
                 if (f.IsNullableType)

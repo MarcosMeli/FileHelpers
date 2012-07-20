@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace FileHelpers
 {
-    using System.ComponentModel;
-
     /// <summary>
     /// Indicates the value to assign to the field in the case of a NULL value.
     /// A default value if none supplied in the field itself.

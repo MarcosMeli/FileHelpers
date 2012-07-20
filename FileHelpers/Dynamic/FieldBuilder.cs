@@ -1,6 +1,8 @@
 using System;
-using System.Diagnostics;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Xml;
 
@@ -172,7 +174,7 @@ namespace FileHelpers.Dynamic
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private ConverterBuilder mConverter = new ConverterBuilder();
+        private readonly ConverterBuilder mConverter = new ConverterBuilder();
 		
         /// <summary>
         /// Create the field with attributes so that it can be added to the class

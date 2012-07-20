@@ -1,4 +1,8 @@
-﻿namespace FileHelpers.Events
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace FileHelpers.Events
 {
     /// <summary>Arguments for the <see cref="BeforeWriteHandler{T}"/></summary>
     /// <typeparam name="T">Object type we are writing from</typeparam>

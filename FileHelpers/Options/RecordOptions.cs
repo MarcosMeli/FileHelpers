@@ -1,6 +1,8 @@
 using System;
-using System.Diagnostics;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FileHelpers.Options
 {
@@ -156,7 +158,7 @@ namespace FileHelpers.Options
 		}
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private RecordConditionInfo mRecordConditionInfo;
+        private readonly RecordConditionInfo mRecordConditionInfo;
 
         /// <summary>
         /// Used to tell the engine which records must be included or excluded
@@ -169,7 +171,7 @@ namespace FileHelpers.Options
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private IgnoreCommentInfo mIgnoreCommentInfo;
+        private readonly IgnoreCommentInfo mIgnoreCommentInfo;
 
 		/// <summary>
         /// Indicates that the engine must ignore the lines with this comment
@@ -188,7 +190,7 @@ namespace FileHelpers.Options
 		public sealed class RecordConditionInfo
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            IRecordInfo mRecordInfo;
+            readonly IRecordInfo mRecordInfo;
 
             /// <summary>
             /// Used to tell the engine which records must be included or
@@ -228,7 +230,7 @@ namespace FileHelpers.Options
 		{
 
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            IRecordInfo mRecordInfo;
+            readonly IRecordInfo mRecordInfo;
 
             /// <summary>
             /// Indicates that the engine must ignore the lines with this

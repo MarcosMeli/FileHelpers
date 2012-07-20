@@ -1,7 +1,8 @@
 using System;
-using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using FileHelpers.Events;
@@ -76,7 +77,7 @@ namespace FileHelpers
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Type[] mTypes;
+        private readonly Type[] mTypes;
 		
 		#region "  Constructor  "
 
@@ -223,9 +224,9 @@ namespace FileHelpers
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 
-			ArrayList resArray = new ArrayList();
+			var resArray = new ArrayList();
 
-            using (ForwardReader freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast))
+            using (var freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast))
             {
                 freader.DiscardForward = true;
 
@@ -255,7 +256,7 @@ namespace FileHelpers
 
                 bool byPass = false;
 
-                LineInfo line = new LineInfo(currentLine);
+                var line = new LineInfo(currentLine);
                 line.mReader = freader;
 
                 while (currentLine != null)
@@ -280,7 +281,7 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
+                            var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null)
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
@@ -383,7 +384,7 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile2/*'/>
 		public void WriteFile(string fileName, IEnumerable records, int maxRecords)
 		{
-            using (var fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
 			{
 				WriteStream(fs, records, maxRecords);
 				fs.Close();
@@ -439,7 +440,7 @@ namespace FileHelpers
 #endif
 			int recIndex = 0;
 
-			foreach (object rec in records)
+			foreach (var rec in records)
 			{
 				if (recIndex == maxRecords)
 					break;
@@ -457,7 +458,7 @@ namespace FileHelpers
                         skip = OnBeforeWriteRecord(rec, LineNumber);
 #endif
 
-					IRecordInfo info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
+					var info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
 
 					if (info == null)
 						throw new BadUsageException("The record at index " + recIndex.ToString() + " is of type '" + rec.GetType().Name+"' and the engine dont handle this type. You can add it to the constructor.");
@@ -482,7 +483,7 @@ namespace FileHelpers
 						case ErrorMode.IgnoreAndContinue:
 							break;
 						case ErrorMode.SaveAndContinue:
-							ErrorInfo err = new ErrorInfo();
+							var err = new ErrorInfo();
 							err.mLineNumber = mLineNumber;
 							err.mExceptionInfo = ex;
 							//							err.mColumnNumber = mColumnNum;
@@ -517,8 +518,8 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/WriteString2/*'/>
 		public string WriteString(IEnumerable records, int maxRecords)
 		{
-			StringBuilder sb = new StringBuilder();
-			StringWriter writer = new StringWriter(sb);
+			var sb = new StringBuilder();
+			var writer = new StringWriter(sb);
 			WriteStream(writer, records, maxRecords);
 			string res = writer.ToString();
 			writer.Close();
@@ -538,7 +539,7 @@ namespace FileHelpers
 		/// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
 		public void AppendToFile(string fileName, IEnumerable records)
 		{
-			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, EngineBase.DefaultWriteBufferSize))
+			using(TextWriter writer = StreamHelper.CreateFileAppender(fileName, mEncoding, true, false, DefaultWriteBufferSize))
 			{
 				mHeaderText = String.Empty;
 				mFooterText = String.Empty;
@@ -737,7 +738,7 @@ namespace FileHelpers
 
 			mLastRecord = null;
 
-			LineInfo line = new LineInfo(currentLine);
+			var line = new LineInfo(currentLine);
 			line.mReader = mAsyncReader;
 			
 		
@@ -755,11 +756,11 @@ namespace FileHelpers
 
 						if (currType != null)
 						{
-							RecordInfo info = (RecordInfo) mRecordInfoHash[currType];
+							var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null)
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
-							object[] values = new object[info.FieldCount];
+							var values = new object[info.FieldCount];
                             mLastRecord = info.Operations.StringToRecord(line, values);
 
 							if (mLastRecord != null)
@@ -780,7 +781,7 @@ namespace FileHelpers
 							case ErrorMode.IgnoreAndContinue:
 								break;
 							case ErrorMode.SaveAndContinue:
-								ErrorInfo err = new ErrorInfo();
+								var err = new ErrorInfo();
 								err.mLineNumber = mAsyncReader.LineNumber;
 								err.mExceptionInfo = ex;
 								//							err.mColumnNumber = mColumnNum;
@@ -827,7 +828,7 @@ namespace FileHelpers
 			if (mAsyncReader == null)
 				throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-			ArrayList arr = new ArrayList(numberOfRecords);
+			var arr = new ArrayList(numberOfRecords);
 
 			for (int i = 0; i < numberOfRecords; i++)
 			{
@@ -856,7 +857,7 @@ namespace FileHelpers
  		
 		private class AsyncEnumerator : IEnumerator
 		{
-			MultiRecordEngine mEngine;
+		    readonly MultiRecordEngine mEngine;
 
 			public AsyncEnumerator(MultiRecordEngine engine)
 			{
@@ -947,7 +948,7 @@ namespace FileHelpers
 				throw new ArgumentNullException("The record to write can´t be null.");
 
 			int nro = 0;
-			foreach (object rec in records)
+			foreach (var rec in records)
 			{
 				nro++;
 
@@ -974,7 +975,7 @@ namespace FileHelpers
 				mLineNumber++;
 				mTotalRecords++;
 
-				IRecordInfo info = (IRecordInfo) mRecordInfoHash[record.GetType()];
+				var info = (IRecordInfo) mRecordInfoHash[record.GetType()];
 
 				if (info == null)
 					throw new BadUsageException("A record is of type '" + record.GetType().Name+ "' and the engine dont handle this type. You can add it to the constructor.");
@@ -995,7 +996,7 @@ namespace FileHelpers
 					case ErrorMode.IgnoreAndContinue:
 						break;
 					case ErrorMode.SaveAndContinue:
-						ErrorInfo err = new ErrorInfo();
+						var err = new ErrorInfo();
 						err.mLineNumber = mLineNumber;
 						err.mExceptionInfo = ex;
 						//							err.mColumnNumber = mColumnNum;
@@ -1054,7 +1055,7 @@ namespace FileHelpers
 		/// <param name="fileName">The file path to be opened for write.</param>
 		public void BeginWriteFile(string fileName)
 		{
-            BeginWriteStream(new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize));
+            BeginWriteStream(new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize));
 		}
 
 		#endregion
@@ -1069,7 +1070,7 @@ namespace FileHelpers
 		///	<param name="fileName">The file path to be opened to write at the end.</param>
 		public void BeginAppendToFile(string fileName)
 		{
-            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, EngineBase.DefaultWriteBufferSize);
+            mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, DefaultWriteBufferSize);
 			mHeaderText = String.Empty;
 			mFooterText = String.Empty;
 		}

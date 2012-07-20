@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
+
 //using Container=FileHelpers.Container;
 
 namespace FileHelpers

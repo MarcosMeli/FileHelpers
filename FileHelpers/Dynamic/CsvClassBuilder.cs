@@ -1,5 +1,6 @@
 using System;
-using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Options;
 
 namespace FileHelpers.Dynamic
@@ -36,7 +37,7 @@ namespace FileHelpers.Dynamic
 
 				if (options.HeaderLines > 0)
 				{
-					foreach (string header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
+					foreach (var header in firstLine.Split(options.HeaderDelimiter == char.MinValue ? options.Delimiter : options.HeaderDelimiter))
 					{
 						AddField(StringHelper.ToValidIdentifier(header));
 					}

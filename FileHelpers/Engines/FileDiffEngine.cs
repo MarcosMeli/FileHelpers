@@ -1,6 +1,7 @@
 using System;
-using System.Diagnostics;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace FileHelpers
 {
@@ -92,7 +93,7 @@ namespace FileHelpers
 			T[] currents = engine.ReadFile(file2);
 			this.ErrorManager.AddErrors(engine.ErrorManager);
             
-			List<T> news = new List<T>();
+			var news = new List<T>();
 
 			ApplyDiffInBoth(currents, olds, news);
 

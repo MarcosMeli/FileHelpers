@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FileHelpers.Dynamic
@@ -13,12 +15,12 @@ namespace FileHelpers.Dynamic
         /// <summary>
         /// Attribute text is created here...
         /// </summary>
-		StringBuilder mSb = new StringBuilder(250);
+        readonly StringBuilder mSb = new StringBuilder(250);
 
         /// <summary>
         /// C# or Visual Basic
         /// </summary>
-		NetLanguage mLang;
+        readonly NetLanguage mLang;
 		
         /// <summary>
         /// Create an attribute in the language selected

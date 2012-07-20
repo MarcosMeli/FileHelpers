@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 namespace FileHelpers
 {
@@ -205,7 +204,7 @@ namespace FileHelpers
 			var res = new List<TDestination>();
 
 			engine.BeginReadFile(sourceFile);
-			foreach (TSource record in engine)
+			foreach (var record in engine)
 			{
 				res.Add(record.TransformTo());
 			}
@@ -220,8 +219,8 @@ namespace FileHelpers
         private TDestination[] CoreTransform(InternalStreamReader sourceFile, StreamWriter destFile)
         {
 
-                FileHelperEngine<TSource> sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
-                FileHelperEngine<TDestination> destEngine = new FileHelperEngine<TDestination>(mDestinationEncoding);
+                var sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
+                var destEngine = new FileHelperEngine<TDestination>(mDestinationEncoding);
 
                 sourceEngine.ErrorMode = this.ErrorMode;
                 destEngine.ErrorManager.ErrorMode = this.ErrorMode;
@@ -286,7 +285,7 @@ namespace FileHelpers
 			sourceEngine.BeginReadStream(sourceFile);
 			destEngine.BeginWriteStream(destFile);
 
-			foreach (TSource record in sourceEngine)
+			foreach (var record in sourceEngine)
 			{
 				destEngine.WriteNext(record.TransformTo());
 			}

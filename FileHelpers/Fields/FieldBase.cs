@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FileHelpers
@@ -309,7 +311,7 @@ namespace FileHelpers
 
             }
 
-            if (fi.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), false))
+            if (fi.IsDefined(typeof(CompilerGeneratedAttribute), false))
             {
                 if (fi.Name.EndsWith("__BackingField") && fi.Name.StartsWith("<") && fi.Name.Contains(">"))
                 {
@@ -370,7 +372,7 @@ namespace FileHelpers
 
             if (attribs.Length > 0)
             {
-                FieldConverterAttribute conv = (FieldConverterAttribute)attribs[0];
+                var conv = (FieldConverterAttribute)attribs[0];
                 this.Converter = conv.Converter;
                 conv.ValidateTypes(FieldInfo);
             }
@@ -585,7 +587,7 @@ namespace FileHelpers
                     }
                     else
                     {
-                        if (TrimMode == FileHelpers.TrimMode.Both)
+                        if (TrimMode == TrimMode.Both)
                             val = this.Converter.StringToField(trimmedString);
                         else
                             val = this.Converter.StringToField(TrimString(extractedString));

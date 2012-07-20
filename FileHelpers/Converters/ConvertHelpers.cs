@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
@@ -982,7 +984,7 @@ namespace FileHelpers
             /// <summary>
             /// default to not upper or lower case
             /// </summary>
-            CharFormat mFormat = CharFormat.NoChange;
+            readonly CharFormat mFormat = CharFormat.NoChange;
 
 
             /// <summary>
@@ -1086,7 +1088,7 @@ namespace FileHelpers
             /// <summary>
             /// D or N or B or P (default is D: see Guid.ToString(string format))
             /// </summary>
-            string mFormat;
+            readonly string mFormat;
 
             /// <summary>
             /// Create a GUID converter with the default format code "D"

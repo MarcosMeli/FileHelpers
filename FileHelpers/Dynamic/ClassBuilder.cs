@@ -1,18 +1,15 @@
 using System;
-using System.Diagnostics;
-using System.Collections;
-using System.ComponentModel;
-using System.Globalization;
-using System.Reflection;
-using System.Text;
-using System.IO;
 using System.CodeDom.Compiler;
-using System.Xml;
-
-using Microsoft.CSharp;
-using Microsoft.VisualBasic;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
-using System.Collections.Specialized;
+using System.Text;
+using System.Xml;
 
 namespace FileHelpers.Dynamic
 {
@@ -52,7 +49,7 @@ namespace FileHelpers.Dynamic
         }
 
         private static String[] mReferences;
-        private static object mReferencesLock = new object();
+        private static readonly object mReferencesLock = new object();
 
         /// <summary>Compiles the source code passed and returns the Type with the name className.</summary>
         /// <param name="classStr">The Source Code of the class in the specified language</param>
@@ -77,7 +74,7 @@ namespace FileHelpers.Dynamic
                 {
                      var arr = new ArrayList();
 
-                    foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
                         Module module = assembly.GetModules()[0];
                         if (module.Name == "mscorlib.dll" || module.Name == "<Unknown>")
@@ -160,7 +157,7 @@ namespace FileHelpers.Dynamic
             {
                 Type[] ts = cr.CompiledAssembly.GetTypes();
                 if (ts.Length > 0)
-                    foreach (Type t in ts)
+                    foreach (var t in ts)
                     {
                         if (t.FullName.StartsWith("My.My") == false && t.IsDefined(typeof(TypedRecordAttribute), false))
                             return t;
@@ -350,7 +347,7 @@ namespace FileHelpers.Dynamic
         /// <param name="lang">The .NET Language used to write the source code.</param>
         public void SaveToBinaryFile(string filename, NetLanguage lang)
         {
-            StreamWriter writer = new StreamWriter(filename);
+            var writer = new StreamWriter(filename);
             writer.Write(GetClassBinaryCode(lang));
             writer.Close();
         }
@@ -528,11 +525,11 @@ namespace FileHelpers.Dynamic
         {
             ValidateClass();
 
-            StringBuilder sb = new StringBuilder(100);
+            var sb = new StringBuilder(100);
 
             BeginNamespace(lang, sb);
 
-            AttributesBuilder attbs = new AttributesBuilder(lang);
+            var attbs = new AttributesBuilder(lang);
 
             AddAttributesInternal(attbs);
             AddAttributesCode(attbs, lang);
@@ -634,7 +631,7 @@ namespace FileHelpers.Dynamic
 
         private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] iv)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             Rijndael alg = Rijndael.Create();
             alg.Key = key;
             alg.IV = iv;
@@ -649,7 +646,7 @@ namespace FileHelpers.Dynamic
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
 
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password,
+            var pdb = new PasswordDeriveBytes(Password,
                 new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
 							   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
             byte[] encryptedData = Encrypt(clearBytes,
@@ -661,7 +658,7 @@ namespace FileHelpers.Dynamic
         // Decrypt a byte array into a byte array using a key and an IV 
         private static byte[] Decrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             Rijndael alg = Rijndael.Create();
             alg.Key = key;
             alg.IV = iv;
@@ -863,7 +860,7 @@ namespace FileHelpers.Dynamic
         /// <returns>A new instance of a ClassBuilder inheritor: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/> </returns>
         public static ClassBuilder LoadFromXmlString(string xml)
         {
-            XmlDocument document = new XmlDocument();
+            var document = new XmlDocument();
             document.Load(new StringReader(xml));
 
             return LoadFromXml(document);
@@ -951,7 +948,7 @@ namespace FileHelpers.Dynamic
         /// <returns>A new instance of a ClassBuilder inheritor: <see cref="DelimitedClassBuilder"/> or <see cref="FixedLengthClassBuilder"/> </returns>
         public static ClassBuilder LoadFromXml(string filename)
         {
-            XmlDocument document = new XmlDocument();
+            var document = new XmlDocument();
             document.Load(filename);
 
             return LoadFromXml(document);
@@ -983,7 +980,7 @@ namespace FileHelpers.Dynamic
         /// <param name="filename">A file name to write to.</param>
         public void SaveToXml(string filename)
         {
-            using (FileStream stream = new FileStream(filename, FileMode.Create))
+            using (var stream = new FileStream(filename, FileMode.Create))
             {
                 SaveToXml(stream);
             }
@@ -1009,7 +1006,7 @@ namespace FileHelpers.Dynamic
         /// <param name="writer">The TextWriter for the output Stream.</param>
         public void SaveToXml(TextWriter writer)
         {
-            XmlHelper xml = new XmlHelper();
+            var xml = new XmlHelper();
 
             xml.BeginWriteStream(writer);
 
@@ -1069,7 +1066,7 @@ namespace FileHelpers.Dynamic
         internal abstract void ReadField(XmlNode node);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
+        private readonly RecordConditionInfo mRecordConditionInfo = new RecordConditionInfo();
 
         /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
         public RecordConditionInfo RecordCondition
@@ -1079,7 +1076,7 @@ namespace FileHelpers.Dynamic
 
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
+        private readonly IgnoreCommentInfo mIgnoreCommentInfo = new IgnoreCommentInfo();
 
         /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
         public IgnoreCommentInfo IgnoreCommentedLines
@@ -1160,7 +1157,7 @@ namespace FileHelpers.Dynamic
 
             if (type.IsGenericType)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 sb.Append(type.Name.Substring(0, type.Name.IndexOf("`", StringComparison.Ordinal)));
                 sb.Append("<");
 

@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using System.Text;
 
 //#if V_3_0
 namespace FileHelpers.Mapping
@@ -59,7 +60,7 @@ namespace FileHelpers.Mapping
         /// <summary>
         /// Field information we are mapping to
         /// </summary>
-        FieldInfo mField;
+        readonly FieldInfo mField;
 
         /// <summary>
         /// Update DataTable with the contents of rec
