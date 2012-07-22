@@ -6,7 +6,7 @@
 
   <Import Project="FileHelpers.shfbproj" />
   
-  <Target Name="doc">
+  <Target Name="doc" DependsOnTargets="release">
       <CallTarget Targets="compilerelease2"/>
       <CallTarget Targets="Build"/>
   </Target>
