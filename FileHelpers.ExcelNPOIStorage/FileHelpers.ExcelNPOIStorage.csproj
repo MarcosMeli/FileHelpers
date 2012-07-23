@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NPOI, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\NPOI\.net 2.0\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -40,8 +44,10 @@
       <Link>VersionInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ExcelBadUsageException.cs" />
     <Compile Include="ExcelNPOIDataLink.cs" />
     <Compile Include="ExcelNPOIStorage.cs" />
+    <Compile Include="NPOIUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FileHelpers.snk" />

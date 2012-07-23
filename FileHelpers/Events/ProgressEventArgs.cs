@@ -42,7 +42,7 @@ namespace FileHelpers.Events
         /// </summary>
         /// <param name="currentRecord">Current record in file</param>
         /// <param name="totalRecords">Total records in file</param>
-	    internal ProgressEventArgs(int currentRecord, int totalRecords)
+	    public ProgressEventArgs(int currentRecord, int totalRecords)
                     :this (currentRecord, totalRecords, -1, -1)
         	    {
         	    }
@@ -54,7 +54,7 @@ namespace FileHelpers.Events
         /// <param name="totalRecords">Total number of records in file</param>
         /// <param name="currentBytes">Current position in bytes</param>
         /// <param name="totalBytes">Total bytes in file</param>
-	    internal ProgressEventArgs(int currentRecord, int totalRecords, long currentBytes, long totalBytes)
+	    public ProgressEventArgs(int currentRecord, int totalRecords, long currentBytes, long totalBytes)
         {
             CurrentRecord = currentRecord;
 	        TotalRecords = totalRecords;
