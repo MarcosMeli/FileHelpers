@@ -92,6 +92,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Interop.Office.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\References\Microsoft.Vbe.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -130,6 +136,7 @@
     <PostBuildEvent>"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)" "$(TargetDir)Interop.Office.dll" "$(TargetDir)Interop.Excel.dll"
 del "$(TargetDir)Interop.Excel.dll"
 del "$(TargetDir)Interop.Office.dll"
+del "$(TargetDir)Microsoft.Vbe.Interop.dll"
 del "$(TargetDir)$(TargetFileName)"
 del "$(TargetDir)$(TargetName).pdb"
 move "$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"</PostBuildEvent>
