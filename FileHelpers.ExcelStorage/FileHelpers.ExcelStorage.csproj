@@ -122,13 +122,16 @@
     </Compile>
     <None Include="FileHelpers.snk" />
     <None Include="StorageDiagrams.cd" />
-  
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)" "$(TargetDir)Interop.Office.dll" "$(TargetDir)Interop.Excel.dll"
+del "$(TargetDir)Interop.Excel.dll"
+del "$(TargetDir)Interop.Office.dll"
+del "$(TargetDir)$(TargetFileName)"
+del "$(TargetDir)$(TargetName).pdb"
+move "$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

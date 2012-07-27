@@ -56,9 +56,17 @@
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
       <Name>FileHelpers</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"  "$(TargetDir)NPOI.Merged.dll"
+del "$(TargetDir)NPOI.Merged.dll"
+del "$(TargetDir)$(TargetFileName)"
+del "$(TargetDir)$(TargetName).pdb"
+move "$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
