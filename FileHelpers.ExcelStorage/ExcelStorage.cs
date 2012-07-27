@@ -3,8 +3,8 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using Excel;
 using FileHelpers.Events;
+using Microsoft.Office.Interop.Excel;
 
 namespace FileHelpers.DataLink
 {
