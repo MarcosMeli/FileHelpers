@@ -98,10 +98,6 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
-    <ProjectReference Include="..\FileHelpers.DataLink\FileHelpers.DataLink.csproj">
-      <Project>{94B329D5-E42A-42E4-AAC1-05DA361FFF53}</Project>
-      <Name>FileHelpers.DataLink</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Name>FileHelpers</Name>
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
@@ -126,6 +122,7 @@
     </Compile>
     <None Include="FileHelpers.snk" />
     <None Include="StorageDiagrams.cd" />
+  
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

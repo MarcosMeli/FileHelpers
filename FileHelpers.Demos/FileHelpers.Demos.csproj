@@ -112,10 +112,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-    <ProjectReference Include="..\FileHelpers.DataLink\FileHelpers.DataLink.csproj">
-      <Project>{94B329D5-E42A-42E4-AAC1-05DA361FFF53}</Project>
-      <Name>FileHelpers.DataLink</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Name>FileHelpers</Name>
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
