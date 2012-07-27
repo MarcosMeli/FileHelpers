@@ -1,15 +1,13 @@
 
-${ClassName}[] record;
+var engine = new FileHelperAsyncEngine(typeof(${ClassName}));
 
-FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(${ClassName}));
-
-engine.BeginReadFile(@"YourFile.txt");
-
-while(engine.ReadNext() != null)
+using(engine.BeginReadFile(@"YourFile.txt"))
 {
-	record = (${ClassName}) engine.LastRecord;
+	foreach(${ClassName} record in engine)
+	{
 
-	// Your Code Here
+		// Your Code Here
+
+	}
 }
 
-engine.Close();

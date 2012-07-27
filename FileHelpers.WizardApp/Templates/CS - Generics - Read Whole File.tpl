@@ -1,9 +1,9 @@
 
-FileHelperEngine<${ClassName}> engine = new FileHelperEngine<${ClassName}>();
+var engine = new FileHelperEngine<${ClassName}>();
 
 ${ClassName}[] res = engine.ReadFile(@"YourFile.txt");
 
-foreach(${ClassName} record in res)
+foreach(var record in res)
 {
 	// Your Code Here
 }

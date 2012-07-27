@@ -1124,7 +1124,7 @@ namespace FileHelpers.WizardApp
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(82, 28);
             this.cmdLoad.TabIndex = 1102;
-            this.cmdLoad.Text = "Load Class";
+            this.cmdLoad.Text = "Load Xml";
             this.cmdLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdLoad.UseVisualStyleBackColor = true;
             this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
@@ -1138,7 +1138,7 @@ namespace FileHelpers.WizardApp
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(83, 28);
             this.cmdSave.TabIndex = 1101;
-            this.cmdSave.Text = "Save Class";
+            this.cmdSave.Text = "Save Xml";
             this.cmdSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -1261,7 +1261,7 @@ namespace FileHelpers.WizardApp
             this.cmdSaveClass.Name = "cmdSaveClass";
             this.cmdSaveClass.Size = new System.Drawing.Size(92, 28);
             this.cmdSaveClass.TabIndex = 11;
-            this.cmdSaveClass.Text = "Save to File";
+            this.cmdSaveClass.Text = "Save Class";
             this.cmdSaveClass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSaveClass.UseVisualStyleBackColor = true;
             this.cmdSaveClass.Click += new System.EventHandler(this.cmdSaveClass_Click);
@@ -2241,7 +2241,7 @@ width: 100% !important;*/
 
             if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(dlgSaveToFile.FileName, mLastTemplateCode);
+                File.WriteAllText(dlgSaveToFile.FileName, mLastCode);
                 RegConfig.SetStringValue("WizardClassDir", Path.GetDirectoryName(dlgSaveToFile.FileName));
             }
         }

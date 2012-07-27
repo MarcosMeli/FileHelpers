@@ -1,14 +1,15 @@
 
-List<${ClassName}> arr = new List<${ClassName}>();
+var arr = new List<${ClassName}>();
 
 ${ClassName} record;
 
 // record = new ${ClassName}();
 // Assign Record Values
+// arr.Field1 = value;
 
 // Fill the array with your records
 // arr.Add(record);
 
-FileHelperEngine<${ClassName}> engine = new FileHelperEngine<${ClassName}>();
+var engine = new FileHelperEngine<${ClassName}>();
 
-engine.WriteFile(@"YourFile.txt", arr.ToArray());
+engine.WriteFile(@"YourFile.txt", arr);

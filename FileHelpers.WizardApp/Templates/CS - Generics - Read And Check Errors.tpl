@@ -1,5 +1,5 @@
 
-FileHelperEngine<${ClassName}> engine = new FileHelperEngine<${ClassName}>();
+var engine = new FileHelperEngine<${ClassName}>();
 
 engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 

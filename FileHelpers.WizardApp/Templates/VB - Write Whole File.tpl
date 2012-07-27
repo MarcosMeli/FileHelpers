@@ -1,4 +1,4 @@
-Dim arr As New ArrayList()
+Dim arr As List(Of ${ClassName})()
 
 Dim record As ${ClassName}
 
@@ -10,4 +10,4 @@ Dim record As ${ClassName}
 
 Dim engine As New FileHelperEngine(GetType(${ClassName}))
 
-engine.WriteFile("YourFile.txt", arr.ToArray(GetType(${ClassName})
+engine.WriteFile("YourFile.txt", arr)
