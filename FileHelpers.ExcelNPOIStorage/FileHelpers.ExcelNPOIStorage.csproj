@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileHelpers.ExcelNPOIStorage</RootNamespace>
     <AssemblyName>FileHelpers.ExcelNPOIStorage</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,11 +62,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"  "$(TargetDir)NPOI.Merged.dll"
+    <PostBuildEvent>move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
+move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.Merged.dll"
 del "$(TargetDir)NPOI.Merged.dll"
-del "$(TargetDir)$(TargetFileName)"
-del "$(TargetDir)$(TargetName).pdb"
-move "$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"</PostBuildEvent>
+del "$(TargetDir)$(TargetName).ToMerge.dll"
+del "$(TargetDir)$(TargetName).ToMerge.pdb"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

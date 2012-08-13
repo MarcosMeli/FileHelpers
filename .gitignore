@@ -1,2 +1,6 @@
 **/bin/**
 **/obj/**
+Debug
+Release
+_ReSharper.FileHelpers
+/*.suo

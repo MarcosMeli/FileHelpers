@@ -137,12 +137,13 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)" "$(TargetDir)Microsoft.Office.Interop.Excel.dll" "$(TargetDir)Office.dll" "$(TargetDir)Microsoft.Vbe.Interop.dll"
+    <PostBuildEvent>move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
+move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll" "$(TargetDir)Microsoft.Office.Interop.Excel.dll" "$(TargetDir)Office.dll" "$(TargetDir)Microsoft.Vbe.Interop.dll"
 del "$(TargetDir)Microsoft.Office.Interop.Excel.dll" 
 del "$(TargetDir)Office.dll" 
 del "$(TargetDir)Microsoft.Vbe.Interop.dll"
-del "$(TargetDir)$(TargetFileName)"
-del "$(TargetDir)$(TargetName).pdb"
-move "$(TargetDir)$(TargetName).Merged.dll" "$(TargetDir)$(TargetFileName)"</PostBuildEvent>
+del "$(TargetDir)$(TargetName).ToMerge.dll"
+del "$(TargetDir)$(TargetName).ToMerge.pdb"</PostBuildEvent>
   </PropertyGroup>
 </Project>
