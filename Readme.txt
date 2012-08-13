@@ -1,6 +1,5 @@
------------------------
-  FileHelpers
------------------------
+FileHelpers
+===========
 
   http://www.filehelpers.com  - SourceForge Home: http://sf.net/projects/filehelpers
 
@@ -8,9 +7,9 @@
  
   If you want to start using the library go directly to the Quick Start Guide in the CHM.
 
-----------------------------------------
-  Who needs the File Helpers Library ? 
-----------------------------------------
+
+Who needs the File Helpers Library ? 
+------------------------------------
 
   In almost every project there is a need to read/write data from/to a file of a specified format.
 
@@ -20,20 +19,20 @@
 
   This library aims to provide an easy and reliable way to accomplish this task.
 
------------
-  License
------------
+
+License
+-------
 
  The FileHelpers are licensed under the new BSD or LPGL, pick the best for you
  
  FileHelpers Library source and binaries are completely free for commercial and non commercial use.
 
----------------------
-  Contact and Ideas
----------------------
+
+Contact and Ideas
+-----------------
 
  If you find that there is a feature that I should include, or you have a new idea 
  (for the API, Source Code or Examples), please let me know, by sending an e-mail 
- to marcos@filehelpers.com or leaving a message at the FileHelpers Forums:
+ to marcos (at) filehelpers.com or leaving a message at the FileHelpers Forums:
   
          http://www.filehelpers.com/forums/
