@@ -14,7 +14,11 @@
 	</ItemGroup>
 
 	<Target Name="common">
-		<Message Text="##teamcity[buildNumber '$(CurrentVersion) ({build.number})']" />
+
+	  	<Time Format="yyyy-MM-dd">
+    		<Output TaskParameter="FormattedTime" PropertyName="buildDate" />
+        </Time>
+		<Message Text="##teamcity[buildNumber '$(CurrentVersion) (${buildDate})']" />
 		<Copy SourceFiles="Build\VersionInfo.cs" DestinationFolder="FileHelpers" />
 		<Exec Command="Libs\FileReplace.exe &quot;FileHelpers\VersionInfo.cs&quot; &quot;-CustomVersion-&quot; &quot;$(FullCurrentVersion)&quot;" />
 		<Delete Files="@(DebugFiles)" />
