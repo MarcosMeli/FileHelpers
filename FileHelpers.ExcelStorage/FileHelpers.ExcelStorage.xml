@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileHelpers.ExcelStorage</name>
+    </assembly>
+    <members>
+        <member name="T:FileHelpers.DataLink.ExcelBadUsageException">
+            <summary>Indicates the wrong usage of the ExcelStorage of the library.</summary>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelBadUsageException.#ctor(System.String)">
+            <summary>Creates an instance of an ExcelBadUsageException.</summary>
+            <param name="message">The exception Message</param>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelDataLink">
+            <summary>
+            This class has the responsability to enable the two directional
+            transformation.
+            <list type="bullet">
+            <item> Excel &lt;-&gt; DataStorage</item>
+            </list>
+            <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
+            <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
+            </summary>
+            <remarks>
+            <para>Uses an <see cref="P:FileHelpers.DataLink.ExcelDataLink.DataStorage"/> to accomplish this task.</para>
+            </remarks>
+            <seealso href="quick_start.html">Quick Start Guide</seealso>
+            <seealso href="class_diagram.html">Class Diagram</seealso>
+            <seealso href="examples.html">Examples of Use</seealso>
+            <seealso href="example_datalink.html">Example of the DataLink</seealso>
+            <seealso href="attributes.html">Attributes List</seealso>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelDataLink.#ctor(FileHelpers.DataLink.DataStorage)">
+            <summary>Create a new instance of the class.</summary>
+            <param name="provider">The <see cref="T:FileHelpers.DataLink.DataStorage"/> used to performs the transformation.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelDataLink.ExtractToExcel(System.String)">
+            <summary>
+            Extract records from the data source and insert them to the specified file using the DataLinkProvider <see cref="M:FileHelpers.DataLink.DataStorage.ExtractRecords"/> method.
+            </summary>
+            <param name="fileName">The files where the records be written.</param>
+            <returns>True if the operation is successful. False otherwise.</returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelDataLink.InsertFromExcel(System.String)">
+            <summary>Extract records from a file and insert them to the data source using the DataLinkProvider <see cref="M:FileHelpers.DataLink.DataStorage.InsertRecords(System.Object[])"/> method.</summary>
+            <param name="excelFileName">The file with the source records.</param>
+            <returns>True if the operation is successful. False otherwise.</returns>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelDataLink.ExcelStorage">
+            <summary> The internal <see cref="T:FileHelpers.FileHelperEngine"/> used to the file or stream ops. </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelDataLink.DataStorage">
+            <summary> The internal <see cref="T:FileHelpers.DataLink.DataStorage"/> used to the link ops. </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelDataLink.LastExtractedRecords">
+            <summary>
+            An array of the last records extracted from the data source to a file.
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelDataLink.LastInsertedRecords">
+            <summary>
+            An array of the last records inserted in the data source that comes from a file.
+            </summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelStorage">
+            <summary><para>This class implements the <see cref="T:FileHelpers.DataLink.DataStorage"/> for Microsoft Excel Files.</para>
+            <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
+            <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
+            </summary>
+            <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.#ctor(System.Type)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.#ctor(System.Type,System.Int32,System.Int32)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+            <param name="startRow">The row of the first data cell. Begining in 1.</param>
+            <param name="startCol">The column of the first data cell. Begining in 1.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.#ctor(System.Type,System.String,System.Int32,System.Int32)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+            <param name="startRow">The row of the first data cell. Begining in 1.</param>
+            <param name="startCol">The column of the first data cell. Begining in 1.</param>
+            <param name="fileName">The file path to work with.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.InsertRecords(System.Object[])">
+            <summary>Insert all the records in the specified Excel File.</summary>
+            <param name="records">The records to insert.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.ExtractRecords">
+            <summary>Returns the records extracted from Excel file.</summary>
+            <returns>The extracted records.</returns>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.UpdateLinks">
+            <summary>
+            Specifies the way links in the file are updated. By default the library never update the links
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.StartRow">
+            <summary>The Start Row where is the data. Starting at 1.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.StartColumn">
+            <summary>The Start Column where is the data. Starting at 1.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.HeaderRows">
+            <summary>The numbers of header rows.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.FileName">
+            <summary>The Excel File Name.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.SheetName">
+            <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.OverrideFile">
+            <summary>Indicates what the Storage does if the file exist.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.TemplateFile">
+            <summary>
+            Indicates the source xls file to be used as template when write data.
+            </summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelUpdateLinksMode">
+            <summary>
+            Specifies the way links in the file are updated.
+            </summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.UserPrompted">
+            <summary>User specifies how links will be updated</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.NeverUpdate">
+            <summary>Never update links for this workbook on opening</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.AlwaysUpdate">
+            <summary>Always update links for this workbook on opening</summary>
+        </member>
+    </members>
+</doc>

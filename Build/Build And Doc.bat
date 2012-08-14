@@ -1,3 +1,2 @@
 @cd ..
-@call "%ProgramFiles%\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
-@msbuild FileHelpers.TeamCity.msbuild /t:doc /nologo
+@%windir%\Microsoft.NET\Framework\v4.0.30319\msbuild Build\FileHelpers.TeamCity.msbuild /t:doc /tv:4.0 /nologo

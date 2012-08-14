@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project DefaultTargets="continuous-build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="FileHelpers.msbuild" />
+
+  <Import Project="FileHelpers.shfbproj" />
+  
+  <Target Name="doc" DependsOnTargets="release">
+      <CallTarget Targets="compilerelease2"/>
+      <CallTarget Targets="Build"/>
+  </Target>
+
+  <Target Name="continuous-build" DependsOnTargets="debug" >
+  </Target>
+
+  <Target Name="continuous-pack" DependsOnTargets="pack-debug;pack-release" >
+  </Target>
+
+</Project>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{cf4a2d77-89f2-4e65-a2bf-4b2318265600}</ProjectGuid>
+    <SHFBSchemaVersion>1.9.3.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>..\Help\</OutputPath>
+    <HtmlHelpName>FileHelpers</HtmlHelpName>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="..\Release\Binaries\4.0\FileHelpers.dll" />
+<DocumentationSource sourceFile="..\Release\Binaries\4.0\FileHelpers.xml" /></DocumentationSources>
+    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <HelpTitle>FileHelpers 3.0 Documentation</HelpTitle>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="FileHelpers" isDocumented="True">The &lt;b&gt;main namespace&lt;/b&gt; of the library.&lt;br /&gt;You must import always this namespace to work with the FileHelpers.&lt;br /&gt;&lt;br /&gt;Go directly to the Engine classes &lt;a href="FileHelpers.FileHelperEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; and &lt;a href="FileHelpers.FileHelperAsyncEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperAsyncEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. You can also check the &lt;a href="FileHelpers.CommonEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;CommonEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; for shortcuts to the common operations.&lt;br /&gt;&lt;br /&gt;You can also check the advanced engines &lt;a href="FileHelpers.MultiRecordEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;MultiRecordEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, &lt;a href="FileHelpers.FileTransformEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileTransformEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, the &lt;a href="FileHelpers.FileDiffEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileDiffEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. &lt;br /&gt;Engines Diagram:&lt;br /&gt;
+&lt;center&gt;&lt;a href="diagram_engines.html"&gt;&lt;img src="diag_engines.gif" border="0" /&gt;&lt;/a&gt;&lt;/center&gt;</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FileHelpers.DataLink" isDocumented="True">This namespace contains the data source to/from file engine and helpers.&lt;br /&gt;DataStorages Diagram:&lt;br /&gt;
+&lt;center&gt;&lt;img src="class_diagram_storage.png" /&gt;&lt;/center&gt;</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FileHelpers.MasterDetail" isDocumented="True">This namespace contains the classes used for MasterDetail processing.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FileHelpers.RunTime" isDocumented="True">This namespace contains the classes to create record mapping classes at run time.&lt;br /&gt;&lt;br /&gt;&lt;a href="runtime_classes.html"&gt;Check the examples here&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;Run Time Records Diagram:&lt;br /&gt;
+&lt;center&gt;&lt;img src="class_diagram_runtime.png" /&gt;&lt;/center&gt;</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FileHelpers.Events" isDocumented="True">All the Event related classes lives in this namespace</NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <ProjectSummary>The FileHelpers are a free and easy to use .NET library to import/export data from fixed length or delimited records in files, strings or streams. 
+
+The idea is pretty simple: 
+
+You can strong type your flat file %28fixed or delimited%29 simply describing a class that maps to each record and later read/write your file as an strong typed .NET array
+
+The Library also has support for import/export data from differents storages like Excel, Access, SqlServer, etc. 
+</ProjectSummary>
+    <PresentationStyle>hana</PresentationStyle>
+    <VisibleItems>InheritedMembers</VisibleItems>
+    <NamingMethod>MemberName</NamingMethod>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <HtmlHelp1xCompilerPath>
+    </HtmlHelp1xCompilerPath>
+    <HelpAttributes>
+    </HelpAttributes>
+    <ApiFilter>
+      <Filter entryType="Namespace" fullName="FileHelpers.DataLink" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="FileHelpers.Detection" isExposed="False" xmlns="" />
+    </ApiFilter>
+    <SyntaxFilters>CSharp</SyntaxFilters>
+    <BuildLogFile>
+    </BuildLogFile>
+    <HtmlHelp2xCompilerPath>
+    </HtmlHelp2xCompilerPath>
+    <SandcastlePath>
+    </SandcastlePath>
+    <WorkingPath>
+    </WorkingPath>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
+    <WebsiteSdkLinkType>None</WebsiteSdkLinkType>
+    <HtmlSdkLinkType>None</HtmlSdkLinkType>
+    <MSHelp2SdkLinkType>None</MSHelp2SdkLinkType>
+  </PropertyGroup>
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="..\Libs\Sandcastle\SandcastleHelpFileBuilder.targets" />
+</Project>
