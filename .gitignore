@@ -5,3 +5,4 @@ Release
 _ReSharper.FileHelpers
 /*.suo
 /Help
+/Output
