@@ -7,7 +7,7 @@
 
 	<ItemGroup>
     <DebugFiles Include="..\Debug\**\*.*" />
-		<RootFiles Include="..\*.url" />
+		<RootFiles Include="*.url" />
 		<RootFiles2 Include="..\*.txt" />
 		<ReleaseFiles Include="..\Release\**\*.*" />
 		<OutputFiles Include="..\Output\**\*.*" />
@@ -48,7 +48,7 @@
 		<Exec Command="RmDir /S /Q ..\Release\Bin" />
 
 		<Copy SourceFiles="@(RootFiles)" DestinationFolder="..\Release" />		
-		<Copy SourceFiles="@(RootFiles2)" DestinationFolder="..\Release" />		
+		<Copy SourceFiles="..\Readme.md" DestinationFiles="..\Release\Readme.txt" />		
 		
 	</Target>
 
@@ -70,7 +70,8 @@
 		<Exec Command="RmDir /S /Q ..\Debug\Bin" />
 		
 	    <Copy SourceFiles="@(RootFiles)" DestinationFolder="..\Debug" />		
-	    <Copy SourceFiles="@(RootFiles2)" DestinationFolder="..\Debug" />		
+   		<Copy SourceFiles="..\Readme.md" DestinationFiles="..\Debug\Readme.txt" />		
+
 	</Target>
 
 	<Target Name="pack-all" DependsOnTargets="common;pack-debug;pack-release">

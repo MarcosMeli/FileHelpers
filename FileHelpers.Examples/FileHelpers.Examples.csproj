@@ -61,7 +61,7 @@
   <ItemGroup>
     <Reference Include="Devoo.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Devoo\Devoo.WinForms.dll</HintPath>
+      <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
