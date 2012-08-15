@@ -65,7 +65,6 @@ namespace FileHelpers.WizardApp
         private Button cmdToClipboard;
         private Label label3;
         private ComboBox cboLanguage;
-        private Label label4;
         private SaveFileDialog dlgSaveToFile;
         private PictureBox pictureBox5;
         private Label lblStep2;
@@ -73,7 +72,6 @@ namespace FileHelpers.WizardApp
         private Button cmdReset;
         private Button cmdNext;
         private Button cmdBack;
-        private Button cmdPreview;
         private Panel panel2;
         private Panel panPreview;
         private Button cmdSaveClass;
@@ -127,6 +125,7 @@ namespace FileHelpers.WizardApp
         private WebBrowser browserTemplate;
         private Panel panel3;
         private Panel panel4;
+        private SplitContainer splitContainer1;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -183,10 +182,10 @@ namespace FileHelpers.WizardApp
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panStep3 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.browserTemplate = new System.Windows.Forms.WebBrowser();
             this.cboTemplate = new System.Windows.Forms.ComboBox();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmdSaveToFile = new System.Windows.Forms.Button();
             this.cmdToClipboard = new System.Windows.Forms.Button();
@@ -224,10 +223,11 @@ namespace FileHelpers.WizardApp
             this.cmdTestClass = new System.Windows.Forms.Button();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
-            this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
             this.panPreview = new System.Windows.Forms.Panel();
+            this.picDonate = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.browserCode = new System.Windows.Forms.WebBrowser();
             this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -239,7 +239,6 @@ namespace FileHelpers.WizardApp
             this.dlgSaveWizard = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picDonate = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmdDetectFormatWithHeader = new System.Windows.Forms.Button();
             this.cmdfileDesigner = new System.Windows.Forms.Button();
@@ -255,8 +254,7 @@ namespace FileHelpers.WizardApp
             this.lblStep0 = new System.Windows.Forms.Label();
             this.lblStep1 = new System.Windows.Forms.Label();
             this.picFirstDark = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panStep1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -267,6 +265,7 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).BeginInit();
             this.panStep3.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panStep0.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -276,20 +275,26 @@ namespace FileHelpers.WizardApp
             this.panStep2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panPreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panStep1
             // 
+            this.panStep1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep1.BackColor = System.Drawing.Color.White;
             this.panStep1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep1.Controls.Add(this.groupBox4);
@@ -299,7 +304,7 @@ namespace FileHelpers.WizardApp
             this.panStep1.Controls.Add(this.label1);
             this.panStep1.Location = new System.Drawing.Point(170, 0);
             this.panStep1.Name = "panStep1";
-            this.panStep1.Size = new System.Drawing.Size(400, 366);
+            this.panStep1.Size = new System.Drawing.Size(428, 444);
             this.panStep1.TabIndex = 2;
             this.panStep1.TabStop = true;
             this.panStep1.Visible = false;
@@ -494,6 +499,8 @@ namespace FileHelpers.WizardApp
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtFieldLength);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.cboFieldVisibility);
@@ -504,7 +511,7 @@ namespace FileHelpers.WizardApp
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(18, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(368, 131);
+            this.groupBox2.Size = new System.Drawing.Size(339, 131);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fields Options";
@@ -641,22 +648,36 @@ namespace FileHelpers.WizardApp
             // 
             // panStep3
             // 
+            this.panStep3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep3.BackColor = System.Drawing.Color.White;
             this.panStep3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep3.Controls.Add(this.panel3);
             this.panStep3.Controls.Add(this.cboTemplate);
             this.panStep3.Controls.Add(this.cboLanguage);
-            this.panStep3.Controls.Add(this.label4);
             this.panStep3.Controls.Add(this.label3);
             this.panStep3.Controls.Add(this.cmdSaveToFile);
             this.panStep3.Controls.Add(this.cmdToClipboard);
             this.panStep3.Controls.Add(this.label2);
             this.panStep3.Location = new System.Drawing.Point(170, 0);
             this.panStep3.Name = "panStep3";
-            this.panStep3.Size = new System.Drawing.Size(400, 366);
+            this.panStep3.Size = new System.Drawing.Size(428, 444);
             this.panStep3.TabIndex = 3;
             this.panStep3.TabStop = true;
             this.panStep3.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.browserTemplate);
+            this.panel3.Location = new System.Drawing.Point(18, 63);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(396, 341);
+            this.panel3.TabIndex = 1010;
             // 
             // browserTemplate
             // 
@@ -664,43 +685,37 @@ namespace FileHelpers.WizardApp
             this.browserTemplate.Location = new System.Drawing.Point(0, 0);
             this.browserTemplate.MinimumSize = new System.Drawing.Size(20, 20);
             this.browserTemplate.Name = "browserTemplate";
-            this.browserTemplate.Size = new System.Drawing.Size(364, 254);
+            this.browserTemplate.Size = new System.Drawing.Size(392, 337);
             this.browserTemplate.TabIndex = 1009;
             // 
             // cboTemplate
             // 
+            this.cboTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTemplate.Location = new System.Drawing.Point(70, 43);
+            this.cboTemplate.Location = new System.Drawing.Point(70, 38);
             this.cboTemplate.MaxDropDownItems = 20;
             this.cboTemplate.Name = "cboTemplate";
-            this.cboTemplate.Size = new System.Drawing.Size(176, 21);
+            this.cboTemplate.Size = new System.Drawing.Size(242, 21);
             this.cboTemplate.Sorted = true;
             this.cboTemplate.TabIndex = 0;
             this.cboTemplate.SelectedIndexChanged += new System.EventHandler(this.cboTemplate_SelectedIndexChanged);
             // 
             // cboLanguage
             // 
+            this.cboLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.Location = new System.Drawing.Point(309, 43);
+            this.cboLanguage.Location = new System.Drawing.Point(337, 38);
             this.cboLanguage.Name = "cboLanguage";
             this.cboLanguage.Size = new System.Drawing.Size(77, 21);
             this.cboLanguage.TabIndex = 1;
             this.cboLanguage.SelectedIndexChanged += new System.EventHandler(this.cboLanguage_SelectedIndexChanged);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(257, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Language";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 46);
+            this.label3.Location = new System.Drawing.Point(15, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 9;
@@ -708,10 +723,11 @@ namespace FileHelpers.WizardApp
             // 
             // cmdSaveToFile
             // 
+            this.cmdSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdSaveToFile.BackColor = System.Drawing.SystemColors.Control;
             this.cmdSaveToFile.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSaveToFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSaveToFile.Location = new System.Drawing.Point(18, 333);
+            this.cmdSaveToFile.Location = new System.Drawing.Point(18, 410);
             this.cmdSaveToFile.Name = "cmdSaveToFile";
             this.cmdSaveToFile.Size = new System.Drawing.Size(117, 28);
             this.cmdSaveToFile.TabIndex = 3;
@@ -721,11 +737,12 @@ namespace FileHelpers.WizardApp
             // 
             // cmdToClipboard
             // 
+            this.cmdToClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdToClipboard.BackColor = System.Drawing.SystemColors.Control;
             this.cmdToClipboard.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdToClipboard.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
             this.cmdToClipboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdToClipboard.Location = new System.Drawing.Point(246, 333);
+            this.cmdToClipboard.Location = new System.Drawing.Point(273, 410);
             this.cmdToClipboard.Name = "cmdToClipboard";
             this.cmdToClipboard.Size = new System.Drawing.Size(139, 28);
             this.cmdToClipboard.TabIndex = 2;
@@ -746,17 +763,23 @@ namespace FileHelpers.WizardApp
             // 
             // panFields
             // 
+            this.panFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panFields.AutoScroll = true;
             this.panFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.panFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panFields.Location = new System.Drawing.Point(18, 40);
             this.panFields.Name = "panFields";
-            this.panFields.Size = new System.Drawing.Size(374, 288);
+            this.panFields.Size = new System.Drawing.Size(391, 359);
             this.panFields.TabIndex = 0;
             this.panFields.TabStop = true;
             // 
             // panStep0
             // 
+            this.panStep0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep0.BackColor = System.Drawing.Color.White;
             this.panStep0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep0.Controls.Add(this.cboClassVisibility);
@@ -769,7 +792,7 @@ namespace FileHelpers.WizardApp
             this.panStep0.Controls.Add(this.picNewVersion);
             this.panStep0.Location = new System.Drawing.Point(170, 0);
             this.panStep0.Name = "panStep0";
-            this.panStep0.Size = new System.Drawing.Size(400, 366);
+            this.panStep0.Size = new System.Drawing.Size(428, 444);
             this.panStep0.TabIndex = 0;
             this.panStep0.TabStop = true;
             // 
@@ -984,7 +1007,7 @@ namespace FileHelpers.WizardApp
             this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picCurrent.BackColor = System.Drawing.Color.Transparent;
             this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
-            this.picCurrent.Location = new System.Drawing.Point(251, 310);
+            this.picCurrent.Location = new System.Drawing.Point(279, 388);
             this.picCurrent.Name = "picCurrent";
             this.picCurrent.Size = new System.Drawing.Size(146, 53);
             this.picCurrent.TabIndex = 1011;
@@ -997,7 +1020,7 @@ namespace FileHelpers.WizardApp
             this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
             this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
-            this.picNewVersion.Location = new System.Drawing.Point(251, 310);
+            this.picNewVersion.Location = new System.Drawing.Point(279, 388);
             this.picNewVersion.Name = "picNewVersion";
             this.picNewVersion.Size = new System.Drawing.Size(146, 53);
             this.picNewVersion.TabIndex = 1012;
@@ -1007,6 +1030,9 @@ namespace FileHelpers.WizardApp
             // 
             // panStep2
             // 
+            this.panStep2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep2.BackColor = System.Drawing.Color.White;
             this.panStep2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep2.Controls.Add(this.chkAllQuoted);
@@ -1017,15 +1043,16 @@ namespace FileHelpers.WizardApp
             this.panStep2.Controls.Add(this.label15);
             this.panStep2.Location = new System.Drawing.Point(170, 0);
             this.panStep2.Name = "panStep2";
-            this.panStep2.Size = new System.Drawing.Size(400, 366);
+            this.panStep2.Size = new System.Drawing.Size(428, 444);
             this.panStep2.TabIndex = 10;
             this.panStep2.TabStop = true;
             this.panStep2.Visible = false;
             // 
             // chkAllQuoted
             // 
+            this.chkAllQuoted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAllQuoted.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.chkAllQuoted.Location = new System.Drawing.Point(258, 332);
+            this.chkAllQuoted.Location = new System.Drawing.Point(249, 408);
             this.chkAllQuoted.Name = "chkAllQuoted";
             this.chkAllQuoted.Size = new System.Drawing.Size(121, 16);
             this.chkAllQuoted.TabIndex = 1014;
@@ -1037,8 +1064,9 @@ namespace FileHelpers.WizardApp
             // 
             // chkAllTrim
             // 
+            this.chkAllTrim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAllTrim.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.chkAllTrim.Location = new System.Drawing.Point(125, 348);
+            this.chkAllTrim.Location = new System.Drawing.Point(116, 424);
             this.chkAllTrim.Name = "chkAllTrim";
             this.chkAllTrim.Size = new System.Drawing.Size(134, 15);
             this.chkAllTrim.TabIndex = 1016;
@@ -1050,7 +1078,8 @@ namespace FileHelpers.WizardApp
             // 
             // chkAllOptional
             // 
-            this.chkAllOptional.Location = new System.Drawing.Point(125, 331);
+            this.chkAllOptional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkAllOptional.Location = new System.Drawing.Point(116, 407);
             this.chkAllOptional.Name = "chkAllOptional";
             this.chkAllOptional.Size = new System.Drawing.Size(131, 22);
             this.chkAllOptional.TabIndex = 1015;
@@ -1062,11 +1091,12 @@ namespace FileHelpers.WizardApp
             // 
             // cmdAddField
             // 
+            this.cmdAddField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdAddField.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAddField.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddField.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddField.Image")));
             this.cmdAddField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAddField.Location = new System.Drawing.Point(18, 332);
+            this.cmdAddField.Location = new System.Drawing.Point(9, 408);
             this.cmdAddField.Name = "cmdAddField";
             this.cmdAddField.Size = new System.Drawing.Size(101, 28);
             this.cmdAddField.TabIndex = 4;
@@ -1097,19 +1127,19 @@ namespace FileHelpers.WizardApp
             this.panel2.Controls.Add(this.cmdTestClass);
             this.panel2.Controls.Add(this.cmdLoad);
             this.panel2.Controls.Add(this.cmdSave);
-            this.panel2.Controls.Add(this.cmdPreview);
             this.panel2.Controls.Add(this.cmdBack);
             this.panel2.Controls.Add(this.cmdNext);
-            this.panel2.Location = new System.Drawing.Point(-10, 366);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 445);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(587, 51);
+            this.panel2.Size = new System.Drawing.Size(598, 37);
             this.panel2.TabIndex = 1000;
             // 
             // cmdTestClass
             // 
             this.cmdTestClass.Image = global::FileHelpers.WizardApp.Properties.Resources.tick;
             this.cmdTestClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdTestClass.Location = new System.Drawing.Point(14, 6);
+            this.cmdTestClass.Location = new System.Drawing.Point(14, 3);
             this.cmdTestClass.Name = "cmdTestClass";
             this.cmdTestClass.Size = new System.Drawing.Size(86, 28);
             this.cmdTestClass.TabIndex = 1008;
@@ -1122,7 +1152,7 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdLoad.Image = global::FileHelpers.WizardApp.Properties.Resources.folder_table;
             this.cmdLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdLoad.Location = new System.Drawing.Point(105, 6);
+            this.cmdLoad.Location = new System.Drawing.Point(105, 3);
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(82, 28);
             this.cmdLoad.TabIndex = 1102;
@@ -1136,7 +1166,7 @@ namespace FileHelpers.WizardApp
             this.cmdSave.Enabled = false;
             this.cmdSave.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSave.Location = new System.Drawing.Point(192, 6);
+            this.cmdSave.Location = new System.Drawing.Point(192, 3);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(83, 28);
             this.cmdSave.TabIndex = 1101;
@@ -1145,26 +1175,13 @@ namespace FileHelpers.WizardApp
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
-            // cmdPreview
-            // 
-            this.cmdPreview.Enabled = false;
-            this.cmdPreview.Image = ((System.Drawing.Image)(resources.GetObject("cmdPreview.Image")));
-            this.cmdPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdPreview.Location = new System.Drawing.Point(480, 6);
-            this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(91, 28);
-            this.cmdPreview.TabIndex = 1011;
-            this.cmdPreview.Text = "&Preview >>";
-            this.cmdPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdPreview.UseVisualStyleBackColor = true;
-            this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
-            // 
             // cmdBack
             // 
+            this.cmdBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBack.Enabled = false;
             this.cmdBack.Image = ((System.Drawing.Image)(resources.GetObject("cmdBack.Image")));
             this.cmdBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBack.Location = new System.Drawing.Point(304, 6);
+            this.cmdBack.Location = new System.Drawing.Point(412, 3);
             this.cmdBack.Name = "cmdBack";
             this.cmdBack.Size = new System.Drawing.Size(83, 28);
             this.cmdBack.TabIndex = 1009;
@@ -1174,9 +1191,10 @@ namespace FileHelpers.WizardApp
             // 
             // cmdNext
             // 
+            this.cmdNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
             this.cmdNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdNext.Location = new System.Drawing.Point(392, 6);
+            this.cmdNext.Location = new System.Drawing.Point(500, 3);
             this.cmdNext.Name = "cmdNext";
             this.cmdNext.Size = new System.Drawing.Size(83, 28);
             this.cmdNext.TabIndex = 1010;
@@ -1187,9 +1205,8 @@ namespace FileHelpers.WizardApp
             // 
             // panPreview
             // 
-            this.panPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panPreview.Controls.Add(this.picDonate);
             this.panPreview.Controls.Add(this.panel4);
             this.panPreview.Controls.Add(this.cboClassLanguage);
             this.panPreview.Controls.Add(this.label7);
@@ -1198,18 +1215,48 @@ namespace FileHelpers.WizardApp
             this.panPreview.Controls.Add(this.cmdSaveClass);
             this.panPreview.Controls.Add(this.cmdCopyClass);
             this.panPreview.Controls.Add(this.chkProperties);
-            this.panPreview.Location = new System.Drawing.Point(568, 0);
+            this.panPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panPreview.Location = new System.Drawing.Point(0, 0);
             this.panPreview.Name = "panPreview";
-            this.panPreview.Size = new System.Drawing.Size(441, 412);
+            this.panPreview.Size = new System.Drawing.Size(332, 482);
             this.panPreview.TabIndex = 1002;
+            // 
+            // picDonate
+            // 
+            this.picDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
+            this.picDonate.Location = new System.Drawing.Point(230, 444);
+            this.picDonate.Name = "picDonate";
+            this.picDonate.Size = new System.Drawing.Size(100, 36);
+            this.picDonate.TabIndex = 1010;
+            this.picDonate.TabStop = false;
+            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
+        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+        "anks");
+            this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.browserCode);
+            this.panel4.Location = new System.Drawing.Point(6, 59);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(317, 377);
+            this.panel4.TabIndex = 1009;
             // 
             // browserCode
             // 
-            this.browserCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.browserCode.Location = new System.Drawing.Point(0, 0);
             this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
             this.browserCode.Name = "browserCode";
-            this.browserCode.Size = new System.Drawing.Size(416, 294);
+            this.browserCode.Size = new System.Drawing.Size(313, 375);
             this.browserCode.TabIndex = 1008;
             // 
             // cboClassLanguage
@@ -1217,7 +1264,7 @@ namespace FileHelpers.WizardApp
             this.cboClassLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboClassLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClassLanguage.FormattingEnabled = true;
-            this.cboClassLanguage.Location = new System.Drawing.Point(372, 30);
+            this.cboClassLanguage.Location = new System.Drawing.Point(263, 34);
             this.cboClassLanguage.Name = "cboClassLanguage";
             this.cboClassLanguage.Size = new System.Drawing.Size(60, 21);
             this.cboClassLanguage.TabIndex = 1004;
@@ -1227,7 +1274,7 @@ namespace FileHelpers.WizardApp
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(315, 34);
+            this.label7.Location = new System.Drawing.Point(206, 39);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 1005;
@@ -1257,9 +1304,10 @@ namespace FileHelpers.WizardApp
             // 
             // cmdSaveClass
             // 
+            this.cmdSaveClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdSaveClass.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSaveClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSaveClass.Location = new System.Drawing.Point(5, 371);
+            this.cmdSaveClass.Location = new System.Drawing.Point(7, 446);
             this.cmdSaveClass.Name = "cmdSaveClass";
             this.cmdSaveClass.Size = new System.Drawing.Size(92, 28);
             this.cmdSaveClass.TabIndex = 11;
@@ -1270,10 +1318,11 @@ namespace FileHelpers.WizardApp
             // 
             // cmdCopyClass
             // 
+            this.cmdCopyClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCopyClass.Image = ((System.Drawing.Image)(resources.GetObject("cmdCopyClass.Image")));
             this.cmdCopyClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCopyClass.Location = new System.Drawing.Point(103, 371);
+            this.cmdCopyClass.Location = new System.Drawing.Point(105, 446);
             this.cmdCopyClass.Name = "cmdCopyClass";
             this.cmdCopyClass.Size = new System.Drawing.Size(93, 28);
             this.cmdCopyClass.TabIndex = 11;
@@ -1284,7 +1333,7 @@ namespace FileHelpers.WizardApp
             // chkProperties
             // 
             this.chkProperties.AutoSize = true;
-            this.chkProperties.Location = new System.Drawing.Point(6, 36);
+            this.chkProperties.Location = new System.Drawing.Point(6, 39);
             this.chkProperties.Name = "chkProperties";
             this.chkProperties.Size = new System.Drawing.Size(111, 17);
             this.chkProperties.TabIndex = 1007;
@@ -1310,20 +1359,6 @@ namespace FileHelpers.WizardApp
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ShowAlways = true;
             // 
-            // picDonate
-            // 
-            this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
-            this.picDonate.Location = new System.Drawing.Point(469, 0);
-            this.picDonate.Name = "picDonate";
-            this.picDonate.Size = new System.Drawing.Size(100, 36);
-            this.picDonate.TabIndex = 1010;
-            this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-        "anks");
-            this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
-            // 
             // panel1
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
@@ -1342,18 +1377,20 @@ namespace FileHelpers.WizardApp
             this.panel1.Controls.Add(this.lblStep0);
             this.panel1.Controls.Add(this.lblStep1);
             this.panel1.Controls.Add(this.picFirstDark);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(172, 366);
+            this.panel1.Size = new System.Drawing.Size(172, 445);
             this.panel1.TabIndex = 9;
             // 
             // cmdDetectFormatWithHeader
             // 
-            this.cmdDetectFormatWithHeader.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdDetectFormatWithHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdDetectFormatWithHeader.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdDetectFormatWithHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDetectFormatWithHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdDetectFormatWithHeader.ForeColor = System.Drawing.Color.White;
             this.cmdDetectFormatWithHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDetectFormatWithHeader.Location = new System.Drawing.Point(9, 329);
+            this.cmdDetectFormatWithHeader.Location = new System.Drawing.Point(6, 411);
             this.cmdDetectFormatWithHeader.Name = "cmdDetectFormatWithHeader";
             this.cmdDetectFormatWithHeader.Size = new System.Drawing.Size(155, 25);
             this.cmdDetectFormatWithHeader.TabIndex = 1103;
@@ -1363,11 +1400,12 @@ namespace FileHelpers.WizardApp
             // 
             // cmdfileDesigner
             // 
-            this.cmdfileDesigner.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdfileDesigner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdfileDesigner.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdfileDesigner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdfileDesigner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdfileDesigner.ForeColor = System.Drawing.Color.White;
             this.cmdfileDesigner.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdfileDesigner.Location = new System.Drawing.Point(8, 267);
+            this.cmdfileDesigner.Location = new System.Drawing.Point(5, 349);
             this.cmdfileDesigner.Name = "cmdfileDesigner";
             this.cmdfileDesigner.Size = new System.Drawing.Size(156, 25);
             this.cmdfileDesigner.TabIndex = 1102;
@@ -1378,11 +1416,12 @@ namespace FileHelpers.WizardApp
             // 
             // cmdDetectFormat
             // 
-            this.cmdDetectFormat.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.cmdDetectFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdDetectFormat.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDetectFormat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.cmdDetectFormat.ForeColor = System.Drawing.Color.White;
             this.cmdDetectFormat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdDetectFormat.Location = new System.Drawing.Point(9, 298);
+            this.cmdDetectFormat.Location = new System.Drawing.Point(6, 380);
             this.cmdDetectFormat.Name = "cmdDetectFormat";
             this.cmdDetectFormat.Size = new System.Drawing.Size(155, 25);
             this.cmdDetectFormat.TabIndex = 1101;
@@ -1514,47 +1553,38 @@ namespace FileHelpers.WizardApp
             this.picFirstDark.TabIndex = 4;
             this.picFirstDark.TabStop = false;
             // 
-            // panel3
+            // splitContainer1
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.browserTemplate);
-            this.panel3.Location = new System.Drawing.Point(18, 70);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(368, 258);
-            this.panel3.TabIndex = 1010;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // panel4
+            // splitContainer1.Panel1
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.browserCode);
-            this.panel4.Location = new System.Drawing.Point(6, 59);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(420, 298);
-            this.panel4.TabIndex = 1009;
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.panStep3);
+            this.splitContainer1.Panel1.Controls.Add(this.panStep2);
+            this.splitContainer1.Panel1.Controls.Add(this.panStep1);
+            this.splitContainer1.Panel1.Controls.Add(this.panStep0);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panPreview);
+            this.splitContainer1.Size = new System.Drawing.Size(934, 482);
+            this.splitContainer1.SplitterDistance = 598;
+            this.splitContainer1.TabIndex = 1011;
             // 
             // frmWizard
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-            this.ClientSize = new System.Drawing.Size(1008, 402);
-            this.Controls.Add(this.picDonate);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panStep3);
-            this.Controls.Add(this.panStep0);
-            this.Controls.Add(this.panStep1);
-            this.Controls.Add(this.panPreview);
-            this.Controls.Add(this.panStep2);
+            this.ClientSize = new System.Drawing.Size(934, 482);
+            this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
-            this.MaximumSize = new System.Drawing.Size(1024, 440);
-            this.MinimumSize = new System.Drawing.Size(577, 440);
+            this.MinimumSize = new System.Drawing.Size(600, 440);
             this.Name = "frmWizard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FileHelpers - Record Class Wizard v2.0";
@@ -1576,6 +1606,7 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).EndInit();
             this.panStep3.ResumeLayout(false);
             this.panStep3.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panStep0.ResumeLayout(false);
             this.panStep0.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1591,8 +1622,9 @@ namespace FileHelpers.WizardApp
             this.panel2.ResumeLayout(false);
             this.panPreview.ResumeLayout(false);
             this.panPreview.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
@@ -1600,8 +1632,10 @@ namespace FileHelpers.WizardApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1876,13 +1910,11 @@ namespace FileHelpers.WizardApp
 
             panFields.ResumeLayout();
 
-            cmdPreview.Enabled = true;
-
             panFields.Focus();
 
             chkAllQuoted.Visible = mWizardInfo.ClassBuilder is DelimitedClassBuilder;
 
-            ExpandAndShowPreview();
+            ReLoadPreview();
             return true;
         }
 
@@ -1982,7 +2014,7 @@ namespace FileHelpers.WizardApp
 
         void FieldControlChange(object sender, EventArgs e)
         {
-            ExpandAndShowPreview();
+            ReLoadPreview();
         }
 
         void FieldControlOrderChange(object sender, EventArgs e)
@@ -1990,7 +2022,7 @@ namespace FileHelpers.WizardApp
             // CLEAR: JEJEJ
             // mWizardInfo.LoadFields(panFields.Controls);
             ReloadFields();
-            ExpandAndShowPreview();
+            ReLoadPreview();
         }
 
         private void ReloadFields()
@@ -2052,43 +2084,6 @@ namespace FileHelpers.WizardApp
                 cmdNext.Enabled = true;
             }
 
-        }
-
-
-        bool mExpanded = false;
-        private void cmdPreview_Click(object sender, EventArgs e)
-        {
-
-            if (mExpanded)
-            {
-//                panPreview.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                this.Width = panStep1.Right - 1;
-                mExpanded = false;
-                cmdPreview.Text = "&Preview >>";
-            }
-            else
-            {
-                ExpandAndShowPreview();
-            }
-        }
-
-        private void ExpandAndShowPreview()
-        {
-            if (mExpanded == false)
-            {
-                this.Width = Math.Min(900, Screen.PrimaryScreen.WorkingArea.Width - 40);
-                if (Left + Width > Screen.PrimaryScreen.WorkingArea.Width)
-                    this.Left = 30;
-
-                mExpanded = true;
-                cmdPreview.Text = "<< &Preview";
-                if (cboClassLanguage.SelectedIndex == -1)
-                    cboClassLanguage.SelectedIndex = 0;
-
-                panPreview.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
-            }
-
-            ReLoadPreview();
         }
 
         private void ReLoadPreview()
@@ -2423,14 +2418,11 @@ width: 100% !important;*/
 
             panFields.ResumeLayout();
 
-            cmdPreview.Enabled = true;
-
             panFields.Focus();
 
             mLoadingFile = false;
 
-
-            ExpandAndShowPreview();
+            ReLoadPreview();
         }
 
         private void WizardToControls()
@@ -2668,9 +2660,6 @@ width: 100% !important;*/
             cmdSave.Enabled = false;
 
             this.Width = panStep1.Right - 1;
-            mExpanded = false;
-            cmdPreview.Text = "&Preview >>";
-            cmdPreview.Enabled = false;
 
             ShowCode("", NetLanguage.CSharp);
         }
