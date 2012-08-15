@@ -37,18 +37,20 @@
 	<Target Name="release" DependsOnTargets="common">
 		<MSBuild Projects="..\FileHelpers.OnlyLib.sln" Properties="Configuration=Release" />
 		
-		<MakeDir Directories="..\Release\Binaries\2.0" ContinueOnError="True" />
-		<Exec Command="copy /Y /D ..\Release\Bin\*.* ..\Release\Binaries\2.0"/>
+		<MakeDir Directories="..\Release\Binaries\DotNet 2.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D ..\Release\Bin\*.* &quot;..\Release\Binaries\DotNet 2.0&quot;" />
 		<Exec Command="RmDir /S /Q ..\Release\Bin" />
+		<Copy SourceFiles="ReadmeBinaries.txt" DestinationFiles="..\Release\Binaries\DotNet 4.0\Readme.txt" />
 		
 		<Exec Command="$(MSBuildToolsPath)\msbuild.exe ..\FileHelpers.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Release "/>
 		
-		<MakeDir Directories="..\Release\Binaries\4.0" ContinueOnError="True" />
-		<Exec Command="copy /Y /D ..\Release\Bin\*.* ..\Release\Binaries\4.0"/>
+		<MakeDir Directories="..\Release\Binaries\DotNet 4.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D ..\Release\Bin\*.* &quot;..\Release\Binaries\DotNet 4.0&quot;"/>
 		<Exec Command="RmDir /S /Q ..\Release\Bin" />
 
 		<Copy SourceFiles="@(RootFiles)" DestinationFolder="..\Release" />		
 		<Copy SourceFiles="..\Readme.md" DestinationFiles="..\Release\Readme.txt" />		
+		<Copy SourceFiles="ReadmeBinaries.txt" DestinationFiles="..\Release\Binaries\DotNet 4.0\Readme.txt" />
 		
 	</Target>
 
@@ -59,18 +61,20 @@
 	<Target Name="debug" DependsOnTargets="common">
 		<MSBuild Projects="..\FileHelpers.OnlyLib.sln" Properties="Configuration=Debug" />
 		
-		<MakeDir Directories="..\Debug\Binaries\2.0" ContinueOnError="True" />
-		<Exec Command="copy /Y /D ..\Debug\Bin\*.* ..\Debug\Binaries\2.0"/>
+		<MakeDir Directories="..\Debug\Binaries\DotNet 2.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D ..\Debug\Bin\*.* &quot;..\Debug\Binaries\DotNet 2.0&quot;"/>
 		<Exec Command="RmDir /S /Q ..\Debug\Bin" />
-		
+		<Copy SourceFiles="ReadmeBinaries.txt" DestinationFiles="..\Debug\Binaries\DotNet 2.0\Readme.txt" />
+
 		<Exec Command="$(MSBuildToolsPath)\msbuild.exe ..\FileHelpers.sln /p:TargetFrameworkVersion=v4.0 /t:rebuild /p:Configuration=Debug "/>
 		
-		<MakeDir Directories="..\Debug\Binaries\4.0" ContinueOnError="True" />
-		<Exec Command="copy /Y /D ..\Debug\Bin\*.* ..\Debug\Binaries\4.0"/>
+		<MakeDir Directories="..\Debug\Binaries\DotNet 4.0" ContinueOnError="True" />
+		<Exec Command="copy /Y /D ..\Debug\Bin\*.* &quot;..\Debug\Binaries\DotNet 4.0&quot;"/>
 		<Exec Command="RmDir /S /Q ..\Debug\Bin" />
 		
 	    <Copy SourceFiles="@(RootFiles)" DestinationFolder="..\Debug" />		
    		<Copy SourceFiles="..\Readme.md" DestinationFiles="..\Debug\Readme.txt" />		
+   		<Copy SourceFiles="ReadmeBinaries.txt" DestinationFiles="..\Debug\Binaries\DotNet 4.0\Readme.txt" />
 
 	</Target>
 
