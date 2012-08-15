@@ -7,3 +7,5 @@ _ReSharper.FileHelpers
 /Help
 /Output
 /FileHelpers.Demos/*.user
+/*.ncrunchsolution
+/*.user
