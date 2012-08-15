@@ -123,7 +123,7 @@ namespace FileHelpers.Dynamic
             code.Append(classStr);
 
             CodeDomProvider prov = null;
-
+            
             switch (lang)
             {
                 case NetLanguage.CSharp:

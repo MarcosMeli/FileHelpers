@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using FileHelpers;
 using FileHelpers.Events;
+using FileHelpersSamples.Properties;
 
 namespace FileHelpersSamples
 {
@@ -236,7 +237,7 @@ private void ProgressChange(ProgressEventArgs e)
 			cmdRun.Enabled = false;
 
 			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersVerticalBar));
-			object[] records = engine.ReadFile(MainClass.GlobalTestFile);
+			object[] records = engine.ReadString(Resources.Customers);
 
 			Application.DoEvents();
 

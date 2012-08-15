@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections;
 using System.ComponentModel;
+using System.Globalization;
+using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.IO;
@@ -1608,7 +1610,6 @@ namespace FileHelpers.WizardApp
         #endregion
 
   
-
         /// <summary>
         /// Class information stored here.
         /// </summary>
@@ -1625,10 +1626,13 @@ namespace FileHelpers.WizardApp
             cboClassVisibility.DataSource = new NetVisibility[] { NetVisibility.Public, NetVisibility.Internal};
             cboRecordCondition.DataSource = Enum.GetValues(typeof(RecordCondition));
             cboLanguage.Items.Clear();
-            cboLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
+            cboLanguage.Items.Add(NetLanguage.CSharp);
+            cboLanguage.Items.Add(NetLanguage.VbNet);
+
             cboLanguage.SelectedIndex = 0;
             cboClassLanguage.Items.Clear();
-            cboClassLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
+            cboClassLanguage.Items.Add(NetLanguage.CSharp);
+            cboClassLanguage.Items.Add(NetLanguage.VbNet);
             cboClassLanguage.SelectedIndex = 0;
             mMoving = false;
             picCurrStep.BringToFront();
@@ -1940,24 +1944,30 @@ namespace FileHelpers.WizardApp
             switch (mWizardInfo.Language)
             {
                 case NetLanguage.CSharp:
-                    languagePrefix = "CS -";
+                    languagePrefix = "CS";
                     break;
 
                 case NetLanguage.VbNet:
-                    languagePrefix = "VB -";
+                    languagePrefix = "VB";
                     break;
 
                 default:
                     languagePrefix = "";
                     break;
             }
+            var templates = Templates.Templates.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
 
-            DirectoryInfo di = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Templates");
+            //DirectoryInfo di = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Templates");
 
             cboTemplate.Items.Clear();
-            foreach (var file in di.GetFiles(languagePrefix + "*.tpl"))
+            foreach (DictionaryEntry file in templates)
             {
-                cboTemplate.Items.Add(new TemplateInfo(file.FullName));
+                var key = file.Key.ToString();
+                if (!key.StartsWith(languagePrefix, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                var stringAsByte = (byte[]) file.Value;
+                var templateString=  Encoding.UTF8.GetString(stringAsByte);
+                cboTemplate.Items.Add(new TemplateInfo(key.Replace("___", " - ").Replace("_", " "), templateString));
             }
 
             mLoading = false;
@@ -2087,10 +2097,13 @@ namespace FileHelpers.WizardApp
                 return;
 
             cboLanguage.SelectedItem = cboClassLanguage.SelectedItem;
-            NetLanguageList.LanguageType selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
-            string output = mWizardInfo.WizardOutput(selected.Language);
+            NetLanguage selected = cboClassLanguage.SelectedItem is NetLanguage
+                               ? (NetLanguage) cboClassLanguage.SelectedItem
+                               : NetLanguage.CSharp;
 
-            ShowCode(output, selected.Language);
+            string output = mWizardInfo.WizardOutput(selected);
+
+            ShowCode(output, selected);
         }
 
         private string mLastCode;
@@ -2137,13 +2150,19 @@ namespace FileHelpers.WizardApp
             return
                 @"
 <style type=""text/css"">
+body
+{
+	margin-top: 0px;
+    padding-top: 0px;
+}
 pre {
 /*background-color: #EEF3F9;
 border: 1px dashed grey;*/
 font-family: Consolas,""Courier New"",Courier,Monospace !important;
 font-size: 12px !important;
 margin-top: 0;
-padding: 6px 6px 6px 6px;
+margin-bottom: 0;
+padding: 0px 6px 0px 6px;
 /*height: auto;
 overflow: auto;
 width: 100% !important;*/
@@ -2171,24 +2190,30 @@ width: 100% !important;*/
 
         private void ShowTemplate(TemplateInfo templ)
         {
+            var selected = cboLanguage.SelectedItem is NetLanguage
+                   ? (NetLanguage)cboLanguage.SelectedItem
+                   : NetLanguage.CSharp;
+
             if (templ == null)
-                ShowTemplate("", (cboLanguage.SelectedItem as NetLanguageList.LanguageType).Language);
+                ShowTemplate("", selected);
             else
             {
                 string res = templ.TemplateBody;
                 if( mWizardInfo.ClassBuilder != null )
                     res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
 
-                ShowTemplate(res, (cboLanguage.SelectedItem as NetLanguageList.LanguageType).Language);
+                ShowTemplate(res, selected);
             }
 
         }
 
         private void cboLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NetLanguageList.LanguageType selected = cboLanguage.SelectedItem as NetLanguageList.LanguageType;
+            NetLanguage selected = cboLanguage.SelectedItem is NetLanguage
+                               ? (NetLanguage)cboLanguage.SelectedItem
+                               : NetLanguage.CSharp;
 
-            mWizardInfo.Language = selected.Language;
+            mWizardInfo.Language = selected;
             cboClassLanguage.SelectedItem = selected;
 
             ReloadTemplates();

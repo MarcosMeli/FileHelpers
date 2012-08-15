@@ -11,7 +11,7 @@
     <ApplicationIcon>WizardApp.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>FileHelpersWizard</AssemblyName>
+    <AssemblyName>FileHelpers.Wizard</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -46,7 +46,7 @@
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\Debug\Wizard\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -72,7 +72,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\Release\Wizard\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -117,6 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <EmbeddedResource Include="Templates\Templates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Templates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Resources\disk.png" />
     <None Include="Resources\folder_table.png" />
     <None Include="Resources\page_copy.png" />
@@ -127,54 +131,22 @@
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />
-    <None Include="Templates\VB - Generics - Read and Check Errors.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Generics - Write Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Generics - Read Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Generics - Read And Check Errors.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Generics - Read Record by Record.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Read And Check Errors.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Read and Check Errors.tpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Write Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Generics - Write Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Read Record by Record.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Generics - Read Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Write Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Read Record by Record.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\VB - Read Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Generics - Read Record by Record.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Templates\CS - Read Whole File.tpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Templates\VB - Generics - Read and Check Errors.tpl" />
+    <None Include="Templates\VB - Generics - Write Whole File.tpl" />
+    <None Include="Templates\VB - Generics - Read Whole File.tpl" />
+    <None Include="Templates\CS - Generics - Read And Check Errors.tpl" />
+    <None Include="Templates\VB - Generics - Read Record by Record.tpl" />
+    <None Include="Templates\CS - Read And Check Errors.tpl" />
+    <None Include="Templates\VB - Read and Check Errors.tpl" />
+    <None Include="Templates\VB - Write Whole File.tpl" />
+    <None Include="Templates\CS - Generics - Write Whole File.tpl" />
+    <None Include="Templates\CS - Read Record by Record.tpl" />
+    <None Include="Templates\CS - Generics - Read Whole File.tpl" />
+    <None Include="Templates\CS - Write Whole File.tpl" />
+    <None Include="Templates\VB - Read Record by Record.tpl" />
+    <None Include="Templates\VB - Read Whole File.tpl" />
+    <None Include="Templates\CS - Generics - Read Record by Record.tpl" />
+    <None Include="Templates\CS - Read Whole File.tpl" />
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
@@ -279,7 +251,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="NetLanguageList.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -289,6 +260,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TemplateInfo.cs" />
+    <Compile Include="Templates\Templates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Templates.resx</DependentUpon>
+    </Compile>
     <Compile Include="VersionData.cs" />
     <Compile Include="WizardInfo.cs" />
     <EmbeddedResource Include="FieldDelimitedControl.resx">
@@ -353,7 +329,12 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll"
+del "$(TargetDir)*.dll"
+del "$(TargetDir)*.xml"
+del "$(TargetDir)*.pdb"
+del "$(TargetDir)$(TargetName).ToMerge.exe"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

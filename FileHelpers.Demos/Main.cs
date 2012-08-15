@@ -27,7 +27,7 @@ namespace FileHelpersSamples
         /// <summary>
         /// Customers test file
         /// </summary>
-		public const string GlobalTestFile = @"Customers.txt";
+		//public const string GlobalTestFile = @"Customers.txt";
         /// <summary>
         /// Database file for SQL connections
         /// </summary>

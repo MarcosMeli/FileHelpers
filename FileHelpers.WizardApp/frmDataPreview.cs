@@ -29,9 +29,10 @@ namespace FileHelpers.WizardApp
             ShowCode(data, language);
             //sdClassOut.Text = data;
             cboClassLanguage.Items.Clear();
-            cboClassLanguage.Items.AddRange(NetLanguageList.Languages.ToArray());
-            NetLanguageList.LanguageType selected = NetLanguageList.Languages.Find(x => x.Language == language);
-            cboClassLanguage.SelectedItem = selected;
+            cboClassLanguage.Items.Add(NetLanguage.CSharp);
+            cboClassLanguage.Items.Add(NetLanguage.VbNet);
+
+            cboClassLanguage.SelectedItem = language;
         }
 
         private string mLastCode;
@@ -93,12 +94,16 @@ width: 100% !important;*/
             {
                 string classStr = mLastCode;
 
-                var selected = cboClassLanguage.SelectedItem as NetLanguageList.LanguageType;
-                Type mType = ClassBuilder.ClassFromString(classStr, selected.Language);
+                var selected = cboClassLanguage.SelectedItem is NetLanguage
+                   ? (NetLanguage)cboClassLanguage.SelectedItem
+                   : NetLanguage.CSharp;
+
+
+                var type = ClassBuilder.ClassFromString(classStr, selected);
 
                 try
                 {
-                    FileHelperEngine engine = new FileHelperEngine(mType);
+                    FileHelperEngine engine = new FileHelperEngine(type);
                     DataTable dt = engine.ReadStringAsDT(txtInput.Text);
                     dgPreview.DataSource = dt;
                     lblResults.Text = dt.Rows.Count.ToString() + " Rows - " + dt.Columns.Count.ToString() + " Fields";

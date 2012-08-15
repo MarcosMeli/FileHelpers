@@ -34,10 +34,10 @@ namespace FileHelpers.WizardApp
         /// Set up template information from the file specified
         /// </summary>
         /// <param name="filename">Filename to read and store name of</param>
-        public TemplateInfo(string filename)
+        public TemplateInfo(string name, string template)
         {
-            this.TemplateName = Path.GetFileNameWithoutExtension(filename);
-            TemplateBody = File.ReadAllText(filename);
+            this.TemplateName = name;
+            TemplateBody = template;
         }
 
         /// <summary>

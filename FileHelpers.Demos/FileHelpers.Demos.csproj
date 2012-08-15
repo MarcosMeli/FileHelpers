@@ -10,7 +10,7 @@
     <ApplicationIcon>App.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>FileHelpers.Demos</AssemblyName>
+    <AssemblyName>FileHelpers.Examples.Old</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -45,7 +45,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\Debug\ExamplesOld\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -69,7 +69,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\Release\ExamplesOld\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -120,9 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
-    <Content Include="Customers.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Customers.txt" />
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
@@ -191,6 +189,11 @@
     </Compile>
     <Compile Include="OrdersVerticalBar.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SampleType.cs">
       <SubType>Code</SubType>
@@ -263,6 +266,10 @@
       <DependentUpon>frmTimingAdvanced.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -285,7 +292,12 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll" "$(TargetDir)Framework.Controls.ProgressBar.dll"
+del "$(TargetDir)*.dll"
+del "$(TargetDir)*.xml"
+del "$(TargetDir)*.pdb"
+del "$(TargetDir)$(TargetName).ToMerge.exe"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

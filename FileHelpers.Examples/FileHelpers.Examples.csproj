@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExamplesFramework</RootNamespace>
-    <AssemblyName>FileHelpersExamples</AssemblyName>
+    <AssemblyName>FileHelpers.Examples</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
@@ -40,7 +40,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\Examples\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\Examples\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -280,6 +280,15 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll" "$(TargetDir)Devoo.WinForms.dll"
+del "$(TargetDir)*.dll"
+del "$(TargetDir)*.xml"
+del "$(TargetDir)*.pdb"
+del "$(TargetDir)$(TargetName).ToMerge.exe"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

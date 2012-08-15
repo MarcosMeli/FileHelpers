@@ -6,3 +6,4 @@ _ReSharper.FileHelpers
 /*.suo
 /Help
 /Output
+/FileHelpers.Demos/*.user

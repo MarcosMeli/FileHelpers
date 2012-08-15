@@ -85,11 +85,7 @@
         <Copy SourceFiles="@(DocFile)" DestinationFolder="..\Release\Docs" ContinueOnError="True" />
 
 		<ItemGroup>
-			<DeleteXml Include="..\Release\Examples\FileHelpers.xml" />
-			<DeleteXml Include="..\Release\ExamplesOld\FileHelpers.xml" />
-			<DeleteXml Include="..\Release\ExamplesOld\FileHelpers.DataLink.xml" />
-			<DeleteXml Include="..\Release\ExamplesOld\IronPython\FileHelpers.xml" />
-			<DeleteXml Include="..\Release\Wizard\FileHelpers.xml" />
+			<DeleteXml Include="..\Release\ExamplesIronPython\FileHelpers.xml" />
 		</ItemGroup>
 		<Delete Files="@(DeleteXml)" />
 
@@ -109,22 +105,10 @@
         <Copy SourceFiles="@(DocFile)" DestinationFolder="..\Debug\Docs" ContinueOnError="True" />
         
 		<ItemGroup>
-			<DeleteXml Include="..\Debug\Examples\FileHelpers.xml" />
-			<DeleteXml Include="..\Debug\ExamplesOld\FileHelpers.xml" />
-			<DeleteXml Include="..\Debug\ExamplesOld\FileHelpers.DataLink.xml" />
-			<DeleteXml Include="..\Debug\ExamplesOld\IronPython\FileHelpers.xml" />
-			<DeleteXml Include="..\Debug\Wizard\FileHelpers.xml" />
-
-			<DeleteXml Include="..\Debug\Examples\FileHelpers.pdb" />
-			<DeleteXml Include="..\Debug\ExamplesOld\FileHelpers.pdb" />
-			<DeleteXml Include="..\Debug\ExamplesOld\FileHelpers.DataLink.pdb" />
-			<DeleteXml Include="..\Debug\ExamplesOld\FileHelpers.Demos.pdb" />
-			<DeleteXml Include="..\Debug\ExamplesOld\IronPython\Demo.IronPython.Hosting.pdb" />
-			<DeleteXml Include="..\Debug\ExamplesOld\IronPython\FileHelpers.pdb" />
-			<DeleteXml Include="..\Debug\Wizard\FileHelpers.pdb" />
-			<DeleteXml Include="..\Debug\Wizard\FileHelpersWizard.pdb" />
-			<DeleteXml Include="..\Debug\Examples\FileHelpersExamples.pdb" />
-			
+			<DeleteXml Include="..\Debug\ExamplesIronPython\FileHelpers.xml" />
+			<DeleteXml Include="..\Debug\ExamplesIronPython\Demo.IronPython.Hosting.pdb" />
+			<DeleteXml Include="..\Debug\ExamplesIronPython\FileHelpers.pdb" />
+		
 		</ItemGroup>
 		<Delete Files="@(DeleteXml)" />
 		
