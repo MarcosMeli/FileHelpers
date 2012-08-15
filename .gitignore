@@ -6,3 +6,5 @@ _ReSharper.FileHelpers
 /*.suo
 /Help
 /Output
+/*.ncrunchsolution
+/*.user
