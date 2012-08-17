@@ -13,7 +13,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> Name:Read After Event Handling
+        //-> Name:After Read Event Handling
         //-> Description:Show how to implement read after event
 
         //-> File:RunEngine.cs
@@ -23,7 +23,7 @@ namespace ExamplesFramework
         public override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
-            engine.AfterReadRecord += new AfterReadHandler<OrdersFixed>(AfterEvent);
+            engine.AfterReadRecord += AfterEvent;
 
             var result = engine.ReadFile("Input.txt");
 
@@ -32,6 +32,14 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
             }
         }
+
+        private void AfterEvent(EngineBase engine, AfterReadEventArgs<OrdersFixed> e)
+        {
+            //  we want to drop all records with no freight
+            if (e.Record.Freight == 0)
+                e.SkipThisRecord = true;
+        }
+
         //-> /File
 
         //-> File:Input.txt
@@ -63,15 +71,6 @@ namespace ExamplesFramework
 
             [FieldFixedLength(11)]
             public decimal Freight;
-        }
-        //-> /File
-
-        //-> File:EventHandler.cs
-        private void AfterEvent(EngineBase engine, AfterReadEventArgs<OrdersFixed> e)
-        {
-            //  we want to drop all records with no freight
-            if (e.Record.Freight == 0)
-                e.SkipThisRecord = true;
         }
         //-> /File
     }

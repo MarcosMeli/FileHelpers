@@ -10,10 +10,7 @@ namespace ExamplesFramework
         //-> Name:Enum Converter Example
         //-> Description:When you have a string field in your files that can be better handled if you map it to an enum.
 
-        //-> File:TheEnumerator.cs
-        /// <summary>
-        /// Different titles describing position in company
-        /// </summary>
+        //-> File:CustomerTitle.cs
         public enum CustomerTitle
         {
             Owner,
