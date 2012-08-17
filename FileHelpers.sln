@@ -3,11 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
-		FileHelpers.Teamcity.msbuild = FileHelpers.Teamcity.msbuild
-		FileHelpers.msbuild = FileHelpers.msbuild
 		License - BSD.txt = License - BSD.txt
 		License - LGPL.txt = License - LGPL.txt
-		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples - Demos", "Examples - Demos", "{747EBEDD-59D1-4F54-A2DE-DCA768339C9C}"
