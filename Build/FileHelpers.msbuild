@@ -78,7 +78,7 @@
 
 	</Target>
 
-	<Target Name="pack-all" DependsOnTargets="common;pack-debug;pack-release">
+	<Target Name="pack-all" DependsOnTargets="common;pack-release">
 	</Target>
 
 	<Target Name="pack-release" DependsOnTargets="release">
