@@ -62,13 +62,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
+    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
 move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.Merged.dll"
 del "$(TargetDir)NPOI.Merged.dll"
 del "$(TargetDir)$(TargetName).ToMerge.dll"
 del "$(TargetDir)$(TargetName).ToMerge.pdb"
-</PostBuildEvent>
+:exit</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

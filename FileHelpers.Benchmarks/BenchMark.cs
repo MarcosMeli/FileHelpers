@@ -15,12 +15,13 @@ namespace FileHelpers.Benchmarks
         /// <summary>
         /// Performs a series of tests to show time differences
         /// </summary>
-        /// <param name="args">Command line arguments</param>
 		[STAThread]
-		static void Main(string[] args)
+		static void Main()
 		{
 		    string file = Path.GetTempFileName();
-            var records = 200000;
+            var records = 1000000;
+
+            Console.WriteLine("Generating file with " + records +" records");
             CreateSampleFixedString(file, records);
             var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
             //TestFixedLengthRecord(engine, file);
@@ -31,27 +32,25 @@ namespace FileHelpers.Benchmarks
             //engine.AfterWriteRecord += new FileHelpers.Events.AfterWriteHandler<FixedSampleRecord>(engine_AfterWriteRecord);
             //engine.BeforeWriteRecord += new FileHelpers.Events.BeforeWriteHandler<FixedSampleRecord>(engine_BeforeWriteRecord);
 
+            // Read one time to load it on memoty
+
+            Console.WriteLine("File generated, precaching...");
+
+            TestFixedLengthRecord(engine, file);
+
             System.Threading.Thread.Sleep(2000);
+
+            Console.WriteLine("Start Test...");
             long start = DateTime.Now.Ticks;
-
-            if (args.Length > 0)
-            {
-                Console.WriteLine("Press enter to start testing");
-                Console.ReadLine();
-            }
-
-		    TestFixedLengthRecord(engine, file);
+            TestFixedLengthRecord(engine, file);
 
             var ts = new TimeSpan(DateTime.Now.Ticks - start);
 
-            Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 2));
             Console.WriteLine("Records: " + records);
-
-            if (args.Length > 0)
-            {
-                Console.WriteLine("Press enter to close");
-                Console.ReadLine();
-            }
+            Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 3) + " seconds");
+            Console.WriteLine(Math.Round(ts.TotalMilliseconds / records, 3) + " ms per record");
+            
+            Console.ReadKey();
 		    
 		}
 
@@ -84,8 +83,8 @@ namespace FileHelpers.Benchmarks
         /// </summary>
         /// <param name="engine">Engine to parse record</param>
         /// <param name="file">File to process</param>
-	    private static void TestFixedLengthRecord(FileHelperAsyncEngine<FixedSampleRecord> engine, string file)
-	    {
+	    private static void TestFixedLengthRecord<T>(FileHelperAsyncEngine<T> engine, string file) where T : class
+        {
 			using (engine.BeginReadFile(file))
 			{
                 while (engine.ReadNext() != null)

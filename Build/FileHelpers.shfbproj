@@ -18,8 +18,8 @@
     <OutputPath>..\Help\</OutputPath>
     <HtmlHelpName>FileHelpers</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\Release\Binaries\4.0\FileHelpers.dll" />
-<DocumentationSource sourceFile="..\Release\Binaries\4.0\FileHelpers.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.dll" />
+<DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.xml" /></DocumentationSources>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <HelpTitle>FileHelpers 3.0 Documentation</HelpTitle>
     <NamespaceSummaries>

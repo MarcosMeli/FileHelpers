@@ -282,13 +282,14 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
+    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll" "$(TargetDir)Devoo.WinForms.dll"
 del "$(TargetDir)*.dll"
 del "$(TargetDir)*.xml"
 del "$(TargetDir)*.pdb"
 del "$(TargetDir)$(TargetName).ToMerge.exe"
-</PostBuildEvent>
+:exit</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
