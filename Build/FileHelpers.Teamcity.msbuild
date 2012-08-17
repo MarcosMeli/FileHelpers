@@ -14,7 +14,7 @@
   <Target Name="continuous-build" DependsOnTargets="debug" >
   </Target>
 
-  <Target Name="continuous-pack" DependsOnTargets="pack-debug;pack-release" >
+  <Target Name="continuous-pack" DependsOnTargets="pack-release" >
   </Target>
 
 </Project>
