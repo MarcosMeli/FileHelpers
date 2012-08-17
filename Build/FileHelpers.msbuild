@@ -97,7 +97,7 @@
 			<ReleaseFiles2 Include="..\Release\**\*.*" />
 		</ItemGroup>
 		
-		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="..\Release" ZipFileName="..\Output\FileHelpers_$(CurrentVersion)_ReleaseBuild.zip" />
+		<Zip Files="@(ReleaseFiles2)" WorkingDirectory="..\Release" ZipFileName="..\Output\FileHelpers_$(CurrentVersion)_Build.zip" />
 	</Target>	
 
 	<Target Name="pack-debug" DependsOnTargets="debug">
