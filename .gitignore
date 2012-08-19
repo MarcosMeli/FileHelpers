@@ -9,3 +9,5 @@ _ReSharper.FileHelpers
 /FileHelpers.Demos/*.user
 /*.ncrunchsolution
 /*.user
+/FileHelpers.Examples/*.user
+/FileHelpers/*.user
