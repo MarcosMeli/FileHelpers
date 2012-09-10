@@ -122,6 +122,11 @@
             Indicates the source xls file to be used as template when write data.
             </summary>
         </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.ExcelReadStopBehavior">
+            <summary>
+            Indicates the behavior to use when determining when to stop reading records from the source xls file.
+            </summary>
+        </member>
         <member name="T:FileHelpers.DataLink.ExcelUpdateLinksMode">
             <summary>
             Specifies the way links in the file are updated.
@@ -135,6 +140,17 @@
         </member>
         <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.AlwaysUpdate">
             <summary>Always update links for this workbook on opening</summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelReadStopBehavior">
+            <summary>
+            Specifies how to determine when to stop reading rows from Excel
+            </summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyFirstCell">
+            <summary>First cell of the row being empty means we should stop reading</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyRow">
+            <summary>All cells in the row being empty means we should stop reading</summary>
         </member>
     </members>
 </doc>
