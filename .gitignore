@@ -11,3 +11,4 @@ _ReSharper.FileHelpers
 /*.user
 /FileHelpers.Examples/*.user
 /FileHelpers/*.user
+/_ReSharper.FileHelpers.OnlyLib
