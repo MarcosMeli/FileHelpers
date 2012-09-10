@@ -13,7 +13,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> Name:Write Before Event Handling
+        //-> Name:Before Write Event Handling
         //-> Description:Show how to implement write before event
 
         //-> File:RunEngine.cs
@@ -27,12 +27,10 @@ namespace ExamplesFramework
             var result = engine.ReadFile("Input.txt");
 
             //  add our filter logic.
-            engine.BeforeWriteRecord += new BeforeWriteHandler<OrdersFixed>(BeforeWriteEvent);
+            engine.BeforeWriteRecord += BeforeWriteEvent;
             engine.WriteFile("output.txt", result);
         }
-        //-> /File
 
-        //-> File:EventHandler.cs
         private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixed> e)
         {
             //  We only want clients with large frieght values

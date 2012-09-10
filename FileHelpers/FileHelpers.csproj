@@ -102,6 +102,9 @@
     <Compile Include="Attributes\ConditionalRecordAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />
     <Compile Include="Attributes\FieldOrderAttribute.cs" />
@@ -112,9 +115,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\FieldArrayLength.cs" />
-    <Compile Include="Attributes\FieldAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Attributes\FieldConverterAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
