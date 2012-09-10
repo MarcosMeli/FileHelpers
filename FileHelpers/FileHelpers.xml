@@ -35,6 +35,16 @@
             <summary> The selector (match string) for the condition. </summary>
             <remarks>The string will have a condition, included, excluded start with etc</remarks>
         </member>
+        <member name="T:FileHelpers.FieldAttribute">
+            <summary>Base class of <see cref="T:FileHelpers.FieldFixedLengthAttribute"/> and <see cref="T:FileHelpers.FieldDelimiterAttribute"/></summary>
+            <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more information and examples of each one.</remarks>
+            <seealso href="attributes.html">Attributes list</seealso>
+            <seealso href="quick_start.html">Quick start guide</seealso>
+            <seealso href="examples.html">Examples of use</seealso>
+        </member>
+        <member name="M:FileHelpers.FieldAttribute.#ctor">
+            <summary>Abstract class, see the derived classes.</summary>
+        </member>
         <member name="T:FileHelpers.FieldValueDiscardedAttribute">
             <summary>Discards the values for the target field.
             Note: If the field <b>is not</b> on the source file you must use <see cref="T:FileHelpers.FieldNotInFileAttribute"/></summary>
@@ -53,16 +63,6 @@
             <seealso href="attributes.html">Attributes List</seealso>
             <seealso href="quick_start.html">Quick Start Guide</seealso>
             <seealso href="examples.html">Examples of Use</seealso>
-        </member>
-        <member name="T:FileHelpers.FieldAttribute">
-            <summary>Base class of <see cref="T:FileHelpers.FieldFixedLengthAttribute"/> and <see cref="T:FileHelpers.FieldDelimiterAttribute"/></summary>
-            <remarks>See the <a href="attributes.html">Complete Attributes List</a> for more information and examples of each one.</remarks>
-            <seealso href="attributes.html">Attributes list</seealso>
-            <seealso href="quick_start.html">Quick start guide</seealso>
-            <seealso href="examples.html">Examples of use</seealso>
-        </member>
-        <member name="M:FileHelpers.FieldAttribute.#ctor">
-            <summary>Abstract class, see the derived classes.</summary>
         </member>
         <member name="T:FileHelpers.FieldOrderAttribute">
             <summary>

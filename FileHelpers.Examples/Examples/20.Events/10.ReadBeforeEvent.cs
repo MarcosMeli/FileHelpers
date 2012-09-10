@@ -13,7 +13,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> Name:Read Before Event Handling
+        //-> Name:Before Read Event Handling
         //-> Description:Show how to implement read before event
 
         //-> File:RunEngine.cs
@@ -23,7 +23,7 @@ namespace ExamplesFramework
         public override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
-            engine.BeforeReadRecord += new BeforeReadHandler<OrdersFixed>(BeforeEvent);
+            engine.BeforeReadRecord += BeforeEvent;
             var result = engine.ReadFile("report.inp");
 
             foreach (var value in result)
@@ -31,6 +31,19 @@ namespace ExamplesFramework
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
             }
         }
+
+        private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
+        {
+            if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
+                e.SkipThisRecord = true;
+
+            //  Sometimes changing the record line can be useful, for example to correct for
+            //  a bad data layout.  Here is an example of this, commented out for this example
+
+            //if (e.RecordLine.StartsWith(" "))
+            //   e.RecordLine = "Be careful!";
+        }
+
         //-> /File
 
         //-> File:report.inp
@@ -75,20 +88,6 @@ namespace ExamplesFramework
         }
         //-> /File
 
-        //-> File:EventHandler.cs
-        private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
-        {
-            if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
-                e.SkipThisRecord = true;
-
-            //  Sometimes changing the record line can be useful, for example to correct for
-            //  a bad data layout.  Here is an example of this, commented out for this example
-
-            //if (e.RecordLine.StartsWith(" "))
-            //   e.RecordLine = "Be careful!";
-        }
-
-        //-> /File
 
 
     }

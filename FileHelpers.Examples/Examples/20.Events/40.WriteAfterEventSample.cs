@@ -13,7 +13,7 @@ namespace ExamplesFramework
         : ExampleBase
     {
 
-        //-> Name:Write After Event Handling
+        //-> Name:After Write Event Handling
         //-> Description:Show how to implement write after event
 
         //-> File:RunEngine.cs
@@ -27,7 +27,7 @@ namespace ExamplesFramework
             var result = engine.ReadFile("Input.txt");
 
             //  add our filter logic.
-            engine.AfterWriteRecord += new AfterWriteHandler<OrdersFixed>(AfterWriteEvent);
+            engine.AfterWriteRecord += AfterWriteEvent;
             engine.WriteFile("output.txt", result);
         }
 

@@ -85,6 +85,9 @@
     <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecord.cs" />
     <Compile Include="Examples\15.Attributes Record Class\31.FixedLengthRecordLastVariable.cs" />
     <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
+    <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
     <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />
     <Compile Include="Examples\20.Events\30.WriteBeforeEventSample.cs" />
@@ -95,7 +98,6 @@
     <Compile Include="Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
     <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
-    <Compile Include="Examples\18.Converters\50.EnumConverter.cs" />
     <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
     <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
