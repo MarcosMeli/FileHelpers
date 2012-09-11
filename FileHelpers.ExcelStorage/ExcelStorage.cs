@@ -36,7 +36,7 @@ namespace FileHelpers.DataLink
 			// Temporary
 
 //			if (RecordHasDateFields())
-//				throw new NotImplementedException("For now the ExcelStorage don´t work with DateTime fields, sorry for the problems.");
+//				throw new NotImplementedException("For now the ExcelStorage donï¿½t work with DateTime fields, sorry for the problems.");
 		}
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -77,7 +77,7 @@ namespace FileHelpers.DataLink
 		//private RecordInfo mRecordInfo;
 
 		private string mTemplateFile = string.Empty;
-		private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyFirstCell;
+		private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyRow;
 
 		#endregion
 
@@ -567,12 +567,12 @@ namespace FileHelpers.DataLink
     /// </summary>
     public enum ExcelUpdateLinksMode
 	{
+        /// <summary>Never update links for this workbook on opening</summary>
+        NeverUpdate = 0,
         /// <summary>User specifies how links will be updated</summary>
         UserPrompted = 1,
-        /// <summary>Never update links for this workbook on opening</summary>
-        NeverUpdate = 2,
         /// <summary>Always update links for this workbook on opening</summary>
-        AlwaysUpdate = 3
+        AlwaysUpdate = 2
 	}
 
 	/// <summary>
@@ -583,6 +583,6 @@ namespace FileHelpers.DataLink
 		/// <summary>First cell of the row being empty means we should stop reading</summary>
 		StopOnEmptyFirstCell = 1,
 		/// <summary>All cells in the row being empty means we should stop reading</summary>
-		StopOnEmptyRow = 2,
+		StopOnEmptyRow = 0,
 	}
 }
