@@ -88,7 +88,7 @@ namespace FileHelpers.Tests.Tests.DataLink
 
             return (ExcelXlsType[])provider.ExtractRecords();
         }
-
+        
         [DelimitedRecord("|")]
         public sealed class ExcelXlsType
         {

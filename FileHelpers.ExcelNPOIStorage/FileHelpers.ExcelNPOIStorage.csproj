@@ -31,6 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NPOI.Merged, Version=1.2.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,7 +71,7 @@
     <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
 move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
-"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.Merged.dll"
+"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.Merged.dll" /keyfile:$(SolutionDir)\FileHelpers\FileHelpers.snk
 del "$(TargetDir)NPOI.Merged.dll"
 del "$(TargetDir)$(TargetName).ToMerge.dll"
 del "$(TargetDir)$(TargetName).ToMerge.pdb"

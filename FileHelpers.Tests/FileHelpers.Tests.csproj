@@ -306,6 +306,7 @@
     <Compile Include="Tests\Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\DataLink\ExcelStorageNPOITests.cs" />
     <Compile Include="Tests\DataLink\DataLinkTests.cs">
       <SubType>Code</SubType>
     </Compile>
