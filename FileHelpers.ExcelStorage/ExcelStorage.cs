@@ -8,24 +8,13 @@ using Microsoft.Office.Interop.Excel;
 
 namespace FileHelpers.DataLink
 {
-	/// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files.</para>
+	/// <summary><para>This class implements <see cref="DataStorage"/> for Microsoft Excel Files.</para>
 	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
 	/// <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
 	/// </summary>
 	/// <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
-	public sealed class ExcelStorage : DataStorage
+    public sealed class ExcelStorage : ExcelStorageBase
 	{
-
-        private ExcelUpdateLinksMode mUpdateLinks = ExcelUpdateLinksMode.NeverUpdate;
-
-        /// <summary>
-        /// Specifies the way links in the file are updated. By default the library never update the links
-        /// </summary>
-        public ExcelUpdateLinksMode UpdateLinks
-        {
-            get { return mUpdateLinks; }
-            set { mUpdateLinks = value; }
-        }
 
 		#region "  Constructors  "
 
@@ -43,10 +32,8 @@ namespace FileHelpers.DataLink
 		/// <param name="recordType">The type of records.</param>
 		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
-		public ExcelStorage(Type recordType, int startRow, int startCol) : this(recordType)
+		public ExcelStorage(Type recordType, int startRow, int startCol) : base(recordType, startRow, startCol)
 		{
-			mStartColumn = startCol;
-			mStartRow = startRow;
 		}
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -54,112 +41,28 @@ namespace FileHelpers.DataLink
 		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
 		/// <param name="fileName">The file path to work with.</param>
-		public ExcelStorage(Type recordType, string fileName, int startRow, int startCol) : this(recordType, startRow, startCol)
+        public ExcelStorage(Type recordType, string fileName, int startRow, int startCol)
+            : base(recordType, fileName, startRow, startCol)
 		{
-			mFileName = fileName;
 		}
 
 		#endregion
 
 		#region "  Private Fields  "
 
-		private string mSheetName = String.Empty;
-		private string mFileName = String.Empty;
-
-		private int mStartRow = 1;
-		private int mStartColumn = 1;
-
-		private int mHeaderRows = 0;
-
 		private ApplicationClass mApp;
 		private Workbook mBook;
 		private Worksheet mSheet;
 		//private RecordInfo mRecordInfo;
 
-		private string mTemplateFile = string.Empty;
-		private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyRow;
-        private int mExcelReadStopAfterEmptyRows = 1;
 
 		#endregion
 
 		#region "  Public Properties  "
 
 
-		/// <summary>The Start Row where is the data. Starting at 1.</summary>
-		public int StartRow
-		{
-			get { return mStartRow; }
-			set { mStartRow = value; }
-		}
-
-		/// <summary>The Start Column where is the data. Starting at 1.</summary>
-		public int StartColumn
-		{
-			get { return mStartColumn; }
-			set { mStartColumn = value; }
-		}
-
-		/// <summary>The numbers of header rows.</summary>
-		public int HeaderRows
-		{
-			get { return mHeaderRows; }
-			set { mHeaderRows = value; }
-		}
-
-		/// <summary>The Excel File Name.</summary>
-		public string FileName
-		{
-			get { return mFileName; }
-			set { mFileName = value; }
-		}
-
-		/// <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
-		public string SheetName
-		{
-			get { return mSheetName; }
-			set { mSheetName = value; }
-		}
-
-		private bool mOverrideFile = true;
-
-		/// <summary>Indicates what the Storage does if the file exist.</summary>
-		public bool OverrideFile
-		{
-			get { return mOverrideFile; }
-			set { mOverrideFile = value; }
-		}
-
-		/// <summary>
-		/// Indicates the source xls file to be used as template when write data.
-		/// </summary>
-		public string TemplateFile
-		{
-			get { return mTemplateFile; }
-			set { mTemplateFile = value; }
-		}
-
-		/// <summary>
-		/// Indicates the behavior to use when determining when to stop reading records from the source xls file.
-		/// </summary>
-		public ExcelReadStopBehavior ExcelReadStopBehavior
-		{
-			get { return mExcelReadStopBehavior; }
-			set { mExcelReadStopBehavior = value; }
-		}
-
-        /// <summary>
-        /// Defines how many empty rows indicate when to stop reading records from the source xls file.
-        /// Only applies when ExcelReadStopBehavior == ExcelReadStopBehavior.StopOnEmptyRow.
-        /// Default behavior is stop after entountering at least 1 empty row.
-        /// </summary>
-        public int ExcelReadStopAfterEmptyRows
-        {
-            get { return mExcelReadStopAfterEmptyRows; }
-            set { mExcelReadStopAfterEmptyRows = value; }
-        }
 
 		#endregion
-
 
 
 		#region "  InitExcel  "
@@ -240,20 +143,20 @@ namespace FileHelpers.DataLink
 			if (info.Exists == false)
 				throw new FileNotFoundException("Excel File '" + filename + "' not found.", filename);
 
-			this.mBook = this.mApp.Workbooks.Open(info.FullName, (int) mUpdateLinks, 
+            this.mBook = this.mApp.Workbooks.Open(info.FullName, (int) UpdateLinks, 
                 mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
-			if (this.mSheetName == null || mSheetName == string.Empty)
+			if (SheetName == null || SheetName == string.Empty)
 				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
 			else
 			{
 				try
 				{
-					this.mSheet = (Worksheet) this.mBook.Sheets[mSheetName];
+					this.mSheet = (Worksheet) this.mBook.Sheets[SheetName];
 				}
 				catch
 				{
-					throw new ExcelBadUsageException("The sheet '" + mSheetName + "' was not found in the workbook.");
+					throw new ExcelBadUsageException("The sheet '" + SheetName + "' was not found in the workbook.");
 				}
 			}
 
@@ -295,19 +198,14 @@ namespace FileHelpers.DataLink
 
 		#endregion
 
-		#region "  CellIsEmpty  "
-
-		private bool CellIsEmpty(object row, object col)
-		{
-			var cellAsString = CellAsString(row, col);
-			return cellAsString == String.Empty;
-		}
-
-		#endregion
-
 		#region "  CellAsString  "
 
-		private string CellAsString(object row, object col)
+        /// <summary>
+        /// Determine if a given cell is empty.
+        /// </summary>
+        /// <param name="row">Row index (1-based)</param>
+        /// <param name="col">Column index (1-based)</param>
+        protected override string CellAsString(object row, object col)
 		{
 			if (this.mSheet == null)
 			{
@@ -409,29 +307,29 @@ namespace FileHelpers.DataLink
 
 		            this.InitExcel();
 
-		            if (mOverrideFile && File.Exists(mFileName))
-		                File.Delete(mFileName);
+		            if (OverrideFile && File.Exists(FileName))
+		                File.Delete(FileName);
 
-		            if (mTemplateFile != string.Empty)
+		            if (TemplateFile != string.Empty)
 		            {
-		                if (File.Exists(mTemplateFile) == false)
-		                    throw new ExcelBadUsageException("Template file not found: '" + mTemplateFile + "'");
+		                if (File.Exists(TemplateFile) == false)
+		                    throw new ExcelBadUsageException("Template file not found: '" + TemplateFile + "'");
 
-		                if (mTemplateFile != mFileName)
-		                    File.Copy(mTemplateFile, mFileName, true);
+		                if (TemplateFile != FileName)
+		                    File.Copy(TemplateFile, FileName, true);
 		            }
 
-		            this.OpenOrCreateWorkbook(this.mFileName);
+		            this.OpenOrCreateWorkbook(FileName);
 
 		            for (int i = 0; i < records.Length; i++)
 		            {
 		                recordNumber++;
                         OnProgress(new ProgressEventArgs(recordNumber, records.Length));
 
-		                WriteRowValues(RecordToValues(records[i]), mStartRow + i, mStartColumn);
+		                WriteRowValues(RecordToValues(records[i]), StartRow + i, StartColumn);
 		            }
 
-		            SaveWorkbook(this.mFileName);
+		            SaveWorkbook(FileName);
 		    }
 		    catch
 		    {
@@ -446,81 +344,13 @@ namespace FileHelpers.DataLink
 
 	    #endregion
 
-		#region "  ShouldStopOnRow  "
-
-		private bool ShouldStopOnRow(int cRow)
-		{
-			switch (this.ExcelReadStopBehavior)
-			{
-				case ExcelReadStopBehavior.StopOnEmptyFirstCell:
-					return CellIsEmpty(cRow, mStartColumn);
-
-                case ExcelReadStopBehavior.StopOnEmptyRow:
-                    {
-                        // work backwards from most far-away row (counting ahead by value of property ExcelReadStopAfterEmptyRows)
-                        for (
-                            int fwdRowIndex = cRow + (ExcelReadStopAfterEmptyRows - 1);
-                            fwdRowIndex >= cRow;
-                            fwdRowIndex--)
-                        {
-                            // as soon as we encounter a non-empty row then we can bail-out of loop and return ShouldStopOnRow=false
-                            if (!RowIsEmpty(fwdRowIndex)) return false;
-                        }
-                        // we never found a non-empty row so return ShouldStopOnRow=true
-                        return true;
-                    }
-
-				default:
-					throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
-			}
-		}
-
-        private bool ShouldReadRowData(int cRow)
-        {
-            switch (this.ExcelReadStopBehavior)
-            {
-                case ExcelReadStopBehavior.StopOnEmptyFirstCell:
-                    {
-                        // we already checked in ShouldStopOnRow()
-                        return true;
-                    }
-
-                case ExcelReadStopBehavior.StopOnEmptyRow:
-                    {
-                        // don't attempt to read empty rows
-                        return !RowIsEmpty(cRow);
-                    }
-
-                default:
-                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
-            }
-        }
-
-		#endregion
-
-		#region "  RowIsEmpty  "
-
-		private bool RowIsEmpty(int cRow)
-		{
-			for (int column = mStartColumn; column < mStartColumn + RecordFieldCount; column++)
-			{
-				if (CellIsEmpty(cRow, column) == false)
-				{
-					return false;
-				}
-			}
-			return true;
-		}
-
-		#endregion
-
 		#region "  ExtractRecords  "
 
 		/// <summary>Returns the records extracted from Excel file.</summary>
 		/// <returns>The extracted records.</returns>
 		public override object[] ExtractRecords()
 		{
-			if (this.mFileName == String.Empty)
+			if (FileName == String.Empty)
 				throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
 
@@ -530,7 +360,7 @@ namespace FileHelpers.DataLink
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             try
             {
-                int cRow = mStartRow;
+                int cRow = StartRow;
 
                 int recordNumber = 0;
                 OnProgress(new ProgressEventArgs(0, -1));
@@ -538,9 +368,8 @@ namespace FileHelpers.DataLink
                 object[] colValues = new object[RecordFieldCount];
 
                     this.InitExcel();
-                    this.OpenWorkbook(this.mFileName);
+                    this.OpenWorkbook(this.FileName);
 
-                    //while (CellAsString(cRow, mStartColumn) != String.Empty)
                     while (ShouldStopOnRow(cRow) == false)
                     {
                         try
@@ -550,7 +379,7 @@ namespace FileHelpers.DataLink
                                 recordNumber++;
                                 OnProgress(new ProgressEventArgs(recordNumber, -1));
 
-                                colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
+                                colValues = RowValues(cRow, StartColumn, RecordFieldCount);
 
                                 object record = ValuesToRecord(colValues);
                                 res.Add(record);
@@ -609,29 +438,5 @@ namespace FileHelpers.DataLink
 			
 			return res;
 		}
-	}
-
-    /// <summary>
-    /// Specifies the way links in the file are updated.
-    /// </summary>
-    public enum ExcelUpdateLinksMode
-	{
-        /// <summary>Never update links for this workbook on opening</summary>
-        NeverUpdate = 0,
-        /// <summary>User specifies how links will be updated</summary>
-        UserPrompted = 1,
-        /// <summary>Always update links for this workbook on opening</summary>
-        AlwaysUpdate = 2
-	}
-
-	/// <summary>
-	/// Specifies how to determine when to stop reading rows from Excel
-	/// </summary>
-	public enum ExcelReadStopBehavior
-	{
-		/// <summary>First cell of the row being empty means we should stop reading</summary>
-		StopOnEmptyFirstCell = 1,
-		/// <summary>All cells in the row being empty means we should stop reading</summary>
-		StopOnEmptyRow = 0,
 	}
 }

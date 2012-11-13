@@ -63,7 +63,7 @@
             </summary>
         </member>
         <member name="T:FileHelpers.DataLink.ExcelStorage">
-            <summary><para>This class implements the <see cref="T:FileHelpers.DataLink.DataStorage"/> for Microsoft Excel Files.</para>
+            <summary><para>This class implements <see cref="T:FileHelpers.DataLink.DataStorage"/> for Microsoft Excel Files.</para>
             <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
             <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
             </summary>
@@ -86,6 +86,13 @@
             <param name="startCol">The column of the first data cell. Begining in 1.</param>
             <param name="fileName">The file path to work with.</param>
         </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorage.CellAsString(System.Object,System.Object)">
+            <summary>
+            Determine if a given cell is empty.
+            </summary>
+            <param name="row">Row index (1-based)</param>
+            <param name="col">Column index (1-based)</param>
+        </member>
         <member name="M:FileHelpers.DataLink.ExcelStorage.InsertRecords(System.Object[])">
             <summary>Insert all the records in the specified Excel File.</summary>
             <param name="records">The records to insert.</param>
@@ -93,71 +100,6 @@
         <member name="M:FileHelpers.DataLink.ExcelStorage.ExtractRecords">
             <summary>Returns the records extracted from Excel file.</summary>
             <returns>The extracted records.</returns>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.UpdateLinks">
-            <summary>
-            Specifies the way links in the file are updated. By default the library never update the links
-            </summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.StartRow">
-            <summary>The Start Row where is the data. Starting at 1.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.StartColumn">
-            <summary>The Start Column where is the data. Starting at 1.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.HeaderRows">
-            <summary>The numbers of header rows.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.FileName">
-            <summary>The Excel File Name.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.SheetName">
-            <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.OverrideFile">
-            <summary>Indicates what the Storage does if the file exist.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.TemplateFile">
-            <summary>
-            Indicates the source xls file to be used as template when write data.
-            </summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.ExcelReadStopBehavior">
-            <summary>
-            Indicates the behavior to use when determining when to stop reading records from the source xls file.
-            </summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.ExcelStorage.ExcelReadStopAfterEmptyRows">
-            <summary>
-            Defines how many empty rows indicate when to stop reading records from the source xls file.
-            Only applies when ExcelReadStopBehavior == ExcelReadStopBehavior.StopOnEmptyRow.
-            Default behavior is stop after entountering at least 1 empty row.
-            </summary>
-        </member>
-        <member name="T:FileHelpers.DataLink.ExcelUpdateLinksMode">
-            <summary>
-            Specifies the way links in the file are updated.
-            </summary>
-        </member>
-        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.NeverUpdate">
-            <summary>Never update links for this workbook on opening</summary>
-        </member>
-        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.UserPrompted">
-            <summary>User specifies how links will be updated</summary>
-        </member>
-        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.AlwaysUpdate">
-            <summary>Always update links for this workbook on opening</summary>
-        </member>
-        <member name="T:FileHelpers.DataLink.ExcelReadStopBehavior">
-            <summary>
-            Specifies how to determine when to stop reading rows from Excel
-            </summary>
-        </member>
-        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyFirstCell">
-            <summary>First cell of the row being empty means we should stop reading</summary>
-        </member>
-        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyRow">
-            <summary>All cells in the row being empty means we should stop reading</summary>
         </member>
     </members>
 </doc>
