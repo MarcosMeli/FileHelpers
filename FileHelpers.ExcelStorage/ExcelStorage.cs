@@ -78,6 +78,7 @@ namespace FileHelpers.DataLink
 
 		private string mTemplateFile = string.Empty;
 		private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyRow;
+        private int mExcelReadStopAfterEmptyRows = 1;
 
 		#endregion
 
@@ -145,6 +146,17 @@ namespace FileHelpers.DataLink
 			get { return mExcelReadStopBehavior; }
 			set { mExcelReadStopBehavior = value; }
 		}
+
+        /// <summary>
+        /// Defines how many empty rows indicate when to stop reading records from the source xls file.
+        /// Only applies when ExcelReadStopBehavior == ExcelReadStopBehavior.StopOnEmptyRow.
+        /// Default behavior is stop after entountering at least 1 empty row.
+        /// </summary>
+        public int ExcelReadStopAfterEmptyRows
+        {
+            get { return mExcelReadStopAfterEmptyRows; }
+            set { mExcelReadStopAfterEmptyRows = value; }
+        }
 
 		#endregion
 
@@ -443,13 +455,46 @@ namespace FileHelpers.DataLink
 				case ExcelReadStopBehavior.StopOnEmptyFirstCell:
 					return CellIsEmpty(cRow, mStartColumn);
 
-				case ExcelReadStopBehavior.StopOnEmptyRow:
-					return RowIsEmpty(cRow);
+                case ExcelReadStopBehavior.StopOnEmptyRow:
+                    {
+                        // work backwards from most far-away row (counting ahead by value of property ExcelReadStopAfterEmptyRows)
+                        for (
+                            int fwdRowIndex = cRow + (ExcelReadStopAfterEmptyRows - 1);
+                            fwdRowIndex >= cRow;
+                            fwdRowIndex--)
+                        {
+                            // as soon as we encounter a non-empty row then we can bail-out of loop and return ShouldStopOnRow=false
+                            if (!RowIsEmpty(fwdRowIndex)) return false;
+                        }
+                        // we never found a non-empty row so return ShouldStopOnRow=true
+                        return true;
+                    }
 
 				default:
 					throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
 			}
 		}
+
+        private bool ShouldReadRowData(int cRow)
+        {
+            switch (this.ExcelReadStopBehavior)
+            {
+                case ExcelReadStopBehavior.StopOnEmptyFirstCell:
+                    {
+                        // we already checked in ShouldStopOnRow()
+                        return true;
+                    }
+
+                case ExcelReadStopBehavior.StopOnEmptyRow:
+                    {
+                        // don't attempt to read empty rows
+                        return !RowIsEmpty(cRow);
+                    }
+
+                default:
+                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
+            }
+        }
 
 		#endregion
 
@@ -495,17 +540,21 @@ namespace FileHelpers.DataLink
                     this.InitExcel();
                     this.OpenWorkbook(this.mFileName);
 
-                    while (CellAsString(cRow, mStartColumn) != String.Empty)
+                    //while (CellAsString(cRow, mStartColumn) != String.Empty)
+                    while (ShouldStopOnRow(cRow) == false)
                     {
                         try
                         {
-                            recordNumber++;
-                            OnProgress(new ProgressEventArgs(recordNumber, -1));
+                            if (ShouldReadRowData(cRow))
+                            {
+                                recordNumber++;
+                                OnProgress(new ProgressEventArgs(recordNumber, -1));
 
-                            colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
+                                colValues = RowValues(cRow, mStartColumn, RecordFieldCount);
 
-                            object record = ValuesToRecord(colValues);
-                            res.Add(record);
+                                object record = ValuesToRecord(colValues);
+                                res.Add(record);
+                            }
                         }
                         catch (Exception ex)
                         {
