@@ -277,28 +277,38 @@ namespace FileHelpers.ExcelNPOIStorage {
 				InitExcel();
 				OpenWorkbook( FileName );
 
-				while( !String.IsNullOrEmpty( CellAsString( mSheet.GetRow( cRow ), StartColumn ) ) ) {
-					try {
-						recordNumber++;
-						OnProgress( new ProgressEventArgs( recordNumber, -1 ) );
+				while (ShouldStopOnRow(cRow) == false)
+                    {
+                        try
+                        {
+                            if (ShouldReadRowData(cRow))
+                            {
+                                recordNumber++;
+                                OnProgress(new ProgressEventArgs(recordNumber, -1));
 
-						colValues = RowValues( cRow, StartColumn, RecordFieldCount );
+                                colValues = RowValues(cRow, StartColumn, RecordFieldCount);
 
-						object record = ValuesToRecord( colValues );
-						res.Add( record );
-					} catch( Exception ex ) {
-						switch( mErrorManager.ErrorMode ) {
-						case ErrorMode.ThrowException:
-							throw;
-						case ErrorMode.IgnoreAndContinue:
-							break;
-						case ErrorMode.SaveAndContinue:
-							AddError( cRow, ex, ColumnsToValues( colValues ) );
-							break;
-						}
-					} finally {
-						cRow++;
-					}
+                                object record = ValuesToRecord(colValues);
+                                res.Add(record);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            switch (mErrorManager.ErrorMode)
+                            {
+                                case ErrorMode.ThrowException:
+                                    throw;
+                                case ErrorMode.IgnoreAndContinue:
+                                    break;
+                                case ErrorMode.SaveAndContinue:
+                                    AddError(cRow, ex, ColumnsToValues(colValues));
+                                    break;
+                            }
+                        }
+                        finally
+                        {
+                            cRow++;
+                        }
 				}
 			} catch {
 				throw;

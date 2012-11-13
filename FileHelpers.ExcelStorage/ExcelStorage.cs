@@ -370,7 +370,6 @@ namespace FileHelpers.DataLink
                     this.InitExcel();
                     this.OpenWorkbook(this.FileName);
 
-                    //while (CellAsString(cRow, mStartColumn) != String.Empty)
                     while (ShouldStopOnRow(cRow) == false)
                     {
                         try
