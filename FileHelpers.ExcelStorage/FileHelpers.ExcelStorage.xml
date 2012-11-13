@@ -127,16 +127,23 @@
             Indicates the behavior to use when determining when to stop reading records from the source xls file.
             </summary>
         </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorage.ExcelReadStopAfterEmptyRows">
+            <summary>
+            Defines how many empty rows indicate when to stop reading records from the source xls file.
+            Only applies when ExcelReadStopBehavior == ExcelReadStopBehavior.StopOnEmptyRow.
+            Default behavior is stop after entountering at least 1 empty row.
+            </summary>
+        </member>
         <member name="T:FileHelpers.DataLink.ExcelUpdateLinksMode">
             <summary>
             Specifies the way links in the file are updated.
             </summary>
         </member>
-        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.UserPrompted">
-            <summary>User specifies how links will be updated</summary>
-        </member>
         <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.NeverUpdate">
             <summary>Never update links for this workbook on opening</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.UserPrompted">
+            <summary>User specifies how links will be updated</summary>
         </member>
         <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.AlwaysUpdate">
             <summary>Always update links for this workbook on opening</summary>
