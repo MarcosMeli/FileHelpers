@@ -147,7 +147,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 			if( mSheet == null )
 				return null;
 
-			ICell cell = CellUtil.GetCell( (IRow) row, col );
+			ICell cell = CellUtil.GetCell( row, col );
 			return cell.StringCellValue;
 		}
 
