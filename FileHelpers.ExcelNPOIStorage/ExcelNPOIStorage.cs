@@ -21,18 +21,9 @@ namespace FileHelpers.ExcelNPOIStorage {
 	/// <para><b>To use this class you need to reference the FileHelpers.ExcelNPOIStorage.dll file.</b></para>
 	/// </summary>
 	/// <remmarks><b>This class is contained in the FileHelpers.ExcelNPOIStorage.dll and need the NPOI.dll to work correctly.</b></remmarks>
-	public sealed class ExcelNPOIStorage : DataStorage {
+    public sealed class ExcelNPOIStorage : ExcelStorageBase {
 
-		private ExcelUpdateLinksMode mUpdateLinks = ExcelUpdateLinksMode.NeverUpdate;
 		//private readonly Missing mv = Missing.Value;
-
-		/// <summary>
-		/// Specifies the way links in the file are updated. By default the library never update the links
-		/// </summary>
-		public ExcelUpdateLinksMode UpdateLinks {
-			get { return mUpdateLinks; }
-			set { mUpdateLinks = value; }
-		}
 
 		#region "  Constructors  "
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -45,10 +36,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
 		public ExcelNPOIStorage( Type recordType, int startRow, int startCol )
-			: this( recordType ) {
-			mStartColumn = startCol;
-			mStartRow = startRow;
-		}
+			: base( recordType, startRow, startCol ) { }
 
 		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
 		/// <param name="recordType">The type of records.</param>
@@ -56,73 +44,19 @@ namespace FileHelpers.ExcelNPOIStorage {
 		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
 		/// <param name="fileName">The file path to work with.</param>
 		public ExcelNPOIStorage( Type recordType, string fileName, int startRow, int startCol )
-			: this( recordType, startRow, startCol ) {
-			mFileName = fileName;
-		}
+			: base( recordType, fileName, startRow, startCol ) { }
 		#endregion
 
 		#region "  Private Fields  "
-		private string mSheetName = String.Empty;
-		private string mFileName = String.Empty;
-
-		private int mStartRow = 1;
-		private int mStartColumn = 1;
-
-		private int mHeaderRows = 0;
-
+		
 		private HSSFWorkbook mWorkbook;
 		private HSSFSheet mSheet;
 		//private RecordInfo mRecordInfo;
 
-		private string mTemplateFile = string.Empty;
-		#endregion
+        #endregion
 
 		#region "  Public Properties  "
-		/// <summary>The Start Row where is the data. Starting at 1.</summary>
-		public int StartRow {
-			get { return mStartRow; }
-			set { mStartRow = value; }
-		}
-
-		/// <summary>The Start Column where is the data. Starting at 1.</summary>
-		public int StartColumn {
-			get { return mStartColumn; }
-			set { mStartColumn = value; }
-		}
-
-		/// <summary>The numbers of header rows.</summary>
-		public int HeaderRows {
-			get { return mHeaderRows; }
-			set { mHeaderRows = value; }
-		}
-
-		/// <summary>The Excel File Name.</summary>
-		public string FileName {
-			get { return mFileName; }
-			set { mFileName = value; }
-		}
-
-		/// <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
-		public string SheetName {
-			get { return mSheetName; }
-			set { mSheetName = value; }
-		}
-
-		private bool mOverrideFile = true;
-
-		/// <summary>Indicates what the Storage does if the file exist.</summary>
-		public bool OverrideFile {
-			get { return mOverrideFile; }
-			set { mOverrideFile = value; }
-		}
-
-		/// <summary>
-		/// Indicates the source xls file to be used as template when write data.
-		/// </summary>
-		public string TemplateFile {
-			get { return mTemplateFile; }
-			set { mTemplateFile = value; }
-		}
+		
 		#endregion
 
 		#region "  InitExcel  "
@@ -157,15 +91,15 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 				mWorkbook = new HSSFWorkbook( file );
 
-				if( String.IsNullOrEmpty( mSheetName ) )
+				if( String.IsNullOrEmpty( SheetName ) )
 					mSheet = (HSSFSheet)mWorkbook.GetSheetAt( 0 );
 				else {
 					try {
-						mSheet = (HSSFSheet)mWorkbook.GetSheet( mSheetName );
+						mSheet = (HSSFSheet)mWorkbook.GetSheet( SheetName );
 						if( mSheet == null )
-							throw new ExcelBadUsageException( string.Concat( "The sheet '", mSheetName, "' was not found in the workbook." ) );
+							throw new ExcelBadUsageException( string.Concat( "The sheet '", SheetName, "' was not found in the workbook." ) );
 					} catch {
-						throw new ExcelBadUsageException( string.Concat( "The sheet '", mSheetName, "' was not found in the workbook." ) );
+						throw new ExcelBadUsageException( string.Concat( "The sheet '", SheetName, "' was not found in the workbook." ) );
 					}
 				}
 			}
@@ -182,7 +116,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 		private void CreateWorkbook() {
 			mWorkbook = new HSSFWorkbook();
-			mSheet = (HSSFSheet)mWorkbook.CreateSheet( mSheetName );
+			mSheet = (HSSFSheet)mWorkbook.CreateSheet( SheetName );
 		}
 		#endregion
 
@@ -191,25 +125,32 @@ namespace FileHelpers.ExcelNPOIStorage {
 			if( mWorkbook == null )
 				return;
 
-			using( var fileData = new FileStream( mFileName, FileMode.Create ) ) {
+			using( var fileData = new FileStream( FileName, FileMode.Create ) ) {
 				mWorkbook.Write( fileData );
 			}
 		}
 
 		private void SaveWorkbook( string filename ) {
-			mFileName = filename;
+			FileName = filename;
 			SaveWorkbook();
 		}
 		#endregion
 
 		#region "  CellAsString  "
+
+        protected override string CellAsString(object row, object col)
+        {
+            return this.CellAsString(mSheet.GetRow((int)row), (int)col);
+        }
+
 		private string CellAsString( IRow row, int col ) {
 			if( mSheet == null )
 				return null;
 
-			ICell cell = CellUtil.GetCell( row, col );
+			ICell cell = CellUtil.GetCell( (IRow) row, col );
 			return cell.StringCellValue;
 		}
+
 		#endregion
 
 		#region "  ColLeter  "
@@ -282,27 +223,27 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 				InitExcel();
 
-				if( mOverrideFile && File.Exists( mFileName ) )
-					File.Delete( mFileName );
+				if( OverrideFile && File.Exists( FileName ) )
+					File.Delete( FileName );
 
-				if( !String.IsNullOrEmpty( mTemplateFile ) ) {
-					if( File.Exists( mTemplateFile ) == false )
-						throw new ExcelBadUsageException( string.Concat( "Template file not found: '", mTemplateFile, "'" ) );
+				if( !String.IsNullOrEmpty( TemplateFile ) ) {
+					if( File.Exists( TemplateFile ) == false )
+						throw new ExcelBadUsageException( string.Concat( "Template file not found: '", TemplateFile, "'" ) );
 
-					if( String.Compare( mTemplateFile, mFileName, true ) != 0 )
-						File.Copy( mTemplateFile, mFileName, true );
+					if( String.Compare( TemplateFile, FileName, true ) != 0 )
+						File.Copy( TemplateFile, FileName, true );
 				}
 
-				OpenOrCreateWorkbook( mFileName );
+				OpenOrCreateWorkbook( FileName );
 
 				for( int i = 0; i < records.Length; i++ ) {
 					recordNumber++;
 					OnProgress( new ProgressEventArgs( recordNumber, records.Length ) );
 
-					WriteRowValues( RecordToValues( records[i] ), mStartRow + i, mStartColumn );
+					WriteRowValues( RecordToValues( records[i] ), StartRow + i, StartColumn );
 				}
 
-				SaveWorkbook( mFileName );
+				SaveWorkbook( FileName );
 			} catch {
 				throw;
 			} finally {
@@ -318,7 +259,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 		/// <summary>Returns the records extracted from Excel file.</summary>
 		/// <returns>The extracted records.</returns>
 		public override object[] ExtractRecords() {
-			if( String.IsNullOrEmpty( mFileName ) )
+			if( String.IsNullOrEmpty( FileName ) )
 				throw new ExcelBadUsageException( "You need to specify the WorkBookFile of the ExcelDataLink." );
 
 			ArrayList res = new ArrayList();
@@ -326,7 +267,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 			CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
 			Thread.CurrentThread.CurrentCulture = new CultureInfo( "en-US" );
 			try {
-				int cRow = mStartRow;
+				int cRow = StartRow;
 
 				int recordNumber = 0;
 				OnProgress( new ProgressEventArgs( recordNumber, -1 ) );
@@ -334,14 +275,14 @@ namespace FileHelpers.ExcelNPOIStorage {
 				object[] colValues = new object[RecordFieldCount];
 
 				InitExcel();
-				OpenWorkbook( mFileName );
+				OpenWorkbook( FileName );
 
-				while( !String.IsNullOrEmpty( CellAsString( mSheet.GetRow( cRow ), mStartColumn ) ) ) {
+				while( !String.IsNullOrEmpty( CellAsString( mSheet.GetRow( cRow ), StartColumn ) ) ) {
 					try {
 						recordNumber++;
 						OnProgress( new ProgressEventArgs( recordNumber, -1 ) );
 
-						colValues = RowValues( cRow, mStartColumn, RecordFieldCount );
+						colValues = RowValues( cRow, StartColumn, RecordFieldCount );
 
 						object record = ValuesToRecord( colValues );
 						res.Add( record );
