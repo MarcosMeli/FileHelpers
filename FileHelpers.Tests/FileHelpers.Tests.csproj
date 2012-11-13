@@ -123,6 +123,10 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj">
+      <Project>{beb0d823-6a7e-47fd-a275-1b3314f8412d}</Project>
+      <Name>FileHelpers.ExcelNPOIStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj">
       <Project>{b3f2b976-73d5-49c7-beaa-bf62e233132a}</Project>
       <Name>FileHelpers.ExcelStorage</Name>

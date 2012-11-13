@@ -10,12 +10,11 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.DataLink
 {
 	[TestFixture]
-    [Ignore]
+    [Category("Advanced")]
 	public class DataLinks
 	{
 		FileDataLink mLink;
-
-
+        
 		#region "  FillRecordOrders  "
 
 		

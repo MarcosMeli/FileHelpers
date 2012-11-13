@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Tests.DataLink
 {
     [TestFixture]
-    [Ignore]
+    [Category("Excel")]
     public class ExcelStorageTests
     {
         [Test]

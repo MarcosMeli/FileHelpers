@@ -12,8 +12,6 @@ namespace FileHelpers.Tests
 		[TestFixture]
 		public class EncodingAdvanced
 		{
-			private const string MSWSDataUrl_Format = "http://data.msws.net/temp_precip/temp_precip{0}.txt";//http://data.msws.net/temp_precip/temp_precip7-20-06.txt
-			private const string MSWSDataURL_DateFormat = "M-d-yy";
 
 			[Test]
 			public void GetMSWSReportsFromFile_20060709_28Records()
@@ -31,80 +29,6 @@ namespace FileHelpers.Tests
 				Assert.AreEqual(res.Length, 32);
 			}
              
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsData_20060709_28Records()
-			{
-				var date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
-					byte[] data;
-				using (var webClient = new WebClient())
-				{
-					//webClient.Encoding = System.Text.Encoding.ASCII;                
-					data = webClient.DownloadData(url);
-					var encoding = new ASCIIEncoding();
-					string dataString = encoding.GetString(data);
-					res = engine.ReadString(dataString);
-				}
-				
-				Assert.AreEqual(res.Length, 32);
-			}
-
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsString_20060709_28Records()
-			{
-				var date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
-
-					using (var webClient = new WebClient())
-					{
-						webClient.DownloadFile(url, "tempotemp.txt");
-						res = (MSWSDailyReportRecord[]) engine.ReadFile("tempotemp.txt");
-					}
-
-				Assert.AreEqual(res.Length, 32);
-			}
-
-			[Test]
-            [Ignore]
-			public void GetMSWSReportsFromURL_AsStream_20060709_28Records()
-			{
-				var date = new DateTime(2006, 7, 20);
-				string url = string.Format(MSWSDataUrl_Format, date.ToString(MSWSDataURL_DateFormat));
-				MSWSDailyReportRecord[] res = null;
-				var engine = new FileHelperEngine<MSWSDailyReportRecord>();
-
-					// make request 
-					HttpWebRequest webReq = null;
-				HttpWebResponse webResp = null;
-				StreamReader reader = null;
-				try
-				{
-					webReq = (HttpWebRequest)HttpWebRequest.Create(url);
-					webResp = (HttpWebResponse)webReq.GetResponse();
-					Encoding encode = Encoding.GetEncoding("utf-8");
-					reader = new StreamReader(webResp.GetResponseStream(), encode);
-					res = engine.ReadStream(reader);
-				}
-				catch 
-				{
-					throw;
-				}
-				finally
-				{
-					if (webReq != null) webReq = null;
-					if (webResp != null) webResp.Close();
-					if (reader != null) reader.Close();
-				}
-                        
-				Assert.AreEqual(res.Length, 32);
-			}
-
 		}
 
 	[FixedLengthRecord()]
