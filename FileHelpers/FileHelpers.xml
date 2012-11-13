@@ -1735,6 +1735,207 @@
             <param name="user">databsae user name</param>
             <returns>SQL server connection string</returns>
         </member>
+        <member name="T:FileHelpers.DataLink.ExcelStorageBase">
+            <summary><para>This class is a common base class for both FileHelpers.DataLink.ExcelStorage (FileHelpers.ExcelStorage.dll) and FileHelpers.DataLink.ExcelNPOIStorage (FileHelpers.ExcelNPOIStorage.dll).</para>
+            </summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.DataStorage">
+            <summary>
+            Base class for all the Storage classes of the library or the custom
+            Storage classes.
+            </summary>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.OnProgress(FileHelpers.Events.ProgressEventArgs)">
+            <summary>
+            Raises the Progress Event
+            </summary>
+            <param name="e">The Event Args</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.ExtractRecords">
+            <summary>
+            Returns the records from the DataSource (DB, Excel, etc)
+            </summary>
+            <returns>The extracted records.</returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.ExtractRecordsAsDT">
+            <summary>
+            Returns the records from the DataSource (DB, Excel, etc)
+            </summary>
+            <returns>The extracted records as a DataTable.</returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.InsertRecords(System.Object[])">
+            <summary>
+            Inserts the records into the DataSource (DB, Excel, etc)
+            </summary>
+            <param name="records">Records to insert.</param>
+        </member>
+        <member name="F:FileHelpers.DataLink.DataStorage.mErrorManager">
+            <summary>
+            The Object responsible for managing the errors.
+            </summary>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.AddError(System.Int32,System.Exception,System.String)">
+            <summary>
+            Add an error to the ErrorCollection.
+            </summary>
+            <param name="lineNumber">The line when the error occurs.</param>
+            <param name="ex">The exception thrown, can be null.</param>
+            <param name="recordLine">The record values</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.#ctor(System.Type)">
+            <summary>
+            Creates an instance DataStorage for Type
+            </summary>
+            <param name="recordClass">Type of the record object</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.ValuesToRecord(System.Object[])">
+            <summary>
+            Returns a record created from an Array of values
+            </summary>
+            <param name="values">The values used to created the record.</param>
+            <returns>The record created from 'values'</returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.DataStorage.RecordToValues(System.Object)">
+            <summary>
+            Returns an array of values based on a record.
+            </summary>
+            <param name="record">The source record.</param>
+            <returns>An array with the values of each field</returns>
+        </member>
+        <member name="E:FileHelpers.DataLink.DataStorage.Progress">
+            <summary>Called to notify progress.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.DataStorage.RecordType">
+            <summary>
+            Returns the class that represent the records in the file.
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.DataStorage.ErrorManager">
+            <summary>
+            The Object responsible for managing the errors.
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.DataStorage.RecordFieldCount">
+            <summary>
+            The number of fields in the record class.
+            </summary>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.#ctor(System.Type)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.#ctor(System.Type,System.Int32,System.Int32)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+            <param name="startRow">The row of the first data cell. Begining in 1.</param>
+            <param name="startCol">The column of the first data cell. Begining in 1.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.#ctor(System.Type,System.String,System.Int32,System.Int32)">
+            <summary>Create a new ExcelStorage to work with the specified type</summary>
+            <param name="recordType">The type of records.</param>
+            <param name="startRow">The row of the first data cell. Begining in 1.</param>
+            <param name="startCol">The column of the first data cell. Begining in 1.</param>
+            <param name="fileName">The file path to work with.</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.CellIsEmpty(System.Object,System.Object)">
+            <summary>
+            Indicates whether the given cell should be considered empty.
+            </summary>
+            <param name="row"></param>
+            <param name="col"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.CellAsString(System.Object,System.Object)">
+            <summary>
+            Determine if a given cell is empty.
+            </summary>
+            <param name="row">Row index (1-based)</param>
+            <param name="col">Column index (1-based)</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.RowIsEmpty(System.Int32)">
+            <summary>
+            Indicates whether the given row should be considered empty.
+            </summary>
+            <param name="cRow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.ShouldStopOnRow(System.Int32)">
+            <summary>
+            Indicates whether the storage reader should stop reading the worksheet at the given row index.
+            </summary>
+            <param name="cRow">The current row index (1-based)</param>
+        </member>
+        <member name="M:FileHelpers.DataLink.ExcelStorageBase.ShouldReadRowData(System.Int32)">
+            <summary>
+            Indicates whether the storage reader should data from the given row index.
+            </summary>
+            <param name="cRow">The current row index (1-based)</param>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.UpdateLinks">
+            <summary>
+            Specifies the way links in the file are updated. By default the library never update the links
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.StartRow">
+            <summary>The Start Row where is the data. Starting at 1.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.StartColumn">
+            <summary>The Start Column where is the data. Starting at 1.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.HeaderRows">
+            <summary>The numbers of header rows.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.FileName">
+            <summary>The Excel File Name.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.SheetName">
+            <summary>The Excel Sheet Name, if empty means the current worksheet in the file.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.OverrideFile">
+            <summary>Indicates what the Storage does if the file exist.</summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.TemplateFile">
+            <summary>
+            Indicates the source xls file to be used as template when write data.
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.ExcelReadStopBehavior">
+            <summary>
+            Indicates the behavior to use when determining when to stop reading records from the source xls file.
+            </summary>
+        </member>
+        <member name="P:FileHelpers.DataLink.ExcelStorageBase.ExcelReadStopAfterEmptyRows">
+            <summary>
+            Defines how many empty rows indicate when to stop reading records from the source xls file.
+            Only applies when ExcelReadStopBehavior == ExcelReadStopBehavior.StopOnEmptyRow.
+            Default behavior is stop after entountering at least 1 empty row.
+            </summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelUpdateLinksMode">
+            <summary>
+            Specifies the way links in the file are updated.
+            </summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.NeverUpdate">
+            <summary>Never update links for this workbook on opening</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.UserPrompted">
+            <summary>User specifies how links will be updated</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelUpdateLinksMode.AlwaysUpdate">
+            <summary>Always update links for this workbook on opening</summary>
+        </member>
+        <member name="T:FileHelpers.DataLink.ExcelReadStopBehavior">
+            <summary>
+            Specifies how to determine when to stop reading rows from Excel
+            </summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyFirstCell">
+            <summary>First cell of the row being empty means we should stop reading</summary>
+        </member>
+        <member name="F:FileHelpers.DataLink.ExcelReadStopBehavior.StopOnEmptyRow">
+            <summary>All cells in the row being empty means we should stop reading</summary>
+        </member>
         <member name="T:FileHelpers.DataLink.FileDataLink">
             <summary>
             This class has the responsibility to enable the two directional
@@ -1885,87 +2086,6 @@
             <summary>
             This class implements the <see cref="T:FileHelpers.DataLink.DataStorage"/> and is the base
             class for Data Base storages.
-            </summary>
-        </member>
-        <member name="T:FileHelpers.DataLink.DataStorage">
-            <summary>
-            Base class for all the Storage classes of the library or the custom
-            Storage classes.
-            </summary>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.OnProgress(FileHelpers.Events.ProgressEventArgs)">
-            <summary>
-            Raises the Progress Event
-            </summary>
-            <param name="e">The Event Args</param>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.ExtractRecords">
-            <summary>
-            Returns the records from the DataSource (DB, Excel, etc)
-            </summary>
-            <returns>The extracted records.</returns>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.ExtractRecordsAsDT">
-            <summary>
-            Returns the records from the DataSource (DB, Excel, etc)
-            </summary>
-            <returns>The extracted records as a DataTable.</returns>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.InsertRecords(System.Object[])">
-            <summary>
-            Inserts the records into the DataSource (DB, Excel, etc)
-            </summary>
-            <param name="records">Records to insert.</param>
-        </member>
-        <member name="F:FileHelpers.DataLink.DataStorage.mErrorManager">
-            <summary>
-            The Object responsible for managing the errors.
-            </summary>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.AddError(System.Int32,System.Exception,System.String)">
-            <summary>
-            Add an error to the ErrorCollection.
-            </summary>
-            <param name="lineNumber">The line when the error occurs.</param>
-            <param name="ex">The exception thrown, can be null.</param>
-            <param name="recordLine">The record values</param>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.#ctor(System.Type)">
-            <summary>
-            Creates an instance DataStorage for Type
-            </summary>
-            <param name="recordClass">Type of the record object</param>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.ValuesToRecord(System.Object[])">
-            <summary>
-            Returns a record created from an Array of values
-            </summary>
-            <param name="values">The values used to created the record.</param>
-            <returns>The record created from 'values'</returns>
-        </member>
-        <member name="M:FileHelpers.DataLink.DataStorage.RecordToValues(System.Object)">
-            <summary>
-            Returns an array of values based on a record.
-            </summary>
-            <param name="record">The source record.</param>
-            <returns>An array with the values of each field</returns>
-        </member>
-        <member name="E:FileHelpers.DataLink.DataStorage.Progress">
-            <summary>Called to notify progress.</summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.DataStorage.RecordType">
-            <summary>
-            Returns the class that represent the records in the file.
-            </summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.DataStorage.ErrorManager">
-            <summary>
-            The Object responsible for managing the errors.
-            </summary>
-        </member>
-        <member name="P:FileHelpers.DataLink.DataStorage.RecordFieldCount">
-            <summary>
-            The number of fields in the record class.
             </summary>
         </member>
         <member name="M:FileHelpers.DataLink.DatabaseStorage.#ctor(System.Type)">

@@ -182,6 +182,7 @@
     <Compile Include="Core\RecordOperations.cs" />
     <Compile Include="Core\ReflectionHelper.cs" />
     <Compile Include="DataLink\DataBaseHelper.cs" />
+    <Compile Include="DataLink\ExcelStorageBase.cs" />
     <Compile Include="DataLink\FileDataLink.cs" />
     <Compile Include="DataLink\GenericDataLink.cs" />
     <Compile Include="DataLink\Storage\AccessStorage.cs" />
