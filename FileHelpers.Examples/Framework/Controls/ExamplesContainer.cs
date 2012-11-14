@@ -12,9 +12,9 @@ namespace ExamplesFramework.Framework.Controls
             InitializeComponent();
         }
 
-        public void LoadDemos(IEnumerable<ExampleCode> demos)
+        public void LoadExamples(IEnumerable<ExampleCode> examples)
         {
-            tvExamples.LoadDemos(demos);
+            tvExamples.LoadExamples(examples);
         }
 
         public void ShowCustomHtml(string html)

@@ -1,0 +1,289 @@
+﻿<#@ template language="C#" hostSpecific="true" #>
+<#@ output extension=".autogen.cs" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Data.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="ExamplesGenerator.Config.tt" #>
+
+<#
+    // Configuration of the Examples Generation:
+
+    this.ExamplesFolder = ExamplesFolder ?? "Examples";
+    this.ExamplesNamespace = ExamplesNamespace ?? "Examples";
+
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using ExamplesFramework;
+
+
+namespace <#= ExamplesNamespace #>
+{
+    public class ExamplesFactory
+    {
+	    static ExampleFile file;
+
+        public static List<ExampleCode> GetExamples()
+        {
+		    var examples = new List<ExampleCode>();
+            ExampleCode example;
+<#
+	Process(ExamplesFolder);
+#>
+		
+           return examples;
+        }
+    }
+}
+
+
+<#+
+
+	public string ExamplesFolder { get; set; }
+	public string ExamplesNamespace { get; set; }
+	
+public void Process(string folder)
+{
+	IServiceProvider hostServiceProvider = (IServiceProvider)Host;
+	
+	EnvDTE.DTE dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+	
+	/* Retrieve the project in which this template resides. */
+	EnvDTE.ProjectItem containingProjectItem = dte.Solution.FindProjectItem(Host.TemplateFile);
+	Project project = containingProjectItem.ContainingProject;
+	
+	ProcessProjectItem((ProjectItem)project.ProjectItems.Item(folder), null);
+	
+}
+
+public void ProcessProjectItem(ProjectItem projectItem, ProjectItem parent)
+{
+
+	if (projectItem.ProjectItems.Count == 0)
+	{
+		
+	    if (Path.GetExtension(projectItem.get_FileNames(0).ToLower()) != ".cs")
+	        return;
+		
+		switch(Path.GetFileName(projectItem.get_FileNames(0).ToLower()))
+		{ 
+			case "examplesgenerator.autogen.cs":
+			case "filetestbase.cs":
+					break;
+				default:
+					//if (projectItem.get_FileNames(0).ToLower().EndsWith(".txt"))
+						RenderItemCore(projectItem, parent);
+					break;
+		}
+	}
+	else
+	{
+		foreach (ProjectItem childItem in projectItem.ProjectItems)
+		{
+			ProcessProjectItem(childItem, projectItem);
+		}
+	}
+
+}
+
+private void RenderItemCore(ProjectItem item, ProjectItem parent)
+{
+	var filename = item.get_FileNames(0);
+	
+	var res = ParseExample(File.ReadAllText(filename), parent.Name, filename);
+	
+	WriteLine(res);
+	
+	var name = Path.GetFileNameWithoutExtension(filename);
+    //var filepath = ReplaceIgnoringCase(filename, Path.GetDirectoryName(Host.TemplateFile) + @"\", "");
+        
+        }
+
+		private void WriteLine()
+		{
+			WriteLine(string.Empty);
+		}
+		
+	
+       public static string ParseExample(string exampleText, string category, string solutionfilename)
+        {
+			if (category.Contains("."))
+				category = category.Substring(category.IndexOf(".") + 1);
+
+            var res = new StringBuilder();
+            var regexOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace;
+
+            var name = "Example";
+			// Grabs text after "Example.Name" as 'name'
+            var match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Name\s*:(?<name>.*)", regexOptions);
+            if (match.Success)
+            {
+                name = match.Groups["name"].Value.Trim();
+            }
+
+			// Grabs class name that implements ExampleBase class as 'classname'
+			var className = "";
+            match = Regex.Match(exampleText, @"public\s+class\s+(?<classname>.*)\s*:\s*ExampleBase", regexOptions | RegexOptions.Singleline);
+            if (match.Success)
+            {
+                className = match.Groups["classname"].Value.Trim();
+            }
+
+            var description = "";
+
+			//  Grabs text after Example.Description as 'description'
+            match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Description\s*:(?<description>.*)", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+                description = match.Groups["description"].Value.Trim();
+            }
+
+			// line is: example = new ExampleCode(new class(), "description", "category", @"filename");
+            res.AppendLine(@"example = new ExampleCode(new " + className + @"(), """ + name + @""", """ + category + @""", @""" + solutionfilename + @""");");
+            if (!string.IsNullOrEmpty(description))
+            {
+                res.AppendLine(@"example.Description = @""" + description + @""";");
+            }
+
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?Runnable\s*:(?<runnable>.*)", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+				res.AppendLine(@"example.Runnable = " + match.Groups["runnable"].Value.Trim() + ";");
+            }
+
+			match = Regex.Match(exampleText, @"\/\/\-\>\s*(Example\.)?AutoRun\s*:(?<autorun>.*)", regexOptions | RegexOptions.Multiline);
+            if (match.Success)
+            {
+				res.AppendLine(@"example.AutoRun = " + match.Groups["autorun"].Value.Trim() + ";");
+            }
+						
+            res.AppendLine(@"examples.Add(example);");
+
+
+			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
+            var filesMatch = Regex.Matches(exampleText,
+                                           @"\/\/\-\>\s*(Example\.)?File\s*\:\s*(?<filename>.*?)\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\/(Example\.)?File\s*",
+                                           regexOptions | RegexOptions.Singleline);
+
+            // regex above may return multiple sample files.  
+            foreach (Match fileMatch in filesMatch)
+            {
+			    String filename = fileMatch.Groups["filename"].Value;
+                res.AppendFormat(@"file = new ExampleFile(""{0}"");", filename);
+				filename = filename.ToLower();
+				res.AppendLine();
+                res.AppendFormat(@"file.Contents = @""{0}"";", GetFileCode(fileMatch.Groups["filecode"].Value));
+				res.AppendLine();
+				String Ext = Path.GetExtension(filename);
+				if( filename.StartsWith("input"))
+					Ext = ".inp";
+				if( filename.StartsWith("output"))
+					Ext = ".out";
+
+				switch(Ext.Substring(1))
+				{
+					case "cs":
+						res.AppendLine(@"file.Language = NetLanguage.CSharp;");
+						break;
+					case "vb":
+						res.AppendLine(@"file.Language = NetLanguage.VBNET;");
+						break;
+					case "inp":
+						res.AppendLine(@"file.Status = ExampleFile.FileType.InputFile;");
+						break;
+					case "out":
+						res.AppendLine(@"file.Status = ExampleFile.FileType.OutputFile;");
+						break;
+					case "html":
+						res.AppendLine(@"file.Status = ExampleFile.FileType.HtmlFile;");
+						break;
+					default:
+						res.AppendLine("// unknown extension "+ Ext);
+						break; // defaults to CS
+				}
+                res.AppendLine(@"example.Files.Add(file);");
+            }
+
+
+			//   Returns anything between "Example.File" tags as filename and then filecode which is text content of file.
+            var inputFilesMatch = Regex.Matches(exampleText,
+                                           @"\/\/\-\>\s*Input\.File\s*\:(?<filename>.*?)\s*\r\n(?<filecode>.*?)\s*\/\/\-\>\s*\/Input\.File\s*",
+                                           regexOptions | RegexOptions.Singleline);
+
+            // regex above may return multiple sample files.  
+            foreach (Match fileMatch in inputFilesMatch)
+            {
+                res.AppendLine(@"file = new ExampleFile(""" + fileMatch.Groups["filename"].Value + @""");");
+                res.AppendLine(@"file.Contents = @""" + GetFileCode(fileMatch.Groups["filecode"].Value) + @""";");
+                res.AppendLine(@"example.Files.Add(file);");
+            }
+
+
+            //example.Files.Add(new ExampleFile());
+            //example.LastFile.Contents = "Bla bla .bla";
+            //res.Add(example);
+
+            return res.ToString();
+        }
+
+		static Regex LeadingAster = new Regex( @"^\s*\* ", RegexOptions.Compiled| RegexOptions.Multiline );
+
+        public static string GetFileCode(string contents)
+        {
+		    if( String.IsNullOrEmpty( contents ))
+			    return string.Empty;
+		    //  the leading aster is for C comments with an asterisk in front of every line,
+			//  they are automatically added by editor so automatically removed
+            contents = LeadingAster.Replace(
+			// double quotes are doubled so that @" "" becomes a single quote.
+			    contents.Replace("\"", "\"\"")
+			//  strip old style C comments from code
+                .Replace("*/", "")
+                .Replace("/*", "")
+				.Replace("this.Console","Console"), "");
+
+            int? indent = null;
+
+			// Grab contents of the file and trim leading blanks based on whitepsace on first record.
+			var lineDetail = contents.Split(new string[] {Environment.NewLine}, StringSplitOptions.None);
+			// loop through and work out the indent length that covers all records.
+            foreach (var line in lineDetail)
+	        {
+			    string trimstart = line.TrimStart();
+                if (trimstart.Length == 0)
+                    continue;
+
+                var spaces = line.Length - trimstart.Length;
+
+                if (indent == null)
+                    indent = spaces;
+                else
+                    indent = Math.Min(indent.Value, spaces);
+	        }
+
+            var res = new StringBuilder();
+            
+			// Output each line as text trimmed of leading blanks
+            foreach (var line in lineDetail)
+	        {
+                if (line.Length < indent)
+                    res.AppendLine();
+                else
+                    res.AppendLine(line.Substring(indent.Value));
+	        }
+
+            return res.ToString();
+        }
+
+#>

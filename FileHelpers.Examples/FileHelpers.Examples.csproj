@@ -104,10 +104,10 @@
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
     <Compile Include="Examples\90.MasterDetail\10.SimpleMasterDetail.cs" />
     <Compile Include="Examples\90.MasterDetail\20.MasterDetailSample2.cs" />
-    <Compile Include="Examples\ExampleGenerator.autogen.cs">
+    <Compile Include="Examples\ExamplesGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExampleGenerator.tt</DependentUpon>
+      <DependentUpon>ExamplesGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Framework\ColorCode\CodeColorizer.cs" />
     <Compile Include="Framework\ColorCode\Common\ExtensionMethods.cs" />
@@ -226,9 +226,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Examples\ExampleGenerator.tt">
+    <None Include="Examples\ExamplesGenerator.Config.tt" />
+    <None Include="Examples\ExamplesGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExampleGenerator.autogen.cs</LastGenOutput>
+      <LastGenOutput>ExamplesGenerator.autogen.cs</LastGenOutput>
     </None>
     <None Include="Resources\stop.png" />
   </ItemGroup>

@@ -17,18 +17,19 @@ namespace ExamplesFramework
         }
 
         /// <summary>
-        /// Load all the demos into the Tree View control on the LHS
+        /// Load all the exampless into the Tree View control on the LHS
         /// </summary>
-        /// <param name="demos">List of demos created by DemoGenerator </param>
-        public void LoadDemos(IEnumerable<ExampleCode> demos)
+        /// <param name="examples">List of examples created by ExamplesGenerator </param>
+        public void LoadExamples(IEnumerable<ExampleCode> examples)
         {
             mCategories = new Dictionary<string, CategoryTreeNode>();
-            foreach (var demo in demos)
+            foreach (var example in examples)
             {
-                var cat = LeafCategory(demo);
+                var cat = LeafCategory(example);
 
-                var demoNode = new ExampleTreeNode(demo);
-                cat.Nodes.Add(demoNode);
+                var exampleNode = new ExampleTreeNode(example);
+
+                cat.Nodes.Add(exampleNode);
             }
 
             this.ExpandAll();
@@ -40,9 +41,9 @@ namespace ExamplesFramework
         Dictionary<string, CategoryTreeNode> mCategories;
 
         /// <summary>
-        /// Create a leaf categories supplied in the demo code
+        /// Create a leaf categories supplied in the example code
         /// </summary>
-        /// <param name="example">Demo to create </param>
+        /// <param name="example">Example to create </param>
         /// <returns>Categorynode</returns>
         private CategoryTreeNode LeafCategory(ExampleCode example)
         {
@@ -69,7 +70,7 @@ namespace ExamplesFramework
         }
 
         /// <summary>
-        /// Demo selected by user on the treeview
+        /// Example selected by user on the treeview
         /// </summary>
         public ExampleCode SelectedExample
         {

@@ -8,11 +8,6 @@ namespace ExamplesFramework
     public class ExampleFile
     {
 
-        public ExampleFile()
-            :this("demo.cs", NetLanguage.CSharp)
-        {
-        }
-
         public ExampleFile(string filename)
             : this(filename, NetLanguage.CSharp)
         {

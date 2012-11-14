@@ -18,7 +18,7 @@ namespace ExamplesFramework
         {
             base.OnLoad(e);
 
-            examplesContainer.LoadDemos(ExampleFactory.GetExamples());
+            examplesContainer.LoadExamples(ExamplesFactory.GetExamples());
         }
 
     

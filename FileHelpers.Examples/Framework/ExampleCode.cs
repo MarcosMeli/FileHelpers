@@ -36,9 +36,9 @@ namespace ExamplesFramework
         public event EventHandler<NewFileEventArgs> AddedFile;
 
         /// <summary>
-        /// Create a new demo class
+        /// Create a new example class
         /// </summary>
-        /// <param name="example">Demo structure from template parse</param>
+        /// <param name="example">Example structure from template parse</param>
         /// <param name="name">Title from TODO:</param>
         /// <param name="category">Category from TODO:</param>
         /// <param name="solutionFile">The solutionfilename</param>

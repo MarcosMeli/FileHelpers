@@ -1,0 +1,9 @@
+﻿<#@ template language="C#" hostSpecific="true" #>
+
+<#
+    // Configuration of the Examples Generation:
+
+    string ExamplesFolder = "Examples";
+    string ExamplesNamespace = "Examples";
+
+#>

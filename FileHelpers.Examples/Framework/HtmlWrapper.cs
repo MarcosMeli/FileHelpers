@@ -52,7 +52,7 @@ namespace ExamplesFramework
         public string URLprefix = "http://filehelpers.com/";
 
         /// <summary>
-        /// Demo Files attached to this sample
+        /// Example Files attached to this sample
         /// </summary>
         public List<ExampleFile> Files;
 

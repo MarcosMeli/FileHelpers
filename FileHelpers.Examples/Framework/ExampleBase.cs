@@ -92,7 +92,7 @@ namespace ExamplesFramework
         /// Used to capture the Console output
         /// Samples look like they are simple writes to console
         /// but this internal member captures output and
-        /// sends to a DemoFile.
+        /// sends to a ExampleFile.
         /// </summary>
         public VirtualConsole Console { get; private set; }
 

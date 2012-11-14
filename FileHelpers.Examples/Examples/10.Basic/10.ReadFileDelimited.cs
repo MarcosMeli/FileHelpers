@@ -57,7 +57,7 @@ namespace ExamplesFramework
         }
         //-> /File
 
-       
+        //->Html: Finally you must to instantiate a FileHelperEngine and read or write files:
 
         public override void Run()
         {
@@ -73,6 +73,15 @@ namespace ExamplesFramework
             }
             //-> /File
         }
+
+        /*->Html: <p>Now you have an Orders array named <span class=""cs-literal"">res</span> where
+                  every item in the array is an Order object. If you want to access one of the fields
+                  let the Visual Studio IntelliSense bring up the field names for you.</p>
+                  <blockquote>
+                     <img height='93' src='${URL}vs_orders.png' width='165' alt='Visual studio intellisense'/>
+                  </blockquote>
+         */
+
 
 
     }
