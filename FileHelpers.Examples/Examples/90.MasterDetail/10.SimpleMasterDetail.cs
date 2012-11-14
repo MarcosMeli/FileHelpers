@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     /// <summary>
     /// Example of the Master Detail processing

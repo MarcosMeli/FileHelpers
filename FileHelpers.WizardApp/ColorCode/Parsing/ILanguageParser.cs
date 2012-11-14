@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ColorCode.Parsing
+namespace ExamplesFx.ColorCode.Parsing
 {
     internal interface ILanguageParser
     {

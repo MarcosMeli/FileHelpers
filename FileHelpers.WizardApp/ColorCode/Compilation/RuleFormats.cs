@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace ColorCode.Compilation
+namespace ExamplesFx.ColorCode.Compilation
 {
     internal static class RuleFormats
     {

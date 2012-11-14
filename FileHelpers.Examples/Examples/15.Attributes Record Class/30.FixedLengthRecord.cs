@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name:FixedLengthRecord
     //-> Description:Example of how to read a Fixed Length layout file (eg Cobol output)

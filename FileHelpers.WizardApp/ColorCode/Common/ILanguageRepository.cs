@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace ColorCode.Common
+namespace ExamplesFx.ColorCode.Common
 {
     internal interface ILanguageRepository
     {

@@ -2,7 +2,7 @@
 
 using System.IO;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Defines the contract for a code colorizer.

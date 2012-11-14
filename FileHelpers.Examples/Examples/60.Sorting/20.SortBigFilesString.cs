@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name:Sort Big File without Record Class 1
     //-> Runnable:false

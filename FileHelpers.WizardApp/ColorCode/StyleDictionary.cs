@@ -2,7 +2,7 @@
 
 using System.Collections.ObjectModel;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// A dictionary of <see cref="Style" /> instances, keyed by the styles' scope name.

@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using ColorCode.Styling.StyleSheets;
+using ExamplesFx.ColorCode.Styling.StyleSheets;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Provides easy access to ColorCode's built-in style sheets.

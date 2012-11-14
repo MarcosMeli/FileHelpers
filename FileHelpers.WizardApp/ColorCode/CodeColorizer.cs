@@ -2,12 +2,12 @@
 
 using System.IO;
 using System.Text;
-using ColorCode.Common;
-using ColorCode.Compilation;
-using ColorCode.Formatting;
-using ColorCode.Parsing;
+using ExamplesFx.ColorCode.Formatting;
+using ExamplesFx.ColorCode.Common;
+using ExamplesFx.ColorCode.Compilation;
+using ExamplesFx.ColorCode.Parsing;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Colorizes source code.

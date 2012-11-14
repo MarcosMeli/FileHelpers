@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name: Read File with Nullable Types
     //-> Description:Example of how to read a file with some missing values and use <b>Nullable Types</b>

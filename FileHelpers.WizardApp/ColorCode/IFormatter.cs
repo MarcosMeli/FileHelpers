@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 using System.IO;
-using ColorCode.Parsing;
+using ExamplesFx.ColorCode.Parsing;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Defines the contract for a source code formatter.

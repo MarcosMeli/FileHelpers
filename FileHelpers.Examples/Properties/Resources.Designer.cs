@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExamplesFramework.Properties {
+namespace ExamplesFx.Properties {
     using System;
     
     

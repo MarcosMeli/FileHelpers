@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ColorCode.Common
+namespace ExamplesFx.ColorCode.Common
 {
     internal static class Guard
     {

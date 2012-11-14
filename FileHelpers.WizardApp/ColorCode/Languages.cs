@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Collections.Generic;
-using ColorCode.Common;
-using ColorCode.Compilation;
-using ColorCode.Compilation.Languages;
+using ExamplesFx.ColorCode.Common;
+using ExamplesFx.ColorCode.Compilation;
+using ExamplesFx.ColorCode.Compilation.Languages;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Provides easy access to ColorCode's built-in languages, as well as methods to load and find custom languages.

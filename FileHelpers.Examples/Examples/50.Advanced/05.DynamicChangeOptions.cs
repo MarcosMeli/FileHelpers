@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name: Engine Options
     //-> Description: Change the options of the engines at run time

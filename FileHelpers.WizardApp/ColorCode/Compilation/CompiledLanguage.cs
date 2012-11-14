@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ColorCode.Common;
+using ExamplesFx.ColorCode.Common;
 
-namespace ColorCode.Compilation
+namespace ExamplesFx.ColorCode.Compilation
 {
     internal class CompiledLanguage
     {

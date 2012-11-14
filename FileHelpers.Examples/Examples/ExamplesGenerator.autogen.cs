@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ExamplesFramework;
+using ExamplesFx;
 
 
 namespace Examples

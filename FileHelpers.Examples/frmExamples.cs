@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Examples;
 
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     public partial class frmExamples : Form
     {

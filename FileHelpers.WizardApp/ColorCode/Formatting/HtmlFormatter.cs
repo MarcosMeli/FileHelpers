@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web;
-using ColorCode.Common;
-using ColorCode.Parsing;
-using ColorCode.Styling;
+using ExamplesFx.ColorCode.Styling;
+using ExamplesFx.ColorCode.Common;
+using ExamplesFx.ColorCode.Parsing;
 
-namespace ColorCode.Formatting
+namespace ExamplesFx.ColorCode.Formatting
 {
     internal class HtmlFormatter : IFormatter
     {

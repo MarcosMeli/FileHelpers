@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ColorCode.Formatting;
+using ExamplesFx.ColorCode.Formatting;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Provides easy access to ColorCode's built-in formatters.

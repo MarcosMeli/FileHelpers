@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name:Multiple Delimiters
     //-> Description:Write a file with different delimiters using the same record

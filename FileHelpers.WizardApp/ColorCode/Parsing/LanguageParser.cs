@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ColorCode.Common;
-using ColorCode.Compilation;
+using ExamplesFx.ColorCode.Common;
+using ExamplesFx.ColorCode.Compilation;
 
-namespace ColorCode.Parsing
+namespace ExamplesFx.ColorCode.Parsing
 {
     internal class LanguageParser : ILanguageParser
     {

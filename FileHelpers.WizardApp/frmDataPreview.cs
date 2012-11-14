@@ -1,5 +1,5 @@
 using System;
-using ColorCode;
+using ExamplesFx.ColorCode;
 using FileHelpers;
 using FileHelpers.Dynamic;
 using System.Collections.Generic;

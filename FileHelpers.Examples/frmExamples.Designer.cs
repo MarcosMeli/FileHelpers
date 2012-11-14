@@ -1,6 +1,8 @@
-﻿using ExamplesFramework.Properties;
+﻿using ExamplesFx.Properties;
+using ExamplesFx.Controls;
 using FileHelpers;
-namespace ExamplesFramework
+
+namespace ExamplesFx
 {
     partial class frmExamples
     {
@@ -35,7 +37,7 @@ namespace ExamplesFramework
             Devoo.WinForms.TextShape textShape1 = new Devoo.WinForms.TextShape();
             this.reflectionHeader1 = new Devoo.WinForms.ReflectionHeader();
             this.imgTreeView = new System.Windows.Forms.ImageList(this.components);
-            this.examplesContainer = new ExamplesFramework.Framework.Controls.ExamplesContainer();
+            this.examplesContainer = new ExamplesContainer();
             this.SuspendLayout();
             // 
             // reflectionHeader1
@@ -123,6 +125,6 @@ namespace ExamplesFramework
 
         private Devoo.WinForms.ReflectionHeader reflectionHeader1;
         private System.Windows.Forms.ImageList imgTreeView;
-        private Framework.Controls.ExamplesContainer examplesContainer;
+        private ExamplesFx.Controls.ExamplesContainer examplesContainer;
     }
 }

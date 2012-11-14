@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using ColorCode.Styling;
+using ExamplesFx.ColorCode.Styling;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Defines the contract for a style sheet.

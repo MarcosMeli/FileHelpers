@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name:[DelimitedRecord(delimiter)]
     //-> Description:Example of how to use DelimitedRecord attribute

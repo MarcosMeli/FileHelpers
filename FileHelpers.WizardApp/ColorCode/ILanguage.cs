@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Collections.Generic;
-using ColorCode.Compilation;
+using ExamplesFx.ColorCode.Compilation;
 
-namespace ColorCode
+namespace ExamplesFx.ColorCode
 {
     /// <summary>
     /// Defines how ColorCode will parse the source code of a given language.

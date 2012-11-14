@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name:FixedLengthRecord FixedMode.AllowLessChars
     //-> Description: Example of how to use the FixedLengthRecord

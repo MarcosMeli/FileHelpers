@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FileHelpers;
 using FileHelpers.Events;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     /// <summary>
     /// Example of the Read Before event

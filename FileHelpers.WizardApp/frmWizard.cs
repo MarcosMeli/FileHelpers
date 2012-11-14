@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.IO;
-using ColorCode;
+using ExamplesFx.ColorCode;
 using FileHelpers.Dynamic;
 using System.Xml.Serialization;
 using System.Diagnostics;

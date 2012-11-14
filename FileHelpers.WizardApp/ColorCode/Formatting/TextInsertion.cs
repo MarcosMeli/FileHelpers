@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using ColorCode.Parsing;
+using ExamplesFx.ColorCode.Parsing;
 
-namespace ColorCode.Formatting
+namespace ExamplesFx.ColorCode.Formatting
 {
     internal class TextInsertion
     {

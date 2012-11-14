@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace ColorCode.Common
+namespace ExamplesFx.ColorCode.Common
 {
     internal class ScopeName
     {

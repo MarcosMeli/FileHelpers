@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using ColorCode.Common;
+using ExamplesFx.ColorCode.Common;
 
-namespace ColorCode.Compilation
+namespace ExamplesFx.ColorCode.Compilation
 {
     internal class LanguageCompiler : ILanguageCompiler
     {

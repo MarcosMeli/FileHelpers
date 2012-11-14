@@ -2,9 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using ColorCode.Common;
+using ExamplesFx.ColorCode.Common;
 
-namespace ColorCode.Parsing
+namespace ExamplesFx.ColorCode.Parsing
 {
     internal class Scope
     {

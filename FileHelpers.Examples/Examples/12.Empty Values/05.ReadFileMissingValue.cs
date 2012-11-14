@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     //-> Name: Error when reading file with missing values
     //-> Description:Example of the error you get when read a file with some missing values and use the FieldNullValue attribute

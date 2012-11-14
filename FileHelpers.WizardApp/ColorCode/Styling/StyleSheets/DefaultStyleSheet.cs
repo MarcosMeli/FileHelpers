@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Drawing;
-using ColorCode.Common;
+using ExamplesFx.ColorCode.Common;
 
-namespace ColorCode.Styling.StyleSheets
+namespace ExamplesFx.ColorCode.Styling.StyleSheets
 {
     internal class DefaultStyleSheet : IStyleSheet
     {

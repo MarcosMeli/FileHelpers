@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace ExamplesFramework
+namespace ExamplesFx
 {
     
     public class Program

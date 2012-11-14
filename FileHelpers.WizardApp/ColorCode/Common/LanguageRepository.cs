@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace ColorCode.Common
+namespace ExamplesFx.ColorCode.Common
 {
     internal class LanguageRepository : ILanguageRepository
     {

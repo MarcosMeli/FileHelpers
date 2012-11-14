@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace ColorCode.Common
+namespace ExamplesFx.ColorCode.Common
 {
     internal static class ExtensionMethods
     {
