@@ -70,14 +70,13 @@ namespace FileHelpers.DataLink
 			{
 				if(mSheets == null)
 				{
-					mSheets = new List<string>();
-
-					InitExcel();
-					OpenWorkbook(FileName);
-
-					foreach (Worksheet sheet in this.mBook.Worksheets)
+					try
 					{
-						mSheets.Add(sheet.Name);
+						ReadAndStoreSheetNames();
+					}
+					finally
+					{
+						CloseAndCleanUp();
 					}
 				}
 				return mSheets;
@@ -143,10 +142,8 @@ namespace FileHelpers.DataLink
 				DisposeCOMObject(mApp);
 				this.mApp = null;
 			}
-			
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
 		}
+
 		private void DisposeCOMObject(object comObject)
 		{
 			while (System.Runtime.InteropServices.Marshal.ReleaseComObject(comObject) > 1)
@@ -440,6 +437,17 @@ namespace FileHelpers.DataLink
 		}
 
 		#endregion
+
+		private void ReadAndStoreSheetNames()
+		{
+			mSheets = new List<string>();
+
+			InitExcel();
+			OpenWorkbook(FileName);
+
+			foreach (Worksheet sheet in this.mBook.Worksheets)
+				mSheets.Add(sheet.Name);
+		}
 
 		private string ColumnsToValues(object[] values)
 		{
