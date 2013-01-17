@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -53,6 +54,9 @@ namespace FileHelpers.DataLink
 		private ApplicationClass mApp;
 		private Workbook mBook;
 		private Worksheet mSheet;
+		private List<string> mSheets;
+
+
 		//private RecordInfo mRecordInfo;
 
 
@@ -60,7 +64,24 @@ namespace FileHelpers.DataLink
 
 		#region "  Public Properties  "
 
-
+		public List<string> Sheets
+		{
+			get
+			{
+				if(mSheets == null)
+				{
+					try
+					{
+						ReadAndStoreSheetNames();
+					}
+					finally
+					{
+						CloseAndCleanUp();
+					}
+				}
+				return mSheets;
+			}
+		}
 
 		#endregion
 
@@ -121,10 +142,8 @@ namespace FileHelpers.DataLink
 				DisposeCOMObject(mApp);
 				this.mApp = null;
 			}
-			
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
 		}
+
 		private void DisposeCOMObject(object comObject)
 		{
 			while (System.Runtime.InteropServices.Marshal.ReleaseComObject(comObject) > 1)
@@ -418,6 +437,17 @@ namespace FileHelpers.DataLink
 		}
 
 		#endregion
+
+		private void ReadAndStoreSheetNames()
+		{
+			mSheets = new List<string>();
+
+			InitExcel();
+			OpenWorkbook(FileName);
+
+			foreach (Worksheet sheet in this.mBook.Worksheets)
+				mSheets.Add(sheet.Name);
+		}
 
 		private string ColumnsToValues(object[] values)
 		{
