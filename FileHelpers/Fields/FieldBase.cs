@@ -716,7 +716,7 @@ namespace FileHelpers
                 if (NullValue == null)
                 {
                     if (FieldTypeInternal.IsValueType)
-                        throw new BadUsageException("Null Value found. You must specify a NullValueAttribute in the " + FieldInfo.Name +
+                        throw new BadUsageException("Null Value found. You must specify a FieldNullValueAttribute in the " + FieldInfo.Name +
                                                     " field of type " + FieldTypeInternal.Name + ", because this is a ValueType.");
                     else
                         val = null;
