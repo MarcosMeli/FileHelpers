@@ -820,7 +820,10 @@ namespace FileHelpers
             /// <returns>string DateTime value</returns>
             public override string FieldToString(object from)
             {
-                return Convert.ToDateTime(from).ToString(mFormats[0]);
+				if (from == null)
+					return string.Empty;
+
+				return Convert.ToDateTime(from).ToString(mFormats[0]);
             }
         }
 
