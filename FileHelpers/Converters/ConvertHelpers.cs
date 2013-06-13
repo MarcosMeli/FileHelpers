@@ -823,7 +823,7 @@ namespace FileHelpers
                 if (from == null)
                     return string.Empty;
 
-				return Convert.ToDateTime(from).ToString(mFormats[0]);
+                return Convert.ToDateTime(from).ToString(mFormats[0]);
             }
         }
 
