@@ -300,6 +300,7 @@
     <Compile Include="Tests\Converters\DateFormat.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Converters\DateMultiFormat.cs" />
     <Compile Include="Tests\Converters\DecimalNumbers.cs">
       <SubType>Code</SubType>
     </Compile>
