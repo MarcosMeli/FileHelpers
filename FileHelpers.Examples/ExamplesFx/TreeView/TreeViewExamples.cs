@@ -82,25 +82,25 @@ namespace ExamplesFx.TreeView
 
         public void ProcessDocumentation()
         {
-            var index = new StringBuilder();
+            var res = new StringBuilder();
             int newIndent = 1;
 
             string Heading;
-                string Footing;
+            string Footing;
 
-                GetHeadAndFoot(out Heading, out Footing);
-            index.AppendLine(Heading);
+            GetHeadAndFoot(out Heading, out Footing);
+            res.AppendLine(Heading);
             foreach (var node in this.Nodes)
             {
                 if (node is IHtmlWriter)
-                    ((IHtmlWriter)node).OutputHtml(index, newIndent);
+                    ((IHtmlWriter)node).OutputHtml(res, newIndent);
             }
-            index.AppendLine(Footing);
+            res.AppendLine(Footing);
 
             string filename = Path.Combine(HtmlWrapper.DocsOutput, "example_index.html");
             using (var writer = new StreamWriter(filename))
             {
-                writer.Write(index);
+                writer.Write(res);
             }
         }
 

@@ -16,7 +16,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         [Test]
         public void ReadExcelStorageWithNoEmptyRows_ShouldReadAll()
         {
-            ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithNoEmptyRows.xlsx", stopAfterEmptyRows: 1);
+            var res = ReadFromExcelStorage("ExcelWithNoEmptyRows.xlsx", stopAfterEmptyRows: 1);
             AssertExpectedResults(res, expectedResultCount: 4);
         }
 
@@ -30,21 +30,21 @@ namespace FileHelpers.Tests.Tests.DataLink
         [Test]
         public void ReadExcelStorageWithOneEmptyRows_StopAfterTwoEmpty_ShouldNotStopEarly()
         {
-            ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithOneEmptyRows.xlsx", stopAfterEmptyRows: 2);
+            var res = ReadFromExcelStorage("ExcelWithOneEmptyRows.xlsx", stopAfterEmptyRows: 2);
             AssertExpectedResults(res, expectedResultCount: 4);
         }
 
         [Test]
         public void ReadExcelStorageWithTwoEmptyRows_StopAfterTwoEmpty_ShouldStopEarly()
         {
-            ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 2);
+            var res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 2);
             AssertExpectedResults(res, expectedResultCount: 2);
         }
 
         [Test]
         public void ReadExcelStorageWithTwoEmptyRows_StopAfterThreeEmpty_ShouldNotStopEarly()
         {
-            ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 3);
+            var res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 3);
             AssertExpectedResults(res, expectedResultCount: 4);
         }
 
@@ -53,7 +53,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         {
             // This will not perform well as it looks 100 rows ahead on each row for empty rows
             // not an expected use case but thought I'd test the edge case anyway
-            ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithNoEmptyRows.xlsx", stopAfterEmptyRows: 100);
+            var res = ReadFromExcelStorage("ExcelWithNoEmptyRows.xlsx", stopAfterEmptyRows: 100);
             AssertExpectedResults(res, expectedResultCount: 4);
         }
 

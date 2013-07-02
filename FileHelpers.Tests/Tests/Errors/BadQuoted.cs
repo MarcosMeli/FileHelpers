@@ -52,6 +52,11 @@ namespace FileHelpers.Tests.Errors
                                 => FileTest.Bad.BadQuoted3.ReadWithAsyncEngine<CustomersQuotedType>());
 		}
 
-
+        [Test]
+        public void BadNoQuotes()
+        {
+            Assert.Throws<BadUsageException>(()
+                => FileTest.Bad.BadQuoted1.ReadWithEngine<CustomersNoQuotedType>());
+        }
 	}
 }

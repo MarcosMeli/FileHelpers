@@ -135,6 +135,19 @@ namespace FileHelpers.Tests.CommonTests
 		public string Country;
 	}
 
+    [DelimitedRecord("|")]
+    public class CustomersNoQuotedType
+    {
+        public string CustomerID;
+        [FieldQuoted('\0', QuoteMode.AlwaysQuoted, MultilineMode.NotAllow)]
+        public string CompanyName;
+        public string ContactName;
+        public string ContactTitle;
+        public string Address;
+        public string City;
+        public string Country;
+    }
+
 	[DelimitedRecord("|")]
 	public class CustomersQuotedType2
 	{

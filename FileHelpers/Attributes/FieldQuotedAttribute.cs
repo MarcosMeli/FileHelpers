@@ -63,6 +63,9 @@ namespace FileHelpers
 		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
 		public FieldQuotedAttribute(char quoteChar, QuoteMode mode, MultilineMode multiline)
 		{
+            if (quoteChar == '\0')
+                throw new BadUsageException("You can't use the null char (\\0) as quoted.");
+
 			QuoteChar = quoteChar;
 			QuoteMode = mode;
 			QuoteMultiline = multiline;

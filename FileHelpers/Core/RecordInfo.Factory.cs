@@ -21,26 +21,31 @@ namespace FileHelpers
            /// <param name="type">Type we want settings for</param>
            /// <remarks>Threadsafe</remarks>
            /// <returns>Record Information (settings and functions)</returns>
-            public static IRecordInfo Resolve(Type type)
-            {
-                RecordInfo res;
+           public static IRecordInfo Resolve(Type type)
+           {
+               RecordInfo res;
 
-                // class check cache / lock / check cache  and create if null algorythm
-                if (!mRecordInfoCache.TryGetValue(type, out res))
-                {
-                    lock (type)
-                    {   // Double Check inside a lock
-                        if (!mRecordInfoCache.TryGetValue(type, out res))
-                        {
+               lock (type)
+               {
+                   lock (mRecordInfoCache)
+                   {
+                       if (mRecordInfoCache.TryGetValue(type, out res))
+                           return (IRecordInfo) res.Clone();
+                   }
 
-                            res = new RecordInfo(type);
-                            mRecordInfoCache.Add(type, res);
-                        }
-                    }
+                   // class check cache / lock / check cache  and create if null algorythm
 
-                }
-                return (IRecordInfo) res.Clone();
-            }
+                   res = new RecordInfo(type);
+                   lock (mRecordInfoCache)
+                   {
+                       if (!mRecordInfoCache.ContainsKey(type))
+                           mRecordInfoCache.Add(type, res);
+                   }
+
+                   return (IRecordInfo) res.Clone();
+               }
+
+           }
         }
 
         public void RemoveField(string fieldname)

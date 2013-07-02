@@ -36,7 +36,8 @@ namespace FileHelpers
             if (reader is StreamReader)
             {
                 var stream = ((StreamReader)reader).BaseStream;
-                mLength = stream.Length;
+                if (stream.CanSeek)
+                    mLength = stream.Length;
                 // Uses the buffer position
                 mPositionCalculator = () => stream.Position;
             }
@@ -45,7 +46,8 @@ namespace FileHelpers
                 var reader2 = ((InternalStreamReader)reader);
                 var stream = reader2.BaseStream;
 
-                mLength = stream.Length;
+                if (stream.CanSeek)
+                    mLength = stream.Length;
                 // Real Position
                 mPositionCalculator = () => reader2.Position;
             }
@@ -69,7 +71,8 @@ namespace FileHelpers
                 return;
 
             var stream = streamWriter.BaseStream;
-            mLength = stream.Length;
+            if (stream.CanSeek)
+                mLength = stream.Length;
             mPositionCalculator = () => stream.Position;
         }
 

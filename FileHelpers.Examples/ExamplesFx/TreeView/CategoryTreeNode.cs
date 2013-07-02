@@ -35,7 +35,7 @@ namespace ExamplesFx.TreeView
 
 
         /// <summary>
-        /// Output HTML,  in this case a heading
+        /// Output HTML, in this case a heading
         /// </summary>
         /// <param name="index"></param>
         public void OutputHtml(StringBuilder index, int indent)

@@ -118,7 +118,9 @@
     <Compile Include="ExamplesFx\ColorCode\StyleDictionary.cs" />
     <Compile Include="ExamplesFx\ColorCode\StyleSheets.cs" />
     <Compile Include="ExamplesFx\ColorCode\Styling\StyleSheets\DefaultStyleSheet.cs" />
-    <Compile Include="ExamplesFx\Controls\ExampleContainerWithHeader.cs" />
+    <Compile Include="ExamplesFx\Controls\ExampleContainerWithHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExamplesFx\Controls\ExampleHtmlRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,7 +138,7 @@
     <Compile Include="ExamplesFx\ExampleFile.cs" />
     <Compile Include="ExamplesFx\ExamplesEnvironment.cs" />
     <Compile Include="ExamplesFx\HtmlWrapper.cs" />
-    <Compile Include="ExamplesFx\IHTMLwriter.cs" />
+    <Compile Include="ExamplesFx\Render\IHTMLwriter.cs" />
     <Compile Include="ExamplesFx\NetLanguage.cs" />
     <Compile Include="ExamplesFx\Themes\ExampleThemeBase.cs" />
     <Compile Include="ExamplesFx\TreeView\CategoryTreeNode.cs" />
@@ -146,7 +148,9 @@
     <Compile Include="ExamplesFx\TreeView\TreeViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ExamplesFx\TreeView\TreeViewExamples.cs" />
+    <Compile Include="ExamplesFx\TreeView\TreeViewExamples.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
