@@ -13,7 +13,7 @@ namespace FileHelpers.Dynamic
 		/// <param name="delimiter">The delimiter for that class.</param>
 		/// <param name="sampleFile">A sample file from where to read the field names and number</param>
 		public CsvClassBuilder(string className, char delimiter, string sampleFile)
-            : this(new CsvOptions(className, delimiter, sampleFile))
+			: this(new CsvOptions(className, delimiter, sampleFile))
 		{}
 
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
@@ -21,15 +21,17 @@ namespace FileHelpers.Dynamic
 		/// <param name="delimiter">The delimiter for that class.</param>
 		/// <param name="numberOfFields">The number of fields in each record.</param>
 		public CsvClassBuilder(string className, char delimiter, int numberOfFields)
-            : this(new CsvOptions(className, delimiter, numberOfFields))
+			: this(new CsvOptions(className, delimiter, numberOfFields))
 		{}
 
 		/// <summary>Creates a new DelimitedClassBuilder.</summary>
 		/// <param name="options">The specifications for the CSV file.</param>
 		public CsvClassBuilder(CsvOptions options)
-            : base(options.RecordClassName, options.Delimiter.ToString())
+			: base(options.RecordClassName, options.Delimiter.ToString())
 		{
-		    IgnoreFirstLines = options.HeaderLines;
+			IgnoreFirstLines = options.HeaderLines;
+
+			IgnoreEmptyLines = options.IgnoreEmptyLines;
 
 			if (options.SampleFileName != string.Empty)
 			{
