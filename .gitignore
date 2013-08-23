@@ -8,6 +8,8 @@ _ReSharper.FileHelpers
 /Help
 /Output
 /TestResults
+/Release
+/Debug
 /*.ncrunchsolution
 /_ReSharper.FileHelpers.OnlyLib
 /FileHelpers.Tests/Data/*/~$*
