@@ -14,22 +14,22 @@ namespace FileHelpers.Options
 		/// <param name="delimiter">The delimiter for each field</param>
 		/// <param name="numberOfFields">The number of fields of each record</param>
 		public CsvOptions(string className, char delimiter, int numberOfFields)
-            :this(className, delimiter, numberOfFields, 1)
+			:this(className, delimiter, numberOfFields, 1)
 		{
 		}
 
-        /// <summary>Create a CSV Wrapper using the specified number of fields.</summary>
-        /// <param name="className">The name of the record class</param>
-        /// <param name="delimiter">The delimiter for each field</param>
-        /// <param name="numberOfFields">The number of fields of each record</param>
-        /// <param name="headerLines">The number of lines to use as header</param>
-        public CsvOptions(string className, char delimiter, int numberOfFields, int headerLines)
-        {
-            mHeaderLines = headerLines;
-            mRecordClassName = className;
-            mDelimiter = delimiter;
-            mNumberOfFields = numberOfFields;
-        }
+		/// <summary>Create a CSV Wrapper using the specified number of fields.</summary>
+		/// <param name="className">The name of the record class</param>
+		/// <param name="delimiter">The delimiter for each field</param>
+		/// <param name="numberOfFields">The number of fields of each record</param>
+		/// <param name="headerLines">The number of lines to use as header</param>
+		public CsvOptions(string className, char delimiter, int numberOfFields, int headerLines)
+		{
+			mHeaderLines = headerLines;
+			mRecordClassName = className;
+			mDelimiter = delimiter;
+			mNumberOfFields = numberOfFields;
+		}
 
 		/// <summary>Create a CSV Wrapper using the specified sample file with their headers.</summary>
 		/// <param name="className">The name of the record class</param>
@@ -42,18 +42,18 @@ namespace FileHelpers.Options
 			mSampleFileName = sampleFile;
 		}
 
-        /// <summary>Create a CSV Wrapper using the specified sample file with their headers.</summary>
-        /// <param name="className">The name of the record class</param>
-        /// <param name="delimiter">The delimiter for each field</param>
-        /// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
-        /// <param name="headerDelimiter">The delimiter for the header line</param>
-        public CsvOptions(string className, char delimiter, char headerDelimiter, string sampleFile)
-        {
-            mHeaderDelimiter = headerDelimiter;
-            mRecordClassName = className;
-            mDelimiter = delimiter;
-            mSampleFileName = sampleFile;
-        }
+		/// <summary>Create a CSV Wrapper using the specified sample file with their headers.</summary>
+		/// <param name="className">The name of the record class</param>
+		/// <param name="delimiter">The delimiter for each field</param>
+		/// <param name="sampleFile">A sample file with a header that contains the names of the fields.</param>
+		/// <param name="headerDelimiter">The delimiter for the header line</param>
+		public CsvOptions(string className, char delimiter, char headerDelimiter, string sampleFile)
+		{
+			mHeaderDelimiter = headerDelimiter;
+			mRecordClassName = className;
+			mDelimiter = delimiter;
+			mSampleFileName = sampleFile;
+		}
 
 		private string mSampleFileName = string.Empty;
 		private char mDelimiter = ',';
@@ -65,6 +65,7 @@ namespace FileHelpers.Options
 		private string mDateFormat= "dd/MM/yyyy";
 		private string mDecimalSeparator = ".";
 		private Encoding mEncoding = Encoding.Default;
+		private bool mIgnoreEmptyLines = true;
 
 		/// <summary>A sample file from where to read the field names and number.</summary>
 		public string SampleFileName
@@ -138,16 +139,23 @@ namespace FileHelpers.Options
 			set { mEncoding = value; }
 		}
 
+		/// <summary>Should blank lines in the source file be left out of the final result?</summary>
+		public bool IgnoreEmptyLines
+		{
+			get { return mIgnoreEmptyLines; }
+			set { mIgnoreEmptyLines = value; }
+		}
+
 		ConvertHelpers.DecimalConverter mDecimalConv;
 		ConvertHelpers.DoubleConverter mDoubleConv;
 		ConvertHelpers.SingleConverter mSingleConv;
 		ConvertHelpers.DateTimeConverter mDateConv;
 
-        /// <summary>
-        /// Convert a field to a string
-        /// </summary>
-        /// <param name="o">object we want to convert</param>
-        /// <returns>string representation of the string</returns>
+		/// <summary>
+		/// Convert a field to a string
+		/// </summary>
+		/// <param name="o">object we want to convert</param>
+		/// <returns>string representation of the string</returns>
 		internal string ValueToString(object o)
 		{
 			if (mDecimalConv == null)
