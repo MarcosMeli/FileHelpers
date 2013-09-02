@@ -313,10 +313,14 @@ namespace FileHelpers
                 prevField.NextIsOptional = currentField.IsOptional;
 
                 // Check for optional problems.  Previous is optional but current is not
-                if (prevField.IsOptional && currentField.IsOptional == false)
+                if (prevField.IsOptional
+                    && currentField.IsOptional == false
+                    && currentField.InNewLine == false)
+                {
                     throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
                                                     .FieldName(prevField.FieldInfo.Name)
                                                     .Text);
+                }
 
                 // Check for an array array in the middle of a record that is not a fixed length
                 if (prevField.IsArray)
