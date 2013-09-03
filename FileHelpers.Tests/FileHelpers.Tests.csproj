@@ -446,6 +446,7 @@
     <Content Include="Data\Bad\BadQuoted1.txt" />
     <Content Include="Data\Bad\BadQuoted2.txt" />
     <Content Include="Data\Bad\BadQuoted3.txt" />
+    <Content Include="Data\Bad\InNewLineAfterOptional2.txt" />
     <Content Include="Data\Bad\CustomersTabNumFields.txt" />
     <Content Include="Data\Bad\DelimiterNotFoundFirstField.txt" />
     <Content Include="Data\Bad\DelimiterNotFoundLastField.txt" />
@@ -484,6 +485,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />
     <Content Include="Data\Good\CustomersFixedWithout2Fields.txt" />

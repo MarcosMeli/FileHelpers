@@ -211,6 +211,38 @@ namespace FileHelpers.Tests.CommonTests
                 engine.ReadFile(TestCommon.GetPath("Bad", "InNewLine4.txt")));
 		}
 
+        [Test]
+        public void InNewLineAfterOptional1()
+        {
+            var engine = new FileHelperEngine<InNewLineAfterOptional>();
+
+            var res = engine.ReadFile(TestCommon.GetPath("Good", "InNewLineAfterOptional1.txt"));
+
+            Assert.AreEqual(3, res.Length);
+            Assert.AreEqual(3, engine.TotalRecords);
+
+            Assert.AreEqual(107, res[0].Field1);
+            Assert.AreEqual("37052652", res[0].Field2);
+            Assert.AreEqual(82, res[1].Field1);
+            Assert.AreEqual("", res[1].Field2);
+            Assert.AreEqual(181, res[2].Field1);
+            Assert.AreEqual("", res[2].Field2);
+            Assert.AreEqual("166.090.252.002", res[0].IpAddress);
+            Assert.AreEqual("067.105.166.035", res[1].IpAddress);
+            Assert.AreEqual("067.105.166.035", res[2].IpAddress);
+            Assert.AreEqual(111, res[0].FieldLast);
+            Assert.AreEqual(222, res[1].FieldLast);
+            Assert.AreEqual(333, res[2].FieldLast);
+        }
+
+        [Test]
+        public void InNewLineAfterOptional2()
+        {
+            var engine = new FileHelperEngine<InNewLineAfterOptional>();
+            Assert.Throws<BadUsageException>(() =>
+                engine.ReadFile(TestCommon.GetPath("Bad", "InNewLineAfterOptional2.txt")));
+        }
+
 		[DelimitedRecord(",")]
 		private sealed class InNewLineType1
 		{
@@ -283,6 +315,22 @@ namespace FileHelpers.Tests.CommonTests
 			public int FieldLast;
 		}
 
+        [FixedLengthRecord()]
+        private sealed class InNewLineAfterOptional
+        {
+            [FieldFixedLength(3)]
+            public byte Field1;
 
+            [FieldOptional]
+            [FieldFixedLength(8)]
+            public string Field2;
+
+            [FieldFixedLength(15)]
+            [FieldInNewLine()]
+            public string IpAddress;
+
+            [FieldFixedLength(3)]
+            public int FieldLast;
+        }
 	}
 }
