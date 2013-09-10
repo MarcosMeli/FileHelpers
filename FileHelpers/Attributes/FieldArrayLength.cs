@@ -20,8 +20,8 @@ namespace FileHelpers
 		/// <param name="maxLength">The upper bound</param>
 		public FieldArrayLengthAttribute(int minLength, int maxLength)
 		{
-			mMinLength = minLength;
-			mMaxLength = maxLength;
+			MinLength = minLength;
+			MaxLength = maxLength;
 		}
 
 		/// <summary>
@@ -35,7 +35,10 @@ namespace FileHelpers
 
 		#endregion
 
-		internal int mMinLength;
-		internal int mMaxLength;
+        /// <summary>Array lower bound.</summary>
+        public int MinLength { get; private set; }
+
+        /// <summary>Array upper bound.</summary>
+        public int MaxLength { get; private set; }
 	}
 }

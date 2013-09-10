@@ -22,7 +22,8 @@ namespace FileHelpers
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class FieldNullValueAttribute : Attribute
     {
-		internal object NullValue;
+        /// <summary>Default value for a null value.</summary>
+        public object NullValue { get; private set; }
 //		internal bool NullValueOnWrite = false;
 
 

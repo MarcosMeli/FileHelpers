@@ -173,7 +173,7 @@ namespace FileHelpers
                 a =>
                     {
                         IgnoreEmptyLines = true;
-                        IgnoreEmptySpaces = a.mIgnoreSpaces;
+                        IgnoreEmptySpaces = a.IgnoreSpaces;
                     });
 
 
@@ -182,8 +182,8 @@ namespace FileHelpers
                 a =>
                     {
                         IgnoreEmptyLines = true;
-                        CommentMarker = a.mCommentMarker;
-                        CommentAnyPlace = a.mAnyPlace;
+                        CommentMarker = a.CommentMarker;
+                        CommentAnyPlace = a.AnyPlace;
                     });
 
 
