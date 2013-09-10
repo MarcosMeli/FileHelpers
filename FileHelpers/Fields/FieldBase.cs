@@ -299,8 +299,8 @@ namespace FileHelpers
 
                     Attributes.WorkWithFirst<FieldArrayLengthAttribute>(fi, (x) =>
                     {
-                        res.ArrayMinLength = x.mMinLength;
-                        res.ArrayMaxLength = x.mMaxLength;
+                        res.ArrayMinLength = x.MinLength;
+                        res.ArrayMaxLength = x.MaxLength;
 
                         if (res.ArrayMaxLength < res.ArrayMinLength ||
                             res.ArrayMinLength < 0 ||

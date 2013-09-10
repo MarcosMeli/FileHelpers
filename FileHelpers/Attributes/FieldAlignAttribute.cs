@@ -12,6 +12,12 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldAlignAttribute : Attribute
 	{
+        /// <summary>The position of the alignment.</summary>
+        public AlignMode Align { get; private set; }
+
+        /// <summary>The character used to align.</summary>
+        public char AlignChar { get; private set; }
+
 		#region "  Constructors  "
 
 		/// <summary>Uses the ' ' char to align.</summary>
@@ -30,11 +36,5 @@ namespace FileHelpers
 		}
 
 		#endregion
-
-		/// <summary>The position of the alignment.</summary>
-		internal AlignMode Align;
-
-		/// <summary>The character used to align.</summary>
-		internal char AlignChar;
 	}
 }

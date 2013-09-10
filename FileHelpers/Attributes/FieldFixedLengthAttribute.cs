@@ -12,7 +12,8 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldFixedLengthAttribute : FieldAttribute
 	{
-		internal int Length;
+        /// <summary>Length of this Fixed Length field.</summary>
+        public int Length { get; private set; }
 
 		/// <summary>Indicates the length of a Fixed Length field.</summary>
 		/// <param name="length">The length of the field.</param>

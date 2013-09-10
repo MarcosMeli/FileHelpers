@@ -175,8 +175,9 @@ namespace FileHelpers
 
 		#region "  Converter  "
 
-		internal ConverterBase Converter;
-        internal ConverterKind Kind;
+        public ConverterBase Converter { get; private set; }
+
+        public ConverterKind Kind { get; private set; }
 
 		#endregion
 
