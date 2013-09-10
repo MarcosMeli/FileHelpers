@@ -13,8 +13,13 @@ namespace FileHelpers
 	public sealed class FieldTrimAttribute : Attribute
 	{
 
-		internal Char[] TrimChars;
-		internal TrimMode TrimMode;
+        /// <summary>A string of chars used to trim.</summary>
+        public Char[] TrimChars { get; private set; }
+
+        /// <summary>The TrimMode used after read.</summary>
+        public TrimMode TrimMode { get; private set; }
+
+
 		private static readonly char[] WhitespaceChars = new char[] 
 			 { 
 				 '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', 

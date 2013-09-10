@@ -83,6 +83,9 @@
             </summary>
             <param name="order">Indicates the relative order of the current field</param>
         </member>
+        <member name="P:FileHelpers.FieldOrderAttribute.Order">
+            <summary>The relative position order of this field.</summary>
+        </member>
         <member name="T:FileHelpers.DelimitedRecordAttribute">
             <summary>Indicates that this class represents a delimited record. </summary>
             <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
@@ -104,6 +107,9 @@
             <summary>Indicates that this class represents a delimited record. </summary>
             <param name="delimiter">The separator string used to split the fields of the record.</param>
         </member>
+        <member name="P:FileHelpers.DelimitedRecordAttribute.Separator">
+            <summary>The string used as a field separator.</summary>
+        </member>
         <member name="T:FileHelpers.FieldAlignAttribute">
             <summary>Indicates the <see cref="T:FileHelpers.AlignMode"/> used for <b>write</b> operations.</summary>
             <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
@@ -120,10 +126,10 @@
             <param name="align">The position of the alignment.</param>
             <param name="alignChar">The character used to align.</param>
         </member>
-        <member name="F:FileHelpers.FieldAlignAttribute.Align">
+        <member name="P:FileHelpers.FieldAlignAttribute.Align">
             <summary>The position of the alignment.</summary>
         </member>
-        <member name="F:FileHelpers.FieldAlignAttribute.AlignChar">
+        <member name="P:FileHelpers.FieldAlignAttribute.AlignChar">
             <summary>The character used to align.</summary>
         </member>
         <member name="T:FileHelpers.FieldArrayLengthAttribute">
@@ -143,6 +149,12 @@
             Allow you to set the exact length that the target array field must have.
             </summary>
             <param name="length">The exact length of the array field.</param>
+        </member>
+        <member name="P:FileHelpers.FieldArrayLengthAttribute.MinLength">
+            <summary>Array lower bound.</summary>
+        </member>
+        <member name="P:FileHelpers.FieldArrayLengthAttribute.MaxLength">
+            <summary>Array upper bound.</summary>
         </member>
         <member name="T:FileHelpers.FieldConverterAttribute">
             <summary>Indicates the <see cref="T:FileHelpers.ConverterKind"/> used for read/write operations.</summary>
@@ -234,6 +246,9 @@
             <summary>Indicates the length of a Fixed Length field.</summary>
             <param name="length">The length of the field.</param>
         </member>
+        <member name="P:FileHelpers.FieldFixedLengthAttribute.Length">
+            <summary>Length of this Fixed Length field.</summary>
+        </member>
         <member name="T:FileHelpers.FieldNotInFileAttribute">
             <summary>Hides the field to the library, the library does not use the
             target field at all. It is your responsibility to set the value.
@@ -289,6 +304,9 @@
             <summary>Indicates a type and a string to be converted to that type.</summary>
             <param name="type">The type of the null value.</param>
             <param name="nullValue">The string to be converted to the specified type.</param>
+        </member>
+        <member name="P:FileHelpers.FieldNullValueAttribute.NullValue">
+            <summary>Default value for a null value.</summary>
         </member>
         <member name="T:FileHelpers.FieldOptionalAttribute">
             <summary>
@@ -350,26 +368,41 @@
             <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
             <param name="multiline">Indicates if the field can span multiple lines.</param>
         </member>
+        <member name="P:FileHelpers.FieldQuotedAttribute.QuoteChar">
+            <summary>The char used to quote the string.</summary>
+        </member>
+        <member name="P:FileHelpers.FieldQuotedAttribute.QuoteMode">
+            <summary>Indicates if the handling of optionals in the quoted field.</summary>
+        </member>
+        <member name="P:FileHelpers.FieldQuotedAttribute.QuoteMultiline">
+            <summary>Indicates if the field can span multiple lines.</summary>
+        </member>
         <member name="T:FileHelpers.FieldTrimAttribute">
-            <summary>Indicates the <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after reading to truncate the field. </summary>
+            <summary>Indicates the <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after reading to truncate the field. </summary>
             <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
             <seealso href="attributes.html">Attributes List</seealso>
             <seealso href="quick_start.html">Quick Start Guide</seealso>
             <seealso href="examples.html">Examples of Use</seealso>
         </member>
         <member name="M:FileHelpers.FieldTrimAttribute.#ctor(FileHelpers.TrimMode)">
-            <summary>Indicates the <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. By default trims the blank spaces and tabs.</summary>
-            <param name="mode">The <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
+            <summary>Indicates the <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. By default trims the blank spaces and tabs.</summary>
+            <param name="mode">The <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
         </member>
         <member name="M:FileHelpers.FieldTrimAttribute.#ctor(FileHelpers.TrimMode,System.Char[])">
-            <summary>Indicates the <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. </summary>
-            <param name="mode">The <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
+            <summary>Indicates the <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. </summary>
+            <param name="mode">The <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
             <param name="chars">A list of chars used to trim.</param>
         </member>
         <member name="M:FileHelpers.FieldTrimAttribute.#ctor(FileHelpers.TrimMode,System.String)">
-            <summary>Indicates the <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. </summary>
-            <param name="mode">The <see cref="F:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
+            <summary>Indicates the <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read to truncate the field. </summary>
+            <param name="mode">The <see cref="P:FileHelpers.FieldTrimAttribute.TrimMode"/> used after read.</param>
             <param name="trimChars">A string of chars used to trim.</param>
+        </member>
+        <member name="P:FileHelpers.FieldTrimAttribute.TrimChars">
+            <summary>A string of chars used to trim.</summary>
+        </member>
+        <member name="P:FileHelpers.FieldTrimAttribute.TrimMode">
+            <summary>The TrimMode used after read.</summary>
         </member>
         <member name="T:FileHelpers.FixedLengthRecordAttribute">
             <summary>Indicates that this class represents a fixed length record.</summary>
@@ -402,16 +435,6 @@
             <seealso href="quick_start.html">Quick Start Guide</seealso>
             <seealso href="examples.html">Examples of Use</seealso>
         </member>
-        <member name="F:FileHelpers.IgnoreCommentedLinesAttribute.mCommentMarker">
-            <summary>
-            Comment marker string
-            </summary>
-        </member>
-        <member name="F:FileHelpers.IgnoreCommentedLinesAttribute.mAnyPlace">
-            <summary>
-            Can the comment marker have preceding spaces
-            </summary>
-        </member>
         <member name="M:FileHelpers.IgnoreCommentedLinesAttribute.#ctor(System.String)">
             <summary>Indicates that the engine will ignore commented lines while reading.
             (The Comment Marker can have any number of spaces or tabs to the left)</summary>
@@ -421,6 +444,16 @@
             <summary>Indicates that the engine will ignore commented lines while reading.</summary>
             <param name="commentMarker">The comment marker used to ignore the lines</param>
             <param name="anyPlace">Indicates if the comment can have spaces or tabs to the left (true by default)</param>
+        </member>
+        <member name="P:FileHelpers.IgnoreCommentedLinesAttribute.CommentMarker">
+            <summary>
+            Comment marker string
+            </summary>
+        </member>
+        <member name="P:FileHelpers.IgnoreCommentedLinesAttribute.AnyPlace">
+            <summary>
+            Can the comment marker have preceding spaces
+            </summary>
         </member>
         <member name="T:FileHelpers.IgnoreEmptyLinesAttribute">
             <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
@@ -435,6 +468,9 @@
         <member name="M:FileHelpers.IgnoreEmptyLinesAttribute.#ctor(System.Boolean)">
             <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
             <param name="ignoreSpaces">Ignore lines consisting of only whitespace.</param>
+        </member>
+        <member name="P:FileHelpers.IgnoreEmptyLinesAttribute.IgnoreSpaces">
+            <summary>Ignore lines consisting of only whitespace.</summary>
         </member>
         <member name="T:FileHelpers.IgnoreFirstAttribute">
             <summary>Indicates the number of lines at beginning of the file to be ignored.</summary>

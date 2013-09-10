@@ -16,7 +16,8 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldOrderAttribute : Attribute
 	{
-	    internal int Order { get; set;}
+        /// <summary>The relative position order of this field.</summary>
+	    public int Order { get; private set; }
 
         /// <summary>
         /// Indicates the relative order of the current field.
