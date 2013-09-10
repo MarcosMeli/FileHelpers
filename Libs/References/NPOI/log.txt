@@ -1,0 +1,102 @@
+ILMerge version 2.11.1103.0
+Copyright (C) Microsoft Corporation 2004-2006. All rights reserved.
+ILMerge /internalize /ndebug /log:log.txt /t:library /out:NPOI.Merged.dll NPOI.dll Ionic.Zip.dll /keyfile:..\..\..\FileHelpers\FileHelpers.snk 
+Set platform to 'v2', using directory 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\..\v2.0.50727' for mscorlib.dll
+Running on Microsoft (R) .NET Framework v4.0.30319
+mscorlib.dll version = 4.0.0.0
+The list of input assemblies is:
+	NPOI.dll
+	Ionic.Zip.dll
+Trying to read assembly from the file 'd:\Desarrollo\Devoo\FileHelpers\Libs\References\NPOI\NPOI.dll'.
+	Successfully read in assembly.
+	There were no errors reported in NPOI's metadata.
+Trying to read assembly from the file 'd:\Desarrollo\Devoo\FileHelpers\Libs\References\NPOI\Ionic.Zip.dll'.
+	Successfully read in assembly.
+	There were no errors reported in Ionic.Zip's metadata.
+Checking to see that all of the input assemblies have a compatible PeKind.
+	NPOI.PeKind = ILonly
+	Ionic.Zip.PeKind = ILonly
+All input assemblies have a compatible PeKind value.
+Using assembly 'NPOI' for assembly-level attributes for the target assembly.
+Merging assembly 'NPOI' into target assembly.
+Assembly level attribute 'System.Security.AllowPartiallyTrustedCallersAttribute' from assembly 'NPOI' being deleted from target assembly
+Merging assembly 'Ionic.Zip' into target assembly.
+Assembly level attribute 'System.Security.AllowPartiallyTrustedCallersAttribute' from assembly 'Ionic.Zip' being deleted from target assembly
+Copying 1 Win32 Resources from assembly 'NPOI' into target assembly.
+ILMerge: Signing assembly with the key file '..\..\..\FileHelpers\FileHelpers.snk'.
+	There were no errors reported in the target assembly's metadata.
+ILMerge: Writing target assembly 'NPOI.Merged.dll'.
+AssemblyResolver: Assembly 'NPOI' is referencing assembly 'System.Configuration'.
+	AssemblyResolver: Attempting referencing assembly's directory.
+	AssemblyResolver: Did not find assembly in referencing assembly's directory.
+	AssemblyResolver: Attempting input directory.
+	AssemblyResolver: Did not find assembly in input directory.
+	AssemblyResolver: Attempting user-supplied directories.
+	AssemblyResolver: No user-supplied directories.
+	AssemblyResolver: Attempting framework directory.
+Resolved assembly reference 'System.Configuration' to 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\..\v2.0.50727\System.Configuration.dll'. (Used framework directory.)
+ILMerge: Signed assembly 'NPOI.Merged.dll' with a strong name.
+Location for referenced assembly 'mscorlib' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll'
+	There were no errors reported in  mscorlib's metadata.
+Location for referenced assembly 'System' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\system.dll'
+	There were no errors reported in  System's metadata.
+Location for referenced assembly 'System.Drawing' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll'
+	There were no errors reported in  System.Drawing's metadata.
+Location for referenced assembly 'System.Xml' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Xml.dll'
+	There were no errors reported in  System.Xml's metadata.
+Location for referenced assembly 'System.Configuration' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Configuration.dll'
+	There were no errors reported in  System.Configuration's metadata.
+Location for referenced assembly 'System.Windows.Forms' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Windows.Forms.dll'
+	There were no errors reported in  System.Windows.Forms's metadata.
+ILMerge: Done.
+ILMerge version 2.12.803.0
+Copyright (C) Microsoft Corporation 2004-2006. All rights reserved.
+ILMerge /internalize /ndebug /log:log.txt /t:library /out:NPOI.Merged.dll NPOI.dll Ionic.Zip.dll /keyfile:..\..\..\FileHelpers\FileHelpers.snk 
+Set platform to 'v2', using directory 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\..\v2.0.50727' for mscorlib.dll
+Running on Microsoft (R) .NET Framework v4.0.30319
+mscorlib.dll version = 4.0.0.0
+The list of input assemblies is:
+	NPOI.dll
+	Ionic.Zip.dll
+Trying to read assembly from the file 'd:\Desarrollo\Devoo\FileHelpers\Libs\References\NPOI\NPOI.dll'.
+	Successfully read in assembly.
+	There were no errors reported in NPOI's metadata.
+Trying to read assembly from the file 'd:\Desarrollo\Devoo\FileHelpers\Libs\References\NPOI\Ionic.Zip.dll'.
+	Successfully read in assembly.
+	There were no errors reported in Ionic.Zip's metadata.
+Checking to see that all of the input assemblies have a compatible PeKind.
+	NPOI.PeKind = ILonly
+	Ionic.Zip.PeKind = ILonly
+All input assemblies have a compatible PeKind value.
+Using assembly 'NPOI' for assembly-level attributes for the target assembly.
+Merging assembly 'NPOI' into target assembly.
+Assembly level attribute 'System.Security.AllowPartiallyTrustedCallersAttribute' from assembly 'NPOI' being deleted from target assembly
+Merging assembly 'Ionic.Zip' into target assembly.
+Assembly level attribute 'System.Security.AllowPartiallyTrustedCallersAttribute' from assembly 'Ionic.Zip' being deleted from target assembly
+Copying 1 Win32 Resources from assembly 'NPOI' into target assembly.
+ILMerge: Signing assembly with the key file '..\..\..\FileHelpers\FileHelpers.snk'.
+	There were no errors reported in the target assembly's metadata.
+ILMerge: Writing target assembly 'NPOI.Merged.dll'.
+AssemblyResolver: Assembly 'NPOI' is referencing assembly 'System.Configuration'.
+	AssemblyResolver: Attempting referencing assembly's directory.
+	AssemblyResolver: Did not find assembly in referencing assembly's directory.
+	AssemblyResolver: Attempting input directory.
+	AssemblyResolver: Did not find assembly in input directory.
+	AssemblyResolver: Attempting user-supplied directories.
+	AssemblyResolver: No user-supplied directories.
+	AssemblyResolver: Attempting framework directory.
+Resolved assembly reference 'System.Configuration' to 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\..\v2.0.50727\System.Configuration.dll'. (Used framework directory.)
+ILMerge: Signed assembly 'NPOI.Merged.dll' with a strong name.
+Location for referenced assembly 'mscorlib' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll'
+	There were no errors reported in  mscorlib's metadata.
+Location for referenced assembly 'System' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\system.dll'
+	There were no errors reported in  System's metadata.
+Location for referenced assembly 'System.Drawing' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll'
+	There were no errors reported in  System.Drawing's metadata.
+Location for referenced assembly 'System.Xml' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Xml.dll'
+	There were no errors reported in  System.Xml's metadata.
+Location for referenced assembly 'System.Configuration' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Configuration.dll'
+	There were no errors reported in  System.Configuration's metadata.
+Location for referenced assembly 'System.Windows.Forms' is 'C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Windows.Forms.dll'
+	There were no errors reported in  System.Windows.Forms's metadata.
+ILMerge: Done.

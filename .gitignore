@@ -11,3 +11,8 @@ _ReSharper.FileHelpers
 /*.ncrunchsolution
 /_ReSharper.FileHelpers.OnlyLib
 /FileHelpers.Tests/Data/*/~$*
+
+/FileHelpers.Benchmarks/Release
+/FileHelpers.Tests/Release
+
+/Release

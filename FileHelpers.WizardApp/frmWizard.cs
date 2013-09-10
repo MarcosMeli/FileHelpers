@@ -126,6 +126,7 @@ namespace FileHelpers.WizardApp
         private Panel panel3;
         private Panel panel4;
         private SplitContainer splitContainer1;
+        private Button cmdTextDiff;
         private OpenFileDialog dlgOpenWizard;
 
         public frmWizard()
@@ -240,6 +241,7 @@ namespace FileHelpers.WizardApp
             this.dlgOpenWizard = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdTextDiff = new System.Windows.Forms.Button();
             this.cmdDetectFormatWithHeader = new System.Windows.Forms.Button();
             this.cmdfileDesigner = new System.Windows.Forms.Button();
             this.cmdDetectFormat = new System.Windows.Forms.Button();
@@ -1363,6 +1365,7 @@ namespace FileHelpers.WizardApp
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.cmdTextDiff);
             this.panel1.Controls.Add(this.cmdDetectFormatWithHeader);
             this.panel1.Controls.Add(this.cmdfileDesigner);
             this.panel1.Controls.Add(this.cmdDetectFormat);
@@ -1382,6 +1385,21 @@ namespace FileHelpers.WizardApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 445);
             this.panel1.TabIndex = 9;
+            // 
+            // cmdTextDiff
+            // 
+            this.cmdTextDiff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdTextDiff.BackColor = System.Drawing.Color.SteelBlue;
+            this.cmdTextDiff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdTextDiff.ForeColor = System.Drawing.Color.White;
+            this.cmdTextDiff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdTextDiff.Location = new System.Drawing.Point(5, 319);
+            this.cmdTextDiff.Name = "cmdTextDiff";
+            this.cmdTextDiff.Size = new System.Drawing.Size(156, 25);
+            this.cmdTextDiff.TabIndex = 1104;
+            this.cmdTextDiff.Text = "Text Diff Tool";
+            this.cmdTextDiff.UseVisualStyleBackColor = false;
+            this.cmdTextDiff.Click += new System.EventHandler(this.cmdProcessor_Click);
             // 
             // cmdDetectFormatWithHeader
             // 
@@ -2759,6 +2777,12 @@ width: 100% !important;*/
             frm.AutoRunTest = true;
             frm.ShowDialog();
             frm.Dispose();
+        }
+
+        private void cmdProcessor_Click(object sender, EventArgs e)
+        {
+            var frm = new frmTextDiff();
+            frm.ShowDialog();
         }
     }
 }

@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <EmbeddedResource Include="frmTextDiff.resx">
+      <DependentUpon>frmTextDiff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Templates\Templates.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Templates.Designer.cs</LastGenOutput>
@@ -128,6 +131,7 @@
     <None Include="Resources\tick.png" />
     <None Include="Resources\stop.png" />
     <None Include="ColorCode\ColorCode-License.txt" />
+    <None Include="Resources\page-paste-icon.png" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />
@@ -222,6 +226,12 @@
     <Compile Include="FixedWidthDesigner.Designer.cs">
       <DependentUpon>FixedWidthDesigner.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTextDiff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTextDiff.Designer.cs">
+      <DependentUpon>frmTextDiff.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDataFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +269,7 @@
     <Compile Include="RulerControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="StringExtensionMethods.cs" />
     <Compile Include="TemplateInfo.cs" />
     <Compile Include="Templates\Templates.Designer.cs">
       <AutoGen>True</AutoGen>
