@@ -20,8 +20,6 @@ namespace FileHelpers
         /// <summary>The number of lines at beginning of the file to be ignored.</summary>
         public int NumberOfLines { get; private set; }
 
-
-
 		/// <summary>Indicates that the first line of the file is ignored.</summary>
 		public IgnoreFirstAttribute() : this(1)
 		{

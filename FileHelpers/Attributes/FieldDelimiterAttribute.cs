@@ -12,6 +12,11 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldDelimiterAttribute : FieldAttribute
 	{
+        /// <summary>
+        /// Gets the Delimiter for this field
+        /// </summary>
+        public string Delimiter { get; private set; }
+
 	    /// <summary>Indicates a different delimiter for this field. </summary>
 		/// <param name="separator">The separator string used to split the fields of the record.</param>
 		public FieldDelimiterAttribute(string separator)
@@ -21,10 +26,5 @@ namespace FileHelpers
 			else
 				this.Delimiter = separator;
 		}
-
-        /// <summary>
-        /// Gets the Delimiter for this field
-        /// </summary>
-	    public string Delimiter { get; private set; }
 	}
 }

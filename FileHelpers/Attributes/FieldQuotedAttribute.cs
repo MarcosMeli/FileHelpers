@@ -12,14 +12,29 @@ namespace FileHelpers
     /// <seealso href="attributes.html">Attributes List</seealso>
 	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
 	/// <seealso href="examples.html">Examples of Use</seealso>
-	[AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field)]
 	public sealed class FieldQuotedAttribute : Attribute
-	{
-		internal char QuoteChar;
+    {
+        /// <summary>The char used to quote the string.</summary>
+        public char QuoteChar { get; private set; }
 
-		internal QuoteMode QuoteMode = QuoteMode.AlwaysQuoted;
+		internal QuoteMode mQuoteMode = QuoteMode.AlwaysQuoted;
 
-		internal MultilineMode QuoteMultiline = MultilineMode.AllowForBoth;
+        /// <summary>Indicates if the handling of optionals in the quoted field.</summary>
+        public QuoteMode QuoteMode
+        {
+            get { return mQuoteMode; }
+            internal set { mQuoteMode = value; }
+        }
+
+		internal MultilineMode mQuoteMultiline = MultilineMode.AllowForBoth;
+
+        /// <summary>Indicates if the field can span multiple lines.</summary>
+        public MultilineMode QuoteMultiline
+        {
+            get { return mQuoteMultiline; }
+            internal set { mQuoteMultiline = value; }
+        }
 
 		/// <summary>
         /// Indicates that the field must be read and written as a Quoted String with double quotes.
@@ -74,6 +89,6 @@ namespace FileHelpers
 		/// <summary>Indicates that the field must be read and written like a Quoted String with double quotes.</summary>
 		/// <param name="multiline">Indicates if the field can span multiple lines.</param>
 		public FieldQuotedAttribute(MultilineMode multiline) : this('\"', QuoteMode.OptionalForRead, multiline)
-		{}
-	}
+		{}        
+    }
 }

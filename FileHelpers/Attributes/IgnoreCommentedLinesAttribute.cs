@@ -15,12 +15,12 @@ namespace FileHelpers
         /// <summary>
         /// Comment marker string
         /// </summary>
-		internal string mCommentMarker;
+        public string CommentMarker { get; private set; }
 
         /// <summary>
         /// Can the comment marker have preceding spaces
         /// </summary>
-		internal bool mAnyPlace = true;
+        public bool AnyPlace { get; private set; }
 
 		/// <summary>Indicates that the engine will ignore commented lines while reading.
         /// (The Comment Marker can have any number of spaces or tabs to the left)</summary>
@@ -37,8 +37,8 @@ namespace FileHelpers
 			if (commentMarker == null ||  commentMarker.Trim().Length == 0)
 				throw new BadUsageException("The comment string parameter can't be null or empty.");
 			
-			mCommentMarker = commentMarker.Trim();
-            mAnyPlace = anyPlace;
+			CommentMarker = commentMarker.Trim();
+            AnyPlace = anyPlace;
 		}
 	}
 }

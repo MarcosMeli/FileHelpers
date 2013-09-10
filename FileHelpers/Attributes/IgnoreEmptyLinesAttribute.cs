@@ -12,17 +12,20 @@ namespace FileHelpers
 	[AttributeUsage(AttributeTargets.Class)]
 	public sealed class IgnoreEmptyLinesAttribute : Attribute
 	{
-		internal bool mIgnoreSpaces = false;
+        /// <summary>Ignore lines consisting of only whitespace.</summary>
+        public bool IgnoreSpaces { get; private set; }
 
 		/// <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
 		public IgnoreEmptyLinesAttribute()
-		{}
+        {
+            IgnoreSpaces = false;            
+        }
 
 		/// <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
 		/// <param name="ignoreSpaces">Ignore lines consisting of only whitespace.</param>
 		public IgnoreEmptyLinesAttribute(bool ignoreSpaces)
 		{
-			mIgnoreSpaces = ignoreSpaces;
+			IgnoreSpaces = ignoreSpaces;
 		}
 	}
 }
