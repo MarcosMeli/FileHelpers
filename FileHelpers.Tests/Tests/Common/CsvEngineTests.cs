@@ -163,7 +163,7 @@ namespace FileHelpers.Tests.CommonTests
 			string classname = "CustomerComma";
 			char delimiter = ',';
 
-			DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter);
+			DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter, true, ignoreEmptyLines: true);
 			Assert.AreEqual(20, dt.Rows.Count);
 
 			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);

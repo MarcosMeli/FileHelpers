@@ -73,7 +73,7 @@ namespace FileHelpers
 		{
 			var options = new CsvOptions(classname, delimiter, filename);
 			if (hasHeader == false) options.HeaderLines = 0;
-			if (ignoreEmptyLines == false) options.IgnoreEmptyLines = false;
+            options.IgnoreEmptyLines = ignoreEmptyLines;
 			return CsvToDataTable(filename, options);
 		}
 

@@ -65,7 +65,7 @@ namespace FileHelpers.Options
 		private string mDateFormat= "dd/MM/yyyy";
 		private string mDecimalSeparator = ".";
 		private Encoding mEncoding = Encoding.Default;
-		private bool mIgnoreEmptyLines = true;
+		private bool mIgnoreEmptyLines = false;
 
 		/// <summary>A sample file from where to read the field names and number.</summary>
 		public string SampleFileName
