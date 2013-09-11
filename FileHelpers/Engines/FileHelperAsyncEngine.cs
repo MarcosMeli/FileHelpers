@@ -85,6 +85,16 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         TextWriter mAsyncWriter;
 
+        public bool mEof = false;
+        /// <summary>
+        /// Indicates if End of File was reached.
+        /// </summary>
+        /// <value>The EOF flag.</value>
+        public bool Eof
+        {
+            get { return mEof; }
+        }
+
         #endregion
 
         #region "  LastRecord  "
@@ -357,6 +367,8 @@ namespace FileHelpers
                 }
                 else
                 {
+					// mark end of file
+                    mEof = true;
                     mLastRecordValues = null;
 
 					mLastRecord = default(T);
@@ -400,9 +412,15 @@ namespace FileHelpers
             {
                 ReadNextRecord();
                 if (mLastRecord != null)
-                    arr.Add(mLastRecord);
+                {
+                    arr.Add(mLastRecord);                    
+                }
                 else
+                {
+                    // mark end of file
+                    mEof = true;
                     break;
+                }
             }
 			return arr.ToArray();
         }
@@ -447,17 +465,19 @@ namespace FileHelpers
 
                 try
                 {
-                    var writer = mAsyncWriter;
-                    if (writer != null)
+                    using (var writer = mAsyncWriter)
                     {
-                                if (!string.IsNullOrEmpty(mFooterText))
-                                    if (mFooterText.EndsWith(StringHelper.NewLine))
-                                        writer.Write(mFooterText);
-                                    else
-                                        writer.WriteLine(mFooterText);
+                        mAsyncWriter = null;
+                        if (writer != null)
+                        {
+                            if (!string.IsNullOrEmpty (mFooterText))
+                                if (mFooterText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
+                                    writer.Write (mFooterText);
+                                else
+                                    writer.WriteLine (mFooterText);
 
-                                writer.Close();
-                                mAsyncWriter = null;
+                            writer.Close ();                            
+                        }
                     }
                 }
                 catch
@@ -499,7 +519,7 @@ namespace FileHelpers
         private void WriteHeader()
         {
             if (!string.IsNullOrEmpty(mHeaderText))
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
+                if (mHeaderText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
                     mAsyncWriter.Write(mHeaderText);
                 else
                     mAsyncWriter.WriteLine(mHeaderText);

@@ -48,10 +48,10 @@ namespace FileHelpers
         /// Set the separator string
         /// </summary>
         /// <remarks>Also sets the discard count</remarks>
-		internal string Separator
+		public string Separator
 		{
 			get { return mSeparator; }
-			set
+			internal set
 			{
 				mSeparator = value;
 
@@ -65,17 +65,17 @@ namespace FileHelpers
         /// <summary>
         /// allow a quoted multiline format
         /// </summary>
-        internal MultilineMode QuoteMultiline { get; set; }
+        public MultilineMode QuoteMultiline { get; internal set; }
 
         /// <summary>
         /// whether quotes are optional for read and / or write
         /// </summary>
-        internal QuoteMode QuoteMode { get; set; }
+        public QuoteMode QuoteMode { get; internal set; }
 
         /// <summary>
         /// quote character around field (and repeated within it)
         /// </summary>
-        internal char QuoteChar { get; set; }
+        public char QuoteChar { get; internal set; }
 
 	    #endregion
 

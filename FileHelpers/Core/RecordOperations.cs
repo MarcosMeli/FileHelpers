@@ -10,9 +10,13 @@ namespace FileHelpers
     /// <summary>
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
-    internal sealed class RecordOperations 
+    internal sealed class RecordOperations
         //: IRecordOperations
     {
+        // internal buffer for RecordToString and RecordValuesToString operations
+        // this buffer will be released when this instance goes out of scope
+        StringBuilder mBuffer = null;
+
         /// <summary>
         /// Record Info we use to parse the record and generate an object instance
         /// </summary>
@@ -27,7 +31,7 @@ namespace FileHelpers
             RecordInfo = recordInfo;
         }
 
-        #region "  StringToRecord  "
+        #region "  StringToRecord  "        
 
         /// <summary>
         /// Process a line and turn it into an object
@@ -128,13 +132,13 @@ namespace FileHelpers
         private bool MustIgnoreLine(string line)
         {
             if (RecordInfo.IgnoreEmptyLines)
-                if ((RecordInfo.IgnoreEmptySpaces && line.TrimStart().Length == 0) ||
+                if ((RecordInfo.IgnoreEmptySpaces && StringHelper.IsNullOrWhiteSpace (line)) ||
                     line.Length == 0)
                     return true;
 
             if (!String.IsNullOrEmpty(RecordInfo.CommentMarker))
-                if ((RecordInfo.CommentAnyPlace && line.TrimStart().StartsWith(RecordInfo.CommentMarker)) ||
-                    line.StartsWith(RecordInfo.CommentMarker))
+                if ((RecordInfo.CommentAnyPlace && line.TrimStart ().StartsWith (RecordInfo.CommentMarker, StringComparison.Ordinal)) ||
+                    line.StartsWith (RecordInfo.CommentMarker, StringComparison.Ordinal))
                     return true;
 
             if (RecordInfo.RecordCondition != RecordCondition.None)
@@ -182,16 +186,21 @@ namespace FileHelpers
         /// <returns>String representing the object</returns>
         public string RecordToString(object record)
         {
-            var sb = new StringBuilder(RecordInfo.SizeHint);
+            // create or clear internal string buffer
+            if (mBuffer == null)
+                mBuffer = new StringBuilder (RecordInfo.SizeHint);
+            else
+                mBuffer.Length = 0;
 
+            // parse each field
             var values = ObjectToValuesHandler(record);
-
+            var fields = RecordInfo.Fields;
             for (int f = 0; f < RecordInfo.FieldCount; f++)
             {
-                RecordInfo.Fields[f].AssignToString(sb, values[f]);
+                fields[f].AssignToString (mBuffer, values[f]);
             }
 
-            return sb.ToString();
+            return mBuffer.ToString ();
         }
 
         /// <summary>
@@ -201,14 +210,20 @@ namespace FileHelpers
         /// <returns>String representing values</returns>
         public string RecordValuesToString(object[] recordValues)
         {
-            var sb = new StringBuilder(RecordInfo.SizeHint);
+            // create or clear internal string buffer
+            if (mBuffer == null)
+                mBuffer = new StringBuilder (RecordInfo.SizeHint);
+            else
+                mBuffer.Length = 0;
 
+            // parse each field
+            var fields = RecordInfo.Fields;
             for (int f = 0; f < RecordInfo.FieldCount; f++)
             {
-                RecordInfo.Fields[f].AssignToString(sb, recordValues[f]);
+                fields[f].AssignToString (mBuffer, recordValues[f]);
             }
 
-            return sb.ToString();
+            return mBuffer.ToString ();
         }
         #endregion
 

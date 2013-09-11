@@ -22,7 +22,7 @@ namespace FileHelpers.Detection
             var restOfLine = line;
             while (!string.IsNullOrEmpty(restOfLine))
             {
-                if (restOfLine.StartsWith(quotedChar.ToString()))
+                if (restOfLine.StartsWith (quotedChar.ToString (), StringComparison.Ordinal))
                 {
                     restOfLine = DiscardUntilQuotedChar(restOfLine, quotedChar);
                 }
@@ -54,7 +54,7 @@ namespace FileHelpers.Detection
         /// </remarks>
         private static string DiscardUntilQuotedChar(string line, char quoteChar)
         {
-            if (line.StartsWith(quoteChar.ToString()))
+            if (line.StartsWith (quoteChar.ToString (), StringComparison.Ordinal))
                 line = line.Substring(1);
             
             var index = line.IndexOf(quoteChar);

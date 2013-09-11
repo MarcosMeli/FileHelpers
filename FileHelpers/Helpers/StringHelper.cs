@@ -145,14 +145,15 @@ namespace FileHelpers
         {
             
             int i = 0;
+            int sz = source.Length;
 
-            while (i < source.Length && char.IsWhiteSpace(source[i]))
+            while (i < sz && char.IsWhiteSpace(source[i]))
             {
                 i++;
             }
 
             // Only whitespace return an empty string
-            if (i >= source.Length)
+            if (i >= sz)
                 return string.Empty;
 
             // we are looking for a gap after the sign, if not found then
@@ -164,14 +165,14 @@ namespace FileHelpers
                     return source;  //  sign is followed by text so just return it
 
                 // start out with the sign
-                var sb = new StringBuilder(source[i - 1].ToString());
+                var sb = new StringBuilder (source[i - 1].ToString (), sz - i);
 
                 i++;  // I am on whitepsace so skip it
-                while (i < source.Length && char.IsWhiteSpace(source[i]))
+                while (i < sz && char.IsWhiteSpace(source[i]))
                 {
                     i++;
                 }
-                if (i < source.Length)
+                if (i < sz)
                     sb.Append(source.Substring(i));
 
                 return sb.ToString();
@@ -300,6 +301,22 @@ namespace FileHelpers
             }
 
             return result;
+        }
+
+        public static bool IsNullOrWhiteSpace (string value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsWhiteSpace (value[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

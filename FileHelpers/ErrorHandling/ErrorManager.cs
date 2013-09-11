@@ -131,7 +131,7 @@ namespace FileHelpers
 		{
 			var engine = new FileHelperEngine(typeof (ErrorInfo));
 
-			if (header.IndexOf(StringHelper.NewLine) == header.LastIndexOf(StringHelper.NewLine))
+            if (header.IndexOf (StringHelper.NewLine, StringComparison.Ordinal) == header.LastIndexOf (StringHelper.NewLine, StringComparison.Ordinal))
 				header +=  StringHelper.NewLine;
 
 			engine.HeaderText = header;

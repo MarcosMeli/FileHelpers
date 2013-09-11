@@ -345,7 +345,7 @@ namespace FileHelpers
         /// <param name="resFields">List of fields to use</param>
         private static void SortFieldsByOrder(List<FieldBase> resFields)
         {
-            if (resFields.FindAll(x => x.FieldOrder.HasValue).Count > 0)
+            if (resFields.Exists(x => x.FieldOrder.HasValue))
                 resFields.Sort( (x,y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
         }
 
@@ -378,8 +378,8 @@ namespace FileHelpers
             }
             else
             {
-                var othersWithOrder = resFields.FindAll(x => x.FieldOrder.HasValue).Count;
-                if (othersWithOrder > 0)
+                var othersWithOrder = resFields.Exists (x => x.FieldOrder.HasValue);
+                if (othersWithOrder)
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
                                                     .FieldName(currentField.FieldInfo.Name)
                                                     .Text);
@@ -401,7 +401,7 @@ namespace FileHelpers
         {
             if (mMapFieldIndex == null)
             {
-                mMapFieldIndex = new Dictionary<string, int>(FieldCount);
+                mMapFieldIndex = new Dictionary<string, int>(FieldCount, StringComparer.Ordinal);
                 for (int i = 0; i < FieldCount; i++)
                 {
                     mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
