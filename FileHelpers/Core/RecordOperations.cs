@@ -88,6 +88,7 @@ namespace FileHelpers
 
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
+                
                 values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
             }
 

@@ -581,6 +581,7 @@
     <Content Include="Data\Good\ReadAsDataTable.txt" />
     <Content Include="Data\Good\RealCsvComma1.txt" />
     <Content Include="Data\Good\RealCsvComma2.txt" />
+    <Content Include="Data\Good\RealCsvQuoteRemoval.txt" />
     <Content Include="Data\Good\RealCsvTab1.txt" />
     <Content Include="Data\Good\RealCsvTab2.txt" />
     <Content Include="Data\Good\RealCsvVerticalBar1.txt" />
