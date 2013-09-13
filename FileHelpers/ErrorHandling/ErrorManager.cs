@@ -15,6 +15,8 @@ namespace FileHelpers
     public sealed class ErrorManager
         :IEnumerable
 	{
+        private int mErrorLimit = 10000;
+
 		/// <summary>
         /// Initializes a new instance of the <see cref="ErrorManager"/> class.
         /// </summary>
@@ -32,8 +34,15 @@ namespace FileHelpers
 			mErrorMode = mode;
 		}
 
+        /// <summary>Maximum number of recorded errors. After this limit is reached, successive errors are ignored.</summary>
+        /// <remarks>Default error limit is 10000.</remarks>
+        public int ErrorLimit
+        {
+            get { return mErrorLimit; }
+            set { mErrorLimit = value; }
+        }
 
-        private string ErrorsDescription()
+        private string ErrorsDescription ()
         {
             if (ErrorCount == 1)
                 return ErrorCount.ToString() + " Error";
@@ -44,7 +53,7 @@ namespace FileHelpers
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        readonly ArrayList mErrorsArray = new ArrayList();
+        List<ErrorInfo> mErrorsArray = new List<ErrorInfo>();
 
 		/// <summary>
         /// Is an array of <see cref="ErrorInfo"/> that contains the
@@ -53,7 +62,7 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public ErrorInfo[] Errors
 		{
-			get { return (ErrorInfo[]) mErrorsArray.ToArray(typeof (ErrorInfo)); }
+			get { return mErrorsArray.ToArray(); }
 		}
 
 
@@ -65,12 +74,12 @@ namespace FileHelpers
         /// Indicates the behavior of the <see cref="FileHelperEngine"/>
         /// when it found an error.
         /// </summary>
+        /// <remarks>Default error mode is ThrowException.</remarks>
 		public ErrorMode ErrorMode
 		{
 			get { return mErrorMode; }
 			set { mErrorMode = value; }
 		}
-
 
 		/// <summary>Number of contained errors.</summary>
 		public int ErrorCount
@@ -94,13 +103,15 @@ namespace FileHelpers
 		/// <param name="error"></param>
 		internal void AddError(ErrorInfo error)
 		{
-			mErrorsArray.Add(error);
+            if (mErrorsArray.Count <= mErrorLimit)
+			    mErrorsArray.Add(error);
 		}
 
 		/// <summary>Add the specified ErrorInfo to the contained collection.</summary>
 		internal void AddErrors(ErrorManager errors)
 		{
-			mErrorsArray.AddRange(errors.mErrorsArray);
+            if (mErrorsArray.Count <= mErrorLimit)			    
+			    mErrorsArray.AddRange(errors.mErrorsArray);
 		}
 
 //		public void ProcessError(Exception ex, string line)
