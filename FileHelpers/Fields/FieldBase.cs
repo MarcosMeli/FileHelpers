@@ -43,107 +43,105 @@ namespace FileHelpers
         /// Field type of an array or it is just fieldType.
         /// What actual object will be created
         /// </summary>
-        internal Type FieldTypeInternal { get; set; }
+        public Type FieldTypeInternal { get; internal set; }
 
         /// <summary>
         /// Is this field an array?
         /// </summary>
-        public bool IsArray { get; private set; }
+        public bool IsArray { get; internal set; }
 
         /// <summary>
         /// Array must have this many entries
         /// </summary>
-        public int ArrayMinLength { get; set; }
+        public int ArrayMinLength { get; internal set; }
 
         /// <summary>
         /// Array may have this many entries,  if equal to ArrayMinLength then
         /// it is a fixed length array
         /// </summary>
-        public int ArrayMaxLength { get; set; }
+        public int ArrayMaxLength { get; internal set; }
 
         /// <summary>
         /// Seems to be duplicate of FieldTypeInternal except it is ONLY set
         /// for an array
         /// </summary>
-        internal Type ArrayType { get; set; }
-
+        public Type ArrayType { get; internal set; }
 
         /// <summary>
         /// Am I the first field in an array list
         /// </summary>
-        internal bool IsFirst { get; set; }
+        public bool IsFirst { get; internal set; }
 
         /// <summary>
         /// Am I the last field in the array list
         /// </summary>
-        internal bool IsLast { get; set; }
+        public bool IsLast { get; internal set; }
 
         /// <summary>
         /// Do we process this field but not store the value
         /// </summary>
-        public bool Discarded { get; set; }
+        public bool Discarded { get; internal set; }
 
         /// <summary>
         /// Unused!
         /// </summary>
-        internal bool TrailingArray { get; set; }
+        public bool TrailingArray { get; internal set; }
 
         /// <summary>
         /// Value to use if input is null or empty
         /// </summary>
-        internal object NullValue { get; set; }
+        public object NullValue { get; internal set; }
 
         /// <summary>
         /// Are we a simple string field we can just assign to
         /// </summary>
-        internal bool IsStringField { get; set; }
+        public bool IsStringField { get; internal set; }
 
         /// <summary>
         /// Details about the extraction criteria
         /// </summary>
-        internal FieldInfo FieldInfo { get; set; }
-
+        public FieldInfo FieldInfo { get; internal set; }
         /// <summary>
         /// indicates whether we trim leading and/or trailing whitespace
         /// </summary>
-        public TrimMode TrimMode { get; set; }
+        public TrimMode TrimMode { get; internal set; }
 
         /// <summary>
         /// Character to chop off front and / rear of the string
         /// </summary>
-        internal char[] TrimChars { get; set; }
+        public char[] TrimChars { get; internal set; }
 
         /// <summary>
         /// The field may not be present on the input data (line not long enough)
         /// </summary>
-        public bool IsOptional { get; set; }
+        public bool IsOptional { get; internal set; }
 
         /// <summary>
         /// The next field along is optional,  optimise processing next records
         /// </summary>
-        internal bool NextIsOptional { get; set; }
+        public bool NextIsOptional { get; internal set; }
 
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
         /// line of the file
         /// </summary>
-        internal bool InNewLine { get; set; }
+        public bool InNewLine { get; internal set; }
 
         /// <summary>
         /// Order of the field in the file layout
         /// </summary>
-        internal int? FieldOrder { get; set; }
+        public int? FieldOrder { get; internal set; }
 
         /// <summary>
         /// Can null be assigned to this value type, for example not int or
         /// DateTime
         /// </summary>
-        internal bool IsNullableType { get; private set; }
+        public bool IsNullableType { get; private set; }
 
         /// <summary>
         /// Name of the field without extra characters (eg property)
         /// </summary>
-        internal string FieldFriendlyName { get; set; }
+        public string FieldFriendlyName { get; internal set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
@@ -153,7 +151,7 @@ namespace FileHelpers
         /// <summary>
         /// Fieldname of the field we are storing
         /// </summary>
-        internal string FieldName
+        public string FieldName
         {
             get { return FieldInfo.Name; }
         }
@@ -313,9 +311,9 @@ namespace FileHelpers
 
             if (fi.IsDefined(typeof(CompilerGeneratedAttribute), false))
             {
-                if (fi.Name.EndsWith("__BackingField") && fi.Name.StartsWith("<") && fi.Name.Contains(">"))
+                if (fi.Name.EndsWith ("__BackingField", StringComparison.Ordinal) && fi.Name.StartsWith ("<", StringComparison.Ordinal) && fi.Name.Contains (">"))
                 {
-                    res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
+                    res.FieldFriendlyName = fi.Name.Substring (1, fi.Name.IndexOf('>') - 1);
                 }
             }
 

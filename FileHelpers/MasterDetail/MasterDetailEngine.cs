@@ -121,49 +121,49 @@ namespace FileHelpers.MasterDetail
 				switch(mAction)
 				{
 					case CommonSelector.DetailIfContains:
-						if (recordString.IndexOf(mSelector) >= 0)
+                        if (recordString.IndexOf (mSelector, StringComparison.Ordinal) >= 0)
 							return RecordAction.Detail;
 						else
 							return RecordAction.Master;
 
 					case CommonSelector.MasterIfContains:
-						if (recordString.IndexOf(mSelector) >= 0)
+                        if (recordString.IndexOf (mSelector, StringComparison.Ordinal) >= 0)
 							return RecordAction.Master;
 						else
 							return RecordAction.Detail;
 
 					case CommonSelector.DetailIfBegins:
-						if (recordString.StartsWith(mSelector))
+                        if (recordString.StartsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Detail;
 						else
 							return RecordAction.Master;
 					
 					case CommonSelector.MasterIfBegins:
-						if (recordString.StartsWith(mSelector))
+                        if (recordString.StartsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Master;
 						else
 							return RecordAction.Detail;
 
 					case CommonSelector.DetailIfEnds:
-						if (recordString.EndsWith(mSelector))
+                        if (recordString.EndsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Detail;
 						else
 							return RecordAction.Master;
 
 					case CommonSelector.MasterIfEnds:
-						if (recordString.EndsWith(mSelector))
+                        if (recordString.EndsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Master;
 						else
 							return RecordAction.Detail;
 
 					case CommonSelector.DetailIfEnclosed:
-						if (recordString.StartsWith(mSelector) && recordString.EndsWith(mSelector))
+                        if (recordString.StartsWith (mSelector, StringComparison.Ordinal) && recordString.EndsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Detail;
 						else
 							return RecordAction.Master;
 
 					case CommonSelector.MasterIfEnclosed:
-						if (recordString.StartsWith(mSelector) && recordString.EndsWith(mSelector))
+                        if (recordString.StartsWith (mSelector, StringComparison.Ordinal) && recordString.EndsWith (mSelector, StringComparison.Ordinal))
 							return RecordAction.Master;
 						else
 							return RecordAction.Detail;
@@ -528,7 +528,7 @@ namespace FileHelpers.MasterDetail
             ResetFields();
 
             if (!string.IsNullOrEmpty(mHeaderText))
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
+                if (mHeaderText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
                     writer.Write(mHeaderText);
                 else
                     writer.WriteLine(mHeaderText);
@@ -602,7 +602,7 @@ namespace FileHelpers.MasterDetail
             mTotalRecords = recIndex;
 
             if (!string.IsNullOrEmpty(mFooterText))
-                if (mFooterText.EndsWith(StringHelper.NewLine))
+                if (mFooterText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
                     writer.Write(mFooterText);
                 else
                     writer.WriteLine(mFooterText);

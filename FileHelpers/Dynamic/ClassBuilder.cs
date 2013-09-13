@@ -108,13 +108,13 @@ namespace FileHelpers.Dynamic
 
                 case NetLanguage.VbNet:
                     
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase) == -1)
+                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.OrdinalIgnoreCase) == -1)
                         code.Append("Imports System\n");
 
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase) == -1)
+                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.OrdinalIgnoreCase) == -1)
                         code.Append("Imports FileHelpers\n");
 
-                    if (mustAddSystemData && CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase) == -1)
+                    if (mustAddSystemData && CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.OrdinalIgnoreCase) == -1)
                         code.Append("Imports System.Data\n");
 
                     break;
@@ -123,7 +123,7 @@ namespace FileHelpers.Dynamic
             code.Append(classStr);
 
             CodeDomProvider prov = null;
-            
+
             switch (lang)
             {
                 case NetLanguage.CSharp:
@@ -157,7 +157,7 @@ namespace FileHelpers.Dynamic
                 if (ts.Length > 0)
                     foreach (var t in ts)
                     {
-                        if (t.FullName.StartsWith("My.My") == false && t.IsDefined(typeof(TypedRecordAttribute), false))
+                        if (t.FullName.StartsWith ("My.My", StringComparison.Ordinal) == false && t.IsDefined (typeof (TypedRecordAttribute), false))
                             return t;
                     }
 
@@ -620,7 +620,7 @@ namespace FileHelpers.Dynamic
                 attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() + ", \"" + mRecordConditionInfo.Selector + "\")");
 
             if (!string.IsNullOrEmpty(mIgnoreCommentInfo.CommentMarker))
-                attbs.AddAttribute("IgnoreCommentedLines(\"" + mIgnoreCommentInfo.CommentMarker + "\", " + mIgnoreCommentInfo.InAnyPlace.ToString().ToLower() + ")");
+                attbs.AddAttribute("IgnoreCommentedLines(\"" + mIgnoreCommentInfo.CommentMarker + "\", " + mIgnoreCommentInfo.InAnyPlace.ToString().ToLowerInvariant() + ")");
 
         }
 
@@ -897,7 +897,7 @@ namespace FileHelpers.Dynamic
             if (node != null) res.IgnoreCommentedLines.CommentMarker = node.InnerText;
 
             node = document.DocumentElement["CommentInAnyPlace"];
-            if (node != null) res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLower());
+            if (node != null) res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLowerInvariant());
 
             node = document.DocumentElement["SealedClass"];
             res.SealedClass = node != null;
@@ -1021,7 +1021,7 @@ namespace FileHelpers.Dynamic
             xml.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
 
             xml.WriteElement("CommentMarker", this.IgnoreCommentedLines.CommentMarker, string.Empty);
-            xml.WriteElement("CommentInAnyPlace", this.IgnoreCommentedLines.InAnyPlace.ToString().ToLower(), true.ToString().ToLower());
+            xml.WriteElement("CommentInAnyPlace", this.IgnoreCommentedLines.InAnyPlace.ToString().ToLowerInvariant(), true.ToString().ToLowerInvariant());
 
             xml.WriteElement("RecordCondition", this.RecordCondition.Condition.ToString(), "None");
             xml.WriteElement("RecordConditionSelector", this.RecordCondition.Selector, string.Empty);

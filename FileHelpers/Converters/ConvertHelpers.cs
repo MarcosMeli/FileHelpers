@@ -622,7 +622,7 @@ namespace FileHelpers
             {
                 double res;
                 var blanksRemoved = StringHelper.RemoveBlanks(from);
-                if (blanksRemoved.EndsWith("%"))
+                if (blanksRemoved.EndsWith ("%", StringComparison.Ordinal))
                 {
                     if (!Double.TryParse(blanksRemoved, NumberStyles.Number | NumberStyles.AllowExponent, mCulture, out res))
                         throw new ConvertException(from, mType);
@@ -862,8 +862,8 @@ namespace FileHelpers
             {
                 mTrueString = trueStr;
                 mFalseString = falseStr;
-                mTrueStringLower = trueStr.ToLower();
-                mFalseStringLower = falseStr.ToLower();
+                mTrueStringLower = trueStr.ToLowerInvariant ();
+                mFalseStringLower = falseStr.ToLowerInvariant ();
             }
 
             /// <summary>
@@ -874,7 +874,7 @@ namespace FileHelpers
             public override object StringToField(string from)
             {
                 object val;
-                string testTo = from.ToLower();
+                string testTo = from.ToLowerInvariant ();
 
                 if (mTrueString == null)
                 {

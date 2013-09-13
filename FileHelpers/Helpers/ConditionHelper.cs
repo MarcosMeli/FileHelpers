@@ -17,7 +17,7 @@ namespace FileHelpers
         /// <returns>true if string begins with the selector</returns>
 		public static bool BeginsWith(string line, string selector)
 		{
-			return line.StartsWith(selector);
+            return line.StartsWith (selector, StringComparison.Ordinal);
 		}
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace FileHelpers
         /// <returns>true if string ends with the selector</returns>
         public static bool EndsWith(string line, string selector)
 		{
-			return line.EndsWith(selector);
+            return line.EndsWith (selector, StringComparison.Ordinal);
 		}
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace FileHelpers
         /// <returns>true if string contains the selector</returns>
         public static bool Contains(string line, string selector)
 		{
-			return line.IndexOf(selector) >= 0;
+            return line.IndexOf (selector, 0, StringComparison.Ordinal) >= 0;
 		}
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace FileHelpers
         /// <returns>true if string begins and ends with the selector</returns>
         public static bool Enclosed(string line, string selector)
 		{
-			return line.StartsWith(selector) && line.EndsWith(selector);
+            return line.StartsWith (selector, StringComparison.Ordinal) && line.EndsWith (selector, StringComparison.Ordinal);
 		}
 	}
 }

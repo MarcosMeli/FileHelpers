@@ -477,7 +477,7 @@ namespace FileHelpers
 			ResetFields();
 
 			if (!string.IsNullOrEmpty(mHeaderText))
-				if (mHeaderText.EndsWith(StringHelper.NewLine))
+                if (mHeaderText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
 					writer.Write(mHeaderText);
 				else
 					writer.WriteLine(mHeaderText);
@@ -563,7 +563,7 @@ namespace FileHelpers
 			mTotalRecords = recIndex;
 
 			if (!string.IsNullOrEmpty(mFooterText))
-				if (mFooterText.EndsWith(StringHelper.NewLine))
+                if (mFooterText.EndsWith (StringHelper.NewLine, StringComparison.Ordinal))
 					writer.Write(mFooterText);
 				else
 					writer.WriteLine(mFooterText);

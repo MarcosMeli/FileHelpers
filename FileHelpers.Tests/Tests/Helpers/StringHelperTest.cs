@@ -34,5 +34,14 @@ namespace FileHelpers.Tests
         {
             StringHelper.RemoveBlanks("     + 41").AssertEqualTo("+41");
         }
+
+        [Test (Description = "String IsNullOrWhiteSpace help method tests")]
+        public void IsNullOrWhiteSpace ()
+        {
+            StringHelper.IsNullOrWhiteSpace ("     ").AssertEqualTo (true, "WhiteSpaces not detected");
+            StringHelper.IsNullOrWhiteSpace (null).AssertEqualTo (true, "null string not detected");
+            StringHelper.IsNullOrWhiteSpace (String.Empty).AssertEqualTo (true, "empty string not detected");
+            StringHelper.IsNullOrWhiteSpace (" test ").AssertEqualTo (false, "valid string not detected");
+        }
     }
 }
