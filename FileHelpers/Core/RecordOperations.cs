@@ -221,7 +221,7 @@ namespace FileHelpers
         {
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                if (RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime) && values[i] is double)
+                if ((RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime) || RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime?)) && values[i] is double)
                     values[i] = DoubleToDate((int)(double)values[i]);
 
                 values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);

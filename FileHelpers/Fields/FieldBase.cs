@@ -715,7 +715,7 @@ namespace FileHelpers
             {
                 if (NullValue == null)
                 {
-                    if (FieldTypeInternal.IsValueType)
+                    if (FieldTypeInternal.IsValueType && Nullable.GetUnderlyingType(FieldTypeInternal) == null)
                         throw new BadUsageException("Null Value found. You must specify a FieldNullValueAttribute in the " + FieldInfo.Name +
                                                     " field of type " + FieldTypeInternal.Name + ", because this is a ValueType.");
                     else
@@ -736,11 +736,18 @@ namespace FileHelpers
                 {
                     try
                     {
-                        val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
+                        if (Nullable.GetUnderlyingType(FieldTypeInternal) != null && Nullable.GetUnderlyingType(FieldTypeInternal) == fieldValue.GetType())
+                        {
+                            val = fieldValue;
+                        }
+                        else
+                        {
+                            val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
+                        }
                     }
                     catch
                     {
-                        val = this.Converter.StringToField(fieldValue.ToString());
+                        val = Converter.StringToField(fieldValue.ToString());
                     }
                 }
             }
