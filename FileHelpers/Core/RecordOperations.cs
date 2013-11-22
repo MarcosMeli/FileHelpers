@@ -221,9 +221,6 @@ namespace FileHelpers
         {
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                if ((RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime) || RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime?)) && values[i] is double)
-                    values[i] = DoubleToDate((int)(double)values[i]);
-
                 values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
             }
 
@@ -231,22 +228,7 @@ namespace FileHelpers
             return CreateHandler(values);
         }
 
-        /// <summary>
-        /// TODO:  Explain what date logic this covers???
-        /// </summary>
-        /// <param name="serialNumber">TODO: define this date serial number</param>
-        /// <returns>Date time from a numerical reference time</returns>
-        private static DateTime DoubleToDate(int serialNumber)
-        {
-            if (serialNumber < 59)
-            {
-                // Because of the 29-02-1900 bug, any serial date 
-                // under 60 is one off... Compensate. 
-                serialNumber++;
-            }
-
-            return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600));
-        }
+       
         #endregion
 
         #region "  RecordToValues  "

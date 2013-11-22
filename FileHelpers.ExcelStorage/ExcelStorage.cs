@@ -284,7 +284,11 @@ namespace FileHelpers.DataLink
 			else
 			{
 				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
-				object[,] resTemp = (object[,]) r.Value2;
+				//object[,] resTemp = (object[,]) r.Value2;
+                
+                //TODO Eandis team check if correct
+                object[,] resTemp = (object[,])r.Value;
+
 				//DisposeCOMObject(r);
 
 				res = new object[numberOfCols];

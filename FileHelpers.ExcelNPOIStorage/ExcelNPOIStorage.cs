@@ -13,6 +13,7 @@ using System.Threading;
 using FileHelpers.Events;
 using System.Globalization;
 using System.Collections;
+using NPOI.XSSF.UserModel;
 
 namespace FileHelpers.ExcelNPOIStorage {
 
@@ -49,8 +50,8 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 		#region "  Private Fields  "
 		
-		private HSSFWorkbook mWorkbook;
-		private HSSFSheet mSheet;
+		private IWorkbook mWorkbook;
+        private ISheet mSheet;
 		//private RecordInfo mRecordInfo;
 
         #endregion
@@ -68,14 +69,10 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 		#region "  CloseAndCleanUp  "
 		private void CloseAndCleanUp() {
+            mSheet = null;
+            mWorkbook = null;
 
-			if( mSheet != null )
-				mSheet = null;
-
-			if( mWorkbook != null )
-				mWorkbook = null;
-
-			GC.Collect();
+		    GC.Collect();
 			GC.WaitForPendingFinalizers();
 		}
 		#endregion
@@ -89,13 +86,18 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 			using( FileStream file = new FileStream( filename, FileMode.Open, FileAccess.Read ) ) {
 
-				mWorkbook = new HSSFWorkbook( file );
+			    var extension = Path.GetExtension(filename);
+                if(extension.ToLowerInvariant()==".xlsx") {
+                    mWorkbook = new XSSFWorkbook(file);
+                } else {
+                    mWorkbook = new HSSFWorkbook(file);
+                }
 
 				if( String.IsNullOrEmpty( SheetName ) )
-					mSheet = (HSSFSheet)mWorkbook.GetSheetAt( 0 );
+					mSheet = mWorkbook.GetSheetAt( 0 );
 				else {
 					try {
-						mSheet = (HSSFSheet)mWorkbook.GetSheet( SheetName );
+						mSheet = mWorkbook.GetSheet( SheetName );
 						if( mSheet == null )
 							throw new ExcelBadUsageException( string.Concat( "The sheet '", SheetName, "' was not found in the workbook." ) );
 					} catch {
@@ -140,7 +142,10 @@ namespace FileHelpers.ExcelNPOIStorage {
 
         protected override string CellAsString(object row, object col)
         {
-            return this.CellAsString(mSheet.GetRow((int)row), (int)col);
+            var rowO = mSheet.GetRow((int) row);
+            return rowO == null
+                       ? null
+                       : this.CellAsString(rowO, (int)col);
         }
 
 		private string CellAsString( IRow row, int col ) {
@@ -187,7 +192,9 @@ namespace FileHelpers.ExcelNPOIStorage {
 
 				CellWalk cw = new CellWalk( mSheet, range );
 				cw.SetTraverseEmptyCells( true );
+                
 				CellExtractor ce = new CellExtractor();
+                
 				cw.Traverse( ce );
 
 				return ce.CellValues;
@@ -230,7 +237,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 					if( File.Exists( TemplateFile ) == false )
 						throw new ExcelBadUsageException( string.Concat( "Template file not found: '", TemplateFile, "'" ) );
 
-					if( String.Compare( TemplateFile, FileName, true ) != 0 )
+					if( String.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0 )
 						File.Copy( TemplateFile, FileName, true );
 				}
 
@@ -262,7 +269,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 			if( String.IsNullOrEmpty( FileName ) )
 				throw new ExcelBadUsageException( "You need to specify the WorkBookFile of the ExcelDataLink." );
 
-			ArrayList res = new ArrayList();
+			var res = new ArrayList();
 
 			CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
 			Thread.CurrentThread.CurrentCulture = new CultureInfo( "en-US" );
@@ -272,7 +279,7 @@ namespace FileHelpers.ExcelNPOIStorage {
 				int recordNumber = 0;
 				OnProgress( new ProgressEventArgs( recordNumber, -1 ) );
 
-				object[] colValues = new object[RecordFieldCount];
+				var colValues = new object[RecordFieldCount];
 
 				InitExcel();
 				OpenWorkbook( FileName );

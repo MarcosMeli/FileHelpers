@@ -11,15 +11,19 @@ namespace FileHelpers.ExcelNPOIStorage {
 		public static object GetCellValue( ICell cell ) {
 			switch( cell.CellType ) {
 			case CellType.Unknown:
-			case CellType.BLANK:
 			default:
 				return "[NULL]";
+            case CellType.BLANK:
+			    return null;
 			case CellType.BOOLEAN:
 				return cell.BooleanCellValue;
 			case CellType.STRING:
 				return cell.StringCellValue;
 			case CellType.NUMERIC:
-				return cell.NumericCellValue;
+                    if(DateUtil.IsCellDateFormatted(cell)) {
+                        return cell.DateCellValue;
+                    }
+                    else { return cell.NumericCellValue; }
 			case CellType.ERROR:
 				return cell.ErrorCellValue;
 			case CellType.FORMULA:

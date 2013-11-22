@@ -3,7 +3,7 @@
   <Choose>
     <When Condition=" '$(TargetFrameworkVersion)'=='' ">
       <PropertyGroup>
-        <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
       </PropertyGroup>
     </When>
   </Choose>

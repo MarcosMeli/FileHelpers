@@ -162,7 +162,8 @@ namespace FileHelpers.DataLink
         protected bool CellIsEmpty(object row, object col)
         {
             var cellAsString = CellAsString(row, col);
-            return cellAsString == String.Empty;
+            return string.IsNullOrEmpty(cellAsString);
+            //return cellAsString == String.Empty;
         }
 
         #endregion
