@@ -9,11 +9,11 @@ namespace ExamplesFx.ColorCode.Parsing
     internal class Scope
     {
         public Scope(string name,
-                     int index,
-                     int length)
+            int index,
+            int length)
         {
             Guard.ArgNotNullAndNotEmpty(name, "name");
-            
+
             Name = name;
             Index = index;
             Length = length;

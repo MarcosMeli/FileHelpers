@@ -6,59 +6,57 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
-	/// <summary>
-	/// Run the engine over a fixed length file
+    /// <summary>
+    /// Run the engine over a fixed length file
     /// and display the result in a grid
-	/// </summary>
-	public class frmEasySampleFixed : frmFather
-	{
-		private TextBox txtClass;
-		private TextBox txtData;
-		private PropertyGrid grid1;
-		private Button cmdRun;
-		private Label label2;
-		private Label label1;
-		private Label label3;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Label label4;
+    /// </summary>
+    public class frmEasySampleFixed : frmFather
+    {
+        private TextBox txtClass;
+        private TextBox txtData;
+        private PropertyGrid grid1;
+        private Button cmdRun;
+        private Label label2;
+        private Label label1;
+        private Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
 
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private Container components = null;
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private Container components = null;
 
-		public frmEasySampleFixed()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
-		}
+        public frmEasySampleFixed()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) {
+                if (components != null)
+                    components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEasySampleFixed));
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (frmEasySampleFixed));
             this.txtClass = new System.Windows.Forms.TextBox();
             this.txtData = new System.Windows.Forms.TextBox();
             this.grid1 = new System.Windows.Forms.PropertyGrid();
@@ -68,7 +66,7 @@ namespace FileHelpersSamples
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -77,7 +75,11 @@ namespace FileHelpersSamples
             // 
             // txtClass
             // 
-            this.txtClass.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClass.Font = new System.Drawing.Font("Courier New",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.txtClass.Location = new System.Drawing.Point(8, 136);
             this.txtClass.Multiline = true;
             this.txtClass.Name = "txtClass";
@@ -90,7 +92,11 @@ namespace FileHelpersSamples
             // 
             // txtData
             // 
-            this.txtData.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Font = new System.Drawing.Font("Courier New",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.txtData.Location = new System.Drawing.Point(8, 320);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
@@ -114,8 +120,14 @@ namespace FileHelpersSamples
             // 
             // cmdRun
             // 
-            this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
-            this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))),
+                ((int) (((byte) (0)))),
+                ((int) (((byte) (110)))));
+            this.cmdRun.Font = new System.Drawing.Font("Tahoma",
+                9.75F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmdRun.Location = new System.Drawing.Point(336, 8);
             this.cmdRun.Name = "cmdRun";
@@ -128,7 +140,11 @@ namespace FileHelpersSamples
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(8, 120);
             this.label2.Name = "label2";
@@ -139,7 +155,11 @@ namespace FileHelpersSamples
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(344, 120);
             this.label1.Name = "label1";
@@ -150,7 +170,11 @@ namespace FileHelpersSamples
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(8, 304);
             this.label3.Name = "label3";
@@ -160,21 +184,30 @@ namespace FileHelpersSamples
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Courier New",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.textBox1.Location = new System.Drawing.Point(8, 72);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(656, 40);
             this.textBox1.TabIndex = 13;
-            this.textBox1.Text = "var engine = new FileHelperEngine<CustomersFixed>();\r\n ...  = engine.ReadFile(\"in" +
+            this.textBox1.Text =
+                "var engine = new FileHelperEngine<CustomersFixed>();\r\n ...  = engine.ReadFile(\"in" +
                 "file.txt\")";
             this.textBox1.WordWrap = false;
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(8, 56);
             this.label4.Name = "label4";
@@ -207,24 +240,23 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
 
-		}
-
-		#endregion
-
+        #endregion
 
         /// <summary>
         /// Run the engine over a grid and display
         /// the result in a grid
         /// </summary>
-		private void cmdRun_Click(object sender, EventArgs e)
-		{
+        private void cmdRun_Click(object sender, EventArgs e)
+        {
             var engine = new FileHelperEngine<CustomersFixed>();
 
-			grid1.SelectedObject = engine.ReadString(txtData.Text);;
-		}
-	}
+            grid1.SelectedObject = engine.ReadString(txtData.Text);
+            ;
+        }
+    }
 }

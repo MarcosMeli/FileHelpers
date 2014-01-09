@@ -9,9 +9,9 @@ using FileHelpers.ExcelNPOIStorage;
 
 namespace OurTest
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             /*var provider = new ExcelStorage(typeof(RaRecord)) {
                 StartRow = 2,
@@ -19,18 +19,27 @@ namespace OurTest
                 SheetName = "Sheet2",
                 FileName = "test.xlsx"
             };*/
-            var provider = new ExcelNPOIStorage(typeof(RaRecord))
-            {
-                SheetName = "Sheet2",
+            var provider = new ExcelNPOIStorage(typeof (RaRecord)) {
+                SheetName = "SheetBavo",
                 FileName = "test.xlsx"
             };
             provider.StartRow = 1;
             provider.StartColumn = 0;
 
+            var records = new List<RaRecord>();
+            records.Add(new RaRecord() {
+                Level = 123.123m,
+                Name = "Dickie"
+            });
+            records.Add(new RaRecord() {
+                Level = null,
+                Name = "Bavo",
+                Project = "too many",
+                Startdate = DateTime.Now
+            });
 
-            var res = (RaRecord[])provider.ExtractRecords();
-
-
+            provider.InsertRecords(records.ToArray());
+            //var res = (RaRecord[])provider.ExtractRecords();
         }
 
 //        static void Main(string[] args)
@@ -59,7 +68,7 @@ namespace OurTest
     {
         public string Name;
         public string Project;
-        public int? Level;
+        public decimal? Level;
         public DateTime? Startdate;
     }
 }

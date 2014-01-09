@@ -6,10 +6,9 @@ namespace FileHelpers.Events
 {
     /// <summary>Arguments for the <see cref="BeforeReadHandler{T}"/></summary>
     public sealed class BeforeReadEventArgs<T>
-        : ReadEventArgs<T> 
+        : ReadEventArgs<T>
         where T : class
     {
-
         /// <summary>
         /// Record before being parsed by the engine
         /// </summary>
@@ -26,6 +25,5 @@ namespace FileHelpers.Events
 
         /// <summary>The current record that was just assigned not yet filled</summary>
         public T Record { get; private set; }
-
     }
 }

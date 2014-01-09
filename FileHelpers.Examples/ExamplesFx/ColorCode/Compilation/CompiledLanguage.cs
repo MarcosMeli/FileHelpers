@@ -11,15 +11,15 @@ namespace ExamplesFx.ColorCode.Compilation
     internal class CompiledLanguage
     {
         public CompiledLanguage(string id,
-                                string name,
-                                Regex regex,
-                                IList<string> captures)
+            string name,
+            Regex regex,
+            IList<string> captures)
         {
             Guard.ArgNotNullAndNotEmpty(id, "id");
             Guard.ArgNotNullAndNotEmpty(name, "name");
             Guard.ArgNotNull(regex, "regex");
             Guard.ArgNotNullAndNotEmpty(captures, "captures");
-            
+
             Id = id;
             Name = name;
             Regex = regex;

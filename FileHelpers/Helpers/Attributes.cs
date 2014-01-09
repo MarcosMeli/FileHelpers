@@ -5,9 +5,8 @@ using System.Reflection;
 
 namespace FileHelpers
 {
-
-	internal static class Attributes
-	{
+    internal static class Attributes
+    {
         /// <summary>
         /// Get the first attribute that matches the type specification (not inherited)
         /// </summary>
@@ -38,13 +37,13 @@ namespace FileHelpers
         /// <param name="inherited">Allow inherited version of attribute?</param>
         /// <returns>Attribute found or null</returns>
         private static T GetFirstCore<T>(MemberInfo type, bool inherited) where T : Attribute
-	    {
-	        var attribs = type.GetCustomAttributes(typeof(T), inherited);
-	        if (attribs.Length == 0)
-	            return null;
-	        else
-	            return (T)attribs[0];
-	    }
+        {
+            var attribs = type.GetCustomAttributes(typeof (T), inherited);
+            if (attribs.Length == 0)
+                return null;
+            else
+                return (T) attribs[0];
+        }
 
         /// <summary>
         /// Locate an attribute and perform an Action on it, do nothing if you don't find it
@@ -54,11 +53,11 @@ namespace FileHelpers
         /// <param name="action">action we want to perform</param>
         public static void WorkWithFirst<T>(MemberInfo type, Action<T> action) where T : Attribute
         {
-            var attribs = type.GetCustomAttributes(typeof(T), false);
+            var attribs = type.GetCustomAttributes(typeof (T), false);
             if (attribs.Length == 0)
                 return;
 
             action((T) attribs[0]);
         }
-	}
+    }
 }

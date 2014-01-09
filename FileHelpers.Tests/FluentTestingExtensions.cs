@@ -13,7 +13,6 @@ namespace System
     /// </summary>
     public static class FluentTestingExtensions
     {
-
         // String Related
 
         /// <summary>
@@ -129,6 +128,7 @@ namespace System
             Assert.IsFalse(predicate.Invoke(actual));
             return new FluentAnd<T>(actual);
         }
+
         /// <summary>
         /// Assert the boolean is true
         /// </summary>
@@ -242,6 +242,7 @@ namespace System
             Assert.AreNotEqual(comparisonObject, actual);
             return new FluentAnd<T>(actual);
         }
+
         /// <summary>
         /// Assert two values are the same (Equal)
         /// </summary>

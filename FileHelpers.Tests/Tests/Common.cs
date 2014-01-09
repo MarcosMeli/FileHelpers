@@ -6,13 +6,12 @@ using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests
 {
-
     /// <summary>
     /// This class only adds the relative path to the sample files. 
     /// </summary>
-	public static class TestCommon
-	{
-	    //private static string mAssemblyLocation = string.Empty;
+    public static class TestCommon
+    {
+        //private static string mAssemblyLocation = string.Empty;
         /// <summary>
         /// Create a path to a directory or file given a list of directories
         /// to get there.  Goes from project directory
@@ -25,9 +24,7 @@ namespace FileHelpers.Tests
             var result = Path.GetFullPath(Path.Combine("..", "Data"));
 
             foreach (var element in pathElements)
-            {
                 result = Path.Combine(result, element);
-            }
 
             return result;
         }
@@ -48,7 +45,7 @@ namespace FileHelpers.Tests
         /// <param name="engine">Engine to read file</param>
         /// <param name="pathElements">List of directories and a filename in Data area</param>
         /// <returns>objects from file</returns>
-        [Obsolete("Use ReadTest<T> instead" )]
+        [Obsolete("Use ReadTest<T> instead")]
         public static object[] ReadTest(FileHelperEngine engine, params string[] pathElements)
         {
             return engine.ReadFile(GetPath(pathElements));
@@ -75,14 +72,12 @@ namespace FileHelpers.Tests
         {
             var arr = new ArrayList();
 
-            using (engine.BeginReadFile(GetPath(pathElements)))
-            {
+            using (engine.BeginReadFile(GetPath(pathElements))) {
                 while (engine.ReadNext() != null)
                     arr.Add(engine.LastRecord);
             }
 
             return arr.ToArray();
-
         }
 
         /// <summary>
@@ -91,18 +86,17 @@ namespace FileHelpers.Tests
         /// <param name="engine">Engine to read the data</param>
         /// <param name="pathElements">List of directories and a filename in Data area</param>
         /// <returns>objects from file</returns>
-        public static List<T> ReadAllAsync<T>(FileHelperAsyncEngine<T> engine, params string[] pathElements) where T : class
+        public static List<T> ReadAllAsync<T>(FileHelperAsyncEngine<T> engine, params string[] pathElements)
+            where T : class
         {
             var arr = new List<T>();
 
-            using (engine.BeginReadFile(GetPath(pathElements)))
-            {
+            using (engine.BeginReadFile(GetPath(pathElements))) {
                 while (engine.ReadNext() != null)
                     arr.Add(engine.LastRecord);
             }
 
             return arr;
-
         }
 
         /// <summary>
@@ -120,7 +114,8 @@ namespace FileHelpers.Tests
         /// </summary>
         /// <param name="engine">Engine to read the data</param>
         /// <param name="pathElements">List of directories and a filename in Data area</param>
-        public static void BeginReadTest<T>(FileHelperAsyncEngine<T> engine, params string[] pathElements) where T : class
+        public static void BeginReadTest<T>(FileHelperAsyncEngine<T> engine, params string[] pathElements)
+            where T : class
         {
             engine.BeginReadFile(GetPath(pathElements));
         }

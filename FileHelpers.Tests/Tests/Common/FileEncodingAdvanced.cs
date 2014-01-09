@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
+
 // using System.Net;
 
 namespace FileHelpers.Tests.CommonTests
 {
-
     [TestFixture]
     public class FileEncodingAdvanced
     {
-
         [Test]
         public void EncodingAdvanced1()
         {
@@ -75,26 +74,31 @@ namespace FileHelpers.Tests.CommonTests
         {
             [FieldFixedLength(26)]
             public String Location;
+
             [FieldFixedLength(12)]
             public String County;
+
             [FieldFixedLength(5)]
             public int Elev;
+
             [FieldFixedLength(4)]
             public int Hi;
+
             [FieldFixedLength(4)]
             public int Lo;
 
             [FieldFixedLength(6)]
             [FieldTrim(TrimMode.Both)]
             public string PCPN;
+
             [FieldFixedLength(5)]
             public decimal SNOW;
+
             [FieldFixedLength(5)]
             public decimal SNDPT;
+
             [FieldFixedLength(6)]
             public decimal MONTH;
-
         }
-
     }
 }

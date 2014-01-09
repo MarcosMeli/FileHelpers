@@ -74,7 +74,6 @@ namespace FileHelpers.DataLink
 
         #region "  Public Properties  "
 
-
         /// <summary>The Start Row where is the data. Starting at 1.</summary>
         public int StartRow
         {
@@ -188,12 +187,9 @@ namespace FileHelpers.DataLink
         /// <returns></returns>
         protected bool RowIsEmpty(int cRow)
         {
-            for (int column = StartColumn; column < StartColumn + RecordFieldCount; column++)
-            {
+            for (int column = StartColumn; column < StartColumn + RecordFieldCount; column++) {
                 if (CellIsEmpty(cRow, column) == false)
-                {
                     return false;
-                }
             }
             return true;
         }
@@ -208,28 +204,28 @@ namespace FileHelpers.DataLink
         /// <param name="cRow">The current row index (1-based)</param>
         protected bool ShouldStopOnRow(int cRow)
         {
-            switch (this.ExcelReadStopBehavior)
-            {
+            switch (this.ExcelReadStopBehavior) {
                 case ExcelReadStopBehavior.StopOnEmptyFirstCell:
                     return CellIsEmpty(cRow, StartColumn);
 
                 case ExcelReadStopBehavior.StopOnEmptyRow:
-                    {
-                        // work backwards from most far-away row (counting ahead by value of property ExcelReadStopAfterEmptyRows)
-                        for (
-                            int fwdRowIndex = cRow + (ExcelReadStopAfterEmptyRows - 1);
-                            fwdRowIndex >= cRow;
-                            fwdRowIndex--)
-                        {
-                            // as soon as we encounter a non-empty row then we can bail-out of loop and return ShouldStopOnRow=false
-                            if (!RowIsEmpty(fwdRowIndex)) return false;
-                        }
-                        // we never found a non-empty row so return ShouldStopOnRow=true
-                        return true;
+                {
+                    // work backwards from most far-away row (counting ahead by value of property ExcelReadStopAfterEmptyRows)
+                    for (
+                        int fwdRowIndex = cRow + (ExcelReadStopAfterEmptyRows - 1);
+                        fwdRowIndex >= cRow;
+                        fwdRowIndex--) {
+                        // as soon as we encounter a non-empty row then we can bail-out of loop and return ShouldStopOnRow=false
+                        if (!RowIsEmpty(fwdRowIndex))
+                            return false;
                     }
+                    // we never found a non-empty row so return ShouldStopOnRow=true
+                    return true;
+                }
 
                 default:
-                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
+                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " +
+                                                          this.ExcelReadStopBehavior);
             }
         }
 
@@ -239,22 +235,22 @@ namespace FileHelpers.DataLink
         /// <param name="cRow">The current row index (1-based)</param>
         protected bool ShouldReadRowData(int cRow)
         {
-            switch (this.ExcelReadStopBehavior)
-            {
+            switch (this.ExcelReadStopBehavior) {
                 case ExcelReadStopBehavior.StopOnEmptyFirstCell:
-                    {
-                        // we already checked in ShouldStopOnRow()
-                        return true;
-                    }
+                {
+                    // we already checked in ShouldStopOnRow()
+                    return true;
+                }
 
                 case ExcelReadStopBehavior.StopOnEmptyRow:
-                    {
-                        // don't attempt to read empty rows
-                        return !RowIsEmpty(cRow);
-                    }
+                {
+                    // don't attempt to read empty rows
+                    return !RowIsEmpty(cRow);
+                }
 
                 default:
-                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " + this.ExcelReadStopBehavior);
+                    throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " +
+                                                          this.ExcelReadStopBehavior);
             }
         }
 
@@ -268,8 +264,10 @@ namespace FileHelpers.DataLink
     {
         /// <summary>Never update links for this workbook on opening</summary>
         NeverUpdate = 0,
+
         /// <summary>User specifies how links will be updated</summary>
         UserPrompted = 1,
+
         /// <summary>Always update links for this workbook on opening</summary>
         AlwaysUpdate = 2
     }
@@ -281,6 +279,7 @@ namespace FileHelpers.DataLink
     {
         /// <summary>First cell of the row being empty means we should stop reading</summary>
         StopOnEmptyFirstCell = 1,
+
         /// <summary>All cells in the row being empty means we should stop reading</summary>
         StopOnEmptyRow = 0,
     }

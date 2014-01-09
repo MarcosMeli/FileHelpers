@@ -13,8 +13,8 @@ namespace FileHelpers.Events
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class ReadEventArgs<T>
-            : FileHelpersEventArgs<T>
-            where T : class
+        : FileHelpersEventArgs<T>
+        where T : class
     {
         /// <summary>
         /// Create a read event argument, contains line number and record read
@@ -23,7 +23,7 @@ namespace FileHelpers.Events
         /// <param name="line">record to be analysed</param>
         /// <param name="lineNumber">record count read</param>
         internal ReadEventArgs(EventEngineBase<T> engine, string line, int lineNumber)
-            :base (engine, lineNumber)
+            : base(engine, lineNumber)
         {
             RecordLineChanged = false;
             mRecordLine = line;
@@ -42,7 +42,6 @@ namespace FileHelpers.Events
 
                 mRecordLine = value;
                 RecordLineChanged = true;
-
             }
         }
 
@@ -51,6 +50,5 @@ namespace FileHelpers.Events
 
         /// <summary>Set this property to true if you want to bypass the current record.</summary>
         public bool SkipThisRecord { get; set; }
-
     }
 }

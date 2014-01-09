@@ -19,7 +19,7 @@ namespace FileHelpers.WizardApp
     {
         #region Work areas and parameters
 
-        WizardInfo info = new WizardInfo();
+        private WizardInfo info = new WizardInfo();
 
         #endregion
 
@@ -36,12 +36,12 @@ namespace FileHelpers.WizardApp
         }
 
         private string mLastCode;
+
         private void ShowCode(string code, NetLanguage language)
         {
             mLastCode = code;
             var colorizer = new CodeColorizer();
-            switch (language)
-            {
+            switch (language) {
                 case NetLanguage.CSharp:
                     browserCode.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
                     break;
@@ -51,7 +51,6 @@ namespace FileHelpers.WizardApp
                 default:
                     throw new ArgumentOutOfRangeException("language");
             }
-            
         }
 
         private string GetDefaultCss()
@@ -78,10 +77,7 @@ width: 100% !important;*/
 
         public bool HasHeaders { get; set; }
 
-        private void cmdReadFile_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void cmdReadFile_Click(object sender, EventArgs e) {}
 
         private void cmdReadTest_Click(object sender, EventArgs e)
         {
@@ -90,32 +86,30 @@ width: 100% !important;*/
 
         private void RunTest()
         {
-            try
-            {
+            try {
                 string classStr = mLastCode;
 
                 var selected = cboClassLanguage.SelectedItem is NetLanguage
-                   ? (NetLanguage)cboClassLanguage.SelectedItem
-                   : NetLanguage.CSharp;
+                    ? (NetLanguage) cboClassLanguage.SelectedItem
+                    : NetLanguage.CSharp;
 
 
                 var type = ClassBuilder.ClassFromString(classStr, selected);
 
-                try
-                {
+                try {
                     FileHelperEngine engine = new FileHelperEngine(type);
                     DataTable dt = engine.ReadStringAsDT(txtInput.Text);
                     dgPreview.DataSource = dt;
                     lblResults.Text = dt.Rows.Count.ToString() + " Rows - " + dt.Columns.Count.ToString() + " Fields";
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error Parsing the Sample Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message,
+                        "Error Parsing the Sample Data",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
-
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 MessageBox.Show(ex.Message, "Error Compiling Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -127,8 +121,7 @@ width: 100% !important;*/
 
         private void cboClassLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cboClassLanguage.SelectedIndex)
-            {
+            switch (cboClassLanguage.SelectedIndex) {
                 case 0:
                     ShowCode(mLastCode, NetLanguage.CSharp);
                     break;
@@ -146,13 +139,11 @@ width: 100% !important;*/
         {
             dlgOpenTest.FileName = "";
 
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardOpenTest"))
                     dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
             }
-            catch 
-            {}
+            catch {}
 
             dlgOpenTest.Title = "Open FileHelpers Class";
             dlgOpenTest.Filter = "RunTime Record File (*.fhw;*.xml)|*.fhw;*.xml|All Files|*.*";
@@ -163,7 +154,7 @@ width: 100% !important;*/
 
             RegConfig.SetStringValue("WizardOpenTest", Path.GetDirectoryName(dlgOpenTest.FileName));
 
-            
+
             ClassBuilder sb = ClassBuilder.LoadFromXml(dlgOpenTest.FileName);
 
             ShowCode(sb.GetClassSourceCode(NetLanguage.CSharp), NetLanguage.CSharp);
@@ -173,13 +164,11 @@ width: 100% !important;*/
         {
             dlgOpenTest.FileName = "";
 
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardOpenTest"))
                     dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
             }
-            catch
-            { }
+            catch {}
 
             dlgOpenTest.Title = "Open Class Source Code";
             dlgOpenTest.Filter = "Class source code files (*.cs;*.vb;*.txt)|*.txt;*.cs;*.vb|All Files|*.*";
@@ -203,13 +192,11 @@ width: 100% !important;*/
         {
             dlgOpenTest.FileName = "";
 
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardOpenTestData"))
                     dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTestData", "");
             }
-            catch
-            { }
+            catch {}
 
             dlgOpenTest.Title = "Open sample data file";
             dlgOpenTest.Filter = "Flat Files (*.txt;*.csv;*.prn;*.dat)|*.txt;*.csv;*.prn;*.dat|All Files|*.*";
@@ -220,7 +207,6 @@ width: 100% !important;*/
             RegConfig.SetStringValue("WizardOpenTestData", Path.GetDirectoryName(dlgOpenTest.FileName));
 
             txtInput.Text = File.ReadAllText(dlgOpenTest.FileName);
-
         }
 
         private void txtClearData_Click(object sender, EventArgs e)
@@ -235,8 +221,7 @@ width: 100% !important;*/
 
         private void frmDataPreview_Activated(object sender, EventArgs e)
         {
-            if (AutoRunTest)
-            {
+            if (AutoRunTest) {
                 AutoRunTest = false;
                 Application.DoEvents();
                 RunTest();

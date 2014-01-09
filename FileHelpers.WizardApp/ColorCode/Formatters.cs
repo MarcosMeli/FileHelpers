@@ -17,6 +17,9 @@ namespace ExamplesFx.ColorCode
         /// <remarks>
         /// The default formatter produces HTML with inline styles.
         /// </remarks>
-        public static IFormatter Default { get { return new HtmlFormatter(); } }
+        public static IFormatter Default
+        {
+            get { return new HtmlFormatter(); }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace ExamplesFx.Controls
 
         public void ShowCustomHtml(string html)
         {
-           exampleRenderer.ShowCustomHtml(html);
+            exampleRenderer.ShowCustomHtml(html);
         }
 
         private void cmdCollapse_Click(object sender, EventArgs e)
@@ -40,8 +40,7 @@ namespace ExamplesFx.Controls
 
         private void cboSearchMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cboSearchMode.SelectedIndex)
-            {
+            switch (cboSearchMode.SelectedIndex) {
                 case 0:
                     tvExamples.SearchMode = ExamplesSearchMode.Name;
                     break;
@@ -63,8 +62,7 @@ namespace ExamplesFx.Controls
 
         private void tvExamples_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (CurrentExample == null)
-            {
+            if (CurrentExample == null) {
                 exampleRenderer.Clear();
                 return;
             }
@@ -77,11 +75,7 @@ namespace ExamplesFx.Controls
 
         public ExampleCode CurrentExample
         {
-            get
-            {
-                return tvExamples.SelectedExample;
-            }
+            get { return tvExamples.SelectedExample; }
         }
-
     }
 }

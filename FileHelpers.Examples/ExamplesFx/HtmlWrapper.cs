@@ -23,6 +23,7 @@ namespace ExamplesFx
         /// Navigate to filehelpers Trunk directory
         /// </summary>
         public const string DocsOutput = "../../Doc/Include";
+
         /// <summary>
         /// Template file, contains ${BODY} that we inject into the code
         /// </summary>
@@ -56,18 +57,21 @@ namespace ExamplesFx
         /// </summary>
         public List<ExampleFile> Files;
 
-        static Regex LeadingAster = new Regex(@"^\s\* ", RegexOptions.Compiled | RegexOptions.Multiline);
+        private static Regex LeadingAster = new Regex(@"^\s\* ", RegexOptions.Compiled | RegexOptions.Multiline);
 
-        
-        static readonly Regex FileNames = new Regex(@"(\${.*?})", RegexOptions.Compiled);
-        static readonly Regex Blockquote = new Regex(@"\</?blockquote\>", RegexOptions.Compiled|RegexOptions.IgnoreCase);
-        static Regex TrailingLines = new Regex("[\r\n]*$", RegexOptions.Compiled);
+
+        private static readonly Regex FileNames = new Regex(@"(\${.*?})", RegexOptions.Compiled);
+
+        private static readonly Regex Blockquote = new Regex(@"\</?blockquote\>",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        private static Regex TrailingLines = new Regex("[\r\n]*$", RegexOptions.Compiled);
 
         /// <summary>
         /// Create a HTML wrapper with a template (before expansion)
         /// </summary>
         /// <param name="pBody">Html content that appears between body tags</param>
-        public HtmlWrapper(  String pBody, List<ExampleFile> pFiles)
+        public HtmlWrapper(String pBody, List<ExampleFile> pFiles)
         {
             this.Body = pBody;
             this.Files = pFiles;
@@ -95,34 +99,27 @@ namespace ExamplesFx
 
         private void ProcessBody(StringBuilder html)
         {
-            foreach (var part in FileNames.Split(Body))
-            {
-                if (part.StartsWith("${"))
-                {
+            foreach (var part in FileNames.Split(Body)) {
+                if (part.StartsWith("${")) {
                     String filename = part.Substring(2, part.Length - 3);
                     // Special case
-                    if( filename == "URL" )
-                    {
+                    if (filename == "URL") {
                         html.Append(URLprefix);
                         continue;
                     }
                     var details = this.Files.Where(x => x.Filename == filename).FirstOrDefault();
-                    if (details == null)
-                    {
+                    if (details == null) {
                         html.Append("<p><b>File ");
                         html.Append(part);
                         html.Append(" is missing, check case because I am very dumb about that!</b></p>");
                     }
-                    else
-                    {
-
+                    else {
                         String[] lines = details.Contents.Split('\n');
                         int max = lines.Max(x => x.Length);
                         int count = lines.Count();
 
                         String cssClass = "data";
-                        switch (details.Status)
-                        {
+                        switch (details.Status) {
                             case ExampleFile.FileType.InputFile:
                                 cssClass = "data";
                                 break;
@@ -130,8 +127,7 @@ namespace ExamplesFx
                                 cssClass = "data";
                                 break;
                             case ExampleFile.FileType.SourceFile:
-                                switch (details.Language)
-                                {
+                                switch (details.Language) {
                                     case NetLanguage.CSharp:
                                         cssClass = "c#";
                                         break;
@@ -172,42 +168,37 @@ namespace ExamplesFx
             bool storeUseBlockQuotes = this.UseBlockQuotes;
             string storePrefix = this.URLprefix;
             this.URLprefix = string.Empty;
-            try
-            {
+            try {
                 this.UseBlockQuotes = true;
                 GetHeadAndFoot();
                 string output = Path.Combine(DocsOutput, filename);
-                using (var writer = new StreamWriter(output))
-                {
+                using (var writer = new StreamWriter(output)) {
                     writer.Write(Heading);
                     var body = new StringBuilder();
-                    ProcessBody( body);
+                    ProcessBody(body);
                     writer.Write(body);
                     writer.Write(Footing);
                     writer.Close();
                 }
             }
-            finally
-            {
-                this.UseBlockQuotes = storeUseBlockQuotes ;
+            finally {
+                this.UseBlockQuotes = storeUseBlockQuotes;
                 this.URLprefix = storePrefix;
             }
         }
 
         private static void GetHeadAndFoot()
         {
-            if (Heading == null)
-            {
+            if (Heading == null) {
                 string path = Path.Combine(Docs, Template);
-                using (var reader = new StreamReader(path))
-                {
-                    string[] temp = { "${BODY}" };
+                using (var reader = new StreamReader(path)) {
+                    string[] temp = {"${BODY}"};
                     string[] parts = reader.ReadToEnd().Split(temp, StringSplitOptions.None);
                     reader.Close();
 
-                    if (parts.Length != 2)
-                    {
-                        throw new Exception("There must be one, and only one ${BODY} in " + path + " found " + parts.Length);
+                    if (parts.Length != 2) {
+                        throw new Exception("There must be one, and only one ${BODY} in " + path + " found " +
+                                            parts.Length);
                     }
                     Heading = parts[0];
                     Footing = parts[1];

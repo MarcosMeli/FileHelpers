@@ -8,12 +8,10 @@ using FileHelpers.Dynamic;
 
 namespace FileHelpers.WizardApp
 {
-    
-    [XmlInclude(typeof(DelimitedFieldBuilder))]
-    [XmlInclude(typeof(FixedFieldBuilder))]
+    [XmlInclude(typeof (DelimitedFieldBuilder))]
+    [XmlInclude(typeof (FixedFieldBuilder))]
     public class WizardInfo
     {
-
         /// <summary>
         /// Allow the application to track the change of Language
         /// </summary>
@@ -50,7 +48,7 @@ namespace FileHelpers.WizardApp
         /// </summary>
         public DelimitedClassBuilder DelimitedBuilder
         {
-            get 
+            get
             {
                 if (mClassBuilder is DelimitedClassBuilder)
                     return (DelimitedClassBuilder) mClassBuilder;
@@ -100,12 +98,10 @@ namespace FileHelpers.WizardApp
             if (mClassBuilder == null)
                 return string.Empty;
 
-            try
-            {
+            try {
                 return mClassBuilder.GetClassSourceCode(lang);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 //MessageBox.Show(ex.Message, "Error generating class code", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return ex.Message;
             }
@@ -118,6 +114,5 @@ namespace FileHelpers.WizardApp
             get { return mDefaultType; }
             set { mDefaultType = value; }
         }
-
     }
 }

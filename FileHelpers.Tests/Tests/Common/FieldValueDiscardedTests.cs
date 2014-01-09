@@ -13,7 +13,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedFirst>();
 
-            res.Length.AssertEqualTo(Array.FindAll(res, 
+            res.Length.AssertEqualTo(Array.FindAll(res,
                 (x) => x.CustomerID == null).Length);
         }
 
@@ -48,6 +48,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             [FieldValueDiscarded()]
             public string CustomerID;
+
             public string CompanyName;
             public string ContactName;
             public string ContactTitle;
@@ -61,8 +62,10 @@ namespace FileHelpers.Tests.CommonTests
         public class CustomersTabDiscardedSecond
         {
             public string CustomerID;
+
             [FieldValueDiscarded()]
             public string CompanyName;
+
             public string ContactName;
             public string ContactTitle;
             public string Address;
@@ -77,8 +80,10 @@ namespace FileHelpers.Tests.CommonTests
             public string CompanyName;
             public string ContactName;
             public string ContactTitle;
+
             [FieldValueDiscarded()]
             public string Address;
+
             public string City;
             public string Country;
         }
@@ -92,55 +97,59 @@ namespace FileHelpers.Tests.CommonTests
             public string ContactTitle;
             public string Address;
             public string City;
+
             [FieldValueDiscarded()]
             public string Country;
         }
-
 
 
         [Test]
         public void DiscardedBad()
         {
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.OrdersSmallVerticalBar
-                                                 .ReadWithEngine<OrdersDiscardBad>());
+                FileTest.Good.OrdersSmallVerticalBar
+                    .ReadWithEngine<OrdersDiscardBad>());
         }
 
         [Test]
         public void OrdersAllDiscarded()
         {
             var res = FileTest.Good.OrdersSmallVerticalBar
-                            .ReadWithEngine<OrdersAllDiscard>();
+                .ReadWithEngine<OrdersAllDiscard>();
 
-            Array.FindAll(res, (x) => x.CustomerID == null
-                && x.OrderID == -1
-                && x.OrderDate == new DateTime(2000,1,2)
-                && x.Freight == 0).Length.AssertEqualTo(res.Length);
+            Array.FindAll(res,
+                (x) => x.CustomerID == null
+                       && x.OrderID == -1
+                       && x.OrderDate == new DateTime(2000, 1, 2)
+                       && x.Freight == 0).Length.AssertEqualTo(res.Length);
         }
 
         [Test]
         public void OrdersLastNotDiscarded()
         {
             var res = FileTest.Good.OrdersSmallVerticalBar
-                            .ReadWithEngine<OrdersLastNotDiscard>();
+                .ReadWithEngine<OrdersLastNotDiscard>();
 
-            Array.FindAll(res, (x) => x.CustomerID == null
-                && x.OrderID == -1
-                && x.OrderDate == new DateTime(2000, 1, 2)
-                && x.Freight != 0).Length.AssertEqualTo(res.Length);
+            Array.FindAll(res,
+                (x) => x.CustomerID == null
+                       && x.OrderID == -1
+                       && x.OrderDate == new DateTime(2000, 1, 2)
+                       && x.Freight != 0).Length.AssertEqualTo(res.Length);
         }
 
         [Test]
         public void OrdersLastTwoNotDiscarded()
         {
             var res = FileTest.Good.OrdersSmallVerticalBar
-                            .ReadWithEngine<OrdersLastTwoNotDiscard>();
+                .ReadWithEngine<OrdersLastTwoNotDiscard>();
 
-            Array.FindAll(res, (x) => x.CustomerID == null
-                && x.OrderID == -1
-                && x.OrderDate != new DateTime(2000, 1, 2)
-                && x.Freight != 0).Length.AssertEqualTo(res.Length);
+            Array.FindAll(res,
+                (x) => x.CustomerID == null
+                       && x.OrderID == -1
+                       && x.OrderDate != new DateTime(2000, 1, 2)
+                       && x.Freight != 0).Length.AssertEqualTo(res.Length);
         }
+
         [DelimitedRecord("|")]
         public class OrdersDiscardBad
         {
@@ -168,11 +177,11 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             [FieldValueDiscarded]
-            [FieldNullValue(typeof(DateTime), "2000-01-02")]
+            [FieldNullValue(typeof (DateTime), "2000-01-02")]
             public DateTime OrderDate;
 
             [FieldValueDiscarded]
-            [FieldNullValue(typeof(decimal), "0")]
+            [FieldNullValue(typeof (decimal), "0")]
             public decimal Freight;
         }
 
@@ -188,18 +197,18 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             [FieldValueDiscarded]
-            [FieldNullValue(typeof(DateTime), "2000-01-02")]
+            [FieldNullValue(typeof (DateTime), "2000-01-02")]
             public DateTime OrderDate;
 
             public decimal Freight;
         }
 
-          [DelimitedRecord("|")]
+        [DelimitedRecord("|")]
         public class OrdersLastTwoNotDiscard
         {
             [FieldValueDiscarded]
-              [FieldNullValue(-1)]
-              public int OrderID;
+            [FieldNullValue(-1)]
+            public int OrderID;
 
             [FieldValueDiscarded]
             public string CustomerID;
@@ -209,8 +218,5 @@ namespace FileHelpers.Tests.CommonTests
 
             public decimal Freight;
         }
-
     }
-
-
 }

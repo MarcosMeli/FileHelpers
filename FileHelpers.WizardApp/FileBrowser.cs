@@ -10,13 +10,10 @@ using System.ComponentModel;
 
 namespace FileHelpers.WizardApp
 {
-
-
-    [Designer(typeof(FileBrowser.FileBrowserDesigner))]
-    public class FileBrowser: ScrollableControl
+    [Designer(typeof (FileBrowser.FileBrowserDesigner))]
+    public class FileBrowser : ScrollableControl
     {
-
-        private class FileBrowserDesigner:ControlDesigner
+        private class FileBrowserDesigner : ControlDesigner
         {
             protected override void PostFilterProperties(System.Collections.IDictionary properties)
             {
@@ -25,28 +22,32 @@ namespace FileHelpers.WizardApp
                 properties.Remove("Font");
             }
         }
+
         public FileBrowser()
         {
-            mColumns.AddRange(new ColumnInfo[] 
-                { 
-                    new ColumnInfo(11), 
-                    new ColumnInfo(38), 
-                    new ColumnInfo(72-50),
-                    new ColumnInfo(110-72), 
-                    new ColumnInfo(151-110), 
-                    new ColumnInfo(169-151),
-                    new ColumnInfo(15)
-                });
+            mColumns.AddRange(new ColumnInfo[] {
+                new ColumnInfo(11),
+                new ColumnInfo(38),
+                new ColumnInfo(72 - 50),
+                new ColumnInfo(110 - 72),
+                new ColumnInfo(151 - 110),
+                new ColumnInfo(169 - 151),
+                new ColumnInfo(15)
+            });
             PenEvenRule = new Pen(ColorEvenRule);
             PenOddRule = new Pen(ColorOddRule);
             PenOverRule = new Pen(ColorOverRule);
 
-            this.Font = new System.Drawing.Font("Courier New", mFontSize, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Courier New",
+                mFontSize,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Pixel,
+                ((byte) (0)));
             this.VerticalScroll.Enabled = true;
             this.DoubleBuffered = true;
         }
 
-        int mTextTop = 25;
+        private int mTextTop = 25;
 
         private int mFontSize = 16;
 
@@ -54,7 +55,7 @@ namespace FileHelpers.WizardApp
         {
             get { return mFontSize; }
             set
-            { 
+            {
                 mFontSize = value;
                 mCharWidth = -1;
                 this.Font = new System.Drawing.Font("Courier New", mFontSize, System.Drawing.FontStyle.Regular);
@@ -65,18 +66,19 @@ namespace FileHelpers.WizardApp
         public int TextTop
         {
             get { return mTextTop; }
-            set 
+            set
             {
                 mTextTop = value;
                 this.Invalidate();
             }
         }
-        int mTextLeft = 10;
+
+        private int mTextLeft = 10;
 
         public int TextLeft
         {
             get { return mTextLeft; }
-            set 
+            set
             {
                 mTextLeft = value;
                 this.Invalidate();
@@ -99,13 +101,13 @@ namespace FileHelpers.WizardApp
         private Pen PenOddRule;
         private Pen PenOverRule;
 
-        int mCharWidth = -1;
-        int mOverColumn = -1;
+        private int mCharWidth = -1;
+        private int mOverColumn = -1;
 
         protected override void OnPaint(PaintEventArgs e)
         {
             if (mCharWidth == -1)
-                  mCharWidth = (int) TextRenderer.MeasureText("m", this.Font).Width - 5;
+                mCharWidth = (int) TextRenderer.MeasureText("m", this.Font).Width - 5;
 
             int width;
             int left = mTextLeft;
@@ -114,12 +116,11 @@ namespace FileHelpers.WizardApp
 
             bool even = true;
 
-            for (int i = 0; i < mColumns.Count; i++)
-            {
-                width = mCharWidth * mColumns[i].Width;
+            for (int i = 0; i < mColumns.Count; i++) {
+                width = mCharWidth*mColumns[i].Width;
 
                 Brush backBrush;
-                
+
                 if (i == mOverColumn)
                     backBrush = new SolidBrush(ColorOverColumn);
                 else
@@ -130,7 +131,9 @@ namespace FileHelpers.WizardApp
 
                 Pen rulePen;
 
-                rulePen = even ? PenEvenRule : PenOddRule;
+                rulePen = even
+                    ? PenEvenRule
+                    : PenOddRule;
                 even = !even;
 
                 if (i == mOverColumn)
@@ -145,7 +148,11 @@ namespace FileHelpers.WizardApp
                 else
                     widthBrush = Brushes.DarkRed;
 
-                e.Graphics.DrawString(mColumns[i].Width.ToString(), this.Font, widthBrush, left + width / 2 - 10, rulesNumberTop);
+                e.Graphics.DrawString(mColumns[i].Width.ToString(),
+                    this.Font,
+                    widthBrush,
+                    left + width/2 - 10,
+                    rulesNumberTop);
 
                 left += width;
             }
@@ -165,19 +172,16 @@ namespace FileHelpers.WizardApp
                 this.Invalidate();
         }
 
-        
 
         private int CalculateColumn(int x)
         {
-
             if (x < mTextLeft)
                 return -1;
 
             int left = mTextLeft;
 
-            for (int i = 0; i < mColumns.Count; i++)
-            {
-                left += mCharWidth * mColumns[i].Width;
+            for (int i = 0; i < mColumns.Count; i++) {
+                left += mCharWidth*mColumns[i].Width;
                 if (x < left)
                     return i;
             }
@@ -200,6 +204,7 @@ namespace FileHelpers.WizardApp
                 get { return mWidth; }
                 set { mWidth = value; }
             }
+
             private Color mColor;
 
             public Color Color

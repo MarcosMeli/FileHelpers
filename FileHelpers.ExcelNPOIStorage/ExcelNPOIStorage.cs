@@ -15,385 +15,455 @@ using System.Globalization;
 using System.Collections;
 using NPOI.XSSF.UserModel;
 
-namespace FileHelpers.ExcelNPOIStorage {
+namespace FileHelpers.ExcelNPOIStorage
+{
+    /// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files using the NPOI library.</para>
+    /// <para><b>WARNING you need to reference NPOI.dll in your project to use this feature.</b></para>
+    /// <para><b>To use this class you need to reference the FileHelpers.ExcelNPOIStorage.dll file.</b></para>
+    /// </summary>
+    /// <remmarks><b>This class is contained in the FileHelpers.ExcelNPOIStorage.dll and need the NPOI.dll to work correctly.</b></remmarks>
+    public sealed class ExcelNPOIStorage : ExcelStorageBase
+    {
+        //private readonly Missing mv = Missing.Value;
 
-	/// <summary><para>This class implements the <see cref="DataStorage"/> for Microsoft Excel Files using the NPOI library.</para>
-	/// <para><b>WARNING you need to reference NPOI.dll in your project to use this feature.</b></para>
-	/// <para><b>To use this class you need to reference the FileHelpers.ExcelNPOIStorage.dll file.</b></para>
-	/// </summary>
-	/// <remmarks><b>This class is contained in the FileHelpers.ExcelNPOIStorage.dll and need the NPOI.dll to work correctly.</b></remmarks>
-    public sealed class ExcelNPOIStorage : ExcelStorageBase {
+        #region "  Constructors  "
 
-		//private readonly Missing mv = Missing.Value;
+        /// <summary>Create a new ExcelStorage to work with the specified type</summary>
+        /// <param name="recordType">The type of records.</param>
+        public ExcelNPOIStorage(Type recordType)
+            : base(recordType) {}
 
-		#region "  Constructors  "
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
-		/// <param name="recordType">The type of records.</param>
-		public ExcelNPOIStorage( Type recordType )
-			: base( recordType ) { }
+        /// <summary>Create a new ExcelStorage to work with the specified type</summary>
+        /// <param name="recordType">The type of records.</param>
+        /// <param name="startRow">The row of the first data cell. Begining in 1.</param>
+        /// <param name="startCol">The column of the first data cell. Begining in 1.</param>
+        public ExcelNPOIStorage(Type recordType, int startRow, int startCol)
+            : base(recordType, startRow, startCol) {}
 
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
-		/// <param name="recordType">The type of records.</param>
-		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
-		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
-		public ExcelNPOIStorage( Type recordType, int startRow, int startCol )
-			: base( recordType, startRow, startCol ) { }
-
-		/// <summary>Create a new ExcelStorage to work with the specified type</summary>
-		/// <param name="recordType">The type of records.</param>
-		/// <param name="startRow">The row of the first data cell. Begining in 1.</param>
-		/// <param name="startCol">The column of the first data cell. Begining in 1.</param>
-		/// <param name="fileName">The file path to work with.</param>
-		public ExcelNPOIStorage( Type recordType, string fileName, int startRow, int startCol )
-			: base( recordType, fileName, startRow, startCol ) { }
-		#endregion
-
-		#region "  Private Fields  "
-		
-		private IWorkbook mWorkbook;
-        private ISheet mSheet;
-		//private RecordInfo mRecordInfo;
+        /// <summary>Create a new ExcelStorage to work with the specified type</summary>
+        /// <param name="recordType">The type of records.</param>
+        /// <param name="startRow">The row of the first data cell. Begining in 1.</param>
+        /// <param name="startCol">The column of the first data cell. Begining in 1.</param>
+        /// <param name="fileName">The file path to work with.</param>
+        public ExcelNPOIStorage(Type recordType, string fileName, int startRow, int startCol)
+            : base(recordType, fileName, startRow, startCol) {}
 
         #endregion
 
-		#region "  Public Properties  "
-		
-		#endregion
+        #region "  Private Fields  "
 
-		#region "  InitExcel  "
-		private void InitExcel() {
-			mWorkbook = null;
-			mSheet = null;
-		}
-		#endregion
+        private IWorkbook mWorkbook;
+        private ISheet mSheet;
+        //private RecordInfo mRecordInfo;
 
-		#region "  CloseAndCleanUp  "
-		private void CloseAndCleanUp() {
+        #endregion
+
+        #region "  Public Properties  "
+
+        #endregion
+
+        #region "  InitExcel  "
+
+        private void InitExcel()
+        {
+            mWorkbook = null;
+            mSheet = null;
+        }
+
+        #endregion
+
+        #region "  CloseAndCleanUp  "
+
+        private void CloseAndCleanUp()
+        {
             mSheet = null;
             mWorkbook = null;
 
-		    GC.Collect();
-			GC.WaitForPendingFinalizers();
-		}
-		#endregion
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
 
-		#region "  OpenWorkbook  "
-		private void OpenWorkbook( string filename ) {
+        #endregion
 
-			FileInfo info = new FileInfo( filename );
-			if( info.Exists == false )
-				throw new FileNotFoundException( string.Concat( "Excel File '", filename, "' not found." ), filename );
+        #region "  OpenWorkbook  "
 
-			using( FileStream file = new FileStream( filename, FileMode.Open, FileAccess.Read ) ) {
+        private void OpenWorkbook(string filename)
+        {
+            FileInfo info = new FileInfo(filename);
+            if (info.Exists == false)
+                throw new FileNotFoundException(string.Concat("Excel File '", filename, "' not found."), filename);
 
-			    var extension = Path.GetExtension(filename);
-                if(extension.ToLowerInvariant()==".xlsx") {
+            using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read)) {
+                var extension = Path.GetExtension(filename);
+                if (extension.ToLowerInvariant() == ".xlsx")
                     mWorkbook = new XSSFWorkbook(file);
-                } else {
+                else
                     mWorkbook = new HSSFWorkbook(file);
+
+                if (String.IsNullOrEmpty(SheetName))
+                    mSheet = mWorkbook.GetSheetAt(0);
+                else {
+                    try {
+                        mSheet = mWorkbook.GetSheet(SheetName);
+                        if (mSheet == null) {
+                            throw new ExcelBadUsageException(string.Concat("The sheet '",
+                                SheetName,
+                                "' was not found in the workbook."));
+                        }
+
+                        var sheetIndex = mWorkbook.GetSheetIndex(mSheet);
+                        mWorkbook.SetActiveSheet(sheetIndex);
+                    }
+                    catch {
+                        throw new ExcelBadUsageException(string.Concat("The sheet '",
+                            SheetName,
+                            "' was not found in the workbook."));
+                    }
                 }
+            }
+        }
 
-				if( String.IsNullOrEmpty( SheetName ) )
-					mSheet = mWorkbook.GetSheetAt( 0 );
-				else {
-					try {
-						mSheet = mWorkbook.GetSheet( SheetName );
-						if( mSheet == null )
-							throw new ExcelBadUsageException( string.Concat( "The sheet '", SheetName, "' was not found in the workbook." ) );
-					} catch {
-						throw new ExcelBadUsageException( string.Concat( "The sheet '", SheetName, "' was not found in the workbook." ) );
-					}
-				}
-			}
-		}
-		#endregion
+        #endregion
 
-		#region "  CreateWorkbook methods  "
-		private void OpenOrCreateWorkbook( string filename ) {
-			if( File.Exists( filename ) )
-				OpenWorkbook( filename );
-			else
-				CreateWorkbook();
-		}
+        #region "  CreateWorkbook methods  "
 
-		private void CreateWorkbook() {
-			mWorkbook = new HSSFWorkbook();
-			mSheet = (HSSFSheet)mWorkbook.CreateSheet( SheetName );
-		}
-		#endregion
+        private void OpenOrCreateWorkbook(string filename)
+        {
+            if (File.Exists(filename))
+                OpenWorkbook(filename);
+            else
+                CreateWorkbook(filename);
+        }
 
-		#region "  SaveWorkbook  "
-		private void SaveWorkbook() {
-			if( mWorkbook == null )
-				return;
+        private void CreateWorkbook(string filename)
+        {
+            var extension = Path.GetExtension(filename);
 
-			using( var fileData = new FileStream( FileName, FileMode.Create ) ) {
-				mWorkbook.Write( fileData );
-			}
-		}
+            if (extension.ToLowerInvariant() == ".xlsx")
+                mWorkbook = new XSSFWorkbook();
+            else if (extension.ToLowerInvariant() == ".xls")
+                mWorkbook = new HSSFWorkbook();
+            mSheet = mWorkbook.CreateSheet(SheetName);
+            mWorkbook.SetActiveSheet(0);
+        }
 
-		private void SaveWorkbook( string filename ) {
-			FileName = filename;
-			SaveWorkbook();
-		}
-		#endregion
+        #endregion
 
-		#region "  CellAsString  "
+        #region "  SaveWorkbook  "
+
+        private void SaveWorkbook()
+        {
+            if (mWorkbook == null)
+                return;
+
+            using (var fileData = new FileStream(FileName, FileMode.Create))
+                mWorkbook.Write(fileData);
+        }
+
+        private void SaveWorkbook(string filename)
+        {
+            FileName = filename;
+            SaveWorkbook();
+        }
+
+        #endregion
+
+        #region "  CellAsString  "
 
         protected override string CellAsString(object row, object col)
         {
             var rowO = mSheet.GetRow((int) row);
             return rowO == null
-                       ? null
-                       : this.CellAsString(rowO, (int)col);
+                ? null
+                : this.CellAsString(rowO, (int) col);
         }
 
-		private string CellAsString( IRow row, int col ) {
-			if( mSheet == null )
-				return null;
+        private string CellAsString(IRow row, int col)
+        {
+            if (mSheet == null)
+                return null;
 
-			ICell cell = CellUtil.GetCell( row, col );
-			return cell.StringCellValue;
-		}
+            ICell cell = CellUtil.GetCell(row, col);
+            return cell.StringCellValue;
+        }
 
-		#endregion
+        #endregion
 
-		#region "  ColLeter  "
-		//static string _ColLetter( int col /* 0 origin */) {
-		//	// col = [0...25] 
-		//	if( col >= 0 && col <= 25 )
-		//		return ((char)('A' + col)).ToString();
-		//	return "";
-		//}
-		//static string ColLetter( int col /* 1 Origin */) {
-		//	if( col < 1 || col > 256 )
-		//		throw new ExcelBadUsageException( "Column out of range; must be between 1 and 256" ); // Excel limits 
-		//	col--; // make 0 origin 
-		//	// good up to col ZZ 
-		//	int col2 = (col / 26) - 1;
-		//	int col1 = (col % 26);
-		//	return _ColLetter( col2 ) + _ColLetter( col1 );
-		//}
-		#endregion
+        #region "  ColLeter  "
 
-		#region "  RowValues  "
-		private object[] RowValues( int rowNum, int startCol, int numberOfCols ) {
-			if( mSheet == null )
-				return null;
+        //static string _ColLetter( int col /* 0 origin */) {
+        //	// col = [0...25] 
+        //	if( col >= 0 && col <= 25 )
+        //		return ((char)('A' + col)).ToString();
+        //	return "";
+        //}
+        //static string ColLetter( int col /* 1 Origin */) {
+        //	if( col < 1 || col > 256 )
+        //		throw new ExcelBadUsageException( "Column out of range; must be between 1 and 256" ); // Excel limits 
+        //	col--; // make 0 origin 
+        //	// good up to col ZZ 
+        //	int col2 = (col / 26) - 1;
+        //	int col1 = (col % 26);
+        //	return _ColLetter( col2 ) + _ColLetter( col1 );
+        //}
 
-			if( numberOfCols == 1 ) {
-				IRow row = HSSFCellUtil.GetRow( rowNum, (HSSFSheet)mSheet );
+        #endregion
 
-				ICell cell = HSSFCellUtil.GetCell( row, startCol );
-				return new object[] { NPOIUtils.GetCellValue( cell ) };
-			} else {
+        #region "  RowValues  "
 
-				CellRangeAddress range = new CellRangeAddress( rowNum, rowNum, startCol, startCol + numberOfCols - 1 );
+        private object[] RowValues(int rowNum, int startCol, int numberOfCols)
+        {
+            if (mSheet == null)
+                return null;
 
-				CellWalk cw = new CellWalk( mSheet, range );
-				cw.SetTraverseEmptyCells( true );
-                
-				CellExtractor ce = new CellExtractor();
-                
-				cw.Traverse( ce );
+            if (numberOfCols == 1) {
+                IRow row = HSSFCellUtil.GetRow(rowNum, (HSSFSheet) mSheet);
 
-				return ce.CellValues;
-			}
-		}
+                ICell cell = HSSFCellUtil.GetCell(row, startCol);
+                return new object[] {NPOIUtils.GetCellValue(cell)};
+            }
+            else {
+                CellRangeAddress range = new CellRangeAddress(rowNum, rowNum, startCol, startCol + numberOfCols - 1);
 
-		private void WriteRowValues( object[] values, int rowNum, int startCol ) {
-			if( mSheet == null )
-				return;
+                CellWalk cw = new CellWalk(mSheet, range);
+                cw.SetTraverseEmptyCells(true);
 
-			CellRangeAddress range = new CellRangeAddress( rowNum, rowNum, startCol, startCol + values.Length - 1 );
+                CellExtractor ce = new CellExtractor();
 
-			CellWalk cw = new CellWalk( mSheet, range );
-			cw.SetTraverseEmptyCells( true );
+                cw.Traverse(ce);
 
-			CellInserter ci = new CellInserter( new List<object>( values ) );
-			cw.Traverse( ci );
-		}
-		#endregion
+                return ce.CellValues;
+            }
+        }
 
-		#region "  InsertRecords  "
-		/// <summary>Insert all the records in the specified Excel File.</summary>
-		/// <param name="records">The records to insert.</param>
-		public override void InsertRecords( object[] records ) {
-			if( records == null || records.Length == 0 )
-				return;
+        private void WriteRowValues(object[] values, int rowNum, int startCol)
+        {
+            if (mSheet == null)
+                return;
 
-			CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
-			Thread.CurrentThread.CurrentCulture = new CultureInfo( "en-US" );
-			try {
-				int recordNumber = 0;
-				OnProgress( new ProgressEventArgs( 0, records.Length ) );
+            var row = mSheet.GetRow(rowNum);
+            if (row == null)
+                row = mSheet.CreateRow(rowNum);
+            for (int i = 0; i <= startCol + values.Length; i++) {
+                var cell = row.GetCell(i);
+                if (cell == null)
+                    row.CreateCell(i);
+            }
 
-				InitExcel();
+            CellRangeAddress range = new CellRangeAddress(rowNum, rowNum, startCol, startCol + values.Length - 1);
 
-				if( OverrideFile && File.Exists( FileName ) )
-					File.Delete( FileName );
+            CellWalk cw = new CellWalk(mSheet, range);
+            cw.SetTraverseEmptyCells(true);
 
-				if( !String.IsNullOrEmpty( TemplateFile ) ) {
-					if( File.Exists( TemplateFile ) == false )
-						throw new ExcelBadUsageException( string.Concat( "Template file not found: '", TemplateFile, "'" ) );
+            CellInserter ci = new CellInserter(new List<object>(values));
 
-					if( String.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0 )
-						File.Copy( TemplateFile, FileName, true );
-				}
+            cw.Traverse(ci);
+        }
 
-				OpenOrCreateWorkbook( FileName );
+        #endregion
 
-				for( int i = 0; i < records.Length; i++ ) {
-					recordNumber++;
-					OnProgress( new ProgressEventArgs( recordNumber, records.Length ) );
+        #region "  InsertRecords  "
 
-					WriteRowValues( RecordToValues( records[i] ), StartRow + i, StartColumn );
-				}
+        /// <summary>Insert all the records in the specified Excel File.</summary>
+        /// <param name="records">The records to insert.</param>
+        public override void InsertRecords(object[] records)
+        {
+            if (records == null ||
+                records.Length == 0)
+                return;
 
-				SaveWorkbook( FileName );
-			} catch {
-				throw;
-			} finally {
-				CloseAndCleanUp();
-				Thread.CurrentThread.CurrentCulture = oldCulture;
-			}
-		}
+            CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            try {
+                int recordNumber = 0;
+                OnProgress(new ProgressEventArgs(0, records.Length));
 
-		#endregion
+                InitExcel();
 
-		#region "  ExtractRecords  "
+                if (OverrideFile && File.Exists(FileName))
+                    File.Delete(FileName);
 
-		/// <summary>Returns the records extracted from Excel file.</summary>
-		/// <returns>The extracted records.</returns>
-		public override object[] ExtractRecords() {
-			if( String.IsNullOrEmpty( FileName ) )
-				throw new ExcelBadUsageException( "You need to specify the WorkBookFile of the ExcelDataLink." );
+                if (!String.IsNullOrEmpty(TemplateFile)) {
+                    if (File.Exists(TemplateFile) == false)
+                        throw new ExcelBadUsageException(string.Concat("Template file not found: '", TemplateFile, "'"));
 
-			var res = new ArrayList();
+                    if (String.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0)
+                        File.Copy(TemplateFile, FileName, true);
+                }
 
-			CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
-			Thread.CurrentThread.CurrentCulture = new CultureInfo( "en-US" );
-			try {
-				int cRow = StartRow;
+                OpenOrCreateWorkbook(FileName);
 
-				int recordNumber = 0;
-				OnProgress( new ProgressEventArgs( recordNumber, -1 ) );
+                for (int i = 0; i < records.Length; i++) {
+                    recordNumber++;
+                    OnProgress(new ProgressEventArgs(recordNumber, records.Length));
 
-				var colValues = new object[RecordFieldCount];
+                    WriteRowValues(RecordToValues(records[i]), StartRow + i, StartColumn);
+                }
 
-				InitExcel();
-				OpenWorkbook( FileName );
+                SaveWorkbook(FileName);
+            }
+            catch {
+                throw;
+            }
+            finally {
+                CloseAndCleanUp();
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
+        }
 
-				while (ShouldStopOnRow(cRow) == false)
-                    {
-                        try
-                        {
-                            if (ShouldReadRowData(cRow))
-                            {
-                                recordNumber++;
-                                OnProgress(new ProgressEventArgs(recordNumber, -1));
+        #endregion
 
-                                colValues = RowValues(cRow, StartColumn, RecordFieldCount);
+        #region "  ExtractRecords  "
 
-                                object record = ValuesToRecord(colValues);
-                                res.Add(record);
-                            }
+        /// <summary>Returns the records extracted from Excel file.</summary>
+        /// <returns>The extracted records.</returns>
+        public override object[] ExtractRecords()
+        {
+            if (String.IsNullOrEmpty(FileName))
+                throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
+
+            var res = new ArrayList();
+
+            CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            try {
+                int cRow = StartRow;
+
+                int recordNumber = 0;
+                OnProgress(new ProgressEventArgs(recordNumber, -1));
+
+                var colValues = new object[RecordFieldCount];
+
+                InitExcel();
+                OpenWorkbook(FileName);
+
+                while (ShouldStopOnRow(cRow) == false) {
+                    try {
+                        if (ShouldReadRowData(cRow)) {
+                            recordNumber++;
+                            OnProgress(new ProgressEventArgs(recordNumber, -1));
+
+                            colValues = RowValues(cRow, StartColumn, RecordFieldCount);
+
+                            object record = ValuesToRecord(colValues);
+                            res.Add(record);
                         }
-                        catch (Exception ex)
-                        {
-                            switch (mErrorManager.ErrorMode)
-                            {
-                                case ErrorMode.ThrowException:
-                                    throw;
-                                case ErrorMode.IgnoreAndContinue:
-                                    break;
-                                case ErrorMode.SaveAndContinue:
-                                    AddError(cRow, ex, ColumnsToValues(colValues));
-                                    break;
-                            }
+                    }
+                    catch (Exception ex) {
+                        switch (mErrorManager.ErrorMode) {
+                            case ErrorMode.ThrowException:
+                                throw;
+                            case ErrorMode.IgnoreAndContinue:
+                                break;
+                            case ErrorMode.SaveAndContinue:
+                                AddError(cRow, ex, ColumnsToValues(colValues));
+                                break;
                         }
-                        finally
-                        {
-                            cRow++;
-                        }
-				}
-			} catch {
-				throw;
-			} finally {
-				CloseAndCleanUp();
-				Thread.CurrentThread.CurrentCulture = oldCulture;
-			}
+                    }
+                    finally {
+                        cRow++;
+                    }
+                }
+            }
+            catch {
+                throw;
+            }
+            finally {
+                CloseAndCleanUp();
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
 
-			return (object[])res.ToArray( RecordType );
-		}
-		#endregion
+            return (object[]) res.ToArray(RecordType);
+        }
 
-		private static string ColumnsToValues( object[] values ) {
-			if( values == null || values.Length == 0 )
-				return string.Empty;
+        #endregion
 
-			string res = string.Empty;
-			if( values[0] != null )
-				res = values[0].ToString();
+        private static string ColumnsToValues(object[] values)
+        {
+            if (values == null ||
+                values.Length == 0)
+                return string.Empty;
 
-			for( int i = 1; i < values.Length; i++ )
-				res += "," + values[i] == null ? String.Empty : values[i].ToString();
+            string res = string.Empty;
+            if (values[0] != null)
+                res = values[0].ToString();
 
-			return res;
-		}
+            for (int i = 1; i < values.Length; i++) {
+                res += "," + values[i] == null
+                    ? String.Empty
+                    : values[i].ToString();
+            }
 
-		private class CellExtractor : ICellHandler {
-			private List<object> _cells;
+            return res;
+        }
 
-			/// <summary>
-			/// Initializes a new instance of the CellExtractor class.
-			/// </summary>
-			public CellExtractor() {
-				_cells = new List<object>();
-			}
+        private class CellExtractor : ICellHandler
+        {
+            private List<object> _cells;
 
-			public object[] CellValues { get { return _cells.ToArray(); } }
+            /// <summary>
+            /// Initializes a new instance of the CellExtractor class.
+            /// </summary>
+            public CellExtractor()
+            {
+                _cells = new List<object>();
+            }
 
-			#region ICellHandler Members
-			public void OnCell( ICell cell, ICellWalkContext ctx ) {
-				_cells.Add( NPOIUtils.GetCellValue( cell ) );
-			}
-			#endregion
-		}
+            public object[] CellValues
+            {
+                get { return _cells.ToArray(); }
+            }
 
-		private class CellInserter : ICellHandler {
-			private List<object> _cells = null;
-			private List<object>.Enumerator _valuesEnumerator;
+            #region ICellHandler Members
 
-			/// <summary>
-			/// Initializes a new instance of the CellInserter class.
-			/// </summary>
-			public CellInserter( List<object> cellValues ) {
-				_cells = cellValues;
-				_valuesEnumerator = _cells.GetEnumerator();
-			}
+            public void OnCell(ICell cell, ICellWalkContext ctx)
+            {
+                _cells.Add(NPOIUtils.GetCellValue(cell));
+            }
 
-			#region ICellHandler Members
-			public void OnCell( ICell cell, ICellWalkContext ctx ) {
+            #endregion
+        }
 
-				if( _valuesEnumerator.MoveNext() )
-					NPOIUtils.SetCellValue( cell, _valuesEnumerator.Current );
-				else
-					NPOIUtils.SetCellValue( cell, null );
-			}
-			#endregion
-		}
-	}
+        private class CellInserter : ICellHandler
+        {
+            private List<object> _cells = null;
+            private List<object>.Enumerator _valuesEnumerator;
 
-	/// <summary>
-	/// Specifies the way links in the file are updated.
-	/// </summary>
-	public enum ExcelUpdateLinksMode {
-		/// <summary>User specifies how links will be updated</summary>
-		UserPrompted = 1,
-		/// <summary>Never update links for this workbook on opening</summary>
-		NeverUpdate = 2,
-		/// <summary>Always update links for this workbook on opening</summary>
-		AlwaysUpdate = 3
-	}
+            /// <summary>
+            /// Initializes a new instance of the CellInserter class.
+            /// </summary>
+            public CellInserter(List<object> cellValues)
+            {
+                _cells = cellValues;
+                _valuesEnumerator = _cells.GetEnumerator();
+            }
+
+            #region ICellHandler Members
+
+            public void OnCell(ICell cell, ICellWalkContext ctx)
+            {
+                if (_valuesEnumerator.MoveNext())
+                    NPOIUtils.SetCellValue(cell, _valuesEnumerator.Current);
+                else
+                    NPOIUtils.SetCellValue(cell, null);
+            }
+
+            #endregion
+        }
+    }
+
+    /// <summary>
+    /// Specifies the way links in the file are updated.
+    /// </summary>
+    public enum ExcelUpdateLinksMode
+    {
+        /// <summary>User specifies how links will be updated</summary>
+        UserPrompted = 1,
+
+        /// <summary>Never update links for this workbook on opening</summary>
+        NeverUpdate = 2,
+
+        /// <summary>Always update links for this workbook on opening</summary>
+        AlwaysUpdate = 3
+    }
 }

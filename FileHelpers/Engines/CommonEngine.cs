@@ -89,7 +89,7 @@ namespace FileHelpers
         /// <param name="fileName">The file name</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         /// <returns>The read records.</returns>
-        public static T[] ReadFile<T>(string fileName, int maxRecords) where T: class
+        public static T[] ReadFile<T>(string fileName, int maxRecords) where T : class
         {
             var engine = new FileHelperEngine<T>();
             return engine.ReadFile(fileName, maxRecords);
@@ -160,33 +160,33 @@ namespace FileHelpers
         #endregion
 
         /// <summary>
-	/// <b>Faster way</b> to Transform the records of type sourceType in
-	/// the sourceFile in records of type destType and write them to the
-	/// destFile.
-	/// </summary>
+        /// <b>Faster way</b> to Transform the records of type sourceType in
+        /// the sourceFile in records of type destType and write them to the
+        /// destFile.
+        /// </summary>
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The number of transformed records</returns>
-        public static int TransformFileFast<TSource, TDest>(string sourceFile, string destFile) 
+        public static int TransformFileFast<TSource, TDest>(string sourceFile, string destFile)
             where TSource : class, ITransformable<TDest>
-            where TDest : class 
+            where TDest : class
         {
             var engine = new FileTransformEngine<TSource, TDest>();
             return engine.TransformFileFast(sourceFile, destFile);
         }
 
         /// <summary>
-	/// Transform the records of type sourceType in the sourceFile in
-	/// records of type destType and write them to the destFile. (but
-	/// returns the transformed records) WARNING: this is a slower method
-	/// that the TransformFileAssync.
-	/// </summary>
+        /// Transform the records of type sourceType in the sourceFile in
+        /// records of type destType and write them to the destFile. (but
+        /// returns the transformed records) WARNING: this is a slower method
+        /// that the TransformFileAssync.
+        /// </summary>
         /// <param name="sourceFile">The file with records to be transformed</param>
         /// <param name="destFile">The destination file with the transformed records</param>
         /// <returns>The transformed records.</returns>
-        public static object[] TransformFile<TSource, TDest>(string sourceFile, string destFile) 
+        public static object[] TransformFile<TSource, TDest>(string sourceFile, string destFile)
             where TSource : class, ITransformable<TDest>
-            where TDest : class 
+            where TDest : class
         {
             var engine = new FileTransformEngine<TSource, TDest>();
             return engine.TransformFile(sourceFile, destFile);
@@ -197,14 +197,16 @@ namespace FileHelpers
         /// Read the contents of a file and sort the records.
         /// </summary>
         /// <param name="recordClass">
-	/// Record Class (remember that need to implement the IComparer
-	/// interface, or you can use SortFileByfield)
-	/// </param>
+        /// Record Class (remember that need to implement the IComparer
+        /// interface, or you can use SortFileByfield)
+        /// </param>
         /// <param name="fileName">The file to read.</param>
         public static object[] ReadSortedFile(Type recordClass, string fileName)
         {
-            if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
-                throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
+            if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+                throw new BadUsageException(
+                    "The record class must implement the interface IComparable to use the Sort feature.");
+            }
 
             var engine = new FileHelperEngine(recordClass);
             object[] res = engine.ReadFile(fileName);
@@ -220,15 +222,17 @@ namespace FileHelpers
         /// Sort the contents of the source file and write them to the destination file. 
         /// </summary>
         /// <param name="recordClass">
-	/// Record Class (remember that need to implement the IComparable
-	/// interface or use the SortFileByfield instead)
-	/// </param>
+        /// Record Class (remember that need to implement the IComparable
+        /// interface or use the SortFileByfield instead)
+        /// </param>
         /// <param name="sourceFile">The source file.</param>
         /// <param name="sortedFile">The destination File.</param>
         public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
         {
-            if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
-                throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
+            if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+                throw new BadUsageException(
+                    "The record class must implement the interface IComparable to use the Sort feature.");
+            }
 
             var engine = new FileHelperEngine(recordClass);
             object[] res = engine.ReadFile(sourceFile);
@@ -248,9 +252,12 @@ namespace FileHelpers
         /// <param name="asc">The sort direction.</param>
         /// <param name="sourceFile">The source file.</param>
         /// <param name="sortedFile">The destination File.</param>
-        public static void SortFileByField(Type recordClass, string fieldName, bool asc, string sourceFile, string sortedFile)
+        public static void SortFileByField(Type recordClass,
+            string fieldName,
+            bool asc,
+            string sourceFile,
+            string sortedFile)
         {
-
             var engine = new FileHelperEngine(recordClass);
             FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
@@ -266,8 +273,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Sort the Record Array using the field name provided. (for
-	/// advanced sorting use SortRecords)
+        /// Sort the Record Array using the field name provided. (for
+        /// advanced sorting use SortRecords)
         /// </summary>
         /// <param name="fieldName">The field name.</param>
         /// <param name="records">The records Array.</param>
@@ -277,16 +284,16 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Sort the Record Array using the field name provided. (for
-	/// advanced sorting use SortRecords)
+        /// Sort the Record Array using the field name provided. (for
+        /// advanced sorting use SortRecords)
         /// </summary>
         /// <param name="fieldName">The field name.</param>
         /// <param name="records">The records Array.</param>
         /// <param name="ascending">The direction of the sort. True means Ascending.</param>
         public static void SortRecordsByField(object[] records, string fieldName, bool ascending)
         {
-            if (records.Length > 0 && records[0] != null)
-            {
+            if (records.Length > 0 &&
+                records[0] != null) {
                 var engine = new FileHelperEngine(records[0].GetType());
                 FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
@@ -300,18 +307,20 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Sort the Record Array. The records must be of a Type that
-	/// implements the IComparable interface.
+        /// Sort the Record Array. The records must be of a Type that
+        /// implements the IComparable interface.
         /// </summary>
         /// <param name="records">The records Array.</param>
         public static void SortRecords(object[] records)
         {
-            if (records.Length > 0 && records[0] != null)
-            {
+            if (records.Length > 0 &&
+                records[0] != null) {
                 Type recordClass = records[0].GetType();
 
-                if (typeof(IComparable).IsAssignableFrom(recordClass) == false)
-                    throw new BadUsageException("The record class must implement the interface IComparable to use the Sort feature.");
+                if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+                    throw new BadUsageException(
+                        "The record class must implement the interface IComparable to use the Sort feature.");
+                }
 
                 Array.Sort(records);
             }
@@ -324,16 +333,19 @@ namespace FileHelpers
         /// </summary>
         internal class FieldComparer : IComparer
         {
-            readonly FieldInfo mFieldInfo;
-            readonly int mAscending;
+            private readonly FieldInfo mFieldInfo;
+            private readonly int mAscending;
 
             public FieldComparer(FieldInfo fi, bool asc)
             {
                 mFieldInfo = fi;
-                mAscending = asc ? 1 : -1;
-                if (typeof(IComparable).IsAssignableFrom(mFieldInfo.FieldType) == false)
-                    throw new BadUsageException("The field " + mFieldInfo.Name + " needs to implement the interface IComparable");
-
+                mAscending = asc
+                    ? 1
+                    : -1;
+                if (typeof (IComparable).IsAssignableFrom(mFieldInfo.FieldType) == false) {
+                    throw new BadUsageException("The field " + mFieldInfo.Name +
+                                                " needs to implement the interface IComparable");
+                }
             }
 
             /// <summary>
@@ -344,7 +356,6 @@ namespace FileHelpers
             /// <returns>0 if equal, -1 if x &lt; y, 1 otherwise</returns>
             public int Compare(object x, object y)
             {
-
 #if MINI
 				IComparable xv = mFieldInfo.GetValue(x) as IComparable;
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
@@ -353,27 +364,24 @@ namespace FileHelpers
                     mGetFieldValueHandler = ReflectionHelper.CreateGetFieldMethod(mFieldInfo);
 
                 var xv = mGetFieldValueHandler(x) as IComparable;
-                return xv.CompareTo(mGetFieldValueHandler(y)) * mAscending;
+                return xv.CompareTo(mGetFieldValueHandler(y))*mAscending;
 #endif
-
             }
 
 #if ! (MINI)
             private GetFieldValueCallback mGetFieldValueHandler;
 #endif
-
         }
 
         #endregion
 
-
 #if ! MINI
 
         /// <summary>
-	/// Converts any collection of records to a DataTable using reflection.
-	/// WARNING: this methods returns null if the number of records is 0,
-	/// pass the Type of the records to get an empty DataTable.
-	/// </summary>
+        /// Converts any collection of records to a DataTable using reflection.
+        /// WARNING: this methods returns null if the number of records is 0,
+        /// pass the Type of the records to get an empty DataTable.
+        /// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
         /// <returns>The DataTable containing the records as DataRows</returns>
         public static DataTable RecordsToDataTable(ICollection records)
@@ -382,21 +390,18 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Converts any collection of records to a DataTable using reflection.
-	/// WARNING: this methods returns null if the number of records is 0,
-	/// pass the Type of the records to get an empty DataTable.
-	/// </summary>
+        /// Converts any collection of records to a DataTable using reflection.
+        /// WARNING: this methods returns null if the number of records is 0,
+        /// pass the Type of the records to get an empty DataTable.
+        /// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
         /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
         /// <returns>The DataTable containing the records as DataRows</returns>
         public static DataTable RecordsToDataTable(ICollection records, int maxRecords)
         {
-
             IRecordInfo ri = null;
-            foreach (var obj in records)
-            {
-                if (obj != null)
-                {
+            foreach (var obj in records) {
+                if (obj != null) {
                     ri = RecordInfo.Resolve(obj.GetType());
                     break;
                 }
@@ -409,11 +414,11 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Converts any collection of records to a DataTable using reflection.
-	/// If the number of records is 0 this methods returns an empty
-	/// DataTable with the columns based on the fields of the
-	/// Type.
-	/// </summary>
+        /// Converts any collection of records to a DataTable using reflection.
+        /// If the number of records is 0 this methods returns an empty
+        /// DataTable with the columns based on the fields of the
+        /// Type.
+        /// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
         /// <returns>The DataTable containing the records as DataRows</returns>
         /// <param name="recordType">The type of the inner records.</param>
@@ -423,11 +428,11 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Converts any collection of records to a DataTable using reflection.
-	/// If the number of records is 0 this methods returns an empty
-	/// DataTable with the columns based on the fields of the
-	/// Type.
-	/// </summary>
+        /// Converts any collection of records to a DataTable using reflection.
+        /// If the number of records is 0 this methods returns an empty
+        /// DataTable with the columns based on the fields of the
+        /// Type.
+        /// </summary>
         /// <param name="records">The records to be converted to a DataTable</param>
         /// <returns>The DataTable containing the records as DataRows</returns>
         /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
@@ -441,39 +446,34 @@ namespace FileHelpers
 #endif
 
         /// <summary>
-	/// Reads the file1 and file2 using the recordType and write it to
-	/// destinationFile
+        /// Reads the file1 and file2 using the recordType and write it to
+        /// destinationFile
         /// </summary>
         public static void MergeFiles(Type recordType, string file1, string file2, string destinationFile)
         {
             using (var engineRead = new FileHelperAsyncEngine(recordType))
-            {
-                using (var engineWrite = new FileHelperAsyncEngine(recordType))
-                {
-                    engineWrite.BeginWriteFile(destinationFile);
+            using (var engineWrite = new FileHelperAsyncEngine(recordType)) {
+                engineWrite.BeginWriteFile(destinationFile);
 
-                    object[] readRecords;
+                object[] readRecords;
 
-                    // Read FILE 1
-                    engineRead.BeginReadFile(file1);
+                // Read FILE 1
+                engineRead.BeginReadFile(file1);
 
+                readRecords = engineRead.ReadNexts(50);
+                while (readRecords.Length > 0) {
+                    engineWrite.WriteNexts(readRecords);
                     readRecords = engineRead.ReadNexts(50);
-                    while (readRecords.Length > 0)
-                    {
-                        engineWrite.WriteNexts(readRecords);
-                        readRecords = engineRead.ReadNexts(50);
-                    }
-                    engineRead.Close();
+                }
+                engineRead.Close();
 
-                    // Read FILE 2
-                    engineRead.BeginReadFile(file2);
+                // Read FILE 2
+                engineRead.BeginReadFile(file2);
 
+                readRecords = engineRead.ReadNexts(50);
+                while (readRecords.Length > 0) {
+                    engineWrite.WriteNexts(readRecords);
                     readRecords = engineRead.ReadNexts(50);
-                    while (readRecords.Length > 0)
-                    {
-                        engineWrite.WriteNexts(readRecords);
-                        readRecords = engineRead.ReadNexts(50);
-                    }
                 }
             }
         }
@@ -487,7 +487,11 @@ namespace FileHelpers
         /// <param name="field">The name of the field used to sort the records.</param>
         /// <param name="destFile">The destination file.</param>
         /// <returns>The merged and sorted records.</returns>
-        public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field)
+        public static object[] MergeAndSortFile(Type recordType,
+            string file1,
+            string file2,
+            string destFile,
+            string field)
         {
             return MergeAndSortFile(recordType, file1, file2, destFile, field, true);
         }
@@ -502,7 +506,12 @@ namespace FileHelpers
         /// <param name="ascending">Indicate the order of sort.</param>
         /// <param name="destFile">The destination file.</param>
         /// <returns>The merged and sorted records.</returns>
-        public static object[] MergeAndSortFile(Type recordType, string file1, string file2, string destFile, string field, bool ascending)
+        public static object[] MergeAndSortFile(Type recordType,
+            string file1,
+            string file2,
+            string destFile,
+            string field,
+            bool ascending)
         {
             var engine = new FileHelperEngine(recordType);
 
@@ -520,8 +529,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Merge the contents of 2 files and write them sorted to a
-	/// destination file.
+        /// Merge the contents of 2 files and write them sorted to a
+        /// destination file.
         /// </summary>
         /// <param name="recordType">The record Type.</param>
         /// <param name="file1">File with contents to be merged.</param>
@@ -546,9 +555,9 @@ namespace FileHelpers
 
 
         /// <summary>
-	/// Simply dumps the DataTable contents to a delimited file using a ','
-	/// as delimiter.
-	/// </summary>
+        /// Simply dumps the DataTable contents to a delimited file using a ','
+        /// as delimiter.
+        /// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         public static void DataTableToCsv(DataTable dt, string filename)
@@ -568,9 +577,9 @@ namespace FileHelpers
 
 
         /// <summary>
-	/// Simply dumps the DataTable contents to a delimited file. Only
-	/// allows to set the delimiter.
-	/// </summary>
+        /// Simply dumps the DataTable contents to a delimited file. Only
+        /// allows to set the delimiter.
+        /// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         /// <param name="options">The options used to write the file</param>
@@ -580,9 +589,9 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Reads a CSV File and return their contents as DataTable (The file
-	/// must have the field names in the first row)
-	/// </summary>
+        /// Reads a CSV File and return their contents as DataTable (The file
+        /// must have the field names in the first row)
+        /// </summary>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="filename">The file to read.</param>
         /// <returns>The contents of the file as a DataTable</returns>
@@ -592,9 +601,9 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// Reads a CSV File and return their contents as DataTable (The file
-	/// must have the field names in the first row)
-	/// </summary>
+        /// Reads a CSV File and return their contents as DataTable (The file
+        /// must have the field names in the first row)
+        /// </summary>
         /// <param name="classname">The name of the record class</param>
         /// <param name="delimiter">The delimiter for each field</param>
         /// <param name="filename">The file to read.</param>
@@ -634,25 +643,24 @@ namespace FileHelpers
         /// <returns>An array with the result of remove the duplicate records from the source array.</returns>
         public static T[] RemoveDuplicateRecords<T>(T[] arr) where T : IComparableRecord<T>
         {
-            if (arr == null || arr.Length <= 1)
+            if (arr == null ||
+                arr.Length <= 1)
                 return arr;
 
             var nodup = new List<T>();
 
-            for (int i = 0; i < arr.Length; i++)
-            {
+            for (int i = 0; i < arr.Length; i++) {
                 bool isUnique = true;
 
-                for (int j = i + 1; j < arr.Length; j++)
-                {
-                    if (arr[i].IsEqualRecord(arr[j]))
-                    {
+                for (int j = i + 1; j < arr.Length; j++) {
+                    if (arr[i].IsEqualRecord(arr[j])) {
                         isUnique = false;
                         break;
                     }
                 }
 
-                if (isUnique) nodup.Add(arr[i]);
+                if (isUnique)
+                    nodup.Add(arr[i]);
             }
 
             return nodup.ToArray();
@@ -668,12 +676,11 @@ namespace FileHelpers
         /// <returns>The first n lines of the file.</returns>
         public static string RawReadFirstLines(string file, int lines)
         {
-            var sb = new StringBuilder(Math.Min(lines * 50, 10000));
+            var sb = new StringBuilder(Math.Min(lines*50, 10000));
 
             var reader = new StreamReader(file);
 
-            for (int i = 0; i < lines; i++)
-            {
+            for (int i = 0; i < lines; i++) {
                 string line = reader.ReadLine();
                 if (line == null)
                     break;
@@ -685,16 +692,16 @@ namespace FileHelpers
             return sb.ToString();
         }
 
-                /// <summary>
-                /// Shortcut method to read the first n lines of a text file as array.
-                /// </summary>
-                /// <param name="file">The file name</param>
-                /// <param name="lines">The number of lines to read.</param>
-                /// <returns>The first n lines of the file.</returns>
-                public static string[] RawReadFirstLinesArray(string file, int lines)
-                {
-                    return RawReadFirstLinesArray(file, lines, Encoding.Default);
-                }
+        /// <summary>
+        /// Shortcut method to read the first n lines of a text file as array.
+        /// </summary>
+        /// <param name="file">The file name</param>
+        /// <param name="lines">The number of lines to read.</param>
+        /// <returns>The first n lines of the file.</returns>
+        public static string[] RawReadFirstLinesArray(string file, int lines)
+        {
+            return RawReadFirstLinesArray(file, lines, Encoding.Default);
+        }
 
         /// <summary>
         /// Shortcut method to read the first n lines of a text file as array.
@@ -705,12 +712,9 @@ namespace FileHelpers
         /// <returns>The first n lines of the file.</returns>
         public static string[] RawReadFirstLinesArray(string file, int lines, Encoding encoding)
         {
-
             var res = new List<string>(lines);
-            using(var reader = new StreamReader(file, encoding))
-            {
-                for (int i = 0; i < lines; i++)
-                {
+            using (var reader = new StreamReader(file, encoding)) {
+                for (int i = 0; i < lines; i++) {
                     string line = reader.ReadLine();
                     if (line == null)
                         break;
@@ -719,15 +723,14 @@ namespace FileHelpers
                 }
             }
 
-	        return res.ToArray();
+            return res.ToArray();
         }
-
 
         #region "  ReadCSV  "
 
         /// <summary>
-	/// A fast way to read record by record a CSV file delimited by ','.
-	/// The fields can be quoted.
+        /// A fast way to read record by record a CSV file delimited by ','.
+        /// The fields can be quoted.
         /// </summary>
         /// <param name="filename">The CSV file to read</param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
@@ -737,8 +740,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// A fast way to read record by record a CSV file with a custom
-	/// delimiter. The fields can be quoted.
+        /// A fast way to read record by record a CSV file with a custom
+        /// delimiter. The fields can be quoted.
         /// </summary>
         /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
@@ -749,8 +752,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// A fast way to read record by record a CSV file with a custom
-	/// delimiter. The fields can be quoted.
+        /// A fast way to read record by record a CSV file with a custom
+        /// delimiter. The fields can be quoted.
         /// </summary>
         /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
@@ -762,8 +765,8 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// A fast way to read record by record a CSV file with a custom
-	/// delimiter. The fields can be quoted.
+        /// A fast way to read record by record a CSV file with a custom
+        /// delimiter. The fields can be quoted.
         /// </summary>
         /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
@@ -775,18 +778,21 @@ namespace FileHelpers
         }
 
         /// <summary>
-	/// A fast way to read record by record a CSV file with a custom
-	/// delimiter. The fields can be quoted.
+        /// A fast way to read record by record a CSV file with a custom
+        /// delimiter. The fields can be quoted.
         /// </summary>
         /// <param name="filename">The CSV file to read</param>
         /// <param name="delimiter">The field delimiter.</param>
         /// <param name="encoding">The file <see cref="Encoding"/></param>
         /// <param name="headerLines">The number of header lines in the CSV file</param>
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
-        public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines, Encoding encoding)
+        public static IEnumerable<RecordIndexer> ReadCsv(string filename,
+            char delimiter,
+            int headerLines,
+            Encoding encoding)
         {
             var engine = new FileHelperAsyncEngine<RecordIndexer>(encoding);
-            ((DelimitedRecordOptions)engine.Options).Delimiter = delimiter.ToString();
+            ((DelimitedRecordOptions) engine.Options).Delimiter = delimiter.ToString();
             engine.Options.IgnoreFirstLines = headerLines;
             engine.BeginReadFile(filename);
 
@@ -797,7 +803,6 @@ namespace FileHelpers
     }
 
 #if ! (MINI)
-	internal delegate object GetFieldValueCallback(object record);
+    internal delegate object GetFieldValueCallback(object record);
 #endif
-
 }

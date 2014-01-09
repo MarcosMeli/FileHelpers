@@ -21,20 +21,16 @@ namespace FileHelpers.WizardApp
             this.Focus();
         }
 
-        private  DelimitedFieldBuilder CastedFieldInfo
+        private DelimitedFieldBuilder CastedFieldInfo
         {
-            get
-            {
-                return (DelimitedFieldBuilder)this.FieldInfo;
-            }
+            get { return (DelimitedFieldBuilder) this.FieldInfo; }
         }
 
         private void txtQuoted_TextChanged(object sender, EventArgs e)
         {
             if (txtQuoted.Text == string.Empty)
                 CastedFieldInfo.FieldQuoted = false;
-            else
-            {
+            else {
                 CastedFieldInfo.FieldQuoted = true;
                 CastedFieldInfo.QuoteChar = txtQuoted.Text[0];
             }
@@ -45,15 +41,13 @@ namespace FileHelpers.WizardApp
         public override void FieldInfoReload()
         {
             base.FieldInfoReload();
-            if (CastedFieldInfo.FieldQuoted)
-            {
+            if (CastedFieldInfo.FieldQuoted) {
                 if (CastedFieldInfo.QuoteChar.ToString().Length == 0)
                     // by default use " as quote char 
                     txtQuoted.Text = "\"";
                 else
                     txtQuoted.Text = CastedFieldInfo.QuoteChar.ToString();
-             }
+            }
         }
-
     }
 }

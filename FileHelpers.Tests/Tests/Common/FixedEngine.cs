@@ -5,12 +5,12 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class FixedEngine
-	{
-		[Test]
-		public void SimpleTest()
-		{
+    [TestFixture]
+    public class FixedEngine
+    {
+        [Test]
+        public void SimpleTest()
+        {
             var engine = new FixedFileEngine<CustomersFixed>();
             Assert.AreEqual(91, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
@@ -21,33 +21,31 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(75, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             Assert.AreEqual(183, engine.Options.RecordLength);
-
         }
 
         [Test]
         public void SimpleTest2()
         {
-            var engine = new FixedFileEngine(typeof(CustomersFixed));
+            var engine = new FixedFileEngine(typeof (CustomersFixed));
             Assert.AreEqual(91, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
 
             engine.Options.RecordCondition.Condition = RecordCondition.IncludeIfBegins;
             engine.Options.RecordCondition.Selector = "F";
             Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
-
         }
 
-		[Test]
-		public void SimpleTest3()
-		{
-			var engine = new FixedFileEngine(typeof(CustomersFixed2));
-			Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
-		}
+        [Test]
+        public void SimpleTest3()
+        {
+            var engine = new FixedFileEngine(typeof (CustomersFixed2));
+            Assert.AreEqual(8, FileTest.Good.CustomersFixed.ReadWithEngine(engine).Length);
+        }
 
         [Test]
         public void BadRecordType1()
         {
             Assert.Throws<BadUsageException>(
-                () => new FixedFileEngine(typeof(CustomersTab)));
+                () => new FixedFileEngine(typeof (CustomersTab)));
         }
 
         [Test]
@@ -57,30 +55,30 @@ namespace FileHelpers.Tests.CommonTests
                 () => new FixedFileEngine(null));
         }
 
-		[FixedLengthRecord]
-		[ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
-		public class CustomersFixed2
-		{
-			[FieldFixedLength(11)]
-			public string CustomerID;
+        [FixedLengthRecord]
+        [ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
+        public class CustomersFixed2
+        {
+            [FieldFixedLength(11)]
+            public string CustomerID;
 
-			[FieldFixedLength(50 - 12)]
-			public string CompanyName;
+            [FieldFixedLength(50 - 12)]
+            public string CompanyName;
 
-			[FieldFixedLength(72 - 50)]
-			public string ContactName;
+            [FieldFixedLength(72 - 50)]
+            public string ContactName;
 
-			[FieldFixedLength(110 - 72)]
-			public string ContactTitle;
+            [FieldFixedLength(110 - 72)]
+            public string ContactTitle;
 
-			[FieldFixedLength(151 - 110)]
-			public string Address;
+            [FieldFixedLength(151 - 110)]
+            public string Address;
 
-			[FieldFixedLength(169 - 151)]
-			public string City;
+            [FieldFixedLength(169 - 151)]
+            public string City;
 
-			[FieldFixedLength(15)]
-			public string Country;
-		}
-	}
+            [FieldFixedLength(15)]
+            public string Country;
+        }
+    }
 }

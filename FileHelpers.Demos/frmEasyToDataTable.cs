@@ -6,59 +6,57 @@ using FileHelpers;
 
 namespace FileHelpersSamples
 {
-	/// <summary>
-	/// Read a fixed length file as a DataTable and
+    /// <summary>
+    /// Read a fixed length file as a DataTable and
     /// show it on a grid.
     /// <para/>
     /// This is useful for Crystal reports.
-	/// </summary>
-	public class frmEasyToDataTable : frmFather
-	{
-		private TextBox txtData;
-		private Button cmdRun;
-		private Label label1;
-		private Label label3;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.DataGrid DataGridDatos;
+    /// </summary>
+    public class frmEasyToDataTable : frmFather
+    {
+        private TextBox txtData;
+        private Button cmdRun;
+        private Label label1;
+        private Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGrid DataGridDatos;
 
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private Container components = null;
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private Container components = null;
 
-		public frmEasyToDataTable()
-		{
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
-		}
+        public frmEasyToDataTable()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				if (components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) {
+                if (components != null)
+                    components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEasyToDataTable));
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (frmEasyToDataTable));
             this.txtData = new System.Windows.Forms.TextBox();
             this.cmdRun = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,7 +72,11 @@ namespace FileHelpersSamples
             // 
             // txtData
             // 
-            this.txtData.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Font = new System.Drawing.Font("Courier New",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.txtData.Location = new System.Drawing.Point(8, 328);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
@@ -87,8 +89,14 @@ namespace FileHelpersSamples
             // 
             // cmdRun
             // 
-            this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
-            this.cmdRun.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))),
+                ((int) (((byte) (0)))),
+                ((int) (((byte) (110)))));
+            this.cmdRun.Font = new System.Drawing.Font("Tahoma",
+                9.75F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.cmdRun.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmdRun.Location = new System.Drawing.Point(336, 8);
             this.cmdRun.Name = "cmdRun";
@@ -100,7 +108,11 @@ namespace FileHelpersSamples
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(8, 117);
             this.label1.Name = "label1";
@@ -111,7 +123,11 @@ namespace FileHelpersSamples
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(8, 312);
             this.label3.Name = "label3";
@@ -121,7 +137,11 @@ namespace FileHelpersSamples
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Courier New",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.textBox1.Location = new System.Drawing.Point(8, 75);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -129,13 +149,17 @@ namespace FileHelpersSamples
             this.textBox1.Size = new System.Drawing.Size(664, 39);
             this.textBox1.TabIndex = 13;
             this.textBox1.Text = "FileHelpersEngine engine = new FileHelpersEngine(typeof(CustomerFixed));\r\nDataGri" +
-                "dDatos.DataSource = engine.ReadFileAsDT(\"infile.txt\");";
+                                 "dDatos.DataSource = engine.ReadFileAsDT(\"infile.txt\");";
             this.textBox1.WordWrap = false;
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Tahoma",
+                9F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(8, 56);
             this.label4.Name = "label4";
@@ -147,7 +171,9 @@ namespace FileHelpersSamples
             // 
             this.DataGridDatos.CaptionVisible = false;
             this.DataGridDatos.DataMember = "";
-            this.DataGridDatos.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DataGridDatos.GridLineColor = System.Drawing.Color.FromArgb(((int) (((byte) (224)))),
+                ((int) (((byte) (224)))),
+                ((int) (((byte) (224)))));
             this.DataGridDatos.HeaderForeColor = System.Drawing.SystemColors.ControlText;
             this.DataGridDatos.Location = new System.Drawing.Point(8, 134);
             this.DataGridDatos.Name = "DataGridDatos";
@@ -179,18 +205,18 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.DataGridDatos, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
 
-		}
-
-		#endregion
+        #endregion
 
         /// <summary>
         /// Read the file as a data table
         /// </summary>
-		private void cmdRun_Click(object sender, EventArgs e)
-		{
-			FileHelperEngine engine = new FileHelperEngine(typeof (CustomersFixed));
-			DataGridDatos.DataSource = engine.ReadStringAsDT(txtData.Text);;
-		}
-	}
+        private void cmdRun_Click(object sender, EventArgs e)
+        {
+            FileHelperEngine engine = new FileHelperEngine(typeof (CustomersFixed));
+            DataGridDatos.DataSource = engine.ReadStringAsDT(txtData.Text);
+            ;
+        }
+    }
 }

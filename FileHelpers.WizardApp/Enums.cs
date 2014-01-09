@@ -4,7 +4,6 @@ using System.Text;
 
 namespace FileHelpers.WizardApp
 {
-
     //public enum NetVisibility
     //{
     //    Private,
@@ -23,11 +22,9 @@ namespace FileHelpers.WizardApp
     {
         public static string GetVisibility(NetLanguage leng, NetVisibility visi)
         {
-            switch (leng)
-            {
+            switch (leng) {
                 case NetLanguage.VbNet:
-                    switch (visi)
-                    {
+                    switch (visi) {
                         case NetVisibility.Private:
                             return "Private";
                         case NetVisibility.Protected:
@@ -39,8 +36,7 @@ namespace FileHelpers.WizardApp
                     }
                     break;
                 case NetLanguage.CSharp:
-                    switch (visi)
-                    {
+                    switch (visi) {
                         case NetVisibility.Private:
                             return "private";
                         case NetVisibility.Protected:
@@ -58,5 +54,4 @@ namespace FileHelpers.WizardApp
             return "";
         }
     }
-
 }

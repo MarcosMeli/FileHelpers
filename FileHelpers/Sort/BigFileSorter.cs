@@ -16,36 +16,29 @@ namespace FileHelpers
         /// Create a big file sorter with the minimum buffer size
         /// </summary>
         public BigFileSorter()
-            :this(0) // 20Mb default size
-        {
-        }
+            : this(0) // 20Mb default size
+        {}
 
         /// <summary>
         /// Create a big file sorter using the block size
         /// </summary>
         /// <param name="blockFileSizeInBytes">Block size to work on</param>
         public BigFileSorter(int blockFileSizeInBytes)
-            :this(null, null, blockFileSizeInBytes)
-        {
-        }
+            : this(null, null, blockFileSizeInBytes) {}
 
         /// <summary>
         /// Create a big file sorter using and encoding
         /// </summary>
         /// <param name="encoding">Encoding of the file</param>
         public BigFileSorter(Encoding encoding)
-            : this(null, encoding, 0)
-        {
-        }
+            : this(null, encoding, 0) {}
 
         /// <summary>
         /// Create a big file sorter using comparison operator
         /// </summary>
         /// <param name="sorter">Comparison operator</param>
         public BigFileSorter(Comparison<string> sorter)
-            : this(sorter, 0)
-        {
-        }
+            : this(sorter, 0) {}
 
         /// <summary>
         /// Create a big file sorter with a comparison operator and block size
@@ -53,9 +46,7 @@ namespace FileHelpers
         /// <param name="sorter">Comparison operator</param>
         /// <param name="blockFileSizeInBytes">Block size to work on file</param>
         public BigFileSorter(Comparison<string> sorter, int blockFileSizeInBytes)
-            : this(sorter, null, blockFileSizeInBytes)
-        {
-        }
+            : this(sorter, null, blockFileSizeInBytes) {}
 
         /// <summary>
         /// Create a bug file sorter
@@ -64,9 +55,7 @@ namespace FileHelpers
         /// <param name="encoding">encoding of the file</param>
         /// <param name="blockFileSizeInBytes">Block size to work on</param>
         public BigFileSorter(Comparison<string> sorter, Encoding encoding, int blockFileSizeInBytes)
-            :base(CreateSorter(sorter), encoding, blockFileSizeInBytes)
-        {
-        }
+            : base(CreateSorter(sorter), encoding, blockFileSizeInBytes) {}
 
         /// <summary>
         /// Create a record sorter based on string value

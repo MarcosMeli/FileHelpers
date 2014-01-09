@@ -24,6 +24,7 @@ namespace ExamplesFx.TreeView
         }
 
         private string mSearchText;
+
         /// <summary>
         /// Gets or sets the search text.
         /// </summary>
@@ -38,12 +39,12 @@ namespace ExamplesFx.TreeView
 
                 mSearchText = value;
                 PerformSearch();
-
             }
         }
 
 
         private ExamplesSearchMode mSearchMode;
+
         /// <summary>
         /// Gets or sets the search mode.
         /// </summary>
@@ -64,22 +65,19 @@ namespace ExamplesFx.TreeView
         private bool mFirstSearch = true;
 
         private List<TreeNode> mAllNodes;
+
         private void PerformSearch()
         {
             if (mFirstSearch && string.IsNullOrEmpty(SearchText))
                 return;
 
             mFirstSearch = false;
-            if (mAllNodes == null)
-            {
+            if (mAllNodes == null) {
                 mAllNodes = new List<TreeNode>();
                 foreach (TreeNode node in this.Nodes)
-                {
                     mAllNodes.Add(node);
-                    
-                }
             }
-            
+
 
             this.BeginUpdate();
             this.Nodes.Clear();
@@ -87,36 +85,27 @@ namespace ExamplesFx.TreeView
             var filtered = SearchInNodes(mAllNodes);
 
             foreach (var nodeFiltered in filtered)
-            {
                 this.Nodes.Add(nodeFiltered);
-            }
 
             this.ExpandAll();
             this.EndUpdate();
-
         }
 
         private List<TreeNode> SearchInNodes(IEnumerable nodes)
         {
             var res = new List<TreeNode>();
-            foreach (TreeNode node in nodes)
-            {
-                if (node.Nodes.Count == 0)
-                {
+            foreach (TreeNode node in nodes) {
+                if (node.Nodes.Count == 0) {
                     if (NodeInResult((ISearchableNode) node))
                         res.Add(node);
                 }
-                else
-                {
+                else {
                     var filtered = SearchInNodes(node.Nodes);
-                    if (filtered.Count > 0)
-                    {
+                    if (filtered.Count > 0) {
                         var nodeClone = (TreeNode) node.Clone();
 
                         foreach (var nodeFiltered in filtered)
-                        {
                             nodeClone.Nodes.Add((TreeNode) nodeFiltered.Clone());
-                        }
                         res.Add(nodeClone);
                     }
                 }
@@ -126,8 +115,7 @@ namespace ExamplesFx.TreeView
 
         private bool NodeInResult(ISearchableNode node)
         {
-            switch (SearchMode)
-            {
+            switch (SearchMode) {
                 case ExamplesSearchMode.Name:
                     return node.GetName().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
                 case ExamplesSearchMode.NameDescription:
@@ -143,5 +131,4 @@ namespace ExamplesFx.TreeView
             }
         }
     }
-
 }

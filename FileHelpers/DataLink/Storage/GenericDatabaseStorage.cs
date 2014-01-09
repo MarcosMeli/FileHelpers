@@ -12,13 +12,15 @@ namespace FileHelpers.DataLink
         where ConnectionClass : IDbConnection, new()
     {
         #region Constructors
+
         /// <summary>
         /// Creates an object that implements the storage for <b>any</b> DB
         /// with ADO.NET support.
         /// </summary>        
         /// <param name="recordType">The record type to use.</param>
         /// <param name="connectionString">The connection string to </param>
-        public GenericDatabaseStorage( Type recordType, string connectionString ) : base( recordType )
+        public GenericDatabaseStorage(Type recordType, string connectionString)
+            : base(recordType)
         {
             ConnectionString = connectionString;
         }
@@ -32,10 +34,7 @@ namespace FileHelpers.DataLink
         /// </summary>
         protected override bool ExecuteInBatch
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         #endregion
@@ -46,11 +45,11 @@ namespace FileHelpers.DataLink
         /// Connect to a data source using the defined connection string
         /// </summary>
         /// <returns>Database connection object</returns>
-        protected sealed override IDbConnection CreateConnection( )
+        protected override sealed IDbConnection CreateConnection()
         {
-            if ( String.IsNullOrEmpty( ConnectionString ) )
+            if (String.IsNullOrEmpty(ConnectionString))
                 //throw new FileHelpersException( "The connection cannot open because connection string is null or empty." );
-                throw new Exception( "The connection cannot open because connection string is null or empty." );
+                throw new Exception("The connection cannot open because connection string is null or empty.");
 
             ConnectionClass connection = new ConnectionClass();
             connection.ConnectionString = ConnectionString;

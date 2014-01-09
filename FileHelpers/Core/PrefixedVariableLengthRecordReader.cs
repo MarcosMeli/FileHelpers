@@ -17,6 +17,7 @@ namespace FileHelpers
         /// Stream to read
         /// </summary>
         private readonly Stream stream;
+
         /// <summary>
         /// Indicates type of record length field, ASCII, or binary
         /// </summary>
@@ -33,10 +34,15 @@ namespace FileHelpers
         /// <param name="fileName">Name of file to read</param>
         /// <param name="indicatorType">Type of record length indicator</param>
         /// <param name="indicatorLength">Length of the indicator in bytes</param>
-        public PrefixedVariableLengthRecordReader(string fileName, LengthIndicatorType indicatorType, int indicatorLength) :
-            this(new FileStream(fileName, FileMode.Open, FileAccess.Read), indicatorType, indicatorLength, Encoding.Default)
-        {
-        }
+        public PrefixedVariableLengthRecordReader(string fileName,
+            LengthIndicatorType indicatorType,
+            int indicatorLength)
+            :
+                this(
+                new FileStream(fileName, FileMode.Open, FileAccess.Read),
+                indicatorType,
+                indicatorLength,
+                Encoding.Default) {}
 
         /// <summary>
         /// Read a record with a variable length prefix on them
@@ -46,10 +52,12 @@ namespace FileHelpers
         /// <param name="indicatorType">Type of record length indicator</param>
         /// <param name="indicatorLength">Length of the indicator in bytes</param>
         /// <param name="encoding">Encoding on the file</param>
-        public PrefixedVariableLengthRecordReader(string fileName, LengthIndicatorType indicatorType, int indicatorLength, Encoding encoding) :
-            this(new FileStream(fileName, FileMode.Open, FileAccess.Read), indicatorType, indicatorLength, encoding)
-        {
-        }
+        public PrefixedVariableLengthRecordReader(string fileName,
+            LengthIndicatorType indicatorType,
+            int indicatorLength,
+            Encoding encoding)
+            :
+                this(new FileStream(fileName, FileMode.Open, FileAccess.Read), indicatorType, indicatorLength, encoding) {}
 
         /// <summary>
         /// Read a record with a variable length prefix on them
@@ -58,10 +66,9 @@ namespace FileHelpers
         /// <param name="stream">Stream reader to process</param>
         /// <param name="indicatorType">Type of record length indicator</param>
         /// <param name="indicatorLength">Length of the indicator in bytes</param>
-        public PrefixedVariableLengthRecordReader(Stream stream, LengthIndicatorType indicatorType, int indicatorLength) :
-            this(stream, indicatorType, indicatorLength, Encoding.Default)
-        {
-        }
+        public PrefixedVariableLengthRecordReader(Stream stream, LengthIndicatorType indicatorType, int indicatorLength)
+            :
+                this(stream, indicatorType, indicatorLength, Encoding.Default) {}
 
         /// <summary>
         /// Read a record with a variable length prefix on them
@@ -71,7 +78,10 @@ namespace FileHelpers
         /// <param name="indicatorType">Type of record length indicator</param>
         /// <param name="indicatorLength">Length of the indicator in bytes</param>
         /// <param name="encoding">Encoding on the file</param>
-        public PrefixedVariableLengthRecordReader(Stream stream, LengthIndicatorType indicatorType, int indicatorLength, Encoding encoding)
+        public PrefixedVariableLengthRecordReader(Stream stream,
+            LengthIndicatorType indicatorType,
+            int indicatorLength,
+            Encoding encoding)
         {
             this.stream = stream;
             this.indicatorType = indicatorType;
@@ -87,8 +97,7 @@ namespace FileHelpers
         {
             int length = 0;
 
-            switch(indicatorType)
-            {
+            switch (indicatorType) {
                 case LengthIndicatorType.MSB:
                     length = ReadMSBLengthIndicator();
                     break;
@@ -121,13 +130,13 @@ namespace FileHelpers
         /// <param name="count">Number of bytes to read</param>
         private void ReadBytes(int count)
         {
-            if (buffer == null || buffer.Length < count)
+            if (buffer == null ||
+                buffer.Length < count)
                 buffer = new byte[count];
 
 
             int offset = 0;
-            while (offset < count)
-            {
+            while (offset < count) {
                 int read = stream.Read(buffer, offset, count - offset);
                 if (read == 0)
                     throw new Exception(string.Format("End of stream while reading {0} bytes", count));

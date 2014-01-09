@@ -11,20 +11,19 @@ namespace FileHelpers
     public interface ICodeGenerator
     {
         string GenerateCode();
-
     }
 
 
     public sealed class FluentCode
     {
-        private readonly Dictionary<string, FluentNamespace> mNamespaces = new Dictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, FluentNamespace> mNamespaces =
+            new Dictionary<string, FluentNamespace>(StringComparer.OrdinalIgnoreCase);
 
         public FluentNamespace Namespace(string name)
         {
             FluentNamespace res;
 
-            if (!mNamespaces.TryGetValue(name, out res))
-            {
+            if (!mNamespaces.TryGetValue(name, out res)) {
                 res = new FluentNamespace(name);
                 mNamespaces.Add(name, res);
             }
@@ -35,14 +34,10 @@ namespace FileHelpers
         {
             var res = "";
             foreach (var n in mNamespaces)
-            {
                 res += n.Value.GenerateCode();
-            }
 
             return res;
-            
         }
-
     }
 
     public sealed class FluentNamespace
@@ -54,14 +49,14 @@ namespace FileHelpers
             this.Name = name;
         }
 
-        private readonly SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+        private readonly SortedDictionary<string, FluentClass> mClasses =
+            new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
 
         public FluentClass Class(string name)
         {
             FluentClass res = null;
 
-            if (!mClasses.TryGetValue(name, out res))
-            {
+            if (!mClasses.TryGetValue(name, out res)) {
                 res = new FluentClass(name);
                 mClasses.Add(name, res);
             }
@@ -73,20 +68,17 @@ namespace FileHelpers
         public string GenerateCode()
         {
             var res = "namespace " + Name
-                + Environment.NewLine
-                + "{" 
-                + Environment.NewLine;
+                      + Environment.NewLine
+                      + "{"
+                      + Environment.NewLine;
 
             foreach (var c in mClasses)
-            {
                 res += c.Value.GenerateCode();
-            }
-                 
+
             res += Environment.NewLine +
-                    "}";
+                   "}";
             return res;
         }
-
     }
 
     /// <summary>
@@ -101,7 +93,8 @@ namespace FileHelpers
             this.Name = name;
         }
 
-        private readonly SortedDictionary<string, FluentClass> mClasses = new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
+        private readonly SortedDictionary<string, FluentClass> mClasses =
+            new SortedDictionary<string, FluentClass>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Create a class of "name"
@@ -112,8 +105,7 @@ namespace FileHelpers
         {
             FluentClass res;
 
-            if (!mClasses.TryGetValue(name, out res))
-            {
+            if (!mClasses.TryGetValue(name, out res)) {
                 res = new FluentClass(name);
                 mClasses.Add(name, res);
             }
@@ -124,21 +116,19 @@ namespace FileHelpers
         public string GenerateCode()
         {
             var res = "public class " + Name
-                + Environment.NewLine
-                + "{"
-                + Environment.NewLine;
+                      + Environment.NewLine
+                      + "{"
+                      + Environment.NewLine;
 
             foreach (var c in mClasses)
-            {
                 res += c.Value.GenerateCode();
-            }
 
             res += Environment.NewLine +
-                mCode.ToString()
-                + Environment.NewLine;
+                   mCode.ToString()
+                   + Environment.NewLine;
 
             res += Environment.NewLine +
-        "}";
+                   "}";
             return res;
         }
 
@@ -167,6 +157,7 @@ namespace FileHelpers
             mCode.AppendLine("public static " + type + " " + name);
             mCode.AppendLine("{ get { return  m" + name + "; } }");
         }
+
         /// <summary>
         /// Internal result of parsing the data
         /// </summary>

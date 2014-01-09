@@ -6,9 +6,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Converters
 {
     [TestFixture]
-    class ConverterCharText
+    internal class ConverterCharText
     {
-
         [Test]
         public void UpperAndLowerTest()
         {
@@ -44,7 +43,6 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class NoChangeCharClass
         {
-
             public Char fldChar;
             public Char fldChar2;
         }
@@ -52,7 +50,6 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class LowerCharClass
         {
-
             [FieldConverter(ConverterKind.Char, "x")]
             public Char fldChar;
 
@@ -63,7 +60,6 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class UpperCharClass
         {
-
             [FieldConverter(ConverterKind.Char, "X")]
             public Char fldChar;
 
@@ -74,7 +70,6 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class IAmBadCharClass
         {
-
             [FieldConverter(ConverterKind.Char, "Rubbish")]
             public Char fldChar;
         }

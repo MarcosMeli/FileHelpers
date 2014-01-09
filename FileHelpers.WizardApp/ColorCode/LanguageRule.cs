@@ -16,7 +16,7 @@ namespace ExamplesFx.ColorCode
         /// <param name="regex">The regular expression that defines what the language rule matches and captures.</param>
         /// <param name="captures">The scope indices and names of the regular expression's captures.</param>
         public LanguageRule(string regex,
-                            IDictionary<int, string> captures)
+            IDictionary<int, string> captures)
         {
             Guard.ArgNotNullAndNotEmpty(regex, "regex");
             Guard.EnsureParameterIsNotNullAndNotEmpty(captures, "captures");
@@ -30,6 +30,7 @@ namespace ExamplesFx.ColorCode
         /// </summary>
         /// <value>The regular expression that defines what the language rule matches and captures.</value>
         public string Regex { get; private set; }
+
         /// <summary>
         /// Gets the scope indices and names of the regular expression's captures.
         /// </summary>

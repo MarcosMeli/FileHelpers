@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FileHelpers.Events
 {
     /// <summary>Arguments for the <see cref="AfterReadHandler{T}"/></summary>
-    public sealed class AfterReadEventArgs<T> 
+    public sealed class AfterReadEventArgs<T>
         : ReadEventArgs<T>
         where T : class
     {
@@ -21,16 +21,19 @@ namespace FileHelpers.Events
         /// <param name="lineChanged">Was it changed before</param>
         /// <param name="newRecord">Object created</param>
         /// <param name="lineNumber">Record number read</param>
-        internal AfterReadEventArgs(EventEngineBase<T> engine, string line, bool lineChanged, T newRecord, int lineNumber)
+        internal AfterReadEventArgs(EventEngineBase<T> engine,
+            string line,
+            bool lineChanged,
+            T newRecord,
+            int lineNumber)
             : base(engine, line, lineNumber)
-		{
-		    SkipThisRecord = false;
-		    Record = newRecord;
+        {
+            SkipThisRecord = false;
+            Record = newRecord;
             RecordLineChanged = lineChanged;
-		}
+        }
 
         /// <summary>The current record.</summary>
         public T Record { get; set; }
-
-	}
+    }
 }

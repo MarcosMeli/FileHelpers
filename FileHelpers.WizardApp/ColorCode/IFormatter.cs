@@ -19,9 +19,9 @@ namespace ExamplesFx.ColorCode
         /// <param name="styleSheet">The style sheet according to which the source code will be formatted.</param>
         /// <param name="textWriter">The text writer to which the formatted source code will be written.</param>
         void Write(string parsedSourceCode,
-                   IList<Scope> scopes,
-                   IStyleSheet styleSheet,
-                   TextWriter textWriter);
+            IList<Scope> scopes,
+            IStyleSheet styleSheet,
+            TextWriter textWriter);
 
         /// <summary>
         /// Generates and writes the footer to the output.
@@ -29,7 +29,7 @@ namespace ExamplesFx.ColorCode
         /// <param name="styleSheet">The style sheet according to which the footer will be generated.</param>
         /// <param name="textWriter">The text writer to which footer will be written.</param>
         void WriteFooter(IStyleSheet styleSheet,
-                         TextWriter textWriter);
+            TextWriter textWriter);
 
         /// <summary>
         /// Generates and writes the header to the output.
@@ -37,6 +37,6 @@ namespace ExamplesFx.ColorCode
         /// <param name="styleSheet">The style sheet according to which the header will be generated.</param>
         /// <param name="textWriter">The text writer to which header will be written.</param>
         void WriteHeader(IStyleSheet styleSheet,
-                         TextWriter textWriter);
+            TextWriter textWriter);
     }
 }
