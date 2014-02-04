@@ -8544,6 +8544,13 @@
             <param name="line">Underlying input data</param>
             <returns>Object to assign to field</returns>
         </member>
+        <member name="M:FileHelpers.FieldBase.RemoveOuterQuotes(System.String)">
+            <summary>
+            Removes the outer double quotes from a string when it is being extracted from a file.
+            </summary>
+            <param name="extractedString"></param>
+            <returns></returns>
+        </member>
         <member name="M:FileHelpers.FieldBase.GetNullValue(FileHelpers.LineInfo)">
             <summary>
             Convert a null value into a representation,

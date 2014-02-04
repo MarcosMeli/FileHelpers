@@ -170,5 +170,21 @@ namespace FileHelpers.Tests.CommonTests
 
 		}
 
+        [Test]
+        public void TestRemoveQuotesFirstCellOfRow()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvQuoteRemoval.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
+
+            DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter, true, true);
+            Assert.AreEqual(2, dt.Rows.Count);
+
+            string firstColumn = dt.Rows[0].ItemArray[0].ToString();
+
+            Assert.AreEqual("NormalizeAddress", dt.Columns[0].ColumnName);
+            Assert.AreEqual("Y", firstColumn);
+        }
+
 	}
 }

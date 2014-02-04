@@ -624,20 +624,30 @@ namespace FileHelpers
             switch (TrimMode)
             {
                 case TrimMode.None:
-                    return extractedString;
+                    return RemoveOuterQuotes(extractedString);
 
                 case TrimMode.Both:
-                    return extractedString.Trim();
+                    return RemoveOuterQuotes(extractedString.Trim());
 
                 case TrimMode.Left:
-                    return extractedString.TrimStart();
+                    return RemoveOuterQuotes(extractedString.TrimStart());
 
                 case TrimMode.Right:
-                    return extractedString.TrimEnd();
+                    return RemoveOuterQuotes(extractedString.TrimEnd());
 
                 default:
                     throw new Exception("Trim mode invalid in FieldBase.TrimString -> " + TrimMode.ToString());
             }
+        }
+
+        /// <summary>
+        /// Removes the outer double quotes from a string when it is being extracted from a file.
+        /// </summary>
+        /// <param name="extractedString"></param>
+        /// <returns></returns>
+        private String RemoveOuterQuotes(string extractedString)
+        {
+            return extractedString.TrimStart('"').TrimEnd('"');
         }
 
         /// <summary>
