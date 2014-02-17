@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileHelpers.Events;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -10,8 +11,8 @@ namespace FileHelpers
     /// <summary>
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
-    internal sealed class RecordOperations 
-        //: IRecordOperations
+    internal sealed class RecordOperations
+    //: IRecordOperations
     {
         /// <summary>
         /// Record Info we use to parse the record and generate an object instance
@@ -26,6 +27,35 @@ namespace FileHelpers
         {
             RecordInfo = recordInfo;
         }
+
+        #region "  Events  "
+
+        /// <summary>
+        /// Called in read operations just before the record string is
+        /// translated to a record.
+        /// </summary>
+        public event ExtractFieldErrorHandler ExtractFieldError;
+
+        /// <summary>
+        /// Extract error of a field
+        /// </summary>
+        /// <param name="line">Record read</param>
+        /// <param name="lineNumber">The line number</param>
+        /// <param name="field">The field that caused the error</param>
+        /// <param name="exception">The exception that occured</param>
+        /// <returns>true indicates that the record has to be processed further for errors</returns>
+        public bool OnExtractFieldError(string line, int lineNumber, FieldBase field, Exception exception)
+        {
+            if (ExtractFieldError != null)
+            {
+                var e = new ExtractFieldErrorEventArgs(line, lineNumber, field, exception);
+                return ExtractFieldError(this, e);
+            }
+
+            return false;
+        }
+
+        #endregion
 
         #region "  StringToRecord  "
 
@@ -86,9 +116,31 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return false;
 
+            // count the number of errors while reading the record
+            int errorCount = 0;
+
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+                var field = RecordInfo.Fields[i];
+                try
+                {
+                    values[i] = field.ExtractFieldValue(line);
+                }
+                catch (Exception exception)
+                {
+                    errorCount++;
+
+                    if (!OnExtractFieldError(line.CurrentString, line.mReader.LineNumber, field, exception))
+                    {
+                        // stacktrace is lost. Is that an issue?
+                        throw exception;
+                    }
+                }
+            }
+
+            if (errorCount > 0)
+            {
+                return false;
             }
 
             try
@@ -351,7 +403,8 @@ namespace FileHelpers
         /// </summary>
         private ObjectToValuesDelegate ObjectToValuesHandler
         {
-            get {
+            get
+            {
                 return mObjectToValuesHandler ??
                        (mObjectToValuesHandler =
                         ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));

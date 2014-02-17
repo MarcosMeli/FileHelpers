@@ -38,4 +38,11 @@ namespace FileHelpers.Events
     /// <param name="e">The event data.</param>
     public delegate void AfterWriteHandler<T>(EngineBase engine, AfterWriteEventArgs<T> e) where T : class;
 
+    // ---- Error Operations  ----
+    /// <summary>
+    /// Called on extract field exception
+    /// </summary>
+    /// <param name="sender">The sender that generates the event.</param>
+    /// <param name="e">The event data.</param>
+    public delegate bool ExtractFieldErrorHandler(object sender, ExtractFieldErrorEventArgs e);
 }

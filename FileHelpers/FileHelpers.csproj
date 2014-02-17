@@ -304,6 +304,7 @@
     <Compile Include="Events\AfterReadEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\ExtractFieldErrorEventArgs.cs" />
     <Compile Include="Events\FileHelpersEventArgs.cs" />
     <Compile Include="Events\ReadEventArgs.cs" />
     <Compile Include="Events\AfterWriteEventArgs.cs">

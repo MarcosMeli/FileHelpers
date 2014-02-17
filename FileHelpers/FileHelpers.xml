@@ -1521,6 +1521,16 @@
             </summary>
             <param name="recordInfo">Record details we create objects off</param>
         </member>
+        <member name="M:FileHelpers.RecordOperations.OnExtractFieldError(System.String,System.Int32,FileHelpers.FieldBase,System.Exception)">
+            <summary>
+            Extract error of a field
+            </summary>
+            <param name="line">Record read</param>
+            <param name="lineNumber">The line number</param>
+            <param name="field">The field that caused the error</param>
+            <param name="exception">The exception that occured</param>
+            <returns>true indicates that the record has to be processed further for errors</returns>
+        </member>
         <member name="M:FileHelpers.RecordOperations.StringToRecord(FileHelpers.LineInfo,System.Object[])">
             <summary>
             Process a line and turn it into an object
@@ -1614,6 +1624,12 @@
         <member name="P:FileHelpers.RecordOperations.RecordInfo">
             <summary>
             Record Info we use to parse the record and generate an object instance
+            </summary>
+        </member>
+        <member name="E:FileHelpers.RecordOperations.ExtractFieldError">
+            <summary>
+            Called in read operations just before the record string is
+            translated to a record.
             </summary>
         </member>
         <member name="P:FileHelpers.RecordOperations.ObjectToValuesHandler">
@@ -8259,6 +8275,10 @@
             </returns>
             <filterpriority>2</filterpriority>
         </member>
+        <member name="P:FileHelpers.ErrorManager.ErrorLimit">
+            <summary>Maximum number of recorded errors. After this limit is reached, successive errors are ignored.</summary>
+            <remarks>Default error limit is 10000.</remarks>
+        </member>
         <member name="P:FileHelpers.ErrorManager.Errors">
             <summary>
             Is an array of <see cref="T:FileHelpers.ErrorInfo"/> that contains the
@@ -8270,6 +8290,7 @@
             Indicates the behavior of the <see cref="T:FileHelpers.FileHelperEngine"/>
             when it found an error.
             </summary>
+            <remarks>Default error mode is ThrowException.</remarks>
         </member>
         <member name="P:FileHelpers.ErrorManager.ErrorCount">
             <summary>Number of contained errors.</summary>
@@ -8434,6 +8455,13 @@
             <param name="engine">The engine that generates the event.</param>
             <param name="e">The event data.</param>
         </member>
+        <member name="T:FileHelpers.Events.ExtractFieldErrorHandler">
+            <summary>
+            Called on extract field exception
+            </summary>
+            <param name="sender">The sender that generates the event.</param>
+            <param name="e">The event data.</param>
+        </member>
         <member name="T:FileHelpers.Events.AfterReadEventArgs`1">
             <summary>Arguments for the <see cref="T:FileHelpers.Events.AfterReadHandler`1"/></summary>
         </member>
@@ -8449,6 +8477,38 @@
         </member>
         <member name="P:FileHelpers.Events.AfterReadEventArgs`1.Record">
             <summary>The current record.</summary>
+        </member>
+        <member name="T:FileHelpers.Events.ExtractFieldErrorEventArgs">
+            <summary>Arguments for the <see cref="T:FileHelpers.Events.ExtractFieldErrorEventArgs"/></summary>
+        </member>
+        <member name="M:FileHelpers.Events.ExtractFieldErrorEventArgs.#ctor(System.String,System.Int32,FileHelpers.FieldBase,System.Exception)">
+            <summary>
+            After an exception occurs when extracting the value of a field from the line
+            </summary>
+            <param name="line">Record that was analysed</param>
+            <param name="lineNumber">Record number read</param>
+            <param name="field">Was it changed before</param>
+            <param name="exception">Object created</param>
+        </member>
+        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Line">
+            <summary>
+            The current record that contains the field
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.LineNumber">
+            <summary>
+            The line number
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Field">
+            <summary>
+            The field that failed
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Exception">
+            <summary>
+            The exception that occured
+            </summary>
         </member>
         <member name="T:FileHelpers.Events.AfterWriteEventArgs`1">
             <summary>Arguments for the <see cref="T:FileHelpers.Events.AfterWriteEventArgs`1"/></summary>
