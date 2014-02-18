@@ -5,10 +5,8 @@ using System.Collections.Generic;
 
 namespace FileHelpers.Tests
 {
-
     //[TestFixture]
     //public class ReflectionHelperTests
     //{
     //}
-
 }

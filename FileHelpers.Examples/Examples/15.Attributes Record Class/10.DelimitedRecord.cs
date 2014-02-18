@@ -14,7 +14,6 @@ namespace ExamplesFx
     public class DelimitedRecord
         : ExampleBase
     {
-
         //-> File:Example.cs
         /// <summary>
         /// Execute the engine and get some results
@@ -24,13 +23,13 @@ namespace ExamplesFx
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records)
-            {
+            foreach (var record in records) {
                 this.Console.WriteLine(record.CustomerID);
                 this.Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 this.Console.WriteLine(record.Freight);
             }
         }
+
         //-> /File
 
         //-> File:RecordClass.cs
@@ -50,6 +49,7 @@ namespace ExamplesFx
 
             public decimal Freight;
         }
+
         //-> /File
 
         //-> File:Input.txt

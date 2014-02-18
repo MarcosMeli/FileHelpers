@@ -11,16 +11,16 @@ namespace ExamplesFx
     public class FixedLengthRecordLastVariableExample
         : ExampleBase
     {
-
         public override void Run()
         {
             //-> File:Example.cs
             var engine = new FixedFileEngine<Customer>();
             Customer[] result = engine.ReadFile("input.txt");
 
-            foreach (var detail in result)
-            {
-                this.Console.WriteLine(" Client: {0},  Date: {1}", detail.CustId, detail.AddedDate.ToString("dd-MM-yyyy"));
+            foreach (var detail in result) {
+                this.Console.WriteLine(" Client: {0},  Date: {1}",
+                    detail.CustId,
+                    detail.AddedDate.ToString("dd-MM-yyyy"));
             }
 
             //-> /File
@@ -40,8 +40,8 @@ namespace ExamplesFx
             [FieldFixedLength(8)]
             [FieldConverter(ConverterKind.DateMultiFormat, "ddMMyyyy", "MMyyyy")]
             public DateTime AddedDate;
-
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -51,7 +51,5 @@ namespace ExamplesFx
         51677 Around the Horn              13051998
         99999 Berglunds snabbköp           111999*/
         //-> /File
-
     }
-
 }

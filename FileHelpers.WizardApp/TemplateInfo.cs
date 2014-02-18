@@ -26,9 +26,7 @@ namespace FileHelpers.WizardApp
         /// <summary>
         /// Allows you to set your own template information
         /// </summary>
-        public TemplateInfo()
-        {
-        }
+        public TemplateInfo() {}
 
         /// <summary>
         /// Set up template information from the file specified

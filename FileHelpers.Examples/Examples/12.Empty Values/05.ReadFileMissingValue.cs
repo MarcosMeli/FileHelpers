@@ -11,15 +11,13 @@ namespace ExamplesFx
     public class ReadFileMissingValue
         : ExampleBase
     {
-
         public override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records)
-            {
+            foreach (var record in records) {
                 Console.WriteLine(record.CustomerID);
                 Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 Console.WriteLine(record.Freight);
@@ -40,6 +38,7 @@ namespace ExamplesFx
 
             public decimal Freight;
         }
+
         //-> /File
 
         //-> File:Input.txt

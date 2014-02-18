@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	// SPECIAL FIELD
+    // SPECIAL FIELD
     [DelimitedRecord("|")]
     public class CustomConvType
-	{
-        [FieldConverter(typeof(VeryBadConverter))]
+    {
+        [FieldConverter(typeof (VeryBadConverter))]
         public decimal PriceList;
-	} 
+    }
 
-	// CUSTOM CONVERTER
+    // CUSTOM CONVERTER
     internal class VeryBadConverter : ConverterBase
     {
         public override object StringToField(string from)
@@ -22,37 +22,34 @@ namespace FileHelpers.Tests.CommonTests
         }
     }
 
-	// NUNIT TESTS
-	[TestFixture]
+    // NUNIT TESTS
+    [TestFixture]
     public class CustomConverterExceptions
-	{
-        string testTo = "sad23\nverybad\n";
+    {
+        private string testTo = "sad23\nverybad\n";
 
-		[Test]
+        [Test]
         public void ExceptionsTestsPriceConverterTest()
-		{
-			var engine = new FileHelperEngine<CustomConvType>();
+        {
+            var engine = new FileHelperEngine<CustomConvType>();
 
             Assert.Throws<ConvertException>(
                 () => engine.ReadString(testTo));
-		}
+        }
 
         [Test]
         public void ExceptionsTestsPriceConverterTest2()
         {
-            try
-            {
+            try {
                 var engine = new FileHelperEngine<CustomConvType>();
                 object[] res = engine.ReadString(testTo);
             }
-            catch (ConvertException ex)
-            {
+            catch (ConvertException ex) {
                 Assert.IsTrue(ex.Message.IndexOf("VeryBadConverter") >= 0);
                 Assert.IsTrue(ex.Message.IndexOf("custom converter") >= 0);
                 Assert.IsTrue(ex.Message.IndexOf("Line: 1") >= 0);
                 Assert.IsTrue(ex.Message.IndexOf("Column: 1") >= 0);
             }
         }
-
-	}
+    }
 }

@@ -19,84 +19,72 @@ namespace FileHelpers
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         public FileHelperAsyncEngine(Type recordType)
-            : base(recordType)
-        {
-        }
+            : base(recordType) {}
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         public FileHelperAsyncEngine(Type recordType, Encoding encoding)
-            : base(recordType, encoding)
-        {
-        }
+            : base(recordType, encoding) {}
 
         #endregion
-        
     }
 
     /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngine/*'/>
     /// <include file='Examples.xml' path='doc/examples/FileHelperAsyncEngine/*'/>
     /// <typeparam name="T">The record type.</typeparam>
-    [DebuggerDisplay("FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-    public class FileHelperAsyncEngine<T> :
-        EventEngineBase<T>,
-        IFileHelperAsyncEngine<T>
-        where T: class
+    [DebuggerDisplay(
+        "FileHelperAsyncEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
+        )]
+    public class FileHelperAsyncEngine<T>
+        :
+            EventEngineBase<T>,
+            IFileHelperAsyncEngine<T>
+        where T : class
     {
-
         #region "  Constructor  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
-		public FileHelperAsyncEngine() 
-			: base(typeof(T))
-        {
-        }
+        public FileHelperAsyncEngine()
+            : base(typeof (T)) {}
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="recordType">Type of object to be handled</param>
         protected FileHelperAsyncEngine(Type recordType)
-            : base(recordType)
-        {
-        }
+            : base(recordType) {}
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
-		public FileHelperAsyncEngine(Encoding encoding)
-			: base(typeof(T), encoding)
-        {
-        }
+        public FileHelperAsyncEngine(Encoding encoding)
+            : base(typeof (T), encoding) {}
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         /// <param name="recordType">Type of record to read</param>
         protected FileHelperAsyncEngine(Type recordType, Encoding encoding)
-            : base(recordType, encoding)
-        {
-        }
-
-    
+            : base(recordType, encoding) {}
 
         #endregion
 
         #region "  Readers and Writters  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ForwardReader mAsyncReader;
+        private ForwardReader mAsyncReader;
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        TextWriter mAsyncWriter;
+        private TextWriter mAsyncWriter;
 
         #endregion
 
         #region "  LastRecord  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private T mLastRecord;
+        private T mLastRecord;
 
-		/// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
-		public T LastRecord
-		{
-			get { return mLastRecord; }
-		}
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>
+        public T LastRecord
+        {
+            get { return mLastRecord; }
+        }
 
         private object[] mLastRecordValues;
 
@@ -117,35 +105,39 @@ namespace FileHelpers
         {
             get
             {
-                if (mLastRecordValues == null)
-                    throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+                if (mLastRecordValues == null) {
+                    throw new BadUsageException(
+                        "You must be reading something to access this property. Try calling BeginReadFile first.");
+                }
 
                 return mLastRecordValues[fieldIndex];
             }
             set
             {
-                if (mAsyncWriter == null)
-                    throw new BadUsageException("You must be writting something to set a record value. Try calling BeginWriteFile first.");
+                if (mAsyncWriter == null) {
+                    throw new BadUsageException(
+                        "You must be writting something to set a record value. Try calling BeginWriteFile first.");
+                }
 
                 if (mLastRecordValues == null)
                     mLastRecordValues = new object[RecordInfo.FieldCount];
 
-                if (value == null)
-                {
+                if (value == null) {
                     if (RecordInfo.Fields[fieldIndex].FieldType.IsValueType)
                         throw new BadUsageException("You can't assing null to a value type.");
 
                     mLastRecordValues[fieldIndex] = null;
                 }
-                else
-                {
-                    if (!RecordInfo.Fields[fieldIndex].FieldType.IsInstanceOfType(value))
-                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}", value.GetType().Name, RecordInfo.Fields[fieldIndex].FieldType.Name));
+                else {
+                    if (!RecordInfo.Fields[fieldIndex].FieldType.IsInstanceOfType(value)) {
+                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}",
+                            value.GetType().Name,
+                            RecordInfo.Fields[fieldIndex].FieldType.Name));
+                    }
 
                     mLastRecordValues[fieldIndex] = value;
                 }
             }
-
         }
 
         /// <summary>
@@ -156,8 +148,10 @@ namespace FileHelpers
         {
             get
             {
-                if (mLastRecordValues == null)
-                    throw new BadUsageException("You must be reading something to access this property. Try calling BeginReadFile first.");
+                if (mLastRecordValues == null) {
+                    throw new BadUsageException(
+                        "You must be reading something to access this property. Try calling BeginReadFile first.");
+                }
 
                 int index = RecordInfo.GetFieldIndex(fieldName);
                 return mLastRecordValues[index];
@@ -188,10 +182,8 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            if (RecordInfo.IgnoreFirst > 0)
-            {
-                for (int i = 0; i < RecordInfo.IgnoreFirst; i++)
-                {
+            if (RecordInfo.IgnoreFirst > 0) {
+                for (int i = 0; i < RecordInfo.IgnoreFirst; i++) {
                     string temp = recordReader.ReadRecordString();
                     mLineNumber++;
                     if (temp != null)
@@ -201,10 +193,9 @@ namespace FileHelpers
                 }
             }
 
-            mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber)
-                {
-                    DiscardForward = true
-                };
+            mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber) {
+                DiscardForward = true
+            };
             mState = EngineState.Reading;
             mStreamInfo = new StreamInfoProvider(reader);
             mCurrentRecord = 0;
@@ -234,6 +225,7 @@ namespace FileHelpers
             BeginReadStream(new InternalStreamReader(fileName, mEncoding, true, bufferSize));
             return this;
         }
+
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/BeginReadString/*'/>
         public IDisposable BeginReadString(string sourceData)
         {
@@ -249,7 +241,7 @@ namespace FileHelpers
         #region "  ReadNext  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
-		public T ReadNext()
+        public T ReadNext()
         {
             if (mAsyncReader == null)
                 throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
@@ -268,23 +260,19 @@ namespace FileHelpers
 
             bool byPass = false;
 
-            mLastRecord = default(T); 
+            mLastRecord = default(T);
 
 
-            var line = new LineInfo(string.Empty)
-                {
-                    mReader = mAsyncReader
-                };
+            var line = new LineInfo(string.Empty) {
+                mReader = mAsyncReader
+            };
 
             if (mLastRecordValues == null)
                 mLastRecordValues = new object[RecordInfo.FieldCount];
 
-            while (true)
-            {
-                if (currentLine != null)
-                {
-                    try
-                    {
+            while (true) {
+                if (currentLine != null) {
+                    try {
                         mTotalRecords++;
                         mCurrentRecord++;
                         line.ReLoad(currentLine);
@@ -294,7 +282,12 @@ namespace FileHelpers
                         mLastRecord = (T) RecordInfo.Operations.CreateRecordHandler();
 #if ! MINI
                         if (MustNotifyProgress) // Avoid object creation
-                            OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+                        {
+                            OnProgress(new ProgressEventArgs(mCurrentRecord,
+                                -1,
+                                mStreamInfo.Position,
+                                mStreamInfo.TotalBytes));
+                        }
 
                         BeforeReadEventArgs<T> e = null;
                         if (MustNotifyRead) // Avoid object creation
@@ -306,73 +299,60 @@ namespace FileHelpers
                         }
 
 
-
 #endif
-                        if (skip == false)
-                        {
-                            if (RecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues))
-                            {
+                        if (skip == false) {
+                            if (RecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues)) {
 #if ! MINI
                                 if (MustNotifyRead) // Avoid object creation
                                     skip = OnAfterReadRecord(currentLine, mLastRecord, e.RecordLineChanged, LineNumber);
 #endif
-                                if (skip == false)
-                                {
+                                if (skip == false) {
                                     byPass = true;
                                     return;
                                 }
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        switch (mErrorManager.ErrorMode)
-                        {
+                    catch (Exception ex) {
+                        switch (mErrorManager.ErrorMode) {
                             case ErrorMode.ThrowException:
                                 byPass = true;
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo
-                                    {
-                                        mLineNumber = mAsyncReader.LineNumber,
-                                        mExceptionInfo = ex,
-                                        mRecordString = currentLine
-                                    };
+                                var err = new ErrorInfo {
+                                    mLineNumber = mAsyncReader.LineNumber,
+                                    mExceptionInfo = ex,
+                                    mRecordString = currentLine
+                                };
                                 //							err.mColumnNumber = mColumnNum;
 
                                 mErrorManager.AddError(err);
                                 break;
                         }
                     }
-                    finally
-                    {
-                        if (byPass == false)
-                        {
+                    finally {
+                        if (byPass == false) {
                             currentLine = mAsyncReader.ReadNextLine();
                             mLineNumber = mAsyncReader.LineNumber;
                         }
                     }
                 }
-                else
-                {
+                else {
                     mLastRecordValues = null;
 
-					mLastRecord = default(T);
+                    mLastRecord = default(T);
 
 
                     if (RecordInfo.IgnoreLast > 0)
                         mFooterText = mAsyncReader.RemainingText;
 
-                    try
-                    {
+                    try {
                         mAsyncReader.Close();
                         //mAsyncReader = null;
                     }
-                    catch
-                    {
-                    }
+                    catch {}
 
                     return;
                 }
@@ -389,22 +369,21 @@ namespace FileHelpers
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
-		public T[] ReadNexts(int numberOfRecords)
+        public T[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
                 throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
             var arr = new List<T>(numberOfRecords);
 
-            for (int i = 0; i < numberOfRecords; i++)
-            {
+            for (int i = 0; i < numberOfRecords; i++) {
                 ReadNextRecord();
                 if (mLastRecord != null)
                     arr.Add(mLastRecord);
                 else
                     break;
             }
-			return arr.ToArray();
+            return arr.ToArray();
         }
 
         #endregion
@@ -425,45 +404,36 @@ namespace FileHelpers
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/Close/*'/>
         public void Close()
         {
-            lock (this)
-            {
+            lock (this) {
                 mState = EngineState.Closed;
 
-                try
-                {
+                try {
                     mLastRecordValues = null;
                     mLastRecord = default(T);
 
                     var reader = mAsyncReader;
-                    if (reader != null)
-                    {
+                    if (reader != null) {
                         reader.Close();
                         mAsyncReader = null;
                     }
                 }
-                catch
-                {
-                }
+                catch {}
 
-                try
-                {
+                try {
                     var writer = mAsyncWriter;
-                    if (writer != null)
-                    {
-                                if (!string.IsNullOrEmpty(mFooterText))
-                                    if (mFooterText.EndsWith(StringHelper.NewLine))
-                                        writer.Write(mFooterText);
-                                    else
-                                        writer.WriteLine(mFooterText);
+                    if (writer != null) {
+                        if (!string.IsNullOrEmpty(mFooterText)) {
+                            if (mFooterText.EndsWith(StringHelper.NewLine))
+                                writer.Write(mFooterText);
+                            else
+                                writer.WriteLine(mFooterText);
+                        }
 
-                                writer.Close();
-                                mAsyncWriter = null;
+                        writer.Close();
+                        mAsyncWriter = null;
                     }
                 }
-                catch
-                {
-                }
-
+                catch {}
             }
         }
 
@@ -498,11 +468,12 @@ namespace FileHelpers
 
         private void WriteHeader()
         {
-            if (!string.IsNullOrEmpty(mHeaderText))
+            if (!string.IsNullOrEmpty(mHeaderText)) {
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     mAsyncWriter.Write(mHeaderText);
                 else
                     mAsyncWriter.WriteLine(mHeaderText);
+            }
         }
 
         #endregion
@@ -525,7 +496,6 @@ namespace FileHelpers
         }
 
         #endregion
-
 
         #region "  BeginAppendToFile  "
 
@@ -566,7 +536,7 @@ namespace FileHelpers
         #region "  WriteNext  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNext/*'/>
-		public void WriteNext(T record)
+        public void WriteNext(T record)
         {
             if (mAsyncWriter == null)
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
@@ -580,19 +550,18 @@ namespace FileHelpers
             WriteRecord(record);
         }
 
-		private void WriteRecord(T record)
+        private void WriteRecord(T record)
         {
             string currentLine = null;
 
-            try
-            {
+            try {
                 mLineNumber++;
                 mTotalRecords++;
                 mCurrentRecord++;
 
                 bool skip = false;
 #if !MINI
-                
+
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
@@ -601,8 +570,7 @@ namespace FileHelpers
 
 #endif
 
-                if (skip == false)
-                {
+                if (skip == false) {
                     currentLine = RecordInfo.Operations.RecordToString(record);
 #if !MINI
                     if (MustNotifyWrite)
@@ -611,31 +579,27 @@ namespace FileHelpers
                     mAsyncWriter.WriteLine(currentLine);
                 }
             }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
+            catch (Exception ex) {
+                switch (mErrorManager.ErrorMode) {
                     case ErrorMode.ThrowException:
                         throw;
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo
-                            {
-                                mLineNumber = mLineNumber,
-                                mExceptionInfo = ex,
-                                mRecordString = currentLine
-                            };
+                        var err = new ErrorInfo {
+                            mLineNumber = mLineNumber,
+                            mExceptionInfo = ex,
+                            mRecordString = currentLine
+                        };
                         //							err.mColumnNumber = mColumnNum;
                         mErrorManager.AddError(err);
                         break;
                 }
             }
-
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
-		public void WriteNexts(IEnumerable<T> records)
+        public void WriteNexts(IEnumerable<T> records)
         {
             if (mAsyncWriter == null)
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
@@ -646,10 +610,8 @@ namespace FileHelpers
             bool first = true;
 
 
-			foreach (var rec in records)
-            {
-                if (first)
-                {
+            foreach (var rec in records) {
+                if (first) {
                     if (RecordType.IsAssignableFrom(rec.GetType()) == false)
                         throw new BadUsageException("The record must be of type: " + RecordType.Name);
                     first = false;
@@ -657,7 +619,6 @@ namespace FileHelpers
 
                 WriteRecord(rec);
             }
-
         }
 
         #endregion
@@ -673,47 +634,43 @@ namespace FileHelpers
             if (mAsyncWriter == null)
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
-            if (mLastRecordValues == null)
-                throw new BadUsageException("You must set some values of the record before call this method, or use the overload that has a record as argument.");
+            if (mLastRecordValues == null) {
+                throw new BadUsageException(
+                    "You must set some values of the record before call this method, or use the overload that has a record as argument.");
+            }
 
             string currentLine = null;
 
-            try
-            {
+            try {
                 mLineNumber++;
                 mTotalRecords++;
 
                 currentLine = RecordInfo.Operations.RecordValuesToString(this.mLastRecordValues);
                 mAsyncWriter.WriteLine(currentLine);
             }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
+            catch (Exception ex) {
+                switch (mErrorManager.ErrorMode) {
                     case ErrorMode.ThrowException:
                         throw;
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo
-                            {
-                                mLineNumber = mLineNumber,
-                                mExceptionInfo = ex,
-                                mRecordString = currentLine
-                            };
+                        var err = new ErrorInfo {
+                            mLineNumber = mLineNumber,
+                            mExceptionInfo = ex,
+                            mRecordString = currentLine
+                        };
                         //							err.mColumnNumber = mColumnNum;
                         mErrorManager.AddError(err);
                         break;
                 }
             }
-            finally
-            {
+            finally {
                 mLastRecordValues = null;
             }
         }
 
         #endregion
-
 
         #region "  IEnumerable implementation  "
 
@@ -742,8 +699,8 @@ namespace FileHelpers
         }
 
 
-		private class AsyncEnumerator : IEnumerator<T>
-		{
+        private class AsyncEnumerator : IEnumerator<T>
+        {
             T IEnumerator<T>.Current
             {
                 get { return mEngine.mLastRecord; }
@@ -754,8 +711,9 @@ namespace FileHelpers
                 mEngine.Close();
             }
 
-		    readonly FileHelperAsyncEngine<T> mEngine;
-			public AsyncEnumerator(FileHelperAsyncEngine<T> engine)
+            private readonly FileHelperAsyncEngine<T> mEngine;
+
+            public AsyncEnumerator(FileHelperAsyncEngine<T> engine)
             {
                 mEngine = engine;
             }
@@ -764,32 +722,24 @@ namespace FileHelpers
             {
                 object res = mEngine.ReadNext();
 
-                if (res == null)
-                {
+                if (res == null) {
                     mEngine.Close();
                     return false;
                 }
 
                 return true;
-
             }
 
             public object Current
             {
-                get
-                {
-                    return mEngine.mLastRecord;
-                }
+                get { return mEngine.mLastRecord; }
             }
 
             public void Reset()
             {
                 // No needed
             }
-
-
         }
-
 
         #endregion
 
@@ -825,6 +775,5 @@ namespace FileHelpers
         }
 
         #endregion
-
     }
 }

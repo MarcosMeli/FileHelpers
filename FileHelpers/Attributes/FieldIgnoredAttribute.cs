@@ -14,7 +14,5 @@ namespace FileHelpers
     [Obsolete("You must use [FieldNotInFile] instead", false)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class FieldIgnoredAttribute
-        :FieldAttribute
-    {
-    }
+        : FieldAttribute {}
 }

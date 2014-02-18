@@ -20,8 +20,5 @@ namespace ExamplesFx
 
             examplesContainer.LoadExamples(ExamplesFactory.GetExamples());
         }
-
-    
-
     }
 }

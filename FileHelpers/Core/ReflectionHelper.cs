@@ -40,7 +40,6 @@ namespace FileHelpers
     /// </summary>
     internal static class ReflectionHelper
     {
-
         /// <summary>
         /// Create a delegate based on the field information that
         /// converts an object into an array of fields
@@ -51,28 +50,27 @@ namespace FileHelpers
         public static ObjectToValuesDelegate ObjectToValuesMethod(Type recordType, FieldInfo[] fields)
         {
             var dm = new DynamicMethod("FileHelpersDynamic_GetAllValues",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof(object[]),
-                                       new[] { typeof(object) },
-                                       recordType,
-                                       true);
+                MethodAttributes.Static | MethodAttributes.Public,
+                CallingConventions.Standard,
+                typeof (object[]),
+                new[] {typeof (object)},
+                recordType,
+                true);
 
             ILGenerator generator = dm.GetILGenerator();
 
-            generator.DeclareLocal(typeof(object[]));
+            generator.DeclareLocal(typeof (object[]));
             generator.DeclareLocal(recordType);
 
             generator.Emit(OpCodes.Ldc_I4, fields.Length);
-            generator.Emit(OpCodes.Newarr, typeof(object));
+            generator.Emit(OpCodes.Newarr, typeof (object));
             generator.Emit(OpCodes.Stloc_0);
 
             generator.Emit(OpCodes.Ldarg_0);
             generator.Emit(OpCodes.Castclass, recordType);
             generator.Emit(OpCodes.Stloc_1);
 
-            for (int i = 0; i < fields.Length; i++)
-            {
+            for (int i = 0; i < fields.Length; i++) {
                 FieldInfo field = fields[i];
 
                 generator.Emit(OpCodes.Ldloc_0);
@@ -82,9 +80,7 @@ namespace FileHelpers
                 generator.Emit(OpCodes.Ldfld, field);
 
                 if (field.FieldType.IsValueType)
-                {
                     generator.Emit(OpCodes.Box, field.FieldType);
-                }
 
                 generator.Emit(OpCodes.Stelem_Ref);
             }
@@ -93,7 +89,7 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ldloc_0);
             generator.Emit(OpCodes.Ret);
 
-            return (ObjectToValuesDelegate)dm.CreateDelegate(typeof(ObjectToValuesDelegate));
+            return (ObjectToValuesDelegate) dm.CreateDelegate(typeof (ObjectToValuesDelegate));
         }
 
         /// <summary>
@@ -104,8 +100,9 @@ namespace FileHelpers
         public static ConstructorInfo GetDefaultConstructor(Type recordType)
         {
             return recordType.GetConstructor(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
-                                        null, Type.EmptyTypes,
-                                        new ParameterModifier[] { });
+                null,
+                Type.EmptyTypes,
+                new ParameterModifier[] {});
         }
 
         /// <summary>
@@ -118,12 +115,12 @@ namespace FileHelpers
         public static CreateAndAssignDelegate CreateAndAssignValuesMethod(Type recordType, FieldInfo[] fields)
         {
             var dm = new DynamicMethod("FileHelpersDynamicCreateAndAssign",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof(object),
-                                       new[] { typeof(object[]) },
-                                       recordType,
-                                       true);
+                MethodAttributes.Static | MethodAttributes.Public,
+                CallingConventions.Standard,
+                typeof (object),
+                new[] {typeof (object[])},
+                recordType,
+                true);
 
             ILGenerator generator = dm.GetILGenerator();
 
@@ -131,8 +128,7 @@ namespace FileHelpers
             generator.Emit(OpCodes.Newobj, GetDefaultConstructor(recordType));
             generator.Emit(OpCodes.Stloc_0);
 
-            for (int i = 0; i < fields.Length; i++)
-            {
+            for (int i = 0; i < fields.Length; i++) {
                 FieldInfo field = fields[i];
 
                 generator.Emit(OpCodes.Ldloc_0);
@@ -141,13 +137,9 @@ namespace FileHelpers
                 generator.Emit(OpCodes.Ldelem_Ref);
 
                 if (field.FieldType.IsValueType)
-                {
                     generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-                }
                 else
-                {
                     generator.Emit(OpCodes.Castclass, field.FieldType);
-                }
 
                 generator.Emit(OpCodes.Stfld, field);
             }
@@ -156,7 +148,7 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ldloc_0);
             generator.Emit(OpCodes.Ret);
 
-            return (CreateAndAssignDelegate)dm.CreateDelegate(typeof(CreateAndAssignDelegate));
+            return (CreateAndAssignDelegate) dm.CreateDelegate(typeof (CreateAndAssignDelegate));
         }
 
         /// <summary>
@@ -168,12 +160,12 @@ namespace FileHelpers
         public static AssignDelegate AssignValuesMethod(Type recordType, FieldInfo[] fields)
         {
             var dm = new DynamicMethod("FileHelpersDynamic_Assign",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       null,
-                                       new[] {typeof(object), typeof(object[]) },
-                                       recordType,
-                                       true);
+                MethodAttributes.Static | MethodAttributes.Public,
+                CallingConventions.Standard,
+                null,
+                new[] {typeof (object), typeof (object[])},
+                recordType,
+                true);
 
             var generator = dm.GetILGenerator();
 
@@ -182,8 +174,7 @@ namespace FileHelpers
             generator.Emit(OpCodes.Castclass, recordType);
             generator.Emit(OpCodes.Stloc_0);
 
-            for (int i = 0; i < fields.Length; i++)
-            {
+            for (int i = 0; i < fields.Length; i++) {
                 var field = fields[i];
 
                 generator.Emit(OpCodes.Ldloc_0);
@@ -192,21 +183,18 @@ namespace FileHelpers
                 generator.Emit(OpCodes.Ldelem_Ref);
 
                 if (field.FieldType.IsValueType)
-                {
                     generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-                }
                 else
-                {
                     generator.Emit(OpCodes.Castclass, field.FieldType);
-                }
 
                 generator.Emit(OpCodes.Stfld, field);
             }
 
             generator.Emit(OpCodes.Ret);
 
-            return (AssignDelegate)dm.CreateDelegate(typeof(AssignDelegate));
+            return (AssignDelegate) dm.CreateDelegate(typeof (AssignDelegate));
         }
+
         /// <summary>
         /// Create a function that will create an instance of the class
         /// </summary>
@@ -215,19 +203,19 @@ namespace FileHelpers
         public static CreateObjectDelegate CreateFastConstructor(Type recordType)
         {
             var dm = new DynamicMethod("FileHelpersDynamicCreateRecordFast",
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof(object),
-                                       new[] { typeof(object[]) },
-                                       recordType,
-                                       true);
+                MethodAttributes.Static | MethodAttributes.Public,
+                CallingConventions.Standard,
+                typeof (object),
+                new[] {typeof (object[])},
+                recordType,
+                true);
 
             ILGenerator generator = dm.GetILGenerator();
 
             generator.Emit(OpCodes.Newobj, GetDefaultConstructor(recordType));
             generator.Emit(OpCodes.Ret);
 
-            return (CreateObjectDelegate)dm.CreateDelegate(typeof(CreateObjectDelegate));
+            return (CreateObjectDelegate) dm.CreateDelegate(typeof (CreateObjectDelegate));
         }
 
         /// <summary>
@@ -238,12 +226,12 @@ namespace FileHelpers
         public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
         {
             var dm = new DynamicMethod("FileHelpersDynamic_GetValue" + fi.Name,
-                                       MethodAttributes.Static | MethodAttributes.Public,
-                                       CallingConventions.Standard,
-                                       typeof(object),
-                                       new[] { typeof(object) },
-                                       fi.DeclaringType,
-                                       true);
+                MethodAttributes.Static | MethodAttributes.Public,
+                CallingConventions.Standard,
+                typeof (object),
+                new[] {typeof (object)},
+                fi.DeclaringType,
+                true);
 
             ILGenerator generator = dm.GetILGenerator();
 
@@ -252,7 +240,7 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ldfld, fi);
             generator.Emit(OpCodes.Ret);
 
-            return (GetFieldValueCallback)dm.CreateDelegate(typeof(GetFieldValueCallback));
+            return (GetFieldValueCallback) dm.CreateDelegate(typeof (GetFieldValueCallback));
         }
 
         /// <summary>
@@ -263,22 +251,23 @@ namespace FileHelpers
         public static IEnumerable<FieldInfo> RecursiveGetFields(Type currentType)
         {
             // If we are inherited and we have not stopped recursion, get parent types
-            if (currentType.BaseType != null && !currentType.IsDefined(typeof(IgnoreInheritedClassAttribute), false))
+            if (currentType.BaseType != null &&
+                !currentType.IsDefined(typeof (IgnoreInheritedClassAttribute), false)) {
                 foreach (var item in RecursiveGetFields(currentType.BaseType))
                     yield return item;
+            }
 
-            if (currentType == typeof(object))
+            if (currentType == typeof (object))
                 yield break;
 
             FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
 
-          
+
             foreach (var fi in currentType.GetFields(BindingFlags.Public |
-                                                           BindingFlags.NonPublic |
-                                                           BindingFlags.Instance |
-                                                           BindingFlags.DeclaredOnly))
-            {
-                if (!(typeof(Delegate)).IsAssignableFrom(fi.FieldType))
+                                                     BindingFlags.NonPublic |
+                                                     BindingFlags.Instance |
+                                                     BindingFlags.DeclaredOnly)) {
+                if (!(typeof (Delegate)).IsAssignableFrom(fi.FieldType))
                     yield return fi;
             }
         }

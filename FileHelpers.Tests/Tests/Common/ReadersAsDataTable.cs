@@ -20,12 +20,11 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(new DateTime(1314, 12, 11), (DateTime) dt.Rows[0]["Field1"]);
             Assert.AreEqual("901", (string) dt.Rows[0]["Field2"]);
-            Assert.AreEqual(234, (int)dt.Rows[0]["Field3"]);
+            Assert.AreEqual(234, (int) dt.Rows[0]["Field3"]);
 
-            Assert.AreEqual(new DateTime(1314, 11, 10), (DateTime)dt.Rows[1]["Field1"]);
-            Assert.AreEqual("012", (string)dt.Rows[1]["Field2"]);
-            Assert.AreEqual(345, (int)dt.Rows[1]["Field3"]);
-
+            Assert.AreEqual(new DateTime(1314, 11, 10), (DateTime) dt.Rows[1]["Field1"]);
+            Assert.AreEqual("012", (string) dt.Rows[1]["Field2"]);
+            Assert.AreEqual(345, (int) dt.Rows[1]["Field3"]);
         }
 
         [Test]
@@ -43,8 +42,8 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(234, (int) res.Rows[0]["Field3"]);
 
             Assert.AreEqual(DBNull.Value, res.Rows[1]["Field1"]);
-            Assert.AreEqual("012", (string)res.Rows[1]["Field2"]);
-            Assert.AreEqual(345, (int)res.Rows[1]["Field3"]);
+            Assert.AreEqual("012", (string) res.Rows[1]["Field2"]);
+            Assert.AreEqual(345, (int) res.Rows[1]["Field3"]);
 
 
             Assert.AreNotEqual(DBNull.Value, res.Rows[2]["Field1"]);
@@ -64,6 +63,5 @@ namespace FileHelpers.Tests.CommonTests
             [FieldFixedLength(3)]
             public int? Field3;
         }
-
-   }
+    }
 }

@@ -38,16 +38,13 @@ namespace FileHelpers.Tests
         private void InitializeAsyncEngineWhenFlagIsRaised()
         {
             flagStart.WaitOne();
-            try
-            {
+            try {
                 new FileHelperAsyncEngine<SampleType>();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 initializationException = e;
             }
-            finally
-            {
+            finally {
                 flagFinish.Signal();
             }
         }

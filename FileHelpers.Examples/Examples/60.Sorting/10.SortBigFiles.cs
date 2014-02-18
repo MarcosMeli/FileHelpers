@@ -12,14 +12,13 @@ namespace ExamplesFx
     public class BigFileSort
         : ExampleBase
     {
-
         //-> File:SortingWithRecord.cs
         public override void Run()
         {
             // Implements http://en.wikipedia.org/wiki/External_sorting
             // OrdersTab is IComparable<OrdersTab>
 
-            var sorter = new BigFileSorter<OrdersTab>(10 * 1024 * 1024); // 10 Mb
+            var sorter = new BigFileSorter<OrdersTab>(10*1024*1024); // 10 Mb
             sorter.DeleteTempFiles = true;
             sorter.Sort("unsorted.txt", "sorted.txt");
         }
@@ -33,7 +32,7 @@ namespace ExamplesFx
         /// </summary>
         [DelimitedRecord("\t")]
         public class OrdersTab
-            :IComparable<OrdersTab>
+            : IComparable<OrdersTab>
         {
             public int OrderID;
 
@@ -46,13 +45,12 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime RequiredDate;
 
-            [FieldNullValue(typeof(DateTime), "2005-1-1")]
+            [FieldNullValue(typeof (DateTime), "2005-1-1")]
             public DateTime ShippedDate;
 
             public int ShipVia;
 
             public decimal Freight;
-
 
             #region IComparable<OrdersTab> Members
 
@@ -63,7 +61,7 @@ namespace ExamplesFx
 
             #endregion
         }
-        //-> /File
 
+        //-> /File
     }
 }

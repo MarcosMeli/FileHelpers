@@ -45,7 +45,7 @@ namespace ExamplesFx.ColorCode
         /// <summary>
         /// Gets an enumerable list of all loaded languages.
         /// </summary>
-        public static IEnumerable<ILanguage> All 
+        public static IEnumerable<ILanguage> All
         {
             get { return LanguageRepository.All; }
         }

@@ -18,25 +18,25 @@ namespace FileHelpers
         /// <param name="type">Type of Object</param>
         public static void ResetFieldInfoCache(Type type)
         {
-            if (mCacheProperty == null)
-            {
+            if (mCacheProperty == null) {
                 mCacheProperty = type.GetType().GetProperty("Cache",
-                                                               BindingFlags.DeclaredOnly |
-                                                               BindingFlags.Instance |
-                                                               BindingFlags.NonPublic);
+                    BindingFlags.DeclaredOnly |
+                    BindingFlags.Instance |
+                    BindingFlags.NonPublic);
             }
             Debug.Assert(mCacheProperty != null, "There is no Cache property in the RuntimeType: " + type.GetType().Name);
 
-            if (mCacheProperty != null)
-            {
+            if (mCacheProperty != null) {
                 var cacheObject = mCacheProperty.GetValue(type, null);
 
-                Debug.Assert(cacheObject != null, "There is no value for the Cache property in the RuntimeType: " + type.Name);
+                Debug.Assert(cacheObject != null,
+                    "There is no value for the Cache property in the RuntimeType: " + type.Name);
                 var cacheField = cacheObject.GetType().GetField("m_fieldInfoCache",
-                                                            BindingFlags.FlattenHierarchy | BindingFlags.Instance |
-                                                            BindingFlags.NonPublic);
+                    BindingFlags.FlattenHierarchy | BindingFlags.Instance |
+                    BindingFlags.NonPublic);
 
-                Debug.Assert(cacheField != null, "There is no m_fieldInfoCache field for the RuntimeTypeCache: " + type.Name);
+                Debug.Assert(cacheField != null,
+                    "There is no m_fieldInfoCache field for the RuntimeTypeCache: " + type.Name);
                 if (cacheField != null)
                     cacheField.SetValue(cacheObject, null);
             }

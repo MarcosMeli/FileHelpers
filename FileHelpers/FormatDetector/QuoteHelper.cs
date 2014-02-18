@@ -20,19 +20,14 @@ namespace FileHelpers.Detection
         {
             int delimitersInLine = 0;
             var restOfLine = line;
-            while (!string.IsNullOrEmpty(restOfLine))
-            {
+            while (!string.IsNullOrEmpty(restOfLine)) {
                 if (restOfLine.StartsWith(quotedChar.ToString()))
-                {
                     restOfLine = DiscardUntilQuotedChar(restOfLine, quotedChar);
-                }
-                else
-                {
+                else {
                     var index = restOfLine.IndexOf(delimiter);
                     if (index < 0)
                         return delimitersInLine;
-                    else
-                    {
+                    else {
                         delimitersInLine++;
                         restOfLine = restOfLine.Substring(index + 1);
                     }
@@ -56,7 +51,7 @@ namespace FileHelpers.Detection
         {
             if (line.StartsWith(quoteChar.ToString()))
                 line = line.Substring(1);
-            
+
             var index = line.IndexOf(quoteChar);
             if (index < 0)
                 return string.Empty;

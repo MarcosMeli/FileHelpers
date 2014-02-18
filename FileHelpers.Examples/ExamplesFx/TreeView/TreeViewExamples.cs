@@ -6,12 +6,9 @@ using System.Text;
 
 namespace ExamplesFx.TreeView
 {
-    
     public class TreeViewExamples
         : TreeViewEx
     {
-
-
         /// <summary>
         /// Load all the exampless into the Tree View control on the LHS
         /// </summary>
@@ -19,8 +16,7 @@ namespace ExamplesFx.TreeView
         public void LoadExamples(IEnumerable<ExampleCode> examples)
         {
             mCategories = new Dictionary<string, CategoryTreeNode>();
-            foreach (var example in examples)
-            {
+            foreach (var example in examples) {
                 var cat = LeafCategory(example);
 
                 var exampleNode = new ExampleTreeNode(example);
@@ -34,7 +30,7 @@ namespace ExamplesFx.TreeView
         /// <summary>
         /// List of categories
         /// </summary>
-        Dictionary<string, CategoryTreeNode> mCategories;
+        private Dictionary<string, CategoryTreeNode> mCategories;
 
         /// <summary>
         /// Create a leaf categories supplied in the example code
@@ -45,11 +41,9 @@ namespace ExamplesFx.TreeView
         {
             var categories = example.Category.Split('/');
             CategoryTreeNode previous = null;
-            foreach (var categ in categories)
-            {
+            foreach (var categ in categories) {
                 CategoryTreeNode categNode;
-                if (!mCategories.TryGetValue(categ, out categNode))
-                {
+                if (!mCategories.TryGetValue(categ, out categNode)) {
                     categNode = new CategoryTreeNode(categ);
                     if (previous == null)
                         this.Nodes.Add(categNode);
@@ -58,7 +52,7 @@ namespace ExamplesFx.TreeView
 
                     mCategories.Add(categ, categNode);
                 }
-               
+
                 previous = categNode;
             }
 
@@ -75,7 +69,7 @@ namespace ExamplesFx.TreeView
                 var node = this.SelectedNode as ExampleTreeNode;
                 if (node == null)
                     return null;
-                
+
                 return node.Example;
             }
         }
@@ -90,36 +84,30 @@ namespace ExamplesFx.TreeView
 
             GetHeadAndFoot(out Heading, out Footing);
             res.AppendLine(Heading);
-            foreach (var node in this.Nodes)
-            {
+            foreach (var node in this.Nodes) {
                 if (node is IHtmlWriter)
-                    ((IHtmlWriter)node).OutputHtml(res, newIndent);
+                    ((IHtmlWriter) node).OutputHtml(res, newIndent);
             }
             res.AppendLine(Footing);
 
             string filename = Path.Combine(HtmlWrapper.DocsOutput, "example_index.html");
             using (var writer = new StreamWriter(filename))
-            {
                 writer.Write(res);
-            }
         }
 
         private static void GetHeadAndFoot(out string Heading, out string Footing)
         {
-                string path = Path.Combine(HtmlWrapper.Docs, "example_index_template.html");
-                using (var reader = new StreamReader(path))
-                {
-                    string[] temp = { "${BODY}" };
-                    string[] parts = reader.ReadToEnd().Split(temp, StringSplitOptions.None);
-                    reader.Close();
+            string path = Path.Combine(HtmlWrapper.Docs, "example_index_template.html");
+            using (var reader = new StreamReader(path)) {
+                string[] temp = {"${BODY}"};
+                string[] parts = reader.ReadToEnd().Split(temp, StringSplitOptions.None);
+                reader.Close();
 
-                    if (parts.Length != 2)
-                    {
-                        throw new Exception("There must be one, and only one ${BODY} in " + path + " found " + parts.Length);
-                    }
-                    Heading = parts[0];
-                    Footing = parts[1];
-                }
+                if (parts.Length != 2)
+                    throw new Exception("There must be one, and only one ${BODY} in " + path + " found " + parts.Length);
+                Heading = parts[0];
+                Footing = parts[1];
             }
+        }
     }
 }

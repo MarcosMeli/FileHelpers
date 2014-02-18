@@ -19,7 +19,6 @@ namespace FileHelpers.Tests
 
             DataTable dt = engine.ReadStringAsDT("");
             Assert.AreEqual(0, dt.Rows.Count);
-
         }
     }
 }

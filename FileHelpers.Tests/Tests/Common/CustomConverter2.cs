@@ -16,7 +16,6 @@ namespace FileHelpers.Tests.CommonTests
         {
             return Street + " - " + Number + ", " + City;
         }
-
     }
 
     // CUSTOM CONVERTER
@@ -39,13 +38,15 @@ namespace FileHelpers.Tests.CommonTests
     // CUSTOM CONVERTER
     public class AddressConverter2 : ConverterBase
     {
-        readonly char mSep1;
-        readonly char mSep2;
+        private readonly char mSep1;
+        private readonly char mSep2;
+
         public AddressConverter2(string sep1, string sep2)
         {
             mSep1 = sep1[0];
             mSep2 = sep2[0];
         }
+
         public override object StringToField(string from)
         {
             string[] splited1 = from.Split(mSep1);
@@ -65,8 +66,9 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class AddressConvClass
     {
-        [FieldConverter(typeof(AddressConverter))]
+        [FieldConverter(typeof (AddressConverter))]
         public AddressField Address;
+
         public int Age;
     }
 
@@ -74,8 +76,9 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class AddressConvClass2
     {
-        [FieldConverter(typeof(AddressConverter2), ",", "-")]
+        [FieldConverter(typeof (AddressConverter2), ",", "-")]
         public AddressField Address;
+
         public int Age;
     }
 
@@ -107,7 +110,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Chilesito", res[3].Address.City);
             Assert.AreEqual("Pololo", res[3].Address.Street);
             Assert.AreEqual("5421", res[3].Address.Number);
-
         }
 
 
@@ -135,31 +137,33 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Chilesito", res[3].Address.City);
             Assert.AreEqual("Pololo", res[3].Address.Street);
             Assert.AreEqual("5421", res[3].Address.Number);
-
         }
 
         // TEST CLASS
         [DelimitedRecord("|")]
         public class AddressBadClass1
         {
-            [FieldConverter(typeof(AddressConverter2), ",")]
+            [FieldConverter(typeof (AddressConverter2), ",")]
             public AddressField Address;
+
             public int Age;
         }
 
         [DelimitedRecord("|")]
         public class AddressBadClass2
         {
-            [FieldConverter(typeof(AddressConverter2))]
+            [FieldConverter(typeof (AddressConverter2))]
             public AddressField Address;
+
             public int Age;
         }
 
         [DelimitedRecord("|")]
         public class AddressBadClass3
         {
-            [FieldConverter(typeof(AddressConverter2), 3, 58.25)]
+            [FieldConverter(typeof (AddressConverter2), 3, 58.25)]
             public AddressField Address;
+
             public int Age;
         }
 
@@ -171,7 +175,8 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(
                 "Constructor for converter: AddressConverter2 with these arguments: (String) was not found. You must add a constructor with this signature (can be public or private)"
-                , ex.Message);
+                ,
+                ex.Message);
         }
 
         [Test]
@@ -182,7 +187,8 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(
                 "Empty constructor for converter: AddressConverter2 was not found. You must add a constructor without args (can be public or private)"
-                , ex.Message);
+                ,
+                ex.Message);
         }
 
         [Test]
@@ -193,9 +199,8 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(
                 "Constructor for converter: AddressConverter2 with these arguments: (Int32, Double) was not found. You must add a constructor with this signature (can be public or private)"
-                , ex.Message);
-
+                ,
+                ex.Message);
         }
-
     }
 }

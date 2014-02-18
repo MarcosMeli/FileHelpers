@@ -17,6 +17,7 @@ namespace ExamplesFx
             SalesRepresentative,
             MarketingManager
         }
+
         //-> /File
 
 
@@ -30,13 +31,12 @@ namespace ExamplesFx
             var engine = new DelimitedFileEngine<Customer>();
 
             //  Read input records, enumeration automatically converted
-            Customer[] customers =  engine.ReadFile("Input.txt");
+            Customer[] customers = engine.ReadFile("Input.txt");
 
             foreach (var cust in customers)
-            {
                 Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
-            }
         }
+
         //-> /File
 
         //-> File:Customers with Enum.cs
@@ -54,6 +54,7 @@ namespace ExamplesFx
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -82,5 +83,4 @@ namespace ExamplesFx
          */
         //-> /File
     }
-
 }

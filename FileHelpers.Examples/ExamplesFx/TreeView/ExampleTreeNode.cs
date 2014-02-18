@@ -44,37 +44,31 @@ namespace ExamplesFx.TreeView
         {
             bool error = false;
             Exception MyException = null;
-            try
-            {
+            try {
                 Example.RunExample();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 error = true;
                 MyException = ex;
             }
             bool found = false;
-            foreach (var file in Example.Files.Where(x => x.Status == ExampleFile.FileType.HtmlFile))
-            {
+            foreach (var file in Example.Files.Where(x => x.Status == ExampleFile.FileType.HtmlFile)) {
                 //  overview files should come first and be on their own...
                 //  they are intended to display on the screen and be
                 //  embedded into the index at the appropriate spot
-                if (file.Filename.ToLower() == "overview.html")
-                {
+                if (file.Filename.ToLower() == "overview.html") {
                     index.AppendLine("<li>");
                     index.AppendLine(file.Contents);
                     index.AppendLine("</li>");
                 }
-                else
-                {
+                else {
                     index.Append("<dt><a href=\"");
                     index.Append(file.Filename);
                     index.Append("\">");
                     index.Append(Example.Name);
                     index.AppendLine("</a></dt>");
                     index.Append("<dd>");
-                    if (error)
-                    {
+                    if (error) {
                         index.Append("<p>Error: ");
                         index.Append(MyException.ToString());
                         index.Append("</p>");
@@ -88,8 +82,7 @@ namespace ExamplesFx.TreeView
                 }
             }
 
-            if (!found)
-            {
+            if (!found) {
                 index.Append("<dt><u>Missing</u> ");
                 index.Append(Example.Name);
                 index.AppendLine("</dt>");
@@ -114,9 +107,7 @@ namespace ExamplesFx.TreeView
             var sb = new StringBuilder();
             sb.AppendLine(Example.SourceCode);
             foreach (var file in Example.Files)
-            {
                 sb.AppendLine(file.Contents);
-            }
             return sb.ToString();
         }
     }

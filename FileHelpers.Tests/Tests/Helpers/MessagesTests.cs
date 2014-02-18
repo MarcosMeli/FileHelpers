@@ -7,16 +7,14 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests
 {
-
     [TestFixture]
     public class MessagesTests
     {
-
         [Test]
         public void MessageBasic()
         {
             var final =
-                @"The field: FieldForTest must be marked as optional because the previous field is marked with FieldOptional. (Try adding [FieldOptional] to FieldForTest)"; 
+                @"The field: FieldForTest must be marked as optional because the previous field is marked with FieldOptional. (Try adding [FieldOptional] to FieldForTest)";
 
             Messages.Errors.FieldOptional
                 .Field("FieldForTest")
@@ -33,13 +31,11 @@ namespace FileHelpers.Tests
         [Test]
         public void MessageForExeptions()
         {
-            try
-            {
+            try {
                 new DelimitedClassBuilder("", "\t");
                 Assert.Fail("No exception :(");
             }
-            catch (FileHelpersException ex)
-            {
+            catch (FileHelpersException ex) {
                 ex.Message.AssertEqualTo("The string '' not is a valid .NET identifier");
             }
         }
@@ -47,12 +43,9 @@ namespace FileHelpers.Tests
         [Test]
         public void Quotes()
         {
-
             Messages.Errors.TestQuote
                 .Text
                 .AssertEqualTo("The Message class also allows to use \" in any part of the \" text \" .");
         }
-
     }
-
 }

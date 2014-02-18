@@ -68,8 +68,7 @@ namespace FileHelpers.Tests.Tests.DataLink
             Assert.AreEqual("Test, 2", res[1].TestField);
 
             // cases where there is no blank row (or blank row was skipped)
-            if (expectedResultCount != 2)
-            {
+            if (expectedResultCount != 2) {
                 Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
                 Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
                 Assert.AreEqual(" Test 3", res[2].TestField);
@@ -79,21 +78,20 @@ namespace FileHelpers.Tests.Tests.DataLink
 
         private static ExcelXlsType[] ReadFromExcelStorage(string fileName, int stopAfterEmptyRows)
         {
-            var provider = new ExcelNPOIStorage.ExcelNPOIStorage(typeof(ExcelXlsType));
-            
+            var provider = new ExcelNPOIStorage.ExcelNPOIStorage(typeof (ExcelXlsType));
+
             provider.FileName = TestCommon.GetPath("Excel", fileName);
             provider.SheetName = "Sheet1";
             provider.StartRow = 1;
 
             provider.ExcelReadStopAfterEmptyRows = stopAfterEmptyRows;
 
-            return (ExcelXlsType[])provider.ExtractRecords();
+            return (ExcelXlsType[]) provider.ExtractRecords();
         }
-        
+
         [DelimitedRecord("|")]
         public sealed class ExcelXlsType
         {
-
             public int Id;
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
@@ -101,8 +99,7 @@ namespace FileHelpers.Tests.Tests.DataLink
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
             public string TestField;
-
-        } 
+        }
     }
 }
 

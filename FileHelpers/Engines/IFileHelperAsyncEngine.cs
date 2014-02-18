@@ -12,9 +12,9 @@ namespace FileHelpers
     /// Interface for the FileHelper Async Engine
     /// </summary>
     /// <typeparam name="T">Type of record to be read</typeparam>
-    public interface IFileHelperAsyncEngine<T> 
+    public interface IFileHelperAsyncEngine<T>
         : IEnumerable<T>
-        , IDisposable
+            , IDisposable
         where T : class
     {
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/LastRecord/*'/>

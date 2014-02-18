@@ -6,7 +6,6 @@ using System.Text;
 
 namespace FileHelpers
 {
-
     internal enum LineEnd
     {
         Dos,
@@ -25,11 +24,11 @@ namespace FileHelpers
 		}
 
 #else
-	internal static class StreamHelper
-	{
+    internal static class StreamHelper
+    {
 #endif
 
-        
+
         /// <summary>
         /// open a stream with optional trim extra blank lines
         /// </summary>
@@ -39,16 +38,18 @@ namespace FileHelpers
         /// <param name="disposeStream">do we close stream after trimming</param>
         /// <param name="bufferSize">Buffer size to read</param>
         /// <returns>TextWriter ready to write to</returns>
-        internal static TextWriter CreateFileAppender(string fileName, Encoding encode, bool correctEnd, bool disposeStream, int bufferSize)
-		{
-			TextWriter res;
+        internal static TextWriter CreateFileAppender(string fileName,
+            Encoding encode,
+            bool correctEnd,
+            bool disposeStream,
+            int bufferSize)
+        {
+            TextWriter res;
 
-			if (correctEnd)
-			{
-				FileStream fs = null;
+            if (correctEnd) {
+                FileStream fs = null;
 
-                try
-                {
+                try {
                     fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
                     //bool CarriageReturn = false;
@@ -56,17 +57,14 @@ namespace FileHelpers
 
                     // read the file backwards using SeekOrigin.Begin...
                     long offset;
-                    for (offset = fs.Length - 1; offset >= 0; offset--)
-                    {
+                    for (offset = fs.Length - 1; offset >= 0; offset--) {
                         fs.Seek(offset, SeekOrigin.Begin);
                         int value = fs.ReadByte();
-                        if (value == '\r')
-                        {
+                        if (value == '\r') {
                             // Console.Write("\\r");
                             //CarriageReturn = true;
                         }
-                        else if (value == '\n')
-                        {
+                        else if (value == '\n') {
                             // Console.Write("\\n");
                             //LineFeed = true;
                         }
@@ -89,9 +87,8 @@ namespace FileHelpers
                         //        ending=LineEnd.other;
 
                         var newline = new byte[StringHelper.NewLine.Length];
-                        int count=0;
-                        foreach (var ch in StringHelper.NewLine)
-                        {
+                        int count = 0;
+                        foreach (var ch in StringHelper.NewLine) {
                             newline[count] = Convert.ToByte(ch);
                             count++;
                         }
@@ -100,19 +97,15 @@ namespace FileHelpers
                         fs.Write(newline, 0, count);
                     }
                     res = new StreamWriter(fs, encode, bufferSize);
-
                 }
-                finally
-                {
+                finally {
                     if (disposeStream && fs != null)
                         fs.Close();
                 }
-			}
-			else
-			{
+            }
+            else
                 res = new StreamWriter(fileName, true, encode, bufferSize);
-			}
-			return res;
-		}
-	}
+            return res;
+        }
+    }
 }

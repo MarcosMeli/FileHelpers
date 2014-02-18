@@ -6,21 +6,20 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class RecordInfoCloneTest
-	{
-		[Test]
-		public void CloneSimple()
-		{
-			var engine = new FileHelperEngine<SampleType>();
+    [TestFixture]
+    public class RecordInfoCloneTest
+    {
+        [Test]
+        public void CloneSimple()
+        {
+            var engine = new FileHelperEngine<SampleType>();
             var engine2 = new FileHelperEngine<SampleType>();
 
-		    engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
+            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
-		    CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
+            CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
+        }
 
-		}
-        
         [Test]
         public void CloneWithOptionsChanged()
         {
@@ -34,10 +33,9 @@ namespace FileHelpers.Tests.CommonTests
             engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
             CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
-
         }
 
-           [Test]
+        [Test]
         public void CloneWithOptionsChanged2()
         {
             var engine = new FileHelperEngine<SampleType>();
@@ -50,34 +48,28 @@ namespace FileHelpers.Tests.CommonTests
             engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
 
             CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
-
         }
 
 
-	    private void CompareRecordInfo(IRecordInfo recordInfo1, IRecordInfo recordInfo2)
-	    {
-	        var comp = new CompareObjects();
-	        comp.CompareChildren = true;
+        private void CompareRecordInfo(IRecordInfo recordInfo1, IRecordInfo recordInfo2)
+        {
+            var comp = new CompareObjects();
+            comp.CompareChildren = true;
             comp.ElementsToIgnore.Add("Cache");
             comp.ElementsToIgnore.Add("RecordType");
             comp.ElementsToIgnore.Add("FieldTypeInternal");
             comp.ElementsToIgnore.Add("FieldInfo");
             comp.ElementsToIgnore.Add("Operations");
-            
+
             comp.ElementsToIgnore.Add("FieldType");
             comp.ElementsToIgnore.Add("TypeId");
-            
-            comp.CompareFields  = true;
+
+            comp.CompareFields = true;
             //comp.ComparePrivateFields = true;
-            comp.ComparePrivateProperties= true;
+            comp.ComparePrivateProperties = true;
             comp.CompareReadOnly = true;
-            
-	        comp.Compare(recordInfo1, recordInfo2).AssertIsTrue(comp.DifferencesString);
-	    }
 
-       
-	}
-
-	
-
+            comp.Compare(recordInfo1, recordInfo2).AssertIsTrue(comp.DifferencesString);
+        }
+    }
 }

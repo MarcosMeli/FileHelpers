@@ -33,17 +33,15 @@ namespace FileHelpers
         /// <param name="reader">reader we are analysing</param>
         public StreamInfoProvider(TextReader reader)
         {
-            if (reader is StreamReader)
-            {
-                var stream = ((StreamReader)reader).BaseStream;
+            if (reader is StreamReader) {
+                var stream = ((StreamReader) reader).BaseStream;
                 if (stream.CanSeek)
                     mLength = stream.Length;
                 // Uses the buffer position
                 mPositionCalculator = () => stream.Position;
             }
-            else if (reader is InternalStreamReader)
-            {
-                var reader2 = ((InternalStreamReader)reader);
+            else if (reader is InternalStreamReader) {
+                var reader2 = ((InternalStreamReader) reader);
                 var stream = reader2.BaseStream;
 
                 if (stream.CanSeek)
@@ -51,9 +49,8 @@ namespace FileHelpers
                 // Real Position
                 mPositionCalculator = () => reader2.Position;
             }
-            else if (reader is InternalStringReader)
-            {
-                var stream = (InternalStringReader)reader;
+            else if (reader is InternalStringReader) {
+                var stream = (InternalStringReader) reader;
                 mLength = stream.Length;
                 mPositionCalculator = () => stream.Position;
             }

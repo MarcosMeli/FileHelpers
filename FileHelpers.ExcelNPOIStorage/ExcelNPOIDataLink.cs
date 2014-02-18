@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FileHelpers.ExcelNPOIStorage {
-
-	public class ExcelNPOIDataLink {
-	}
+namespace FileHelpers.ExcelNPOIStorage
+{
+    public class ExcelNPOIDataLink {}
 }

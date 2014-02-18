@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class FixedModeTests
-	{
+    [TestFixture]
+    public class FixedModeTests
+    {
         public class CustomersBase
         {
             [FieldFixedLength(11)]
@@ -30,7 +30,6 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldFixedLength(15)]
             public string mCountry;
-
         }
 
         public class CustomersBaseLast2Optional
@@ -57,37 +56,32 @@ namespace FileHelpers.Tests.CommonTests
             [FieldOptional]
             [FieldFixedLength(15)]
             public string mCountry;
-
         }
+
         [FixedLengthRecord(FixedMode.ExactLength)]
         public class CustomerExact
-            :CustomersBase
-        {}
+            : CustomersBase {}
 
         [FixedLengthRecord(FixedMode.AllowLessChars)]
         public class CustomerLess
-            : CustomersBase
-        { }
+            : CustomersBase {}
 
         [FixedLengthRecord(FixedMode.AllowLessChars)]
         public class CustomerLessLast2Optional
-            : CustomersBaseLast2Optional
-        { }
+            : CustomersBaseLast2Optional {}
 
         [FixedLengthRecord(FixedMode.AllowMoreChars)]
         public class CustomerMore
-            : CustomersBase
-        { }
+            : CustomersBase {}
 
         [FixedLengthRecord(FixedMode.AllowVariableLength)]
         public class CustomerVariable
-            : CustomersBase
-        { }
+            : CustomersBase {}
 
         [Test]
-		public void ExactLength ()
-		{
-			var engine = new FileHelperEngine<CustomerExact>();
+        public void ExactLength()
+        {
+            var engine = new FileHelperEngine<CustomerExact>();
             engine.ErrorMode = ErrorMode.IgnoreAndContinue;
 
             var res = FileTest.Good.CustomersFixedExact
@@ -109,8 +103,7 @@ namespace FileHelpers.Tests.CommonTests
                 .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(79);
-
-		}
+        }
 
         [Test]
         public void LessChars()
@@ -137,7 +130,6 @@ namespace FileHelpers.Tests.CommonTests
                 .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(85);
-
         }
 
 
@@ -166,9 +158,7 @@ namespace FileHelpers.Tests.CommonTests
                 .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(85);
-
         }
-
 
 
         [Test]
@@ -196,7 +186,6 @@ namespace FileHelpers.Tests.CommonTests
                 .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(91);
-
         }
 
         [Test]
@@ -205,8 +194,8 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLess>();
 
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.CustomersFixedWithoutLastField
-                                                 .ReadWithEngine(engine));
+                FileTest.Good.CustomersFixedWithoutLastField
+                    .ReadWithEngine(engine));
         }
 
         [Test]
@@ -215,11 +204,8 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLess>();
 
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.CustomersFixedWithout2Fields
-                                                 .ReadWithEngine(engine));
-
-
-
+                FileTest.Good.CustomersFixedWithout2Fields
+                    .ReadWithEngine(engine));
         }
 
         [Test]
@@ -228,9 +214,8 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLess>();
 
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.CustomersFixedWithout1AndHalfFields
-                                                 .ReadWithEngine(engine));
-
+                FileTest.Good.CustomersFixedWithout1AndHalfFields
+                    .ReadWithEngine(engine));
         }
 
         [Test]
@@ -239,7 +224,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
             var res = FileTest.Good.CustomersFixedWithoutLastField
-                      .ReadWithEngine(engine);
+                .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(2);
         }
@@ -250,10 +235,9 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
             var res = FileTest.Good.CustomersFixedWithout2Fields
-                                                 .ReadWithEngine(engine);
+                .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(2);
-
         }
 
         [Test]
@@ -262,9 +246,9 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
             var res = FileTest.Good.CustomersFixedWithout1AndHalfFields
-                                                 .ReadWithEngine(engine);
+                .ReadWithEngine(engine);
 
             res.Length.AssertEqualTo(2);
         }
-	}
+    }
 }

@@ -8,14 +8,14 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests
 {
-	[TestFixture]
-	public class RunTimeClasses
-	{
-		FileHelperEngine engine;
-		FileHelperAsyncEngine asyncEngine;
+    [TestFixture]
+    public class RunTimeClasses
+    {
+        private FileHelperEngine engine;
+        private FileHelperAsyncEngine asyncEngine;
 
-		public string mClass = 
-		@"	[FixedLengthRecord(FixedMode.AllowVariableLength)]
+        public string mClass =
+            @"	[FixedLengthRecord(FixedMode.AllowVariableLength)]
 			public class SampleType
 			{
 				[FieldFixedLength(8)]
@@ -34,8 +34,8 @@ namespace FileHelpers.Tests
 			}
 		";
 
-		public string mClassVbNet = 
-			@"	<FixedLengthRecord(FixedMode.AllowVariableLength)> _
+        public string mClassVbNet =
+            @"	<FixedLengthRecord(FixedMode.AllowVariableLength)> _
 			Public Class SampleType
 			
 				<FieldFixedLength(8), _
@@ -55,244 +55,233 @@ namespace FileHelpers.Tests
 			End Class
 		";
 
-	    private string mTempClassFile = "tempclass.cs";
+        private string mTempClassFile = "tempclass.cs";
 
-	    [Test]
-		public void ReadFile()
-		{
-			Type t = ClassBuilder.ClassFromString(mClass);
+        [Test]
+        public void ReadFile()
+        {
+            Type t = ClassBuilder.ClassFromString(mClass);
 
-			engine = new FileHelperEngine(t);
+            engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-		}
+        [Test]
+        public void ReadFileDiffDir()
+        {
+            string oldDir = Environment.CurrentDirectory;
+            Environment.CurrentDirectory = Path.GetTempPath();
 
-		[Test]
-		public void ReadFileDiffDir()
-		{
-			string oldDir = Environment.CurrentDirectory;
-			Environment.CurrentDirectory = Path.GetTempPath();
-			
-			Type t = ClassBuilder.ClassFromString(mClass);
-			Environment.CurrentDirectory = oldDir;
+            Type t = ClassBuilder.ClassFromString(mClass);
+            Environment.CurrentDirectory = oldDir;
 
-			engine = new FileHelperEngine(t);
+            engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-		}
-		
-		
-		[Test]
-		public void ReadFileVbNet()
-		{
-			Type t = ClassBuilder.ClassFromString(mClassVbNet, NetLanguage.VbNet);
 
-			engine = new FileHelperEngine(t);
+        [Test]
+        public void ReadFileVbNet()
+        {
+            Type t = ClassBuilder.ClassFromString(mClassVbNet, NetLanguage.VbNet);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            engine = new FileHelperEngine(t);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-		}
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-		[Test]
-		public void ReadFileAsync()
-		{
-			
-			Type t = ClassBuilder.ClassFromString(mClass, "SampleType");
+        [Test]
+        public void ReadFileAsync()
+        {
+            Type t = ClassBuilder.ClassFromString(mClass, "SampleType");
 
-			asyncEngine = new FileHelperAsyncEngine(t);
+            asyncEngine = new FileHelperAsyncEngine(t);
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
+            object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
-			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+        }
 
-		}
+        [Test]
+        public void ReadFileAsyncVbNet()
+        {
+            Type t = ClassBuilder.ClassFromString(mClassVbNet, "SampleType", NetLanguage.VbNet);
 
-		[Test]
-		public void ReadFileAsyncVbNet()
-		{
-			
-			Type t = ClassBuilder.ClassFromString(mClassVbNet, "SampleType", NetLanguage.VbNet);
+            asyncEngine = new FileHelperAsyncEngine(t);
 
-			asyncEngine = new FileHelperAsyncEngine(t);
+            object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
-			object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+        }
 
-			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-		}
+        [Test]
+        public void ReadFileEncDec()
+        {
+            var tempFile = "temp.fhc";
+            ClassBuilder.ClassToBinaryFile(tempFile, mClass);
 
-		
-		
-		[Test]
-		public void ReadFileEncDec()
-		{
-		    var tempFile = "temp.fhc";
-		    ClassBuilder.ClassToBinaryFile(tempFile, mClass);
+            Type t = ClassBuilder.ClassFromBinaryFile(tempFile);
+            File.Delete(tempFile);
 
-			Type t = ClassBuilder.ClassFromBinaryFile(tempFile);
-			File.Delete(tempFile);
+            engine = new FileHelperEngine(t);
 
-			engine = new FileHelperEngine(t);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
+        [Test]
+        public void ReadFileClassInFileEnc()
+        {
+            var t = ClassBuilder.ClassFromBinaryFile(FileTest.Classes.SampleBinaryClass.Path);
 
-		}
+            engine = new FileHelperEngine(t);
 
-		[Test]
-		public void ReadFileClassInFileEnc()
-		{
-			var t = ClassBuilder.ClassFromBinaryFile(FileTest.Classes.SampleBinaryClass.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			engine = new FileHelperEngine(t);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+        [Test]
+        public void ReadFileClassInFile()
+        {
+            Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassCS.Path);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
+            engine = new FileHelperEngine(t);
 
-		}
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-		[Test]
-		public void ReadFileClassInFile()
-		{
-			Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassCS.Path);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			engine = new FileHelperEngine(t);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
-
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
-		}
-
-		[Test]
-		public void ReadFileClassInFileVbNet()
-		{
+        [Test]
+        public void ReadFileClassInFileVbNet()
+        {
             Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassVB.Path, NetLanguage.VbNet);
 
             engine = new FileHelperEngine(t);
 
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
-			Assert.AreEqual("901", dt.Rows[0][1]);
-			Assert.AreEqual(234, dt.Rows[0][2]);
+            Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
+            Assert.AreEqual("901", dt.Rows[0][1]);
+            Assert.AreEqual(234, dt.Rows[0][2]);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
-			Assert.AreEqual("012", dt.Rows[1][1]);
-			Assert.AreEqual(345, dt.Rows[1][2]);
-		}
+            Assert.AreEqual(new DateTime(1314, 11, 10), dt.Rows[1][0]);
+            Assert.AreEqual("012", dt.Rows[1][1]);
+            Assert.AreEqual(345, dt.Rows[1][2]);
+        }
 
-		[Test]
-		public void FullClassBuilding()
-		{
-			var cb = new DelimitedClassBuilder("Customers", ",");
-			cb.IgnoreFirstLines = 1;
-			cb.IgnoreEmptyLines = true;
-			
-			cb.AddField("Field1", typeof(DateTime));
-			cb.LastField.TrimMode = TrimMode.Both;
-			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
-			cb.LastField.FieldNullValue = DateTime.Today;
+        [Test]
+        public void FullClassBuilding()
+        {
+            var cb = new DelimitedClassBuilder("Customers", ",");
+            cb.IgnoreFirstLines = 1;
+            cb.IgnoreEmptyLines = true;
 
-			cb.AddField("Field2", typeof(string));
-			cb.LastField.FieldQuoted = true;
-			cb.LastField.QuoteChar = '"';
+            cb.AddField("Field1", typeof (DateTime));
+            cb.LastField.TrimMode = TrimMode.Both;
+            cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+            cb.LastField.FieldNullValue = DateTime.Today;
 
-			cb.AddField("Field3", typeof(int));
-			
-			engine = new FileHelperEngine(cb.CreateRecordClass());
+            cb.AddField("Field2", typeof (string));
+            cb.LastField.FieldQuoted = true;
+            cb.LastField.QuoteChar = '"';
 
-			DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test2.txt"));
+            cb.AddField("Field3", typeof (int));
 
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            engine = new FileHelperEngine(cb.CreateRecordClass());
+
+            DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test2.txt"));
+
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual("Field1", dt.Columns[0].ColumnName);
             Assert.AreEqual("Field2", dt.Columns[1].ColumnName);
             Assert.AreEqual("Field3", dt.Columns[2].ColumnName);
 
-			Assert.AreEqual("Hola", dt.Rows[0][1]);
-			Assert.AreEqual(DateTime.Today, dt.Rows[2][0]);
-			
-		}
+            Assert.AreEqual("Hola", dt.Rows[0][1]);
+            Assert.AreEqual(DateTime.Today, dt.Rows[2][0]);
+        }
 
 
         [Test]
@@ -302,314 +291,312 @@ namespace FileHelpers.Tests
             cb.IgnoreFirstLines = 1;
             cb.IgnoreEmptyLines = true;
 
-            cb.AddField("Field1", typeof(DateTime));
+            cb.AddField("Field1", typeof (DateTime));
             cb.LastField.TrimMode = TrimMode.Both;
             cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
             cb.LastField.FieldNullValue = DateTime.Today;
 
-            cb.AddField("Field2", typeof(string));
+            cb.AddField("Field2", typeof (string));
             cb.LastField.FieldQuoted = true;
             cb.LastField.QuoteChar = '"';
 
-            cb.AddField("Field3", typeof(int));
+            cb.AddField("Field3", typeof (int));
 
             engine = new FileHelperEngine(cb.CreateRecordClass());
 
             DataTable dt = engine.ReadFileAsDT(TestCommon.GetPath("Good", "Test2.txt"));
 
             Assert.AreEqual("Field1", dt.Columns[0].ColumnName);
-            Assert.AreEqual(typeof(DateTime), dt.Columns[0].DataType);
-            
+            Assert.AreEqual(typeof (DateTime), dt.Columns[0].DataType);
+
             Assert.AreEqual("Field2", dt.Columns[1].ColumnName);
-            Assert.AreEqual(typeof(string), dt.Columns[1].DataType);
+            Assert.AreEqual(typeof (string), dt.Columns[1].DataType);
 
             Assert.AreEqual("Field3", dt.Columns[2].ColumnName);
-            Assert.AreEqual(typeof(int), dt.Columns[2].DataType);
-
+            Assert.AreEqual(typeof (int), dt.Columns[2].DataType);
         }
 
-		[Test]
-		public void FullClassBuildingFixed()
-		{
-			var cb = new FixedLengthClassBuilder("Customers");
+        [Test]
+        public void FullClassBuildingFixed()
+        {
+            var cb = new FixedLengthClassBuilder("Customers");
 
-			cb.AddField("Field1", 8, typeof(DateTime));
-			cb.LastField.Converter.Kind = ConverterKind.Date;
-			cb.LastField.Converter.Arg1 = "ddMMyyyy";
-			cb.LastField.FieldNullValue = DateTime.Now;
-			
-			
-			cb.AddField("Field2", 3, typeof(string));
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = ' ';
-			
-			cb.AddField("Field3", 3, typeof(int));
-			 
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = '0';
-			cb.LastField.TrimMode = TrimMode.Both;
-			
-			engine = new FileHelperEngine(cb.CreateRecordClass());
-
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
-
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-		}
-
-		public ClassBuilder CommonCreate()
-		{
-			var cb = new FixedLengthClassBuilder("Customers");
-
-			cb.AddField("Field1", 8, typeof(DateTime));
-			cb.LastField.Converter.Kind = ConverterKind.Date;
-			cb.LastField.Converter.Arg1 = "ddMMyyyy";
-			cb.LastField.FieldNullValue = DateTime.Now;
-			
-			cb.AddField("Field2", 3, typeof(string));
-			
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = ' ';
-			
-			cb.AddField("Field3", 3, typeof(int));
-			 
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = '0';
-			cb.LastField.TrimMode = TrimMode.Both;
-			
-			return cb;
-		}
-
-	
-		private void ValidateType(Type t)
-		{
-			engine = new FileHelperEngine(t);
-
-			DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
-
-			Assert.AreEqual(4, dt.Rows.Count);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-		}
-
-		[Test]
-		public void SaveLoadSourceFile()
-		{
-			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile(mTempClassFile);
-			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
-		}
-
-		[Test]
-		public void SaveLoadSourceFileVbNet()
-		{
-			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile(mTempClassFile, NetLanguage.VbNet);
-			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile, NetLanguage.VbNet));
-		}
-
-		[Test]
-		public void SaveLoadBinaryFile()
-		{
-			ClassBuilder cb = CommonCreate();
-			cb.SaveToSourceFile(mTempClassFile);
-			ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
-		}
-
-		[Test]
-		public void SaveLoadBinaryFileVbNet()
-		{
-			ClassBuilder cb = CommonCreate();
-			cb.SaveToBinaryFile(mTempClassFile, NetLanguage.VbNet);
-			ValidateType(ClassBuilder.ClassFromBinaryFile(mTempClassFile, NetLanguage.VbNet));
-		}
+            cb.AddField("Field1", 8, typeof (DateTime));
+            cb.LastField.Converter.Kind = ConverterKind.Date;
+            cb.LastField.Converter.Arg1 = "ddMMyyyy";
+            cb.LastField.FieldNullValue = DateTime.Now;
 
 
-		[Test]
-		public void SaveLoadXmlFileFixed()
-		{
-			var cb = new FixedLengthClassBuilder("Customers");
+            cb.AddField("Field2", 3, typeof (string));
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = ' ';
 
-			cb.FixedMode = FixedMode.ExactLength;
-			cb.AddField("Field1", 8, typeof(DateTime));
-			cb.LastField.Converter.Kind = ConverterKind.Date;
-			cb.LastField.Converter.Arg1 = "ddMMyyyy";
-			cb.LastField.FieldNullValue = DateTime.Now;
-			
-			cb.AddField("FieldSecond", 3, typeof(string));
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = ' ';
-			
-			cb.AddField("Field33", 3, typeof(int));
-			 
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = '0';
-			cb.LastField.TrimMode = TrimMode.Both;
-			
-			cb.SaveToXml(@"runtime.xml");
+            cb.AddField("Field3", 3, typeof (int));
 
-			var loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = '0';
+            cb.LastField.TrimMode = TrimMode.Both;
 
-			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
-			Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
-			Assert.AreEqual("Field33", loaded.FieldByIndex(2).FieldName);
-			
-			Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
-			Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
-			Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
-			
-			Assert.AreEqual(ConverterKind.Date, loaded.FieldByIndex(0).Converter.Kind);
-			Assert.AreEqual("ddMMyyyy", loaded.FieldByIndex(0).Converter.Arg1);
-			
-			Assert.AreEqual(AlignMode.Right, loaded.FieldByIndex(1).AlignMode);
-			Assert.AreEqual(' ', loaded.FieldByIndex(1).AlignChar);
+            engine = new FileHelperEngine(cb.CreateRecordClass());
 
-			Assert.AreEqual(FixedMode.ExactLength, loaded.FixedMode);
-		}
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-		[Test]
-		public void SaveLoadXmlFileFixed2()
-		{
-			var cb = new FixedLengthClassBuilder("Customers");
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+        }
 
-			cb.AddField("Field1", 8, typeof(DateTime));
-			cb.LastField.Converter.Kind = ConverterKind.Date;
-			cb.LastField.Converter.Arg1 = "ddMMyyyy";
-			cb.LastField.FieldNullValue = DateTime.Now;
-			
-			cb.AddField("FieldSecond", 3, typeof(string));
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = ' ';
-			
-			cb.AddField("Field33", 3, typeof(int));
-			 
-			cb.LastField.AlignMode = AlignMode.Right;
-			cb.LastField.AlignChar = '0';
-			cb.LastField.TrimMode = TrimMode.Both;
-			
-			cb.SaveToXml(@"runtime.xml");
+        public ClassBuilder CommonCreate()
+        {
+            var cb = new FixedLengthClassBuilder("Customers");
 
-			engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+            cb.AddField("Field1", 8, typeof (DateTime));
+            cb.LastField.Converter.Kind = ConverterKind.Date;
+            cb.LastField.Converter.Arg1 = "ddMMyyyy";
+            cb.LastField.FieldNullValue = DateTime.Now;
 
-			Assert.AreEqual("Customers", engine.RecordType.Name);
-			Assert.AreEqual(3, engine.RecordType.GetFields().Length);
-			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
-		}
+            cb.AddField("Field2", 3, typeof (string));
 
-		[Test]
-		public void SaveLoadXmlFileDelimited()
-		{
-			var cb = new DelimitedClassBuilder("Customers", ",");
-			cb.IgnoreFirstLines = 1;
-			cb.IgnoreEmptyLines = true;
-			
-			cb.AddField("Field1", typeof(DateTime));
-			cb.LastField.TrimMode = TrimMode.Both;
-			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
-			cb.LastField.FieldNullValue = DateTime.Today;
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = ' ';
 
-			cb.AddField("FieldTwo", typeof(string));
-			cb.LastField.FieldQuoted = true;
-			cb.LastField.QuoteChar = '"';
+            cb.AddField("Field3", 3, typeof (int));
 
-			cb.AddField("Field333", typeof(int));
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = '0';
+            cb.LastField.TrimMode = TrimMode.Both;
 
-			cb.SaveToXml(@"runtime.xml");
-			
-			var loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
-			
-			Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
-			Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
-			Assert.AreEqual("Field333", loaded.FieldByIndex(2).FieldName);
-			
-			Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
-			Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
-			Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
-			
-			Assert.AreEqual(QuoteMode.AlwaysQuoted, loaded.FieldByIndex(0).QuoteMode);
-			Assert.AreEqual(false, loaded.FieldByIndex(0).FieldQuoted);
-			
-			Assert.AreEqual('"', loaded.FieldByIndex(1).QuoteChar);
-			Assert.AreEqual(true, loaded.FieldByIndex(1).FieldQuoted);
-		}
-
-		
-		[Test]
-		public void SaveLoadXmlFileDelimited2()
-		{
-			var cb = new DelimitedClassBuilder("Customers", ",");
-			cb.IgnoreFirstLines = 1;
-			cb.IgnoreEmptyLines = true;
-			
-			cb.AddField("Field1", typeof(DateTime));
-			cb.LastField.TrimMode = TrimMode.Both;
-			cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
-			cb.LastField.FieldNullValue = DateTime.Today;
-
-			cb.AddField("FieldTwo", typeof(string));
-			cb.LastField.FieldQuoted = true;
-			cb.LastField.QuoteChar = '"';
-
-			cb.AddField("Field333", typeof(int));
-
-			cb.SaveToXml(@"runtime.xml");
-			
-			engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
-
-			Assert.AreEqual("Customers", engine.RecordType.Name);
-			Assert.AreEqual(3, engine.RecordType.GetFields().Length);
-			Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
-		}
+            return cb;
+        }
 
 
-		[Test]
-		public void SaveLoadXmlOptions()
-		{
-			var cbOrig = new DelimitedClassBuilder("Customers", ",");
-			cbOrig.AddField("Field1", typeof(DateTime));
-			cbOrig.AddField("FieldTwo", typeof(string));
+        private void ValidateType(Type t)
+        {
+            engine = new FileHelperEngine(t);
 
-			cbOrig.RecordCondition.Condition = RecordCondition.ExcludeIfMatchRegex;
-			cbOrig.RecordCondition.Selector = @"\w*";
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
-			cbOrig.IgnoreCommentedLines.CommentMarker = "//";
-			cbOrig.IgnoreCommentedLines.InAnyPlace = false;
+            Assert.AreEqual(4, dt.Rows.Count);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+        }
 
-			cbOrig.IgnoreEmptyLines= true;
-			cbOrig.IgnoreFirstLines = 123;
-			cbOrig.IgnoreLastLines = 456;
+        [Test]
+        public void SaveLoadSourceFile()
+        {
+            ClassBuilder cb = CommonCreate();
+            cb.SaveToSourceFile(mTempClassFile);
+            ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
+        }
 
-			cbOrig.SealedClass = false;
-			cbOrig.SaveToXml(@"runtime.xml");
+        [Test]
+        public void SaveLoadSourceFileVbNet()
+        {
+            ClassBuilder cb = CommonCreate();
+            cb.SaveToSourceFile(mTempClassFile, NetLanguage.VbNet);
+            ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile, NetLanguage.VbNet));
+        }
+
+        [Test]
+        public void SaveLoadBinaryFile()
+        {
+            ClassBuilder cb = CommonCreate();
+            cb.SaveToSourceFile(mTempClassFile);
+            ValidateType(ClassBuilder.ClassFromSourceFile(mTempClassFile));
+        }
+
+        [Test]
+        public void SaveLoadBinaryFileVbNet()
+        {
+            ClassBuilder cb = CommonCreate();
+            cb.SaveToBinaryFile(mTempClassFile, NetLanguage.VbNet);
+            ValidateType(ClassBuilder.ClassFromBinaryFile(mTempClassFile, NetLanguage.VbNet));
+        }
+
+
+        [Test]
+        public void SaveLoadXmlFileFixed()
+        {
+            var cb = new FixedLengthClassBuilder("Customers");
+
+            cb.FixedMode = FixedMode.ExactLength;
+            cb.AddField("Field1", 8, typeof (DateTime));
+            cb.LastField.Converter.Kind = ConverterKind.Date;
+            cb.LastField.Converter.Arg1 = "ddMMyyyy";
+            cb.LastField.FieldNullValue = DateTime.Now;
+
+            cb.AddField("FieldSecond", 3, typeof (string));
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = ' ';
+
+            cb.AddField("Field33", 3, typeof (int));
+
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = '0';
+            cb.LastField.TrimMode = TrimMode.Both;
+
+            cb.SaveToXml(@"runtime.xml");
+
+            var loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+
+            Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
+            Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
+            Assert.AreEqual("Field33", loaded.FieldByIndex(2).FieldName);
+
+            Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
+            Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
+            Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
+
+            Assert.AreEqual(ConverterKind.Date, loaded.FieldByIndex(0).Converter.Kind);
+            Assert.AreEqual("ddMMyyyy", loaded.FieldByIndex(0).Converter.Arg1);
+
+            Assert.AreEqual(AlignMode.Right, loaded.FieldByIndex(1).AlignMode);
+            Assert.AreEqual(' ', loaded.FieldByIndex(1).AlignChar);
+
+            Assert.AreEqual(FixedMode.ExactLength, loaded.FixedMode);
+        }
+
+        [Test]
+        public void SaveLoadXmlFileFixed2()
+        {
+            var cb = new FixedLengthClassBuilder("Customers");
+
+            cb.AddField("Field1", 8, typeof (DateTime));
+            cb.LastField.Converter.Kind = ConverterKind.Date;
+            cb.LastField.Converter.Arg1 = "ddMMyyyy";
+            cb.LastField.FieldNullValue = DateTime.Now;
+
+            cb.AddField("FieldSecond", 3, typeof (string));
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = ' ';
+
+            cb.AddField("Field33", 3, typeof (int));
+
+            cb.LastField.AlignMode = AlignMode.Right;
+            cb.LastField.AlignChar = '0';
+            cb.LastField.TrimMode = TrimMode.Both;
+
+            cb.SaveToXml(@"runtime.xml");
+
+            engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+
+            Assert.AreEqual("Customers", engine.RecordType.Name);
+            Assert.AreEqual(3, engine.RecordType.GetFields().Length);
+            Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
+        }
+
+        [Test]
+        public void SaveLoadXmlFileDelimited()
+        {
+            var cb = new DelimitedClassBuilder("Customers", ",");
+            cb.IgnoreFirstLines = 1;
+            cb.IgnoreEmptyLines = true;
+
+            cb.AddField("Field1", typeof (DateTime));
+            cb.LastField.TrimMode = TrimMode.Both;
+            cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+            cb.LastField.FieldNullValue = DateTime.Today;
+
+            cb.AddField("FieldTwo", typeof (string));
+            cb.LastField.FieldQuoted = true;
+            cb.LastField.QuoteChar = '"';
+
+            cb.AddField("Field333", typeof (int));
+
+            cb.SaveToXml(@"runtime.xml");
+
+            var loaded = (DelimitedClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+
+            Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
+            Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
+            Assert.AreEqual("Field333", loaded.FieldByIndex(2).FieldName);
+
+            Assert.AreEqual("System.DateTime", loaded.FieldByIndex(0).FieldType);
+            Assert.AreEqual("System.String", loaded.FieldByIndex(1).FieldType);
+            Assert.AreEqual("System.Int32", loaded.FieldByIndex(2).FieldType);
+
+            Assert.AreEqual(QuoteMode.AlwaysQuoted, loaded.FieldByIndex(0).QuoteMode);
+            Assert.AreEqual(false, loaded.FieldByIndex(0).FieldQuoted);
+
+            Assert.AreEqual('"', loaded.FieldByIndex(1).QuoteChar);
+            Assert.AreEqual(true, loaded.FieldByIndex(1).FieldQuoted);
+        }
+
+
+        [Test]
+        public void SaveLoadXmlFileDelimited2()
+        {
+            var cb = new DelimitedClassBuilder("Customers", ",");
+            cb.IgnoreFirstLines = 1;
+            cb.IgnoreEmptyLines = true;
+
+            cb.AddField("Field1", typeof (DateTime));
+            cb.LastField.TrimMode = TrimMode.Both;
+            cb.LastField.QuoteMode = QuoteMode.AlwaysQuoted;
+            cb.LastField.FieldNullValue = DateTime.Today;
+
+            cb.AddField("FieldTwo", typeof (string));
+            cb.LastField.FieldQuoted = true;
+            cb.LastField.QuoteChar = '"';
+
+            cb.AddField("Field333", typeof (int));
+
+            cb.SaveToXml(@"runtime.xml");
+
+            engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+
+            Assert.AreEqual("Customers", engine.RecordType.Name);
+            Assert.AreEqual(3, engine.RecordType.GetFields().Length);
+            Assert.AreEqual("Field1", engine.RecordType.GetFields()[0].Name);
+        }
+
+
+        [Test]
+        public void SaveLoadXmlOptions()
+        {
+            var cbOrig = new DelimitedClassBuilder("Customers", ",");
+            cbOrig.AddField("Field1", typeof (DateTime));
+            cbOrig.AddField("FieldTwo", typeof (string));
+
+            cbOrig.RecordCondition.Condition = RecordCondition.ExcludeIfMatchRegex;
+            cbOrig.RecordCondition.Selector = @"\w*";
+
+            cbOrig.IgnoreCommentedLines.CommentMarker = "//";
+            cbOrig.IgnoreCommentedLines.InAnyPlace = false;
+
+            cbOrig.IgnoreEmptyLines = true;
+            cbOrig.IgnoreFirstLines = 123;
+            cbOrig.IgnoreLastLines = 456;
+
+            cbOrig.SealedClass = false;
             cbOrig.SaveToXml(@"runtime.xml");
-			cbOrig = null;
-			
-			ClassBuilder cb2 = ClassBuilder.LoadFromXml("runtime.xml");
+            cbOrig.SaveToXml(@"runtime.xml");
+            cbOrig = null;
 
-			Assert.AreEqual("Customers", cb2.ClassName);
-			Assert.AreEqual(2, cb2.FieldCount);
-			Assert.AreEqual("Field1", cb2.Fields[0].FieldName);
+            ClassBuilder cb2 = ClassBuilder.LoadFromXml("runtime.xml");
 
-			Assert.AreEqual(RecordCondition.ExcludeIfMatchRegex, cb2.RecordCondition.Condition );
-			Assert.AreEqual(@"\w*", cb2.RecordCondition.Selector );
+            Assert.AreEqual("Customers", cb2.ClassName);
+            Assert.AreEqual(2, cb2.FieldCount);
+            Assert.AreEqual("Field1", cb2.Fields[0].FieldName);
 
-			Assert.AreEqual("//", cb2.IgnoreCommentedLines.CommentMarker);
-			Assert.AreEqual(false, cb2.IgnoreCommentedLines.InAnyPlace );
-			Assert.AreEqual(false, cb2.SealedClass );
+            Assert.AreEqual(RecordCondition.ExcludeIfMatchRegex, cb2.RecordCondition.Condition);
+            Assert.AreEqual(@"\w*", cb2.RecordCondition.Selector);
 
-			Assert.AreEqual(true, cb2.IgnoreEmptyLines );
-			Assert.AreEqual(123, cb2.IgnoreFirstLines );
-			Assert.AreEqual(456, cb2.IgnoreLastLines );
+            Assert.AreEqual("//", cb2.IgnoreCommentedLines.CommentMarker);
+            Assert.AreEqual(false, cb2.IgnoreCommentedLines.InAnyPlace);
+            Assert.AreEqual(false, cb2.SealedClass);
 
-		}
+            Assert.AreEqual(true, cb2.IgnoreEmptyLines);
+            Assert.AreEqual(123, cb2.IgnoreFirstLines);
+            Assert.AreEqual(456, cb2.IgnoreLastLines);
+        }
 
         [Test]
         public void SaveLoadXmlOptionsString()
         {
             var cbOrig = new DelimitedClassBuilder("Customers", ",");
-            cbOrig.AddField("Field1", typeof(DateTime));
-            cbOrig.AddField("FieldTwo", typeof(string));
+            cbOrig.AddField("Field1", typeof (DateTime));
+            cbOrig.AddField("FieldTwo", typeof (string));
 
             cbOrig.RecordCondition.Condition = RecordCondition.ExcludeIfMatchRegex;
             cbOrig.RecordCondition.Selector = @"\w*";
@@ -641,50 +628,48 @@ namespace FileHelpers.Tests
             Assert.AreEqual(true, cb2.IgnoreEmptyLines);
             Assert.AreEqual(123, cb2.IgnoreFirstLines);
             Assert.AreEqual(456, cb2.IgnoreLastLines);
-
         }
 
-        public class MyCustomConverter : ConverterBase {
-            public override object StringToField(string from) {
-                if (from == "NaN") {
+        public class MyCustomConverter : ConverterBase
+        {
+            public override object StringToField(string from)
+            {
+                if (from == "NaN")
                     return null;
-                }
-                else {
+                else
                     return Convert.ToInt32(Int32.Parse(from));
-                }
             }
 
-            public override string FieldToString(object fieldValue) {
-                if (fieldValue == null) {
+            public override string FieldToString(object fieldValue)
+            {
+                if (fieldValue == null)
                     return "NaN";
-                }
-                else {
+                else
                     return fieldValue.ToString();
-                }
             }
         }
 
         [Test]
-        public void ReadAsDataTableWithCustomConverter() {
-            var fields = new[]
-             {
-                 "FirstName",
-                 "LastName",
-                 "StreetNumber",
-                 "StreetAddress",
-                 "Unit",
-                 "City",
-                 "State",
-             };
+        public void ReadAsDataTableWithCustomConverter()
+        {
+            var fields = new[] {
+                "FirstName",
+                "LastName",
+                "StreetNumber",
+                "StreetAddress",
+                "Unit",
+                "City",
+                "State",
+            };
             var cb = new DelimitedClassBuilder("ImportContact", ",");
 
             foreach (var f in fields) {
-                cb.AddField(f, typeof(string));
+                cb.AddField(f, typeof (string));
                 cb.LastField.TrimMode = TrimMode.Both;
                 cb.LastField.FieldQuoted = false;
             }
 
-            cb.AddField("Zip", typeof(int?));
+            cb.AddField("Zip", typeof (int?));
             cb.LastField.Converter.TypeName = "FileHelpers.Tests.RunTimeClasses.MyCustomConverter";
 
             engine = new FileHelperEngine(cb.CreateRecordClass());
@@ -699,69 +684,65 @@ namespace FileHelpers.Tests
             var zip = engine.RecordType.GetFields()[7];
             Assert.AreEqual("Zip", zip.Name);
             Assert.IsNull(zip.GetValue(contactData[1]));
-            Assert.AreEqual((decimal)45103, zip.GetValue(contactData[2]));
-        } 
+            Assert.AreEqual((decimal) 45103, zip.GetValue(contactData[2]));
+        }
 
-		[Test]
-		public void LoopingFields()
-		{
-			var  cb = new DelimitedClassBuilder("MyClass", ",");
-			 
-			string[] lst = { "fieldOne", "fieldTwo", "fieldThree" }; 
+        [Test]
+        public void LoopingFields()
+        {
+            var cb = new DelimitedClassBuilder("MyClass", ",");
 
-			for (int i = 0; i < lst.Length; i++) 
-			{ 
-				cb.AddField(lst[i].ToString(), typeof(string)); 
-			} 
+            string[] lst = {"fieldOne", "fieldTwo", "fieldThree"};
 
-			var engineTemp = new FileHelperEngine(cb.CreateRecordClass()); 
-		}
-		
-		[Test]
-		public void GotchClassName1()
-		{
-			new DelimitedClassBuilder(" MyClass", ",");
-		}
+            for (int i = 0; i < lst.Length; i++)
+                cb.AddField(lst[i].ToString(), typeof (string));
 
-		[Test]
-		public void GotchClassName2()
-		{
-			new DelimitedClassBuilder(" MyClass  ", ",");
-		}
+            var engineTemp = new FileHelperEngine(cb.CreateRecordClass());
+        }
 
-		[Test]
-		public void GotchClassName3()
-		{
-			new DelimitedClassBuilder("MyClass  ", ",");
-		}
+        [Test]
+        public void GotchClassName1()
+        {
+            new DelimitedClassBuilder(" MyClass", ",");
+        }
 
-		[Test]
-		public void GotchClassName4()
-		{
-			new DelimitedClassBuilder("_MyClass2", ",");
-		}
+        [Test]
+        public void GotchClassName2()
+        {
+            new DelimitedClassBuilder(" MyClass  ", ",");
+        }
 
-		[Test]
-		public void BadClassName1()
-		{
+        [Test]
+        public void GotchClassName3()
+        {
+            new DelimitedClassBuilder("MyClass  ", ",");
+        }
+
+        [Test]
+        public void GotchClassName4()
+        {
+            new DelimitedClassBuilder("_MyClass2", ",");
+        }
+
+        [Test]
+        public void BadClassName1()
+        {
             Assert.Throws<FileHelpersException>(()
                 => new DelimitedClassBuilder("2yClass", ","));
-		}
+        }
 
-		[Test]
-		public void BadClassName2()
-		{
+        [Test]
+        public void BadClassName2()
+        {
             Assert.Throws<FileHelpersException>(()
                 => new DelimitedClassBuilder("My Class", ","));
-		}
+        }
 
-		[Test]
-		public void BadClassName3()
-		{
+        [Test]
+        public void BadClassName3()
+        {
             Assert.Throws<FileHelpersException>(()
                 => new DelimitedClassBuilder("", ","));
-		}
-
-		
-	}
+        }
+    }
 }

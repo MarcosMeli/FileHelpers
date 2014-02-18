@@ -146,6 +146,7 @@ namespace FileHelpers.WizardApp
         }
 
         #region Windows Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -153,7 +154,8 @@ namespace FileHelpers.WizardApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWizard));
+            System.ComponentModel.ComponentResourceManager resources =
+                new System.ComponentModel.ComponentResourceManager(typeof (frmWizard));
             this.panStep1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkCommentAnyPlace = new System.Windows.Forms.CheckBox();
@@ -261,32 +263,32 @@ namespace FileHelpers.WizardApp
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreLast)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreFirst)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtIgnoreLast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtIgnoreFirst)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtFieldLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtNumberOfFields)).BeginInit();
             this.panStep3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panStep0.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.gbxDelimitedBy.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picCurrent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picNewVersion)).BeginInit();
             this.panStep2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panPreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picDonate)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox4)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picCurrStep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picFirstDark)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -294,9 +296,11 @@ namespace FileHelpers.WizardApp
             // 
             // panStep1
             // 
-            this.panStep1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panStep1.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep1.BackColor = System.Drawing.Color.White;
             this.panStep1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep1.Controls.Add(this.groupBox4);
@@ -351,7 +355,8 @@ namespace FileHelpers.WizardApp
             this.txtCommentMarker.Name = "txtCommentMarker";
             this.txtCommentMarker.Size = new System.Drawing.Size(40, 21);
             this.txtCommentMarker.TabIndex = 12;
-            this.toolTip1.SetToolTip(this.txtCommentMarker, "Allow you to ignore the lines that begin with this comment marker.");
+            this.toolTip1.SetToolTip(this.txtCommentMarker,
+                "Allow you to ignore the lines that begin with this comment marker.");
             this.txtCommentMarker.TextChanged += new System.EventHandler(this.txtCommentMarker_TextChanged);
             // 
             // groupBox3
@@ -383,7 +388,8 @@ namespace FileHelpers.WizardApp
             this.txtRecordConditionSelector.Size = new System.Drawing.Size(137, 21);
             this.txtRecordConditionSelector.TabIndex = 1019;
             this.toolTip1.SetToolTip(this.txtRecordConditionSelector, "The selector used with the Record Condition");
-            this.txtRecordConditionSelector.TextChanged += new System.EventHandler(this.txtRecordConditionSelector_TextChanged);
+            this.txtRecordConditionSelector.TextChanged +=
+                new System.EventHandler(this.txtRecordConditionSelector_TextChanged);
             // 
             // cboRecordCondition
             // 
@@ -395,7 +401,8 @@ namespace FileHelpers.WizardApp
             this.cboRecordCondition.Size = new System.Drawing.Size(137, 21);
             this.cboRecordCondition.TabIndex = 1016;
             this.toolTip1.SetToolTip(this.cboRecordCondition, "Allow you to include or exclude certain records");
-            this.cboRecordCondition.SelectedIndexChanged += new System.EventHandler(this.cboRecordCondition_SelectedIndexChanged);
+            this.cboRecordCondition.SelectedIndexChanged +=
+                new System.EventHandler(this.cboRecordCondition_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -439,10 +446,11 @@ namespace FileHelpers.WizardApp
             // 
             this.txtIgnoreLast.Location = new System.Drawing.Point(98, 43);
             this.txtIgnoreLast.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
+                10000,
+                0,
+                0,
+                0
+            });
             this.txtIgnoreLast.Name = "txtIgnoreLast";
             this.txtIgnoreLast.Size = new System.Drawing.Size(44, 21);
             this.txtIgnoreLast.TabIndex = 8;
@@ -471,10 +479,11 @@ namespace FileHelpers.WizardApp
             // 
             this.txtIgnoreFirst.Location = new System.Drawing.Point(98, 17);
             this.txtIgnoreFirst.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
+                10000,
+                0,
+                0,
+                0
+            });
             this.txtIgnoreFirst.Name = "txtIgnoreFirst";
             this.txtIgnoreFirst.Size = new System.Drawing.Size(44, 21);
             this.txtIgnoreFirst.TabIndex = 0;
@@ -501,8 +510,10 @@ namespace FileHelpers.WizardApp
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtFieldLength);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.cboFieldVisibility);
@@ -522,24 +533,27 @@ namespace FileHelpers.WizardApp
             // 
             this.txtFieldLength.Location = new System.Drawing.Point(154, 48);
             this.txtFieldLength.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+                100000,
+                0,
+                0,
+                0
+            });
             this.txtFieldLength.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+                1,
+                0,
+                0,
+                0
+            });
             this.txtFieldLength.Name = "txtFieldLength";
             this.txtFieldLength.Size = new System.Drawing.Size(84, 21);
             this.txtFieldLength.TabIndex = 10;
             this.txtFieldLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFieldLength.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+                10,
+                0,
+                0,
+                0
+            });
             // 
             // label11
             // 
@@ -559,29 +573,31 @@ namespace FileHelpers.WizardApp
             this.cboFieldVisibility.Name = "cboFieldVisibility";
             this.cboFieldVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboFieldVisibility.TabIndex = 2;
-            this.cboFieldVisibility.SelectedIndexChanged += new System.EventHandler(this.cboFieldVisibility_SelectedIndexChanged);
+            this.cboFieldVisibility.SelectedIndexChanged +=
+                new System.EventHandler(this.cboFieldVisibility_SelectedIndexChanged);
             // 
             // txtDefaultType
             // 
             this.txtDefaultType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtDefaultType.FormattingEnabled = true;
             this.txtDefaultType.Items.AddRange(new object[] {
-            "String",
-            "DateTime",
-            "Int16",
-            "Int32",
-            "Int64",
-            "Decimal",
-            "Double",
-            "Single",
-            "Boolean",
-            "Byte",
-            "SByte",
-            "UInt16",
-            "UInt32",
-            "UInt64",
-            "Guid",
-            "Char"});
+                "String",
+                "DateTime",
+                "Int16",
+                "Int32",
+                "Int64",
+                "Decimal",
+                "Double",
+                "Single",
+                "Boolean",
+                "Byte",
+                "SByte",
+                "UInt16",
+                "UInt32",
+                "UInt64",
+                "Guid",
+                "Char"
+            });
             this.txtDefaultType.Location = new System.Drawing.Point(154, 75);
             this.txtDefaultType.MaxDropDownItems = 20;
             this.txtDefaultType.Name = "txtDefaultType";
@@ -593,19 +609,21 @@ namespace FileHelpers.WizardApp
             // 
             this.txtNumberOfFields.Location = new System.Drawing.Point(154, 21);
             this.txtNumberOfFields.Maximum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
+                50000,
+                0,
+                0,
+                0
+            });
             this.txtNumberOfFields.Name = "txtNumberOfFields";
             this.txtNumberOfFields.Size = new System.Drawing.Size(84, 21);
             this.txtNumberOfFields.TabIndex = 0;
             this.txtNumberOfFields.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNumberOfFields.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+                5,
+                0,
+                0,
+                0
+            });
             // 
             // label10
             // 
@@ -641,7 +659,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma",
+                12F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label1.Location = new System.Drawing.Point(11, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(263, 19);
@@ -650,9 +672,11 @@ namespace FileHelpers.WizardApp
             // 
             // panStep3
             // 
-            this.panStep3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panStep3.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep3.BackColor = System.Drawing.Color.White;
             this.panStep3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep3.Controls.Add(this.panel3);
@@ -671,9 +695,11 @@ namespace FileHelpers.WizardApp
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.browserTemplate);
             this.panel3.Location = new System.Drawing.Point(18, 63);
@@ -692,8 +718,10 @@ namespace FileHelpers.WizardApp
             // 
             // cboTemplate
             // 
-            this.cboTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboTemplate.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.cboTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTemplate.Location = new System.Drawing.Point(70, 38);
             this.cboTemplate.MaxDropDownItems = 20;
@@ -705,7 +733,9 @@ namespace FileHelpers.WizardApp
             // 
             // cboLanguage
             // 
-            this.cboLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboLanguage.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLanguage.FormattingEnabled = true;
             this.cboLanguage.Location = new System.Drawing.Point(337, 38);
@@ -725,7 +755,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdSaveToFile
             // 
-            this.cmdSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdSaveToFile.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdSaveToFile.BackColor = System.Drawing.SystemColors.Control;
             this.cmdSaveToFile.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSaveToFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -739,9 +771,15 @@ namespace FileHelpers.WizardApp
             // 
             // cmdToClipboard
             // 
-            this.cmdToClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdToClipboard.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdToClipboard.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdToClipboard.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdToClipboard.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.cmdToClipboard.Image = global::FileHelpers.WizardApp.Properties.Resources.page_copy;
             this.cmdToClipboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdToClipboard.Location = new System.Drawing.Point(273, 410);
@@ -756,7 +794,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma",
+                12F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label2.Location = new System.Drawing.Point(11, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(249, 19);
@@ -765,11 +807,15 @@ namespace FileHelpers.WizardApp
             // 
             // panFields
             // 
-            this.panFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panFields.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panFields.AutoScroll = true;
-            this.panFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.panFields.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (250)))),
+                ((int) (((byte) (250)))),
+                ((int) (((byte) (250)))));
             this.panFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panFields.Location = new System.Drawing.Point(18, 40);
             this.panFields.Name = "panFields";
@@ -779,9 +825,11 @@ namespace FileHelpers.WizardApp
             // 
             // panStep0
             // 
-            this.panStep0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panStep0.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep0.BackColor = System.Drawing.Color.White;
             this.panStep0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep0.Controls.Add(this.cboClassVisibility);
@@ -807,7 +855,8 @@ namespace FileHelpers.WizardApp
             this.cboClassVisibility.Size = new System.Drawing.Size(84, 21);
             this.cboClassVisibility.TabIndex = 1014;
             this.toolTip1.SetToolTip(this.cboClassVisibility, "Set the visibility of your record class. ");
-            this.cboClassVisibility.SelectedIndexChanged += new System.EventHandler(this.cboClassVisibility_SelectedIndexChanged);
+            this.cboClassVisibility.SelectedIndexChanged +=
+                new System.EventHandler(this.cboClassVisibility_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -869,7 +918,9 @@ namespace FileHelpers.WizardApp
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))),
+                ((int) (((byte) (64)))),
+                ((int) (((byte) (64)))));
             this.label12.Location = new System.Drawing.Point(168, 25);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 13);
@@ -882,15 +933,17 @@ namespace FileHelpers.WizardApp
             this.cboFixedMode2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFixedMode2.FormattingEnabled = true;
             this.cboFixedMode2.Items.AddRange(new object[] {
-            "public",
-            "private",
-            "internal",
-            "protected"});
+                "public",
+                "private",
+                "internal",
+                "protected"
+            });
             this.cboFixedMode2.Location = new System.Drawing.Point(227, 21);
             this.cboFixedMode2.Name = "cboFixedMode2";
             this.cboFixedMode2.Size = new System.Drawing.Size(98, 21);
             this.cboFixedMode2.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.cboFixedMode2, "Indicates if the engines allow to found less or more chars in the last record");
+            this.toolTip1.SetToolTip(this.cboFixedMode2,
+                "Indicates if the engines allow to found less or more chars in the last record");
             this.cboFixedMode2.SelectedIndexChanged += new System.EventHandler(this.cboFixedMode2_SelectedIndexChanged);
             // 
             // gbxDelimitedBy
@@ -997,7 +1050,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.White;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Font = new System.Drawing.Font("Tahoma",
+                12F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label18.Location = new System.Drawing.Point(11, 14);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(218, 19);
@@ -1006,9 +1063,11 @@ namespace FileHelpers.WizardApp
             // 
             // picCurrent
             // 
-            this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCurrent.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picCurrent.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
+            this.picCurrent.Image = ((System.Drawing.Image) (resources.GetObject("picCurrent.Image")));
             this.picCurrent.Location = new System.Drawing.Point(279, 388);
             this.picCurrent.Name = "picCurrent";
             this.picCurrent.Size = new System.Drawing.Size(146, 53);
@@ -1018,10 +1077,12 @@ namespace FileHelpers.WizardApp
             // 
             // picNewVersion
             // 
-            this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNewVersion.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
             this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
+            this.picNewVersion.Image = ((System.Drawing.Image) (resources.GetObject("picNewVersion.Image")));
             this.picNewVersion.Location = new System.Drawing.Point(279, 388);
             this.picNewVersion.Name = "picNewVersion";
             this.picNewVersion.Size = new System.Drawing.Size(146, 53);
@@ -1032,9 +1093,11 @@ namespace FileHelpers.WizardApp
             // 
             // panStep2
             // 
-            this.panStep2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panStep2.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panStep2.BackColor = System.Drawing.Color.White;
             this.panStep2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep2.Controls.Add(this.chkAllQuoted);
@@ -1052,7 +1115,9 @@ namespace FileHelpers.WizardApp
             // 
             // chkAllQuoted
             // 
-            this.chkAllQuoted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkAllQuoted.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAllQuoted.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.chkAllQuoted.Location = new System.Drawing.Point(249, 408);
             this.chkAllQuoted.Name = "chkAllQuoted";
@@ -1066,7 +1131,9 @@ namespace FileHelpers.WizardApp
             // 
             // chkAllTrim
             // 
-            this.chkAllTrim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkAllTrim.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAllTrim.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.chkAllTrim.Location = new System.Drawing.Point(116, 424);
             this.chkAllTrim.Name = "chkAllTrim";
@@ -1080,7 +1147,9 @@ namespace FileHelpers.WizardApp
             // 
             // chkAllOptional
             // 
-            this.chkAllOptional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkAllOptional.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAllOptional.Location = new System.Drawing.Point(116, 407);
             this.chkAllOptional.Name = "chkAllOptional";
             this.chkAllOptional.Size = new System.Drawing.Size(131, 22);
@@ -1093,10 +1162,16 @@ namespace FileHelpers.WizardApp
             // 
             // cmdAddField
             // 
-            this.cmdAddField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdAddField.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdAddField.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAddField.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAddField.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddField.Image")));
+            this.cmdAddField.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
+            this.cmdAddField.Image = ((System.Drawing.Image) (resources.GetObject("cmdAddField.Image")));
             this.cmdAddField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAddField.Location = new System.Drawing.Point(9, 408);
             this.cmdAddField.Name = "cmdAddField";
@@ -1110,7 +1185,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Tahoma",
+                12F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label15.Location = new System.Drawing.Point(11, 14);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(215, 19);
@@ -1179,9 +1258,11 @@ namespace FileHelpers.WizardApp
             // 
             // cmdBack
             // 
-            this.cmdBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdBack.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBack.Enabled = false;
-            this.cmdBack.Image = ((System.Drawing.Image)(resources.GetObject("cmdBack.Image")));
+            this.cmdBack.Image = ((System.Drawing.Image) (resources.GetObject("cmdBack.Image")));
             this.cmdBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdBack.Location = new System.Drawing.Point(412, 3);
             this.cmdBack.Name = "cmdBack";
@@ -1193,8 +1274,10 @@ namespace FileHelpers.WizardApp
             // 
             // cmdNext
             // 
-            this.cmdNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
+            this.cmdNext.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdNext.Image = ((System.Drawing.Image) (resources.GetObject("cmdNext.Image")));
             this.cmdNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdNext.Location = new System.Drawing.Point(500, 3);
             this.cmdNext.Name = "cmdNext";
@@ -1225,24 +1308,29 @@ namespace FileHelpers.WizardApp
             // 
             // picDonate
             // 
-            this.picDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picDonate.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
+            this.picDonate.Image = ((System.Drawing.Image) (resources.GetObject("picDonate.Image")));
             this.picDonate.Location = new System.Drawing.Point(230, 444);
             this.picDonate.Name = "picDonate";
             this.picDonate.Size = new System.Drawing.Size(100, 36);
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-        "anks");
+            this.toolTip1.SetToolTip(this.picDonate,
+                "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
+                "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
+                "anks");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.browserCode);
             this.panel4.Location = new System.Drawing.Point(6, 59);
@@ -1252,9 +1340,11 @@ namespace FileHelpers.WizardApp
             // 
             // browserCode
             // 
-            this.browserCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.browserCode.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left)
+                      | System.Windows.Forms.AnchorStyles.Right)));
             this.browserCode.Location = new System.Drawing.Point(0, 0);
             this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
             this.browserCode.Name = "browserCode";
@@ -1263,18 +1353,23 @@ namespace FileHelpers.WizardApp
             // 
             // cboClassLanguage
             // 
-            this.cboClassLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboClassLanguage.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboClassLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClassLanguage.FormattingEnabled = true;
             this.cboClassLanguage.Location = new System.Drawing.Point(263, 34);
             this.cboClassLanguage.Name = "cboClassLanguage";
             this.cboClassLanguage.Size = new System.Drawing.Size(60, 21);
             this.cboClassLanguage.TabIndex = 1004;
-            this.cboClassLanguage.SelectedIndexChanged += new System.EventHandler(this.cboClassLanguage_SelectedIndexChanged);
+            this.cboClassLanguage.SelectedIndexChanged +=
+                new System.EventHandler(this.cboClassLanguage_SelectedIndexChanged);
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(206, 39);
             this.label7.Name = "label7";
@@ -1284,7 +1379,7 @@ namespace FileHelpers.WizardApp
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(5, -1);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
@@ -1296,7 +1391,11 @@ namespace FileHelpers.WizardApp
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Tahoma",
+                12F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
             this.label5.Location = new System.Drawing.Point(51, 6);
             this.label5.Name = "label5";
@@ -1306,7 +1405,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdSaveClass
             // 
-            this.cmdSaveClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdSaveClass.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdSaveClass.Image = global::FileHelpers.WizardApp.Properties.Resources.disk;
             this.cmdSaveClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdSaveClass.Location = new System.Drawing.Point(7, 446);
@@ -1320,9 +1421,15 @@ namespace FileHelpers.WizardApp
             // 
             // cmdCopyClass
             // 
-            this.cmdCopyClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdCopyClass.Image = ((System.Drawing.Image)(resources.GetObject("cmdCopyClass.Image")));
+            this.cmdCopyClass.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdCopyClass.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
+            this.cmdCopyClass.Image = ((System.Drawing.Image) (resources.GetObject("cmdCopyClass.Image")));
             this.cmdCopyClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCopyClass.Location = new System.Drawing.Point(105, 446);
             this.cmdCopyClass.Name = "cmdCopyClass";
@@ -1363,7 +1470,7 @@ namespace FileHelpers.WizardApp
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.Controls.Add(this.cmdTextDiff);
             this.panel1.Controls.Add(this.cmdDetectFormatWithHeader);
@@ -1388,7 +1495,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdTextDiff
             // 
-            this.cmdTextDiff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdTextDiff.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdTextDiff.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdTextDiff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdTextDiff.ForeColor = System.Drawing.Color.White;
@@ -1403,7 +1512,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdDetectFormatWithHeader
             // 
-            this.cmdDetectFormatWithHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdDetectFormatWithHeader.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdDetectFormatWithHeader.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdDetectFormatWithHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdDetectFormatWithHeader.ForeColor = System.Drawing.Color.White;
@@ -1418,7 +1529,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdfileDesigner
             // 
-            this.cmdfileDesigner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdfileDesigner.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdfileDesigner.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdfileDesigner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdfileDesigner.ForeColor = System.Drawing.Color.White;
@@ -1434,7 +1547,9 @@ namespace FileHelpers.WizardApp
             // 
             // cmdDetectFormat
             // 
-            this.cmdDetectFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdDetectFormat.Anchor =
+                ((System.Windows.Forms.AnchorStyles)
+                    ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdDetectFormat.BackColor = System.Drawing.Color.SteelBlue;
             this.cmdDetectFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdDetectFormat.ForeColor = System.Drawing.Color.White;
@@ -1450,7 +1565,7 @@ namespace FileHelpers.WizardApp
             // picCurrStep
             // 
             this.picCurrStep.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrStep.Image = ((System.Drawing.Image)(resources.GetObject("picCurrStep.Image")));
+            this.picCurrStep.Image = ((System.Drawing.Image) (resources.GetObject("picCurrStep.Image")));
             this.picCurrStep.Location = new System.Drawing.Point(8, 70);
             this.picCurrStep.Name = "picCurrStep";
             this.picCurrStep.Size = new System.Drawing.Size(20, 20);
@@ -1470,7 +1585,7 @@ namespace FileHelpers.WizardApp
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(8, 145);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(20, 20);
@@ -1481,7 +1596,11 @@ namespace FileHelpers.WizardApp
             // lblStep2
             // 
             this.lblStep2.BackColor = System.Drawing.Color.Transparent;
-            this.lblStep2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStep2.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.lblStep2.ForeColor = System.Drawing.Color.DarkGray;
             this.lblStep2.Location = new System.Drawing.Point(29, 124);
             this.lblStep2.Name = "lblStep2";
@@ -1492,7 +1611,11 @@ namespace FileHelpers.WizardApp
             // lblStep3
             // 
             this.lblStep3.BackColor = System.Drawing.Color.Transparent;
-            this.lblStep3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStep3.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.lblStep3.ForeColor = System.Drawing.Color.DarkGray;
             this.lblStep3.Location = new System.Drawing.Point(29, 149);
             this.lblStep3.Name = "lblStep3";
@@ -1503,7 +1626,7 @@ namespace FileHelpers.WizardApp
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(8, 120);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(20, 20);
@@ -1515,8 +1638,10 @@ namespace FileHelpers.WizardApp
             // 
             this.cmdReset.BackColor = System.Drawing.Color.LightSteelBlue;
             this.cmdReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.cmdReset.Image = ((System.Drawing.Image)(resources.GetObject("cmdReset.Image")));
+            this.cmdReset.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (70)))),
+                ((int) (((byte) (70)))),
+                ((int) (((byte) (70)))));
+            this.cmdReset.Image = ((System.Drawing.Image) (resources.GetObject("cmdReset.Image")));
             this.cmdReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdReset.Location = new System.Drawing.Point(38, 172);
             this.cmdReset.Name = "cmdReset";
@@ -1530,7 +1655,7 @@ namespace FileHelpers.WizardApp
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(8, 95);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
@@ -1541,7 +1666,11 @@ namespace FileHelpers.WizardApp
             // lblStep0
             // 
             this.lblStep0.BackColor = System.Drawing.Color.Transparent;
-            this.lblStep0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStep0.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.lblStep0.ForeColor = System.Drawing.Color.White;
             this.lblStep0.Location = new System.Drawing.Point(29, 73);
             this.lblStep0.Name = "lblStep0";
@@ -1552,7 +1681,11 @@ namespace FileHelpers.WizardApp
             // lblStep1
             // 
             this.lblStep1.BackColor = System.Drawing.Color.Transparent;
-            this.lblStep1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStep1.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Bold,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
             this.lblStep1.ForeColor = System.Drawing.Color.DarkGray;
             this.lblStep1.Location = new System.Drawing.Point(29, 99);
             this.lblStep1.Name = "lblStep1";
@@ -1563,7 +1696,7 @@ namespace FileHelpers.WizardApp
             // picFirstDark
             // 
             this.picFirstDark.BackColor = System.Drawing.Color.Transparent;
-            this.picFirstDark.Image = ((System.Drawing.Image)(resources.GetObject("picFirstDark.Image")));
+            this.picFirstDark.Image = ((System.Drawing.Image) (resources.GetObject("picFirstDark.Image")));
             this.picFirstDark.Location = new System.Drawing.Point(8, 70);
             this.picFirstDark.Name = "picFirstDark";
             this.picFirstDark.Size = new System.Drawing.Size(20, 20);
@@ -1599,8 +1732,12 @@ namespace FileHelpers.WizardApp
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(934, 482);
             this.Controls.Add(this.splitContainer1);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Font = new System.Drawing.Font("Tahoma",
+                8.25F,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point,
+                ((byte) (0)));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 120);
             this.MinimumSize = new System.Drawing.Size(600, 440);
             this.Name = "frmWizard";
@@ -1616,12 +1753,12 @@ namespace FileHelpers.WizardApp
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreLast)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIgnoreFirst)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtIgnoreLast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtIgnoreFirst)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFieldLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfFields)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtFieldLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.txtNumberOfFields)).EndInit();
             this.panStep3.ResumeLayout(false);
             this.panStep3.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1633,50 +1770,49 @@ namespace FileHelpers.WizardApp
             this.groupBox8.PerformLayout();
             this.gbxDelimitedBy.ResumeLayout(false);
             this.gbxDelimitedBy.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNewVersion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picCurrent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picNewVersion)).EndInit();
             this.panStep2.ResumeLayout(false);
             this.panStep2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panPreview.ResumeLayout(false);
             this.panPreview.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDonate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picDonate)).EndInit();
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox4)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCurrStep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFirstDark)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picCurrStep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.picFirstDark)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
-        #endregion
 
         #endregion
 
-  
+        #endregion
+
         /// <summary>
         /// Class information stored here.
         /// </summary>
-        WizardInfo mWizardInfo = new WizardInfo();
+        private WizardInfo mWizardInfo = new WizardInfo();
 
 
         private void frmWizard_Load(object sender, EventArgs e)
         {
             mMoving = true;
             txtClassName.SelectAll();
-            cboFixedMode2.DataSource = Enum.GetValues(typeof(FixedMode));
-            
-            cboFieldVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
-            cboClassVisibility.DataSource = new NetVisibility[] { NetVisibility.Public, NetVisibility.Internal};
-            cboRecordCondition.DataSource = Enum.GetValues(typeof(RecordCondition));
+            cboFixedMode2.DataSource = Enum.GetValues(typeof (FixedMode));
+
+            cboFieldVisibility.DataSource = Enum.GetValues(typeof (NetVisibility));
+            cboClassVisibility.DataSource = new NetVisibility[] {NetVisibility.Public, NetVisibility.Internal};
+            cboRecordCondition.DataSource = Enum.GetValues(typeof (RecordCondition));
             cboLanguage.Items.Clear();
             cboLanguage.Items.Add(NetLanguage.CSharp);
             cboLanguage.Items.Add(NetLanguage.VbNet);
@@ -1688,20 +1824,18 @@ namespace FileHelpers.WizardApp
             cboClassLanguage.SelectedIndex = 0;
             mMoving = false;
             picCurrStep.BringToFront();
-
         }
 
-        bool mFirstTime = true;
+        private bool mFirstTime = true;
 
 
-        bool mMoving = false;
+        private bool mMoving = false;
+
         private void cmdNext_Click(object sender, EventArgs e)
         {
             mMoving = true;
-            if (panStep0.Visible)
-            {
-                if (ProcessStep0())
-                {
+            if (panStep0.Visible) {
+                if (ProcessStep0()) {
                     panStep1.Show();
                     lblStep1.ForeColor = Color.White;
 
@@ -1717,10 +1851,8 @@ namespace FileHelpers.WizardApp
                         ReLoadPreview();
                 }
             }
-            else if (panStep1.Visible)
-            {
-                if (ProcessStep1())
-                {
+            else if (panStep1.Visible) {
+                if (ProcessStep1()) {
                     panStep2.Show();
                     lblStep2.ForeColor = Color.White;
 
@@ -1735,10 +1867,8 @@ namespace FileHelpers.WizardApp
                     cmdSave.Enabled = true;
                 }
             }
-            else if (panStep2.Visible)
-            {
-                if (ProcessStep2())
-                {
+            else if (panStep2.Visible) {
+                if (ProcessStep2()) {
                     panStep3.Show();
                     lblStep3.ForeColor = Color.White;
 
@@ -1747,34 +1877,30 @@ namespace FileHelpers.WizardApp
                     panStep2.Hide();
                     lblStep2.ForeColor = Color.DarkGray;
                     cmdNext.Enabled = false;
-
                 }
             }
             mMoving = false;
-
-
         }
 
-        Type mControlType;
-        Type mFieldType;
+        private Type mControlType;
+        private Type mFieldType;
 
         #region "  ProcessStep0  "
 
         private bool ProcessStep0()
         {
-
             //lstFields.DataSource = mFields;
 
-            if (txtClassName.Text.Trim().Length == 0)
-            {
+            if (txtClassName.Text.Trim().Length == 0) {
                 MessageBox.Show("You need to define the Class Name", "Validation Error");
                 txtClassName.Focus();
                 return false;
             }
 
 
-            if (radDelimited.Checked && radDelCustom.Checked && txtDelimiter.Text.Trim().Length == 0)
-            {
+            if (radDelimited.Checked &&
+                radDelCustom.Checked &&
+                txtDelimiter.Text.Trim().Length == 0) {
                 MessageBox.Show("You need to define the Delimiter if you use a Custom Delimiter", "Validation Error");
                 txtDelimiter.Focus();
                 return false;
@@ -1782,24 +1908,22 @@ namespace FileHelpers.WizardApp
 
 
             ClassBuilder ant = mWizardInfo.ClassBuilder;
-            if (radFixed.Checked)
-            {
+            if (radFixed.Checked) {
                 if (mWizardInfo.FixedLengthBuilder != null)
-                      return true;
+                    return true;
 
                 mWizardInfo.ClassBuilder = new FixedLengthClassBuilder(txtClassName.Text);
-                mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode)cboFixedMode2.SelectedItem;
+                mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode) cboFixedMode2.SelectedItem;
 
                 mWizardInfo.ClassBuilder.Visibility = (NetVisibility) cboClassVisibility.SelectedItem;
                 mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
 
-                mControlType = typeof(FieldFixedControl);
-                mFieldType = typeof(FixedFieldBuilder);
+                mControlType = typeof (FieldFixedControl);
+                mFieldType = typeof (FixedFieldBuilder);
 
                 txtFieldLength.Enabled = true;
 
-                if (ant != null)
-                {
+                if (ant != null) {
                     mWizardInfo.ClassBuilder.ClassName = ant.ClassName;
                     mWizardInfo.ClassBuilder.GenerateProperties = ant.GenerateProperties;
                     mWizardInfo.ClassBuilder.IgnoreEmptyLines = ant.IgnoreEmptyLines;
@@ -1810,9 +1934,8 @@ namespace FileHelpers.WizardApp
                     mWizardInfo.ClassBuilder.SealedClass = ant.SealedClass;
                     mWizardInfo.ClassBuilder.Visibility = ant.Visibility;
 
-                    foreach (FieldBuilder f in ant.Fields)
-                    {
-                        mWizardInfo.FixedLengthBuilder.AddField(f.FieldName, (int)txtFieldLength.Value, f.FieldType);
+                    foreach (FieldBuilder f in ant.Fields) {
+                        mWizardInfo.FixedLengthBuilder.AddField(f.FieldName, (int) txtFieldLength.Value, f.FieldType);
                         mWizardInfo.FixedLengthBuilder.LastField.FieldOptional = f.FieldOptional;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldInNewLine = f.FieldInNewLine;
@@ -1822,12 +1945,10 @@ namespace FileHelpers.WizardApp
                         mWizardInfo.FixedLengthBuilder.LastField.Visibility = f.Visibility;
                     }
                 }
-
             }
-            else
-            {
-                mControlType = typeof(FieldDelimitedControl);
-                mFieldType = typeof(FixedFieldBuilder);
+            else {
+                mControlType = typeof (FieldDelimitedControl);
+                mFieldType = typeof (FixedFieldBuilder);
 
                 txtFieldLength.Enabled = false;
 
@@ -1844,15 +1965,13 @@ namespace FileHelpers.WizardApp
                 else if (radDelVertBar.Checked)
                     delimiter = "|";
 
-                if (ant is DelimitedClassBuilder)
-                {
+                if (ant is DelimitedClassBuilder) {
                     mWizardInfo.DelimitedBuilder.Delimiter = delimiter;
                     return true;
                 }
 
                 mWizardInfo.ClassBuilder = new DelimitedClassBuilder(txtClassName.Text, delimiter);
-                if (ant != null)
-                {
+                if (ant != null) {
                     mWizardInfo.ClassBuilder.ClassName = ant.ClassName;
                     mWizardInfo.ClassBuilder.GenerateProperties = ant.GenerateProperties;
                     mWizardInfo.ClassBuilder.IgnoreEmptyLines = ant.IgnoreEmptyLines;
@@ -1863,8 +1982,7 @@ namespace FileHelpers.WizardApp
                     mWizardInfo.ClassBuilder.SealedClass = ant.SealedClass;
                     mWizardInfo.ClassBuilder.Visibility = ant.Visibility;
 
-                    foreach (FieldBuilder f in ant.Fields)
-                    {
+                    foreach (FieldBuilder f in ant.Fields) {
                         mWizardInfo.DelimitedBuilder.AddField(f.FieldName, f.FieldType);
                         mWizardInfo.DelimitedBuilder.LastField.FieldOptional = f.FieldOptional;
                         mWizardInfo.DelimitedBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
@@ -1875,11 +1993,10 @@ namespace FileHelpers.WizardApp
                         mWizardInfo.DelimitedBuilder.LastField.Visibility = f.Visibility;
                     }
                 }
-
             }
 
 
-            cboFieldVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
+            cboFieldVisibility.DataSource = Enum.GetValues(typeof (NetVisibility));
             cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility;
 
             // cboClassVisibility.DataSource = Enum.GetValues(typeof(NetVisibility));
@@ -1896,35 +2013,37 @@ namespace FileHelpers.WizardApp
         {
             mWizardInfo.DefaultType = txtDefaultType.Text;
 
-            if (mWizardInfo.ClassBuilder.FieldCount == 0)
-            {
-                
-                for (int i = 0; i < txtNumberOfFields.Value; i++)
-                {
+            if (mWizardInfo.ClassBuilder.FieldCount == 0) {
+                for (int i = 0; i < txtNumberOfFields.Value; i++) {
                     FieldBuilder field;
-                    
-                    if (mWizardInfo.ClassBuilder is DelimitedClassBuilder)
-                        field = mWizardInfo.DelimitedBuilder.AddField("Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(), mWizardInfo.DefaultType);
-                    else
-                        field = mWizardInfo.FixedLengthBuilder.AddField("Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(), (int) txtFieldLength.Value, mWizardInfo.DefaultType);
 
-                    field.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
+                    if (mWizardInfo.ClassBuilder is DelimitedClassBuilder) {
+                        field =
+                            mWizardInfo.DelimitedBuilder.AddField(
+                                "Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(),
+                                mWizardInfo.DefaultType);
+                    }
+                    else {
+                        field =
+                            mWizardInfo.FixedLengthBuilder.AddField(
+                                "Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(),
+                                (int) txtFieldLength.Value,
+                                mWizardInfo.DefaultType);
+                    }
 
+                    field.Visibility = (NetVisibility) Enum.Parse(typeof (NetVisibility), cboFieldVisibility.Text);
                 }
-               
+
                 txtNumberOfFields.Enabled = false;
                 txtDefaultType.Enabled = false;
                 txtFieldLength.Enabled = false;
-
             }
 
             panFields.SuspendLayout();
             panFields.Controls.Clear();
 
             foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
-            {
                 panFields.Controls.Add(CreateFieldControlFromInfo(info));
-            }
 
             panFields.ResumeLayout();
 
@@ -1950,19 +2069,30 @@ namespace FileHelpers.WizardApp
         {
             FieldBuilder field;
 
-            if (mWizardInfo.ClassBuilder is DelimitedClassBuilder)
-                field = mWizardInfo.DelimitedBuilder.AddField("Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(), mWizardInfo.DefaultType);
-            else
-                field = mWizardInfo.FixedLengthBuilder.AddField("Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(), (int) txtFieldLength.Value, mWizardInfo.DefaultType);
+            if (mWizardInfo.ClassBuilder is DelimitedClassBuilder) {
+                field =
+                    mWizardInfo.DelimitedBuilder.AddField(
+                        "Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(),
+                        mWizardInfo.DefaultType);
+            }
+            else {
+                field =
+                    mWizardInfo.FixedLengthBuilder.AddField(
+                        "Field" + (mWizardInfo.ClassBuilder.FieldCount + 1).ToString(),
+                        (int) txtFieldLength.Value,
+                        mWizardInfo.DefaultType);
+            }
 
-            field.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
+            field.Visibility = (NetVisibility) Enum.Parse(typeof (NetVisibility), cboFieldVisibility.Text);
 
             return CreateFieldControlFromInfo(field);
         }
 
         private FieldBaseControl CreateFieldControlFromInfo(FieldBuilder info)
         {
-            FieldBaseControl ctrl = (FieldBaseControl)mControlType.InvokeMember("new", System.Reflection.BindingFlags.CreateInstance, null, null, null);
+            FieldBaseControl ctrl =
+                (FieldBaseControl)
+                    mControlType.InvokeMember("new", System.Reflection.BindingFlags.CreateInstance, null, null, null);
             ctrl.FieldInfo = info;
 
             ctrl.FieldInfoReload();
@@ -1971,7 +2101,6 @@ namespace FileHelpers.WizardApp
 
             return ctrl;
         }
-
 
         #endregion
 
@@ -1991,8 +2120,7 @@ namespace FileHelpers.WizardApp
 
             string languagePrefix;
 
-            switch (mWizardInfo.Language)
-            {
+            switch (mWizardInfo.Language) {
                 case NetLanguage.CSharp:
                     languagePrefix = "CS";
                     break;
@@ -2010,32 +2138,29 @@ namespace FileHelpers.WizardApp
             //DirectoryInfo di = new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath) + @"\Templates");
 
             cboTemplate.Items.Clear();
-            foreach (DictionaryEntry file in templates)
-            {
+            foreach (DictionaryEntry file in templates) {
                 var key = file.Key.ToString();
                 if (!key.StartsWith(languagePrefix, StringComparison.OrdinalIgnoreCase))
                     continue;
                 var stringAsByte = (byte[]) file.Value;
-                var templateString=  Encoding.UTF8.GetString(stringAsByte);
+                var templateString = Encoding.UTF8.GetString(stringAsByte);
                 cboTemplate.Items.Add(new TemplateInfo(key.Replace("___", " - ").Replace("_", " "), templateString));
             }
 
             mLoading = false;
 
             if (cboTemplate.Items.Count > 0)
-            {
                 cboTemplate.SelectedIndex = 0;
-            }
         }
 
         #endregion
 
-        void FieldControlChange(object sender, EventArgs e)
+        private void FieldControlChange(object sender, EventArgs e)
         {
             ReLoadPreview();
         }
 
-        void FieldControlOrderChange(object sender, EventArgs e)
+        private void FieldControlOrderChange(object sender, EventArgs e)
         {
             // CLEAR: JEJEJ
             // mWizardInfo.LoadFields(panFields.Controls);
@@ -2047,8 +2172,7 @@ namespace FileHelpers.WizardApp
         {
             mWizardInfo.ClassBuilder.ClearFields();
 
-            foreach (FieldBaseControl ctrl in panFields.Controls)
-            {
+            foreach (FieldBaseControl ctrl in panFields.Controls) {
                 if (mWizardInfo.DelimitedBuilder != null)
                     mWizardInfo.DelimitedBuilder.AddField((DelimitedFieldBuilder) ctrl.FieldInfo);
                 else
@@ -2060,9 +2184,7 @@ namespace FileHelpers.WizardApp
 
         private void cmdBack_Click(object sender, EventArgs e)
         {
-
-            if (panStep1.Visible)
-            {
+            if (panStep1.Visible) {
                 panStep0.Show();
                 lblStep0.ForeColor = Color.White;
 
@@ -2074,8 +2196,7 @@ namespace FileHelpers.WizardApp
                 txtClassName.Focus();
                 cmdBack.Enabled = false;
             }
-            else if (panStep2.Visible)
-            {
+            else if (panStep2.Visible) {
                 panStep1.Show();
                 lblStep1.ForeColor = Color.White;
 
@@ -2086,8 +2207,7 @@ namespace FileHelpers.WizardApp
 
                 txtDefaultType.Focus();
             }
-            else if (panStep3.Visible)
-            {
+            else if (panStep3.Visible) {
                 panStep2.Show();
                 lblStep2.ForeColor = Color.White;
 
@@ -2101,7 +2221,6 @@ namespace FileHelpers.WizardApp
 
                 cmdNext.Enabled = true;
             }
-
         }
 
         private void ReLoadPreview()
@@ -2111,8 +2230,8 @@ namespace FileHelpers.WizardApp
 
             cboLanguage.SelectedItem = cboClassLanguage.SelectedItem;
             NetLanguage selected = cboClassLanguage.SelectedItem is NetLanguage
-                               ? (NetLanguage) cboClassLanguage.SelectedItem
-                               : NetLanguage.CSharp;
+                ? (NetLanguage) cboClassLanguage.SelectedItem
+                : NetLanguage.CSharp;
 
             string output = mWizardInfo.WizardOutput(selected);
 
@@ -2120,41 +2239,39 @@ namespace FileHelpers.WizardApp
         }
 
         private string mLastCode;
+
         private void ShowCode(string code, NetLanguage language)
         {
             mLastCode = code;
             var colorizer = new CodeColorizer();
-            switch (language)
-            {
+            switch (language) {
                 case NetLanguage.CSharp:
-                    browserCode.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
+                    browserCode.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
                     break;
                 case NetLanguage.VbNet:
-                    browserCode.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
+                    browserCode.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("language");
             }
-
         }
 
         private string mLastTemplateCode;
+
         private void ShowTemplate(string code, NetLanguage language)
         {
             mLastTemplateCode = code;
             var colorizer = new CodeColorizer();
-            switch (language)
-            {
+            switch (language) {
                 case NetLanguage.CSharp:
-                    browserTemplate.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
+                    browserTemplate.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.CSharp);
                     break;
                 case NetLanguage.VbNet:
-                    browserTemplate.DocumentText =  GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
+                    browserTemplate.DocumentText = GetDefaultCss() + colorizer.Colorize(code, Languages.VbDotNet);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("language");
             }
-
         }
 
 
@@ -2187,44 +2304,41 @@ width: 100% !important;*/
 
         private void radDelimited_CheckedChanged(object sender, EventArgs e)
         {
-
             gbxDelimitedBy.Enabled = radDelimited.Checked;
         }
 
-        bool mLoading = true;
+        private bool mLoading = true;
 
-        bool mLoadingFile = false;
+        private bool mLoadingFile = false;
 
         private void cboTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboTemplate.SelectedItem != null)
-                ShowTemplate((TemplateInfo)cboTemplate.SelectedItem);
+                ShowTemplate((TemplateInfo) cboTemplate.SelectedItem);
         }
 
         private void ShowTemplate(TemplateInfo templ)
         {
             var selected = cboLanguage.SelectedItem is NetLanguage
-                   ? (NetLanguage)cboLanguage.SelectedItem
-                   : NetLanguage.CSharp;
+                ? (NetLanguage) cboLanguage.SelectedItem
+                : NetLanguage.CSharp;
 
             if (templ == null)
                 ShowTemplate("", selected);
-            else
-            {
+            else {
                 string res = templ.TemplateBody;
-                if( mWizardInfo.ClassBuilder != null )
+                if (mWizardInfo.ClassBuilder != null)
                     res = res.Replace("${ClassName}", mWizardInfo.ClassBuilder.ClassName);
 
                 ShowTemplate(res, selected);
             }
-
         }
 
         private void cboLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             NetLanguage selected = cboLanguage.SelectedItem is NetLanguage
-                               ? (NetLanguage)cboLanguage.SelectedItem
-                               : NetLanguage.CSharp;
+                ? (NetLanguage) cboLanguage.SelectedItem
+                : NetLanguage.CSharp;
 
             mWizardInfo.Language = selected;
             cboClassLanguage.SelectedItem = selected;
@@ -2239,23 +2353,19 @@ width: 100% !important;*/
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardTemplatePath"))
                     dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardTemplatePath", "");
             }
-            catch
-            {}
+            catch {}
 
             dlgSaveToFile.FilterIndex = cboLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = "TemplateOur";
 
-            if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
-            {
+            if (dlgSaveToFile.ShowDialog() == DialogResult.OK) {
                 File.WriteAllText(dlgSaveToFile.FileName, mLastTemplateCode);
                 RegConfig.SetStringValue("WizardTemplatePath", Path.GetDirectoryName(dlgSaveToFile.FileName));
             }
-
         }
 
         private void cmdCopyClass_Click(object sender, EventArgs e)
@@ -2265,20 +2375,17 @@ width: 100% !important;*/
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardClassDir"))
                     dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardClassDir", "");
             }
-            catch 
-            {}
+            catch {}
 
             //  1 for C#,  2 for vb.
             dlgSaveToFile.FilterIndex = cboClassLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = txtClassName.Text;
 
-            if (dlgSaveToFile.ShowDialog() == DialogResult.OK)
-            {
+            if (dlgSaveToFile.ShowDialog() == DialogResult.OK) {
                 File.WriteAllText(dlgSaveToFile.FileName, mLastCode);
                 RegConfig.SetStringValue("WizardClassDir", Path.GetDirectoryName(dlgSaveToFile.FileName));
             }
@@ -2298,33 +2405,29 @@ width: 100% !important;*/
             panFields.Controls.Add(ctrl);
 
             ctrl.chkOptional.Checked = chkAllOptional.Checked;
-            
+
             if (chkAllTrim.Checked)
                 ctrl.cboTrim.SelectedIndex = 3;
 
             if (chkAllQuoted.Visible)
                 ((FieldDelimitedControl) ctrl).txtQuoted.Text = "\"";
-            
+
             ctrl.RePaintData();
             ReLoadPreview();
-            
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
             dlgOpenWizard.FileName = "";
 
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardOpenDir"))
                     dlgSaveWizard.InitialDirectory = RegConfig.GetStringValue("WizardOpenDir", "");
             }
-            catch
-            { }
+            catch {}
 
             dlgSaveWizard.FileName = txtClassName.Text;
-            if (dlgSaveWizard.ShowDialog() == DialogResult.OK)
-            {
+            if (dlgSaveWizard.ShowDialog() == DialogResult.OK) {
                 RegConfig.SetStringValue("WizardOpenDir", Path.GetDirectoryName(dlgSaveWizard.FileName));
                 mWizardInfo.ClassBuilder.SaveToXml(dlgSaveWizard.FileName);
             }
@@ -2334,8 +2437,7 @@ width: 100% !important;*/
         {
             string extension = System.IO.Path.GetExtension(pFileName);
             ClassBuilder builder;
-            switch (extension.ToLower())
-            {
+            switch (extension.ToLower()) {
                 case "cs":
                     builder = ClassBuilder.LoadFromXml(pFileName);
                     break;
@@ -2355,16 +2457,13 @@ width: 100% !important;*/
         {
             dlgOpenWizard.FileName = "";
 
-            try
-            {
+            try {
                 if (RegConfig.HasValue("WizardOpenDir"))
                     dlgOpenWizard.InitialDirectory = RegConfig.GetStringValue("WizardOpenDir", "");
             }
-            catch 
-            {}
+            catch {}
 
-            if (dlgOpenWizard.ShowDialog() == DialogResult.OK)
-            {
+            if (dlgOpenWizard.ShowDialog() == DialogResult.OK) {
                 RegConfig.SetStringValue("WizardOpenDir", Path.GetDirectoryName(dlgOpenWizard.FileName));
 
                 mLoadingFile = true;
@@ -2374,9 +2473,7 @@ width: 100% !important;*/
                 ClassBuilder builder = ClassBuilder.LoadFromXml(dlgOpenWizard.FileName);
                 ClassBuilderToWizard(builder);
             }
-
         }
-
 
 
         private void ClassBuilderToWizard(ClassBuilder builder)
@@ -2389,37 +2486,33 @@ width: 100% !important;*/
 
             Application.DoEvents();
 
-            if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder)
-            {
+            if (mWizardInfo.ClassBuilder is FixedLengthClassBuilder) {
                 radFixed.Checked = true;
-                mControlType = typeof(FieldFixedControl);
-                mFieldType = typeof(FixedFieldBuilder);
+                mControlType = typeof (FieldFixedControl);
+                mFieldType = typeof (FixedFieldBuilder);
 
                 txtFieldLength.Enabled = true;
-
             }
-            else
-            {
+            else {
                 txtFieldLength.Enabled = false;
 
                 radDelimited.Checked = true;
 
-                mControlType = typeof(FieldDelimitedControl);
-                mFieldType = typeof(DelimitedFieldBuilder);
+                mControlType = typeof (FieldDelimitedControl);
+                mFieldType = typeof (DelimitedFieldBuilder);
 
                 txtDelimiter.Text = "";
                 string delimiter = mWizardInfo.DelimitedBuilder.Delimiter;
 
                 if (delimiter == "|")
                     radDelVertBar.Checked = true;
-                else if (delimiter  == ",")
+                else if (delimiter == ",")
                     radDelComma.Checked = true;
                 else if (delimiter == ";")
                     radDelSemiCol.Checked = true;
                 else if (delimiter == "\t")
                     radDelTabs.Checked = true;
-                else
-                {
+                else {
                     radDelCustom.Checked = true;
                     txtDelimiter.Text = delimiter;
                 }
@@ -2430,9 +2523,7 @@ width: 100% !important;*/
             panFields.Controls.Clear();
 
             foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
-            {
                 panFields.Controls.Add(CreateFieldControlFromInfo(info));
-            }
 
             panFields.ResumeLayout();
 
@@ -2445,7 +2536,6 @@ width: 100% !important;*/
 
         private void WizardToControls()
         {
-
             txtClassName.Text = mWizardInfo.ClassBuilder.ClassName;
 
             txtDefaultType.Text = mWizardInfo.DefaultType;
@@ -2457,7 +2547,7 @@ width: 100% !important;*/
             txtIgnoreFirst.Value = mWizardInfo.ClassBuilder.IgnoreFirstLines;
             txtIgnoreLast.Value = mWizardInfo.ClassBuilder.IgnoreLastLines;
             chkIgnoreEmpty.Checked = mWizardInfo.ClassBuilder.IgnoreEmptyLines;
-            
+
             cboFieldVisibility.SelectedItem = mWizardInfo.FieldVisibility;
             cboClassVisibility.SelectedItem = mWizardInfo.ClassBuilder.Visibility;
             cboRecordCondition.SelectedItem = mWizardInfo.ClassBuilder.RecordCondition.Condition;
@@ -2468,17 +2558,17 @@ width: 100% !important;*/
 
             txtCommentMarker.Text = mWizardInfo.ClassBuilder.IgnoreCommentedLines.CommentMarker;
             chkCommentAnyPlace.Checked = mWizardInfo.ClassBuilder.IgnoreCommentedLines.InAnyPlace;
-
         }
 
         private void cboFieldVisibility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMoving == false)
-            {
-                mWizardInfo.FieldVisibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), cboFieldVisibility.Text);
-                if (mWizardInfo.ClassBuilder.FieldCount > 0)
+            if (mMoving == false) {
+                mWizardInfo.FieldVisibility =
+                    (NetVisibility) Enum.Parse(typeof (NetVisibility), cboFieldVisibility.Text);
+                if (mWizardInfo.ClassBuilder.FieldCount > 0) {
                     foreach (FieldBuilder info in mWizardInfo.ClassBuilder.Fields)
                         info.Visibility = mWizardInfo.FieldVisibility;
+                }
 
                 ReLoadPreview();
             }
@@ -2486,27 +2576,24 @@ width: 100% !important;*/
 
         private void txtClassName_TextChanged(object sender, EventArgs e)
         {
-            if  (mWizardInfo.ClassBuilder != null)
-            {
-				mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
-				ReLoadPreview();
+            if (mWizardInfo.ClassBuilder != null) {
+                mWizardInfo.ClassBuilder.ClassName = txtClassName.Text;
+                ReLoadPreview();
             }
         }
 
         private void cboClassVisibility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mMoving == false && mWizardInfo.ClassBuilder != null)
-            {
-                mWizardInfo.ClassBuilder.Visibility = (NetVisibility)cboClassVisibility.SelectedItem;
+            if (mMoving == false &&
+                mWizardInfo.ClassBuilder != null) {
+                mWizardInfo.ClassBuilder.Visibility = (NetVisibility) cboClassVisibility.SelectedItem;
                 ReLoadPreview();
             }
-
         }
 
         private void chkSealed_CheckedChanged(object sender, EventArgs e)
         {
-            if (mWizardInfo.ClassBuilder != null)
-            {
+            if (mWizardInfo.ClassBuilder != null) {
                 mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
                 ReLoadPreview();
             }
@@ -2514,13 +2601,13 @@ width: 100% !important;*/
 
         private void txtIgnoreFirst_ValueChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.IgnoreFirstLines = (int)txtIgnoreFirst.Value;
+            mWizardInfo.ClassBuilder.IgnoreFirstLines = (int) txtIgnoreFirst.Value;
             ReLoadPreview();
         }
 
         private void txtIgnoreLast_ValueChanged(object sender, EventArgs e)
         {
-            mWizardInfo.ClassBuilder.IgnoreLastLines = (int)txtIgnoreLast.Value;
+            mWizardInfo.ClassBuilder.IgnoreLastLines = (int) txtIgnoreLast.Value;
             ReLoadPreview();
         }
 
@@ -2541,15 +2628,13 @@ width: 100% !important;*/
 
         private void cmdTestClass_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmDataPreview(mLastCode, mWizardInfo.Language))
-            {
+            using (var frm = new frmDataPreview(mLastCode, mWizardInfo.Language)) {
                 frm.ShowDialog();
                 frm.Dispose();
             }
         }
 
 
-        
         private void picDonate_Click(object sender, EventArgs e)
         {
             frmDonate frm = new frmDonate();
@@ -2573,31 +2658,27 @@ width: 100% !important;*/
             mFirstTime = false;
 
             System.Threading.ThreadPool.QueueUserWorkItem(
-                delegate(object targ)
-                {
-                    try
-                    {
-                        string ver = typeof(FileHelperEngine).Assembly.GetName().Version.ToString(3);
+                delegate(object targ) {
+                    try {
+                        string ver = typeof (FileHelperEngine).Assembly.GetName().Version.ToString(3);
                         VersionData verLast;
                         verLast = VersionData.GetLastVersion();
 
                         if (VersionData.CompararVersiones(ver, verLast.Version) >= 0)
-                            picCurrent.Invoke((MethodInvoker)delegate() { picCurrent.Visible = true; });
-                        else
-                        {
-                            picCurrent.Invoke((MethodInvoker)delegate() {
+                            picCurrent.Invoke((MethodInvoker) delegate() { picCurrent.Visible = true; });
+                        else {
+                            picCurrent.Invoke((MethodInvoker) delegate() {
                                 picNewVersion.Visible = true;
                                 picNewVersion.Tag = verLast;
-                                toolTip1.SetToolTip(picNewVersion, "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
+                                toolTip1.SetToolTip(picNewVersion,
+                                    "Version: " + verLast.Version + Environment.NewLine + verLast.Description);
                             });
                         }
                     }
-                    catch
-                    { }
+                    catch {}
                 }
-            );
+                );
         }
-        
 
 
         private void radFixed_CheckedChanged(object sender, EventArgs e)
@@ -2607,16 +2688,15 @@ width: 100% !important;*/
 
         private void cboFixedMode2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mWizardInfo.FixedLengthBuilder != null)
-            {
-                mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode)cboFixedMode2.SelectedItem;
+            if (mWizardInfo.FixedLengthBuilder != null) {
+                mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode) cboFixedMode2.SelectedItem;
                 ReLoadPreview();
             }
         }
 
         private void picNewVersion_Click(object sender, EventArgs e)
         {
-            frmLastVersion frm = new frmLastVersion((VersionData)picNewVersion.Tag);
+            frmLastVersion frm = new frmLastVersion((VersionData) picNewVersion.Tag);
             frm.ShowDialog();
             frm.Dispose();
         }
@@ -2641,14 +2721,14 @@ width: 100% !important;*/
 
         private void cboRecordCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mWizardInfo.ClassBuilder != null)
-            {
-                mWizardInfo.ClassBuilder.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), cboRecordCondition.Text);
+            if (mWizardInfo.ClassBuilder != null) {
+                mWizardInfo.ClassBuilder.RecordCondition.Condition =
+                    (RecordCondition) Enum.Parse(typeof (RecordCondition), cboRecordCondition.Text);
                 ReLoadPreview();
             }
         }
 
-       
+
         private void cmdReset_Click(object sender, EventArgs e)
         {
             mWizardInfo.ClassBuilder = null;
@@ -2686,8 +2766,7 @@ width: 100% !important;*/
         {
             mLoadingFile = true;
             bool first = true;
-            foreach (FieldBaseControl ctrl in panFields.Controls)
-            {
+            foreach (FieldBaseControl ctrl in panFields.Controls) {
                 if (first)
                     first = false;
                 else
@@ -2704,8 +2783,7 @@ width: 100% !important;*/
                 return;
 
             mLoadingFile = true;
-            foreach (FieldDelimitedControl ctrl in panFields.Controls)
-            {
+            foreach (FieldDelimitedControl ctrl in panFields.Controls) {
                 if (chkAllQuoted.Checked)
                     ctrl.txtQuoted.Text = "\"";
                 else
@@ -2718,26 +2796,23 @@ width: 100% !important;*/
         private void chkAllTrim_CheckedChanged(object sender, EventArgs e)
         {
             mLoadingFile = true;
-            foreach (FieldBaseControl ctrl in panFields.Controls)
-            {
+            foreach (FieldBaseControl ctrl in panFields.Controls) {
                 if (chkAllTrim.Checked)
                     ctrl.cboTrim.SelectedIndex = 3;
                 else
                     ctrl.cboTrim.SelectedIndex = 0;
 
-             //   ctrl.cboTrim.Refresh();
+                //   ctrl.cboTrim.Refresh();
             }
             mLoadingFile = false;
             ReLoadPreview();
-
         }
-       
+
         private void cmdfileDesigner_Click(object sender, EventArgs e)
         {
             frmDataFile frm = new frmDataFile();
             frm.ShowDialog();
             frm.Dispose();
-
         }
 
         private void cmdDetectFormat_Click(object sender, EventArgs e)
@@ -2745,7 +2820,6 @@ width: 100% !important;*/
             AutoDetectFormat(false);
         }
 
-      
 
         private void cmdDetectFormatWithHeader_Click(object sender, EventArgs e)
         {

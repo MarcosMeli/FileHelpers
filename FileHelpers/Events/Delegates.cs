@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 namespace FileHelpers.Events
 {
-
-	// ----  Read Operations  ----
+    // ----  Read Operations  ----
     /// <summary>
     /// Called in read operations just before the record string is translated to a record.
     /// </summary>
@@ -19,7 +18,6 @@ namespace FileHelpers.Events
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
     public delegate void AfterReadHandler<T>(EngineBase engine, AfterReadEventArgs<T> e) where T : class;
-
 
 
     // ----  Write Operations  ----
@@ -37,5 +35,4 @@ namespace FileHelpers.Events
     /// <param name="engine">The engine that generates the event.</param>
     /// <param name="e">The event data.</param>
     public delegate void AfterWriteHandler<T>(EngineBase engine, AfterWriteEventArgs<T> e) where T : class;
-
 }

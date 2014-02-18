@@ -37,7 +37,6 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
-
         [Test]
         [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesFirstIsField()
@@ -69,8 +68,8 @@ namespace FileHelpers.Tests.CommonTests
         {
             public int Tag { get; set; }
             public string Usuario { get; set; }
-
         }
+
         [DelimitedRecord("|")]
         public class AutoPropertiesLastIsField
         {
@@ -86,6 +85,7 @@ namespace FileHelpers.Tests.CommonTests
             public int Tag { get; set; }
             public string Usuario { get; set; }
         }
+
         [DelimitedRecord("|")]
         public class AutoPropertiesMidIsField
         {
@@ -93,8 +93,5 @@ namespace FileHelpers.Tests.CommonTests
             public string Field1;
             public string Usuario { get; set; }
         }
-
-
     }
-
 }

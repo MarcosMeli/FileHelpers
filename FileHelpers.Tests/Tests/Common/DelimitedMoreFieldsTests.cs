@@ -8,22 +8,20 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class DelimitedMoreFieldsTests
     {
-
-
         [Test]
         public void MoreFields()
         {
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.OrdersSmallVerticalBar
-                                                 .ReadWithEngine<Orders3Fields>());
+                FileTest.Good.OrdersSmallVerticalBar
+                    .ReadWithEngine<Orders3Fields>());
         }
 
         [Test]
         public void MoreFields2()
         {
             Assert.Throws<BadUsageException>(() =>
-                                             FileTest.Good.OrdersSmallVerticalBar
-                                                 .ReadWithEngine<Orders2Fields>());
+                FileTest.Good.OrdersSmallVerticalBar
+                    .ReadWithEngine<Orders2Fields>());
         }
 
 
@@ -43,10 +41,6 @@ namespace FileHelpers.Tests.CommonTests
             public string OrderID;
 
             public string CustomerID;
-
         }
-
     }
-
-
 }

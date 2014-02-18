@@ -23,9 +23,6 @@ namespace FileHelpers.WizardApp
             frm.ShowDialog();
         }
 
-        private void txtData_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void txtData_Click(object sender, EventArgs e) {}
     }
 }

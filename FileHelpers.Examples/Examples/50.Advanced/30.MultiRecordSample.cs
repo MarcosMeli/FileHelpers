@@ -39,17 +39,17 @@ namespace ExamplesFx
         {
             MultiRecordEngine engine;
 
-            engine = new MultiRecordEngine(typeof(Orders),
-                                            typeof(Customer),
-                                            typeof(SampleType));
+            engine = new MultiRecordEngine(typeof (Orders),
+                typeof (Customer),
+                typeof (SampleType));
             engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
             object[] res = engine.ReadFile("Input.txt");
 
             foreach (var rec in res)
                 this.Console.WriteLine(res.ToString());
-
         }
+
         //-> /File
 
         //-> File:Selector.cs
@@ -60,18 +60,19 @@ namespace ExamplesFx
         /// <param name="engine">Engine that is processing file</param>
         /// <param name="record">Record read from input</param>
         /// <returns>Record to accept this record</returns>
-        Type CustomSelector(MultiRecordEngine engine, string record)
+        private Type CustomSelector(MultiRecordEngine engine, string record)
         {
             if (record.Length == 0)
                 return null;
 
             if (Char.IsLetter(record[0]))
-                return typeof(Customer);
+                return typeof (Customer);
             else if (record.Length == 14)
-                return typeof(SampleType);
+                return typeof (SampleType);
             else
-                return typeof(Orders);
+                return typeof (Orders);
         }
+
         //-> /File
 
         //-> File:Customer.cs
@@ -98,6 +99,7 @@ namespace ExamplesFx
                 return CustomerID + " - " + CompanyName + ", " + ContactName;
             }
         }
+
         //-> /File
 
         //-> File:SampleType.cs
@@ -121,6 +123,7 @@ namespace ExamplesFx
             [FieldTrim(TrimMode.Both)]
             public int Field3;
         }
+
         //-> /File
 
 
@@ -141,13 +144,14 @@ namespace ExamplesFx
 
             public DateTime RequiredDate;
 
-            [FieldNullValue(typeof(DateTime), "2005-1-1")]
+            [FieldNullValue(typeof (DateTime), "2005-1-1")]
             public DateTime ShippedDate;
 
             public int ShipVia;
 
             public decimal Freight;
         }
+
         //-> /File
 
         //-> File:example_multirecords.html
@@ -176,7 +180,5 @@ namespace ExamplesFx
          * </blockquote>
          */
         //-> /File
-
-
     }
 }
