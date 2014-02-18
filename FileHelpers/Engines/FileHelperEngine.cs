@@ -37,12 +37,12 @@ namespace FileHelpers
             
         }
 
-        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-        /// <param name="ri">Record information on new type</param>
-        internal FileHelperEngine(RecordInfo ri)
-            : base(ri)
-        {
-        }
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        ///// <param name="ri">Record information on new type</param>
+        //internal FileHelperEngine(RecordInfo ri)
+        //    : base(ri)
+        //{
+        //}
 
 
         #endregion
@@ -88,20 +88,21 @@ namespace FileHelpers
         }
 
 
-        /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
-        /// <param name="ri">Record information</param>
-        internal FileHelperEngine(RecordInfo ri)
-			: base(ri)
-		{
-            mObjectEngine = typeof(T) == typeof(object);
-		}
+        ///// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
+        ///// <param name="ri">Record information</param>
+        //internal FileHelperEngine(RecordInfo ri)
+        //    : base(ri)
+        //{
+        //    mObjectEngine = typeof(T) == typeof(object);
+        //}
 
 
 		#endregion
 
-		#region "  ReadFile  "
 
-		/// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
+        #region "  ReadFile  "
+
+        /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
 		public T[] ReadFile(string fileName)
 		{
 			return ReadFile(fileName, int.MaxValue);

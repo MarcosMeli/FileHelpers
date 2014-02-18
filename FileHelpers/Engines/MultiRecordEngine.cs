@@ -108,6 +108,8 @@ namespace FileHelpers
 
 			    mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
 			    mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+                mMultiRecordInfo[i].Operations.ReadFieldError += Operations_ReadFieldError;
+                mMultiRecordInfo[i].Operations.ReadLineError += Operations_ReadLineError;
 			}
 			mRecordSelector = recordSelector;
 		}

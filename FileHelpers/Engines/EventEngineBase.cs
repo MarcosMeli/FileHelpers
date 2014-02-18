@@ -35,14 +35,14 @@ namespace FileHelpers
         {
         }
 
-        /// <summary>
-        /// Event based upon supplied record information
-        /// </summary>
-        /// <param name="ri"></param>
-        internal EventEngineBase(RecordInfo ri)
-            : base(ri)
-        {
-        }
+        ///// <summary>
+        ///// Event based upon supplied record information
+        ///// </summary>
+        ///// <param name="ri"></param>
+        //internal EventEngineBase(RecordInfo ri)
+        //    : base(ri)
+        //{
+        //}
 
         /// <summary>
         /// Called in read operations just before the record string is

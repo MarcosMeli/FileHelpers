@@ -54,23 +54,65 @@ namespace FileHelpers
 
             mRecordType = recordType;
             RecordInfo = FileHelpers.RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
+            RecordInfo.Operations.ReadFieldError += Operations_ReadFieldError;
+            RecordInfo.Operations.ReadLineError += Operations_ReadLineError;
+
             mEncoding = encoding;
 
             CreateRecordOptions();
         }
 
-        /// <summary>
-        /// Create an engine on the record info provided
-        /// </summary>
-        /// <param name="ri">Record information</param>
-        internal EngineBase(RecordInfo ri)
-        {
-            mRecordType = ri.RecordType;
-            RecordInfo = ri;
+        ///// <summary>
+        ///// Create an engine on the record info provided
+        ///// </summary>
+        ///// <param name="ri">Record information</param>
+        //internal EngineBase(RecordInfo ri)
+        //{
+        //    mRecordType = ri.RecordType;
+        //    RecordInfo = ri;
 
-            CreateRecordOptions();
+        //    CreateRecordOptions();
+        //}
+
+
+        #endregion
+
+        #region "  Events  "
+        /// <summary>
+        /// Event that fires when extract field raises an exception
+        /// </summary>
+        /// <param name="sender">The sender of the event</param>
+        /// <param name="e">The Event Args</param>
+        /// <returns></returns>
+        protected bool Operations_ReadFieldError(object sender, ReadFieldErrorEventArgs e)
+        {
+            switch (mErrorManager.ErrorMode)
+            {
+                case ErrorMode.ThrowException:
+                    // rethrow the exception to stop the engine
+                    throw e.Error.ExceptionInfo;
+                case ErrorMode.IgnoreAndContinue:
+                    // the record will be ignored. No further action is required
+                    return false;
+                case ErrorMode.SaveAndContinue:
+                    mErrorManager.AddError(e.Error);
+                    break;
+            }
+
+            // TODO add a property to the EngineBase to specify a default behavior.
+            return true;
         }
 
+        /// <summary>
+        /// Occurs when a line contains an error while reading in RecordOperation
+        /// </summary>
+        /// <param name="sender">the sender of the event</param>
+        /// <param name="e">The arguments <see cref="ReadLineErrorEventArgs"/> of the event</param>
+        protected void Operations_ReadLineError(object sender, ReadLineErrorEventArgs e)
+        {
+            // Raise the Engine ReadLineError event
+            OnReadLineError(e);
+        }
 
         #endregion
 
@@ -261,6 +303,21 @@ namespace FileHelpers
             Progress(this, e);
         }
 #endif
+
+        /// <summary>Event handler called to ReadLineError.</summary>
+        public event EventHandler<ReadLineErrorEventArgs> ReadLineError;
+
+        /// <summary>
+        /// Raises the ReadLineError Event
+        /// </summary>
+        /// <param name="e">The Event Args</param>
+        protected void OnReadLineError(ReadLineErrorEventArgs e)
+        {
+            if (ReadLineError == null)
+                return;
+
+            ReadLineError(this, e);
+        }
 
         private void CreateRecordOptions()
         {

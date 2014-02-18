@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileHelpers.Events;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -10,8 +11,8 @@ namespace FileHelpers
     /// <summary>
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
-    internal sealed class RecordOperations 
-        //: IRecordOperations
+    internal sealed class RecordOperations
+    //: IRecordOperations
     {
         /// <summary>
         /// Record Info we use to parse the record and generate an object instance
@@ -27,6 +28,55 @@ namespace FileHelpers
             RecordInfo = recordInfo;
         }
 
+        #region "  Events  "
+
+        /// <summary>
+        /// Called in read operations just before the record string is
+        /// translated to a record.
+        /// </summary>
+        public event ReadFieldErrorHandler ReadFieldError;
+
+        /// <summary>
+        /// Called in read operations just before the record string is
+        /// translated to a record.
+        /// </summary>
+        public event ReadLineErrorHandler ReadLineError;
+
+        /// <summary>
+        /// Extract error of a field
+        /// </summary>
+        /// <param name="error">The error that occured</param>
+        /// <param name="field">The field that caused the error</param>
+        /// <returns>true indicates that the record has to be processed further for errors</returns>
+        public bool OnReadFieldError(ErrorInfo error, FieldBase field)
+        {
+            if (ReadFieldError != null)
+            {
+                var e = new ReadFieldErrorEventArgs(error, field);
+                return ReadFieldError(this, e);
+            }
+
+            // Default stop reading the line
+            return false;
+        }
+
+        /// <summary>
+        /// Extract all errors of a record
+        /// </summary>
+        /// <param name="line">Record read</param>
+        /// <param name="lineNumber">The line number</param>
+        /// <param name="errors">All errors of the record</param>
+        public void OnReadLineError(string line, int lineNumber, List<ErrorInfo> errors)
+        {
+            if (ReadLineError != null)
+            {
+                var e = new ReadLineErrorEventArgs(line, lineNumber, errors);
+                ReadLineError(this, e);
+            }
+        }
+
+        #endregion
+
         #region "  StringToRecord  "
 
         /// <summary>
@@ -41,9 +91,35 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return null;
 
+            // Collect all errors
+            List<ErrorInfo> errors = new List<ErrorInfo>();
+
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+                var field = RecordInfo.Fields[i];
+                try
+                {
+                    values[i] = field.ExtractFieldValue(line);
+                }
+                catch (Exception exception)
+                {
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    errors.Add(error);
+
+                    if (!OnReadFieldError(error, field))
+                    {
+                        // stacktrace is lost. Is that an issue?
+                        break;
+                    }
+                }
+            }
+
+            if (errors.Count > 0)
+            {
+                // TODO investigate if it is possible to process the record anyway(errors on non required values)
+                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                // skip record
+                return false;
             }
 
             try
@@ -86,9 +162,35 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return false;
 
+            // Collect all errors
+            List<ErrorInfo> errors = new List<ErrorInfo>();
+
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+                var field = RecordInfo.Fields[i];
+                try
+                {
+                    values[i] = field.ExtractFieldValue(line);
+                }
+                catch (Exception exception)
+                {
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    errors.Add(error);
+
+                    if (!OnReadFieldError(error, field))
+                    {
+                        // stacktrace is lost. Is that an issue?
+                        break;
+                    }
+                }
+            }
+
+            if (errors.Count > 0)
+            {
+                // TODO investigate if it is possible to process the record anyway(errors on non required values)
+                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                // skip record
+                return false;
             }
 
             try
@@ -351,7 +453,8 @@ namespace FileHelpers
         /// </summary>
         private ObjectToValuesDelegate ObjectToValuesHandler
         {
-            get {
+            get
+            {
                 return mObjectToValuesHandler ??
                        (mObjectToValuesHandler =
                         ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));
