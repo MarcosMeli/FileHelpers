@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace FileHelpers.WizardApp
 {
-	public class MainClass
-	{
+    public class MainClass
+    {
         [STAThread]
         public static void Main(string[] args)
-		{
+        {
             string destFile = null;
 
             if (args.Length > 1)
@@ -17,9 +17,8 @@ namespace FileHelpers.WizardApp
             Application.EnableVisualStyles();
 
             frmWizard frm = new frmWizard();
-			frm.ShowDialog();
-			frm.Dispose();
-		}
-
-	}
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+    }
 }

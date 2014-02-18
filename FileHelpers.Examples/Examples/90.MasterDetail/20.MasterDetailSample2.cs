@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class SecondMasterDetailSample
         : ExampleBase
     {
-
         //-> Name:Master Detail sample
         //-> Description:Show how to implement Master detail reading where record contains characters
 
@@ -23,13 +22,14 @@ namespace ExamplesFx
         public override void Run()
         {
             var engine = new MasterDetailEngine<Customers, Orders>
-                                         (CommonSelector.MasterIfContains, "@");
+                (CommonSelector.MasterIfContains, "@");
             // to Read use:
             var res = engine.ReadFile("Input.txt");
 
             // to Write use:
             engine.WriteFile("Output.txt", res);
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -62,6 +62,7 @@ namespace ExamplesFx
             public string City;
             public string Country;
         }
+
         //-> /File
 
         //-> File:Detail layout.cs
@@ -80,6 +81,7 @@ namespace ExamplesFx
             public int ShipVia;
             public decimal Freight;
         }
+
         //-> /File
     }
 }

@@ -16,16 +16,16 @@ namespace FileHelpers
     /// <see cref="FileHelperAsyncEngine"/></summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class EngineBase
-    //#if ! MINI
-    //:Component
-    //#endif
+        //#if ! MINI
+        //:Component
+        //#endif
     {
-
-        internal const int DefaultReadBufferSize = 100 * 1024;
-        internal const int DefaultWriteBufferSize = 100 * 1024;
+        internal const int DefaultReadBufferSize = 100*1024;
+        internal const int DefaultWriteBufferSize = 100*1024;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal IRecordInfo RecordInfo { get; private set; }
+
         //private readonly IRecordInfo mRecordInfo;
 
         #region "  Constructor  "
@@ -34,8 +34,8 @@ namespace FileHelpers
         /// Create an engine on record type, with default encoding
         /// </summary>
         /// <param name="recordType">Class to base engine on</param>
-		internal EngineBase(Type recordType):this(recordType, Encoding.Default)
-		{}
+        internal EngineBase(Type recordType)
+            : this(recordType, Encoding.Default) {}
 
         /// <summary>
         /// Create and engine on type with specified encoding
@@ -47,10 +47,11 @@ namespace FileHelpers
             if (recordType == null)
                 throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
 
-            if (recordType.IsValueType)
+            if (recordType.IsValueType) {
                 throw new BadUsageException(Messages.Errors.StructRecordClass
-                                                .RecordType(recordType.Name)
-                                                .Text);
+                    .RecordType(recordType.Name)
+                    .Text);
+            }
 
             mRecordType = recordType;
             RecordInfo = FileHelpers.RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
@@ -71,19 +72,18 @@ namespace FileHelpers
             CreateRecordOptions();
         }
 
-
         #endregion
 
         #region "  LineNumber  "
 
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal int mLineNumber;
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal int mTotalRecords;
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
-        public int LineNumber 
+        public int LineNumber
         {
             get { return mLineNumber; }
         }
@@ -111,13 +111,10 @@ namespace FileHelpers
             var delimiter = "\t";
 
             if (RecordInfo.IsDelimited)
-            {
-                delimiter = ((DelimitedRecordOptions)Options).Delimiter;
-            }
+                delimiter = ((DelimitedRecordOptions) Options).Delimiter;
 
             var res = new StringBuilder();
-            for (int i = 0; i < RecordInfo.Fields.Length; i++)
-            {
+            for (int i = 0; i < RecordInfo.Fields.Length; i++) {
                 if (i > 0)
                     res.Append(delimiter);
 
@@ -274,6 +271,5 @@ namespace FileHelpers
         /// Allows you to change some record layout options at runtime
         /// </summary>
         public RecordOptions Options { get; private set; }
-
     }
 }

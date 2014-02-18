@@ -23,7 +23,8 @@ namespace ExamplesFx.ColorCode
         /// </summary>
         public CodeColorizer()
         {
-            languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
+            languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages),
+                Languages.LanguageRepository);
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace ExamplesFx.ColorCode
         public CodeColorizer(ILanguageParser languageParser)
         {
             Guard.ArgNotNull(languageParser, "languageParser");
-            
+
             this.languageParser = languageParser;
         }
 
@@ -45,10 +46,9 @@ namespace ExamplesFx.ColorCode
         /// <returns>The colorized source code.</returns>
         public string Colorize(string sourceCode, ILanguage language)
         {
-            var buffer = new StringBuilder(sourceCode.Length * 2);
+            var buffer = new StringBuilder(sourceCode.Length*2);
 
-            using (TextWriter writer = new StringWriter(buffer))
-            {
+            using (TextWriter writer = new StringWriter(buffer)) {
                 Colorize(sourceCode, language, writer);
 
                 writer.Flush();
@@ -77,10 +77,10 @@ namespace ExamplesFx.ColorCode
         /// <param name="styleSheet">The style sheet to use to colorize the source code.</param>
         /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
         public void Colorize(string sourceCode,
-                             ILanguage language,
-                             IFormatter formatter,
-                             IStyleSheet styleSheet,
-                             TextWriter textWriter)
+            ILanguage language,
+            IFormatter formatter,
+            IStyleSheet styleSheet,
+            TextWriter textWriter)
         {
             Guard.ArgNotNull(language, "language");
             Guard.ArgNotNull(formatter, "formatter");
@@ -89,7 +89,9 @@ namespace ExamplesFx.ColorCode
 
             formatter.WriteHeader(styleSheet, textWriter);
 
-            languageParser.Parse(sourceCode, language, (parsedSourceCode, captures) => formatter.Write(parsedSourceCode, captures, styleSheet, textWriter));
+            languageParser.Parse(sourceCode,
+                language,
+                (parsedSourceCode, captures) => formatter.Write(parsedSourceCode, captures, styleSheet, textWriter));
 
             formatter.WriteFooter(styleSheet, textWriter);
         }

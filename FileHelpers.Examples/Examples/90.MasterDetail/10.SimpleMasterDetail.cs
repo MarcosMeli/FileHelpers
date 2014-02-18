@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class SimpleMasterDetailSample
         : ExampleBase
     {
-
         //-> Name:Simple Master Detail sample
         //-> Description:Show how to implement Master detail reading using a selection subroutine
 
@@ -26,13 +25,10 @@ namespace ExamplesFx
 
             var result = engine.ReadFile("Input.txt");
 
-            foreach (var group in result)
-            {
+            foreach (var group in result) {
                 Console.WriteLine("Customer: {0}", group.Master.CustomerID);
                 foreach (var detail in group.Details)
-                {
                     Console.WriteLine("    Freight: {0}", detail.Freight);
-                }
             }
         }
 
@@ -42,7 +38,7 @@ namespace ExamplesFx
         /// </summary>
         /// <param name="record">Alpha characters coming in</param>
         /// <returns>Selector for master or detail record</returns>
-        RecordAction ExampleSelector(string record)
+        private RecordAction ExampleSelector(string record)
         {
             if (record.Length < 2)
                 return RecordAction.Skip;
@@ -52,6 +48,7 @@ namespace ExamplesFx
             else
                 return RecordAction.Detail;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -83,6 +80,7 @@ namespace ExamplesFx
             public string City;
             public string Country;
         }
+
         //-> /File
 
         //-> File:Detail layout.cs
@@ -101,6 +99,7 @@ namespace ExamplesFx
             public int ShipVia;
             public decimal Freight;
         }
+
         //-> /File
     }
 }

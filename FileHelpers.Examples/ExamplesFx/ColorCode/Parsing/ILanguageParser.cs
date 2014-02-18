@@ -9,7 +9,7 @@ namespace ExamplesFx.ColorCode.Parsing
     internal interface ILanguageParser
     {
         void Parse(string sourceCode,
-                   ILanguage language,
-                   Action<string, IList<Scope>> parseHandler);
+            ILanguage language,
+            Action<string, IList<Scope>> parseHandler);
     }
 }

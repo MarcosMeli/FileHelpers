@@ -11,7 +11,7 @@ namespace FileHelpers
     /// </summary>
     /// <typeparam name="T">object type we are sorting</typeparam>
     internal sealed class SortQueue<T>
-        :IDisposable
+        : IDisposable
         where T : class
     {
         private readonly string mFile;
@@ -29,14 +29,12 @@ namespace FileHelpers
         {
             mFile = file;
             mDeleteFile = deleteFile;
-            Engine = new FileHelperAsyncEngine<T>(encoding)
-                {
-                    Options =
-                        {
-                            IgnoreFirstLines = 0,
-                            IgnoreLastLines = 0
-                        }
-                };
+            Engine = new FileHelperAsyncEngine<T>(encoding) {
+                Options = {
+                    IgnoreFirstLines = 0,
+                    IgnoreLastLines = 0
+                }
+            };
             Engine.BeginReadFile(file, EngineBase.DefaultReadBufferSize*4);
 
             MoveNext();
@@ -47,7 +45,7 @@ namespace FileHelpers
         /// </summary>
         public void MoveNext()
         {
-           Current = Engine.ReadNext();
+            Current = Engine.ReadNext();
         }
 
         /// <summary>

@@ -14,8 +14,8 @@ namespace ExamplesFx
     {
         public ReadFile()
         {
-            HtmlBody = 
-@"<p>If you have a source file like this, separated by a |:</p>
+            HtmlBody =
+                @"<p>If you have a source file like this, separated by a |:</p>
           ${Input.txt}
           <p>You first declare a Record Mapping Class:</p>
           ${RecordClass.cs}
@@ -27,7 +27,6 @@ namespace ExamplesFx
           <blockquote>
           <img height='93' src='${URL}vs_orders.png' width='165' alt='Visual studio intellisense'/>
 ";
-
         }
 
         //->Html: <p>If you have a source file like this, separated by a |:</p>
@@ -55,6 +54,7 @@ namespace ExamplesFx
 
             public decimal Freight;
         }
+
         //-> /File
 
         //->Html: Finally you must to instantiate a FileHelperEngine and read or write files:
@@ -64,9 +64,8 @@ namespace ExamplesFx
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
-            
-            foreach (var record in records)
-            {
+
+            foreach (var record in records) {
                 Console.WriteLine(record.CustomerID);
                 Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 Console.WriteLine(record.Freight);
@@ -81,8 +80,5 @@ namespace ExamplesFx
                      <img height='93' src='${URL}vs_orders.png' width='165' alt='Visual studio intellisense'/>
                   </blockquote>
          */
-
-
-
     }
 }

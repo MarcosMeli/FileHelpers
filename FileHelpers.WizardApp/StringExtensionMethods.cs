@@ -23,8 +23,7 @@ namespace System
             if (toCheck == null)
                 return false;
 
-            for (int i = 0; i < toCheck.Length; i++)
-            {
+            for (int i = 0; i < toCheck.Length; i++) {
                 if (string.Equals(text, toCheck[i], StringComparison.OrdinalIgnoreCase))
                     return true;
             }
@@ -71,12 +70,10 @@ namespace System
         /// </summary>
         /// 
         /// 
-
-        static readonly Regex mSplitWords = new Regex(@"\W+", RegexOptions.Compiled);
+        private static readonly Regex mSplitWords = new Regex(@"\W+", RegexOptions.Compiled);
 
         public static string[] SplitInWords(this string s)
         {
-
             //
             // Split on all non-word characters.
             // ... Returns an array of all the words.
@@ -96,10 +93,10 @@ namespace System
             var res = 0;
 
             var prevCharIsSeparator = true;
-            foreach (var c in text)
-            {
-                if (char.IsSeparator(c) || char.IsPunctuation(c) || char.IsWhiteSpace(c))
-                {
+            foreach (var c in text) {
+                if (char.IsSeparator(c) ||
+                    char.IsPunctuation(c) ||
+                    char.IsWhiteSpace(c)) {
                     if (!prevCharIsSeparator)
                         res++;
                     prevCharIsSeparator = true;
@@ -115,12 +112,12 @@ namespace System
 
         public static string[] SplitInLines(this string s)
         {
-            return s.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            return s.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
         }
 
         public static string[] SplitInLinesRemoveEmptys(this string s)
         {
-            return s.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            return s.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public static bool ContainsWholeWord(this string text, string toCheck)
@@ -132,8 +129,7 @@ namespace System
                 throw new ArgumentException("El parametro 'toChek' es vacio");
 
             var partes = text.SplitInWords();
-            foreach (var parte in partes)
-            {
+            foreach (var parte in partes) {
                 if (parte.EqualsIgnoreCase(toCheck))
                     return true;
             }
@@ -146,8 +142,7 @@ namespace System
                 throw new ArgumentException("El parametro 'toChek' es vacio");
 
             var startIndex = 0;
-            while (startIndex <= text.Length)
-            {
+            while (startIndex <= text.Length) {
                 var index = text.IndexOfIgnoreCase(startIndex, toCheck);
                 if (index < 0)
                     return false;
@@ -156,8 +151,9 @@ namespace System
                 var indexNextCar = index + toCheck.Length;
                 if ((index == 0
                      || !Char.IsLetter(text[indexPreviousCar]))
-                    && (index + toCheck.Length == text.Length
-                        || !Char.IsLetter(text[indexNextCar])))
+                    &&
+                    (index + toCheck.Length == text.Length
+                     || !Char.IsLetter(text[indexNextCar])))
                     return true;
 
                 startIndex = index + toCheck.Length;
@@ -167,8 +163,7 @@ namespace System
 
         public static bool ContainsWholePhraseAny(this string text, params string[] toCheck)
         {
-            foreach (var phrase in toCheck)
-            {
+            foreach (var phrase in toCheck) {
                 if (text.ContainsWholePhrase(phrase))
                     return true;
             }
@@ -181,8 +176,7 @@ namespace System
                 throw new ArgumentException("El parametro 'toChek' es vacio");
 
             //var startIndex = 0;
-            while (startIndex <= text.Length)
-            {
+            while (startIndex <= text.Length) {
                 var index = text.IndexOfIgnoreCase(startIndex, toCheck);
                 if (index < 0)
                     return -1;
@@ -191,8 +185,9 @@ namespace System
                 var indexNextCar = index + toCheck.Length;
                 if ((index == 0
                      || !Char.IsLetter(text[indexPreviousCar]))
-                    && (index + toCheck.Length == text.Length
-                        || !Char.IsLetter(text[indexNextCar])))
+                    &&
+                    (index + toCheck.Length == text.Length
+                     || !Char.IsLetter(text[indexNextCar])))
                     return index;
 
                 startIndex = index + toCheck.Length;
@@ -202,11 +197,11 @@ namespace System
 
         public static string FindFirstPhrase(this string text, params string[] phrasesToCheck)
         {
-            if (phrasesToCheck == null || phrasesToCheck.Length == 0)
+            if (phrasesToCheck == null ||
+                phrasesToCheck.Length == 0)
                 throw new ArgumentException("El parametro 'phrasesToCheck' es vacio");
 
-            foreach (var checking in phrasesToCheck)
-            {
+            foreach (var checking in phrasesToCheck) {
                 if (text.ContainsWholePhrase(checking))
                     return checking;
             }
@@ -215,6 +210,7 @@ namespace System
 
 
 #endif
+
         /// <summary>
         /// Indica si el string contine algunos de los textos toCheck lo busca con OrdinalIgnoringCase
         /// </summary>
@@ -223,11 +219,11 @@ namespace System
         /// <returns>True if the string contains the text toCheck ignoring case.</returns>
         public static bool ContainsAnyIgnoreCase(this string text, params string[] toCheck)
         {
-            if (toCheck == null || toCheck.Length == 0)
+            if (toCheck == null ||
+                toCheck.Length == 0)
                 throw new ArgumentException("El parametro 'toChek' es vacio");
 
-            foreach (var checking in toCheck)
-            {
+            foreach (var checking in toCheck) {
                 if (text.IndexOfIgnoreCase(checking) >= 0)
                     return true;
             }
@@ -242,11 +238,11 @@ namespace System
         /// <returns>True if the string contains all the texts toCheck ignoring case.</returns>
         public static bool ContainsAllIgnoreCase(this string text, params string[] toCheck)
         {
-            if (toCheck == null || toCheck.Length == 0)
+            if (toCheck == null ||
+                toCheck.Length == 0)
                 throw new ArgumentException("El parametro 'toChek' es vacio");
 
-            foreach (var checking in toCheck)
-            {
+            foreach (var checking in toCheck) {
                 if (text.IndexOfIgnoreCase(checking) < 0)
                     return false;
             }
@@ -258,15 +254,13 @@ namespace System
             if (text.Length == 0)
                 return false;
 
-            for (int i = 0; i < text.Length; i++)
-            {
+            for (int i = 0; i < text.Length; i++) {
                 if (text[i] != toCheck)
                     return false;
             }
 
             return true;
         }
-
 
 
         /// <summary>
@@ -318,14 +312,13 @@ namespace System
         }
 
 
-
         public static string FindFirstOcurrence(this string text, params string[] toCheck)
         {
-            if (toCheck == null || toCheck.Length == 0)
+            if (toCheck == null ||
+                toCheck.Length == 0)
                 throw new ArgumentException("El parametro 'toCheck' es vacio");
 
-            foreach (var checking in toCheck)
-            {
+            foreach (var checking in toCheck) {
                 if (text.ContainsIgnoreCase(checking))
                     return checking;
             }
@@ -350,7 +343,7 @@ namespace System
 
         public static bool StartsWithAnyIgnoreCase(this string text, params string[] toCheck)
         {
-            return StartsWithAnyIgnoreCase(text, (IEnumerable<string>)toCheck);
+            return StartsWithAnyIgnoreCase(text, (IEnumerable<string>) toCheck);
         }
 
         public static bool StartsWithAnyIgnoreCase(this string text, IEnumerable<string> toCheck)
@@ -358,8 +351,7 @@ namespace System
             if (text.IsNullOrEmpty())
                 return false;
 
-            foreach (var check in toCheck)
-            {
+            foreach (var check in toCheck) {
                 if (text.StartsWith(check, StringComparison.OrdinalIgnoreCase))
                     return true;
             }
@@ -380,7 +372,7 @@ namespace System
 
         public static bool EndsWithAnyIgnoreCase(this string text, params string[] toCheck)
         {
-            return EndsWithAnyIgnoreCase(text, (IEnumerable<string>)toCheck);
+            return EndsWithAnyIgnoreCase(text, (IEnumerable<string>) toCheck);
         }
 
         public static bool EndsWithAnyIgnoreCase(this string text, IEnumerable<string> toCheck)
@@ -388,8 +380,7 @@ namespace System
             if (text.IsNullOrEmpty())
                 return false;
 
-            foreach (var check in toCheck)
-            {
+            foreach (var check in toCheck) {
                 if (text.EndsWith(check, StringComparison.OrdinalIgnoreCase))
                     return true;
             }
@@ -425,7 +416,6 @@ namespace System
                 return d;
             return null;
         }
-
 
 
         /// <summary>
@@ -665,42 +655,33 @@ namespace System
         public static string Substring(this string text, string startText)
         {
             int indice = text.IndexOf(startText);
-            if (indice == -1) throw new ArgumentException("No se encontro: " + startText);
+            if (indice == -1)
+                throw new ArgumentException("No se encontro: " + startText);
             return text.Substring(indice);
         }
 
         public static string Right(this string text, int length)
         {
             if (length < 0)
-            {
                 throw new ArgumentException("Length > 0", "length");
-            }
-            if ((length == 0) || (text == null))
-            {
+            if ((length == 0) ||
+                (text == null))
                 return "";
-            }
             int strLength = text.Length;
             if (length >= strLength)
-            {
                 return text;
-            }
             return text.Substring(strLength - length, length);
         }
 
         public static string Left(this string text, int length)
         {
             if (length < 0)
-            {
                 throw new ArgumentException("Length > 0", "length");
-            }
-            if ((length == 0) || (text == null))
-            {
+            if ((length == 0) ||
+                (text == null))
                 return "";
-            }
             if (length >= text.Length)
-            {
                 return text;
-            }
             return text.Substring(0, length);
         }
 
@@ -713,9 +694,9 @@ namespace System
         public static bool Contains(this string text, string[] values)
         {
             bool contain = false;
-            foreach (String s in values)
-            {
-                if (text.Contains(s)) contain = true;
+            foreach (String s in values) {
+                if (text.Contains(s))
+                    contain = true;
             }
             return contain;
         }
@@ -728,10 +709,9 @@ namespace System
         public static void TrimAll(this IList<string> textos)
         {
             for (int i = 0; i < textos.Count; i++)
-            {
                 textos[i] = textos[i].Trim();
-            }
         }
+
         /// <summary>
         /// Es como llamar a String.Format pero direcmante sobre el string  "Hola {0} hoy es: {1}".Fill("Juan", 12)
         /// </summary>
@@ -756,7 +736,8 @@ namespace System
         public static string ReplaceOnlyWholePhrase(this string original, string oldValue, string newValue)
         {
             if (original.IsNullOrEmpty()
-                || oldValue.IsNullOrEmpty())
+                ||
+                oldValue.IsNullOrEmpty())
                 return original;
 
             var index = original.IndexWholePhrase(oldValue);
@@ -764,8 +745,7 @@ namespace System
 
             var buffer = new StringBuilder(original.Length);
 
-            while (index >= 0)
-            {
+            while (index >= 0) {
                 buffer.Append(original, startIndex: lastIndex, count: index - lastIndex);
                 buffer.Append(newValue);
 
@@ -809,22 +789,23 @@ namespace System
                 return original.Substring(0, index) + newValue + original.Substring(index + oldValue.Length);
         }
 
-        public static string Replace(this string original, string oldValue, string newValue, StringComparison comparisionType)
+        public static string Replace(this string original,
+            string oldValue,
+            string newValue,
+            StringComparison comparisionType)
         {
             if (original.IsNullOrEmpty())
                 return original;
 
             string result = original;
 
-            if (!string.IsNullOrEmpty(oldValue))
-            {
+            if (!string.IsNullOrEmpty(oldValue)) {
                 int index = -1;
                 int lastIndex = 0;
 
                 var buffer = new StringBuilder(original.Length);
 
-                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0)
-                {
+                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0) {
                     buffer.Append(original, lastIndex, index - lastIndex);
                     buffer.Append(newValue);
 
@@ -840,7 +821,8 @@ namespace System
 
         public static string Truncate(this string original, int maxLength)
         {
-            if (original.IsNullOrEmpty() || maxLength == 0)
+            if (original.IsNullOrEmpty() ||
+                maxLength == 0)
                 return string.Empty;
             if (original.Length <= maxLength)
                 return original;
@@ -859,13 +841,12 @@ namespace System
             res = original.Replace(oldValue, newValue);
 
             var i = 0;
-            do
-            {
+            do {
                 i++;
                 ante = res;
                 res = ante.Replace(oldValue, newValue);
-
-            } while (ante != res || i > MaxTries);
+            } while (ante != res ||
+                     i > MaxTries);
 
             return res;
         }
@@ -879,13 +860,14 @@ namespace System
                 return "_";
 
             StringBuilder res = new StringBuilder(original.Length + 1);
-            if (!char.IsLetter(original[0]) && original[0] != '_')
+            if (!char.IsLetter(original[0]) &&
+                original[0] != '_')
                 res.Append('_');
 
-            for (int i = 0; i < original.Length; i++)
-            {
+            for (int i = 0; i < original.Length; i++) {
                 char c = original[i];
-                if (char.IsLetterOrDigit(c) || c == '_')
+                if (char.IsLetterOrDigit(c) ||
+                    c == '_')
                     res.Append(c);
                 else
                     res.Append('_');
@@ -903,6 +885,7 @@ namespace System
                 .Replace(" O ", " o ");
         }
 #endif
+
         public static string ToCamelCase(this string original)
         {
             if (original.Length <= 1)
@@ -929,7 +912,8 @@ namespace System
         /// <returns>The <paramref name="text"/> repited the number of times indicates in the parameters</returns>
         public static string Repeat(this string text, int times)
         {
-            if (text.IsNullOrEmpty() || times == 0)
+            if (text.IsNullOrEmpty() ||
+                times == 0)
                 return string.Empty;
 
             if (text.Length == 1)
@@ -944,11 +928,9 @@ namespace System
             else if (times == 4)
                 return string.Concat(text, text, text, text);
 
-            StringBuilder res = new StringBuilder(text.Length * times);
+            StringBuilder res = new StringBuilder(text.Length*times);
             for (int i = 0; i < times; i++)
-            {
                 res.Append(text);
-            }
             return res.ToString();
         }
 
@@ -987,9 +969,7 @@ namespace System
                 return text;
 
             while (text.StartsWith(phrase))
-            {
                 text = text.Substring(phrase.Length);
-            }
 
             return text;
         }
@@ -1003,9 +983,7 @@ namespace System
                 return text;
 
             while (text.EndsWithIgnoreCase(phrase))
-            {
                 text = text.Substring(0, text.Length - phrase.Length);
-            }
 
             return text;
         }
@@ -1070,8 +1048,7 @@ namespace System
                 return me;
 
             string ante = null;
-            while (ante != me)
-            {
+            while (ante != me) {
                 ante = me;
                 me = me.Replace("  ", " ");
             }
@@ -1087,8 +1064,7 @@ namespace System
             var charRep = strChar + strChar;
 
             string ante = null;
-            while (ante != me)
-            {
+            while (ante != me) {
                 ante = me;
                 me = me.Replace(charRep, strChar);
             }
@@ -1100,18 +1076,16 @@ namespace System
             where T : IComparable
         {
             if (me.IsNullOrWhite())
-                return new T[] { };
+                return new T[] {};
 
             me = me.Trim();
 
-            var parts = me.Split(new char[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = me.Split(new char[] {delimiter}, StringSplitOptions.RemoveEmptyEntries);
 
             var res = new T[parts.Length];
 
             for (int i = 0; i < parts.Length; i++)
-            {
-                res[i] = (T)Convert.ChangeType(parts[i], typeof(T));
-            }
+                res[i] = (T) Convert.ChangeType(parts[i], typeof (T));
             return res;
         }
 
@@ -1119,39 +1093,36 @@ namespace System
             where T : IComparable
         {
             if (me.IsNullOrWhite())
-                return new T[] { };
+                return new T[] {};
 
             me = me.Trim();
 
-            var parts = me.Split(new string[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = me.Split(new string[] {delimiter}, StringSplitOptions.RemoveEmptyEntries);
 
             var res = new T[parts.Length];
 
             for (int i = 0; i < parts.Length; i++)
-            {
-                res[i] = (T)Convert.ChangeType(parts[i], typeof(T));
-            }
+                res[i] = (T) Convert.ChangeType(parts[i], typeof (T));
             return res;
         }
 #endif
+
         public static string LastWord(this string me)
         {
             if (me.IsNullOrEmpty())
                 return string.Empty;
 
-            for (int i = me.Length - 1; i >= 0; i--)
-            {
-                if (char.IsSeparator(me, i))
-                {
+            for (int i = me.Length - 1; i >= 0; i--) {
+                if (char.IsSeparator(me, i)) {
                     if (i == me.Length - 1) // Si el separador es el ultimo entonces vacio
                         return string.Empty;
                     else
                         return me.Substring(i + 1);
                 }
-
             }
             return me;
         }
+
 #if !SILVERLIGHT
         public static string SecondWord(this string me)
         {
@@ -1171,16 +1142,13 @@ namespace System
             if (me.IsNullOrEmpty())
                 return string.Empty;
 
-            for (int i = 0; i < me.Length; i++)
-            {
-                if (char.IsSeparator(me, i))
-                {
+            for (int i = 0; i < me.Length; i++) {
+                if (char.IsSeparator(me, i)) {
                     if (i == 0) // Si el separador es el ultimo entonces vacio
                         return string.Empty;
                     else
                         return me.Substring(0, i);
                 }
-
             }
             return me;
         }
@@ -1189,9 +1157,7 @@ namespace System
         {
             var res = new StringBuilder(me);
             foreach (var remove in toRemove)
-            {
                 res.Replace(remove, char.MinValue);
-            }
             res.Replace(char.MinValue.ToString(), string.Empty);
             return res.ToString();
         }
@@ -1228,8 +1194,7 @@ namespace System
         {
             var res = new StringBuilder(text.Length);
 
-            foreach (char car in text)
-            {
+            foreach (char car in text) {
                 if (char.IsLetterOrDigit(car))
                     res.Append(car);
             }
@@ -1238,19 +1203,18 @@ namespace System
         }
 
 #endif
+
         public static string FilterChars(this string text, Predicate<char> onlyThese)
         {
             var res = new StringBuilder(text.Length);
 
-            foreach (char car in text)
-            {
+            foreach (char car in text) {
                 if (onlyThese(car))
                     res.Append(car);
             }
 
             return res.ToString();
         }
-
 
         #endregion
 
@@ -1266,8 +1230,7 @@ namespace System
 
             int res = 0;
             int posIni = 0;
-            while ((posIni = text.IndexOfIgnoreCase(posIni, toCheck)) != -1)
-            {
+            while ((posIni = text.IndexOfIgnoreCase(posIni, toCheck)) != -1) {
                 posIni += toCheck.Length;
                 res++;
             }
@@ -1289,8 +1252,7 @@ namespace System
                 throw new ArgumentException("Los parametros para DiffOnlyOneChar deben tener la misma longitud");
 
             int res = 0;
-            for (int i = 0; i < text.Length; i++)
-            {
+            for (int i = 0; i < text.Length; i++) {
                 if (text[i] != toCheck[i])
                     res++;
             }
@@ -1300,21 +1262,25 @@ namespace System
         public static bool OneAbsentChar(this string text, string toCheck)
         {
             if (text.Length > 1
-                && toCheck.Length > 1
-                && Math.Abs(text.Length - toCheck.Length) != 1) //las long deben diferir en 1, y ambas ser mayor que 1
+                &&
+                toCheck.Length > 1
+                &&
+                Math.Abs(text.Length - toCheck.Length) != 1) //las long deben diferir en 1, y ambas ser mayor que 1
                 return false;
 
-            var textWithChar = (text.Length > toCheck.Length ? text : toCheck);
-            var textNoChar = (text.Length > toCheck.Length ? toCheck : text);
+            var textWithChar = (text.Length > toCheck.Length
+                ? text
+                : toCheck);
+            var textNoChar = (text.Length > toCheck.Length
+                ? toCheck
+                : text);
 
             //chequear si es el ultimo
             if (textWithChar[textWithChar.Length - 1] != textNoChar[textNoChar.Length - 1])
                 return textWithChar.Substring(0, textWithChar.Length - 1).EqualsIgnoreCase(textNoChar);
 
-            for (int i = 0; i < textNoChar.Length; i++)
-            {
-                if (textWithChar[i] != textNoChar[i])
-                {
+            for (int i = 0; i < textNoChar.Length; i++) {
+                if (textWithChar[i] != textNoChar[i]) {
                     //a partir del car distinto, el resto debe coincidir
                     return textWithChar.Substring(i + 1).EqualsIgnoreCase(textNoChar.Substring(i));
                 }
@@ -1378,8 +1344,7 @@ namespace System
 
             byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
             var pdb = new Rfc2898DeriveBytes(password,
-                new byte[]
-                {
+                new byte[] {
                     0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d,
                     0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
                 });
@@ -1394,14 +1359,12 @@ namespace System
         }
 
 
-
         // Encrypt a byte array into a byte array using a key and an IV
 
         private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] iv)
         {
             byte[] encryptedData;
-            using (var ms = new MemoryStream())
-            {
+            using (var ms = new MemoryStream()) {
                 var alg = Rijndael.Create();
 
                 // Algorithm. Rijndael is available on all platforms.
@@ -1423,8 +1386,7 @@ namespace System
         public static byte[] Decrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
             byte[] decryptedData;
-            using (var ms = new MemoryStream())
-            {
+            using (var ms = new MemoryStream()) {
                 var alg = Rijndael.Create();
                 alg.Key = key;
                 alg.IV = iv;
@@ -1448,8 +1410,7 @@ namespace System
 
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             var pdb = new Rfc2898DeriveBytes(password,
-                new byte[]
-                {
+                new byte[] {
                     0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65,
                     0x64, 0x76, 0x65, 0x64, 0x65, 0x76
                 });

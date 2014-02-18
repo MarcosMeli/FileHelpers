@@ -4,48 +4,41 @@ using System.Collections.Generic;
 
 namespace FileHelpers
 {
-
-
     /// <summary>An internal class used to store information about the Record Type.</summary>
     /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
-    internal sealed partial class RecordInfo 
+    internal sealed partial class RecordInfo
     {
-
-       private static class RecordInfoFactory
+        private static class RecordInfoFactory
         {
             private static readonly Dictionary<Type, RecordInfo> mRecordInfoCache = new Dictionary<Type, RecordInfo>();
 
-           /// <summary>
-           /// Return the record information for the type
-           /// </summary>
-           /// <param name="type">Type we want settings for</param>
-           /// <remarks>Threadsafe</remarks>
-           /// <returns>Record Information (settings and functions)</returns>
-           public static IRecordInfo Resolve(Type type)
-           {
-               RecordInfo res;
+            /// <summary>
+            /// Return the record information for the type
+            /// </summary>
+            /// <param name="type">Type we want settings for</param>
+            /// <remarks>Threadsafe</remarks>
+            /// <returns>Record Information (settings and functions)</returns>
+            public static IRecordInfo Resolve(Type type)
+            {
+                RecordInfo res;
 
-               lock (type)
-               {
-                   lock (mRecordInfoCache)
-                   {
-                       if (mRecordInfoCache.TryGetValue(type, out res))
-                           return (IRecordInfo) res.Clone();
-                   }
+                lock (type) {
+                    lock (mRecordInfoCache) {
+                        if (mRecordInfoCache.TryGetValue(type, out res))
+                            return (IRecordInfo) res.Clone();
+                    }
 
-                   // class check cache / lock / check cache  and create if null algorythm
+                    // class check cache / lock / check cache  and create if null algorythm
 
-                   res = new RecordInfo(type);
-                   lock (mRecordInfoCache)
-                   {
-                       if (!mRecordInfoCache.ContainsKey(type))
-                           mRecordInfoCache.Add(type, res);
-                   }
+                    res = new RecordInfo(type);
+                    lock (mRecordInfoCache) {
+                        if (!mRecordInfoCache.ContainsKey(type))
+                            mRecordInfoCache.Add(type, res);
+                    }
 
-                   return (IRecordInfo) res.Clone();
-               }
-
-           }
+                    return (IRecordInfo) res.Clone();
+                }
+            }
         }
 
         public void RemoveField(string fieldname)

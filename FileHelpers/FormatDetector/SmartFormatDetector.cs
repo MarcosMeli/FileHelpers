@@ -63,7 +63,7 @@ namespace FileHelpers.Detection
         }
 
         private double mFixedLengthDeviationTolerance = 0.01;
-        
+
         ///<summary>
         ///Indicates if the sample file has headers
         ///</summary>
@@ -82,7 +82,7 @@ namespace FileHelpers.Detection
         #endregion
 
         #region "  Public Methods  "
-        
+
         /// <summary>
         /// Tries to detect the possible formats of the file using the <see cref="FormatHint"/>
         /// </summary>
@@ -90,7 +90,7 @@ namespace FileHelpers.Detection
         /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(string file)
         {
-            return DetectFileFormat(new string[] { file });
+            return DetectFileFormat(new string[] {file});
         }
 
         /// <summary>
@@ -103,8 +103,7 @@ namespace FileHelpers.Detection
             var res = new List<RecordFormatInfo>();
             string[][] sampleData = GetSampleLines(files, MaxSampleLines);
 
-            switch (mFormatHint)
-            {
+            switch (mFormatHint) {
                 case FormatHint.Unknown:
                     CreateMixedOptions(sampleData, res);
                     break;
@@ -127,25 +126,22 @@ namespace FileHelpers.Detection
                     throw new InvalidOperationException("Unsuported FormatHint value.");
             }
 
-            foreach (var option in res)
-            {
+            foreach (var option in res) {
                 DetectOptionals(option, sampleData);
                 DetectTypes(option, sampleData);
                 DetectQuoted(option, sampleData);
             }
 
             // Sort by confidence
-            res.Sort(delegate(RecordFormatInfo x, RecordFormatInfo y)
-                    { return -1 * x.Confidence.CompareTo(y.Confidence); });
+            res.Sort(
+                delegate(RecordFormatInfo x, RecordFormatInfo y) { return -1*x.Confidence.CompareTo(y.Confidence); });
 
             return res.ToArray();
         }
 
-
         #endregion
 
         #region "  Fields Properties Methods  "
-
 
         private void DetectQuoted(RecordFormatInfo format, string[][] data)
         {
@@ -153,14 +149,9 @@ namespace FileHelpers.Detection
                 return;
         }
 
-        private void DetectTypes(RecordFormatInfo format, string[][] data)
-        {
-        }
+        private void DetectTypes(RecordFormatInfo format, string[][] data) {}
 
-        private void DetectOptionals(RecordFormatInfo option, string[][] data)
-        {
-
-        }
+        private void DetectOptionals(RecordFormatInfo option, string[][] data) {}
 
         #endregion
 
@@ -171,8 +162,8 @@ namespace FileHelpers.Detection
         {
             double average = CalculateAverageLineWidth(data);
             double deviation = CalculateDeviationLineWidth(data, average);
-        
-            if (deviation / average <= FixedLengthDeviationTolerance * Math.Min(1, NumberOfLines(data) / MinSampleData))
+
+            if (deviation/average <= FixedLengthDeviationTolerance*Math.Min(1, NumberOfLines(data)/MinSampleData))
                 CreateFixedLengthOptions(data, res);
 
             CreateDelimiterOptions(data, res);
@@ -180,7 +171,6 @@ namespace FileHelpers.Detection
             //if (deviation > average * 0.01 &&
             //    deviation < average * 0.05)
             //    CreateFixedLengthOptions(data, res);
-
         }
 
         // FIXED LENGTH
@@ -190,7 +180,7 @@ namespace FileHelpers.Detection
             double average = CalculateAverageLineWidth(data);
             double deviation = CalculateDeviationLineWidth(data, average);
 
-            format.mConfidence = (int)(Math.Max(0, 1 - deviation / average) * 100);
+            format.mConfidence = (int) (Math.Max(0, 1 - deviation/average)*100);
 
             var builder = new FixedLengthClassBuilder("AutoDetectedClass");
             CreateFixedLengthFields(data, builder);
@@ -209,6 +199,7 @@ namespace FileHelpers.Detection
             /// start position of column
             /// </summary>
             public int Start;
+
             /// <summary>
             /// Length of column
             /// </summary>
@@ -218,17 +209,15 @@ namespace FileHelpers.Detection
         private void CreateFixedLengthFields(string[][] data, FixedLengthClassBuilder builder)
         {
             List<FixedColumnInfo> res = null;
-            
-            foreach (var dataFile in data)
-            {
+
+            foreach (var dataFile in data) {
                 List<FixedColumnInfo> candidates = CreateFixedLengthCandidates(dataFile);
                 res = JoinFixedColCandidates(res, candidates);
             }
 
-            for (int i = 0; i < res.Count; i++)
-			{
+            for (int i = 0; i < res.Count; i++) {
                 FixedColumnInfo col = res[i];
-                builder.AddField("Field" + i.ToString().PadLeft(4, '0'), col.Length, typeof(string));
+                builder.AddField("Field" + i.ToString().PadLeft(4, '0'), col.Length, typeof (string));
             }
         }
 
@@ -236,61 +225,46 @@ namespace FileHelpers.Detection
         {
             List<FixedColumnInfo> res = null;
 
-            foreach (var line in lines)
-            {
+            foreach (var line in lines) {
                 var candidates = new List<FixedColumnInfo>();
                 int blanks = 0;
 
                 FixedColumnInfo col = null;
-                for (int i = 1; i < line.Length; i++)
-                {
+                for (int i = 1; i < line.Length; i++) {
                     if (char.IsWhiteSpace(line[i]))
-                    {
                         blanks += 1;
-                    }
-                    else
-                    {
-                        if (blanks > 2)
-                        {
-                            if (col == null)
-                            {
-                                col = new FixedColumnInfo
-                                    {
-                                        Start = 0,
-                                        Length = i
-                                    };
+                    else {
+                        if (blanks > 2) {
+                            if (col == null) {
+                                col = new FixedColumnInfo {
+                                    Start = 0,
+                                    Length = i
+                                };
                             }
-                            else
-                            {
+                            else {
                                 FixedColumnInfo prevCol = col;
-                                col = new FixedColumnInfo
-                                    {
-                                        Start = prevCol.Start + prevCol.Length
-                                    };
+                                col = new FixedColumnInfo {
+                                    Start = prevCol.Start + prevCol.Length
+                                };
                                 col.Length = i - col.Start;
                             }
                             candidates.Add(col);
                             blanks = 0;
                         }
                     }
-                        
                 }
 
-                if (col == null)
-                {
-                    col = new FixedColumnInfo
-                        {
-                            Start = 0,
-                            Length = line.Length
-                        };
+                if (col == null) {
+                    col = new FixedColumnInfo {
+                        Start = 0,
+                        Length = line.Length
+                    };
                 }
-                else
-                {
+                else {
                     FixedColumnInfo prevCol = col;
-                    col = new FixedColumnInfo
-                        {
-                            Start = prevCol.Start + prevCol.Length
-                        };
+                    col = new FixedColumnInfo {
+                        Start = prevCol.Start + prevCol.Length
+                    };
                     col.Length = line.Length - col.Start;
                 }
 
@@ -305,13 +279,13 @@ namespace FileHelpers.Detection
 
         private List<FixedColumnInfo> JoinFixedColCandidates(List<FixedColumnInfo> cand1, List<FixedColumnInfo> cand2)
         {
-            if (cand1 == null) return cand2;
-            if (cand2 == null) return cand1;
+            if (cand1 == null)
+                return cand2;
+            if (cand2 == null)
+                return cand1;
 
             // Merge the result based on confidence
             return cand1;
-
-
         }
 
         // DELIMITED
@@ -325,21 +299,19 @@ namespace FileHelpers.Detection
             else
                 delimiters.Add(GetDelimiterInfo(sampleData, delimiter));
 
-            foreach (var info in delimiters)
-            {
-                var format = new RecordFormatInfo
-                    {
-                        mConfidence = (int) ((1 - info.Deviation)*100)
-                    };
+            foreach (var info in delimiters) {
+                var format = new RecordFormatInfo {
+                    mConfidence = (int) ((1 - info.Deviation)*100)
+                };
                 AdjustConfidence(format, info);
 
-                var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString())
-                    {
-                        IgnoreFirstLines = FileHasHeaders ? 1 : 0
-                    };
+                var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString()) {
+                    IgnoreFirstLines = FileHasHeaders
+                        ? 1
+                        : 0
+                };
                 var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
-                for (int i = 0; i < info.Max + 1; i++)
-                {
+                for (int i = 0; i < info.Max + 1; i++) {
                     string name = "Field " + (i + 1).ToString().PadLeft(3, '0');
                     if (FileHasHeaders && i < firstLineSplitted.Length)
                         name = firstLineSplitted[i];
@@ -348,60 +320,54 @@ namespace FileHelpers.Detection
                     if (i > info.Min)
                         f.FieldOptional = true;
                 }
-                
+
                 format.mClassBuilder = builder;
 
                 res.Add(format);
             }
-
         }
 
         private void AdjustConfidence(RecordFormatInfo format, DelimiterInfo info)
         {
-            switch (info.Delimiter)
-            {
-
-                case '"':  // Avoid the quote identifier
+            switch (info.Delimiter) {
+                case '"': // Avoid the quote identifier
                 case '\'': // Avoid the quote identifier
-                    format.mConfidence = (int)(format.Confidence * 0.2);
+                    format.mConfidence = (int) (format.Confidence*0.2);
                     break;
 
                 case '/': // Avoid the date delimiters and url to be selected
                 case '.': // Avoid the decimal separator to be selected
-                    format.mConfidence = (int)(format.Confidence * 0.4);
+                    format.mConfidence = (int) (format.Confidence*0.4);
                     break;
 
                 case '@': // Avoid the mails separator to be selected
                 case '&': // Avoid this is near a letter and URLS
                 case '=': // Avoid because URLS contains it
-                    format.mConfidence = (int)(format.Confidence * 0.6);
+                    format.mConfidence = (int) (format.Confidence*0.6);
                     break;
 
                 case '-': // Avoid this other date separator
-                    format.mConfidence = (int)(format.Confidence * 0.7);
+                    format.mConfidence = (int) (format.Confidence*0.7);
                     break;
 
                 case ',': // Help the , ; tab to be confident
-                case ';': 
-                case '\t': 
-                    format.mConfidence = (int)Math.Min(100, format.Confidence * 1.15);
+                case ';':
+                case '\t':
+                    format.mConfidence = (int) Math.Min(100, format.Confidence*1.15);
                     break;
-
             }
         }
 
         #endregion
 
         #region "  Helper & Utility Methods  "
-        
+
         private string[][] GetSampleLines(IEnumerable<string> files, int nroOfLines)
         {
             var res = new List<string[]>();
 
             foreach (var file in files)
-            {
                 res.Add(CommonEngine.RawReadFirstLinesArray(file, nroOfLines, mEncoding));
-            }
 
             return res.ToArray();
         }
@@ -410,9 +376,7 @@ namespace FileHelpers.Detection
         {
             int lines = 0;
             foreach (var fileData in data)
-            {
                 lines += fileData.Length;
-            }
             return lines;
         }
 
@@ -424,38 +388,34 @@ namespace FileHelpers.Detection
         /// <returns></returns>
         private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
-
             var indicators = CalculateIndicators(delimiter, data);
             double deviation = CalculateDeviation(delimiter, data, indicators.Avg);
 
             return new DelimiterInfo(delimiter, indicators.Avg, indicators.Max, indicators.Min, deviation);
-
         }
 
         private List<DelimiterInfo> GetDelimiters(string[][] data)
         {
             var frecuency = new Dictionary<char, int>();
             int lines = 0;
-            for (int i = 0; i < data.Length; i++)
-            {
-                for (int j = 0; j < data[i].Length; j++)
-                {
-                    if (j == 0) continue; // Ignore Header Line (if any)
+            for (int i = 0; i < data.Length; i++) {
+                for (int j = 0; j < data[i].Length; j++) {
+                    if (j == 0)
+                        continue; // Ignore Header Line (if any)
 
                     lines++;
 
                     string line = data[i][j];
-                    for (int ci = 0; ci < line.Length; ci++)
-                    {
+                    for (int ci = 0; ci < line.Length; ci++) {
                         char c = line[ci];
 
                         if (char.IsLetterOrDigit(c)
-                            || c == ' ')
+                            ||
+                            c == ' ')
                             continue;
 
                         int count;
-                        if (frecuency.TryGetValue(c, out count))
-                        {
+                        if (frecuency.TryGetValue(c, out count)) {
                             count++;
                             frecuency[c] = count;
                         }
@@ -466,15 +426,15 @@ namespace FileHelpers.Detection
             }
 
             var candidates = new List<DelimiterInfo>();
-            foreach (var pair in frecuency)
-            {
+            foreach (var pair in frecuency) {
                 var indicators = CalculateIndicators(pair.Key, data);
                 double deviation = CalculateDeviation(pair.Key, data, indicators.Avg);
 
                 // Adjust based on the number of lines
-                deviation = deviation * Math.Min(1, ((double) lines)/MinSampleData);
+                deviation = deviation*Math.Min(1, ((double) lines)/MinSampleData);
 
-                if (indicators.Avg > 1 && deviation < MinDelimitedDeviation)
+                if (indicators.Avg > 1 &&
+                    deviation < MinDelimitedDeviation)
                     candidates.Add(new DelimiterInfo(pair.Key, indicators.Avg, indicators.Max, indicators.Min, deviation));
             }
 
@@ -489,15 +449,12 @@ namespace FileHelpers.Detection
         {
             double bigSum = 0.0;
             int lines = 0;
-            foreach (var fileData in data)
-            {
-                foreach (var line in fileData)
-                {
+            foreach (var fileData in data) {
+                foreach (var line in fileData) {
                     lines++;
 
                     int sum = 0;
-                    foreach (var candidate in line)
-                    {
+                    foreach (var candidate in line) {
                         if (candidate == c)
                             sum += 1;
                     }
@@ -506,11 +463,10 @@ namespace FileHelpers.Detection
                 }
             }
 
-            bigSum = bigSum / lines;
+            bigSum = bigSum/lines;
             bigSum = Math.Sqrt(bigSum);
 
             return bigSum;
-
         }
 
         /// <summary>
@@ -540,14 +496,11 @@ namespace FileHelpers.Detection
             int totalDelimiters = 0;
             int lines = 0;
 
-            foreach (var fileData in data)
-            {
-                
-                foreach (var line in fileData)
-                {
+            foreach (var fileData in data) {
+                foreach (var line in fileData) {
                     if (string.IsNullOrEmpty(line))
                         continue;
-                    
+
                     lines++;
 
                     var delimiterInLine = QuoteHelper.CountNumberOfDelimiters(line, c, QuotedChar);
@@ -560,10 +513,9 @@ namespace FileHelpers.Detection
 
                     totalDelimiters += delimiterInLine;
                 }
-                
             }
 
-            res.Avg = totalDelimiters / (double) lines;
+            res.Avg = totalDelimiters/(double) lines;
 
             return res;
         }
@@ -579,16 +531,14 @@ namespace FileHelpers.Detection
             double sum = 0;
             int lines = 0;
 
-            foreach (var fileData in data)
-            {
-                foreach (var line in fileData)
-                {
+            foreach (var fileData in data) {
+                foreach (var line in fileData) {
                     lines++;
                     sum += line.Length;
                 }
             }
 
-            return sum / lines;
+            return sum/lines;
         }
 
         private double CalculateDeviationLineWidth(string[][] data, double average)
@@ -596,22 +546,19 @@ namespace FileHelpers.Detection
             double bigSum = 0.0;
             int lines = 0;
 
-            foreach (var fileData in data)
-            {
-                foreach (var line in fileData)
-                {
+            foreach (var fileData in data) {
+                foreach (var line in fileData) {
                     lines++;
                     bigSum = Math.Pow(line.Length - average, 2);
                 }
             }
 
-            bigSum = bigSum / lines;
+            bigSum = bigSum/lines;
             bigSum = Math.Sqrt(bigSum);
 
             return bigSum;
         }
 
         #endregion
-
     }
 }

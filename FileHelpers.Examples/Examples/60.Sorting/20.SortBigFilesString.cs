@@ -12,19 +12,17 @@ namespace ExamplesFx
     public class BigFileSortString1
         : ExampleBase
     {
-
         //-> File:SortingWithoutRecord.cs
         public override void Run()
         {
             // Implements http://en.wikipedia.org/wiki/External_sorting
             // Uses the comparison in the construct
 
-            var sorter = new BigFileSorter((x, y) => x.CompareTo(y)); 
+            var sorter = new BigFileSorter((x, y) => x.CompareTo(y));
             sorter.DeleteTempFiles = true;
             sorter.Sort("unsorted.txt", "sorted.txt");
         }
 
         //-> /File
-
     }
 }

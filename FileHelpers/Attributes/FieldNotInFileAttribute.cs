@@ -14,7 +14,5 @@ namespace FileHelpers
     /// <seealso href="quick_start.html">Quick Start Guide</seealso>
     /// <seealso href="examples.html">Examples of Use</seealso>
     [AttributeUsage(AttributeTargets.Field)]
-    public sealed class FieldNotInFileAttribute : FieldAttribute
-    {
-    }
+    public sealed class FieldNotInFileAttribute : FieldAttribute {}
 }

@@ -57,17 +57,17 @@ namespace FileHelpers.Tests.Tests.DataLink
             AssertExpectedResults(res, expectedResultCount: 4);
         }
 
-		[Test]
-		public void ReadExcelStorageWithCustomSheets_ReturnsAllSheets()
-		{
-			var provider = new ExcelStorage(typeof (ExcelXlsType));
-			provider.FileName = TestCommon.GetPath("Excel", "ExcelWithCustomSheets.xlsx");
-		
-			Assert.AreEqual(3, provider.Sheets.Count);
-			Assert.AreEqual("TestSheet1", provider.Sheets[0]);
-			Assert.AreEqual("Test-Sheet-2", provider.Sheets[1]);
-			Assert.AreEqual("Test Sheet 3", provider.Sheets[2]);
-		}
+        [Test]
+        public void ReadExcelStorageWithCustomSheets_ReturnsAllSheets()
+        {
+            var provider = new ExcelStorage(typeof (ExcelXlsType));
+            provider.FileName = TestCommon.GetPath("Excel", "ExcelWithCustomSheets.xlsx");
+
+            Assert.AreEqual(3, provider.Sheets.Count);
+            Assert.AreEqual("TestSheet1", provider.Sheets[0]);
+            Assert.AreEqual("Test-Sheet-2", provider.Sheets[1]);
+            Assert.AreEqual("Test Sheet 3", provider.Sheets[2]);
+        }
 
         private static void AssertExpectedResults(ExcelXlsType[] res, int expectedResultCount)
         {
@@ -79,8 +79,7 @@ namespace FileHelpers.Tests.Tests.DataLink
             Assert.AreEqual("Test, 2", res[1].TestField);
 
             // cases where there is no blank row (or blank row was skipped)
-            if (expectedResultCount != 2)
-            {
+            if (expectedResultCount != 2) {
                 Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
                 Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
                 Assert.AreEqual(" Test 3", res[2].TestField);
@@ -90,21 +89,20 @@ namespace FileHelpers.Tests.Tests.DataLink
 
         private static ExcelXlsType[] ReadFromExcelStorage(string fileName, int stopAfterEmptyRows)
         {
-            var provider = new ExcelStorage(typeof(ExcelXlsType));
-            
+            var provider = new ExcelStorage(typeof (ExcelXlsType));
+
             provider.FileName = TestCommon.GetPath("Excel", fileName);
             provider.SheetName = "Sheet1";
             provider.StartRow = 1;
 
             provider.ExcelReadStopAfterEmptyRows = stopAfterEmptyRows;
 
-            return (ExcelXlsType[])provider.ExtractRecords();
+            return (ExcelXlsType[]) provider.ExtractRecords();
         }
-        
+
         [DelimitedRecord("|")]
         public sealed class ExcelXlsType
         {
-
             public int Id;
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
@@ -112,8 +110,7 @@ namespace FileHelpers.Tests.Tests.DataLink
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
             public string TestField;
-
-        } 
+        }
     }
 }
 

@@ -30,8 +30,7 @@ namespace ExamplesFx
             Customer[] customers = engine.ReadFile("Input.txt");
 
             // This wont display anything, we have dropped it
-            foreach (var err in engine.ErrorManager.Errors)
-            {
+            foreach (var err in engine.ErrorManager.Errors) {
                 Console.WriteLine();
                 Console.WriteLine("Error on Line number: {0}", err.LineNumber);
                 Console.WriteLine("Record causing the problem: {0}", err.RecordString);
@@ -40,10 +39,9 @@ namespace ExamplesFx
 
             // This will display only 3 of the four records
             foreach (var cust in customers)
-            {
                 Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
-            }
         }
+
         //-> /File
 
         //-> File:Customers with Enum.cs
@@ -61,6 +59,7 @@ namespace ExamplesFx
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -80,6 +79,7 @@ namespace ExamplesFx
             SalesRepresentative,
             MarketingManager
         }
+
         //-> /File
 
         //-> File:example_errors_ignore.html

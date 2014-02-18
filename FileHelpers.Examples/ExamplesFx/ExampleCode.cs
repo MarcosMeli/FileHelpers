@@ -45,8 +45,8 @@ namespace ExamplesFx
         public ExampleCode(ExampleBase example, string name, string category, string solutionFile)
         {
             Example = example;
-            Example.Console.Changed += new EventHandler(Console_Changed); 
-            Example.InputFileChanged += new EventHandler(Input_Changed); 
+            Example.Console.Changed += new EventHandler(Console_Changed);
+            Example.InputFileChanged += new EventHandler(Input_Changed);
             Name = name;
             OriginalFileName = solutionFile;
             Category = category;
@@ -60,10 +60,11 @@ namespace ExamplesFx
         private void OnConsoleChanged()
         {
             EventHandler handler = ConsoleChanged;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        void Console_Changed(object sender, EventArgs e)
+        private void Console_Changed(object sender, EventArgs e)
         {
             OnConsoleChanged();
         }
@@ -74,10 +75,11 @@ namespace ExamplesFx
         private void OnInputChanged()
         {
             EventHandler handler = InputChanged;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        void Input_Changed(object sender, EventArgs e)
+        private void Input_Changed(object sender, EventArgs e)
         {
             OnInputChanged();
         }
@@ -91,7 +93,7 @@ namespace ExamplesFx
         /// Title set from code
         /// </summary>
         public string Name { get; private set; }
-        
+
         public string OriginalFileName { get; private set; }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace ExamplesFx
         /// </summary>
         public List<ExampleFile> Files { get; set; }
 
-      
+
         /// <summary>
         /// Is this test runnable
         /// </summary>
@@ -130,44 +132,32 @@ namespace ExamplesFx
         ///// </summary>
         //public bool HasOutput { get; set; }
 
-        
+
         public void RunExample()
         {
-            try
-            {
+            try {
                 ExamplesEnvironment.InitEnvironment(this);
 
                 this.Example.RunExample();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 this.Example.Exception = ex;
             }
-            finally
-            {
-                foreach (var file in this.Files)
-                {
+            finally {
+                foreach (var file in this.Files) {
                     if (file.Status == ExampleFile.FileType.InputFile)
-                    {
                         File.Delete(file.Filename);
-                    }
-                    if (file.Status == ExampleFile.FileType.OutputFile)
-                    {
+                    if (file.Status == ExampleFile.FileType.OutputFile) {
                         if (File.Exists(file.Filename))
-                        {
                             file.Contents = File.ReadAllText(file.Filename);
-                        }
                     }
                 }
-             
             }
-
         }
 
         public void OnNewFileCreated(string fullPath)
         {
             var name = Path.GetFileName(fullPath);
-
         }
     }
 }

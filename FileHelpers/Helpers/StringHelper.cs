@@ -9,19 +9,18 @@ namespace FileHelpers
     /// <summary>
     /// Helper classes for strings
     /// </summary>
-	internal static class StringHelper
-	{
+    internal static class StringHelper
+    {
         /// <summary>
         /// New line variable
         /// </summary>
-		#if ! MINI
-			internal static readonly string NewLine = Environment.NewLine;
-		#else
+#if ! MINI
+        internal static readonly string NewLine = Environment.NewLine;
+#else
 			internal static readonly string NewLine = "\r\n";
 		#endif
 
-
-		#region "  ExtractQuotedString  "
+        #region "  ExtractQuotedString  "
 
         /// <summary>
         /// Extract a string from a quoted string, allows for doubling the quotes
@@ -31,81 +30,74 @@ namespace FileHelpers
         /// <param name="quoteChar">Quote char to remove</param>
         /// <param name="allowMultiline">can we have a new line in middle of string</param>
         /// <returns>Extracted information</returns>
-		internal static ExtractedInfo ExtractQuotedString(LineInfo line, char quoteChar, bool allowMultiline)
-		{
-			//			if (line.mReader == null)
-			//				throw new BadUsageException("The reader can´t be null");
+        internal static ExtractedInfo ExtractQuotedString(LineInfo line, char quoteChar, bool allowMultiline)
+        {
+            //			if (line.mReader == null)
+            //				throw new BadUsageException("The reader can´t be null");
 
-			if (line.IsEOL())
-				throw new BadUsageException("An empty String found. This can not be parsed like a QuotedString try to use SafeExtractQuotedString");
+            if (line.IsEOL()) {
+                throw new BadUsageException(
+                    "An empty String found. This can not be parsed like a QuotedString try to use SafeExtractQuotedString");
+            }
 
-			if (line.mLineStr[line.mCurrentPos] != quoteChar)
-				throw new BadUsageException("The source string does not begin with the quote char: " + quoteChar);
+            if (line.mLineStr[line.mCurrentPos] != quoteChar)
+                throw new BadUsageException("The source string does not begin with the quote char: " + quoteChar);
 
-			var res = new StringBuilder(32);
+            var res = new StringBuilder(32);
 
-			bool firstFound = false;
+            bool firstFound = false;
 
-			int i = line.mCurrentPos + 1;
-			//bool mustContinue = true;
+            int i = line.mCurrentPos + 1;
+            //bool mustContinue = true;
 
-			while (line.mLineStr != null)
-			{
-				while (i < line.mLineStr.Length)
-				{
-					if (line.mLineStr[i] == quoteChar)
-					{
-						if (firstFound)
-						{
-							// Is an escaped quoted char
-							res.Append(quoteChar);
-							firstFound = false;
-						}
-						else
-						{
-							firstFound = true;
-						}
-					}
-					else
-					{
-						if (firstFound)
-						{
-							// This was the end of the string
-							line.mCurrentPos = i;
-							return new ExtractedInfo(res.ToString());
-						}
-						else
-						{
-							res.Append(line.mLineStr[i]);
-						}
-					}
-					i++;
-				}
+            while (line.mLineStr != null) {
+                while (i < line.mLineStr.Length) {
+                    if (line.mLineStr[i] == quoteChar) {
+                        if (firstFound) {
+                            // Is an escaped quoted char
+                            res.Append(quoteChar);
+                            firstFound = false;
+                        }
+                        else
+                            firstFound = true;
+                    }
+                    else {
+                        if (firstFound) {
+                            // This was the end of the string
+                            line.mCurrentPos = i;
+                            return new ExtractedInfo(res.ToString());
+                        }
+                        else
+                            res.Append(line.mLineStr[i]);
+                    }
+                    i++;
+                }
 
 
-				if (firstFound)
-				{
-					line.mCurrentPos = i;
-					return new ExtractedInfo(res.ToString());
-				}
-				else
-				{
-					if (allowMultiline == false)
-						throw new BadUsageException("The current field has an unclosed quoted string. Complete line: " + res.ToString());
+                if (firstFound) {
+                    line.mCurrentPos = i;
+                    return new ExtractedInfo(res.ToString());
+                }
+                else {
+                    if (allowMultiline == false) {
+                        throw new BadUsageException("The current field has an unclosed quoted string. Complete line: " +
+                                                    res.ToString());
+                    }
 
-					line.ReadNextLine();
-					res.Append(NewLine);
-					//lines++;
-					i = 0;
-				}
-			}
+                    line.ReadNextLine();
+                    res.Append(NewLine);
+                    //lines++;
+                    i = 0;
+                }
+            }
 
-			throw new BadUsageException("The current field has an unclosed quoted string. Complete Filed String: " + res.ToString());
-		}
+            throw new BadUsageException("The current field has an unclosed quoted string. Complete Filed String: " +
+                                        res.ToString());
+        }
 
-		#endregion
+        #endregion
 
-		#region "  CreateQuotedString  "
+        #region "  CreateQuotedString  "
 
         /// <summary>
         /// Convert a string to a string with quotes around it,
@@ -114,21 +106,22 @@ namespace FileHelpers
         /// <param name="sb">Where string is added</param>
         /// <param name="source">String to be added</param>
         /// <param name="quoteChar">quote character to use, eg "</param>
-		internal static void CreateQuotedString(StringBuilder sb, string source, char quoteChar)
-		{
-			if (source == null) source = string.Empty;
+        internal static void CreateQuotedString(StringBuilder sb, string source, char quoteChar)
+        {
+            if (source == null)
+                source = string.Empty;
 
-			string quotedCharStr = quoteChar.ToString();
-			string escapedString = source.Replace(quotedCharStr, quotedCharStr + quotedCharStr);
+            string quotedCharStr = quoteChar.ToString();
+            string escapedString = source.Replace(quotedCharStr, quotedCharStr + quotedCharStr);
 
-			sb.Append(quoteChar);
-			sb.Append(escapedString);
-			sb.Append(quoteChar);
-		}
+            sb.Append(quoteChar);
+            sb.Append(escapedString);
+            sb.Append(quoteChar);
+        }
 
-		#endregion
+        #endregion
 
-		#region "  RemoveBlanks  "
+        #region "  RemoveBlanks  "
 
         /// <summary>
         /// Remove leading blanks and blanks after the plus or minus sign from a string
@@ -143,13 +136,11 @@ namespace FileHelpers
         /// </remarks>
         internal static string RemoveBlanks(string source)
         {
-            
             int i = 0;
 
-            while (i < source.Length && char.IsWhiteSpace(source[i]))
-            {
+            while (i < source.Length &&
+                   char.IsWhiteSpace(source[i]))
                 i++;
-            }
 
             // Only whitespace return an empty string
             if (i >= source.Length)
@@ -157,20 +148,19 @@ namespace FileHelpers
 
             // we are looking for a gap after the sign, if not found then
             // trim off the front of the string and return
-            if (source[i] == '+' || source[i] == '-')
-            {
+            if (source[i] == '+' ||
+                source[i] == '-') {
                 i++;
                 if (!char.IsWhiteSpace(source[i]))
-                    return source;  //  sign is followed by text so just return it
+                    return source; //  sign is followed by text so just return it
 
                 // start out with the sign
                 var sb = new StringBuilder(source[i - 1].ToString());
 
-                i++;  // I am on whitepsace so skip it
-                while (i < source.Length && char.IsWhiteSpace(source[i]))
-                {
+                i++; // I am on whitepsace so skip it
+                while (i < source.Length &&
+                       char.IsWhiteSpace(source[i]))
                     i++;
-                }
                 if (i < source.Length)
                     sb.Append(source.Substring(i));
 
@@ -178,12 +168,11 @@ namespace FileHelpers
             }
             else // No sign, just return string
                 return source;
-
         }
 
-		#endregion
+        #endregion
 
-	    private static CultureInfo mCulture;
+        private static CultureInfo mCulture;
 
         /// <summary>
         /// Create an invariant culture comparison operator
@@ -213,13 +202,12 @@ namespace FileHelpers
             res = original.Replace(oldValue, newValue);
 
             var i = 0;
-            do
-            {
+            do {
                 i++;
                 ante = res;
                 res = ante.Replace(oldValue, newValue);
-
-            } while (ante != res || i > maxTries);
+            } while (ante != res ||
+                     i > maxTries);
 
             return res;
         }
@@ -235,13 +223,14 @@ namespace FileHelpers
                 return string.Empty;
 
             var res = new StringBuilder(original.Length + 1);
-            if (!char.IsLetter(original[0]) && original[0] != '_')
+            if (!char.IsLetter(original[0]) &&
+                original[0] != '_')
                 res.Append('_');
 
-            for (int i = 0; i < original.Length; i++)
-            {
+            for (int i = 0; i < original.Length; i++) {
                 char c = original[i];
-                if (char.IsLetterOrDigit(c) || c == '_')
+                if (char.IsLetterOrDigit(c) ||
+                    c == '_')
                     res.Append(c);
                 else
                     res.Append('_');
@@ -280,15 +269,13 @@ namespace FileHelpers
         {
             string result = original;
 
-            if (!string.IsNullOrEmpty(oldValue))
-            {
+            if (!string.IsNullOrEmpty(oldValue)) {
                 int index = -1;
                 int lastIndex = 0;
 
                 var buffer = new StringBuilder(original.Length);
 
-                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0)
-                {
+                while ((index = original.IndexOf(oldValue, index + 1, comparisionType)) >= 0) {
                     buffer.Append(original, lastIndex, index - lastIndex);
                     buffer.Append(newValue);
 

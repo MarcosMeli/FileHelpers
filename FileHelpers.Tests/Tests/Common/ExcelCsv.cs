@@ -5,148 +5,143 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class ExcelCsv
-	{
-
+    [TestFixture]
+    public class ExcelCsv
+    {
         [Test]
-		public void ReadExcelCsv1()
-		{
-			var engine = new FileHelperEngine<ExcelCsv1Type>();
+        public void ReadExcelCsv1()
+        {
+            var engine = new FileHelperEngine<ExcelCsv1Type>();
 
             ExcelCsv1Type[] res = TestCommon.ReadTest<ExcelCsv1Type>(engine, "Good", "ExcelCsv1.txt");
 
-			Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, res.Length);
 
-			Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
-			Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
-			Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
-			Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
+            Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
+            Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
+            Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
+            Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
 
-			Assert.AreEqual("Test 1,", res[0].TestField);
-			Assert.AreEqual("Test, 2", res[1].TestField);
-			Assert.AreEqual(" Test 3", res[2].TestField);
-			Assert.AreEqual("Test 4", res[3].TestField);
-			
-		}
+            Assert.AreEqual("Test 1,", res[0].TestField);
+            Assert.AreEqual("Test, 2", res[1].TestField);
+            Assert.AreEqual(" Test 3", res[2].TestField);
+            Assert.AreEqual("Test 4", res[3].TestField);
+        }
 
-		[Test]
-		public void ReadExcelCsv2()
-		{
-			var engine = new FileHelperEngine<ExcelCsv2Type>();
+        [Test]
+        public void ReadExcelCsv2()
+        {
+            var engine = new FileHelperEngine<ExcelCsv2Type>();
 
             ExcelCsv2Type[] res = TestCommon.ReadTest<ExcelCsv2Type>(engine, "Good", "ExcelCsv2.txt");
 
-			Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, res.Length);
 
-			Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
-			Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
-			Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
-			Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
+            Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
+            Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
+            Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
+            Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
 
-			Assert.AreEqual("Test 1,", res[0].TestField);
-			Assert.AreEqual("Test, 2", res[1].TestField);
-			Assert.AreEqual(" Test 3", res[2].TestField);
-			Assert.AreEqual("Test 4", res[3].TestField);
-			
-		}
+            Assert.AreEqual("Test 1,", res[0].TestField);
+            Assert.AreEqual("Test, 2", res[1].TestField);
+            Assert.AreEqual(" Test 3", res[2].TestField);
+            Assert.AreEqual("Test 4", res[3].TestField);
+        }
 
-		[Test]
-		public void WriteExcelCsv1()
-		{
-			var arr = new List<ExcelCsv1Type>();
-			ExcelCsv1Type record;
+        [Test]
+        public void WriteExcelCsv1()
+        {
+            var arr = new List<ExcelCsv1Type>();
+            ExcelCsv1Type record;
 
-			record = new ExcelCsv1Type();
-			record.OrganizationName = "AllwaysOnTop";
-			record.TestField = "Test 1,";
-			arr.Add(record);
+            record = new ExcelCsv1Type();
+            record.OrganizationName = "AllwaysOnTop";
+            record.TestField = "Test 1,";
+            arr.Add(record);
 
-			record = new ExcelCsv1Type();
-			record.OrganizationName = "COMPUTERS, HARDWARE";
-			record.TestField = "Test, 2";
-			arr.Add(record);
+            record = new ExcelCsv1Type();
+            record.OrganizationName = "COMPUTERS, HARDWARE";
+            record.TestField = "Test, 2";
+            arr.Add(record);
 
-			record = new ExcelCsv1Type();
-			record.OrganizationName = "4S Consulting, Inc.";
-			record.TestField = " Test 3";
-			arr.Add(record);
+            record = new ExcelCsv1Type();
+            record.OrganizationName = "4S Consulting, Inc.";
+            record.TestField = " Test 3";
+            arr.Add(record);
 
-			record = new ExcelCsv1Type();
-			record.OrganizationName = "SmartSolutions";
-			record.TestField = "Test 4";
-			arr.Add(record);
+            record = new ExcelCsv1Type();
+            record.OrganizationName = "SmartSolutions";
+            record.TestField = "Test 4";
+            arr.Add(record);
 
-			var engine = new FileHelperEngine<ExcelCsv1Type>();
+            var engine = new FileHelperEngine<ExcelCsv1Type>();
 
-			string tmp = engine.WriteString(arr.ToArray());
-			ExcelCsv1Type[] res = engine.ReadString(tmp);
-            
-			Assert.AreEqual(4, res.Length);
+            string tmp = engine.WriteString(arr.ToArray());
+            ExcelCsv1Type[] res = engine.ReadString(tmp);
 
-			Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
-			Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
-			Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
-			Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
+            Assert.AreEqual(4, res.Length);
 
-			Assert.AreEqual("Test 1,", res[0].TestField);
-			Assert.AreEqual("Test, 2", res[1].TestField);
-			Assert.AreEqual(" Test 3", res[2].TestField);
-			Assert.AreEqual("Test 4", res[3].TestField);
-			
-		}
+            Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
+            Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
+            Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
+            Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
 
-		[Test]
-		public void WriteExcelCsv2()
-		{
+            Assert.AreEqual("Test 1,", res[0].TestField);
+            Assert.AreEqual("Test, 2", res[1].TestField);
+            Assert.AreEqual(" Test 3", res[2].TestField);
+            Assert.AreEqual("Test 4", res[3].TestField);
+        }
+
+        [Test]
+        public void WriteExcelCsv2()
+        {
             var arr = new List<ExcelCsv2Type>();
-			ExcelCsv2Type record;
+            ExcelCsv2Type record;
 
-			record = new ExcelCsv2Type();
-			record.OrganizationName = "AllwaysOnTop";
-			record.TestField = "Test 1,";
-			arr.Add(record);
+            record = new ExcelCsv2Type();
+            record.OrganizationName = "AllwaysOnTop";
+            record.TestField = "Test 1,";
+            arr.Add(record);
 
-			record = new ExcelCsv2Type();
-			record.OrganizationName = "COMPUTERS, HARDWARE";
-			record.TestField = "Test, 2";
-			arr.Add(record);
+            record = new ExcelCsv2Type();
+            record.OrganizationName = "COMPUTERS, HARDWARE";
+            record.TestField = "Test, 2";
+            arr.Add(record);
 
-			record = new ExcelCsv2Type();
-			record.OrganizationName = "4S Consulting, Inc.";
-			record.TestField = " Test 3";
-			arr.Add(record);
+            record = new ExcelCsv2Type();
+            record.OrganizationName = "4S Consulting, Inc.";
+            record.TestField = " Test 3";
+            arr.Add(record);
 
-			record = new ExcelCsv2Type();
-			record.OrganizationName = "SmartSolutions";
-			record.TestField = "Test 4";
-			arr.Add(record);
+            record = new ExcelCsv2Type();
+            record.OrganizationName = "SmartSolutions";
+            record.TestField = "Test 4";
+            arr.Add(record);
 
-			var engine = new FileHelperEngine<ExcelCsv2Type>();
+            var engine = new FileHelperEngine<ExcelCsv2Type>();
 
-			string tmp = engine.WriteString(arr.ToArray());
-			ExcelCsv2Type[] res = engine.ReadString(tmp);
-            
-			Assert.AreEqual(4, res.Length);
+            string tmp = engine.WriteString(arr.ToArray());
+            ExcelCsv2Type[] res = engine.ReadString(tmp);
 
-			Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
-			Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
-			Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
-			Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
+            Assert.AreEqual(4, res.Length);
 
-			Assert.AreEqual("Test 1,", res[0].TestField);
-			Assert.AreEqual("Test, 2", res[1].TestField);
-			Assert.AreEqual(" Test 3", res[2].TestField);
-			Assert.AreEqual("Test 4", res[3].TestField);
-			
-		}
+            Assert.AreEqual("AllwaysOnTop", res[0].OrganizationName);
+            Assert.AreEqual("COMPUTERS, HARDWARE", res[1].OrganizationName);
+            Assert.AreEqual("4S Consulting, Inc.", res[2].OrganizationName);
+            Assert.AreEqual("SmartSolutions", res[3].OrganizationName);
 
-		[Test]
-		public void ReadExcelCsv3()
-		{
-			var engine = new FileHelperEngine<ExcelCsv3Type>();
+            Assert.AreEqual("Test 1,", res[0].TestField);
+            Assert.AreEqual("Test, 2", res[1].TestField);
+            Assert.AreEqual(" Test 3", res[2].TestField);
+            Assert.AreEqual("Test 4", res[3].TestField);
+        }
+
+        [Test]
+        public void ReadExcelCsv3()
+        {
+            var engine = new FileHelperEngine<ExcelCsv3Type>();
             TestCommon.ReadTest<ExcelCsv3Type>(engine, "Good", "ExcelCsv2.txt");
-		}
+        }
 
 
         [Test]
@@ -155,15 +150,14 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<RecipientImport>();
             var records = (RecipientImport[]) engine.ReadString(mSampleData);
 
-            for (int i = 0; i < records.Length; i++)
-            {
+            for (int i = 0; i < records.Length; i++) {
                 if (! records[i].Email.EndsWith("@test.com"))
                     Assert.Fail("Not ends with test.com");
             }
         }
 
         private string mSampleData =
-	        @"Email,FirstName,MiddleName,LastName,Title,Company,WorkPhone,HomePhone,Address1,Address2,City,State,ZIP,Country 
+            @"Email,FirstName,MiddleName,LastName,Title,Company,WorkPhone,HomePhone,Address1,Address2,City,State,ZIP,Country 
 test1@test.com,kh,kh,kjh,kj,hkj,h,kjh,kj,hk,,,, 
 test2@test.com,ljk,lj,lk,jl,,j,lj,j,,,,, 
 test3@test.com,""m,m"",hb,kjn,nk,nkn,nkn,knkj,knkj,,,,, 
@@ -314,85 +308,88 @@ test147@test.com
 test148@test.com
 test149@test.com
 test150@test.com";
+    }
 
-	}
+    [DelimitedRecord(",")]
+    public sealed class ExcelCsv1Type
+    {
+        public int Id;
 
-	[DelimitedRecord(",")]
-	public sealed class ExcelCsv1Type
-	{
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string OrganizationName;
 
-		public int Id;
-	
-		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
-		public string OrganizationName;
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string TestField;
+    }
 
-		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
-		public string TestField;
+    [DelimitedRecord(",")]
+    public sealed class ExcelCsv2Type
+    {
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string OrganizationName;
 
-	} 
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string TestField;
+    }
 
-	[DelimitedRecord(",")]
-	public sealed class ExcelCsv2Type
-	{
+    [DelimitedRecord(",")]
+    public sealed class ExcelCsv3Type
+    {
+        [FieldQuoted('"')]
+        public string OrganizationName;
 
-		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
-		public string OrganizationName;
-
-		[FieldQuoted('"', QuoteMode.OptionalForBoth)]
-		public string TestField;
-
-	} 
-
-	[DelimitedRecord(",")]
-	public sealed class ExcelCsv3Type
-	{
-
-		[FieldQuoted('"')]
-		public string OrganizationName;
-
-		[FieldQuoted('"')]
-		public string TestField;
-
-	} 
+        [FieldQuoted('"')]
+        public string TestField;
+    }
 
 
-[IgnoreFirst()]
-[DelimitedRecord(",")]
-public class RecipientImport
-{
+    [IgnoreFirst()]
+    [DelimitedRecord(",")]
+    public class RecipientImport
+    {
+        [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+        public string Email;
 
-    [FieldQuoted('"', QuoteMode.OptionalForBoth)]
-    public string Email;
-	[FieldOptional()]
-	public string FirstName;
-	[FieldOptional()]
-	public string MiddleName;
-	[FieldOptional()]
-	public string LastName;
-	[FieldOptional()]
-	public string Title;
-	[FieldOptional()]
-	public string Company;
-	[FieldOptional()]
-	public string WorkPhone;
-	[FieldOptional()]
-	public string HomePhone;
-	[FieldOptional()]
-	public string Address1;
-	[FieldOptional()]
-	public string Address2;
-	[FieldOptional()]
-	public string City;
-	[FieldOptional()]
-	public string State;
-	[FieldOptional()]
-	public string ZIP;
-	[FieldOptional()]
-	public string Country;
-	[FieldOptional()]
-	public string FileName;
+        [FieldOptional()]
+        public string FirstName;
 
-}
+        [FieldOptional()]
+        public string MiddleName;
 
+        [FieldOptional()]
+        public string LastName;
 
+        [FieldOptional()]
+        public string Title;
+
+        [FieldOptional()]
+        public string Company;
+
+        [FieldOptional()]
+        public string WorkPhone;
+
+        [FieldOptional()]
+        public string HomePhone;
+
+        [FieldOptional()]
+        public string Address1;
+
+        [FieldOptional()]
+        public string Address2;
+
+        [FieldOptional()]
+        public string City;
+
+        [FieldOptional()]
+        public string State;
+
+        [FieldOptional()]
+        public string ZIP;
+
+        [FieldOptional()]
+        public string Country;
+
+        [FieldOptional()]
+        public string FileName;
+    }
 }

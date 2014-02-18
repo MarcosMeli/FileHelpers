@@ -1565,13 +1565,6 @@
             <param name="values">The source Values.</param>
             <returns>A record formed with the passed values.</returns>
         </member>
-        <member name="M:FileHelpers.RecordOperations.DoubleToDate(System.Int32)">
-            <summary>
-            TODO:  Explain what date logic this covers???
-            </summary>
-            <param name="serialNumber">TODO: define this date serial number</param>
-            <returns>Date time from a numerical reference time</returns>
-        </member>
         <member name="M:FileHelpers.RecordOperations.RecordToValues(System.Object)">
             <summary>Get an object[] of the values in the fields of the instance.</summary>
             <param name="record">Instance of the type.</param>
@@ -8259,6 +8252,10 @@
             </returns>
             <filterpriority>2</filterpriority>
         </member>
+        <member name="P:FileHelpers.ErrorManager.ErrorLimit">
+            <summary>Maximum number of recorded errors. After this limit is reached, successive errors are ignored.</summary>
+            <remarks>Default error limit is 10000.</remarks>
+        </member>
         <member name="P:FileHelpers.ErrorManager.Errors">
             <summary>
             Is an array of <see cref="T:FileHelpers.ErrorInfo"/> that contains the
@@ -8270,6 +8267,7 @@
             Indicates the behavior of the <see cref="T:FileHelpers.FileHelperEngine"/>
             when it found an error.
             </summary>
+            <remarks>Default error mode is ThrowException.</remarks>
         </member>
         <member name="P:FileHelpers.ErrorManager.ErrorCount">
             <summary>Number of contained errors.</summary>

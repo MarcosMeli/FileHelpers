@@ -17,7 +17,7 @@ namespace ExamplesFx.ColorCode
         public Style(string scopeName)
         {
             Guard.ArgNotNullAndNotEmpty(scopeName, "scopeName");
-            
+
             ScopeName = scopeName;
         }
 
@@ -26,11 +26,13 @@ namespace ExamplesFx.ColorCode
         /// </summary>
         /// <value>The background color.</value>
         public Color Background { get; set; }
+
         /// <summary>
         /// Gets or sets the foreground color.
         /// </summary>
         /// <value>The foreground color.</value>
         public Color Foreground { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the scope the style defines.
         /// </summary>

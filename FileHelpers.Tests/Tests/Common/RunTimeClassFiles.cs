@@ -6,26 +6,22 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests
 {
-	[TestFixture]
-	public class RunTimeClassesFiles
-	{
-		//FileHelperEngine engine;
+    [TestFixture]
+    public class RunTimeClassesFiles
+    {
+        //FileHelperEngine engine;
 
         [Test]
-		public void LoadFromXML()
-		{
+        public void LoadFromXML()
+        {
             ClassBuilder cb = ClassBuilder.LoadFromXml(TestCommon.GetPath("RunTime", "VendorImport.xml"));
             Type t = cb.CreateRecordClass(); // this line generates an error in the FH library 
 
-            using (var engine = new FileHelperAsyncEngine(t))
-            {
+            using (var engine = new FileHelperAsyncEngine(t)) {
                 engine.BeginReadString("");
 
-                while (engine.ReadNext() != null)
-                {
-                }
-            } 
-		}
-
-	}
+                while (engine.ReadNext() != null) {}
+            }
+        }
+    }
 }

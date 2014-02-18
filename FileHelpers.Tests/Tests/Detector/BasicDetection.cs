@@ -8,7 +8,6 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.Detector
 {
-
     [TestFixture]
     public class BasicDetection
     {
@@ -36,19 +35,22 @@ namespace FileHelpers.Tests.Detector
             AssertFormat(formats, delimiter, fields, confidence, numFormats);
         }
 
-        private void AssertFormat(RecordFormatInfo[] formats, string delimiter, int fields, int confidence, int numFormats)
+        private void AssertFormat(RecordFormatInfo[] formats,
+            string delimiter,
+            int fields,
+            int confidence,
+            int numFormats)
         {
-            
             if (numFormats > 0)
                 Assert.AreEqual(numFormats, formats.Length);
             else
                 Assert.IsTrue(formats.Length > 0);
-            
+
             if (confidence > 0)
                 Assert.IsTrue(formats[0].Confidence >= confidence);
 
             Assert.IsTrue(formats[0].ClassBuilder is DelimitedClassBuilder);
-            Assert.AreEqual(delimiter, ((DelimitedClassBuilder)formats[0].ClassBuilder).Delimiter);
+            Assert.AreEqual(delimiter, ((DelimitedClassBuilder) formats[0].ClassBuilder).Delimiter);
             Assert.AreEqual(fields, formats[0].ClassBuilder.FieldCount);
         }
 
@@ -57,7 +59,6 @@ namespace FileHelpers.Tests.Detector
         [Test]
         public void DelimitedTab()
         {
-
             AssertDelimitedFormat(FileTest.Detection.CustomersTab.Path, "\t", 7, 100, 1);
         }
 
@@ -100,7 +101,6 @@ namespace FileHelpers.Tests.Detector
             Assert.AreEqual(41, builder.Fields[4].FieldLength);
             Assert.AreEqual(18, builder.Fields[5].FieldLength);
             Assert.AreEqual(15, builder.Fields[6].FieldLength);
-
         }
 
 
@@ -138,21 +138,18 @@ namespace FileHelpers.Tests.Detector
             AssertDelimitedFormat(FileTest.Detection.Cities2.Path, ",", 12, 100, 0);
 
             AssertDelimitedFormat(FileTest.Detection.Locations.Path, ",", 7, 90, 0);
-
         }
 
         [Test]
         public void TestDataUrlEtc()
         {
             AssertDelimitedFormat(FileTest.Detection.SampleData.Path, ",", 26, 100, 0);
-
         }
 
         [Test]
         public void Quoted()
         {
             AssertDelimitedFormat(FileTest.Detection.SuperQuoted.Path, ",", 11, 100, 0);
-
         }
 
         //[Test]
@@ -160,7 +157,5 @@ namespace FileHelpers.Tests.Detector
         //{
         //    AssertDelimitedFormat(FileTest.Detection.SuperQuoted2.Path, ",", 12, 90, 0);
         //}
-
     }
-
 }

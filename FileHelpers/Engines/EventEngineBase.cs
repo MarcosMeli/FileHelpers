@@ -12,7 +12,7 @@ namespace FileHelpers
     /// </summary>
     /// <typeparam name="T">Specific engine</typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class EventEngineBase <T> 
+    public abstract class EventEngineBase<T>
         : EngineBase
         where T : class
     {
@@ -21,9 +21,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="recordType">Type of the record</param>
         protected EventEngineBase(Type recordType)
-            : base(recordType)
-        {
-        }
+            : base(recordType) {}
 
         /// <summary>
         /// Define an event based on a record with a specific encoding
@@ -31,34 +29,33 @@ namespace FileHelpers
         /// <param name="recordType">Type of the record</param>
         /// <param name="encoding">Encoding specified</param>
         protected EventEngineBase(Type recordType, Encoding encoding)
-            : base(recordType, encoding)
-        {
-        }
+            : base(recordType, encoding) {}
 
         /// <summary>
         /// Event based upon supplied record information
         /// </summary>
         /// <param name="ri"></param>
         internal EventEngineBase(RecordInfo ri)
-            : base(ri)
-        {
-        }
+            : base(ri) {}
 
         /// <summary>
         /// Called in read operations just before the record string is
         /// translated to a record.
         /// </summary>
         public event BeforeReadHandler<T> BeforeReadRecord;
+
         /// <summary>
         /// Called in read operations just after the record was created from a
         /// record string.
         /// </summary>
         public event AfterReadHandler<T> AfterReadRecord;
+
         /// <summary>
         /// Called in write operations just before the record is converted to a
         /// string to write it.
         /// </summary>
         public event BeforeWriteHandler<T> BeforeWriteRecord;
+
         /// <summary>
         /// Called in write operations just after the record was converted to a
         /// string.
@@ -90,6 +87,7 @@ namespace FileHelpers
                        RecordInfo.NotifyWrite;
             }
         }
+
 #if ! MINI
 
         /// <summary>
@@ -100,7 +98,7 @@ namespace FileHelpers
         protected bool OnBeforeReadRecord(BeforeReadEventArgs<T> e)
         {
             if (RecordInfo.NotifyRead)
-                ((INotifyRead<T>)e.Record).BeforeRead(e);
+                ((INotifyRead<T>) e.Record).BeforeRead(e);
 
             if (BeforeReadRecord != null)
                 BeforeReadRecord(this, e);
@@ -121,7 +119,7 @@ namespace FileHelpers
             var e = new AfterReadEventArgs<T>(this, line, lineChanged, record, lineNumber);
 
             if (RecordInfo.NotifyRead)
-                ((INotifyRead<T>)record).AfterRead(e);
+                ((INotifyRead<T>) record).AfterRead(e);
 
             if (AfterReadRecord != null)
                 AfterReadRecord(this, e);
@@ -141,7 +139,7 @@ namespace FileHelpers
             var e = new BeforeWriteEventArgs<T>(this, record, lineNumber);
 
             if (RecordInfo.NotifyWrite)
-                ((INotifyWrite<T>)record).BeforeWrite(e);
+                ((INotifyWrite<T>) record).BeforeWrite(e);
 
             if (BeforeWriteRecord != null)
                 BeforeWriteRecord(this, e);
@@ -160,7 +158,7 @@ namespace FileHelpers
             var e = new AfterWriteEventArgs<T>(this, record, LineNumber, line);
 
             if (RecordInfo.NotifyWrite)
-                ((INotifyWrite<T>)record).AfterWrite(e);
+                ((INotifyWrite<T>) record).AfterWrite(e);
 
             if (AfterWriteRecord != null)
                 AfterWriteRecord(this, e);
@@ -169,6 +167,5 @@ namespace FileHelpers
         }
 
 #endif
-
     }
 }

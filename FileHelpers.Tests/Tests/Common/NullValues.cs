@@ -8,59 +8,58 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
     [TestFixture]
-	public class NullWriters
-	{
-
-		[Test]
-		public void WriteNull()
-		{
+    public class NullWriters
+    {
+        [Test]
+        public void WriteNull()
+        {
             var engine = new FileHelperEngine<SampleType>();
 
-			var res = new SampleType[3];
-			res[0] = new SampleType();
-			res[1] = new SampleType();
-			res[2] = new SampleType();
+            var res = new SampleType[3];
+            res[0] = new SampleType();
+            res[1] = new SampleType();
+            res[2] = new SampleType();
 
-			string tempo = engine.WriteString(res);
-			res = engine.ReadString(tempo);
+            string tempo = engine.WriteString(res);
+            res = engine.ReadString(tempo);
 
-			Assert.AreEqual(3, res.Length);
-			Assert.AreEqual(3, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(3, res.Length);
+            Assert.AreEqual(3, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(DateTime.MinValue, res[0].Field1);
-			Assert.AreEqual("", res[0].Field2);
-			Assert.AreEqual(0, res[0].Field3);
+            Assert.AreEqual(DateTime.MinValue, res[0].Field1);
+            Assert.AreEqual("", res[0].Field2);
+            Assert.AreEqual(0, res[0].Field3);
+        }
 
-		}
+        [Test]
+        public void WriteNullAsync()
+        {
+            var asyncEngine = new FileHelperAsyncEngine<SampleType>();
 
-		[Test]
-		public void WriteNullAsync()
-		{
-			var asyncEngine = new FileHelperAsyncEngine<SampleType>();
+            asyncEngine.BeginWriteFile("tempNull.txt");
 
-			asyncEngine.BeginWriteFile("tempNull.txt");
+            asyncEngine.WriteNext(new SampleType());
+            asyncEngine.WriteNext(new SampleType());
+            asyncEngine.WriteNext(new SampleType());
 
-			asyncEngine.WriteNext(new SampleType());
-			asyncEngine.WriteNext(new SampleType());
-			asyncEngine.WriteNext(new SampleType());
+            asyncEngine.Close();
 
-			asyncEngine.Close();
+            asyncEngine.BeginReadFile("tempNull.txt");
+            var res = (SampleType[]) asyncEngine.ReadNexts(5000);
+            asyncEngine.Close();
 
-			asyncEngine.BeginReadFile("tempNull.txt");
-			var res = (SampleType[]) asyncEngine.ReadNexts(5000);
-			asyncEngine.Close();
+            Assert.AreEqual(3, res.Length);
+            Assert.AreEqual(3, asyncEngine.TotalRecords);
+            Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(3, res.Length);
-			Assert.AreEqual(3, asyncEngine.TotalRecords);
-			Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(DateTime.MinValue, res[0].Field1);
+            Assert.AreEqual("", res[0].Field2);
+            Assert.AreEqual(0, res[0].Field3);
 
-			Assert.AreEqual(DateTime.MinValue, res[0].Field1);
-			Assert.AreEqual("", res[0].Field2);
-			Assert.AreEqual(0, res[0].Field3);
-
-			if (File.Exists("tempNull.txt")) File.Delete("tempNull.txt");
-		}
+            if (File.Exists("tempNull.txt"))
+                File.Delete("tempNull.txt");
+        }
 
 
         [Test]
@@ -83,7 +82,6 @@ namespace FileHelpers.Tests.CommonTests
 
 
             Assert.AreEqual(null, res[2].Field3);
-
         }
 
 
@@ -115,7 +113,7 @@ namespace FileHelpers.Tests.CommonTests
             toWrite.Add(record);
 
             NullableType[] res = engine.ReadString(engine.WriteString(toWrite));
-            
+
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);
             Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
@@ -131,12 +129,11 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(new DateTime(1316, 5, 6), res[2].Field1);
 
             Assert.AreEqual("",
-                            engine.WriteString(toWrite).Split(new string[] {Environment.NewLine}, StringSplitOptions.None)[1].
-                                Substring(0, 8).Trim());
-
+                engine.WriteString(toWrite).Split(new string[] {Environment.NewLine}, StringSplitOptions.None)[1].
+                    Substring(0, 8).Trim());
         }
 
-        
+
         [FixedLengthRecord]
         public class NullableType
         {
@@ -198,13 +195,14 @@ namespace FileHelpers.Tests.CommonTests
         public void RunTimeEmptyGuidProperties()
         {
             var builder = new DelimitedClassBuilder("EntityWithGuid", "\t");
-            builder.AddField("Name", typeof(string));
-            builder.AddField("Id", typeof(Guid));
+            builder.AddField("Name", typeof (string));
+            builder.AddField("Id", typeof (Guid));
             builder.LastField.FieldNullValue = Guid.Empty;
 
-            var engine = new FileHelperEngine(builder.CreateRecordClass())
-            {
-                Options = { IgnoreFirstLines = 1 }
+            var engine = new FileHelperEngine(builder.CreateRecordClass()) {
+                Options = {
+                    IgnoreFirstLines = 1
+                }
             };
 
             const string inputValue = @"Name	Id
@@ -215,13 +213,12 @@ second	";
             records.Length.AssertEqualTo(2);
 
             dynamic record = records[0];
-            ((Guid)record.Id).AssertEqualTo(Guid.Empty);
-            ((string)record.Name).AssertEqualTo("first");
-            
-            record = records[1];
-            ((Guid)record.Id).AssertEqualTo(Guid.Empty);
-            ((string)record.Name).AssertEqualTo("second");
-        }
+            ((Guid) record.Id).AssertEqualTo(Guid.Empty);
+            ((string) record.Name).AssertEqualTo("first");
 
-	}
+            record = records[1];
+            ((Guid) record.Id).AssertEqualTo(Guid.Empty);
+            ((string) record.Name).AssertEqualTo("second");
+        }
+    }
 }

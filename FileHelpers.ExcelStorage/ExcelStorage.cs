@@ -203,19 +203,22 @@ namespace FileHelpers.DataLink
 
 		#region "  SaveWorkbook  "
 
-		private void SaveWorkbook()
-		{
-			if (this.mBook != null)
-				this.mBook.Save();
-		}
-
 		private void SaveWorkbook(string filename)
 		{
-			if (this.mBook != null)
-				this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
+		    if (this.mBook == null) 
+                return;
+
+		    if (File.Exists(filename))
+		    {
+		        this.mBook.Save();
+		    }
+		    else
+		    {
+		        this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
+		    }
 		}
 
-		#endregion
+	    #endregion
 
 		#region "  CellAsString  "
 
@@ -281,7 +284,11 @@ namespace FileHelpers.DataLink
 			else
 			{
 				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
-				object[,] resTemp = (object[,]) r.Value2;
+				//object[,] resTemp = (object[,]) r.Value2;
+                
+                //TODO Eandis team check if correct
+                object[,] resTemp = (object[,])r.Value;
+
 				//DisposeCOMObject(r);
 
 				res = new object[numberOfCols];
@@ -303,7 +310,7 @@ namespace FileHelpers.DataLink
 
 			Range r = this.mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + values.Length - 1) + row.ToString());
 
-			r.Value2 = values;
+			r.Value = values;
 		}
 
 		#endregion

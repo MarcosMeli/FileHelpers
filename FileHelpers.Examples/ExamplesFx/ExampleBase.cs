@@ -5,7 +5,6 @@ using System.Text;
 
 namespace ExamplesFx
 {
-    
     public abstract class ExampleBase
     {
         #region Virtual Console
@@ -23,7 +22,8 @@ namespace ExamplesFx
             private void OnChanged()
             {
                 EventHandler handler = Changed;
-                if (handler != null) handler(this, EventArgs.Empty);
+                if (handler != null)
+                    handler(this, EventArgs.Empty);
             }
 
             public VirtualConsole()
@@ -97,20 +97,17 @@ namespace ExamplesFx
         public VirtualConsole Console { get; private set; }
 
         public string InputFile { get; private set; }
-        
+
         public string HtmlBody { get; protected set; }
-        
+
         internal event EventHandler InputFileChanged;
 
-        
+
         private Exception mException;
 
         public Exception Exception
         {
-            get
-            {
-                return mException;
-            }
+            get { return mException; }
             set
             {
                 mException = value;

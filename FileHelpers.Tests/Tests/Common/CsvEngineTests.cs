@@ -7,168 +7,162 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class CsvEngineTests
-	{
+    [TestFixture]
+    public class CsvEngineTests
+    {
+        [Test]
+        public void ReadFileComma()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
 
-		[Test]
-		public void ReadFileComma()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
+            RunTest(file, delimiter, classname);
+        }
 
-			RunTest(file, delimiter, classname);
-		}
 
-		
-		[Test]
-		public void ReadFileHeader1()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
-		
-			var options = new CsvOptions(classname, delimiter, file);
-			options.HeaderLines = 0;
-			
-			var engine = new CsvEngine(options);
+        [Test]
+        public void ReadFileHeader1()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
 
-			Assert.AreEqual(classname, engine.RecordType.Name);
+            var options = new CsvOptions(classname, delimiter, file);
+            options.HeaderLines = 0;
 
-			DataTable dt = engine.ReadFileAsDT(file);
+            var engine = new CsvEngine(options);
 
-			Assert.AreEqual(21, dt.Rows.Count);
-			Assert.AreEqual(21, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(classname, engine.RecordType.Name);
 
-			Assert.AreEqual("Field_0", dt.Columns[0].ColumnName);
-		}
+            DataTable dt = engine.ReadFileAsDT(file);
 
-		[Test]
-		public void ReadFileHeader2()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
+            Assert.AreEqual(21, dt.Rows.Count);
+            Assert.AreEqual(21, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			var options = new CsvOptions(classname, delimiter, file);
-			options.HeaderLines = 2;
+            Assert.AreEqual("Field_0", dt.Columns[0].ColumnName);
+        }
 
-			var engine = new CsvEngine(options);
+        [Test]
+        public void ReadFileHeader2()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
 
-			Assert.AreEqual(classname, engine.RecordType.Name);
+            var options = new CsvOptions(classname, delimiter, file);
+            options.HeaderLines = 2;
 
-			DataTable dt = engine.ReadFileAsDT(file);
+            var engine = new CsvEngine(options);
 
-			Assert.AreEqual(19, dt.Rows.Count);
-			Assert.AreEqual(19, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(classname, engine.RecordType.Name);
 
-			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
-		}
+            DataTable dt = engine.ReadFileAsDT(file);
 
-		[Test]
-		public void ReadFileComma2()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvComma2.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
-			char delimiterHdr = '|';
+            Assert.AreEqual(19, dt.Rows.Count);
+            Assert.AreEqual(19, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			RunTest(file, delimiter, delimiterHdr, classname);
-		}
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
 
-		[Test]
-		public void ReadFileVerticalBar()
-		{
+        [Test]
+        public void ReadFileComma2()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvComma2.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
+            char delimiterHdr = '|';
 
-			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt");
-			string classname = "CustomerVerticalBar";
-			char delimiter = '|';
+            RunTest(file, delimiter, delimiterHdr, classname);
+        }
 
-			RunTest(file, delimiter, classname);
-		}
+        [Test]
+        public void ReadFileVerticalBar()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt");
+            string classname = "CustomerVerticalBar";
+            char delimiter = '|';
 
-		[Test]
-		public void ReadFileVerticalBar2()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
-			string classname = "CustomerVerticalBar";
-			char delimiter = '|';
-			char delimiterHdr = ',';
+            RunTest(file, delimiter, classname);
+        }
 
-			RunTest(file, delimiter, delimiterHdr, classname);
-		}
+        [Test]
+        public void ReadFileVerticalBar2()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
+            string classname = "CustomerVerticalBar";
+            char delimiter = '|';
+            char delimiterHdr = ',';
 
-		[Test]
-		public void DualEngine()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
-			string classname = "CustomerVerticalBar";
-			char delimiter = '|';
+            RunTest(file, delimiter, delimiterHdr, classname);
+        }
 
-			var engine = new CsvEngine(classname, delimiter, file);
-			var engine2 = new CsvEngine(classname, delimiter, file);
+        [Test]
+        public void DualEngine()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
+            string classname = "CustomerVerticalBar";
+            char delimiter = '|';
 
-		}
+            var engine = new CsvEngine(classname, delimiter, file);
+            var engine2 = new CsvEngine(classname, delimiter, file);
+        }
 
-		private void RunTest(string file, char delimiter, string classname)
-		{
-			RunTest(file, delimiter, delimiter, classname);
-		}
+        private void RunTest(string file, char delimiter, string classname)
+        {
+            RunTest(file, delimiter, delimiter, classname);
+        }
 
-		private void RunTest(string file, char delimiter, char delimiterHdr, string classname)
-		{
-			var options = new CsvOptions(classname, delimiter, file);
-			options.HeaderDelimiter = delimiterHdr;
-			var engine = new CsvEngine(options);
-	
-			Assert.AreEqual(classname, engine.RecordType.Name);
-	
-			DataTable dt = engine.ReadFileAsDT(file);
-	
-			Assert.AreEqual(20, dt.Rows.Count);
-			Assert.AreEqual(20, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+        private void RunTest(string file, char delimiter, char delimiterHdr, string classname)
+        {
+            var options = new CsvOptions(classname, delimiter, file);
+            options.HeaderDelimiter = delimiterHdr;
+            var engine = new CsvEngine(options);
 
-			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
-		}
+            Assert.AreEqual(classname, engine.RecordType.Name);
 
-		[Test]
-		
-		public void BadName()
-		{
-			Assert.Throws<FileHelpersException>(
-				() => new CsvEngine("Ops, somerrors", '|', TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt")));
-		}
+            DataTable dt = engine.ReadFileAsDT(file);
 
-		[Test]
-		public void ReadWithCommon()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
+            Assert.AreEqual(20, dt.Rows.Count);
+            Assert.AreEqual(20, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter);
-			Assert.AreEqual(20, dt.Rows.Count);
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
 
-			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
-		}
+        [Test]
+        public void BadName()
+        {
+            Assert.Throws<FileHelpersException>(
+                () => new CsvEngine("Ops, somerrors", '|', TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt")));
+        }
 
-		[Test]
-		public void ReadWithCommaAndBlankLines()
-		{
-			string file = TestCommon.GetPath("Good", "RealCsvCommaBlankLines1.txt");
-			string classname = "CustomerComma";
-			char delimiter = ',';
+        [Test]
+        public void ReadWithCommon()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
 
-			DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter, true, ignoreEmptyLines: true);
-			Assert.AreEqual(20, dt.Rows.Count);
+            DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter);
+            Assert.AreEqual(20, dt.Rows.Count);
 
-			Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
 
-		}
+        [Test]
+        public void ReadWithCommaAndBlankLines()
+        {
+            string file = TestCommon.GetPath("Good", "RealCsvCommaBlankLines1.txt");
+            string classname = "CustomerComma";
+            char delimiter = ',';
 
-	}
+            DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter, true, ignoreEmptyLines: true);
+            Assert.AreEqual(20, dt.Rows.Count);
+
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
+    }
 }

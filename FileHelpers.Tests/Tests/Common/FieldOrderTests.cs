@@ -5,16 +5,16 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class FieldOrderTests
-	{
-		[Test]
-		public void SimpleOrder()
-		{
-		    var engine = new FileHelperEngine<FieldOrderType>();
+    [TestFixture]
+    public class FieldOrderTests
+    {
+        [Test]
+        public void SimpleOrder()
+        {
+            var engine = new FileHelperEngine<FieldOrderType>();
 
-			Assert.AreEqual(5, engine.Options.FieldCount);
-			Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
+            Assert.AreEqual(5, engine.Options.FieldCount);
+            Assert.AreEqual("Field1", engine.Options.FieldsNames[0]);
             Assert.AreEqual("Field2", engine.Options.FieldsNames[1]);
             Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
             Assert.AreEqual("Field4", engine.Options.FieldsNames[3]);
@@ -38,31 +38,31 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("\t")]
         public class FieldOrderType
         {
-
             public int Field1;
             public int Field2;
             public string Field3;
             public int Field4;
             public DateTime Field5;
-
         }
 
 
         [DelimitedRecord("\t")]
         public class FieldOrderTypeSorted
         {
-
             [FieldOrder(-5)]
             public int Field1;
+
             [FieldOrder(-10)]
             public int Field2;
+
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
 
 
@@ -90,35 +90,39 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("\t")]
         public class FieldOrderSameNumber1
         {
-
             [FieldOrder(-5)]
             public int Field1;
+
             [FieldOrder(-10)]
             public int Field2;
+
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(10)]
             public DateTime Field5;
-
         }
 
         [DelimitedRecord("\t")]
         public class FieldOrderSameNumber2
         {
-
             [FieldOrder(5)]
             public int Field1;
+
             [FieldOrder(5)]
             public int Field2;
+
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
 
         [Test]
@@ -153,55 +157,58 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
-
         [DelimitedRecord("\t")]
         public class FieldOrderPartialAppliedMiddle
         {
-
             [FieldOrder(4)]
             public int Field1;
+
             [FieldOrder(1)]
             public int Field2;
-            
+
             public string Field3;
+
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(2)]
             public DateTime Field5;
-
         }
 
         [DelimitedRecord("\t")]
         public class FieldOrderPartialAppliedFirst
         {
-
             public int Field1;
+
             [FieldOrder(8)]
             public int Field2;
+
             [FieldOrder(5)]
             public string Field3;
+
             [FieldOrder(2)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
 
         [DelimitedRecord("\t")]
         public class FieldOrderPartialAppliedLast
         {
-
             [FieldOrder(1)]
             public int Field1;
+
             [FieldOrder(2)]
             public int Field2;
+
             [FieldOrder(5)]
             public string Field3;
+
             [FieldOrder(4)]
             public int Field4;
-            
-            public DateTime Field5;
 
+            public DateTime Field5;
         }
 
 
@@ -229,18 +236,21 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("\t")]
         public class FieldOptionalPlusFieldOrderTypeWrong1
         {
-                [FieldOrder(-5)]
-                public int Field1;
-                [FieldOrder(-10)]
-                public int Field2;
-                [FieldOrder(10)]
-                public string Field3;
-                [FieldOrder(5)]
-                public int Field4;
-                [FieldOrder(1)]
-                [FieldOptional]
-                public DateTime Field5;
-            
+            [FieldOrder(-5)]
+            public int Field1;
+
+            [FieldOrder(-10)]
+            public int Field2;
+
+            [FieldOrder(10)]
+            public string Field3;
+
+            [FieldOrder(5)]
+            public int Field4;
+
+            [FieldOrder(1)]
+            [FieldOptional]
+            public DateTime Field5;
         }
 
         [DelimitedRecord("\t")]
@@ -248,16 +258,19 @@ namespace FileHelpers.Tests.CommonTests
         {
             [FieldOrder(-5)]
             public int Field1;
+
             [FieldOrder(-10)]
             public int Field2;
+
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOptional]
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
 
         [Test]
@@ -281,16 +294,19 @@ namespace FileHelpers.Tests.CommonTests
         {
             [FieldOrder(-5)]
             public int Field1;
+
             [FieldOrder(-10)]
             public int Field2;
+
             [FieldOptional]
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
 
         [DelimitedRecord("\t")]
@@ -298,19 +314,20 @@ namespace FileHelpers.Tests.CommonTests
         {
             [FieldOrder(-5)]
             public int Field1;
+
             [FieldOrder(-10)]
             public int Field2;
+
             [FieldOptional]
             [FieldOrder(10)]
             public string Field3;
+
             [FieldOptional]
             [FieldOrder(5)]
             public int Field4;
+
             [FieldOrder(1)]
             public DateTime Field5;
-
         }
-
     }
-
 }

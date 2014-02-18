@@ -12,8 +12,7 @@ namespace FileHelpers.WizardApp
 {
     public partial class FieldBaseControl : UserControl
     {
-
-        bool mInit = true;
+        private bool mInit = true;
 
         public FieldBaseControl()
         {
@@ -23,7 +22,7 @@ namespace FileHelpers.WizardApp
             mInit = false;
         }
 
-        bool isFocused = false;
+        private bool isFocused = false;
 
         protected override void OnEnter(EventArgs e)
         {
@@ -45,19 +44,25 @@ namespace FileHelpers.WizardApp
 
 
             LinearGradientBrush lb;
-            
-            if (isFocused)
+
+            if (isFocused) {
 //                lb = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(255, 224, 192), Color.White, LinearGradientMode.Horizontal);
-                lb = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(205, 195, 180), Color.FromArgb(248,248,248), LinearGradientMode.Horizontal);
-            else
-                lb = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(235, 225, 215), Color.FromArgb(250,250,250), LinearGradientMode.Horizontal);
+                lb = new LinearGradientBrush(this.ClientRectangle,
+                    Color.FromArgb(205, 195, 180),
+                    Color.FromArgb(248, 248, 248),
+                    LinearGradientMode.Horizontal);
+            }
+            else {
+                lb = new LinearGradientBrush(this.ClientRectangle,
+                    Color.FromArgb(235, 225, 215),
+                    Color.FromArgb(250, 250, 250),
+                    LinearGradientMode.Horizontal);
+            }
 
             e.Graphics.FillRectangle(lb, this.ClientRectangle);
 
             e.Graphics.DrawRectangle(Pens.Gray, 0, 0, this.Width - 1, this.Height - 1);
             lb.Dispose();
-
-
         }
 
 
@@ -65,23 +70,21 @@ namespace FileHelpers.WizardApp
 
         public virtual void FieldInfoReload()
         {
-            if (mFieldInfo != null)
-            {
+            if (mFieldInfo != null) {
                 txtName.Text = mFieldInfo.FieldName;
                 txtName.SelectAll();
                 txtType.Text = mFieldInfo.FieldType;
                 cboTrim.SelectedItem = mFieldInfo.TrimMode;
             }
-
         }
 
         internal FieldBuilder FieldInfo
         {
             get { return mFieldInfo; }
-            set 
+            set
             {
-                 mFieldInfo = value;
-                 FieldInfoReload();
+                mFieldInfo = value;
+                FieldInfoReload();
             }
         }
 
@@ -123,7 +126,6 @@ namespace FileHelpers.WizardApp
 
         protected void OnOrderChanged()
         {
-
             if (OrderChanged != null)
                 OrderChanged(this, EventArgs.Empty);
         }
@@ -137,8 +139,7 @@ namespace FileHelpers.WizardApp
         private void lblUp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             int index = this.Parent.Controls.GetChildIndex(this);
-            if (index > 0)
-            {
+            if (index > 0) {
                 this.Parent.Controls.SetChildIndex(this, index - 1);
                 OnOrderChanged();
             }
@@ -147,8 +148,7 @@ namespace FileHelpers.WizardApp
         private void lblDown_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             int index = this.Parent.Controls.GetChildIndex(this);
-            if (index < this.Parent.Controls.Count - 1)
-            {
+            if (index < this.Parent.Controls.Count - 1) {
                 this.Parent.Controls.SetChildIndex(this, index + 1);
                 OnOrderChanged();
             }
@@ -156,23 +156,19 @@ namespace FileHelpers.WizardApp
 
         private void cboTrim_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mInit == false)
-            {
-                mFieldInfo.TrimMode = (TrimMode)Enum.Parse(typeof(TrimMode), cboTrim.Text);
+            if (mInit == false) {
+                mFieldInfo.TrimMode = (TrimMode) Enum.Parse(typeof (TrimMode), cboTrim.Text);
                 OnInfoChanged();
             }
         }
 
         private void chkOptional_CheckedChanged(object sender, EventArgs e)
         {
-            if (mInit == false)
-            {
+            if (mInit == false) {
                 mFieldInfo.FieldOptional = chkOptional.Checked;
                 OnInfoChanged();
             }
         }
-
-
 
 
         internal void RePaintData()

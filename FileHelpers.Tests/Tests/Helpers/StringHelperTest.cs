@@ -9,9 +9,9 @@ namespace FileHelpers.Tests
     /// FileHelpers Helpers  STringHelper tests
     /// </summary>
     [TestFixture]
-    class StringHelperTest
+    internal class StringHelperTest
     {
-        [Test(Description="String without spaces into RemoveBlanks")]
+        [Test(Description = "String without spaces into RemoveBlanks")]
         public void RemoveNoBlanks()
         {
             StringHelper.RemoveBlanks("+41").AssertEqualTo("+41");

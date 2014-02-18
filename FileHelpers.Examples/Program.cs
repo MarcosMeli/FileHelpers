@@ -5,7 +5,6 @@ using System.Windows.Forms;
 
 namespace ExamplesFx
 {
-    
     public class Program
     {
         [STAThread]
@@ -15,6 +14,5 @@ namespace ExamplesFx
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmExamples());
         }
-
     }
 }

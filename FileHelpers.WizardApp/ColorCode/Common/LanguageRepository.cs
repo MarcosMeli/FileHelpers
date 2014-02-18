@@ -25,18 +25,16 @@ namespace ExamplesFx.ColorCode.Common
         public ILanguage FindById(string languageId)
         {
             Guard.ArgNotNullAndNotEmpty(languageId, "languageId");
-            
+
             ILanguage language = null;
-            
+
             loadLock.EnterReadLock();
 
-            try
-            {
+            try {
                 if (loadedLanguages.ContainsKey(languageId))
                     language = loadedLanguages[languageId];
             }
-            finally
-            {
+            finally {
                 loadLock.ExitReadLock();
             }
 
@@ -49,15 +47,13 @@ namespace ExamplesFx.ColorCode.Common
 
             if (string.IsNullOrEmpty(language.Id))
                 throw new ArgumentException("The language identifier must not be null or empty.", "language");
-            
+
             loadLock.EnterWriteLock();
 
-            try
-            {
+            try {
                 loadedLanguages[language.Id] = language;
             }
-            finally
-            {
+            finally {
                 loadLock.ExitWriteLock();
             }
         }

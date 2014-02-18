@@ -30,19 +30,22 @@ namespace FileHelpers
             if (string.IsNullOrEmpty(id))
                 return false;
 
-            if (char.IsLetter(id[0]) == false && id[0] != '_')
+            if (char.IsLetter(id[0]) == false &&
+                id[0] != '_')
                 return false;
 
-            for (int i = 1; i < id.Length; i++)
-            {
-
-                if (isType)
-                {
-                    if (id[i] == '.' || id[i] == '<' || id[i] == '>' || id[i] == '?' || id[i] == ',')
+            for (int i = 1; i < id.Length; i++) {
+                if (isType) {
+                    if (id[i] == '.' ||
+                        id[i] == '<' ||
+                        id[i] == '>' ||
+                        id[i] == '?' ||
+                        id[i] == ',')
                         continue;
                 }
 
-                if (id[i] != '_' && char.IsLetterOrDigit(id[i]) == false)
+                if (id[i] != '_' &&
+                    char.IsLetterOrDigit(id[i]) == false)
                     return false;
             }
 

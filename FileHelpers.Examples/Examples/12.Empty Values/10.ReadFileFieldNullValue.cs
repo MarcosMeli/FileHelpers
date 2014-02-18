@@ -11,15 +11,13 @@ namespace ExamplesFx
     public class ReadFileFieldNullValue
         : ExampleBase
     {
-
         public override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records)
-            {
+            foreach (var record in records) {
                 Console.WriteLine(record.CustomerID);
                 if (record.OrderDate != new DateTime(1900, 01, 01))
                     Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
@@ -39,11 +37,12 @@ namespace ExamplesFx
             public string CustomerID;
 
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            [FieldNullValue(typeof(DateTime), "1900-01-01")]
+            [FieldNullValue(typeof (DateTime), "1900-01-01")]
             public DateTime OrderDate;
 
             public decimal Freight;
         }
+
         //-> /File
 
         //-> File:Input.txt

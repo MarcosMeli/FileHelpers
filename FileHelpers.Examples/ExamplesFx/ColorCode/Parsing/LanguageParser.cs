@@ -15,15 +15,15 @@ namespace ExamplesFx.ColorCode.Parsing
         private readonly ILanguageRepository languageRepository;
 
         public LanguageParser(ILanguageCompiler languageCompiler,
-                              ILanguageRepository languageRepository)
+            ILanguageRepository languageRepository)
         {
             this.languageCompiler = languageCompiler;
             this.languageRepository = languageRepository;
         }
 
         public void Parse(string sourceCode,
-                          ILanguage language,
-                          Action<string, IList<Scope>> parseHandler)
+            ILanguage language,
+            Action<string, IList<Scope>> parseHandler)
         {
             if (string.IsNullOrEmpty(sourceCode))
                 return;
@@ -34,27 +34,26 @@ namespace ExamplesFx.ColorCode.Parsing
         }
 
         private void Parse(string sourceCode,
-                           CompiledLanguage compiledLanguage,
-                           Action<string, IList<Scope>> parseHandler)
+            CompiledLanguage compiledLanguage,
+            Action<string, IList<Scope>> parseHandler)
         {
             Match regexMatch = compiledLanguage.Regex.Match(sourceCode);
 
             if (!regexMatch.Success)
                 parseHandler(sourceCode, new List<Scope>());
-            else
-            {
+            else {
                 int currentIndex = 0;
 
-                while (regexMatch.Success)
-                {
+                while (regexMatch.Success) {
                     string sourceCodeBeforeMatch = sourceCode.Substring(currentIndex, regexMatch.Index - currentIndex);
                     if (!string.IsNullOrEmpty(sourceCodeBeforeMatch))
                         parseHandler(sourceCodeBeforeMatch, new List<Scope>());
 
                     string matchedSourceCode = sourceCode.Substring(regexMatch.Index, regexMatch.Length);
-                    if (!string.IsNullOrEmpty(matchedSourceCode))
-                    {
-                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch, regexMatch.Index, compiledLanguage);
+                    if (!string.IsNullOrEmpty(matchedSourceCode)) {
+                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch,
+                            regexMatch.Index,
+                            compiledLanguage);
                         List<Scope> capturedStyleTree = CreateCapturedStyleTree(capturedStylesForMatchedFragment);
                         parseHandler(matchedSourceCode, capturedStyleTree);
                     }
@@ -76,10 +75,8 @@ namespace ExamplesFx.ColorCode.Parsing
             var capturedStyleTree = new List<Scope>(capturedStyles.Count);
             Scope currentScope = null;
 
-            foreach (var capturedStyle in capturedStyles)
-            {
-                if (currentScope == null)
-                {
+            foreach (var capturedStyle in capturedStyles) {
+                if (currentScope == null) {
                     capturedStyleTree.Add(capturedStyle);
                     currentScope = capturedStyle;
                     continue;
@@ -92,16 +89,15 @@ namespace ExamplesFx.ColorCode.Parsing
         }
 
         private static void AddScopeToNestedScopes(Scope scope,
-                                                   ref Scope currentScope,
-                                                   ICollection<Scope> capturedStyleTree)
+            ref Scope currentScope,
+            ICollection<Scope> capturedStyleTree)
         {
-            if (scope.Index >= currentScope.Index && (scope.Index + scope.Length <= currentScope.Index + currentScope.Length))
-            {
+            if (scope.Index >= currentScope.Index &&
+                (scope.Index + scope.Length <= currentScope.Index + currentScope.Length)) {
                 currentScope.AddChild(scope);
                 currentScope = scope;
             }
-            else
-            {
+            else {
                 currentScope = currentScope.Parent;
 
                 if (currentScope != null)
@@ -113,66 +109,67 @@ namespace ExamplesFx.ColorCode.Parsing
 
 
         private List<Scope> GetCapturedStyles(Match regexMatch,
-                                                      int currentIndex,
-                                                      CompiledLanguage compiledLanguage)
+            int currentIndex,
+            CompiledLanguage compiledLanguage)
         {
             var capturedStyles = new List<Scope>();
 
-            for (int i = 0; i < regexMatch.Groups.Count; i++)
-            {
+            for (int i = 0; i < regexMatch.Groups.Count; i++) {
                 Group regexGroup = regexMatch.Groups[i];
                 string styleName = compiledLanguage.Captures[i];
 
-                if (regexGroup.Length == 0 || String.IsNullOrEmpty(styleName))
+                if (regexGroup.Length == 0 ||
+                    String.IsNullOrEmpty(styleName))
                     continue;
-                else
+                else {
                     foreach (Capture regexCapture in regexGroup.Captures)
                         AppendCapturedStylesForRegexCapture(regexCapture, currentIndex, styleName, capturedStyles);
+                }
             }
 
             return capturedStyles;
         }
 
         private void AppendCapturedStylesForRegexCapture(Capture regexCapture,
-                                                         int currentIndex,
-                                                         string styleName,
-                                                         ICollection<Scope> capturedStyles)
+            int currentIndex,
+            string styleName,
+            ICollection<Scope> capturedStyles)
         {
-            if (styleName.StartsWith(ScopeName.LanguagePrefix))
-            {
+            if (styleName.StartsWith(ScopeName.LanguagePrefix)) {
                 string nestedGrammarId = styleName.Substring(1);
-                AppendCapturedStylesForNestedLanguage(regexCapture, regexCapture.Index - currentIndex, nestedGrammarId, capturedStyles);
+                AppendCapturedStylesForNestedLanguage(regexCapture,
+                    regexCapture.Index - currentIndex,
+                    nestedGrammarId,
+                    capturedStyles);
             }
             else
                 capturedStyles.Add(new Scope(styleName, regexCapture.Index - currentIndex, regexCapture.Length));
         }
 
         private void AppendCapturedStylesForNestedLanguage(Capture regexCapture,
-                                                           int offset,
-                                                           string nestedLanguageId,
-                                                           ICollection<Scope> capturedStyles)
+            int offset,
+            string nestedLanguageId,
+            ICollection<Scope> capturedStyles)
         {
             ILanguage nestedLanguage = languageRepository.FindById(nestedLanguageId);
 
             if (nestedLanguage == null)
                 throw new InvalidOperationException("The nested language was not found in the language repository.");
-            else
-            {
+            else {
                 CompiledLanguage nestedCompiledLanguage = languageCompiler.Compile(nestedLanguage);
 
                 Match regexMatch = nestedCompiledLanguage.Regex.Match(regexCapture.Value, 0, regexCapture.Value.Length);
 
                 if (!regexMatch.Success)
                     return;
-                else
-                {
-                    while (regexMatch.Success)
-                    {
-                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch, 0, nestedCompiledLanguage);
+                else {
+                    while (regexMatch.Success) {
+                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch,
+                            0,
+                            nestedCompiledLanguage);
                         List<Scope> capturedStyleTree = CreateCapturedStyleTree(capturedStylesForMatchedFragment);
 
-                        foreach (var nestedCapturedStyle in capturedStyleTree)
-                        {
+                        foreach (var nestedCapturedStyle in capturedStyleTree) {
                             IncreaseCapturedStyleIndicies(capturedStyleTree, offset);
                             capturedStyles.Add(nestedCapturedStyle);
                         }
@@ -184,10 +181,9 @@ namespace ExamplesFx.ColorCode.Parsing
         }
 
         private static void IncreaseCapturedStyleIndicies(IList<Scope> capturedStyles,
-                                                          int amountToIncrease)
+            int amountToIncrease)
         {
-            for (int i = 0; i < capturedStyles.Count; i++)
-            {
+            for (int i = 0; i < capturedStyles.Count; i++) {
                 Scope scope = capturedStyles[i];
 
                 scope.Index += amountToIncrease;

@@ -22,6 +22,7 @@ namespace ExamplesFx.TreeView
         {
             return new CategoryTreeNode(Text);
         }
+
         /// <summary>
         /// Create a category tree node using text description
         /// </summary>
@@ -44,14 +45,12 @@ namespace ExamplesFx.TreeView
             index.Append(this.Text);
             index.AppendLine("</h3>");
 
-            if (Nodes.Count > 0)
-            {
+            if (Nodes.Count > 0) {
                 int newIndent = indent + 1;
                 index.AppendLine("<blockquote><dl>");
-                foreach (var node in this.Nodes)
-                {
+                foreach (var node in this.Nodes) {
                     if (node is IHtmlWriter)
-                        ((IHtmlWriter)node).OutputHtml(index, newIndent);
+                        ((IHtmlWriter) node).OutputHtml(index, newIndent);
                 }
                 index.AppendLine("</dl></blockquote>");
             }

@@ -31,10 +31,7 @@ namespace FileHelpers
         /// </summary>
         public string Text
         {
-            get
-            {
-                return GenerateText();
-            }
+            get { return GenerateText(); }
         }
 
         /// <summary>
@@ -47,7 +44,7 @@ namespace FileHelpers
         /// Send message out with conversion applied
         /// </summary>
         /// <returns>message after substitution</returns>
-        public sealed override string ToString()
+        public override sealed string ToString()
         {
             return Text;
         }

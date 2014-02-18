@@ -12,7 +12,7 @@ namespace FileHelpers
     /// </summary>
     /// <typeparam name="T">Type of record to sort</typeparam>
     public class BigFileSorter<T>
-        where T: class, IComparable<T>
+        where T : class, IComparable<T>
     {
         /// <summary>
         /// set the default encoding to the default encoding for C#
@@ -25,17 +25,17 @@ namespace FileHelpers
         /// <summary>
         /// Default block size,  10 meg
         /// </summary>
-        private const int DefaultBlockSize = 10 * 1024 * 1024;
+        private const int DefaultBlockSize = 10*1024*1024;
 
         /// <summary>
         /// Maximum block size,  50 meg
         /// </summary>
-        private const int MaxBufferSize = 50 * 1024 * 1024;
+        private const int MaxBufferSize = 50*1024*1024;
 
         /// <summary>
         /// Minimum block size 2 meg
         /// </summary>
-        private const int MinBlockSize = 2 * 1024 * 1024;
+        private const int MinBlockSize = 2*1024*1024;
 
         /// <summary>
         /// Comparison operator for this sort
@@ -46,27 +46,21 @@ namespace FileHelpers
         /// Sort big files using the External Sorting algorithm
         /// </summary>
         public BigFileSorter()
-            : this(0)
-        {
-        }
+            : this(0) {}
 
         /// <summary>
         /// Sort a large file
         /// </summary>
         /// <param name="blockFileSizeInBytes">block size for sort to work on</param>
         public BigFileSorter(int blockFileSizeInBytes)
-            :this(null , blockFileSizeInBytes)
-        {
-        }
+            : this(null, blockFileSizeInBytes) {}
 
         /// <summary>
         /// Large file sorter
         /// </summary>
         /// <param name="encoding">Encoding of the file</param>
         public BigFileSorter(Encoding encoding)
-            : this(encoding, 0)
-        {
-        }
+            : this(encoding, 0) {}
 
         /// <summary>
         /// Large file sorter
@@ -74,9 +68,7 @@ namespace FileHelpers
         /// <param name="encoding">Encoding of the file</param>
         /// <param name="blockFileSizeInBytes">Size of the blocks in bytes</param>
         public BigFileSorter(Encoding encoding, int blockFileSizeInBytes)
-            :this(null, encoding, blockFileSizeInBytes)
-        {
-        }
+            : this(null, encoding, blockFileSizeInBytes) {}
 
         /// <summary>
         /// Large file sorter specifying the comparison operator
@@ -128,7 +120,7 @@ namespace FileHelpers
         public Encoding Encoding { get; set; }
 
         /// <summary> Indicates if the Sorter run a GC.Collect() after sort and write each part. Default is true.</summary>
-        public bool RunGcCollectForEachPart{ get; set; }
+        public bool RunGcCollectForEachPart { get; set; }
 
         /// <summary>
         /// Sort a file from one filename to another filename
@@ -148,9 +140,7 @@ namespace FileHelpers
         {
             var res = new SortQueue<T>[parts.Count];
             for (int i = 0; i < parts.Count; i++)
-            {
                 res[i] = new SortQueue<T>(Encoding, parts[i], DeleteTempFiles);
-            }
             return res;
         }
 
@@ -160,22 +150,18 @@ namespace FileHelpers
 
             var lines = new List<T>();
 
-            try
-            {
+            try {
                 long writtenBytes = 0;
                 long lastWrittenBytes = 0;
                 var readEngine = new FileHelperAsyncEngine<T>(Encoding);
 
                 readEngine.Progress += (sender, e) => writtenBytes = e.CurrentBytes;
 
-                using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize * 2))
-                {
-                    foreach (var item in readEngine)
-                    {
+                using (readEngine.BeginReadFile(file, EngineBase.DefaultReadBufferSize*2)) {
+                    foreach (var item in readEngine) {
                         lines.Add(item);
 
-                        if ((writtenBytes - lastWrittenBytes) > BlockFileSizeInBytes)
-                        {
+                        if ((writtenBytes - lastWrittenBytes) > BlockFileSizeInBytes) {
                             WritePart(file, lines, partNumber, res);
                             partNumber++;
                             lastWrittenBytes = writtenBytes;
@@ -185,14 +171,10 @@ namespace FileHelpers
 
                 return readEngine;
             }
-            finally
-            {
+            finally {
                 if (lines.Count > 0)
-                {
                     WritePart(file, lines, partNumber, res);
-                }
             }
-
         }
 
         private void WritePart(string file, List<T> lines, int partNumber, List<string> res)
@@ -205,14 +187,12 @@ namespace FileHelpers
             else
                 lines.Sort();
 
-            var writeEngine = new FileHelperEngine<T>(Encoding)
-                {
-                    Options =
-                        {
-                            IgnoreFirstLines = 0,
-                            IgnoreLastLines = 0
-                        }
-                };
+            var writeEngine = new FileHelperEngine<T>(Encoding) {
+                Options = {
+                    IgnoreFirstLines = 0,
+                    IgnoreLastLines = 0
+                }
+            };
             writeEngine.WriteFile(splitName, lines);
 
             lines.Clear();
@@ -243,12 +223,10 @@ namespace FileHelpers
         {
             var dir = TempDirectory;
             if (string.IsNullOrEmpty(dir))
-            {
                 dir = Path.GetDirectoryName(file);
-            }
 
             return Path.Combine(dir,
-                                Path.GetFileNameWithoutExtension(file) + ".part" + splitNum.ToString().PadLeft(4, '0'));
+                Path.GetFileNameWithoutExtension(file) + ".part" + splitNum.ToString().PadLeft(4, '0'));
         }
 
         /// <summary>
@@ -258,29 +236,23 @@ namespace FileHelpers
         /// <param name="destinationFile">output filename</param>
         internal void MergeTheChunks(SortQueue<T>[] queues, string destinationFile, string headerText, string footerText)
         {
-
-            try
-            {
+            try {
                 // Merge!
-                using (var sw = new FileHelperAsyncEngine<T>(Encoding))
-                {
+                using (var sw = new FileHelperAsyncEngine<T>(Encoding)) {
                     sw.HeaderText = headerText;
                     sw.FooterText = footerText;
-                    sw.BeginWriteFile(destinationFile, EngineBase.DefaultWriteBufferSize * 4);
-                    while (true)
-                    {
+                    sw.BeginWriteFile(destinationFile, EngineBase.DefaultWriteBufferSize*4);
+                    while (true) {
                         // Find the chunk with the lowest value
                         int lowestIndex = -1;
                         T lowestValue = null;
 
-                        for (int j = 0; j < queues.Length; j++)
-                        {
+                        for (int j = 0; j < queues.Length; j++) {
                             var current = queues[j].Current;
 
-                            if (current != null)
-                            {
-                                if (lowestIndex < 0 || current.CompareTo(lowestValue) < 0)
-                                {
+                            if (current != null) {
+                                if (lowestIndex < 0 ||
+                                    current.CompareTo(lowestValue) < 0) {
                                     lowestIndex = j;
                                     lowestValue = current;
                                 }
@@ -298,8 +270,7 @@ namespace FileHelpers
                     }
                 }
             }
-            finally
-            {
+            finally {
                 for (int i = 0; i < queues.Length; i++)
                     queues[i].Dispose();
             }

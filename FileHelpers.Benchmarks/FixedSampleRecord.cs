@@ -23,6 +23,5 @@ namespace FileHelpers.Benchmarks
         {
             Nombre = Nombre.Replace("#", "Ñ");
         }
-
     }
 }
