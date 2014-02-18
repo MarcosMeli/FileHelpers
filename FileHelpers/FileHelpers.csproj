@@ -304,12 +304,13 @@
     <Compile Include="Events\AfterReadEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\ExtractFieldErrorEventArgs.cs" />
     <Compile Include="Events\FileHelpersEventArgs.cs" />
     <Compile Include="Events\ReadEventArgs.cs" />
     <Compile Include="Events\AfterWriteEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\ReadFieldErrorEventArgs.cs" />
+    <Compile Include="Events\ReadLineErrorEventArgs.cs" />
     <Compile Include="Events\WriteEventArgs.cs" />
     <Compile Include="Fields\DelimitedField.cs">
       <SubType>Code</SubType>

@@ -1521,15 +1521,21 @@
             </summary>
             <param name="recordInfo">Record details we create objects off</param>
         </member>
-        <member name="M:FileHelpers.RecordOperations.OnExtractFieldError(System.String,System.Int32,FileHelpers.FieldBase,System.Exception)">
+        <member name="M:FileHelpers.RecordOperations.OnReadFieldError(FileHelpers.ErrorInfo,FileHelpers.FieldBase)">
             <summary>
             Extract error of a field
             </summary>
+            <param name="error">The error that occured</param>
+            <param name="field">The field that caused the error</param>
+            <returns>true indicates that the record has to be processed further for errors</returns>
+        </member>
+        <member name="M:FileHelpers.RecordOperations.OnReadLineError(System.String,System.Int32,System.Collections.Generic.List{FileHelpers.ErrorInfo})">
+            <summary>
+            Extract all errors of a record
+            </summary>
             <param name="line">Record read</param>
             <param name="lineNumber">The line number</param>
-            <param name="field">The field that caused the error</param>
-            <param name="exception">The exception that occured</param>
-            <returns>true indicates that the record has to be processed further for errors</returns>
+            <param name="errors">All errors of the record</param>
         </member>
         <member name="M:FileHelpers.RecordOperations.StringToRecord(FileHelpers.LineInfo,System.Object[])">
             <summary>
@@ -1626,7 +1632,13 @@
             Record Info we use to parse the record and generate an object instance
             </summary>
         </member>
-        <member name="E:FileHelpers.RecordOperations.ExtractFieldError">
+        <member name="E:FileHelpers.RecordOperations.ReadFieldError">
+            <summary>
+            Called in read operations just before the record string is
+            translated to a record.
+            </summary>
+        </member>
+        <member name="E:FileHelpers.RecordOperations.ReadLineError">
             <summary>
             Called in read operations just before the record string is
             translated to a record.
@@ -3457,11 +3469,20 @@
             <param name="recordType">Class to base engine on</param>
             <param name="encoding">encoding of the file</param>
         </member>
-        <member name="M:FileHelpers.EngineBase.#ctor(FileHelpers.RecordInfo)">
+        <member name="M:FileHelpers.EngineBase.Operations_ReadFieldError(System.Object,FileHelpers.Events.ReadFieldErrorEventArgs)">
             <summary>
-            Create an engine on the record info provided
+            Event that fires when extract field raises an exception
             </summary>
-            <param name="ri">Record information</param>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The Event Args</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileHelpers.EngineBase.Operations_ReadLineError(System.Object,FileHelpers.Events.ReadLineErrorEventArgs)">
+            <summary>
+            Occurs when a line contains an error while reading in RecordOperation
+            </summary>
+            <param name="sender">the sender of the event</param>
+            <param name="e">The arguments <see cref="T:FileHelpers.Events.ReadLineErrorEventArgs"/> of the event</param>
         </member>
         <member name="M:FileHelpers.EngineBase.GetFileHeader">
             <summary>
@@ -3491,6 +3512,12 @@
         <member name="M:FileHelpers.EngineBase.OnProgress(FileHelpers.Events.ProgressEventArgs)">
             <summary>
             Raises the Progress Event
+            </summary>
+            <param name="e">The Event Args</param>
+        </member>
+        <member name="M:FileHelpers.EngineBase.OnReadLineError(FileHelpers.Events.ReadLineErrorEventArgs)">
+            <summary>
+            Raises the ReadLineError Event
             </summary>
             <param name="e">The Event Args</param>
         </member>
@@ -3539,6 +3566,9 @@
             Determine whether a progress call is needed
             </summary>
         </member>
+        <member name="E:FileHelpers.EngineBase.ReadLineError">
+            <summary>Event handler called to ReadLineError.</summary>
+        </member>
         <member name="P:FileHelpers.EngineBase.Options">
             <summary>
             Allows you to change some record layout options at runtime
@@ -3556,12 +3586,6 @@
             </summary>
             <param name="recordType">Type of the record</param>
             <param name="encoding">Encoding specified</param>
-        </member>
-        <member name="M:FileHelpers.EventEngineBase`1.#ctor(FileHelpers.RecordInfo)">
-            <summary>
-            Event based upon supplied record information
-            </summary>
-            <param name="ri"></param>
         </member>
         <member name="M:FileHelpers.EventEngineBase`1.OnBeforeReadRecord(FileHelpers.Events.BeforeReadEventArgs{`0})">
             <summary>
@@ -5520,12 +5544,6 @@
             <param name="encoding">The Encoding used by the engine.</param>
             <param name="recordType">Type of record we are reading</param>
         </member>
-        <member name="M:FileHelpers.FileHelperEngine`1.#ctor(FileHelpers.RecordInfo)">
-            <summary>
-			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
-		</summary><param name="recordType">The record mapping class.</param>
-            <param name="ri">Record information</param>
-        </member>
         <member name="M:FileHelpers.FileHelperEngine`1.ReadFile(System.String)">
             <summary>
 		Read a file and return an array of the contained records.
@@ -6174,12 +6192,6 @@
 			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
 		</summary><param name="recordType">The record mapping class.</param>
             <param name="encoding">The Encoding used by the engine.</param>
-        </member>
-        <member name="M:FileHelpers.FileHelperEngine.#ctor(FileHelpers.RecordInfo)">
-            <summary>
-			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
-		</summary><param name="recordType">The record mapping class.</param>
-            <param name="ri">Record information on new type</param>
         </member>
         <member name="M:FileHelpers.CsvEngine.CsvToDataTable(System.String,System.Char)">
             <summary>Reads a CSV File and return their contents as DataTable (The file must have the field names in the first row)</summary>
@@ -8455,9 +8467,16 @@
             <param name="engine">The engine that generates the event.</param>
             <param name="e">The event data.</param>
         </member>
-        <member name="T:FileHelpers.Events.ExtractFieldErrorHandler">
+        <member name="T:FileHelpers.Events.ReadFieldErrorHandler">
             <summary>
             Called on extract field exception
+            </summary>
+            <param name="sender">The sender that generates the event.</param>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="T:FileHelpers.Events.ReadLineErrorHandler">
+            <summary>
+            Called on read line containing errors
             </summary>
             <param name="sender">The sender that generates the event.</param>
             <param name="e">The event data.</param>
@@ -8478,38 +8497,6 @@
         <member name="P:FileHelpers.Events.AfterReadEventArgs`1.Record">
             <summary>The current record.</summary>
         </member>
-        <member name="T:FileHelpers.Events.ExtractFieldErrorEventArgs">
-            <summary>Arguments for the <see cref="T:FileHelpers.Events.ExtractFieldErrorEventArgs"/></summary>
-        </member>
-        <member name="M:FileHelpers.Events.ExtractFieldErrorEventArgs.#ctor(System.String,System.Int32,FileHelpers.FieldBase,System.Exception)">
-            <summary>
-            After an exception occurs when extracting the value of a field from the line
-            </summary>
-            <param name="line">Record that was analysed</param>
-            <param name="lineNumber">Record number read</param>
-            <param name="field">Was it changed before</param>
-            <param name="exception">Object created</param>
-        </member>
-        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Line">
-            <summary>
-            The current record that contains the field
-            </summary>
-        </member>
-        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.LineNumber">
-            <summary>
-            The line number
-            </summary>
-        </member>
-        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Field">
-            <summary>
-            The field that failed
-            </summary>
-        </member>
-        <member name="P:FileHelpers.Events.ExtractFieldErrorEventArgs.Exception">
-            <summary>
-            The exception that occured
-            </summary>
-        </member>
         <member name="T:FileHelpers.Events.AfterWriteEventArgs`1">
             <summary>Arguments for the <see cref="T:FileHelpers.Events.AfterWriteEventArgs`1"/></summary>
         </member>
@@ -8526,6 +8513,52 @@
             <summary>
             The line to be written to the destination.
             WARNING: you can change the line value and the engines will write it to the destination.
+            </summary>
+        </member>
+        <member name="T:FileHelpers.Events.ReadFieldErrorEventArgs">
+            <summary>Arguments for the <see cref="T:FileHelpers.Events.ReadFieldErrorEventArgs"/></summary>
+        </member>
+        <member name="M:FileHelpers.Events.ReadFieldErrorEventArgs.#ctor(FileHelpers.ErrorInfo,FileHelpers.FieldBase)">
+            <summary>
+            After an exception occurs when extracting the value of a field from the line
+            </summary>
+            <param name="error">The error that occured</param>
+            <param name="field">Was it changed before</param>
+        </member>
+        <member name="P:FileHelpers.Events.ReadFieldErrorEventArgs.Error">
+            <summary>
+            The error that occured
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ReadFieldErrorEventArgs.Field">
+            <summary>
+            The field that failed
+            </summary>
+        </member>
+        <member name="T:FileHelpers.Events.ReadLineErrorEventArgs">
+            <summary>Arguments for the <see cref="T:FileHelpers.Events.ReadLineErrorEventArgs"/></summary>
+        </member>
+        <member name="M:FileHelpers.Events.ReadLineErrorEventArgs.#ctor(System.String,System.Int32,System.Collections.Generic.List{FileHelpers.ErrorInfo})">
+            <summary>
+            Returns all errors in the line
+            </summary>
+            <param name="line">Record that was analysed</param>
+            <param name="lineNumber">Record number read</param>
+            <param name="errors">The errors that have occured</param>
+        </member>
+        <member name="P:FileHelpers.Events.ReadLineErrorEventArgs.Line">
+            <summary>
+            The current record that contains the field
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ReadLineErrorEventArgs.LineNumber">
+            <summary>
+            The line number
+            </summary>
+        </member>
+        <member name="P:FileHelpers.Events.ReadLineErrorEventArgs.Errors">
+            <summary>
+            The errors that have occured
             </summary>
         </member>
         <member name="T:FileHelpers.DelimitedField">

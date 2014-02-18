@@ -34,25 +34,45 @@ namespace FileHelpers
         /// Called in read operations just before the record string is
         /// translated to a record.
         /// </summary>
-        public event ExtractFieldErrorHandler ExtractFieldError;
+        public event ReadFieldErrorHandler ReadFieldError;
+
+        /// <summary>
+        /// Called in read operations just before the record string is
+        /// translated to a record.
+        /// </summary>
+        public event ReadLineErrorHandler ReadLineError;
 
         /// <summary>
         /// Extract error of a field
         /// </summary>
-        /// <param name="line">Record read</param>
-        /// <param name="lineNumber">The line number</param>
+        /// <param name="error">The error that occured</param>
         /// <param name="field">The field that caused the error</param>
-        /// <param name="exception">The exception that occured</param>
         /// <returns>true indicates that the record has to be processed further for errors</returns>
-        public bool OnExtractFieldError(string line, int lineNumber, FieldBase field, Exception exception)
+        public bool OnReadFieldError(ErrorInfo error, FieldBase field)
         {
-            if (ExtractFieldError != null)
+            if (ReadFieldError != null)
             {
-                var e = new ExtractFieldErrorEventArgs(line, lineNumber, field, exception);
-                return ExtractFieldError(this, e);
+                var e = new ReadFieldErrorEventArgs(error, field);
+                return ReadFieldError(this, e);
             }
 
+            // Default stop reading the line
             return false;
+        }
+
+        /// <summary>
+        /// Extract all errors of a record
+        /// </summary>
+        /// <param name="line">Record read</param>
+        /// <param name="lineNumber">The line number</param>
+        /// <param name="errors">All errors of the record</param>
+        public void OnReadLineError(string line, int lineNumber, List<ErrorInfo> errors)
+        {
+            if (ReadLineError != null)
+            {
+                var e = new ReadLineErrorEventArgs(line, lineNumber, errors);
+                ReadLineError(this, e);
+            }
         }
 
         #endregion
@@ -71,9 +91,35 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return null;
 
+            // Collect all errors
+            List<ErrorInfo> errors = new List<ErrorInfo>();
+
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+                var field = RecordInfo.Fields[i];
+                try
+                {
+                    values[i] = field.ExtractFieldValue(line);
+                }
+                catch (Exception exception)
+                {
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    errors.Add(error);
+
+                    if (!OnReadFieldError(error, field))
+                    {
+                        // stacktrace is lost. Is that an issue?
+                        break;
+                    }
+                }
+            }
+
+            if (errors.Count > 0)
+            {
+                // TODO investigate if it is possible to process the record anyway(errors on non required values)
+                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                // skip record
+                return false;
             }
 
             try
@@ -116,8 +162,8 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return false;
 
-            // count the number of errors while reading the record
-            int errorCount = 0;
+            // Collect all errors
+            List<ErrorInfo> errors = new List<ErrorInfo>();
 
             for (int i = 0; i < RecordInfo.FieldCount; i++)
             {
@@ -128,18 +174,22 @@ namespace FileHelpers
                 }
                 catch (Exception exception)
                 {
-                    errorCount++;
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    errors.Add(error);
 
-                    if (!OnExtractFieldError(line.CurrentString, line.mReader.LineNumber, field, exception))
+                    if (!OnReadFieldError(error, field))
                     {
                         // stacktrace is lost. Is that an issue?
-                        throw exception;
+                        break;
                     }
                 }
             }
 
-            if (errorCount > 0)
+            if (errors.Count > 0)
             {
+                // TODO investigate if it is possible to process the record anyway(errors on non required values)
+                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                // skip record
                 return false;
             }
 
