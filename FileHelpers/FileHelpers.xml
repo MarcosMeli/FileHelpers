@@ -9349,6 +9349,22 @@
             <param name="comparisionType">Comparison type (enum)</param>
             <returns>String with values replaced</returns>
         </member>
+        <member name="M:FileHelpers.StringHelper.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            Indicates whether a specified string is null, empty, or consists only of white-space characters.
+            </summary>
+            <param name="value">The string to test.</param>
+            <returns>true if the parameter is null, empty, or consists only of white-space characters.</returns>
+        </member>
+        <member name="M:FileHelpers.StringHelper.StartsWithIgnoringWhiteSpaces(System.String,System.String,System.StringComparison)">
+            <summary>
+            Determines whether the beginning of this string instance matches the specified string ignoring white spaces at the start.
+            </summary>
+            <param name="source">source string.</param>
+            <param name="value">The string to compare.</param>
+            <param name="comparisonType">string comparison type.</param>
+            <returns></returns>
+        </member>
         <member name="T:FileHelpers.Events.INotifyRead`1">
             <summary>
             Interface used to provide In record notification of read operations.
