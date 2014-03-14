@@ -8259,6 +8259,10 @@
             </returns>
             <filterpriority>2</filterpriority>
         </member>
+        <member name="P:FileHelpers.ErrorManager.ErrorLimit">
+            <summary>Maximum number of recorded errors. After this limit is reached, successive errors are ignored.</summary>
+            <remarks>Default error limit is 10000.</remarks>
+        </member>
         <member name="P:FileHelpers.ErrorManager.Errors">
             <summary>
             Is an array of <see cref="T:FileHelpers.ErrorInfo"/> that contains the
@@ -8270,6 +8274,7 @@
             Indicates the behavior of the <see cref="T:FileHelpers.FileHelperEngine"/>
             when it found an error.
             </summary>
+            <remarks>Default error mode is ThrowException.</remarks>
         </member>
         <member name="P:FileHelpers.ErrorManager.ErrorCount">
             <summary>Number of contained errors.</summary>
