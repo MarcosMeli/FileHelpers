@@ -155,7 +155,7 @@ namespace FileHelpers
                     return source; //  sign is followed by text so just return it
 
                 // start out with the sign
-                var sb = new StringBuilder(source[i - 1].ToString());
+                var sb = new StringBuilder(source[i - 1].ToString(), source.Length - i);
 
                 i++; // I am on whitepsace so skip it
                 while (i < source.Length &&
@@ -287,6 +287,56 @@ namespace FileHelpers
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Indicates whether a specified string is null, empty, or consists only of white-space characters.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <returns>true if the parameter is null, empty, or consists only of white-space characters.</returns>
+        public static bool IsNullOrWhiteSpace (string value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsWhiteSpace (value[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Determines whether the beginning of this string instance matches the specified string ignoring white spaces at the start.
+        /// </summary>
+        /// <param name="source">source string.</param>
+        /// <param name="value">The string to compare.</param>
+        /// <param name="comparisonType">string comparison type.</param>
+        /// <returns></returns>
+        public static bool StartsWithIgnoringWhiteSpaces (string source, string value, System.StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            // find lower bound
+            int i = 0;
+            int sz = source.Length;
+            while (i < sz && char.IsWhiteSpace (source[i]))
+            {
+                i++;
+            }
+            // adjust upper bound
+            sz = sz - i;
+            if (sz < value.Length)
+                return false;            
+            sz = value.Length;
+            // search
+            return source.IndexOf (value, i, sz, comparisonType) == i;
         }
     }
 }
