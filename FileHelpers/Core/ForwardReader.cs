@@ -13,7 +13,7 @@ namespace FileHelpers
         /// <summary>
         /// Return file record by record
         /// </summary>
-        readonly IRecordReader mReader;
+        private readonly IRecordReader mReader;
 
         /// <summary>
         /// records already read
@@ -23,7 +23,6 @@ namespace FileHelpers
         private int mForwardIndex = 0;
 
         #region "  Constructors  "
-
 
         //internal ForwardReader(IRecordReader reader)
         //    : this(reader, 0, 0)
@@ -35,8 +34,7 @@ namespace FileHelpers
         /// <param name="reader">Reader to get records</param>
         /// <param name="forwardLines">NUmber of lines to skip before reading</param>
         internal ForwardReader(IRecordReader reader, int forwardLines)
-            : this(reader, forwardLines, 0)
-        { }
+            : this(reader, forwardLines, 0) {}
 
         /// <summary>
         /// Read a Record handler forward,  optionally skipping n lines and starting at a record number > 0
@@ -44,7 +42,7 @@ namespace FileHelpers
         /// <param name="reader">Reader to get records</param>
         /// <param name="forwardLines">Number of lines to skip before reading</param>
         /// <param name="startLine">Lines already read from file</param>
-        internal ForwardReader(IRecordReader reader, int forwardLines, int startLine) 
+        internal ForwardReader(IRecordReader reader, int forwardLines, int startLine)
         {
             mReader = reader;
 
@@ -54,19 +52,15 @@ namespace FileHelpers
             mFowardStrings = new string[mFowardLines + 1];
             mRemaingLines = mFowardLines + 1;
 
-            for (int i = 0; i < mFowardLines + 1; i++)
-            {
+            for (int i = 0; i < mFowardLines + 1; i++) {
                 mFowardStrings[i] = mReader.ReadRecordString();
                 mLineNumber++;
-                if (mFowardStrings[i] == null)
-                {
+                if (mFowardStrings[i] == null) {
                     mRemaingLines = i;
                     break;
                 }
             }
-
         }
-
 
         #endregion
 
@@ -104,7 +98,6 @@ namespace FileHelpers
         //		char[] mBuffer;
         //	
 
-
         #region "  DiscardForward  "
 
         private bool mDiscardForward = false;
@@ -134,34 +127,26 @@ namespace FileHelpers
         {
             if (mRemaingLines <= 0)
                 return null;
-            else
-            {
+            else {
                 string res = mFowardStrings[mForwardIndex];
 
-                if (mRemaingLines == (mFowardLines + 1))
-                {
+                if (mRemaingLines == (mFowardLines + 1)) {
                     mFowardStrings[mForwardIndex] = mReader.ReadRecordString();
                     mLineNumber++;
 
                     if (mFowardStrings[mForwardIndex] == null)
-                    {
                         mRemaingLines--;
-                    }
-
                 }
-                else
-                {
+                else {
                     mRemaingLines--;
                     if (mDiscardForward)
                         return null;
-
                 }
 
-                mForwardIndex = (mForwardIndex + 1) % (mFowardLines + 1);
+                mForwardIndex = (mForwardIndex + 1)%(mFowardLines + 1);
 
                 return res;
             }
-
         }
 
         #endregion
@@ -175,9 +160,7 @@ namespace FileHelpers
                 var sb = new StringBuilder(100);
 
                 for (int i = 0; i < mRemaingLines + 1; i++)
-                {
-                    sb.Append(mFowardStrings[(mForwardIndex + i) % (mFowardLines + 1)] + StringHelper.NewLine);
-                }
+                    sb.Append(mFowardStrings[(mForwardIndex + i)%(mFowardLines + 1)] + StringHelper.NewLine);
 
                 return sb.ToString();
             }
@@ -198,7 +181,6 @@ namespace FileHelpers
 
         #endregion
 
-       
         #region IDisposable Members
 
         void IDisposable.Dispose()
@@ -209,5 +191,4 @@ namespace FileHelpers
 
         #endregion
     }
-
 }

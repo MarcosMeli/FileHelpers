@@ -11,15 +11,13 @@ namespace ExamplesFx
     public class ReadFileNullable
         : ExampleBase
     {
-
         public override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records)
-            {
+            foreach (var record in records) {
                 Console.WriteLine(record.CustomerID);
                 if (record.OrderDate.HasValue)
                     Console.WriteLine(record.OrderDate.Value.ToString("dd/MM/yyyy"));
@@ -43,6 +41,7 @@ namespace ExamplesFx
 
             public decimal Freight;
         }
+
         //-> /File
 
         //-> File:Input.txt

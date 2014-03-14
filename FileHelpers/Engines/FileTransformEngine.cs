@@ -7,35 +7,33 @@ using System.Text;
 
 namespace FileHelpers
 {
-
     /// <summary>
-	/// This class allow you to convert the records of a file to a different record format.
-	/// </summary>
-	/// <seealso href="quick_start.html">Quick Start Guide</seealso>
-	/// <seealso href="class_diagram.html">Class Diagram</seealso>
-	/// <seealso href="examples.html">Examples of Use</seealso>
-	/// <seealso href="attributes.html">Attributes List</seealso>
+    /// This class allow you to convert the records of a file to a different record format.
+    /// </summary>
+    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
+    /// <seealso href="class_diagram.html">Class Diagram</seealso>
+    /// <seealso href="examples.html">Examples of Use</seealso>
+    /// <seealso href="attributes.html">Attributes List</seealso>
     /// <typeparam name="TSource">The source record type.</typeparam>
     /// <typeparam name="TDestination">The destination record type.</typeparam>
-    [DebuggerDisplay("FileTransformanEngine for types: {SourceType.Name} --> {DestinationType.Name}. Source Encoding: {SourceEncoding.EncodingName}. Destination Encoding: {DestinationEncoding.EncodingName}")]
+    [DebuggerDisplay(
+        "FileTransformanEngine for types: {SourceType.Name} --> {DestinationType.Name}. Source Encoding: {SourceEncoding.EncodingName}. Destination Encoding: {DestinationEncoding.EncodingName}"
+        )]
     public sealed class FileTransformEngine<TSource, TDestination>
-        where TSource: class, ITransformable<TDestination> 
-        where TDestination: class
-	{
-
+        where TSource : class, ITransformable<TDestination>
+        where TDestination : class
+    {
         #region "  Constructor  "
 
         /// <summary>Create a new FileTransformEngine.</summary>
-		public FileTransformEngine()
-		{
-		}
+        public FileTransformEngine() {}
 
-		#endregion
+        #endregion
 
-		#region "  Private Fields  "
+        #region "  Private Fields  "
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static object[] mEmptyArray = new object[] { };
+        private static object[] mEmptyArray = new object[] {};
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Encoding mSourceEncoding = Encoding.Default;
@@ -79,45 +77,47 @@ namespace FileHelpers
             get { return mDestinationErrorManager; }
         }
 
+        #endregion
 
-		#endregion
+        #region "  TransformFile  " 
 
-		#region "  TransformFile  " 
-
-		/// <summary>
+        /// <summary>
         /// Transform the contents of the sourceFile and write them to the
         /// destFile.(use only if you need the array of the transformed
         /// records, TransformFileFast is faster)
         /// </summary>
-		/// <param name="sourceFile">The source file.</param>
-		/// <param name="destFile">The destination file.</param>
-		/// <returns>The transformed records.</returns>
-		public TDestination[] TransformFile(string sourceFile, string destFile)
-		{
-			ExHelper.CheckNullParam(sourceFile, "sourceFile");
-			ExHelper.CheckNullParam(destFile, "destFile");
-			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+        /// <param name="sourceFile">The source file.</param>
+        /// <param name="destFile">The destination file.</param>
+        /// <returns>The transformed records.</returns>
+        public TDestination[] TransformFile(string sourceFile, string destFile)
+        {
+            ExHelper.CheckNullParam(sourceFile, "sourceFile");
+            ExHelper.CheckNullParam(destFile, "destFile");
+            ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
-			return CoreTransformFile(sourceFile, destFile);
-		}
+            return CoreTransformFile(sourceFile, destFile);
+        }
 
 
-		/// <summary>
+        /// <summary>
         /// Transform the contents of the sourceFile and write them to the
         /// destFile. (faster and uses less memory, best choice for big
         /// files)
         /// </summary>
-		/// <param name="sourceFile">The source file.</param>
-		/// <param name="destFile">The destination file.</param>
-		/// <returns>The number of transformed records.</returns>
-		public int TransformFileFast(string sourceFile, string destFile)
-		{
-			ExHelper.CheckNullParam(sourceFile, "sourceFile");
-			ExHelper.CheckNullParam(destFile, "destFile");
-			ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
+        /// <param name="sourceFile">The source file.</param>
+        /// <param name="destFile">The destination file.</param>
+        /// <returns>The number of transformed records.</returns>
+        public int TransformFileFast(string sourceFile, string destFile)
+        {
+            ExHelper.CheckNullParam(sourceFile, "sourceFile");
+            ExHelper.CheckNullParam(destFile, "destFile");
+            ExHelper.CheckDifferentsParams(sourceFile, "sourceFile", destFile, "destFile");
 
-            return CoreTransformAsync(new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
-		}
+            return
+                CoreTransformAsync(
+                    new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize*5),
+                    new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize*5));
+        }
 
         /// <summary>
         /// Transform the contents of the sourceFile and write them to the
@@ -132,7 +132,8 @@ namespace FileHelpers
             ExHelper.CheckNullParam(sourceStream, "sourceStream");
             ExHelper.CheckNullParam(destFile, "destFile");
 
-            return CoreTransformAsync(sourceStream, new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize * 5));
+            return CoreTransformAsync(sourceStream,
+                new StreamWriter(destFile, false, DestinationEncoding, EngineBase.DefaultWriteBufferSize*5));
         }
 
         /// <summary>
@@ -164,9 +165,13 @@ namespace FileHelpers
             ExHelper.CheckNullParam(sourceFile, "sourceFile");
             ExHelper.CheckNullParam(destStream, "destStream");
 
-            return CoreTransformAsync(new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize * 5), destStream);
+            return
+                CoreTransformAsync(
+                    new InternalStreamReader(sourceFile, SourceEncoding, true, EngineBase.DefaultReadBufferSize*5),
+                    destStream);
         }
-		#endregion
+
+        #endregion
 
 //		public string TransformString(string sourceData)
 //		{
@@ -177,103 +182,98 @@ namespace FileHelpers
 //		}
 
 
-		/// <summary>
+        /// <summary>
         /// Transforms an array of records from the source type to the destination type
         /// </summary>
-		/// <param name="sourceRecords">An array of the source records.</param>
-		/// <returns>The transformed records.</returns>
-		public TDestination[] TransformRecords(TSource[] sourceRecords)
-		{
-			return CoreTransformRecords(sourceRecords);
-			//return CoreTransformAsync(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
-		}
+        /// <param name="sourceRecords">An array of the source records.</param>
+        /// <returns>The transformed records.</returns>
+        public TDestination[] TransformRecords(TSource[] sourceRecords)
+        {
+            return CoreTransformRecords(sourceRecords);
+            //return CoreTransformAsync(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
+        }
 
-		/// <summary>
+        /// <summary>
         /// Transform a file that contains source records to an array of the destination type
         /// </summary>
-		/// <param name="sourceFile">A file containing the source records.</param>
-		/// <returns>The transformed records.</returns>
-
-		public TDestination[] ReadAndTransformRecords(string sourceFile)
-		{
-			var engine = new FileHelperAsyncEngine<TSource>(mSourceEncoding)
-			    {
-			        ErrorMode = this.ErrorMode
-			    };
-		    mSourceErrorManager = engine.ErrorManager;
+        /// <param name="sourceFile">A file containing the source records.</param>
+        /// <returns>The transformed records.</returns>
+        public TDestination[] ReadAndTransformRecords(string sourceFile)
+        {
+            var engine = new FileHelperAsyncEngine<TSource>(mSourceEncoding) {
+                ErrorMode = this.ErrorMode
+            };
+            mSourceErrorManager = engine.ErrorManager;
             mDestinationErrorManager = new ErrorManager(ErrorMode);
 
-			var res = new List<TDestination>();
+            var res = new List<TDestination>();
 
-			engine.BeginReadFile(sourceFile);
-			foreach (var record in engine)
-			{
-				res.Add(record.TransformTo());
-			}
-			engine.Close();
+            engine.BeginReadFile(sourceFile);
+            foreach (var record in engine)
+                res.Add(record.TransformTo());
+            engine.Close();
 
-			return res.ToArray();
-		}
+            return res.ToArray();
+        }
 
-		#region "  Transform Internal Methods  "
+        #region "  Transform Internal Methods  "
 
-        			
         private TDestination[] CoreTransform(InternalStreamReader sourceFile, StreamWriter destFile)
         {
+            var sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
+            var destEngine = new FileHelperEngine<TDestination>(mDestinationEncoding);
 
-                var sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
-                var destEngine = new FileHelperEngine<TDestination>(mDestinationEncoding);
+            sourceEngine.ErrorMode = this.ErrorMode;
+            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
 
-                sourceEngine.ErrorMode = this.ErrorMode;
-                destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            mSourceErrorManager = sourceEngine.ErrorManager;
+            mDestinationErrorManager = destEngine.ErrorManager;
 
-                mSourceErrorManager = sourceEngine.ErrorManager;
-                mDestinationErrorManager = destEngine.ErrorManager;
+            TSource[] source = sourceEngine.ReadStream(sourceFile);
+            TDestination[] transformed = CoreTransformRecords(source);
 
-                TSource[] source = sourceEngine.ReadStream(sourceFile);
-                TDestination[] transformed = CoreTransformRecords(source);
+            destEngine.WriteStream(destFile, transformed);
 
-                destEngine.WriteStream(destFile, transformed);
+            return transformed;
+        }
 
-                return transformed;
-            
-		}
+        private TDestination[] CoreTransformRecords(TSource[] sourceRecords)
+        {
+            var res = new List<TDestination>(sourceRecords.Length);
 
-		private TDestination[] CoreTransformRecords(TSource[] sourceRecords)
-		{
-			var res = new List<TDestination>(sourceRecords.Length);
-			
-			for (int i = 0; i < sourceRecords.Length; i++)
-			{
-				res.Add(sourceRecords[i].TransformTo());
-			}
-			return res.ToArray();
-		}
-
-		
-		private TDestination[] CoreTransformFile(string sourceFile, string destFile)
-		{
-			TDestination[] tempRes;
-
-			using (var fs = new InternalStreamReader(sourceFile, mSourceEncoding, true, EngineBase.DefaultReadBufferSize * 10))
-			{
-                using (var ds = new StreamWriter(destFile, false, mDestinationEncoding, EngineBase.DefaultWriteBufferSize * 10))
-				{
-					tempRes = CoreTransform(fs, ds);
-					ds.Close();
-				}
-				
-				fs.Close();
-			}
+            for (int i = 0; i < sourceRecords.Length; i++)
+                res.Add(sourceRecords[i].TransformTo());
+            return res.ToArray();
+        }
 
 
-			return tempRes;
-	}
+        private TDestination[] CoreTransformFile(string sourceFile, string destFile)
+        {
+            TDestination[] tempRes;
+
+            using (
+                var fs = new InternalStreamReader(sourceFile, mSourceEncoding, true, EngineBase.DefaultReadBufferSize*10)
+                ) {
+                using (
+                    var ds = new StreamWriter(destFile,
+                        false,
+                        mDestinationEncoding,
+                        EngineBase.DefaultWriteBufferSize*10)) {
+                    tempRes = CoreTransform(fs, ds);
+                    ds.Close();
+                }
+
+                fs.Close();
+            }
+
+
+            return tempRes;
+        }
 
         private int CoreTransformAsync(TextReader sourceFile, StreamWriter destFile)
-		{
+        {
             var sourceEngine = new FileHelperAsyncEngine<TSource>();
-			var destEngine = new FileHelperAsyncEngine<TDestination>();
+            var destEngine = new FileHelperAsyncEngine<TDestination>();
 
             sourceEngine.ErrorMode = this.ErrorMode;
             destEngine.ErrorMode = this.ErrorMode;
@@ -281,54 +281,51 @@ namespace FileHelpers
             mSourceErrorManager = sourceEngine.ErrorManager;
             mDestinationErrorManager = destEngine.ErrorManager;
 
-			sourceEngine.Encoding = mSourceEncoding;
-			destEngine.Encoding = mDestinationEncoding;
+            sourceEngine.Encoding = mSourceEncoding;
+            destEngine.Encoding = mDestinationEncoding;
 
-			sourceEngine.BeginReadStream(sourceFile);
-			destEngine.BeginWriteStream(destFile);
+            sourceEngine.BeginReadStream(sourceFile);
+            destEngine.BeginWriteStream(destFile);
 
-			foreach (var record in sourceEngine)
-			{
-				destEngine.WriteNext(record.TransformTo());
-			}
-			
-			sourceEngine.Close();
-			destEngine.Close();
+            foreach (var record in sourceEngine)
+                destEngine.WriteNext(record.TransformTo());
 
-			return sourceEngine.TotalRecords;
-		}
+            sourceEngine.Close();
+            destEngine.Close();
 
-		#endregion
+            return sourceEngine.TotalRecords;
+        }
 
-		#region "  Properties  "
+        #endregion
 
-		/// <summary>The source record Type.</summary>
-		public Type SourceType
-		{
-			get { return typeof(TSource); }
-		}
+        #region "  Properties  "
 
-		/// <summary>The destination record Type.</summary>
-		public Type DestinationType
-		{
-			get { return typeof(TDestination); }
-		}
+        /// <summary>The source record Type.</summary>
+        public Type SourceType
+        {
+            get { return typeof (TSource); }
+        }
 
-		/// <summary>The Encoding of the Source File.</summary>
-		public Encoding SourceEncoding
-		{
-			get { return mSourceEncoding; }
-			set { mSourceEncoding = value; }
-		}
+        /// <summary>The destination record Type.</summary>
+        public Type DestinationType
+        {
+            get { return typeof (TDestination); }
+        }
 
-		/// <summary>The Encoding of the Destination File.</summary>
-		public Encoding DestinationEncoding
-		{
-			get { return mDestinationEncoding; }
-			set { mDestinationEncoding = value; }
-		}
+        /// <summary>The Encoding of the Source File.</summary>
+        public Encoding SourceEncoding
+        {
+            get { return mSourceEncoding; }
+            set { mSourceEncoding = value; }
+        }
 
-		#endregion
+        /// <summary>The Encoding of the Destination File.</summary>
+        public Encoding DestinationEncoding
+        {
+            get { return mDestinationEncoding; }
+            set { mDestinationEncoding = value; }
+        }
 
-	}
+        #endregion
+    }
 }

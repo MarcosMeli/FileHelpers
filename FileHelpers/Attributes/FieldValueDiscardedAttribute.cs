@@ -15,7 +15,5 @@ namespace FileHelpers
     /// <seealso href="quick_start.html">Quick Start Guide</seealso>
     /// <seealso href="examples.html">Examples of Use</seealso>
     [AttributeUsage(AttributeTargets.Field)]
-    public sealed class FieldValueDiscardedAttribute : Attribute
-    {
-    }
+    public sealed class FieldValueDiscardedAttribute : Attribute {}
 }

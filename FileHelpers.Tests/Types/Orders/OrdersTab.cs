@@ -4,29 +4,31 @@ using System.Collections.Generic;
 
 namespace FileHelpers.Tests
 {
-	[DelimitedRecord("\t")]
-	public class OrdersTab 
+    [DelimitedRecord("\t")]
+    public class OrdersTab
         : IComparable<OrdersTab>
-	{
-		public int OrderID;
+    {
+        public int OrderID;
 
-		public string CustomerID;
+        public string CustomerID;
 
-		public int EmployeeID;
+        public int EmployeeID;
 
-		public DateTime OrderDate;
+        public DateTime OrderDate;
 
-		[FieldConverter(ConverterKind.Date, "ddMMyyyy")] public DateTime RequiredDate;
+        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        public DateTime RequiredDate;
 
-		[FieldNullValue(typeof (DateTime), "2005-1-1")] public DateTime ShippedDate;
+        [FieldNullValue(typeof (DateTime), "2005-1-1")]
+        public DateTime ShippedDate;
 
-		public int ShipVia;
+        public int ShipVia;
 
-		public decimal Freight;
-	    
+        public decimal Freight;
+
         public int CompareTo(OrdersTab other)
-	    {
-	        return this.OrderID.CompareTo(other.OrderID);
-	    }
-	}
+        {
+            return this.OrderID.CompareTo(other.OrderID);
+        }
+    }
 }

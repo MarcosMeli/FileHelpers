@@ -24,27 +24,25 @@ namespace ExamplesFx
         /// </remarks>
         public override void Run()
         {
-            try
-            {
+            try {
                 var engine = new DelimitedFileEngine<Customer>();
 
                 //  This fails with not in enumeration error
                 Customer[] customers = engine.ReadFile("Input.txt");
 
                 // this will not happen because of the exception
-                foreach (var cust in customers)
-                {
+                foreach (var cust in customers) {
                     Console.WriteLine("Customer name {0} is a {1}",
-                                      cust.ContactName,
-                                      cust.ContactTitle);
+                        cust.ContactName,
+                        cust.ContactTitle);
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 // Console.WriteLine(ex.ToString()); // with stack trace
                 this.Console.WriteLine(ex.Message);
             }
         }
+
         //-> /File
 
         //-> File:Customers with Enum.cs
@@ -62,6 +60,7 @@ namespace ExamplesFx
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -81,6 +80,7 @@ namespace ExamplesFx
             SalesRepresentative,
             MarketingManager
         }
+
         //-> /File
 
         //-> File:example_errors_simple.html

@@ -26,7 +26,7 @@ namespace FileHelpers.WizardApp
             /// Create a language change event
             /// </summary>
             /// <param name="pLanguage"></param>
-            internal EventLanguage( NetLanguage pLanguage )
+            internal EventLanguage(NetLanguage pLanguage)
             {
                 Language = pLanguage;
             }
@@ -51,6 +51,7 @@ namespace FileHelpers.WizardApp
             /// Display text in GUI
             /// </summary>
             public string Text;
+
             /// <summary>
             /// Language that this represents
             /// </summary>
@@ -80,16 +81,14 @@ namespace FileHelpers.WizardApp
         /// and you can easily get the language code out of the
         /// selected item value.
         /// </remarks>
-        public  LanguageSelector() : base()
-        {
-        }
+        public LanguageSelector()
+            : base() {}
 
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
             LanguageType selected = null;
-            LanguageType temp = new LanguageType()
-            {
+            LanguageType temp = new LanguageType() {
                 Language = NetLanguage.CSharp,
                 Text = "C#",
             };
@@ -97,8 +96,7 @@ namespace FileHelpers.WizardApp
                 selected = temp;
 
             Items.Add(temp);
-            temp = new LanguageType()
-            {
+            temp = new LanguageType() {
                 Language = NetLanguage.VbNet,
                 Text = "VB.NET",
             };
@@ -110,14 +108,12 @@ namespace FileHelpers.WizardApp
             LanguageChange += new EventHandler<EventLanguage>(LanguageSelector_LanguageChange);
         }
 
-        void LanguageSelector_LanguageChange(object sender, LanguageSelector.EventLanguage e)
+        private void LanguageSelector_LanguageChange(object sender, LanguageSelector.EventLanguage e)
         {
-            foreach (var item in this.Items)
-            {
+            foreach (var item in this.Items) {
                 this.Language = e.Language;
                 LanguageType lang = item as LanguageType;
-                if (lang.Language == e.Language)
-                {
+                if (lang.Language == e.Language) {
                     this.SelectedItem = lang;
                     return;
                 }
@@ -131,9 +127,8 @@ namespace FileHelpers.WizardApp
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
             base.OnSelectedIndexChanged(e);
-            var value = (LanguageType)this.SelectedItem;
-            if (Language != value.Language)
-            {
+            var value = (LanguageType) this.SelectedItem;
+            if (Language != value.Language) {
                 Language = value.Language;
                 if (LanguageChange != null)
                     LanguageChange(this, new EventLanguage(this.Language));

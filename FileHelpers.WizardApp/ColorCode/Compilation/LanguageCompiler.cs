@@ -28,52 +28,46 @@ namespace ExamplesFx.ColorCode.Compilation
 
             if (string.IsNullOrEmpty(language.Id))
                 throw new ArgumentException("The language identifier must not be null.", "language");
-            
+
             CompiledLanguage compiledLanguage;
 
             compileLock.EnterReadLock();
-            try
-            {
+            try {
                 // for performance reasons we should first try with
                 // only a read lock since the majority of the time
                 // it'll be created already and upgradeable lock blocks
                 if (compiledLanguages.ContainsKey(language.Id))
                     return compiledLanguages[language.Id];
             }
-            finally
-            {
+            finally {
                 compileLock.ExitReadLock();
             }
 
             compileLock.EnterUpgradeableReadLock();
-            try
-            {
+            try {
                 if (compiledLanguages.ContainsKey(language.Id))
                     compiledLanguage = compiledLanguages[language.Id];
-                else
-                {
+                else {
                     compileLock.EnterWriteLock();
 
-                    try
-                    {
+                    try {
                         if (string.IsNullOrEmpty(language.Name))
                             throw new ArgumentException("The language name must not be null or empty.", "language");
-                        
-                        if (language.Rules == null || language.Rules.Count == 0)
+
+                        if (language.Rules == null ||
+                            language.Rules.Count == 0)
                             throw new ArgumentException("The language rules collection must not be empty.", "language");
-                        
+
                         compiledLanguage = CompileLanguage(language);
 
                         compiledLanguages.Add(compiledLanguage.Id, compiledLanguage);
                     }
-                    finally
-                    {
+                    finally {
                         compileLock.ExitWriteLock();
                     }
                 }
             }
-            finally
-            {
+            finally {
                 compileLock.ExitUpgradeableReadLock();
             }
 
@@ -93,8 +87,8 @@ namespace ExamplesFx.ColorCode.Compilation
         }
 
         private static void CompileRules(IList<LanguageRule> rules,
-                                         out Regex regex,
-                                         out IList<string> captures)
+            out Regex regex,
+            out IList<string> captures)
         {
             StringBuilder regexBuilder = new StringBuilder();
             captures = new List<string>();
@@ -112,30 +106,26 @@ namespace ExamplesFx.ColorCode.Compilation
 
 
         private static void CompileRule(LanguageRule languageRule,
-                                                 StringBuilder regex,
-                                                 ICollection<string> captures,
-                                                 bool isFirstRule)
+            StringBuilder regex,
+            ICollection<string> captures,
+            bool isFirstRule)
         {
-            if (!isFirstRule)
-            {
+            if (!isFirstRule) {
                 regex.AppendLine();
                 regex.AppendLine();
                 regex.AppendLine("|");
                 regex.AppendLine();
             }
-            
+
             regex.AppendFormat("(?-xis)(?m)({0})(?x)", languageRule.Regex);
 
             int numberOfCaptures = GetNumberOfCaptures(languageRule.Regex);
 
-            for (int i = 0; i <= numberOfCaptures; i++)
-            {
+            for (int i = 0; i <= numberOfCaptures; i++) {
                 string scope = null;
 
-                foreach (int captureIndex in languageRule.Captures.Keys)
-                {
-                    if (i == captureIndex)
-                    {
+                foreach (int captureIndex in languageRule.Captures.Keys) {
+                    if (i == captureIndex) {
                         scope = languageRule.Captures[captureIndex];
                         break;
                     }

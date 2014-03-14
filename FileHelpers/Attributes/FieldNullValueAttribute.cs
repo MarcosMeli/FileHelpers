@@ -24,19 +24,20 @@ namespace FileHelpers
     {
         /// <summary>Default value for a null value.</summary>
         public object NullValue { get; private set; }
+
 //		internal bool NullValueOnWrite = false;
 
 
-		/// <summary>
+        /// <summary>
         /// Defines the default in event of a null value.
         /// Object must be of teh correct type
         /// </summary>
         /// <param name="nullValue">The value to assign the case of a NULL value.</param>
-		public FieldNullValueAttribute(object nullValue)
-		{
-			NullValue = nullValue;
+        public FieldNullValueAttribute(object nullValue)
+        {
+            NullValue = nullValue;
 //			NullValueOnWrite = useOnWrite;
-		}
+        }
 
 //		/// <summary>Defines the default for a null value.</summary>
 //		/// <param name="nullValue">The value to assign in the "NULL" case.</param>
@@ -50,11 +51,10 @@ namespace FileHelpers
 //		public FieldNullValueAttribute(Type type, string nullValue, bool useOnWrite):this(Convert.ChangeType(nullValue, type, null), useOnWrite)
 //		{}
 
-		/// <summary>Indicates a type and a string to be converted to that type.</summary>
-		/// <param name="type">The type of the null value.</param>
-		/// <param name="nullValue">The string to be converted to the specified type.</param>
-		public FieldNullValueAttribute(Type type, string nullValue)
-            : this(TypeDescriptor.GetConverter(type).ConvertFromString(nullValue))
-		{}
-	}
+        /// <summary>Indicates a type and a string to be converted to that type.</summary>
+        /// <param name="type">The type of the null value.</param>
+        /// <param name="nullValue">The string to be converted to the specified type.</param>
+        public FieldNullValueAttribute(Type type, string nullValue)
+            : this(TypeDescriptor.GetConverter(type).ConvertFromString(nullValue)) {}
+    }
 }

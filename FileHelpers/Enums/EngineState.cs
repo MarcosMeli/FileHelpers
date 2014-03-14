@@ -11,8 +11,10 @@ namespace FileHelpers
     {
         /// <summary>The Engine is closed</summary>
         Closed = 0,
+
         /// <summary>The Engine is reading a file, string or stream</summary>
         Reading,
+
         /// <summary>The Engine is writing a file, string or stream</summary>
         Writing
     }

@@ -5,21 +5,18 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class FastReadCsv
-	{
-
-		[Test]
-		public void ReadFileComma()
-		{
+    [TestFixture]
+    public class FastReadCsv
+    {
+        [Test]
+        public void ReadFileComma()
+        {
             string file = TestCommon.GetPath("Good", "RealCsvComma1.txt");
 
             var res = new List<RecordIndexer>();
-            
+
             foreach (var record in CommonEngine.ReadCsv(file))
-		    {
                 res.Add(record);
-		    }
 
             Assert.AreEqual(21, res.Count);
             Assert.AreEqual("CustomerID", res[0][0]);
@@ -29,8 +26,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Country", res[0][6]);
             Assert.AreEqual("Germany", res[1][6]);
             Assert.AreEqual("Austria", res[20][6]);
-
-		}
+        }
 
 
         [Test]
@@ -41,9 +37,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = new List<RecordIndexer>();
 
             foreach (var record in CommonEngine.ReadCsv(file, ',', 1))
-            {
                 res.Add(record);
-            }
 
             Assert.AreEqual(20, res.Count);
             Assert.AreEqual("ALFKI", res[0][0]);
@@ -54,7 +48,6 @@ namespace FileHelpers.Tests.CommonTests
 
             //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[0].Header);
             //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[19].Header);
-
         }
 
         public void ReadFileTab()
@@ -64,9 +57,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = new List<RecordIndexer>();
 
             foreach (var record in CommonEngine.ReadCsv(file, '\t', 1))
-            {
                 res.Add(record);
-            }
 
             Assert.AreEqual(20, res.Count);
             Assert.AreEqual("ALFKI", res[0][0]);
@@ -77,7 +68,6 @@ namespace FileHelpers.Tests.CommonTests
 
             //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[0].Header);
             //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[19].Header);
-
         }
 
         [Test]
@@ -88,9 +78,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = new List<RecordIndexer>();
 
             foreach (var record in CommonEngine.ReadCsv(file, '\t', 0))
-            {
                 res.Add(record);
-            }
 
             Assert.AreEqual(21, res.Count);
             Assert.AreEqual(9, res[0].FieldCount);
@@ -98,14 +86,10 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("EP_CRUDO", res[0][0]);
             Assert.AreEqual("REL_EP_FINAL_7", res[0][8]);
 
-            
-            Assert.AreEqual("ACUSA REBELDIA ADMITEN Y DESAHOGAN PRUEBAS Y SE ABRE JUICIO A ALEGATOS PORDOS DIAS", res[1][0]);
+
+            Assert.AreEqual("ACUSA REBELDIA ADMITEN Y DESAHOGAN PRUEBAS Y SE ABRE JUICIO A ALEGATOS PORDOS DIAS",
+                res[1][0]);
             Assert.AreEqual("REBELDIA", res[1][1]);
-
-
         }
-
-
-
-	}
+    }
 }

@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class WriteBeforeEventSample
         : ExampleBase
     {
-
         //-> Name:Before Write Event Handling
         //-> Description:Show how to implement write before event
 
@@ -37,6 +36,7 @@ namespace ExamplesFx
             if (e.Record.Freight < 40)
                 e.SkipThisRecord = true;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -72,7 +72,7 @@ namespace ExamplesFx
             [FieldFixedLength(11)]
             public decimal Freight;
         }
-        //-> /File
 
+        //-> /File
     }
 }

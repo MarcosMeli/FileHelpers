@@ -33,14 +33,14 @@ namespace ExamplesFx
             Customer[] customers = engine.ReadFile("Input.txt");
 
             // This will display error from line 2 of the file.
-            foreach (var err in engine.ErrorManager.Errors)
-            {
+            foreach (var err in engine.ErrorManager.Errors) {
                 Console.WriteLine();
                 Console.WriteLine("Error on Line number: {0}", err.LineNumber);
                 Console.WriteLine("Record causing the problem: {0}", err.RecordString);
                 Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
+
         //-> /File
 
         //-> File:Customers with Enum.cs
@@ -58,6 +58,7 @@ namespace ExamplesFx
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -77,6 +78,7 @@ namespace ExamplesFx
             SalesRepresentative,
             MarketingManager
         }
+
         //-> /File
 
         //-> File:example_errors_errormode.html

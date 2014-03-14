@@ -18,6 +18,9 @@ namespace ExamplesFx.ColorCode
         /// <remarks>
         /// The default style sheet mimics the default colorization scheme used by Visual Studio 2008 to the extent possible.
         /// </remarks>
-        public static IStyleSheet Default { get { return new DefaultStyleSheet(); }}
+        public static IStyleSheet Default
+        {
+            get { return new DefaultStyleSheet(); }
+        }
     }
 }

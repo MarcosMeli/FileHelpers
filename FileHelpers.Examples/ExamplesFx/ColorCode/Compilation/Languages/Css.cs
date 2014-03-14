@@ -21,29 +21,24 @@ namespace ExamplesFx.ColorCode.Compilation.Languages
 
         public string FirstLinePattern
         {
-            get
-            {
-                return null;
-            }
+            get { return null; }
         }
 
         public IList<LanguageRule> Rules
         {
             get
             {
-                return new List<LanguageRule>
-                           {
-                               new LanguageRule(
-                                   @"(?msi)(?:(\s*/\*.*?\*/)|(([a-z0-9#. \[\]=\"":_-]+)\s*(?:,\s*|{))+(?:(\s*/\*.*?\*/)|(?:\s*([a-z0-9 -]+\s*):\s*([a-z0-9#,<>\?%. \(\)\\\/\*\{\}:'\""!_=-]+);?))*\s*})",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 3, ScopeName.CssSelector },
-                                           { 5, ScopeName.CssPropertyName },
-                                           { 6, ScopeName.CssPropertyValue },
-                                           { 4, ScopeName.Comment },
-                                           { 1, ScopeName.Comment },
-                                       }),
-                           };
+                return new List<LanguageRule> {
+                    new LanguageRule(
+                        @"(?msi)(?:(\s*/\*.*?\*/)|(([a-z0-9#. \[\]=\"":_-]+)\s*(?:,\s*|{))+(?:(\s*/\*.*?\*/)|(?:\s*([a-z0-9 -]+\s*):\s*([a-z0-9#,<>\?%. \(\)\\\/\*\{\}:'\""!_=-]+);?))*\s*})",
+                        new Dictionary<int, string> {
+                            {3, ScopeName.CssSelector},
+                            {5, ScopeName.CssPropertyName},
+                            {6, ScopeName.CssPropertyValue},
+                            {4, ScopeName.Comment},
+                            {1, ScopeName.Comment},
+                        }),
+                };
             }
         }
 

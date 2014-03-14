@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,11 +6,8 @@ namespace ExamplesFx
 {
     public class ExampleFile
     {
-
         public ExampleFile(string filename)
-            : this(filename, NetLanguage.CSharp)
-        {
-        }
+            : this(filename, NetLanguage.CSharp) {}
 
         public ExampleFile(string filename, NetLanguage language)
         {
@@ -22,6 +18,7 @@ namespace ExamplesFx
 
         public string Filename { get; set; }
         public string Contents { get; set; }
+
         public enum FileType
         {
             SourceFile,
@@ -34,6 +31,7 @@ namespace ExamplesFx
         /// Type of file to list
         /// </summary>
         public FileType Status = FileType.SourceFile;
+
         public NetLanguage Language { get; set; }
     }
 }

@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class ReadAfterEventSample
         : ExampleBase
     {
-
         //-> Name:After Read Event Handling
         //-> Description:Show how to implement read after event
 
@@ -28,9 +27,7 @@ namespace ExamplesFx
             var result = engine.ReadFile("Input.txt");
 
             foreach (var value in result)
-            {
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
-            }
         }
 
         private void AfterEvent(EngineBase engine, AfterReadEventArgs<OrdersFixed> e)
@@ -72,6 +69,7 @@ namespace ExamplesFx
             [FieldFixedLength(11)]
             public decimal Freight;
         }
+
         //-> /File
     }
 }

@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class ReadFixedFile
         : ExampleBase
     {
-
         //-> Output("Lets start with a simple file:")
 
         //-> File:Input.txt
@@ -30,9 +29,7 @@ namespace ExamplesFx
             Customer[] result = engine.ReadFile("input.txt");
 
             foreach (var detail in result)
-            {
                 this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
-            }
 
             //-> /File
         }
@@ -51,8 +48,8 @@ namespace ExamplesFx
             [FieldFixedLength(8)]
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime AddedDate;
-
         }
+
         //-> /File
 
 
@@ -67,5 +64,4 @@ namespace ExamplesFx
          */
         //-> /File
     }
-
 }

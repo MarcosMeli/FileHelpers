@@ -14,7 +14,8 @@ namespace FileHelpers
     /// Interface for The fileHelpers generic engine
     /// </summary>
     /// <typeparam name="T">Type of object array to return</typeparam>
-    public interface IFileHelperEngine<T> where T : class
+    public interface IFileHelperEngine<T>
+        where T : class
     {
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
         T[] ReadFile(string fileName);

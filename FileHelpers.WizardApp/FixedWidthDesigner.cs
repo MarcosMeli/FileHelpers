@@ -9,10 +9,9 @@ using System.Windows.Forms.Design;
 
 namespace FileHelpers.WizardApp
 {
-    [Designer(typeof(FixedWidthDesigner.FileBrowserDesigner))]
+    [Designer(typeof (FixedWidthDesigner.FileBrowserDesigner))]
     public partial class FixedWidthDesigner : UserControl
     {
-
         private class FileBrowserDesigner : ControlDesigner
         {
             protected override void PostFilterProperties(System.Collections.IDictionary properties)
@@ -23,9 +22,7 @@ namespace FileHelpers.WizardApp
             }
         }
 
-        public void AddColumn(ColumnInfo column)
-        {
-        }
+        public void AddColumn(ColumnInfo column) {}
 
         internal void RecalculatePositions()
         {
@@ -35,11 +32,10 @@ namespace FileHelpers.WizardApp
 
             int x = mTextLeft;
 
-            foreach (ColumnInfo column in mColumns)
-            {
+            foreach (ColumnInfo column in mColumns) {
                 column.mFileBrowser = this;
                 column.mControlLeft = x;
-                column.mControlWith = column.Width * mCharWidth;
+                column.mControlWith = column.Width*mCharWidth;
                 x += column.mControlWith;
             }
         }
@@ -50,7 +46,7 @@ namespace FileHelpers.WizardApp
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripTextBox txtColumnName;
 
-        int mTextTop = 25;
+        private int mTextTop = 25;
 
         private int mFontSize = 16;
 
@@ -75,7 +71,8 @@ namespace FileHelpers.WizardApp
                 this.Invalidate();
             }
         }
-        int mTextLeft = 10;
+
+        private int mTextLeft = 10;
 
         public int TextLeft
         {
@@ -103,13 +100,12 @@ namespace FileHelpers.WizardApp
         private Pen PenOddRule;
         private Pen PenOverRule;
 
-        int mCharWidth = -1;
+        private int mCharWidth = -1;
         private ContextMenuStrip cmnuOptions;
-        int mOverColumn = -1;
+        private int mOverColumn = -1;
 
         protected override void OnPaint(PaintEventArgs e)
         {
-
             CalculateCharWidth(e.Graphics);
 
             int width;
@@ -119,9 +115,8 @@ namespace FileHelpers.WizardApp
 
             bool even = true;
 
-            for (int i = 0; i < mColumns.Count; i++)
-            {
-                width = mCharWidth * mColumns[i].Width;
+            for (int i = 0; i < mColumns.Count; i++) {
+                width = mCharWidth*mColumns[i].Width;
 
                 Brush backBrush;
 
@@ -135,7 +130,9 @@ namespace FileHelpers.WizardApp
 
                 Pen rulePen;
 
-                rulePen = even ? PenEvenRule : PenOddRule;
+                rulePen = even
+                    ? PenEvenRule
+                    : PenOddRule;
                 even = !even;
 
                 if (i == mOverColumn)
@@ -150,7 +147,11 @@ namespace FileHelpers.WizardApp
                 else
                     widthBrush = Brushes.DarkRed;
 
-                e.Graphics.DrawString(mColumns[i].Width.ToString(), this.Font, widthBrush, left + width / 2 - 10, rulesNumberTop);
+                e.Graphics.DrawString(mColumns[i].Width.ToString(),
+                    this.Font,
+                    widthBrush,
+                    left + width/2 - 10,
+                    rulesNumberTop);
 
                 left += width;
             }
@@ -160,74 +161,74 @@ namespace FileHelpers.WizardApp
             b.Dispose();
 
             int closer = CalculateCloser(Control.MousePosition.X);
-            if (closer >= 0)
-            {
+            if (closer >= 0) {
                 ColumnInfo col = mColumns[closer];
 
-                if (closer > 0)
-                {
+                if (closer > 0) {
                     if (col.CloserToLeft(Control.MousePosition.X))
                         col = mColumns[closer - 1];
                 }
                 Pen p = new Pen(Color.Red, 3);
-                e.Graphics.DrawLine(p, col.mControlLeft + col.mControlWith, 0, col.mControlLeft + col.mControlWith, this.Height);
+                e.Graphics.DrawLine(p,
+                    col.mControlLeft + col.mControlWith,
+                    0,
+                    col.mControlLeft + col.mControlWith,
+                    this.Height);
                 p.Dispose();
             }
-
-
-
         }
 
         private void CalculateCharWidth(Graphics g)
         {
             if (mCharWidth == -1)
-                mCharWidth = (int)TextRenderer.MeasureText("m", this.Font).Width - 4;
+                mCharWidth = (int) TextRenderer.MeasureText("m", this.Font).Width - 4;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
 
-            if (mCloserColumn != null)
-            {
-                if (mCloserToLeft)
-                {
-                    if (mCloserLeftColumn == null) return;
+            if (mCloserColumn != null) {
+                if (mCloserToLeft) {
+                    if (mCloserLeftColumn == null)
+                        return;
 
                     int ant = mCloserLeftColumn.Width;
-                    int newWidth = mOriginalLeftWidth + ((e.X - mCloserInitialX) / mCharWidth);
-                    if (newWidth < 1) newWidth = 1;
+                    int newWidth = mOriginalLeftWidth + ((e.X - mCloserInitialX)/mCharWidth);
+                    if (newWidth < 1)
+                        newWidth = 1;
                     mCloserLeftColumn.Width = newWidth;
                     if (ant != mCloserLeftColumn.Width)
                         this.Invalidate();
                 }
-                else
-                {
+                else {
                     int ant = mCloserColumn.Width;
-                    int newWidth = mOriginalWidth + ((e.X - mCloserInitialX) / mCharWidth);
-                    if (newWidth < 1) newWidth = 1;
+                    int newWidth = mOriginalWidth + ((e.X - mCloserInitialX)/mCharWidth);
+                    if (newWidth < 1)
+                        newWidth = 1;
                     mCloserColumn.Width = newWidth;
                     if (ant != mCloserColumn.Width)
                         this.Invalidate();
                 }
             }
-            else
-            {
+            else {
                 int oldCol = mOverColumn;
                 mOverColumn = CalculateColumn(e.X);
 
                 int oldClose = mCloserEdge;
                 mCloserEdge = CalculateCloser(e.X);
 
-                if (mCloserEdge > 0 && mColumns[mCloserEdge].CloserToLeft(e.X))
+                if (mCloserEdge > 0 &&
+                    mColumns[mCloserEdge].CloserToLeft(e.X))
                     mCloserEdge--;
 
-                if (oldCol != mOverColumn || oldClose != mCloserEdge)
+                if (oldCol != mOverColumn ||
+                    oldClose != mCloserEdge)
                     this.Invalidate();
             }
         }
 
-        int mCloserEdge;
+        private int mCloserEdge;
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -236,16 +237,13 @@ namespace FileHelpers.WizardApp
             int closer = CalculateCloser(e.X);
             mCloserColumn = mColumns[closer];
 
-            if (e.Button == MouseButtons.Right)
-            {
+            if (e.Button == MouseButtons.Right) {
                 mPosMouseDown = e.Location;
                 cmnuOptions.Show(this, e.Location);
                 txtColumnName.Text = mCloserColumn.Name;
             }
-            else if (e.Button == MouseButtons.Left)
-            {
-                if (closer > 0)
-                {
+            else if (e.Button == MouseButtons.Left) {
+                if (closer > 0) {
                     mCloserLeftColumn = mColumns[closer - 1];
                     mOriginalLeftWidth = mCloserLeftColumn.Width;
                 }
@@ -270,12 +268,10 @@ namespace FileHelpers.WizardApp
             int res = -1;
             int dist = int.MaxValue;
 
-            for (int i = 0; i < mColumns.Count; i++)
-            {
+            for (int i = 0; i < mColumns.Count; i++) {
                 int currDist = mColumns[i].CalculateDistance(x);
 
-                if (currDist < dist)
-                {
+                if (currDist < dist) {
                     dist = currDist;
                     res = i;
                 }
@@ -283,12 +279,12 @@ namespace FileHelpers.WizardApp
             return res;
         }
 
-        ColumnInfo mCloserColumn = null;
-        bool mCloserToLeft = false;
-        int mCloserInitialX = -1;
-        int mOriginalWidth = -1;
-        int mOriginalLeftWidth = -1;
-        ColumnInfo mCloserLeftColumn = null;
+        private ColumnInfo mCloserColumn = null;
+        private bool mCloserToLeft = false;
+        private int mCloserInitialX = -1;
+        private int mOriginalWidth = -1;
+        private int mOriginalLeftWidth = -1;
+        private ColumnInfo mCloserLeftColumn = null;
         private Point mPosMouseDown;
 
         private int CalculateColumn(int x)
@@ -296,8 +292,7 @@ namespace FileHelpers.WizardApp
             if (x < mTextLeft)
                 return -1;
 
-            for (int i = 0; i < mColumns.Count; i++)
-            {
+            for (int i = 0; i < mColumns.Count; i++) {
                 if (mColumns[i].ContainsPoint(x))
                     return i;
             }
@@ -316,38 +311,40 @@ namespace FileHelpers.WizardApp
         {
             InitializeComponent();
 
-            mColumns.AddRange(new ColumnInfo[] 
-                { 
-                    new ColumnInfo(11), 
-                    new ColumnInfo(38), 
-                    new ColumnInfo(72-50),
-                    new ColumnInfo(110-72), 
-                    new ColumnInfo(151-110), 
-                    new ColumnInfo(169-151),
-                    new ColumnInfo(15)
-                });
+            mColumns.AddRange(new ColumnInfo[] {
+                new ColumnInfo(11),
+                new ColumnInfo(38),
+                new ColumnInfo(72 - 50),
+                new ColumnInfo(110 - 72),
+                new ColumnInfo(151 - 110),
+                new ColumnInfo(169 - 151),
+                new ColumnInfo(15)
+            });
 
             PenEvenRule = new Pen(ColorEvenRule);
             PenOddRule = new Pen(ColorOddRule);
             PenOverRule = new Pen(ColorOverRule);
 
-            this.Font = new System.Drawing.Font("Courier New", mFontSize, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Courier New",
+                mFontSize,
+                System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Pixel,
+                ((byte) (0)));
             this.VerticalScroll.Enabled = true;
             this.DoubleBuffered = true;
 
             RecalculatePositions();
-
         }
 
         private void cmdDeleteColumn_Click(object sender, EventArgs e)
         {
             int closer = CalculateCloser(MousePosition.X);
-            if (closer == -1) return;
+            if (closer == -1)
+                return;
 
             mColumns.RemoveAt(closer);
             RecalculatePositions();
             this.Invalidate();
-
         }
 
         private void addColumnHereToolStripMenuItem_Click(object sender, EventArgs e)
@@ -361,10 +358,7 @@ namespace FileHelpers.WizardApp
             //    }
             //    mPosMouseDown    
             //}
-            
         }
-
-
     }
 
 
@@ -444,4 +438,3 @@ namespace FileHelpers.WizardApp
         }
     }
 }
-

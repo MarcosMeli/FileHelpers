@@ -22,8 +22,16 @@ namespace ExamplesFx
 
             var customers = new List<Customer>();
 
-            var order1 = new Customer() { CustId = 1, Name = "Antonio Moreno Taquería", AddedDate = new DateTime(2009, 05, 01) };
-            var order2 = new Customer() { CustId = 2, Name = "Berglunds snabbköp", AddedDate = new DateTime(2009, 05, 02) };
+            var order1 = new Customer() {
+                CustId = 1,
+                Name = "Antonio Moreno Taquería",
+                AddedDate = new DateTime(2009, 05, 01)
+            };
+            var order2 = new Customer() {
+                CustId = 2,
+                Name = "Berglunds snabbköp",
+                AddedDate = new DateTime(2009, 05, 02)
+            };
 
             customers.Add(order1);
             customers.Add(order2);
@@ -32,7 +40,6 @@ namespace ExamplesFx
 
             //-> /File
             Console.WriteLine(engine.WriteString(customers));
-
         }
 
         //-> File: Output.Txt
@@ -52,10 +59,8 @@ namespace ExamplesFx
             [FieldFixedLength(8)]
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime AddedDate;
-
         }
-        //-> /File
 
-     
+        //-> /File
     }
 }

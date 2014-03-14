@@ -5,13 +5,13 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
 {
-	[TestFixture]
-	public class InheritedTests
-	{
-		[Test]
-		public void Inherited1()
-		{
-			var engine = new FileHelperEngine<SampleInheritType>();
+    [TestFixture]
+    public class InheritedTests
+    {
+        [Test]
+        public void Inherited1()
+        {
+            var engine = new FileHelperEngine<SampleInheritType>();
 
             Assert.AreEqual(3, engine.Options.FieldCount);
 
@@ -19,137 +19,124 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Field2", engine.Options.FieldsNames[1]);
             Assert.AreEqual("Field3", engine.Options.FieldsNames[2]);
 
-			SampleInheritType[] res;
+            SampleInheritType[] res;
             res = TestCommon.ReadTest<SampleInheritType>(engine, "Good", "Test1.txt");
 
-			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
-			Assert.AreEqual("901", res[0].Field2);
-			Assert.AreEqual(234, res[0].Field3);
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
+            Assert.AreEqual("901", res[0].Field2);
+            Assert.AreEqual(234, res[0].Field3);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
-			Assert.AreEqual("012", res[1].Field2);
-			Assert.AreEqual(345, res[1].Field3);
+            Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
+            Assert.AreEqual("012", res[1].Field2);
+            Assert.AreEqual(345, res[1].Field3);
+        }
 
-		}
+        [Test]
+        public void InheritedEmpty()
+        {
+            var engine = new FileHelperEngine<SampleInheritEmpty>();
 
-		[Test]
-		public void InheritedEmpty()
-		{
-			var engine = new FileHelperEngine<SampleInheritEmpty>();
-
-			SampleInheritEmpty[] res;
+            SampleInheritEmpty[] res;
             res = TestCommon.ReadTest<SampleInheritEmpty>(engine, "Good", "Test1.txt");
 
-			Assert.AreEqual(4, res.Length);
-			Assert.AreEqual(4, engine.TotalRecords);
-			Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, res.Length);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-			Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
-			Assert.AreEqual("901", res[0].Field2);
-			Assert.AreEqual(234, res[0].Field3);
+            Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
+            Assert.AreEqual("901", res[0].Field2);
+            Assert.AreEqual(234, res[0].Field3);
 
-			Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
-			Assert.AreEqual("012", res[1].Field2);
-			Assert.AreEqual(345, res[1].Field3);
-
-		}
-
+            Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
+            Assert.AreEqual("012", res[1].Field2);
+            Assert.AreEqual(345, res[1].Field3);
+        }
 
 
+        [Test]
+        public void Inherited2()
+        {
+            var engine = new FileHelperEngine<DelimitedSampleInheritType>();
+        }
 
-		[Test]
-		public void Inherited2()
-		{
-			var engine = new FileHelperEngine<DelimitedSampleInheritType>();
-
-
-		}
-
-		[Test]
-		public void InheritedEmptyDelimited()
-		{
-			var engine = new FileHelperEngine<DelimitedSampleInheritEmpty>();
-		}
+        [Test]
+        public void InheritedEmptyDelimited()
+        {
+            var engine = new FileHelperEngine<DelimitedSampleInheritEmpty>();
+        }
 
 
-		[FixedLengthRecord]
-			public class SampleBase
-		{
-			[FieldFixedLength(8)]
-			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-			public DateTime Field1;
+        [FixedLengthRecord]
+        public class SampleBase
+        {
+            [FieldFixedLength(8)]
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime Field1;
 
-			[FieldFixedLength(3)]
-			[FieldAlign(AlignMode.Left, ' ')]
-			[FieldTrim(TrimMode.Both)]
-			public string Field2;
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Left, ' ')]
+            [FieldTrim(TrimMode.Both)]
+            public string Field2;
+        }
 
-		}
+        [FixedLengthRecord]
+        public class SampleInheritType
+            : SampleBase
+        {
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Right, '0')]
+            [FieldTrim(TrimMode.Both)]
+            public int Field3;
+        }
 
-		[FixedLengthRecord]
-		public class SampleInheritType
-			: SampleBase
-		{
-			[FieldFixedLength(3)]
-			[FieldAlign(AlignMode.Right, '0')]
-			[FieldTrim(TrimMode.Both)]
-			public int Field3;
-		}
-
-		[FixedLengthRecord]
-		public class SampleInheritEmpty
-		: SampleInheritType
-		{
-			[FieldNotInFile]
-			public int Field5854;
-		}
-
-		
+        [FixedLengthRecord]
+        public class SampleInheritEmpty
+            : SampleInheritType
+        {
+            [FieldNotInFile]
+            public int Field5854;
+        }
 
 
+        [FixedLengthRecord]
+        public class DelimitedSampleBase
+        {
+            [FieldFixedLength(8)]
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime Field1;
 
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Left, ' ')]
+            [FieldTrim(TrimMode.Both)]
+            public string Field2;
+        }
 
-		[FixedLengthRecord]
-			public class DelimitedSampleBase
-		{
-			[FieldFixedLength(8)]
-			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-			public DateTime Field1;
+        [FixedLengthRecord]
+        public class DelimitedSampleInheritType
+            : DelimitedSampleBase
+        {
+            [FieldFixedLength(3)]
+            [FieldAlign(AlignMode.Right, '0')]
+            [FieldTrim(TrimMode.Both)]
+            public int Field3;
+        }
 
-			[FieldFixedLength(3)]
-			[FieldAlign(AlignMode.Left, ' ')]
-			[FieldTrim(TrimMode.Both)]
-			public string Field2;
-
-		}
-
-		[FixedLengthRecord]
-			public class DelimitedSampleInheritType
-			: DelimitedSampleBase
-		{
-			[FieldFixedLength(3)]
-			[FieldAlign(AlignMode.Right, '0')]
-			[FieldTrim(TrimMode.Both)]
-			public int Field3;
-		}
-
-		[FixedLengthRecord]
-			public class DelimitedSampleInheritEmpty
-			: DelimitedSampleInheritType
-		{
-			[FieldNotInFile]
-			public int Field5854;
-		}
+        [FixedLengthRecord]
+        public class DelimitedSampleInheritEmpty
+            : DelimitedSampleInheritType
+        {
+            [FieldNotInFile]
+            public int Field5854;
+        }
 
 
         [FixedLengthRecord(FixedMode.AllowMoreChars)]
         public class Type1RecordBase
         {
-
             public class MoneyConverter : ConverterBase
             {
                 private const int DECIMAL_PLACES = 2;
@@ -163,11 +150,12 @@ namespace FileHelpers.Tests.CommonTests
 
                 public override object StringToField(string from)
                 {
-                    return Convert.ToDecimal(Decimal.Parse(from) / (10 ^ DECIMAL_PLACES));
+                    return Convert.ToDecimal(Decimal.Parse(from)/(10 ^ DECIMAL_PLACES));
                 }
             }
 
             #region Fields
+
             [FieldFixedLength(AmexFieldLengths.RecordType)]
             public string RecordType;
 
@@ -204,7 +192,7 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldFixedLength(AmexFieldLengths.LocalCurrencyAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof(MoneyConverter))]
+            [FieldConverter(typeof (MoneyConverter))]
             public decimal LocalCurrencyAmount;
 
             [FieldFixedLength(AmexFieldLengths.CurrencyCode)]
@@ -223,17 +211,17 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldFixedLength(AmexFieldLengths.BillingAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof(MoneyConverter))]
+            [FieldConverter(typeof (MoneyConverter))]
             public decimal BillingAmount;
 
             [FieldFixedLength(AmexFieldLengths.SalesTaxAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof(MoneyConverter))]
+            [FieldConverter(typeof (MoneyConverter))]
             public decimal SalesTaxAmount;
 
             [FieldFixedLength(AmexFieldLengths.TipAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof(MoneyConverter))]
+            [FieldConverter(typeof (MoneyConverter))]
             public decimal TipAmount;
 
             [FieldFixedLength(AmexFieldLengths.CardmemberName)]
@@ -353,15 +341,12 @@ namespace FileHelpers.Tests.CommonTests
             public string TailFiller;
 
             #endregion
-
-
         }
-
 
 
         internal sealed class AmexFieldLengths
         {
-            private AmexFieldLengths() { }
+            private AmexFieldLengths() {}
 
             // Type 1 and Shared
             internal const int RecordType = 1;
@@ -516,7 +501,6 @@ namespace FileHelpers.Tests.CommonTests
             internal const int PurchasingCardCode = 2;
             internal const int CorporationStatusIndicator = 1;
             internal const int Type5Filler = 357;
-
         }
 
 
@@ -533,7 +517,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldAlign(AlignMode.Left, ' ')]
             [FieldTrim(TrimMode.Both)]
             public string Field2;
-            
+
             [FieldFixedLength(3)]
             [FieldAlign(AlignMode.Right, '0')]
             [FieldTrim(TrimMode.Both)]
@@ -572,7 +556,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
             Assert.AreEqual("012", res[1].Field2);
             Assert.AreEqual(345, res[1].Field3);
-
         }
 
 
@@ -598,8 +581,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(new DateTime(1314, 11, 10), res[1].Field1);
             Assert.AreEqual("012", res[1].Field2);
             Assert.AreEqual(345, res[1].Field3);
-
         }
-
-	}
+    }
 }

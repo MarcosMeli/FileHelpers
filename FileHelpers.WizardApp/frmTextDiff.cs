@@ -48,22 +48,19 @@ namespace FileHelpers.WizardApp
             var dictB = new HashSet<string>();
 
             var textA = txtTextA.Text.SplitInLines();
-            foreach (var line in textA)
-            {
+            foreach (var line in textA) {
                 if (!dictA.Contains(line))
                     dictA.Add(line);
             }
             var res = new StringBuilder();
 
             var textB = txtTextB.Text.SplitInLines();
-            foreach (var line in textB)
-            {
+            foreach (var line in textB) {
                 if (!dictB.Contains(line))
                     dictB.Add(line);
             }
 
-            foreach (var line in textA)
-            {
+            foreach (var line in textA) {
                 if (!dictB.Contains(line))
                     res.AppendLine(line);
             }
@@ -76,17 +73,15 @@ namespace FileHelpers.WizardApp
             var dictA = new HashSet<string>();
 
             var textA = txtTextA.Text.SplitInLines();
-            foreach (var line in textA)
-            {
+            foreach (var line in textA) {
                 if (!dictA.Contains(line))
                     dictA.Add(line);
             }
             var res = new StringBuilder();
 
             var textB = txtTextB.Text.SplitInLines();
-           
-            foreach (var line in textB)
-            {
+
+            foreach (var line in textB) {
                 if (dictA.Contains(line))
                     res.AppendLine(line);
             }
@@ -100,10 +95,8 @@ namespace FileHelpers.WizardApp
             var res = new StringBuilder();
 
             var textA = txtTextA.Text.SplitInLines();
-            foreach (var line in textA)
-            {
-                if (!dictA.Contains(line))
-                {
+            foreach (var line in textA) {
+                if (!dictA.Contains(line)) {
                     res.AppendLine(line);
                     dictA.Add(line);
                 }
@@ -111,8 +104,7 @@ namespace FileHelpers.WizardApp
 
             var textB = txtTextB.Text.SplitInLines();
 
-            foreach (var line in textB)
-            {
+            foreach (var line in textB) {
                 if (!dictA.Contains(line))
                     res.AppendLine(line);
             }
@@ -121,6 +113,3 @@ namespace FileHelpers.WizardApp
         }
     }
 }
-
-
-

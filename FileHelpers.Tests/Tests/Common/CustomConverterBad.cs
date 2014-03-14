@@ -13,16 +13,14 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<GodRecord>();
 
-            var ex = 
+            var ex =
                 Assert.Throws<ConvertException>(
-                () => TestCommon.ReadTest<GodRecord>(engine, "Good", "PriceConverter.txt"));
+                    () => TestCommon.ReadTest<GodRecord>(engine, "Good", "PriceConverter.txt"));
 
             Assert.AreEqual(1, ex.LineNumber);
             Assert.AreEqual("PriceList", ex.FieldName);
-            Assert.AreEqual(typeof(decimal), ex.FieldType);
+            Assert.AreEqual(typeof (decimal), ex.FieldType);
             Assert.AreEqual(null, ex.FieldStringValue);
-
-        
         }
 
         // SPECIAL FIELD
@@ -33,11 +31,11 @@ namespace FileHelpers.Tests.CommonTests
             public int ProductId;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof(BadConverter))]
+            [FieldConverter(typeof (BadConverter))]
             public decimal PriceList;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof(BadConverter))]
+            [FieldConverter(typeof (BadConverter))]
             public decimal PriceOnePay;
         }
 

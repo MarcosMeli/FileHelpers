@@ -8,7 +8,6 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.Mocking
 {
-
     [TestFixture]
     public class FileHelperEngineTests
     {
@@ -18,7 +17,6 @@ namespace FileHelpers.Tests.Mocking
             Ok,
             FileNotFound,
             UnhandledError
-
         }
 
         public class FileHelpersClient
@@ -35,25 +33,20 @@ namespace FileHelpers.Tests.Mocking
             public void WorkWithFiles()
             {
                 DataInFile = null;
-                try
-                {
+                try {
                     DataInFile = Engine.ReadFile("bla bla bla");
                     Status = ClientStatus.Ok;
                 }
-                catch (FileNotFoundException)
-                {
+                catch (FileNotFoundException) {
                     Status = ClientStatus.FileNotFound;
                 }
-                catch (OutOfMemoryException)
-                {
+                catch (OutOfMemoryException) {
                     Status = ClientStatus.UnhandledError;
                     throw;
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                     Status = ClientStatus.UnhandledError;
                 }
-                
             }
         }
 
@@ -63,12 +56,23 @@ namespace FileHelpers.Tests.Mocking
         {
             var mock = new Mock<IFileHelperEngine<SampleType>>();
             mock.Setup(x => x.ReadFile(It.IsAny<string>()))
-                .Returns(new[]
-                             {
-                                 new SampleType {Field1 = new DateTime(2010, 3, 2), Field2 = "field2.1", Field3 = 1},
-                                 new SampleType {Field1 = new DateTime(2010, 4, 5), Field2 = "field2.2", Field3 = 2},
-                                 new SampleType {Field1 = new DateTime(2010, 6, 7), Field2 = "field2.3", Field3 = 3}
-                             });
+                .Returns(new[] {
+                    new SampleType {
+                        Field1 = new DateTime(2010, 3, 2),
+                        Field2 = "field2.1",
+                        Field3 = 1
+                    },
+                    new SampleType {
+                        Field1 = new DateTime(2010, 4, 5),
+                        Field2 = "field2.2",
+                        Field3 = 2
+                    },
+                    new SampleType {
+                        Field1 = new DateTime(2010, 6, 7),
+                        Field2 = "field2.3",
+                        Field3 = 3
+                    }
+                });
 
             var client = new FileHelpersClient(mock.Object);
 
@@ -93,7 +97,7 @@ namespace FileHelpers.Tests.Mocking
             mock.VerifyAll();
         }
 
-        
+
         [Test]
         public void FileNotFoundException()
         {
@@ -144,7 +148,6 @@ namespace FileHelpers.Tests.Mocking
         }
 
 
-
         [Test]
         public void BubblingOutOfMemory()
         {
@@ -153,13 +156,12 @@ namespace FileHelpers.Tests.Mocking
                 .Throws(new OutOfMemoryException());
 
             var client = new FileHelpersClient(mock.Object);
-            
-            Assert.Throws<OutOfMemoryException>( 
-                    () => client.WorkWithFiles() 
+
+            Assert.Throws<OutOfMemoryException>(
+                () => client.WorkWithFiles()
                 );
 
             mock.VerifyAll();
         }
     }
-
 }

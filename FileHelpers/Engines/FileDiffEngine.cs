@@ -5,197 +5,188 @@ using System.Diagnostics;
 
 namespace FileHelpers
 {
-
-	/// <summary>
+    /// <summary>
     /// Engine used to create diff files based on the
     /// <see cref="IComparableRecord{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The record type.</typeparam>
-    [DebuggerDisplay("FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
-    public sealed class FileDiffEngine<T>: EngineBase
-		where T: class, IComparableRecord<T>
+    [DebuggerDisplay(
+        "FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
+        )]
+    public sealed class FileDiffEngine<T> : EngineBase
+        where T : class, IComparableRecord<T>
     {
-		/// <summary>
+        /// <summary>
         /// Creates a new <see cref="FileDiffEngine{T}"/>
-		/// </summary>
-		public FileDiffEngine():base(typeof(T))
-		{
-		}
+        /// </summary>
+        public FileDiffEngine()
+            : base(typeof (T)) {}
 
 
-		/// <summary>Returns the records in newFile that not are in the sourceFile</summary>
-		/// <param name="sourceFile">The file with the old records.</param>
-		/// <param name="newFile">The file with the new records.</param>
-		/// <returns>The records in newFile that not are in the sourceFile</returns>
-		public T[] OnlyNewRecords(string sourceFile, string newFile)
-		{
-			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
-			
-			var olds = engine.ReadFile(sourceFile);
-			ErrorManager.AddErrors(engine.ErrorManager);
-			var currents = engine.ReadFile(newFile);
-			ErrorManager.AddErrors(engine.ErrorManager);
-            
-			var news = new List<T>();
-			ApplyDiffOnlyIn1(currents, olds, news);
+        /// <summary>Returns the records in newFile that not are in the sourceFile</summary>
+        /// <param name="sourceFile">The file with the old records.</param>
+        /// <param name="newFile">The file with the new records.</param>
+        /// <returns>The records in newFile that not are in the sourceFile</returns>
+        public T[] OnlyNewRecords(string sourceFile, string newFile)
+        {
+            FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
-			return news.ToArray();
-		} 
+            var olds = engine.ReadFile(sourceFile);
+            ErrorManager.AddErrors(engine.ErrorManager);
+            var currents = engine.ReadFile(newFile);
+            ErrorManager.AddErrors(engine.ErrorManager);
 
-		
-		/// <summary>Returns the records in newFile that not are in the sourceFile</summary>
-		/// <param name="sourceFile">The file with the old records.</param>
-		/// <param name="newFile">The file with the new records.</param>
-		/// <returns>The records in newFile that not are in the sourceFile</returns>
-		public T[] OnlyMissingRecords(string sourceFile, string newFile)
-		{
-			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
+            var news = new List<T>();
+            ApplyDiffOnlyIn1(currents, olds, news);
 
-			T[] olds = engine.ReadFile(sourceFile);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-
-			T[] currents = engine.ReadFile(newFile);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-            
-			var news = new List<T>();
-
-			ApplyDiffOnlyIn1(olds, currents, news);
-
-			return news.ToArray();
-		}
-		
-		private FileHelperEngine<T> CreateEngineAndClearErrors()
-		{
-			var engine = new FileHelperEngine<T>
-			    {
-			        Encoding = this.Encoding
-			    };
-
-		    ErrorManager.ClearErrors();
-			engine.ErrorManager.ErrorMode = this.ErrorManager.ErrorMode;
-			
-			return engine;
-		}
+            return news.ToArray();
+        }
 
 
-		/// <summary>
-		/// Returns the duplicated records in both files.
-		/// </summary>
-		/// <param name="file1">A file with records.</param>
-		/// <param name="file2">A file with records.</param>
-		/// <returns>The records that appear in both files.</returns>
-		public T[] OnlyDuplicatedRecords(string file1, string file2)
-		{
-			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
-			
-			T[] olds = engine.ReadFile(file1);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-			T[] currents = engine.ReadFile(file2);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-            
-			var news = new List<T>();
+        /// <summary>Returns the records in newFile that not are in the sourceFile</summary>
+        /// <param name="sourceFile">The file with the old records.</param>
+        /// <param name="newFile">The file with the new records.</param>
+        /// <returns>The records in newFile that not are in the sourceFile</returns>
+        public T[] OnlyMissingRecords(string sourceFile, string newFile)
+        {
+            FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
-			ApplyDiffInBoth(currents, olds, news);
+            T[] olds = engine.ReadFile(sourceFile);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
 
-			return news.ToArray();
-		}
+            T[] currents = engine.ReadFile(newFile);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
 
-		#region "  ApplyDiff  "
+            var news = new List<T>();
 
-		private static void ApplyDiffInBoth(T[] col1, T[] col2, List<T> arr)
-		{
-			ApplyDiff(col1, col2, arr, true);
-		}
+            ApplyDiffOnlyIn1(olds, currents, news);
 
-		private static void ApplyDiffOnlyIn1(T[] col1, T[] col2, List<T> arr)
-		{
-			ApplyDiff(col1, col2, arr, false);
-		}
+            return news.ToArray();
+        }
 
-		private static void ApplyDiff(T[] col1, T[] col2, List<T> arr, bool addIfIn1)
-		{
-			for(int i = 0; i < col1.Length; i++)
-			{
-				bool isNew = false; 
-				
-				//OPT: aca podemos hacer algo asi que para cada nuevo 
-				//     que encuentra no empieze en j = i sino en j = i - nuevos =)
-				//     Otra idea de guille es agrear un window y usar el Max de las dos
+        private FileHelperEngine<T> CreateEngineAndClearErrors()
+        {
+            var engine = new FileHelperEngine<T> {
+                Encoding = this.Encoding
+            };
 
-				T current = col1[i];
-		
-				for(int j = i; j < col2.Length; j++)
-				{
-					if (current.IsEqualRecord(col2[j]))
-					{
-						isNew = true;
-						break;
-					}
-				}
+            ErrorManager.ClearErrors();
+            engine.ErrorManager.ErrorMode = this.ErrorManager.ErrorMode;
 
-				
-				if (isNew == false)
-				{
-					for(int j = 0; j < Math.Min(i, col2.Length); j++)
-					{
-						if (current.IsEqualRecord(col2[j]))
-						{
-							isNew = true;
-							break;
-						}
-					}
-				}
+            return engine;
+        }
 
-				if (isNew == addIfIn1) arr.Add(current); 
 
-			}
-		}
+        /// <summary>
+        /// Returns the duplicated records in both files.
+        /// </summary>
+        /// <param name="file1">A file with records.</param>
+        /// <param name="file2">A file with records.</param>
+        /// <returns>The records that appear in both files.</returns>
+        public T[] OnlyDuplicatedRecords(string file1, string file2)
+        {
+            FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
-		#endregion
+            T[] olds = engine.ReadFile(file1);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
+            T[] currents = engine.ReadFile(file2);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
 
-		/// <summary>
-		/// Returns the NON duplicated records in both files.
-		/// </summary>
-		/// <param name="file1">A file with record.</param>
-		/// <param name="file2">A file with record.</param>
-		/// <returns>The records that NOT appear in both files.</returns>
-		public T[] OnlyNoDuplicatedRecords(string file1, string file2)
-		{
-			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
-			
-			T[] olds = engine.ReadFile(file1);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-			T[] currents = engine.ReadFile(file2);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-            
-			var news = new List<T>();
+            var news = new List<T>();
 
-			ApplyDiffOnlyIn1(currents, olds, news);
+            ApplyDiffInBoth(currents, olds, news);
 
-			ApplyDiffOnlyIn1(olds, currents, news);
+            return news.ToArray();
+        }
 
-			return news.ToArray();
-    
-		} 
+        #region "  ApplyDiff  "
 
-		/// <summary>
+        private static void ApplyDiffInBoth(T[] col1, T[] col2, List<T> arr)
+        {
+            ApplyDiff(col1, col2, arr, true);
+        }
+
+        private static void ApplyDiffOnlyIn1(T[] col1, T[] col2, List<T> arr)
+        {
+            ApplyDiff(col1, col2, arr, false);
+        }
+
+        private static void ApplyDiff(T[] col1, T[] col2, List<T> arr, bool addIfIn1)
+        {
+            for (int i = 0; i < col1.Length; i++) {
+                bool isNew = false;
+
+                //OPT: aca podemos hacer algo asi que para cada nuevo 
+                //     que encuentra no empieze en j = i sino en j = i - nuevos =)
+                //     Otra idea de guille es agrear un window y usar el Max de las dos
+
+                T current = col1[i];
+
+                for (int j = i; j < col2.Length; j++) {
+                    if (current.IsEqualRecord(col2[j])) {
+                        isNew = true;
+                        break;
+                    }
+                }
+
+
+                if (isNew == false) {
+                    for (int j = 0; j < Math.Min(i, col2.Length); j++) {
+                        if (current.IsEqualRecord(col2[j])) {
+                            isNew = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (isNew == addIfIn1)
+                    arr.Add(current);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Returns the NON duplicated records in both files.
+        /// </summary>
+        /// <param name="file1">A file with record.</param>
+        /// <param name="file2">A file with record.</param>
+        /// <returns>The records that NOT appear in both files.</returns>
+        public T[] OnlyNoDuplicatedRecords(string file1, string file2)
+        {
+            FileHelperEngine<T> engine = CreateEngineAndClearErrors();
+
+            T[] olds = engine.ReadFile(file1);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
+            T[] currents = engine.ReadFile(file2);
+            this.ErrorManager.AddErrors(engine.ErrorManager);
+
+            var news = new List<T>();
+
+            ApplyDiffOnlyIn1(currents, olds, news);
+
+            ApplyDiffOnlyIn1(olds, currents, news);
+
+            return news.ToArray();
+        }
+
+        /// <summary>
         /// Read the source file, the new File, get the records and write
         /// them to a destination file.  (record not in first file but in
         /// second will be written to the third)
         /// </summary>
-		/// <param name="sourceFile">The file with the source records.</param>
-		/// <param name="newFile">The file with the new records.</param>
-		/// <param name="destFile">The destination file.</param>
-		/// <returns>The new records on the new file.</returns>
-		public T[] WriteNewRecords(string sourceFile, string newFile, string destFile)
-		{
-			FileHelperEngine<T> engine = CreateEngineAndClearErrors();
-			T[] res = OnlyNewRecords(sourceFile, newFile);
+        /// <param name="sourceFile">The file with the source records.</param>
+        /// <param name="newFile">The file with the new records.</param>
+        /// <param name="destFile">The destination file.</param>
+        /// <returns>The new records on the new file.</returns>
+        public T[] WriteNewRecords(string sourceFile, string newFile, string destFile)
+        {
+            FileHelperEngine<T> engine = CreateEngineAndClearErrors();
+            T[] res = OnlyNewRecords(sourceFile, newFile);
 
             engine.WriteFile(destFile, res);
-			this.ErrorManager.AddErrors(engine.ErrorManager);
-			return res;
-		}
-
-	}
+            this.ErrorManager.AddErrors(engine.ErrorManager);
+            return res;
+        }
+    }
 }

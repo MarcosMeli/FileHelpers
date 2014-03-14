@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class ReadBeforeEventSample
         : ExampleBase
     {
-
         //-> Name:Before Read Event Handling
         //-> Description:Show how to implement read before event
 
@@ -27,14 +26,13 @@ namespace ExamplesFx
             var result = engine.ReadFile("report.inp");
 
             foreach (var value in result)
-            {
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
-            }
         }
 
         private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
         {
-            if (e.RecordLine.StartsWith(" ") || e.RecordLine.StartsWith("-"))
+            if (e.RecordLine.StartsWith(" ") ||
+                e.RecordLine.StartsWith("-"))
                 e.SkipThisRecord = true;
 
             //  Sometimes changing the record line can be useful, for example to correct for
@@ -86,9 +84,7 @@ namespace ExamplesFx
             [FieldFixedLength(11)]
             public decimal Freight;
         }
+
         //-> /File
-
-
-
     }
 }

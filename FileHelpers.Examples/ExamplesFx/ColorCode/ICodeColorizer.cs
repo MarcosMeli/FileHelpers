@@ -20,7 +20,7 @@ namespace ExamplesFx.ColorCode
         /// <param name="language">The language to use to colorize the source code.</param>
         /// <returns>The colorized source code.</returns>
         string Colorize(string sourceCode,
-                        ILanguage language);
+            ILanguage language);
 
         /// <summary>
         /// Colorizes source code using the specified language, the default formatter, and the default style sheet.
@@ -29,8 +29,8 @@ namespace ExamplesFx.ColorCode
         /// <param name="language">The language to use to colorize the source code.</param>
         /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
         void Colorize(string sourceCode,
-                      ILanguage language,
-                      TextWriter textWriter);
+            ILanguage language,
+            TextWriter textWriter);
 
         /// <summary>
         /// Colorizes source code using the specified language, formatter, and style sheet.
@@ -42,9 +42,9 @@ namespace ExamplesFx.ColorCode
         /// <param name="styleSheet">The style sheet to use to colorize the source code.</param>
         /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
         void Colorize(string sourceCode,
-                      ILanguage language,
-                      IFormatter formatter,
-                      IStyleSheet styleSheet,
-                      TextWriter textWriter);
+            ILanguage language,
+            IFormatter formatter,
+            IStyleSheet styleSheet,
+            TextWriter textWriter);
     }
 }

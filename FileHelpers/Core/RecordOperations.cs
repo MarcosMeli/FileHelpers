@@ -10,7 +10,7 @@ namespace FileHelpers
     /// <summary>
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
-    internal sealed class RecordOperations 
+    internal sealed class RecordOperations
         //: IRecordOperations
     {
         /// <summary>
@@ -42,33 +42,30 @@ namespace FileHelpers
                 return null;
 
             for (int i = 0; i < RecordInfo.FieldCount; i++)
-            {
                 values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
-            }
 
-            try
-            {
+            try {
                 // Assign all values via dynamic method that creates an object and assign values
                 return CreateHandler(values);
             }
-            catch (InvalidCastException ex)
-            {
+            catch (InvalidCastException ex) {
                 // Occurs when a custom converter returns an invalid value for the field.
-                for (int i = 0; i < RecordInfo.FieldCount; i++)
-                {
-                    if (values[i] != null && !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i]))
+                for (int i = 0; i < RecordInfo.FieldCount; i++) {
+                    if (values[i] != null &&
+                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
-                                                   RecordInfo.Fields[i].FieldTypeInternal,
-                                                   RecordInfo.Fields[i].FieldInfo.Name,
-                                                   line.mReader.LineNumber,
-                                                   -1,
-                                                   Messages.Errors.WrongConverter
-                                                       .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
-                                                       .ConverterReturnedType(values[i].GetType().Name)
-                                                       .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
-                                                       .Text
-                                                   ,
-                                                   ex);
+                            RecordInfo.Fields[i].FieldTypeInternal,
+                            RecordInfo.Fields[i].FieldInfo.Name,
+                            line.mReader.LineNumber,
+                            -1,
+                            Messages.Errors.WrongConverter
+                                .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
+                                .ConverterReturnedType(values[i].GetType().Name)
+                                .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
+                                .Text
+                            ,
+                            ex);
+                    }
                 }
                 return null;
             }
@@ -87,34 +84,31 @@ namespace FileHelpers
                 return false;
 
             for (int i = 0; i < RecordInfo.FieldCount; i++)
-            {
                 values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
-            }
 
-            try
-            {
+            try {
                 // Assign all values via dynamic method that
                 AssignHandler(record, values);
                 return true;
             }
-            catch (InvalidCastException ex)
-            {
+            catch (InvalidCastException ex) {
                 // Occurs when a custom converter returns an invalid value for the field.
-                for (int i = 0; i < RecordInfo.FieldCount; i++)
-                {
-                    if (values[i] != null && !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i]))
+                for (int i = 0; i < RecordInfo.FieldCount; i++) {
+                    if (values[i] != null &&
+                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
-                                                   RecordInfo.Fields[i].FieldTypeInternal,
-                                                   RecordInfo.Fields[i].FieldInfo.Name,
-                                                   line.mReader.LineNumber,
-                                                   -1,
-                                                   Messages.Errors.WrongConverter
-                                                       .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
-                                                       .ConverterReturnedType(values[i].GetType().Name)
-                                                       .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
-                                                       .Text
-                                                   ,
-                                                   ex);
+                            RecordInfo.Fields[i].FieldTypeInternal,
+                            RecordInfo.Fields[i].FieldInfo.Name,
+                            line.mReader.LineNumber,
+                            -1,
+                            Messages.Errors.WrongConverter
+                                .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
+                                .ConverterReturnedType(values[i].GetType().Name)
+                                .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
+                                .Text
+                            ,
+                            ex);
+                    }
                 }
                 throw;
             }
@@ -127,20 +121,20 @@ namespace FileHelpers
         /// <returns>True if line is skipped</returns>
         private bool MustIgnoreLine(string line)
         {
-            if (RecordInfo.IgnoreEmptyLines)
+            if (RecordInfo.IgnoreEmptyLines) {
                 if ((RecordInfo.IgnoreEmptySpaces && line.TrimStart().Length == 0) ||
                     line.Length == 0)
                     return true;
+            }
 
-            if (!String.IsNullOrEmpty(RecordInfo.CommentMarker))
+            if (!String.IsNullOrEmpty(RecordInfo.CommentMarker)) {
                 if ((RecordInfo.CommentAnyPlace && line.TrimStart().StartsWith(RecordInfo.CommentMarker)) ||
                     line.StartsWith(RecordInfo.CommentMarker))
                     return true;
+            }
 
-            if (RecordInfo.RecordCondition != RecordCondition.None)
-            {
-                switch (RecordInfo.RecordCondition)
-                {
+            if (RecordInfo.RecordCondition != RecordCondition.None) {
+                switch (RecordInfo.RecordCondition) {
                     case RecordCondition.ExcludeIfBegins:
                         return ConditionHelper.BeginsWith(line, RecordInfo.RecordConditionSelector);
                     case RecordCondition.IncludeIfBegins:
@@ -171,6 +165,7 @@ namespace FileHelpers
 
             return false;
         }
+
         #endregion
 
         #region "  RecordToString  "
@@ -187,9 +182,7 @@ namespace FileHelpers
             var values = ObjectToValuesHandler(record);
 
             for (int f = 0; f < RecordInfo.FieldCount; f++)
-            {
                 RecordInfo.Fields[f].AssignToString(sb, values[f]);
-            }
 
             return sb.ToString();
         }
@@ -204,12 +197,11 @@ namespace FileHelpers
             var sb = new StringBuilder(RecordInfo.SizeHint);
 
             for (int f = 0; f < RecordInfo.FieldCount; f++)
-            {
                 RecordInfo.Fields[f].AssignToString(sb, recordValues[f]);
-            }
 
             return sb.ToString();
         }
+
         #endregion
 
         #region "  ValuesToRecord  "
@@ -220,33 +212,12 @@ namespace FileHelpers
         public object ValuesToRecord(object[] values)
         {
             for (int i = 0; i < RecordInfo.FieldCount; i++)
-            {
-                if (RecordInfo.Fields[i].FieldTypeInternal == typeof(DateTime) && values[i] is double)
-                    values[i] = DoubleToDate((int)(double)values[i]);
-
                 values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
-            }
 
             // Assign all values via dynamic method that creates an object and assign values
             return CreateHandler(values);
         }
 
-        /// <summary>
-        /// TODO:  Explain what date logic this covers???
-        /// </summary>
-        /// <param name="serialNumber">TODO: define this date serial number</param>
-        /// <returns>Date time from a numerical reference time</returns>
-        private static DateTime DoubleToDate(int serialNumber)
-        {
-            if (serialNumber < 59)
-            {
-                // Because of the 29-02-1900 bug, any serial date 
-                // under 60 is one off... Compensate. 
-                serialNumber++;
-            }
-
-            return new DateTime((serialNumber + 693593) * (10000000L * 24 * 3600));
-        }
         #endregion
 
         #region "  RecordToValues  "
@@ -258,6 +229,7 @@ namespace FileHelpers
         {
             return ObjectToValuesHandler(record);
         }
+
         #endregion
 
         #region "  RecordsToDataTable  "
@@ -286,16 +258,13 @@ namespace FileHelpers
 
             res.MinimumCapacity = records.Count;
 
-            if (maxRecords == -1)
-            {
+            if (maxRecords == -1) {
                 foreach (var r in records)
                     res.Rows.Add(RecordToValues(r));
             }
-            else
-            {
+            else {
                 int i = 0;
-                foreach (var r in records)
-                {
+                foreach (var r in records) {
                     if (i == maxRecords)
                         break;
 
@@ -316,11 +285,9 @@ namespace FileHelpers
         {
             var res = new DataTable();
 
-            foreach (var f in RecordInfo.Fields)
-            {
+            foreach (var f in RecordInfo.Fields) {
                 DataColumn column1;
-                if (f.IsNullableType)
-                {
+                if (f.IsNullableType) {
                     column1 = res.Columns.Add(f.FieldInfo.Name, Nullable.GetUnderlyingType(f.FieldInfo.FieldType));
                     column1.AllowDBNull = true;
                 }
@@ -332,10 +299,7 @@ namespace FileHelpers
             return res;
         }
 
-
         #endregion
-
-
 
         #region "  Lightweight code generation (NET 2.0)  "
 
@@ -351,10 +315,11 @@ namespace FileHelpers
         /// </summary>
         private ObjectToValuesDelegate ObjectToValuesHandler
         {
-            get {
+            get
+            {
                 return mObjectToValuesHandler ??
                        (mObjectToValuesHandler =
-                        ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));
+                           ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));
             }
         }
 
@@ -365,8 +330,10 @@ namespace FileHelpers
         {
             get
             {
-                if (mCreateHandler == null)
-                    mCreateHandler = ReflectionHelper.CreateAndAssignValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
+                if (mCreateHandler == null) {
+                    mCreateHandler = ReflectionHelper.CreateAndAssignValuesMethod(RecordInfo.RecordType,
+                        GetFieldInfoArray());
+                }
                 return mCreateHandler;
             }
         }
@@ -397,7 +364,6 @@ namespace FileHelpers
             }
         }
 
-
         #endregion
 
         /// <summary>
@@ -409,9 +375,7 @@ namespace FileHelpers
             var res = new FieldInfo[RecordInfo.Fields.Length];
 
             for (int i = 0; i < RecordInfo.Fields.Length; i++)
-            {
                 res[i] = RecordInfo.Fields[i].FieldInfo;
-            }
             return res;
         }
 

@@ -12,7 +12,6 @@ namespace ExamplesFx
     public class WriteAfterEventSample
         : ExampleBase
     {
-
         //-> Name:After Write Event Handling
         //-> Description:Show how to implement write after event
 
@@ -33,10 +32,11 @@ namespace ExamplesFx
 
         private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
         {
-           //  We only want clients with large frieght values
-            if (e.Record.CustomerID == "HANAR" )
+            //  We only want clients with large frieght values
+            if (e.Record.CustomerID == "HANAR")
                 e.RecordLine = "Insufficient Access";
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -73,7 +73,7 @@ namespace ExamplesFx
             [FieldFixedLength(11)]
             public decimal Freight;
         }
-        //-> /File
 
+        //-> /File
     }
 }

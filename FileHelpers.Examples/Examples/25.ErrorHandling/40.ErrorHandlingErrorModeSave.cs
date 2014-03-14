@@ -34,6 +34,7 @@ namespace ExamplesFx
                 engine.ErrorManager.SaveErrors("errors.out");
             LoadErrors();
         }
+
         //-> /File
 
         //-> File:LoadErrors.cs
@@ -42,19 +43,18 @@ namespace ExamplesFx
         /// </summary>
         private void LoadErrors()
         {
-
             // sometime later you can read it back
             ErrorInfo[] errors = ErrorManager.LoadErrors("errors.out");
 
             // This will display error from line 2 of the file.
-            foreach (var err in errors)
-            {
+            foreach (var err in errors) {
                 this.Console.WriteLine();
                 this.Console.WriteLine("Error on Line number: {0}", err.LineNumber);
                 this.Console.WriteLine("Record causing the problem: {0}", err.RecordString);
                 this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
+
         //-> /File
 
         //-> File:Customers with Enum.cs
@@ -72,6 +72,7 @@ namespace ExamplesFx
             public string ContactName;
             public CustomerTitle ContactTitle;
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -91,6 +92,7 @@ namespace ExamplesFx
             SalesRepresentative,
             MarketingManager
         }
+
         //-> /File
 
         //-> File:Errors.out
@@ -107,6 +109,5 @@ namespace ExamplesFx
          * </blockquote>
          */
         //-> /File
-
     }
 }

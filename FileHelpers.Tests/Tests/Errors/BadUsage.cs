@@ -6,301 +6,300 @@ using NUnit.Framework;
 
 namespace FileHelpers.Tests.Errors
 {
-	[TestFixture]
-	public class BadUsage
-	{
-		#region  "  DuplicateAttributes  "
+    [TestFixture]
+    public class BadUsage
+    {
+        #region  "  DuplicateAttributes  "
 
-		[FixedLengthRecord]
-		public class TestDupli
-		{
-			[FieldFixedLength(10)]
-			[FieldDelimiter("|")] 
+        [FixedLengthRecord]
+        public class TestDupli
+        {
+            [FieldFixedLength(10)]
+            [FieldDelimiter("|")]
             public string Field1;
-		}
+        }
 
-		[Test]
-		public void DuplicatedDefinition()
-		{
-            Assert.Throws<BadUsageException>(() 
+        [Test]
+        public void DuplicatedDefinition()
+        {
+            Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<TestDupli>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  SwitchedAttributes "
+        #region  "  SwitchedAttributes "
 
-		[FixedLengthRecord]
-		public class SwitchedAttributes1
-		{
-			[FieldDelimiter("|")] 
+        [FixedLengthRecord]
+        public class SwitchedAttributes1
+        {
+            [FieldDelimiter("|")]
             public string Field1;
-		}
+        }
 
-		[DelimitedRecord("|")]
-		public class SwitchedAttributes2
-		{
-			[FieldFixedLength(12)] 
+        [DelimitedRecord("|")]
+        public class SwitchedAttributes2
+        {
+            [FieldFixedLength(12)]
             public string Field1;
-		}
+        }
 
-		[Test]
-		public void SwitchedAttb1()
-		{
-            Assert.Throws<BadUsageException>(() 
+        [Test]
+        public void SwitchedAttb1()
+        {
+            Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<SwitchedAttributes1>());
-		}
+        }
 
-		[Test]
-		public void SwitchedAttb2()
-		{
+        [Test]
+        public void SwitchedAttb2()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<SwitchedAttributes2>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NullValue "
+        #region  "  NullValue "
 
-		[DelimitedRecord("|")]
-		public class NullValue1Type
-		{
-			[FieldNullValue(22)] public string Field1;
-		}
+        [DelimitedRecord("|")]
+        public class NullValue1Type
+        {
+            [FieldNullValue(22)]
+            public string Field1;
+        }
 
-		[Test]
-		public void NullValue1()
-		{
-            Assert.Throws<BadUsageException>(() 
+        [Test]
+        public void NullValue1()
+        {
+            Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NullValue1Type>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NoMarkedClass "
+        #region  "  NoMarkedClass "
 
-		public class NoMarkedClass
-		{
-			[FieldNullValue(22)] public string Field1;
-		}
+        public class NoMarkedClass
+        {
+            [FieldNullValue(22)]
+            public string Field1;
+        }
 
-		[Test]
-		public void NoMarked()
-		{
+        [Test]
+        public void NoMarked()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoMarkedClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  FixedWithOutLength "
+        #region  "  FixedWithOutLength "
 
-		[FixedLengthRecord]
-		public class FixedWithOutLengthClass
-		{
-			public string Field1;
-		}
+        [FixedLengthRecord]
+        public class FixedWithOutLengthClass
+        {
+            public string Field1;
+        }
 
-		[Test]
-		public void FixedWithOutLength()
-		{
+        [Test]
+        public void FixedWithOutLength()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<FixedWithOutLengthClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NoFields "
+        #region  "  NoFields "
 
-		[FixedLengthRecord]
-		public class NoFieldsClass
-		{
-		}
+        [FixedLengthRecord]
+        public class NoFieldsClass {}
 
-		[Test]
-		public void NoFields()
-		{
+        [Test]
+        public void NoFields()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoFieldsClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NoFields2"
+        #region  "  NoFields2"
 
-		[DelimitedRecord(",")]
-		public class NoFieldsClass2
-		{
-			[FieldNotInFile]
-			public string MyField;
-		}
+        [DelimitedRecord(",")]
+        public class NoFieldsClass2
+        {
+            [FieldNotInFile]
+            public string MyField;
+        }
 
-		[Test]
-		public void NoFields2()
-		{
+        [Test]
+        public void NoFields2()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoFieldsClass2>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NoFields3  "
+        #region  "  NoFields3  "
 
-		[DelimitedRecord(",")]
-			public class NoFieldsClass3
-		{
-			[FieldNotInFile]
-			public string MyField;
+        [DelimitedRecord(",")]
+        public class NoFieldsClass3
+        {
+            [FieldNotInFile]
+            public string MyField;
 
-			[FieldNotInFile]
-			public string MyField2;
-		}
+            [FieldNotInFile]
+            public string MyField2;
+        }
 
-		[Test]
-		public void NoFields3()
-		{
+        [Test]
+        public void NoFields3()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoFieldsClass3>());
-		}
+        }
 
-		#endregion
+        #endregion
 
+        #region  "  NoConstructor  "
 
-		#region  "  NoConstructor  "
+        [FixedLengthRecord]
+        public class NoConstructorClass
+        {
+            [FieldFixedLength(22)]
+            public string Field1;
 
-		[FixedLengthRecord]
-		public class NoConstructorClass
-		{
-			[FieldFixedLength(22)] public string Field1;
+            public NoConstructorClass(bool foo)
+            {
+                foo = true;
+            }
+        }
 
-			public NoConstructorClass(bool foo)
-			{
-				foo = true;
-			}
-		}
-
-		[Test]
-		public void NoConstructor()
-		{
+        [Test]
+        public void NoConstructor()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoConstructorClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
+        #region  "  NoConstructorConverter  "
 
-		#region  "  NoConstructorConverter  "
+        private class ConvClass : ConverterBase
+        {
+            public ConvClass(bool foo) {}
 
-		private class ConvClass: ConverterBase
-		{
-			public ConvClass(bool foo)
-			{}
-
-			public override object StringToField(string from)
-			{
-				throw new NotImplementedException();
-			}
-		}
+            public override object StringToField(string from)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
 
-		[DelimitedRecord(",")]
-		public class NoConstructorConvClass
-		{
-			[FieldConverter(typeof(ConvClass))]
-			public string Field1;
-		}
+        [DelimitedRecord(",")]
+        public class NoConstructorConvClass
+        {
+            [FieldConverter(typeof (ConvClass))]
+            public string Field1;
+        }
 
-		[Test]
-		public void NoConstructorConverter()
-		{
+        [Test]
+        public void NoConstructorConverter()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoConstructorConvClass>());
-		}
+        }
 
 
-		[DelimitedRecord(",")]
-		public class NoConstructorConvClass2
-		{
-			[FieldConverter(typeof(ConvClass), "hola")]
-			public string Field1;
-		}
+        [DelimitedRecord(",")]
+        public class NoConstructorConvClass2
+        {
+            [FieldConverter(typeof (ConvClass), "hola")]
+            public string Field1;
+        }
 
-		[Test]
-		public void NoConstructorConverter2()
-		{
+        [Test]
+        public void NoConstructorConverter2()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoConstructorConvClass2>());
-		}
+        }
 
 
-		[DelimitedRecord(",")]
-		public class NoConstructorConvClass3
-		{
-			[FieldConverter(typeof(ConvClass), 123)]
-			public string Field1;
-		}
+        [DelimitedRecord(",")]
+        public class NoConstructorConvClass3
+        {
+            [FieldConverter(typeof (ConvClass), 123)]
+            public string Field1;
+        }
 
-		[Test]
-		public void NoConstructorConverter3()
-		{
+        [Test]
+        public void NoConstructorConverter3()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoConstructorConvClass3>());
-		}
+        }
 
-		[DelimitedRecord(",")]
-		public class NoConstructorConvClass4
-		{
-			[FieldConverter(typeof(FakeConverter), 123)]
-			public string Field1;
+        [DelimitedRecord(",")]
+        public class NoConstructorConvClass4
+        {
+            [FieldConverter(typeof (FakeConverter), 123)]
+            public string Field1;
 
-			private class FakeConverter
-			{}
+            private class FakeConverter {}
+        }
 
-		}
-
-		[Test]
-		public void NoConstructorConverter4()
-		{
+        [Test]
+        public void NoConstructorConverter4()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoConstructorConvClass4>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  DateFormat  "
+        #region  "  DateFormat  "
 
-		[DelimitedRecord("|")]
-		public class DateFormat1Class
-		{
-			[FieldConverter(ConverterKind.Date, null)] public DateTime DateField;
-		}
+        [DelimitedRecord("|")]
+        public class DateFormat1Class
+        {
+            [FieldConverter(ConverterKind.Date, null)]
+            public DateTime DateField;
+        }
 
-		[DelimitedRecord("|")]
-		public class DateFormat2Class
-		{
-			[FieldConverter(ConverterKind.Date, "")] public DateTime DateField;
-		}
+        [DelimitedRecord("|")]
+        public class DateFormat2Class
+        {
+            [FieldConverter(ConverterKind.Date, "")]
+            public DateTime DateField;
+        }
 
-		[DelimitedRecord("|")]
-		public class DateFormat3Class
-		{
-			[FieldConverter(ConverterKind.Date, "d€€#|||??¡¡3&&...dddMMyyyy")] public DateTime DateField;
-		}
+        [DelimitedRecord("|")]
+        public class DateFormat3Class
+        {
+            [FieldConverter(ConverterKind.Date, "d€€#|||??¡¡3&&...dddMMyyyy")]
+            public DateTime DateField;
+        }
 
 
-		[Test]
-		public void BadDateFormat1()
-		{
+        [Test]
+        public void BadDateFormat1()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<DateFormat1Class>());
-		}
+        }
 
-		[Test]
-		public void BadDateFormat2()
-		{
+        [Test]
+        public void BadDateFormat2()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<DateFormat2Class>());
-		}
+        }
 
 //		[Test]
 //		public void BadDateFormat3()
@@ -309,7 +308,7 @@ namespace FileHelpers.Tests.Errors
         //        => new FileHelperEngine(typeof (DateFormat3Class));
 //		}
 
-		#endregion
+        #endregion
 
 //		#region  "  TrimBad  "
 //
@@ -328,111 +327,107 @@ namespace FileHelpers.Tests.Errors
 //
 //		#endregion
 
-		#region  "  AlignBad  "
+        #region  "  AlignBad  "
 
-		[DelimitedRecord("|")]
-		public class AlignClass
-		{
-			[FieldAlign(AlignMode.Left)] public int Field1;
-		}
+        [DelimitedRecord("|")]
+        public class AlignClass
+        {
+            [FieldAlign(AlignMode.Left)]
+            public int Field1;
+        }
 
-		[Test]
-		public void AlignError()
-		{
+        [Test]
+        public void AlignError()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<AlignClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  NonSystemType  "
+        #region  "  NonSystemType  "
 
-		[DelimitedRecord("|")]
-		public class NonSystemTypeClass
-		{
-			// One non system type ex FileInfo
-			public FileInfo Field1;
-		}
+        [DelimitedRecord("|")]
+        public class NonSystemTypeClass
+        {
+            // One non system type ex FileInfo
+            public FileInfo Field1;
+        }
 
-		[Test]
-		public void NonSystemType()
-		{
+        [Test]
+        public void NonSystemType()
+        {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NonSystemTypeClass>());
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region  "  ValueType  "
+        #region  "  ValueType  "
 
-		public struct ValueTypeClass
-		{
-			// One non system type ex FileInfo
-			public FileInfo Field1;
-		}
+        public struct ValueTypeClass
+        {
+            // One non system type ex FileInfo
+            public FileInfo Field1;
+        }
 
-		[Test]
-		public void ValueType()
-		{
+        [Test]
+        public void ValueType()
+        {
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine(typeof(ValueTypeClass)));
+                => new FileHelperEngine(typeof (ValueTypeClass)));
+        }
 
-		}
+        #endregion
 
-		#endregion
+        #region  "  BadRecordTypes  "
 
+        [DelimitedRecord("|")]
+        public class BadRecordTypeClass
+        {
+            public string Field1;
+        }
 
-		#region  "  BadRecordTypes  "
-
-		[DelimitedRecord("|")]
-		public class BadRecordTypeClass
-		{
-			public string Field1;
-		}
-
-		[Test]
-		public void BadRecordType()
-		{
-            var engine = new FileHelperEngine(typeof(BadRecordTypeClass));
-			Assert.Throws<BadUsageException>(() 
-                => engine.WriteString(new [] {"hola"}));
-            
-		}
-
-		[Test]
-		public void NullRecordType()
-		{
+        [Test]
+        public void BadRecordType()
+        {
+            var engine = new FileHelperEngine(typeof (BadRecordTypeClass));
             Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine((Type)null));
-		}
+                => engine.WriteString(new[] {"hola"}));
+        }
 
-		#endregion
+        [Test]
+        public void NullRecordType()
+        {
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine((Type) null));
+        }
 
-		[Test]
-		public void WriteBadUsage()
-		{
-			var engine = new FileHelperEngine<SampleType>();
+        #endregion
 
-			var res = new SampleType[2];
+        [Test]
+        public void WriteBadUsage()
+        {
+            var engine = new FileHelperEngine<SampleType>();
 
-			res[0] = new SampleType();
+            var res = new SampleType[2];
 
-			res[0].Field1 = DateTime.Now.AddDays(1);
-			res[0].Field2 = "je";
-			res[0].Field3 = 0;
+            res[0] = new SampleType();
 
-            Assert.Throws<BadUsageException>(() 
+            res[0].Field1 = DateTime.Now.AddDays(1);
+            res[0].Field2 = "je";
+            res[0].Field3 = 0;
+
+            Assert.Throws<BadUsageException>(()
                 => engine.WriteString(res));
-		}
+        }
 
-		[Test]
-		public void WriteBadUsage2()
-		{
-			var engine = new FileHelperEngine<SampleType>();
-            Assert.Throws<ArgumentNullException>(() 
+        [Test]
+        public void WriteBadUsage2()
+        {
+            var engine = new FileHelperEngine<SampleType>();
+            Assert.Throws<ArgumentNullException>(()
                 => engine.WriteString(null));
-		}
-
-
-	}
+        }
+    }
 }

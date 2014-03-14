@@ -8,13 +8,13 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class IntegerSeparators
     {
-        string toTest = @"123|456|78910" + "\n" +
-                        @"1,234|4,056|78,910" + "\n" +
-                        @"0|1|2";
+        private string toTest = @"123|456|78910" + "\n" +
+                                @"1,234|4,056|78,910" + "\n" +
+                                @"0|1|2";
 
-        string toTestMixed = @"123|456|78910" + "\n" +
-                             @"1.234|4,056|78.910" + "\n" +
-                             @"0|1|2";
+        private string toTestMixed = @"123|456|78910" + "\n" +
+                                     @"1.234|4,056|78.910" + "\n" +
+                                     @"0|1|2";
 
         [Test]
         public void ReadFileDefault()
@@ -34,7 +34,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(1234, res[1].Field1);
             Assert.AreEqual(4056, res[1].Field2);
             Assert.AreEqual(78910, res[1].Field3);
-
         }
 
 
@@ -43,7 +42,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<SampleIntegerTypeDefined>();
 
-            var res = (SampleIntegerTypeDefined[])engine.ReadString(toTestMixed);
+            var res = (SampleIntegerTypeDefined[]) engine.ReadString(toTestMixed);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(3, engine.TotalRecords);
@@ -56,37 +55,37 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(1234, res[1].Field1);
             Assert.AreEqual(4056, res[1].Field2);
             Assert.AreEqual(78910, res[1].Field3);
-
         }
 
 
         [DelimitedRecord("|")]
-        class SampleIntegerType
+        private class SampleIntegerType
         {
-                public int Field1;
-                public short Field2;
-                public long Field3;
+            public int Field1;
+            public short Field2;
+            public long Field3;
         }
 
 
         [DelimitedRecord("|")]
-        class SampleIntegerTypeDefined
+        private class SampleIntegerTypeDefined
         {
             [FieldConverter(ConverterKind.Int32, ",")]
             public int Field1;
+
             [FieldConverter(ConverterKind.Int16, ".")]
             public short Field2;
+
             [FieldConverter(ConverterKind.Int64, ",")]
             public long Field3;
         }
 
         [DelimitedRecord("|")]
-        class SampleIntegerTypeBad
+        private class SampleIntegerTypeBad
         {
             public int Field1;
             public short Field2;
             public long Field3;
         }
-
     }
 }

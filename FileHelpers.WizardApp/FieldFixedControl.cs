@@ -18,11 +18,9 @@ namespace FileHelpers.WizardApp
 
         private FixedFieldBuilder CastedFieldInfo
         {
-            get
-            {
-                return (FixedFieldBuilder)FieldInfo;
-            }
+            get { return (FixedFieldBuilder) FieldInfo; }
         }
+
         private void LabelControlsClick(object sender, EventArgs e)
         {
             this.Focus();
@@ -40,7 +38,5 @@ namespace FileHelpers.WizardApp
 
             txtLength.Value = CastedFieldInfo.FieldLength;
         }
-
-
     }
 }

@@ -13,7 +13,6 @@ using System.Xml;
 
 namespace FileHelpers.Dynamic
 {
-
     /// <summary>The MAIN class to work with runtime defined records.</summary>
     public abstract class ClassBuilder
     {
@@ -58,32 +57,32 @@ namespace FileHelpers.Dynamic
         /// <param name="lang">One of the .NET Languages</param>
         public static Type ClassFromString(string classStr, string className, NetLanguage lang)
         {
-            if (classStr.Length < 4)
-                throw new BadUsageException("There is not enough text to be a proper class, load your class and try again");
+            if (classStr.Length < 4) {
+                throw new BadUsageException(
+                    "There is not enough text to be a proper class, load your class and try again");
+            }
 
             var cp = new CompilerParameters();
-            
+
             //cp.ReferencedAssemblies.Add("System.dll");
             //cp.ReferencedAssemblies.Add("System.Data.dll");
             //cp.ReferencedAssemblies.Add(typeof(ClassBuilder).Assembly.GetModules()[0].FullyQualifiedName);
 
             bool mustAddSystemData = false;
-            lock (mReferencesLock)
-            {
-                if (mReferences == null)
-                {
-                     var arr = new ArrayList();
+            lock (mReferencesLock) {
+                if (mReferences == null) {
+                    var arr = new ArrayList();
 
-                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                    {
+                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
                         Module module = assembly.GetModules()[0];
-                        if (module.Name == "mscorlib.dll" || module.Name == "<Unknown>")
+                        if (module.Name == "mscorlib.dll" ||
+                            module.Name == "<Unknown>")
                             continue;
 
                         if (module.Name == "System.Data.dll")
                             mustAddSystemData = true;
 
-                        if (File.Exists(module.FullyQualifiedName)) 
+                        if (File.Exists(module.FullyQualifiedName))
                             arr.Add(module.FullyQualifiedName);
                     }
 
@@ -99,22 +98,31 @@ namespace FileHelpers.Dynamic
 
             var code = new StringBuilder();
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.CSharp:
                     code.Append("using System; using FileHelpers;");
-                    if (mustAddSystemData) code.Append(" using System.Data;");
+                    if (mustAddSystemData)
+                        code.Append(" using System.Data;");
                     break;
 
                 case NetLanguage.VbNet:
-                    
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System", CompareOptions.IgnoreCase) == -1)
+
+                    if (
+                        CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr,
+                            "Imports System",
+                            CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System\n");
 
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports FileHelpers", CompareOptions.IgnoreCase) == -1)
+                    if (
+                        CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr,
+                            "Imports FileHelpers",
+                            CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports FileHelpers\n");
 
-                    if (mustAddSystemData && CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr, "Imports System.Data", CompareOptions.IgnoreCase) == -1)
+                    if (mustAddSystemData &&
+                        CultureInfo.CurrentCulture.CompareInfo.IndexOf(classStr,
+                            "Imports System.Data",
+                            CompareOptions.IgnoreCase) == -1)
                         code.Append("Imports System.Data\n");
 
                     break;
@@ -123,9 +131,8 @@ namespace FileHelpers.Dynamic
             code.Append(classStr);
 
             CodeDomProvider prov = null;
-            
-            switch (lang)
-            {
+
+            switch (lang) {
                 case NetLanguage.CSharp:
                     prov = CodeDomProvider.CreateProvider("cs");
                     break;
@@ -137,29 +144,26 @@ namespace FileHelpers.Dynamic
 
             var cr = prov.CompileAssemblyFromSource(cp, code.ToString());
 
-            if (cr.Errors.HasErrors)
-            {
+            if (cr.Errors.HasErrors) {
                 var error = new StringBuilder();
                 error.Append("Error Compiling Expression: " + StringHelper.NewLine);
                 foreach (CompilerError err in cr.Errors)
-                {
                     error.AppendFormat("Line {0}: {1}\n", err.Line, err.ErrorText);
-                }
                 throw new RunTimeCompilationException(error.ToString(), classStr, cr.Errors);
             }
 
             //            Assembly.Load(cr.CompiledAssembly.);
             if (className != string.Empty)
                 return cr.CompiledAssembly.GetType(className, true, true);
-            else
-            {
+            else {
                 Type[] ts = cr.CompiledAssembly.GetTypes();
-                if (ts.Length > 0)
-                    foreach (var t in ts)
-                    {
-                        if (t.FullName.StartsWith("My.My") == false && t.IsDefined(typeof(TypedRecordAttribute), false))
+                if (ts.Length > 0) {
+                    foreach (var t in ts) {
+                        if (t.FullName.StartsWith("My.My") == false &&
+                            t.IsDefined(typeof (TypedRecordAttribute), false))
                             return t;
                     }
+                }
 
                 throw new BadUsageException("The compiled assembly does not have any type inside.");
             }
@@ -218,7 +222,6 @@ namespace FileHelpers.Dynamic
         }
 
 
-
         /// <summary>
         /// Create a class from a encrypted source file with the default password
         /// </summary>
@@ -249,8 +252,10 @@ namespace FileHelpers.Dynamic
         /// <returns>The compiled class.</returns>
         public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang)
         {
-
-           return ClassFromBinaryFile(filename,className,lang,"withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+            return ClassFromBinaryFile(filename,
+                className,
+                lang,
+                "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
         }
 
         /// <summary>
@@ -262,9 +267,8 @@ namespace FileHelpers.Dynamic
         /// <param name="lang">The language used to compile the class.</param>
         /// <param name="password">The password used to decrypt the file</param>
         /// <returns></returns>
-        public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang , string password)
+        public static Type ClassFromBinaryFile(string filename, string className, NetLanguage lang, string password)
         {
-
             var reader = new StreamReader(filename);
             string classDef = reader.ReadToEnd();
             reader.Close();
@@ -293,7 +297,7 @@ namespace FileHelpers.Dynamic
         /// <param name="classSource">The class source  to write to</param>
         public static void ClassToBinaryFile(string filename, string classSource)
         {
-            ClassToBinaryFile(filename,classSource,"withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
+            ClassToBinaryFile(filename, classSource, "withthefilehelpers1.0.0youcancodewithoutproblems1.5.0");
         }
 
         /// <summary>
@@ -303,7 +307,7 @@ namespace FileHelpers.Dynamic
         /// <param name="filename">The file name to write to</param>
         /// <param name="classSource">The class source  to write to</param>
         /// <param name="password">The password with which to encrypt the file</param>
-        public static void ClassToBinaryFile(string filename, string classSource , string password)
+        public static void ClassToBinaryFile(string filename, string classSource, string password)
         {
             classSource = Encrypt(classSource, password);
             var writer = new StreamWriter(filename);
@@ -314,7 +318,6 @@ namespace FileHelpers.Dynamic
         #endregion
 
         #region SaveToFile
-
 
         /// <summary>Write the source code of the current class to a file. (In C#)</summary>
         /// <param name="filename">The file to write to.</param>
@@ -359,10 +362,11 @@ namespace FileHelpers.Dynamic
         internal ClassBuilder(string className)
         {
             className = className.Trim();
-            if (ValidIdentifierValidator.ValidIdentifier(className) == false)
+            if (ValidIdentifierValidator.ValidIdentifier(className) == false) {
                 throw new FileHelpersException(Messages.Errors.InvalidIdentifier
-                                                        .Identifier(className)
-                                                        .Text);
+                    .Identifier(className)
+                    .Text);
+            }
 
             mClassName = className;
         }
@@ -406,16 +410,13 @@ namespace FileHelpers.Dynamic
         /// <summary>Returns the current fields of the class.</summary>
         public FieldBuilder[] Fields
         {
-            get { return (FieldBuilder[])mFields.ToArray(typeof(FieldBuilder)); }
+            get { return (FieldBuilder[]) mFields.ToArray(typeof (FieldBuilder)); }
         }
 
         /// <summary>Returns the current number of fields.</summary>
         public int FieldCount
         {
-            get
-            {
-                return mFields.Count;
-            }
+            get { return mFields.Count; }
         }
 
 
@@ -424,13 +425,12 @@ namespace FileHelpers.Dynamic
         /// <returns>The field at the specified index.</returns>
         public FieldBuilder FieldByIndex(int index)
         {
-            return (FieldBuilder)mFields[index];
+            return (FieldBuilder) mFields[index];
         }
 
         #endregion
 
         #region ClassName
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string mClassName;
@@ -444,12 +444,10 @@ namespace FileHelpers.Dynamic
 
         #endregion
 
-
         //----------------------------
         //->  ATTRIBUTE MAPPING
 
         #region IgnoreFirstLines
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private int mIgnoreFirstLines = 0;
@@ -464,7 +462,6 @@ namespace FileHelpers.Dynamic
         #endregion
 
         #region IgnoreLastLines
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private int mIgnoreLastLines = 0;
@@ -491,7 +488,6 @@ namespace FileHelpers.Dynamic
         }
 
         #endregion
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool mGenerateProperties = false;
@@ -534,8 +530,7 @@ namespace FileHelpers.Dynamic
 
             sb.Append(attbs.GetAttributesCode());
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.VbNet:
                     sb.Append(GetVisibility(lang, mVisibility) + GetSealed(lang) + "Class " + mClassName);
                     sb.Append(StringHelper.NewLine);
@@ -550,8 +545,7 @@ namespace FileHelpers.Dynamic
             sb.Append(StringHelper.NewLine);
             sb.Append(StringHelper.NewLine);
 
-            foreach (FieldBuilder field in mFields)
-            {
+            foreach (FieldBuilder field in mFields) {
                 sb.Append(field.GetFieldCode(lang));
                 sb.Append(StringHelper.NewLine);
             }
@@ -559,8 +553,7 @@ namespace FileHelpers.Dynamic
 
             sb.Append(StringHelper.NewLine);
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.VbNet:
                     sb.Append("End Class");
                     break;
@@ -572,28 +565,25 @@ namespace FileHelpers.Dynamic
             EndNamespace(lang, sb);
 
             return sb.ToString();
-
         }
 
         private void ValidateClass()
         {
-            
             if (ClassName.Trim().Length == 0)
                 throw new FileHelpersException(Messages.Errors.EmptyClassName.Text);
 
-            for (int i = 0; i < mFields.Count; i++)
-            {
-
-                if (((FieldBuilder) mFields[i]).FieldName.Trim().Length == 0)
+            for (int i = 0; i < mFields.Count; i++) {
+                if (((FieldBuilder) mFields[i]).FieldName.Trim().Length == 0) {
                     throw new FileHelpersException(Messages.Errors.EmptyFieldName
-                                                       .Position((i + 1).ToString())
-                                                       .Text);
+                        .Position((i + 1).ToString())
+                        .Text);
+                }
 
-                if (((FieldBuilder) mFields[i]).FieldType.Trim().Length == 0)
+                if (((FieldBuilder) mFields[i]).FieldType.Trim().Length == 0) {
                     throw new FileHelpersException(Messages.Errors.EmptyFieldType
-                                                       .Position((i + 1).ToString())
-                                                       .Text);
-
+                        .Position((i + 1).ToString())
+                        .Text);
+                }
             }
         }
 
@@ -606,7 +596,6 @@ namespace FileHelpers.Dynamic
 
         private void AddAttributesInternal(AttributesBuilder attbs)
         {
-
             if (mIgnoreFirstLines != 0)
                 attbs.AddAttribute("IgnoreFirst(" + mIgnoreFirstLines.ToString() + ")");
 
@@ -616,14 +605,16 @@ namespace FileHelpers.Dynamic
             if (mIgnoreEmptyLines)
                 attbs.AddAttribute("IgnoreEmptyLines()");
 
-            if (mRecordConditionInfo.Condition != FileHelpers.RecordCondition.None)
-                attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() + ", \"" + mRecordConditionInfo.Selector + "\")");
+            if (mRecordConditionInfo.Condition != FileHelpers.RecordCondition.None) {
+                attbs.AddAttribute("ConditionalRecord(RecordCondition." + mRecordConditionInfo.Condition.ToString() +
+                                   ", \"" + mRecordConditionInfo.Selector + "\")");
+            }
 
-            if (!string.IsNullOrEmpty(mIgnoreCommentInfo.CommentMarker))
-                attbs.AddAttribute("IgnoreCommentedLines(\"" + mIgnoreCommentInfo.CommentMarker + "\", " + mIgnoreCommentInfo.InAnyPlace.ToString().ToLower() + ")");
-
+            if (!string.IsNullOrEmpty(mIgnoreCommentInfo.CommentMarker)) {
+                attbs.AddAttribute("IgnoreCommentedLines(\"" + mIgnoreCommentInfo.CommentMarker + "\", " +
+                                   mIgnoreCommentInfo.InAnyPlace.ToString().ToLower() + ")");
+            }
         }
-
 
         #region "  EncDec  "
 
@@ -645,10 +636,13 @@ namespace FileHelpers.Dynamic
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
 
             var pdb = new PasswordDeriveBytes(Password,
-                new byte[] {0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 
-							   0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76});
+                new byte[] {
+                    0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d,
+                    0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76
+                });
             byte[] encryptedData = Encrypt(clearBytes,
-                pdb.GetBytes(32), pdb.GetBytes(16));
+                pdb.GetBytes(32),
+                pdb.GetBytes(16));
             return Convert.ToBase64String(encryptedData);
         }
 
@@ -675,16 +669,13 @@ namespace FileHelpers.Dynamic
         {
             var cipherBytes = Convert.FromBase64String(cipherText);
             var pdb = new PasswordDeriveBytes(password,
-                                              new byte[]
-                                                  {
-                                                      0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64,
-                                                      0x65, 0x76
-                                                  });
+                new byte[] {
+                    0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64,
+                    0x65, 0x76
+                });
             var decryptedData = Decrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
             return Encoding.Unicode.GetString(decryptedData);
         }
-
-
 
         #endregion
 
@@ -737,11 +728,9 @@ namespace FileHelpers.Dynamic
         /// <returns>Visibility correct for the language</returns>
         internal static string GetVisibility(NetLanguage lang, NetVisibility visibility)
         {
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.CSharp:
-                    switch (visibility)
-                    {
+                    switch (visibility) {
                         case NetVisibility.Public:
                             return "public ";
                         case NetVisibility.Private:
@@ -754,8 +743,7 @@ namespace FileHelpers.Dynamic
                     break;
 
                 case NetLanguage.VbNet:
-                    switch (visibility)
-                    {
+                    switch (visibility) {
                         case NetVisibility.Public:
                             return "Public ";
                         case NetVisibility.Private:
@@ -781,8 +769,7 @@ namespace FileHelpers.Dynamic
             if (mSealedClass == false)
                 return string.Empty;
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.CSharp:
                     return "sealed ";
 
@@ -803,8 +790,7 @@ namespace FileHelpers.Dynamic
             if (mNamespace == string.Empty)
                 return;
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.CSharp:
                     sb.Append("namespace ");
                     sb.Append(mNamespace);
@@ -834,8 +820,7 @@ namespace FileHelpers.Dynamic
 
             sb.Append(StringHelper.NewLine);
 
-            switch (lang)
-            {
+            switch (lang) {
                 case NetLanguage.CSharp:
                     sb.Append("}");
                     break;
@@ -885,37 +870,47 @@ namespace FileHelpers.Dynamic
                 res = FixedLengthClassBuilder.LoadXmlInternal(document);
 
             XmlNode node = document.DocumentElement["IgnoreLastLines"];
-            if (node != null) res.IgnoreLastLines = int.Parse(node.InnerText);
+            if (node != null)
+                res.IgnoreLastLines = int.Parse(node.InnerText);
 
             node = document.DocumentElement["IgnoreFirstLines"];
-            if (node != null) res.IgnoreFirstLines = int.Parse(node.InnerText);
+            if (node != null)
+                res.IgnoreFirstLines = int.Parse(node.InnerText);
 
             node = document.DocumentElement["IgnoreEmptyLines"];
-            if (node != null) res.IgnoreEmptyLines = true;
+            if (node != null)
+                res.IgnoreEmptyLines = true;
 
             node = document.DocumentElement["CommentMarker"];
-            if (node != null) res.IgnoreCommentedLines.CommentMarker = node.InnerText;
+            if (node != null)
+                res.IgnoreCommentedLines.CommentMarker = node.InnerText;
 
             node = document.DocumentElement["CommentInAnyPlace"];
-            if (node != null) res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLower());
+            if (node != null)
+                res.IgnoreCommentedLines.InAnyPlace = bool.Parse(node.InnerText.ToLower());
 
             node = document.DocumentElement["SealedClass"];
             res.SealedClass = node != null;
 
             node = document.DocumentElement["Namespace"];
-            if (node != null) res.Namespace = node.InnerText;
+            if (node != null)
+                res.Namespace = node.InnerText;
 
             node = document.DocumentElement["Visibility"];
-            if (node != null) res.Visibility = (NetVisibility)Enum.Parse(typeof(NetVisibility), node.InnerText); 
+            if (node != null)
+                res.Visibility = (NetVisibility) Enum.Parse(typeof (NetVisibility), node.InnerText);
 
             node = document.DocumentElement["RecordCondition"];
-            if (node != null) res.RecordCondition.Condition = (RecordCondition)Enum.Parse(typeof(RecordCondition), node.InnerText); 
+            if (node != null)
+                res.RecordCondition.Condition = (RecordCondition) Enum.Parse(typeof (RecordCondition), node.InnerText);
 
             node = document.DocumentElement["RecordConditionSelector"];
-            if (node != null) res.RecordCondition.Selector = node.InnerText;
+            if (node != null)
+                res.RecordCondition.Selector = node.InnerText;
 
             node = document.DocumentElement["CommentText"];
-            if (node != null) res.CommentText = node.InnerText;
+            if (node != null)
+                res.CommentText = node.InnerText;
 
             res.ReadClassElements(document);
 
@@ -928,9 +923,7 @@ namespace FileHelpers.Dynamic
                 nodes = node.SelectNodes("/FixedLengthClass/Fields/Field");
 
             foreach (XmlNode n in nodes)
-            {
                 res.ReadField(n);
-            }
 
             return res;
         }
@@ -964,9 +957,7 @@ namespace FileHelpers.Dynamic
             var sb = new StringBuilder();
 
             using (var writer = new StringWriter(sb))
-            {
                 SaveToXml(writer);
-            }
 
             return sb.ToString();
         }
@@ -979,11 +970,8 @@ namespace FileHelpers.Dynamic
         public void SaveToXml(string filename)
         {
             using (var stream = new FileStream(filename, FileMode.Create))
-            {
                 SaveToXml(stream);
-            }
         }
-
 
 
         /// <summary>
@@ -993,9 +981,7 @@ namespace FileHelpers.Dynamic
         public void SaveToXml(Stream stream)
         {
             using (TextWriter writer = new StreamWriter(stream))
-            {
                 SaveToXml(writer);
-            }
         }
 
         /// <summary>
@@ -1021,7 +1007,9 @@ namespace FileHelpers.Dynamic
             xml.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
 
             xml.WriteElement("CommentMarker", this.IgnoreCommentedLines.CommentMarker, string.Empty);
-            xml.WriteElement("CommentInAnyPlace", this.IgnoreCommentedLines.InAnyPlace.ToString().ToLower(), true.ToString().ToLower());
+            xml.WriteElement("CommentInAnyPlace",
+                this.IgnoreCommentedLines.InAnyPlace.ToString().ToLower(),
+                true.ToString().ToLower());
 
             xml.WriteElement("RecordCondition", this.RecordCondition.Condition.ToString(), "None");
             xml.WriteElement("RecordConditionSelector", this.RecordCondition.Selector, string.Empty);
@@ -1031,7 +1019,7 @@ namespace FileHelpers.Dynamic
             xml.Writer.WriteStartElement("Fields");
 
             for (int i = 0; i < mFields.Count; i++)
-                ((FieldBuilder)mFields[i]).SaveToXml(xml);
+                ((FieldBuilder) mFields[i]).SaveToXml(xml);
 
             xml.Writer.WriteEndElement();
 
@@ -1087,10 +1075,9 @@ namespace FileHelpers.Dynamic
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public sealed class RecordConditionInfo
         {
-            internal RecordConditionInfo()
-            { }
+            internal RecordConditionInfo() {}
 
-            RecordCondition mRecordCondition = FileHelpers.RecordCondition.None;
+            private RecordCondition mRecordCondition = FileHelpers.RecordCondition.None;
 
             /// <summary>Allow to tell the engine what records must be included or excluded while reading.</summary>
             public RecordCondition Condition
@@ -1099,7 +1086,7 @@ namespace FileHelpers.Dynamic
                 set { mRecordCondition = value; }
             }
 
-            string mRecordConditionSelector = string.Empty;
+            private string mRecordConditionSelector = string.Empty;
 
             /// <summary>The selector used by the <see cref="RecordCondition"/>.</summary>
             public string Selector
@@ -1107,21 +1094,19 @@ namespace FileHelpers.Dynamic
                 get { return mRecordConditionSelector; }
                 set { mRecordConditionSelector = value; }
             }
-
         }
 
         /// <summary>Indicates that the engine must ignore the lines with this comment marker.</summary>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public sealed class IgnoreCommentInfo
         {
-            internal IgnoreCommentInfo()
-            { }
+            internal IgnoreCommentInfo() {}
 
             /// <summary>
-	    /// <para>Indicates that the engine must ignore the lines with this
-	    /// comment marker.</para>
-	    /// <para>An empty string or null indicates that the engine does
-	    /// not look for comments</para>
+            /// <para>Indicates that the engine must ignore the lines with this
+            /// comment marker.</para>
+            /// <para>An empty string or null indicates that the engine does
+            /// not look for comments</para>
             /// </summary>
             public string CommentMarker
             {
@@ -1134,6 +1119,7 @@ namespace FileHelpers.Dynamic
                     mMarker = value;
                 }
             }
+
             private string mMarker = string.Empty;
 
             /// <summary>Indicates if the comment can have spaces or tabs at left (true by default)</summary>
@@ -1142,6 +1128,7 @@ namespace FileHelpers.Dynamic
                 get { return mInAnyPlace; }
                 set { mInAnyPlace = value; }
             }
+
             private bool mInAnyPlace = true;
         }
 
@@ -1152,17 +1139,14 @@ namespace FileHelpers.Dynamic
         /// <returns>Type of the class as a string</returns>
         internal static string TypeToString(Type type)
         {
-
-            if (type.IsGenericType)
-            {
+            if (type.IsGenericType) {
                 var sb = new StringBuilder();
                 sb.Append(type.Name.Substring(0, type.Name.IndexOf("`", StringComparison.Ordinal)));
                 sb.Append("<");
 
                 Type[] args = type.GetGenericArguments();
 
-                for (int i = 0; i < args.Length; i++)
-                {
+                for (int i = 0; i < args.Length; i++) {
                     if (i > 0)
                         sb.Append(",");
 

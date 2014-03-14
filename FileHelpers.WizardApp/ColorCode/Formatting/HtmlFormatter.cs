@@ -13,9 +13,9 @@ namespace ExamplesFx.ColorCode.Formatting
     internal class HtmlFormatter : IFormatter
     {
         public void Write(string parsedSourceCode,
-                          IList<Scope> scopes,
-                          IStyleSheet styleSheet,
-                          TextWriter textWriter)
+            IList<Scope> scopes,
+            IStyleSheet styleSheet,
+            TextWriter textWriter)
         {
             var styleInsertions = new List<TextInsertion>();
 
@@ -26,9 +26,9 @@ namespace ExamplesFx.ColorCode.Formatting
 
             int offset = 0;
 
-            foreach (TextInsertion styleInsertion in styleInsertions)
-            {
-                textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
+            foreach (TextInsertion styleInsertion in styleInsertions) {
+                textWriter.Write(
+                    HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
                 if (string.IsNullOrEmpty(styleInsertion.Text))
                     BuildSpanForCapturedStyle(styleInsertion.Scope, styleSheet, textWriter);
                 else
@@ -40,22 +40,22 @@ namespace ExamplesFx.ColorCode.Formatting
         }
 
         public void WriteFooter(IStyleSheet styleSheet,
-                                TextWriter textWriter)
+            TextWriter textWriter)
         {
             Guard.ArgNotNull(styleSheet, "styleSheet");
             Guard.ArgNotNull(textWriter, "textWriter");
-            
+
             textWriter.WriteLine();
             WriteHeaderPreEnd(textWriter);
             WriteHeaderDivEnd(textWriter);
         }
 
         public void WriteHeader(IStyleSheet styleSheet,
-                                TextWriter textWriter)
+            TextWriter textWriter)
         {
             Guard.ArgNotNull(styleSheet, "styleSheet");
             Guard.ArgNotNull(textWriter, "textWriter");
-            
+
             WriteHeaderDivStart(styleSheet, textWriter);
             WriteHeaderPreStart(textWriter);
             textWriter.WriteLine();
@@ -64,29 +64,28 @@ namespace ExamplesFx.ColorCode.Formatting
         private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
         {
             styleInsertions.Add(new TextInsertion {
-                                                      Index = scope.Index,
-                                                      Scope = scope
-                                                  });
+                Index = scope.Index,
+                Scope = scope
+            });
 
 
             foreach (Scope childScope in scope.Children)
                 GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
 
             styleInsertions.Add(new TextInsertion {
-                                                      Index = scope.Index + scope.Length,
-                                                      Text = "</span>"
-                                                  });
+                Index = scope.Index + scope.Length,
+                Text = "</span>"
+            });
         }
 
         private static void BuildSpanForCapturedStyle(Scope scope,
-                                                        IStyleSheet styleSheet,
-                                                        TextWriter writer)
+            IStyleSheet styleSheet,
+            TextWriter writer)
         {
             Color foreground = Color.Empty;
             Color background = Color.Empty;
 
-            if (styleSheet.Styles.Contains(scope.Name))
-            {
+            if (styleSheet.Styles.Contains(scope.Name)) {
                 Style style = styleSheet.Styles[scope.Name];
 
                 foreground = style.Foreground;
@@ -102,7 +101,7 @@ namespace ExamplesFx.ColorCode.Formatting
         }
 
         private static void WriteElementEnd(string elementName,
-                                            TextWriter writer)
+            TextWriter writer)
         {
             writer.Write("</{0}>", elementName);
         }
@@ -118,13 +117,12 @@ namespace ExamplesFx.ColorCode.Formatting
         }
 
         private static void WriteHeaderDivStart(IStyleSheet styleSheet,
-                                                TextWriter writer)
+            TextWriter writer)
         {
             Color foreground = Color.Empty;
             Color background = Color.Empty;
 
-            if (styleSheet.Styles.Contains(ScopeName.PlainText))
-            {
+            if (styleSheet.Styles.Contains(ScopeName.PlainText)) {
                 Style plainTextStyle = styleSheet.Styles[ScopeName.PlainText];
 
                 foreground = plainTextStyle.Foreground;
@@ -135,20 +133,20 @@ namespace ExamplesFx.ColorCode.Formatting
         }
 
         private static void WriteElementStart(string elementName,
-                                              TextWriter writer)
+            TextWriter writer)
         {
             WriteElementStart(elementName, Color.Empty, Color.Empty, writer);
         }
 
         private static void WriteElementStart(string elementName,
-                                              Color foreground,
-                                              Color background,
-                                              TextWriter writer)
+            Color foreground,
+            Color background,
+            TextWriter writer)
         {
             writer.Write("<{0}", elementName);
 
-            if (foreground != Color.Empty || background != Color.Empty)
-            {
+            if (foreground != Color.Empty ||
+                background != Color.Empty) {
                 writer.Write(" style=\"");
 
                 if (foreground != Color.Empty)

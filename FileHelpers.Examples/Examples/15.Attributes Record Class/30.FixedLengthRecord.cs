@@ -11,7 +11,6 @@ namespace ExamplesFx
     public class FixedLengthRecordExample
         : ExampleBase
     {
-
         /// <summary>
         /// Execute the engine and get some results
         /// </summary>
@@ -22,9 +21,7 @@ namespace ExamplesFx
             Customer[] result = engine.ReadFile("input.txt");
 
             foreach (var detail in result)
-            {
                 this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
-            }
 
             //-> /File
         }
@@ -43,8 +40,8 @@ namespace ExamplesFx
             [FieldFixedLength(8)]
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime AddedDate;
-
         }
+
         //-> /File
 
         //-> File:Input.txt
@@ -54,7 +51,5 @@ namespace ExamplesFx
         51677 Around the Horn              13051998
         99999 Berglunds snabbköp           02111999*/
         //-> /File
-
     }
-
 }

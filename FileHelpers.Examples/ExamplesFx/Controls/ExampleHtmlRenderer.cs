@@ -13,7 +13,7 @@ namespace ExamplesFx.Controls
         {
             Theme = new DefaultExampleTheme();
             InitializeComponent();
-            
+
             //DoubleBuffered = true;
         }
 
@@ -24,6 +24,7 @@ namespace ExamplesFx.Controls
         }
 
         private ExampleCode mExample;
+
         public ExampleCode Example
         {
             get { return mExample; }
@@ -42,7 +43,7 @@ namespace ExamplesFx.Controls
         private void RenderExample()
         {
             this.SuspendLayout();
-            
+
             Clear();
 
             //lblDescription.Text = Example.Description;
@@ -58,22 +59,21 @@ namespace ExamplesFx.Controls
         {
             if (Example == null)
                 return;
-            try
-            {
+            try {
                 Example.ConsoleChanged += Example_ConsoleChanged;
                 Example.ConsoleChanged += Example_InputChanged;
                 Example.AddedFile += FileHandler;
                 Example.RunExample();
             }
-            finally  
-            {
+            finally {
                 Example.AddedFile -= FileHandler;
                 Example.ConsoleChanged -= Example_ConsoleChanged;
                 Example.ConsoleChanged -= Example_InputChanged;
-            }}
+            }
+        }
 
-        
-        void Example_ConsoleChanged(object sender, EventArgs e)
+
+        private void Example_ConsoleChanged(object sender, EventArgs e)
         {
             var sb = new StringBuilder();
 
@@ -86,7 +86,8 @@ namespace ExamplesFx.Controls
 //<div class=""FileRight"">&nbsp;</div><br/>
 //<div style=""clear:both""></div>");
 
-sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.Console.Output + "</pre></div></body>");
+            sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" +
+                          Example.Example.Console.Output + "</pre></div></body>");
             browserOutput.DocumentText = sb.ToString();
 
             splitOutHorizontal.Panel2Collapsed = false;
@@ -98,7 +99,7 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
         }
 
 
-        void Example_InputChanged(object sender, EventArgs e)
+        private void Example_InputChanged(object sender, EventArgs e)
         {
             var sb = new StringBuilder();
 
@@ -111,9 +112,10 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
             //<div class=""FileRight"">&nbsp;</div><br/>
             //<div style=""clear:both""></div>");
 
-            sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" + Example.Example.InputFile + "</pre></div></body>");
+            sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DDD;border: 0px;"">" +
+                          Example.Example.InputFile + "</pre></div></body>");
             browserInput.DocumentText = sb.ToString();
-            
+
             splitOutHorizontal.Panel2Collapsed = false;
             splitBottom.Panel1Collapsed = false;
 
@@ -122,7 +124,7 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
             //if (console != null)
             //    console.InnerHtml = "<pre>"+  Example.Example.Console.Output + "</pre>";
         }
-        
+
         private string ExampleToHtml()
         {
             var res = new StringBuilder();
@@ -131,11 +133,8 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
 
             Theme.AddExampleTitle(res, Example);
 
-            if (string.IsNullOrEmpty(Example.Example.HtmlBody))
-            {
-
-                for (int i = 0; i < Example.Files.Count; i++)
-                {
+            if (string.IsNullOrEmpty(Example.Example.HtmlBody)) {
+                for (int i = 0; i < Example.Files.Count; i++) {
                     var file = Example.Files[i];
 
                     if (file.Status ==
@@ -147,12 +146,10 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
                     res.AppendLine("<BR/>");
                 }
             }
-            else
-            {
+            else {
                 var html = Example.Example.HtmlBody;
-                
-                for (int i = 0; i < Example.Files.Count; i++)
-                {
+
+                for (int i = 0; i < Example.Files.Count; i++) {
                     var file = Example.Files[i];
 
                     if (file.Status == ExampleFile.FileType.OutputFile)
@@ -160,7 +157,6 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
 
                     var filecontents = Theme.AddFile(file);
                     html = html.Replace("${" + file.Filename + "}", filecontents);
-                    
                 }
 
                 res.AppendLine(html);
@@ -171,7 +167,7 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
             return res.ToString();
         }
 
-        
+
         public void Clear()
         {
             cmdRunDemo.Visible = false;
@@ -183,15 +179,11 @@ sb.AppendLine(@"<div id=""consola""><pre style=""background-color:#000;color:#DD
         private void cmdRunDemo_Click(object sender, EventArgs e)
         {
             RunExample();
-
         }
 
         private void FileHandler(object sender, ExampleCode.NewFileEventArgs e)
         {
             browserExample.DocumentText = ExampleToHtml();
         }
-
-
-
     }
 }

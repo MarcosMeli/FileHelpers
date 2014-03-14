@@ -8,17 +8,17 @@ namespace ExamplesFx
 {
     public abstract class ExampleThemeBase
     {
-        readonly CodeColorizer mColorizer = new CodeColorizer();
+        private readonly CodeColorizer mColorizer = new CodeColorizer();
         public abstract void AddHeaderStyles(StringBuilder sb);
         public abstract void AddExampleTitle(StringBuilder sb, ExampleCode example);
         public abstract void AddExampleFooter(StringBuilder sb, ExampleCode example);
         public abstract void AddFile(StringBuilder sb, ExampleFile file);
+
         public string AddFile(ExampleFile file)
         {
             var sb = new StringBuilder();
             AddFile(sb, file);
             return sb.ToString();
-            
         }
 
         protected string ColorizeFile(ExampleFile file)
@@ -31,7 +31,8 @@ namespace ExamplesFx
                 return mColorizer.Colorize(file.Contents, Languages.VbDotNet);
             if (fileLower.EndsWith(".xml"))
                 return mColorizer.Colorize(file.Contents, Languages.Xml);
-            if (fileLower.EndsWith(".htm") || fileLower.EndsWith(".html"))
+            if (fileLower.EndsWith(".htm") ||
+                fileLower.EndsWith(".html"))
                 return mColorizer.Colorize(file.Contents, Languages.Html);
             if (fileLower.EndsWith(".css"))
                 return mColorizer.Colorize(file.Contents, Languages.Css);
@@ -43,16 +44,16 @@ namespace ExamplesFx
     }
 
     public class DefaultExampleTheme
-        :ExampleThemeBase
+        : ExampleThemeBase
     {
         public override void AddExampleTitle(StringBuilder sb, ExampleCode example)
         {
             sb.AppendLine("<h2>" + example.Name + "</h2>");
 
-            sb.AppendLine("<div class=\"DescriptionBox\"><div class=\"DescriptionIcon\">" + example.Description + "</div></div>");
+            sb.AppendLine("<div class=\"DescriptionBox\"><div class=\"DescriptionIcon\">" + example.Description +
+                          "</div></div>");
 
             sb.AppendLine("<div style=\"margin-left:10px;\">");
-
         }
 
         public override void AddExampleFooter(StringBuilder sb, ExampleCode example)
@@ -159,7 +160,5 @@ float:left:
 
 </style>");
         }
-
-     
     }
 }

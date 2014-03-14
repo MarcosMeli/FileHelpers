@@ -8,7 +8,8 @@ namespace FileHelpers.Events
     /// Event args to signal engine failures
     /// </summary>
     /// <typeparam name="T">Type of object we are parsing</typeparam>
-    public abstract class FileHelpersEventArgs<T> : EventArgs where T : class
+    public abstract class FileHelpersEventArgs<T> : EventArgs
+        where T : class
     {
         /// <summary>
         /// Define an event message for an engine

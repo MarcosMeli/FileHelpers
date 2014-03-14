@@ -47,7 +47,7 @@ namespace FileHelpers.Detection
             Max = max;
             Min = min;
             Delimiter = delimiter;
-            Average = (int)Math.Round(average);
+            Average = (int) Math.Round(average);
             Deviation = deviation;
         }
     }

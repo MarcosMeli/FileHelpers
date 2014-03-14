@@ -5,20 +5,18 @@ using System.ComponentModel;
 
 namespace FileHelpers
 {
-    
     /// <summary>
     /// A class to loop through the field values
     /// </summary>
     [DelimitedRecord(",")]
     [EditorBrowsable(EditorBrowsableState.Advanced)]
     public sealed class RecordIndexer
-        :IEnumerable<string> 
+        : IEnumerable<string>
     {
         /// <summary>
         /// Get the record indexer,  engine will load the lines into an array
         /// </summary>
-        internal RecordIndexer()
-        {}
+        internal RecordIndexer() {}
 
         [FieldQuoted(QuoteMode.OptionalForRead, MultilineMode.AllowForRead)]
         private readonly string[] values = null;
@@ -31,17 +29,14 @@ namespace FileHelpers
             get { return values.Length; }
         }
 
-         /// <summary>
+        /// <summary>
         /// Get the field value at the specified index.
         /// </summary>
         /// <param name="index">The index of the field (zero based)</param>
         /// <returns>The field value</returns>
         public string this[int index]
         {
-            get
-            {
-                return values[index];
-            }
+            get { return values[index]; }
         }
 
         /// <summary>
@@ -69,7 +64,7 @@ namespace FileHelpers
         //{
         //    get { return mHeader; }
         //}
-        
+
         //[FieldIgnored]
         //private string mHeader;
 
@@ -111,10 +106,7 @@ namespace FileHelpers
             /// <summary>
             /// Clean up not needed
             /// </summary>
-            public void Dispose()
-            {
-
-            }
+            public void Dispose() {}
 
             /// <summary>
             /// move the pointer along
@@ -148,7 +140,6 @@ namespace FileHelpers
         }
 
         #endregion
-
 
         #region INotifyRead Members
 
