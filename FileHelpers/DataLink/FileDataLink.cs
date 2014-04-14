@@ -41,7 +41,7 @@ namespace FileHelpers.DataLink
 
         #region "  HelperEngine  "
 
-        private FileHelperEngine mHelperEngine;
+        private readonly FileHelperEngine mHelperEngine;
 
         /// <summary> The internal <see cref="T:FileHelpers.FileHelperEngine"/>
         /// used to the file or stream ops. </summary>
@@ -54,7 +54,7 @@ namespace FileHelpers.DataLink
 
         #region "  DataLinkProvider  "
 
-        private DataStorage mProvider;
+        private readonly DataStorage mProvider;
 
         /// <summary> The internal <see cref="T:FileHelpers.DataLink.IDataLinkProvider"/> used to the link ops. </summary>
         public DataStorage DataStorage
