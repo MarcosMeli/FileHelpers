@@ -96,7 +96,6 @@ namespace FileHelpers.DataLink
         /// <see cref="DataLink.DataStorage.ExtractRecords"/> method.
         /// </summary>
         /// <param name="fileName">The files where the records be written.</param>
-        /// <returns>True if the operation is successful. False otherwise.</returns>
         public object[] ExtractToFile(string fileName)
         {
             mLastExtractedRecords = mProvider.ExtractRecords();
@@ -130,7 +129,6 @@ namespace FileHelpers.DataLink
         /// <see cref="DataLink.DataStorage.InsertRecords"/> method.
         /// </summary>
         /// <param name="fileName">The file with the source records.</param>
-        /// <returns>True if the operation is successful. False otherwise.</returns>
         public object[] InsertFromFile(string fileName)
         {
             mLastInsertedRecords = FileHelperEngine.ReadFile(fileName);
@@ -145,7 +143,6 @@ namespace FileHelpers.DataLink
         /// <see cref="DataLink.DataStorage.InsertRecords"/> method.
         /// </summary>
         /// <param name="reader">The stream with the source records.</param>
-        /// <returns>True if the operation is successful. False otherwise.</returns>
         public object[] InsertFromStream(StreamReader reader)
         {
             mLastInsertedRecords = FileHelperEngine.ReadStream(reader);
