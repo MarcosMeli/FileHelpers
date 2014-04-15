@@ -333,6 +333,7 @@
     <Compile Include="Tests\Errors\TransformBad.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\FileHelpers\DelimitedFieldTests.cs" />
     <Compile Include="Tests\Helpers\QuoteHelperTests.cs" />
     <Compile Include="Tests\Helpers\StreamHelperTest.cs" />
     <Compile Include="Tests\Helpers\StringHelperTest.cs" />
@@ -388,6 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
