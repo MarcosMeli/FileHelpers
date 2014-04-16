@@ -1997,7 +1997,6 @@
             <see cref="M:FileHelpers.DataLink.DataStorage.ExtractRecords"/> method.
             </summary>
             <param name="fileName">The files where the records be written.</param>
-            <returns>True if the operation is successful. False otherwise.</returns>
         </member>
         <member name="M:FileHelpers.DataLink.FileDataLink.ExtractToStream(System.IO.StreamWriter)">
             <summary>
@@ -2015,7 +2014,6 @@
             <see cref="M:FileHelpers.DataLink.DataStorage.InsertRecords(System.Object[])"/> method.
             </summary>
             <param name="fileName">The file with the source records.</param>
-            <returns>True if the operation is successful. False otherwise.</returns>
         </member>
         <member name="M:FileHelpers.DataLink.FileDataLink.InsertFromStream(System.IO.StreamReader)">
             <summary>
@@ -2024,7 +2022,6 @@
             <see cref="M:FileHelpers.DataLink.DataStorage.InsertRecords(System.Object[])"/> method.
             </summary>
             <param name="reader">The stream with the source records.</param>
-            <returns>True if the operation is successful. False otherwise.</returns>
         </member>
         <member name="M:FileHelpers.DataLink.FileDataLink.EasyExtractToFile(FileHelpers.DataLink.DataStorage,System.String)">
             <summary>The short way to Extract the records from a DataStorage to a file</summary>
