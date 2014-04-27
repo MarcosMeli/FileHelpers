@@ -276,25 +276,5 @@ namespace FileHelpers
             }
         }
 
-
-        /// <summary>
-        /// A fast way to sort a big file. For more options you need to
-        /// instantiate the BigFileSorter class instead of using static methods
-        /// </summary>
-        public static void SimpleSort(string source, string destination)
-        {
-            var sorter = new BigFileSorter<T>();
-            sorter.Sort(source, destination);
-        }
-
-        /// <summary>
-        /// A fast way to sort a big file. For more options you need to
-        /// instantiate the BigFileSorter class instead of using static methods
-        /// </summary>
-        public static void SimpleSort(Encoding encoding, string source, string destination)
-        {
-            var sorter = new BigFileSorter<T>(encoding);
-            sorter.Sort(source, destination);
-        }
     }
 }
