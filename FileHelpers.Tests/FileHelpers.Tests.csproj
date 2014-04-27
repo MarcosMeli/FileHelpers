@@ -146,12 +146,14 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Converters.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Dynamic\DelimitedClassBuilderTests.cs" />
     <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
     <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
@@ -263,7 +265,7 @@
     <Compile Include="Tests\Common\ReadersGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\RunTimeClass.cs">
+    <Compile Include="Tests\Dynamic\FixedLengthClassBuilderTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\RunTimeClassExtra.cs">
