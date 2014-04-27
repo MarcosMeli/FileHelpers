@@ -9,16 +9,16 @@ namespace FileHelpers.Tests
     [TestFixture]
     public class FileEncoding
     {
-        private const string expectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
-        private const string expectedTextWithEGrave = "Blondesddsl p\u00e8re et fils";
-        private const string expectedTextWithEAcute1 = "Fr\u00e9d\u00e9rique Citeaux";
-        private const string expectedTextWithEAcute2 = "24, place Kl\u00e9ber";
-        private const string expectedTextWithADiaeresis = "Berguvsv\u00e4gen  8";
-        private const string expectedTextWithARing = "Lule\u00e5";
+        private const string ExpectedTextWithNTilde = "Ana Tru\u00f1i\u00f1o Emparedados y helados";
+        private const string ExpectedTextWithEGrave = "Blondesddsl p\u00e8re et fils";
+        private const string ExpectedTextWithEAcute1 = "Fr\u00e9d\u00e9rique Citeaux";
+        private const string ExpectedTextWithEAcute2 = "24, place Kl\u00e9ber";
+        private const string ExpectedTextWithADiaeresis = "Berguvsv\u00e4gen  8";
+        private const string ExpectedTextWithARing = "Lule\u00e5";
 
         private const int ExpectedRecords = 7;
 
-        private void RunTests(Encoding enc, params string[] pathElements)
+        private static void RunTests(Encoding enc, params string[] pathElements)
         {
             var engine = new FileHelperEngine<CustomersVerticalBar>();
             engine.Encoding = enc;
@@ -26,72 +26,67 @@ namespace FileHelpers.Tests
             CoreRunTest(engine, pathElements);
         }
 
-        private void RunConstructor(Encoding enc, params string[] pathElements)
+        private static void RunConstructor(Encoding enc, params string[] pathElements)
         {
             var engine = new FileHelperEngine<CustomersVerticalBar>(enc);
             Assert.AreEqual(enc, engine.Encoding);
             CoreRunTest(engine, pathElements);
         }
 
-        private void CoreRunTest(FileHelperEngine<CustomersVerticalBar> engine, params string[] pathElements)
+        private static void CoreRunTest(FileHelperEngine<CustomersVerticalBar> engine, params string[] pathElements)
         {
-            CustomersVerticalBar[] res = TestCommon.ReadTest<CustomersVerticalBar>(engine, pathElements);
+            CustomersVerticalBar[] res = TestCommon.ReadTest(engine, pathElements);
 
             Assert.AreEqual(ExpectedRecords, res.Length);
             Assert.AreEqual(ExpectedRecords, engine.TotalRecords);
 
-            Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
-            Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
-            Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
+            Assert.AreEqual(ExpectedTextWithNTilde, res[1].CompanyName);
+            Assert.AreEqual(ExpectedTextWithEGrave, res[6].CompanyName);
+            Assert.AreEqual(ExpectedTextWithEAcute1, res[6].ContactName);
 
-            Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
-            Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
-            Assert.AreEqual(expectedTextWithARing, res[4].City);
+            Assert.AreEqual(ExpectedTextWithEAcute2, res[6].Address);
+            Assert.AreEqual(ExpectedTextWithADiaeresis, res[4].Address);
+            Assert.AreEqual(ExpectedTextWithARing, res[4].City);
         }
 
-        private void RunAsyncTests(FileHelperEngine<CustomersVerticalBar> engine,
-            Encoding enc,
-            params string[] pathElements)
+        private static void RunAsyncTests(Encoding enc, params string[] pathElements)
         {
             var asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>();
             asyncEngine.Encoding = enc;
             Assert.AreEqual(enc, asyncEngine.Encoding);
 
-            CoreRunAsync(asyncEngine, engine, pathElements);
+            CoreRunAsync(asyncEngine, pathElements);
         }
 
-        private void RunAsyncConstructor(Encoding enc, params string[] pathElements)
+        private static void RunAsyncConstructor(Encoding enc, params string[] pathElements)
         {
             var asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>(enc);
             Assert.AreEqual(enc, asyncEngine.Encoding);
 
-            var engine = new FileHelperEngine<CustomersVerticalBar>();
-            CoreRunAsync(asyncEngine, engine, pathElements);
+            CoreRunAsync(asyncEngine, pathElements);
         }
 
-        private void CoreRunAsync(FileHelperAsyncEngine<CustomersVerticalBar> asyncEngine,
-            FileHelperEngine<CustomersVerticalBar> engine,
-            params string[] pathElements)
+        private static void CoreRunAsync(FileHelperAsyncEngine<CustomersVerticalBar> asyncEngine, params string[] pathElements)
         {
             var arr = new List<CustomersVerticalBar>();
 
-            TestCommon.BeginReadTest<CustomersVerticalBar>(asyncEngine, pathElements);
+            TestCommon.BeginReadTest(asyncEngine, pathElements);
 
             foreach (var record in asyncEngine)
                 arr.Add(record);
 
             CustomersVerticalBar[] res = arr.ToArray();
-            ExpectedRecords.AssertEqualTo<int>(res.Length, "Length mismatch in Encoding-CoreRunAsync");
-            ExpectedRecords.AssertEqualTo<int>(asyncEngine.TotalRecords,
+            ExpectedRecords.AssertEqualTo(res.Length, "Length mismatch in Encoding-CoreRunAsync");
+            ExpectedRecords.AssertEqualTo(asyncEngine.TotalRecords,
                 "Total record count mismatch in Encoding-CoreRunAsync");
 
-            Assert.AreEqual(expectedTextWithNTilde, res[1].CompanyName);
-            Assert.AreEqual(expectedTextWithEGrave, res[6].CompanyName);
-            Assert.AreEqual(expectedTextWithEAcute1, res[6].ContactName);
+            Assert.AreEqual(ExpectedTextWithNTilde, res[1].CompanyName);
+            Assert.AreEqual(ExpectedTextWithEGrave, res[6].CompanyName);
+            Assert.AreEqual(ExpectedTextWithEAcute1, res[6].ContactName);
 
-            Assert.AreEqual(expectedTextWithEAcute2, res[6].Address);
-            Assert.AreEqual(expectedTextWithADiaeresis, res[4].Address);
-            Assert.AreEqual(expectedTextWithARing, res[4].City);
+            Assert.AreEqual(ExpectedTextWithEAcute2, res[6].Address);
+            Assert.AreEqual(ExpectedTextWithADiaeresis, res[4].Address);
+            Assert.AreEqual(ExpectedTextWithARing, res[4].City);
         }
 
         [Test]
@@ -115,29 +110,25 @@ namespace FileHelpers.Tests
         [Test]
         public void EncodingAsyncUnicodeBig()
         {
-            var engine = new FileHelperEngine<CustomersVerticalBar>();
-            RunAsyncTests(engine, Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
+            RunAsyncTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
         }
 
         [Test]
         public void EncodingAsyncANSI()
         {
-            var engine = new FileHelperEngine<CustomersVerticalBar>();
-            RunAsyncTests(engine, Encoding.Default, "Good", "EncodingANSI.txt");
+            RunAsyncTests(Encoding.Default, "Good", "EncodingANSI.txt");
         }
 
         [Test]
         public void EncodingAsyncUTF8()
         {
-            var engine = new FileHelperEngine<CustomersVerticalBar>();
-            RunAsyncTests(engine, Encoding.UTF8, "Good", "EncodingUTF8.txt");
+            RunAsyncTests(Encoding.UTF8, "Good", "EncodingUTF8.txt");
         }
 
         [Test]
         public void EncodingAsyncUnicode()
         {
-            var engine = new FileHelperEngine<CustomersVerticalBar>();
-            RunAsyncTests(engine, Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            RunAsyncTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
         }
 
         [Test]
@@ -145,7 +136,6 @@ namespace FileHelpers.Tests
         {
             RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
         }
-
 
         [Test]
         public void EncodingAsyncANSIConstructor()
