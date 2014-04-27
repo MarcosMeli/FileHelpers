@@ -343,27 +343,29 @@ namespace FileHelpers
         private static void CheckForOrderProblems(FieldBase currentField, List<FieldBase> resFields)
         {
             if (currentField.FieldOrder.HasValue) {
-                var othersWithoutOrder = resFields.FindAll(x => x.FieldOrder.HasValue == false);
-                if (othersWithoutOrder.Count > 0) {
+                // If one field has order number set, all others must also have an order number
+                var fieldWithoutOrder = resFields.Find(x => x.FieldOrder.HasValue == false);
+                if (fieldWithoutOrder != null) {
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                        .FieldName(othersWithoutOrder[0].FieldInfo.Name)
+                        .FieldName(fieldWithoutOrder.FieldInfo.Name)
                         .Text);
                 }
 
-                // Same Number
-                var otherWithSameOrder =
-                    resFields.FindAll(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
+                // No other field should have the same order number
+                var fieldWithSameOrder =
+                    resFields.Find(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
 
-                if (otherWithSameOrder.Count > 0) {
+                if (fieldWithSameOrder != null) {
                     throw new BadUsageException(Messages.Errors.SameFieldOrder
                         .FieldName1(currentField.FieldInfo.Name)
-                        .FieldName2(otherWithSameOrder[0].FieldInfo.Name)
+                        .FieldName2(fieldWithSameOrder.FieldInfo.Name)
                         .Text);
                 }
             }
             else {
-                var othersWithOrder = resFields.FindAll(x => x.FieldOrder.HasValue).Count;
-                if (othersWithOrder > 0) {
+                // No other field should have order number set
+                var fieldWithOrder = resFields.Find(x => x.FieldOrder.HasValue);
+                if (fieldWithOrder != null) {
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
                         .FieldName(currentField.FieldInfo.Name)
                         .Text);
@@ -383,7 +385,8 @@ namespace FileHelpers
         public int GetFieldIndex(string fieldName)
         {
             if (mMapFieldIndex == null) {
-                mMapFieldIndex = new Dictionary<string, int>(FieldCount);
+                // Initialize field index map
+                mMapFieldIndex = new Dictionary<string, int>(FieldCount, StringComparer.Ordinal);
                 for (int i = 0; i < FieldCount; i++)
                     mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
             }

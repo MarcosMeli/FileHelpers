@@ -130,7 +130,7 @@ namespace FileHelpers
                     else {
                         throw new BadUsageException(
                             string.Format(
-                                "The field '{0}' not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field.. Field String: {2}",
+                                "The field '{0}' does not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field. Field String: {2}",
                                 FieldInfo.Name,
                                 line.mReader.LineNumber,
                                 line.CurrentString));
