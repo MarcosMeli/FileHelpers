@@ -19,3 +19,5 @@ _ReSharper.FileHelpers
 
 /Release
 /FileHelpers.Tests/Data/temp.txt
+
+/packages
