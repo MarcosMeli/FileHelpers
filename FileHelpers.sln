@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Examples", "Fil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelNPOIStorage", "FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj", "{BEB0D823-6A7E-47FD-A275-1B3314F8412D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OurTest", "OurTest\OurTest.csproj", "{A145DFC9-D4DA-4350-8D24-8474D3B33B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelNPOIStorage.Test", "FileHelpers.ExcelNPOIStorage\Test\FileHelpers.ExcelNPOIStorage.Test.csproj", "{A145DFC9-D4DA-4350-8D24-8474D3B33B40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
