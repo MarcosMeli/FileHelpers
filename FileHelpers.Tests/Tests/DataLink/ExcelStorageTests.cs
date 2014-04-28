@@ -14,6 +14,7 @@ namespace FileHelpers.Tests.Tests.DataLink
     public class ExcelStorageTests
     {
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithNoEmptyRows_ShouldReadAll()
         {
             ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithNoEmptyRows.xlsx", stopAfterEmptyRows: 1);
@@ -21,6 +22,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithOneEmptyRows_StopAfterOneEmpty_ShouldStopEarly()
         {
             var res = ReadFromExcelStorage("ExcelWithOneEmptyRows.xlsx", stopAfterEmptyRows: 1);
@@ -28,6 +30,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithOneEmptyRows_StopAfterTwoEmpty_ShouldNotStopEarly()
         {
             ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithOneEmptyRows.xlsx", stopAfterEmptyRows: 2);
@@ -35,6 +38,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithTwoEmptyRows_StopAfterTwoEmpty_ShouldStopEarly()
         {
             ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 2);
@@ -42,6 +46,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithTwoEmptyRows_StopAfterThreeEmpty_ShouldNotStopEarly()
         {
             ExcelXlsType[] res = ReadFromExcelStorage("ExcelWithTwoEmptyRows.xlsx", stopAfterEmptyRows: 3);
@@ -49,6 +54,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithNoEmptyRows_ShouldHandleStressTest()
         {
             // This will not perform well as it looks 100 rows ahead on each row for empty rows
@@ -58,6 +64,7 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
 
         [Test]
+        [Ignore]
         public void ReadExcelStorageWithCustomSheets_ReturnsAllSheets()
         {
             var provider = new ExcelStorage(typeof (ExcelXlsType));
