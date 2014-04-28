@@ -16,6 +16,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\Release\Bin\FileHelpers.ExcelNPOIStorage.dll" target="lib\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.ExcelNPOIStorage.dll" target="lib\FileHelpers.ExcelNPOIStorage.dll" />
     </files>
 </package>

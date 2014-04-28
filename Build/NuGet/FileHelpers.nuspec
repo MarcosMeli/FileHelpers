@@ -13,7 +13,7 @@
         <tags>Flat File CSV FixedLength Delimited Import Export</tags>
     </metadata>
     <files>
-        <file src="..\..\Release\Bin\FileHelpers.dll" target="lib\FileHelpers.dll" />
-        <file src="..\..\Release\Bin\FileHelpers.xml" target="lib\FileHelpers.xml" />
+        <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.dll" target="lib\FileHelpers.dll" />
+        <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.xml" target="lib\FileHelpers.xml" />
     </files>
 </package>
