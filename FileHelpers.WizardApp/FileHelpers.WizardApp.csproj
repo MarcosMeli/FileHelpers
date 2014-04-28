@@ -135,6 +135,10 @@
     <None Include="Resources\stop.png" />
     <None Include="ColorCode\ColorCode-License.txt" />
     <None Include="Resources\page-paste-icon.png" />
+    <None Include="Resources\Intersect.png" />
+    <None Include="Resources\Union.png" />
+    <None Include="Resources\LeftOnly.png" />
+    <None Include="Resources\RightOnly.png" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />
