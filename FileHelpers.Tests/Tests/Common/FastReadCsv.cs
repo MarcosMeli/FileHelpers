@@ -28,7 +28,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Austria", res[20][6]);
         }
 
-
         [Test]
         public void ReadFileHeader1()
         {
@@ -45,11 +44,9 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual("Germany", res[0][6]);
             Assert.AreEqual("Austria", res[19][6]);
-
-            //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[0].Header);
-            //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[19].Header);
         }
 
+        [Test]
         public void ReadFileTab()
         {
             string file = TestCommon.GetPath("Good", "RealCsvTab1.txt");
@@ -65,9 +62,6 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual("Germany", res[0][6]);
             Assert.AreEqual("Austria", res[19][6]);
-
-            //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[0].Header);
-            //Assert.AreEqual("CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Country", res[19].Header);
         }
 
         [Test]
@@ -85,7 +79,6 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual("EP_CRUDO", res[0][0]);
             Assert.AreEqual("REL_EP_FINAL_7", res[0][8]);
-
 
             Assert.AreEqual("ACUSA REBELDIA ADMITEN Y DESAHOGAN PRUEBAS Y SE ABRE JUICIO A ALEGATOS PORDOS DIAS",
                 res[1][0]);

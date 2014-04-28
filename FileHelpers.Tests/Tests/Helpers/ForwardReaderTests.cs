@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using NFluent;
 
 
 namespace FileHelpers.Tests
@@ -17,13 +18,13 @@ namespace FileHelpers.Tests
                 new ForwardReader(new NewLineDelimitedRecordReader(new StreamReader(FileTest.Good.CustomersTab.Path)),
                     0,
                     0);
-            reader.DiscardForward.AssertEqualTo(false);
-            reader.FowardLines.AssertEqualTo(0);
-            reader.LineNumber.AssertEqualTo(0);
+            Check.That(reader.DiscardForward).IsEqualTo(false);
+            Check.That(reader.FowardLines).IsEqualTo(0);
+            Check.That(reader.LineNumber).IsEqualTo(0);
 
             reader.ReadNextLine();
 
-            reader.LineNumber.AssertEqualTo(1);
+            Check.That(reader.LineNumber).IsEqualTo(1);
         }
 
         //  TODO:   Add more tests for forward reader

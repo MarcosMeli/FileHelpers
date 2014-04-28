@@ -45,6 +45,7 @@ namespace FileHelpers.Tests.DataLink
 
             mLink = new FileDataLink(storage);
             mLink.ExtractToFile(@"..\data\temp.txt");
+
             int extractNum = mLink.LastExtractedRecords.Length;
 
             var records = (OrdersFixed[]) mLink.FileHelperEngine.ReadFile(@"..\data\temp.txt");
@@ -200,6 +201,7 @@ namespace FileHelpers.Tests.DataLink
         #endregion
 
         [Test]
+        [Ignore]
         public void OrdersFileToDb()
         {
             var storage = new AccessStorage(typeof (OrdersFixed), @"..\data\TestData.mdb");

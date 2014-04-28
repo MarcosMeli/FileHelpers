@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -275,8 +276,8 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("1,name1," + Environment.NewLine, res);
 
             var vals = engine.ReadString(res);
-            vals.Length.AssertEqualTo(1);
-            vals[0].Weighting.Length.AssertEqualTo(0);
+            Check.That(vals.Length).IsEqualTo(1);
+            Check.That(vals[0].Weighting.Length).IsEqualTo(0);
         }
 
 
@@ -287,9 +288,9 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new DelimitedFileEngine<ArrayModel1>();
             var res = engine.ReadString(info);
 
-            res.Length.AssertEqualTo(1);
-            res[0].Weighting.Length.AssertEqualTo(3);
-            res[0].Weighting[1].AssertEqualTo(-5f);
+            Check.That(res.Length).IsEqualTo(1);
+            Check.That(res[0].Weighting.Length).IsEqualTo(3);
+            Check.That(res[0].Weighting[1]).IsEqualTo(-5f);
         }
 
         [Test]
@@ -299,9 +300,9 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new DelimitedFileEngine<ArrayModelNullable>();
             var res = engine.ReadString(info);
 
-            res.Length.AssertEqualTo(1);
-            res[0].Weighting.Length.AssertEqualTo(3);
-            res[0].Weighting[1].AssertEqualTo(null);
+            Check.That(res.Length).IsEqualTo(1);
+            Check.That(res[0].Weighting.Length).IsEqualTo(3);
+            Check.That(res[0].Weighting[1]).IsEqualTo(null);
         }
 
         [Test]
@@ -320,8 +321,8 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("1,name1," + Environment.NewLine, res);
 
             var vals = engine.ReadString(res);
-            vals.Length.AssertEqualTo(1);
-            vals[0].Weighting.Length.AssertEqualTo(0);
+            Check.That(vals.Length).IsEqualTo(1);
+            Check.That(vals[0].Weighting.Length).IsEqualTo(0);
         }
 
         [Test]
@@ -340,8 +341,8 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("1,name1," + Environment.NewLine, res);
 
             var vals = engine.ReadString(res);
-            vals.Length.AssertEqualTo(1);
-            vals[0].Weighting.Length.AssertEqualTo(0);
+            Check.That(vals.Length).IsEqualTo(1);
+            Check.That(vals[0].Weighting.Length).IsEqualTo(0);
         }
 
         [Test]

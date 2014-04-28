@@ -5384,6 +5384,18 @@
             <param name="headerLines">The number of header lines in the CSV file</param>
             <returns>An enumeration of <see cref="T:FileHelpers.RecordIndexer"/></returns>
         </member>
+        <member name="M:FileHelpers.CommonEngine.SortBigFile``1(System.String,System.String)">
+            <summary>
+            A fast way to sort a big file. For more options you need to
+            instantiate the BigFileSorter class instead of using static methods
+            </summary>
+        </member>
+        <member name="M:FileHelpers.CommonEngine.SortBigFile``1(System.Text.Encoding,System.String,System.String)">
+            <summary>
+            A fast way to sort a big file. For more options you need to
+            instantiate the BigFileSorter class instead of using static methods
+            </summary>
+        </member>
         <member name="T:FileHelpers.CommonEngine.FieldComparer">
             <summary>
             Compare one field to another
@@ -10259,18 +10271,6 @@ engine.WriteFile("TestOut.txt", res);
             </summary>
             <param name="queues">list of chunks to merge</param>
             <param name="destinationFile">output filename</param>
-        </member>
-        <member name="M:FileHelpers.BigFileSorter`1.SimpleSort(System.String,System.String)">
-            <summary>
-            A fast way to sort a big file. For more options you need to
-            instantiate the BigFileSorter class instead of using static methods
-            </summary>
-        </member>
-        <member name="M:FileHelpers.BigFileSorter`1.SimpleSort(System.Text.Encoding,System.String,System.String)">
-            <summary>
-            A fast way to sort a big file. For more options you need to
-            instantiate the BigFileSorter class instead of using static methods
-            </summary>
         </member>
         <member name="P:FileHelpers.BigFileSorter`1.TempDirectory">
             <summary>

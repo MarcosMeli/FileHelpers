@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     
-    <CurrentVersion>3.0.2</CurrentVersion>
+    <CurrentVersion>3.0.5</CurrentVersion>
     
     <FullCurrentVersion>$(CurrentVersion).0</FullCurrentVersion>
   </PropertyGroup>

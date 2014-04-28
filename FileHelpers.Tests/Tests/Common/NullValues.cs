@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -210,15 +211,15 @@ first
 second	";
 
             var records = engine.ReadString(inputValue);
-            records.Length.AssertEqualTo(2);
+            Check.That(records.Length).IsEqualTo(2);
 
             dynamic record = records[0];
-            ((Guid) record.Id).AssertEqualTo(Guid.Empty);
-            ((string) record.Name).AssertEqualTo("first");
+            Check.That(((Guid) record.Id)).IsEqualTo(Guid.Empty);
+            Check.That(((string) record.Name)).IsEqualTo("first");
 
             record = records[1];
-            ((Guid) record.Id).AssertEqualTo(Guid.Empty);
-            ((string) record.Name).AssertEqualTo("second");
+            Check.That(((Guid) record.Id)).IsEqualTo(Guid.Empty);
+            Check.That(((string)record.Name)).IsEqualTo("second");
         }
     }
 }

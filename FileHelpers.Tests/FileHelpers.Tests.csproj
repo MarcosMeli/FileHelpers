@@ -102,13 +102,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Moq, Version=4.0.812.4, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+    <Reference Include="Moq, Version=4.2.1402.2112, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Moq\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.4.10098, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="NFluent">
+      <HintPath>..\packages\NFluent.1.1.0.0\lib\net40\NFluent.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\nunit\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -146,12 +149,14 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Converters.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Dynamic\DelimitedClassBuilderTests.cs" />
     <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
     <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
@@ -263,7 +268,7 @@
     <Compile Include="Tests\Common\ReadersGeneric.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\RunTimeClass.cs">
+    <Compile Include="Tests\Dynamic\FixedLengthClassBuilderTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\RunTimeClassExtra.cs">
@@ -374,6 +379,7 @@
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
     <None Include="FileHelpers.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />
@@ -400,7 +406,6 @@
     </Compile>
     <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
-    <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
     <Compile Include="Tests\Common\SorterTests.cs" />
     <Compile Include="Tests\Common\DelimitedMoreFieldsTests.cs" />

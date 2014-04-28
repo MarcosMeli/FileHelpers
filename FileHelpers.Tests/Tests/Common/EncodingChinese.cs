@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests
 {
@@ -17,9 +18,9 @@ namespace FileHelpers.Tests
             var engine = new FileHelperEngine<ChineseRecord>();
             var res = FileTest.Good.EncodingChinese.ReadWithEngine(engine);
 
-            res[0].rname.AssertEqualTo("孫悟空                                                      ");
-            res[0].sname.AssertEqualTo("台灣省大法師公會南天門辦事處                                ");
-            res[1].rname.AssertEqualTo("豬八戒                                                      ");
+            Check.That(res[0].rname).IsEqualTo("孫悟空                                                      ");
+            Check.That(res[0].sname).IsEqualTo("台灣省大法師公會南天門辦事處                                ");
+            Check.That(res[1].rname).IsEqualTo("豬八戒                                                      ");
         }
 
 

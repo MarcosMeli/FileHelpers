@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>FileHelpers.ExcelNPOIStorage</id>
+        <version>3.0.5</version>
+        <title>FileHelpers.ExcelNPOIStorage</title>
+        <authors>Marcos Meli</authors>
+        <owners>Marcos Meli</owners>
+        <licenseUrl>https://github.com/MarcosMeli/FileHelpers#license</licenseUrl>
+        <projectUrl>http://www.filehelpers.com</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An extension to support Excel read/write operations using NPOI Library</description>
+        <tags>Excel Import Export</tags>
+        <dependencies>
+            <dependency id="FileHelpers" version="3.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.ExcelNPOIStorage.dll" target="lib\FileHelpers.ExcelNPOIStorage.dll" />
+    </files>
+</package>

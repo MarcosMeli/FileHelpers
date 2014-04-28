@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -16,10 +17,10 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<AutoPropertiesSimple>();
 
-            engine.Options.FieldCount.AssertEqualTo(2);
+            Check.That(engine.Options.FieldCount).IsEqualTo(2);
 
-            engine.Options.FieldsNames[0].AssertEqualTo("<Tag>k__BackingField");
-            engine.Options.FieldsNames[1].AssertEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Usuario>k__BackingField");
         }
 
 
@@ -29,11 +30,11 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<AutoPropertiesLastIsField>();
 
-            engine.Options.FieldCount.AssertEqualTo(3);
+            Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
-            engine.Options.FieldsNames[0].AssertEqualTo("<Tag>k__BackingField");
-            engine.Options.FieldsNames[1].AssertEqualTo("<Usuario>k__BackingField");
-            engine.Options.FieldsNames[2].AssertEqualTo("Field1");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("Field1");
         }
 
 
@@ -43,11 +44,11 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<AutoPropertiesFirstIsField>();
 
-            engine.Options.FieldCount.AssertEqualTo(3);
+            Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
-            engine.Options.FieldsNames[0].AssertEqualTo("Field1");
-            engine.Options.FieldsNames[1].AssertEqualTo("<Tag>k__BackingField");
-            engine.Options.FieldsNames[2].AssertEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("Field1");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
         }
 
         [Test]
@@ -56,11 +57,11 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<AutoPropertiesMidIsField>();
 
-            engine.Options.FieldCount.AssertEqualTo(3);
+            Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
-            engine.Options.FieldsNames[0].AssertEqualTo("<Tag>k__BackingField");
-            engine.Options.FieldsNames[1].AssertEqualTo("Field1");
-            engine.Options.FieldsNames[2].AssertEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Field1");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
         }
 
         [DelimitedRecord("|")]

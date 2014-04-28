@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.Helpers
 {
@@ -50,7 +51,7 @@ namespace FileHelpers.Tests.Helpers
 
             using (var input = new StreamReader(filename)) {
                 String result = input.ReadToEnd();
-                result.AssertEqualTo<String>(twoRecords, testname + ": Expected two records only on output");
+                Check.That(result).IsEqualTo(twoRecords);
                 input.Close();
             }
         }

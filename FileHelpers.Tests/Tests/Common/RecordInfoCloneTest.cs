@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -15,7 +16,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<SampleType>();
             var engine2 = new FileHelperEngine<SampleType>();
 
-            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
+            Check.That(engine.RecordInfo).IsDistinctFrom(engine2.RecordInfo);
 
             CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
         }
@@ -30,7 +31,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.IgnoreFirstLines = 0;
             engine.Options.IgnoreLastLines = 0;
 
-            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
+            Check.That(engine.RecordInfo).IsDistinctFrom(engine2.RecordInfo);
 
             CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
         }
@@ -45,7 +46,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.RecordCondition.Condition = RecordCondition.None;
             engine.Options.RecordCondition.Selector = string.Empty;
 
-            engine.RecordInfo.AssertDifferentObjectAs(engine2.RecordInfo);
+            Check.That(engine.RecordInfo).IsDistinctFrom(engine2.RecordInfo);
 
             CompareRecordInfo(engine.RecordInfo, engine2.RecordInfo);
         }
@@ -69,7 +70,7 @@ namespace FileHelpers.Tests.CommonTests
             comp.ComparePrivateProperties = true;
             comp.CompareReadOnly = true;
 
-            comp.Compare(recordInfo1, recordInfo2).AssertIsTrue(comp.DifferencesString);
+            Check.That(comp.Compare(recordInfo1, recordInfo2)).IsTrue();
         }
     }
 }

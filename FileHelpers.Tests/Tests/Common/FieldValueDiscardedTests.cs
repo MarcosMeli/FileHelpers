@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -13,7 +14,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedFirst>();
 
-            res.Length.AssertEqualTo(Array.FindAll(res,
+            Check.That(res.Length).IsEqualTo(Array.FindAll(res,
                 (x) => x.CustomerID == null).Length);
         }
 
@@ -23,7 +24,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedSecond>();
 
-            res.Length.AssertEqualTo(Array.FindAll(res, (x) => x.CompanyName == null).Length);
+            Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.CompanyName == null).Length);
         }
 
         [Test]
@@ -31,7 +32,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedMiddle>();
 
-            res.Length.AssertEqualTo(Array.FindAll(res, (x) => x.Address == null).Length);
+            Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.Address == null).Length);
         }
 
 
@@ -40,7 +41,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedLast>();
 
-            res.Length.AssertEqualTo(Array.FindAll(res, (x) => x.Country == null).Length);
+            Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.Country == null).Length);
         }
 
         [DelimitedRecord("\t")]
@@ -117,11 +118,11 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersAllDiscard>();
 
-            Array.FindAll(res,
+            Check.That(Array.FindAll(res,
                 (x) => x.CustomerID == null
                        && x.OrderID == -1
                        && x.OrderDate == new DateTime(2000, 1, 2)
-                       && x.Freight == 0).Length.AssertEqualTo(res.Length);
+                       && x.Freight == 0).Length).IsEqualTo(res.Length);
         }
 
         [Test]
@@ -130,11 +131,11 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersLastNotDiscard>();
 
-            Array.FindAll(res,
+            Check.That(Array.FindAll(res,
                 (x) => x.CustomerID == null
                        && x.OrderID == -1
                        && x.OrderDate == new DateTime(2000, 1, 2)
-                       && x.Freight != 0).Length.AssertEqualTo(res.Length);
+                       && x.Freight != 0).Length).IsEqualTo(res.Length);
         }
 
         [Test]
@@ -143,11 +144,11 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersLastTwoNotDiscard>();
 
-            Array.FindAll(res,
+            Check.That(Array.FindAll(res,
                 (x) => x.CustomerID == null
                        && x.OrderID == -1
                        && x.OrderDate != new DateTime(2000, 1, 2)
-                       && x.Freight != 0).Length.AssertEqualTo(res.Length);
+                       && x.Freight != 0).Length).IsEqualTo(res.Length);
         }
 
         [DelimitedRecord("|")]
