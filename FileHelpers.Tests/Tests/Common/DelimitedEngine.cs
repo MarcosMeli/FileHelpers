@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -58,10 +59,10 @@ namespace FileHelpers.Tests.CommonTests
         public void CheckSeparator()
         {
             var engSemiColon = new DelimitedFileEngine<CustomersSemiColon>();
-            engSemiColon.Options.Delimiter.AssertEqualTo(";");
+            Check.That(engSemiColon.Options.Delimiter).IsEqualTo(";");
 
             var engTab = new DelimitedFileEngine<CustomersTab>();
-            engTab.Options.Delimiter.AssertEqualTo("\t");
+            Check.That(engTab.Options.Delimiter).IsEqualTo("\t");
         }
     }
 }

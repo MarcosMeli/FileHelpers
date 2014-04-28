@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -87,22 +88,22 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedLessChars10Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(81);
+            Check.That(res.Length).IsEqualTo(81);
 
             res = FileTest.Good.CustomersFixedMoreChars5Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(86);
+            Check.That(res.Length).IsEqualTo(86);
 
             res = FileTest.Good.CustomersFixedMoreVariable12Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(79);
+            Check.That(res.Length).IsEqualTo(79);
         }
 
         [Test]
@@ -114,22 +115,22 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedLessChars10Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedMoreChars5Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(86);
+            Check.That(res.Length).IsEqualTo(86);
 
             res = FileTest.Good.CustomersFixedMoreVariable12Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(85);
+            Check.That(res.Length).IsEqualTo(85);
         }
 
 
@@ -142,22 +143,22 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedLessChars10Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(81);
+           Check.That( res.Length).IsEqualTo(81);
 
             res = FileTest.Good.CustomersFixedMoreChars5Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedMoreVariable12Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(85);
+            Check.That(res.Length).IsEqualTo(85);
         }
 
 
@@ -170,22 +171,22 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedLessChars10Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedMoreChars5Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
 
             res = FileTest.Good.CustomersFixedMoreVariable12Records
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(91);
+            Check.That(res.Length).IsEqualTo(91);
         }
 
         [Test]
@@ -226,7 +227,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedWithoutLastField
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(2);
+            Check.That(res.Length).IsEqualTo(2);
         }
 
         [Test]
@@ -237,7 +238,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedWithout2Fields
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(2);
+            Check.That(res.Length).IsEqualTo(2);
         }
 
         [Test]
@@ -248,7 +249,7 @@ namespace FileHelpers.Tests.CommonTests
             var res = FileTest.Good.CustomersFixedWithout1AndHalfFields
                 .ReadWithEngine(engine);
 
-            res.Length.AssertEqualTo(2);
+            Check.That(res.Length).IsEqualTo(2);
         }
     }
 }

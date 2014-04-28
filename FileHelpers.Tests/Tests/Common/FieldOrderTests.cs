@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -278,7 +279,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<FieldOptionalPlusFieldOrderTypeGood1>();
 
-            engine.Options.FieldCount.AssertEqualTo(5);
+            Check.That(engine.Options.FieldCount).IsEqualTo(5);
         }
 
         [Test]
@@ -286,7 +287,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<FieldOptionalPlusFieldOrderTypeGood2>();
 
-            engine.Options.FieldCount.AssertEqualTo(5);
+            Check.That(engine.Options.FieldCount).IsEqualTo(5);
         }
 
         [DelimitedRecord("\t")]

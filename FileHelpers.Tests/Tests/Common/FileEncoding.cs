@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -24,14 +25,14 @@ namespace FileHelpers.Tests.CommonTests
         {
             engine = new FileHelperEngine<CustomersVerticalBar>();
             engine.Encoding = enc;
-            enc.AssertEqualTo<Encoding>(engine.Encoding, "Normal engine encoding mismatch, runtests");
+            Check.That(enc).IsEqualTo(engine.Encoding);
             CoreRunTest(pathElements);
         }
 
         private void RunConstructor(Encoding enc, params string[] pathElements)
         {
             engine = new FileHelperEngine<CustomersVerticalBar>(enc);
-            enc.AssertEqualTo<Encoding>(engine.Encoding, "Normal engine encoding mismatch, runconstructor");
+            Check.That(enc).IsEqualTo(engine.Encoding);
             CoreRunTest(pathElements);
         }
 
@@ -39,23 +40,23 @@ namespace FileHelpers.Tests.CommonTests
         {
             CustomersVerticalBar[] res = TestCommon.ReadTest<CustomersVerticalBar>(engine, pathElements);
 
-            ExpectedRecords.AssertEqualTo<int>(res.Length, "Length Mismatch");
-            ExpectedRecords.AssertEqualTo<int>(engine.TotalRecords, "Record count mismatch");
+            Check.That(ExpectedRecords).IsEqualTo(res.Length);
+            Check.That(ExpectedRecords).IsEqualTo(engine.TotalRecords);
 
-            expectedTextWithNTilde.AssertEqualTo<String>(res[1].CompanyName);
-            expectedTextWithEGrave.AssertEqualTo<String>(res[6].CompanyName);
-            expectedTextWithEAcute1.AssertEqualTo<String>(res[6].ContactName);
+            Check.That(expectedTextWithNTilde).IsEqualTo(res[1].CompanyName);
+            Check.That(expectedTextWithEGrave).IsEqualTo(res[6].CompanyName);
+            Check.That(expectedTextWithEAcute1).IsEqualTo(res[6].ContactName);
 
-            expectedTextWithEAcute2.AssertEqualTo<String>(res[6].Address);
-            expectedTextWithADiaeresis.AssertEqualTo<String>(res[4].Address);
-            expectedTextWithARing.AssertEqualTo<String>(res[4].City);
+            Check.That(expectedTextWithEAcute2).IsEqualTo(res[6].Address);
+            Check.That(expectedTextWithADiaeresis).IsEqualTo(res[4].Address);
+            Check.That(expectedTextWithARing).IsEqualTo(res[4].City);
         }
 
         private void RunAsyncTests(Encoding enc, params string[] pathElements)
         {
             asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>();
             asyncEngine.Encoding = enc;
-            enc.AssertEqualTo<Encoding>(asyncEngine.Encoding, "Async engine encoding mismatch, runasyncTests");
+            Check.That(enc).IsEqualTo(asyncEngine.Encoding);
 
             CoreRunAsync(pathElements);
         }
@@ -63,7 +64,7 @@ namespace FileHelpers.Tests.CommonTests
         private void RunAsyncConstructor(Encoding enc, params string[] pathElements)
         {
             asyncEngine = new FileHelperAsyncEngine<CustomersVerticalBar>(enc);
-            enc.AssertEqualTo<Encoding>(asyncEngine.Encoding, "Async encoding mismatch");
+            Check.That(enc).IsEqualTo(asyncEngine.Encoding);
 
             CoreRunAsync(pathElements);
         }
@@ -78,16 +79,16 @@ namespace FileHelpers.Tests.CommonTests
                 arr.Add(record);
 
             var res = (CustomersVerticalBar[]) arr.ToArray(typeof (CustomersVerticalBar));
-            ExpectedRecords.AssertEqualTo<int>(res.Length, "Length is not equal");
-            ExpectedRecords.AssertEqualTo<int>(asyncEngine.TotalRecords, "Total number of records not equal");
+            Check.That(ExpectedRecords).IsEqualTo(res.Length);
+            Check.That(ExpectedRecords).IsEqualTo(asyncEngine.TotalRecords);
 
-            expectedTextWithNTilde.AssertEqualTo<String>(res[1].CompanyName);
-            expectedTextWithEGrave.AssertEqualTo<String>(res[6].CompanyName);
-            expectedTextWithEAcute1.AssertEqualTo<String>(res[6].ContactName);
+            Check.That(expectedTextWithNTilde).IsEqualTo(res[1].CompanyName);
+            Check.That(expectedTextWithEGrave).IsEqualTo(res[6].CompanyName);
+            Check.That(expectedTextWithEAcute1).IsEqualTo(res[6].ContactName);
 
-            expectedTextWithEAcute2.AssertEqualTo<String>(res[6].Address);
-            expectedTextWithADiaeresis.AssertEqualTo<String>(res[4].Address);
-            expectedTextWithARing.AssertEqualTo<String>(res[4].City);
+            Check.That(expectedTextWithEAcute2).IsEqualTo(res[6].Address);
+            Check.That(expectedTextWithADiaeresis).IsEqualTo(res[4].Address);
+            Check.That(expectedTextWithARing).IsEqualTo(res[4].City);
         }
 
         [Test]

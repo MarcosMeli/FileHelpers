@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Moq;
 using NUnit.Framework;
+using NFluent;
 
 
 namespace FileHelpers.Tests.Mocking
@@ -78,21 +79,21 @@ namespace FileHelpers.Tests.Mocking
 
             client.WorkWithFiles();
 
-            client.DataInFile.Length.AssertEqualTo(3);
+            Check.That(client.DataInFile.Length).IsEqualTo(3);
 
-            client.Status.AssertEqualTo(ClientStatus.Ok);
-            client.DataInFile[0].Field1.AssertEqualTo(new DateTime(2010, 3, 2));
-            client.DataInFile[1].Field1.AssertEqualTo(new DateTime(2010, 4, 5));
-            client.DataInFile[2].Field1.AssertEqualTo(new DateTime(2010, 6, 7));
+            Check.That(client.Status).IsEqualTo(ClientStatus.Ok);
+            Check.That(client.DataInFile[0].Field1).IsEqualTo(new DateTime(2010, 3, 2));
+            Check.That(client.DataInFile[1].Field1).IsEqualTo(new DateTime(2010, 4, 5));
+            Check.That(client.DataInFile[2].Field1).IsEqualTo(new DateTime(2010, 6, 7));
 
 
-            client.DataInFile[0].Field2.AssertEqualTo("field2.1");
-            client.DataInFile[1].Field2.AssertEqualTo("field2.2");
-            client.DataInFile[2].Field2.AssertEqualTo("field2.3");
+            Check.That(client.DataInFile[0].Field2).IsEqualTo("field2.1");
+            Check.That(client.DataInFile[1].Field2).IsEqualTo("field2.2");
+            Check.That(client.DataInFile[2].Field2).IsEqualTo("field2.3");
 
-            client.DataInFile[0].Field3.AssertEqualTo(1);
-            client.DataInFile[1].Field3.AssertEqualTo(2);
-            client.DataInFile[2].Field3.AssertEqualTo(3);
+            Check.That(client.DataInFile[0].Field3).IsEqualTo(1);
+            Check.That(client.DataInFile[1].Field3).IsEqualTo(2);
+            Check.That(client.DataInFile[2].Field3).IsEqualTo(3);
 
             mock.VerifyAll();
         }
@@ -108,8 +109,8 @@ namespace FileHelpers.Tests.Mocking
             var client = new FileHelpersClient(mock.Object);
             client.WorkWithFiles();
 
-            client.Status.AssertEqualTo(ClientStatus.FileNotFound);
-            client.DataInFile.AssertIsNull();
+            Check.That(client.Status).IsEqualTo(ClientStatus.FileNotFound);
+            Check.That(client.DataInFile).IsNull();
 
             mock.VerifyAll();
         }
@@ -125,8 +126,8 @@ namespace FileHelpers.Tests.Mocking
             var client = new FileHelpersClient(mock.Object);
             client.WorkWithFiles();
 
-            client.Status.AssertEqualTo(ClientStatus.UnhandledError);
-            client.DataInFile.AssertIsNull();
+            Check.That(client.Status).IsEqualTo(ClientStatus.UnhandledError);
+            Check.That(client.DataInFile).IsNull();
 
             mock.VerifyAll();
         }
@@ -141,8 +142,8 @@ namespace FileHelpers.Tests.Mocking
             var client = new FileHelpersClient(mock.Object);
             client.WorkWithFiles();
 
-            client.Status.AssertEqualTo(ClientStatus.UnhandledError);
-            client.DataInFile.AssertIsNull();
+            Check.That(client.Status).IsEqualTo(ClientStatus.UnhandledError);
+            Check.That(client.DataInFile).IsNull();
 
             mock.VerifyAll();
         }

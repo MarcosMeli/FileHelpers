@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.Converters
 {
@@ -17,21 +18,21 @@ namespace FileHelpers.Tests.Converters
             var engine = new FileHelperEngine<LowerCharClass>();
             var res = engine.ReadString(UpperText);
 
-            res[0].fldChar.AssertEqualTo('u', "Should be lower case U from UpperText");
-            res[0].fldChar2.AssertEqualTo('a', "Should be lower case a from UpperText");
+            Check.That(res[0].fldChar).IsEqualTo('u');
+            Check.That(res[0].fldChar2).IsEqualTo('a');
 
             var engine2 = new FileHelperEngine<UpperCharClass>();
 
             var res2 = engine2.ReadString(LowerText);
-            res2[0].fldChar.AssertEqualTo('L', "Should be upper case L from LowerText");
-            res2[0].fldChar2.AssertEqualTo('A', "Should be upper case A from LowerText");
+            Check.That(res2[0].fldChar).IsEqualTo('L');
+            Check.That(res2[0].fldChar2).IsEqualTo('A');
 
             var engine3 = new FileHelperEngine<NoChangeCharClass>();
             var res4 = engine3.ReadString(LowerText);
-            res4[0].fldChar.AssertEqualTo('l', "Should be lower case L from LowerText");
+            Check.That(res4[0].fldChar).IsEqualTo('l');
 
             res4 = engine3.ReadString(UpperText);
-            res4[0].fldChar.AssertEqualTo('U', "Should be Uppper case U from UpperText");
+            Check.That(res4[0].fldChar).IsEqualTo('U');
         }
 
         [Test]

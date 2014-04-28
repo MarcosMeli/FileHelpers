@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using FileHelpers.Options;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -118,10 +119,10 @@ namespace FileHelpers.Tests.CommonTests
 120,""good line this one"",789
 122,,5446");
 
-            records.Length.AssertEqualTo(3);
+            Check.That(records.Length).IsEqualTo(3);
 
-            records[0].Text.AssertEqualTo("\"not good\" line");
-            records[2].Text.AssertEqualTo("");
+            Check.That(records[0].Text).IsEqualTo("\"not good\" line");
+            Check.That(records[2].Text).IsEqualTo("");
         }
 
         [IgnoreFirst(1)]

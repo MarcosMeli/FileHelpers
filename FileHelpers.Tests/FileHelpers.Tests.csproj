@@ -106,6 +106,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="NFluent">
+      <HintPath>..\packages\NFluent.1.1.0.0\lib\net40\NFluent.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -403,7 +406,6 @@
     </Compile>
     <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
-    <Compile Include="FluentTestingExtensions.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
     <Compile Include="Tests\Common\SorterTests.cs" />
     <Compile Include="Tests\Common\DelimitedMoreFieldsTests.cs" />

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -155,7 +156,7 @@ namespace FileHelpers.Tests.CommonTests
             var fi1 = new FileInfo(temp);
             var fi2 = new FileInfo(temp2);
 
-            fi1.Length.AssertEqualTo(fi2.Length);
+            Check.That(fi1.Length).IsEqualTo(fi2.Length);
 
             using (var sr1 = new StreamReader(temp))
             using (var sr2 = new StreamReader(temp)) {
@@ -163,7 +164,7 @@ namespace FileHelpers.Tests.CommonTests
                     var line1 = sr1.ReadLine();
                     var line2 = sr2.ReadLine();
 
-                    line1.AssertEqualTo(line2);
+                    Check.That(line1).IsEqualTo(line2);
 
                     if (line1 == null)
                         break;

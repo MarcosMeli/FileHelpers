@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests
 {
@@ -76,9 +77,8 @@ namespace FileHelpers.Tests
                 arr.Add(record);
 
             CustomersVerticalBar[] res = arr.ToArray();
-            ExpectedRecords.AssertEqualTo(res.Length, "Length mismatch in Encoding-CoreRunAsync");
-            ExpectedRecords.AssertEqualTo(asyncEngine.TotalRecords,
-                "Total record count mismatch in Encoding-CoreRunAsync");
+            Check.That(ExpectedRecords).IsEqualTo(res.Length);
+            Check.That(ExpectedRecords).IsEqualTo(asyncEngine.TotalRecords);
 
             Assert.AreEqual(ExpectedTextWithNTilde, res[1].CompanyName);
             Assert.AreEqual(ExpectedTextWithEGrave, res[6].CompanyName);

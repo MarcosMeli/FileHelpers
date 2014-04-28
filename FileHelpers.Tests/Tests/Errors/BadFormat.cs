@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NFluent;
 
 namespace FileHelpers.Tests.Errors
 {
@@ -60,7 +61,7 @@ namespace FileHelpers.Tests.Errors
         public void NoPendingNullValue()
         {
             var res = FileTest.Bad.NoBadNullvalue.ReadWithEngine<SampleType>();
-            res.Length.AssertEqualTo(4);
+            Check.That(res.Length).IsEqualTo(4);
         }
     }
 }
