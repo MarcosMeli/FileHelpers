@@ -7,6 +7,14 @@ FileHelpers
  
   If you want to start using the library go directly to the Quick Start Guide in the CHM.
 
+Downloads
+---------
+
+You can download the last stable version from our build server at:
+####[Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt66&tab=artifacts&guest=1)
+
+    Download the zip with the format: FileHelpers_x.x.x_Build.zip
+
 
 Who needs the File Helpers Library ? 
 ------------------------------------
