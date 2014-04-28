@@ -142,7 +142,7 @@
     <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
 move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
-"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll" "$(TargetDir)Microsoft.Office.Interop.Excel.dll" "$(TargetDir)Office.dll" "$(TargetDir)Microsoft.Vbe.Interop.dll" /keyfile:$(SolutionDir)\FileHelpers\FileHelpers.snk
+"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll" "$(TargetDir)Microsoft.Office.Interop.Excel.dll" "$(TargetDir)Office.dll" "$(TargetDir)Microsoft.Vbe.Interop.dll" /keyfile:"$(SolutionDir)FileHelpers\FileHelpers.snk"
 del "$(TargetDir)Microsoft.Office.Interop.Excel.dll" 
 del "$(TargetDir)Office.dll" 
 del "$(TargetDir)Microsoft.Vbe.Interop.dll"
