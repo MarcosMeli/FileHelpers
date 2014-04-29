@@ -18,5 +18,6 @@
     </metadata>
     <files>
         <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.ExcelNPOIStorage.dll" target="lib\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="install.ps1" target="tools\install.ps1" />
     </files>
 </package>
