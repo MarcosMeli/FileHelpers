@@ -8,6 +8,7 @@
         <owners>Marcos Meli</owners>
         <licenseUrl>https://github.com/MarcosMeli/FileHelpers#license</licenseUrl>
         <projectUrl>http://www.filehelpers.com</projectUrl>
+        <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An extension to support Excel read/write operations using NPOI Library</description>
         <tags>Excel Import Export</tags>
