@@ -10,7 +10,7 @@
         <projectUrl>http://www.filehelpers.com</projectUrl>
         <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>An open source library to that supports automatic formatted file read/write operations</description>
+        <description>Open Source library for automatic formatted file read/write operations</description>
         <tags>Flat File CSV FixedLength Delimited Import Export</tags>
     </metadata>
     <files>

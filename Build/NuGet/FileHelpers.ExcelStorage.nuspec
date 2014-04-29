@@ -10,7 +10,7 @@
         <projectUrl>http://www.filehelpers.com</projectUrl>
         <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>An extension to support Excel read/write operations, using Interop Assemblies (deprecated)</description>
+        <description>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</description>
         <tags>Excel Import Export</tags>
         <dependencies>
             <dependency id="FileHelpers" version="3.0" />
@@ -19,6 +19,5 @@
     <files>
         <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.ExcelStorage.dll" target="lib\FileHelpers.ExcelStorage.dll" />
         <file src="..\..\Release\Binaries\DotNet 4.0\FileHelpers.ExcelStorage.xml" target="lib\FileHelpers.ExcelStorage.xml" />        
-        <file src="install.ps1" target="tools\install.ps1" />
     </files>
 </package>
