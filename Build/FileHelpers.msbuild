@@ -13,14 +13,17 @@
 		<OutputFiles Include="..\Output\**\*.*" />
 	</ItemGroup>
 
-	<Target Name="common">
+	<Target Name="version">
+		<Copy SourceFiles="VersionInfo.cs" DestinationFolder="..\FileHelpers" />
+		<Exec Command="..\Libs\FileReplace.exe &quot;..\FileHelpers\VersionInfo.cs&quot; &quot;-CustomVersion-&quot; &quot;$(FullCurrentVersion)&quot;" />
+	</Target>
+
+	<Target Name="common" DependsOnTargets="version">
 
 	  	<Time Format="yyyy-MM-dd">
     		<Output TaskParameter="FormattedTime" PropertyName="buildDate" />
         </Time>
 		<Message Text="##teamcity[buildNumber '$(CurrentVersion)']" />
-		<Copy SourceFiles="VersionInfo.cs" DestinationFolder="..\FileHelpers" />
-		<Exec Command="..\Libs\FileReplace.exe &quot;..\FileHelpers\VersionInfo.cs&quot; &quot;-CustomVersion-&quot; &quot;$(FullCurrentVersion)&quot;" />
 		<Delete Files="@(DebugFiles)" />
 		<Delete Files="@(ReleaseFiles)" />
 		<Delete Files="@(OutputFiles)" />
