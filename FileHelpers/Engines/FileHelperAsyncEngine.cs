@@ -125,7 +125,7 @@ namespace FileHelpers
             {
                 if (mAsyncWriter == null) {
                     throw new BadUsageException(
-                        "You must be writting something to set a record value. Try calling BeginWriteFile first.");
+                        "You must be writing something to set a record value. Try calling BeginWriteFile first.");
                 }
 
                 if (mLastRecordValues == null)
@@ -133,7 +133,7 @@ namespace FileHelpers
 
                 if (value == null) {
                     if (RecordInfo.Fields[fieldIndex].FieldType.IsValueType)
-                        throw new BadUsageException("You can't assing null to a value type.");
+                        throw new BadUsageException("You can't assign null to a value type.");
 
                     mLastRecordValues[fieldIndex] = null;
                 }
@@ -180,7 +180,7 @@ namespace FileHelpers
         public IDisposable BeginReadStream(TextReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The TextReader can´t be null.");
+                throw new ArgumentNullException("reader", "The TextReader can't be null.");
 
             if (mAsyncWriter != null)
                 throw new BadUsageException("You can't start to read while you are writing.");
@@ -448,7 +448,7 @@ namespace FileHelpers
         public IDisposable BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
-                throw new ArgumentException("writer", "The TextWriter can´t be null.");
+                throw new ArgumentException("writer", "The TextWriter can't be null.");
 
             if (mAsyncReader != null)
                 throw new BadUsageException("You can't start to write while you are reading.");
@@ -541,7 +541,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (record == null)
-                throw new BadUsageException("The record to write can´t be null.");
+                throw new BadUsageException("The record to write can't be null.");
 
             if (RecordType.IsAssignableFrom(record.GetType()) == false)
                 throw new BadUsageException("The record must be of type: " + RecordType.Name);
@@ -600,7 +600,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write can't be null.");
 
             bool first = true;
 
