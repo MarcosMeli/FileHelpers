@@ -28,11 +28,6 @@ namespace FileHelpers
         /// <summary>Allows to change some record layout options at runtime</summary>
         RecordOptions Options { get; }
 
-        /// <summary>
-        /// Indicates the current state of the engine.
-        /// </summary>
-        EngineState State { get; set; }
-
         /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
         int LineNumber { get; }
 

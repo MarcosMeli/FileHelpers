@@ -4034,11 +4034,6 @@
         <member name="P:FileHelpers.IFileHelperAsyncEngine`1.Options">
             <summary>Allows to change some record layout options at runtime</summary>
         </member>
-        <member name="P:FileHelpers.IFileHelperAsyncEngine`1.State">
-            <summary>
-            Indicates the current state of the engine.
-            </summary>
-        </member>
         <member name="P:FileHelpers.IFileHelperAsyncEngine`1.LineNumber">
             <summary>The current line number.</summary>
         </member>
@@ -4650,20 +4645,6 @@
         </member>
         <member name="E:FileHelpers.IFileHelperEngine`1.Progress">
             <summary>Called to notify progress.</summary>
-        </member>
-        <member name="T:FileHelpers.EngineState">
-            <summary>
-            Indicates the State of an engine
-            </summary>
-        </member>
-        <member name="F:FileHelpers.EngineState.Closed">
-            <summary>The Engine is closed</summary>
-        </member>
-        <member name="F:FileHelpers.EngineState.Reading">
-            <summary>The Engine is reading a file, string or stream</summary>
-        </member>
-        <member name="F:FileHelpers.EngineState.Writing">
-            <summary>The Engine is writing a file, string or stream</summary>
         </member>
         <member name="T:FileHelpers.LengthIndicatorType">
             <summary>Represents a record or field length indicator strategy</summary>
@@ -7052,6 +7033,20 @@
             <summary>
             Indicates the current state of the engine.
             </summary>
+        </member>
+        <member name="T:FileHelpers.FileHelperAsyncEngine`1.EngineState">
+            <summary>
+            Indicates the State of an engine
+            </summary>
+        </member>
+        <member name="F:FileHelpers.FileHelperAsyncEngine`1.EngineState.Closed">
+            <summary>The Engine is closed</summary>
+        </member>
+        <member name="F:FileHelpers.FileHelperAsyncEngine`1.EngineState.Reading">
+            <summary>The Engine is reading a file, string or stream</summary>
+        </member>
+        <member name="F:FileHelpers.FileHelperAsyncEngine`1.EngineState.Writing">
+            <summary>The Engine is writing a file, string or stream</summary>
         </member>
         <member name="M:FileHelpers.FileHelperAsyncEngine.#ctor(System.Type)">
             <summary>
@@ -10340,17 +10335,17 @@ engine.WriteFile("TestOut.txt", res);
             <param name="sorter">string sorter to convert</param>
             <returns>new record comparison sorter</returns>
         </member>
-        <member name="T:FileHelpers.SorterRecord">
+        <member name="T:FileHelpers.BigFileSorter.SorterRecord">
             <summary>
             Support record class for string sorting
             </summary>
         </member>
-        <member name="F:FileHelpers.SorterRecord.Value">
+        <member name="F:FileHelpers.BigFileSorter.SorterRecord.Value">
             <summary>
             Value of the string
             </summary>
         </member>
-        <member name="M:FileHelpers.SorterRecord.CompareTo(FileHelpers.SorterRecord)">
+        <member name="M:FileHelpers.BigFileSorter.SorterRecord.CompareTo(FileHelpers.BigFileSorter.SorterRecord)">
             <summary>
             Compare to the sorter record
             </summary>

@@ -208,7 +208,6 @@
     <Compile Include="Engines\EventEngineBase.cs" />
     <Compile Include="Engines\IFileHelperAsyncEngine.cs" />
     <Compile Include="Engines\IFileHelperEngine.cs" />
-    <Compile Include="Enums\EngineState.cs" />
     <Compile Include="Enums\LengthIndicatorType.cs" />
     <Compile Include="Core\LineInfo.cs">
       <SubType>Code</SubType>
@@ -385,7 +384,6 @@
     <Compile Include="Attributes\IgnoreInheritedClassAttribute.cs" />
     <Compile Include="Sort\BigFileSorter.cs" />
     <Compile Include="Sort\BigFileSorter.T.cs" />
-    <Compile Include="Sort\SorterRecord.cs" />
     <Compile Include="Sort\SortQueue.T.cs" />
     <Compile Include="Streams\InternalStringReader.cs" />
     <Compile Include="Streams\StreamInfoProvider.cs" />

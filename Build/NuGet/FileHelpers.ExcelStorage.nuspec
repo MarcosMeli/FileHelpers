@@ -12,6 +12,10 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</description>
         <tags>Excel Import Export</tags>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Data" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+        </frameworkAssemblies>        
         <dependencies>
             <dependency id="FileHelpers" version="3.0" />
         </dependencies>
