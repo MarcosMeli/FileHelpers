@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="ExamplesFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\References\Devoo\ExamplesFx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -73,83 +77,6 @@
   <ItemGroup>
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="ExamplesFx\ColorCode\CodeColorizer.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\ExtensionMethods.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\Guard.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\ILanguageRepository.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\LanguageId.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\LanguageRepository.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Common\ScopeName.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\CompiledLanguage.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\ILanguageCompiler.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\LanguageCompiler.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Asax.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Ashx.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Aspx.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\AspxCs.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\AspxVb.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Cpp.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\CSharp.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Css.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Html.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Java.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\JavaScript.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Php.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\PowerShell.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Sql.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\VbDotNet.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\Languages\Xml.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\RuleCaptures.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Compilation\RuleFormats.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Formatters.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Formatting\HtmlFormatter.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Formatting\TextInsertion.cs" />
-    <Compile Include="ExamplesFx\ColorCode\ICodeColorizer.cs" />
-    <Compile Include="ExamplesFx\ColorCode\IFormatter.cs" />
-    <Compile Include="ExamplesFx\ColorCode\ILanguage.cs" />
-    <Compile Include="ExamplesFx\ColorCode\IStyleSheet.cs" />
-    <Compile Include="ExamplesFx\ColorCode\LanguageRule.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Languages.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Parsing\ILanguageParser.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Parsing\LanguageParser.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Parsing\Scope.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Style.cs" />
-    <Compile Include="ExamplesFx\ColorCode\StyleDictionary.cs" />
-    <Compile Include="ExamplesFx\ColorCode\StyleSheets.cs" />
-    <Compile Include="ExamplesFx\ColorCode\Styling\StyleSheets\DefaultStyleSheet.cs" />
-    <Compile Include="ExamplesFx\Controls\ExampleContainerWithHeader.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ExamplesFx\Controls\ExampleHtmlRenderer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ExamplesFx\Controls\ExampleHtmlRenderer.Designer.cs">
-      <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExamplesFx\Controls\ExamplesContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ExamplesFx\Controls\ExamplesContainer.Designer.cs">
-      <DependentUpon>ExamplesContainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExamplesFx\ExampleBase.cs" />
-    <Compile Include="ExamplesFx\ExampleCode.cs" />
-    <Compile Include="ExamplesFx\ExampleFile.cs" />
-    <Compile Include="ExamplesFx\ExamplesEnvironment.cs" />
-    <Compile Include="ExamplesFx\HtmlWrapper.cs" />
-    <Compile Include="ExamplesFx\Render\IHTMLwriter.cs" />
-    <Compile Include="ExamplesFx\NetLanguage.cs" />
-    <Compile Include="ExamplesFx\Themes\ExampleThemeBase.cs" />
-    <Compile Include="ExamplesFx\TreeView\CategoryTreeNode.cs" />
-    <Compile Include="ExamplesFx\TreeView\ExampleSearchMode.cs" />
-    <Compile Include="ExamplesFx\TreeView\ExampleTreeNode.cs" />
-    <Compile Include="ExamplesFx\TreeView\ISearchableNode.cs" />
-    <Compile Include="ExamplesFx\TreeView\TreeViewEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ExamplesFx\TreeView\TreeViewExamples.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
     <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
@@ -201,15 +128,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ExamplesFx\Controls\ExampleContainerWithHeader.resx">
-      <DependentUpon>ExampleContainerWithHeader.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExamplesFx\Controls\ExampleHtmlRenderer.resx">
-      <DependentUpon>ExampleHtmlRenderer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExamplesFx\Controls\ExamplesContainer.resx">
-      <DependentUpon>ExamplesContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmExamples.resx">
       <DependentUpon>frmExamples.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,7 +144,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExamplesFx\ClassDiagram.cd" />
     <None Include="Examples\ExamplesGenerator.Config.tt" />
     <None Include="Examples\ExamplesGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -275,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demos.ico" />
-    <Content Include="ExamplesFx\ColorCode\ColorCode-License.txt" />
     <None Include="Resources\page_down.gif" />
     <None Include="Resources\page_up.gif" />
     <None Include="Resources\page_left.gif" />
