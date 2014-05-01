@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{cf4a2d77-89f2-4e65-a2bf-4b2318265600}</ProjectGuid>
-    <SHFBSchemaVersion>1.9.3.0</SHFBSchemaVersion>
+    <SHFBSchemaVersion>1.9.9.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
@@ -19,8 +19,9 @@
     <HtmlHelpName>FileHelpers</HtmlHelpName>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.dll" />
-<DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.xml" /></DocumentationSources>
-    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+      <DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.xml" />
+    </DocumentationSources>
+    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <HelpTitle>FileHelpers 3.0 Documentation</HelpTitle>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FileHelpers" isDocumented="True">The &lt;b&gt;main namespace&lt;/b&gt; of the library.&lt;br /&gt;You must import always this namespace to work with the FileHelpers.&lt;br /&gt;&lt;br /&gt;Go directly to the Engine classes &lt;a href="FileHelpers.FileHelperEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; and &lt;a href="FileHelpers.FileHelperAsyncEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperAsyncEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. You can also check the &lt;a href="FileHelpers.CommonEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;CommonEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; for shortcuts to the common operations.&lt;br /&gt;&lt;br /&gt;You can also check the advanced engines &lt;a href="FileHelpers.MultiRecordEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;MultiRecordEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, &lt;a href="FileHelpers.FileTransformEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileTransformEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, the &lt;a href="FileHelpers.FileDiffEngine.html"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileDiffEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. &lt;br /&gt;Engines Diagram:&lt;br /&gt;
@@ -40,7 +41,7 @@ You can strong type your flat file %28fixed or delimited%29 simply describing a 
 
 The Library also has support for import/export data from differents storages like Excel, Access, SqlServer, etc. 
 </ProjectSummary>
-    <PresentationStyle>hana</PresentationStyle>
+    <PresentationStyle>VS2013</PresentationStyle>
     <VisibleItems>InheritedMembers</VisibleItems>
     <NamingMethod>MemberName</NamingMethod>
     <IncludeStopWordList>True</IncludeStopWordList>
@@ -49,10 +50,9 @@ The Library also has support for import/export data from differents storages lik
     <HelpAttributes>
     </HelpAttributes>
     <ApiFilter>
-      <Filter entryType="Namespace" fullName="FileHelpers.DataLink" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="FileHelpers.Detection" isExposed="False" xmlns="" />
-    </ApiFilter>
-    <SyntaxFilters>CSharp</SyntaxFilters>
+      <Filter entryType="Namespace" fullName="FileHelpers.DataLink" isExposed="False" />
+<Filter entryType="Namespace" fullName="FileHelpers.Detection" isExposed="False" /></ApiFilter>
+    <SyntaxFilters>C#, Visual Basic</SyntaxFilters>
     <BuildLogFile>
     </BuildLogFile>
     <HtmlHelp2xCompilerPath>
@@ -62,9 +62,40 @@ The Library also has support for import/export data from differents storages lik
     <WorkingPath>
     </WorkingPath>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
-    <WebsiteSdkLinkType>None</WebsiteSdkLinkType>
-    <HtmlSdkLinkType>None</HtmlSdkLinkType>
+    <WebsiteSdkLinkType>Msdn</WebsiteSdkLinkType>
+    <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <MSHelp2SdkLinkType>None</MSHelp2SdkLinkType>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>True</NamespaceGrouping>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <Preliminary>False</Preliminary>
+    <Language>en-US</Language>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <RootNamespaceTitle>Main Index</RootNamespaceTitle>
+    <CopyrightText>Marcos Meli - Devoo</CopyrightText>
+    <ComponentPath>..\Doc\Include\</ComponentPath>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <IndentHtml>False</IndentHtml>
+    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
+    <IncludeFavorites>False</IncludeFavorites>
+    <BinaryTOC>True</BinaryTOC>
+    <ComponentConfigurations>
+      <ComponentConfig id="API Token Resolution" enabled="True" xmlns="">
+        <component id="API Token Resolution">{@TokenFiles}
+<replace elements="/*//token" item="string(.)" /></component>
+      </ComponentConfig>
+<ComponentConfig id="Code Block Component" enabled="True" xmlns=""><component id="Code Block Component">
+  <basePath value="{@HtmlEncProjectFolder}" />
+  <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
+  <allowMissingSource value="false" />
+  <removeRegionMarkers value="false" />
+  <colorizer syntaxFile="{@SHFBFolder}Colorizer\highlight.xml" styleFile="{@SHFBFolder}Colorizer\highlight.xsl" stylesheet="{@SHFBFolder}Colorizer\highlight.css" scriptFile="{@SHFBFolder}Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="0" numberLines="false" outlining="false" keepSeeTags="false" defaultTitle="true" />
+</component></ComponentConfig></ComponentConfigurations>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
