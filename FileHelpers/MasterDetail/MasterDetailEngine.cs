@@ -517,5 +517,3 @@ namespace FileHelpers.MasterDetail
         #endregion
     }
 }
-
-#endif
