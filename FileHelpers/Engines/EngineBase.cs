@@ -16,9 +16,6 @@ namespace FileHelpers
     /// <see cref="FileHelperAsyncEngine"/></summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class EngineBase
-        //#if ! MINI
-        //:Component
-        //#endif
     {
         internal const int DefaultReadBufferSize = 100*1024;
         internal const int DefaultWriteBufferSize = 100*1024;
@@ -233,7 +230,6 @@ namespace FileHelpers
 
         #endregion
 
-#if ! MINI
 
         /// <summary>Event handler called to notify progress.</summary>
         public event EventHandler<ProgressEventArgs> Progress;
@@ -257,7 +253,7 @@ namespace FileHelpers
 
             Progress(this, e);
         }
-#endif
+
 
         private void CreateRecordOptions()
         {

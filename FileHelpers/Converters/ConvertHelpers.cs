@@ -49,18 +49,18 @@ namespace FileHelpers
         /// <summary>
         /// Check the type of the field and then return a converter for that particular type
         /// </summary>
-        /// <param name="fieldName">Fieldname to check</param>
+        /// <param name="fieldName">Field name to check</param>
         /// <param name="fieldType">Type of the field to check</param>
         /// <returns>Converter for this particular field</returns>
         internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType)
         {
-            if (fieldType.IsArray) {
-#if !MINI
+            if (fieldType.IsArray)
+            {
+                
                 if (fieldType.GetArrayRank() != 1) {
                     throw new BadUsageException("The array field: '" + fieldName +
                                                 "' has more than one dimension and is not supported by the library.");
                 }
-#endif
 
                 fieldType = fieldType.GetElementType();
 
@@ -123,10 +123,8 @@ namespace FileHelpers
                 return new CharConverter();
             if (fieldType == typeof (Guid))
                 return new GuidConverter();
-#if ! MINI
             if (fieldType.IsEnum)
                 return new EnumConverter(fieldType);
-#endif
 
             throw new BadUsageException("The field: '" + fieldName + "' has the type: " + fieldType.Name +
                                         " that is not a system type, so this field need a CustomConverter ( Please Check the docs for more Info).");

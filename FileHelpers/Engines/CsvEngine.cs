@@ -7,9 +7,6 @@ using System.IO;
 using FileHelpers.Dynamic;
 using FileHelpers.Options;
 
-#if ! MINI
-
-#endif
 
 namespace FileHelpers
 {

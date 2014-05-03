@@ -21,10 +21,8 @@ namespace FileHelpers
 
         /// <summary>Include the record if it begins and ends with selector string.</summary>
         IncludeIfEnclosed,
-#if ! MINI
         /// <summary>Include the record if it matches the regular expression passed as selector.</summary>
         IncludeIfMatchRegex,
-#endif
 
         /// <summary>Exclude the record if it contains the selector string.</summary>
         ExcludeIfContains,
@@ -36,12 +34,10 @@ namespace FileHelpers
         ExcludeIfEnds,
 
         /// <summary>Exclude the record if it begins and ends with selector string.</summary>
-        ExcludeIfEnclosed
-#if ! MINI
-        ,
+        ExcludeIfEnclosed,
 
         /// <summary>Exclude the record if it matches the regular expression passed as selector.</summary>
         ExcludeIfMatchRegex
-#endif
+
     }
 }

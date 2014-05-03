@@ -1,7 +1,3 @@
-//#undef GENERICS
-
-#define GENERICS
-#if NET_2_0
 
 using System;
 using System.Collections;
@@ -163,21 +159,15 @@ namespace FileHelpers.MasterDetail
 
         #endregion
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
-            private readonly IRecordInfo mMasterInfo;
+        private readonly IRecordInfo mMasterInfo;
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
-            private MasterDetailSelector mRecordSelector;
+        private MasterDetailSelector mRecordSelector;
 
 
-#if NET_2_0
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-#endif
-            private readonly Type mMasterType;
+        private readonly Type mMasterType;
 
         /// <summary>
         /// the type of the master records handled by this engine.
@@ -199,20 +189,6 @@ namespace FileHelpers.MasterDetail
         #region "  ReadFile  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/ReadFile/*'/>
-#if ! GENERICS
-		public MasterDetails[] ReadFile(string fileName)
-		{
-			using (StreamReader fs = new StreamReader(fileName, mEncoding, true, EngineBase.DefaultReadBufferSize))
-			{
-				MasterDetails[] tempRes;
-				tempRes = ReadStream(fs);
-				fs.Close();
-
-				return tempRes;
-			}
-
-		}
-#else
         public MasterDetails<TMaster, TDetail>[] ReadFile(string fileName)
         {
             using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
@@ -223,18 +199,13 @@ namespace FileHelpers.MasterDetail
                 return tempRes;
             }
         }
-#endif
 
         #endregion
 
         #region "  ReadStream  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/ReadStream/*'/>
-#if ! GENERICS
-		public MasterDetails[] ReadStream(TextReader reader)
-#else
         public MasterDetails<TMaster, TDetail>[] ReadStream(TextReader reader)
-#endif
         {
             if (reader == null)
                 throw new ArgumentNullException("reader", "The reader of the Stream can't be null");
@@ -258,11 +229,9 @@ namespace FileHelpers.MasterDetail
                 var completeLine = freader.ReadNextLine();
                 var currentLine = completeLine;
 
-#if !MINI
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(0, -1));
 
-#endif
                 int currentRecord = 0;
 
                 if (mMasterInfo.IgnoreFirst > 0) {
@@ -276,11 +245,7 @@ namespace FileHelpers.MasterDetail
 
                 bool byPass = false;
 
-#if ! GENERICS
-                MasterDetails record = null;
-#else
                 MasterDetails<TMaster, TDetail> record = null;
-#endif
                 var tmpDetails = new ArrayList();
 
                 var line = new LineInfo(currentLine) {
@@ -297,10 +262,8 @@ namespace FileHelpers.MasterDetail
 
                         line.ReLoad(currentLine);
 
-#if !MINI
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1));
-#endif
                         var action = RecordAction.Skip;
                         try {
                             action = RecordSelector(currentLine);
@@ -312,26 +275,14 @@ namespace FileHelpers.MasterDetail
                         switch (action) {
                             case RecordAction.Master:
                                 if (record != null) {
-#if ! GENERICS
-                                    record.mDetails = tmpDetails.ToArray();
-#else
                                     record.Details = (TDetail[]) tmpDetails.ToArray(typeof (TDetail));
-#endif
                                     resArray.Add(record);
                                 }
 
                                 mTotalRecords++;
-#if ! GENERICS
-                                record = new MasterDetails();
-#else
                                 record = new MasterDetails<TMaster, TDetail>();
-#endif
                                 tmpDetails.Clear();
-#if ! GENERICS
-                                object lastMaster = mMasterInfo.StringToRecord(line, valuesMaster);
-#else
                                 var lastMaster = (TMaster) mMasterInfo.Operations.StringToRecord(line, valuesMaster);
-#endif
 
                                 if (lastMaster != null)
                                     record.Master = lastMaster;
@@ -339,11 +290,7 @@ namespace FileHelpers.MasterDetail
                                 break;
 
                             case RecordAction.Detail:
-#if ! GENERICS
-                                object lastChild = mRecordInfo.StringToRecord(line, valuesDetail);
-#else
                                 var lastChild = (TDetail) RecordInfo.Operations.StringToRecord(line, valuesDetail);
-#endif
 
                                 if (lastChild != null)
                                     tmpDetails.Add(lastChild);
@@ -382,22 +329,14 @@ namespace FileHelpers.MasterDetail
                 }
 
                 if (record != null) {
-#if ! GENERICS
-                    record.mDetails = tmpDetails.ToArray();
-#else
                     record.Details = (TDetail[]) tmpDetails.ToArray(typeof (TDetail));
-#endif
                     resArray.Add(record);
                 }
 
                 if (mMasterInfo.IgnoreLast > 0)
                     mFooterText = freader.RemainingText;
             }
-#if ! GENERICS
-			return (MasterDetails[]) resArray.ToArray(typeof (MasterDetails));
-#else
             return (MasterDetails<TMaster, TDetail>[]) resArray.ToArray(typeof (MasterDetails<TMaster, TDetail>));
-#endif
         }
 
         #endregion
@@ -405,15 +344,6 @@ namespace FileHelpers.MasterDetail
         #region "  ReadString  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/ReadString/*'/>
-#if ! GENERICS
-		public MasterDetails[] ReadString(string source)
-		{
-			var reader = new InternalStringReader(source);
-			MasterDetails[] res = ReadStream(reader);
-			reader.Close();
-			return res;
-		}
-#else
         public MasterDetails<TMaster, TDetail>[] ReadString(string source)
         {
             var reader = new StringReader(source);
@@ -421,30 +351,11 @@ namespace FileHelpers.MasterDetail
             reader.Close();
             return res;
         }
-#endif
 
         #endregion
 
         #region "  WriteFile  "
 
-#if ! GENERICS
-    /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
-				public void WriteFile(string fileName, MasterDetails[] records)
-				{
-					WriteFile(fileName, records, -1);
-				}
-
-				/// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
-				public void WriteFile(string fileName, MasterDetails[] records, int maxRecords)
-				{
-					using (StreamWriter fs = new StreamWriter(fileName, false, mEncoding, EngineBase.DefaultWriteBufferSize))
-					{
-						WriteStream(fs, records, maxRecords);
-						fs.Close();
-					}
-
-				}
-#else
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile/*'/>
         public void WriteFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records)
         {
@@ -459,28 +370,19 @@ namespace FileHelpers.MasterDetail
                 fs.Close();
             }
         }
-#endif
 
         #endregion
 
         #region "  WriteStream  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteStream/*'/>
-#if ! GENERICS
-		public void WriteStream(TextWriter writer, MasterDetails[] records)
-#else
         public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<TMaster, TDetail>> records)
-#endif
         {
             WriteStream(writer, records, -1);
         }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteStream2/*'/>
-#if ! GENERICS
-		public void WriteStream(TextWriter writer, MasterDetails[] records, int maxRecords)
-#else
         public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
-#endif
         {
             if (writer == null)
                 throw new ArgumentNullException("writer", "The writer of the Stream can be null");
@@ -508,18 +410,12 @@ namespace FileHelpers.MasterDetail
                     ((IList) records).Count);
             }
 
-#if !MINI
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, max));
-#endif
 
             int recIndex = 0;
 
-#if ! GENERICS
-			foreach(MasterDetails rec in records)
-#else
             foreach (var rec in records)
-#endif
             {
                 if (recIndex == maxRecords)
                     break;
@@ -528,10 +424,8 @@ namespace FileHelpers.MasterDetail
                     if (rec == null)
                         throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
-#if !MINI
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
-#endif
 
                     currentLine = mMasterInfo.Operations.RecordToString(rec.Master);
                     writer.WriteLine(currentLine);
@@ -577,21 +471,13 @@ namespace FileHelpers.MasterDetail
         #region "  WriteString  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString/*'/>
-#if ! GENERICS
-		public string WriteString(MasterDetails[] records)
-#else
         public string WriteString(IEnumerable<MasterDetails<TMaster, TDetail>> records)
-#endif
         {
             return WriteString(records, -1);
         }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteString2/*'/>
-#if ! GENERICS
-		public string WriteString(MasterDetails[] records, int maxRecords)
-#else
         public string WriteString(IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
-#endif
         {
             var sb = new StringBuilder();
             var writer = new StringWriter(sb);
@@ -606,24 +492,13 @@ namespace FileHelpers.MasterDetail
         #region "  AppendToFile  "
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile1/*'/>
-#if ! GENERICS
-		public void AppendToFile(string fileName, MasterDetails record)
-		{
-			AppendToFile(fileName, new MasterDetails[] {record});
-		}
-#else
         public void AppendToFile(string fileName, MasterDetails<TMaster, TDetail> record)
         {
             AppendToFile(fileName, new MasterDetails<TMaster, TDetail>[] {record});
         }
-#endif
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile2/*'/>
-#if ! GENERICS
-		public void AppendToFile(string fileName, MasterDetails[] records)
-#else
         public void AppendToFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records)
-#endif
         {
             using (
                 TextWriter writer = StreamHelper.CreateFileAppender(fileName,

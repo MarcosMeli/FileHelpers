@@ -8,9 +8,6 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 
-#if ! MINI
-
-#endif
 
 namespace FileHelpers
 {
@@ -173,10 +170,9 @@ namespace FileHelpers
                 return (List<T>) result;
         }
 
-#if !MINI
         private IList ReadStreamAsList(TextReader reader, int maxRecords, DataTable dt)
         {
-#endif
+
             if (reader == null)
                 throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
             var recordReader = new NewLineDelimitedRecordReader(reader);
@@ -205,10 +201,8 @@ namespace FileHelpers
                 completeLine = freader.ReadNextLine();
                 currentLine = completeLine;
 
-#if !MINI
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
-#endif
 
                 if (RecordInfo.IgnoreFirst > 0) {
                     for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++) {
@@ -243,7 +237,7 @@ namespace FileHelpers
                         var skip = false;
 
                         var record = (T) RecordInfo.Operations.CreateRecordHandler();
-#if !MINI
+
                         if (MustNotifyProgress) // Avoid object creation
                         {
                             OnProgress(new ProgressEventArgs(currentRecord,
@@ -259,23 +253,20 @@ namespace FileHelpers
                             if (e.RecordLineChanged)
                                 line.ReLoad(e.RecordLine);
                         }
-#endif
+
 
                         if (skip == false) {
                             if (RecordInfo.Operations.StringToRecord(record, line, values)) {
-#if !MINI
+
                                 if (MustNotifyRead) // Avoid object creation
                                     skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
-#endif
+
                                 if (skip == false) {
-#if MINI
-								resArray.Add(record);
-#else
+
                                     if (dt == null)
                                         result.Add(record);
                                     else
                                         dt.Rows.Add(RecordInfo.Operations.RecordToValues(record));
-#endif
                                 }
                             }
                         }
@@ -462,10 +453,9 @@ namespace FileHelpers
                     ((IList) records).Count);
             }
 
-#if !MINI
+
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, max));
-#endif
 
             int recIndex = 0;
 
@@ -490,20 +480,17 @@ namespace FileHelpers
 
 
                     bool skip = false;
-#if !MINI
+
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
                     if (MustNotifyWrite)
                         skip = OnBeforeWriteRecord(rec, LineNumber);
-#endif
 
                     if (skip == false) {
                         currentLine = RecordInfo.Operations.RecordToString(rec);
-#if !MINI
                         if (MustNotifyWrite)
                             currentLine = OnAfterWriteRecord(currentLine, rec);
-#endif
                         writer.WriteLine(currentLine);
                     }
                 }
@@ -590,7 +577,6 @@ namespace FileHelpers
 
         #region "  DataTable Ops  "
 
-#if ! MINI
 
         /// <summary>
         /// Read the records of the file and fill a DataTable with them
@@ -674,8 +660,6 @@ namespace FileHelpers
 
             return dt;
         }
-
-#endif
 
         #endregion
     }

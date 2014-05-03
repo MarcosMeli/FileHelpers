@@ -1,5 +1,3 @@
-#if ! MINI
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,5 +68,3 @@ namespace FileHelpers.Tests.DataLink
         }
     }
 }
-
-#endif

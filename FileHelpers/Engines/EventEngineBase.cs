@@ -88,7 +88,6 @@ namespace FileHelpers
             }
         }
 
-#if ! MINI
 
         /// <summary>
         /// Provide a hook to preprocess a record
@@ -166,6 +165,6 @@ namespace FileHelpers
             return e.RecordLine;
         }
 
-#endif
+
     }
 }
