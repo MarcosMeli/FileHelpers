@@ -1,2 +1,5 @@
-@cd ..
-@%windir%\Microsoft.NET\Framework\v4.0.30319\msbuild Build\FileHelpers.msbuild /t:release /tv:4.0 /nologo
+@echo off
+cd ..
+.nuget\NuGet.exe install .nuget\packages.config -OutputDirectory packages
+.nuget\NuGet.exe restore FileHelpers.sln
+powershell.exe -NoProfile -ExecutionPolicy unrestricted -Command "& {Import-Module '.\packages\psake.*\tools\psake.psm1'; invoke-psake .\Build\default.ps1 compile; if ($LastExitCode -ne 0) {write-host "ERROR: $LastExitCode" -fore RED; exit $lastexitcode} }"

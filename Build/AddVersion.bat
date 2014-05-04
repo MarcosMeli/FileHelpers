@@ -1,3 +1,3 @@
-VersionAdder CurrentVersion.msbuild "</CurrentVersion>"
+VersionAdder CurrentVersion.ps1 """ "
 cd ..
-@%windir%\Microsoft.NET\Framework\v4.0.30319\msbuild Build\FileHelpers.msbuild /t:version /tv:4.0 /nologo
+powershell.exe -NoProfile -ExecutionPolicy unrestricted -Command "& {Import-Module '.\packages\psake.*\tools\psake.psm1'; invoke-psake .\Build\default.ps1 version; if ($LastExitCode -ne 0) {write-host "ERROR: $LastExitCode" -fore RED; exit $lastexitcode} }"

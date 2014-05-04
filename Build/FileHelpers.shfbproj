@@ -18,8 +18,8 @@
     <OutputPath>..\Help\</OutputPath>
     <HtmlHelpName>FileHelpers</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.dll" />
-      <DocumentationSource sourceFile="..\Release\Binaries\DotNet 4.0\FileHelpers.xml" />
+      <DocumentationSource sourceFile="..\Release\Lib\net40\FileHelpers.dll" />
+      <DocumentationSource sourceFile="..\Release\Lib\net40\FileHelpers.xml" />
     </DocumentationSources>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <HelpTitle>FileHelpers 3.0 Documentation</HelpTitle>
@@ -103,6 +103,10 @@ The Library also has support for import/export data from differents storages lik
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Folder Include="html\" />
+  </ItemGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="..\Libs\Sandcastle\SandcastleHelpFileBuilder.targets" />
 </Project>
