@@ -1,9 +1,9 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
 	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildHelp"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="SandcastleBuilder.Utils.dll" />
 	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.CleanHelp"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="SandcastleBuilder.Utils.dll" />
 
 	<!-- Define OutDir if not set already so that it doesn't pick up our project OutputPath setting
        when the common targets are imported below. -->
