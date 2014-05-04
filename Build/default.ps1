@@ -30,6 +30,13 @@ task compile -depends common {
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
 
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
+
+    Compile-Sln "..\FileHelpers.sln" "4.0"
+
+    $delFiles = "..\" + $config + "\*.config"
+    del $delFiles
+
+    Delete-Directory ..\$config\bin
 }
 
 task docs -depends compile {
@@ -37,11 +44,16 @@ task docs -depends compile {
     
     exec { msbuild FileHelpers.shfbproj /p:Configuration=$config /nologo }
     
-    copy ..\Help\FileHelpers.chm ..\$config\FilHelpers.chm
+    Make-Directory ..\$config\docs
+    
+    copy ..\Help\FileHelpers.chm ..\$config\docs\FilHelpers.chm
 }
 
 task pack -depends compile, docs {
     "Packing"
+
+    copy "Home Page.url" ..\$config\
+    copy "..\Readme.md" ..\$config\Readme.txt
 
     $zipName = "Output\FileHelpers_" + $CurrentVersion + "_Build.zip"
     Create-Zip $config $zipName
