@@ -18,7 +18,8 @@ task version {
 task common -depends version {
     "##teamcity[buildNumber '" + $CurrentVersion + "']"
 
-     Delete-Make-Directory ..\$config
+     Delete-Make-Directory "..\Debug"
+     Delete-Make-Directory "..\Release"
      Delete-Make-Directory "..\Output"
 }
 

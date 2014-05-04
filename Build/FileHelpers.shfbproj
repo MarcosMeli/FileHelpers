@@ -108,5 +108,5 @@ The Library also has support for import/export data from differents storages lik
     <Folder Include="html\" />
   </ItemGroup>
   <!-- Import the SHFB build targets -->
-  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+  <Import Project="..\Libs\Sandcastle\SandcastleHelpFileBuilder.targets" />
 </Project>
