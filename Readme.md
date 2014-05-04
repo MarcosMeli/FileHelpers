@@ -43,9 +43,11 @@ Contact and Ideas
  (for the API, Source Code or Examples), please let me know, by sending an e-mail 
  to marcos (at) filehelpers.com
 
-## Sponsors ##
-Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?projectId=project41&tab=projectOverview)
+Sponsors
+-----------------
 
-We have also the awesome .Net tools from [JetBrains](http://www.jetbrains.com/).
+ Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?projectId=project41&tab=projectOverview)
 
-![YouTrack and TeamCity](http://www.jetbrains.com/img/banners/Codebetter300x250.png)
+ We have also the awesome .Net tools from [JetBrains](http://www.jetbrains.com/).
+
+ ![YouTrack and TeamCity](http://www.jetbrains.com/img/banners/Codebetter300x250.png)

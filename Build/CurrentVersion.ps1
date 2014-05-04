@@ -1,4 +1,4 @@
 properties {
-    $CurrentVersion = "3.0.34" 
+    $CurrentVersion = "3.0.35" 
     $FullCurrentVersion = $CurrentVersion + ".0"
 }

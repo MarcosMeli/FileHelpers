@@ -27,10 +27,10 @@ task common -depends version {
 task compile -depends common {
     "Compiling " + $config
     
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLib.sln" "2.0" "Lib\net20"
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLib.sln" "4.5" "Lib\net45"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "2.0" "Lib\net20"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
 
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLib.sln" "4.0" "Lib\net40"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
 }
 
 task docs -depends compile {
@@ -44,7 +44,7 @@ task docs -depends compile {
 task pack -depends compile, docs {
     "Packing"
 
-    $zipName = "Output\FileHelpers_" + $CurrentVersion + ".zip"
+    $zipName = "Output\FileHelpers_" + $CurrentVersion + "_Build.zip"
     Create-Zip $config $zipName
 }
 
@@ -58,7 +58,7 @@ task test -depends compile{
     exec { & .\xunit.console.clr4 $base_dir\tests.xunit }
 }
 
-#functions ---------------------------------------------------------------------------------------------------------
+#functions ----------------------------------------------------
 
 function Delete-Make-Directory($path)
 {
