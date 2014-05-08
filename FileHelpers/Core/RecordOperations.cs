@@ -45,32 +45,22 @@ namespace FileHelpers
         /// <summary>
         /// Extract error of a field
         /// </summary>
-        /// <param name="error">The error that occured</param>
-        /// <param name="field">The field that caused the error</param>
         /// <returns>true indicates that the record has to be processed further for errors</returns>
-        public bool OnReadFieldError(ErrorInfo error, FieldBase field)
+        public void OnReadFieldError(ReadFieldErrorEventArgs e)
         {
             if (ReadFieldError != null)
             {
-                var e = new ReadFieldErrorEventArgs(error, field);
-                return ReadFieldError(this, e);
+                ReadFieldError(this, e);
             }
-
-            // Default stop reading the line
-            return false;
         }
 
         /// <summary>
         /// Extract all errors of a record
         /// </summary>
-        /// <param name="line">Record read</param>
-        /// <param name="lineNumber">The line number</param>
-        /// <param name="errors">All errors of the record</param>
-        public void OnReadLineError(string line, int lineNumber, List<ErrorInfo> errors)
+        public void OnReadLineError(ReadLineErrorEventArgs e)
         {
             if (ReadLineError != null)
             {
-                var e = new ReadLineErrorEventArgs(line, lineNumber, errors);
                 ReadLineError(this, e);
             }
         }
@@ -91,6 +81,8 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return null;
 
+            var lineString = line.mLineStr;
+
             // Collect all errors
             List<ErrorInfo> errors = new List<ErrorInfo>();
 
@@ -103,10 +95,13 @@ namespace FileHelpers
                 }
                 catch (Exception exception)
                 {
-                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = lineString };
                     errors.Add(error);
 
-                    if (!OnReadFieldError(error, field))
+                    var readFieldErrorEventArgs = new ReadFieldErrorEventArgs(error, field, RecordInfo.RecordType);
+                    OnReadFieldError(readFieldErrorEventArgs);
+
+                    if (!readFieldErrorEventArgs.Continue)
                     {
                         // stacktrace is lost. Is that an issue?
                         break;
@@ -116,10 +111,10 @@ namespace FileHelpers
 
             if (errors.Count > 0)
             {
-                // TODO investigate if it is possible to process the record anyway(errors on non required values)
-                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                var readLineErrorEventArgs = new ReadLineErrorEventArgs(lineString, line.mReader.LineNumber, RecordInfo.RecordType, errors);
+                OnReadLineError(readLineErrorEventArgs);
                 // skip record
-                return false;
+                return null;
             }
 
             try
@@ -162,6 +157,8 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return false;
 
+            var lineString = line.mLineStr;
+
             // Collect all errors
             List<ErrorInfo> errors = new List<ErrorInfo>();
 
@@ -174,10 +171,12 @@ namespace FileHelpers
                 }
                 catch (Exception exception)
                 {
-                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = line.mLineStr };
+                    ErrorInfo error = new ErrorInfo { mExceptionInfo = exception, mLineNumber = line.mReader.LineNumber, mRecordString = lineString };
                     errors.Add(error);
 
-                    if (!OnReadFieldError(error, field))
+                    var readFieldErrorEventArgs = new ReadFieldErrorEventArgs(error, field, RecordInfo.RecordType);
+                    OnReadFieldError(readFieldErrorEventArgs);
+                    if (!readFieldErrorEventArgs.Continue)
                     {
                         // stacktrace is lost. Is that an issue?
                         break;
@@ -188,7 +187,8 @@ namespace FileHelpers
             if (errors.Count > 0)
             {
                 // TODO investigate if it is possible to process the record anyway(errors on non required values)
-                OnReadLineError(line.CurrentString, line.mReader.LineNumber, errors);
+                var readLineErrorEventArgs = new ReadLineErrorEventArgs(lineString, line.mReader.LineNumber, RecordInfo.RecordType, errors);
+                OnReadLineError(readLineErrorEventArgs);
                 // skip record
                 return false;
             }

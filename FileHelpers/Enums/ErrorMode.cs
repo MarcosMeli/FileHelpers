@@ -11,7 +11,9 @@ namespace FileHelpers
 		ThrowException = 0,
 		/// <summary>Add an <see cref="ErrorInfo"/> to the array of <see cref="ErrorManager.Errors"/>.</summary>
 		SaveAndContinue,
-		/// <summary>Simply ignores the exception and continues</summary>
-		IgnoreAndContinue
+		/// <summary>Simply ignores the exception and continues processing the file.</summary>
+		IgnoreAndContinue,
+        /// <summary>Add an <see cref="ErrorInfo"/> to the array of <see cref="ErrorManager.Errors"/> and continues processing the current line.</summary>
+        SaveAndContinueLine,
 	}
 }

@@ -23,7 +23,6 @@ namespace FileHelpers.Events
 
 
     // ----  Write Operations  ----
-
     /// <summary>
     /// Called in write operations just before the record is converted to a string to write it.
     /// </summary>
@@ -46,7 +45,7 @@ namespace FileHelpers.Events
     /// </summary>
     /// <param name="sender">The sender that generates the event.</param>
     /// <param name="e">The event data.</param>
-    public delegate bool ReadFieldErrorHandler(object sender, ReadFieldErrorEventArgs e);
+    public delegate void ReadFieldErrorHandler(object sender, ReadFieldErrorEventArgs e);
 
     /// <summary>
     /// Called on read line containing errors

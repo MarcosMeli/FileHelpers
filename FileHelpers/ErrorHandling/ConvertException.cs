@@ -1,3 +1,4 @@
+using FileHelpers.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -81,7 +82,7 @@ namespace FileHelpers
             MessageExtra = extraInfo;
 
             if (origValue != null && destType != null)
-                MessageOriginal = "Error Converting '" + origValue + "' to type: '" + destType.Name + "'. ";
+                MessageOriginal = String.Format(Errors.ValueError, origValue, destType.Name);
 
         }
 
@@ -89,16 +90,16 @@ namespace FileHelpers
         {
             var res = string.Empty;
             if (lineNumber >= 0)
-                res += "Line: " + lineNumber.ToString() + ". ";
+                res += String.Format(Errors.LineError, lineNumber);
 
             if (columnNumber >= 0)
-                res += "Column: " + columnNumber.ToString() + ". ";
+                res += String.Format(Errors.ColumnError, columnNumber);
 
             if (!string.IsNullOrEmpty(fieldName))
-                res += "Field: " + fieldName + ". ";
+                res += String.Format(Errors.FieldError, fieldName);
 
             if (origValue != null && destType != null)
-                res += "Error Converting '" + origValue + "' to type: '" + destType.Name + "'. ";
+                res += String.Format(Errors.ValueError, origValue, destType.Name);
 
             res += extraInfo;
 

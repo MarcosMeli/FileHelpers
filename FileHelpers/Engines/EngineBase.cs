@@ -84,23 +84,28 @@ namespace FileHelpers
         /// <param name="sender">The sender of the event</param>
         /// <param name="e">The Event Args</param>
         /// <returns></returns>
-        protected bool Operations_ReadFieldError(object sender, ReadFieldErrorEventArgs e)
+        protected void Operations_ReadFieldError(object sender, ReadFieldErrorEventArgs e)
         {
             switch (mErrorManager.ErrorMode)
             {
                 case ErrorMode.ThrowException:
                     // rethrow the exception to stop the engine
                     throw e.Error.ExceptionInfo;
-                case ErrorMode.IgnoreAndContinue:
-                    // the record will be ignored. No further action is required
-                    return false;
                 case ErrorMode.SaveAndContinue:
+                    // Add the error to the ErrorInfo array and stop processing the current line
                     mErrorManager.AddError(e.Error);
                     break;
+                case ErrorMode.SaveAndContinueLine:
+                    // Add the error to the ErrorInfo array and continue processing the current line
+                    mErrorManager.AddError(e.Error);
+                    e.Continue = true;
+                    break;
+                case ErrorMode.IgnoreAndContinue:
+                    // Do nothing, this will ignore the excepion and stop processing the current line
+                    break;
+                default:
+                    break;
             }
-
-            // TODO add a property to the EngineBase to specify a default behavior.
-            return true;
         }
 
         /// <summary>

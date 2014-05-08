@@ -1,3 +1,4 @@
+using FileHelpers.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace FileHelpers
 		/// <param name="line">The line number where the problem was found</param>
 		/// <param name="column">The column number where the problem was found</param>
 		public FileHelpersException(int line, int column, string message) 
-			: base("Line: " + line.ToString() + " Column: " + column.ToString() + ". " + message)
+			: base(String.Format(Errors.LineError, line) + String.Format(Errors.ColumnError, column) + message)
 		{
 			
 		}
