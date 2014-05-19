@@ -11,7 +11,7 @@ Downloads
 ---------
 
 You can **download** the last stable version from our build server at:
-####[Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=bt66&tab=artifacts&guest=1)
+####[Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=artifacts&guest=1)
 
     Download the zip with the format: FileHelpers_x.x.x_Build.zip
 
