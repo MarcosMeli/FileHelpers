@@ -1,4 +1,5 @@
 @echo off
+SET EnableNuGetPackageRestore=true
 cd ..
 .nuget\NuGet.exe install .nuget\packages.config -OutputDirectory packages
 .nuget\NuGet.exe restore FileHelpers.sln

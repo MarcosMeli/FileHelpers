@@ -44,9 +44,9 @@ task docs -depends compile {
     
     exec { msbuild FileHelpers.shfbproj /p:Configuration=$config /nologo }
     
-    Make-Directory ..\$config\docs
+    Make-Directory ..\$config\Docs
     
-    copy ..\Help\FileHelpers.chm ..\$config\docs\FilHelpers.chm
+    copy ..\Help\FileHelpers.chm ..\$config\Docs\FilHelpers.chm
 }
 
 task pack -depends compile, docs {
