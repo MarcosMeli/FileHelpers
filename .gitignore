@@ -22,3 +22,5 @@ _ReSharper.FileHelpers
 
 /packages
 /FileHelpers/FileHelpers.xml
+FileHelpers.sln.sdsettings
+FileHelpers.ExcelStorage/FileHelpers.ExcelStorage.xml

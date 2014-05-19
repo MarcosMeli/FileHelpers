@@ -234,6 +234,8 @@ namespace FileHelpers
         /// </summary>
         /// <param name="queues">list of chunks to merge</param>
         /// <param name="destinationFile">output filename</param>
+        /// <param name="headerText">The header of the destinationFile</param>
+        /// <param name="footerText">The footer of the destinationFile</param>
         internal void MergeTheChunks(SortQueue<T>[] queues, string destinationFile, string headerText, string footerText)
         {
             try {

@@ -126,7 +126,6 @@
       <Name>System.Drawing</Name>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>

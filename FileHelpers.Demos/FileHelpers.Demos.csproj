@@ -93,9 +93,8 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.Controls.ProgressBar, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\References\ProgressBar\Net_2.0\Framework.Controls.ProgressBar.dll</HintPath>
+    <Reference Include="Framework.Controls.ProgressBar">
+      <HintPath>..\Libs\References\ProgressBar\Framework.Controls.ProgressBar.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

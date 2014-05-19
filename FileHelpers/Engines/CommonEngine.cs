@@ -360,7 +360,7 @@ namespace FileHelpers
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
             }
 
-            private GetFieldValueCallback mGetFieldValueHandler;
+            //private GetFieldValueCallback mGetFieldValueHandler;
         }
 
         #endregion

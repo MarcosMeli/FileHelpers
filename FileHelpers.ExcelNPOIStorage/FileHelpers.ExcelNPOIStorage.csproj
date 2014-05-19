@@ -58,8 +58,6 @@
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\FileHelpers\VersionInfo.cs">
@@ -87,7 +85,7 @@
     <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"
 move "$(TargetDir)$(TargetName).pdb" "$(TargetDir)$(TargetName).ToMerge.pdb"
-"$(SolutionDir)Libs\ILMerge\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.dll" "$(TargetDir)NPOI.OOXML.dll" "$(TargetDir)NPOI.OpenXML4Net.dll" "$(TargetDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)NPOI.OpenXmlFormats.dll" /keyfile:"$(SolutionDir)FileHelpers\FileHelpers.snk"
+"$(SolutionDir)Packages\ILMerge.*\ilmerge" /t:dll /internalize /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2))  /out:"$(TargetDir)$(TargetName).dll" "$(TargetDir)$(TargetName).ToMerge.dll"  "$(TargetDir)NPOI.dll" "$(TargetDir)NPOI.OOXML.dll" "$(TargetDir)NPOI.OpenXML4Net.dll" "$(TargetDir)ICSharpCode.SharpZipLib.dll" "$(TargetDir)NPOI.OpenXmlFormats.dll" /keyfile:"$(SolutionDir)FileHelpers\FileHelpers.snk"
 del "$(TargetDir)NPOI.*"
 del "$(TargetDir)ICSharpCode.SharpZipLib.dll"
 del "$(TargetDir)$(TargetName).ToMerge.dll"
