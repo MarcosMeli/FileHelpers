@@ -15,11 +15,6 @@
 
 <p class="note"><strong>Note: </strong>VB.NET developers should look at the
 <a href="vb_tips.html">Tips for VB.NET</a> first.</p>
-<p class="note"><a href="FileHelpers_Examples_CSharp_VbNet.zip" >
-<img src="download32.gif" border="0" alt="Download example code"/></a>
-<a href="FileHelpers_Examples_CSharp_VbNet.zip" >
-Click HERE To download the example projects  (C# and VB.NET) </a>
-</p>
 
 <h2>Quick Start for Delimited files (Easy
 <a href="#first"><img src="1.png" width="16" height="16" border="0" align="bottom" alt="1"/></a>
@@ -58,8 +53,6 @@ For this example we use this formatted file delimited by a ',':</p>
 
 <p>Next you write a class listing the fields:</p>
 
-<h4>C#</h4>
-
 <textarea name="code" class="c#" cols="80" rows="14">
 [DelimitedRecord(",")]
 public class Customer
@@ -76,56 +69,25 @@ public class Customer
 }
 </textarea>
 
-<h4>VB.NET</h4>
-
-<textarea name="code" class="vb" cols="80" rows="15">
-&lt;DelimitedRecord(",")&gt; _
-Public Class Customer
-
-    Public CustId As Integer
-
-    Public Name As String
-
-    Public Balance As Decimal
-
-    &lt;FieldConverter(ConverterKind.Date, "dd-MM-yyyy")&gt; _
-    Public AddedDate As DateTime
-
-End Class
-</textarea>
-
 <h3><a name="three"></a><img src="3.png" width="16" height="16" align="left" alt="3"/>Step three</h3>
 
 <p>Then you need to create a FileHelperEngine and read or write the files:</p>
 
-<h4>C#</h4>
 <textarea name="code" class="c#" rows="9" cols="80">
-FileHelperEngine&lt;Customer&gt; engine = new FileHelperEngine&lt;Customer&gt;();
+var engine = new FileHelperEngine&lt;Customer&gt;();
 
 // To Read Use:
-Customer[] result = engine.ReadFile(&quot;FileIn.txt&quot;);
+var result = engine.ReadFile(&quot;FileIn.txt&quot;);
+// result is now an array of Customer
 
 // To Write Use:
 engine.WriteFile(&quot;FileOut.txt&quot;, result);
-</textarea>
-
-<h4>VB.NET</h4>
-
-<textarea name="code" class="vb" rows="8" cols="80">
-Dim engine As New FileHelperEngine(Of Customer)()
-
-' To Read Use:
-Dim result As  Customer() = engine.ReadFile(&quot;FileIn.txt&quot;)
-
-' To Write Use:
-engine.WriteFile(&quot;FileOut.txt&quot;, result)
 </textarea>
 
 <h3><a name="four"></a><img src="4.png" width="16" height="16" align="left" alt="4"/>Step 4</h3>
 
 <p>We can use the result array to access each item in the file, for example: </p>
 
-<h4>C#</h4>
 <textarea name="code" class="c#" cols="80" rows="7">
 foreach (Customer cust in result)
 {
@@ -135,16 +97,6 @@ foreach (Customer cust in result)
 }
 </textarea>
 
-<h4>VB.NET</h4>
-
-<textarea name="code" class="vb" cols="80" rows="7">
-For Each cust As Customer In result)
-
-    Console.WriteLine(&quot;Customer Info:&quot;)
-    Console.WriteLine(cust.Name + &quot; - &quot; + _
-                      cust.AddedDate.ToString(&quot;dd/MM/yy&quot;))
-Next
-</textarea>
 </blockquote>
 {$FOOTER$}
 </td>

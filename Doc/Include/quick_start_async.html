@@ -15,10 +15,6 @@
 <p class="note"> <strong>Note: </strong>VB.NET developers browse the
 <a href="vb_tips.html">Tips for VB.NET</a> first.</p>
 
-<p class="note"><a href="FileHelpers_Examples_CSharp_VbNet.zip" ><img src="download32.gif" border="0" alt=""/>
-Click HERE To download two example projects  (C# and VB.NET) </a>
-</p>
-
 <h2> Quick start for record by record operations (easy
 <a href="#first"><img src="1.png" width="16" height="16" border="0" align="bottom" alt="1"/></a>
 <a href="#two"><img src="2.png" width="16" height="16" border="0" align="bottom" alt="2"/></a>
@@ -50,7 +46,6 @@ For this example we use a file with this format delimited by a ',':</p>
 </textarea>
 
 <p>You write this class:</p>
-<h4>C#</h4>
 
 <textarea name="code" class="c#" cols="80" rows="14">
 [DelimitedRecord(",")]
@@ -68,80 +63,35 @@ public class Customer
 }
 </textarea>
 
-<h4>VB.NET</h4>
-
-<textarea name="code" class="vb" rows="14" cols="80">
-&lt;DelimitedRecord(",")&gt; _
-Public Class Customer
-
-    Public CustId As Integer
-
-    Public Name As String
-
-    Public Balance As Decimal
-
-    &lt;FieldConverter(ConverterKind.Date, "dd-MM-yyyy")&gt; _
-    Public AddedDate As DateTime
-
-End Class
-</textarea>
 
 <h3><a name="three"></a><img src="3.png" width="16" height="16" align="left" alt="3"/>Step three</h3>
 <p>Later you need to create a FileHelperAsync and use it:</p>
 
-<h4>C#</h4>
-
 <textarea name="code" class="c#" rows="24" cols="80">
-FileHelperAsyncEngine&lt;Customer&gt; engine = new FileHelperAsyncEngine&lt;Customer&gt;();
+var engine = new FileHelperAsyncEngine&lt;Customer&gt;();
 
 // Read
-engine.BeginReadFile(&quot;TestIn.txt&quot;);
-
-// The engine is IEnumerable
-foreach(Customer cust in engine)
+using(engine.BeginReadFile(&quot;TestIn.txt&quot;))
 {
-   // your code here
-   Console.WriteLine(cust.Name);
+    // The engine is IEnumerable
+    foreach(Customer cust in engine)
+    {
+       // your code here
+       Console.WriteLine(cust.Name);
+    }
 }
 
-engine.Close();
-
 // Write
-engine.BeginWriteFile(&quot;TestOut.txt&quot;);
-
-foreach(Customer cust in arrayCustomers)
+using(engine.BeginWriteFile(&quot;TestOut.txt&quot;))
 {
-   engine.WriteNext(cust);
+    foreach(Customer cust in arrayCustomers)
+    {
+       engine.WriteNext(cust);
+    }
 }
 
-engine.Close();
 </textarea>
 
-<h4>VB.NET</h4>
-
-<textarea name="code" class="vb" cols="80" rows="22">
-Dim engine As New FileHelperAsyncEngine(Of Customer)()
-
-' Read
-engine.BeginReadFile(&quot;TestIn.txt&quot;)
-
-' The engine is IEnumerable
-For Each cust As Customer In engine)
-   ' your code here
-   Console.WriteLine(cust.Name)
-Next
-
-engine.Close()
-
-// Write
-engine.BeginWriteFile(&quot;TestOut.txt&quot;)
-
-For Each cust As Customer In arrayCustomers)
-   engine.WriteNext(cust)
-Next
-
-engine.Close()
-</textarea>
 </blockquote>
 {$FOOTER$}
 </body></html>
