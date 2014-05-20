@@ -44,7 +44,7 @@ task compiledebug -depends common {
     $config = "Debug"
     "Compiling Debug"
     
-    Compile-Sln "..\FileHelpers.OnlyLibs.sln" "4.0"
+    Compile-Sln "..\FileHelpers.sln" "4.0"
 }
 
 task docs -depends compile {
