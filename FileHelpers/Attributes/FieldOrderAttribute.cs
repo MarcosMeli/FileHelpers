@@ -13,7 +13,7 @@ namespace FileHelpers
     /// <seealso href="attributes.html">Attributes List</seealso>
     /// <seealso href="quick_start.html">Quick Start Guide</seealso>
     /// <seealso href="examples.html">Examples of Use</seealso>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property )]
     public sealed class FieldOrderAttribute : Attribute
     {
         /// <summary>The relative position order of this field.</summary>

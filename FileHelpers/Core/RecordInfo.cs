@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -260,7 +261,7 @@ namespace FileHelpers
             }
 
             if (automaticFields > 0 &&
-                genericFields > 0) {
+                genericFields > 0 && resFields.Sum(x => x.FieldOrder ?? 0) == 0) {
                 throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
                     .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
                     .Text);
@@ -355,7 +356,8 @@ namespace FileHelpers
                 var fieldWithSameOrder =
                     resFields.Find(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
 
-                if (fieldWithSameOrder != null) {
+                if (fieldWithSameOrder != null)
+                {
                     throw new BadUsageException(Messages.Errors.SameFieldOrder
                         .FieldName1(currentField.FieldInfo.Name)
                         .FieldName2(fieldWithSameOrder.FieldInfo.Name)
@@ -365,10 +367,18 @@ namespace FileHelpers
             else {
                 // No other field should have order number set
                 var fieldWithOrder = resFields.Find(x => x.FieldOrder.HasValue);
-                if (fieldWithOrder != null) {
-                    throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                        .FieldName(currentField.FieldInfo.Name)
-                        .Text);
+                if (fieldWithOrder != null)
+                {
+                    var autoPropertyName = FieldBase.AutoPropertyName(currentField.FieldInfo);
+
+                    if (string.IsNullOrEmpty(autoPropertyName))
+                        throw new BadUsageException(Messages.Errors.PartialFieldOrder
+                            .FieldName(currentField.FieldInfo.Name)
+                            .Text);
+                    else
+                        throw new BadUsageException(Messages.Errors.PartialFieldOrderInAutoProperty
+                            .PropertyName(autoPropertyName)
+                            .Text);
                 }
             }
         }

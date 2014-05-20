@@ -52,6 +52,10 @@
     The field: $FieldName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.
   </PartialFieldOrder>
 
+  <PartialFieldOrderInAutoProperty>
+    The auto property: $PropertyName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.
+  </PartialFieldOrderInAutoProperty>
+
   <MissingFieldArrayLenghtInNotLastField>
      The field: $FieldName$ is of an array type and must contain a [FieldArrayLength] attribute because it is not the last field
   </MissingFieldArrayLenghtInNotLastField>
@@ -82,6 +86,6 @@
   </TestQuote>
 
   <MixOfStandardAndAutoPropertiesFields>
-    You must only use all standard fields or all automatic properties. You cannot mix them like in the $ClassName$ class.
+    You can mix standard fields and automatic properties only if you use [FieldOrder()] over the fields and properties in the $ClassName$ class.
     </MixOfStandardAndAutoPropertiesFields>
 </Messages>

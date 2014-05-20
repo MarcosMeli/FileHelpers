@@ -24,8 +24,28 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
+
         [Test]
-        [Ignore("Mixing properties and fields is not supported")]
+        public void AutopropertiesLastIsFieldBad()
+        {
+            Assert.Throws<BadUsageException>(() =>
+            {
+                var engine = new FileHelperEngine<AutoPropertiesLastIsFieldBad>();
+            });
+        }
+
+
+        [Test]
+        public void AutopropertiesMixNoFieldOrder()
+        {
+            Assert.Throws<BadUsageException>(() =>
+            {
+                var engine = new FileHelperEngine<AutoPropertiesMixNoFieldOrder>();
+            });
+        }
+
+
+        [Test]
         public void AutopropertiesLastIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesLastIsField>();
@@ -33,13 +53,12 @@ namespace FileHelpers.Tests.CommonTests
             Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
             Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
-            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Usuario>k__BackingField");
-            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("Field1");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Field1");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
         }
 
 
         [Test]
-        [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesFirstIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesFirstIsField>();
@@ -51,8 +70,8 @@ namespace FileHelpers.Tests.CommonTests
             Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
         }
 
+
         [Test]
-        [Ignore("Mixing properties and fields is not supported")]
         public void AutopropertiesMidIsField()
         {
             var engine = new FileHelperEngine<AutoPropertiesMidIsField>();
@@ -74,24 +93,60 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("|")]
         public class AutoPropertiesLastIsField
         {
+            [FieldOrder(1)]
             public int Tag { get; set; }
+
+            [FieldOrder(3)]
             public string Usuario { get; set; }
+
+            [FieldOrder(2)]
+            public string Field1;
+        }
+
+
+
+        [DelimitedRecord("|")]
+        public class AutoPropertiesMixNoFieldOrder
+        {
+            public int Tag { get; set; }
+
+            public string Usuario { get; set; }
+
+            public string Field1;
+        }
+
+
+        [DelimitedRecord("|")]
+        public class AutoPropertiesLastIsFieldBad
+        {
+            [FieldOrder(1)]
+            public int Tag { get; set; }
+
+            public string Usuario { get; set; }
+
+            [FieldOrder(2)]
             public string Field1;
         }
 
         [DelimitedRecord("|")]
         public class AutoPropertiesFirstIsField
         {
+            [FieldOrder(1)]
             public string Field1;
+            [FieldOrder(2)]
             public int Tag { get; set; }
+            [FieldOrder(3)]
             public string Usuario { get; set; }
         }
 
         [DelimitedRecord("|")]
         public class AutoPropertiesMidIsField
         {
+            [FieldOrder(1)]
             public int Tag { get; set; }
+            [FieldOrder(2)]
             public string Field1;
+            [FieldOrder(3)]
             public string Usuario { get; set; }
         }
     }

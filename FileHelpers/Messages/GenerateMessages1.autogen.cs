@@ -40,6 +40,9 @@ internal static TypesOfMessages.Errors.SameFieldOrderClass SameFieldOrder
 private static readonly TypesOfMessages.Errors.PartialFieldOrderClass mPartialFieldOrder = new TypesOfMessages.Errors.PartialFieldOrderClass();
 internal static TypesOfMessages.Errors.PartialFieldOrderClass PartialFieldOrder
 { get { return  mPartialFieldOrder; } }
+private static readonly TypesOfMessages.Errors.PartialFieldOrderInAutoPropertyClass mPartialFieldOrderInAutoProperty = new TypesOfMessages.Errors.PartialFieldOrderInAutoPropertyClass();
+internal static TypesOfMessages.Errors.PartialFieldOrderInAutoPropertyClass PartialFieldOrderInAutoProperty
+{ get { return  mPartialFieldOrderInAutoProperty; } }
 private static readonly TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass mMissingFieldArrayLenghtInNotLastField = new TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass();
 internal static TypesOfMessages.Errors.MissingFieldArrayLenghtInNotLastFieldClass MissingFieldArrayLenghtInNotLastField
 { get { return  mMissingFieldArrayLenghtInNotLastField; } }
@@ -274,7 +277,7 @@ internal MissingFieldArrayLenghtInNotLastFieldClass(): base(@"The field: $FieldN
 }internal class MixOfStandardAndAutoPropertiesFieldsClass: MessageBase
 {
 
-internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You must only use all standard fields or all automatic properties. You cannot mix them like in the $ClassName$ class.") {}
+internal MixOfStandardAndAutoPropertiesFieldsClass(): base(@"You can mix standard fields and automatic properties only if you use [FieldOrder()] over the fields and properties in the $ClassName$ class.") {}
  private string mClassName = null;
  internal MixOfStandardAndAutoPropertiesFieldsClass ClassName(string value)
 {
@@ -314,6 +317,24 @@ internal PartialFieldOrderClass(): base(@"The field: $FieldName$ must be marked 
     {
         var res = SourceText;
         res = StringHelper.ReplaceIgnoringCase(res, "$FieldName$", mFieldName);
+        return res;
+    }
+
+
+}internal class PartialFieldOrderInAutoPropertyClass: MessageBase
+{
+
+internal PartialFieldOrderInAutoPropertyClass(): base(@"The auto property: $PropertyName$ must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.") {}
+ private string mPropertyName = null;
+ internal PartialFieldOrderInAutoPropertyClass PropertyName(string value)
+{
+    mPropertyName = value;
+    return this;
+}
+    protected override string GenerateText() 
+    {
+        var res = SourceText;
+        res = StringHelper.ReplaceIgnoringCase(res, "$PropertyName$", mPropertyName);
         return res;
     }
 
