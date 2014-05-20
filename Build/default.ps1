@@ -39,6 +39,14 @@ task compile -depends common {
     Delete-Directory ..\$config\bin
 }
 
+
+task compiledebug -depends common {
+    $config = "Debug"
+    "Compiling Debug"
+    
+    Compile-Sln "..\FileHelpers.OnlyLibs.sln" "4.0"
+}
+
 task docs -depends compile {
     "Documenting"
     
