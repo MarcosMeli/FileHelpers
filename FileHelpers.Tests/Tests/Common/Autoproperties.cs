@@ -19,8 +19,8 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.FieldCount).IsEqualTo(2);
 
-            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
-            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("Tag");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Usuario");
         }
 
 
@@ -52,9 +52,9 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
-            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("Tag");
             Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Field1");
-            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("Usuario");
         }
 
 
@@ -66,8 +66,8 @@ namespace FileHelpers.Tests.CommonTests
             Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
             Check.That(engine.Options.FieldsNames[0]).IsEqualTo("Field1");
-            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("<Tag>k__BackingField");
-            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Tag");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("Usuario");
         }
 
 
@@ -78,9 +78,9 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.FieldCount).IsEqualTo(3);
 
-            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("<Tag>k__BackingField");
+            Check.That(engine.Options.FieldsNames[0]).IsEqualTo("Tag");
             Check.That(engine.Options.FieldsNames[1]).IsEqualTo("Field1");
-            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("<Usuario>k__BackingField");
+            Check.That(engine.Options.FieldsNames[2]).IsEqualTo("Usuario");
         }
 
         [DelimitedRecord("|")]

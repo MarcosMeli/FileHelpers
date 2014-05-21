@@ -407,7 +407,12 @@ namespace FileHelpers
                 // Initialize field index map
                 mMapFieldIndex = new Dictionary<string, int>(FieldCount, StringComparer.Ordinal);
                 for (int i = 0; i < FieldCount; i++)
+                {
                     mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
+                    if (Fields[i].FieldInfo.Name != Fields[i].FieldFriendlyName)
+                        mMapFieldIndex.Add(Fields[i].FieldFriendlyName, i);
+                }
+                
             }
 
             int res;
