@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -261,7 +260,7 @@ namespace FileHelpers
             }
 
             if (automaticFields > 0 &&
-                genericFields > 0 && resFields.Sum(x => x.FieldOrder ?? 0) == 0) {
+                genericFields > 0 && SumOrder(resFields) == 0) {
                 throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
                     .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
                     .Text);
@@ -277,6 +276,16 @@ namespace FileHelpers
             CheckForOptionalAndArrayProblems(resFields);
 
             return resFields.ToArray();
+        }
+
+        private static int SumOrder(List<FieldBase> fields)
+        {
+            int res = 0;
+            foreach (var field in fields)
+            {
+                res += field.FieldOrder ?? 0;
+            }
+            return res;
         }
 
         /// <summary>
