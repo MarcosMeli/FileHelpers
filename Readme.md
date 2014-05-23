@@ -11,6 +11,7 @@ Downloads
 ---------
 
 You can **download** the last stable version from our build server at:
+
 ####[Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=artifacts&guest=1)
 
     Download the zip with the format: FileHelpers_x.x.x_Build.zip
@@ -46,7 +47,7 @@ Contact and Ideas
 Sponsors
 -----------------
 
- Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?projectId=project41&tab=projectOverview)
+ Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?tab=projectOverview&projectId=FileHelpers)
 
  We have also the awesome .Net tools from [JetBrains](http://www.jetbrains.com/).
 
