@@ -356,26 +356,15 @@ namespace FileHelpers
             /// <returns>0 if equal, -1 if x &lt; y, 1 otherwise</returns>
             public int Compare(object x, object y)
             {
-#if MINI
-				IComparable xv = mFieldInfo.GetValue(x) as IComparable;
+				var xv = mFieldInfo.GetValue(x) as IComparable;
 				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
-#else
-                if (mGetFieldValueHandler == null)
-                    mGetFieldValueHandler = ReflectionHelper.CreateGetFieldMethod(mFieldInfo);
-
-                var xv = mGetFieldValueHandler(x) as IComparable;
-                return xv.CompareTo(mGetFieldValueHandler(y))*mAscending;
-#endif
             }
 
-#if ! (MINI)
-            private GetFieldValueCallback mGetFieldValueHandler;
-#endif
+            //private GetFieldValueCallback mGetFieldValueHandler;
         }
 
         #endregion
 
-#if ! MINI
 
         /// <summary>
         /// Converts any collection of records to a DataTable using reflection.
@@ -442,8 +431,6 @@ namespace FileHelpers
             IRecordInfo ri = RecordInfo.Resolve(recordType);
             return ri.Operations.RecordsToDataTable(records, maxRecords);
         }
-
-#endif
 
         /// <summary>
         /// Reads the file1 and file2 using the recordType and write it to
@@ -827,7 +814,5 @@ namespace FileHelpers
 
     }
 
-#if ! (MINI)
     internal delegate object GetFieldValueCallback(object record);
-#endif
 }

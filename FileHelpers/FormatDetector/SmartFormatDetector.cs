@@ -23,7 +23,7 @@ namespace FileHelpers.Detection
         #region "  Constants  "
 
         private const int MinSampleData = 15;
-        private const double MinDelimitedDeviation = 0.2;
+        private const double MinDelimitedDeviation = 0.25;
 
         #endregion
 
@@ -160,10 +160,9 @@ namespace FileHelpers.Detection
         // UNKNOWN
         private void CreateMixedOptions(string[][] data, List<RecordFormatInfo> res)
         {
-            double average = CalculateAverageLineWidth(data);
-            double deviation = CalculateDeviationLineWidth(data, average);
+            var stats = Indicators.CalculateAsFixedSize (data);
 
-            if (deviation/average <= FixedLengthDeviationTolerance*Math.Min(1, NumberOfLines(data)/MinSampleData))
+            if (stats.Deviation / stats.Avg <= FixedLengthDeviationTolerance * Math.Min (1, NumberOfLines (data) / MinSampleData))
                 CreateFixedLengthOptions(data, res);
 
             CreateDelimiterOptions(data, res);
@@ -177,10 +176,9 @@ namespace FileHelpers.Detection
         private void CreateFixedLengthOptions(string[][] data, List<RecordFormatInfo> res)
         {
             var format = new RecordFormatInfo();
-            double average = CalculateAverageLineWidth(data);
-            double deviation = CalculateDeviationLineWidth(data, average);
+            var stats = Indicators.CalculateAsFixedSize (data);
 
-            format.mConfidence = (int) (Math.Max(0, 1 - deviation/average)*100);
+            format.mConfidence = (int)(Math.Max (0, 1 - stats.Deviation / stats.Avg) * 100);
 
             var builder = new FixedLengthClassBuilder("AutoDetectedClass");
             CreateFixedLengthFields(data, builder);
@@ -343,6 +341,7 @@ namespace FileHelpers.Detection
                 case '@': // Avoid the mails separator to be selected
                 case '&': // Avoid this is near a letter and URLS
                 case '=': // Avoid because URLS contains it
+                case ':': // Avoid because URLS contains it
                     format.mConfidence = (int) (format.Confidence*0.6);
                     break;
 
@@ -350,9 +349,10 @@ namespace FileHelpers.Detection
                     format.mConfidence = (int) (format.Confidence*0.7);
                     break;
 
-                case ',': // Help the , ; tab to be confident
+                case ',': // Help the , ; tab | to be confident
                 case ';':
                 case '\t':
+                case '|':
                     format.mConfidence = (int) Math.Min(100, format.Confidence*1.15);
                     break;
             }
@@ -388,24 +388,28 @@ namespace FileHelpers.Detection
         /// <returns></returns>
         private DelimiterInfo GetDelimiterInfo(string[][] data, char delimiter)
         {
-            var indicators = CalculateIndicators(delimiter, data);
-            double deviation = CalculateDeviation(delimiter, data, indicators.Avg);
+            var indicators = Indicators.CalculateByDelimiter (delimiter, data, QuotedChar);
 
-            return new DelimiterInfo(delimiter, indicators.Avg, indicators.Max, indicators.Min, deviation);
+            return new DelimiterInfo (delimiter, indicators.Avg, indicators.Max, indicators.Min, indicators.Deviation);
         }
 
         private List<DelimiterInfo> GetDelimiters(string[][] data)
         {
-            var frecuency = new Dictionary<char, int>();
+            var frequency = new Dictionary<char, int>();
             int lines = 0;
             for (int i = 0; i < data.Length; i++) {
                 for (int j = 0; j < data[i].Length; j++) {
+                    // Ignore Header Line (if any)
                     if (j == 0)
-                        continue; // Ignore Header Line (if any)
-
-                    lines++;
-
+                        continue;
+                    // ignore empty lines
                     string line = data[i][j];
+                    if (string.IsNullOrEmpty (line))
+                        continue;
+
+                    // analyse line
+                    lines++;
+                                        
                     for (int ci = 0; ci < line.Length; ci++) {
                         char c = line[ci];
 
@@ -415,60 +419,54 @@ namespace FileHelpers.Detection
                             continue;
 
                         int count;
-                        if (frecuency.TryGetValue(c, out count)) {
+                        if (frequency.TryGetValue(c, out count)) {
                             count++;
-                            frecuency[c] = count;
+                            frequency[c] = count;
                         }
                         else
-                            frecuency.Add(c, 1);
+                            frequency.Add(c, 1);
                     }
                 }
             }
 
             var candidates = new List<DelimiterInfo>();
-            foreach (var pair in frecuency) {
-                var indicators = CalculateIndicators(pair.Key, data);
-                double deviation = CalculateDeviation(pair.Key, data, indicators.Avg);
 
+            // sanity check
+            if (lines == 0)
+                return candidates;
+
+            // remove delimiters with low occurrence count
+            var delimiters = new List<char> (frequency.Count);
+            foreach (var pair in frequency)
+            {
+                if (pair.Value >= lines)
+                    delimiters.Add (pair.Key);
+            }
+
+            // calculate 
+            foreach (var key in delimiters)
+            {
+                var indicators = Indicators.CalculateByDelimiter (key, data, QuotedChar);
                 // Adjust based on the number of lines
-                deviation = deviation*Math.Min(1, ((double) lines)/MinSampleData);
-
+                if (lines < MinSampleData)
+                indicators.Deviation = indicators.Deviation * Math.Min (1, ((double)lines) / MinSampleData);
                 if (indicators.Avg > 1 &&
-                    deviation < MinDelimitedDeviation)
-                    candidates.Add(new DelimiterInfo(pair.Key, indicators.Avg, indicators.Max, indicators.Min, deviation));
+                    indicators.Deviation < MinDelimitedDeviation)
+                    candidates.Add (new DelimiterInfo (key, indicators.Avg, indicators.Max, indicators.Min, indicators.Deviation));
             }
 
             return candidates;
         }
 
-        #endregion
+        #endregion        
+
+        /// <summary>
+        /// Gets or sets the quoted char.
+        /// </summary>
+        /// <value>The quoted char.</value>
+        private char QuotedChar { get; set; }
 
         #region "  Statistics Functions  "
-
-        private double CalculateDeviation(char c, string[][] data, double average)
-        {
-            double bigSum = 0.0;
-            int lines = 0;
-            foreach (var fileData in data) {
-                foreach (var line in fileData) {
-                    lines++;
-
-                    int sum = 0;
-                    foreach (var candidate in line) {
-                        if (candidate == c)
-                            sum += 1;
-                    }
-
-                    bigSum = Math.Pow(sum - average, 2);
-                }
-            }
-
-            bigSum = bigSum/lines;
-            bigSum = Math.Sqrt(bigSum);
-
-            return bigSum;
-        }
-
         /// <summary>
         /// Collection of statistics about fields found
         /// </summary>
@@ -488,75 +486,114 @@ namespace FileHelpers.Detection
             /// Average number of delimiters foudn per line
             /// </summary>
             public double Avg = 0;
-        }
 
-        private Indicators CalculateIndicators(char c, string[][] data)
-        {
-            var res = new Indicators();
-            int totalDelimiters = 0;
-            int lines = 0;
+            /// <summary>
+            /// Calculated deviation
+            /// </summary>
+            public double Deviation = 0;
 
-            foreach (var fileData in data) {
-                foreach (var line in fileData) {
-                    if (string.IsNullOrEmpty(line))
+            /// <summary>
+            /// Total analysed lines
+            /// </summary>
+            public int Lines = 0;
+
+            private static double CalculateDeviation (IList<int> values, double avg)
+            {
+                double sum = 0;
+                for (int i = 0; i < values.Count; i++)
+                {
+                    sum += Math.Pow (values[i] - avg, 2);
+                }
+                return Math.Sqrt (sum / values.Count);
+            }
+
+            private static int CountNumberOfDelimiters (string line, char delimiter)
+            {
+                int count = 0;
+                char c;
+                for (int i = 0; i < line.Length; i++)
+                {
+                    c = line[i];
+                    if (c == ' ' || char.IsLetterOrDigit (c))
                         continue;
-
-                    lines++;
-
-                    var delimiterInLine = QuoteHelper.CountNumberOfDelimiters(line, c, QuotedChar);
-
-                    if (delimiterInLine > res.Max)
-                        res.Max = delimiterInLine;
-
-                    if (delimiterInLine < res.Min)
-                        res.Min = delimiterInLine;
-
-                    totalDelimiters += delimiterInLine;
+                    count++;
                 }
+                return count;
             }
 
-            res.Avg = totalDelimiters/(double) lines;
+            public static Indicators CalculateByDelimiter (char delimiter, string[][] data, char? quotedChar)
+            {
+                var res = new Indicators ();
+                int totalDelimiters = 0;
+                int lines = 0;
+                List<int> delimiterPerLine = new List<int> (100);
 
-            return res;
-        }
+                foreach (var fileData in data)
+                {
+                    foreach (var line in fileData)
+                    {
+                        if (string.IsNullOrEmpty (line))
+                            continue;
 
-        /// <summary>
-        /// Gets or sets the quoted char.
-        /// </summary>
-        /// <value>The quoted char.</value>
-        private char QuotedChar { get; set; }
+                        lines++;
 
-        private double CalculateAverageLineWidth(string[][] data)
-        {
-            double sum = 0;
-            int lines = 0;
+                        var delimiterInLine = 0;
+                        if (quotedChar.HasValue)
+                            delimiterInLine = QuoteHelper.CountNumberOfDelimiters (line, delimiter, quotedChar.Value);
+                        else
+                            delimiterInLine = CountNumberOfDelimiters (line, delimiter);
+                        // add count for deviation analysis
+                        delimiterPerLine.Add (delimiterInLine);
 
-            foreach (var fileData in data) {
-                foreach (var line in fileData) {
-                    lines++;
-                    sum += line.Length;
+                        if (delimiterInLine > res.Max)
+                            res.Max = delimiterInLine;
+
+                        if (delimiterInLine < res.Min)
+                            res.Min = delimiterInLine;
+
+                        totalDelimiters += delimiterInLine;
+                    }
                 }
+
+                res.Avg = totalDelimiters / (double)lines;
+
+                // calculate deviation
+                res.Deviation = CalculateDeviation (delimiterPerLine, res.Avg);
+
+                return res;
             }
 
-            return sum/lines;
-        }
+            public static Indicators CalculateAsFixedSize (string[][] data)
+            {
+                var res = new Indicators ();
+                double sum = 0;
+                int lines = 0;
+                List<int> sizePerLine = new List<int> (100);
 
-        private double CalculateDeviationLineWidth(string[][] data, double average)
-        {
-            double bigSum = 0.0;
-            int lines = 0;
+                foreach (var fileData in data)
+                {
+                    foreach (var line in fileData)
+                    {
+                        if (string.IsNullOrEmpty (line))
+                            continue;
+                        lines++;
+                        sum += line.Length;
+                        sizePerLine.Add (line.Length);
 
-            foreach (var fileData in data) {
-                foreach (var line in fileData) {
-                    lines++;
-                    bigSum = Math.Pow(line.Length - average, 2);
+                        if (line.Length > res.Max)
+                            res.Max = line.Length;
+
+                        if (line.Length < res.Min)
+                            res.Min = line.Length;
+                    }
                 }
+
+                res.Avg = sum / (double)lines;
+                // calculate deviation
+                res.Deviation = CalculateDeviation (sizePerLine, res.Avg);
+
+                return res;
             }
-
-            bigSum = bigSum/lines;
-            bigSum = Math.Sqrt(bigSum);
-
-            return bigSum;
         }
 
         #endregion

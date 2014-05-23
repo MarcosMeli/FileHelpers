@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace FileHelpers
@@ -10,8 +11,32 @@ namespace FileHelpers
     /// http://en.wikipedia.org/wiki/External_sorting
     /// </summary>
     public sealed class BigFileSorter
-        : BigFileSorter<SorterRecord>
+        : BigFileSorter<BigFileSorter.SorterRecord>
     {
+        /// <summary>
+        /// Support record class for string sorting
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DelimitedRecord("\r\n")]
+        public sealed class SorterRecord
+            : IComparable<SorterRecord>
+        {
+            /// <summary>
+            /// Value of the string
+            /// </summary>
+            internal string Value;
+
+            /// <summary>
+            /// Compare to the sorter record
+            /// </summary>
+            /// <param name="other">Record to compare</param>
+            /// <returns>Comparison</returns>
+            public int CompareTo(SorterRecord other)
+            {
+                return String.Compare(Value, other.Value, StringComparison.Ordinal);
+            }
+        }
+
         /// <summary>
         /// Create a big file sorter with the minimum buffer size
         /// </summary>

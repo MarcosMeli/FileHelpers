@@ -14,11 +14,7 @@ namespace FileHelpers
         /// <summary>
         /// New line variable
         /// </summary>
-#if ! MINI
         internal static readonly string NewLine = Environment.NewLine;
-#else
-			internal static readonly string NewLine = "\r\n";
-		#endif
 
         #region "  ExtractQuotedString  "
 

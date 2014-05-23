@@ -15,18 +15,8 @@ namespace FileHelpers
     }
 
 
-#if MINI
-
-	internal sealed class StreamHelper
-	{
-		private StreamHelper()
-		{
-		}
-
-#else
     internal static class StreamHelper
     {
-#endif
 
 
         /// <summary>

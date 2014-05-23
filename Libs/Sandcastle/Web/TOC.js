@@ -1,37 +1,37 @@
-//=============================================================================
+//===============================================================================================================
 // System  : Sandcastle Help File Builder
 // File    : TOC.js
 // Author  : Eric Woodruff  (Eric@EWoodruff.us)
-// Updated : 02/21/2012
-// Note    : Copyright 2006-2012, Eric Woodruff, All rights reserved
+// Updated : 03/26/2014
+// Note    : Copyright 2006-2014, Eric Woodruff, All rights reserved
 // Compiler: JavaScript
 //
-// This file contains the methods necessary to implement a simple tree view
-// for the table of content with a resizable splitter and Ajax support to
-// load tree nodes on demand.  It also contains the script necessary to do
+// This file contains the methods necessary to implement a simple tree view for the table of content with a
+// resizable splitter and Ajax support to load tree nodes on demand.  It also contains the script necessary to do
 // full-text searches.
 //
-// This code is published under the Microsoft Public License (Ms-PL).  A copy
-// of the license should be distributed with the code.  It can also be found
-// at the project website: http://SHFB.CodePlex.com.   This notice, the
-// author's name, and all copyright notices must remain intact in all
-// applications, documentation, and source files.
+// This code is published under the Microsoft Public License (Ms-PL).  A copy of the license should be
+// distributed with the code.  It can also be found at the project website: http://SHFB.CodePlex.com.  This
+// notice, the author's name, and all copyright notices must remain intact in all applications, documentation,
+// and source files.
 //
 // Version     Date     Who  Comments
-// ============================================================================
+// ==============================================================================================================
 // 1.3.0.0  09/12/2006  EFW  Created the code
-// 1.4.0.2  06/15/2007  EFW  Reworked to get rid of frame set and to add
-//                           support for Ajax to load tree nodes on demand.
+// 1.4.0.2  06/15/2007  EFW  Reworked to get rid of frame set and to add support for Ajax to load tree nodes on
+//                           demand.
 // 1.5.0.0  06/24/2007  EFW  Added full-text search capabilities
-// 1.6.0.7  04/01/2008  EFW  Merged changes from Ferdinand Prantl to add a
-//                           website keyword index.  Added support for "topic"
-//                           query string option.
-// 1.9.4.0  02/21/2012  EFW  Merged code from Thomas Levesque to show direct
-//                           link and support other page types like PHP.
-//=============================================================================
+// 1.6.0.7  04/01/2008  EFW  Merged changes from Ferdinand Prantl to add a website keyword index.  Added support
+//                           for "topic" query string option.
+// 1.9.4.0  02/21/2012  EFW  Merged code from Thomas Levesque to show direct link and support other page types
+//                           like PHP.
+// 1.9.5.0  07/25/2012  EFW  Made changes to support IE 10.
+// 1.9.8.0  07/26/2013  EFW  Merged changes from Dave Dansey to sync to TOC when the topic URL parameter is used
+//===============================================================================================================
 
 // IE and Chrome flags
 var isIE = (navigator.userAgent.indexOf("MSIE") >= 0);
+var isIE10OrLater = /MSIE 1\d\./.test(navigator.userAgent);
 var isChrome = (navigator.userAgent.indexOf("Chrome") >= 0);
 
 // Page extension
@@ -41,15 +41,17 @@ var pageExtension = ".aspx";
 var minWidth = 100;
 
 // Elements and sizing info
-var divTOC, divSizer, topicContent, divNavOpts, divSearchOpts, divSearchResults,
-    divIndexOpts, divIndexResults, divTree, docBody, maxWidth, offset,
-    txtSearchText, chkSortByTitle;
+var divTOC, divSizer, topicContent, divNavOpts, divSearchOpts, divSearchResults, divIndexOpts, divIndexResults,
+    divTree, docBody, maxWidth, offset, txtSearchText, chkSortByTitle;
 
 // Last node selected
 var lastNode, lastSearchNode, lastIndexNode;
 
 // Last page with keyword index
 var currentIndexPage = 0;
+
+// XML Doc of the TOC
+var xmlTOCDoc
 
 //============================================================================
 
@@ -76,16 +78,14 @@ function Initialize(extension)
 
     // The sizes are bit off in FireFox
     if(!isIE)
-        divNavOpts.style.width = divSearchOpts.style.width =
-            divIndexOpts.style.width = 292;
+        divNavOpts.style.width = divSearchOpts.style.width = divIndexOpts.style.width = 292;
 
     ResizeTree();
     SyncTOC();
 
     topicContent.onload = SyncTOC;
 
-    // Use an alternate default page if a topic is specified in
-    // the query string.
+    // Use an alternate default page if a topic is specified in the query string
     var queryString = document.location.search;
 
     if(queryString != "")
@@ -95,14 +95,17 @@ function Initialize(extension)
         for(idx = 0; idx < options.length; idx++)
             if(options[idx] == "topic" && idx + 1 < options.length)
             {
-                topicContent.src = options[idx + 1];
+                // Don't allow references outside the current site
+                if(options[idx + 1].length > 1 && options[idx + 1][0] != '/' && options[idx + 1][0] != '.')
+                    topicContent.src = options[idx + 1];
+
                 break;
             }
     }
 }
 
 //============================================================================
-// Navigation and expand/collaps code
+// Navigation and expand/collapse code
 
 // Synchronize the table of content with the selected page if possible
 function SyncTOC()
@@ -116,6 +119,7 @@ function SyncTOC()
         base = base.replace("file://", "file:///");
 
     url = GetCurrentUrl();
+
     if(url == "")
         return false;
 
@@ -131,8 +135,7 @@ function SyncTOC()
         {
             href = anchors[idx].href;
 
-            if(href.substring(0, 7) != 'http://' &&
-              href.substring(0, 8) != 'https://' &&
+            if(href.substring(0, 7) != 'http://' && href.substring(0, 8) != 'https://' &&
               href.substring(0, 7) != 'file://')
                 href = base + href;
 
@@ -152,6 +155,7 @@ function SyncTOC()
                 continue;
             }
 
+            LoadTOC(url);
             return;
         }
 
@@ -203,6 +207,152 @@ function SyncTOC()
             divTree.scrollTop -= windowBottom - 30;
 }
 
+// Search an array to see if it contains the given object
+function Contains(a, obj)
+{
+    for(var i = 0; i < a.length; i++)
+        if(a[i] === obj)
+            return true;
+
+    return false;
+}
+
+// Get the parent TOC IDs from the TOC XML file
+function GetParentTOCIds(target)
+{
+    if(xmlTOCDoc == null)
+    {
+        // Load the TOC XML
+        try
+        {
+            var xmlhttp = GetXmlHttpRequest();
+            xmlhttp.open("GET", "WebTOC.xml", false);
+            xmlhttp.send();
+
+            xmlTOCDoc = xmlhttp.responseXML;
+        }
+        catch(e)
+        {
+//            alert(e.message);
+        }
+
+        if(xmlTOCDoc == null)
+            return new Array();
+    }
+
+    // Get all TOC nodes
+    x = xmlTOCDoc.getElementsByTagName("HelpTOCNode");
+
+    // Iterate nodes looking for the target
+    var targetNode = null;
+
+    for(i = 0; i < x.length; i++)
+    {
+        var id = x[i].getAttribute('Url');
+
+        if(id != null)
+        {
+            id = id.substring(id.lastIndexOf("/") + 1, id.length - (id.length - id.lastIndexOf(".")));
+
+            if(id == target)
+            {
+                targetNode = x[i];
+                break;
+            }
+        }
+    }
+
+    // Build an array of parent ids of the target node
+    var ids = new Array();
+
+    if(targetNode != null)
+    {
+        var index = 0;
+
+        while(targetNode.parentNode.tagName == "HelpTOCNode")
+        {
+            targetNode = targetNode.parentNode;
+            ids[index] = targetNode.getAttribute('Id');
+            index = index + 1;
+        }
+    }
+
+    return ids
+}
+
+// Load the TOC and expand all parent nodes down to the given entry
+function LoadTOC(url)
+{
+    // Extract the target id from the url
+    var target = url.substring(url.lastIndexOf("/") + 1, url.length - (url.length - url.lastIndexOf(".")));
+
+    // Get an array of parent id's
+    var idList = GetParentTOCIds(target);
+
+    var divIdx, childIdx, img, divs = document.getElementsByTagName("DIV");
+    var childNodes, child, div;
+
+    // Loop through all DIV tags, looking for the next one to lazy-load
+    for(divIdx = 0; divIdx < divs.length; divIdx++)
+        if(divs[divIdx].className == "Hidden" || divs[divIdx].className == "Visible")
+        {
+            childNodes = divs[divIdx].parentNode.childNodes;
+
+            for(childIdx = 0; childIdx < childNodes.length; childIdx++)
+            {
+                child = childNodes[childIdx];
+
+                if(child.className == "TreeNodeImg")
+                    img = child;
+
+                if(child.className == "Hidden" || child.className == "Visible")
+                {
+                    div = child;
+                    break;
+                }
+            }
+
+            if(div.className == "Hidden" && Contains(idList,div.id))
+            {
+                div.className = "Visible";
+                img.src = "Expanded.gif";
+
+                if(div.innerHTML == "")
+                    FillNodeAndTrySyncTOC(div)
+            }
+        }
+}
+
+// Lazy load the child TOC nodes and re-try to SyncTOC afterwards (if the TOC still can't be synced the process
+// will run again to expand the next parent down).
+function FillNodeAndTrySyncTOC(div)
+{
+    var xmlHttp = GetXmlHttpRequest(), now = new Date();
+
+    if(xmlHttp == null)
+    {
+        div.innerHTML = "<b>XML HTTP request not supported!</b>";
+        return;
+    }
+
+    div.innerHTML = "Loading...";
+
+    // Add a unique hash to ensure it doesn't use cached results
+    xmlHttp.open("GET", "FillNode" + pageExtension + "?Id=" + div.id + "&hash=" + now.getTime(), true);
+
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState == 4)
+        {
+            div.innerHTML = xmlHttp.responseText;
+
+            SyncTOC();
+        }
+    }
+
+    xmlHttp.send(null)
+}
+
 // Get the currently loaded URL from the IFRAME
 function GetCurrentUrl()
 {
@@ -214,23 +364,19 @@ function GetCurrentUrl()
     }
     catch(e)
     {
-        // If this happens the user probably navigated to another frameset
-        // that didn't make itself the topmost frameset and we don't have
-        // control of the other frame anymore.  In that case, just reload
-        // our index page.
+        // If this happens the user probably navigated to another frame set that didn't make itself the topmost
+        // frame set and we don't have control of the other frame anymore.  In that case, just reload our index
+        // page.
         base = window.location.href;
         base = base.substr(0, base.lastIndexOf("/") + 1);
 
-        // Chrome is too secure and won't let you access frame URLs when
-        // running from the file system unless you run Chrome with the
-        // "--disable-web-security" command line option.
+        // Chrome is too secure and won't let you access frame URLs when running from the file system unless
+        // you run Chrome with the "--disable-web-security" command line option.
         if(isChrome && base.substr(0, 5) == "file:")
         {
-            alert("Chrome security prevents access to file-based frame " +
-                "URLs.  As such, the TOC will not work with Index.html.  " +
-                "Either run this website on a web server, run Chrome with " +
-                "the '--disable-web-security' command line option, or use " +
-                "FireFox or Internet Explorer.");
+            alert("Chrome security prevents access to file-based frame URLs.  As such, the TOC will not work " +
+                "with index.html.  Either run this website on a web server, run Chrome with the " +
+                "'--disable-web-security' command line option, or use FireFox or Internet Explorer.");
 
             return "";
         }
@@ -238,10 +384,11 @@ function GetCurrentUrl()
         if(base.substr(0, 5) == "file:" && base.substr(0, 8) != "file:///")
             base = base.replace("file://", "file:///");
 
+        // Use lowercase on name for case-sensitive servers
         if(base.substr(0, 5) == "file:")
-            top.location.href = base + "Index.html";
+            top.location.href = base + "index.html";
         else
-            top.location.href = base + "index" + pageExtension; // Use lowercase on name for case-sensitive servers
+            top.location.href = base + "index" + pageExtension;
     }
 
     return url;
@@ -254,8 +401,7 @@ function ExpandOrCollapseAll(expandNodes)
     var childNodes, child, div, link, img;
 
     for(divIdx = 0; divIdx < divs.length; divIdx++)
-        if(divs[divIdx].className == "Hidden" ||
-          divs[divIdx].className == "Visible")
+        if(divs[divIdx].className == "Hidden" || divs[divIdx].className == "Visible")
         {
             childNodes = divs[divIdx].parentNode.childNodes;
 
@@ -392,8 +538,7 @@ function GetXmlHttpRequest()
 {
     var xmlHttp = null;
 
-    // If IE7, Mozilla, Safari, etc., use the native object.
-    // Otherwise, use the ActiveX control for IE5.x and IE6.
+    // If IE7, Mozilla, Safari, etc., use the native object.  Otherwise, use the ActiveX control for IE5.x and IE6.
     if(window.XMLHttpRequest)
         xmlHttp = new XMLHttpRequest();
     else
@@ -403,8 +548,7 @@ function GetXmlHttpRequest()
     return xmlHttp;
 }
 
-// Perform an AJAX-style request for the contents of a node and put the
-// contents into the empty div.
+// Perform an AJAX-style request for the contents of a node and put the contents into the empty div
 function FillNode(div, expandChildren)
 {
     var xmlHttp = GetXmlHttpRequest(), now = new Date();
@@ -418,8 +562,7 @@ function FillNode(div, expandChildren)
     div.innerHTML = "Loading...";
 
     // Add a unique hash to ensure it doesn't use cached results
-    xmlHttp.open("GET", "FillNode" + pageExtension + "?Id=" + div.id + "&hash=" +
-        now.getTime(), true);
+    xmlHttp.open("GET", "FillNode" + pageExtension + "?Id=" + div.id + "&hash=" + now.getTime(), true);
 
     xmlHttp.onreadystatechange = function()
     {
@@ -480,13 +623,13 @@ function ResizeTree()
 // Resize the content div
 function ResizeContent()
 {
-    if(isIE)
+    // IE 10 sizes the frame like FireFox and Chrome
+    if(isIE && !isIE10OrLater)
         maxWidth = docBody.clientWidth - 1;
     else
         maxWidth = docBody.clientWidth - 4;
 
-    topicContent.style.width = maxWidth - (divSizer.offsetLeft +
-        divSizer.offsetWidth);
+    topicContent.style.width = maxWidth - (divSizer.offsetLeft + divSizer.offsetWidth);
     maxWidth -= minWidth;
 }
 
@@ -498,13 +641,11 @@ function OnMouseDown(event)
     // Make sure the splitter is at the top of the z-index
     divSizer.style.zIndex = 5000;
 
-    // The content is in an IFRAME which steals mouse events so
-    // hide it while resizing.
+    // The content is in an IFRAME which steals mouse events so hide it while resizing
     topicContent.style.display = "none";
 
     if(isIE)
-        x = window.event.clientX + document.documentElement.scrollLeft +
-            document.body.scrollLeft;
+        x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft;
     else
         x = event.clientX + window.scrollX;
 
@@ -538,25 +679,21 @@ function OnMouseMove(event)
 
     // Get cursor position with respect to the page
     if(isIE)
-        x = window.event.clientX + document.documentElement.scrollLeft +
-            document.body.scrollLeft;
+        x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft;
     else
         x = event.clientX + window.scrollX;
 
     left = offset + x;
 
     // Adjusts the width of the TOC divs
-    pos = (event.clientX > maxWidth) ? maxWidth :
-        (event.clientX < minWidth) ? minWidth : event.clientX;
+    pos = (event.clientX > maxWidth) ? maxWidth : (event.clientX < minWidth) ? minWidth : event.clientX;
 
-    divTOC.style.width = divSearchResults.style.width =
-        divIndexResults.style.width = divTree.style.width = pos;
+    divTOC.style.width = divSearchResults.style.width = divIndexResults.style.width = divTree.style.width = pos;
 
     if(!isIE)
         pos -= 8;
 
-    divNavOpts.style.width = divSearchOpts.style.width =
-        divIndexOpts.style.width = pos;
+    divNavOpts.style.width = divSearchOpts.style.width = divIndexOpts.style.width = pos;
 
     // Resize the content div to fit in the remaining space
     ResizeContent();
@@ -692,8 +829,7 @@ function PopulateIndex(startIndex)
         return;
     }
 
-    divIndexResults.innerHTML = "<span class=\"PaddedText\">Loading " +
-        "keyword index...</span>";
+    divIndexResults.innerHTML = "<span class=\"PaddedText\">Loading keyword index...</span>";
 
     // Add a unique hash to ensure it doesn't use cached results
     xmlHttp.open("GET", "LoadIndexKeywords" + pageExtension + "?StartIndex=" + startIndex +

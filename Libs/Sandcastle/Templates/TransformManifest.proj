@@ -1,14 +1,22 @@
 ﻿<Project DefaultTargets="Transform" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-	<!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.XslTransform"
-		AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+	<!-- Sandcastle Tools MSBuild Tasks.  http://SHFB.CodePlex.com -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.AddNamespaceGroups"
+    AssemblyFile="{@SHFBFolder}\AddNamespaceGroups.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.XslTransform"
+    AssemblyFile="{@SHFBFolder}\XslTransform.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.VersionBuilder"
+    AssemblyFile="{@SHFBFolder}\VersionBuilder.exe" />
 
 	<!-- Task properties -->
 	<PropertyGroup>
-		<PresentationStyle>{@PresentationParam}</PresentationStyle>
-		<ProjectNodeParam>{@IncludeProjectNode}</ProjectNodeParam>
-		<SandcastlePath>{@SandcastlePath}</SandcastlePath>
 		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+		<DocModelTransformation>{@DocModelTransformation}</DocModelTransformation>
+		<DocModelTransformationParameters>{@DocModelTransformationParameters}</DocModelTransformationParameters>
+		<NamingMethod>{@NamingMethod}</NamingMethod>
+		<NamespaceGrouping>{@NamespaceGrouping}</NamespaceGrouping>
+		<MaximumParts>{@MaximumGroupParts}</MaximumParts>
+		<VersionBuilderConfigurationFile></VersionBuilderConfigurationFile>
+		<RipOldApis>false</RipOldApis>
 	</PropertyGroup>
 
 	<!-- This defines the dependencies for the Transform target -->
@@ -24,50 +32,53 @@
 
 	<!-- The Transform Manifest target -->
 	<Target Name="TransformManifest">
+		<!-- If a Version Builder configuration has been specified, run version builder first to merge the
+				 information from each version. -->
+		<Microsoft.Ddue.Tools.MSBuild.VersionBuilder
+			WorkingFolder="$(WorkingFolder)"
+			ConfigurationFile="$(VersionBuilderConfigurationFile)"
+			OutputFile="reflection.org"
+			RipOldApis="$(RipOldApis)"
+			Condition=" '$(VersionBuilderConfigurationFile)' != '' " />
+		
 		<!-- Transform the reflection output based on the presentation style -->
-		<SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' == 'vs2005'"
-			SandcastlePath="$(SandcastlePath)"
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
 			WorkingFolder="$(WorkingFolder)"
-			Transformations="ProductionTransforms\ApplyVSDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-			Arguments="IncludeAllMembersTopic=true;IncludeInheritedOverloadTopics=false;$(ProjectNodeParam)"
+			Transformations="$(DocModelTransformation)"
+			Arguments="$(DocModelTransformationParameters)"
 			InputFile="reflection.org"
 			OutputFile="reflection.xml" />
 
-		<SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' == 'vs2010'"
-			SandcastlePath="$(SandcastlePath)"
-			WorkingFolder="$(WorkingFolder)"
-			Transformations="ProductionTransforms\ApplyVSDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-			Arguments="IncludeAllMembersTopic=true;IncludeInheritedOverloadTopics=false;$(ProjectNodeParam)"
-			InputFile="reflection.org"
-			OutputFile="reflection.xml" />
+		<!-- Add namespace group topics if enabled -->
+		<Copy SourceFiles="reflection.xml" DestinationFiles="reflection.ungrouped"
+			Condition=" '$(NamespaceGrouping)' == 'true' " />
 
-		<SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' == 'hana'"
-			SandcastlePath="$(SandcastlePath)"
+		<Microsoft.Ddue.Tools.MSBuild.AddNamespaceGroups
 			WorkingFolder="$(WorkingFolder)"
-			Transformations="ProductionTransforms\ApplyVSDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-			Arguments="IncludeAllMembersTopic=false;IncludeInheritedOverloadTopics=false;$(ProjectNodeParam)"
-			InputFile="reflection.org"
-			OutputFile="reflection.xml" />
+			MaximumParts="$(MaximumParts)"
+			InputFile="reflection.ungrouped"
+			OutputFile="reflection.xml"
+			Condition=" '$(NamespaceGrouping)' == 'true' " />
 
-		<SandcastleBuilder.Utils.MSBuild.XslTransform Condition="'$(PresentationStyle)' == 'prototype'"
-			SandcastlePath="$(SandcastlePath)"
+		<!-- Add filenames to the topics.  This needs to happen after grouping if it was enabled. -->
+		<Copy SourceFiles="reflection.xml" DestinationFiles="reflection.nofilenames" />
+
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
 			WorkingFolder="$(WorkingFolder)"
-			Transformations="ProductionTransforms\ApplyPrototypeDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-			Arguments="$(ProjectNodeParam)"
-			InputFile="reflection.org"
+			Transformations="~\ProductionTransforms\AddFilenames.xsl"
+			Arguments="namingMethod=$(NamingMethod)"
+			InputFile="reflection.nofilenames"
 			OutputFile="reflection.xml" />
 
 		<!-- Generate the topic manifest -->
-		<SandcastleBuilder.Utils.MSBuild.XslTransform
-			SandcastlePath="$(SandcastlePath)"
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
 			WorkingFolder="$(WorkingFolder)"
-			Transformations="ProductionTransforms\ReflectionToManifest.xsl"
+			Transformations="~\ProductionTransforms\ReflectionToManifest.xsl"
 			InputFile="reflection.xml"
 			OutputFile="manifest.xml" />
 	</Target>
 
-	<!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
+	<!-- The following targets may be overridden or replaced to perform additional processing. -->
 	<Target Name="BeforeTransformManifest" />
 	<Target Name="AfterTransformManifest" />
 </Project>

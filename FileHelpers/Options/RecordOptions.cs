@@ -76,7 +76,7 @@ namespace FileHelpers.Options
                 if (mFieldNames == null) {
                     mFieldNames = new string[mRecordInfo.FieldCount];
                     for (int i = 0; i < mFieldNames.Length; i++)
-                        mFieldNames[i] = mRecordInfo.Fields[i].FieldInfo.Name;
+                        mFieldNames[i] = mRecordInfo.Fields[i].FieldFriendlyName;
                 }
 
                 return mFieldNames;

@@ -60,15 +60,8 @@ namespace FileHelpers.WizardApp
             this.chkPopup = new System.Windows.Forms.CheckBox();
             this.cmdDonate = new System.Windows.Forms.Button();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox4)).BeginInit();
             this.panText.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(296, 7);
-            this.pictureBox3.Visible = false;
             // 
             // label1
             // 
@@ -261,7 +254,6 @@ namespace FileHelpers.WizardApp
             this.Text = "Donate =)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDonate_FormClosed);
             this.Load += new System.EventHandler(this.frmDonate_Load);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.pictureBox4, 0);
             this.Controls.SetChildIndex(this.lstAmount, 0);
             this.Controls.SetChildIndex(this.cmdClose, 0);
@@ -269,7 +261,6 @@ namespace FileHelpers.WizardApp
             this.Controls.SetChildIndex(this.chkPopup, 0);
             this.Controls.SetChildIndex(this.cmdDonate, 0);
             this.Controls.SetChildIndex(this.linkLabel3, 0);
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox4)).EndInit();
             this.panText.ResumeLayout(false);
             this.panText.PerformLayout();

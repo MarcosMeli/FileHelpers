@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace FileHelpers.Events
 {
-#if ! MINI
 
     /// <summary>Class used to notify the current progress position and other context info.</summary>
     public class ProgressEventArgs
@@ -69,5 +68,5 @@ namespace FileHelpers.Events
         }
     }
 
-#endif
+
 }

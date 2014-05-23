@@ -1,4 +1,3 @@
-#if ! MINI
 
 using System;
 using System.Collections;
@@ -266,4 +265,3 @@ namespace FileHelpers.Tests.CommonTests
     }
 }
 
-#endif

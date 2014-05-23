@@ -63,12 +63,7 @@ namespace FileHelpers.WizardApp
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.cmdDownload = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(448, 7);
             // 
             // txtHistory
             // 
@@ -237,7 +232,6 @@ namespace FileHelpers.WizardApp
             this.Text = "FileHelpers - New Version Info";
             this.Load += new System.EventHandler(this.frmLastVersion_Load);
             this.Controls.SetChildIndex(this.txtHistory, 0);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.txtDescription, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
@@ -246,7 +240,6 @@ namespace FileHelpers.WizardApp
             this.Controls.SetChildIndex(this.lblVersion, 0);
             this.Controls.SetChildIndex(this.lblDate, 0);
             this.Controls.SetChildIndex(this.cmdDownload, 0);
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }

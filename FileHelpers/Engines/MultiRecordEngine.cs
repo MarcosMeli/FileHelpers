@@ -232,17 +232,14 @@ namespace FileHelpers
             using (var freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast)) {
                 freader.DiscardForward = true;
 
-                string currentLine, completeLine;
-
                 mLineNumber = 1;
 
-                completeLine = freader.ReadNextLine();
-                currentLine = completeLine;
+                var completeLine = freader.ReadNextLine();
+                var currentLine = completeLine;
 
-#if !MINI
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(0, -1));
-#endif
+
                 int currentRecord = 0;
 
                 if (mMultiRecordInfo[0].IgnoreFirst > 0) {
@@ -285,7 +282,7 @@ namespace FileHelpers
 
                             var record = info.Operations.CreateRecordHandler();
 
-#if !MINI
+
                             if (MustNotifyProgress) // Avoid object creation
                                 OnProgress(new ProgressEventArgs(currentRecord, -1));
 
@@ -298,15 +295,11 @@ namespace FileHelpers
                                     line.ReLoad(e.RecordLine);
                             }
 
-#endif
-
                             if (skip == false) {
                                 var values = new object[info.FieldCount];
                                 if (info.Operations.StringToRecord(record, line, values)) {
-#if !MINI
                                     if (MustNotifyRead) // Avoid object creation
                                         skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
-#endif
 
                                     if (skip == false)
                                         resArray.Add(record);
@@ -426,11 +419,9 @@ namespace FileHelpers
             }
 
 
-#if !MINI
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, max));
 
-#endif
             int recIndex = 0;
 
             foreach (var rec in records) {
@@ -441,13 +432,12 @@ namespace FileHelpers
                         throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
                     bool skip = false;
-#if !MINI
+
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
                     if (MustNotifyWrite)
                         skip = OnBeforeWriteRecord(rec, LineNumber);
-#endif
 
                     var info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
 
@@ -459,10 +449,9 @@ namespace FileHelpers
 
                     if (skip == false) {
                         currentLine = info.Operations.RecordToString(rec);
-#if !MINI
+
                         if (MustNotifyWrite)
                             currentLine = OnAfterWriteRecord(currentLine, rec);
-#endif
                         writer.WriteLine(currentLine);
                     }
                 }

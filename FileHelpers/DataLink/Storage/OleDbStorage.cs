@@ -1,4 +1,4 @@
-#if ! MINI
+
 
 using System;
 using System.Data;
@@ -43,4 +43,3 @@ namespace FileHelpers.DataLink
     }
 }
 
-#endif

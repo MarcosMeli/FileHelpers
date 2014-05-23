@@ -321,11 +321,20 @@ namespace FileHelpers
                 }
             }
 
-            if (fi.IsDefined(typeof (CompilerGeneratedAttribute), false)) {
+            if (fi.IsDefined(typeof (CompilerGeneratedAttribute), false))
+            {
                 if (fi.Name.EndsWith("__BackingField") &&
                     fi.Name.StartsWith("<") &&
                     fi.Name.Contains(">"))
-                    res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
+
+                res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
+                res.IsAutoProperty = true;
+
+                var prop = fi.DeclaringType.GetProperty(res.FieldFriendlyName);
+                if (prop != null)
+                {
+                    Attributes.WorkWithFirst<FieldOrderAttribute>(prop, x => res.FieldOrder = x.Order);
+                }
             }
 
             if (string.IsNullOrEmpty(res.FieldFriendlyName))
@@ -333,6 +342,21 @@ namespace FileHelpers
 
             return res;
         }
+
+        internal static string AutoPropertyName(FieldInfo fi)
+        {
+            if (fi.IsDefined(typeof(CompilerGeneratedAttribute), false))
+            {
+                if (fi.Name.EndsWith("__BackingField") &&
+                    fi.Name.StartsWith("<") &&
+                    fi.Name.Contains(">"))
+                    return fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
+                
+            }
+            return "";
+        }
+
+        internal bool IsAutoProperty { get; set; }
 
         #endregion
 

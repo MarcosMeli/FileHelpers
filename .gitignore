@@ -21,3 +21,6 @@ _ReSharper.FileHelpers
 /FileHelpers.Tests/Data/temp.txt
 
 /packages
+/FileHelpers/FileHelpers.xml
+FileHelpers.sln.sdsettings
+FileHelpers.ExcelStorage/FileHelpers.ExcelStorage.xml

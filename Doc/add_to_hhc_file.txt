@@ -56,7 +56,7 @@
 		<param name="Local" value="converter_args.html">
 		</OBJECT>
     <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value=".NET 2.0 Generics">
+		<param name="Name" value="Generics">
 		<param name="Local" value="generics.html">
 		</OBJECT>
 

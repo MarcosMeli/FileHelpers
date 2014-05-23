@@ -200,10 +200,9 @@ namespace FileHelpers
                     throw ex.InnerException;
                 }
             }
-#if ! MINI
             else if (convType.IsEnum)
                 Converter = new EnumConverter(convType);
-#endif
+
             else
                 throw new BadUsageException("The custom converter must inherit from ConverterBase");
         }

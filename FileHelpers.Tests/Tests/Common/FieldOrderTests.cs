@@ -36,6 +36,20 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Field3", engine.Options.FieldsNames[4]);
         }
 
+
+        [Test]
+        public void UsingAttributeToChangeOrderAutoProperties()
+        {
+            var engine = new FileHelperEngine<FieldOrderTypeSortedAutoProperties>();
+
+            Assert.AreEqual(5, engine.Options.FieldCount);
+            Assert.AreEqual("Field2", engine.Options.FieldsNames[0]);
+            Assert.AreEqual("Field1", engine.Options.FieldsNames[1]);
+            Assert.AreEqual("Field5", engine.Options.FieldsNames[2]);
+            Assert.AreEqual("Field4", engine.Options.FieldsNames[3]);
+            Assert.AreEqual("Field3", engine.Options.FieldsNames[4]);
+        }
+
         [DelimitedRecord("\t")]
         public class FieldOrderType
         {
@@ -64,6 +78,27 @@ namespace FileHelpers.Tests.CommonTests
 
             [FieldOrder(1)]
             public DateTime Field5;
+        }
+
+
+
+        [DelimitedRecord("\t")]
+        public class FieldOrderTypeSortedAutoProperties
+        {
+            [FieldOrder(-5)]
+            public int Field1 { get; set; }
+
+            [FieldOrder(-10)]
+            public int Field2 { get; set; }
+
+            [FieldOrder(10)]
+            public string Field3 { get; set; }
+
+            [FieldOrder(5)]
+            public int Field4 { get; set; }
+
+            [FieldOrder(1)]
+            public DateTime Field5 { get; set; }
         }
 
 

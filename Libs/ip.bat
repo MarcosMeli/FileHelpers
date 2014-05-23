@@ -1,1 +1,0 @@
-@ipy.exe "-X:AutoIndent" "-X:ColorfulConsole" "-X:TabCompletion" %*

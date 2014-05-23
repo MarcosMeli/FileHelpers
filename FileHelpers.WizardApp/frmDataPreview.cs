@@ -40,6 +40,7 @@ namespace FileHelpers.WizardApp
         private void ShowCode(string code, NetLanguage language)
         {
             mLastCode = code;
+            browserCode.DocumentText = "";
             var colorizer = new CodeColorizer();
             switch (language) {
                 case NetLanguage.CSharp:
@@ -95,18 +96,33 @@ width: 100% !important;*/
 
 
                 var type = ClassBuilder.ClassFromString(classStr, selected);
+                FileHelperEngine engine = new FileHelperEngine (type);
+                engine.ErrorMode = ErrorMode.SaveAndContinue;
 
-                try {
-                    FileHelperEngine engine = new FileHelperEngine(type);
-                    DataTable dt = engine.ReadStringAsDT(txtInput.Text);
+                DataTable dt = engine.ReadStringAsDT (txtInput.Text);                
+
+                if (engine.ErrorManager.Errors.Length > 0)
+                {
+                    dt = new DataTable ();
+
+                    dt.Columns.Add ("LineNumber");
+                    dt.Columns.Add ("ExceptionInfo");
+                    dt.Columns.Add ("RecordString");
+                    foreach (var e in engine.ErrorManager.Errors)
+                    {
+                        dt.Rows.Add (e.LineNumber, e.ExceptionInfo.Message, e.RecordString);
+                    }
                     dgPreview.DataSource = dt;
-                    lblResults.Text = dt.Rows.Count.ToString() + " Rows - " + dt.Columns.Count.ToString() + " Fields";
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message,
-                        "Error Parsing the Sample Data",
+
+                    MessageBox.Show ("Error Parsing the Sample Data", 
+                        "Layout errors detected",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                }
+                else
+                {
+                    dgPreview.DataSource = dt;
+                    lblResults.Text = dt.Rows.Count.ToString () + " Rows - " + dt.Columns.Count.ToString () + " Fields";
                 }
             }
             catch (Exception ex) {
@@ -225,7 +241,9 @@ width: 100% !important;*/
                 AutoRunTest = false;
                 Application.DoEvents();
                 RunTest();
+                ShowCode (mLastCode, NetLanguage.CSharp);
             }
+            
         }
     }
 }

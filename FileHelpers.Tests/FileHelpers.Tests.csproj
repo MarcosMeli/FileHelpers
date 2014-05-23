@@ -50,6 +50,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
@@ -124,7 +126,6 @@
       <Name>System.Drawing</Name>
     </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -312,7 +313,6 @@
     <Compile Include="Tests\DataLink\SqlServerStorage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\DataMapper\DataMapperBasicTests.cs" />
     <Compile Include="Tests\Detector\BasicDetection.cs" />
     <Compile Include="Tests\Errors\BadFormat.cs">
       <SubType>Code</SubType>
@@ -636,4 +636,11 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
 </Project>

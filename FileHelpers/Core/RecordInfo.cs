@@ -260,7 +260,7 @@ namespace FileHelpers
             }
 
             if (automaticFields > 0 &&
-                genericFields > 0) {
+                genericFields > 0 && SumOrder(resFields) == 0) {
                 throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
                     .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
                     .Text);
@@ -276,6 +276,16 @@ namespace FileHelpers
             CheckForOptionalAndArrayProblems(resFields);
 
             return resFields.ToArray();
+        }
+
+        private static int SumOrder(List<FieldBase> fields)
+        {
+            int res = 0;
+            foreach (var field in fields)
+            {
+                res += field.FieldOrder ?? 0;
+            }
+            return res;
         }
 
         /// <summary>
@@ -355,7 +365,8 @@ namespace FileHelpers
                 var fieldWithSameOrder =
                     resFields.Find(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
 
-                if (fieldWithSameOrder != null) {
+                if (fieldWithSameOrder != null)
+                {
                     throw new BadUsageException(Messages.Errors.SameFieldOrder
                         .FieldName1(currentField.FieldInfo.Name)
                         .FieldName2(fieldWithSameOrder.FieldInfo.Name)
@@ -365,10 +376,18 @@ namespace FileHelpers
             else {
                 // No other field should have order number set
                 var fieldWithOrder = resFields.Find(x => x.FieldOrder.HasValue);
-                if (fieldWithOrder != null) {
-                    throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                        .FieldName(currentField.FieldInfo.Name)
-                        .Text);
+                if (fieldWithOrder != null)
+                {
+                    var autoPropertyName = FieldBase.AutoPropertyName(currentField.FieldInfo);
+
+                    if (string.IsNullOrEmpty(autoPropertyName))
+                        throw new BadUsageException(Messages.Errors.PartialFieldOrder
+                            .FieldName(currentField.FieldInfo.Name)
+                            .Text);
+                    else
+                        throw new BadUsageException(Messages.Errors.PartialFieldOrderInAutoProperty
+                            .PropertyName(autoPropertyName)
+                            .Text);
                 }
             }
         }
@@ -388,7 +407,12 @@ namespace FileHelpers
                 // Initialize field index map
                 mMapFieldIndex = new Dictionary<string, int>(FieldCount, StringComparer.Ordinal);
                 for (int i = 0; i < FieldCount; i++)
+                {
                     mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
+                    if (Fields[i].FieldInfo.Name != Fields[i].FieldFriendlyName)
+                        mMapFieldIndex.Add(Fields[i].FieldFriendlyName, i);
+                }
+                
             }
 
             int res;

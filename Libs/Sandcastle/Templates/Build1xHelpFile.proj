@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
   <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.Build1xHelpFile"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="{@SHFBFolder}\SandcastleBuilder.Utils.dll" />
 
   <!-- Task properties -->
   <PropertyGroup>
@@ -43,7 +43,7 @@
       HelpCompilerFolder="$(HelpCompilerFolder)"
       HelpProjectName="$(HelpProjectName)"
       LocalizeApp="$(LocalizeApp)"
-      LanguageId="$(LangId)" />
+      LanguageId="$(LanguageId)" />
 
     <!-- Delete the old version if it is there -->
     <Delete Files="$(OutputFolder)\$(HtmlHelpName).chm" />

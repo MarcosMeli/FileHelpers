@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FileHelpers.WizardApp
 {
-    public partial class frmTextDiff : Form
+    public partial class frmTextDiff : frmFather
     {
         public frmTextDiff()
         {
@@ -44,14 +44,10 @@ namespace FileHelpers.WizardApp
 
         private void cmdNor_Click(object sender, EventArgs e)
         {
-            var dictA = new HashSet<string>();
             var dictB = new HashSet<string>();
 
             var textA = txtTextA.Text.SplitInLines();
-            foreach (var line in textA) {
-                if (!dictA.Contains(line))
-                    dictA.Add(line);
-            }
+            
             var res = new StringBuilder();
 
             var textB = txtTextB.Text.SplitInLines();
@@ -105,6 +101,29 @@ namespace FileHelpers.WizardApp
             var textB = txtTextB.Text.SplitInLines();
 
             foreach (var line in textB) {
+                if (!dictA.Contains(line))
+                    res.AppendLine(line);
+            }
+
+            txtResult.Text = res.ToString();
+        }
+
+        private void cmdBNotA_Click(object sender, EventArgs e)
+        {
+            var dictA = new HashSet<string>();
+
+            var textA = txtTextA.Text.SplitInLines();
+            foreach (var line in textA)
+            {
+                if (!dictA.Contains(line))
+                    dictA.Add(line);
+            }
+            var res = new StringBuilder();
+
+            var textB = txtTextB.Text.SplitInLines();
+
+            foreach (var line in textB)
+            {
                 if (!dictA.Contains(line))
                     res.AppendLine(line);
             }

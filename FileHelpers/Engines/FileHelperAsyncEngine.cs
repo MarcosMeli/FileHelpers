@@ -41,27 +41,36 @@ namespace FileHelpers
             IFileHelperAsyncEngine<T>
         where T : class
     {
+
         #region "  Constructor  "
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         public FileHelperAsyncEngine()
-            : base(typeof (T)) {}
+            : base(typeof (T))
+        {
+        }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="recordType">Type of object to be handled</param>
         protected FileHelperAsyncEngine(Type recordType)
-            : base(recordType) {}
+            : base(recordType)
+        {
+        }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         public FileHelperAsyncEngine(Encoding encoding)
-            : base(typeof (T), encoding) {}
+            : base(typeof (T), encoding)
+        {
+        }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         /// <param name="recordType">Type of record to read</param>
         protected FileHelperAsyncEngine(Type recordType, Encoding encoding)
-            : base(recordType, encoding) {}
+            : base(recordType, encoding)
+        {
+        }
 
         #endregion
 
@@ -196,14 +205,12 @@ namespace FileHelpers
             mAsyncReader = new ForwardReader(recordReader, RecordInfo.IgnoreLast, mLineNumber) {
                 DiscardForward = true
             };
-            mState = EngineState.Reading;
+            State = EngineState.Reading;
             mStreamInfo = new StreamInfoProvider(reader);
             mCurrentRecord = 0;
 
-#if ! MINI
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
-#endif
             return this;
         }
 
@@ -280,7 +287,6 @@ namespace FileHelpers
                         bool skip = false;
 
                         mLastRecord = (T) RecordInfo.Operations.CreateRecordHandler();
-#if ! MINI
                         if (MustNotifyProgress) // Avoid object creation
                         {
                             OnProgress(new ProgressEventArgs(mCurrentRecord,
@@ -299,13 +305,10 @@ namespace FileHelpers
                         }
 
 
-#endif
                         if (skip == false) {
                             if (RecordInfo.Operations.StringToRecord(mLastRecord, line, mLastRecordValues)) {
-#if ! MINI
                                 if (MustNotifyRead) // Avoid object creation
                                     skip = OnAfterReadRecord(currentLine, mLastRecord, e.RecordLineChanged, LineNumber);
-#endif
                                 if (skip == false) {
                                     byPass = true;
                                     return;
@@ -405,7 +408,7 @@ namespace FileHelpers
         public void Close()
         {
             lock (this) {
-                mState = EngineState.Closed;
+                State = EngineState.Closed;
 
                 try {
                     mLastRecordValues = null;
@@ -451,17 +454,15 @@ namespace FileHelpers
                 throw new BadUsageException("You can't start to write while you are reading.");
 
 
-            mState = EngineState.Writing;
+            State = EngineState.Writing;
             ResetFields();
             mAsyncWriter = writer;
             WriteHeader();
             mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;
 
-#if ! MINI
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
-#endif
 
             return this;
         }
@@ -519,14 +520,12 @@ namespace FileHelpers
             mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, bufferSize);
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
-            mState = EngineState.Writing;
+            State = EngineState.Writing;
             mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;
 
-#if ! MINI
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
-#endif
 
             return this;
         }
@@ -560,7 +559,6 @@ namespace FileHelpers
                 mCurrentRecord++;
 
                 bool skip = false;
-#if !MINI
 
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
@@ -568,14 +566,11 @@ namespace FileHelpers
                 if (MustNotifyWrite)
                     skip = OnBeforeWriteRecord(record, LineNumber);
 
-#endif
-
                 if (skip == false) {
                     currentLine = RecordInfo.Operations.RecordToString(record);
-#if !MINI
+
                     if (MustNotifyWrite)
                         currentLine = OnAfterWriteRecord(currentLine, record);
-#endif
                     mAsyncWriter.WriteLine(currentLine);
                 }
             }
@@ -762,16 +757,26 @@ namespace FileHelpers
 
         #region "  State  "
 
-        private EngineState mState = EngineState.Closed;
         private StreamInfoProvider mStreamInfo;
 
         /// <summary>
         /// Indicates the current state of the engine.
         /// </summary>
-        public EngineState State
+        private EngineState State { get; set; }
+
+        /// <summary>
+        /// Indicates the State of an engine
+        /// </summary>
+        private enum EngineState
         {
-            get { return mState; }
-            set { mState = value; }
+            /// <summary>The Engine is closed</summary>
+            Closed = 0,
+
+            /// <summary>The Engine is reading a file, string or stream</summary>
+            Reading,
+
+            /// <summary>The Engine is writing a file, string or stream</summary>
+            Writing
         }
 
         #endregion
