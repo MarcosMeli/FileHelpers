@@ -213,7 +213,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\NewLineDelimitedRecordReader.cs" />
-    <Compile Include="Core\PrefixedVariableLengthRecordReader.cs" />
     <Compile Include="Core\RecordInfo.cs">
       <SubType>Code</SubType>
     </Compile>
