@@ -64,6 +64,7 @@ namespace FileHelpers.DataLink
 
 		#region "  Public Properties  "
 
+        /// <summary>Returns the names of the worksheets.</summary>
 		public List<string> Sheets
 		{
 			get
