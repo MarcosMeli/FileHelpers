@@ -44,27 +44,26 @@ namespace FileHelpers
 
         #region "  Constructor  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtrG/*'/>
         public FileHelperAsyncEngine()
             : base(typeof (T))
         {
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
-        /// <param name="recordType">Type of object to be handled</param>
         protected FileHelperAsyncEngine(Type recordType)
             : base(recordType)
         {
         }
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtrG/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         public FileHelperAsyncEngine(Encoding encoding)
             : base(typeof (T), encoding)
         {
         }
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtr/*'/>
+        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/FileHelperAsyncEngineCtrG/*'/>
         /// <param name="encoding">The encoding used by the Engine.</param>
         /// <param name="recordType">Type of record to read</param>
         protected FileHelperAsyncEngine(Type recordType, Encoding encoding)

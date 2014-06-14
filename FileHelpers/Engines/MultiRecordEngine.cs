@@ -693,7 +693,6 @@ namespace FileHelpers
 
         #region "  ReadNext  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
         public object ReadNext()
         {
             if (mAsyncReader == null)
@@ -785,8 +784,6 @@ namespace FileHelpers
             }
         }
 
-
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
