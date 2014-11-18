@@ -116,75 +116,6 @@ namespace FileHelpers
 
         #endregion
 
-        #region "  Events  "
-
-        ///// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        //public event EventHandler<BeforeReadRecordEventArgs> BeforeReadRecord;
-        ///// <summary>Called in read operations just after the record was created from a record string.</summary>
-        //public event EventHandler<AfterReadRecordEventArgs> AfterReadRecord;
-        ///// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        //public event EventHandler<BeforeWriteRecordEventArgs> BeforeWriteRecord;
-        ///// <summary>Called in write operations just after the record was converted to a string.</summary>
-        //public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
-
-
-        //private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
-        //{
-        //    if (BeforeReadRecord != null)
-        //    {
-        //        BeforeReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private bool OnAfterReadRecord(string line, object record)
-        //{
-        //    if (mRecordInfo.NotifyRead)
-        //        ((INotifyRead)record).AfterRead(this, line);
-
-        //    if (AfterReadRecord != null)
-        //    {
-        //        AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
-        //        AfterReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-        //    return false;
-        //}
-
-
-        //private bool OnBeforeWriteRecord(object record)
-        //{
-        //    if (mRecordInfo.NotifyWrite)
-        //        ((INotifyWrite)record).BeforeWrite(this);
-
-        //    if (BeforeWriteRecord != null)
-        //    {
-        //        BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
-        //        BeforeWriteRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private string OnAfterWriteRecord(string line, object record)
-        //{
-        //    if (AfterWriteRecord != null)
-        //    {
-        //        AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-        //        AfterWriteRecord(this, e);
-        //        return e.RecordLine;
-        //    }
-        //    return line;
-        //}
-
-        #endregion
-
         #region "  ReadFile  "
 
         /// <summary>
@@ -726,7 +657,10 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        if (currType != null) {
+                        if (currType != null)
+                        {
+                            AfterReadEventArgs<object> e = null;
+
                             var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null) {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -734,6 +668,11 @@ namespace FileHelpers
                             }
                             var values = new object[info.FieldCount];
                             mLastRecord = info.Operations.StringToRecord(line, values);
+
+                            if (MustNotifyRead)
+                            {
+                                OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
+                            }
 
                             if (mLastRecord != null) {
                                 byPass = true;
