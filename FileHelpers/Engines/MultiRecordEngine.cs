@@ -726,7 +726,10 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        if (currType != null) {
+                        if (currType != null)
+                        {
+                            AfterReadEventArgs<object> e = null;
+
                             var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null) {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -734,6 +737,11 @@ namespace FileHelpers
                             }
                             var values = new object[info.FieldCount];
                             mLastRecord = info.Operations.StringToRecord(line, values);
+
+                            if (MustNotifyRead)
+                            {
+                                OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
+                            }
 
                             if (mLastRecord != null) {
                                 byPass = true;
