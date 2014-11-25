@@ -101,7 +101,7 @@ namespace FileHelpers.ExcelNPOIStorage
                     mWorkbook = new HSSFWorkbook(file);
 
                 if (String.IsNullOrEmpty(SheetName))
-                    mSheet = mWorkbook.GetSheetAt(0);
+                    mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);  
                 else {
                     try {
                         mSheet = mWorkbook.GetSheet(SheetName);
@@ -143,7 +143,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 mWorkbook = new XSSFWorkbook();
             else if (extension.ToLowerInvariant() == ".xls")
                 mWorkbook = new HSSFWorkbook();
-            mSheet = mWorkbook.CreateSheet(SheetName);
+            mSheet =  mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }
 
@@ -184,7 +184,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 return null;
 
             ICell cell = CellUtil.GetCell(row, col);
-            return cell.StringCellValue;
+            return cell.ToString();
         }
 
         #endregion
@@ -217,7 +217,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 return null;
 
             if (numberOfCols == 1) {
-                IRow row = HSSFCellUtil.GetRow(rowNum, (HSSFSheet) mSheet);
+                IRow row = mSheet.GetRow(rowNum);
 
                 ICell cell = HSSFCellUtil.GetCell(row, startCol);
                 return new object[] {NPOIUtils.GetCellValue(cell)};
