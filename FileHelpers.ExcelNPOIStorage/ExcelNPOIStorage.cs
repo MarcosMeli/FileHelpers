@@ -241,6 +241,11 @@ namespace FileHelpers.ExcelNPOIStorage
             if (mSheet == null)
                 return;
 
+            if (AddHeaderRows)
+            {
+                rowNum++;
+            }
+            
             var row = mSheet.GetRow(rowNum);
             if (row == null)
                 row = mSheet.CreateRow(rowNum);
@@ -260,6 +265,34 @@ namespace FileHelpers.ExcelNPOIStorage
             cw.Traverse(ci);
         }
 
+        private void AddHeaderColumns(int startCol,int rowNum)
+        {         
+            if (mSheet == null)
+                return;
+            
+            var row = mSheet.GetRow(rowNum);
+            if (row == null)
+                row = mSheet.CreateRow(rowNum);
+            for (int i = 0; i <= startCol + ColumnsHeaders.ToArray().Length; i++)
+            {
+                var cell = row.GetCell(i);
+                if (cell == null)
+                    row.CreateCell(i);
+            }
+
+            CellRangeAddress range = new CellRangeAddress(StartRow == 0
+                    ? 0
+                    : StartRow, StartRow == 0
+                    ? 0
+                    : StartRow, startCol, startCol + ColumnsHeaders.ToArray().Length - 1);
+
+            CellWalk cw = new CellWalk(mSheet, range);
+            cw.SetTraverseEmptyCells(true);
+
+            CellInserter ci = new CellInserter(new List<object>(ColumnsHeaders));
+
+            cw.Traverse(ci);            
+        }
         #endregion
 
         #region "  InsertRecords  "
@@ -292,7 +325,9 @@ namespace FileHelpers.ExcelNPOIStorage
                 }
 
                 OpenOrCreateWorkbook(FileName);
-
+                
+                AddHeaderColumns(StartColumn, StartRow);
+                
                 for (int i = 0; i < records.Length; i++) {
                     recordNumber++;
                     OnProgress(new ProgressEventArgs(recordNumber, records.Length));
