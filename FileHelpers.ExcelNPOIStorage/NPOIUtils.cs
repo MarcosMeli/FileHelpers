@@ -49,7 +49,6 @@ namespace FileHelpers.ExcelNPOIStorage
                 //It works
                 var wb = cell.Sheet.Workbook;
                 var cellStyle = wb.CreateCellStyle();
-                // Can only be created once for each custom format, the code below is wrong
                 cellStyle.DataFormat = cell.Sheet.Workbook.GetCreationHelper().CreateDataFormat().GetFormat("dd/mm/yyyy" );
                 cell.CellStyle = cellStyle;                
                 cell.SetCellValue((DateTime) value);
