@@ -70,7 +70,6 @@ namespace FileHelpers.DataLink
         private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyRow;
         private int mExcelReadStopAfterEmptyRows = 1;
 
-        private bool mAddHeaderRows;
         private List<string> mColumnHeaders=new List<string>();
         
         #endregion
@@ -149,15 +148,6 @@ namespace FileHelpers.DataLink
         {
             get { return mExcelReadStopAfterEmptyRows; }
             set { mExcelReadStopAfterEmptyRows = value; }
-        }
-
-        /// <summary>
-        /// Add Header rows to excel
-        /// </summary>
-        public bool AddHeaderRows
-        {
-            get { return mAddHeaderRows; }
-            set { mAddHeaderRows = value; }
         }
 
         /// <summary>
