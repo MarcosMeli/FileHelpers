@@ -17,6 +17,44 @@ You can **download** the last stable version from our build server at:
     Download the zip with the format: FileHelpers_x.x.x_Build.zip
 
 
+Delimited Example 
+-----------------
+
+Source Data
+```
+    1732,Juan Perez,435.00,11-05-2002 
+    554,Pedro Gomez,12342.30,06-02-2004 
+    112,Ramiro Politti,0.00,01-02-2000 
+    924,Pablo Ramirez,3321.30,24-11-2002 
+```
+Record Type
+
+```csharp
+	[DelimitedRecord(",")]
+	public class Customer
+	{
+		public int CustId;
+		
+		public string Name;
+
+		public decimal Balance;
+
+		[FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+		public DateTime AddedDate;
+	}
+```
+Usage
+
+```csharp
+  var engine = new FileHelperEngine<Customer>();
+
+  // To Read Use:
+  Customer[] res = engine.ReadFile("FileIn.txt");
+
+  // To Write Use:
+  engine.WriteFile("FileOut.txt", res);
+```
+
 Who needs the File Helpers Library ? 
 ------------------------------------
 
