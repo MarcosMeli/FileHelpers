@@ -1,4 +1,6 @@
 @echo off
+RMDIR ..\packages\ilmerge.2.13.0307 /s /q
+RMDIR ..\packages\psake.4.3.2 /s /q
 SET EnableNuGetPackageRestore=true
 cd ..
 .nuget\NuGet.exe install .nuget\packages.config -OutputDirectory packages
