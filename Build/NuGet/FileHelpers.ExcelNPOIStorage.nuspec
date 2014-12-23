@@ -11,6 +11,8 @@
         <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Extension for FileHelpers to support Excel read/write operations using NPOI Library</description>
+        <summary>Extension for FileHelpers to support Excel read/write operations using NPOI Library</summary>
+        <copyright>Marcos Meli - Devoo</copyright>
         <tags>Excel Import Export</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />

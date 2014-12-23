@@ -11,6 +11,8 @@
         <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Open Source library for automatic formatted file read/write operations</description>
+        <summary>Open Source library for automatic formatted file read/write operations</summary>
+        <copyright>Marcos Meli - Devoo</copyright>
         <tags>Flat File CSV FixedLength Delimited Import Export</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
