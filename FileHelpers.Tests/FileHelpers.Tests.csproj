@@ -151,6 +151,7 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
@@ -321,6 +322,7 @@
     <Compile Include="Tests\Errors\BadOptional.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Errors\BadNotEmpty.cs" />
     <Compile Include="Tests\Errors\BadQuoted.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -376,6 +378,9 @@
     <Compile Include="Types\SampleTypes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Data\Bad\FieldNotEmpty1.txt" />
+    <Content Include="Data\Bad\FieldNotEmpty2.txt" />
+    <Content Include="Data\Bad\FieldNotEmpty3.txt" />
     <Content Include="Data\Excel\ExcelWithNoEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
@@ -482,6 +487,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\FieldNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />

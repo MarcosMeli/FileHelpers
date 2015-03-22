@@ -184,6 +184,30 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty1.txt";
+                }
+            }
+
+            public partial class FieldNotEmpty2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty2.txt";
+                }
+            }
+
+            public partial class FieldNotEmpty3 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty3.txt";
+                }
+            }
+
             public partial class InNewLine3 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -900,6 +924,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Good\FieldNotEmpty1.txt";
+                }
+            }
+
             public partial class IgnoreComments1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -1559,6 +1591,27 @@ namespace FileHelpers.Tests
                 get { return mEmptyLineInTheMiddle; }
             }
 
+            private static ClassesFileTest.Bad.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Bad.FieldNotEmpty1();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty1 FieldNotEmpty1
+            {
+                get { return mFieldNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Bad.FieldNotEmpty2 mFieldNotEmpty2 = new ClassesFileTest.Bad.FieldNotEmpty2();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty2 FieldNotEmpty2
+            {
+                get { return mFieldNotEmpty2; }
+            }
+
+            private static ClassesFileTest.Bad.FieldNotEmpty3 mFieldNotEmpty3 = new ClassesFileTest.Bad.FieldNotEmpty3();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty3 FieldNotEmpty3
+            {
+                get { return mFieldNotEmpty3; }
+            }
+
             private static ClassesFileTest.Bad.InNewLine3 mInNewLine3 = new ClassesFileTest.Bad.InNewLine3();
 
             public static ClassesFileTest.Bad.InNewLine3 InNewLine3
@@ -2185,6 +2238,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.FieldIgnoredAdvanced FieldIgnoredAdvanced
             {
                 get { return mFieldIgnoredAdvanced; }
+            }
+
+            private static ClassesFileTest.Good.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Good.FieldNotEmpty1();
+
+            public static ClassesFileTest.Good.FieldNotEmpty1 FieldNotEmpty1
+            {
+                get { return mFieldNotEmpty1; }
             }
 
             private static ClassesFileTest.Good.IgnoreComments1 mIgnoreComments1 = new ClassesFileTest.Good.IgnoreComments1();
