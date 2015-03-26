@@ -106,6 +106,7 @@
     <Compile Include="Attributes\FieldAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldNotEmptyAttribute.cs" />
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />
     <Compile Include="Attributes\FieldOrderAttribute.cs" />

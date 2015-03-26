@@ -2,18 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace FileHelpers
 {
-    /// <summary>
-    /// Simple Generate code interface
-    /// </summary>
-    public interface ICodeGenerator
-    {
-        string GenerateCode();
-    }
-
-
     public sealed class FluentCode
     {
         private readonly Dictionary<string, FluentNamespace> mNamespaces =
@@ -57,7 +49,7 @@ namespace FileHelpers
             FluentClass res = null;
 
             if (!mClasses.TryGetValue(name, out res)) {
-                res = new FluentClass(name);
+                res = new FluentClass(name, null, 1);
                 mClasses.Add(name, res);
             }
 
@@ -67,17 +59,12 @@ namespace FileHelpers
 
         public string GenerateCode()
         {
-            var res = "namespace " + Name
-                      + Environment.NewLine
-                      + "{"
-                      + Environment.NewLine;
-
-            foreach (var c in mClasses)
-                res += c.Value.GenerateCode();
-
-            res += Environment.NewLine +
-                   "}";
-            return res;
+            var res = new StringBuilder();
+            res.AppendLine(String.Format("namespace {0}", Name));
+            res.AppendLine("{");
+            res.Append(String.Join(Environment.NewLine, mClasses.Select(s => s.Value.GenerateCode())));
+            res.Append("}");
+            return res.ToString();
         }
     }
 
@@ -87,10 +74,14 @@ namespace FileHelpers
     public sealed class FluentClass
     {
         public string Name { get; private set; }
-
-        public FluentClass(string name)
+        public string Parent { get; private set; }
+        public int Level { get; private set; }
+        
+        public FluentClass(string name, string parent, int level)
         {
             this.Name = name;
+            this.Parent = parent;
+            this.Level = level;
         }
 
         private readonly SortedDictionary<string, FluentClass> mClasses =
@@ -101,12 +92,12 @@ namespace FileHelpers
         /// </summary>
         /// <param name="name">Name of resulting class</param>
         /// <returns></returns>
-        public FluentClass Class(string name)
+        public FluentClass Class(string name, string parent)
         {
             FluentClass res;
 
             if (!mClasses.TryGetValue(name, out res)) {
-                res = new FluentClass(name);
+                res = new FluentClass(name, parent, this.Level + 1);
                 mClasses.Add(name, res);
             }
 
@@ -115,30 +106,29 @@ namespace FileHelpers
 
         public string GenerateCode()
         {
-            var res = "public class " + Name
-                      + Environment.NewLine
-                      + "{"
-                      + Environment.NewLine;
+            var res = new StringBuilder();
+            AddCode(string.Format("public partial class {0}{1}", Name, (string.IsNullOrEmpty(Parent) ? "" : " : " + Parent)), Level, res);
+            AddCode("{", Level, res);
 
-            foreach (var c in mClasses)
-                res += c.Value.GenerateCode();
+            res.Append(String.Join(Environment.NewLine, mClasses.Select(s => s.Value.GenerateCode())));
+            res.Append(mCode.ToString());
 
-            res += Environment.NewLine +
-                   mCode.ToString()
-                   + Environment.NewLine;
-
-            res += Environment.NewLine +
-                   "}";
-            return res;
+            AddCode("}", Level, res);
+            return res.ToString();
         }
 
         /// <summary>
         /// Append a line of code to the output
         /// </summary>
         /// <param name="code">Code to add</param>
-        public void AddCode(string code)
+        public void AddCode(string code, int level)
         {
-            mCode.AppendLine(code);
+            AddCode(code, level, mCode);
+        }
+
+        private void AddCode(string code, int level, StringBuilder builder)
+        {
+            builder.AppendLine(string.Format("{0}{1}", new string(' ', level * 4), code));
         }
 
         /// <summary>
@@ -153,9 +143,17 @@ namespace FileHelpers
         /// </remarks>
         public void AddStaticReadOnlyPropertyWithBackingField(string type, string name)
         {
-            mCode.AppendLine("private static " + type + " m" + name + " = new " + type + "();");
-            mCode.AppendLine("public static " + type + " " + name);
-            mCode.AppendLine("{ get { return  m" + name + "; } }");
+            if (mCode.Length != 0)
+            {
+                AddCode(null, 0);
+            }
+
+            AddCode(string.Format("private static {0} m{1} = new {0}();", type, name), Level + 1);
+            AddCode(null, 0);
+            AddCode(string.Format("public static {0} {1}", type, name), Level + 1);
+            AddCode("{", Level + 1);
+            AddCode("get { return m" + name + "; }", Level + 2);
+            AddCode("}", Level + 1);
         }
 
         /// <summary>

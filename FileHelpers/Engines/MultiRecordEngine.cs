@@ -728,8 +728,6 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            AfterReadEventArgs<object> e = null;
-
                             var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null) {
                                 throw new BadUsageException("A record is of type '" + currType.Name +

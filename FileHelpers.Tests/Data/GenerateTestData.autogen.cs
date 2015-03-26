@@ -184,6 +184,30 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty1.txt";
+                }
+            }
+
+            public partial class FieldNotEmpty2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty2.txt";
+                }
+            }
+
+            public partial class FieldNotEmpty3 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Bad\FieldNotEmpty3.txt";
+                }
+            }
+
             public partial class InNewLine3 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -900,6 +924,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Good\FieldNotEmpty1.txt";
+                }
+            }
+
             public partial class IgnoreComments1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -1440,16 +1472,14 @@ namespace FileHelpers.Tests
                 get { return mBadDate1Ignore; }
             }
 
-            private static ClassesFileTest.Bad.BadDate1IgnoreLast mBadDate1IgnoreLast =
-                new ClassesFileTest.Bad.BadDate1IgnoreLast();
+            private static ClassesFileTest.Bad.BadDate1IgnoreLast mBadDate1IgnoreLast = new ClassesFileTest.Bad.BadDate1IgnoreLast();
 
             public static ClassesFileTest.Bad.BadDate1IgnoreLast BadDate1IgnoreLast
             {
                 get { return mBadDate1IgnoreLast; }
             }
 
-            private static ClassesFileTest.Bad.BadDate1IgnoreLast2 mBadDate1IgnoreLast2 =
-                new ClassesFileTest.Bad.BadDate1IgnoreLast2();
+            private static ClassesFileTest.Bad.BadDate1IgnoreLast2 mBadDate1IgnoreLast2 = new ClassesFileTest.Bad.BadDate1IgnoreLast2();
 
             public static ClassesFileTest.Bad.BadDate1IgnoreLast2 BadDate1IgnoreLast2
             {
@@ -1512,32 +1542,28 @@ namespace FileHelpers.Tests
                 get { return mBadQuoted3; }
             }
 
-            private static ClassesFileTest.Bad.CustomersTabNumFields mCustomersTabNumFields =
-                new ClassesFileTest.Bad.CustomersTabNumFields();
+            private static ClassesFileTest.Bad.CustomersTabNumFields mCustomersTabNumFields = new ClassesFileTest.Bad.CustomersTabNumFields();
 
             public static ClassesFileTest.Bad.CustomersTabNumFields CustomersTabNumFields
             {
                 get { return mCustomersTabNumFields; }
             }
 
-            private static ClassesFileTest.Bad.DelimiterNotFoundFirstField mDelimiterNotFoundFirstField =
-                new ClassesFileTest.Bad.DelimiterNotFoundFirstField();
+            private static ClassesFileTest.Bad.DelimiterNotFoundFirstField mDelimiterNotFoundFirstField = new ClassesFileTest.Bad.DelimiterNotFoundFirstField();
 
             public static ClassesFileTest.Bad.DelimiterNotFoundFirstField DelimiterNotFoundFirstField
             {
                 get { return mDelimiterNotFoundFirstField; }
             }
 
-            private static ClassesFileTest.Bad.DelimiterNotFoundLastField mDelimiterNotFoundLastField =
-                new ClassesFileTest.Bad.DelimiterNotFoundLastField();
+            private static ClassesFileTest.Bad.DelimiterNotFoundLastField mDelimiterNotFoundLastField = new ClassesFileTest.Bad.DelimiterNotFoundLastField();
 
             public static ClassesFileTest.Bad.DelimiterNotFoundLastField DelimiterNotFoundLastField
             {
                 get { return mDelimiterNotFoundLastField; }
             }
 
-            private static ClassesFileTest.Bad.DelimiterNotFoundMiddleField mDelimiterNotFoundMiddleField =
-                new ClassesFileTest.Bad.DelimiterNotFoundMiddleField();
+            private static ClassesFileTest.Bad.DelimiterNotFoundMiddleField mDelimiterNotFoundMiddleField = new ClassesFileTest.Bad.DelimiterNotFoundMiddleField();
 
             public static ClassesFileTest.Bad.DelimiterNotFoundMiddleField DelimiterNotFoundMiddleField
             {
@@ -1558,12 +1584,32 @@ namespace FileHelpers.Tests
                 get { return mEmptyLineAtEnd; }
             }
 
-            private static ClassesFileTest.Bad.EmptyLineInTheMiddle mEmptyLineInTheMiddle =
-                new ClassesFileTest.Bad.EmptyLineInTheMiddle();
+            private static ClassesFileTest.Bad.EmptyLineInTheMiddle mEmptyLineInTheMiddle = new ClassesFileTest.Bad.EmptyLineInTheMiddle();
 
             public static ClassesFileTest.Bad.EmptyLineInTheMiddle EmptyLineInTheMiddle
             {
                 get { return mEmptyLineInTheMiddle; }
+            }
+
+            private static ClassesFileTest.Bad.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Bad.FieldNotEmpty1();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty1 FieldNotEmpty1
+            {
+                get { return mFieldNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Bad.FieldNotEmpty2 mFieldNotEmpty2 = new ClassesFileTest.Bad.FieldNotEmpty2();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty2 FieldNotEmpty2
+            {
+                get { return mFieldNotEmpty2; }
+            }
+
+            private static ClassesFileTest.Bad.FieldNotEmpty3 mFieldNotEmpty3 = new ClassesFileTest.Bad.FieldNotEmpty3();
+
+            public static ClassesFileTest.Bad.FieldNotEmpty3 FieldNotEmpty3
+            {
+                get { return mFieldNotEmpty3; }
             }
 
             private static ClassesFileTest.Bad.InNewLine3 mInNewLine3 = new ClassesFileTest.Bad.InNewLine3();
@@ -1580,8 +1626,7 @@ namespace FileHelpers.Tests
                 get { return mInNewLine4; }
             }
 
-            private static ClassesFileTest.Bad.InNewLineAfterOptional2 mInNewLineAfterOptional2 =
-                new ClassesFileTest.Bad.InNewLineAfterOptional2();
+            private static ClassesFileTest.Bad.InNewLineAfterOptional2 mInNewLineAfterOptional2 = new ClassesFileTest.Bad.InNewLineAfterOptional2();
 
             public static ClassesFileTest.Bad.InNewLineAfterOptional2 InNewLineAfterOptional2
             {
@@ -1640,32 +1685,28 @@ namespace FileHelpers.Tests
 
         public partial class Classes
         {
-            private static ClassesFileTest.Classes.ClassFromFile mClassFromFile =
-                new ClassesFileTest.Classes.ClassFromFile();
+            private static ClassesFileTest.Classes.ClassFromFile mClassFromFile = new ClassesFileTest.Classes.ClassFromFile();
 
             public static ClassesFileTest.Classes.ClassFromFile ClassFromFile
             {
                 get { return mClassFromFile; }
             }
 
-            private static ClassesFileTest.Classes.SampleBinaryClass mSampleBinaryClass =
-                new ClassesFileTest.Classes.SampleBinaryClass();
+            private static ClassesFileTest.Classes.SampleBinaryClass mSampleBinaryClass = new ClassesFileTest.Classes.SampleBinaryClass();
 
             public static ClassesFileTest.Classes.SampleBinaryClass SampleBinaryClass
             {
                 get { return mSampleBinaryClass; }
             }
 
-            private static ClassesFileTest.Classes.SampleClassCS mSampleClassCS =
-                new ClassesFileTest.Classes.SampleClassCS();
+            private static ClassesFileTest.Classes.SampleClassCS mSampleClassCS = new ClassesFileTest.Classes.SampleClassCS();
 
             public static ClassesFileTest.Classes.SampleClassCS SampleClassCS
             {
                 get { return mSampleClassCS; }
             }
 
-            private static ClassesFileTest.Classes.SampleClassVB mSampleClassVB =
-                new ClassesFileTest.Classes.SampleClassVB();
+            private static ClassesFileTest.Classes.SampleClassVB mSampleClassVB = new ClassesFileTest.Classes.SampleClassVB();
 
             public static ClassesFileTest.Classes.SampleClassVB SampleClassVB
             {
@@ -1696,40 +1737,35 @@ namespace FileHelpers.Tests
                 get { return mCityRates; }
             }
 
-            private static ClassesFileTest.Detection.CustomersComma mCustomersComma =
-                new ClassesFileTest.Detection.CustomersComma();
+            private static ClassesFileTest.Detection.CustomersComma mCustomersComma = new ClassesFileTest.Detection.CustomersComma();
 
             public static ClassesFileTest.Detection.CustomersComma CustomersComma
             {
                 get { return mCustomersComma; }
             }
 
-            private static ClassesFileTest.Detection.CustomersFixed mCustomersFixed =
-                new ClassesFileTest.Detection.CustomersFixed();
+            private static ClassesFileTest.Detection.CustomersFixed mCustomersFixed = new ClassesFileTest.Detection.CustomersFixed();
 
             public static ClassesFileTest.Detection.CustomersFixed CustomersFixed
             {
                 get { return mCustomersFixed; }
             }
 
-            private static ClassesFileTest.Detection.CustomersSemiColon mCustomersSemiColon =
-                new ClassesFileTest.Detection.CustomersSemiColon();
+            private static ClassesFileTest.Detection.CustomersSemiColon mCustomersSemiColon = new ClassesFileTest.Detection.CustomersSemiColon();
 
             public static ClassesFileTest.Detection.CustomersSemiColon CustomersSemiColon
             {
                 get { return mCustomersSemiColon; }
             }
 
-            private static ClassesFileTest.Detection.CustomersTab mCustomersTab =
-                new ClassesFileTest.Detection.CustomersTab();
+            private static ClassesFileTest.Detection.CustomersTab mCustomersTab = new ClassesFileTest.Detection.CustomersTab();
 
             public static ClassesFileTest.Detection.CustomersTab CustomersTab
             {
                 get { return mCustomersTab; }
             }
 
-            private static ClassesFileTest.Detection.DelimitedMedium mDelimitedMedium =
-                new ClassesFileTest.Detection.DelimitedMedium();
+            private static ClassesFileTest.Detection.DelimitedMedium mDelimitedMedium = new ClassesFileTest.Detection.DelimitedMedium();
 
             public static ClassesFileTest.Detection.DelimitedMedium DelimitedMedium
             {
@@ -1743,16 +1779,14 @@ namespace FileHelpers.Tests
                 get { return mLocations; }
             }
 
-            private static ClassesFileTest.Detection.OnColumnFixed mOnColumnFixed =
-                new ClassesFileTest.Detection.OnColumnFixed();
+            private static ClassesFileTest.Detection.OnColumnFixed mOnColumnFixed = new ClassesFileTest.Detection.OnColumnFixed();
 
             public static ClassesFileTest.Detection.OnColumnFixed OnColumnFixed
             {
                 get { return mOnColumnFixed; }
             }
 
-            private static ClassesFileTest.Detection.OnColumnNonFixed mOnColumnNonFixed =
-                new ClassesFileTest.Detection.OnColumnNonFixed();
+            private static ClassesFileTest.Detection.OnColumnNonFixed mOnColumnNonFixed = new ClassesFileTest.Detection.OnColumnNonFixed();
 
             public static ClassesFileTest.Detection.OnColumnNonFixed OnColumnNonFixed
             {
@@ -1766,16 +1800,14 @@ namespace FileHelpers.Tests
                 get { return mSampleData; }
             }
 
-            private static ClassesFileTest.Detection.SuperQuoted mSuperQuoted =
-                new ClassesFileTest.Detection.SuperQuoted();
+            private static ClassesFileTest.Detection.SuperQuoted mSuperQuoted = new ClassesFileTest.Detection.SuperQuoted();
 
             public static ClassesFileTest.Detection.SuperQuoted SuperQuoted
             {
                 get { return mSuperQuoted; }
             }
 
-            private static ClassesFileTest.Detection.SuperQuoted2 mSuperQuoted2 =
-                new ClassesFileTest.Detection.SuperQuoted2();
+            private static ClassesFileTest.Detection.SuperQuoted2 mSuperQuoted2 = new ClassesFileTest.Detection.SuperQuoted2();
 
             public static ClassesFileTest.Detection.SuperQuoted2 SuperQuoted2
             {
@@ -1785,24 +1817,21 @@ namespace FileHelpers.Tests
 
         public partial class Excel
         {
-            private static ClassesFileTest.Excel.ExcelWithNoEmptyRows mExcelWithNoEmptyRows =
-                new ClassesFileTest.Excel.ExcelWithNoEmptyRows();
+            private static ClassesFileTest.Excel.ExcelWithNoEmptyRows mExcelWithNoEmptyRows = new ClassesFileTest.Excel.ExcelWithNoEmptyRows();
 
             public static ClassesFileTest.Excel.ExcelWithNoEmptyRows ExcelWithNoEmptyRows
             {
                 get { return mExcelWithNoEmptyRows; }
             }
 
-            private static ClassesFileTest.Excel.ExcelWithOneEmptyRows mExcelWithOneEmptyRows =
-                new ClassesFileTest.Excel.ExcelWithOneEmptyRows();
+            private static ClassesFileTest.Excel.ExcelWithOneEmptyRows mExcelWithOneEmptyRows = new ClassesFileTest.Excel.ExcelWithOneEmptyRows();
 
             public static ClassesFileTest.Excel.ExcelWithOneEmptyRows ExcelWithOneEmptyRows
             {
                 get { return mExcelWithOneEmptyRows; }
             }
 
-            private static ClassesFileTest.Excel.ExcelWithTwoEmptyRows mExcelWithTwoEmptyRows =
-                new ClassesFileTest.Excel.ExcelWithTwoEmptyRows();
+            private static ClassesFileTest.Excel.ExcelWithTwoEmptyRows mExcelWithTwoEmptyRows = new ClassesFileTest.Excel.ExcelWithTwoEmptyRows();
 
             public static ClassesFileTest.Excel.ExcelWithTwoEmptyRows ExcelWithTwoEmptyRows
             {
@@ -1826,8 +1855,7 @@ namespace FileHelpers.Tests
                 get { return mArrayFields2; }
             }
 
-            private static ClassesFileTest.Good.ArrayFieldsDelimited mArrayFieldsDelimited =
-                new ClassesFileTest.Good.ArrayFieldsDelimited();
+            private static ClassesFileTest.Good.ArrayFieldsDelimited mArrayFieldsDelimited = new ClassesFileTest.Good.ArrayFieldsDelimited();
 
             public static ClassesFileTest.Good.ArrayFieldsDelimited ArrayFieldsDelimited
             {
@@ -1841,144 +1869,126 @@ namespace FileHelpers.Tests
                 get { return mChinese; }
             }
 
-            private static ClassesFileTest.Good.ChineseUnicode mChineseUnicode =
-                new ClassesFileTest.Good.ChineseUnicode();
+            private static ClassesFileTest.Good.ChineseUnicode mChineseUnicode = new ClassesFileTest.Good.ChineseUnicode();
 
             public static ClassesFileTest.Good.ChineseUnicode ChineseUnicode
             {
                 get { return mChineseUnicode; }
             }
 
-            private static ClassesFileTest.Good.ConditionalRecords1 mConditionalRecords1 =
-                new ClassesFileTest.Good.ConditionalRecords1();
+            private static ClassesFileTest.Good.ConditionalRecords1 mConditionalRecords1 = new ClassesFileTest.Good.ConditionalRecords1();
 
             public static ClassesFileTest.Good.ConditionalRecords1 ConditionalRecords1
             {
                 get { return mConditionalRecords1; }
             }
 
-            private static ClassesFileTest.Good.ConditionalRecords2 mConditionalRecords2 =
-                new ClassesFileTest.Good.ConditionalRecords2();
+            private static ClassesFileTest.Good.ConditionalRecords2 mConditionalRecords2 = new ClassesFileTest.Good.ConditionalRecords2();
 
             public static ClassesFileTest.Good.ConditionalRecords2 ConditionalRecords2
             {
                 get { return mConditionalRecords2; }
             }
 
-            private static ClassesFileTest.Good.ConditionalRecords3 mConditionalRecords3 =
-                new ClassesFileTest.Good.ConditionalRecords3();
+            private static ClassesFileTest.Good.ConditionalRecords3 mConditionalRecords3 = new ClassesFileTest.Good.ConditionalRecords3();
 
             public static ClassesFileTest.Good.ConditionalRecords3 ConditionalRecords3
             {
                 get { return mConditionalRecords3; }
             }
 
-            private static ClassesFileTest.Good.ConditionalRecords4 mConditionalRecords4 =
-                new ClassesFileTest.Good.ConditionalRecords4();
+            private static ClassesFileTest.Good.ConditionalRecords4 mConditionalRecords4 = new ClassesFileTest.Good.ConditionalRecords4();
 
             public static ClassesFileTest.Good.ConditionalRecords4 ConditionalRecords4
             {
                 get { return mConditionalRecords4; }
             }
 
-            private static ClassesFileTest.Good.ConverterDecimals1 mConverterDecimals1 =
-                new ClassesFileTest.Good.ConverterDecimals1();
+            private static ClassesFileTest.Good.ConverterDecimals1 mConverterDecimals1 = new ClassesFileTest.Good.ConverterDecimals1();
 
             public static ClassesFileTest.Good.ConverterDecimals1 ConverterDecimals1
             {
                 get { return mConverterDecimals1; }
             }
 
-            private static ClassesFileTest.Good.ConverterDecimals2 mConverterDecimals2 =
-                new ClassesFileTest.Good.ConverterDecimals2();
+            private static ClassesFileTest.Good.ConverterDecimals2 mConverterDecimals2 = new ClassesFileTest.Good.ConverterDecimals2();
 
             public static ClassesFileTest.Good.ConverterDecimals2 ConverterDecimals2
             {
                 get { return mConverterDecimals2; }
             }
 
-            private static ClassesFileTest.Good.CustomConverter1 mCustomConverter1 =
-                new ClassesFileTest.Good.CustomConverter1();
+            private static ClassesFileTest.Good.CustomConverter1 mCustomConverter1 = new ClassesFileTest.Good.CustomConverter1();
 
             public static ClassesFileTest.Good.CustomConverter1 CustomConverter1
             {
                 get { return mCustomConverter1; }
             }
 
-            private static ClassesFileTest.Good.CustomConverter2 mCustomConverter2 =
-                new ClassesFileTest.Good.CustomConverter2();
+            private static ClassesFileTest.Good.CustomConverter2 mCustomConverter2 = new ClassesFileTest.Good.CustomConverter2();
 
             public static ClassesFileTest.Good.CustomConverter2 CustomConverter2
             {
                 get { return mCustomConverter2; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixed mCustomersFixed =
-                new ClassesFileTest.Good.CustomersFixed();
+            private static ClassesFileTest.Good.CustomersFixed mCustomersFixed = new ClassesFileTest.Good.CustomersFixed();
 
             public static ClassesFileTest.Good.CustomersFixed CustomersFixed
             {
                 get { return mCustomersFixed; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedExact mCustomersFixedExact =
-                new ClassesFileTest.Good.CustomersFixedExact();
+            private static ClassesFileTest.Good.CustomersFixedExact mCustomersFixedExact = new ClassesFileTest.Good.CustomersFixedExact();
 
             public static ClassesFileTest.Good.CustomersFixedExact CustomersFixedExact
             {
                 get { return mCustomersFixedExact; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedLessChars10Records mCustomersFixedLessChars10Records =
-                new ClassesFileTest.Good.CustomersFixedLessChars10Records();
+            private static ClassesFileTest.Good.CustomersFixedLessChars10Records mCustomersFixedLessChars10Records = new ClassesFileTest.Good.CustomersFixedLessChars10Records();
 
             public static ClassesFileTest.Good.CustomersFixedLessChars10Records CustomersFixedLessChars10Records
             {
                 get { return mCustomersFixedLessChars10Records; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedMoreChars5Records mCustomersFixedMoreChars5Records =
-                new ClassesFileTest.Good.CustomersFixedMoreChars5Records();
+            private static ClassesFileTest.Good.CustomersFixedMoreChars5Records mCustomersFixedMoreChars5Records = new ClassesFileTest.Good.CustomersFixedMoreChars5Records();
 
             public static ClassesFileTest.Good.CustomersFixedMoreChars5Records CustomersFixedMoreChars5Records
             {
                 get { return mCustomersFixedMoreChars5Records; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedMoreVariable12Records mCustomersFixedMoreVariable12Records
-                = new ClassesFileTest.Good.CustomersFixedMoreVariable12Records();
+            private static ClassesFileTest.Good.CustomersFixedMoreVariable12Records mCustomersFixedMoreVariable12Records = new ClassesFileTest.Good.CustomersFixedMoreVariable12Records();
 
             public static ClassesFileTest.Good.CustomersFixedMoreVariable12Records CustomersFixedMoreVariable12Records
             {
                 get { return mCustomersFixedMoreVariable12Records; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields mCustomersFixedWithout1AndHalfFields
-                = new ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields();
+            private static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields mCustomersFixedWithout1AndHalfFields = new ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields();
 
             public static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields CustomersFixedWithout1AndHalfFields
             {
                 get { return mCustomersFixedWithout1AndHalfFields; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedWithout2Fields mCustomersFixedWithout2Fields =
-                new ClassesFileTest.Good.CustomersFixedWithout2Fields();
+            private static ClassesFileTest.Good.CustomersFixedWithout2Fields mCustomersFixedWithout2Fields = new ClassesFileTest.Good.CustomersFixedWithout2Fields();
 
             public static ClassesFileTest.Good.CustomersFixedWithout2Fields CustomersFixedWithout2Fields
             {
                 get { return mCustomersFixedWithout2Fields; }
             }
 
-            private static ClassesFileTest.Good.CustomersFixedWithoutLastField mCustomersFixedWithoutLastField =
-                new ClassesFileTest.Good.CustomersFixedWithoutLastField();
+            private static ClassesFileTest.Good.CustomersFixedWithoutLastField mCustomersFixedWithoutLastField = new ClassesFileTest.Good.CustomersFixedWithoutLastField();
 
             public static ClassesFileTest.Good.CustomersFixedWithoutLastField CustomersFixedWithoutLastField
             {
                 get { return mCustomersFixedWithoutLastField; }
             }
 
-            private static ClassesFileTest.Good.CustomersSemiColon mCustomersSemiColon =
-                new ClassesFileTest.Good.CustomersSemiColon();
+            private static ClassesFileTest.Good.CustomersSemiColon mCustomersSemiColon = new ClassesFileTest.Good.CustomersSemiColon();
 
             public static ClassesFileTest.Good.CustomersSemiColon CustomersSemiColon
             {
@@ -1992,48 +2002,42 @@ namespace FileHelpers.Tests
                 get { return mCustomersTab; }
             }
 
-            private static ClassesFileTest.Good.CustomersTabIgnoreFirst mCustomersTabIgnoreFirst =
-                new ClassesFileTest.Good.CustomersTabIgnoreFirst();
+            private static ClassesFileTest.Good.CustomersTabIgnoreFirst mCustomersTabIgnoreFirst = new ClassesFileTest.Good.CustomersTabIgnoreFirst();
 
             public static ClassesFileTest.Good.CustomersTabIgnoreFirst CustomersTabIgnoreFirst
             {
                 get { return mCustomersTabIgnoreFirst; }
             }
 
-            private static ClassesFileTest.Good.CustomersTabIgnoreLast mCustomersTabIgnoreLast =
-                new ClassesFileTest.Good.CustomersTabIgnoreLast();
+            private static ClassesFileTest.Good.CustomersTabIgnoreLast mCustomersTabIgnoreLast = new ClassesFileTest.Good.CustomersTabIgnoreLast();
 
             public static ClassesFileTest.Good.CustomersTabIgnoreLast CustomersTabIgnoreLast
             {
                 get { return mCustomersTabIgnoreLast; }
             }
 
-            private static ClassesFileTest.Good.CustomersTabIgnoreMiddle mCustomersTabIgnoreMiddle =
-                new ClassesFileTest.Good.CustomersTabIgnoreMiddle();
+            private static ClassesFileTest.Good.CustomersTabIgnoreMiddle mCustomersTabIgnoreMiddle = new ClassesFileTest.Good.CustomersTabIgnoreMiddle();
 
             public static ClassesFileTest.Good.CustomersTabIgnoreMiddle CustomersTabIgnoreMiddle
             {
                 get { return mCustomersTabIgnoreMiddle; }
             }
 
-            private static ClassesFileTest.Good.CustomersVerticalBar mCustomersVerticalBar =
-                new ClassesFileTest.Good.CustomersVerticalBar();
+            private static ClassesFileTest.Good.CustomersVerticalBar mCustomersVerticalBar = new ClassesFileTest.Good.CustomersVerticalBar();
 
             public static ClassesFileTest.Good.CustomersVerticalBar CustomersVerticalBar
             {
                 get { return mCustomersVerticalBar; }
             }
 
-            private static ClassesFileTest.Good.CustomersVerticalBarDemo mCustomersVerticalBarDemo =
-                new ClassesFileTest.Good.CustomersVerticalBarDemo();
+            private static ClassesFileTest.Good.CustomersVerticalBarDemo mCustomersVerticalBarDemo = new ClassesFileTest.Good.CustomersVerticalBarDemo();
 
             public static ClassesFileTest.Good.CustomersVerticalBarDemo CustomersVerticalBarDemo
             {
                 get { return mCustomersVerticalBarDemo; }
             }
 
-            private static ClassesFileTest.Good.CustomersVerticalBarOlds mCustomersVerticalBarOlds =
-                new ClassesFileTest.Good.CustomersVerticalBarOlds();
+            private static ClassesFileTest.Good.CustomersVerticalBarOlds mCustomersVerticalBarOlds = new ClassesFileTest.Good.CustomersVerticalBarOlds();
 
             public static ClassesFileTest.Good.CustomersVerticalBarOlds CustomersVerticalBarOlds
             {
@@ -2166,24 +2170,21 @@ namespace FileHelpers.Tests
                 get { return mEncodingANSI; }
             }
 
-            private static ClassesFileTest.Good.EncodingChinese mEncodingChinese =
-                new ClassesFileTest.Good.EncodingChinese();
+            private static ClassesFileTest.Good.EncodingChinese mEncodingChinese = new ClassesFileTest.Good.EncodingChinese();
 
             public static ClassesFileTest.Good.EncodingChinese EncodingChinese
             {
                 get { return mEncodingChinese; }
             }
 
-            private static ClassesFileTest.Good.EncodingUnicode mEncodingUnicode =
-                new ClassesFileTest.Good.EncodingUnicode();
+            private static ClassesFileTest.Good.EncodingUnicode mEncodingUnicode = new ClassesFileTest.Good.EncodingUnicode();
 
             public static ClassesFileTest.Good.EncodingUnicode EncodingUnicode
             {
                 get { return mEncodingUnicode; }
             }
 
-            private static ClassesFileTest.Good.EncodingUnicodeBig mEncodingUnicodeBig =
-                new ClassesFileTest.Good.EncodingUnicodeBig();
+            private static ClassesFileTest.Good.EncodingUnicodeBig mEncodingUnicodeBig = new ClassesFileTest.Good.EncodingUnicodeBig();
 
             public static ClassesFileTest.Good.EncodingUnicodeBig EncodingUnicodeBig
             {
@@ -2197,24 +2198,21 @@ namespace FileHelpers.Tests
                 get { return mEncodingUTF8; }
             }
 
-            private static ClassesFileTest.Good.EnumConverter1 mEnumConverter1 =
-                new ClassesFileTest.Good.EnumConverter1();
+            private static ClassesFileTest.Good.EnumConverter1 mEnumConverter1 = new ClassesFileTest.Good.EnumConverter1();
 
             public static ClassesFileTest.Good.EnumConverter1 EnumConverter1
             {
                 get { return mEnumConverter1; }
             }
 
-            private static ClassesFileTest.Good.EnumConverter2 mEnumConverter2 =
-                new ClassesFileTest.Good.EnumConverter2();
+            private static ClassesFileTest.Good.EnumConverter2 mEnumConverter2 = new ClassesFileTest.Good.EnumConverter2();
 
             public static ClassesFileTest.Good.EnumConverter2 EnumConverter2
             {
                 get { return mEnumConverter2; }
             }
 
-            private static ClassesFileTest.Good.EnumConverter3 mEnumConverter3 =
-                new ClassesFileTest.Good.EnumConverter3();
+            private static ClassesFileTest.Good.EnumConverter3 mEnumConverter3 = new ClassesFileTest.Good.EnumConverter3();
 
             public static ClassesFileTest.Good.EnumConverter3 EnumConverter3
             {
@@ -2235,24 +2233,28 @@ namespace FileHelpers.Tests
                 get { return mExcelCsv2; }
             }
 
-            private static ClassesFileTest.Good.FieldIgnoredAdvanced mFieldIgnoredAdvanced =
-                new ClassesFileTest.Good.FieldIgnoredAdvanced();
+            private static ClassesFileTest.Good.FieldIgnoredAdvanced mFieldIgnoredAdvanced = new ClassesFileTest.Good.FieldIgnoredAdvanced();
 
             public static ClassesFileTest.Good.FieldIgnoredAdvanced FieldIgnoredAdvanced
             {
                 get { return mFieldIgnoredAdvanced; }
             }
 
-            private static ClassesFileTest.Good.IgnoreComments1 mIgnoreComments1 =
-                new ClassesFileTest.Good.IgnoreComments1();
+            private static ClassesFileTest.Good.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Good.FieldNotEmpty1();
+
+            public static ClassesFileTest.Good.FieldNotEmpty1 FieldNotEmpty1
+            {
+                get { return mFieldNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Good.IgnoreComments1 mIgnoreComments1 = new ClassesFileTest.Good.IgnoreComments1();
 
             public static ClassesFileTest.Good.IgnoreComments1 IgnoreComments1
             {
                 get { return mIgnoreComments1; }
             }
 
-            private static ClassesFileTest.Good.IgnoreComments2 mIgnoreComments2 =
-                new ClassesFileTest.Good.IgnoreComments2();
+            private static ClassesFileTest.Good.IgnoreComments2 mIgnoreComments2 = new ClassesFileTest.Good.IgnoreComments2();
 
             public static ClassesFileTest.Good.IgnoreComments2 IgnoreComments2
             {
@@ -2315,24 +2317,21 @@ namespace FileHelpers.Tests
                 get { return mInNewLine2; }
             }
 
-            private static ClassesFileTest.Good.InNewLineAfterOptional1 mInNewLineAfterOptional1 =
-                new ClassesFileTest.Good.InNewLineAfterOptional1();
+            private static ClassesFileTest.Good.InNewLineAfterOptional1 mInNewLineAfterOptional1 = new ClassesFileTest.Good.InNewLineAfterOptional1();
 
             public static ClassesFileTest.Good.InNewLineAfterOptional1 InNewLineAfterOptional1
             {
                 get { return mInNewLineAfterOptional1; }
             }
 
-            private static ClassesFileTest.Good.InNewLineFixed1 mInNewLineFixed1 =
-                new ClassesFileTest.Good.InNewLineFixed1();
+            private static ClassesFileTest.Good.InNewLineFixed1 mInNewLineFixed1 = new ClassesFileTest.Good.InNewLineFixed1();
 
             public static ClassesFileTest.Good.InNewLineFixed1 InNewLineFixed1
             {
                 get { return mInNewLineFixed1; }
             }
 
-            private static ClassesFileTest.Good.InNewLineFixed2 mInNewLineFixed2 =
-                new ClassesFileTest.Good.InNewLineFixed2();
+            private static ClassesFileTest.Good.InNewLineFixed2 mInNewLineFixed2 = new ClassesFileTest.Good.InNewLineFixed2();
 
             public static ClassesFileTest.Good.InNewLineFixed2 InNewLineFixed2
             {
@@ -2374,8 +2373,7 @@ namespace FileHelpers.Tests
                 get { return mMultiRecord1; }
             }
 
-            private static ClassesFileTest.Good.NullableTypes1 mNullableTypes1 =
-                new ClassesFileTest.Good.NullableTypes1();
+            private static ClassesFileTest.Good.NullableTypes1 mNullableTypes1 = new ClassesFileTest.Good.NullableTypes1();
 
             public static ClassesFileTest.Good.NullableTypes1 NullableTypes1
             {
@@ -2396,104 +2394,91 @@ namespace FileHelpers.Tests
                 get { return mNumberFormat2; }
             }
 
-            private static ClassesFileTest.Good.NumberNegative mNumberNegative =
-                new ClassesFileTest.Good.NumberNegative();
+            private static ClassesFileTest.Good.NumberNegative mNumberNegative = new ClassesFileTest.Good.NumberNegative();
 
             public static ClassesFileTest.Good.NumberNegative NumberNegative
             {
                 get { return mNumberNegative; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited0 mOptionalDelimited0 =
-                new ClassesFileTest.Good.OptionalDelimited0();
+            private static ClassesFileTest.Good.OptionalDelimited0 mOptionalDelimited0 = new ClassesFileTest.Good.OptionalDelimited0();
 
             public static ClassesFileTest.Good.OptionalDelimited0 OptionalDelimited0
             {
                 get { return mOptionalDelimited0; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited1 mOptionalDelimited1 =
-                new ClassesFileTest.Good.OptionalDelimited1();
+            private static ClassesFileTest.Good.OptionalDelimited1 mOptionalDelimited1 = new ClassesFileTest.Good.OptionalDelimited1();
 
             public static ClassesFileTest.Good.OptionalDelimited1 OptionalDelimited1
             {
                 get { return mOptionalDelimited1; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited1Quoted mOptionalDelimited1Quoted =
-                new ClassesFileTest.Good.OptionalDelimited1Quoted();
+            private static ClassesFileTest.Good.OptionalDelimited1Quoted mOptionalDelimited1Quoted = new ClassesFileTest.Good.OptionalDelimited1Quoted();
 
             public static ClassesFileTest.Good.OptionalDelimited1Quoted OptionalDelimited1Quoted
             {
                 get { return mOptionalDelimited1Quoted; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited2 mOptionalDelimited2 =
-                new ClassesFileTest.Good.OptionalDelimited2();
+            private static ClassesFileTest.Good.OptionalDelimited2 mOptionalDelimited2 = new ClassesFileTest.Good.OptionalDelimited2();
 
             public static ClassesFileTest.Good.OptionalDelimited2 OptionalDelimited2
             {
                 get { return mOptionalDelimited2; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited2Quoted mOptionalDelimited2Quoted =
-                new ClassesFileTest.Good.OptionalDelimited2Quoted();
+            private static ClassesFileTest.Good.OptionalDelimited2Quoted mOptionalDelimited2Quoted = new ClassesFileTest.Good.OptionalDelimited2Quoted();
 
             public static ClassesFileTest.Good.OptionalDelimited2Quoted OptionalDelimited2Quoted
             {
                 get { return mOptionalDelimited2Quoted; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited3 mOptionalDelimited3 =
-                new ClassesFileTest.Good.OptionalDelimited3();
+            private static ClassesFileTest.Good.OptionalDelimited3 mOptionalDelimited3 = new ClassesFileTest.Good.OptionalDelimited3();
 
             public static ClassesFileTest.Good.OptionalDelimited3 OptionalDelimited3
             {
                 get { return mOptionalDelimited3; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited4 mOptionalDelimited4 =
-                new ClassesFileTest.Good.OptionalDelimited4();
+            private static ClassesFileTest.Good.OptionalDelimited4 mOptionalDelimited4 = new ClassesFileTest.Good.OptionalDelimited4();
 
             public static ClassesFileTest.Good.OptionalDelimited4 OptionalDelimited4
             {
                 get { return mOptionalDelimited4; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimited5 mOptionalDelimited5 =
-                new ClassesFileTest.Good.OptionalDelimited5();
+            private static ClassesFileTest.Good.OptionalDelimited5 mOptionalDelimited5 = new ClassesFileTest.Good.OptionalDelimited5();
 
             public static ClassesFileTest.Good.OptionalDelimited5 OptionalDelimited5
             {
                 get { return mOptionalDelimited5; }
             }
 
-            private static ClassesFileTest.Good.OptionalDelimitedFull mOptionalDelimitedFull =
-                new ClassesFileTest.Good.OptionalDelimitedFull();
+            private static ClassesFileTest.Good.OptionalDelimitedFull mOptionalDelimitedFull = new ClassesFileTest.Good.OptionalDelimitedFull();
 
             public static ClassesFileTest.Good.OptionalDelimitedFull OptionalDelimitedFull
             {
                 get { return mOptionalDelimitedFull; }
             }
 
-            private static ClassesFileTest.Good.OptionalFixed0 mOptionalFixed0 =
-                new ClassesFileTest.Good.OptionalFixed0();
+            private static ClassesFileTest.Good.OptionalFixed0 mOptionalFixed0 = new ClassesFileTest.Good.OptionalFixed0();
 
             public static ClassesFileTest.Good.OptionalFixed0 OptionalFixed0
             {
                 get { return mOptionalFixed0; }
             }
 
-            private static ClassesFileTest.Good.OptionalFixed1 mOptionalFixed1 =
-                new ClassesFileTest.Good.OptionalFixed1();
+            private static ClassesFileTest.Good.OptionalFixed1 mOptionalFixed1 = new ClassesFileTest.Good.OptionalFixed1();
 
             public static ClassesFileTest.Good.OptionalFixed1 OptionalFixed1
             {
                 get { return mOptionalFixed1; }
             }
 
-            private static ClassesFileTest.Good.OptionalFixed2 mOptionalFixed2 =
-                new ClassesFileTest.Good.OptionalFixed2();
+            private static ClassesFileTest.Good.OptionalFixed2 mOptionalFixed2 = new ClassesFileTest.Good.OptionalFixed2();
 
             public static ClassesFileTest.Good.OptionalFixed2 OptionalFixed2
             {
@@ -2507,24 +2492,21 @@ namespace FileHelpers.Tests
                 get { return mOrdersFixed; }
             }
 
-            private static ClassesFileTest.Good.OrdersFixedIgnoreMiddle mOrdersFixedIgnoreMiddle =
-                new ClassesFileTest.Good.OrdersFixedIgnoreMiddle();
+            private static ClassesFileTest.Good.OrdersFixedIgnoreMiddle mOrdersFixedIgnoreMiddle = new ClassesFileTest.Good.OrdersFixedIgnoreMiddle();
 
             public static ClassesFileTest.Good.OrdersFixedIgnoreMiddle OrdersFixedIgnoreMiddle
             {
                 get { return mOrdersFixedIgnoreMiddle; }
             }
 
-            private static ClassesFileTest.Good.OrdersSemiColon mOrdersSemiColon =
-                new ClassesFileTest.Good.OrdersSemiColon();
+            private static ClassesFileTest.Good.OrdersSemiColon mOrdersSemiColon = new ClassesFileTest.Good.OrdersSemiColon();
 
             public static ClassesFileTest.Good.OrdersSemiColon OrdersSemiColon
             {
                 get { return mOrdersSemiColon; }
             }
 
-            private static ClassesFileTest.Good.OrdersSmallVerticalBar mOrdersSmallVerticalBar =
-                new ClassesFileTest.Good.OrdersSmallVerticalBar();
+            private static ClassesFileTest.Good.OrdersSmallVerticalBar mOrdersSmallVerticalBar = new ClassesFileTest.Good.OrdersSmallVerticalBar();
 
             public static ClassesFileTest.Good.OrdersSmallVerticalBar OrdersSmallVerticalBar
             {
@@ -2538,40 +2520,35 @@ namespace FileHelpers.Tests
                 get { return mOrdersTab; }
             }
 
-            private static ClassesFileTest.Good.OrdersVerticalBar mOrdersVerticalBar =
-                new ClassesFileTest.Good.OrdersVerticalBar();
+            private static ClassesFileTest.Good.OrdersVerticalBar mOrdersVerticalBar = new ClassesFileTest.Good.OrdersVerticalBar();
 
             public static ClassesFileTest.Good.OrdersVerticalBar OrdersVerticalBar
             {
                 get { return mOrdersVerticalBar; }
             }
 
-            private static ClassesFileTest.Good.OrdersWithOutDates mOrdersWithOutDates =
-                new ClassesFileTest.Good.OrdersWithOutDates();
+            private static ClassesFileTest.Good.OrdersWithOutDates mOrdersWithOutDates = new ClassesFileTest.Good.OrdersWithOutDates();
 
             public static ClassesFileTest.Good.OrdersWithOutDates OrdersWithOutDates
             {
                 get { return mOrdersWithOutDates; }
             }
 
-            private static ClassesFileTest.Good.PriceConverter mPriceConverter =
-                new ClassesFileTest.Good.PriceConverter();
+            private static ClassesFileTest.Good.PriceConverter mPriceConverter = new ClassesFileTest.Good.PriceConverter();
 
             public static ClassesFileTest.Good.PriceConverter PriceConverter
             {
                 get { return mPriceConverter; }
             }
 
-            private static ClassesFileTest.Good.QuotedCustomers mQuotedCustomers =
-                new ClassesFileTest.Good.QuotedCustomers();
+            private static ClassesFileTest.Good.QuotedCustomers mQuotedCustomers = new ClassesFileTest.Good.QuotedCustomers();
 
             public static ClassesFileTest.Good.QuotedCustomers QuotedCustomers
             {
                 get { return mQuotedCustomers; }
             }
 
-            private static ClassesFileTest.Good.QuotedCustomers2 mQuotedCustomers2 =
-                new ClassesFileTest.Good.QuotedCustomers2();
+            private static ClassesFileTest.Good.QuotedCustomers2 mQuotedCustomers2 = new ClassesFileTest.Good.QuotedCustomers2();
 
             public static ClassesFileTest.Good.QuotedCustomers2 QuotedCustomers2
             {
@@ -2599,8 +2576,7 @@ namespace FileHelpers.Tests
                 get { return mQuoteMode1; }
             }
 
-            private static ClassesFileTest.Good.ReadAsDataTable mReadAsDataTable =
-                new ClassesFileTest.Good.ReadAsDataTable();
+            private static ClassesFileTest.Good.ReadAsDataTable mReadAsDataTable = new ClassesFileTest.Good.ReadAsDataTable();
 
             public static ClassesFileTest.Good.ReadAsDataTable ReadAsDataTable
             {
@@ -2635,16 +2611,14 @@ namespace FileHelpers.Tests
                 get { return mRealCsvTab2; }
             }
 
-            private static ClassesFileTest.Good.RealCsvVerticalBar1 mRealCsvVerticalBar1 =
-                new ClassesFileTest.Good.RealCsvVerticalBar1();
+            private static ClassesFileTest.Good.RealCsvVerticalBar1 mRealCsvVerticalBar1 = new ClassesFileTest.Good.RealCsvVerticalBar1();
 
             public static ClassesFileTest.Good.RealCsvVerticalBar1 RealCsvVerticalBar1
             {
                 get { return mRealCsvVerticalBar1; }
             }
 
-            private static ClassesFileTest.Good.RealCsvVerticalBar2 mRealCsvVerticalBar2 =
-                new ClassesFileTest.Good.RealCsvVerticalBar2();
+            private static ClassesFileTest.Good.RealCsvVerticalBar2 mRealCsvVerticalBar2 = new ClassesFileTest.Good.RealCsvVerticalBar2();
 
             public static ClassesFileTest.Good.RealCsvVerticalBar2 RealCsvVerticalBar2
             {
@@ -2703,8 +2677,7 @@ namespace FileHelpers.Tests
 
         public partial class RunTime
         {
-            private static ClassesFileTest.RunTime.VendorImport mVendorImport =
-                new ClassesFileTest.RunTime.VendorImport();
+            private static ClassesFileTest.RunTime.VendorImport mVendorImport = new ClassesFileTest.RunTime.VendorImport();
 
             public static ClassesFileTest.RunTime.VendorImport VendorImport
             {
