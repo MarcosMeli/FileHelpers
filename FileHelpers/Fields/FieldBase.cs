@@ -368,14 +368,7 @@ namespace FileHelpers
         /// <summary>
         /// Create a field base without any configuration
         /// </summary>
-        internal FieldBase() {}
-
-        /// <summary>
-        /// Create a field base from a fieldinfo object
-        /// Verify the settings against the actual field to ensure it will work.
-        /// </summary>
-        /// <param name="fi">Field Info Object</param>
-        internal FieldBase(FieldInfo fi)
+        internal FieldBase()
         {
             IsNullableType = false;
             TrimMode = TrimMode.None;
@@ -391,6 +384,18 @@ namespace FileHelpers
             IsArray = false;
             CharsToDiscard = 0;
             IsNotEmpty = false;
+        }
+
+        /// <summary>
+        /// Create a field base from a fieldinfo object
+        /// Verify the settings against the actual field to ensure it will work.
+        /// </summary>
+        /// <param name="fi">Field Info Object</param>
+        internal FieldBase(FieldInfo fi)
+            : this()
+        {
+         
+
             FieldInfo = fi;
             FieldType = FieldInfo.FieldType;
 
