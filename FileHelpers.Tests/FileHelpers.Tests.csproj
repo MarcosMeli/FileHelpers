@@ -410,7 +410,6 @@
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
     <Compile Include="Tests\Common\SorterTests.cs" />
