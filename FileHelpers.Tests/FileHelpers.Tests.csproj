@@ -151,7 +151,7 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\FieldNotEmpty.cs" />
+    <Compile Include="Tests\Common\FieldValidateIsNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>

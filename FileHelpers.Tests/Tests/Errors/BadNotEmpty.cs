@@ -12,19 +12,19 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void FieldValidateIsNotEmpty1()
         {
-            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty1.ReadWithEngine<NotEmptyType>());
+            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty1.ReadWithEngine<IsNotEmptyType>());
         }
 
         [Test]
         public void FieldValidateIsNotEmpty2()
         {
-            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty2.ReadWithEngine<NotEmptyType>());
+            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty2.ReadWithEngine<IsNotEmptyType>());
         }
 
         [Test]
         public void FieldValidateIsNotEmpty3()
         {
-            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty3.ReadWithEngine<NotEmptyType>());
+            Assert.Throws<ConvertException>(() => FileTest.Bad.FieldValidateIsNotEmpty3.ReadWithEngine<IsNotEmptyType>());
         }
     }
 }

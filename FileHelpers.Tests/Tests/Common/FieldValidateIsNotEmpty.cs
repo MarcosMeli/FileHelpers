@@ -6,17 +6,17 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
     [TestFixture]
-    public class FieldNotEmpty
+    public class FieldValidateIsNotEmpty
     {
         [Test]
         public void FieldValidateIsNotEmpty1()
         {
-            Assert.DoesNotThrow(() => FileTest.Good.FieldValidateIsNotEmpty1.ReadWithEngine<NotEmptyType>());
+            Assert.DoesNotThrow(() => FileTest.Good.FieldValidateIsNotEmpty1.ReadWithEngine<IsNotEmptyType>());
         }
     }
 
     [DelimitedRecord(",")]
-    public class NotEmptyType {
+    public class IsNotEmptyType {
         [FieldValidateIsNotEmpty()]
         public int CustomerID;
 
