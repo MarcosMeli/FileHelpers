@@ -9,18 +9,18 @@ namespace FileHelpers.Tests.CommonTests
     public class FieldNotEmpty
     {
         [Test]
-        public void FieldNotEmpty1()
+        public void FieldValidateIsNotEmpty1()
         {
-            Assert.DoesNotThrow(() => FileTest.Good.FieldNotEmpty1.ReadWithEngine<NotEmptyType>());
+            Assert.DoesNotThrow(() => FileTest.Good.FieldValidateIsNotEmpty1.ReadWithEngine<NotEmptyType>());
         }
     }
 
     [DelimitedRecord(",")]
     public class NotEmptyType {
-        [FieldNotEmpty()]
+        [FieldValidateIsNotEmpty()]
         public int CustomerID;
 
-        [FieldNotEmpty()]
+        [FieldValidateIsNotEmpty()]
         public string CompanyName;
 
         public string ContactName;
@@ -28,7 +28,7 @@ namespace FileHelpers.Tests.CommonTests
         [FieldNullValue(true)]
         public bool IsActive;
 
-        [FieldNotEmpty()]
+        [FieldValidateIsNotEmpty()]
         public DateTime? CreatedDate;
     }
 }

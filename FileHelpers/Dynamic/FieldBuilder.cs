@@ -175,13 +175,13 @@ namespace FileHelpers.Dynamic
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private bool mFieldNotEmpty = false;
+        private bool mFieldValidateIsNotEmpty = false;
 
         /// <summary>Indicates that the field cannot be empty.</summary>
-        public bool FieldNotEmpty
+        public bool FieldValidateIsNotEmpty
         {
-            get { return mFieldNotEmpty; }
-            set { mFieldNotEmpty = value; }
+            get { return mFieldValidateIsNotEmpty; }
+            set { mFieldValidateIsNotEmpty = value; }
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -294,8 +294,8 @@ namespace FileHelpers.Dynamic
             if (mFieldInNewLine)
                 attbs.AddAttribute("FieldInNewLine()");
 
-            if (mFieldNotEmpty)
-                attbs.AddAttribute("FieldNotEmpty()");
+            if (mFieldValidateIsNotEmpty)
+                attbs.AddAttribute("FieldValidateIsNotEmpty()");
 
             if (mFieldNullValue != null) {
                 if (mFieldNullValue is string)

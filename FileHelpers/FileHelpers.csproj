@@ -106,7 +106,7 @@
     <Compile Include="Attributes\FieldAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Attributes\FieldNotEmptyAttribute.cs" />
+    <Compile Include="Attributes\FieldValidateIsNotEmptyAttribute.cs" />
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />
     <Compile Include="Attributes\FieldOrderAttribute.cs" />
@@ -162,6 +162,7 @@
     <Compile Include="Attributes\TypedRecordAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldValidateAttribute.cs" />
     <Compile Include="Converters\ConverterBase.cs">
       <SubType>Code</SubType>
     </Compile>
