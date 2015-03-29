@@ -151,6 +151,7 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\FieldValidate.cs" />
     <Compile Include="Tests\Common\FieldValidateIsNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
@@ -335,6 +336,7 @@
     <Compile Include="Tests\Errors\ErrorModeValidatorAsync.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Errors\BadFieldValidate.cs" />
     <Compile Include="Tests\Errors\OtherErrors.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -378,6 +380,8 @@
     <Compile Include="Types\SampleTypes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Data\Bad\FieldValidate2.txt" />
+    <Content Include="Data\Bad\FieldValidate1.txt" />
     <Content Include="Data\Bad\FieldValidateIsNotEmpty1.txt" />
     <Content Include="Data\Bad\FieldValidateIsNotEmpty2.txt" />
     <Content Include="Data\Bad\FieldValidateIsNotEmpty3.txt" />
@@ -486,6 +490,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\FieldValidate1.txt" />
     <Content Include="Data\Good\FieldValidateIsNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />

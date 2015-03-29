@@ -16,7 +16,8 @@ namespace FileHelpers.Tests.CommonTests
     }
 
     [DelimitedRecord(",")]
-    public class IsNotEmptyType {
+    public class IsNotEmptyType 
+    {
         [FieldValidateIsNotEmpty()]
         public int CustomerID;
 
