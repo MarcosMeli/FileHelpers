@@ -13,7 +13,7 @@ namespace FileHelpers
     public abstract class FieldValidateAttribute : Attribute
     {
         /// <summary>Message used when validation fails and a <see cref="ConvertException"/> is thrown.</summary>
-        public string Message { get; protected set; }
+        protected internal string Message { get; set; }
 
         /// <summary>
         /// Used to determine whether a field's raw string value is valid or not.  If false, the engine will throw a <see cref="ConvertException"/>.
