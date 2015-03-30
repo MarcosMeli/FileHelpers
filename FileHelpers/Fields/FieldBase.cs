@@ -155,7 +155,7 @@ namespace FileHelpers
         /// <summary>
         /// Fieldname of the field we are storing
         /// </summary>
-        internal string FieldName
+        public string FieldName
         {
             get { return FieldInfo.Name; }
         }
