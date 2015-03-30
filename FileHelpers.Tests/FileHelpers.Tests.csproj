@@ -491,6 +491,7 @@
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
     <Content Include="Data\Good\FieldValidate1.txt" />
+    <Content Include="Data\Good\FieldValidate2.txt" />
     <Content Include="Data\Good\FieldValidateIsNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />

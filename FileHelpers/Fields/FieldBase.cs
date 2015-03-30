@@ -607,7 +607,7 @@ namespace FileHelpers
             try {
                 if (Validators != null && Validators.Length > 0) {
                     foreach (FieldValidateAttribute validator in Validators) {
-                        if (!validator.Validate(extractedString)) {
+                        if ((validator.ValidateNullValue || !string.IsNullOrEmpty(extractedString)) && !validator.Validate(extractedString)) {
                             throw new InvalidOperationException(validator.Message);
                         }
                     }

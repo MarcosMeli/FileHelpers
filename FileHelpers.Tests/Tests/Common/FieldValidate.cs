@@ -12,17 +12,34 @@ namespace FileHelpers.Tests.Tests.Common
         [Test]
         public void FieldValidate1()
         {
-            Assert.DoesNotThrow(() => FileTest.Good.FieldValidate1.ReadWithEngine<ValidateAttributeType>());
+            Assert.DoesNotThrow(() => FileTest.Good.FieldValidate1.ReadWithEngine<ValidateAttributeWithNullsType>());
+        }
+
+        [Test]
+        public void FieldValidate2()
+        {
+            Assert.DoesNotThrow(() => FileTest.Good.FieldValidate2.ReadWithEngine<ValidateAttributeWithoutNullsType>());
         }
     }
 
     [DelimitedRecord(",")]
-    public class ValidateAttributeType
+    public class ValidateAttributeWithNullsType
     {
         public int CustomerID;
         public string CompanyName;
 
-        [FieldValidateTest()]
+        [FieldValidateTest(true)]
+        public string Status;
+    }
+
+
+    [DelimitedRecord(",")]
+    public class ValidateAttributeWithoutNullsType
+    {
+        public int CustomerID;
+        public string CompanyName;
+
+        [FieldValidateTest(false)]
         public string Status;
     }
 
@@ -30,14 +47,14 @@ namespace FileHelpers.Tests.Tests.Common
     {
         private static HashSet<string> valid = new HashSet<string> { "active", "pending", "closed" };
 
-        public FieldValidateTestAttribute()
-            : base(message:"The value is empty and must be populated.")
+        public FieldValidateTestAttribute(bool ValidateNullValue)
+            : base(message: "The value is empty and must be populated.", validateNullValue: ValidateNullValue)
         {
         }
 
         public override bool Validate(string value)
         {
             return !String.IsNullOrEmpty(value) && valid.Contains(value.ToLower().Trim());
-        }  
+        }
     }
 }

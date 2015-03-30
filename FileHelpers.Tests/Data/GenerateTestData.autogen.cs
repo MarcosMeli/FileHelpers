@@ -948,6 +948,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldValidate2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return @"Good\FieldValidate2.txt";
+                }
+            }
+
             public partial class FieldValidateIsNotEmpty1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -2283,6 +2291,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.FieldValidate1 FieldValidate1
             {
                 get { return mFieldValidate1; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidate2 mFieldValidate2 = new ClassesFileTest.Good.FieldValidate2();
+
+            public static ClassesFileTest.Good.FieldValidate2 FieldValidate2
+            {
+                get { return mFieldValidate2; }
             }
 
             private static ClassesFileTest.Good.FieldValidateIsNotEmpty1 mFieldValidateIsNotEmpty1 = new ClassesFileTest.Good.FieldValidateIsNotEmpty1();
