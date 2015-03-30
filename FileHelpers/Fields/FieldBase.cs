@@ -145,7 +145,7 @@ namespace FileHelpers
         /// <summary>
         /// The validations that the field must pass to import successfully.
         /// </summary>
-        public Interfaces.IFieldValidate[] Validators { get; set; }
+        public List<Interfaces.IFieldValidate> Validators { get; private set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
@@ -298,7 +298,7 @@ namespace FileHelpers
                 res.InNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
 
                 // FieldValidatorAttributes - for use in custom validation of fields
-                res.Validators = (FieldValidateAttribute[])fi.GetCustomAttributes(typeof(FieldValidateAttribute), false);
+                res.Validators = new List<Interfaces.IFieldValidate>((FieldValidateAttribute[])fi.GetCustomAttributes(typeof(FieldValidateAttribute), false));
 
                 // FieldArrayLength
                 if (fi.FieldType.IsArray) {
@@ -605,7 +605,7 @@ namespace FileHelpers
             var extractedString = fieldString.ExtractedString();
 
             try {
-                if (Validators != null && Validators.Length > 0) {
+                if (Validators != null && Validators.Count > 0) {
                     foreach (Interfaces.IFieldValidate validator in Validators) {
                         if ((validator.ValidateNullValue || !string.IsNullOrEmpty(extractedString)) && !validator.Validate(extractedString)) {
                             throw new InvalidOperationException(validator.Message);
