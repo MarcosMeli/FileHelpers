@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using FileHelpers.Interfaces;
 
 namespace FileHelpers
 {
@@ -10,7 +11,7 @@ namespace FileHelpers
     /// <seealso href="examples.html">Examples of use</seealso>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class FieldValidateAttribute : Attribute
+    public abstract class FieldValidateAttribute : Attribute, IFieldValidate
     {
         /// <summary>Message used when validation fails and a <see cref="ConvertException"/> is thrown.</summary>
         protected internal string Message { get; set; }
@@ -30,6 +31,28 @@ namespace FileHelpers
         {
             Message = "Field value is invalid.";
             ValidateNullValue = false;
+        }
+
+        // IFieldValidate Support
+        bool IFieldValidate.Validate(string value)
+        {
+            return Validate(value);
+        }
+
+        string IFieldValidate.Message
+        {
+            get
+            {
+                return Message;
+            }
+        }
+
+        bool IFieldValidate.ValidateNullValue
+        {
+            get
+            {
+                return ValidateNullValue;
+            }
         }
     }
 }

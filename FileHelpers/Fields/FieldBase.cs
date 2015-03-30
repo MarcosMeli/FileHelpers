@@ -145,7 +145,7 @@ namespace FileHelpers
         /// <summary>
         /// The validations that the field must pass to import successfully.
         /// </summary>
-        public FieldValidateAttribute[] Validators { get; set; }
+        public Interfaces.IFieldValidate[] Validators { get; set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
@@ -606,7 +606,7 @@ namespace FileHelpers
 
             try {
                 if (Validators != null && Validators.Length > 0) {
-                    foreach (FieldValidateAttribute validator in Validators) {
+                    foreach (Interfaces.IFieldValidate validator in Validators) {
                         if ((validator.ValidateNullValue || !string.IsNullOrEmpty(extractedString)) && !validator.Validate(extractedString)) {
                             throw new InvalidOperationException(validator.Message);
                         }

@@ -6,8 +6,6 @@ using System.Diagnostics;
 
 namespace FileHelpers.Options
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// This class allows you to set some options of the records at runtime.
     /// With these options the library is now more flexible than ever.
@@ -283,5 +281,15 @@ namespace FileHelpers.Options
     {
         internal FieldBaseCollection(FieldBase[] fields)
             : base(fields) {}
+
+        /// <summary>
+        /// Finds a field by name.
+        /// </summary>
+        /// <param name="FieldName">The name of the field to find.</param>
+        /// <returns>The FieldBase item if found - otherwise, null.</returns>
+        public FieldBase this[string FieldName]
+        {
+            get { return this.Find(x => x.FieldName == FieldName); }
+        }
     }
 }

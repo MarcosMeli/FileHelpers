@@ -343,6 +343,7 @@
     <Compile Include="Helpers\StringHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\IFieldValidate.cs" />
     <Compile Include="Interfaces\INotifyRead.cs" />
     <Compile Include="Interfaces\ITransformable.cs" />
     <Compile Include="Interfaces\IComparableRecord.cs">
