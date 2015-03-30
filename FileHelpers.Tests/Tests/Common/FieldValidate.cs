@@ -48,8 +48,9 @@ namespace FileHelpers.Tests.Tests.Common
         private static HashSet<string> valid = new HashSet<string> { "active", "pending", "closed" };
 
         public FieldValidateTestAttribute(bool ValidateNullValue)
-            : base(message: "The value is empty and must be populated.", validateNullValue: ValidateNullValue)
         {
+            this.Message = "The value is empty and must be populated.";
+            this.ValidateNullValue = ValidateNullValue;
         }
 
         public override bool Validate(string value)

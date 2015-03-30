@@ -13,10 +13,10 @@ namespace FileHelpers
     public abstract class FieldValidateAttribute : Attribute
     {
         /// <summary>Message used when validation fails and a <see cref="ConvertException"/> is thrown.</summary>
-        internal string Message { get; set; }
+        protected internal string Message { get; set; }
 
         /// <summary>Indicates if validation should be done on null / empty string values of the field.  Defaults to false.</summary>
-        internal bool ValidateNullValue { get; set; }
+        protected internal bool ValidateNullValue { get; set; }
 
         /// <summary>
         /// Used to determine whether a field's raw string value is valid or not.  If false, the engine will throw a <see cref="ConvertException"/>.
@@ -26,10 +26,10 @@ namespace FileHelpers
         public abstract bool Validate(string value);
 
         /// <summary>Abstract class, see inheritors.</summary>
-        protected FieldValidateAttribute(string message = "Field value is invalid.", bool validateNullValue = false)
+        protected FieldValidateAttribute()
         {
-            Message = message;
-            ValidateNullValue = validateNullValue;
+            Message = "Field value is invalid.";
+            ValidateNullValue = false;
         }
     }
 }

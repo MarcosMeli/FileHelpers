@@ -17,8 +17,9 @@ namespace FileHelpers
     {
         /// <summary>Indicates that the target field cannot contain an empty string value.</summary>
         public FieldValidateIsNotEmptyAttribute()
-            : base(message:"The value is empty and must be populated.", validateNullValue:true)
         {
+            this.Message = "The value is empty and must be populated.";
+            this.ValidateNullValue = true;
         }
 
         /// <summary>
