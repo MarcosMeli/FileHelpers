@@ -62,17 +62,17 @@ namespace FileHelpers
         /// <summary>
         /// allow a quoted multiline format
         /// </summary>
-        internal MultilineMode QuoteMultiline { get; set; }
+        public MultilineMode QuoteMultiline { get; set; }
 
         /// <summary>
         /// whether quotes are optional for read and / or write
         /// </summary>
-        internal QuoteMode QuoteMode { get; set; }
+        public QuoteMode QuoteMode { get; set; }
 
         /// <summary>
         /// quote character around field (and repeated within it)
         /// </summary>
-        internal char QuoteChar { get; set; }
+        public char QuoteChar { get; set; }
 
         #endregion
 
