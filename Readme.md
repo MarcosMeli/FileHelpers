@@ -79,8 +79,8 @@ Contact and Ideas
 -----------------
 
  If you find that there is a feature that I should include, or you have a new idea 
- (for the API, Source Code or Examples), please let me know, by sending an e-mail 
- to marcos (at) filehelpers.com
+ (for the API, Source Code or Examples), please let us know creating an issue here in GitHub:
+ https://github.com/MarcosMeli/FileHelpers/issues/new
 
 Sponsors
 -----------------
