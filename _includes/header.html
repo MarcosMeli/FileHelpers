@@ -101,7 +101,7 @@
    
       <section id="content">
         
-        {% if page.breadcrumbtext2 %}
+        {% unless page.breadcrumbhidden %}
         <div id="breadcrumbs-wrapper" class=" grey lighten-3">
           <div class="container">
             <div class="row">
@@ -122,4 +122,4 @@
           </div>
         </div>
 
-{% endif %}         
+{% endunless %}         

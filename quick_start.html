@@ -1,0 +1,82 @@
+---
+layout: default
+title: Simple Quick Start
+permalink: /quick_start/
+---
+
+<h3>Quick Start for Delimited files</h3>
+
+<div style="left-margin: 20px;">
+    Or check the <a href="quick_start_fixed">Fixed length file example</a> or <a href="quick_start_async">Record by record example</a><br /><br />
+
+<h4><a name="first"></a>Step 1</h4>
+
+<p>To start using the FileHelpers library
+you only need to add a reference in your project to the file:
+<strong>FileHelpers.dll</strong>. You can find it in the Release
+directory of the distribution. Tip: remember to leave the
+<strong>FileHelpers.xml</strong> file to get Visual Studio Intellisense support. </p>
+<div style="left-margin: 20px;">
+<p><img src="{{ site.baseurl }}/images/references.png" width="103" height="53" alt="add references"/></p>
+</div>
+
+<h4><a name="two"></a>Step 2</h4>
+<p> Next, you need to define a class that maps to the record in the
+source/destination file.<br/>
+For this example we use this formatted file delimited by a ',':</p>
+
+<h5>Sample data</h5>
+{% highlight csharp %}
+1732,Juan Perez,435.00,11-05-2002
+554,Pedro Gomez,12342.30,06-02-2004
+112,Ramiro Politti,0.00,01-02-2000
+924,Pablo Ramirez,3321.30,24-11-2002
+...............
+{% endhighlight %}
+
+<p>Next you write a class listing the fields:</p>
+
+{% highlight csharp %}
+[DelimitedRecord(",")]
+public class Customer
+{
+	public int CustId;
+
+	public string Name;
+
+	public decimal Balance;
+
+	[FieldConverter(ConverterKind.Date, &quot;dd-MM-yyyy&quot;)]
+	public DateTime AddedDate;
+
+}
+{% endhighlight %}
+
+<h4><a name="three"></a>Step 3</h4>
+
+<p>Then you need to create a FileHelperEngine and read or write the files:</p>
+
+{% highlight csharp %}
+var engine = new FileHelperEngine&lt;Customer&gt;();
+
+// To Read Use:
+var result = engine.ReadFile(&quot;FileIn.txt&quot;);
+// result is now an array of Customer
+
+// To Write Use:
+engine.WriteFile(&quot;FileOut.txt&quot;, result);
+{% endhighlight %}
+
+<h4><a name="four"></a>Step 4</h4>
+
+<p>We can use the result array to access each item in the file, for example: </p>
+
+{% highlight csharp %}
+foreach (Customer cust in result)
+{
+    Console.WriteLine(&quot;Customer Info:&quot;);
+    Console.WriteLine(cust.Name + &quot; - &quot; +
+                      cust.AddedDate.ToString(&quot;dd/MM/yy&quot;));
+}
+{% endhighlight %}
+
