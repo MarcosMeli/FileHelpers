@@ -1,16 +1,17 @@
 .container pre
 {
-margin-left: 20px;
-  margin-right: 50px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  
+
 }
 
 /**
  * Syntax highlighting styles
  */
-.highlight {
-    background: #fff;
+.highlight pre { background-color: #EDEDED;   padding: 15px; margin-left: 20px;
+  margin-right: 50px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
+
 .highlight .c     { color: #998; font-style: italic } // Comment
 .highlight .err   { color: #a61717; background-color: #e3d2d2 } // Error
 .highlight .k     { font-weight: bold } // Keyword
@@ -70,4 +71,4 @@ margin-left: 20px;
 .highlight .vg    { color: #008080 } // Name.Variable.Global
 .highlight .vi    { color: #008080 } // Name.Variable.Instance
 .highlight .il    { color: #099 } // Literal.Number.Integer.Long
-}
+
