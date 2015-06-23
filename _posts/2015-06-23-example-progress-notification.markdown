@@ -2,6 +2,8 @@
 layout: default
 title:  "Examples - Progress Notification"
 categories: progress events
+breadcrumbtext2: "Examples"
+breadcrumblink2: "examples"
 ---
 
 You can get notified about the progress of the operations

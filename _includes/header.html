@@ -108,11 +108,16 @@
           <div class="container">
             <div class="row">
               <div class="col s12 m12 l12">
-                <h5 class="breadcrumbs-title">Examples - Progress Notification</h5>
+                <h5 class="breadcrumbs-title">{{ page.title  }}</h5>
                 <ol class="breadcrumb">
                     <li><a href="{{ site.baseurl }}/">FileHelpers</a></li>
-                    <li><a href="examples.html">Examples</a></li>
-                    <li class="active">Progress Notification</li>
+
+  {% if page.breadcrumbtext2 %} 
+                    <li><a href="{{ site.baseurl }}/{{ page.breadcrumbtext2 }}">{{ page.breadcrumbtext2 }}</a></li>
+  {% endif %} 
+
+                    <li class="active">{{ page.title  }}</li>
+
                 </ol>
               </div>
             </div>

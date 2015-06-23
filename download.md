@@ -4,13 +4,13 @@ title: Download Install
 permalink: /download/
 ---
 
-## Download
+### Download
 
 The recommended method to use the library is via the NuGet package
 
 https://www.nuget.org/packages/FileHelpers/
 
-{% highlight csharp %}
+{% highlight %}
 Install-Package FileHelpers
 {% endhighlight %} 
 
