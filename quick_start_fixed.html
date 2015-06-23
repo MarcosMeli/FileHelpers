@@ -79,14 +79,14 @@ public class Customer2
 <p>Then you need to create a FileHelperEngine and read or write the files:</p>
 
 {% highlight csharp %}
-var engine = new FileHelperEngine&lt;Customer&gt;();
+var engine = new FileHelperEngine<Customer>();
 
 // To Read Use:
-var result = engine.ReadFile(&quot;FileIn.txt&quot;);
+var result = engine.ReadFile("FileIn.txt");
 // result is now an array of Customer
 
 // To Write Use:
-engine.WriteFile(&quot;FileOut.txt&quot;, result);
+engine.WriteFile("FileOut.txt", result);
 {% endhighlight %}
 
 <h4><a name="four"></a>Step 4</h4>
@@ -96,9 +96,9 @@ engine.WriteFile(&quot;FileOut.txt&quot;, result);
 {% highlight csharp %}
 foreach (Customer cust in result)
 {
-    Console.WriteLine(&quot;Customer Info:&quot;);
-    Console.WriteLine(cust.Name + &quot; - &quot; +
-                      cust.AddedDate.ToString(&quot;dd/MM/yy&quot;));
+    Console.WriteLine("Customer Info:");
+    Console.WriteLine(cust.Name + " - " +
+                      cust.AddedDate.ToString("dd/MM/yy"));
 }
 {% endhighlight %}
 
