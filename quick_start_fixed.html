@@ -1,13 +1,14 @@
 ---
 layout: default
-title: Quick Start Delimited
-permalink: /quick_start/
+title: Quick Start Fixed Length
+permalink: /quick_start_fixed/
 ---
 
-<h3>Quick Start for Delimited files</h3>
+<h3>Quick Start for Fixed Length files</h3>
 
 <div style="left-margin: 20px;">
-    Or check the <a href="{{ site.baseurl }}/quick_start_fixed">Fixed length file example</a> or <a href="{{ site.baseurl }}/quick_start_async">Record by record example</a><br /><br />
+    Or check the <a href="{{ site.baseurl }}/quick_start">Delimited file example</a> or <a href="{{ site.baseurl }}/quick_start_async">record by record example</a><br /><br />
+</div>
 
 <h4><a name="first"></a>Step 1</h4>
 
@@ -22,33 +23,54 @@ directory of the distribution. Tip: remember to leave the
 
 <h4><a name="two"></a>Step 2</h4>
 <p> Next, you need to define a class that maps to the record in the
-source/destination file.<br/>
-For this example we use this formatted file delimited by a ',':</p>
+source/destination file.</p>
+<p>For this example we use this format file:</p>
 
 <h5>Sample data</h5>
 {% highlight csharp %}
-1732,Juan Perez,435.00,11-05-2002
-554,Pedro Gomez,12342.30,06-02-2004
-112,Ramiro Politti,0.00,01-02-2000
-924,Pablo Ramirez,3321.30,24-11-2002
-...............
+01732Juan Perez           004350011052002
+00554Pedro Gomez          123423006022004
+00112Ramiro Politti       000000001022000
+00924Pablo Ramirez        033213024112002
+...............    
 {% endhighlight %}
 
 <p>Next you write a class listing the fields:</p>
 
 {% highlight csharp %}
-[DelimitedRecord(",")]
-public class Customer
+[FixedLengthRecord()]
+public class Customer2
 {
+	[FieldFixedLength(5)]
 	public int CustId;
-
+	
+	[FieldFixedLength(20)]
+	[FieldTrim(TrimMode.Right)]
 	public string Name;
 
+	[FieldFixedLength(8)]
+	[FieldConverter(typeof(TwoDecimalConverter))]
 	public decimal Balance;
 
-	[FieldConverter(ConverterKind.Date, &quot;dd-MM-yyyy&quot;)]
+	[FieldFixedLength(8)]
+	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
 	public DateTime AddedDate;
 
+	// A custom converter
+	internal class TwoDecimalConverter: ConverterBase
+	{
+		public override object StringToField(string from)
+		{
+			decimal res = Convert.ToDecimal(from);
+			return res / 100;
+		}
+
+		public override string FieldToString(object from)
+		{
+			decimal d = (decimal) from;
+			return Math.Round(d * 100).ToString();
+		}
+	}
 }
 {% endhighlight %}
 
