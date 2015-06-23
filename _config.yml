@@ -1,0 +1,9 @@
+# Site settings
+title: FileHelpers Libary
+description: The FileHelpers are a free and easy to use .NET library to import/export data from fixed length or delimited records in files, strings or streams. 
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.filehelpers.com" # the base hostname & protocol for your site
+github_username:  MarcosMeli
+
+# Build settings
+markdown: kramdown
