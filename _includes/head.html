@@ -5,7 +5,7 @@
   <meta name="msapplication-tap-highlight" content="no">
 
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.title %} {% if page.breadcrumbtext2 %}{{ page.breadcrumbtext2 }} - {% endif %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

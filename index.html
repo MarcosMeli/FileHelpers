@@ -1,15 +1,206 @@
 ---
 layout: default
+breadcrumbhidden: true
 ---
+<h2>FileHelpers v 2.2<span style="color: #0066ff;font-size: 9pt">(<a href="changelog">Click to see the History</a>)</span></h2>
+    
+<div style="float:left; width:190px; margin-left:1em;margin-right:1em;">
+    <img src="{{ site.baseurl }}/images/filehelpers_box.png" alt="Boxed filehelpers product"/>
+</div>
+<div style="float:right; width:70%;">
 
-  <h1 class="page-heading">Examples</h1>
+<p>FileHelpers is a <strong>free and easy to use </strong> .NET library to <strong>import or export</strong>
+data from <strong>fixed length or delimited records</strong> in files, strings or
+streams.</p>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+<p><b>The idea is pretty simple:</b></p>
+
+<p class="note">
+You can strongly type your flat file (fixed or delimited) by simply describing a class that
+maps to each record and later read or write your file as an strongly typed .NET array 
+</p>
+
+<p>The library also has support to import or export data from different data storage types like Excel,
+Access, SqlServer, etc.</p>             
+
+<p><b>Start using FileHelpers right now: </b></p>
+
+<ul class="community">
+    <li><b><a href="{{ site.baseurl }}/download" >Download it</a></b></li>
+    <li><b><a href="{{ site.baseurl }}/quick_start">Quick Start for Delimited Records</a></b></li>
+    <li><a href="{{ site.baseurl }}/quick_start_fixed"><strong>Quick Start for Fixed Length
+                            Records</strong></a></li>
+    <li><a href="{{ site.baseurl }}/examples"><strong>Check the Examples</strong></a> or <a href="FileHelpers_Examples_CSharp_VbNet.zip">
+                            <strong>Download sample projects</strong></a></li>
+    <li><a href="{{ site.baseurl }}/must_read"><strong>Must Read Docs</strong></a></li>
+    <li><a href="http://www.filehelpers.com/movies.html"><strong>Screencasts &amp; Movies</strong></a></li>
+    <li><a href="{{ site.baseurl }}/credits"><strong>Contact &amp; Credits</strong></a></li>
+</ul>
+</div>
+<div style="clear:both;">
+
+<h3>Free and Open Source</h3>
+
+<p>The FileHelpers library is <b>completely free</b> (released under dual licensing, choose the license that best fits you <a href="http://www.opensource.org/licenses/bsd-license.php" >BSD License</a> or <a href="http://www.opensource.org/licenses/lgpl-3.0.html" >LGPL License</a>) and allows the use of the code and binaries in all places, including commercial applications.</p>
+<p>You can access the full source code of the library at GitHub <a href="https://github.com/MarcosMeli/FileHelpers">github.com/MarcosMeli/FileHelpers</a>
+
+<h3>Basic Uses of the Library</h3>
+
+<img height="300" src="{{ site.baseurl }}/images/use_case1.png" width="598" alt="general read write of filehelpers"/>
+<p />
+
+<img height="300" src="{{ site.baseurl }}/images/use_case2.png" width="598" alt="General read write to data storage"/>
+
+<h3>Who needs the File Helpers Library ?</h3>
+
+              <p>In almost every project there is a need to read or write data from/to a file of a 
+                specified format.</p>
+              <p>
+                  For example, log parsing, data warehouse and OLAP applications, 
+                communication between systems, file format transformations (for example transforming from a 
+                fixed length to a CSV file).</p>
+              <p>
+                This library aims to provide an easy and reliable way to accomplish this task.</p>
+
+<h3>Main Features</h3>
+
+<dl>
+<dt>Easy to use:</dt>
+<dd>The FileHelpers library is straightforward to learn and use. 
+(see <a href="example_easy.html">Easy Example</a>)</dd>
+
+<dt>Auto Converters:</dt>
+<dd>The library has a set of converters for common types 
+and can be easy extended to provide custom converters. (see&nbsp;<a href="FileHelpers.ConverterBase.html">
+ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)</dd>
+
+<dt>RunTime Classes:</dt>
+<dd>You can create your record class at run time, load layouts from files with source code or an XML description
+(see <a href="runtime_classes.html">examples</a>)</dd>
+
+<dt>High Performance:</dt>
+<dd>From version 2.0 the library doesn't use reflection to get or set the field
+values, it uses dynamic code generation (MSIL) and delegates</dd>
+
+<dt>Master-Detail:</dt>
+<dd>You can read and write records with a master/detail pattern. (see <a href="example_masterdetail2.html">
+Example1</a> and <a href="example_masterdetail.html">Example2</a>)</dd>
+
+<dt>Multiple record format support: </dt>
+<dd>With the MultirecordEngine, you can read files with different record layouts, you can also read files with some delimited and some fixed length records. 
+(see <a href="example_multirecords.html">Example</a>)</dd>
+
+<dt>Event Support:</dt>
+<dd>The engines of the library contain events to make it easier to extend the behavior of the library (see <a href="events.html">
+Example</a>)</dd>
+
+<dt>Microsoft Excel Storage:</dt>
+<dd> Allows you to extract and insert records between any source and an Excel file.
+(see <a href="FileHelpers.DataLink.ExcelStorage.html">ExcelDataStorage</a> and <a href="example_exceldatalink.html">Excel DataLink Example</a>)</dd>
+
+<dt>DataLink:</dt>
+<dd>Provides a way to extract and insert records between a database and a 
+file. (see <a href="FileHelpers.DataLink.DataStorage.html">DataStorage</a> and
+<a href="example_datalink.html">File DataLink Example</a>)</dd>
+
+<dt>GenericDataLink:</dt>
+<dd>Allows you to copy records between two data stores
+(see&nbsp;<a href="FileHelpers.DataLink.GenericDataLink.html">GenericDataLink</a>
+and <a href="FileHelpers.DataLink.DataStorage.html">DataStorage</a>)</dd>
+
+<dt>Asynchronous Mode:</dt>
+<dd>You can use the library to read line by line and not 
+the whole file. (see <a href="FileHelpers.FileHelperAsyncEngine.BeginReadFile.html">Async Methods</a>)</dd>
+
+<dt>File Transform Engine:</dt>
+<dd>To convert files in one format to another
+(for example a file with CSV to a fixed length record format)
+(see <a href="example_transform.html">example</a>)</dd>
+
+<dt>Progress Notification:</dt>
+<dd>Provides feedback on the progress in each operation in the library
+(see <a href="example_progress.html">example</a>)</dd>
+
+<dt>Generics:</dt>
+<dd>The cast-less and strong-typed version of the engines
+(see <a href="generics.html">example</a>)</dd>
+
+<dt>Nullable Types:</dt>
+<dd>The library supports Nullable types in the core
+(see <a href="example_nullable.html">example</a>)</dd>
+
+<dt>FileDiffEngine</dt>
+<dd><img height="12" src="{{ site.baseurl }}/images/new.gif" width="31" alt="new"/> 
+Provides the ability to compare files with the same record layout
+(see <a href="example_filediffengine.html">example</a>)</dd>
+
+</dl>
+
+<h3>Others Features</h3>
+
+<dl>
+<dt>Files, Stream and String Support:</dt>
+<dd>You can use the library to read or write any stream or string, not only files.
+ (see <a href="FileHelpers.FileHelperEngineMethods.html">FileHelperEngine</a>)</dd>
+
+<dt>Different Error Behaviors:</dt>
+<dd>You can set the behavior of the library when 
+an error is found (throw and exception, ignore, save and continue, etc)
+(see <a href="example_errorhandling.html">example</a>)</dd>
+
+<dt>Quoted String Support</dt>
+<dd> It allows you to specify that the field must be read and written as Quoted 
+String, like Excel CSV. (see<a href="FileHelpers.FieldQuotedAttribute.html"> FieldQuotedAttribute</a>)</dd>
+
+<dt>Data Table Operations:</dt>
+<dd>The library supports reading a file directly into a DataTable rather than an array</dd>
+
+<dt>CommonEngine</dt>
+<dd> An easy way to access to common operations
+(see <a href="example_commonengine.html">example</a>)</dd>
+
+<dt>Encoding Aware:</dt>
+<dd> You can define the encoding used to read and write files or streams.
+(see <a href="FileHelpers.EngineBase.Encoding.html">BaseEngine.Encoding</a>)</dd>
+
+<dt>Null Values:</dt>
+<dd>The library can identify null values and replace these 
+with user supplied values. (see <a href="FileHelpers.FieldNullValueAttribute.html">FieldNullValueAttribute</a>)</dd>
+
+<dt>Good Documentation:</dt>
+<dd> The library is fully documented, at least this is the 
+intention =), and with a lot of <a href="examples.html">examples of use</a>.</dd>
+
+<dt>Alignment and Trimming:</dt>
+<dd>You can set the processing mode of the in/out strings with a lot of attributes
+like <a href="FileHelpers.FieldAlignAttribute.html">FieldAlignAttribute</a>
+and <a href="FileHelpers.FieldTrimAttribute.html">FieldTrimAttribute</a>.</dd>
+</dl>
+
+<h3>Licence (BSD or LGPL)</h3>
+
+<p>FileHelpers Library is @Copyright 2005-2010 to <a href="http://www.MarcosMeli.com.ar">Marcos 
+Meli</a> but it's source code and the binaries are <strong>free for commercial 
+and non commercial use</strong>.</p>
+
+<p>The FileHelpers library is released under the <a href="http://www.opensource.org/licenses/bsd-license.php" >BSD License</a> that allows the use in all places, including commercial applications.
+<b>Note:</b> You can also use it under <a href="http://www.opensource.org/licenses/lgpl-3.0.html" >LGPL license</a> because the library is dual licensed</p>
+
+<p>I'll be happy to hear in what project are you using the library, if you want to share this with me only, send a mail to:                     <script type="text/javascript" language="javascript">
+<!--
+ML="\"mf@ cp/rt:s<aol.>ie=h";
+MI="<=4E8C2D01=B?9>:1=85>;32B?CEC?6C8;@5>10A1=85>;32B?CEC?6C8;@5>1<7=A";
+OT="";
+for(j=0;j<MI.length;j++){
+OT+=ML.charAt(MI.charCodeAt(j)-48);
+}document.write(OT);
+// --></script>
+</p>
+
+<h3>References</h3>
+
+<p>   One of the best references that assists in the development of 
+this library is <a href="http://msdn.microsoft.com/netframework/programming/classlibraries/">
+Designing .NET Class Libraries</a>, a complete guide for design and 
+programming of libraries and controls using the techniques of the creators and 
+gurus of .NET.</p>

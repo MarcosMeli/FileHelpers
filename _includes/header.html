@@ -95,15 +95,13 @@
           </ul>
           <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2"><i class="mdi-navigation-menu" ></i></a>
       </aside>
+
       <!-- END LEFT SIDEBAR NAV-->
 
-      <!-- //////////////////////////////////////////////////////////////////////////// -->
-
    
-   <!-- START CONTENT -->
       <section id="content">
         
-        <!--breadcrumbs start-->
+        {% if page.breadcrumbtext2 %}
         <div id="breadcrumbs-wrapper" class=" grey lighten-3">
           <div class="container">
             <div class="row">
@@ -123,5 +121,5 @@
             </div>
           </div>
         </div>
-        <!--breadcrumbs end-->
-        
+
+{% endif %}         
