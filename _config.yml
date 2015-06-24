@@ -5,5 +5,7 @@ baseurl: "/FileHelpers" # the subpath of your site, e.g. /blog/
 url: "http://www.filehelpers.com" # the base hostname & protocol for your site
 github_username:  MarcosMeli
 
+highlighter: pygments
+
 # Build settings
 markdown: kramdown
