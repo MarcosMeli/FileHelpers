@@ -1,0 +1,1 @@
+tsc d:\Desarrollo\Devoo\Page\Branch\FileHelpers\js\main.ts

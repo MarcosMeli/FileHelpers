@@ -10,3 +10,5 @@ highlighter: pygments
 # Build settings
 markdown: kramdown
 js_dest: js
+
+exclude:  ['*.ts']
