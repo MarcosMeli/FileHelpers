@@ -1,16 +1,16 @@
 <header class="site-header">
- <!-- Start Page Loading -->
+
+{% if page.showloader %} 
   <div id="loader-wrapper">
       <div id="loader"></div>        
       <div class="loader-section section-left"></div>
       <div class="loader-section section-right"></div>
   </div>
-  <!-- End Page Loading -->
+{% endif %} 
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
-
-  <!-- START HEADER -->
   <header id="header" class="page-topbar">
+
+
         <!-- start header nav-->
         <div class="navbar-fixed">
             <nav class="indigo darken-2">
@@ -30,14 +30,11 @@
             </nav>
         </div>
         <!-- end header nav-->
+
   </header>
-  <!-- END HEADER -->
 
-  <!-- //////////////////////////////////////////////////////////////////////////// -->
 
-  <!-- START MAIN -->
   <div id="main">
-    <!-- START WRAPPER -->
     <div class="wrapper">
 
       <!-- START LEFT SIDEBAR NAV-->
@@ -129,7 +126,8 @@
    
       <section id="content">
         
-        {% unless page.breadcrumbhidden %}
+{% unless page.breadcrumbhidden %}
+
         <div id="breadcrumbs-wrapper" class=" grey lighten-3">
           <div class="container">
             <div class="row">
@@ -138,9 +136,9 @@
                 <ol class="breadcrumb">
                     <li><a href="{{ site.baseurl }}/">FileHelpers</a></li>
 
-  {% if page.breadcrumbtext2 %} 
+    {% if page.breadcrumbtext2 %} 
                     <li><a href="{{ site.baseurl }}/{{ page.breadcrumblink2 }}">{{ page.breadcrumbtext2 }}</a></li>
-  {% endif %} 
+    {% endif %} 
 
                     <li class="active">{{ page.title  }}</li>
 
