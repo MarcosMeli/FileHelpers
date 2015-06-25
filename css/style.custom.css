@@ -150,3 +150,12 @@ header .brand-logo {
     color: #008080; }
   .highlight .il {
     color: #099; } 
+
+
+
+li.edit-page:hover{
+  opacity: 1;
+}
+li.edit-page{
+  opacity: 0.4;
+}

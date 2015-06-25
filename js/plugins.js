@@ -19,7 +19,9 @@ $(function() {
   });  
   
   $('.show-search').click(function() {
-    $('.search-out').fadeToggle( "50", "linear" );
+    $('.search-out').fadeToggle( "50", "linear");
+    $('.search-out-text').focus();
+
   });
 
   // Check first if any of the task is checked
