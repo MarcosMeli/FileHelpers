@@ -3,6 +3,12 @@ layout: default
 breadcrumbhidden: true
 showloader: true
 ---
+
+<style>
+#features h4 {    font-size: 18px; }
+#features .s4 { font-size: 14px; line-height: 1.3;}
+</style>
+
 <h2>FileHelpers v 3.1<span style="color: #0066ff;font-size: 9pt">(<a href="changelog">Click to see the History</a>)</span></h2>
     
 <div style="float:left; width:190px; margin-left:1em;margin-right:1em;">
@@ -61,120 +67,75 @@ Access, SqlServer, etc.</p>
               <p>
                 This library aims to provide an easy and reliable way to accomplish this task.</p>
 
-<h3>Main Features</h3>
+<h3>Features</h3>
 
-<dl>
-<dt>Easy to use:</dt>
-<dd>The FileHelpers library is straightforward to learn and use. 
-(see <a href="example_easy.html">Easy Example</a>)</dd>
-
-<dt>Auto Converters:</dt>
-<dd>The library has a set of converters for common types 
+<div id="features">
+        <div class="row">
+            <div class="col s4">
+                <h4><i class="fa fa-thumbs-o-up"></i> Easy to use:</h4>
+                The FileHelpers library is straightforward to learn and use. (see <a href="example_easy.html">Easy Example</a>)
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-magic"></i> Auto Converters:</h4>
+                The library has a set of converters for common types 
 and can be easy extended to provide custom converters. (see&nbsp;<a href="FileHelpers.ConverterBase.html">
-ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)</dd>
-
-<dt>RunTime Classes:</dt>
-<dd>You can create your record class at run time, load layouts from files with source code or an XML description
-(see <a href="runtime_classes.html">examples</a>)</dd>
-
-<dt>High Performance:</dt>
-<dd>From version 2.0 the library doesn't use reflection to get or set the field
-values, it uses dynamic code generation (MSIL) and delegates</dd>
-
-<dt>Master-Detail:</dt>
-<dd>You can read and write records with a master/detail pattern. (see <a href="example_masterdetail2.html">
-Example1</a> and <a href="example_masterdetail.html">Example2</a>)</dd>
-
-<dt>Multiple record format support: </dt>
-<dd>With the MultirecordEngine, you can read files with different record layouts, you can also read files with some delimited and some fixed length records. 
-(see <a href="example_multirecords.html">Example</a>)</dd>
-
-<dt>Event Support:</dt>
-<dd>The engines of the library contain events to make it easier to extend the behavior of the library (see <a href="events.html">
-Example</a>)</dd>
-
-<dt>Microsoft Excel Storage:</dt>
-<dd> Allows you to extract and insert records between any source and an Excel file.
-(see <a href="FileHelpers.DataLink.ExcelStorage.html">ExcelDataStorage</a> and <a href="example_exceldatalink.html">Excel DataLink Example</a>)</dd>
-
-<dt>DataLink:</dt>
-<dd>Provides a way to extract and insert records between a database and a 
-file. (see <a href="FileHelpers.DataLink.DataStorage.html">DataStorage</a> and
-<a href="example_datalink.html">File DataLink Example</a>)</dd>
-
-<dt>GenericDataLink:</dt>
-<dd>Allows you to copy records between two data stores
-(see&nbsp;<a href="FileHelpers.DataLink.GenericDataLink.html">GenericDataLink</a>
-and <a href="FileHelpers.DataLink.DataStorage.html">DataStorage</a>)</dd>
-
-<dt>Asynchronous Mode:</dt>
-<dd>You can use the library to read line by line and not 
-the whole file. (see <a href="FileHelpers.FileHelperAsyncEngine.BeginReadFile.html">Async Methods</a>)</dd>
-
-<dt>File Transform Engine:</dt>
-<dd>To convert files in one format to another
+ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-bolt"></i> Event Support:</h4>
+              The engines of the library contain events to make it easier to extend the behavior of the library (see <a href="events.html">
+Example</a>
+            </div>
+        </div>
+        <div class="row">
+      <div class="col s4">
+                <h4><i class="fa fa-rocket"></i> High Performance:</h4>
+                The library doesn't use reflection to get or set the field values, it uses dynamic code generation
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-files-o"></i> BigFileSorter</h4>
+                You can use the library to sort files with millon of records
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-compress"></i> FileDiffEngine</h4>
+                Provides the ability to compare files with the same record layout
+(see <a href="example_filediffengine.html">example</a>)
+            </div>
+        </div>
+         <div class="row">
+            <div class="col s4">
+                <h4><i class="fa fa-question"></i> Nullable Types:</h4>
+                The library supports Nullable types in the core
+(see <a href="example_nullable.html">example</a>)
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-list"></i> Asynchronous Mode:</h4>
+                You can use the library to read line by line and not 
+the whole file. 
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-cogs"></i> File Transform Engine:</h4>
+                To convert files in one format to another
 (for example a file with CSV to a fixed length record format)
-(see <a href="example_transform.html">example</a>)</dd>
+(see <a href="example_transform.html">example</a>)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4">
+                <h4><i class="fa fa-github"></i> Open Source</h4>
+                The library is completely free to use in any kind of development
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-search"></i> Format Autodetection</h4>
+                The library has an smart feature that based in some sample files can deduce the Record Class
+            </div>
+            <div class="col s4">
+                <h4><i class="fa fa-magic"></i> Wizard</h4>
+                We provide a Wizard app to help in the creation of the Record Class
+            </div>
+        </div>
+    </div>
 
-<dt>Progress Notification:</dt>
-<dd>Provides feedback on the progress in each operation in the library
-(see <a href="example_progress.html">example</a>)</dd>
-
-<dt>Generics:</dt>
-<dd>The cast-less and strong-typed version of the engines
-(see <a href="generics.html">example</a>)</dd>
-
-<dt>Nullable Types:</dt>
-<dd>The library supports Nullable types in the core
-(see <a href="example_nullable.html">example</a>)</dd>
-
-<dt>FileDiffEngine</dt>
-<dd><img height="12" src="{{ site.baseurl }}/images/new.gif" width="31" alt="new"/> 
-Provides the ability to compare files with the same record layout
-(see <a href="example_filediffengine.html">example</a>)</dd>
-
-</dl>
-
-<h3>Others Features</h3>
-
-<dl>
-<dt>Files, Stream and String Support:</dt>
-<dd>You can use the library to read or write any stream or string, not only files.
- (see <a href="FileHelpers.FileHelperEngineMethods.html">FileHelperEngine</a>)</dd>
-
-<dt>Different Error Behaviors:</dt>
-<dd>You can set the behavior of the library when 
-an error is found (throw and exception, ignore, save and continue, etc)
-(see <a href="example_errorhandling.html">example</a>)</dd>
-
-<dt>Quoted String Support</dt>
-<dd> It allows you to specify that the field must be read and written as Quoted 
-String, like Excel CSV. (see<a href="FileHelpers.FieldQuotedAttribute.html"> FieldQuotedAttribute</a>)</dd>
-
-<dt>Data Table Operations:</dt>
-<dd>The library supports reading a file directly into a DataTable rather than an array</dd>
-
-<dt>CommonEngine</dt>
-<dd> An easy way to access to common operations
-(see <a href="example_commonengine.html">example</a>)</dd>
-
-<dt>Encoding Aware:</dt>
-<dd> You can define the encoding used to read and write files or streams.
-(see <a href="FileHelpers.EngineBase.Encoding.html">BaseEngine.Encoding</a>)</dd>
-
-<dt>Null Values:</dt>
-<dd>The library can identify null values and replace these 
-with user supplied values. (see <a href="FileHelpers.FieldNullValueAttribute.html">FieldNullValueAttribute</a>)</dd>
-
-<dt>Good Documentation:</dt>
-<dd> The library is fully documented, at least this is the 
-intention =), and with a lot of <a href="examples.html">examples of use</a>.</dd>
-
-<dt>Alignment and Trimming:</dt>
-<dd>You can set the processing mode of the in/out strings with a lot of attributes
-like <a href="FileHelpers.FieldAlignAttribute.html">FieldAlignAttribute</a>
-and <a href="FileHelpers.FieldTrimAttribute.html">FieldTrimAttribute</a>.</dd>
-</dl>
 
 <h3>Licence (BSD or LGPL)</h3>
 
