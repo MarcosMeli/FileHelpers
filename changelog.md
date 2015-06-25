@@ -6,13 +6,13 @@ permalink: /changelog/
 
 ###Changes in the library
 
--   [1.0 (10-Oct-2005)](javascript:unhide('v100');)
+-   [1.0 (10-Oct-2005)]
     -   Developed for the [Larkware Contest](http://www.larkware.com)
         and [Code
         Project](http://www.codeproject.com/KB/database/filehelpers.aspx)
         site.
 
--   [1.1.0 (11-Nov-2005)](javascript:unhide('v110');)
+-   [1.1.0 (11-Nov-2005)]
     -   MOD: The Decimal, Double and Single converters now are
         cultureless and discard all the blanks before converting the
         number to allow (" - 10.3", " - 13. ", etc)
@@ -27,7 +27,7 @@ permalink: /changelog/
         features.
     -   ADD: .NET Compact Framework Support (thanks Pierre)
 
--   [1.1.4 (26-Nov-2005)](javascript:unhide('v114');)
+-   [1.1.4 (26-Nov-2005)]
     -   FIX: DataLink engine fail for File -\> Access option.
     -   FIX: CodeSmith templates generate bad insert statement.
     -   MOD: Documentation of DataLinks
@@ -39,7 +39,7 @@ permalink: /changelog/
         DataLink Examples)
     -   ADD: NAnt build file, for clean, build, test and validate.
 
--   [1.2.0 (7-Dec-2005)](javascript:unhide('v120');)
+-   [1.2.0 (7-Dec-2005)]
     -   FIX: BeginReadFile now is Encoding Depending.
     -   MOD: The Decimal, Double and Single converters are more smart to
         discard blanks. (thanks Ivan)
@@ -61,7 +61,7 @@ permalink: /changelog/
     -   ADD: Require a custom converter for non system types.
     -   ADD: CustomConverter example in the docs (see advanced example).
 
--   [1.3.0 RC1 (27-Dec-2005)](javascript:unhide('v130');)
+-   [1.3.0 RC1 (27-Dec-2005)]
     -   FIX: BeginReadFile now uses the IgnoreFirst(n) attribute.
     -   FIX: Documentation examples (bad syntax and names)
     -   FIX: Documentation browsing (some see also topics was bad)
@@ -101,7 +101,7 @@ permalink: /changelog/
         closed and disposed after use.
     -   ADD: More [NUnit tests](testing.html) (now 100+)
 
--   [1.3.1 (12-Jan-2006)](javascript:unhide('v131');)
+-   [1.3.1 (12-Jan-2006)]
     -   FIX: ExcelStorage: Fail when the number of columns in the
         worksheet is 1.
     -   FIX: BeginReadFile now uses the IgnoreFirst(n) attribute.
@@ -130,7 +130,7 @@ permalink: /changelog/
         browse the properties of each field in a nice way.
     -   ADD: More [NUnit tests](testing.html) (now 122)
 
--   [1.3.2 (28-Jan-2006)](javascript:unhide('v132');)
+-   [1.3.2 (28-Jan-2006)]
     -   FIX: FieldIgnore: Problems when used in the last field in the
         record class.
     -   FIX: ExcelStorage.SheetName: didn't work, now yes and catch the
@@ -148,7 +148,7 @@ permalink: /changelog/
         to the SVN, Trac, Mailing list, used tools, etc.
     -   ADD: More [NUnit tests](testing.html) (now 137)
 
--   [1.3.5 (14-Feb-2006)](javascript:unhide('v135');)
+-   [1.3.5 (14-Feb-2006)]
     -   ADD: This Release has **six new features**:
         -   [FileHelpers Wizard](wizard.html) - An Simple UI to generate
             the record classes (RC1)
@@ -181,7 +181,7 @@ permalink: /changelog/
     -   MOD: Refactor... a lot of refactoring to support the IgnoreLast,
         forward reading and others enhancements.
 
--   [1.4.0 (17-Mar-2006)](javascript:unhide('v140');)
+-   [1.4.0 (17-Mar-2006)]
     -   Major changes:
         -   DEL: ConverterKind.Custom was removed because it was
             irrelevant to use custom converters now the library uses
@@ -240,7 +240,7 @@ permalink: /changelog/
             for syntax highlighting.
         -   ADD: Wizard: a lot of new templates and fixes in others.
 
--   [1.5.0 (Jun-2006)](javascript:unhide('v150');)
+-   [1.5.0 (Jun-2006)]
 
     There have been some delays but the library is always moving forward
     thanks to hard work and the help from all of you.
@@ -325,7 +325,7 @@ permalink: /changelog/
     -   MOD: Demo application rewritten to show some new features and
         show the syntax changes in the old ones.
 
--   [1.6.0 (Aug-2006)](javascript:unhide('v160');)
+-   [1.6.0 (Aug-2006)]
 
     The library has 10 months now and a lot of things were added. So I
     want to thank all the people who send their feedback, posted
@@ -416,7 +416,7 @@ permalink: /changelog/
     -   ADD: [**How to help me with the development of the
         Library**](howhelp.html) page.
 
--   [2.0 (April-2007)](javascript:unhide('v200');)
+-   [2.0 (April-2007)]
 
     The library has passed its 1st birthday !!! and thanks to the work
     and contribution of a lot of people ([partial list of
@@ -580,7 +580,7 @@ permalink: /changelog/
         -   Improved documentation. (Thanks Antoine and Matt)
         -   [A lot of new examples check it out !!](examples.html)
 
--   [3.1 (July-2014)](javascript:unhide('v300');)
+-   [3.1 (July-2014)]
 
     Hi everyone again !!
 
