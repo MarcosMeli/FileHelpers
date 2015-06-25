@@ -11,4 +11,5 @@ highlighter: pygments
 markdown: kramdown
 js_dest: js
 
-exclude:  ['*.ts', 'Graphics', 'README.md', 'build.bat']
+exclude:  ['*.ts', '*.bat',
+           'Graphics', 'README.md']

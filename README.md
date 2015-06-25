@@ -13,7 +13,7 @@ Now all the site is on FileHelpersHome folder
 
 We are using jekyll as a page generator: http://jekyllrb.com/
 
-To test the pages run: jekyll serve inside the folder and go to: http://localhost:4000/FileHelpers/
+To test the pages run: jekyll serve inside the folder and go to: http://localhost:4000/
 
 To work with Jekyll on windows here are some tips:
 
