@@ -4,7 +4,69 @@ title: Version History
 permalink: /changelog/
 ---
 
-###Changes in the library
+###Version 3.1, July 2014
+
+Hi everyone again!
+
+The FileHelpers has reached a big Milestone today
+we are releasing the **3.1 version!**
+With full support for **.NET 4.0 and 4.5** and with a ton of news
+and enhancements. After some time off for different reasons we are now trying to
+update the library in a more regular fashion.
+
+-   **Main changes**
+    -   The core code of the library was refactored to make easier
+        to extend it
+    -   Better performance, mostly for FixedLenght records
+    -   The error messages have been made more meaningful. In all
+        exceptionsyou get; the FieldName, ColumnNumber, LineNumber,
+        etc.
+    -   Docs rewritten thanks to the work of Ken Foskey
+    -   CHANGED: Removed support for .NET Compact Framework
+    -   CHANGED: Better caching of internal classes
+    -   NEW: Full .NET 2.0, 4.0 & 4.5 support
+    -   NEW: FieldOrder: a new attribute to override the default
+        order of fields
+    -   NEW: FieldNotEmpty : Indicates whether the target field
+        needs to be populated with a non-empty value.
+    -   NEW: Partial support to use Autoproperties
+    -   NEW: Async Methods returns IDisposable to allow using()
+        statements that autoclose files on ends or exception
+    -   NEW: ReadFileAsList: new methods to directly get a List
+        instead of an array
+    -   NEW: Events for the Async engines
+    -   NEW: The events args now have TotalBytes and CurrentBytes to
+        allow you show progress while reading or writting
+    -   NEW: FieldIndexers you can now get the values in the
+        AsyncEngine like in the DataReader of ADO.NET =) You can
+        access them via index or fieldName (at the moment case
+        sensitive)  
+         This also completes the RunTime records support
+    -   NEW: FormatDetector: A class designed to discover the format
+        of delimited and flat files based on sample files. It is
+        integrated with the wizzard
+    -   NEW: Better Delited validations to make sure that the file
+        contains the right number of fields
+    -   NEW: FieldValueDiscarted: a new attribute to allow the value
+        of a particular field to be read but not stored in the
+        record class (this was a very requested feature)
+    -   NEW: BigFileSorter: if you need to sort big files, you can
+        use this feature that implements External Sorting
+
+-   **Breaking Changes**
+    -   
+
+-   **API changes and extensions**
+    -   
+
+-   **Minor Changes**
+    -   ADD: UpdateLinks properties, allow to specify how the
+        library must handle Workbook links (thanks to Stefan Sch?e)
+    -   [Some new examples.](examples.html)
+    -   FIX: A little problem with the quoted fields in the wizard
+    -   More documentation has been added to the Library source
+        code. It is now even easier to get involved in development!
+    -   Lots of minor documentation updates
 
 -   [1.0 (10-Oct-2005)]
     -   Developed for the [Larkware Contest](http://www.larkware.com)
@@ -579,69 +641,3 @@ permalink: /changelog/
             length of the fields in your instruction
         -   Improved documentation. (Thanks Antoine and Matt)
         -   [A lot of new examples check it out !!](examples.html)
-
--   [3.1 (July-2014)]
-
-    Hi everyone again !!
-
-    The FileHelpers has reached a big Milestone today  
-     we are releasing the **3.1 version!**  
-     With full support for **.NET 4.0 and 4.5** and with a ton of news
-    and enhancements  
-      
-     After some time off for differents reasons we are now trying to
-    update the library in a more regular fashion :)
-
-    -   **Main changes**
-        -   The core code of the library was refactored to make easier
-            to extend it
-        -   Better performance, mostly for FixedLenght records
-        -   The error messages have been made more meaningful. In all
-            exceptionsyou get; the FieldName, ColumnNumber, LineNumber,
-            etc.
-        -   Docs rewritten thanks to the work of Ken Foskey
-        -   CHANGED: Removed support for .NET Compact Framework
-        -   CHANGED: Better caching of internal classes
-        -   NEW: Full .NET 2.0, 4.0 & 4.5 support
-        -   NEW: FieldOrder: a new attribute to override the default
-            order of fields
-        -   NEW: FieldNotEmpty : Indicates whether the target field
-            needs to be populated with a non-empty value.
-        -   NEW: Partial support to use Autoproperties
-        -   NEW: Async Methods returns IDisposable to allow using()
-            statements that autoclose files on ends or exception
-        -   NEW: ReadFileAsList: new methods to directly get a List
-            instead of an array
-        -   NEW: Events for the Async engines
-        -   NEW: The events args now have TotalBytes and CurrentBytes to
-            allow you show progress while reading or writting
-        -   NEW: FieldIndexers you can now get the values in the
-            AsyncEngine like in the DataReader of ADO.NET =) You can
-            access them via index or fieldName (at the moment case
-            sensitive)  
-             This also completes the RunTime records support
-        -   NEW: FormatDetector: A class designed to discover the format
-            of delimited and flat files based on sample files. It is
-            integrated with the wizzard
-        -   NEW: Better Delited validations to make sure that the file
-            contains the right number of fields
-        -   NEW: FieldValueDiscarted: a new attribute to allow the value
-            of a particular field to be read but not stored in the
-            record class (this was a very requested feature)
-        -   NEW: BigFileSorter: if you need to sort big files, you can
-            use this feature that implements External Sorting
-
-    -   **Breaking Changes**
-        -   
-
-    -   **API changes and extensions**
-        -   
-
-    -   **Minor Changes**
-        -   ADD: UpdateLinks properties, allow to specify how the
-            library must handle Workbook links (thanks to Stefan Sch?e)
-        -   [Some new examples.](examples.html)
-        -   FIX: A little problem with the quoted fields in the wizard
-        -   More documentation has been added to the Library source
-            code. It is now even easier to get involved in development!
-        -   Lots of minor documentation updates
