@@ -67,7 +67,11 @@ Access, SqlServer, etc.</p>
               <p>
                 This library aims to provide an easy and reliable way to accomplish this task.</p>
 
+
 <h3>Features</h3>
+
+    <div class="row">
+      <div class="col s12 m10 l10 offset-m1 offset-l1">
 
 <div id="features">
         <div class="row">
@@ -88,7 +92,7 @@ Example</a>
             </div>
         </div>
         <div class="row">
-      <div class="col s4">
+            <div class="col s4">
                 <h4><i class="fa fa-rocket"></i> High Performance:</h4>
                 The library doesn't use reflection to get or set the field values, it uses dynamic code generation
             </div>
@@ -136,6 +140,9 @@ the whole file.
         </div>
     </div>
 
+        </div>
+    </div>
+
 
 <h3>Licence (BSD or LGPL)</h3>
 
@@ -146,16 +153,6 @@ and non commercial use</strong>.</p>
 <p>The FileHelpers library is released under the <a href="http://www.opensource.org/licenses/bsd-license.php" >BSD License</a> that allows the use in all places, including commercial applications.
 <b>Note:</b> You can also use it under <a href="http://www.opensource.org/licenses/lgpl-3.0.html" >LGPL license</a> because the library is dual licensed</p>
 
-<p>I'll be happy to hear in what project are you using the library, if you want to share this with me only, send a mail to:                     <script type="text/javascript" language="javascript">
-<!--
-ML="\"mf@ cp/rt:s<aol.>ie=h";
-MI="<=4E8C2D01=B?9>:1=85>;32B?CEC?6C8;@5>10A1=85>;32B?CEC?6C8;@5>1<7=A";
-OT="";
-for(j=0;j<MI.length;j++){
-OT+=ML.charAt(MI.charCodeAt(j)-48);
-}document.write(OT);
-// --></script>
-</p>
 
 <h3>References</h3>
 
@@ -164,3 +161,23 @@ this library is <a href="http://msdn.microsoft.com/netframework/programming/clas
 Designing .NET Class Libraries</a>, a complete guide for design and 
 programming of libraries and controls using the techniques of the creators and 
 gurus of .NET.</p>
+
+
+<script>
+    
+    $(function(){
+        $("#features .col").addClass("hoverable");
+
+/*
+        $("#features .col").mouseenter(function(event){
+
+            $("#features .col").css("opacity", 0.8)
+            $(event.target).css("opacity", 1);
+        })
+
+        $("#features .col").mouseleave(function(event){
+            $("#features .col").css("opacity", 1)
+        })
+*/
+    })
+</script>

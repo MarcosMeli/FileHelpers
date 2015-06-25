@@ -7,43 +7,53 @@ permalink: /attributes/
             <h3>A brief description of the attributes and the usage.</h3>
             
             <!--Striped Table-->
+<style>
 
+table.hoverable > tr > td { cursor: pointer; }
+
+.attribute{ font-family: 'Inconsolata', Monaco, Consolas, 'Andale Mono', monospace; }
+
+.useinread {  font-family: 'Inconsolata', Monaco, Consolas, 'Andale Mono', monospace; text-align: center;}
+.useinwrite { font-family: 'Inconsolata', Monaco, Consolas, 'Andale Mono', monospace; text-align: center;}
+
+</style>
+<div id="attributes">
 <div class="row">
             <div id="striped-table" class="col s11 offset-s1 m9 offset-m1 l6 ">
               <h4 class="header">Fixed Length Records</h4>
-                  <table class="striped">
+                  <table class="striped hoverable">
                     <thead>
                       <tr>
-                        <th data-field="id">Attribute</th>
-                        <th data-field="name">Read</th>
-                        <th data-field="price"> Write</th>
+                        <th data-field="attribute">Attribute</th>
+                        <th data-field="read" style="text-align:center">Read</th>
+                        <th data-field="write" style="text-align:center">Write</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><strong>FixedLengthRecord</strong><br><small>Indicates a fixed length record file</small></td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute"><strong>FixedLengthRecord</strong><br><small>Indicates a fixed length record file</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>IgnoreFirst</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreFirst</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>IgnoreLast</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreLast</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>IgnoreEmptyLines</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreEmptyLines</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>ConditionalRecord</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">ConditionalRecord</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -52,39 +62,39 @@ permalink: /attributes/
 
    <div id="striped-table" class="col s11 offset-s1 m9 offset-m1 l6 ">
               <h4 class="header">Delimited Records</h4>
-                  <table class="striped">
+                  <table class="striped hoverable">
                     <thead>
                       <tr>
-                        <th data-field="id">Attribute</th>
-                        <th data-field="name">Read</th>
-                        <th data-field="price">Write</th>
+                        <th data-field="attribute">Attribute</th>
+                        <th data-field="read" style="text-align:center">Read</th>
+                        <th data-field="write" style="text-align:center">Write</th>
                       </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        <td><strong>DelimitedRecord</strong><br><small>Indicates a delimited record file</small></td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute"><strong>DelimitedRecord</strong><br><small>Indicates a delimited record file</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>IgnoreFirst</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreFirst</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>IgnoreLast</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreLast</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>IgnoreEmptyLines</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">IgnoreEmptyLines</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>ConditionalRecord</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">ConditionalRecord</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -100,63 +110,63 @@ permalink: /attributes/
 <div class="row">
             <div id="striped-table" class="col s11 offset-s1 m9 offset-m1 l6 ">
               <h4 class="header">Fixed Length Fields</h4>
-                  <table class="striped">
+                  <table class="striped hoverable">
                     <thead>
                       <tr>
-                        <th data-field="id">Attribute</th>
-                        <th data-field="name">Read</th>
-                        <th data-field="price">Write</th>
+                        <th data-field="attribute">Attribute</th>
+                        <th data-field="read" style="text-align:center">Read</th>
+                        <th data-field="write" style="text-align:center">Write</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><strong>FieldFixedLength</strong><br><small>Indicates a length of the field</small></td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute"><strong>FieldFixedLength</strong><br><small>Indicates a length of the field</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldConverter</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldConverter</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldQuoted</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldQuoted</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldInNewLine?</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldInNewLine?</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldHidden<br><small>The library ignore this field</small></td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-
-
-                      <tr>
-                        <td>FieldOptional</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">FieldHidden<br><small>The library ignore this field</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
 
 
                       <tr>
-                        <td>FieldNullValue</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">FieldOptional</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
+                      </tr>
+
+
+                      <tr>
+                        <td class="attribute">FieldNullValue</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>FieldTrim ?</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">FieldTrim ?</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
                       <tr>
-                        <td>FieldAlign</td>
-                        <td></td>
-                        <td>X</td>
+                        <td class="attribute">FieldAlign</td>
+                        <td class="useinread"></td>
+                        <td class="useinwrite">X</td>
                       </tr>
 
                     
@@ -173,46 +183,46 @@ permalink: /attributes/
 
    <div id="striped-table" class="col s11 offset-s1 m9 offset-m1 l6 ">
               <h4 class="header">Delimited Fields</h4>
-                  <table class="striped">
+                  <table class="striped hoverable">
                     <thead>
                       <tr>
-                        <th data-field="id">Attribute</th>
-                        <th data-field="name">Read</th>
-                        <th data-field="price">Write</th>
+                        <th data-field="attribute">Attribute</th>
+                        <th data-field="read" style="text-align:center">Read</th>
+                        <th data-field="write" style="text-align:center">Write</th>
                       </tr>
                     </thead>
                     <tbody>
                        <tr>
-                        <td>FieldDelimiter<br><small>Indicates a new field end marker</small></td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldDelimiter<br><small>Indicates a new field end marker</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldConverter</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldConverter</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldQuoted</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldQuoted</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldInNewLine?</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldInNewLine?</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
                       <tr>
-                        <td>FieldHidden<br><small>The library ignore this field</small></td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td class="attribute">FieldHidden<br><small>The library ignore this field</small></td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite">X</td>
                       </tr>
 
 
                       <tr>
-                        <td>FieldOptional</td>
-                        <td>X</td>
-                        <td></td>
+                        <td class="attribute">FieldOptional</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
                       </tr>
 
                       
@@ -221,17 +231,17 @@ permalink: /attributes/
 
 
                       <tr>
-                        <td>FieldNullValue</td>
-                        <td>X</td>
+                        <td class="attribute">FieldNullValue</td>
+                        <td class="useinread">X</td>
+                        <td class="useinwrite"></td>
+                      </tr>
+                      <tr>
+                        <td class="attribute">-</td>
+                        <td></td>
                         <td></td>
                       </tr>
                       <tr>
-                        <td>-</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>-</td>
+                        <td class="attribute">-</td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -240,4 +250,5 @@ permalink: /attributes/
                   </table>
             </div>
 
+</div>
 </div>
