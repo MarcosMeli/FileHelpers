@@ -7,9 +7,13 @@ If you want to edit the pages you can:
  * Edit here on GitHub and create a pull request
  * Check out the branch with: 
  
- git clone -b gh-pages --single-branch https://github.com/MarcosMeli/FileHelpers.git
+ git clone -b gh-pages --single-branch https://github.com/MarcosMeli/FileHelpers.git FileHelpersHome
  
+Now all the site is on FileHelpersHome folder
+
 We are using jekyll as a page generator: http://jekyllrb.com/
+
+To test the pages run: jekyll serve inside the folder and go to: http://localhost:4000/FileHelpers/
 
 To work with Jekyll on windows here are some tips:
 
