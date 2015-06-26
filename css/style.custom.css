@@ -169,3 +169,7 @@ li.edit-page:hover{
 li.edit-page{
   opacity: 0.4;
 }
+
+ul.changelog > li {
+  list-style-type: square;
+}
