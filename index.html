@@ -4,11 +4,6 @@ breadcrumbhidden: true
 showloader: true
 ---
 
-<style>
-#features h4  { font-size: 18px; color: black; }
-#features .s4 { font-size: 14px; line-height: 1.3; color: #888; padding: 15px; }
-</style>
-
 <div class="row">
 
 <div class="col s6 m4 l2" style="text-align:center">
@@ -22,11 +17,11 @@ streams.</p>
 
 <p>
 You can strongly type your flat file (fixed or delimited) by simply describing a class that
-maps to each record and later read or write your file as an strongly typed .NET array 
+maps to each record and later read or write your file as an strongly typed .NET array
 </p>
 
 <p>The library also has support to import or export data from different data storage types like Excel,
-Access, SqlServer, etc.</p>             
+Access, SqlServer, etc.</p>
 
 </div>
 </div>
@@ -35,7 +30,7 @@ Access, SqlServer, etc.</p>
 
 <p>
     <li><b><a href="{{ site.baseurl }}/download" >Download it</a></b></li>
-    <li><b><a href="{{ site.baseurl }}/quick_start">Example Delimited</a></b> - 
+    <li><b><a href="{{ site.baseurl }}/quick_start">Example Delimited</a></b> -
     <a href="{{ site.baseurl }}/quick_start_fixed"><strong>Example Fixed Length</strong></a> -
     <a href="{{ site.baseurl }}/examples"><strong>All Examples</strong></a></li>
     <li><a href="{{ site.baseurl }}/must_read"><strong>Must Read Docs</strong></a> -
@@ -62,11 +57,11 @@ Access, SqlServer, etc.</p>
 
 <h4>Who needs the File Helpers Library ?</h4>
 
-              <p>In almost every project there is a need to read or write data from/to a file of a 
+              <p>In almost every project there is a need to read or write data from/to a file of a
                 specified format.</p>
               <p>
-                  For example, log parsing, data warehouse and OLAP applications, 
-                communication between systems, file format transformations (for example transforming from a 
+                  For example, log parsing, data warehouse and OLAP applications,
+                communication between systems, file format transformations (for example transforming from a
                 fixed length to a CSV file).</p>
               <p>
                 This library aims to provide an easy and reliable way to accomplish this task.</p>
@@ -85,7 +80,7 @@ Access, SqlServer, etc.</p>
             </div>
             <div class="col s4">
                 <h4><i class="fa fa-magic"></i> Auto Converters:</h4>
-                The library has a set of converters for common types 
+                The library has a set of converters for common types
 and can be easy extended to provide custom converters. (see&nbsp;<a href="FileHelpers.ConverterBase.html">
 ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)
             </div>
@@ -118,8 +113,8 @@ Example</a>
             </div>
             <div class="col s4">
                 <h4><i class="fa fa-list"></i> Asynchronous Mode:</h4>
-                You can use the library to read line by line and not 
-the whole file. 
+                You can use the library to read line by line and not
+the whole file.
             </div>
             <div class="col s4">
                 <h4><i class="fa fa-cogs"></i> File Transform Engine:</h4>
@@ -153,21 +148,20 @@ the whole file.
 <p>The FileHelpers library is <b>completely free</b> (released under dual licensing, choose the license that best fits you <a href="http://www.opensource.org/licenses/bsd-license.php" >BSD License</a> or <a href="http://www.opensource.org/licenses/lgpl-3.0.html" >LGPL License</a>) and allows the use of the code and binaries in all places, including commercial applications.</p>
 <p>You can access the full source code of the library at GitHub <a href="https://github.com/MarcosMeli/FileHelpers">github.com/MarcosMeli/FileHelpers</a>
 
-<p>@Copyright 2005-2015 to Devoo - MarcosMeli</p>
+<p>@Copyright 2005-{{ site.time | date: '%Y' }} to Devoo - MarcosMeli</p>
 
 <h4>References</h4>
 
-<p>   One of the best references that assists in the development of 
+<p>   One of the best references that assists in the development of
 this library is <a href="http://www.amazon.com/Framework-Design-Guidelines-Conventions-Libraries/dp/0321545613">
-Framework Design Libraries</a>, a complete guide for design and 
+Framework Design Libraries</a>, a complete guide for design and
 programming of libraries</p>
 
 
 <script>
-    
+
     $(function(){
         $("#features .col").addClass("hoverable");
-
 /*
         $("#features .col").mouseenter(function(event){
 
