@@ -6,3 +6,5 @@ _site
 /OnlineWizard/OnlineWizard.Tests/bin
 /OnlineWizard/OnlineWizard.Tests/obj
 /OnlineWizard/.vs/OnlineWizard
+/OnlineWizard/OnlineWizard/Properties/PublishProfiles/*.user
+/OnlineWizard/OnlineWizard/Properties/PublishProfiles/wizard.filehelpers.net - Web Deploy.pubxml.user
