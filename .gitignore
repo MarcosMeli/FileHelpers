@@ -1,3 +1,7 @@
 _site
 .sass-cache
 /OnlineWizard/packages
+/OnlineWizard/OnlineWizard/bin
+/OnlineWizard/OnlineWizard/obj
+/OnlineWizard/OnlineWizard.Tests/bin
+/OnlineWizard/OnlineWizard.Tests/obj
