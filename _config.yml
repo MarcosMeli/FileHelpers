@@ -9,9 +9,13 @@ highlighter: pygments
 
 # Build settings
 markdown: kramdown
+
 js_dest: js
 
-exclude:  ['*.ts', '*.bat',
-           'Graphics', 'README.md',
-           'js/tsconfig.json'
+exclude:  [ '*.ts',
+			'*.bat',
+        	'Graphics',
+        	'README.md',
+        	'js/tsconfig.json',
+        	'OnlineWizard'
            ]
