@@ -1,10 +1,6 @@
 /// <reference path="..\_typings\jquery.d.ts"/>
 
-if (window.location.host == 'marcosmeli.github.io' || window.location.host == 'www2.filehelpers.com')
-    window.location.href  = window.location.href.replace('marcosmeli.github.io/FileHelpers', 'www.filehelpers.net');
-
 $(() => {
-  "use strict";
 
   var window_width = $(window).width();
 
