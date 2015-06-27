@@ -1,19 +1,19 @@
 <header class="site-header">
 
-{% if page.showloader %} 
+{% if page.showloader %}
   <div id="loader-wrapper">
-      <div id="loader"></div>        
+      <div id="loader"></div>
       <div class="loader-section section-left"></div>
       <div class="loader-section section-right"></div>
   </div>
-{% endif %} 
+{% endif %}
 
   <header id="header" class="page-topbar">
 
 
         <!-- start header nav-->
         <div class="navbar-fixed">
-            <nav style="background-color: #2E8CD2 !important; background-image: url('{{ site.baseurl }}/images/header_background.jpg');   background-repeat: no-repeat;">
+            <nav>
                 <div class="nav-wrapper">
                     <h1 class="logo-wrapper"><a href="{{ site.baseurl }}/" class="brand-logo darken-1 " style="font-size: 32px;  text-shadow: 2px 2px 5px rgba(36, 36, 36, 1);">
                       FileHelpers 3.1</a></h1>
@@ -25,7 +25,7 @@
                     <li class="search-out">
                           <input type="text" class="search-out-text">
                     </li>
-                        <li>    
+                        <li>
                             <a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i class="mdi-action-search"></i></a>
                         </li>
                     </ul>
@@ -52,7 +52,7 @@
                           <div class="collapsible-body" style="display:block;">
                               <ul>
 
-              
+
 
               <li class="bold"><a href="{{ site.baseurl }}/quick_start" class="waves-effect waves-cyan" style="margin-left: 4rem;"> Delimited</a>
               </li>
@@ -81,9 +81,9 @@
 
       <!-- END LEFT SIDEBAR NAV-->
 
-   
+
       <section id="content">
-        
+
 {% unless page.breadcrumbhidden %}
 
         <div id="breadcrumbs-wrapper" class="grey lighten-3">
@@ -94,9 +94,9 @@
                 <ol class="breadcrumb">
                     <li><a href="{{ site.baseurl }}/">FileHelpers</a></li>
 
-    {% if page.breadcrumbtext2 %} 
+    {% if page.breadcrumbtext2 %}
                     <li><a href="{{ site.baseurl }}/{{ page.breadcrumblink2 }}">{{ page.breadcrumbtext2 }}</a></li>
-    {% endif %} 
+    {% endif %}
 
                     <li class="active">{{ page.title  }}</li>
 
@@ -106,4 +106,4 @@
           </div>
         </div>
 
-{% endunless %}         
+{% endunless %}

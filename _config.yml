@@ -1,6 +1,6 @@
 # Site settings
 title: FileHelpers Library
-description: The FileHelpers are a free and easy to use .NET library to import/export data from fixed length or delimited records in files, strings or streams. 
+description: The FileHelpers are a free and easy to use .NET library to import/export data from fixed length or delimited records in files, strings or streams.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www2.filehelpers.com" # the base hostname & protocol for your site
 github_username:  MarcosMeli
@@ -12,4 +12,6 @@ markdown: kramdown
 js_dest: js
 
 exclude:  ['*.ts', '*.bat',
-           'Graphics', 'README.md']
+           'Graphics', 'README.md',
+           'js/tsconfig.json'
+           ]
