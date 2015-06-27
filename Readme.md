@@ -1,7 +1,7 @@
 FileHelpers
 ===========
 
-  http://www.filehelpers.com  - SourceForge Home: http://sf.net/projects/filehelpers
+  http://www.filehelpers.net
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams
  

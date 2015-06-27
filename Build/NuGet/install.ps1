@@ -5,7 +5,7 @@ param($installPath, $toolsPath, $package, $project)
 
 try
 {
-  $url = "http://www.filehelpers.com"
+  $url = "http://www.filehelpers.net/"
   $dte2 = Get-Interface $dte ([EnvDTE80.DTE2])
 
   if ($dte2.ActiveWindow.Caption -eq "Package Manager Console")

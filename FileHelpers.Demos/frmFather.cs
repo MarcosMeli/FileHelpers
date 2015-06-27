@@ -170,7 +170,7 @@ namespace FileHelpersSamples
             this.linkLabel1.Size = new System.Drawing.Size(136, 16);
             this.linkLabel1.TabIndex = 101;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "www.filehelpers.com";
+            this.linkLabel1.Text = "www.filehelpers.net";
             this.linkLabel1.LinkClicked +=
                 new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -242,7 +242,7 @@ namespace FileHelpersSamples
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.net\"");
             info.CreateNoWindow = false;
             info.UseShellExecute = true;
             Process.Start(info);
@@ -251,7 +251,7 @@ namespace FileHelpersSamples
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ProcessStartInfo info = new ProcessStartInfo("explorer",
-                "\"mailto:marcos@filehelpers.com?subject=FileHelpersFeedback\"");
+                "https://github.com/MarcosMeli/FileHelpers/issues/new");
 
             info.CreateNoWindow = true;
             info.UseShellExecute = true;
@@ -264,7 +264,7 @@ namespace FileHelpersSamples
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (DateTime.Now > mLastOpen.AddSeconds(10)) {
-                Process.Start("explorer", "\"http://www.filehelpers.com\"");
+                Process.Start("explorer", "\"http://www.filehelpers.net\"");
                 mLastOpen = DateTime.Now;
             }
         }
