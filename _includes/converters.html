@@ -1,0 +1,129 @@
+
+        <h4>Arguments for the Default Converters of the library.</h4>
+
+<div class="indent">
+          <p>Here is a list of the parameters that you can give to the default converters:</p>
+          <p class="note">All the parameters must be string (as object parameters don't work in VB.NET)</p>
+
+<h3>ConverterKind.Date</h3>
+
+<p><b>Arg1:</b> A string with the DateTime format that the engine passes to the DateTime.Parse function.</p>
+
+<p><b>Examples:</b></p>
+
+{% highlight csharp %}
+// By default the engines use: "ddMMyyyy"
+[FieldConverter(ConverterKind.Date)]
+public DateTime ShippedDate;
+
+// Parse these dates:  1-1-2006   01-1-2006   30-01-2006
+[FieldConverter(ConverterKind.Date, "d-M-yyyy" )]
+public DateTime ShippedDate;
+
+// Parse these dates:  1-1-2006   01-1-2006   01-30-2006
+[FieldConverter(ConverterKind.Date, "M-d-yyyy" )]
+public DateTime ShippedDate;
+
+// Parse these dates:  01/3/2006   30/02/2006
+[FieldConverter(ConverterKind.Date, "d/M/yyyy" )]
+public DateTime ShippedDate;
+
+// Parse these dates:  01042006   30022006
+[FieldConverter(ConverterKind.Date, "ddMMyyyy" )]
+public DateTime ShippedDate;
+
+// Parse these dates:  04012006   02302006
+[FieldConverter(ConverterKind.Date, "MMddyyyy" )]
+public DateTime ShippedDate;
+
+{% endhighlight %}
+
+<p>You can check all the supported 
+        format strings check the MSDN docs for <a title="DateTime.ParseExact" 
+        href="http://msdn2.microsoft.com/en-us/library/system.datetime.parseexact.aspx">DateTime.ParseExact</a>
+</p>
+
+<h3>ConverterKind.Double, ConverterKind.Single and ConverterKind.Decimal</h3>
+
+<p><b>Arg1:</b> A string with the character to be used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b></p>
+<p><b>Examples:</b></p>
+
+{% highlight csharp %}
+// "." is the decimal separator by default
+[FieldConverter(ConverterKind.Double)]
+public double Freight;
+
+// "." is the decimal separator. (good for autodocumented code)
+[FieldConverter(ConverterKind.Double, ".")]
+public double Freight;
+
+// "," is the decimal separator.
+[FieldConverter(ConverterKind.Double, ",")]
+public double Freight;
+
+// The same for the other converters:
+// ConverterKind.Decimal and ConverterKind.Single 
+
+{% endhighlight %}
+
+
+<h3>Integer Converters</h3>
+
+<p><b>ConverterKind.Int16, ConverterKind.Int32, ConverterKind.Int64, ConverterKind.Byte,
+<br/>
+ConverterKind.UInt16, ConverterKind.UInt32, ConverterKind.UInt64, and ConverterKind.SByte</b></p>
+
+<p><b>Arg1:</b> A string with the character to be used as DecimalSeparator. Valid Values: "." or ",". <b>By default: "."</b></p>
+
+<p><b>WARNING:</b> The library requires a decimal separator here and internally creates the group separator with the counterpart (for example if you provide "." it uses ",")</p>
+
+<p><b>Examples:</b></p>
+
+{% highlight csharp %}
+// "." is the decimal separator by default
+// allows you to parse:  12,125 or 1,458,385
+[FieldConverter(ConverterKind.Int32)]
+public Int32 Amount;
+
+// using "," as decimal separator
+// allows you to parse:  12.125 or 1.458.385
+[FieldConverter(ConverterKind.Int32, ",")]
+public Int32 Amount;
+
+
+// The same works for the rest of the converts
+
+{% endhighlight %}
+
+<h3>ConverterKind.Boolean</h3>
+
+<p><b>Arg1:</b> A string that represents the <b>True</b> value
+<br/>
+<b>Arg2:</b> A string that represents the <b>False</b> value</p>
+
+<p>By default, this converter takes the strings "True" (case insensitive) and "1" as true. The values "True" and "False" are returned when converting the field to string.</p>
+
+<p><b>Examples:</b></p>
+
+{% highlight csharp %}
+// By default it reads as true the strings "True" (Case insensitive) and "1"
+[FieldConverter(ConverterKind.Boolean)]
+public bool Shipped;
+
+// Takes as true the string "verdad" and as false the string "mentira" (case insensitive)
+[FieldConverter(ConverterKind.Boolean, "Verdad", "MenTiRa")]
+public bool Shipped;
+
+// Takes as true the string "1" and as false the string "0"
+// You need these params if you want to write, because it use "True" and "False"
+[FieldConverter(ConverterKind.Boolean, "1", "0")]
+public bool Shipped;
+
+// Takes as true the string "X" and as false the string "-"
+[FieldConverter(ConverterKind.Boolean, "X", "-")]
+public bool Shipped;
+
+{% endhighlight %}
+
+
+</div>

@@ -10,6 +10,9 @@ header .brand-logo {
 
 .sidebar-collapse {background-color: #ad1457;}
 
+.tabs .tab {background-color: rgb(202, 202, 202);  opacity: 0.4;}
+.tabs .tab .active {background-color: white;  opacity: 1;}
+
 .navbar-fixed nav {
   background-color: #2E8CD2 !important;
   background-image: url('../images/header_background.jpg');
