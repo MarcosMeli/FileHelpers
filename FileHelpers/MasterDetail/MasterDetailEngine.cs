@@ -17,15 +17,22 @@ namespace FileHelpers.MasterDetail
     {
         #region "  Constructor  "
 
-        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
         public MasterDetailEngine(Type masterType, Type detailType)
             : this(masterType, detailType, null) {}
 
-        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
+        /// <param name="masterType">The master record class.</param>
+		/// <param name="detailType">The detail record class.</param>
+		/// <param name="recordSelector">The <see cref="MasterDetailSelector" /> to get the <see cref="RecordAction" /> (only for read operations)</param>
         public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
             : base(masterType, detailType, recordSelector) {}
 
-        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
+        /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
+        /// <param name="masterType">The master record class.</param>
+		/// <param name="detailType">The detail record class.</param>
+		/// <param name="action">The <see cref="CommonSelector" /> used by the engine (only for read operations)</param>
+		/// <param name="selector">The string passed as the selector.</param>
         public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
             : base(masterType, detailType, action, selector) {}
 

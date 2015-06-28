@@ -104,16 +104,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Moq, Version=4.2.1402.2112, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1506.2016, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1506.2016\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NFluent">
-      <HintPath>..\packages\NFluent.1.1.0.0\lib\net40\NFluent.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="NFluent, Version=1.3.1.0, Culture=neutral, PublicKeyToken=18828b37b84b1437, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -150,6 +151,7 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
@@ -320,6 +322,7 @@
     <Compile Include="Tests\Errors\BadOptional.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Errors\BadNotEmpty.cs" />
     <Compile Include="Tests\Errors\BadQuoted.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -375,6 +378,9 @@
     <Compile Include="Types\SampleTypes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Data\Bad\FieldNotEmpty1.txt" />
+    <Content Include="Data\Bad\FieldNotEmpty2.txt" />
+    <Content Include="Data\Bad\FieldNotEmpty3.txt" />
     <Content Include="Data\Excel\ExcelWithNoEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
@@ -481,6 +487,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\FieldNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />

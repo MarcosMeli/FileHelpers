@@ -13,7 +13,7 @@ namespace FileHelpers.DataLink
 	/// <para><b>WARNING you need to have installed Microsoft Excel 2000 or newer to use this feature.</b></para>
 	/// <para><b>To use this class you need to reference the FileHelpers.ExcelStorage.dll file.</b></para>
 	/// </summary>
-	/// <remmarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remmarks>
+	/// <remarks><b>This class is contained in the FileHelpers.ExcelStorage.dll and need the Interop.Office.dll and Interop.Excel.dll to work correctly.</b></remarks>
     public sealed class ExcelStorage : ExcelStorageBase
 	{
 
@@ -64,6 +64,7 @@ namespace FileHelpers.DataLink
 
 		#region "  Public Properties  "
 
+        /// <summary>Returns the names of the worksheets.</summary>
 		public List<string> Sheets
 		{
 			get

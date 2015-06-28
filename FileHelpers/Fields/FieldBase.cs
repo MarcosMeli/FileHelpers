@@ -142,6 +142,11 @@ namespace FileHelpers
         /// </summary>
         internal string FieldFriendlyName { get; set; }
 
+        /// <summary>
+        /// The field must be not be empty
+        /// </summary>
+        public bool IsNotEmpty { get; set; }
+
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
@@ -215,9 +220,7 @@ namespace FileHelpers
                                             "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
             }
 
-
             // PROCESS IN NORMAL CONDITIONS
-
             if (attributes.Length > 0) {
                 FieldAttribute fieldAttb = attributes[0];
 
@@ -261,7 +264,6 @@ namespace FileHelpers
                 // FieldDiscarded
                 res.Discarded = fi.IsDefined(typeof (FieldValueDiscardedAttribute), false);
 
-
                 // FieldTrim
                 Attributes.WorkWithFirst<FieldTrimAttribute>(fi,
                     (x) => {
@@ -286,16 +288,17 @@ namespace FileHelpers
                             x.QuoteMultiline;
                     });
 
-
                 // FieldOrder
                 Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
 
-
                 // FieldOptional
-                res.IsOptional = fi.IsDefined(typeof (FieldOptionalAttribute), false);
+                res.IsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
 
                 // FieldInNewLine
-                res.InNewLine = fi.IsDefined(typeof (FieldInNewLineAttribute), false);
+                res.InNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
+
+                // FieldNotEmpty
+                res.IsNotEmpty = fi.IsDefined(typeof(FieldNotEmptyAttribute), false);
 
                 // FieldArrayLength
                 if (fi.FieldType.IsArray) {
@@ -365,14 +368,7 @@ namespace FileHelpers
         /// <summary>
         /// Create a field base without any configuration
         /// </summary>
-        internal FieldBase() {}
-
-        /// <summary>
-        /// Create a field base from a fieldinfo object
-        /// Verify the settings against the actual field to ensure it will work.
-        /// </summary>
-        /// <param name="fi">Field Info Object</param>
-        internal FieldBase(FieldInfo fi)
+        internal FieldBase()
         {
             IsNullableType = false;
             TrimMode = TrimMode.None;
@@ -387,6 +383,19 @@ namespace FileHelpers
             IsFirst = false;
             IsArray = false;
             CharsToDiscard = 0;
+            IsNotEmpty = false;
+        }
+
+        /// <summary>
+        /// Create a field base from a fieldinfo object
+        /// Verify the settings against the actual field to ensure it will work.
+        /// </summary>
+        /// <param name="fi">Field Info Object</param>
+        internal FieldBase(FieldInfo fi)
+            : this()
+        {
+         
+
             FieldInfo = fi;
             FieldType = FieldInfo.FieldType;
 
@@ -596,7 +605,9 @@ namespace FileHelpers
             var extractedString = fieldString.ExtractedString();
 
             try {
-                if (this.Converter == null) {
+                if (IsNotEmpty && String.IsNullOrEmpty(extractedString)) {
+                    throw new InvalidOperationException("The value is empty and must be populated.");
+                } else if (this.Converter == null) {
                     if (IsStringField)
                         val = TrimString(extractedString);
                     else {
@@ -885,6 +896,7 @@ namespace FileHelpers
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
+            res.IsNotEmpty = IsNotEmpty;
 
             return res;
         }

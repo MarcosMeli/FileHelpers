@@ -20,24 +20,11 @@
 	</MasterDetailEngine>
 
 
-	<MasterDetailEngineCtr1>
+	<MasterDetailEngineCtr>
 		<summary>
 			 Initializes a new instance of the MasterDetailEngine class with the specified type of records.
 		</summary>
-		<param name="masterType">The master record class.</param>
-		<param name="detailType">The detail record class.</param>
-		<param name="recordSelector">The <see cref="MasterDetailSelector" /> to get the <see cref="RecordAction" /> (only for read operations)</param>
-	</MasterDetailEngineCtr1>
-
-	<MasterDetailEngineCtr2>
-		<summary>
-			 Initializes a new instance of the MasterDetailEngine class with the specified type of records.
-		</summary>
-		<param name="masterType">The master record class.</param>
-		<param name="detailType">The detail record class.</param>
-		<param name="action">The <see cref="CommonSelector" /> used by the engine (only for read operations)</param>
-		<param name="selector">The string passed as the selector.</param>
-	</MasterDetailEngineCtr2>
+	</MasterDetailEngineCtr>
 
 	<ReadFile>
 		<summary>

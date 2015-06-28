@@ -15,11 +15,7 @@
         <param name="ImageNumber" value="25">
 		</OBJECT>
 
-		<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Movies (on-line)">
-		<param name="Local" value="http://filehelpers.sourceforge.net/movies.html">
-		</OBJECT>
-		
+	
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Powered By">
 		<param name="Local" value="poweredby.html">
@@ -297,14 +293,9 @@
 
 
 
-    <LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Support Forums">
-		<param name="Local" value="http://www.filehelpers.com/forums/">
-		</OBJECT>
-
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="FileHelpers on SourceForge">
-		<param name="Local" value="http://sourceforge.net/projects/filehelpers">
+		<param name="Name" value="FileHelpers GitHub">
+		<param name="Local" value="https://github.com/MarcosMeli/FileHelpers">
 		</OBJECT>
 
 			</UL>

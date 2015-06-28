@@ -174,6 +174,15 @@ namespace FileHelpers.Dynamic
             set { mFieldNullValue = value; }
         }
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private bool mFieldNotEmpty = false;
+
+        /// <summary>Indicates that the field cannot be empty.</summary>
+        public bool FieldNotEmpty
+        {
+            get { return mFieldNotEmpty; }
+            set { mFieldNotEmpty = value; }
+        }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ConverterBuilder mConverter = new ConverterBuilder();
@@ -285,6 +294,8 @@ namespace FileHelpers.Dynamic
             if (mFieldInNewLine)
                 attbs.AddAttribute("FieldInNewLine()");
 
+            if (mFieldNotEmpty)
+                attbs.AddAttribute("FieldNotEmpty()");
 
             if (mFieldNullValue != null) {
                 if (mFieldNullValue is string)

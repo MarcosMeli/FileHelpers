@@ -30,8 +30,6 @@ OT+=ML.charAt(MI.charCodeAt(j)-48);
 </div>
 <div style="float:none;">
 <center>
-<a href="http://www.filehelpers.com/forums/"><img src="forumsb.gif" style="height:32;border:0;" alt="Browse the Forums" /></a>
-<a href="http://blog.filehelpers.com"><img src="blog.gif" style="height:32;border:0;" alt="Development Blog" /></a>
 <br/>
 <a href="howhelp.html#donate"><img src="donate.gif" style="height:32;border:0;" alt="Support the project" /></a>
 </center>

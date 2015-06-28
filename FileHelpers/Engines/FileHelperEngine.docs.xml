@@ -29,14 +29,7 @@
 		<summary>
 			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
 		</summary>
-		<param name="recordType">The record mapping class.</param>
 	</FileHelperEngineCtr>
-
-	<FileHelperEngineCtrG>
-		<summary>
-			 Initializes a new instance of the FileHelperEngine class with the specified type of records.
-		</summary>
-	</FileHelperEngineCtrG>
 
 	<ReadFile>
 		<summary>

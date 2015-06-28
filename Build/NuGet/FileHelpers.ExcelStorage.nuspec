@@ -7,11 +7,13 @@
         <authors>Marcos Meli</authors>
         <owners>Marcos Meli</owners>
         <licenseUrl>https://github.com/MarcosMeli/FileHelpers#license</licenseUrl>
-        <projectUrl>http://www.filehelpers.com</projectUrl>
-        <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
+        <projectUrl>http://www.filehelpers.net</projectUrl>
+        <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</description>
-        <tags>Excel Import Export</tags>
+        <summary>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</summary>
+        <copyright>Marcos Meli - Devoo</copyright>
+                <tags>Excel Import Export</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />

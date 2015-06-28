@@ -1,4 +1,4 @@
-The FileHelpers are licensed under the new BSD or LPGL, pick the best for you
+The FileHelpers are licensed under the new BSD or LGPL, pick the best for you
 
 That allow commercial and non commercial developments under this terms:
 

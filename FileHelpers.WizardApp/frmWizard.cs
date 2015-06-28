@@ -1981,8 +1981,6 @@ namespace FileHelpers.WizardApp
 
         private void ReloadTemplates()
         {
-            mLoading = true;
-
             string languagePrefix;
 
             switch (mWizardInfo.Language) {
@@ -2011,8 +2009,6 @@ namespace FileHelpers.WizardApp
                 var templateString = Encoding.UTF8.GetString(stringAsByte);
                 cboTemplate.Items.Add(new TemplateInfo(key.Replace("___", " - ").Replace("_", " "), templateString));
             }
-
-            mLoading = false;
 
             if (cboTemplate.Items.Count > 0)
                 cboTemplate.SelectedIndex = 0;
@@ -2171,8 +2167,6 @@ width: 100% !important;*/
         {
             gbxDelimitedBy.Enabled = radDelimited.Checked;
         }
-
-        private bool mLoading = true;
 
         private bool mLoadingFile = false;
 

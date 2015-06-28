@@ -693,7 +693,6 @@ namespace FileHelpers
 
         #region "  ReadNext  "
 
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNext/*'/>
         public object ReadNext()
         {
             if (mAsyncReader == null)
@@ -727,7 +726,8 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        if (currType != null) {
+                        if (currType != null)
+                        {
                             var info = (RecordInfo) mRecordInfoHash[currType];
                             if (info == null) {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -735,6 +735,11 @@ namespace FileHelpers
                             }
                             var values = new object[info.FieldCount];
                             mLastRecord = info.Operations.StringToRecord(line, values);
+
+                            if (MustNotifyRead)
+                            {
+                                OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
+                            }
 
                             if (mLastRecord != null) {
                                 byPass = true;
@@ -785,8 +790,6 @@ namespace FileHelpers
             }
         }
 
-
-        /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/ReadNexts/*'/>
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
