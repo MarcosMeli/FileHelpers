@@ -6,6 +6,8 @@ header .brand-logo {
   margin: 0;
 }
 
+.indent {margin-left: 20px;}
+
 .sidebar-collapse {background-color: #ad1457;}
 
 .navbar-fixed nav {

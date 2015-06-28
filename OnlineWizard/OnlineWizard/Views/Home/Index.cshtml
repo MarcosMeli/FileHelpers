@@ -18,17 +18,58 @@
     -->
 
 <div class="row">
-        <div class="card-panel col s12 m9 l6" id="recordfields">
+    <a id="newfield" class="btn-floating waves-effect waves-light blue"><i class="mdi-content-add"></i></a>
+</div>
+    <div class="row">
+        <div class="card-panel col s12 m9 l5" style="padding:15px; padding-left:25px; padding-right:25px;" id="recordfields">
 
-            <div class="card-panel row">
-                <div class="input-field col s6">
-                    <input id="fieldName" type="text" class="validate" />
-                    <label for="fieldName">Field Name</label>
+            <div class="card-panel row" id="record1" style="padding: 5px;">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="fieldName" type="text" class="validate" />
+                        <label for="fieldName">Field Name</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="String" selected>String</option>
+                            <option value="Int16">Int16</option>
+                            <option value="Int32">Int32</option>
+                            <option value="Int64">Int64</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s2">
+                        <input type="checkbox" id="chkOptional" />
+                        <label for="chkOptional">Optional</label>
+                    </div>
+                    <div class="input-field col s2" style="text-align:center">
+                        <a class="advanced btn-floating waves-effect waves-light red"><i class="mdi-content-clear"></i></a>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <input id="fieldName" type="text" class="validate" />
-                    <label for="fieldName">Field Name</label>
+                <div class="row" style="display:none;">
+                    advanced
                 </div>
             </div>
         </div>
-</div>
+
+    </div>
+
+
+    <script>
+        var record;
+        $(document).ready(function () {
+            record = $("#record1").parent().html();
+            $("#recordfields").append(record);
+            $("#recordfields").append(record);
+            $("#recordfields").append(record);
+            $("#recordfields").append(record);
+
+            $(".advanced").click(function (event) {
+                var toRemove = $(this).parent().parent().parent();
+                toRemove.slideUp(600, function () { $(this).remove(); });
+            });
+
+            $("#newfield").click(function (event) {
+                $(record).hide().appendTo("#recordfields").slideDown(500);
+            });
+        });
+    </script>

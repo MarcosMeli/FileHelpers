@@ -1,0 +1,218 @@
+---
+layout: default
+title: Quick Start Delimited
+permalink: /quickstart/
+---
+
+<h3>Select your file type</h3>
+
+
+<p>First refer to the <a href="/download/">download/install</a> page to try this in your machine</p>
+
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#delimited">Delimited</a></li>
+        <li class="tab col s3"><a  href="#fixed">Fixed Length</a></li>
+        <li class="tab col s3"><a href="#recordbyrecord">Record by Record</a></li>
+      </ul>
+    </div>
+    <div id="delimited" class="col s12">
+      <p> You need to define a class that maps to the record in the source/destination file.<br/>
+      For this example we use this formatted file delimited by a ',':</p>
+
+      <h5>Sample data</h5>
+{% highlight csharp %}
+1732,Juan Perez,435.00,11-05-2002
+554,Pedro Gomez,12342.30,06-02-2004
+112,Ramiro Politti,0.00,01-02-2000
+924,Pablo Ramirez,3321.30,24-11-2002
+...............
+{% endhighlight %}
+
+      <h5>Mapping Class</h5>
+
+{% highlight csharp %}
+using FileHelpers;
+
+[DelimitedRecord(",")]
+public class Customer
+{
+	public int CustId;
+
+	public string Name;
+
+	public decimal Balance;
+
+	[FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+	public DateTime AddedDate;
+
+}
+{% endhighlight %}
+
+      <h5>Create a FileHelperEngine for Read and Write</h5>
+
+{% highlight csharp %}
+var engine = new FileHelperEngine<Customer>();
+
+// To Read Use:
+var result = engine.ReadFile("FileIn.txt");
+// result is now an array of Customer
+
+// To Write Use:
+engine.WriteFile("FileOut.txt", result);
+{% endhighlight %}
+
+      <h5>Use the resulting array</h5>
+
+{% highlight csharp %}
+
+foreach (Customer cust in result)
+{
+    Console.WriteLine("Customer Info:");
+    Console.WriteLine(cust.Name + " - " +
+                      cust.AddedDate.ToString("dd/MM/yy"));
+}
+{% endhighlight %}
+
+    </div>
+    <div id="fixed" class="col s12">
+    <p> You need to define a class that maps to the record in the source/destination file.<br/>
+    For this example we use this formatted file delimited by a ',':</p>
+
+    <h5>Sample data</h5>
+{% highlight csharp %}
+01732Juan Perez           004350011052002
+00554Pedro Gomez          123423006022004
+00112Ramiro Politti       000000001022000
+00924Pablo Ramirez        033213024112002
+...............
+{%  endhighlight %}
+
+    <h5>Mapping Class</h5>
+
+{% highlight csharp %}
+using FileHelpers;
+
+[FixedLengthRecord()]
+public class Customer2
+{
+	[FieldFixedLength(5)]
+	public int CustId;
+
+	[FieldFixedLength(20)]
+	[FieldTrim(TrimMode.Right)]
+	public string Name;
+
+	[FieldFixedLength(8)]
+	[FieldConverter(typeof(TwoDecimalConverter))]
+	public decimal Balance;
+
+	[FieldFixedLength(8)]
+	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+	public DateTime AddedDate;
+
+	// A custom converter
+	internal class TwoDecimalConverter: ConverterBase
+	{
+		public override object StringToField(string from)
+		{
+			decimal res = Convert.ToDecimal(from);
+			return res / 100;
+		}
+
+		public override string FieldToString(object from)
+		{
+			decimal d = (decimal) from;
+			return Math.Round(d * 100).ToString();
+		}
+	}
+}
+{% endhighlight %}
+
+    <h5>Create a FileHelperEngine for Read and Write</h5>
+
+{% highlight csharp %}
+var engine = new FileHelperEngine<Customer>();
+
+// To Read Use:
+var result = engine.ReadFile("FileIn.txt");
+// result is now an array of Customer
+
+// To Write Use:
+engine.WriteFile("FileOut.txt", result);
+{% endhighlight %}
+
+    <h5>Use the resulting array</h5>
+
+{% highlight csharp %}
+
+foreach (Customer cust in result)
+{
+    Console.WriteLine("Customer Info:");
+    Console.WriteLine(cust.Name + " - " +
+                  cust.AddedDate.ToString("dd/MM/yy"));
+}
+{% endhighlight %}
+</div>
+    <div id="recordbyrecord" class="col s12">
+      <p> You need to define a class that maps to the record in the source/destination file.<br/>
+      For this example we use this formatted file delimited by a ',':</p>
+
+      <h5>Sample data</h5>
+{% highlight csharp %}
+1732,Juan Perez,435.00,11-05-2002
+554,Pedro Gomez,12342.30,06-02-2004
+112,Ramiro Politti,0.00,01-02-2000
+924,Pablo Ramirez,3321.30,24-11-2002
+...............
+{% endhighlight %}
+
+      <h5>Mapping Class</h5>
+
+{% highlight csharp %}
+using FileHelpers;
+
+[DelimitedRecord(",")]
+public class Customer
+{
+	public int CustId;
+
+	public string Name;
+
+	public decimal Balance;
+
+	[FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+	public DateTime AddedDate;
+
+}
+{% endhighlight %}
+
+      <h5>Create a FileHelperAsyncEngine for Read and Write</h5>
+
+{% highlight csharp %}
+var engine = new FileHelperAsyncEngine<Customer>();
+
+// Read
+using(engine.BeginReadFile("TestIn.txt"))
+{
+    // The engine is IEnumerable
+    foreach(Customer cust in engine)
+    {
+       // your code here
+       Console.WriteLine(cust.Name);
+    }
+}
+
+// Write
+using(engine.BeginWriteFile("TestOut.txt"))
+{
+    foreach(Customer cust in arrayCustomers)
+    {
+       engine.WriteNext(cust);
+    }
+}
+{% endhighlight %}
+    </div>
+
+  </div>
