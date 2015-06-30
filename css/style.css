@@ -148,10 +148,10 @@ li.li-hover:hover{
   border-top-color: #3498db;
   -webkit-animation: spin 2s linear infinite;
   /* Chrome, Opera 15+, Safari 5+ */
-  
+
   animation: spin 2s linear infinite;
   /* Chrome, Firefox 16+, IE 10+, Opera */
-  
+
   z-index: 1001;
 }
 #loader-logo {
@@ -159,7 +159,7 @@ li.li-hover:hover{
   position: absolute;
   left: 48%;
   top: 46%;
-  background: url(../images/user-bg.jpg) no-repeat center center;  
+  background: url(../images/user-bg.jpg) no-repeat center center;
   z-index: 1001;
 }
 #loader:before {
@@ -174,7 +174,7 @@ li.li-hover:hover{
   border-top-color: #e74c3c;
   -webkit-animation: spin 3s linear infinite;
   /* Chrome, Opera 15+, Safari 5+ */
-  
+
   animation: spin 3s linear infinite;
   /* Chrome, Firefox 16+, IE 10+, Opera */
 }
@@ -190,7 +190,7 @@ li.li-hover:hover{
   border-top-color: #f9c922;
   -webkit-animation: spin 1.5s linear infinite;
   /* Chrome, Opera 15+, Safari 5+ */
-  
+
   animation: spin 1.5s linear infinite;
   /* Chrome, Firefox 16+, IE 10+, Opera */
 }
@@ -198,20 +198,20 @@ li.li-hover:hover{
   0% {
     -webkit-transform: rotate(0deg);
     /* Chrome, Opera 15+, Safari 3.1+ */
-    
+
     -ms-transform: rotate(0deg);
     /* IE 9 */
-    
+
     transform: rotate(0deg);
     /* Firefox 16+, IE 10+, Opera */
   }
   100% {
     -webkit-transform: rotate(360deg);
     /* Chrome, Opera 15+, Safari 3.1+ */
-    
+
     -ms-transform: rotate(360deg);
     /* IE 9 */
-    
+
     transform: rotate(360deg);
     /* Firefox 16+, IE 10+, Opera */
   }
@@ -220,20 +220,20 @@ li.li-hover:hover{
   0% {
     -webkit-transform: rotate(0deg);
     /* Chrome, Opera 15+, Safari 3.1+ */
-    
+
     -ms-transform: rotate(0deg);
     /* IE 9 */
-    
+
     transform: rotate(0deg);
     /* Firefox 16+, IE 10+, Opera */
   }
   100% {
     -webkit-transform: rotate(360deg);
     /* Chrome, Opera 15+, Safari 3.1+ */
-    
+
     -ms-transform: rotate(360deg);
     /* IE 9 */
-    
+
     transform: rotate(360deg);
     /* Firefox 16+, IE 10+, Opera */
   }
@@ -247,10 +247,10 @@ li.li-hover:hover{
   z-index: 1000;
   -webkit-transform: translateX(0);
   /* Chrome, Opera 15+, Safari 3.1+ */
-  
+
   -ms-transform: translateX(0);
   /* IE 9 */
-  
+
   transform: translateX(0);
   /* Firefox 16+, IE 10+, Opera */
 }
@@ -265,26 +265,26 @@ li.li-hover:hover{
 .loaded #loader-wrapper .loader-section.section-left {
   -webkit-transform: translateX(-100%);
   /* Chrome, Opera 15+, Safari 3.1+ */
-  
+
   -ms-transform: translateX(-100%);
   /* IE 9 */
-  
+
   transform: translateX(-100%);
   /* Firefox 16+, IE 10+, Opera */
-  
+
   -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
   transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
 }
 .loaded #loader-wrapper .loader-section.section-right {
   -webkit-transform: translateX(100%);
   /* Chrome, Opera 15+, Safari 3.1+ */
-  
+
   -ms-transform: translateX(100%);
   /* IE 9 */
-  
+
   transform: translateX(100%);
   /* Firefox 16+, IE 10+, Opera */
-  
+
   -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
   transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
 }
@@ -297,13 +297,13 @@ li.li-hover:hover{
   visibility: hidden;
   -webkit-transform: translateY(-100%);
   /* Chrome, Opera 15+, Safari 3.1+ */
-  
+
   -ms-transform: translateY(-100%);
   /* IE 9 */
-  
+
   transform: translateY(-100%);
   /* Firefox 16+, IE 10+, Opera */
-  
+
   -webkit-transition: all 0.3s 1s ease-out;
   transition: all 0.3s 1s ease-out;
 }
@@ -331,7 +331,7 @@ header .brand-logo {
   margin: 5px 0px;
   /*padding: 0 42px;
   padding: 0px 10px 0 75px;*/
-  
+
   padding: 0 20px;
 }
 @media only screen and (max-width: 992px) {
@@ -352,14 +352,14 @@ li.search-out:hover{
   border-bottom: 1px solid #fff !important;
 }
 .search-out input[type=text]:focus:not([readonly]){
- border-bottom: 1px solid #fff !important; 
+ border-bottom: 1px solid #fff !important;
  box-shadow:none;
 }
 /*=================================================================================
     Sidebar
 ====================================================================================*/
 /*----------------------------------------
-    Sidebar Main Menu 
+    Sidebar Main Menu
 ------------------------------------------*/
 
 ul.side-nav.fixed {
@@ -453,7 +453,7 @@ ul.side-nav.fixed li.user-details {
   -o-background-size: cover;
   background-size: cover;
   /*overflow: hidden;*/
-  
+
   margin-bottom: 15px;
   padding: 15px 0px 0px 15px;
 }
@@ -613,17 +613,17 @@ h5.breadcrumbs-header {
   display: block;
   -webkit-transform: rotate(90deg);
   /* Safari */
-  
+
   -moz-transform: rotate(90deg);
   /* Firefox */
-  
+
   -ms-transform: rotate(90deg);
   /* IE */
-  
+
   -o-transform: rotate(90deg);
   /* Opera */
-  
-  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3); 
+
+  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
   /* SASS Internet Explorer */
 }
 #flight-card .card-content-bg {
@@ -920,7 +920,7 @@ tr.group:hover {
 ------------------------------------------*/
 
 .login-form {
-  width: 280px;  
+  width: 280px;
 }
 .login-form-text{
   text-transform: uppercase;
@@ -943,7 +943,7 @@ tr.group:hover {
 .text-long-shadow {
   text-shadow: rgb(29, 125, 116) 1px 1px, rgb(29, 125, 116) 2px 2px, rgb(29, 125, 116) 3px 3px, rgb(29, 125, 116) 4px 4px, rgb(29, 125, 116) 5px 5px, rgb(29, 125, 116) 6px 6px, rgb(29, 125, 116) 7px 7px, rgb(29, 125, 116) 8px 8px, rgb(29, 125, 116) 9px 9px, rgb(29, 125, 116) 10px 10px, rgb(29, 125, 116) 11px 11px, rgb(29, 125, 116) 12px 12px, rgb(29, 125, 116) 13px 13px, rgb(29, 125, 116) 14px 14px, rgb(29, 126, 117) 15px 15px, rgb(29, 128, 119) 16px 16px, rgb(30, 130, 120) 17px 17px, rgb(30, 132, 122) 18px 18px, rgb(30, 133, 124) 19px 19px, rgb(31, 135, 125) 20px 20px, rgb(31, 137, 127) 21px 21px, rgb(32, 139, 129) 22px 22px, rgb(32, 141, 130) 23px 23px, rgb(32, 142, 132) 24px 24px, rgb(33, 144, 134) 25px 25px, rgb(33, 146, 135) 26px 26px, rgb(34, 148, 137) 27px 27px, rgb(34, 149, 139) 28px 28px, rgb(34, 151, 140) 29px 29px, rgb(35, 153, 142) 30px 30px, rgb(35, 155, 144) 31px 31px, rgb(36, 157, 145) 32px 32px, rgb(36, 158, 147) 33px 33px, rgb(36, 160, 149) 34px 34px, rgb(37, 162, 150) 35px 35px, rgb(37, 164, 152) 36px 36px, rgb(38, 166, 154) 37px 37px;
   background-color: rgb(38, 166, 154);
-  /*height: 100%;*/  
+  /*height: 100%;*/
   width: 100%;
   font-size: 10rem;
   color: #fff !important;
@@ -991,10 +991,10 @@ footer.page-footer {
 /* STYLES GO HERE */
   .doughnut-chart-status{
     display: none;
-  } 
+  }
 }
 
- 
+
 /* For Tables ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 /* STYLES GO HERE */

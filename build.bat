@@ -1,1 +1,1 @@
-tsc js\main.ts
+node_modules\.bin\tsc.cmd js\main.ts

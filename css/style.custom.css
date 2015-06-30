@@ -21,6 +21,10 @@ header .brand-logo {
   background-repeat: no-repeat;
 }
 
+ul.bold li a {
+  font-weight: bold !important;
+}
+
 #features h4  { font-size: 18px; color: black; }
 #features .s4 { font-size: 14px; line-height: 1.3; color: #888; padding: 15px; }
 
