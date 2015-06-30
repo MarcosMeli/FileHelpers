@@ -5,4 +5,3 @@ permalink: /installed/
 ---
 
 Congratulations the FileHelpers got installed
-
