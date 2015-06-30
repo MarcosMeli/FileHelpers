@@ -168,6 +168,14 @@ header .brand-logo {
 
 
 
+    li.wizard:hover{
+      opacity: 1;
+    }
+    li.wizard{
+      opacity: 0.6;
+    }
+
+
 li.edit-page:hover{
   opacity: 1;
 }
