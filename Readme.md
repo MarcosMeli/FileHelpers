@@ -1,7 +1,6 @@
-FileHelpers
+[FileHelpers](http://www.filehelpers.net) [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers) 
 ===========
 
-  http://www.filehelpers.net
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams
  
@@ -73,14 +72,6 @@ License
  The FileHelpers are licensed under the **new BSD or LPGL, pick the best for you**
  
  FileHelpers Library source and binaries are **completely free for commercial and non commercial use**
-
-
-Contact and Ideas
------------------
-
- If you find that there is a feature that I should include, or you have a new idea 
- (for the API, Source Code or Examples), please let us know creating an issue here in GitHub:
- https://github.com/MarcosMeli/FileHelpers/issues/new
 
 Sponsors
 -----------------

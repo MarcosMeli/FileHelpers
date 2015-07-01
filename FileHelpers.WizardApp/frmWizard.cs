@@ -2503,7 +2503,7 @@ width: 100% !important;*/
 
         private void linkHome_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.net\"");
             info.CreateNoWindow = false;
             info.UseShellExecute = true;
             Process.Start(info);

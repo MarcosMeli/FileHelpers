@@ -749,7 +749,7 @@ namespace FileHelpersSamples
 
         private void pictureBox8_Click(object sender, System.EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.net\"");
             Process.Start(info);
         }
 

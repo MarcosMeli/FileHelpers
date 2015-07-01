@@ -226,8 +226,8 @@ namespace FileHelpers
 
                 while (currentLine != null &&
                        currentRecord < maxRecords) {
-                    //Alireza Kousha 4/14/2011 : Fix Reported on: http://www.filehelpers.com/forums/viewtopic.php?f=4&t=1109 adding the following line:
-                    completeLine = currentLine; // <------------------------------
+
+                    completeLine = currentLine; 
 
                     try {
                         mTotalRecords++;
