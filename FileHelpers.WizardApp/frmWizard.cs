@@ -1802,7 +1802,7 @@ namespace FileHelpers.WizardApp
                     foreach (FieldBuilder f in ant.Fields) {
                         mWizardInfo.FixedLengthBuilder.AddField(f.FieldName, (int) txtFieldLength.Value, f.FieldType);
                         mWizardInfo.FixedLengthBuilder.LastField.FieldOptional = f.FieldOptional;
-                        mWizardInfo.FixedLengthBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
+                        mWizardInfo.FixedLengthBuilder.LastField.FieldHidden = f.FieldHidden;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldInNewLine = f.FieldInNewLine;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldNullValue = f.FieldNullValue;
                         mWizardInfo.FixedLengthBuilder.LastField.TrimChars = f.TrimChars;
@@ -1850,7 +1850,7 @@ namespace FileHelpers.WizardApp
                     foreach (FieldBuilder f in ant.Fields) {
                         mWizardInfo.DelimitedBuilder.AddField(f.FieldName, f.FieldType);
                         mWizardInfo.DelimitedBuilder.LastField.FieldOptional = f.FieldOptional;
-                        mWizardInfo.DelimitedBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
+                        mWizardInfo.DelimitedBuilder.LastField.FieldHidden = f.FieldHidden;
                         mWizardInfo.DelimitedBuilder.LastField.FieldInNewLine = f.FieldInNewLine;
                         mWizardInfo.DelimitedBuilder.LastField.FieldNullValue = f.FieldNullValue;
                         mWizardInfo.DelimitedBuilder.LastField.TrimChars = f.TrimChars;

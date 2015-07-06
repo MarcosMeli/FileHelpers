@@ -131,7 +131,7 @@ namespace FileHelpers.Tests.Errors
         [DelimitedRecord(",")]
         public class NoFieldsClass2
         {
-            [FieldNotInFile]
+            [FieldHidden]
             public string MyField;
         }
 
@@ -149,10 +149,10 @@ namespace FileHelpers.Tests.Errors
         [DelimitedRecord(",")]
         public class NoFieldsClass3
         {
-            [FieldNotInFile]
+            [FieldHidden]
             public string MyField;
 
-            [FieldNotInFile]
+            [FieldHidden]
             public string MyField2;
         }
 

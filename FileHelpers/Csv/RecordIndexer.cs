@@ -65,7 +65,7 @@ namespace FileHelpers
         //    get { return mHeader; }
         //}
 
-        //[FieldIgnored]
+        //[FieldHidden]
         //private string mHeader;
 
         #region "  ArrayEnumerator  "

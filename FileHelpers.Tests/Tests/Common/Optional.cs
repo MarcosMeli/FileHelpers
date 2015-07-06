@@ -328,7 +328,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldOptional()]
             public string PAMAlias;
 
-            [FieldNotInFile()]
+            [FieldHidden]
             public string Ignored;
         }
 

@@ -210,7 +210,7 @@
     <Compile Include="Tests\Common\FieldDelimited.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\FieldNotInFileTests.cs">
+    <Compile Include="Tests\Common\FieldHiddenTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\IgnoreEmpty.cs">
@@ -535,7 +535,7 @@
     <Content Include="Data\Good\EnumConverter3.txt" />
     <Content Include="Data\Good\ExcelCsv1.txt" />
     <Content Include="Data\Good\ExcelCsv2.txt" />
-    <Content Include="Data\Good\FieldIgnoredAdvanced.txt" />
+    <Content Include="Data\Good\FieldHiddenAdvanced.txt" />
     <Content Include="Data\Good\IgnoreComments1.txt" />
     <Content Include="Data\Good\IgnoreComments2.txt" />
     <Content Include="Data\Good\IgnoreEmpty1.txt" />
