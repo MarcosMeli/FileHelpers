@@ -688,7 +688,10 @@ namespace FileHelpers
         // DIFFERENT FROM THE ASYNC ENGINE
 
         #region "  ReadNext  "
-
+        /// <summary>
+        /// Reads the next record from the source
+        /// </summary>
+        /// <returns>The record just read</returns>
         public object ReadNext()
         {
             if (mAsyncReader == null)
@@ -785,7 +788,11 @@ namespace FileHelpers
                 }
             }
         }
-
+        /// <summary>
+        /// Read a defined number of records from the source
+        /// </summary>
+        /// <param name="numberOfRecords">The count of records to read</param>
+        /// <returns>An Array with all the read record objects</returns>
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
@@ -901,7 +908,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write can´t be null.");
 
             int nro = 0;
             foreach (var rec in records) {
