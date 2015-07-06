@@ -7,9 +7,9 @@ namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
     /// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
-    /// <seealso href="attributes.html">Attributes list</seealso>
-    /// <seealso href="quick_start.html">Quick start guide</seealso>
-    /// <seealso href="examples.html">Examples of use</seealso>
+
+
+
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class FieldConverterAttribute : Attribute
     {

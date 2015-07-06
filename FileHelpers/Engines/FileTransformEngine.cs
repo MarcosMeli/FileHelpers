@@ -10,10 +10,6 @@ namespace FileHelpers
     /// <summary>
     /// This class allow you to convert the records of a file to a different record format.
     /// </summary>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="class_diagram.html">Class Diagram</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    /// <seealso href="attributes.html">Attributes List</seealso>
     /// <typeparam name="TSource">The source record type.</typeparam>
     /// <typeparam name="TDestination">The destination record type.</typeparam>
     [DebuggerDisplay(
