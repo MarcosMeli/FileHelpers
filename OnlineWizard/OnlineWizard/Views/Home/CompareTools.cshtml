@@ -1,0 +1,71 @@
+﻿
+<style>
+    .dataarea {
+         font-family: Consolas, monaco, monospace;
+  height: 300px;
+  width: 100%;
+  overflow-y: scroll;
+  font-size: 14px;
+  background-color: rgb(44, 44, 44);
+  color: rgb(216, 216, 216);
+    }
+
+    .watermark {
+           color: white;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  opacity: 0.3;
+  text-shadow: 1px 1px 5px black;
+        font-size: 35px;
+    }
+
+</style>
+<div class="row">
+    <div class="col s12 m6 l6">
+        <div class="card-panel" style="padding: 15px;">
+            <div style="position: relative; ">
+                <textarea class="dataarea" id="txtSetA"></textarea>
+                <div class="watermark">Set A</div>
+            </div>
+            <a href="javascript:" alt="" class="btn waves-effect waves-light green" >Paste</a>
+            <a href="javascript:" id="btnClearA" alt="" class="btn waves-effect waves-light red" style="float: right;">Clear</a>
+        </div>
+    </div>
+    <div class="col s12 m6 l6">
+        <div class="card-panel" style="padding: 15px;">
+            <div style="position: relative; ">
+                <textarea class="dataarea" id="txtSetB"></textarea>
+                <div class="watermark">Set B</div>
+                </div>
+                <a href="javascript:" alt="" class="btn waves-effect waves-light green" >Paste</a>
+                <a href="javascript:" id="btnClearB" alt="" class="btn waves-effect waves-light red" style="float: right;">Clear</a>
+            </div>
+    </div>
+</div>
+<div style="text-align: center">
+    <a id="btnIntersect" alt="" class="btn waves-effect waves-light blue">Intersect (A and B)</a>
+    <a id="btnUnion" alt="" class="btn waves-effect waves-light blue">Union (A or B)</a>
+    <a id="btnANorB" alt="" class="btn waves-effect waves-light blue">Nor (A not B)</a>
+    <a id="btnBNorA" alt="" class="btn waves-effect waves-light blue">Inverse Nor (B not A)</a>
+</div>
+<div class="row">
+    <div class="card-panel col s12 m12 l12" style="padding: 15px; padding-left: 25px; padding-right: 25px;">
+        <div class="row" >
+
+            <div style="position: relative; ">
+                <textarea class="dataarea" id="txtResult"></textarea>
+                <div class="watermark">Results</div>
+                </div>
+                <a id="btnSortString" alt="" class="btn waves-effect waves-light green">String Sort Result</a>
+                <a id="btnSortNumeric" alt="" class="btn waves-effect waves-light green">Numeric Sort Results</a>
+                <a href="javascript:" id="btnClearResults" alt="" class="btn waves-effect waves-light red" style="float: right;">Clear</a>
+            </div>
+
+
+        </div>
+    
+</div>
+
+@Scripts.Render("~/Scripts/CompareTools.js")
+
