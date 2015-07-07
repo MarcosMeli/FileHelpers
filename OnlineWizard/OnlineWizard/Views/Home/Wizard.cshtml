@@ -1,0 +1,62 @@
+﻿
+@Styles.Render("~/Scripts/dropzone/dropzone.min.css")
+
+<div class="row">
+    <div class="col s12 ">
+        <ul class="tabs">
+            <li class="tab col s4"><a class="active" href="#autodetect">Auto Detect</a></li>
+            <li class="tab col s4"><a href="#records">Configure Fields</a></li>
+            <li class="tab col s4"><a href="#done">Done</a></li>
+        </ul>
+
+        <div id="autodetect" class="col s12">
+
+           <form action="/AutoDetect/UploadSample"
+                  class="dropzone"
+                  id="fileHelpersDropZone"></form>
+        </div>
+        <div id="records" class="col s12">
+
+            <div class="row">
+                <a id="newfield" class="btn-floating waves-effect waves-light blue"><i class="mdi-content-add"></i></a>
+            </div>
+            <div class="row">
+                <div class="card-panel col s12 m9 l5" style="padding: 15px; padding-left: 25px; padding-right: 25px;" id="recordfields">
+
+                    <div class="card-panel row" id="record1" style="padding: 5px; display: none;">
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <input id="fieldName" type="text" class="validate" />
+                                @*<label for="fieldName">Field Name</label>*@
+                            </div>
+                            <div class="input-field col s4">
+                                <select>
+                                    <option value="String" selected>String</option>
+                                    <option value="Int16">Int16</option>
+                                    <option value="Int32">Int32</option>
+                                    <option value="Int64">Int64</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s2">
+                                <input type="checkbox" id="chkOptional"/>
+                                <label for="chkOptional">Optional</label>
+                            </div>
+                            <div class="input-field col s2" style="text-align: center">
+                                <a class="advanced btn-floating waves-effect waves-light red"><i class="mdi-content-clear"></i></a>
+                            </div>
+                        </div>
+                        <div class="row" style="display: none;">
+                            advanced
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="done" class="col s12">
+        </div>
+
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/dropzone/dropzone.min.js")
+@Scripts.Render("~/Scripts/Wizard.js")

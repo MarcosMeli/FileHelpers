@@ -9,7 +9,7 @@ namespace OnlineWizard.Controllers
     public class HomeController : Controller
     {
         [Route("")]
-        public ActionResult Index()
+        public ActionResult Wizard()
         {
             ViewBag.HideMenu = true;
 
