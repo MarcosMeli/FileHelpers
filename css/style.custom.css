@@ -1,11 +1,22 @@
 /**
  * Syntax highlighting styles
  */
+
+ .code {
+   background-color: #EDEDED;
+padding: 5px;
+box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+font-family: Consolas, monospace;
+margin-left: 6px;
+margin-right: 6px;
+ }
+
 .highlight pre { background-color: #EDEDED;   padding: 15px; margin-left: 20px;
   margin-right: 50px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
       line-height: 130%;
 }
+
 
   .highlight .c {
     color: #998;

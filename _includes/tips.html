@@ -1,2 +1,46 @@
 
-<h4>Tips</h4>
+<h4>FAQ</h4>
+
+<ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+         <li>
+           <div class="collapsible-header"><i class="fa fa-question-circle"></i>My file has headers, how can I ignore it ?</div>
+           <div class="collapsible-body"><p>You must use the <span class="code">[IgnoreFirst]</span> attribute, for footer line you can use also <span class="code">[IgnoreLast]</span></p></div>
+         </li>
+         <li>
+           <div class="collapsible-header"><i class="fa fa-question-circle"></i>Not all the characters from the original file are read</div>
+           <div class="collapsible-body"><p>Sure you have a problem with the Encoding of the file and the one that uses the engine, in all the engines of the library you can pass a custom Encoding</p></div>
+         </li>
+         <li>
+           <div class="collapsible-header"><i class="fa fa-question-circle"></i>My DateTime field has a different format</div>
+           <div class="collapsible-body"><p>Use this attribute with your format:
+             <span class="code">
+             [FieldConverter(ConverterKind.Date, "M-d-yyyy" )]
+           </span>
+              You must check in the Attribute params page for more info</p></div>
+         </li>
+       </ul>
+
+ <h4>Performance Tips</h4>
+
+ <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header"><i class="fa fa-rocket"></i>Try to use FileHelperAsyncEngine</div>
+            <div class="collapsible-body"><p>When reading or writing a large number of record, whenever is posible you must use FileHelperAsyncEngine,
+               it will work faster and use a ton less memory</p></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="fa fa-rocket"></i>Use FieldValueDiscarded for fields that you don't use</div>
+            <div class="collapsible-body"><p>If you record class has a lot of fields and you never use the value of some fields and the library can discard the value for the field apply that attribute</p></div>
+          </li>
+        </ul>
+
+<h4>Debugging Tips</h4>
+
+        <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+                 <li>
+                   <div class="collapsible-header"><i class="fa fa-keyboard-o"></i></i>Use all the values of the FileHelper Exceptions</div>
+                   <div class="collapsible-body"><p>We work hard to provide great context info in all exceptions, you can use it to understand what is wrong.
+                     <span class="code"><a href="http://www.filehelpers.net/docs/html/T_FileHelpers_ConvertException.htm">ConvertException</a></span>
+                 </li>
+
+               </ul>
