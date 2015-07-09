@@ -12,11 +12,11 @@ namespace FileHelpers.Events
     /// private class SampleType: INotifyRead, INotifyWrite
     /// { ....
     /// 
-    ///		public void AfterRead(AfterReadRecordEventArgs&lt;SampleType&gt; e)
+    ///		public void AfterRead(AfterReadEventArgs e)
     ///		{
     ///			// Your Code Here
     ///		}
-    ///		public void BeforeWrite(BeforeWriteRecordEventArgs&lt;SampleType&gt; e engine)
+    ///		public void BeforeWrite(BeforeReadEventArgs e)
     ///		{
     /// 		// Your Code Here
     ///		}
@@ -24,20 +24,19 @@ namespace FileHelpers.Events
     /// }
     /// </code>
     /// </example>
-    public interface INotifyRead<T>
-        where T : class
+    public interface INotifyRead
     {
         /// <summary>
         /// Method called by the engines after read a record from the source data.
         /// </summary>
         /// <param name="e">The Event Info</param>
-        void AfterRead(AfterReadEventArgs<T> e);
+        void AfterRead(AfterReadEventArgs e);
 
         /// <summary>
         /// Method called by the engines before fill the info of the record and
         /// after read the source line.
         /// </summary>
         /// <param name="e">The Event Info</param>
-        void BeforeRead(BeforeReadEventArgs<T> e);
+        void BeforeRead(BeforeReadEventArgs e);
     }
 }
