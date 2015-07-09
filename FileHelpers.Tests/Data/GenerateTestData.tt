@@ -78,7 +78,7 @@ private void RenderItemCore(ProjectItem item, ProjectItem parent)
                         .Class(name, "FileTestBase");
     resultClass.AddCode("protected override string GetFullPathName()", resultClass.Level + 1);
     resultClass.AddCode("{", resultClass.Level + 1);
-    resultClass.AddCode("return @" + "\"" + filepath + "\";", resultClass.Level + 2);
+    resultClass.AddCode("return System.IO.Path.Combine(" + "\"" + System.IO.Path.GetDirectoryName(filepath) + "\", \"" + System.IO.Path.GetFileName(filepath) + "\");", resultClass.Level + 2);
     resultClass.AddCode("}", resultClass.Level + 1);
 
     Code.Namespace("FileHelpers.Tests")
