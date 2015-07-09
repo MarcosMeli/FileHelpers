@@ -856,7 +856,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingUnicode.txt";
+                    return @"Good\EncodingUnicode.bin";
                 }
             }
 
@@ -864,7 +864,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingUnicodeBig.txt";
+                    return @"Good\EncodingUnicodeBig.bin";
                 }
             }
 
