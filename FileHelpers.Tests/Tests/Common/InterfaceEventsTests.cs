@@ -10,19 +10,6 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class InterfaceEventsTests
     {
-        [Test]
-        public void ReadBadUsage()
-        {
-            Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<SampleTypeBadRead>());
-        }
-
-        [Test]
-        public void WriteBadUsage()
-        {
-            Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<SampleTypeBadWrite>());
-        }
 
         [Test]
         public void ReadEvents()
@@ -90,8 +77,34 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(true, res[1].BeforeWriteNotif);
         }
 
+
+        [Test]
+        public void WriteEventsNonGeneric()
+        {
+            var engine = new FileHelperEngine(typeof(SampleType));
+
+            var res = new SampleType[2];
+
+            res[0] = new SampleType();
+            res[1] = new SampleType();
+
+            res[0].Field1 = DateTime.Now.AddDays(1);
+            res[0].Field2 = "je";
+            res[0].Field3 = 0;
+
+            res[1].Field1 = DateTime.Now;
+            res[1].Field2 = "ho";
+            res[1].Field3 = 2;
+
+            engine.WriteString(res);
+
+            Assert.AreEqual(2, engine.TotalRecords);
+            Assert.AreEqual(true, res[0].BeforeWriteNotif);
+            Assert.AreEqual(true, res[1].BeforeWriteNotif);
+        }
+
         [FixedLengthRecord]
-        private class SampleType : INotifyRead, INotifyWrite
+        public class SampleType : INotifyRead, INotifyWrite
         {
             [FieldFixedLength(8)]
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
@@ -140,26 +153,6 @@ namespace FileHelpers.Tests.CommonTests
                 AfterWriteNotif = true;
             }
         }
-
-        [DelimitedRecord(",")]
-        private class SampleTypeBadRead : INotifyRead
-        {
-            public DateTime Field1;
-
-            public void AfterRead(AfterReadEventArgs e) {}
-
-            public void BeforeRead(BeforeReadEventArgs e) {}
-        }
-
-        [DelimitedRecord(",")]
-        private class SampleTypeBadWrite : INotifyWrite
-        {
-            public DateTime Field1;
-
-
-            public void BeforeWrite(BeforeWriteEventArgs e) {}
-
-            public void AfterWrite(AfterWriteEventArgs e) {}
-        }
+        
     }
 }
