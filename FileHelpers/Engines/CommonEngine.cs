@@ -713,6 +713,28 @@ namespace FileHelpers
             return res.ToArray();
         }
 
+        /// <summary>
+        /// Shortcut method to read the first n lines of a text file as array.
+        /// </summary>
+        /// <param name="stream">The text reader name</param>
+        /// <param name="lines">The number of lines to read.</param>
+        /// <param name="encoding">The Encoding used to read the file</param>
+        /// <returns>The first n lines of the file.</returns>
+        public static string[] RawReadFirstLinesArray(TextReader stream, int lines, Encoding encoding)
+        {
+            var res = new List<string>(lines);
+                for (int i = 0; i < lines; i++)
+                {
+                    string line = stream.ReadLine();
+                    if (line == null)
+                        break;
+                    else
+                        res.Add(line);
+                }
+
+            return res.ToArray();
+        }
+
         #region "  ReadCSV  "
 
         /// <summary>
