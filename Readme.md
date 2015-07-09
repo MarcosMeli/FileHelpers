@@ -79,7 +79,7 @@ Who needs the File Helpers Library ?
 License
 -------
 
- The FileHelpers are licensed under the **new BSD or LPGL, pick the best for you**
+ The FileHelpers are licensed under the **MIT License**
  
  FileHelpers Library source and binaries are **completely free for commercial and non commercial use**
 
