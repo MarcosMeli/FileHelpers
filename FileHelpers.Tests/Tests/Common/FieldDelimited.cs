@@ -13,7 +13,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<SOXLog>();
 
-            SOXLog[] res = TestCommon.ReadTest<SOXLog>(engine, "Good", "FieldIgnoredAdvanced.txt");
+            SOXLog[] res = TestCommon.ReadTest<SOXLog>(engine, "Good", "FieldHiddenAdvanced.txt");
             Assert.AreEqual(5, res.Length);
 
             Assert.AreEqual(ActionEnum.Deleted, res[0].ActionType);

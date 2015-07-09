@@ -186,7 +186,8 @@ namespace FileHelpers
             // If ignored, return null
 #pragma warning disable 612,618 // disable obsole warning
             if (fi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
-                fi.IsDefined(typeof (FieldIgnoredAttribute), true))
+                fi.IsDefined(typeof (FieldIgnoredAttribute), true) ||
+                fi.IsDefined(typeof (FieldHiddenAttribute), true))
 #pragma warning restore 612,618
                 return null;
 

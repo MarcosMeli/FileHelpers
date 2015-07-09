@@ -61,7 +61,6 @@ task pack -depends compile, docs {
     "Packing"
 
     copy "Home Page.url" ..\$config\
-    copy "..\Readme.md" ..\$config\Readme.txt
 
     $zipName = "Output\FileHelpers_" + $CurrentVersion + "_Build.zip"
     Create-Zip $config $zipName

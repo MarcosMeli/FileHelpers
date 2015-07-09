@@ -106,21 +106,13 @@ namespace FileHelpers.Dynamic
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private bool mFieldNotInFile = false;
+        private bool mFieldHidden = false;
 
         /// <summary>Indicates that this field must be ignored by the engine.</summary>
-        public bool FieldNotInFile
+        public bool FieldHidden
         {
-            get { return mFieldNotInFile; }
-            set { mFieldNotInFile = value; }
-        }
-
-        /// <summary>Indicates that this field must be ignored by the engine.</summary>
-        [Obsolete("Use [FieldNotInFile] instead")]
-        public bool FieldIgnored
-        {
-            get { return mFieldNotInFile; }
-            set { mFieldNotInFile = value; }
+            get { return mFieldHidden; }
+            set { mFieldHidden = value; }
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -285,8 +277,8 @@ namespace FileHelpers.Dynamic
             if (mFieldOptional)
                 attbs.AddAttribute("FieldOptional()");
 
-            if (mFieldNotInFile)
-                attbs.AddAttribute("FieldNotInFile()");
+            if (mFieldHidden)
+                attbs.AddAttribute("FieldHidden()");
 
             if (mFieldValueDiscarded)
                 attbs.AddAttribute("FieldValueDiscarded()");
@@ -361,7 +353,7 @@ namespace FileHelpers.Dynamic
             Converter.WriteXml(writer);
 
             writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
-            writer.WriteElement("FieldNotInFile", this.FieldNotInFile);
+            writer.WriteElement("FieldHidden", this.FieldHidden);
             writer.WriteElement("FieldOptional", this.FieldOptional);
             writer.WriteElement("FieldValueDiscarded", this.FieldValueDiscarded);
             writer.WriteElement("FieldInNewLine", this.FieldInNewLine);
@@ -407,7 +399,7 @@ namespace FileHelpers.Dynamic
             if (ele != null)
                 Visibility = (NetVisibility) Enum.Parse(typeof (NetVisibility), ele.InnerText);
 
-            FieldNotInFile = node["FieldIgnored"] != null || node["FieldNotInFile"] != null;
+            FieldHidden = node["FieldHidden"] != null || node["FieldNotInFile"] != null || node["FieldIgnored"] != null;
             FieldValueDiscarded = node["FieldValueDiscarded"] != null;
             FieldOptional = node["FieldOptional"] != null;
             FieldInNewLine = node["FieldInNewLine"] != null;

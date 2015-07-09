@@ -916,11 +916,11 @@ namespace FileHelpers.Tests
                 }
             }
 
-            public partial class FieldIgnoredAdvanced : FileTestBase
+            public partial class FieldHiddenAdvanced : FileTestBase
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\FieldIgnoredAdvanced.txt";
+                    return @"Good\FieldHiddenAdvanced.txt";
                 }
             }
 
@@ -2233,11 +2233,11 @@ namespace FileHelpers.Tests
                 get { return mExcelCsv2; }
             }
 
-            private static ClassesFileTest.Good.FieldIgnoredAdvanced mFieldIgnoredAdvanced = new ClassesFileTest.Good.FieldIgnoredAdvanced();
+            private static ClassesFileTest.Good.FieldHiddenAdvanced mFieldHiddenAdvanced = new ClassesFileTest.Good.FieldHiddenAdvanced();
 
-            public static ClassesFileTest.Good.FieldIgnoredAdvanced FieldIgnoredAdvanced
+            public static ClassesFileTest.Good.FieldHiddenAdvanced FieldHiddenAdvanced
             {
-                get { return mFieldIgnoredAdvanced; }
+                get { return mFieldHiddenAdvanced; }
             }
 
             private static ClassesFileTest.Good.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Good.FieldNotEmpty1();

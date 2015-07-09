@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Text;
 using FileHelpers.Events;
 
@@ -97,7 +98,7 @@ namespace FileHelpers
         protected bool OnBeforeReadRecord(BeforeReadEventArgs<T> e)
         {
             if (RecordInfo.NotifyRead)
-                ((INotifyRead<T>) e.Record).BeforeRead(e);
+                ((INotifyRead)e.Record).BeforeRead(e);
 
             if (BeforeReadRecord != null)
                 BeforeReadRecord(this, e);
@@ -118,7 +119,7 @@ namespace FileHelpers
             var e = new AfterReadEventArgs<T>(this, line, lineChanged, record, lineNumber);
 
             if (RecordInfo.NotifyRead)
-                ((INotifyRead<T>) record).AfterRead(e);
+                ((INotifyRead) record).AfterRead(e);
 
             if (AfterReadRecord != null)
                 AfterReadRecord(this, e);
@@ -138,7 +139,7 @@ namespace FileHelpers
             var e = new BeforeWriteEventArgs<T>(this, record, lineNumber);
 
             if (RecordInfo.NotifyWrite)
-                ((INotifyWrite<T>) record).BeforeWrite(e);
+                ((INotifyWrite) record).BeforeWrite(e);
 
             if (BeforeWriteRecord != null)
                 BeforeWriteRecord(this, e);
@@ -157,7 +158,7 @@ namespace FileHelpers
             var e = new AfterWriteEventArgs<T>(this, record, LineNumber, line);
 
             if (RecordInfo.NotifyWrite)
-                ((INotifyWrite<T>) record).AfterWrite(e);
+                ((INotifyWrite) record).AfterWrite(e);
 
             if (AfterWriteRecord != null)
                 AfterWriteRecord(this, e);

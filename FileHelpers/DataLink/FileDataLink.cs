@@ -16,11 +16,7 @@ namespace FileHelpers.DataLink
     /// and in the <a href="example_datalink.html">DataLink Sample</a>
     /// for more Info.</para>
     /// </remarks>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="class_diagram.html">Class Diagram</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    /// <seealso href="example_datalink.html">Example of the DataLink</seealso>
-    /// <seealso href="attributes.html">Attributes List</seealso>
+
     public sealed class FileDataLink
     {
         #region "  Constructor  "

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using FileHelpers.Dynamic;
+using System.IO;
 
 namespace FileHelpers.Detection
 {
@@ -99,6 +100,29 @@ namespace FileHelpers.Detection
         /// <param name="files">The files to be used as sample data</param>
         /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(IEnumerable<string> files)
+        {
+            var readers = new List<TextReader>();
+            foreach (var file in files)
+            {
+                readers.Add(new StreamReader(file, Encoding));
+            }
+            var res = DetectFileFormat(readers);
+
+            foreach (var reader in readers)
+            {
+                reader.Close();
+            }
+
+            return res;
+        }
+    
+
+    /// <summary>
+        /// Tries to detect the possible formats of the file using the <see cref="FormatHint"/>
+        /// </summary>
+        /// <param name="files">The files to be used as sample data</param>
+        /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
+        public RecordFormatInfo[] DetectFileFormat(IEnumerable<TextReader> files)
         {
             var res = new List<RecordFormatInfo>();
             string[][] sampleData = GetSampleLines(files, MaxSampleLines);
@@ -363,6 +387,17 @@ namespace FileHelpers.Detection
         #region "  Helper & Utility Methods  "
 
         private string[][] GetSampleLines(IEnumerable<string> files, int nroOfLines)
+        {
+            var res = new List<string[]>();
+
+            foreach (var file in files)
+                res.Add(CommonEngine.RawReadFirstLinesArray(file, nroOfLines, mEncoding));
+
+            return res.ToArray();
+        }
+
+
+        private string[][] GetSampleLines(IEnumerable<TextReader> files, int nroOfLines)
         {
             var res = new List<string[]>();
 

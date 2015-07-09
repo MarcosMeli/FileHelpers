@@ -7,9 +7,7 @@ namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
     /// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
-    /// <seealso href="attributes.html">Attributes list</seealso>
-    /// <seealso href="quick_start.html">Quick start guide</seealso>
-    /// <seealso href="examples.html">Examples of use</seealso>
+    
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class FieldConverterAttribute : Attribute
     {
@@ -163,8 +161,11 @@ namespace FileHelpers
 
         #region "  Converter  "
 
+
+        /// <summary>The final concrete converter used for FieldToString and StringToField operations </summary>
         public ConverterBase Converter { get; private set; }
 
+        /// <summary>The <see cref="ConverterKind"/> if a default converter is used </summary>
         public ConverterKind Kind { get; private set; }
 
         #endregion

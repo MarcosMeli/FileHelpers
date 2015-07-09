@@ -5,14 +5,34 @@ using System.Collections.Generic;
 namespace FileHelpers.Events
 {
     /// <summary>Arguments for the <see cref="AfterReadHandler{T}"/></summary>
+    public class AfterReadEventArgs
+        : ReadEventArgs
+        
+    {
+        /// <summary>
+        /// After the record is read,  allow details to be inspected.
+        /// </summary>
+        /// <param name="engine">Engine that parsed the record</param>
+        /// <param name="line">Record that was analysed</param>
+        /// <param name="lineChanged">Was it changed before</param>
+        /// <param name="lineNumber">Record number read</param>
+        internal AfterReadEventArgs(EngineBase engine,
+            string line,
+            bool lineChanged,
+            int lineNumber)
+            : base(engine, line, lineNumber)
+        {
+            SkipThisRecord = false;
+            RecordLineChanged = lineChanged;
+        }
+
+    }
+
+    /// <summary>Arguments for the <see cref="AfterReadHandler{T}"/></summary>
     public sealed class AfterReadEventArgs<T>
-        : ReadEventArgs<T>
+        : AfterReadEventArgs
         where T : class
     {
-        //internal AfterReadEventArgs(EventEngineBase<T> engine, string line, bool lineChanged, T newRecord)
-        //    : this(engine, line, lineChanged, newRecord, -1)
-        //{}
-
         /// <summary>
         /// After the record is read,  allow details to be inspected.
         /// </summary>
@@ -26,11 +46,9 @@ namespace FileHelpers.Events
             bool lineChanged,
             T newRecord,
             int lineNumber)
-            : base(engine, line, lineNumber)
+            : base(engine, line, lineChanged, lineNumber)
         {
-            SkipThisRecord = false;
             Record = newRecord;
-            RecordLineChanged = lineChanged;
         }
 
         /// <summary>The current record.</summary>

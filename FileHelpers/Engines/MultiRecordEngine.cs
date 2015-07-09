@@ -28,10 +28,6 @@ namespace FileHelpers
     /// records of different types and that are in a linear relationship</para>
     /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
     /// </summary>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="class_diagram.html">Class Diagram</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    /// <seealso href="attributes.html">Attributes List</seealso>
     [DebuggerDisplay(
         "MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
         )]
@@ -692,7 +688,10 @@ namespace FileHelpers
         // DIFFERENT FROM THE ASYNC ENGINE
 
         #region "  ReadNext  "
-
+        /// <summary>
+        /// Reads the next record from the source
+        /// </summary>
+        /// <returns>The record just read</returns>
         public object ReadNext()
         {
             if (mAsyncReader == null)
@@ -789,7 +788,11 @@ namespace FileHelpers
                 }
             }
         }
-
+        /// <summary>
+        /// Read a defined number of records from the source
+        /// </summary>
+        /// <param name="numberOfRecords">The count of records to read</param>
+        /// <returns>An Array with all the read record objects</returns>
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
@@ -905,7 +908,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write can´t be null.");
 
             int nro = 0;
             foreach (var rec in records) {
