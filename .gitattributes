@@ -2,12 +2,11 @@
 * text=auto
 
 # Custom for Visual Studio
-*.cs     diff=csharp
-*.sln    merge=union
-*.csproj merge=union
-*.vbproj merge=union
-*.fsproj merge=union
-*.dbproj merge=union
+*.cs     diff=csharp eol=crlf
+*.sln    merge=union eol=crlf
+*.csproj merge=union eol=crlf
+*.vbproj merge=union eol=crlf
+*.txt text eol=crlf
 
 # Standard to msysgit
 *.doc	 diff=astextplain
