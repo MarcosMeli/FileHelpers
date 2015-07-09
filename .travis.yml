@@ -1,3 +1,4 @@
+sudo: false
 language: csharp
 solution: FileHelpers.OnlyLibs.sln
 install:
