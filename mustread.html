@@ -9,19 +9,19 @@ permalink: /mustread/
 <div class="row">
     <div class="col s12 m9 l6">
       <ul class="tabs">
+        <li class="tab col s3"><a href="#tips">Tips</a></li>
         <li class="tab col s3"><a class="active" href="#attributes">Attributes</a></li>
         <li class="tab col s3"><a href="#converters">Converters</a></li>
-        <li class="tab col s3"><a href="#tips">Tips</a></li>
       </ul>
+    </div>
+    <div id="tips" class="col s12">
+        {% include tips.html %}
     </div>
     <div id="attributes" class="col s12">
 		{% include attributes.html %}
 	</div>
     <div id="converters" class="col s12">
 		{% include converters.html %}
-	</div>
-    <div id="tips" class="col s12">
-		{% include tips.html %}
 	</div>
 
 </div>

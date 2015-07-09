@@ -9,3 +9,4 @@ _site
 /OnlineWizard/OnlineWizard/Properties/PublishProfiles/*.user
 /OnlineWizard/OnlineWizard/Properties/PublishProfiles/wizard.filehelpers.net - Web Deploy.pubxml.user
 /OnlineWizard/*.suo
+/OnlineWizard/*.user

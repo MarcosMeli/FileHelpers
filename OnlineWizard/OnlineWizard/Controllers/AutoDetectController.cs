@@ -17,20 +17,13 @@ namespace OnlineWizard.Controllers
         {
             if (file.ContentLength > 0)
             {
-                //var fileName = Path.GetFileName(file.FileName);
-                //byte[] binData;
-                //using (var b = new BinaryReader(file.InputStream))
-                //{
-                //    binData = b.ReadBytes((int) file.InputStream.Length);
-                //}
-
-                //var result = System.Text.Encoding.UTF8.GetString(binData);
                 var tempFile = Path.GetTempFileName();
                 file.SaveAs(tempFile);
 
                 var detector = new FileHelpers.Detection.SmartFormatDetector
                 {
                     Encoding = Encoding.UTF8,
+                    FileHasHeaders = true
                 };
 
                 var res = detector.DetectFileFormat(tempFile);
