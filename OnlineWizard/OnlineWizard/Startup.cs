@@ -12,7 +12,7 @@ namespace OnlineWizard
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            
         }
     }
 }
