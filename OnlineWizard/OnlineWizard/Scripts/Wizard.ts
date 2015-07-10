@@ -8,13 +8,13 @@ $(document).ready(() => {
     //});
 
     var record = $("#record1").parent().html();
-    
 
     var myDropzone = new Dropzone("#fileHelpersDropZone",
     {
         paramName: "file", // The name that will be used to transfer the file
         maxFilesize: 4, // MB
        // acceptedFiles: "*.txt;*.csv;*.tab"
+        
     });
 
     myDropzone.on("success", (file, result) => {
@@ -27,7 +27,6 @@ $(document).ready(() => {
         $("#recordfields").html("Format: Delimited" +
             "<br/>Confidence: " + format.Confidence +
             "<br/>Delimiter: '" + format.ClassBuilderAsDelimited.Delimiter + "'");
-        
 
         var delay = 0;
         var i = 1;
