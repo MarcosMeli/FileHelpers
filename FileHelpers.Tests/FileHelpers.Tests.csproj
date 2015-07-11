@@ -65,15 +65,16 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <UnitTestInformation>
-        <Test Path="">
-          <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
-            <Categories>
-              <Category>Dynamic</Category>
-            </Categories>
-          </Options>
-        </Test>
-    </UnitTestInformation>
+    <Test>
+      <Test Path="">
+        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
+          <Categories>
+            <Category>Dynamic</Category>
+          </Categories>
+        </Options>
+      </Test>
+    </Test>
+
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
@@ -91,15 +92,15 @@
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <UnitTestInformation>
-        <Test Path="">
-          <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
-            <Categories>
-              <Category>Dynamic</Category>
-            </Categories>
-          </Options>
-        </Test>
-    </UnitTestInformation>
+    <Test>
+      <Test Path="">
+        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
+          <Categories>
+            <Category>Dynamic</Category>
+          </Categories>
+        </Options>
+      </Test>
+    </Test>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
