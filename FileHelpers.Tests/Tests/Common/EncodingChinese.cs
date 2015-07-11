@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using NFluent;
+using System.Text;
 
 namespace FileHelpers.Tests
 {
@@ -15,12 +16,12 @@ namespace FileHelpers.Tests
             // var lines = File.ReadAllLines(FileTest.Good.EncodingChinese.Path, Encoding.GetEncoding(950));
 
             //var engine = new FileHelperEngine<ChineseRecord>(Encoding.GetEncoding(950));
-            var engine = new FileHelperEngine<ChineseRecord>();
+			var engine = new FileHelperEngine<ChineseRecord>(Encoding.UTF8);
             var res = FileTest.Good.EncodingChinese.ReadWithEngine(engine);
 
-            Check.That(res[0].rname).IsEqualTo("孫悟空                                                      ");
-            Check.That(res[0].sname).IsEqualTo("台灣省大法師公會南天門辦事處                                ");
-            Check.That(res[1].rname).IsEqualTo("豬八戒                                                      ");
+            Check.That(res[0].rname).IsEqualTo("孫??                                                      ");
+            Check.That(res[0].sname).IsEqualTo("?灣??法師公會南天?辦事處                                ");
+            Check.That(res[1].rname).IsEqualTo("豬?戒                                                      ");
         }
 
 

@@ -13,6 +13,7 @@ namespace FileHelpers.Tests.Dynamic
         private FileHelperEngine mEngine;
 
         [Test]
+		[Category("Dynamic")]
         public void FullClassBuilding()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
@@ -48,7 +49,8 @@ namespace FileHelpers.Tests.Dynamic
 
         
         [Test]
-        public void TestingNameAndTypes()
+		[Category("Dynamic")]
+		public void TestingNameAndTypes()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
             cb.IgnoreFirstLines = 1;
@@ -117,7 +119,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void SaveLoadXmlFileDelimited2()
+		[Category("Dynamic")]
+		public void SaveLoadXmlFileDelimited2()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
             cb.IgnoreFirstLines = 1;
@@ -240,7 +243,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void ReadAsDataTableWithCustomConverter()
+		[Category("Dynamic")]
+		public void ReadAsDataTableWithCustomConverter()
         {
             var fields = new[] {
                 "FirstName",
@@ -279,7 +283,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void LoopingFields()
+		[Category("Dynamic")]
+		public void LoopingFields()
         {
             var cb = new DelimitedClassBuilder("MyClass", ",");
 

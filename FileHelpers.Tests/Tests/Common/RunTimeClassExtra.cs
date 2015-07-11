@@ -11,7 +11,8 @@ namespace FileHelpers.Tests
     public class RunTimeClassesExtra
     {
         [Test]
-        public void ReadAsDataTable1()
+		[Category("Dynamic")]
+		public void ReadAsDataTable1()
         {
             var cb = new DelimitedClassBuilder("ImportContact", ",");
             cb.IgnoreEmptyLines = true;
@@ -68,7 +69,8 @@ namespace FileHelpers.Tests
 
 
         [Test]
-        public void ReadAsDataTable2()
+		[Category("Dynamic")]
+		public void ReadAsDataTable2()
         {
             var cb = new DelimitedClassBuilder("ImportContact", ",");
             cb.IgnoreEmptyLines = true;

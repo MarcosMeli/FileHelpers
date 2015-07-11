@@ -8,7 +8,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Dynamic
 {
     [TestFixture]
-    public class FixedLengthClassBuilderTests
+	[Category("Dynamic")]
+	public class FixedLengthClassBuilderTests
     {
         private const string TempClassFile = "tempclass.cs";
         private FileHelperEngine mEngine;

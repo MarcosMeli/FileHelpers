@@ -126,7 +126,7 @@ namespace FileHelpers.Tests.CommonTests
         public void ArrayFieldsComplex()
         {
             var engine = new FileHelperEngine<ArrayComplexType>();
-            var res = engine.ReadString("");
+            engine.ReadString("");
         }
 
         [Test]
@@ -196,8 +196,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.Throws<InvalidOperationException>(
                 () => {
                     var engine = new DelimitedFileEngine<ArrayModel2To4>();
-                    var res =
-                        engine.WriteString(new[] {
+                    engine.WriteString(new[] {
                             new ArrayModel2To4() {
                                 Id = 1,
                                 Name = "name1",
@@ -213,8 +212,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.Throws<InvalidOperationException>(
                 () => {
                     var engine = new DelimitedFileEngine<ArrayModel2To4>();
-                    var res =
-                        engine.WriteString(new[] {
+                    engine.WriteString(new[] {
                             new ArrayModel2To4() {
                                 Id = 1,
                                 Name = "name1",
@@ -230,8 +228,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.Throws<InvalidOperationException>(
                 () => {
                     var engine = new DelimitedFileEngine<ArrayModel2To4>();
-                    var res =
-                        engine.WriteString(new[] {
+                    engine.WriteString(new[] {
                             new ArrayModel2To4() {
                                 Id = 1,
                                 Name = "name1",

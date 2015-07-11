@@ -9,7 +9,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Dynamic
 {
     [TestFixture]
-    public class ClassBuilderTests
+	[Category("Dynamic")]
+	public class ClassBuilderTests
     {
         private FileHelperEngine mEngine;
         private FileHelperAsyncEngine mAsyncEngine;
