@@ -23,8 +23,8 @@ namespace FileHelpers.Detection
 
         #region "  Constants  "
 
-        private const int MinSampleData = 15;
-        private const double MinDelimitedDeviation = 0.25;
+        private const int MinSampleData = 10;
+        private const double MinDelimitedDeviation = 0.30001;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace FileHelpers.Detection
             set { mFormatHint = value; }
         }
 
-        private int mMaxSampleLines = 50;
+        private int mMaxSampleLines = 300;
 
         /// <summary>
         /// The number of lines of each file to be used as sample data.
@@ -68,7 +68,7 @@ namespace FileHelpers.Detection
         ///<summary>
         ///Indicates if the sample file has headers
         ///</summary>
-        public bool FileHasHeaders { get; set; }
+        public bool? FileHasHeaders { get; set; }
 
         /// <summary>
         /// Used to calculate when a file has fixed length records. 
@@ -310,6 +310,26 @@ namespace FileHelpers.Detection
             return cand1;
         }
 
+		bool DetectIfContainsHeaders (string[][] sampleData)
+		{
+			if (sampleData.Length >= 1)
+				return AreAllHeaders (sampleData [0]);
+			
+			return false;
+		}
+
+		bool AreAllHeaders (string[] rowData)
+		{
+			foreach (var item in rowData) {
+				var fieldData = item.Trim ();
+				if (fieldData.Length == 0)
+					return false;
+				if (char.IsDigit (fieldData [0]))
+					return false;
+			}
+			return true;
+		}
+
         // DELIMITED
 
         private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res, char delimiter = '\0')
@@ -326,16 +346,22 @@ namespace FileHelpers.Detection
                     mConfidence = (int) ((1 - info.Deviation)*100)
                 };
                 AdjustConfidence(format, info);
-
+				var fileHasHeaders = false;
+				if (FileHasHeaders.HasValue)
+					fileHasHeaders = FileHasHeaders.Value;
+				else {
+					fileHasHeaders = DetectIfContainsHeaders (sampleData);
+				}
                 var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString()) {
-                    IgnoreFirstLines = FileHasHeaders
+					IgnoreFirstLines = fileHasHeaders
                         ? 1
                         : 0
                 };
+
                 var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
                 for (int i = 0; i < info.Max + 1; i++) {
                     string name = "Field " + (i + 1).ToString().PadLeft(3, '0');
-                    if (FileHasHeaders && i < firstLineSplitted.Length)
+                    if (fileHasHeaders && i < firstLineSplitted.Length)
                         name = firstLineSplitted[i];
 
                     var f = builder.AddField(StringHelper.ToValidIdentifier(name));

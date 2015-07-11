@@ -74,7 +74,6 @@
         </Options>
       </Test>
     </Test>
-
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
@@ -383,6 +382,7 @@
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
     <None Include="FileHelpers.snk" />
     <None Include="packages.config" />
+    <Compile Include="Tests\Detector\HeaderDetection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />
