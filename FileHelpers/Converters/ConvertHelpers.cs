@@ -673,7 +673,7 @@ namespace FileHelpers
                     throw new BadUsageException("The format of the DateTime Converter cannot be null or empty.");
 
                 try {
-                    var temp = DateTime.Now.ToString(format);
+                    DateTime.Now.ToString(format);
                 }
                 catch {
                     throw new BadUsageException("The format: '" + format + " is invalid for the DateTime Converter.");
@@ -759,7 +759,7 @@ namespace FileHelpers
                         throw new BadUsageException("The format of the DateTime Converter can be null or empty.");
 
                     try {
-                        var temp = DateTime.Now.ToString(formats[i]);
+                        DateTime.Now.ToString(formats[i]);
                     }
                     catch {
                         throw new BadUsageException("The format: '" + formats[i] +
