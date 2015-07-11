@@ -310,15 +310,49 @@ namespace FileHelpers.Detection
             return cand1;
         }
 
-		bool DetectIfContainsHeaders (string[][] sampleData)
+		bool HeadersInData (DelimiterInfo info, string[] headerValues, string[] rows)
 		{
-			if (sampleData.Length >= 1)
-				return AreAllHeaders (sampleData [0]);
-			
+			var duplicate = 0;
+			var first = true;
+			foreach (var row in rows) {
+				if (first) {
+					first = false;
+					continue;
+
+				}
+				var values = row.Split (new char[]{ info.Delimiter });
+				if (values.Length != headerValues.Length)
+					continue;
+
+				for (int i = 0; i < values.Length; i++) {
+					if (values [i] == headerValues [i])
+						duplicate++;
+				}
+			}
+
+			return duplicate >= 3;
+
+
+		}
+
+		bool DetectIfContainsHeaders (DelimiterInfo info, string[][] sampleData)
+		{
+			if (sampleData.Length >= 1) {
+				var firstLine = sampleData [0] [0].Split (new char[]{ info.Delimiter });
+				var res = AreAllHeaders (firstLine);
+				if (res == false)
+					return false; // if has headers that starts with numbers so near sure are data and no header is present
+
+				if (HeadersInData(info, firstLine, sampleData[0]))
+					return false;
+
+				return true;
+
+			}
 			return false;
 		}
 
-		bool AreAllHeaders (string[] rowData)
+		bool AreAllHeaders ( string[] rowData)
 		{
 			foreach (var item in rowData) {
 				var fieldData = item.Trim ();
@@ -350,7 +384,7 @@ namespace FileHelpers.Detection
 				if (FileHasHeaders.HasValue)
 					fileHasHeaders = FileHasHeaders.Value;
 				else {
-					fileHasHeaders = DetectIfContainsHeaders (sampleData);
+					fileHasHeaders = DetectIfContainsHeaders (info, sampleData) ;
 				}
                 var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString()) {
 					IgnoreFirstLines = fileHasHeaders
