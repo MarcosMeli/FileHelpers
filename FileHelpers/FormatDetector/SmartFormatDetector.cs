@@ -330,13 +330,17 @@ namespace FileHelpers.Detection
 				}
 			}
 
-			return duplicate >= 3;
+			return duplicate >= rows.Length * 0.25;
 
 
 		}
 
 		bool DetectIfContainsHeaders (DelimiterInfo info, string[][] sampleData)
 		{
+			if (sampleData.Length >= 2) {
+				return SameFirstLine (info, sampleData);
+			}
+			
 			if (sampleData.Length >= 1) {
 				var firstLine = sampleData [0] [0].Split (new char[]{ info.Delimiter });
 				var res = AreAllHeaders (firstLine);
@@ -350,6 +354,22 @@ namespace FileHelpers.Detection
 
 			}
 			return false;
+		}
+
+		bool SameFirstLine (DelimiterInfo info, string[][] sampleData)
+		{
+			for (int i = 1; i < sampleData.Length; i++) {
+				if (!SameHeaders (info, sampleData [0][0], sampleData [i][0]))
+					return false;
+			}
+			return true;
+
+		}
+
+		bool SameHeaders (DelimiterInfo info, string line1, string line2)
+		{
+			return line1.Replace (info.Delimiter.ToString (), "").Trim ()
+			== line2.Replace (info.Delimiter.ToString (), "").Trim ();
 		}
 
 		bool AreAllHeaders ( string[] rowData)

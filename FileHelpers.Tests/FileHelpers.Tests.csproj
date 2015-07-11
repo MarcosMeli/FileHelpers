@@ -383,6 +383,8 @@
     <None Include="FileHelpers.snk" />
     <None Include="packages.config" />
     <Compile Include="Tests\Detector\HeaderDetection.cs" />
+    <Compile Include="Tests\Detector\MultipleFiles.cs" />
+    <Content Include="Data\Detection\CustomersTab2.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />

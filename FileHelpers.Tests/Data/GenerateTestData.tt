@@ -1,7 +1,7 @@
 ﻿<#@ template language="C#" hostSpecific="true" #>
 <#@ output extension=".autogen.cs" #>
-<#@ Assembly Name="System.Xml.dll" #>
-<#@ Assembly Name="System.Data.dll" #>
+<#@ assembly Name="System.Xml.dll" #>
+<#@ assembly Name="System.Data.dll" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="EnvDTE" #>
 <#@ import namespace="EnvDTE" #>
