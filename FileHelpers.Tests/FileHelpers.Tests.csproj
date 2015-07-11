@@ -66,7 +66,6 @@
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
     <UnitTestInformation>
-      <UnitTestInformation>
         <Test Path="">
           <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
             <Categories>
@@ -74,7 +73,6 @@
             </Categories>
           </Options>
         </Test>
-      </UnitTestInformation>
     </UnitTestInformation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -94,7 +92,6 @@
     <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
     <UnitTestInformation>
-      <UnitTestInformation>
         <Test Path="">
           <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
             <Categories>
@@ -102,7 +99,6 @@
             </Categories>
           </Options>
         </Test>
-      </UnitTestInformation>
     </UnitTestInformation>
   </PropertyGroup>
   <ItemGroup>
