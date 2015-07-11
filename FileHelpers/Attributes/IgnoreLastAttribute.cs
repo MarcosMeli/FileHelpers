@@ -10,7 +10,7 @@ namespace FileHelpers
     /// <remarks>
     /// This is useful to discard trailer records from an incoming file.
     /// <para/>
-    /// See the <a href="http://www.filehelpers.net/must_read">complete attributes list</a> for more information and examples of each one.</remarks>
+    /// See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
 
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class IgnoreLastAttribute : Attribute

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="AlignMode"/> used for <b>write</b> operations.</summary>
-    /// <remarks>See the <a href="http://www.filehelpers.net/must_read">complete attributes list</a> for more information and examples of each one.</remarks>
+    /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
 
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class FieldAlignAttribute : Attribute
