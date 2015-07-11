@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Allow to declaratively set what records must be included or excluded while reading.</summary>
-    /// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
+    /// <remarks>See the <a href="http://www.filehelpers.net/must_read">Complete attributes list</a> for more information and examples of each one.</remarks>
 
     /// <example>
     /// [DelimitedRecord(",")] 
@@ -20,6 +20,7 @@ namespace FileHelpers
     /// { 
     /// </example>
     [AttributeUsage(AttributeTargets.Class)]
+	[Obsolete("This attribute will be removed in next version, is better to use INotifyRead and provide code for filtering")]
     public sealed class ConditionalRecordAttribute : Attribute
     {
         /// <summary> The condition used to include or exclude each record </summary>

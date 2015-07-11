@@ -8,7 +8,7 @@ namespace FileHelpers
     /// <remarks>
     /// Useful to ignore header records that you are not interested in.
     /// <para/>
-    /// See the <a href="attributes.html">complete attributes list</a> for more
+    /// See the <a href="http://www.filehelpers.net/must_read">complete attributes list</a> for more
     /// information and examples of each one.
     /// </remarks>
 

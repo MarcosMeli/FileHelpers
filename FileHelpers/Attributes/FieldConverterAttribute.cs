@@ -6,7 +6,7 @@ using System.Reflection;
 namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
-    /// <remarks>See the <a href="attributes.html">Complete attributes list</a> for more information and examples of each one.</remarks>
+    /// <remarks>See the <a href="http://www.filehelpers.net/must_read">Complete attributes list</a> for more information and examples of each one.</remarks>
     
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class FieldConverterAttribute : Attribute
