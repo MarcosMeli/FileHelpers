@@ -6,4 +6,4 @@ install:
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Debug FileHelpers.OnlyLibs.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll /exclude:Dynamic
