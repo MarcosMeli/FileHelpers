@@ -382,6 +382,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class CustomersTab2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Detection", "CustomersTab2.txt");
+                }
+            }
+
             public partial class DelimitedMedium : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -848,7 +856,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return System.IO.Path.Combine("Good", "EncodingChinese.txt");
+                    return System.IO.Path.Combine("Good", "EncodingChinese.bin");
                 }
             }
 
@@ -1763,6 +1771,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Detection.CustomersTab CustomersTab
             {
                 get { return mCustomersTab; }
+            }
+
+            private static ClassesFileTest.Detection.CustomersTab2 mCustomersTab2 = new ClassesFileTest.Detection.CustomersTab2();
+
+            public static ClassesFileTest.Detection.CustomersTab2 CustomersTab2
+            {
+                get { return mCustomersTab2; }
             }
 
             private static ClassesFileTest.Detection.DelimitedMedium mDelimitedMedium = new ClassesFileTest.Detection.DelimitedMedium();

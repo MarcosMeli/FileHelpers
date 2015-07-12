@@ -30,7 +30,7 @@ namespace FileHelpers.Tests.Errors
             public string CustomerID;
             public string CompanyName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactName;
 
             public string ContactTitle;
@@ -43,7 +43,7 @@ namespace FileHelpers.Tests.Errors
             public string CompanyName;
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public int ContactTitle;
         }
     }

@@ -380,6 +380,7 @@
     <Content Include="Data\Excel\ExcelWithNoEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
+    <None Include="Data\Good\EncodingChinese.bin" />
     <None Include="FileHelpers.snk" />
     <None Include="packages.config" />
     <Compile Include="Tests\Detector\HeaderDetection.cs" />
@@ -525,7 +526,6 @@
     <Content Include="Data\Good\EncodingAdv2.txt" />
     <Content Include="Data\Good\EncodingAdv3.txt" />
     <Content Include="Data\Good\EncodingANSI.txt" />
-    <Content Include="Data\Good\EncodingChinese.txt" />
     <None Include="Data\Good\EncodingUnicode.bin" />
     <None Include="Data\Good\EncodingUnicodeBig.bin" />
     <Content Include="Data\Good\EncodingUTF8.txt" />

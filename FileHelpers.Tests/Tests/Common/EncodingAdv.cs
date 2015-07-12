@@ -28,7 +28,7 @@ namespace FileHelpers.Tests
         }
     }
 
-    [FixedLengthRecord()]
+    [FixedLengthRecord]
     [IgnoreFirst(7)]
     [IgnoreLast(5)]
     public sealed class MSWSDailyReportRecord

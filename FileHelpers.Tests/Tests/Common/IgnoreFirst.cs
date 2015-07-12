@@ -193,7 +193,7 @@ namespace FileHelpers.Tests.CommonTests
     }
 
     [FixedLengthRecord]
-    [IgnoreFirst()]
+    [IgnoreFirst]
     public class DiscardType1
     {
         [FieldFixedLength(8)]
@@ -243,7 +243,7 @@ namespace FileHelpers.Tests.CommonTests
 
     [FixedLengthRecord]
     [IgnoreFirst(800000)]
-    [IgnoreLast()]
+    [IgnoreLast]
     public class DiscardType3
     {
         [FieldFixedLength(8)]

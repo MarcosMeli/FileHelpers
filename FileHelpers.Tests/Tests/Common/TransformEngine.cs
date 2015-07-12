@@ -250,7 +250,7 @@ namespace FileHelpers.Tests.CommonTests
             public string CustomerName;
         }
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         private class ToClass
         {
             [FieldFixedLength(10)]

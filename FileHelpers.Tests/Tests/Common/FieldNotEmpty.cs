@@ -17,10 +17,10 @@ namespace FileHelpers.Tests.CommonTests
 
     [DelimitedRecord(",")]
     public class NotEmptyType {
-        [FieldNotEmpty()]
+        [FieldNotEmpty]
         public int CustomerID;
 
-        [FieldNotEmpty()]
+        [FieldNotEmpty]
         public string CompanyName;
 
         public string ContactName;
@@ -28,7 +28,7 @@ namespace FileHelpers.Tests.CommonTests
         [FieldNullValue(true)]
         public bool IsActive;
 
-        [FieldNotEmpty()]
+        [FieldNotEmpty]
         public DateTime? CreatedDate;
     }
 }

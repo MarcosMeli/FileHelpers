@@ -126,7 +126,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [IgnoreFirst(1)]
-        [IgnoreEmptyLines()]
+        [IgnoreEmptyLines]
         [DelimitedRecord(",")]
         public sealed class OptionalForReadOnEmptyFieldsClass
         {

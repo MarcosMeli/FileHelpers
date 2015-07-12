@@ -96,7 +96,7 @@ namespace FileHelpers.Tests.CommonTests
     {
         public int OrderID;
 
-        [FieldQuoted()]
+        [FieldQuoted]
         public string CustomerID;
 
         public int EmployeeID;
@@ -115,7 +115,7 @@ namespace FileHelpers.Tests.CommonTests
     {
         public int OrderID;
 
-        [FieldQuoted()]
+        [FieldQuoted]
         public string CustomerID;
 
         public int EmployeeID;
@@ -164,7 +164,7 @@ namespace FileHelpers.Tests.CommonTests
     {
         public string CustomerID;
 
-        [FieldQuoted()]
+        [FieldQuoted]
         [FieldTrim(TrimMode.Both)]
         public string CompanyName;
 
