@@ -4,7 +4,7 @@ title: Version History
 permalink: /changelog/
 ---
 
-###Version 3.1, July 2014
+###Version 3.1, July 2015
 
 Hi everyone again!
 
@@ -47,7 +47,7 @@ update the library in a more regular fashion.
 * NEW: BigFileSorter: if you need to sort big files, you can
   use this feature that implements External Sorting
 {: .changelog}
-  
+
 ####Breaking Changes
 * Removed support for .NET Compact Framework
 {: .changelog}
@@ -428,7 +428,7 @@ update the library in a more regular fashion.
     -   ADD: Generic CSV files are now supported (for example Excel
         generated ones)  
          Was a hard work but worth it because it can be used with any
-        engine.   
+        engine.
          In the next version I'll add the Excellent [Fast CSV
         Reader](http://www.codeproject.com/KB/database/CsvReader.aspx)
         from **S?stien Lorion** for standalone CSV processing.

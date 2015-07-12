@@ -1,14 +1,15 @@
 # FileHelpers GitHub Pages Sources
 
 Source of the Library Home Site
+http://www.filehelpers.net
 
 If you want to edit the pages you can:
 
  * Edit here on GitHub and create a pull request
- * Check out the branch with: 
- 
+ * Check out the branch with:
+
     git clone -b gh-pages --single-branch https://github.com/MarcosMeli/FileHelpers.git FileHelpersHome
- 
+
     Now all the site is on FileHelpersHome folder
 
     We are using jekyll as a page generator: http://jekyllrb.com/
@@ -20,11 +21,10 @@ If you want to edit the pages you can:
        http://jekyll-windows.juthilo.com/
 
        http://stackoverflow.com/a/28998745/203579
-       
-       
+
+
 ### Editor
 
-We are using and recomend the ATOM Editor with the TypeScript plugin
+We are using and recommend the ATOM Editor with the TypeScript plugin
 
 https://atom.io/
-

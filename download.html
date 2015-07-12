@@ -4,13 +4,15 @@ title: Download Install
 permalink: /download/
 ---
 
-<h4>Installation via NuGet</h4>
+<h4>Installation via NuGet (recommended)</h4>
 
 <div class="indent">
 
-<p>This is the recommended method to use the library
+<p>Search in your package source in Visual Studio for FileHelpers package</p>
 
-<a href="https://www.nuget.org/packages/FileHelpers/">www.nuget.org/packages/FileHelpers</a></p>
+(TODO: image of package manager)
+
+<a href="https://www.nuget.org/packages/FileHelpers/">www.nuget.org/packages/FileHelpers</a>
 
 <p>Manual install via Console</p>
 
@@ -21,10 +23,12 @@ Install-Package FileHelpers
 </div>
 
 </div>
-<h4>Manual Installation via NuGet</h4>
+
+<h4>Manual Installation via GitHub</h4>
 
 <div class="indent">
-<p>Download the zip package at (Source Forge link)</p>
+
+  <a href="http://github download link" class="btn waves-effect waves-light green">Download at GitHub</a>
 
 <p>You only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>.<br/>
   Tip: remember to leave the <strong>FileHelpers.xml</strong> file to get Visual Studio Intellisense support.</p>
@@ -44,3 +48,14 @@ Install-Package FileHelpers
 
  </ul>
 </div>
+
+<h4>Pre-release versions of the library</h4>
+
+<div class="indent">
+
+  {% highlight PowerShell %}
+  Install-Package FileHelpers -pre
+  {% endhighlight %}
+
+You can also access the dialy builds at TeamCity in CodeBetter
+  </div>
