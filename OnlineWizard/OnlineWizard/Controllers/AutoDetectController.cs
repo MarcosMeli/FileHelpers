@@ -17,24 +17,21 @@ namespace OnlineWizard.Controllers
         {
             if (file.ContentLength > 0)
             {
-                var tempFile = Path.GetTempFileName();
-                file.SaveAs(tempFile);
+//                var tempFile = Path.GetTempFileName();
+  //              file.SaveAs(tempFile);
 
                 var detector = new FileHelpers.Detection.SmartFormatDetector
                 {
-                    Encoding = Encoding.UTF8,
-                    FileHasHeaders = true
+                    Encoding = Encoding.Default,
+                  //  FileHasHeaders = true
                 };
 
-                var res = detector.DetectFileFormat(tempFile);
-                try
+                using (var reader = new StreamReader(file.InputStream))
                 {
-                    System.IO.File.Delete(tempFile);
+                    var res = detector.DetectFileFormat(new[] {reader});
+                    return Json(res);
                 }
-                catch
-                {}
 
-                return Json(res);
             }
 
             return Content("");
