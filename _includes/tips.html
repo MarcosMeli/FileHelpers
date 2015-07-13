@@ -1,21 +1,37 @@
 
-<h4>FAQ</h4>
+<h4><i class="fa fa-exclamation-triangle" style="color: rgb(243, 169, 34);  opacity: 0.6;"></i> Warnings</h4>
 
-<ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+<ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header">DataLink feature is outdated and will be rewritten</div>
+    <div class="collapsible-body"><p>The support to interact with other datasources is from the old 1.1 or 2.0 days. We will be rewritting this feature for the next release using lambda expressions, Task and other advanced features of .Net</p></div>
+  </li>
          <li>
-           <div class="collapsible-header"><i class="fa fa-question-circle"></i>My file has headers, how can I ignore it ?</div>
+           <div class="collapsible-header">Excel Support is only for basic scenarios</div>
+           <div class="collapsible-body"><p>The current implmented Excel support is only for basic scenarios, if you need custom formatting, charts, etc you must go for a custom
+           code, is strongly recommended to direct use the <a href="https://npoi.codeplex.com/">NPOI library</a>
+           </p></div>
+         </li>
+
+       </ul>
+
+<h4><i class="fa fa-question-circle" style="color: rgb(45, 142, 211);  opacity: 0.6;"></i> FAQ</h4>
+
+<ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
+         <li>
+           <div class="collapsible-header">My file has headers, how can I ignore it ?</div>
            <div class="collapsible-body"><p>You must use the <span class="code">[IgnoreFirst]</span> attribute, for footer line you can use also <span class="code">[IgnoreLast]</span></p></div>
          </li>
          <li>
-           <div class="collapsible-header"><i class="fa fa-question-circle"></i>Not all the characters from the original file are read</div>
+           <div class="collapsible-header">Not all the characters from the original file are read</div>
            <div class="collapsible-body"><p>Sure you have a problem with the Encoding of the file and the one that uses the engine, in all the engines of the library you can pass a custom Encoding</p></div>
          </li>
            <li>
-           <div class="collapsible-header"><i class="fa fa-question-circle"></i>How can I skip certain lines when reading a file</div>
+           <div class="collapsible-header">How can I skip certain lines when reading a file</div>
            <div class="collapsible-body"><p>You can capture the <span class="code">BeforeRead</span> Event or use the <span class="code">INotifyRead</span> interface</p></div>
          </li>
          <li>
-           <div class="collapsible-header"><i class="fa fa-question-circle"></i>My DateTime field has a different format</div>
+           <div class="collapsible-header">My DateTime field has a different format</div>
            <div class="collapsible-body"><p>Use this attribute with your format:
              <span class="code">
              [FieldConverter(ConverterKind.Date, "M-d-yyyy" )]
@@ -24,25 +40,25 @@
          </li>
        </ul>
 
- <h4>Performance Tips</h4>
+ <h4><i class="fa fa-rocket" style="color: rgb(54, 111, 54);  opacity: 0.6;"></i> Performance</h4>
 
- <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+ <ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
           <li>
-            <div class="collapsible-header"><i class="fa fa-rocket"></i>Try to use FileHelperAsyncEngine</div>
+            <div class="collapsible-header">Try to use FileHelperAsyncEngine</div>
             <div class="collapsible-body"><p>When reading or writing a large number of record, whenever is posible you must use FileHelperAsyncEngine,
                it will work faster and use a ton less memory</p></div>
           </li>
           <li>
-            <div class="collapsible-header"><i class="fa fa-rocket"></i>Use FieldValueDiscarded for fields that you don't use</div>
+            <div class="collapsible-header">Use FieldValueDiscarded for fields that you don't use</div>
             <div class="collapsible-body"><p>If you record class has a lot of fields and you never use the value of some fields and the library can discard the value for the field apply that attribute</p></div>
           </li>
         </ul>
 
-<h4>Debugging Tips</h4>
+<h4><i class="fa fa-keyboard-o" style="color: rgb(238, 105, 48);  opacity: 0.6;"></i> Debugging</h4>
 
-        <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+        <ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
                  <li>
-                   <div class="collapsible-header"><i class="fa fa-keyboard-o"></i></i>Use all the values of the FileHelper Exceptions</div>
+                   <div class="collapsible-header">Use all the values of the FileHelper Exceptions</div>
                    <div class="collapsible-body"><p>We work hard to provide great context info in all exceptions, you can use it to understand what is wrong.
                      <span class="code"><a href="http://www.filehelpers.net/docs/html/T_FileHelpers_ConvertException.htm">ConvertException</a></span>
                  </li>

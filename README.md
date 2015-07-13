@@ -22,6 +22,10 @@ If you want to edit the pages you can:
 
        http://stackoverflow.com/a/28998745/203579
 
+   You must also install wdm for real time regeneration of changed pages
+
+   gem install wdm
+
 
 ### Editor
 

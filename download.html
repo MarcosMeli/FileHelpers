@@ -8,13 +8,13 @@ permalink: /download/
 
 <div class="indent">
 
-<p>Search in your package source in Visual Studio for FileHelpers package</p>
+<div class="row">
 
-(TODO: image of package manager)
+<div class="col s12">
 
 <a href="https://www.nuget.org/packages/FileHelpers/">www.nuget.org/packages/FileHelpers</a>
 
-<p>Manual install via Console</p>
+<p><b>Manual install via Console</b></p>
 
 <div class="indent">
 {% highlight PowerShell %}
@@ -22,6 +22,12 @@ Install-Package FileHelpers
 {% endhighlight %}
 </div>
 
+<p><b>or search for "FielHelpers" in the NuGet Package Manager in Visual Studio</b></p>
+
+<img src="{{ site.baseurl }}/images/nuget.png" class="indent" alt="add references" style="" />
+
+</div>
+</div>
 </div>
 
 <h4>Manual Installation via GitHub</h4>
@@ -54,7 +60,7 @@ Install-Package FileHelpers
 <div class="indent">
 
   {% highlight PowerShell %}
-  Install-Package FileHelpers -pre
+  Install-Package FileHelpers -Pre
   {% endhighlight %}
 
 You can also access the dialy builds at TeamCity in CodeBetter
