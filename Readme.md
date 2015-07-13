@@ -1,7 +1,7 @@
 FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 ===========
 
-<a href="http://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg" style="border:1px solid black; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);" /></a>
+<a href="http://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
 
 www.filehelpers.net
 
@@ -18,7 +18,11 @@ www.filehelpers.net
 Build Status
 ---------
 
-Test Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=coverage_dotnet) Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)  AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
+TeamCity: master: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersMaster.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersMaster) stable: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersStable)  Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=coverage_dotnet)
+
+Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)
+
+AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
 
 
 Downloads
