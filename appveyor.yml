@@ -2,9 +2,6 @@ version: 1.0.{build}
 skip_tags: true
 configuration: Debug
 platform: Any CPU
-environment:
-  COVERALLS_REPO_TOKEN:
-    secure: raJLwX2qNmRTKEAFVebZqDZGdhr5qkWDc
 install:
 - ps: nuget restore FileHelpers.sln
 build:
