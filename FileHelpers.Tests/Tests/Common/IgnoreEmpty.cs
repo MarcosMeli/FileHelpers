@@ -185,7 +185,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [FixedLengthRecord]
-        [IgnoreEmptyLines()]
+        [IgnoreEmptyLines]
         public class IgnoreEmptyType1
         {
             [FieldFixedLength(8)]
@@ -218,7 +218,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [DelimitedRecord("|")]
-        [IgnoreEmptyLines()]
+        [IgnoreEmptyLines]
         public class IgnoreEmptyType2
         {
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]

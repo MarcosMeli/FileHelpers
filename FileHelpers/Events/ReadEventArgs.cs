@@ -7,14 +7,13 @@ namespace FileHelpers.Events
 {
     /// <summary>
     /// Base class of 
-    /// <see cref="BeforeReadEventArgs{T}"/>
+    /// <see cref="BeforeReadEventArgs"/>
     /// and 
-    /// <see cref="AfterReadEventArgs{T}"/>
+    /// <see cref="AfterReadEventArgs"/>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class ReadEventArgs<T>
-        : FileHelpersEventArgs<T>
-        where T : class
+    public abstract class ReadEventArgs
+        : FileHelpersEventArgs
     {
         /// <summary>
         /// Create a read event argument, contains line number and record read
@@ -22,14 +21,14 @@ namespace FileHelpers.Events
         /// <param name="engine">Engine used to parse data</param>
         /// <param name="line">record to be analysed</param>
         /// <param name="lineNumber">record count read</param>
-        internal ReadEventArgs(EventEngineBase<T> engine, string line, int lineNumber)
+        internal ReadEventArgs(EngineBase engine, string line, int lineNumber)
             : base(engine, lineNumber)
         {
             RecordLineChanged = false;
             mRecordLine = line;
         }
 
-        private string mRecordLine;
+        string mRecordLine;
 
         /// <summary>The record line just read.</summary>
         public string RecordLine

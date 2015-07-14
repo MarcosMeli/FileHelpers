@@ -28,9 +28,9 @@ namespace FileHelpers
 
         #region "  Private Fields  "
 
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static object[] mEmptyArray = new object[] {};
-
+       // [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+       // private static object[] mEmptyArray = new object[] {};
+		
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Encoding mSourceEncoding = Encoding.Default;
 

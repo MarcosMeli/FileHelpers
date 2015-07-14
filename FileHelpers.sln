@@ -5,8 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
-		License - BSD.txt = License - BSD.txt
-		License - LGPL.txt = License - LGPL.txt
+		License - MIT.txt = License - MIT.txt
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject

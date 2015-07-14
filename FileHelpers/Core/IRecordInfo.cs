@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using FileHelpers.Events;
 
 namespace FileHelpers
 {
@@ -41,7 +42,7 @@ namespace FileHelpers
         /// Whether the Notify read event is set or something else needs to be notified of change
         /// </summary>
         bool NotifyRead { get; }
-
+        
         /// <summary>
         /// Whether the notify write event is hooked or something else needs to be notified on write
         /// </summary>

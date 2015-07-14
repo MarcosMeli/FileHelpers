@@ -57,7 +57,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         private class ToClass1
         {
             [FieldFixedLength(10)]

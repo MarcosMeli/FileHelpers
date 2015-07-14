@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using FileHelpers.Dynamic;
+using System.IO;
 
 namespace FileHelpers.Detection
 {
@@ -22,8 +23,8 @@ namespace FileHelpers.Detection
 
         #region "  Constants  "
 
-        private const int MinSampleData = 15;
-        private const double MinDelimitedDeviation = 0.25;
+        private const int MinSampleData = 10;
+        private const double MinDelimitedDeviation = 0.30001;
 
         #endregion
 
@@ -41,7 +42,7 @@ namespace FileHelpers.Detection
             set { mFormatHint = value; }
         }
 
-        private int mMaxSampleLines = 50;
+        private int mMaxSampleLines = 300;
 
         /// <summary>
         /// The number of lines of each file to be used as sample data.
@@ -67,7 +68,7 @@ namespace FileHelpers.Detection
         ///<summary>
         ///Indicates if the sample file has headers
         ///</summary>
-        public bool FileHasHeaders { get; set; }
+        public bool? FileHasHeaders { get; set; }
 
         /// <summary>
         /// Used to calculate when a file has fixed length records. 
@@ -99,6 +100,29 @@ namespace FileHelpers.Detection
         /// <param name="files">The files to be used as sample data</param>
         /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
         public RecordFormatInfo[] DetectFileFormat(IEnumerable<string> files)
+        {
+            var readers = new List<TextReader>();
+            foreach (var file in files)
+            {
+                readers.Add(new StreamReader(file, Encoding));
+            }
+            var res = DetectFileFormat(readers);
+
+            foreach (var reader in readers)
+            {
+                reader.Close();
+            }
+
+            return res;
+        }
+    
+
+    /// <summary>
+        /// Tries to detect the possible formats of the file using the <see cref="FormatHint"/>
+        /// </summary>
+        /// <param name="files">The files to be used as sample data</param>
+        /// <returns>The possible <see cref="RecordFormatInfo"/> of the file.</returns>
+        public RecordFormatInfo[] DetectFileFormat(IEnumerable<TextReader> files)
         {
             var res = new List<RecordFormatInfo>();
             string[][] sampleData = GetSampleLines(files, MaxSampleLines);
@@ -286,6 +310,80 @@ namespace FileHelpers.Detection
             return cand1;
         }
 
+		bool HeadersInData (DelimiterInfo info, string[] headerValues, string[] rows)
+		{
+			var duplicate = 0;
+			var first = true;
+			foreach (var row in rows) {
+				if (first) {
+					first = false;
+					continue;
+
+				}
+				var values = row.Split (new char[]{ info.Delimiter });
+				if (values.Length != headerValues.Length)
+					continue;
+
+				for (int i = 0; i < values.Length; i++) {
+					if (values [i] == headerValues [i])
+						duplicate++;
+				}
+			}
+
+			return duplicate >= rows.Length * 0.25;
+
+
+		}
+
+		bool DetectIfContainsHeaders (DelimiterInfo info, string[][] sampleData)
+		{
+			if (sampleData.Length >= 2) {
+				return SameFirstLine (info, sampleData);
+			}
+			
+			if (sampleData.Length >= 1) {
+				var firstLine = sampleData [0] [0].Split (new char[]{ info.Delimiter });
+				var res = AreAllHeaders (firstLine);
+				if (res == false)
+					return false; // if has headers that starts with numbers so near sure are data and no header is present
+
+				if (HeadersInData(info, firstLine, sampleData[0]))
+					return false;
+
+				return true;
+
+			}
+			return false;
+		}
+
+		bool SameFirstLine (DelimiterInfo info, string[][] sampleData)
+		{
+			for (int i = 1; i < sampleData.Length; i++) {
+				if (!SameHeaders (info, sampleData [0][0], sampleData [i][0]))
+					return false;
+			}
+			return true;
+
+		}
+
+		bool SameHeaders (DelimiterInfo info, string line1, string line2)
+		{
+			return line1.Replace (info.Delimiter.ToString (), "").Trim ()
+			== line2.Replace (info.Delimiter.ToString (), "").Trim ();
+		}
+
+		bool AreAllHeaders ( string[] rowData)
+		{
+			foreach (var item in rowData) {
+				var fieldData = item.Trim ();
+				if (fieldData.Length == 0)
+					return false;
+				if (char.IsDigit (fieldData [0]))
+					return false;
+			}
+			return true;
+		}
+
         // DELIMITED
 
         private void CreateDelimiterOptions(string[][] sampleData, List<RecordFormatInfo> res, char delimiter = '\0')
@@ -302,16 +400,22 @@ namespace FileHelpers.Detection
                     mConfidence = (int) ((1 - info.Deviation)*100)
                 };
                 AdjustConfidence(format, info);
-
+				var fileHasHeaders = false;
+				if (FileHasHeaders.HasValue)
+					fileHasHeaders = FileHasHeaders.Value;
+				else {
+					fileHasHeaders = DetectIfContainsHeaders (info, sampleData) ;
+				}
                 var builder = new DelimitedClassBuilder("AutoDetectedClass", info.Delimiter.ToString()) {
-                    IgnoreFirstLines = FileHasHeaders
+					IgnoreFirstLines = fileHasHeaders
                         ? 1
                         : 0
                 };
+
                 var firstLineSplitted = sampleData[0][0].Split(info.Delimiter);
                 for (int i = 0; i < info.Max + 1; i++) {
                     string name = "Field " + (i + 1).ToString().PadLeft(3, '0');
-                    if (FileHasHeaders && i < firstLineSplitted.Length)
+                    if (fileHasHeaders && i < firstLineSplitted.Length)
                         name = firstLineSplitted[i];
 
                     var f = builder.AddField(StringHelper.ToValidIdentifier(name));
@@ -363,6 +467,17 @@ namespace FileHelpers.Detection
         #region "  Helper & Utility Methods  "
 
         private string[][] GetSampleLines(IEnumerable<string> files, int nroOfLines)
+        {
+            var res = new List<string[]>();
+
+            foreach (var file in files)
+                res.Add(CommonEngine.RawReadFirstLinesArray(file, nroOfLines, mEncoding));
+
+            return res.ToArray();
+        }
+
+
+        private string[][] GetSampleLines(IEnumerable<TextReader> files, int nroOfLines)
         {
             var res = new List<string[]>();
 

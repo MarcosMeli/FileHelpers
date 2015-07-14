@@ -195,10 +195,10 @@ namespace FileHelpers
                     }
                 });
 
-            if (CheckGenericInterface(RecordType, typeof (INotifyRead<>), RecordType))
+            if (CheckInterface(RecordType, typeof (INotifyRead)))
                 NotifyRead = true;
 
-            if (CheckGenericInterface(RecordType, typeof (INotifyWrite<>), RecordType))
+            if (CheckInterface(RecordType, typeof (INotifyWrite)))
                 NotifyWrite = true;
 
             // Create fields
@@ -488,36 +488,41 @@ namespace FileHelpers
             return res;
         }
 
+        //internal static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
+        //{
+        //    foreach (var inteImp in type.GetInterfaces()) {
+        //        if (inteImp.IsGenericType &&
+        //            inteImp.GetGenericTypeDefinition() == interfaceType) {
+        //            var args = inteImp.GetGenericArguments();
+
+        //            if (args.Length == genericsArgs.Length) {
+        //                bool fail = false;
+        //                for (int i = 0; i < args.Length; i++) {
+        //                    if (args[i] != genericsArgs[i]) {
+        //                        fail = true;
+        //                        break;
+        //                    }
+        //                }
+        //                if (!fail)
+        //                    return true;
+        //            }
+        //            throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
+        //                                        interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
+        //        }
+        //    }
+        //    return false;
+        //}
+
+
         /// <summary>
         /// Check whether the type implements the INotifyRead or INotifyWrite interfaces
         /// </summary>
         /// <param name="type">Type to check interface</param>
         /// <param name="interfaceType">Interface generic type we are checking for eg INotifyRead&lt;&gt;</param>
-        /// <param name="genericsArgs">Arguments to pass</param>
         /// <returns>Whether we found interface</returns>
-        public static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
+        internal static bool CheckInterface(Type type, Type interfaceType)
         {
-            foreach (var inteImp in type.GetInterfaces()) {
-                if (inteImp.IsGenericType &&
-                    inteImp.GetGenericTypeDefinition() == interfaceType) {
-                    var args = inteImp.GetGenericArguments();
-
-                    if (args.Length == genericsArgs.Length) {
-                        bool fail = false;
-                        for (int i = 0; i < args.Length; i++) {
-                            if (args[i] != genericsArgs[i]) {
-                                fail = true;
-                                break;
-                            }
-                        }
-                        if (!fail)
-                            return true;
-                    }
-                    throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
-                                                interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
-                }
-            }
-            return false;
+            return type.GetInterface(interfaceType.FullName) != null;
         }
     }
 }

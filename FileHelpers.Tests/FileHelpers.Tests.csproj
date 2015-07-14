@@ -9,6 +9,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>
     </ApplicationIcon>
+    <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>FileHelpers.Tests</AssemblyName>
@@ -71,6 +74,16 @@
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoWarn>0649,0219</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
@@ -91,6 +104,23 @@
     <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
+    <Test>
+      <Test Path="">
+        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
+          <Categories>
+            <Category>Dynamic</Category>
+          </Categories>
+        </Options>
+      </Test>
+    </Test>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>Release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <FileAlignment>4096</FileAlignment>
     <NoWarn>0649</NoWarn>
     <Optimize>true</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
@@ -112,6 +142,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Test>
+      <Test Path="">
+        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
+          <Categories>
+            <Category>Dynamic</Category>
+          </Categories>
+        </Options>
+      </Test>
+    </Test>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -125,6 +167,15 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1506.2016, Culture=neutral, PublicKeyToken=69f491c39445e920">
+      <HintPath>..\packages\Moq.4.2.1506.2016\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NFluent">
+      <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +433,12 @@
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
     <None Include="FileHelpers.snk" />
     <None Include="packages.config" />
+    <None Include="Data\Good\EncodingChinese.bin" />
+    <None Include="FileHelpers.snk" />
+    <None Include="packages.config" />
+    <Compile Include="Tests\Detector\HeaderDetection.cs" />
+    <Compile Include="Tests\Detector\MultipleFiles.cs" />
+    <Content Include="Data\Detection\CustomersTab2.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />
@@ -525,6 +582,8 @@
     <Content Include="Data\Good\EncodingChinese.txt" />
     <Content Include="Data\Good\EncodingUnicode.txt" />
     <Content Include="Data\Good\EncodingUnicodeBig.txt" />
+    <None Include="Data\Good\EncodingUnicode.bin" />
+    <None Include="Data\Good\EncodingUnicodeBig.bin" />
     <Content Include="Data\Good\EncodingUTF8.txt" />
     <Content Include="Data\Good\EnumConverter1.txt" />
     <Content Include="Data\Good\EnumConverter2.txt" />
@@ -629,6 +688,15 @@
     </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{eb8633ff-ceed-40ee-8d1a-ca1bf5678c42}</Project>
+      <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
+      <Name>FileHelpers.ExcelNPOIStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj">
+      <Project>{B3F2B976-73D5-49C7-BEAA-BF62E233132A}</Project>
+      <Name>FileHelpers.ExcelStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
+      <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
       <Name>FileHelpers</Name>
     </ProjectReference>
   </ItemGroup>

@@ -170,7 +170,7 @@ namespace FileHelpers.Tests.CommonTests
             public string ContactName;
 
             [FieldFixedLength(110 - 72)]
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -184,11 +184,11 @@ namespace FileHelpers.Tests.CommonTests
             public string CompanyName;
 
             [FieldFixedLength(72 - 50)]
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactName;
 
             [FieldFixedLength(110 - 72)]
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -199,7 +199,7 @@ namespace FileHelpers.Tests.CommonTests
             public string CompanyName;
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -212,7 +212,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldQuoted(QuoteMode.AlwaysQuoted)]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -224,10 +224,10 @@ namespace FileHelpers.Tests.CommonTests
             public string CompanyName;
 
             [FieldQuoted(QuoteMode.AlwaysQuoted)]
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -237,10 +237,10 @@ namespace FileHelpers.Tests.CommonTests
             public string CustomerID;
             public string CompanyName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -250,10 +250,10 @@ namespace FileHelpers.Tests.CommonTests
             public string CustomerID;
             public string CompanyName;
 
-            [FieldQuoted()]
+            [FieldQuoted]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -266,7 +266,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldQuoted(QuoteMode.OptionalForBoth)]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -279,7 +279,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldQuoted(QuoteMode.OptionalForBoth)]
             public string ContactName;
 
-            [FieldOptional()]
+            [FieldOptional]
             public string ContactTitle;
         }
 
@@ -302,7 +302,7 @@ namespace FileHelpers.Tests.CommonTests
             public string PAM;
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
-            [FieldOptional()]
+            [FieldOptional]
             public string PAMAlias;
         }
 
@@ -325,7 +325,7 @@ namespace FileHelpers.Tests.CommonTests
             public string PAM;
 
             [FieldQuoted('"', QuoteMode.OptionalForBoth)]
-            [FieldOptional()]
+            [FieldOptional]
             public string PAMAlias;
 
             [FieldHidden]

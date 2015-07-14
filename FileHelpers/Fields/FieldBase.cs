@@ -160,15 +160,12 @@ namespace FileHelpers
             get { return FieldInfo.Name; }
         }
 
-        // For performance add it here
-        /// <summary>
-        /// List the various whitespace characters in Unicode
-        /// </summary>
+		/*
         private static readonly char[] mWhitespaceChars = new[] {
             '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005',
             '\u2006', '\u2007', '\u2008',
             '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
-        };
+*/
 
         #endregion
 

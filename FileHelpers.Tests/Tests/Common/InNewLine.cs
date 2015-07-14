@@ -244,7 +244,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public long Field2;
 
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
         }
 
@@ -255,7 +255,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public long Field2;
 
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
 
             public int FieldLast;
@@ -274,11 +274,11 @@ namespace FileHelpers.Tests.CommonTests
             public byte Field1;
             public long Field2;
 
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
         }
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         private sealed class InNewLineFixedType1
         {
             [FieldFixedLength(3)]
@@ -288,11 +288,11 @@ namespace FileHelpers.Tests.CommonTests
             public long Field2;
 
             [FieldFixedLength(15)]
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
         }
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         private sealed class InNewLineFixedType2
         {
             [FieldFixedLength(3)]
@@ -302,14 +302,14 @@ namespace FileHelpers.Tests.CommonTests
             public long Field2;
 
             [FieldFixedLength(15)]
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
 
             [FieldFixedLength(3)]
             public int FieldLast;
         }
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         private sealed class InNewLineAfterOptional
         {
             [FieldFixedLength(3)]
@@ -320,7 +320,7 @@ namespace FileHelpers.Tests.CommonTests
             public string Field2;
 
             [FieldFixedLength(15)]
-            [FieldInNewLine()]
+            [FieldInNewLine]
             public string IpAddress;
 
             [FieldFixedLength(3)]

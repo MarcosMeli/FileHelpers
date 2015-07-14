@@ -23,7 +23,7 @@ namespace FileHelpers.Tests
     }
 
     [FixedLengthRecord]
-    [IgnoreFirst()]
+    [IgnoreFirst]
     public class SampleTypeIgnoreFirst
     {
         [FieldFixedLength(8)]

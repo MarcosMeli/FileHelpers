@@ -12,7 +12,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadAdd1.txt";
+                    return System.IO.Path.Combine("Bad", "BadAdd1.txt");
                 }
             }
 
@@ -20,7 +20,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadAdd2.txt";
+                    return System.IO.Path.Combine("Bad", "BadAdd2.txt");
                 }
             }
 
@@ -28,7 +28,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadAll1.txt";
+                    return System.IO.Path.Combine("Bad", "BadAll1.txt");
                 }
             }
 
@@ -36,7 +36,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadDate1.txt";
+                    return System.IO.Path.Combine("Bad", "BadDate1.txt");
                 }
             }
 
@@ -44,7 +44,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadDate1Ignore.txt";
+                    return System.IO.Path.Combine("Bad", "BadDate1Ignore.txt");
                 }
             }
 
@@ -52,7 +52,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadDate1IgnoreLast.txt";
+                    return System.IO.Path.Combine("Bad", "BadDate1IgnoreLast.txt");
                 }
             }
 
@@ -60,7 +60,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadDate1IgnoreLast2.txt";
+                    return System.IO.Path.Combine("Bad", "BadDate1IgnoreLast2.txt");
                 }
             }
 
@@ -68,7 +68,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadDate2.txt";
+                    return System.IO.Path.Combine("Bad", "BadDate2.txt");
                 }
             }
 
@@ -76,7 +76,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadInt1.txt";
+                    return System.IO.Path.Combine("Bad", "BadInt1.txt");
                 }
             }
 
@@ -84,7 +84,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadInt2.txt";
+                    return System.IO.Path.Combine("Bad", "BadInt2.txt");
                 }
             }
 
@@ -92,7 +92,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadInt3.txt";
+                    return System.IO.Path.Combine("Bad", "BadInt3.txt");
                 }
             }
 
@@ -100,7 +100,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadInt4.txt";
+                    return System.IO.Path.Combine("Bad", "BadInt4.txt");
                 }
             }
 
@@ -108,7 +108,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadQuoted1.txt";
+                    return System.IO.Path.Combine("Bad", "BadQuoted1.txt");
                 }
             }
 
@@ -116,7 +116,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadQuoted2.txt";
+                    return System.IO.Path.Combine("Bad", "BadQuoted2.txt");
                 }
             }
 
@@ -124,7 +124,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\BadQuoted3.txt";
+                    return System.IO.Path.Combine("Bad", "BadQuoted3.txt");
                 }
             }
 
@@ -132,7 +132,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\CustomersTabNumFields.txt";
+                    return System.IO.Path.Combine("Bad", "CustomersTabNumFields.txt");
                 }
             }
 
@@ -140,7 +140,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\DelimiterNotFoundFirstField.txt";
+                    return System.IO.Path.Combine("Bad", "DelimiterNotFoundFirstField.txt");
                 }
             }
 
@@ -148,7 +148,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\DelimiterNotFoundLastField.txt";
+                    return System.IO.Path.Combine("Bad", "DelimiterNotFoundLastField.txt");
                 }
             }
 
@@ -156,7 +156,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\DelimiterNotFoundMiddleField.txt";
+                    return System.IO.Path.Combine("Bad", "DelimiterNotFoundMiddleField.txt");
                 }
             }
 
@@ -164,7 +164,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\EmptyLine.txt";
+                    return System.IO.Path.Combine("Bad", "EmptyLine.txt");
                 }
             }
 
@@ -172,7 +172,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\EmptyLineAtEnd.txt";
+                    return System.IO.Path.Combine("Bad", "EmptyLineAtEnd.txt");
                 }
             }
 
@@ -180,7 +180,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\EmptyLineInTheMiddle.txt";
+                    return System.IO.Path.Combine("Bad", "EmptyLineInTheMiddle.txt");
                 }
             }
 
@@ -188,7 +188,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\FieldNotEmpty1.txt";
+                    return System.IO.Path.Combine("Bad", "FieldNotEmpty1.txt");
                 }
             }
 
@@ -196,7 +196,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\FieldNotEmpty2.txt";
+                    return System.IO.Path.Combine("Bad", "FieldNotEmpty2.txt");
                 }
             }
 
@@ -204,7 +204,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\FieldNotEmpty3.txt";
+                    return System.IO.Path.Combine("Bad", "FieldNotEmpty3.txt");
                 }
             }
 
@@ -212,7 +212,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\InNewLine3.txt";
+                    return System.IO.Path.Combine("Bad", "InNewLine3.txt");
                 }
             }
 
@@ -220,7 +220,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\InNewLine4.txt";
+                    return System.IO.Path.Combine("Bad", "InNewLine4.txt");
                 }
             }
 
@@ -228,7 +228,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\InNewLineAfterOptional2.txt";
+                    return System.IO.Path.Combine("Bad", "InNewLineAfterOptional2.txt");
                 }
             }
 
@@ -236,7 +236,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\IntWithDot.txt";
+                    return System.IO.Path.Combine("Bad", "IntWithDot.txt");
                 }
             }
 
@@ -244,7 +244,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\IntWithLetters.txt";
+                    return System.IO.Path.Combine("Bad", "IntWithLetters.txt");
                 }
             }
 
@@ -252,7 +252,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\IntWithSpaces1.txt";
+                    return System.IO.Path.Combine("Bad", "IntWithSpaces1.txt");
                 }
             }
 
@@ -260,7 +260,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\IntWithSpaces2.txt";
+                    return System.IO.Path.Combine("Bad", "IntWithSpaces2.txt");
                 }
             }
 
@@ -268,7 +268,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\MultiRecord1.txt";
+                    return System.IO.Path.Combine("Bad", "MultiRecord1.txt");
                 }
             }
 
@@ -276,7 +276,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\NoBadNullvalue.txt";
+                    return System.IO.Path.Combine("Bad", "NoBadNullvalue.txt");
                 }
             }
 
@@ -284,7 +284,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Bad\OptionalBad1.txt";
+                    return System.IO.Path.Combine("Bad", "OptionalBad1.txt");
                 }
             }
         }
@@ -295,7 +295,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Classes\ClassFromFile.cs";
+                    return System.IO.Path.Combine("Classes", "ClassFromFile.cs");
                 }
             }
 
@@ -303,7 +303,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Classes\SampleBinaryClass.fhc";
+                    return System.IO.Path.Combine("Classes", "SampleBinaryClass.fhc");
                 }
             }
 
@@ -311,7 +311,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Classes\SampleClassCS.cs";
+                    return System.IO.Path.Combine("Classes", "SampleClassCS.cs");
                 }
             }
 
@@ -319,7 +319,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Classes\SampleClassVB.vb";
+                    return System.IO.Path.Combine("Classes", "SampleClassVB.vb");
                 }
             }
         }
@@ -330,7 +330,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\Cities.txt";
+                    return System.IO.Path.Combine("Detection", "Cities.txt");
                 }
             }
 
@@ -338,7 +338,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\Cities2.txt";
+                    return System.IO.Path.Combine("Detection", "Cities2.txt");
                 }
             }
 
@@ -346,7 +346,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\CityRates.txt";
+                    return System.IO.Path.Combine("Detection", "CityRates.txt");
                 }
             }
 
@@ -354,7 +354,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\CustomersComma.txt";
+                    return System.IO.Path.Combine("Detection", "CustomersComma.txt");
                 }
             }
 
@@ -362,7 +362,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\CustomersFixed.txt";
+                    return System.IO.Path.Combine("Detection", "CustomersFixed.txt");
                 }
             }
 
@@ -370,7 +370,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\CustomersSemiColon.txt";
+                    return System.IO.Path.Combine("Detection", "CustomersSemiColon.txt");
                 }
             }
 
@@ -378,7 +378,15 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\CustomersTab.txt";
+                    return System.IO.Path.Combine("Detection", "CustomersTab.txt");
+                }
+            }
+
+            public partial class CustomersTab2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Detection", "CustomersTab2.txt");
                 }
             }
 
@@ -386,7 +394,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\DelimitedMedium.txt";
+                    return System.IO.Path.Combine("Detection", "DelimitedMedium.txt");
                 }
             }
 
@@ -394,7 +402,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\Locations.txt";
+                    return System.IO.Path.Combine("Detection", "Locations.txt");
                 }
             }
 
@@ -402,7 +410,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\OnColumnFixed.txt";
+                    return System.IO.Path.Combine("Detection", "OnColumnFixed.txt");
                 }
             }
 
@@ -410,7 +418,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\OnColumnNonFixed.txt";
+                    return System.IO.Path.Combine("Detection", "OnColumnNonFixed.txt");
                 }
             }
 
@@ -418,7 +426,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\SampleData.txt";
+                    return System.IO.Path.Combine("Detection", "SampleData.txt");
                 }
             }
 
@@ -426,7 +434,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\SuperQuoted.txt";
+                    return System.IO.Path.Combine("Detection", "SuperQuoted.txt");
                 }
             }
 
@@ -434,7 +442,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Detection\SuperQuoted2.txt";
+                    return System.IO.Path.Combine("Detection", "SuperQuoted2.txt");
                 }
             }
         }
@@ -445,7 +453,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Excel\ExcelWithNoEmptyRows.xlsx";
+                    return System.IO.Path.Combine("Excel", "ExcelWithNoEmptyRows.xlsx");
                 }
             }
 
@@ -453,7 +461,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Excel\ExcelWithOneEmptyRows.xlsx";
+                    return System.IO.Path.Combine("Excel", "ExcelWithOneEmptyRows.xlsx");
                 }
             }
 
@@ -461,7 +469,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Excel\ExcelWithTwoEmptyRows.xlsx";
+                    return System.IO.Path.Combine("Excel", "ExcelWithTwoEmptyRows.xlsx");
                 }
             }
         }
@@ -472,7 +480,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ArrayFields.txt";
+                    return System.IO.Path.Combine("Good", "ArrayFields.txt");
                 }
             }
 
@@ -480,7 +488,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ArrayFields2.txt";
+                    return System.IO.Path.Combine("Good", "ArrayFields2.txt");
                 }
             }
 
@@ -488,7 +496,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ArrayFieldsDelimited.txt";
+                    return System.IO.Path.Combine("Good", "ArrayFieldsDelimited.txt");
                 }
             }
 
@@ -496,7 +504,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Chinese.txt";
+                    return System.IO.Path.Combine("Good", "Chinese.txt");
                 }
             }
 
@@ -504,7 +512,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ChineseUnicode.txt";
+                    return System.IO.Path.Combine("Good", "ChineseUnicode.txt");
                 }
             }
 
@@ -512,7 +520,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConditionalRecords1.txt";
+                    return System.IO.Path.Combine("Good", "ConditionalRecords1.txt");
                 }
             }
 
@@ -520,7 +528,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConditionalRecords2.txt";
+                    return System.IO.Path.Combine("Good", "ConditionalRecords2.txt");
                 }
             }
 
@@ -528,7 +536,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConditionalRecords3.txt";
+                    return System.IO.Path.Combine("Good", "ConditionalRecords3.txt");
                 }
             }
 
@@ -536,7 +544,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConditionalRecords4.txt";
+                    return System.IO.Path.Combine("Good", "ConditionalRecords4.txt");
                 }
             }
 
@@ -544,7 +552,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConverterDecimals1.txt";
+                    return System.IO.Path.Combine("Good", "ConverterDecimals1.txt");
                 }
             }
 
@@ -552,7 +560,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ConverterDecimals2.txt";
+                    return System.IO.Path.Combine("Good", "ConverterDecimals2.txt");
                 }
             }
 
@@ -560,7 +568,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomConverter1.txt";
+                    return System.IO.Path.Combine("Good", "CustomConverter1.txt");
                 }
             }
 
@@ -568,7 +576,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomConverter2.txt";
+                    return System.IO.Path.Combine("Good", "CustomConverter2.txt");
                 }
             }
 
@@ -576,7 +584,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixed.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixed.txt");
                 }
             }
 
@@ -584,7 +592,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedExact.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedExact.txt");
                 }
             }
 
@@ -592,7 +600,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedLessChars10Records.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedLessChars10Records.txt");
                 }
             }
 
@@ -600,7 +608,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedMoreChars5Records.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedMoreChars5Records.txt");
                 }
             }
 
@@ -608,7 +616,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedMoreVariable12Records.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedMoreVariable12Records.txt");
                 }
             }
 
@@ -616,7 +624,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedWithout1AndHalfFields.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedWithout1AndHalfFields.txt");
                 }
             }
 
@@ -624,7 +632,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedWithout2Fields.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedWithout2Fields.txt");
                 }
             }
 
@@ -632,7 +640,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersFixedWithoutLastField.txt";
+                    return System.IO.Path.Combine("Good", "CustomersFixedWithoutLastField.txt");
                 }
             }
 
@@ -640,7 +648,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersSemiColon.txt";
+                    return System.IO.Path.Combine("Good", "CustomersSemiColon.txt");
                 }
             }
 
@@ -648,7 +656,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersTab.txt";
+                    return System.IO.Path.Combine("Good", "CustomersTab.txt");
                 }
             }
 
@@ -656,7 +664,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersTabIgnoreFirst.txt";
+                    return System.IO.Path.Combine("Good", "CustomersTabIgnoreFirst.txt");
                 }
             }
 
@@ -664,7 +672,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersTabIgnoreLast.txt";
+                    return System.IO.Path.Combine("Good", "CustomersTabIgnoreLast.txt");
                 }
             }
 
@@ -672,7 +680,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersTabIgnoreMiddle.txt";
+                    return System.IO.Path.Combine("Good", "CustomersTabIgnoreMiddle.txt");
                 }
             }
 
@@ -680,7 +688,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersVerticalBar.txt";
+                    return System.IO.Path.Combine("Good", "CustomersVerticalBar.txt");
                 }
             }
 
@@ -688,7 +696,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersVerticalBarDemo.txt";
+                    return System.IO.Path.Combine("Good", "CustomersVerticalBarDemo.txt");
                 }
             }
 
@@ -696,7 +704,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\CustomersVerticalBarOlds.txt";
+                    return System.IO.Path.Combine("Good", "CustomersVerticalBarOlds.txt");
                 }
             }
 
@@ -704,7 +712,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DateFormat1.txt";
+                    return System.IO.Path.Combine("Good", "DateFormat1.txt");
                 }
             }
 
@@ -712,7 +720,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DateFormat2.txt";
+                    return System.IO.Path.Combine("Good", "DateFormat2.txt");
                 }
             }
 
@@ -720,7 +728,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiffOrdersDup.txt";
+                    return System.IO.Path.Combine("Good", "DiffOrdersDup.txt");
                 }
             }
 
@@ -728,7 +736,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiffOrdersNew.txt";
+                    return System.IO.Path.Combine("Good", "DiffOrdersNew.txt");
                 }
             }
 
@@ -736,7 +744,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiffOrdersOld.txt";
+                    return System.IO.Path.Combine("Good", "DiffOrdersOld.txt");
                 }
             }
 
@@ -744,7 +752,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardFirst0.txt";
+                    return System.IO.Path.Combine("Good", "DiscardFirst0.txt");
                 }
             }
 
@@ -752,7 +760,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardFirst1.txt";
+                    return System.IO.Path.Combine("Good", "DiscardFirst1.txt");
                 }
             }
 
@@ -760,7 +768,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardFirst2.txt";
+                    return System.IO.Path.Combine("Good", "DiscardFirst2.txt");
                 }
             }
 
@@ -768,7 +776,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardFirst3.txt";
+                    return System.IO.Path.Combine("Good", "DiscardFirst3.txt");
                 }
             }
 
@@ -776,7 +784,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardLast0.txt";
+                    return System.IO.Path.Combine("Good", "DiscardLast0.txt");
                 }
             }
 
@@ -784,7 +792,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardLast1.txt";
+                    return System.IO.Path.Combine("Good", "DiscardLast1.txt");
                 }
             }
 
@@ -792,7 +800,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardLast2.txt";
+                    return System.IO.Path.Combine("Good", "DiscardLast2.txt");
                 }
             }
 
@@ -800,7 +808,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\DiscardLast3.txt";
+                    return System.IO.Path.Combine("Good", "DiscardLast3.txt");
                 }
             }
 
@@ -808,7 +816,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EmptyFile.txt";
+                    return System.IO.Path.Combine("Good", "EmptyFile.txt");
                 }
             }
 
@@ -816,7 +824,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingAdv1.txt";
+                    return System.IO.Path.Combine("Good", "EncodingAdv1.txt");
                 }
             }
 
@@ -824,7 +832,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingAdv2.txt";
+                    return System.IO.Path.Combine("Good", "EncodingAdv2.txt");
                 }
             }
 
@@ -832,7 +840,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingAdv3.txt";
+                    return System.IO.Path.Combine("Good", "EncodingAdv3.txt");
                 }
             }
 
@@ -840,7 +848,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingANSI.txt";
+                    return System.IO.Path.Combine("Good", "EncodingANSI.txt");
                 }
             }
 
@@ -848,7 +856,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingChinese.txt";
+                    return System.IO.Path.Combine("Good", "EncodingChinese.bin");
                 }
             }
 
@@ -856,7 +864,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingUnicode.txt";
+                    return System.IO.Path.Combine("Good", "EncodingUnicode.bin");
                 }
             }
 
@@ -864,7 +872,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingUnicodeBig.txt";
+                    return System.IO.Path.Combine("Good", "EncodingUnicodeBig.bin");
                 }
             }
 
@@ -872,7 +880,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EncodingUTF8.txt";
+                    return System.IO.Path.Combine("Good", "EncodingUTF8.txt");
                 }
             }
 
@@ -880,7 +888,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EnumConverter1.txt";
+                    return System.IO.Path.Combine("Good", "EnumConverter1.txt");
                 }
             }
 
@@ -888,7 +896,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EnumConverter2.txt";
+                    return System.IO.Path.Combine("Good", "EnumConverter2.txt");
                 }
             }
 
@@ -896,7 +904,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\EnumConverter3.txt";
+                    return System.IO.Path.Combine("Good", "EnumConverter3.txt");
                 }
             }
 
@@ -904,7 +912,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ExcelCsv1.txt";
+                    return System.IO.Path.Combine("Good", "ExcelCsv1.txt");
                 }
             }
 
@@ -912,7 +920,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ExcelCsv2.txt";
+                    return System.IO.Path.Combine("Good", "ExcelCsv2.txt");
                 }
             }
 
@@ -920,7 +928,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\FieldHiddenAdvanced.txt";
+                    return System.IO.Path.Combine("Good", "FieldHiddenAdvanced.txt");
                 }
             }
 
@@ -928,7 +936,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\FieldNotEmpty1.txt";
+                    return System.IO.Path.Combine("Good", "FieldNotEmpty1.txt");
                 }
             }
 
@@ -936,7 +944,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreComments1.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreComments1.txt");
                 }
             }
 
@@ -944,7 +952,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreComments2.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreComments2.txt");
                 }
             }
 
@@ -952,7 +960,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreEmpty1.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreEmpty1.txt");
                 }
             }
 
@@ -960,7 +968,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreEmpty2.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreEmpty2.txt");
                 }
             }
 
@@ -968,7 +976,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreEmpty3.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreEmpty3.txt");
                 }
             }
 
@@ -976,7 +984,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreEmpty4.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreEmpty4.txt");
                 }
             }
 
@@ -984,7 +992,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\IgnoreEmpty5.txt";
+                    return System.IO.Path.Combine("Good", "IgnoreEmpty5.txt");
                 }
             }
 
@@ -992,7 +1000,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLine0.txt";
+                    return System.IO.Path.Combine("Good", "InNewLine0.txt");
                 }
             }
 
@@ -1000,7 +1008,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLine1.txt";
+                    return System.IO.Path.Combine("Good", "InNewLine1.txt");
                 }
             }
 
@@ -1008,7 +1016,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLine2.txt";
+                    return System.IO.Path.Combine("Good", "InNewLine2.txt");
                 }
             }
 
@@ -1016,7 +1024,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLineAfterOptional1.txt";
+                    return System.IO.Path.Combine("Good", "InNewLineAfterOptional1.txt");
                 }
             }
 
@@ -1024,7 +1032,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLineFixed1.txt";
+                    return System.IO.Path.Combine("Good", "InNewLineFixed1.txt");
                 }
             }
 
@@ -1032,7 +1040,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\InNewLineFixed2.txt";
+                    return System.IO.Path.Combine("Good", "InNewLineFixed2.txt");
                 }
             }
 
@@ -1040,7 +1048,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\MasterDetail1.txt";
+                    return System.IO.Path.Combine("Good", "MasterDetail1.txt");
                 }
             }
 
@@ -1048,7 +1056,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\MasterDetail2.txt";
+                    return System.IO.Path.Combine("Good", "MasterDetail2.txt");
                 }
             }
 
@@ -1056,7 +1064,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\MasterDetail3.txt";
+                    return System.IO.Path.Combine("Good", "MasterDetail3.txt");
                 }
             }
 
@@ -1064,7 +1072,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\MultilineFull.txt";
+                    return System.IO.Path.Combine("Good", "MultilineFull.txt");
                 }
             }
 
@@ -1072,7 +1080,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\MultiRecord1.txt";
+                    return System.IO.Path.Combine("Good", "MultiRecord1.txt");
                 }
             }
 
@@ -1080,7 +1088,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\NullableTypes1.txt";
+                    return System.IO.Path.Combine("Good", "NullableTypes1.txt");
                 }
             }
 
@@ -1088,7 +1096,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\NumberFormat.txt";
+                    return System.IO.Path.Combine("Good", "NumberFormat.txt");
                 }
             }
 
@@ -1096,7 +1104,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\NumberFormat2.txt";
+                    return System.IO.Path.Combine("Good", "NumberFormat2.txt");
                 }
             }
 
@@ -1104,7 +1112,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\NumberNegative.txt";
+                    return System.IO.Path.Combine("Good", "NumberNegative.txt");
                 }
             }
 
@@ -1112,7 +1120,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited0.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited0.txt");
                 }
             }
 
@@ -1120,7 +1128,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited1.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited1.txt");
                 }
             }
 
@@ -1128,7 +1136,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited1Quoted.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited1Quoted.txt");
                 }
             }
 
@@ -1136,7 +1144,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited2.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited2.txt");
                 }
             }
 
@@ -1144,7 +1152,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited2Quoted.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited2Quoted.txt");
                 }
             }
 
@@ -1152,7 +1160,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited3.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited3.txt");
                 }
             }
 
@@ -1160,7 +1168,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited4.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited4.txt");
                 }
             }
 
@@ -1168,7 +1176,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimited5.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimited5.txt");
                 }
             }
 
@@ -1176,7 +1184,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalDelimitedFull.txt";
+                    return System.IO.Path.Combine("Good", "OptionalDelimitedFull.txt");
                 }
             }
 
@@ -1184,7 +1192,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalFixed0.txt";
+                    return System.IO.Path.Combine("Good", "OptionalFixed0.txt");
                 }
             }
 
@@ -1192,7 +1200,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalFixed1.txt";
+                    return System.IO.Path.Combine("Good", "OptionalFixed1.txt");
                 }
             }
 
@@ -1200,7 +1208,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OptionalFixed2.txt";
+                    return System.IO.Path.Combine("Good", "OptionalFixed2.txt");
                 }
             }
 
@@ -1208,7 +1216,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersFixed.txt";
+                    return System.IO.Path.Combine("Good", "OrdersFixed.txt");
                 }
             }
 
@@ -1216,7 +1224,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersFixedIgnoreMiddle.txt";
+                    return System.IO.Path.Combine("Good", "OrdersFixedIgnoreMiddle.txt");
                 }
             }
 
@@ -1224,7 +1232,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersSemiColon.txt";
+                    return System.IO.Path.Combine("Good", "OrdersSemiColon.txt");
                 }
             }
 
@@ -1232,7 +1240,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersSmallVerticalBar.txt";
+                    return System.IO.Path.Combine("Good", "OrdersSmallVerticalBar.txt");
                 }
             }
 
@@ -1240,7 +1248,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersTab.txt";
+                    return System.IO.Path.Combine("Good", "OrdersTab.txt");
                 }
             }
 
@@ -1248,7 +1256,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersVerticalBar.txt";
+                    return System.IO.Path.Combine("Good", "OrdersVerticalBar.txt");
                 }
             }
 
@@ -1256,7 +1264,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\OrdersWithOutDates.txt";
+                    return System.IO.Path.Combine("Good", "OrdersWithOutDates.txt");
                 }
             }
 
@@ -1264,7 +1272,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\PriceConverter.txt";
+                    return System.IO.Path.Combine("Good", "PriceConverter.txt");
                 }
             }
 
@@ -1272,7 +1280,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\QuotedCustomers.txt";
+                    return System.IO.Path.Combine("Good", "QuotedCustomers.txt");
                 }
             }
 
@@ -1280,7 +1288,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\QuotedCustomers2.txt";
+                    return System.IO.Path.Combine("Good", "QuotedCustomers2.txt");
                 }
             }
 
@@ -1288,7 +1296,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\QuotedOrders.txt";
+                    return System.IO.Path.Combine("Good", "QuotedOrders.txt");
                 }
             }
 
@@ -1296,7 +1304,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\QuotedOrders2.txt";
+                    return System.IO.Path.Combine("Good", "QuotedOrders2.txt");
                 }
             }
 
@@ -1304,7 +1312,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\QuoteMode1.txt";
+                    return System.IO.Path.Combine("Good", "QuoteMode1.txt");
                 }
             }
 
@@ -1312,7 +1320,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\ReadAsDataTable.txt";
+                    return System.IO.Path.Combine("Good", "ReadAsDataTable.txt");
                 }
             }
 
@@ -1320,7 +1328,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvComma1.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvComma1.txt");
                 }
             }
 
@@ -1328,7 +1336,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvComma2.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvComma2.txt");
                 }
             }
 
@@ -1336,7 +1344,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvTab1.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvTab1.txt");
                 }
             }
 
@@ -1344,7 +1352,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvTab2.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvTab2.txt");
                 }
             }
 
@@ -1352,7 +1360,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvVerticalBar1.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvVerticalBar1.txt");
                 }
             }
 
@@ -1360,7 +1368,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\RealCsvVerticalBar2.txt";
+                    return System.IO.Path.Combine("Good", "RealCsvVerticalBar2.txt");
                 }
             }
 
@@ -1368,7 +1376,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Sort1.txt";
+                    return System.IO.Path.Combine("Good", "Sort1.txt");
                 }
             }
 
@@ -1376,7 +1384,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Test1.txt";
+                    return System.IO.Path.Combine("Good", "Test1.txt");
                 }
             }
 
@@ -1384,7 +1392,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Test2.txt";
+                    return System.IO.Path.Combine("Good", "Test2.txt");
                 }
             }
 
@@ -1392,7 +1400,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\TestEmpty.txt";
+                    return System.IO.Path.Combine("Good", "TestEmpty.txt");
                 }
             }
 
@@ -1400,7 +1408,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Transform1.txt";
+                    return System.IO.Path.Combine("Good", "Transform1.txt");
                 }
             }
 
@@ -1408,7 +1416,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Transform2.txt";
+                    return System.IO.Path.Combine("Good", "Transform2.txt");
                 }
             }
 
@@ -1416,7 +1424,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"Good\Trim1.txt";
+                    return System.IO.Path.Combine("Good", "Trim1.txt");
                 }
             }
         }
@@ -1427,7 +1435,7 @@ namespace FileHelpers.Tests
             {
                 protected override string GetFullPathName()
                 {
-                    return @"RunTime\VendorImport.xml";
+                    return System.IO.Path.Combine("RunTime", "VendorImport.xml");
                 }
             }
         }
@@ -1763,6 +1771,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Detection.CustomersTab CustomersTab
             {
                 get { return mCustomersTab; }
+            }
+
+            private static ClassesFileTest.Detection.CustomersTab2 mCustomersTab2 = new ClassesFileTest.Detection.CustomersTab2();
+
+            public static ClassesFileTest.Detection.CustomersTab2 CustomersTab2
+            {
+                get { return mCustomersTab2; }
             }
 
             private static ClassesFileTest.Detection.DelimitedMedium mDelimitedMedium = new ClassesFileTest.Detection.DelimitedMedium();

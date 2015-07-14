@@ -1,10 +1,15 @@
-[FileHelpers](http://www.filehelpers.net) [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 ===========
 
+<a href="http://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
+
+www.filehelpers.net
+
+[![GitHub license](https://img.shields.io/github/license/MarcosMeli/FileHelpers.svg)](https://github.com/MarcosMeli/FileHelpers#license)
 [![NuGet](https://img.shields.io/nuget/vpre/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/) [![NuGet](https://img.shields.io/nuget/dt/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/)
-[![Stories in Backlog](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=backlog&title=Backlog)](https://waffle.io/MarcosMeli/FileHelpers)
-[![Stories in Ready](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=ready&title=Ready)](https://waffle.io/MarcosMeli/FileHelpers)
-[![Stories in progress](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=in%20progress&title=In%20Progress)](https://waffle.io/MarcosMeli/FileHelpers)
+[![Stories in Backlog](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=backlog&title=Backlog)](https://waffle.io/MarcosMeli/FileHelpers?milestone=3.1)
+[![Stories in Ready](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=ready&title=Ready)](https://waffle.io/MarcosMeli/FileHelpers?milestone=3.1)
+[![Stories in progress](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=in%20progress&title=In%20Progress)](https://waffle.io/MarcosMeli/FileHelpers?milestone=3.1)
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams
  
@@ -13,7 +18,11 @@
 Build Status
 ---------
 
-Test Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersMaster.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersMaster&tab=coverage_dotnet) Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)  AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
+TeamCity: master: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersMaster.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersMaster) stable: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersStable)  Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=coverage_dotnet)
+
+Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)
+
+AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
 
 
 Downloads
@@ -79,7 +88,7 @@ Who needs the File Helpers Library ?
 License
 -------
 
- The FileHelpers are licensed under the **new BSD or LPGL, pick the best for you**
+ The FileHelpers are released under the **MIT License**
  
  FileHelpers Library source and binaries are **completely free for commercial and non commercial use**
 

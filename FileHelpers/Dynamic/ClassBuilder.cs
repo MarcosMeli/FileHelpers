@@ -72,19 +72,26 @@ namespace FileHelpers.Dynamic
             lock (mReferencesLock) {
                 if (mReferences == null) {
                     var arr = new ArrayList();
+					var added = new Dictionary<string, bool>();
+					var assemblies = AppDomain.CurrentDomain.GetAssemblies ();
+					foreach (var assembly in assemblies) {
+						Module module = assembly.GetModules () [0];
+						if (module.Name == "mscorlib.dll" ||
+						                      module.Name == "<Unknown>")
+							continue;
 
-                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                        Module module = assembly.GetModules()[0];
-                        if (module.Name == "mscorlib.dll" ||
-                            module.Name == "<Unknown>")
-                            continue;
+						if (module.Name == "System.Data.dll")
+							mustAddSystemData = true;
 
-                        if (module.Name == "System.Data.dll")
-                            mustAddSystemData = true;
+						var moduleName = module.Name.ToLower();
 
-                        if (File.Exists(module.FullyQualifiedName))
-                            arr.Add(module.FullyQualifiedName);
-                    }
+						if (added.ContainsKey(moduleName))
+							continue;
+						added.Add (moduleName, true);
+
+						if (File.Exists (module.FullyQualifiedName))
+							arr.Add (module.FullyQualifiedName);
+					}
 
                     mReferences = (string[]) arr.ToArray(typeof (string));
                 }

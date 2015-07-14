@@ -7,7 +7,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests
 {
     [TestFixture]
-    public class RunTimeClassesFiles
+	[Category("Dynamic")]
+	public class RunTimeClassesFiles
     {
         //FileHelperEngine engine;
 
