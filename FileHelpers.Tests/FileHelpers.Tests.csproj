@@ -142,16 +142,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Test>
-      <Test Path="">
-        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
-          <Categories>
-            <Category>Dynamic</Category>
-          </Categories>
-        </Options>
-      </Test>
-    </Test>
-  </PropertyGroup>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -432,9 +423,7 @@
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
     <None Include="FileHelpers.snk" />
-    <None Include="packages.config" />
     <None Include="Data\Good\EncodingChinese.bin" />
-    <None Include="FileHelpers.snk" />
     <None Include="packages.config" />
     <Compile Include="Tests\Detector\HeaderDetection.cs" />
     <Compile Include="Tests\Detector\MultipleFiles.cs" />
