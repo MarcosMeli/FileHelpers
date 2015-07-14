@@ -10,8 +10,6 @@ install:
 build:
   project: FileHelpers.sln
   verbosity: minimal
-test:
-  assemblies: FileHelpers.Tests\Release\FileHelpers.Tests.dll
 test_script:
 - ps: >-
     .\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:nunit-console.exe -register:user "-targetargs:""FileHelpers.Tests\Release\FileHelpers.Tests.dll"" /noshadow" -filter:"" -output:opencoverCoverage.xml
