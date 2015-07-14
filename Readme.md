@@ -22,7 +22,7 @@ TeamCity: master: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebe
 
 Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)
 
-AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
+AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master)   [![Coverage Status](https://coveralls.io/repos/MarcosMeli/FileHelpers/badge.svg?branch=master&service=github)](https://coveralls.io/github/MarcosMeli/FileHelpers?branch=master)
 
 
 Downloads
