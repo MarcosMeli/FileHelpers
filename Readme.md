@@ -28,9 +28,11 @@ AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4
 Downloads
 ---------
 
-You can **download** the last stable version from our build server at:
+You can **download** the last stable version from:
 
-####[Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=artifacts&guest=1)
+####[Nuget Prerelease packages](https://www.nuget.org/packages/FileHelpers/)
+
+####[Build Server: Last Stable Build](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=artifacts&guest=1)
 
     Download the zip with the format: FileHelpers_x.x.x_Build.zip
 
@@ -72,6 +74,8 @@ Usage
   // To Write Use:
   engine.WriteFile("FileOut.txt", res);
 ```
+
+[Check the QuickStart](http://www.filehelpers.net/quickstart/) and [More Examples ](http://www.filehelpers.net/examples/)
 
 Who needs the File Helpers Library ? 
 ------------------------------------
