@@ -14,6 +14,8 @@ task version {
     copy VersionInfo.cs ..\FileHelpers
     exec { ..\Libs\FileReplace.exe "..\FileHelpers\VersionInfo.cs" "-CustomVersion-" "$FullCurrentVersion" }
     exec { ..\Libs\FileReplace.exe "..\FileHelpers\VersionInfo.cs" "-VisibleVersion-" "$VisibleVersion" }
+    exec { ..\Libs\FileReplace.exe "..\Build\NuGet\FileHelpers.ExcelStorage.nuspec" "-VisibleVersion-" "$VisibleVersion" }
+    exec { ..\Libs\FileReplace.exe "..\Build\NuGet\FileHelpers.ExcelStorage.nuspec" "-VisibleVersion-" "$VisibleVersion" }
 }
 
 task common -depends version {
