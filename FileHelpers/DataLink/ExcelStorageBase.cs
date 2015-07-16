@@ -70,6 +70,8 @@ namespace FileHelpers.DataLink
         private ExcelReadStopBehavior mExcelReadStopBehavior = ExcelReadStopBehavior.StopOnEmptyRow;
         private int mExcelReadStopAfterEmptyRows = 1;
 
+        private List<string> mColumnHeaders=new List<string>();
+        
         #endregion
 
         #region "  Public Properties  "
@@ -148,6 +150,15 @@ namespace FileHelpers.DataLink
             set { mExcelReadStopAfterEmptyRows = value; }
         }
 
+        /// <summary>
+        /// List Of column headers
+        /// </summary>
+        public List<string> ColumnsHeaders
+        {
+            get { return mColumnHeaders; }
+            set { mColumnHeaders = value; }
+        }
+        
         #endregion
 
         #region "  CellIsEmpty  "

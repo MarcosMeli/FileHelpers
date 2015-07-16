@@ -46,12 +46,11 @@ namespace FileHelpers.ExcelNPOIStorage
                 cell.SetCellValue((bool) value);
 
             else if (value is DateTime) {
-                //// Fuck this shit
-                //var wb = cell.Sheet.Workbook;
-                //var cellStyle = wb.CreateCellStyle();
-                //// Can only be created once for each custom format, the code below is wrong
-                //cellStyle.DataFormat = cell.Sheet.Workbook.GetCreationHelper().CreateDataFormat().GetFormat("dd/mm/yyyy" );
-                //cell.CellStyle = cellStyle;
+                //It works
+                var wb = cell.Sheet.Workbook;
+                var cellStyle = wb.CreateCellStyle();
+                cellStyle.DataFormat = cell.Sheet.Workbook.GetCreationHelper().CreateDataFormat().GetFormat("dd/mm/yyyy" );
+                cell.CellStyle = cellStyle;                
                 cell.SetCellValue((DateTime) value);
             }
 

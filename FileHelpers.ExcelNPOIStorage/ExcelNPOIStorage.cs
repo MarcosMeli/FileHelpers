@@ -101,7 +101,7 @@ namespace FileHelpers.ExcelNPOIStorage
                     mWorkbook = new HSSFWorkbook(file);
 
                 if (String.IsNullOrEmpty(SheetName))
-                    mSheet = mWorkbook.GetSheetAt(0);
+                    mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);  
                 else {
                     try {
                         mSheet = mWorkbook.GetSheet(SheetName);
@@ -143,7 +143,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 mWorkbook = new XSSFWorkbook();
             else if (extension.ToLowerInvariant() == ".xls")
                 mWorkbook = new HSSFWorkbook();
-            mSheet = mWorkbook.CreateSheet(SheetName);
+            mSheet =  mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }
 
@@ -184,7 +184,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 return null;
 
             ICell cell = CellUtil.GetCell(row, col);
-            return cell.StringCellValue;
+            return cell.ToString();
         }
 
         #endregion
@@ -217,7 +217,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 return null;
 
             if (numberOfCols == 1) {
-                IRow row = HSSFCellUtil.GetRow(rowNum, (HSSFSheet) mSheet);
+                IRow row = mSheet.GetRow(rowNum);
 
                 ICell cell = HSSFCellUtil.GetCell(row, startCol);
                 return new object[] {NPOIUtils.GetCellValue(cell)};
@@ -241,6 +241,11 @@ namespace FileHelpers.ExcelNPOIStorage
             if (mSheet == null)
                 return;
 
+            if (ColumnsHeaders.Count()!=0)
+            {
+                rowNum++;
+            }
+            
             var row = mSheet.GetRow(rowNum);
             if (row == null)
                 row = mSheet.CreateRow(rowNum);
@@ -260,6 +265,37 @@ namespace FileHelpers.ExcelNPOIStorage
             cw.Traverse(ci);
         }
 
+        private void AddHeaderColumns(int startCol,int rowNum)
+        {       
+             if (ColumnsHeaders.Count() != 0)
+            {
+                if (mSheet == null)
+                    return;
+                
+                var row = mSheet.GetRow(rowNum);
+                if (row == null)
+                    row = mSheet.CreateRow(rowNum);
+                for (int i = 0; i <= startCol + ColumnsHeaders.ToArray().Length; i++)
+                {
+                    var cell = row.GetCell(i);
+                    if (cell == null)
+                        row.CreateCell(i);
+                }
+    
+                CellRangeAddress range = new CellRangeAddress(StartRow == 0
+                        ? 0
+                        : StartRow, StartRow == 0
+                        ? 0
+                        : StartRow, startCol, startCol + ColumnsHeaders.ToArray().Length - 1);
+    
+                CellWalk cw = new CellWalk(mSheet, range);
+                cw.SetTraverseEmptyCells(true);
+    
+                CellInserter ci = new CellInserter(new List<object>(ColumnsHeaders));
+    
+                cw.Traverse(ci);            
+            }
+        }
         #endregion
 
         #region "  InsertRecords  "
@@ -292,7 +328,9 @@ namespace FileHelpers.ExcelNPOIStorage
                 }
 
                 OpenOrCreateWorkbook(FileName);
-
+                
+                AddHeaderColumns(StartColumn, StartRow);
+                
                 for (int i = 0; i < records.Length; i++) {
                     recordNumber++;
                     OnProgress(new ProgressEventArgs(recordNumber, records.Length));
