@@ -241,7 +241,7 @@ namespace FileHelpers.ExcelNPOIStorage
             if (mSheet == null)
                 return;
 
-            if (ColumnsHeaders.Count()!=0)
+            if (ColumnsHeaders.Count != 0)
             {
                 rowNum++;
             }
@@ -267,7 +267,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         private void AddHeaderColumns(int startCol,int rowNum)
         {       
-             if (ColumnsHeaders.Count() != 0)
+             if (ColumnsHeaders.Count != 0)
             {
                 if (mSheet == null)
                     return;
