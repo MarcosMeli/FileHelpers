@@ -28,14 +28,16 @@ namespace ExamplesFx
 ";
         }
 
-        //->Html: <p>If you have a source file like this, separated by a |:</p>
+        //->Html: If you have a source file like this, separated by a |:
 
+      
         //-> File:Input.txt
         /*10248|VINET|04071996|32.38
         10249|TOMSP|05071996|11.61
         10250|HANAS|08071996|65.83
         10251|VICTE|08071996|41.34*/
         //-> /File
+
 
         //->Html: <p>You first declare a Record Mapping Class:</p>
 
@@ -64,7 +66,8 @@ namespace ExamplesFx
             var engine = new FileHelperEngine<Orders>();
             var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records) {
+            foreach (var record in records)
+            {
                 Console.WriteLine(record.CustomerID);
                 Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
                 Console.WriteLine(record.Freight);
