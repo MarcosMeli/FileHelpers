@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>FileHelpers.ExcelNPOIStorage</id>
@@ -24,6 +24,8 @@
     </metadata>
     <files>
         <file src="..\..\Release\Lib\net40\FileHelpers.ExcelNPOIStorage.dll" target="lib\net40\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="..\..\Release\Lib\net40\FileHelpers.ExcelNPOIStorage.xml" target="lib\net40\FileHelpers.ExcelNPOIStorage.xml" />
         <file src="..\..\Release\Lib\net45\FileHelpers.ExcelNPOIStorage.dll" target="lib\net45\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="..\..\Release\Lib\net45\FileHelpers.ExcelNPOIStorage.xml" target="lib\net45\FileHelpers.ExcelNPOIStorage.xml" />
     </files>
 </package>

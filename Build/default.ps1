@@ -30,11 +30,11 @@ task compile -depends common {
     "Compiling " + $config
     
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "2.0" "Lib\net20"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "3.5" "Lib\net35"
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
-
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
 
-    Compile-Sln "..\FileHelpers.sln" "4.0"
+    Compile-Sln "..\FileHelpers.sln" "4.5"
 
     $delFiles = "..\" + $config + "\*.config"
     del $delFiles
@@ -47,7 +47,7 @@ task compiledebug -depends common {
     $config = "Debug"
     "Compiling Debug"
     
-    Compile-Sln "..\FileHelpers.sln" "4.0"
+    Compile-Sln "..\FileHelpers.sln" "4.5"
 }
 
 task docs -depends compile {
