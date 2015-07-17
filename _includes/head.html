@@ -9,6 +9,8 @@
   <meta NAME="copyright" CONTENT="2005-{{ site.time | date: '%Y' }} to Devoo - Marcos Meli. All Rights Reserved.">
 
 
+  {% if page.redirect %}<meta http-equiv="refresh" content="0; url={{ page.redirect }}" /> {% endif %}
+
   <title>{% if page.title %}{% if page.breadcrumbtext2 %}{{ page.breadcrumbtext2 }} - {% endif %}{{ page.title }} - FileHelpers{% else %}{{ site.title }}{% endif %}</title>
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -31,3 +33,6 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
+{% if page.redirect %}<script language="javascript">
+    window.location.href = "{{ page.redirect }}"
+</script>{% endif %}
