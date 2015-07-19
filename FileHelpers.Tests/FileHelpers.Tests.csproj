@@ -529,6 +529,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
@@ -568,9 +569,6 @@
     <Content Include="Data\Good\EncodingAdv2.txt" />
     <Content Include="Data\Good\EncodingAdv3.txt" />
     <Content Include="Data\Good\EncodingANSI.txt" />
-    <Content Include="Data\Good\EncodingChinese.txt" />
-    <Content Include="Data\Good\EncodingUnicode.txt" />
-    <Content Include="Data\Good\EncodingUnicodeBig.txt" />
     <None Include="Data\Good\EncodingUnicode.bin" />
     <None Include="Data\Good\EncodingUnicodeBig.bin" />
     <Content Include="Data\Good\EncodingUTF8.txt" />

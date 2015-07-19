@@ -780,6 +780,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class DiscardFirstReport : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "DiscardFirstReport.txt");
+                }
+            }
+
             public partial class DiscardLast0 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -2120,6 +2128,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.DiscardFirst3 DiscardFirst3
             {
                 get { return mDiscardFirst3; }
+            }
+
+            private static ClassesFileTest.Good.DiscardFirstReport mDiscardFirstReport = new ClassesFileTest.Good.DiscardFirstReport();
+
+            public static ClassesFileTest.Good.DiscardFirstReport DiscardFirstReport
+            {
+                get { return mDiscardFirstReport; }
             }
 
             private static ClassesFileTest.Good.DiscardLast0 mDiscardLast0 = new ClassesFileTest.Good.DiscardLast0();

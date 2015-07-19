@@ -120,6 +120,25 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        public void DiscardFirstReport()
+        {
+            var engine = new FileHelperEngine<DiscardReportType>();
+            var res = engine.ReadFile(FileTest.Good.DiscardFirstReport.Path);
+
+            Assert.AreEqual(2, res.Length);
+            Assert.AreEqual(123, res[0].FirstColumn);
+            Assert.AreEqual(456, res[1].FirstColumn);
+            Assert.AreEqual("HEADER TEXT", engine.HeaderText.Trim());
+
+        }
+
+        [DelimitedRecord(";"), IgnoreFirst]
+        public class DiscardReportType
+        {
+            public int FirstColumn;
+        }
+
+        [Test]
         public void DiscardWriteRead()
         {
             var engine = new FileHelperEngine<DiscardType1>();
