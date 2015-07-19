@@ -294,7 +294,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
-    <Compile Include="ErrorHandling\RunTimeCompilationException.cs">
+    <Compile Include="ErrorHandling\DynamicCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\BeforeReadEventArgs.cs" />
@@ -391,7 +391,7 @@
     <Compile Include="VersionInfo.cs" />
     <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
-    <None Include="Diagrams\RunTimeRecords.cd" />
+    <None Include="Diagrams\DynamicRecords.cd" />
     <None Include="FileHelpers.snk" />
     <None Include="Messages\Errors.msg" />
     <None Include="Messages\GenerateMessages.tt">

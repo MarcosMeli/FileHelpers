@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FileHelpers.Dynamic.ClassBuilder">
+    <Position X="0.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="AddAttributesInternal" Hidden="true" />
+      <Method Name="AddFieldInternal" Hidden="true" />
+      <Method Name="BeginNamespace" Hidden="true" />
+      <Method Name="ClassBuilder" Hidden="true" />
+      <Method Name="EndNamespace" Hidden="true" />
+      <Method Name="GetSealed" Hidden="true" />
+      <Method Name="GetVisibility" Hidden="true" />
+      <Field Name="mClassName" Hidden="true" />
+      <Field Name="mFields" Hidden="true" />
+      <Field Name="mGenerateProperties" Hidden="true" />
+      <Field Name="mIgnoreCommentInfo" Hidden="true" />
+      <Field Name="mIgnoreEmptyLines" Hidden="true" />
+      <Field Name="mIgnoreFirstLines" Hidden="true" />
+      <Field Name="mIgnoreLastLines" Hidden="true" />
+      <Field Name="mNamespace" Hidden="true" />
+      <Field Name="mRecordConditionInfo" Hidden="true" />
+      <Field Name="mSealedClass" Hidden="true" />
+      <Field Name="mVisibility" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderElement" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="FileHelpers.Dynamic.ClassBuilder.RecordConditionInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\ClassBuilder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="FileHelpers.Dynamic.ClassBuilder.IgnoreCommentInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\ClassBuilder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>SdAQDICwBCCRAKiYAgQAQAgBCiAAITQUIAYAQAQRiQU=</HashCode>
+      <FileName>Dynamic\ClassBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.FieldBuilder">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="AddAttributesInternal" Hidden="true" />
+      <Method Name="GetFieldCode" Hidden="true" />
+      <Field Name="mClassBuilder" Hidden="true" />
+      <Field Name="mConverter" Hidden="true" />
+      <Field Name="mFieldIndex" Hidden="true" />
+      <Field Name="mFieldInNewLine" Hidden="true" />
+      <Field Name="mFieldName" Hidden="true" />
+      <Field Name="mFieldNullValue" Hidden="true" />
+      <Field Name="mFieldOptional" Hidden="true" />
+      <Field Name="mFieldType" Hidden="true" />
+      <Field Name="mTrimChars" Hidden="true" />
+      <Field Name="mTrimMode" Hidden="true" />
+      <Field Name="mVisibility" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
+      <Method Name="SaveToXml" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderAttributes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IEAYAADCQACQAAAEQRQAAAgCAACBCAAQIAYAAAwmIiE=</HashCode>
+      <FileName>Dynamic\FieldBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.FixedFieldBuilder">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Field Name="mAlignChar" Hidden="true" />
+      <Field Name="mAlignMode" Hidden="true" />
+      <Field Name="mFieldLength" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderAttributes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAQAAAAAAAAAAAAgAAAAAAAIAQAEAgCAAI=</HashCode>
+      <FileName>Dynamic\FixedFieldBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.DelimitedFieldBuilder">
+    <Position X="6.5" Y="5.25" Width="1.75" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Field Name="mFieldQuoted" Hidden="true" />
+      <Field Name="mQuoteChar" Hidden="true" />
+      <Field Name="mQuoteMode" Hidden="true" />
+      <Field Name="mQuoteMultiline" Hidden="true" />
+      <Method Name="ReadFieldInternal" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderAttributes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAQAAAAAAAAAAAAAAAAAAAQANAQAAAgSAEA=</HashCode>
+      <FileName>Dynamic\DelimitedFieldBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.FixedLengthClassBuilder">
+    <Position X="3.25" Y="6.25" Width="2.25" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="LoadXmlInternal" Hidden="true" />
+      <Field Name="mFixedMode" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IABAAAAEAAABAAAABgAACAgAAAAAAAAEIAQAAAAAgAE=</HashCode>
+      <FileName>Dynamic\FixedLengthClassBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.DelimitedClassBuilder">
+    <Position X="6.25" Y="7.75" Width="2.5" />
+    <Members>
+      <Method Name="AddAttributesCode" Hidden="true" />
+      <Method Name="LoadXmlInternal" Hidden="true" />
+      <Field Name="mDelimiter" Hidden="true" />
+      <Method Name="ReadClassElements" Hidden="true" />
+      <Method Name="ReadField" Hidden="true" />
+      <Method Name="WriteExtraElements" Hidden="true" />
+      <Method Name="WriteHeaderElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAEAAEAAABACAABgAAAAAAAAAAAAAEIAQAAAAAgAE=</HashCode>
+      <FileName>Dynamic\DelimitedClassBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.Dynamic.CsvClassBuilder">
+    <Position X="0.5" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\CsvClassBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

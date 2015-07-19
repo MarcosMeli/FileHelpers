@@ -156,7 +156,7 @@ namespace FileHelpers.Dynamic
                 error.Append("Error Compiling Expression: " + StringHelper.NewLine);
                 foreach (CompilerError err in cr.Errors)
                     error.AppendFormat("Line {0}: {1}\n", err.Line, err.ErrorText);
-                throw new RunTimeCompilationException(error.ToString(), classStr, cr.Errors);
+                throw new DynamicCompilationException(error.ToString(), classStr, cr.Errors);
             }
 
             //            Assembly.Load(cr.CompiledAssembly.);

@@ -200,7 +200,7 @@
     <Compile Include="Tests\Dynamic\DelimitedClassBuilderTests.cs" />
     <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
-    <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
+    <Compile Include="Tests\Common\DynamicClassFiles.cs" />
     <Compile Include="Tests\Common\ReflectionOrder.cs" />
     <Compile Include="Tests\Common\FastReadCsv.cs" />
     <Compile Include="Tests\Common\WritersFieldIndexers.cs" />
@@ -312,7 +312,7 @@
     <Compile Include="Tests\Dynamic\FixedLengthClassBuilderTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\RunTimeClassExtra.cs">
+    <Compile Include="Tests\Common\DynamicClassExtra.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Sort.cs">
@@ -637,7 +637,7 @@
     <Content Include="Data\Good\Transform1.txt" />
     <Content Include="Data\Good\Transform2.txt" />
     <Content Include="Data\Good\Trim1.txt" />
-    <Content Include="Data\RunTime\VendorImport.xml" />
+    <Content Include="Data\Dynamic\VendorImport.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\CoreUnitTests\" />

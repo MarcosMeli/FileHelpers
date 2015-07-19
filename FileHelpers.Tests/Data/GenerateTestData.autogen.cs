@@ -447,6 +447,17 @@ namespace FileHelpers.Tests
             }
         }
 
+        public partial class Dynamic
+        {
+            public partial class VendorImport : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Dynamic", "VendorImport.xml");
+                }
+            }
+        }
+
         public partial class Excel
         {
             public partial class ExcelWithNoEmptyRows : FileTestBase
@@ -1436,17 +1447,6 @@ namespace FileHelpers.Tests
                 }
             }
         }
-
-        public partial class RunTime
-        {
-            public partial class VendorImport : FileTestBase
-            {
-                protected override string GetFullPathName()
-                {
-                    return System.IO.Path.Combine("RunTime", "VendorImport.xml");
-                }
-            }
-        }
     }
 
     public partial class FileTest
@@ -1835,6 +1835,16 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Detection.SuperQuoted2 SuperQuoted2
             {
                 get { return mSuperQuoted2; }
+            }
+        }
+
+        public partial class Dynamic
+        {
+            private static ClassesFileTest.Dynamic.VendorImport mVendorImport = new ClassesFileTest.Dynamic.VendorImport();
+
+            public static ClassesFileTest.Dynamic.VendorImport VendorImport
+            {
+                get { return mVendorImport; }
             }
         }
 
@@ -2702,16 +2712,6 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.Trim1 Trim1
             {
                 get { return mTrim1; }
-            }
-        }
-
-        public partial class RunTime
-        {
-            private static ClassesFileTest.RunTime.VendorImport mVendorImport = new ClassesFileTest.RunTime.VendorImport();
-
-            public static ClassesFileTest.RunTime.VendorImport VendorImport
-            {
-                get { return mVendorImport; }
             }
         }
     }
