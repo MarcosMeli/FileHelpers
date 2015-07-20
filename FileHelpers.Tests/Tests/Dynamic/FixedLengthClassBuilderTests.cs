@@ -97,9 +97,9 @@ namespace FileHelpers.Tests.Dynamic
             cb.LastField.AlignChar = '0';
             cb.LastField.TrimMode = TrimMode.Both;
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            var loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+            var loaded = (FixedLengthClassBuilder)ClassBuilder.LoadFromXml(@"dynamic.xml");
 
             Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
             Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
@@ -138,9 +138,9 @@ namespace FileHelpers.Tests.Dynamic
             cb.LastField.AlignChar = '0';
             cb.LastField.TrimMode = TrimMode.Both;
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("dynamic.xml"));
 
             Assert.AreEqual("Customers", mEngine.RecordType.Name);
             Assert.AreEqual(3, mEngine.RecordType.GetFields().Length);

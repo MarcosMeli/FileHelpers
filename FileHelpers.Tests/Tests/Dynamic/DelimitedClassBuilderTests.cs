@@ -99,9 +99,9 @@ namespace FileHelpers.Tests.Dynamic
 
             cb.AddField("Field333", typeof(int));
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            var loaded = (DelimitedClassBuilder)ClassBuilder.LoadFromXml(@"runtime.xml");
+            var loaded = (DelimitedClassBuilder)ClassBuilder.LoadFromXml(@"dynamic.xml");
 
             Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
             Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
@@ -137,9 +137,9 @@ namespace FileHelpers.Tests.Dynamic
 
             cb.AddField("Field333", typeof(int));
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("dynamic.xml"));
 
             Assert.AreEqual("Customers", mEngine.RecordType.Name);
             Assert.AreEqual(3, mEngine.RecordType.GetFields().Length);
@@ -164,10 +164,10 @@ namespace FileHelpers.Tests.Dynamic
             cbOrig.IgnoreLastLines = 456;
 
             cbOrig.SealedClass = false;
-            cbOrig.SaveToXml(@"runtime.xml");
-            cbOrig.SaveToXml(@"runtime.xml");
+            cbOrig.SaveToXml(@"dynamic.xml");
+            cbOrig.SaveToXml(@"dynamic.xml");
 
-            ClassBuilder cb2 = ClassBuilder.LoadFromXml("runtime.xml");
+            ClassBuilder cb2 = ClassBuilder.LoadFromXml("dynamic.xml");
 
             Assert.AreEqual("Customers", cb2.ClassName);
             Assert.AreEqual(2, cb2.FieldCount);

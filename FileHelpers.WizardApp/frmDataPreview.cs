@@ -162,7 +162,7 @@ width: 100% !important;*/
             catch {}
 
             dlgOpenTest.Title = "Open FileHelpers Class";
-            dlgOpenTest.Filter = "RunTime Record File (*.fhw;*.xml)|*.fhw;*.xml|All Files|*.*";
+            dlgOpenTest.Filter = "Dynamic Record File (*.fhw;*.xml)|*.fhw;*.xml|All Files|*.*";
 
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
