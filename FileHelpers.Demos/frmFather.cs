@@ -271,9 +271,7 @@ namespace FileHelpersSamples
 
         private void pictureBox3_Click(object sender, System.EventArgs e)
         {
-            frmDonate frm = new frmDonate();
-            frm.ShowDialog();
-            frm.Dispose();
+            Process.Start("explorer", "\"http://www.filehelpers.net/donate/\"");
         }
 
         private bool mExitOnEsc = true;

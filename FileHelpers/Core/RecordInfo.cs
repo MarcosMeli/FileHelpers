@@ -172,7 +172,9 @@ namespace FileHelpers
                 });
 
 
+#pragma warning disable CS0618 // Type or member is obsolete
             Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
+#pragma warning restore CS0618 // Type or member is obsolete
                 RecordType,
                 a => {
                     IgnoreEmptyLines = true;

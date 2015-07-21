@@ -251,9 +251,6 @@
     <Compile Include="frmDataPreview.Designer.cs">
       <DependentUpon>frmDataPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDonate.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmFather.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +270,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RegConfig.cs" />
     <Compile Include="RulerControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -307,10 +305,6 @@
     <EmbeddedResource Include="frmDataPreview.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmDataPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDonate.resx">
-      <DependentUpon>frmDonate.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFather.resx">
       <DependentUpon>frmFather.cs</DependentUpon>

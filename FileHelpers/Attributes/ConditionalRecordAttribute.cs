@@ -20,7 +20,7 @@ namespace FileHelpers
     /// { 
     /// </example>
     [AttributeUsage(AttributeTargets.Class)]
-	[Obsolete("This attribute will be removed in next version, is better to use INotifyRead and provide code for filtering")]
+	//[Obsolete("This attribute will be removed in next version, is better to use INotifyRead and provide code for filtering")]
     public sealed class ConditionalRecordAttribute : Attribute
     {
         /// <summary> The condition used to include or exclude each record </summary>

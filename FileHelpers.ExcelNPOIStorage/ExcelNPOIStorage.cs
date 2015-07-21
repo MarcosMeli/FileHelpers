@@ -170,6 +170,12 @@ namespace FileHelpers.ExcelNPOIStorage
 
         #region "  CellAsString  "
 
+        /// <summary>
+        /// Get the string value of a cell
+        /// </summary>
+        /// <param name="row">Cell Row</param>
+        /// <param name="col">Cell Column</param>
+        /// <returns>Cell Value as string</returns>
         protected override string CellAsString(object row, object col)
         {
             var rowO = mSheet.GetRow((int) row);
