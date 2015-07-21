@@ -47,7 +47,7 @@ namespace FileHelpers.Dynamic
             return ClassFromString(classStr, className, NetLanguage.CSharp);
         }
 
-        private static String[] mReferences;
+        private static List<string> mReferences;
         private static readonly object mReferencesLock = new object();
 
         /// <summary>Compiles the source code passed and returns the Type with the name className.</summary>
@@ -70,30 +70,22 @@ namespace FileHelpers.Dynamic
 
             bool mustAddSystemData = false;
             lock (mReferencesLock) {
+
                 if (mReferences == null)
                 {
-                    var arr = new ArrayList();
+                    mReferences = new List<string>();
                     var added = new Dictionary<string, bool>();
 
-                    var analyze = new List<Assembly>();
-                    analyze.AddRange(AppDomain.CurrentDomain.GetAssemblies());
-
-                    if (additionalReferences != null)
-                        analyze.AddRange(additionalReferences);
-
-                    foreach (var assembly in analyze)
+                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
                         Module module = assembly.GetModules()[0];
                         if (module.Name == "mscorlib.dll" ||
                             module.Name == "<Unknown>")
                             continue;
-
-
+                        
                         if (module.Name == "System.Data.dll")
                             mustAddSystemData = true;
 
-                        if (additionalReferences == null || !additionalReferences.Contains(assembly))
-                        {
                             if (!module.Name.Equals("System.Data.dll", StringComparison.OrdinalIgnoreCase) &&
                                 !module.Name.Equals("System.Core.dll", StringComparison.OrdinalIgnoreCase) &&
                                 !module.Name.Equals("System.dll", StringComparison.OrdinalIgnoreCase) &&
@@ -103,7 +95,7 @@ namespace FileHelpers.Dynamic
                             {
                                 continue;
                             }
-                        }
+
                         var moduleName = module.Name.ToLower();
 
                         if (added.ContainsKey(moduleName))
@@ -111,14 +103,36 @@ namespace FileHelpers.Dynamic
                         added.Add(moduleName, true);
 
                         if (File.Exists(module.FullyQualifiedName))
-                            arr.Add(module.FullyQualifiedName);
+                            mReferences.Add(module.FullyQualifiedName);
                     }
 
-                    mReferences = (string[]) arr.ToArray(typeof (string));
                 }
+
+                if (additionalReferences != null)
+                {
+                    foreach (var additionalReference in additionalReferences)
+                    {
+                        var moduleName = additionalReference.GetModules()[0].FullyQualifiedName;
+
+                        foreach (var reference in mReferences)
+                        {
+                            if (reference.Equals(moduleName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                moduleName = "";
+                                break;
+                            }
+                        }
+
+                            if (moduleName.Length > 0)
+                            mReferences.Add(moduleName);
+                    }
+                }
+
+
+
             }
 
-            cp.ReferencedAssemblies.AddRange(mReferences);
+            cp.ReferencedAssemblies.AddRange(mReferences.ToArray());
 
             cp.GenerateExecutable = false;
             cp.GenerateInMemory = true;
