@@ -131,7 +131,24 @@ namespace FileHelpers.Tests
             cb.AddField("Field2", typeof (int?));
             cb.AddField("Field3", "Nullable<int>");
             cb.AddField("Field4", typeof (Nullable<int>));
+            cb.CreateRecordClass();
         }
+
+
+        [Test]
+        public void RunTimeMultimpleInstances()
+        {
+            var cb = new DelimitedClassBuilder("ImportContact", ",");
+
+            cb.AddField("Field1", "int?");
+            cb.AddField("Field2", typeof(int?));
+            cb.AddField("Field3", "Nullable<int>");
+            cb.AddField("Field4", typeof(Nullable<int>));
+
+            cb.CreateRecordClass();
+            cb.CreateRecordClass();
+        }
+
 
 
         [Test]
@@ -140,10 +157,12 @@ namespace FileHelpers.Tests
             var cb = new DelimitedClassBuilder("ImportContact", ",");
 
             cb.AddField("Field2", typeof (Dictionary<int, List<string>>));
-            cb.AddField("Field1", "List<int>");
-            cb.AddField("Field2", typeof (List<int>));
+            cb.AddField("Field1", "System.Collections.Generic.List<int>");
+            cb.AddField("Field7", typeof (List<int>));
             cb.AddField("Field3", "Nullable<int>");
             cb.AddField("Field4", typeof (Nullable<int>));
+
+            cb.CreateRecordClass();
         }
     }
 }

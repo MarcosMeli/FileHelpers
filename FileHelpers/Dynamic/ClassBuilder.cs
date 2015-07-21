@@ -70,28 +70,41 @@ namespace FileHelpers.Dynamic
 
             bool mustAddSystemData = false;
             lock (mReferencesLock) {
-                if (mReferences == null) {
+                if (mReferences == null)
+                {
                     var arr = new ArrayList();
-					var added = new Dictionary<string, bool>();
-					var assemblies = AppDomain.CurrentDomain.GetAssemblies ();
-					foreach (var assembly in assemblies) {
-						Module module = assembly.GetModules () [0];
-						if (module.Name == "mscorlib.dll" ||
-						                      module.Name == "<Unknown>")
-							continue;
+                    var added = new Dictionary<string, bool>();
+                    var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-						if (module.Name == "System.Data.dll")
-							mustAddSystemData = true;
+                    foreach (var assembly in assemblies)
+                    {
+                        Module module = assembly.GetModules()[0];
+                        if (module.Name == "mscorlib.dll" ||
+                            module.Name == "<Unknown>")
+                            continue;
 
-						var moduleName = module.Name.ToLower();
 
-						if (added.ContainsKey(moduleName))
-							continue;
-						added.Add (moduleName, true);
+                        if (module.Name == "System.Data.dll")
+                            mustAddSystemData = true;
 
-						if (File.Exists (module.FullyQualifiedName))
-							arr.Add (module.FullyQualifiedName);
-					}
+                        if (!module.Name.Equals("System.Data.dll", StringComparison.OrdinalIgnoreCase) &&
+                            !module.Name.Equals("System.Core.dll", StringComparison.OrdinalIgnoreCase) &&
+                            !module.Name.Equals("System.dll", StringComparison.OrdinalIgnoreCase) &&
+                            !module.Name.Equals("FileHelpers.dll", StringComparison.OrdinalIgnoreCase) &&
+                            !module.Name.Equals("System.Xml.dll", StringComparison.OrdinalIgnoreCase)
+                            )
+                        {
+                            continue;
+                        }
+                        var moduleName = module.Name.ToLower();
+
+                        if (added.ContainsKey(moduleName))
+                            continue;
+                        added.Add(moduleName, true);
+
+                        if (File.Exists(module.FullyQualifiedName))
+                            arr.Add(module.FullyQualifiedName);
+                    }
 
                     mReferences = (string[]) arr.ToArray(typeof (string));
                 }
@@ -102,12 +115,13 @@ namespace FileHelpers.Dynamic
             cp.GenerateExecutable = false;
             cp.GenerateInMemory = true;
             cp.IncludeDebugInformation = false;
+            
 
             var code = new StringBuilder();
 
             switch (lang) {
                 case NetLanguage.CSharp:
-                    code.Append("using System; using FileHelpers;");
+                    code.Append("using System; using FileHelpers; using System.Collections; using System.Collections.Generic;");
                     if (mustAddSystemData)
                         code.Append(" using System.Data;");
                     break;
@@ -177,6 +191,8 @@ namespace FileHelpers.Dynamic
         }
 
         #endregion
+
+        public bool AddCurrentDomainReferences { get; set; }
 
         #region CreateFromFile
 
@@ -374,7 +390,7 @@ namespace FileHelpers.Dynamic
                     .Identifier(className)
                     .Text);
             }
-
+//            AddCurrentDomainReferences = true;
             mClassName = className;
         }
 
@@ -383,7 +399,7 @@ namespace FileHelpers.Dynamic
         public Type CreateRecordClass()
         {
             string classCode = GetClassSourceCode(NetLanguage.CSharp);
-            return ClassFromString(classCode, NetLanguage.CSharp);
+            return ClassFromString(classCode, "", NetLanguage.CSharp);
         }
 
 
@@ -1148,7 +1164,7 @@ namespace FileHelpers.Dynamic
         {
             if (type.IsGenericType) {
                 var sb = new StringBuilder();
-                sb.Append(type.Name.Substring(0, type.Name.IndexOf("`", StringComparison.Ordinal)));
+                sb.Append(type.FullName.Substring(0, type.FullName.IndexOf("`", StringComparison.Ordinal)));
                 sb.Append("<");
 
                 Type[] args = type.GetGenericArguments();
