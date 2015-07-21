@@ -256,6 +256,8 @@ namespace FileHelpers.Tests.Dynamic
                 "State",
             };
             var cb = new DelimitedClassBuilder("ImportContact", ",");
+            // Add assembly reference
+            cb.AdditionalReferences.Add(typeof(MyCustomConverter).Assembly);
 
             foreach (var f in fields)
             {
