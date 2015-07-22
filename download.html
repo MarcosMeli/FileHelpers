@@ -18,13 +18,13 @@ permalink: /download/
 
 <div class="indent">
 {% highlight PowerShell %}
- Install-Package FileHelpers -Version 3.1.0-rc2 -Pre
+ Install-Package FileHelpers -Version {{ site.libversion }} -Pre
 {% endhighlight %}
 </div>
 
 <p><b>or search for "FileHelpers" in the NuGet Package Manager in Visual Studio</b></p>
 
-<<a href="https://www.nuget.org/packages/FileHelpers/"><img src="{{ site.baseurl }}/images/nuget.png" class="indent shadow" alt="add references" style="" /></a>
+<a href="https://www.nuget.org/packages/FileHelpers/"><img src="{{ site.baseurl }}/images/nuget.png" class="indent shadow" alt="add references" style="" /></a>
 
 </div>
 </div>
@@ -34,7 +34,7 @@ permalink: /download/
 
 <div class="indent">
 
-  <a href="https://github.com/MarcosMeli/FileHelpers/releases/tag/3.1-rc2" class="btn waves-effect waves-light green">Download at GitHub 3.1-rc2</a>
+  <a href="https://github.com/MarcosMeli/FileHelpers/releases/tag/{{ site.libversion }}" class="btn waves-effect waves-light green">Download at GitHub {{ site.libversion }}</a>
 
 <p>You only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>.<br/>
   Tip: remember to leave the <strong>FileHelpers.xml</strong> file to get Visual Studio Intellisense support.</p>
