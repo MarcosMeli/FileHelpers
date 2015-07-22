@@ -11,6 +11,7 @@ namespace OnlineWizard.Controllers
         public ActionResult Wizard()
         {
             ViewBag.HideMenu = true;
+            ViewBag.PageTitle = "Online Record Wizard";
 
             return View();
         }
@@ -18,6 +19,7 @@ namespace OnlineWizard.Controllers
         [Route("CompareTools")]
         public ActionResult CompareTools()
         {
+            ViewBag.PageTitle = "Online Compare Tool";
             return View();
         }
     }

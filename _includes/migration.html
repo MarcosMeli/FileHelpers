@@ -1,0 +1,52 @@
+
+<h4>Instructions when you upgrade from older version of the library</h4>
+
+<div class="indent">
+
+<style>
+    h6 {font-weigth:bold;}
+</style>
+
+<div class="row">
+    <div class="col s12 m9 l6">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#from20">From 2.0</a></li>
+        <li class="tab col s3"><a href="#from29">From 2.9 beta</a></li>
+      </ul>
+    </div>
+    <div id="from20" class="col s12">
+  		<div class="indent">
+
+  		<p>There are a lot of changes from that version <a href="/changelog/">see changelog</a>
+
+  		<p>The breaking changes are:</a>
+<div class="indent">
+<span class="code">[FieldIgnored] => [FieldHidden]</span>
+
+      <p>The attribute was renamed to align with the real meaning</a>
+
+</div>
+  		</div>
+    </div>
+
+    <div id="from29" class="col s12">
+      <div class="indent">
+
+      <p>This release has little breaking changes:</a>
+
+<div class="indent">
+<span class="code">[FieldNotInFile] => [FieldHidden]</span>
+
+      <p>The attribute was renamed to align with the real meaning</a>
+
+      <h6><span class="code">INotifyRead</span> and <span class="code">INotifyWrite</span> now are non generic</h6>
+      <p>In older versions when u implemented notifications via interfaces you must provide the same type of Record
+        to get proper notification, from 3.1 you use them with out &lt;&gt; and the same is valid for the method signature:</a>
+
+        <p>Here the previous and new code</p>
+
+    </div>
+      </div>
+    </div>
+
+</div>
