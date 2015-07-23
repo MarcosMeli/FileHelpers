@@ -1,9 +1,9 @@
 sudo: false
 language: csharp
-solution: FileHelpers.OnlyLibs.sln
+solution: FileHelpers.sln
 install:
-  - nuget restore FileHelpers.OnlyLibs.sln
+  - nuget restore FileHelpers.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Debug FileHelpers.OnlyLibs.sln
-  #- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll /exclude=Dynamic
+  - xbuild /p:Configuration=Debug FileHelpers.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll -exclude=NotOnMono
