@@ -13,7 +13,7 @@ namespace FileHelpers.Tests.CommonTests
                                                          "with the FileHelperEngine.FooterText property" +
                                                          Environment.NewLine;
 
-        private readonly string expectedShortFooterText = "This is a new Footer....\r\n";
+        private readonly string expectedShortFooterText = "This is a new Footer...." + Environment.NewLine;
 
         [Test]
         public void DiscardLast1()
