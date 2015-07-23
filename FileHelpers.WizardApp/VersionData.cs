@@ -47,7 +47,7 @@ namespace FileHelpers.WizardApp
         {
             string dataString;
             using (WebClient webClient = new WebClient()) {
-                byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
+                byte[] data = webClient.DownloadData("http://www.filehelpers.net/version.txt");
                 dataString = System.Text.Encoding.Default.GetString(data);
             }
 
