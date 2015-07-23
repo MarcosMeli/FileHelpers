@@ -76,24 +76,24 @@
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
-    <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
-    <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
-    <Compile Include="Examples\10.Basic\40.WriteFileFixed.cs" />
-    <Compile Include="Examples\12.Empty Values\20.ReadFileNullable.cs" />
-    <Compile Include="Examples\12.Empty Values\10.ReadFileFieldNullValue.cs" />
-    <Compile Include="Examples\12.Empty Values\05.ReadFileMissingValue.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\10.DelimitedRecord.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecord.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\31.FixedLengthRecordLastVariable.cs" />
-    <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
+    <Compile Include="Examples\10.QuickStart\10.ReadFileDelimited.cs" />
+    <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
+    <Compile Include="Examples\10.QuickStart\30.ReadFileFixed.cs" />
+    <Compile Include="Examples\10.QuickStart\40.WriteFileFixed.cs" />
+    <Compile Include="Examples\12.Missing Values\20.ReadFileNullable.cs" />
+    <Compile Include="Examples\12.Missing Values\10.ReadFileFieldNullValue.cs" />
+    <Compile Include="Examples\12.Missing Values\05.ReadFileMissingValue.cs" />
+    <Compile Include="Examples\15.Record Class Attributes\10.DelimitedRecord.cs" />
+    <Compile Include="Examples\15.Record Class Attributes\30.FixedLengthRecord.cs" />
+    <Compile Include="Examples\15.Record Class Attributes\31.FixedLengthRecordLastVariable.cs" />
+    <Compile Include="Examples\16.Field Attributes\10.FieldLength.cs" />
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
-    <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />
-    <Compile Include="Examples\20.Events\30.WriteBeforeEventSample.cs" />
-    <Compile Include="Examples\20.Events\40.WriteAfterEventSample.cs" />
+    <Compile Include="Examples\20.Events And Notification\10.ReadBeforeEvent.cs" />
+    <Compile Include="Examples\20.Events And Notification\20.ReadAfterEventSample.cs" />
+    <Compile Include="Examples\20.Events And Notification\30.WriteBeforeEventSample.cs" />
+    <Compile Include="Examples\20.Events And Notification\40.WriteAfterEventSample.cs" />
     <Compile Include="Examples\25.ErrorHandling\10.ErrorHandling.cs" />
     <Compile Include="Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
     <Compile Include="Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
