@@ -1,4 +1,4 @@
 3.1.0|2015-07-23|https://github.com/MarcosMeli/FileHelpers/releases/tag/3.1.0-rc2|https://github.com/MarcosMeli/FileHelpers/releases/tag/3.1.0-rc2|
-"3.1 Big Release"|"
+"3.1.0-rc2 Release"|"
  
 "
