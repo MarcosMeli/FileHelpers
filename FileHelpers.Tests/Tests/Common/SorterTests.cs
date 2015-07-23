@@ -57,6 +57,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x2Reverse()
         {
             SortMb<OrdersTab>(4*MegaByte, 20*MegaByte, false);
@@ -64,6 +65,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6xhalfHeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, (int) (0.5*MegaByte));
@@ -71,42 +73,49 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x1HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 1*MegaByte);
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x2HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 2*MegaByte);
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x35HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, (int) (3.5*MegaByte));
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x6HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 4*MegaByte);
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x7HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 4*MegaByte);
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x20HeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 20*MegaByte);
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void Sort6x2ReverseHeaderFooter()
         {
             SortMb<OrdersTabHeaderFooter>(4*MegaByte, 20*MegaByte, false);

@@ -92,6 +92,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingANSI()
         {
             RunTests(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -116,6 +117,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingAsyncANSI()
         {
             RunAsyncTests(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -141,6 +143,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingAsyncANSIConstructor()
         {
             RunConstructor(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -159,6 +162,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingANSIConstructorAsync()
         {
             RunAsyncConstructor(Encoding.Default, "Good", "EncodingANSI.txt");

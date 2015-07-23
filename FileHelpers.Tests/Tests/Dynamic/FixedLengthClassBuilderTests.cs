@@ -53,6 +53,7 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void SaveLoadSourceFileVbNet()
         {
             ClassBuilder cb = CommonCreate();
@@ -69,6 +70,7 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void SaveLoadBinaryFileVbNet()
         {
             ClassBuilder cb = CommonCreate();

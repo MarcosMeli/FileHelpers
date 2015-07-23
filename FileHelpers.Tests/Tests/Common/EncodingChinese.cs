@@ -10,6 +10,7 @@ namespace FileHelpers.Tests
     public class FileEncodingChinese
     {
         [Test]
+        [Category("NotOnMono")]
         public void EncodingTest()
         {
             // var lines = File.ReadAllLines(FileTest.Good.EncodingChinese.Path, Encoding.GetEncoding(950));
