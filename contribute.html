@@ -28,7 +28,7 @@ permalink: /contribute/
   </div>
 </div>
 <script type="text/javascript">
-  var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&labels=Jump%20In";
+  var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&labels=Jump%20In&sort=created";
 
   $(document).ready(function() {
     $.getJSON(urlJumpInIssues, function(allIssues) {
@@ -44,7 +44,8 @@ permalink: /contribute/
         tags += "</span>"
 
         $("#issues")
-          .append("<li class='collection-item'><a href='https://github.com/MarcosMeli/FileHelpers/issues/" + issue.number + "'<b>" + issue.number + " - " + issue.title + "</b> " + tags + "</a><br />" + issue.body + "</li>")
+          .append("<li class='collection-item'><a href='https://github.com/MarcosMeli/FileHelpers/issues/" + issue.number + "'<b>" +
+          	 issue.title + "</b> #" +issue.number+ " "  + tags + "</a><br />" + issue.body + "</li>")
       });
     });
   });
