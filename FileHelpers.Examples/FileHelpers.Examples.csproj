@@ -200,7 +200,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /allowDup /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll"  "$(TargetDir)ExamplesFx.dll"  "$(TargetDir)Devoo.WinForms.dll"
 del "$(TargetDir)*.dll"

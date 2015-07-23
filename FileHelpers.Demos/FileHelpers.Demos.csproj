@@ -284,7 +284,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll" "$(TargetDir)Framework.Controls.ProgressBar.dll"
 del "$(TargetDir)*.dll"
