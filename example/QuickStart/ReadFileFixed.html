@@ -58,7 +58,7 @@ var engine = new FixedFileEngine<Customer>();
 Customer[] result = engine.ReadFile("input.txt");
 
 foreach (var detail in result)
-    this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
+    Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
 
 
 {%  endhighlight %}
@@ -67,7 +67,11 @@ foreach (var detail in result)
 
 <div class='highlight-title'>Console</div>
 {% highlight csharp %}
- .
+Client: 1010,  Name: Alfreds Futterkiste
+Client: 12399,  Name: Ana Trujillo Emparedados y
+Client: 11,  Name: Antonio Moreno Taquería
+Client: 51677,  Name: Around the Horn
+Client: 99999,  Name: Berglunds snabbköp
 {%  endhighlight %}
 
 
