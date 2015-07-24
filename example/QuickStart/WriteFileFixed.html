@@ -9,7 +9,32 @@ permalink: /example/QuickStart/WriteFileFixed/
 </div>
 
 <h4>QuickStart: Write Fixed File</h4>
-<h5>Example of how to write a Fixed Record File</h5>
+<div class='indent'>
+  <h5>Example of how to write a Fixed Record File</h5>
+  <div class='indent'>
+
+<div class='highlight-title'> RecordClass.cs</div>
+{% highlight csharp %}
+
+[FixedLengthRecord()]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
+
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
+
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime AddedDate;
+}
+
+
+{%  endhighlight %}
+
+
 
 <div class='highlight-title'> Example.cs</div>
 {% highlight csharp %}
@@ -46,26 +71,5 @@ engine.WriteFile("Output.Txt", customers);
 {%  endhighlight %}
 
 
-
-<div class='highlight-title'> RecordClass.cs</div>
-{% highlight csharp %}
-
-[FixedLengthRecord()]
-public class Customer
-{
-    [FieldFixedLength(5)]
-    public int CustId;
-
-    [FieldFixedLength(30)]
-    [FieldTrim(TrimMode.Both)]
-    public string Name;
-
-    [FieldFixedLength(8)]
-    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-    public DateTime AddedDate;
-}
-
-
-{%  endhighlight %}
-
-
+  </div>
+</div>

@@ -223,5 +223,13 @@ ul.changelog > li {
 .example-description
 {
   color: #ADADAD;
-padding-left: 22px;
+  padding-left: 22px;
+}
+
+ul.examples li:hover {
+      background-color: #F7F4F1;
+}
+
+ul.examples li:hover > span {
+      color: black;
 }
