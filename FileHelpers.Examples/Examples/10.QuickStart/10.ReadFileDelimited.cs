@@ -6,40 +6,24 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name: Read Delimited File
-    //-> Description: Example of how to read a Delimited File
+    //-> Description: How to read a Delimited File
     //-> AutoRun: true
 
     public class ReadFile
         : ExampleBase
     {
-        public ReadFile()
-        {
-            HtmlBody =
-                @"<p>If you have a source file like this, separated by a |:</p>
-          ${Input.txt}
-          <p>You first declare a Record Mapping Class:</p>
-          ${RecordClass.cs}
-          <p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-          ${Example.cs}
-          <p>Now you have an Orders array named <span class=""cs-literal"">res</span> where
-          every item in the array is an Order object. If you want to access one of the fields
-          let the Visual Studio IntelliSense bring up the field names for you.</p>
-
-";
-        }
-
-        //->Html: If you have a source file like this, separated by a |:
-
+      
+        //-> If you have a source file like this, separated by a |:
       
         //-> File:Input.txt
-        /*10248|VINET|04071996|32.38
-        10249|TOMSP|05071996|11.61
-        10250|HANAS|08071996|65.83
-        10251|VICTE|08071996|41.34*/
+/*10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAS|08071996|65.83
+10251|VICTE|08071996|41.34*/
         //-> /File
 
 
-        //->Html: <p>You first declare a Record Mapping Class:</p>
+        //-> You first declare a Record Mapping Class:
 
         //-> File:RecordClass.cs
         /// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
@@ -58,7 +42,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //->Html: Finally you must to instantiate a FileHelperEngine and read or write files:
+        //-> Finally you must to instantiate a FileHelperEngine and read or write files:
 
         public override void Run()
         {
