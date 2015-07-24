@@ -13,7 +13,7 @@ permalink: /example/Record_Class_Attributes/FixedLengthRecordLastVariable/
   <h5>Example of how to use the FixedLengthRecord</h5>
   <div class='indent'>
 
-<div class='highlight-title'> Example.cs</div>
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 var engine = new FixedFileEngine<Customer>();
@@ -27,10 +27,11 @@ foreach (var detail in result) {
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> RecordClass.cs</div>
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 [FixedLengthRecord(FixedMode.AllowLessChars)]
@@ -50,10 +51,11 @@ public class Customer
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Input.txt</div>
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 01010 Alfreds Futterkiste          13122005
 12399 Ana Trujillo Emparedados y   23012000
@@ -61,6 +63,7 @@ public class Customer
 51677 Around the Horn              13051998
 99999 Berglunds snabbköp           111999
 {%  endhighlight %}
+</div>
 
 
   </div>

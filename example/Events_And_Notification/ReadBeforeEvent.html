@@ -13,7 +13,7 @@ permalink: /example/Events_And_Notification/ReadBeforeEvent/
   <h5>Show how to implement read before event</h5>
   <div class='indent'>
 
-<div class='highlight-title'> RunEngine.cs</div>
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -44,10 +44,11 @@ private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> report.inp</div>
+<div class='highlight-title example-code'> report.inp </div><div class='example-code-high'>
 {% highlight csharp %}
 -----------------------------------------------------
                       XXX Enterprise
@@ -64,10 +65,11 @@ private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
         10151   VICTE  08071996      41.34
         
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Report layout.cs</div>
+<div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -95,6 +97,7 @@ public class OrdersFixed
 
 
 {%  endhighlight %}
+</div>
 
 
   </div>

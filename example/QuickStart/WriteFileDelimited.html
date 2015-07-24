@@ -16,15 +16,16 @@ permalink: /example/QuickStart/WriteFileDelimited/
 <p>To write an output file separated by a |:</p>
 
 
-<div class='highlight-title'> Output.txt</div>
+<div class='highlight-title example-output'> Output.txt </div><div class='example-output-high'>
 {% highlight csharp %}
 1|AIRG|01052009|82.43
 2|JSYV|02052009|12.22
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> RecordClass.cs</div>
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -45,13 +46,14 @@ public class Orders
 
 
 {%  endhighlight %}
+</div>
 
 
 
 <p>Finally you must to instantiate a FileHelperEngine and write the file</p>
 
 
-<div class='highlight-title'> Example.cs</div>
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 var engine = new FileHelperEngine<Orders>();
@@ -76,6 +78,7 @@ engine.WriteFile("Output.Txt", orders);
 
 
 {%  endhighlight %}
+</div>
 
 
 

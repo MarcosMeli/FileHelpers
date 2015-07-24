@@ -13,7 +13,7 @@ permalink: /example/Events_And_Notification/WriteBeforeEventSample/
   <h5>Show how to implement write before event</h5>
   <div class='indent'>
 
-<div class='highlight-title'> RunEngine.cs</div>
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -39,10 +39,11 @@ private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixe
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Input.txt</div>
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 10249   TOMSP  05071996      11.61
         10250   HANAR  08071996       0.00
@@ -52,18 +53,20 @@ private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixe
         10151   VICTE  08071996      41.34
         
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> output.txt</div>
+<div class='highlight-title example-code'> output.txt </div><div class='example-code-high'>
 {% highlight csharp %}
 
         
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Report layout.cs</div>
+<div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -88,6 +91,7 @@ public class OrdersFixed
 
 
 {%  endhighlight %}
+</div>
 
 
   </div>

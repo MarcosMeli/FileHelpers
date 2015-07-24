@@ -16,7 +16,7 @@ permalink: /example/QuickStart/ReadFileFixed/
 <p>Lets start with a simple file:</p>
 
 
-<div class='highlight-title'> Input.txt</div>
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 01010 Alfreds Futterkiste          13122005
 12399 Ana Trujillo Emparedados y   23012000
@@ -24,13 +24,14 @@ permalink: /example/QuickStart/ReadFileFixed/
 51677 Around the Horn              13051998
 99999 Berglunds snabbköp           02111999
 {%  endhighlight %}
+</div>
 
 
 
 <p>An simple example layout:</p>
 
 
-<div class='highlight-title'> RecordClass.cs</div>
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 [FixedLengthRecord()]
@@ -50,10 +51,11 @@ public class Customer
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Example.cs</div>
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 var engine = new FixedFileEngine<Customer>();
@@ -64,17 +66,22 @@ foreach (var detail in result)
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'>Console</div>
-{% highlight csharp %}
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
 Client: 1010,  Name: Alfreds Futterkiste
 Client: 12399,  Name: Ana Trujillo Emparedados y
 Client: 11,  Name: Antonio Moreno Taquería
 Client: 51677,  Name: Around the Horn
 Client: 99999,  Name: Berglunds snabbköp
-{%  endhighlight %}
+</pre>
+</div>
+</div>
 
 
   </div>

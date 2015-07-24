@@ -13,17 +13,18 @@ permalink: /example/Converters/EnumConverter/
   <h5>When you have a string field in your files that can be better handled if you map it to an enum.</h5>
   <div class='indent'>
 
-<div class='highlight-title'> Input.txt</div>
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner
 FRANR|France restauration|Carine Schmitt|MarketingManager
 ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> CustomerTitle.cs</div>
+<div class='highlight-title example-code'> CustomerTitle.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 public enum CustomerTitle
@@ -35,10 +36,11 @@ public enum CustomerTitle
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Customers with Enum.cs</div>
+<div class='highlight-title example-code'> Customers with Enum.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -58,10 +60,11 @@ public class Customer
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> RunEngine.cs</div>
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 /// <summary>
@@ -81,6 +84,7 @@ public override void Run()
 
 
 {%  endhighlight %}
+</div>
 
 
   </div>

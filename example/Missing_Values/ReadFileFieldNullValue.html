@@ -13,7 +13,7 @@ permalink: /example/Missing_Values/ReadFileFieldNullValue/
   <h5>Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute</h5>
   <div class='indent'>
 
-<div class='highlight-title'> Example.cs</div>
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 var engine = new FileHelperEngine<Orders>();
@@ -29,10 +29,11 @@ foreach (var record in records) {
 }
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> RecordClass.cs</div>
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 [DelimitedRecord("|")]
@@ -51,20 +52,22 @@ public class Orders
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Input.txt</div>
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 10248|VINET|04071996|32.38
 10249|TOMSP||11.61
 10250|HANAR|08071996|65.83
 10251|VICTE|08071996|41.34
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> example_easy.html</div>
+<div class='highlight-title example-code'> example_easy.html </div><div class='example-code-high'>
 {% highlight csharp %}
 <h2>Easy Example </h2>
          * <blockquote>
@@ -82,6 +85,7 @@ public class Orders
          * </blockquote>
          
 {%  endhighlight %}
+</div>
 
 
   </div>

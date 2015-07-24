@@ -13,7 +13,7 @@ permalink: /example/QuickStart/WriteFileFixed/
   <h5>Example of how to write a Fixed Record File</h5>
   <div class='indent'>
 
-<div class='highlight-title'> RecordClass.cs</div>
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 [FixedLengthRecord()]
@@ -33,10 +33,11 @@ public class Customer
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Example.cs</div>
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
 var engine = new FileHelperEngine<Customer>();
@@ -61,14 +62,16 @@ engine.WriteFile("Output.Txt", customers);
 
 
 {%  endhighlight %}
+</div>
 
 
 
-<div class='highlight-title'> Output.Txt</div>
+<div class='highlight-title example-code'> Output.Txt </div><div class='example-code-high'>
 {% highlight csharp %}
 
         
 {%  endhighlight %}
+</div>
 
 
   </div>
