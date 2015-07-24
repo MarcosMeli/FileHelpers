@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
+// Done
+
 namespace ExamplesFx
 {
     //-> Name:Write Delimited File
@@ -12,6 +14,33 @@ namespace ExamplesFx
     public class WriteFile
         : ExampleBase
     {
+        //-> To write an output file separated by a |:
+
+        //-> FileOut: Output.txt
+
+        // -> You use the same Record Mapping Class as you would to read it:
+        //-> File:RecordClass.cs
+        /// <summary>
+        /// Layout for a file delimited by |
+        /// </summary>
+        [DelimitedRecord("|")]
+        public class Orders
+        {
+            public int OrderID;
+
+            public string CustomerID;
+
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime OrderDate;
+
+            public decimal Freight;
+        }
+
+        //-> /File
+
+        //-> Finally you must to instantiate a FileHelperEngine and write the file
+
+
         public override void Run()
         {
             //-> File:Example.cs
@@ -36,43 +65,10 @@ namespace ExamplesFx
             engine.WriteFile("Output.Txt", orders);
 
             //-> /File
+
             Console.WriteLine(engine.WriteString(orders));
         }
 
-        //-> File:RecordClass.cs
-        /// <summary>
-        /// Layout for a file delimited by |
-        /// </summary>
-        [DelimitedRecord("|")]
-        public class Orders
-        {
-            public int OrderID;
-
-            public string CustomerID;
-
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime OrderDate;
-
-            public decimal Freight;
-        }
-
-        //-> /File
-
-        //-> File: Output.Txt
-        //-> /File
-
-        //-> File: example_easy_write.html
-        /*<h2>Easy Write Example</h2>
-         * <blockquote>
-         * <p>To write an output file separated by a |:</p>
-         * ${Output.Txt}
-         * <p>You use the same Record Mapping Class as you would to read it:</p>
-         * ${RecordClass.cs}
-         * <p>Finally you must to instantiate a FileHelperEngine and write the file:</p>
-         * ${Example.cs}
-         * <p>The classes you use could come from anywhere,  Linq to Entities,
-         * SQL database reads, or in this case classes created within an application.
-        */
-        //-> /File
+        //-> The classes you use could come from anywhere,  Linq to Entities, SQL database reads, or in this case classes created within an application
     }
 }

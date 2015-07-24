@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
+// Done
+
 namespace ExamplesFx
 {
     //-> Name:Write Fixed File
@@ -12,9 +14,26 @@ namespace ExamplesFx
     public class WriteFileFixed
         : ExampleBase
     {
-        /// <summary>
-        /// Execute engine and write out records we define in memory delimited by |
-        /// </summary>
+
+
+        //-> File:RecordClass.cs
+        [FixedLengthRecord()]
+        public class Customer
+        {
+            [FieldFixedLength(5)]
+            public int CustId;
+
+            [FieldFixedLength(30)]
+            [FieldTrim(TrimMode.Both)]
+            public string Name;
+
+            [FieldFixedLength(8)]
+            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            public DateTime AddedDate;
+        }
+
+        //-> /File
+        
         public override void Run()
         {
             //-> File:Example.cs
@@ -45,22 +64,5 @@ namespace ExamplesFx
         //-> File: Output.Txt
         //-> /File
 
-        //-> File:RecordClass.cs
-        [FixedLengthRecord()]
-        public class Customer
-        {
-            [FieldFixedLength(5)]
-            public int CustId;
-
-            [FieldFixedLength(30)]
-            [FieldTrim(TrimMode.Both)]
-            public string Name;
-
-            [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime AddedDate;
-        }
-
-        //-> /File
     }
 }

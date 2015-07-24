@@ -44,12 +44,12 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> File:Input.txt
-        /*01010 Alfreds Futterkiste          13122005
-        12399 Ana Trujillo Emparedados y   23012000
-        00011 Antonio Moreno Taquería      042001
-        51677 Around the Horn              13051998
-        99999 Berglunds snabbköp           111999*/
+        //-> FileIn:Input.txt
+/*01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquería      042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbköp           111999*/
         //-> /File
     }
 }

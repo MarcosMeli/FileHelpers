@@ -45,12 +45,12 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> File:Input.txt
-        /*10248|VINET|04071996|32.38
-        10249|TOMSP||11.61
-        10250|HANAR|08071996|65.83
-        10251|VICTE|08071996|41.34*/
-        //-> /File
+        //-> FileIn:Input.txt
+/*10248|VINET|04071996|32.38
+10249|TOMSP||11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|08071996|41.34*/
+        //-> /FileIn
 
         //-> File:example_easy.html
         /*<h2>Easy Example </h2>
