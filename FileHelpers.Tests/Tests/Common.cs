@@ -11,7 +11,7 @@ namespace FileHelpers.Tests
     /// </summary>
     public static class TestCommon
     {
-        //private static string mAssemblyLocation = string.Empty;
+        //private static string mAssemblyLocation = "";
         /// <summary>
         /// Create a path to a directory or file given a list of directories
         /// to get there.  Goes from project directory

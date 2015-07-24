@@ -1,6 +1,6 @@
 sudo: false
 language: csharp
-solution: FileHelpers.OnlyMainLibAndTests.sln
+solution: FileHelpers.sln
 install:
   - nuget restore FileHelpers.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner

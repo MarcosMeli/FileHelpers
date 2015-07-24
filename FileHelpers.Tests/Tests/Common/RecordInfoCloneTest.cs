@@ -44,7 +44,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.RecordCondition.Selector = "F";
             var engine2 = new FileHelperEngine<SampleType>();
             engine.Options.RecordCondition.Condition = RecordCondition.None;
-            engine.Options.RecordCondition.Selector = string.Empty;
+            engine.Options.RecordCondition.Selector = "";
 
             Check.That(engine.RecordInfo).IsDistinctFrom(engine2.RecordInfo);
 
