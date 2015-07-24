@@ -4,17 +4,26 @@
 
  .code {
    background-color: #EDEDED;
-padding: 5px;
-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
-font-family: Consolas, monospace;
-margin-left: 6px;
-margin-right: 6px;
+  padding: 5px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+  font-family: Consolas, monospace;
+  margin-left: 6px;
+  margin-right: 6px;
  }
 
+.highlight-title {
+   padding-left: 15px;
+   margin-bottom: -14px;
+   margin-left: 20px;
+   margin-right: 50px;
+   background-color: #D4D4D4;
+   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+ }
+ 
 .highlight pre { background-color: #EDEDED;   padding: 15px; margin-left: 20px;
-  margin-right: 50px;
+    margin-right: 50px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      line-height: 130%;
+    line-height: 130%;
 }
 
 
@@ -205,6 +214,12 @@ ul.changelog > li {
     #features h4  { font-size: 18px; color: black; }
     #features .s4 { font-size: 14px; line-height: 1.3; color: #888; padding: 15px; }
 
-.shadow { 
+.shadow {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-description
+{
+  color: #ADADAD;
+padding-left: 22px;
 }
