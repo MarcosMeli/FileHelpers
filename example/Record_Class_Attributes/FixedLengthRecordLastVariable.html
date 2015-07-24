@@ -14,16 +14,16 @@ permalink: /example/Record_Class_Attributes/FixedLengthRecordLastVariable/
 <div class='highlight-title'> Example.cs</div>
 {% highlight csharp %}
 
-            var engine = new FixedFileEngine<Customer>();
-            Customer[] result = engine.ReadFile("input.txt");
+var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile("input.txt");
 
-            foreach (var detail in result) {
-                this.Console.WriteLine(" Client: {0},  Date: {1}",
-                    detail.CustId,
-                    detail.AddedDate.ToString("dd-MM-yyyy"));
-            }
+foreach (var detail in result) {
+    this.Console.WriteLine(" Client: {0},  Date: {1}",
+        detail.CustId,
+        detail.AddedDate.ToString("dd-MM-yyyy"));
+}
 
-            
+
 {%  endhighlight %}
 
 
@@ -31,22 +31,22 @@ permalink: /example/Record_Class_Attributes/FixedLengthRecordLastVariable/
 <div class='highlight-title'> RecordClass.cs</div>
 {% highlight csharp %}
 
-        [FixedLengthRecord(FixedMode.AllowLessChars)]
-        public class Customer
-        {
-            [FieldFixedLength(5)]
-            public int CustId;
+[FixedLengthRecord(FixedMode.AllowLessChars)]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
 
-            [FieldFixedLength(30)]
-            [FieldTrim(TrimMode.Both)]
-            public string Name;
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
 
-            [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.DateMultiFormat, "ddMMyyyy", "MMyyyy")]
-            public DateTime AddedDate;
-        }
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.DateMultiFormat, "ddMMyyyy", "MMyyyy")]
+    public DateTime AddedDate;
+}
 
-        
+
 {%  endhighlight %}
 
 

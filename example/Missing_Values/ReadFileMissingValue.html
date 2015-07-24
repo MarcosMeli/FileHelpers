@@ -24,20 +24,20 @@ permalink: /example/Missing_Values/ReadFileMissingValue/
 <div class='highlight-title'> RecordClass.cs</div>
 {% highlight csharp %}
 
-        [DelimitedRecord("|")]
-        public class Orders
-        {
-            public int OrderID;
+[DelimitedRecord("|")]
+public class Orders
+{
+    public int OrderID;
 
-            public string CustomerID;
+    public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime OrderDate;
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime OrderDate;
 
-            public decimal Freight;
-        }
+    public decimal Freight;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -45,15 +45,15 @@ permalink: /example/Missing_Values/ReadFileMissingValue/
 <div class='highlight-title'> Example.cs</div>
 {% highlight csharp %}
 
-            var engine = new FileHelperEngine<Orders>();
-            var records = engine.ReadFile("Input.txt");
+var engine = new FileHelperEngine<Orders>();
+var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records) {
-                Console.WriteLine(record.CustomerID);
-                Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
-                Console.WriteLine(record.Freight);
-            }
-            
+foreach (var record in records) {
+    Console.WriteLine(record.CustomerID);
+    Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
+    Console.WriteLine(record.Freight);
+}
+
 {%  endhighlight %}
 
 

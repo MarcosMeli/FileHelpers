@@ -12,14 +12,16 @@
  }
 
 .highlight-title {
-   padding-left: 15px;
-   margin-bottom: -14px;
-   margin-left: 20px;
-   margin-right: 50px;
-   background-color: #D4D4D4;
-   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 15px;
+  margin-bottom: -14px;
+  margin-left: 20px;
+  margin-right: 50px;
+  background-color: rgb(207, 217, 224);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  font-family: Consolas, monospace, monospace;
+  color: gray;
  }
- 
+
 .highlight pre { background-color: #EDEDED;   padding: 15px; margin-left: 20px;
     margin-right: 50px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

@@ -14,28 +14,28 @@ permalink: /example/Advanced/MultipleDelimiters/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Run an example of writing a delimited file and 
-        /// changing the delimiter to show how it is done.
-        /// </summary>
-        public override void Run()
-        {
-            var customers = CreateCustomers();
+/// <summary>
+/// Run an example of writing a delimited file and 
+/// changing the delimiter to show how it is done.
+/// </summary>
+public override void Run()
+{
+    var customers = CreateCustomers();
 
-            var engine = new DelimitedFileEngine<CustomersVerticalBar>();
-            //  write out customers using a vertical bar delimiter (default)
-            engine.WriteFile("Out_Vertical.txt", customers);
+    var engine = new DelimitedFileEngine<CustomersVerticalBar>();
+    //  write out customers using a vertical bar delimiter (default)
+    engine.WriteFile("Out_Vertical.txt", customers);
 
-            // Change the delimiter to semicolon and write that out
-            engine.Options.Delimiter = ";";
-            engine.WriteFile("Out_SemiColon.txt", customers);
+    // Change the delimiter to semicolon and write that out
+    engine.Options.Delimiter = ";";
+    engine.WriteFile("Out_SemiColon.txt", customers);
 
-            // Change the delimiter to a tab and write that out
-            engine.Options.Delimiter = "\t";
-            engine.WriteFile("Out_Tab.txt", customers);
-        }
+    // Change the delimiter to a tab and write that out
+    engine.Options.Delimiter = "\t";
+    engine.WriteFile("Out_Tab.txt", customers);
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -70,31 +70,31 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
 <div class='highlight-title'> CustomersVerticalBar.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Order of fields in the class is the same as the order in the file
-        /// </remarks>
-        [DelimitedRecord("|")]
-        public class CustomersVerticalBar
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public string ContactTitle;
-            public string Address;
-            public string City;
-            public string Country;
+/// <summary>
+/// Sample class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Order of fields in the class is the same as the order in the file
+/// </remarks>
+[DelimitedRecord("|")]
+public class CustomersVerticalBar
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public string ContactTitle;
+    public string Address;
+    public string City;
+    public string Country;
 
-            //-> To display in the PropertyGrid.
-            public override string ToString()
-            {
-                return CustomerID + " - " + CompanyName + ", " + ContactName;
-            }
-        }
+    //-> To display in the PropertyGrid.
+    public override string ToString()
+    {
+        return CustomerID + " - " + CompanyName + ", " + ContactName;
+    }
+}
 
-        
+
 {%  endhighlight %}
 
 

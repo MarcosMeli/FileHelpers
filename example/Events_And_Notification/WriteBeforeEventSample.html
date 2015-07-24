@@ -14,28 +14,28 @@ permalink: /example/Events_And_Notification/WriteBeforeEventSample/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Run a record through engine using the write event to filter out unwanted details
-        /// </summary>
-        public override void Run()
-        {
-            var engine = new FileHelperEngine<OrdersFixed>();
+/// <summary>
+/// Run a record through engine using the write event to filter out unwanted details
+/// </summary>
+public override void Run()
+{
+    var engine = new FileHelperEngine<OrdersFixed>();
 
-            var result = engine.ReadFile("Input.txt");
+    var result = engine.ReadFile("Input.txt");
 
-            //  add our filter logic.
-            engine.BeforeWriteRecord += BeforeWriteEvent;
-            engine.WriteFile("output.txt", result);
-        }
+    //  add our filter logic.
+    engine.BeforeWriteRecord += BeforeWriteEvent;
+    engine.WriteFile("output.txt", result);
+}
 
-        private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixed> e)
-        {
-            //  We only want clients with large frieght values
-            if (e.Record.Freight < 40)
-                e.SkipThisRecord = true;
-        }
+private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixed> e)
+{
+    //  We only want clients with large frieght values
+    if (e.Record.Freight < 40)
+        e.SkipThisRecord = true;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -64,27 +64,27 @@ permalink: /example/Events_And_Notification/WriteBeforeEventSample/
 <div class='highlight-title'> Report layout.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Layout of the records we want for the report in Input.txt
-        /// </summary>
-        [FixedLengthRecord(FixedMode.AllowVariableLength)]
-        [IgnoreEmptyLines]
-        public class OrdersFixed
-        {
-            [FieldFixedLength(7)]
-            public int OrderID;
+/// <summary>
+/// Layout of the records we want for the report in Input.txt
+/// </summary>
+[FixedLengthRecord(FixedMode.AllowVariableLength)]
+[IgnoreEmptyLines]
+public class OrdersFixed
+{
+    [FieldFixedLength(7)]
+    public int OrderID;
 
-            [FieldFixedLength(8)]
-            public string CustomerID;
+    [FieldFixedLength(8)]
+    public string CustomerID;
 
-            [FieldFixedLength(8)]
-            public DateTime OrderDate;
+    [FieldFixedLength(8)]
+    public DateTime OrderDate;
 
-            [FieldFixedLength(11)]
-            public decimal Freight;
-        }
+    [FieldFixedLength(11)]
+    public decimal Freight;
+}
 
-        
+
 {%  endhighlight %}
 
 

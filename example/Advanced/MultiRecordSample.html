@@ -33,29 +33,29 @@ permalink: /example/Advanced/MultiRecordSample/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// The idea of this engine is to parse files with different record types
-        /// (this engine doesn't use any hierarical structure like the
-        /// master-details, all the records are in linear relation for it).
-        /// With the MultiRecordEngine you can parse also mixed delimited and
-        /// fixed length records.
-        /// </summary>
-        public override void Run()
-        {
-            MultiRecordEngine engine;
+/// <summary>
+/// The idea of this engine is to parse files with different record types
+/// (this engine doesn't use any hierarical structure like the
+/// master-details, all the records are in linear relation for it).
+/// With the MultiRecordEngine you can parse also mixed delimited and
+/// fixed length records.
+/// </summary>
+public override void Run()
+{
+    MultiRecordEngine engine;
 
-            engine = new MultiRecordEngine(typeof (Orders),
-                typeof (Customer),
-                typeof (SampleType));
-            engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+    engine = new MultiRecordEngine(typeof (Orders),
+        typeof (Customer),
+        typeof (SampleType));
+    engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
-            object[] res = engine.ReadFile("Input.txt");
+    object[] res = engine.ReadFile("Input.txt");
 
-            foreach (var rec in res)
-                this.Console.WriteLine(res.ToString());
-        }
+    foreach (var rec in res)
+        this.Console.WriteLine(res.ToString());
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -63,27 +63,27 @@ permalink: /example/Advanced/MultiRecordSample/
 <div class='highlight-title'> Selector.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// This is the selector that determines the record type based on
-        /// whatever criteria you write
-        /// </summary>
-        /// <param name="engine">Engine that is processing file</param>
-        /// <param name="record">Record read from input</param>
-        /// <returns>Record to accept this record</returns>
-        private Type CustomSelector(MultiRecordEngine engine, string record)
-        {
-            if (record.Length == 0)
-                return null;
+/// <summary>
+/// This is the selector that determines the record type based on
+/// whatever criteria you write
+/// </summary>
+/// <param name="engine">Engine that is processing file</param>
+/// <param name="record">Record read from input</param>
+/// <returns>Record to accept this record</returns>
+private Type CustomSelector(MultiRecordEngine engine, string record)
+{
+    if (record.Length == 0)
+        return null;
 
-            if (Char.IsLetter(record[0]))
-                return typeof (Customer);
-            else if (record.Length == 14)
-                return typeof (SampleType);
-            else
-                return typeof (Orders);
-        }
+    if (Char.IsLetter(record[0]))
+        return typeof (Customer);
+    else if (record.Length == 14)
+        return typeof (SampleType);
+    else
+        return typeof (Orders);
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -91,31 +91,31 @@ permalink: /example/Advanced/MultiRecordSample/
 <div class='highlight-title'> Customer.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Order of fields in the class is the same as the order in the file
-        /// </remarks>
-        [DelimitedRecord(";")]
-        public class Customer
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public string ContactTitle;
-            public string Address;
-            public string City;
-            public string Country;
+/// <summary>
+/// Sample class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Order of fields in the class is the same as the order in the file
+/// </remarks>
+[DelimitedRecord(";")]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public string ContactTitle;
+    public string Address;
+    public string City;
+    public string Country;
 
-            //-> To display in the PropertyGrid.
-            public override string ToString()
-            {
-                return CustomerID + " - " + CompanyName + ", " + ContactName;
-            }
-        }
+    //-> To display in the PropertyGrid.
+    public override string ToString()
+    {
+        return CustomerID + " - " + CompanyName + ", " + ContactName;
+    }
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -126,28 +126,28 @@ permalink: /example/Advanced/MultiRecordSample/
 <div class='highlight-title'> SampleType.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample class that is Fixed length and has vrious data
-        /// </summary>
-        [FixedLengthRecord]
-        public class SampleType
-        {
-            [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime Field1;
+/// <summary>
+/// Sample class that is Fixed length and has vrious data
+/// </summary>
+[FixedLengthRecord]
+public class SampleType
+{
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime Field1;
 
-            [FieldFixedLength(3)]
-            [FieldAlign(AlignMode.Left, ' ')]
-            [FieldTrim(TrimMode.Both)]
-            public string Field2;
+    [FieldFixedLength(3)]
+    [FieldAlign(AlignMode.Left, ' ')]
+    [FieldTrim(TrimMode.Both)]
+    public string Field2;
 
-            [FieldFixedLength(3)]
-            [FieldAlign(AlignMode.Right, '0')]
-            [FieldTrim(TrimMode.Both)]
-            public int Field3;
-        }
+    [FieldFixedLength(3)]
+    [FieldAlign(AlignMode.Right, '0')]
+    [FieldTrim(TrimMode.Both)]
+    public int Field3;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -155,31 +155,31 @@ permalink: /example/Advanced/MultiRecordSample/
 <div class='highlight-title'> Orders.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample class that is breaks up a vertical bar delimitted file
-        /// </summary>
-        [DelimitedRecord("|")]
-        public class Orders
-        {
-            public int OrderID;
+/// <summary>
+/// Sample class that is breaks up a vertical bar delimitted file
+/// </summary>
+[DelimitedRecord("|")]
+public class Orders
+{
+    public int OrderID;
 
-            public string CustomerID;
+    public string CustomerID;
 
-            public int EmployeeID;
+    public int EmployeeID;
 
-            public DateTime OrderDate;
+    public DateTime OrderDate;
 
-            public DateTime RequiredDate;
+    public DateTime RequiredDate;
 
-            [FieldNullValue(typeof (DateTime), "2005-1-1")]
-            public DateTime ShippedDate;
+    [FieldNullValue(typeof (DateTime), "2005-1-1")]
+    public DateTime ShippedDate;
 
-            public int ShipVia;
+    public int ShipVia;
 
-            public decimal Freight;
-        }
+    public decimal Freight;
+}
 
-        
+
 {%  endhighlight %}
 
 

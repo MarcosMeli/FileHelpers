@@ -31,22 +31,22 @@ permalink: /example/QuickStart/ReadFileFixed/
 <div class='highlight-title'> RecordClass.cs</div>
 {% highlight csharp %}
 
-        [FixedLengthRecord()]
-        public class Customer
-        {
-            [FieldFixedLength(5)]
-            public int CustId;
+[FixedLengthRecord()]
+public class Customer
+{
+    [FieldFixedLength(5)]
+    public int CustId;
 
-            [FieldFixedLength(30)]
-            [FieldTrim(TrimMode.Both)]
-            public string Name;
+    [FieldFixedLength(30)]
+    [FieldTrim(TrimMode.Both)]
+    public string Name;
 
-            [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime AddedDate;
-        }
+    [FieldFixedLength(8)]
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime AddedDate;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -54,13 +54,13 @@ permalink: /example/QuickStart/ReadFileFixed/
 <div class='highlight-title'> Example.cs</div>
 {% highlight csharp %}
 
-            var engine = new FixedFileEngine<Customer>();
-            Customer[] result = engine.ReadFile("input.txt");
+var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile("input.txt");
 
-            foreach (var detail in result)
-                this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
+foreach (var detail in result)
+    this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
 
-            
+
 {%  endhighlight %}
 
 

@@ -14,26 +14,26 @@ permalink: /example/ErrorHandling/ErrorHandlingErrorModeSave/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Run an example of running a file with an error using the
-        /// ErrorMode option to capture bad records and then saving them
-        /// </summary>
-        public override void Run()
-        {
-            var engine = new DelimitedFileEngine<Customer>();
+/// <summary>
+/// Run an example of running a file with an error using the
+/// ErrorMode option to capture bad records and then saving them
+/// </summary>
+public override void Run()
+{
+    var engine = new DelimitedFileEngine<Customer>();
 
-            // Switch error mode on
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+    // Switch error mode on
+    engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            //  This fails with not in enumeration error
-            Customer[] customers = engine.ReadFile("Input.txt");
+    //  This fails with not in enumeration error
+    Customer[] customers = engine.ReadFile("Input.txt");
 
-            if (engine.ErrorManager.HasErrors)
-                engine.ErrorManager.SaveErrors("errors.out");
-            LoadErrors();
-        }
+    if (engine.ErrorManager.HasErrors)
+        engine.ErrorManager.SaveErrors("errors.out");
+    LoadErrors();
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -41,24 +41,24 @@ permalink: /example/ErrorHandling/ErrorHandlingErrorModeSave/
 <div class='highlight-title'> LoadErrors.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Load errors and display on console
-        /// </summary>
-        private void LoadErrors()
-        {
-            // sometime later you can read it back
-            ErrorInfo[] errors = ErrorManager.LoadErrors("errors.out");
+/// <summary>
+/// Load errors and display on console
+/// </summary>
+private void LoadErrors()
+{
+    // sometime later you can read it back
+    ErrorInfo[] errors = ErrorManager.LoadErrors("errors.out");
 
-            // This will display error from line 2 of the file.
-            foreach (var err in errors) {
-                this.Console.WriteLine();
-                this.Console.WriteLine("Error on Line number: {0}", err.LineNumber);
-                this.Console.WriteLine("Record causing the problem: {0}", err.RecordString);
-                this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
-            }
-        }
+    // This will display error from line 2 of the file.
+    foreach (var err in errors) {
+        this.Console.WriteLine();
+        this.Console.WriteLine("Error on Line number: {0}", err.LineNumber);
+        this.Console.WriteLine("Record causing the problem: {0}", err.RecordString);
+        this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
+    }
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -66,22 +66,22 @@ permalink: /example/ErrorHandling/ErrorHandlingErrorModeSave/
 <div class='highlight-title'> Customers with Enum.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample customer class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Notice last feild is our enumerator
-        /// </remarks>
-        [DelimitedRecord("|")]
-        public class Customer
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public CustomerTitle ContactTitle;
-        }
+/// <summary>
+/// Sample customer class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Notice last feild is our enumerator
+/// </remarks>
+[DelimitedRecord("|")]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public CustomerTitle ContactTitle;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -99,17 +99,17 @@ ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 <div class='highlight-title'> TheEnumerator.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Different titles describing position in company
-        /// </summary>
-        public enum CustomerTitle
-        {
-            Owner,
-            SalesRepresentative,
-            MarketingManager
-        }
+/// <summary>
+/// Different titles describing position in company
+/// </summary>
+public enum CustomerTitle
+{
+    Owner,
+    SalesRepresentative,
+    MarketingManager
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -124,15 +124,15 @@ ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 
 <div class='highlight-title'> example_errors_save.html</div>
 {% highlight csharp %}
- <h2>Saving and Loading Errors</h2>
-         * <blockquote>
-         * <p>One interesting feature is the method in the ErrorManager to save the errors to a file,
-         * you can do this as follows:</p>
-         * ${RunEngine.cs}
-         * <p>To load a file with errors you can use the static method:</p>
-         * ${LoadErrors.cs}
-         * </blockquote>
-         
+<h2>Saving and Loading Errors</h2>
+        * <blockquote>
+        * <p>One interesting feature is the method in the ErrorManager to save the errors to a file,
+        * you can do this as follows:</p>
+        * ${RunEngine.cs}
+        * <p>To load a file with errors you can use the static method:</p>
+        * ${LoadErrors.cs}
+        * </blockquote>
+        
 {%  endhighlight %}
 
 

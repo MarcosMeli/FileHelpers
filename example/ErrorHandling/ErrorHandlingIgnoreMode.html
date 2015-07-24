@@ -14,34 +14,34 @@ permalink: /example/ErrorHandling/ErrorHandlingIgnoreMode/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Run an example of running a file with an error using the
-        /// IgnoreMode option to silently drop bad records
-        /// </summary>
-        public override void Run()
-        {
-            var engine = new DelimitedFileEngine<Customer>();
+/// <summary>
+/// Run an example of running a file with an error using the
+/// IgnoreMode option to silently drop bad records
+/// </summary>
+public override void Run()
+{
+    var engine = new DelimitedFileEngine<Customer>();
 
-            // Switch error mode on
-            engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
+    // Switch error mode on
+    engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
 
-            //  This fails with not in enumeration error
-            Customer[] customers = engine.ReadFile("Input.txt");
+    //  This fails with not in enumeration error
+    Customer[] customers = engine.ReadFile("Input.txt");
 
-            // This wont display anything, we have dropped it
-            foreach (var err in engine.ErrorManager.Errors) {
-                Console.WriteLine();
-                Console.WriteLine("Error on Line number: {0}", err.LineNumber);
-                Console.WriteLine("Record causing the problem: {0}", err.RecordString);
-                Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
-            }
+    // This wont display anything, we have dropped it
+    foreach (var err in engine.ErrorManager.Errors) {
+        Console.WriteLine();
+        Console.WriteLine("Error on Line number: {0}", err.LineNumber);
+        Console.WriteLine("Record causing the problem: {0}", err.RecordString);
+        Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
+    }
 
-            // This will display only 3 of the four records
-            foreach (var cust in customers)
-                Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
-        }
+    // This will display only 3 of the four records
+    foreach (var cust in customers)
+        Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -49,22 +49,22 @@ permalink: /example/ErrorHandling/ErrorHandlingIgnoreMode/
 <div class='highlight-title'> Customers with Enum.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample customer class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Notice last feild is our enumerator
-        /// </remarks>
-        [DelimitedRecord("|")]
-        public class Customer
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public CustomerTitle ContactTitle;
-        }
+/// <summary>
+/// Sample customer class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Notice last feild is our enumerator
+/// </remarks>
+[DelimitedRecord("|")]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public CustomerTitle ContactTitle;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -82,28 +82,28 @@ ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 <div class='highlight-title'> TheEnumerator.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Different titles describing position in company
-        /// </summary>
-        public enum CustomerTitle
-        {
-            Owner,
-            SalesRepresentative,
-            MarketingManager
-        }
+/// <summary>
+/// Different titles describing position in company
+/// </summary>
+public enum CustomerTitle
+{
+    Owner,
+    SalesRepresentative,
+    MarketingManager
+}
 
-        
+
 {%  endhighlight %}
 
 
 
 <div class='highlight-title'> example_errors_ignore.html</div>
 {% highlight csharp %}
- <h2>Ignore and Continue Error Handling</h2>
-         * <p>Another option is to ignore the errors and continue. Here is an example:</p>
-         * ${RunEngine.cs}
-         * <p>In the records array you only have the good records.</p>
-         
+<h2>Ignore and Continue Error Handling</h2>
+        * <p>Another option is to ignore the errors and continue. Here is an example:</p>
+        * ${RunEngine.cs}
+        * <p>In the records array you only have the good records.</p>
+        
 {%  endhighlight %}
 
 

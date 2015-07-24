@@ -14,14 +14,14 @@ permalink: /example/Converters/EnumConverter/
 <div class='highlight-title'> CustomerTitle.cs</div>
 {% highlight csharp %}
 
-        public enum CustomerTitle
-        {
-            Owner,
-            SalesRepresentative,
-            MarketingManager
-        }
+public enum CustomerTitle
+{
+    Owner,
+    SalesRepresentative,
+    MarketingManager
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -29,22 +29,22 @@ permalink: /example/Converters/EnumConverter/
 <div class='highlight-title'> RunEngine.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Run an example of writing a delimited file and 
-        /// changing the delimiter to show how it is done.
-        /// </summary>
-        public override void Run()
-        {
-            var engine = new DelimitedFileEngine<Customer>();
+/// <summary>
+/// Run an example of writing a delimited file and 
+/// changing the delimiter to show how it is done.
+/// </summary>
+public override void Run()
+{
+    var engine = new DelimitedFileEngine<Customer>();
 
-            //  Read input records, enumeration automatically converted
-            Customer[] customers = engine.ReadFile("Input.txt");
+    //  Read input records, enumeration automatically converted
+    Customer[] customers = engine.ReadFile("Input.txt");
 
-            foreach (var cust in customers)
-                Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
-        }
+    foreach (var cust in customers)
+        Console.WriteLine("Customer name {0} is a {1}", cust.ContactName, cust.ContactTitle);
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -52,22 +52,22 @@ permalink: /example/Converters/EnumConverter/
 <div class='highlight-title'> Customers with Enum.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Sample customer class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Notice last feild is our enumerator
-        /// </remarks>
-        [DelimitedRecord("|")]
-        public class Customer
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public CustomerTitle ContactTitle;
-        }
+/// <summary>
+/// Sample customer class that is delimited by | default
+/// </summary>
+/// <remarks>
+/// Notice last feild is our enumerator
+/// </remarks>
+[DelimitedRecord("|")]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public CustomerTitle ContactTitle;
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -84,22 +84,22 @@ ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
 
 <div class='highlight-title'> example_enumconverter.html</div>
 {% highlight csharp %}
- <h2>Enum Converter Example</h2>
-         * <blockquote>
-         * <p>Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
-         * <p>Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
-         * converter. The FileHelpers library parses the field and performs a case insensitive
-         * comparison to the enum values and assigns the correct one.</p>
-         * <p>The customer file is an excellent sample:</p>
-         * ${Input.txt}
-         * <p>The enum is:</p>
-         * ${TheEnumerator.cs}
-         * <p>When defining your record class use the enum:</p>
-         * ${Customers with Enum.cs}
-         * <p>Done !! you parse the file with:</p>
-         * ${RunEngine.cs}
-         * </blockquote>
-         
+<h2>Enum Converter Example</h2>
+        * <blockquote>
+        * <p>Sometimes you have a string field in your files that can be better handled if you map it to an enum.</p>
+        * <p>Thanks to <b>Derek Fluker,</b> you can automatically use an enum without defining any
+        * converter. The FileHelpers library parses the field and performs a case insensitive
+        * comparison to the enum values and assigns the correct one.</p>
+        * <p>The customer file is an excellent sample:</p>
+        * ${Input.txt}
+        * <p>The enum is:</p>
+        * ${TheEnumerator.cs}
+        * <p>When defining your record class use the enum:</p>
+        * ${Customers with Enum.cs}
+        * <p>Done !! you parse the file with:</p>
+        * ${RunEngine.cs}
+        * </blockquote>
+        
 {%  endhighlight %}
 
 

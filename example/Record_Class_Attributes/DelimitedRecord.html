@@ -14,22 +14,22 @@ permalink: /example/Record_Class_Attributes/DelimitedRecord/
 <div class='highlight-title'> Example.cs</div>
 {% highlight csharp %}
 
-        /// <summary>
-        /// Execute the engine and get some results
-        /// </summary>
-        public override void Run()
-        {
-            var engine = new FileHelperEngine<Orders>();
-            var records = engine.ReadFile("Input.txt");
+/// <summary>
+/// Execute the engine and get some results
+/// </summary>
+public override void Run()
+{
+    var engine = new FileHelperEngine<Orders>();
+    var records = engine.ReadFile("Input.txt");
 
-            foreach (var record in records) {
-                this.Console.WriteLine(record.CustomerID);
-                this.Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
-                this.Console.WriteLine(record.Freight);
-            }
-        }
+    foreach (var record in records) {
+        this.Console.WriteLine(record.CustomerID);
+        this.Console.WriteLine(record.OrderDate.ToString("dd/MM/yyyy"));
+        this.Console.WriteLine(record.Freight);
+    }
+}
 
-        
+
 {%  endhighlight %}
 
 
@@ -38,23 +38,23 @@ permalink: /example/Record_Class_Attributes/DelimitedRecord/
 {% highlight csharp %}
 
 
-        /// <summary>
-        /// Our class we are reading using FileHelpers,  the record breakdown
-        /// </summary>
-        [DelimitedRecord("|")]
-        public class Orders
-        {
-            public int OrderID;
+/// <summary>
+/// Our class we are reading using FileHelpers,  the record breakdown
+/// </summary>
+[DelimitedRecord("|")]
+public class Orders
+{
+    public int OrderID;
 
-            public string CustomerID;
+    public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            public DateTime OrderDate;
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime OrderDate;
 
-            public decimal Freight;
-        }
+    public decimal Freight;
+}
 
-        
+
 {%  endhighlight %}
 
 
