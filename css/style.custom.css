@@ -255,8 +255,13 @@ ul.examples li:hover > span {
   background-color: #E7EFE7 !important;
 }
 .example-output-high > div > pre {
-  background-color: #EFE5E1 !important;
+  background-color: #F3EDEA !important;
 }
+
+.example-code-high > div > pre {
+  background-color: #F2F6FC !important;
+}
+
 
 .example-console:after {
   content: "\f108";
