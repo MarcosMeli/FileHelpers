@@ -277,8 +277,8 @@ namespace FileHelpers.Dynamic
             if (mFieldOptional)
                 attbs.AddAttribute("FieldOptional()");
 
-            if (mFieldHidden)
-                attbs.AddAttribute("FieldHidden()");
+            if (mFieldNotInFile)
+                attbs.AddAttribute("FieldNotInFile()");
 
             if (mFieldValueDiscarded)
                 attbs.AddAttribute("FieldValueDiscarded()");
@@ -353,7 +353,7 @@ namespace FileHelpers.Dynamic
             Converter.WriteXml(writer);
 
             writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
-            writer.WriteElement("FieldHidden", this.FieldHidden);
+            writer.WriteElement("FieldNotInFile", this.FieldNotInFile);
             writer.WriteElement("FieldOptional", this.FieldOptional);
             writer.WriteElement("FieldValueDiscarded", this.FieldValueDiscarded);
             writer.WriteElement("FieldInNewLine", this.FieldInNewLine);
@@ -399,7 +399,7 @@ namespace FileHelpers.Dynamic
             if (ele != null)
                 Visibility = (NetVisibility) Enum.Parse(typeof (NetVisibility), ele.InnerText);
 
-            FieldHidden = node["FieldHidden"] != null || node["FieldNotInFile"] != null || node["FieldIgnored"] != null;
+            FieldNotInFile = node["FieldIgnored"] != null || node["FieldNotInFile"] != null;
             FieldValueDiscarded = node["FieldValueDiscarded"] != null;
             FieldOptional = node["FieldOptional"] != null;
             FieldInNewLine = node["FieldInNewLine"] != null;

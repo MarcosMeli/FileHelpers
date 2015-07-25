@@ -6,21 +6,22 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.CommonTests
 {
     [TestFixture]
-    public class FieldNotEmpty
+    public class FieldValidateIsNotEmpty
     {
         [Test]
-        public void FieldNotEmpty1()
+        public void FieldValidateIsNotEmpty1()
         {
-            Assert.DoesNotThrow(() => FileTest.Good.FieldNotEmpty1.ReadWithEngine<NotEmptyType>());
+            Assert.DoesNotThrow(() => FileTest.Good.FieldValidateIsNotEmpty1.ReadWithEngine<IsNotEmptyType>());
         }
     }
 
     [DelimitedRecord(",")]
-    public class NotEmptyType {
-        [FieldNotEmpty]
+    public class IsNotEmptyType 
+    {
+        [FieldValidateIsNotEmpty()]
         public int CustomerID;
 
-        [FieldNotEmpty]
+        [FieldValidateIsNotEmpty()]
         public string CompanyName;
 
         public string ContactName;
@@ -28,7 +29,7 @@ namespace FileHelpers.Tests.CommonTests
         [FieldNullValue(true)]
         public bool IsActive;
 
-        [FieldNotEmpty]
+        [FieldValidateIsNotEmpty()]
         public DateTime? CreatedDate;
     }
 }
