@@ -57,11 +57,6 @@ permalink: /contribute/
   $(document).ready(function() {
     var md = new Remarkable({
     linkify:      true,        // Autoconvert URL-like text to links
-
-    // Enable some language-neutral replacement + quotes beautification
-    typographer:  false,
-
-
    });
 
     var issueToHtml = function(issue)

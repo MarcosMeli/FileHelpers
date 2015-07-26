@@ -245,6 +245,7 @@ ul.issues li:hover > span {
 ul.issues li > span {
   display: block;
   color: rgb(160, 159, 159);
+  padding-left: 20px;
 }
 
 .example-code{
