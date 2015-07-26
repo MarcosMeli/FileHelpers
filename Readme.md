@@ -1,5 +1,4 @@
-FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-===========
+# FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
 <a href="http://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
 
@@ -15,8 +14,8 @@ www.filehelpers.net
  
   If you want to start using the library go directly to the Quick Start Guide in the CHM.
 
-Build Status
----------
+### Build Status
+
 
 TeamCity: master: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersMaster.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersMaster) stable: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersStable)  Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=coverage_dotnet)
 
@@ -25,8 +24,8 @@ Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.sv
 AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master)   [![Coverage Status](https://coveralls.io/repos/MarcosMeli/FileHelpers/badge.svg?branch=master&service=github)](https://coveralls.io/github/MarcosMeli/FileHelpers?branch=master)
 
 
-Downloads
----------
+###Downloads
+
 
 You can **download** the last stable version from:
 
@@ -37,8 +36,8 @@ You can **download** the last stable version from:
     Download the zip with the format: FileHelpers_x.x.x_Build.zip
 
 
-Delimited Example 
------------------
+###Delimited Example 
+
 
 Source Data
 ```
@@ -77,8 +76,8 @@ Usage
 
 [Check the QuickStart](http://www.filehelpers.net/quickstart/) and [More Examples ](http://www.filehelpers.net/examples/)
 
-Who needs the File Helpers Library ? 
-------------------------------------
+###Who needs the File Helpers Library ? 
+
 
   In almost every project there is a need to read/write data from/to a file of a specified format.
 
@@ -89,18 +88,19 @@ Who needs the File Helpers Library ?
   This library aims to provide an easy and reliable way to accomplish this task.
 
 
-License
--------
+### License
 
  The FileHelpers are released under the **MIT License**
  
  FileHelpers Library source and binaries are **completely free for commercial and non commercial use**
 
-Sponsors
------------------
+###Sponsors
 
  Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?tab=projectOverview&projectId=FileHelpers)
 
  We have also the awesome .Net tools from [JetBrains](http://www.jetbrains.com/).
 
- ![YouTrack and TeamCity](http://www.jetbrains.com/img/banners/Codebetter300x250.png)
+[![Resharper](http://www.filehelpers.net/images/tools_resharper.gif)](http://www.jetbrains.com/resharper/)
+[![TeamCity](http://www.filehelpers.net//images/tools_teamcity.gif)](http://www.jetbrains.com/teamcity/)
+[![dotCover](http://www.filehelpers.net//images/tools_dotcover.gif)](http://www.jetbrains.com/dotcover/)
+[![dotTrace](http://www.filehelpers.net//images/tools_dottrace.gif)](http://www.jetbrains.com/dottrace/)
