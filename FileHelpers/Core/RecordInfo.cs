@@ -8,11 +8,13 @@ using FileHelpers.Events;
 
 namespace FileHelpers
 {
+
     /// <summary>An internal class used to store information about the Record Type.</summary>
     /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
-    internal sealed partial class RecordInfo
+    internal sealed partial class RecordInfo 
         : IRecordInfo
     {
+
         // --------------------------------------
         // Constructor and Init Methods
 
@@ -48,7 +50,10 @@ namespace FileHelpers
         /// </summary>
         public int FieldCount
         {
-            get { return this.Fields.Length; }
+            get
+            {
+                return this.Fields.Length;
+            }
         }
 
         /// <summary>
@@ -80,7 +85,7 @@ namespace FileHelpers
         /// Can the comment prefix have leading whitespace
         /// </summary>
         public bool CommentAnyPlace { get; set; }
-
+        
         /// <summary>
         /// Include or skip a record based upon a defined RecordCondition interface
         /// </summary>
@@ -111,12 +116,13 @@ namespace FileHelpers
         {
             get { return Fields[0] is DelimitedField; }
         }
-
         #endregion
 
         #region "  Constructor "
 
-        private RecordInfo() {}
+        private RecordInfo()
+        {
+        }
 
         /// <summary>
         /// Read the attributes of the class and create an array
@@ -143,18 +149,16 @@ namespace FileHelpers
             //Debug.Assert(false, "TODO: Add RecordFilter to the engine.");
             var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
 
-            if (recordAttribute == null) {
+            if (recordAttribute == null)
                 throw new BadUsageException(Messages.Errors.ClassWithOutRecordAttribute
-                    .ClassName(RecordType.Name)
-                    .Text);
-            }
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
 
-            if (ReflectionHelper.GetDefaultConstructor(RecordType) == null) {
+            if (ReflectionHelper.GetDefaultConstructor(RecordType) == null)
                 throw new BadUsageException(Messages.Errors.ClassWithOutDefaultConstructor
-                    .ClassName(RecordType.Name)
-                    .Text);
-            }
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
             Attributes.WorkWithFirst<IgnoreFirstAttribute>(
                 RecordType,
@@ -166,41 +170,43 @@ namespace FileHelpers
 
             Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(
                 RecordType,
-                a => {
-                    IgnoreEmptyLines = true;
-                    IgnoreEmptySpaces = a.IgnoreSpaces;
-                });
+                a =>
+                    {
+                        IgnoreEmptyLines = true;
+                        IgnoreEmptySpaces = a.IgnoreSpaces;
+                    });
 
 
-#pragma warning disable CS0618 // Type or member is obsolete
             Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
-#pragma warning restore CS0618 // Type or member is obsolete
                 RecordType,
-                a => {
-                    IgnoreEmptyLines = true;
-                    CommentMarker = a.CommentMarker;
-                    CommentAnyPlace = a.AnyPlace;
-                });
+                a =>
+                    {
+                        IgnoreEmptyLines = true;
+                        CommentMarker = a.CommentMarker;
+                        CommentAnyPlace = a.AnyPlace;
+                    });
 
 
             Attributes.WorkWithFirst<ConditionalRecordAttribute>(
                 RecordType,
-                a => {
-                    RecordCondition = a.Condition;
-                    RecordConditionSelector = a.ConditionSelector;
+                a =>
+                    {
+                        RecordCondition = a.Condition;
+                        RecordConditionSelector = a.ConditionSelector;
 
-                    if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
-                        RecordCondition == RecordCondition.IncludeIfMatchRegex) {
-                        RecordConditionRegEx = new Regex(RecordConditionSelector,
-                            RegexOptions.Compiled | RegexOptions.IgnoreCase |
-                            RegexOptions.ExplicitCapture);
-                    }
-                });
+                        if (RecordCondition == RecordCondition.ExcludeIfMatchRegex ||
+                            RecordCondition == RecordCondition.IncludeIfMatchRegex)
+                        {
+                            RecordConditionRegEx = new Regex(RecordConditionSelector,
+                                                             RegexOptions.Compiled | RegexOptions.IgnoreCase |
+                                                             RegexOptions.ExplicitCapture);
+                        }
+                    });
 
-            if (CheckInterface(RecordType, typeof (INotifyRead)))
+            if (CheckGenericInterface(RecordType, typeof(INotifyRead<>), RecordType))
                 NotifyRead = true;
 
-            if (CheckInterface(RecordType, typeof (INotifyWrite)))
+            if (CheckGenericInterface(RecordType, typeof(INotifyWrite<>), RecordType))
                 NotifyWrite = true;
 
             // Create fields
@@ -210,13 +216,13 @@ namespace FileHelpers
 
             Fields = CreateCoreFields(fields, recordAttribute);
 
-            if (FieldCount == 0) {
+            if (FieldCount == 0)
                 throw new BadUsageException(Messages.Errors.ClassWithOutFields
-                    .ClassName(RecordType.Name)
-                    .Text);
-            }
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
-            if (recordAttribute is FixedLengthRecordAttribute) {
+            if (recordAttribute is FixedLengthRecordAttribute)
+            {
                 // Defines the initial size of the StringBuilder
                 SizeHint = 0;
                 for (int i = 0; i < FieldCount; i++)
@@ -225,6 +231,7 @@ namespace FileHelpers
         }
 
         #endregion
+
 
         #region "  CreateFields  "
 
@@ -244,25 +251,29 @@ namespace FileHelpers
 
             // count of normal fields
             var genericFields = 0;
-            for (int i = 0; i < fields.Count; i++) {
+            for (int i = 0; i < fields.Count; i++)
+            {
                 FieldBase currentField = FieldBase.CreateField(fields[i], recordAttribute);
-                if (currentField == null)
+                if (currentField == null) 
                     continue;
 
-                if (currentField.FieldInfo.IsDefined(typeof (CompilerGeneratedAttribute), false))
+                if (currentField.FieldInfo.IsDefined(typeof(CompilerGeneratedAttribute), false))
                     automaticFields++;
                 else
                     genericFields++;
 
                 // Add to the result
                 resFields.Add(currentField);
-
+                
                 if (resFields.Count > 1)
+                {
                     CheckForOrderProblems(currentField, resFields);
+                }
+
             }
 
-            if (automaticFields > 0 &&
-                genericFields > 0 && SumOrder(resFields) == 0) {
+            if (automaticFields > 0 && genericFields > 0)
+            {
                 throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
                     .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
                     .Text);
@@ -270,7 +281,8 @@ namespace FileHelpers
 
             SortFieldsByOrder(resFields);
 
-            if (resFields.Count > 0) {
+            if (resFields.Count > 0)
+            {
                 resFields[0].IsFirst = true;
                 resFields[resFields.Count - 1].IsLast = true;
             }
@@ -278,16 +290,6 @@ namespace FileHelpers
             CheckForOptionalAndArrayProblems(resFields);
 
             return resFields.ToArray();
-        }
-
-        private static int SumOrder(List<FieldBase> fields)
-        {
-            int res = 0;
-            foreach (var field in fields)
-            {
-                res += field.FieldOrder ?? 0;
-            }
-            return res;
         }
 
         /// <summary>
@@ -298,7 +300,8 @@ namespace FileHelpers
         /// <param name="resFields">List of fields to extract</param>
         private static void CheckForOptionalAndArrayProblems(List<FieldBase> resFields)
         {
-            for (int i = 0; i < resFields.Count; i++) {
+            for (int i = 0; i < resFields.Count; i++)
+            {
                 var currentField = resFields[i];
 
                 // Dont check the first field
@@ -311,29 +314,28 @@ namespace FileHelpers
 
                 // Check for optional problems.  Previous is optional but current is not
                 if (prevField.IsOptional
-                    &&
-                    currentField.IsOptional == false
-                    &&
-                    currentField.InNewLine == false) {
+                    && currentField.IsOptional == false
+                    && currentField.InNewLine == false)
+                {
                     throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
-                        .FieldName(prevField.FieldInfo.Name)
-                        .Text);
+                                                    .FieldName(prevField.FieldInfo.Name)
+                                                    .Text);
                 }
 
                 // Check for an array array in the middle of a record that is not a fixed length
-                if (prevField.IsArray) {
-                    if (prevField.ArrayMinLength == Int32.MinValue) {
+                if (prevField.IsArray)
+                {
+                    if (prevField.ArrayMinLength == Int32.MinValue)
                         throw new BadUsageException(Messages.Errors.MissingFieldArrayLenghtInNotLastField
-                            .FieldName(prevField.FieldInfo.Name)
-                            .Text);
-                    }
+                                                        .FieldName(prevField.FieldInfo.Name)
+                                                        .Text);
 
-                    if (prevField.ArrayMinLength != prevField.ArrayMaxLength) {
+                    if (prevField.ArrayMinLength != prevField.ArrayMaxLength)
                         throw new BadUsageException(Messages.Errors.SameMinMaxLengthForArrayNotLastField
-                            .FieldName(prevField.FieldInfo.Name)
-                            .Text);
-                    }
+                                                        .FieldName(prevField.FieldInfo.Name)
+                                                        .Text);
                 }
+
             }
         }
 
@@ -344,7 +346,7 @@ namespace FileHelpers
         private static void SortFieldsByOrder(List<FieldBase> resFields)
         {
             if (resFields.FindAll(x => x.FieldOrder.HasValue).Count > 0)
-                resFields.Sort((x, y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
+                resFields.Sort( (x,y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
         }
 
         /// <summary>
@@ -354,26 +356,25 @@ namespace FileHelpers
         /// <param name="resFields">Other fields we have found</param>
         private static void CheckForOrderProblems(FieldBase currentField, List<FieldBase> resFields)
         {
-            if (currentField.FieldOrder.HasValue) {
-                // If one field has order number set, all others must also have an order number
-                var fieldWithoutOrder = resFields.Find(x => x.FieldOrder.HasValue == false);
-                if (fieldWithoutOrder != null) {
+            if (currentField.FieldOrder.HasValue)
+            {
+                var othersWithoutOrder = resFields.FindAll(x => x.FieldOrder.HasValue == false);
+                if (othersWithoutOrder.Count > 0)
                     throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                        .FieldName(fieldWithoutOrder.FieldInfo.Name)
-                        .Text);
-                }
+                                                    .FieldName(othersWithoutOrder[0].FieldInfo.Name)
+                                                    .Text);
 
-                // No other field should have the same order number
-                var fieldWithSameOrder =
-                    resFields.Find(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
+                // Same Number
+                var otherWithSameOrder =
+                    resFields.FindAll(x => x != currentField && x.FieldOrder == currentField.FieldOrder);
 
-                if (fieldWithSameOrder != null)
-                {
+                if (otherWithSameOrder.Count > 0)
                     throw new BadUsageException(Messages.Errors.SameFieldOrder
-                        .FieldName1(currentField.FieldInfo.Name)
-                        .FieldName2(fieldWithSameOrder.FieldInfo.Name)
-                        .Text);
-                }
+                                                    .FieldName1(currentField.FieldInfo.Name)
+                                                    .FieldName2(otherWithSameOrder[0].FieldInfo.Name)
+                                                    .Text);
+
+
             }
             else {
                 // No other field should have order number set
@@ -382,22 +383,14 @@ namespace FileHelpers
                 {
                     var autoPropertyName = FieldBase.AutoPropertyName(currentField.FieldInfo);
 
-                    if (string.IsNullOrEmpty(autoPropertyName))
-                        throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                            .FieldName(currentField.FieldInfo.Name)
-                            .Text);
-                    else
-                        throw new BadUsageException(Messages.Errors.PartialFieldOrderInAutoProperty
-                            .PropertyName(autoPropertyName)
-                            .Text);
-                }
             }
         }
 
         #endregion
 
-        #region " FieldIndexes  "
 
+        #region " FieldIndexes  "
+        
         /// <summary>
         /// Get the index number of the fieldname in the field list
         /// </summary>
@@ -405,25 +398,21 @@ namespace FileHelpers
         /// <returns>Index in field list</returns>
         public int GetFieldIndex(string fieldName)
         {
-            if (mMapFieldIndex == null) {
-                // Initialize field index map
+            if (mMapFieldIndex == null)
+            {
                 mMapFieldIndex = new Dictionary<string, int>(FieldCount, StringComparer.Ordinal);
                 for (int i = 0; i < FieldCount; i++)
                 {
                     mMapFieldIndex.Add(Fields[i].FieldInfo.Name, i);
-                    if (Fields[i].FieldInfo.Name != Fields[i].FieldFriendlyName)
-                        mMapFieldIndex.Add(Fields[i].FieldFriendlyName, i);
                 }
-                
             }
 
             int res;
-            if (!mMapFieldIndex.TryGetValue(fieldName, out res)) {
+            if (!mMapFieldIndex.TryGetValue(fieldName, out res))
                 throw new BadUsageException(Messages.Errors.FieldNotFound
-                    .FieldName(fieldName)
-                    .ClassName(RecordType.Name)
-                    .Text);
-            }
+                                                .FieldName(fieldName)
+                                                .ClassName(RecordType.Name)
+                                                .Text);
 
             return res;
         }
@@ -439,7 +428,8 @@ namespace FileHelpers
         /// <returns>Field information</returns>
         public FieldInfo GetFieldInfo(string name)
         {
-            foreach (var field in Fields) {
+            foreach (var field in Fields)
+            {
                 if (field.FieldInfo.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                     return field.FieldInfo;
             }
@@ -485,46 +475,49 @@ namespace FileHelpers
 
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
+            {
                 res.Fields[i] = (FieldBase) Fields[i].Clone();
+            }
 
             return res;
         }
-
-        //internal static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
-        //{
-        //    foreach (var inteImp in type.GetInterfaces()) {
-        //        if (inteImp.IsGenericType &&
-        //            inteImp.GetGenericTypeDefinition() == interfaceType) {
-        //            var args = inteImp.GetGenericArguments();
-
-        //            if (args.Length == genericsArgs.Length) {
-        //                bool fail = false;
-        //                for (int i = 0; i < args.Length; i++) {
-        //                    if (args[i] != genericsArgs[i]) {
-        //                        fail = true;
-        //                        break;
-        //                    }
-        //                }
-        //                if (!fail)
-        //                    return true;
-        //            }
-        //            throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
-        //                                        interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
-        //        }
-        //    }
-        //    return false;
-        //}
-
 
         /// <summary>
         /// Check whether the type implements the INotifyRead or INotifyWrite interfaces
         /// </summary>
         /// <param name="type">Type to check interface</param>
         /// <param name="interfaceType">Interface generic type we are checking for eg INotifyRead&lt;&gt;</param>
+        /// <param name="genericsArgs">Arguments to pass</param>
         /// <returns>Whether we found interface</returns>
-        internal static bool CheckInterface(Type type, Type interfaceType)
+        public static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
         {
-            return type.GetInterface(interfaceType.FullName) != null;
+            foreach (var inteImp in type.GetInterfaces())
+            {
+                if (inteImp.IsGenericType &&
+                    inteImp.GetGenericTypeDefinition() == interfaceType)
+                {
+                    var args = inteImp.GetGenericArguments();
+                    
+                    if (args.Length == genericsArgs.Length)
+                    {
+                        bool fail = false;
+                        for (int i = 0; i < args.Length; i++)
+                        {
+                            if (args[i] != genericsArgs[i])
+                            {
+                                fail = true;
+                                break;
+                            }
+                        }
+                        if (!fail)
+                            return true;
+
+                    }
+                    throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
+                                                interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
+                }
+            }
+            return false;
         }
     }
 }

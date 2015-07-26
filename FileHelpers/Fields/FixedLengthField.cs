@@ -17,17 +17,17 @@ namespace FileHelpers
         /// <summary>
         /// Field length of this field in the record
         /// </summary>
-        internal int FieldLength { get; private set; }
+        public int FieldLength { get; private set; }
 
         /// <summary>
         /// Alignment of this record
         /// </summary>
-        internal FieldAlignAttribute Align { get; private set; }
+        public FieldAlignAttribute Align { get; private set; }
 
         /// <summary>
         /// Whether we allow more or less characters to be handled
         /// </summary>
-        internal FixedMode FixedMode { get; set; }
+        public FixedMode FixedMode { get; internal set; }
 
         #endregion
 
