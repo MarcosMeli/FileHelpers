@@ -234,6 +234,19 @@ ul.examples li:hover > span {
       color: black;
 }
 
+ul.issues li:hover {
+      background-color: #F7F4F1;
+}
+
+ul.issues li:hover > span {
+      color: black;
+}
+
+ul.issues li > span {
+  display: block;
+  color: rgb(160, 159, 159);
+}
+
 .example-code{
   color: #5E8098;
 }
