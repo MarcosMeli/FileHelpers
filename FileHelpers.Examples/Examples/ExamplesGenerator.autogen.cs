@@ -16,7 +16,7 @@ namespace Examples
         {
 		    var examples = new List<ExampleCode>();
             ExampleCode example;
-example = new ExampleCode(new ReadFile(), "Read Delimited File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\10.Basic\10.ReadFileDelimited.cs");
+example = new ExampleCode(new ReadFileDelimited(), "Read Delimited File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\10.Basic\10.ReadFileDelimited.cs");
 example.Description = @"Example of how to read a Delimited File";
 example.AutoRun = true;
 examples.Add(example);
