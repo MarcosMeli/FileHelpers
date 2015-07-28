@@ -13,6 +13,43 @@ permalink: /example/Missing_Values/ReadFileFieldNullValue/
   <h5>Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute</h5>
   <div class='indent'>
 
+<p>If your files contain a field that can be empty</p>
+
+
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
+{% highlight csharp %}
+10248|VINET|04071996|32.38
+10249|TOMSP||11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|03041991|41.34
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+[DelimitedRecord("|")]
+public class Orders
+{
+	public int OrderID;
+
+	public string CustomerID;
+
+	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+	[FieldNullValue(typeof (DateTime), "1900-01-01")]
+	public DateTime OrderDate;
+
+	public decimal Freight;
+}
+
+      
+{%  endhighlight %}
+</div>
+
+
+
 <div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
@@ -33,58 +70,24 @@ foreach (var record in records) {
 
 
 
-<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
-{% highlight csharp %}
-
-[DelimitedRecord("|")]
-public class Orders
-{
-    public int OrderID;
-
-    public string CustomerID;
-
-    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-    [FieldNullValue(typeof (DateTime), "1900-01-01")]
-    public DateTime OrderDate;
-
-    public decimal Freight;
-}
-
-
-{%  endhighlight %}
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
+VINET
+04/07/1996
+32,38
+TOMSP
+No Date
+11,61
+HANAR
+08/07/1996
+65,83
+VICTE
+03/04/1991
+41,34
+</pre>
 </div>
-
-
-
-<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
-{% highlight csharp %}
-10248|VINET|04071996|32.38
-10249|TOMSP||11.61
-10250|HANAR|08071996|65.83
-10251|VICTE|08071996|41.34
-{%  endhighlight %}
-</div>
-
-
-
-<div class='highlight-title example-code'> example_easy.html </div><div class='example-code-high'>
-{% highlight csharp %}
-<h2>Easy Example </h2>
-         * <blockquote>
-         * <p>If you have a source file like this, separated by a |:</p>
-         * ${Input.txt}
-         * <p>You first declare a Record Mapping Class:</p>
-         * ${RecordClass.cs}
-         * <p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-         * ${Example.cs}
-         * <p>Now you have an Orders array named <span class="cs-literal">res</span> where
-         * every item in the array is an Order object. If you want to access one of the fields
-         * let the Visual Studio IntelliSense bring up the field names for you.</p>
-         * <blockquote>
-         * <img height="93" src="${URL}vs_orders.png" width="165" alt="Visual studio intellisense"/>
-         * </blockquote>
-         
-{%  endhighlight %}
 </div>
 
 

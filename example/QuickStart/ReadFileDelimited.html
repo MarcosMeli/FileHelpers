@@ -33,27 +33,27 @@ permalink: /example/QuickStart/ReadFileDelimited/
 <div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-/// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
-[DelimitedRecord("|")]
-public class Orders
-{
-    public int OrderID;
+     [DelimitedRecord("|")]
+     public class Orders
+     {
+         public int OrderID;
 
-    public string CustomerID;
+         public string CustomerID;
 
-    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-    public DateTime OrderDate;
+         [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+         public DateTime OrderDate;
 
-    public decimal Freight;
-}
+[FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+         public decimal Freight;
+     }
 
-
+     
 {%  endhighlight %}
 </div>
 
 
 
-<p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
+<p>Instantiate a FileHelperEngine and read or write files:</p>
 
 
 <div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>

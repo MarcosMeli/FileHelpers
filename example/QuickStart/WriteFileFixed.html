@@ -13,6 +13,18 @@ permalink: /example/QuickStart/WriteFileFixed/
   <h5>Example of how to write a Fixed Record File</h5>
   <div class='indent'>
 
+<p>To write a fixed length file like this:</p>
+
+
+<div class='highlight-title example-output'> Output.txt </div><div class='example-output-high'>
+{% highlight csharp %}
+1Antonio Moreno Taquer�a       01052009
+2Berglunds snabbk�p            02052009
+{%  endhighlight %}
+</div>
+
+
+
 <div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
@@ -35,6 +47,9 @@ public class Customer
 {%  endhighlight %}
 </div>
 
+
+
+<p>Now just create some records and write them with the Engine</p>
 
 
 <div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
@@ -61,15 +76,6 @@ customers.Add(order2);
 engine.WriteFile("Output.Txt", customers);
 
 
-{%  endhighlight %}
-</div>
-
-
-
-<div class='highlight-title example-output'> Output.Txt </div><div class='example-output-high'>
-{% highlight csharp %}
-1Antonio Moreno Taquer�a       01052009
-2Berglunds snabbk�p            02052009
 {%  endhighlight %}
 </div>
 
