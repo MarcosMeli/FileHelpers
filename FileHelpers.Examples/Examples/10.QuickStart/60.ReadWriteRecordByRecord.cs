@@ -7,8 +7,8 @@ using FileHelpers;
 
 namespace ExamplesFx
 {
-    //-> Name:Read Record by Record
-    //-> Description:Using the FileHelperAsynEngine to read one record by time
+    //-> Name:Read or Write Record by Record
+    //-> Description:Using the FileHelperAsynEngine to work record by record
     //-> AutoRun:true
 
     public class ReadRecordByRecord

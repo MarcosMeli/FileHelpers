@@ -348,69 +348,6 @@ let the Visual Studio IntelliSense bring up the field names for you.</p>
 ";
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
-
-example = new ExampleCode(new ReadFileNullable(), "Read File with Nullable Types", "Empty Values", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\12.Empty Values\20.ReadFileNullable.cs");
-example.Description = @"Example of how to read a file with some missing values and use <b>Nullable Types</b>";
-examples.Add(example);
-file = new ExampleFile("Example.cs");
-file.Contents = @"var engine = new FileHelperEngine<Orders>();
-var records = engine.ReadFile(""Input.txt"");
-
-foreach (var record in records) {
-    Console.WriteLine(record.CustomerID);
-    if (record.OrderDate.HasValue)
-        Console.WriteLine(record.OrderDate.Value.ToString(""dd/MM/yyyy""));
-    else
-        Console.WriteLine(""No Date"");
-    Console.WriteLine(record.Freight);
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("RecordClass.cs");
-file.Contents = @"[DelimitedRecord(""|"")]
-public class Orders
-{
-    public int OrderID;
-
-    public string CustomerID;
-
-    [FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
-    public DateTime? OrderDate;
-
-    public decimal Freight;
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"10248|VINET|04071996|32.38
-10249|TOMSP||11.61
-10250|HANAR|08071996|65.83
-10251|VICTE|08071996|41.34
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("example_easy.html");
-file.Contents = @"        <h2>Easy Example </h2>
-<blockquote>
-<p>If you have a source file like this, separated by a |:</p>
-${Input.txt}
-<p>You first declare a Record Mapping Class:</p>
-${RecordClass.cs}
-<p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-${Example.cs}
-<p>Now you have an Orders array named <span class=""cs-literal"">res</span> where
-every item in the array is an Order object. If you want to access one of the fields
-let the Visual Studio IntelliSense bring up the field names for you.</p>
-<blockquote>
-<img height=""93"" src=""${URL}vs_orders.png"" width=""165"" alt=""Visual studio intellisense""/>
-</blockquote>
-         
-";
-file.Status = ExampleFile.FileType.HtmlFile;
-example.Files.Add(file);
-
 example = new ExampleCode(new DelimitedRecord(), "[DelimitedRecord(delimiter)]", "Attributes Record Class", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\15.Attributes Record Class\10.DelimitedRecord.cs");
 example.Description = @"Example of how to use DelimitedRecord attribute";
 examples.Add(example);

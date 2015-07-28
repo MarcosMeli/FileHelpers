@@ -18,7 +18,8 @@ namespace ExamplesFx
             // Implements http://en.wikipedia.org/wiki/External_sorting
             // Uses the comparison in the construct
 
-            var sorter = new BigFileSorter((x, y) => x.CompareTo(y));
+			// Sort comparing the raw lines
+			var sorter = new BigFileSorter((x, y) => x.CompareTo(y));
             sorter.DeleteTempFiles = true;
             sorter.Sort("unsorted.txt", "sorted.txt");
         }

@@ -73,7 +73,6 @@
     <Compile Include="Examples\10.QuickStart\10.ReadFileDelimited.cs" />
     <Compile Include="Examples\10.QuickStart\30.ReadFileFixed.cs" />
     <Compile Include="Examples\10.QuickStart\40.WriteFileFixed.cs" />
-    <Compile Include="Examples\12.Missing Values\20.ReadFileNullable.cs" />
     <Compile Include="Examples\12.Missing Values\10.ReadFileFieldNullValue.cs" />
     <Compile Include="Examples\12.Missing Values\05.ReadFileMissingValue.cs" />
     <Compile Include="Examples\15.Record Class Attributes\10.DelimitedRecord.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
     <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
-    <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
     <Compile Include="Examples\90.MasterDetail\10.SimpleMasterDetail.cs" />
     <Compile Include="Examples\90.MasterDetail\20.MasterDetailSample2.cs" />
@@ -122,6 +120,7 @@
     </Compile>
     <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.QuickStart\60.ReadWriteRecordByRecord.cs" />
+    <Compile Include="Examples\60.Sorting\20.SortBigFilesString1.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmExamples.resx">

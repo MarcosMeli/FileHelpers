@@ -11,6 +11,32 @@ namespace ExamplesFx
     public class ReadFileFieldNullValue
         : ExampleBase
     {
+		//-> If your files contain a field that can be empty 
+		//-> FileIn:Input.txt
+		/*10248|VINET|04071996|32.38
+10249|TOMSP||11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|03041991|41.34*/
+		//-> /File
+
+		// And the field type needs a value (int, DateTime, etc), and you dont want to use Nullable, the FieldNullValueAttribute comes to the rescue
+
+		//-> File:RecordClass.cs
+		[DelimitedRecord("|")]
+		public class Orders
+		{
+			public int OrderID;
+
+			public string CustomerID;
+
+			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			[FieldNullValue(typeof (DateTime), "1900-01-01")]
+			public DateTime OrderDate;
+
+			public decimal Freight;
+		}
+
+		// Now read as usual
         public override void Run()
         {
             //-> File:Example.cs
@@ -28,46 +54,7 @@ namespace ExamplesFx
             //-> /File
         }
 
-        //-> File:RecordClass.cs
-        [DelimitedRecord("|")]
-        public class Orders
-        {
-            public int OrderID;
 
-            public string CustomerID;
-
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-            [FieldNullValue(typeof (DateTime), "1900-01-01")]
-            public DateTime OrderDate;
-
-            public decimal Freight;
-        }
-
-        //-> /File
-
-        //-> FileIn:Input.txt
-/*10248|VINET|04071996|32.38
-10249|TOMSP||11.61
-10250|HANAR|08071996|65.83
-10251|VICTE|08071996|41.34*/
-        //-> /FileIn
-
-        //-> File:example_easy.html
-        /*<h2>Easy Example </h2>
-         * <blockquote>
-         * <p>If you have a source file like this, separated by a |:</p>
-         * ${Input.txt}
-         * <p>You first declare a Record Mapping Class:</p>
-         * ${RecordClass.cs}
-         * <p>Finally you must to instantiate a FileHelperEngine and read or write files:</p>
-         * ${Example.cs}
-         * <p>Now you have an Orders array named <span class="cs-literal">res</span> where
-         * every item in the array is an Order object. If you want to access one of the fields
-         * let the Visual Studio IntelliSense bring up the field names for you.</p>
-         * <blockquote>
-         * <img height="93" src="${URL}vs_orders.png" width="165" alt="Visual studio intellisense"/>
-         * </blockquote>
-         */
-        //-> /File
-    }
+        //-> Console
+   }
 }
