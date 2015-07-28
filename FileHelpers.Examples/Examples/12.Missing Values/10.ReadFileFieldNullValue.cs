@@ -7,6 +7,7 @@ namespace ExamplesFx
 {
     //-> Name: Read File with FieldNullValue
     //-> Description:Example of how to read a file with some missing values and use the <b>FieldNullValue</b> attribute
+    //-> Autorun: true
 
     public class ReadFileFieldNullValue
         : ExampleBase
@@ -36,7 +37,9 @@ namespace ExamplesFx
 			public decimal Freight;
 		}
 
-		// Now read as usual
+        //-> /File
+
+        // Now read as usual
         public override void Run()
         {
             //-> File:Example.cs
