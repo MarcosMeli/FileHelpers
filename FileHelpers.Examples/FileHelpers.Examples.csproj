@@ -75,17 +75,9 @@
     <Compile Include="Examples\10.QuickStart\40.WriteFileFixed.cs" />
     <Compile Include="Examples\12.Missing Values\10.ReadFileFieldNullValue.cs" />
     <Compile Include="Examples\12.Missing Values\05.ReadFileMissingValue.cs" />
-    <Compile Include="Examples\15.Record Class Attributes\10.DelimitedRecord.cs" />
-    <Compile Include="Examples\15.Record Class Attributes\30.FixedLengthRecord.cs" />
-    <Compile Include="Examples\15.Record Class Attributes\31.FixedLengthRecordLastVariable.cs" />
-    <Compile Include="Examples\16.Field Attributes\10.FieldLength.cs" />
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Examples\20.Events And Notification\10.ReadBeforeEvent.cs" />
-    <Compile Include="Examples\20.Events And Notification\20.ReadAfterEventSample.cs" />
-    <Compile Include="Examples\20.Events And Notification\30.WriteBeforeEventSample.cs" />
-    <Compile Include="Examples\20.Events And Notification\40.WriteAfterEventSample.cs" />
     <Compile Include="Examples\25.ErrorHandling\10.ErrorHandling.cs" />
     <Compile Include="Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
     <Compile Include="Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
@@ -121,6 +113,10 @@
     <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.QuickStart\60.ReadWriteRecordByRecord.cs" />
     <Compile Include="Examples\60.Sorting\20.SortBigFilesString1.cs" />
+    <Compile Include="Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs" />
+    <Compile Include="Examples\15.Attributes\10.FieldLength.cs" />
+    <Compile Include="Examples\20.Events And Notification\30.WriteEvents.cs" />
+    <Compile Include="Examples\20.Events And Notification\10.ReadEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmExamples.resx">
