@@ -11,7 +11,7 @@ namespace ExamplesFx
     //-> Description: How to read a Delimited File
     //-> AutoRun: true
 
-    public class ReadFile
+    public class ReadFileDelimited
         : ExampleBase
     {
       
@@ -38,6 +38,7 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
+			[FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
             public decimal Freight;
         }
 
