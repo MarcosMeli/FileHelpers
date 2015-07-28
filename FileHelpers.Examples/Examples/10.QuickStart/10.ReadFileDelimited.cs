@@ -28,7 +28,6 @@ namespace ExamplesFx
         //-> You first declare a Record Mapping Class:
 
         //-> File:RecordClass.cs
-        /// <summary> Our class we are reading using FileHelpers,  the record breakdown </summary>
         [DelimitedRecord("|")]
         public class Orders
         {
@@ -44,7 +43,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> Finally you must to instantiate a FileHelperEngine and read or write files:
+        //->  Instantiate a FileHelperEngine and read or write files:
 
         public override void Run()
         {
