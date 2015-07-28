@@ -19,36 +19,78 @@ permalink: /contribute/
   <div class="indent">
     <p>Here is a <a href="https://github.com/MarcosMeli/FileHelpers/labels/Jump%20In">list of issues</a> that any contributor can take and solve</p>
 
+    <h5>Simple Tasks</h5>
+    <p>If you are new to the library and want to do some simple issue for help here you have some</p>
+
     <div class="indent">
-      <ul class="collection" id="issues">
+      <ul class="collection issues" id="issues-isEasy">
       </ul>
     </div>
+
+    <h5>Medium Complexity Tasks</h5>
+    <p>If you have more time and want to take one new feature or big refactor you are more than welcome</p>
+
+    <div class="indent">
+      <ul class="collection issues" id="issues-isMedium">
+      </ul>
+    </div>
+
+    <h5>Complex Work</h5>
+    <p>If you love challenges, wanna join the main dev team and help with a mayor refactor/rewrite of the library, check these ones</p>
+
+    <div class="indent">
+      <ul class="collection issues" id="issues-isHard">
+      </ul>
+    </div>
+
+
   </div>
   <h4>GitHub Flow</h4>
   <div class="indent">
     <p><a href="https://guides.github.com/introduction/flow/">Check this GitHub Flow explanation</a></p>
   </div>
 </div>
+<script src="//cdn.jsdelivr.net/remarkable/1.6.0/remarkable.min.js"></script>
 <script type="text/javascript">
-  var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&labels=Jump%20In&sort=created";
+  var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&sort=created&labels=Jump%20In";
 
   $(document).ready(function() {
-    $.getJSON(urlJumpInIssues, function(allIssues) {
-      //$("div").append("found " + allIssues.length + " issues</br>");
-      $.each(allIssues, function(i, issue) {
-        var tags = "<span style='margin-left: 18px'>";
-        $.each(issue.labels, function(i, label) {
-          if (label.name == "Jump In")
-            return;
-          tags += ' <span class="badge" style="background-color: #' + label.color + '; color:white; margin-left:8px;  border-radius: 2px; position:relative;">' + label.name + '</span>';
-        });
+    var md = new Remarkable({
+    linkify:      true,        // Autoconvert URL-like text to links
+   });
 
-        tags += "</span>"
+    var issueToHtml = function(issue)
+    {
 
-        $("#issues")
-          .append("<li class='collection-item'><a href='https://github.com/MarcosMeli/FileHelpers/issues/" + issue.number + "'<b>" +
-          	 issue.title + "</b> #" +issue.number+ " "  + tags + "</a><br />" + issue.body + "</li>")
+      var tags = "<span style='margin-left: 18px'>";
+      $.each(issue.labels, function(i, label) {
+        if (label.name == "Jump In")
+          return;
+        tags += ' <span class="badge" style="background-color: #' + label.color + '; color:white; margin-left:8px;  border-radius: 2px; position:relative;">' + label.name + '</span>';
       });
-    });
+
+      tags += "</span>"
+
+var issueUrl = "https://github.com/MarcosMeli/FileHelpers/issues/" + issue.number;
+      return "<li class='collection-item' style='cursor:pointer;' onclick='location.href = " + '"'+ issueUrl + '"'+ "'><a href='" + issueUrl + "'<b>" +
+         issue.title + "</b> #" +issue.number+  " "  + tags + "</a><span>" + md.render(issue.body) + "<span></li>"
+    };
+
+    var renderIssues = function(complexity)
+    {
+      $.getJSON(urlJumpInIssues+","+complexity, function(allIssues) {
+        $.each(allIssues, function(i, issue) {
+          $("#issues-"+complexity).append(issueToHtml(issue));
+        });
+      });
+    };
+
+    renderIssues("isEasy");
+    renderIssues("isHard");
+    renderIssues("isMedium");
+
+
+
+
   });
 </script>
