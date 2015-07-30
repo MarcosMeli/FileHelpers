@@ -54,9 +54,12 @@ namespace FileHelpers.Tests.Converters
 
             dynamic record = res[0];
 
-            Check.That(record.Fecha).Equals(new DateTime(1996, 7, 16));
+            Check.That((DateTime) record.Fecha).IsEqualTo(new DateTime(1996, 7, 16));
             record = res[5];
-            Check.That(record.Fecha).Equals(new DateTime(1996, 8, 16));
+            Check.That((DateTime) record.Fecha).IsEqualTo(new DateTime(1996, 8, 16));
+
+            var toString = engine.WriteString(res);
+            Check.That(toString.ToLower()).IsEqualTo(dates.ToLower());
         }
 
 
