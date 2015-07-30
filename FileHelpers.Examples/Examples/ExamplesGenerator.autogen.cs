@@ -57,73 +57,7 @@ foreach (var record in records) {
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
-
-example = new ExampleCode(new WriteFile(), "Write Delimited File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\10.Basic\20.WriteFileDelimited.cs");
-example.Description = @"Example of how to write a Delimited File";
-example.AutoRun = true;
-examples.Add(example);
-file = new ExampleFile("Example.cs");
-file.Contents = @"var engine = new FileHelperEngine<Orders>();
-
-var orders = new List<Orders>();
-
-orders.Add(new Orders() {
-    OrderID = 1,
-    CustomerID = ""AIRG"",
-    Freight = 82.43M,
-    OrderDate = new DateTime(2009, 05, 01)
-});
-
-orders.Add(new Orders() {
-    OrderID = 2,
-    CustomerID = ""JSYV"",
-    Freight = 12.22M,
-    OrderDate = new DateTime(2009, 05, 02)
-});
-
-engine.WriteFile(""Output.Txt"", orders);
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("RecordClass.cs");
-file.Contents = @"/// <summary>
-/// Layout for a file delimited by |
-/// </summary>
-[DelimitedRecord(""|"")]
-public class Orders
-{
-    public int OrderID;
-
-    public string CustomerID;
-
-    [FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
-    public DateTime OrderDate;
-
-    public decimal Freight;
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Output.Txt");
-file.Contents = @"";
-file.Status = ExampleFile.FileType.OutputFile;
-example.Files.Add(file);
-file = new ExampleFile("example_easy_write.html");
-file.Contents = @"        <h2>Easy Write Example</h2>
-<blockquote>
-<p>To write an output file separated by a |:</p>
-${Output.Txt}
-<p>You use the same Record Mapping Class as you would to read it:</p>
-${RecordClass.cs}
-<p>Finally you must to instantiate a FileHelperEngine and write the file:</p>
-${Example.cs}
-<p>The classes you use could come from anywhere,  Linq to Entities,
-SQL database reads, or in this case classes created within an application.
-        
-";
-file.Status = ExampleFile.FileType.HtmlFile;
-example.Files.Add(file);
-
+            
 example = new ExampleCode(new ReadFixedFile(), "Read Fixed File", "Basic", @"D:\Desarrollo\Devoo\FileHelpers\FileHelpers.Examples\Examples\10.Basic\30.ReadFileFixed.cs");
 example.Description = @"Example of how to read a Fixed Length layout file (eg Cobol output)";
 example.AutoRun = true;

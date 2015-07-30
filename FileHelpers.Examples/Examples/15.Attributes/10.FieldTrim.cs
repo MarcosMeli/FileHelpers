@@ -5,35 +5,28 @@ using FileHelpers;
 
 namespace ExamplesFx
 {
-    //-> Name:[FieldLength]
-    //-> Description:Example of how to use [FieldLength] attribute
+    //-> Name: FieldTrim
+    //-> Description: Example of how to use [FieldTrim] attribute
 
-    /// <summary>
-    /// Example of reading a simple file delimited by | using the Generic Engine
-    /// </summary>
     public class DemoFieldLength
         : ExampleBase
     {
+
         //-> File:Example.cs
 
-        /// <summary>
-        /// Execute the engine and get some results
-        /// </summary>
         public override void Run()
         {
             var engine = new FixedFileEngine<Customer>();
-            Customer[] result = engine.ReadFile("input.txt");
+            var result = engine.ReadFile("input.txt");
 
             foreach (var detail in result)
-                this.Console.WriteLine(" Client: {0},  Name: {1}", detail.CustId, detail.Name);
+                this.Console.WriteLine(" Client: {0},  Name: '{1}'", detail.CustId, detail.Name);
         }
 
         //-> /File
 
         //-> File:RecordClass.cs
-        /// <summary>
-        /// Our class we are reading using FileHelpers,  the record breakdown
-        /// </summary>
+
         [FixedLengthRecord()]
         public class Customer
         {
@@ -58,5 +51,6 @@ namespace ExamplesFx
 51677 Around the Horn              13051998
 99999 Berglunds snabbköp           02111999*/
         //-> /File
+
     }
 }

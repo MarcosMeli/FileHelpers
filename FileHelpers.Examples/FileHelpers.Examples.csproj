@@ -107,14 +107,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Examples\20.WriteFileDelimited.cs">
-      <DependentUpon>ExamplesGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
     <Compile Include="Examples\10.QuickStart\60.ReadWriteRecordByRecord.cs" />
     <Compile Include="Examples\60.Sorting\20.SortBigFilesString1.cs" />
     <Compile Include="Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs" />
-    <Compile Include="Examples\15.Attributes\10.FieldLength.cs" />
+    <Compile Include="Examples\15.Attributes\10.FieldTrim.cs" />
     <Compile Include="Examples\20.Events And Notification\30.WriteEvents.cs" />
     <Compile Include="Examples\20.Events And Notification\10.ReadEvents.cs" />
   </ItemGroup>
