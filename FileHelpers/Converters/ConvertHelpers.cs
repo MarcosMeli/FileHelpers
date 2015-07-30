@@ -656,6 +656,7 @@ namespace FileHelpers
         internal sealed class DateTimeConverter : ConverterBase
         {
             private readonly string mFormat;
+            private readonly CultureInfo mCulture;
 
             /// <summary>
             /// Convert a value to a date time value
@@ -668,20 +669,33 @@ namespace FileHelpers
             /// </summary>
             /// <param name="format">date format see .Net documentation</param>
             public DateTimeConverter(string format)
+                :this(format, null)
+            {
+            }
+
+            /// <summary>
+            /// Convert a value to a date time value
+            /// </summary>
+            /// <param name="format">date format see .Net documentation</param>
+            /// <param name="culture">The culture used to parse the Dates</param>
+            public DateTimeConverter(string format, string culture)
             {
                 if (string.IsNullOrEmpty(format))
                     throw new BadUsageException("The format of the DateTime Converter cannot be null or empty.");
 
-                try {
+                try
+                {
                     DateTime.Now.ToString(format);
                 }
-                catch {
+                catch
+                {
                     throw new BadUsageException("The format: '" + format + " is invalid for the DateTime Converter.");
                 }
 
                 mFormat = format;
+                if (culture != null)
+                    mCulture = CultureInfo.GetCultureInfo(culture);
             }
-
             /// <summary>
             /// Convert a string to a date time value
             /// </summary>
@@ -693,7 +707,7 @@ namespace FileHelpers
                     from = string.Empty;
 
                 DateTime val;
-                if (!DateTime.TryParseExact(from.Trim(), mFormat, null, DateTimeStyles.None, out val)) {
+                if (!DateTime.TryParseExact(from.Trim(), mFormat, mCulture, DateTimeStyles.None, out val)) {
                     string extra;
 
                     if (from.Length > mFormat.Length)
@@ -719,7 +733,7 @@ namespace FileHelpers
                 if (from == null)
                     return string.Empty;
 
-                return Convert.ToDateTime(from).ToString(mFormat);
+                return Convert.ToDateTime(from).ToString(mFormat, mCulture);
             }
         }
 
