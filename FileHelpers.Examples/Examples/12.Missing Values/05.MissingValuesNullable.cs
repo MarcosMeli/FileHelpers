@@ -5,9 +5,9 @@ using FileHelpers;
 
 namespace ExamplesFx
 {
-    //-> Name: Error when reading file with missing values
-    //-> Description:Example of the error you get when read a file with some missing values and use the FieldNullValue attribute
-    //-> Autorun: true
+    //-> Name: Handle Missing Values with Nullable
+    //-> Description: Using Nullable<T> for missing values
+
 
     public class ReadFileMissingValue
         : ExampleBase

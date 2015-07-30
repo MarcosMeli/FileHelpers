@@ -6,8 +6,8 @@ using FileHelpers.Events;
 
 namespace ExamplesFx
 {
-	//-> Name:Before Read Event Handling
-	//-> Description:Show how to implement read before event
+	//-> Name: Before/After Read Event Handling
+	//-> Description:Show how to implement read events
 
 	public class ReadBeforeEventSample
         : ExampleBase
@@ -16,7 +16,8 @@ namespace ExamplesFx
 		//-> Reads report.inp and skips all the records that are not detail records using a simple criteria
 
 		//-> File:report.inp
-		/*-----------------------------------------------------
+		/*
+        -----------------------------------------------------
                       XXX Enterprise
         -----------------------------------------------------
         10249   TOMSP  05071996      11.61
