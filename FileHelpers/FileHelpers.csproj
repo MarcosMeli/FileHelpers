@@ -107,7 +107,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\FieldHiddenAttribute.cs" />
-    <Compile Include="Attributes\FieldNotEmptyAttribute.cs" />
+    <Compile Include="Attributes\FieldValidateAttribute.cs" />
+    <Compile Include="Attributes\FieldValidateIsNotEmptyAttribute.cs" />
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />
     <Compile Include="Attributes\FieldOrderAttribute.cs" />
@@ -343,6 +344,7 @@
     <Compile Include="Helpers\StringHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Interfaces\IFieldValidate.cs" />
     <Compile Include="Interfaces\INotifyRead.cs" />
     <Compile Include="Interfaces\ITransformable.cs" />
     <Compile Include="Interfaces\IComparableRecord.cs">

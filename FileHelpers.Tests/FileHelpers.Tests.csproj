@@ -189,7 +189,8 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\FieldNotEmpty.cs" />
+    <Compile Include="Tests\Common\FieldValidate.cs" />
+    <Compile Include="Tests\Common\FieldValidateIsNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
@@ -354,6 +355,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Detector\BasicDetection.cs" />
+    <Compile Include="Tests\Errors\BadFieldValidate.cs" />
     <Compile Include="Tests\Errors\BadFormat.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -419,6 +421,11 @@
     <Content Include="Data\Bad\FieldNotEmpty1.txt" />
     <Content Include="Data\Bad\FieldNotEmpty2.txt" />
     <Content Include="Data\Bad\FieldNotEmpty3.txt" />
+    <Content Include="Data\Bad\FieldValidate1.txt" />
+    <Content Include="Data\Bad\FieldValidate2.txt" />
+    <Content Include="Data\Bad\FieldValidateIsNotEmpty1.txt" />
+    <Content Include="Data\Bad\FieldValidateIsNotEmpty2.txt" />
+    <Content Include="Data\Bad\FieldValidateIsNotEmpty3.txt" />
     <Content Include="Data\Excel\ExcelWithNoEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
@@ -531,6 +538,9 @@
     <Content Include="Data\Good\ConverterDecimals2.txt" />
     <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldNotEmpty1.txt" />
+    <Content Include="Data\Good\FieldValidate1.txt" />
+    <Content Include="Data\Good\FieldValidate2.txt" />
+    <Content Include="Data\Good\FieldValidateIsNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />

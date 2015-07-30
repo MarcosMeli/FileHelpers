@@ -208,6 +208,46 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldValidate1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidate1.txt");
+                }
+            }
+
+            public partial class FieldValidate2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidate2.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty1.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty2.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty3 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty3.txt");
+                }
+            }
+
             public partial class InNewLine3 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -959,6 +999,30 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class FieldValidate1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "FieldValidate1.txt");
+                }
+            }
+
+            public partial class FieldValidate2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "FieldValidate2.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "FieldValidateIsNotEmpty1.txt");
+                }
+            }
+
             public partial class IgnoreComments1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -1628,6 +1692,41 @@ namespace FileHelpers.Tests
                 get { return mFieldNotEmpty3; }
             }
 
+            private static ClassesFileTest.Bad.FieldValidate1 mFieldValidate1 = new ClassesFileTest.Bad.FieldValidate1();
+
+            public static ClassesFileTest.Bad.FieldValidate1 FieldValidate1
+            {
+                get { return mFieldValidate1; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidate2 mFieldValidate2 = new ClassesFileTest.Bad.FieldValidate2();
+
+            public static ClassesFileTest.Bad.FieldValidate2 FieldValidate2
+            {
+                get { return mFieldValidate2; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty1 mFieldValidateIsNotEmpty1 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty1();
+
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty1 FieldValidateIsNotEmpty1
+            {
+                get { return mFieldValidateIsNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty2 mFieldValidateIsNotEmpty2 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty2();
+
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty2 FieldValidateIsNotEmpty2
+            {
+                get { return mFieldValidateIsNotEmpty2; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty3 mFieldValidateIsNotEmpty3 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty3();
+
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty3 FieldValidateIsNotEmpty3
+            {
+                get { return mFieldValidateIsNotEmpty3; }
+            }
+
             private static ClassesFileTest.Bad.InNewLine3 mInNewLine3 = new ClassesFileTest.Bad.InNewLine3();
 
             public static ClassesFileTest.Bad.InNewLine3 InNewLine3
@@ -2285,6 +2384,27 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.FieldNotEmpty1 FieldNotEmpty1
             {
                 get { return mFieldNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidate1 mFieldValidate1 = new ClassesFileTest.Good.FieldValidate1();
+
+            public static ClassesFileTest.Good.FieldValidate1 FieldValidate1
+            {
+                get { return mFieldValidate1; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidate2 mFieldValidate2 = new ClassesFileTest.Good.FieldValidate2();
+
+            public static ClassesFileTest.Good.FieldValidate2 FieldValidate2
+            {
+                get { return mFieldValidate2; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidateIsNotEmpty1 mFieldValidateIsNotEmpty1 = new ClassesFileTest.Good.FieldValidateIsNotEmpty1();
+
+            public static ClassesFileTest.Good.FieldValidateIsNotEmpty1 FieldValidateIsNotEmpty1
+            {
+                get { return mFieldValidateIsNotEmpty1; }
             }
 
             private static ClassesFileTest.Good.IgnoreComments1 mIgnoreComments1 = new ClassesFileTest.Good.IgnoreComments1();
