@@ -53,7 +53,7 @@ namespace ExamplesFx
 			var engine = new FileHelperAsyncEngine<Customer>();
 
 			// Read
-			using(engine.BeginReadFile("TestIn.txt"))
+			using(engine.BeginReadFile("Input.txt"))
 			{
 				// The engine is IEnumerable
 				foreach(Customer cust in engine)

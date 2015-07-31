@@ -13,11 +13,12 @@ namespace ExamplesFx
     {
 
         //-> FileIn:Input.txt
-        /*01010 Alfreds Futterkiste          13122005
-        12399 Ana Trujillo Emparedados y   23012000
-        00011 Antonio Moreno Taquería      21042001
-        51677 Around the Horn              13051998
-        99999 Berglunds snabbköp           02111999*/
+/*01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquería      21042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbköp           02111999
+*/
         //-> /File
 
 

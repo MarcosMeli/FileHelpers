@@ -13,30 +13,30 @@ namespace ExamplesFx
         : ExampleBase
     {
 
-		//-> Reads report.inp and skips all the records that are not detail records using a simple criteria
+        //-> Reads report.inp and skips all the records that are not detail records using a simple criteria
 
-		//-> File:report.inp
-		/*
-        -----------------------------------------------------
-                      XXX Enterprise
-        -----------------------------------------------------
-        10249   TOMSP  05071996      11.61
-        10250   HANAR  08071996      65.83
-        10251   VICTE  08071996       0.00
-                                               Page 1
-        -----------------------------------------------------
-                      YYY Enterprise
-        -----------------------------------------------------
-        10269   TOMSP  05071996      11.61
-        10230   HANAR  08071996       0.00
-        10151   VICTE  08071996      41.34
-        */
-		//-> /File
+        //-> FileIn:report.inp
+        /*
+*        -----------------------------------------------------
+*                      XXX Enterprise
+*        -----------------------------------------------------
+*        10249   TOMSP  05071996      11.61
+*        10250   HANAR  08071996      65.83
+*        10251   VICTE  08071996       0.00
+*                                               Page 1
+*        -----------------------------------------------------
+*                      YYY Enterprise
+*        -----------------------------------------------------
+*        10269   TOMSP  05071996      11.61
+*        10230   HANAR  08071996       0.00
+*        10151   VICTE  08071996      41.34
+*/
+        //-> /File
 
 
-		//-> File:Report layout.cs
+        //-> File:Report layout.cs
 
-		[FixedLengthRecord(FixedMode.AllowVariableLength)]
+        [FixedLengthRecord(FixedMode.AllowVariableLength)]
 		[IgnoreEmptyLines]
 		public class OrdersFixed
 		{
