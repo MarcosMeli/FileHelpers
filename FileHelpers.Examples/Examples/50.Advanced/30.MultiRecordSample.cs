@@ -28,7 +28,7 @@ ANATR;Ana Trujillo Emparedados y helados;Ana Trujillo;Owner;Avda. de la Constitu
 10101314234567
 ANTON;Antonio Moreno Taquería;Antonio Moreno;Owner;Mataderos  2312;México D.F.;Mexico
 BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;Luleå;Sweden
-        */
+*/
         //-> /File
 
         //-> This file contains<b> three</b> record types; Customers(begins with letters, | delimited), Orders(begin with numbers, ';' delimited) and the sample type of the first example.
