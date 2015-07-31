@@ -75,9 +75,9 @@ public class Customer
 <div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
-        ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
-        FRANR|France restauration|Carine Schmitt|MarketingManager
-        ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
+ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
+FRANR|France restauration|Carine Schmitt|MarketingManager
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
 {%  endhighlight %}
 </div>
 
@@ -123,7 +123,7 @@ public enum CustomerTitle
 <pre>
 
 Error on Line number: 2
-Record causing the problem:         ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
+Record causing the problem: ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
 Complete exception information: FileHelpers.ConvertException: Error Converting 'NotInEnum' to type: 'CustomerTitle'. The value NotInEnum is not present in the Enum.
    at FileHelpers.EnumConverter.StringToField(String from)
    at FileHelpers.FieldBase.AssignFromString(ExtractedInfo fieldString, LineInfo line)

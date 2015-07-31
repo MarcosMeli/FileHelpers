@@ -39,13 +39,13 @@ public override void Run()
 <div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
 @ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-        10248|ALFKI|5|04071996|01081996|16071996|3|32.38
-        10249|ALFKI|6|05071996|16081996|10071996|1|11.61
-        10251|ALFKI|3|08071996|05081996|15071996|1|41.34
-        @ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
-        10252|ANATR|4|09071996|06081996|11071996|2|51.3
-        @ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
-        
+10248|ALFKI|5|04071996|01081996|16071996|3|32.38
+10249|ALFKI|6|05071996|16081996|10071996|1|11.61
+10251|ALFKI|3|08071996|05081996|15071996|1|41.34
+@ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
+10252|ANATR|4|09071996|06081996|11071996|2|51.3
+@ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+
 {%  endhighlight %}
 </div>
 
@@ -53,8 +53,13 @@ public override void Run()
 
 <div class='highlight-title example-output'> Output.txt </div><div class='example-output-high'>
 {% highlight csharp %}
-
-        
+@ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+10248|ALFKI|5|04071996|01081996|16071996|3|32.38
+10249|ALFKI|6|05071996|16081996|10071996|1|11.61
+10251|ALFKI|3|08071996|05081996|15071996|1|41.34
+@ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constituci�n 2222|M�xico D.F.|Mexico
+10252|ANATR|4|09071996|06081996|11071996|2|51.3
+@ANTON|Antonio Moreno Taquer�a|Antonio Moreno|Owner|Mataderos  2312|M�xico D.F.|Mexico
 {%  endhighlight %}
 </div>
 
