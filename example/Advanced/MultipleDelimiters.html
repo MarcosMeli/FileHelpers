@@ -19,7 +19,7 @@ permalink: /example/Advanced/MultipleDelimiters/
 
 var customers = CreateCustomers();
 
-var engine = new DelimitedFileEngine<CustomersVerticalBar>();
+var engine = new DelimitedFileEngine<CustomersVerticalBar>(Encoding.UTF8);
 //  write out customers using a vertical bar delimiter (default)
 engine.WriteFile("Out_Vertical.txt", customers);
 
@@ -71,11 +71,11 @@ public class CustomersVerticalBar
 <div class='highlight-title example-output'> Out_Vertical.txt </div><div class='example-output-high'>
 {% highlight csharp %}
 ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constituci�n 2222|M�xico D.F.|Mexico
-ANTON|Antonio Moreno Taquer�a|Antonio Moreno|Owner|Mataderos  2312|M�xico D.F.|Mexico
-BERGS|Berglunds snabbk�p|Christina Berglund|Administrator|Berguvsv�gen  8|Lule�|Sweden
+ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
 BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
-BOLID|B�lido Comidas preparadas|Mart�n Sommer|Owner|C/ Araquil, 67|Madrid|Spain
+BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain
 {%  endhighlight %}
 </div>
 
@@ -84,11 +84,11 @@ BOLID|B�lido Comidas preparadas|Mart�n Sommer|Owner|C/ Araquil, 67|Madrid|Sp
 <div class='highlight-title example-output'> Out_SemiColon.txt </div><div class='example-output-high'>
 {% highlight csharp %}
 ALFKI;Alfreds Futterkiste;Maria Anders;Sales Representative;Obere Str. 57;Berlin;Germany
-ANATR;Emparedados y Helados;Ana Trujillo;Owner;Avda. Constituci�n 2222;M�xico D.F.;Mexico
-ANTON;Antonio Moreno Taquer�a;Antonio Moreno;Owner;Mataderos  2312;M�xico D.F.;Mexico
-BERGS;Berglunds snabbk�p;Christina Berglund;Administrator;Berguvsv�gen  8;Lule�;Sweden
+ANATR;Emparedados y Helados;Ana Trujillo;Owner;Avda. Constitución 2222;México D.F.;Mexico
+ANTON;Antonio Moreno Taquería;Antonio Moreno;Owner;Mataderos  2312;México D.F.;Mexico
+BERGS;Berglunds snabbköp;Christina Berglund;Administrator;Berguvsvägen  8;Luleå;Sweden
 BLAUS;Blauer Delikatessen;Hanna Moos;Sales Rep;Forsterstr. 57;Mannheim;Germany
-BOLID;B�lido Comidas preparadas;Mart�n Sommer;Owner;C/ Araquil, 67;Madrid;Spain
+BOLID;Bólido Comidas preparadas;Martín Sommer;Owner;C/ Araquil, 67;Madrid;Spain
 {%  endhighlight %}
 </div>
 
@@ -97,11 +97,11 @@ BOLID;B�lido Comidas preparadas;Mart�n Sommer;Owner;C/ Araquil, 67;Madrid;Sp
 <div class='highlight-title example-output'> Out_Tab.txt </div><div class='example-output-high'>
 {% highlight csharp %}
 ALFKI	Alfreds Futterkiste	Maria Anders	Sales Representative	Obere Str. 57	Berlin	Germany
-ANATR	Emparedados y Helados	Ana Trujillo	Owner	Avda. Constituci�n 2222	M�xico D.F.	Mexico
-ANTON	Antonio Moreno Taquer�a	Antonio Moreno	Owner	Mataderos  2312	M�xico D.F.	Mexico
-BERGS	Berglunds snabbk�p	Christina Berglund	Administrator	Berguvsv�gen  8	Lule�	Sweden
+ANATR	Emparedados y Helados	Ana Trujillo	Owner	Avda. Constitución 2222	México D.F.	Mexico
+ANTON	Antonio Moreno Taquería	Antonio Moreno	Owner	Mataderos  2312	México D.F.	Mexico
+BERGS	Berglunds snabbköp	Christina Berglund	Administrator	Berguvsvägen  8	Luleå	Sweden
 BLAUS	Blauer Delikatessen	Hanna Moos	Sales Rep	Forsterstr. 57	Mannheim	Germany
-BOLID	B�lido Comidas preparadas	Mart�n Sommer	Owner	C/ Araquil, 67	Madrid	Spain
+BOLID	Bólido Comidas preparadas	Martín Sommer	Owner	C/ Araquil, 67	Madrid	Spain
 {%  endhighlight %}
 </div>
 
