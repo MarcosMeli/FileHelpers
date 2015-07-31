@@ -16,56 +16,22 @@ permalink: /example/Advanced/MultipleDelimiters/
 <div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-/// <summary>
-/// Run an example of writing a delimited file and 
-/// changing the delimiter to show how it is done.
-/// </summary>
-public override void Run()
-{
-    var customers = CreateCustomers();
 
-    var engine = new DelimitedFileEngine<CustomersVerticalBar>();
-    //  write out customers using a vertical bar delimiter (default)
-    engine.WriteFile("Out_Vertical.txt", customers);
+var customers = CreateCustomers();
 
-    // Change the delimiter to semicolon and write that out
-    engine.Options.Delimiter = ";";
-    engine.WriteFile("Out_SemiColon.txt", customers);
+var engine = new DelimitedFileEngine<CustomersVerticalBar>();
+//  write out customers using a vertical bar delimiter (default)
+engine.WriteFile("Out_Vertical.txt", customers);
 
-    // Change the delimiter to a tab and write that out
-    engine.Options.Delimiter = "\t";
-    engine.WriteFile("Out_Tab.txt", customers);
-}
+// Change the delimiter to semicolon and write that out
+engine.Options.Delimiter = ";";
+engine.WriteFile("Out_SemiColon.txt", customers);
+
+// Change the delimiter to a tab and write that out
+engine.Options.Delimiter = "\t";
+engine.WriteFile("Out_Tab.txt", customers);
 
 
-{%  endhighlight %}
-</div>
-
-
-
-<div class='highlight-title example-code'> CreateCustomers.cs </div><div class='example-code-high'>
-{% highlight csharp %}
-
-        /// <summary>
-        /// This routine reads the data and creates an array of Customers for our samples
-        /// </summary>
-        /// <returns>Array of customers</returns>
-        private CustomersVerticalBar[] CreateCustomers()
-        {
-            //  6 records of sample data to parse
-            string tempCustomers =
-                @"ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
-BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
-BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
-BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain";
-
-            // use the common engine to break down the records above
-            return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
-        }
-
-        
 {%  endhighlight %}
 </div>
 
@@ -74,12 +40,7 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
 <div class='highlight-title example-code'> CustomersVerticalBar.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-/// <summary>
-/// Sample class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Order of fields in the class is the same as the order in the file
-/// </remarks>
+/// <summary> Sample class that is delimited by | default </summary>
 [DelimitedRecord("|")]
 public class CustomersVerticalBar
 {
@@ -107,17 +68,40 @@ public class CustomersVerticalBar
 <p>To display in the PropertyGrid.</p>
 
 
-<div class='highlight-title example-code'> example_delimited_engine.html </div><div class='example-code-high'>
+<div class='highlight-title example-output'> Out_Vertical.txt </div><div class='example-output-high'>
 {% highlight csharp %}
-<h2>Delimited File Engine</h2>
-         *<p>With this cool feature you can simply change some of the record definitions at run time.</p>
-         *<p>Lets start with a simple example:</p>
-         *${CustomersVerticalBar.cs}
-         *<p>After working with this file for a while, and you need to export the
-         *data in this format <b>but delimited by ";" and "|"</b></p>
-         *<p>This is how easy its is:</p>
-         *${RunEngine.cs}
-         
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constituci�n 2222|M�xico D.F.|Mexico
+ANTON|Antonio Moreno Taquer�a|Antonio Moreno|Owner|Mataderos  2312|M�xico D.F.|Mexico
+BERGS|Berglunds snabbk�p|Christina Berglund|Administrator|Berguvsv�gen  8|Lule�|Sweden
+BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
+BOLID|B�lido Comidas preparadas|Mart�n Sommer|Owner|C/ Araquil, 67|Madrid|Spain
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-output'> Out_SemiColon.txt </div><div class='example-output-high'>
+{% highlight csharp %}
+ALFKI;Alfreds Futterkiste;Maria Anders;Sales Representative;Obere Str. 57;Berlin;Germany
+ANATR;Emparedados y Helados;Ana Trujillo;Owner;Avda. Constituci�n 2222;M�xico D.F.;Mexico
+ANTON;Antonio Moreno Taquer�a;Antonio Moreno;Owner;Mataderos  2312;M�xico D.F.;Mexico
+BERGS;Berglunds snabbk�p;Christina Berglund;Administrator;Berguvsv�gen  8;Lule�;Sweden
+BLAUS;Blauer Delikatessen;Hanna Moos;Sales Rep;Forsterstr. 57;Mannheim;Germany
+BOLID;B�lido Comidas preparadas;Mart�n Sommer;Owner;C/ Araquil, 67;Madrid;Spain
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-output'> Out_Tab.txt </div><div class='example-output-high'>
+{% highlight csharp %}
+ALFKI	Alfreds Futterkiste	Maria Anders	Sales Representative	Obere Str. 57	Berlin	Germany
+ANATR	Emparedados y Helados	Ana Trujillo	Owner	Avda. Constituci�n 2222	M�xico D.F.	Mexico
+ANTON	Antonio Moreno Taquer�a	Antonio Moreno	Owner	Mataderos  2312	M�xico D.F.	Mexico
+BERGS	Berglunds snabbk�p	Christina Berglund	Administrator	Berguvsv�gen  8	Lule�	Sweden
+BLAUS	Blauer Delikatessen	Hanna Moos	Sales Rep	Forsterstr. 57	Mannheim	Germany
+BOLID	B�lido Comidas preparadas	Mart�n Sommer	Owner	C/ Araquil, 67	Madrid	Spain
 {%  endhighlight %}
 </div>
 
