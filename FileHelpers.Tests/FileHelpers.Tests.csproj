@@ -188,6 +188,7 @@
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\DynamicOptions.cs" />
     <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
@@ -528,6 +529,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\CustomersVerticalBarOptions.txt" />
     <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />

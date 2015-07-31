@@ -40,6 +40,12 @@ namespace FileHelpers.Options
         public void RemoveField(string fieldname)
         {
             mRecordInfo.RemoveField(fieldname);
+
+            for (int i = 0; i < Fields.Count; i++)
+            {
+                var field = Fields[i];
+                field.ParentIndex = i;
+            }
         }
 
         /// <summary>

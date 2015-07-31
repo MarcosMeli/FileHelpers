@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using FileHelpers.Options;
 
 namespace FileHelpers
 {
@@ -113,12 +114,22 @@ namespace FileHelpers
         /// <summary>
         /// The field may not be present on the input data (line not long enough)
         /// </summary>
-        public bool IsOptional { get; set; }
+        public bool IsOptional
+        {
+            get; set; }
 
         /// <summary>
         /// The next field along is optional,  optimise processing next records
         /// </summary>
-        internal bool NextIsOptional { get; set; }
+        internal bool NextIsOptional
+        {
+            get
+            {
+                if (Parent.FieldCount > ParentIndex + 1)
+                    return Parent.Fields[ParentIndex + 1].IsOptional;
+                return false;
+            }
+    }
 
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
@@ -189,7 +200,7 @@ namespace FileHelpers
                 return null;
 
             FieldBase res = null;
-
+            
             var attributes = (FieldAttribute[]) fi.GetCustomAttributes(typeof (FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
@@ -344,6 +355,9 @@ namespace FileHelpers
             return res;
         }
 
+        internal RecordOptions Parent { get; set; }
+        internal int ParentIndex { get; set; }
+
         internal static string AutoPropertyName(FieldInfo fi)
         {
             if (fi.IsDefined(typeof(CompilerGeneratedAttribute), false))
@@ -372,7 +386,7 @@ namespace FileHelpers
             TrimMode = TrimMode.None;
             FieldOrder = null;
             InNewLine = false;
-            NextIsOptional = false;
+            //NextIsOptional = false;
             IsOptional = false;
             TrimChars = null;
             NullValue = null;
@@ -888,14 +902,15 @@ namespace FileHelpers
             res.TrimMode = TrimMode;
             res.TrimChars = TrimChars;
             res.IsOptional = IsOptional;
-            res.NextIsOptional = NextIsOptional;
+            //res.NextIsOptional = NextIsOptional;
             res.InNewLine = InNewLine;
             res.FieldOrder = FieldOrder;
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
             res.IsNotEmpty = IsNotEmpty;
-
+            res.Parent = Parent;
+            res.ParentIndex = ParentIndex;
             return res;
         }
 
