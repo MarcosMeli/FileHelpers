@@ -16,7 +16,7 @@ permalink: /example/EventsAndNotification/ReadEvents/
 <p>Reads report.inp and skips all the records that are not detail records using a simple criteria</p>
 
 
-<div class='highlight-title example-code'> report.inp </div><div class='example-code-high'>
+<div class='highlight-title example-input'> report.inp </div><div class='example-input-high'>
 {% highlight csharp %}
 
 -----------------------------------------------------
@@ -32,7 +32,6 @@ permalink: /example/EventsAndNotification/ReadEvents/
 10269   TOMSP  05071996      11.61
 10230   HANAR  08071996       0.00
 10151   VICTE  08071996      41.34
-
 {%  endhighlight %}
 </div>
 
@@ -42,7 +41,7 @@ permalink: /example/EventsAndNotification/ReadEvents/
 {% highlight csharp %}
 
 
-[FixedLengthRecord(FixedMode.AllowVariableLength)]
+      [FixedLengthRecord(FixedMode.AllowVariableLength)]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {

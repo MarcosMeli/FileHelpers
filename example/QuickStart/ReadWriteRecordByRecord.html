@@ -63,7 +63,7 @@ public class Customer
 var engine = new FileHelperAsyncEngine<Customer>();
 
 // Read
-using(engine.BeginReadFile("TestIn.txt"))
+using(engine.BeginReadFile("Input.txt"))
 {
 	// The engine is IEnumerable
 	foreach(Customer cust in engine)
@@ -93,6 +93,20 @@ using(engine.BeginWriteFile("TestOut.txt"))
 
 
 {%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
+Juan Perez
+Pedro Gomez
+Ramiro Politti
+Pablo Ramirez
+</pre>
+</div>
 </div>
 
 

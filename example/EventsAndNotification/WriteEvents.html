@@ -29,7 +29,7 @@ permalink: /example/EventsAndNotification/WriteEvents/
 <div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-[FixedLengthRecord(FixedMode.AllowVariableLength)]
+      [FixedLengthRecord]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {
@@ -84,9 +84,6 @@ private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed>
 	if (e.Record.CustomerID == "HANAR")
 		e.RecordLine = "Insufficient Access";
 }
-      //-> /File
-
-      //-> FileOut:output.txt
       
 {%  endhighlight %}
 </div>
