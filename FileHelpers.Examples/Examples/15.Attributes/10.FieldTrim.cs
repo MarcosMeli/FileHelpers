@@ -49,7 +49,7 @@ namespace ExamplesFx
             var result = engine.ReadFile("input.txt");
 
             foreach (var detail in result)
-                this.Console.WriteLine(" Client: {0},  Name: '{1}'", detail.CustId, detail.Name);
+                Console.WriteLine(" Client: {0},  Name: '{1}'", detail.CustId, detail.Name);
             //-> /File
 
         }

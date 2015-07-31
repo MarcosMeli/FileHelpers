@@ -18,7 +18,7 @@ namespace ExamplesFx
             Customer[] result = engine.ReadFile("input.txt");
 
             foreach (var detail in result) {
-                this.Console.WriteLine(" Client: {0},  Date: {1}",
+                Console.WriteLine(" Client: {0},  Date: {1}",
                     detail.CustId,
                     detail.AddedDate.ToString("dd-MM-yyyy"));
             }

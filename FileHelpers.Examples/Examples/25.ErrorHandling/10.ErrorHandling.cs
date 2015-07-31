@@ -39,7 +39,7 @@ namespace ExamplesFx
             }
             catch (Exception ex) {
                 // Console.WriteLine(ex.ToString()); // with stack trace
-                this.Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
         }
 

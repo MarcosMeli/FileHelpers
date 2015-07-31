@@ -48,10 +48,10 @@ namespace ExamplesFx
 
             // This will display error from line 2 of the file.
             foreach (var err in errors) {
-                this.Console.WriteLine();
-                this.Console.WriteLine("Error on Line number: {0}", err.LineNumber);
-                this.Console.WriteLine("Record causing the problem: {0}", err.RecordString);
-                this.Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
+                Console.WriteLine();
+                Console.WriteLine("Error on Line number: {0}", err.LineNumber);
+                Console.WriteLine("Record causing the problem: {0}", err.RecordString);
+                Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }
         }
 
