@@ -10,41 +10,38 @@ permalink: /example/ErrorHandling/ErrorHandling/
 
 <h4>ErrorHandling: ErrorMode.ThrowException</h4>
 <div class='indent'>
-  <h5>Read the file or reject the whole file</h5>
+  <h5>Default Behavior. Read the file or reject the whole file</h5>
   <div class='indent'>
 
-<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
+<p>Run an example of running a file with an error through and using a try catch to collect the error.</p>
+
+
+<p>In the standard mode you can catch the exceptions when something fails.</p>
+
+
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-/// <summary>
-/// Run an example of running a file with an error through and
-/// using a try catch to collect the error.
-/// </summary>
-/// <remarks>
-/// In the standard mode you can catch the exceptions when something fails.
-/// </remarks>
-public override void Run()
+try
 {
-    try {
-        var engine = new DelimitedFileEngine<Customer>();
-        
+    var engine = new DelimitedFileEngine<Customer>();
 
-        //  This fails with not in enumeration error
-        Customer[] customers = engine.ReadFile("Input.txt");
 
-        // this will not happen because of the exception
-        foreach (var cust in customers) {
-            Console.WriteLine("Customer name {0} is a {1}",
-                cust.ContactName,
-                cust.ContactTitle);
-        }
-    }
-    catch (Exception ex) {
-        // Console.WriteLine(ex.ToString()); // with stack trace
-        Console.WriteLine(ex.Message);
+    //  This fails with not in enumeration error
+    Customer[] customers = engine.ReadFile("Input.txt");
+
+    // this will not happen because of the exception
+    foreach (var cust in customers)
+    {
+        Console.WriteLine("Customer name {0} is a {1}",
+            cust.ContactName,
+            cust.ContactTitle);
     }
 }
-
+catch (Exception ex)
+{
+    Console.WriteLine(ex.ToString()); // with stack trace
+}
 
 {%  endhighlight %}
 </div>
@@ -54,12 +51,6 @@ public override void Run()
 <div class='highlight-title example-code'> Customers with Enum.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
 [DelimitedRecord("|")]
 public class Customer
 {
@@ -105,28 +96,20 @@ public enum CustomerTitle
 
 
 
-<div class='highlight-title example-code'> example_errors_simple.html </div><div class='example-code-high'>
-{% highlight csharp %}
-<h2>Simple Error Handling</h2>
-        * <blockquote>
-        * <p>In the standard mode you can catch the exceptions when something fail.</p>
-        * ${RunEngine.cs}
-        * <p>This approach not is bad but you lose some information about the current record
-        * and you can't use the records array because is not assigned.</p>
-        * <p>Example exception is:</p>
-        * ${Console}
-        * </blockquote>
-        
-{%  endhighlight %}
-</div>
-
-
-
 <div class='highlight-title example-console'> Console </div>
 <div class='example-console-high'>
 <div class='highlight'>
 <pre>
-Error Converting 'NotInEnum' to type: 'CustomerTitle'. The value NotInEnum is not present in the Enum.
+FileHelpers.ConvertException: Error Converting 'NotInEnum' to type: 'CustomerTitle'. The value NotInEnum is not present in the Enum.
+   at FileHelpers.EnumConverter.StringToField(String from)
+   at FileHelpers.FieldBase.AssignFromString(ExtractedInfo fieldString, LineInfo line)
+   at FileHelpers.FieldBase.ExtractFieldValue(LineInfo line)
+   at FileHelpers.RecordOperations.StringToRecord(Object record, LineInfo line, Object[] values)
+   at FileHelpers.FileHelperEngine`1.ReadStreamAsList(TextReader reader, Int32 maxRecords, DataTable dt)
+   at FileHelpers.FileHelperEngine`1.ReadStream(TextReader reader, Int32 maxRecords)
+   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName, Int32 maxRecords)
+   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName)
+   at ExamplesFx.SimpleErrorHandlingExample.Run()
 </pre>
 </div>
 </div>
