@@ -11,7 +11,7 @@ namespace ExamplesFx
     public class SimpleErrorHandlingExample
         : ExampleBase
     {
-        //-> Name:Simple Error handling
+        //-> Name:ErrorMode.ThrowException
         //-> Description:Read the file or reject the whole file
 
         //-> File:RunEngine.cs
@@ -26,6 +26,7 @@ namespace ExamplesFx
         {
             try {
                 var engine = new DelimitedFileEngine<Customer>();
+                
 
                 //  This fails with not in enumeration error
                 Customer[] customers = engine.ReadFile("Input.txt");

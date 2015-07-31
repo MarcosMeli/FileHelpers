@@ -11,7 +11,7 @@ namespace ExamplesFx
     public class IgnoreModeErrorHandlingExample
         : ExampleBase
     {
-        //-> Name:Ignore Mode Error handling
+        //-> Name: ErrorMode.IgnoreAndContinue
         //-> Description:Read the file dropping bad records
 
         //-> File:RunEngine.cs

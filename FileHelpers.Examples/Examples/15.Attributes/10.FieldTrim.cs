@@ -6,7 +6,7 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name: FieldTrim
-    //-> Description: Example of how to use [FieldTrim] attribute
+    //-> Description: How to use the [FieldTrim] attribute (useful for fixed length records)
 
     public class DemoFieldLength
         : ExampleBase

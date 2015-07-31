@@ -5,8 +5,8 @@ using FileHelpers;
 
 namespace ExamplesFx
 {
-    //-> Name:FixedLengthRecord FixedMode.AllowLessChars
-    //-> Description: Example of how to use the FixedLengthRecord
+    //-> Name: FixedLengthRecord FixedMode.AllowLessChars
+    //-> Description: Options when working with fixed files and not all records have same length
 
     public class FixedLengthRecordLastVariableExample
         : ExampleBase

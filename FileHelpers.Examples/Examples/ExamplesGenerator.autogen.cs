@@ -203,7 +203,7 @@ file = new ExampleFile("Example.cs");
 file.Contents = @"var engine = new FileHelperAsyncEngine<Customer>();
 
 // Read
-using(engine.BeginReadFile(""TestIn.txt""))
+using(engine.BeginReadFile(""Input.txt""))
 {
 	// The engine is IEnumerable
 	foreach(Customer cust in engine)
@@ -303,7 +303,7 @@ file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
 example = new ExampleCode(new DemoFieldLength(), "FieldTrim", "Attributes", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\15.Attributes\10.FieldTrim.cs");
-example.Description = @"Example of how to use [FieldTrim] attribute";
+example.Description = @"How to use the [FieldTrim] attribute (useful for fixed length records)";
 examples.Add(example);
 file = new ExampleFile("RecordClass.cs");
 file.Contents = @"[FixedLengthRecord()]
@@ -333,8 +333,47 @@ foreach (var detail in result)
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
+example = new ExampleCode(new DemoFieldOrder(), "FieldOrder", "Attributes", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\15.Attributes\20.FieldOrder.cs");
+example.Description = @"Force field order with [FieldOrder] attribute";
+examples.Add(example);
+file = new ExampleFile("RecordClass.cs");
+file.Contents = @"[DelimitedRecord(""|"")]
+public class Orders
+{
+    [FieldOrder(20)]
+    public string CustomerID;
+
+    [FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
+    [FieldOrder(30)]
+    public DateTime OrderDate;
+
+    [FieldConverter(ConverterKind.Decimal, ""."")] // The decimal separator is .
+    [FieldOrder(40)]
+    public decimal Freight;
+
+    [FieldOrder(10)]
+    public int OrderID;
+
+}
+";
+file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
+file = new ExampleFile("Example.cs");
+file.Contents = @"var engine = new FileHelperEngine<Orders>();
+var records = engine.ReadFile(""Input.txt"");
+
+foreach (var record in records)
+{
+    Console.WriteLine(record.CustomerID);
+    Console.WriteLine(record.OrderDate.ToString(""dd/MM/yyyy""));
+    Console.WriteLine(record.Freight);
+}
+";
+file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
+
 example = new ExampleCode(new FixedLengthRecordLastVariableExample(), "FixedLengthRecord FixedMode.AllowLessChars", "Attributes", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs");
-example.Description = @"Example of how to use the FixedLengthRecord";
+example.Description = @"Options when working with fixed files and not all records have same length";
 examples.Add(example);
 file = new ExampleFile("Example.cs");
 file.Contents = @"var engine = new FixedFileEngine<Customer>();
@@ -367,7 +406,7 @@ public class Customer
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new EnumConverterExample(), "Enum Converter Example", "Converters", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\18.Converters\50.EnumConverter.cs");
+example = new ExampleCode(new EnumConverterExample(), "Enum Converter", "Converters", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\18.Converters\50.EnumConverter.cs");
 example.Description = @"When you have a string field in your files that can be better handled if you map it to an enum.";
 examples.Add(example);
 file = new ExampleFile("CustomerTitle.cs");
@@ -381,29 +420,21 @@ file.Contents = @"public enum CustomerTitle
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 file = new ExampleFile("Customers with Enum.cs");
-file.Contents = @"/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
-[DelimitedRecord(""|"")]
+file.Contents = @"[DelimitedRecord(""|"")]
 public class Customer
 {
     public string CustomerID;
     public string CompanyName;
     public string ContactName;
+    
+    // Notice last feild is our enumerator
     public CustomerTitle ContactTitle;
 }
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 file = new ExampleFile("RunEngine.cs");
-file.Contents = @"/// <summary>
-/// Run an example of writing a delimited file and 
-/// changing the delimiter to show how it is done.
-/// </summary>
-public override void Run()
+file.Contents = @"public override void Run()
 {
     var engine = new DelimitedFileEngine<Customer>();
 
@@ -420,27 +451,8 @@ example.Files.Add(file);
 example = new ExampleCode(new ReadBeforeEventSample(), "Before/After Read Event Handling", "Events And Notification", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\20.Events And Notification\10.ReadEvents.cs");
 example.Description = @"Show how to implement read events";
 examples.Add(example);
-file = new ExampleFile("report.inp");
-file.Contents = @"
------------------------------------------------------
-              XXX Enterprise
------------------------------------------------------
-10249   TOMSP  05071996      11.61
-10250   HANAR  08071996      65.83
-10251   VICTE  08071996       0.00
-                                       Page 1
------------------------------------------------------
-              YYY Enterprise
------------------------------------------------------
-10269   TOMSP  05071996      11.61
-10230   HANAR  08071996       0.00
-10151   VICTE  08071996      41.34
-
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
 file = new ExampleFile("Report layout.cs");
-file.Contents = @"[FixedLengthRecord(FixedMode.AllowVariableLength)]
+file.Contents = @"      [FixedLengthRecord(FixedMode.AllowVariableLength)]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {
@@ -523,19 +535,8 @@ example.Files.Add(file);
 example = new ExampleCode(new WriteEvents(), "Before/After Write Event Handling", "Events And Notification", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\20.Events And Notification\30.WriteEvents.cs");
 example.Description = @"Show how to implement write events";
 examples.Add(example);
-file = new ExampleFile("Input.txt");
-file.Contents = @"		10249   TOMSP  05071996      11.61
-10250   HANAR  08071996       0.00
-10251   VICTE  08071996      41.34
-10269   TOMSP  05071996      11.61
-10230   HANAR  08071996      65.83
-10151   VICTE  08071996      41.34
-
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
 file = new ExampleFile("Report layout.cs");
-file.Contents = @"[FixedLengthRecord(FixedMode.AllowVariableLength)]
+file.Contents = @"      [FixedLengthRecord]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {
@@ -607,7 +608,7 @@ file.Contents = @"public void RunLambda()
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SimpleErrorHandlingExample(), "Simple Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\10.ErrorHandling.cs");
+example = new ExampleCode(new SimpleErrorHandlingExample(), "ErrorMode.ThrowException", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\10.ErrorHandling.cs");
 example.Description = @"Read the file or reject the whole file";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -622,6 +623,7 @@ public override void Run()
 {
     try {
         var engine = new DelimitedFileEngine<Customer>();
+        
 
         //  This fails with not in enumeration error
         Customer[] customers = engine.ReadFile(""Input.txt"");
@@ -695,91 +697,7 @@ ${Console}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ErrorModeErrorHandlingExample(), "ErrorMode Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs");
-example.Description = @"Read the file rejecting bad records";
-examples.Add(example);
-file = new ExampleFile("RunEngine.cs");
-file.Contents = @"/// <summary>
-/// Run an example of running a file with an error using the
-/// ErrorMode option to capture bad records
-/// </summary>
-/// <remarks>
-/// In the standard mode you can catch the exceptions when something fails.
-/// </remarks>
-public override void Run()
-{
-    var engine = new DelimitedFileEngine<Customer>();
-
-    // Switch error mode on
-    engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-
-    //  Only record that fails will not be present
-    Customer[] customers = engine.ReadFile(""Input.txt"");
-
-    // This will display error from line 2 of the file.
-    foreach (var err in engine.ErrorManager.Errors) {
-        Console.WriteLine();
-        Console.WriteLine(""Error on Line number: {0}"", err.LineNumber);
-        Console.WriteLine(""Record causing the problem: {0}"", err.RecordString);
-        Console.WriteLine(""Complete exception information: {0}"", err.ExceptionInfo.ToString());
-    }
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Customers with Enum.cs");
-file.Contents = @"/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
-[DelimitedRecord(""|"")]
-public class Customer
-{
-    public string CustomerID;
-    public string CompanyName;
-    public string ContactName;
-    public CustomerTitle ContactTitle;
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
-ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
-FRANR|France restauration|Carine Schmitt|MarketingManager
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("TheEnumerator.cs");
-file.Contents = @"/// <summary>
-/// Different titles describing position in company
-/// </summary>
-public enum CustomerTitle
-{
-    Owner,
-    SalesRepresentative,
-    MarketingManager
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("example_errors_errormode.html");
-file.Contents = @"         <h2>ErorMode Error Handling</h2>
-<p><p>A more intelligent way is using the
-<a href=""FileHelpers.ErrorMode.html"">ErrorMode</a>.SaveAndContinue
-of the ErrorManager:</p>
-${RunEngine.cs}
-<p>Using the engine like this you have the good records in the records array and in
-the ErrorManager you have the records with errors and can do wherever you want.</p>
-         
-";
-file.Status = ExampleFile.FileType.HtmlFile;
-example.Files.Add(file);
-
-example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "Ignore Mode Error handling", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs");
+example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "ErrorMode.IgnoreAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs");
 example.Description = @"Read the file dropping bad records";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -861,7 +779,7 @@ ${RunEngine.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode saving Errors", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs");
+example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode.SaveAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs");
 example.Description = @"Read the file saving bad records";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");
@@ -963,58 +881,40 @@ ${LoadErrors.cs}
 file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
-example = new ExampleCode(new EngineOptions(), "Engine Options", "Advanced", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\50.Advanced\05.DynamicChangeOptions.cs");
+example = new ExampleCode(new EngineOptions(), "Dynamic Engine Options", "Advanced", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\50.Advanced\05.DynamicChangeOptions.cs");
 example.Description = @"Change the options of the engines at run time";
 examples.Add(example);
-file = new ExampleFile("CreateCustomers.cs");
-file.Contents = @"        /// <summary>
-        /// This routine reads the data and creates an array of Customers for our samples
-        /// </summary>
-        /// <returns>Array of customers</returns>
-        private CustomersVerticalBar[] CreateCustomers()
-        {
-            //  6 records of sample data to parse
-            string tempCustomers =
-                @""ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
-BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
-BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
-BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain"";
-
-            // use the common engine to break down the records above
-            return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
-        }
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
 file = new ExampleFile("CustomersVerticalBar.cs");
-file.Contents = @"/// <summary>
-/// Sample class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Order of fields in the class is the same as the order in the file
-/// </remarks>
-[DelimitedRecord(""|"")]
+file.Contents = @"[DelimitedRecord(""|"")]
 public class CustomersVerticalBar
 {
     public string CustomerID;
+    
+    // Will be excluded at run time
     public string DummyField;
+
     public string CompanyName;
     public string ContactName;
     public string ContactTitle;
     public string Address;
     public string City;
     public string Country;
-
-    //-> To display in the PropertyGrid.
-    public override string ToString()
-    {
-        return CustomerID + "" - "" + CompanyName + "", "" + ContactName;
-    }
 }
 ";
 file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
+file = new ExampleFile("Example.txt");
+file.Contents = @"var engine = new DelimitedFileEngine<CustomersVerticalBar>();
+
+engine.Options.Fields[2].TrimMode = TrimMode.Both;
+engine.Options.RemoveField(""DummyField"");
+
+// City is optional
+engine.Options.Fields[engine.Options.Fields.Count - 1].IsOptional = true;
+
+engine.ReadFile(""Input.txt"");
+";
+// unknown extension .txt
 example.Files.Add(file);
 
 example = new ExampleCode(new MultipleDelimiters(), "Multiple Delimiters", "Advanced", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\50.Advanced\10.MultipleDelimiters.cs");
@@ -1033,11 +933,6 @@ public class CustomersVerticalBar
     public string City;
     public string Country;
 
-    //-> To display in the PropertyGrid.
-    public override string ToString()
-    {
-        return CustomerID + "" - "" + CompanyName + "", "" + ContactName;
-    }
 }
 ";
 file.Language = NetLanguage.CSharp;
@@ -1076,7 +971,7 @@ ANATR;Ana Trujillo Emparedados y helados;Ana Trujillo;Owner;Avda. de la Constitu
 10101314234567
 ANTON;Antonio Moreno Taquería;Antonio Moreno;Owner;Mataderos  2312;México D.F.;Mexico
 BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  8;Luleå;Sweden
-        
+
 ";
 file.Status = ExampleFile.FileType.InputFile;
 example.Files.Add(file);
@@ -1092,10 +987,9 @@ public class Customer
     public string City;
     public string Country;
 
-    //-> To display in the PropertyGrid.
     public override string ToString()
     {
-        return CustomerID + "" - "" + CompanyName + "", "" + ContactName;
+        return ""Customer: "" + CustomerID + "" - "" + CompanyName + "", "" + ContactName;
     }
 }
 ";
@@ -1118,6 +1012,11 @@ public class SampleType
     [FieldAlign(AlignMode.Right, '0')]
     [FieldTrim(TrimMode.Both)]
     public int Field3;
+
+    public override string ToString()
+    {
+        return ""SampleType: "" + Field2 + "" - "" + Field3;
+    }
 }
 ";
 file.Language = NetLanguage.CSharp;
@@ -1142,16 +1041,20 @@ public class Orders
     public int ShipVia;
 
     public decimal Freight;
+
+    public override string ToString()
+    {
+        return ""Orders: "" + OrderID + "" - "" + CustomerID + "" - "" + Freight;
+    }
 }
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 file = new ExampleFile("RunEngine.cs");
-file.Contents = @"MultiRecordEngine engine;
-
-engine = new MultiRecordEngine(typeof (Orders),
+file.Contents = @"var engine = new MultiRecordEngine(typeof (Orders),
     typeof (Customer),
     typeof (SampleType));
+
 engine.RecordSelector = new RecordTypeSelector(CustomSelector);
 
 var res = engine.ReadFile(""Input.txt"");
@@ -1271,7 +1174,7 @@ file.Contents = @"public override void Run()
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SimpleMasterDetailSample(), "Simple Master Detail sample", "MasterDetail", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\90.MasterDetail\10.SimpleMasterDetail.cs");
+example = new ExampleCode(new SimpleMasterDetailSample(), "Simple Master Detail", "MasterDetail", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\90.MasterDetail\10.SimpleMasterDetail.cs");
 example.Description = @"Show how to implement Master detail reading using a selection subroutine";
 examples.Add(example);
 file = new ExampleFile("RunEngine.cs");

@@ -12,7 +12,7 @@ namespace ExamplesFx
     public class ErrorSaveErrorHandlingExample
         : ExampleBase
     {
-        //-> Name:ErrorMode saving Errors
+        //-> Name:ErrorMode.SaveAndContinue
         //-> Description:Read the file saving bad records
 
         //-> File:RunEngine.cs

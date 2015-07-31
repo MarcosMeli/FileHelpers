@@ -6,7 +6,7 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name: FieldOrder
-    //-> Description: Example of how to use [FieldOrder] attribute
+    //-> Description: Force field order with [FieldOrder] attribute
 
     public class DemoFieldOrder
         : ExampleBase
