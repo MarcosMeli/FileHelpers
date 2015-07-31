@@ -608,49 +608,11 @@ file.Contents = @"public void RunLambda()
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new SimpleErrorHandlingExample(), "ErrorMode.ThrowException", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\10.ErrorHandling.cs");
-example.Description = @"Read the file or reject the whole file";
+example = new ExampleCode(new ErrorModeThrowException(), "ErrorMode.ThrowException", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs");
+example.Description = @"Default Behavior. Read the file or reject the whole file";
 examples.Add(example);
-file = new ExampleFile("RunEngine.cs");
-file.Contents = @"/// <summary>
-/// Run an example of running a file with an error through and
-/// using a try catch to collect the error.
-/// </summary>
-/// <remarks>
-/// In the standard mode you can catch the exceptions when something fails.
-/// </remarks>
-public override void Run()
-{
-    try {
-        var engine = new DelimitedFileEngine<Customer>();
-        
-
-        //  This fails with not in enumeration error
-        Customer[] customers = engine.ReadFile(""Input.txt"");
-
-        // this will not happen because of the exception
-        foreach (var cust in customers) {
-            Console.WriteLine(""Customer name {0} is a {1}"",
-                cust.ContactName,
-                cust.ContactTitle);
-        }
-    }
-    catch (Exception ex) {
-        // Console.WriteLine(ex.ToString()); // with stack trace
-        Console.WriteLine(ex.Message);
-    }
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
 file = new ExampleFile("Customers with Enum.cs");
-file.Contents = @"/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
-[DelimitedRecord(""|"")]
+file.Contents = @"[DelimitedRecord(""|"")]
 public class Customer
 {
     public string CustomerID;
@@ -658,21 +620,7 @@ public class Customer
     public string ContactName;
     public CustomerTitle ContactTitle;
 }
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
-ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
-FRANR|France restauration|Carine Schmitt|MarketingManager
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("TheEnumerator.cs");
-file.Contents = @"/// <summary>
-/// Different titles describing position in company
-/// </summary>
+
 public enum CustomerTitle
 {
     Owner,
@@ -682,62 +630,28 @@ public enum CustomerTitle
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
-file = new ExampleFile("example_errors_simple.html");
-file.Contents = @"         <h2>Simple Error Handling</h2>
-<blockquote>
-<p>In the standard mode you can catch the exceptions when something fail.</p>
-${RunEngine.cs}
-<p>This approach not is bad but you lose some information about the current record
-and you can't use the records array because is not assigned.</p>
-<p>Example exception is:</p>
-${Console}
-</blockquote>
-         
-";
-file.Status = ExampleFile.FileType.HtmlFile;
-example.Files.Add(file);
-
-example = new ExampleCode(new IgnoreModeErrorHandlingExample(), "ErrorMode.IgnoreAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs");
-example.Description = @"Read the file dropping bad records";
-examples.Add(example);
-file = new ExampleFile("RunEngine.cs");
-file.Contents = @"/// <summary>
-/// Run an example of running a file with an error using the
-/// IgnoreMode option to silently drop bad records
-/// </summary>
-public override void Run()
+file = new ExampleFile("Example.cs");
+file.Contents = @"try
 {
     var engine = new DelimitedFileEngine<Customer>();
-
-    // Switch error mode on
-    engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
-
+    
     //  This fails with not in enumeration error
-    Customer[] customers = engine.ReadFile(""Input.txt"");
-
-    // This wont display anything, we have dropped it
-    foreach (var err in engine.ErrorManager.Errors) {
-        Console.WriteLine();
-        Console.WriteLine(""Error on Line number: {0}"", err.LineNumber);
-        Console.WriteLine(""Record causing the problem: {0}"", err.RecordString);
-        Console.WriteLine(""Complete exception information: {0}"", err.ExceptionInfo.ToString());
-    }
-
-    // This will display only 3 of the four records
-    foreach (var cust in customers)
-        Console.WriteLine(""Customer name {0} is a {1}"", cust.ContactName, cust.ContactTitle);
+    var customers = engine.ReadFile(""Input.txt"");
+    
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.ToString()); // with stack trace
 }
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
+
+example = new ExampleCode(new ErrorModeIgnoreAndContinue(), "ErrorMode.IgnoreAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\30.ErrorMode.IgnoreAndContinue.cs");
+example.Description = @"Read the file dropping bad records";
+examples.Add(example);
 file = new ExampleFile("Customers with Enum.cs");
-file.Contents = @"/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
-[DelimitedRecord(""|"")]
+file.Contents = @"[DelimitedRecord(""|"")]
 public class Customer
 {
     public string CustomerID;
@@ -745,21 +659,7 @@ public class Customer
     public string ContactName;
     public CustomerTitle ContactTitle;
 }
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
-ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
-FRANR|France restauration|Carine Schmitt|MarketingManager
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("TheEnumerator.cs");
-file.Contents = @"/// <summary>
-/// Different titles describing position in company
-/// </summary>
+
 public enum CustomerTitle
 {
     Owner,
@@ -769,25 +669,62 @@ public enum CustomerTitle
 ";
 file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
-file = new ExampleFile("example_errors_ignore.html");
-file.Contents = @"         <h2>Ignore and Continue Error Handling</h2>
-<p>Another option is to ignore the errors and continue. Here is an example:</p>
-${RunEngine.cs}
-<p>In the records array you only have the good records.</p>
-         
+file = new ExampleFile("RunEngine.cs");
+file.Contents = @"var engine = new DelimitedFileEngine<Customer>();
+
+// Switch error mode on
+engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
+
+//  This fails with not in enumeration error
+var customers = engine.ReadFile(""Input.txt"");
+
+// This wont display anything, we have dropped it
+foreach (var err in engine.ErrorManager.Errors) {
+    Console.WriteLine();
+    Console.WriteLine(""Error on Line number: {0}"", err.LineNumber);
+    Console.WriteLine(""Record causing the problem: {0}"", err.RecordString);
+    Console.WriteLine(""Complete exception information: {0}"", err.ExceptionInfo.ToString());
+}
+
+// This will display only 3 of the four records
+foreach (var cust in customers)
+    Console.WriteLine(""Customer name {0} is a {1}"", cust.ContactName, cust.ContactTitle);
 ";
-file.Status = ExampleFile.FileType.HtmlFile;
+file.Language = NetLanguage.CSharp;
 example.Files.Add(file);
 
-example = new ExampleCode(new ErrorSaveErrorHandlingExample(), "ErrorMode.SaveAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs");
+example = new ExampleCode(new ErrorModeSaveAndContinue(), "ErrorMode SaveAndContinue", "ErrorHandling", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\25.ErrorHandling\40.ErrorMode.SaveAndContinue.cs");
 example.Description = @"Read the file saving bad records";
 examples.Add(example);
+file = new ExampleFile("Input.txt");
+file.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
+ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
+FRANR|France restauration|Carine Schmitt|MarketingManager
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
+";
+file.Status = ExampleFile.FileType.InputFile;
+example.Files.Add(file);
+file = new ExampleFile("Customers with Enum.cs");
+file.Contents = @"[DelimitedRecord(""|"")]
+public class Customer
+{
+    public string CustomerID;
+    public string CompanyName;
+    public string ContactName;
+    public CustomerTitle ContactTitle;
+}
+
+public enum CustomerTitle
+{
+    Owner,
+    SalesRepresentative,
+    MarketingManager
+}
+";
+file.Language = NetLanguage.CSharp;
+example.Files.Add(file);
 file = new ExampleFile("RunEngine.cs");
-file.Contents = @"/// <summary>
-/// Run an example of running a file with an error using the
-/// ErrorMode option to capture bad records and then saving them
-/// </summary>
-public override void Run()
+file.Contents = @"public override void Run()
 {
     var engine = new DelimitedFileEngine<Customer>();
 
@@ -795,22 +732,17 @@ public override void Run()
     engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
     //  This fails with not in enumeration error
-    Customer[] customers = engine.ReadFile(""Input.txt"");
+    var customers = engine.ReadFile(""Input.txt"");
 
     if (engine.ErrorManager.HasErrors)
         engine.ErrorManager.SaveErrors(""errors.out"");
+
     LoadErrors();
 }
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("LoadErrors.cs");
-file.Contents = @"/// <summary>
-/// Load errors and display on console
-/// </summary>
+
 private void LoadErrors()
 {
-    // sometime later you can read it back
+    // sometime later you can read it back using:
     ErrorInfo[] errors = ErrorManager.LoadErrors(""errors.out"");
 
     // This will display error from line 2 of the file.
@@ -823,62 +755,6 @@ private void LoadErrors()
 }
 ";
 file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Customers with Enum.cs");
-file.Contents = @"/// <summary>
-/// Sample customer class that is delimited by | default
-/// </summary>
-/// <remarks>
-/// Notice last feild is our enumerator
-/// </remarks>
-[DelimitedRecord(""|"")]
-public class Customer
-{
-    public string CustomerID;
-    public string CompanyName;
-    public string ContactName;
-    public CustomerTitle ContactTitle;
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Input.txt");
-file.Contents = @"ALFKI|Alfreds Futterkiste|Maria Anders|SalesRepresentative
-ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|NotInEnum
-FRANR|France restauration|Carine Schmitt|MarketingManager
-ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner
-";
-file.Status = ExampleFile.FileType.InputFile;
-example.Files.Add(file);
-file = new ExampleFile("TheEnumerator.cs");
-file.Contents = @"/// <summary>
-/// Different titles describing position in company
-/// </summary>
-public enum CustomerTitle
-{
-    Owner,
-    SalesRepresentative,
-    MarketingManager
-}
-";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
-file = new ExampleFile("Errors.out");
-file.Contents = @"";
-file.Status = ExampleFile.FileType.OutputFile;
-example.Files.Add(file);
-file = new ExampleFile("example_errors_save.html");
-file.Contents = @"         <h2>Saving and Loading Errors</h2>
-<blockquote>
-<p>One interesting feature is the method in the ErrorManager to save the errors to a file,
-you can do this as follows:</p>
-${RunEngine.cs}
-<p>To load a file with errors you can use the static method:</p>
-${LoadErrors.cs}
-</blockquote>
-         
-";
-file.Status = ExampleFile.FileType.HtmlFile;
 example.Files.Add(file);
 
 example = new ExampleCode(new EngineOptions(), "Dynamic Engine Options", "Advanced", @"D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\50.Advanced\05.DynamicChangeOptions.cs");
