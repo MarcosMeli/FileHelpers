@@ -13,30 +13,6 @@ permalink: /example/Advanced/MultipleDelimiters/
   <h5>Write a file with different delimiters using the same record</h5>
   <div class='indent'>
 
-<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
-{% highlight csharp %}
-
-
-var customers = CreateCustomers();
-
-var engine = new DelimitedFileEngine<CustomersVerticalBar>(Encoding.UTF8);
-//  write out customers using a vertical bar delimiter (default)
-engine.WriteFile("Out_Vertical.txt", customers);
-
-// Change the delimiter to semicolon and write that out
-engine.Options.Delimiter = ";";
-engine.WriteFile("Out_SemiColon.txt", customers);
-
-// Change the delimiter to a tab and write that out
-engine.Options.Delimiter = "\t";
-engine.WriteFile("Out_Tab.txt", customers);
-
-
-{%  endhighlight %}
-</div>
-
-
-
 <div class='highlight-title example-code'> CustomersVerticalBar.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
@@ -66,6 +42,30 @@ public class CustomersVerticalBar
 
 
 <p>To display in the PropertyGrid.</p>
+
+
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+
+var customers = CreateCustomers();
+
+var engine = new DelimitedFileEngine<CustomersVerticalBar>(Encoding.UTF8);
+//  write out customers using a vertical bar delimiter (default)
+engine.WriteFile("Out_Vertical.txt", customers);
+
+// Change the delimiter to semicolon and write that out
+engine.Options.Delimiter = ";";
+engine.WriteFile("Out_SemiColon.txt", customers);
+
+// Change the delimiter to a tab and write that out
+engine.Options.Delimiter = "\t";
+engine.WriteFile("Out_Tab.txt", customers);
+
+
+{%  endhighlight %}
+</div>
+
 
 
 <div class='highlight-title example-output'> Out_Vertical.txt </div><div class='example-output-high'>
