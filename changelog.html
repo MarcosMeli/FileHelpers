@@ -5,7 +5,7 @@ permalink: /changelog/
 ---
 <div class="changelog">
     <div class="version">
-<h3>Version 3.1, July 2015</h3>
+    <h3>Version 3.1, July 2015</h3>
 
 <p>Hi everyone again!</p>
 
@@ -53,7 +53,9 @@ update the library in a more regular fashion.</p>
 </ul>
 </div>
 
--   [2.0 (April-2007)]
+    <div class="version">
+    <h3>2.0</h3>
+
 
     The library has passed its 1st birthday !!! and thanks to the work
     and contribution of a lot of people ([partial list of
@@ -80,144 +82,209 @@ update the library in a more regular fashion.</p>
 
     Here do you have all the stuff that keep me busy for a while :P
 
-    -   Breaking Changes
-        -   The constructor of the MultiRecordEngine was changed to
+    <h4>   Breaking Changes</h4>
+    <ul>
+
+        <li>The constructor of the MultiRecordEngine was changed to
             allow params args, and to allow users to not pass the
             RecordSelector (in write operations where it was not
             needed).
-        -   EndsRead and EndsWrite deleted, now you have a Close()
+        </li>
+        <li>EndsRead and EndsWrite deleted, now you have a Close()
             operation to simplify the API and to make it similar to the
             System.Data namespace. (The async engines also implement
             IDisposable)
-        -   Rename FileHelperException --\> FileHelpers Exception a
+        </li>
+        <li>Rename FileHelperException --\> FileHelpers Exception a
             better name =) and an easy to solve problem
-        -   By default the numeric fields in the FixedLengthRecords that
+        </li>
+        <li>By default the numeric fields in the FixedLengthRecords that
             don't have an [FieldAlign] will be aligned to the right and
             the rest the left by default, with this we avoid the problem
             of generate files with different meaning when reading and
             writing
+        </li>
+    </ul>
 
-    -   Performance related
-        -   Internal use of Reflection.Emit, Dynamic Methods and char
+    <h4>   Performance related</h4>
+    <ul>
+        <li>Internal use of Reflection.Emit, Dynamic Methods and char
             buffers to get **more than 50% enhancement in performance
             and for .NET 2.0 more than 65%**
-        -   The Read..AsDT methods now creates the DataTable record by
+        </li>
+        <li>The Read..AsDT methods now creates the DataTable record by
             record, not at the end, so you can handle large files
             without any memory overload
-        -   No more reflection in the operations (only in the
+        </li>
+        <li>No more reflection in the operations (only in the
             constructors).
-        -   FieldSorter faster too, Removed REFLECTION for EMIT
+        </li>
+        <li>FieldSorter faster too, Removed REFLECTION for EMIT
+        </li>
+    </ul>
 
-    -   Shining new features
-        -   The very cool
+
+    <h4>   Shining new features</h4>
+    <ul>
+        <li>The very cool
             [DelimitedFileEngine](example_delimitedengine.html) and
             [FixedFileEngine](example_fixedengine.html) that allow to
             change options at RunTime (also with generic versions)
             [Check an example here](example_generics.html)
-        -   [ConditionalRecords](example_conditionalrecords.html) you
+        </li>
+        <li>[ConditionalRecords](example_conditionalrecords.html) you
             can easily include or exclude certain records based on a
             RecordCondition (like BeginsWith, EndsWith, Contains or
             RegEx) [Check the example](example_conditionalrecords.html)
-        -   A new GenericDatabaseStorage to allow databases use ADO.NET
+        </li>
+        <li>A new GenericDatabaseStorage to allow databases use ADO.NET
             to work with the FileHelpers (Thanks Rodolfo Finochietti)
-        -   Experimental [Mono project](http://www.mono-project.com)
+        </li>
+        <li>Experimental [Mono project](http://www.mono-project.com)
             Support (some users are already using it, we hope that in
             the next release we have a completely working version for
             this framework)
-        -   New version checker in the demos and wizard (both with a
+        </li>
+        <li>New version checker in the demos and wizard (both with a
             renewed look and feel) [Check the
             movies](http://www.filehelpers.com/movies.html)
-        -   .NET 2.0 Nullable Types support. (Thanks Vijayan) [Check the
+        </li>
+        <li>.NET 2.0 Nullable Types support. (Thanks Vijayan) [Check the
             example](example_nullable.html)
-        -   Notification Interfaces: you can now get notified of the
+        </li>
+        <li>Notification Interfaces: you can now get notified of the
             events simply implement them
-        -   Enhanced Debugging in .NET 2.0 with DebuggerDisplay and
+        </li>
+        <li>Enhanced Debugging in .NET 2.0 with DebuggerDisplay and
             DebuggerBrowsable, DebugVisualizars to come.
-        -   The wizard has a record class test that allows you to
+        </li>
+        <li>The wizard has a record class test that allows you to
             introduce sample data and your class and check for errors or
             results.
-        -   You can [check our
+        </li>
+        <li>You can [check our
             screencasts](http://www.filehelpers.com/movies.html) for the
             demos, wizard and other features of the library.
-        -   Now the code for Vs2003 and Vs2005 are both on SVN, sharing
+        </li>
+        <li>Now the code for Vs2003 and Vs2005 are both on SVN, sharing
             the same files and the build script autodetect your Visual
             Studio installation. So no more excuses time to get involved
             =)
-        -   The engines with asynchronous operations are now IDisposable
+        </li>
+        <li>The engines with asynchronous operations are now IDisposable
             and IEnumerable so you can declare it with using(..) and use
             them in a foreach loop
+        </li>
+    </ul>
 
-    -   API changes and extensions
-        -   The write methods are less strict. You can pass now an
+    <h4>   API changes and extensions</h4>
+    <ul>
+        <li>The write methods are less strict. You can pass now an
             IEnumerable instead of an array, so you can directly pass a
             List or ArrayList to the method without doing a ToArray()
-        -   RunTime records can now get a DataTable in the constructor
+        </li>
+        <li>RunTime records can now get a DataTable in the constructor
             and use DataColumns to create one field for each column.
-        -   Generic versions of near all the engines of the library (it
+        </li>
+        <li>Generic versions of near all the engines of the library (it
             is really hard to maintain the two copies :P so everyone it
             is time to port !!)
-        -   Asynchronous operations in others engines like the
+        </li>
+        <li>Asynchronous operations in others engines like the
             MultiRecordEngine
-        -   Event support to the MultiRecordEngine thanks to the
+        </li>
+        <li>Event support to the MultiRecordEngine thanks to the
             contribution of Francis de Fouchier
-        -   The library now handles infinite levels of inheritance
+        </li>
+        <li>The library now handles infinite levels of inheritance
             adding the high level fields first in the result record
             class.
-        -   Allow to ignore spaces and tabs in the
+        </li>
+        <li>Allow to ignore spaces and tabs in the
             [IgnoreEmptyLinesAttribute](FileHelpers.IgnoreEmptyLinesAttribute.html)
-        -   [IgnoreCommentedLines](FileHelpers.IgnoreCommentedLinesAttribute.html)
+        </li>
+        <li>[IgnoreCommentedLines](FileHelpers.IgnoreCommentedLinesAttribute.html)
             thanks to MCampbell
-        -   The Read methods now have a maxRecords args to tell to the
+        </li>
+        <li>The Read methods now have a maxRecords args to tell to the
             engines how much them must read.
-        -   A new constructor overload to the engine that allow to pass
+        </li>
+        <li>A new constructor overload to the engine that allow to pass
             the Encoding. This is useful to make the users aware of the
             Encoding feature.
-        -   FileTransformEngine with two new methods
+        </li>
+        <li>FileTransformEngine with two new methods
             ReadAndTransformRecords and TransformRecords
-        -   Flush method to AsyncEngines to allow users to ensure data
+        </li>
+        <li>Flush method to AsyncEngines to allow users to ensure data
             is written. For example, if they are using the library for
             logging.
-        -   The converters are now smarter as they validate to which
+        </li>
+        <li>The converters are now smarter as they validate to which
             types can be assigned and throw exceptions if converter is
             wrong (for example if you use ConverterKind.Decimal in a int
             field)
-        -   The [ConvertException](FileHelpers.ConvertException.html)
+        </li>
+        <li>The [ConvertException](FileHelpers.ConvertException.html)
             has a lot of context information: LineNumber, ColumnNumber,
             FieldName. Also better exception messages.
-        -   The integer converters receive now take a decimal separator
+        </li>
+        <li>The integer converters receive now take a decimal separator
             to build an InvariantCulture to format and parse the values
             and strings
+        </li>
+    </ul>
 
-    -   Small changes
-        -   Fixed the problem with ASP.NET: "Line 0: Metadata file
+
+    <h4>   Small changes</h4>
+
+    <ul>
+
+        <li>Fixed the problem with ASP.NET: "Line 0: Metadata file
             'filehelpers.dll' could not be found"
-        -   Fixed some problems with the CsvClassBuilder (it is a good
+        </li>
+        <li>Fixed some problems with the CsvClassBuilder (it is a good
             practice to not to release the last minute added features)
-        -   The assemblies are now signed
-        -   The new ConverterBase.DefaultDateTimeFormat to avoid set the
+        </li>
+        <li>The assemblies are now signed
+        </li>
+        <li>The new ConverterBase.DefaultDateTimeFormat to avoid set the
             converter format field by field =)
-        -   Some error messages from the library were rewritten and now
+        </li>
+        <li>Some error messages from the library were rewritten and now
             provides more contextual information (line and column
             numbers, field name, etc).
-        -   ExcelStorage supports more than 26 columns (thanks to Mark
+        </li>
+        <li>ExcelStorage supports more than 26 columns (thanks to Mark
             Izendooren)
-        -   Encoding support to the CsvEngine
-        -   The wizard remembers all the paths now
-        -   SkipThisRecord in the AfterReadRecordEventArgs, this allows
+        </li>
+        <li>Encoding support to the CsvEngine
+        </li>
+        <li>The wizard remembers all the paths now
+        </li>
+        <li>SkipThisRecord in the AfterReadRecordEventArgs, this allows
             engine to skip records from the results (thanks Crestline)
-        -   More methods for the
+        </li>
+        <li>More methods for the
             [CommonEngine](FileHelpers.CommonEngineMembers.html)
-        -   More than [420+ NUnit tests](testing.html) !!! (I cant
+        </li>
+        <li>More than [420+ NUnit tests](testing.html) !!! (I cant
             believe it, I'm a lazy developer but I know how much value
             you get out of testing the library)
-        -   You now have two versions for the demos, one for each
+        </li>
+        <li>You now have two versions for the demos, one for each
             framework version.
-        -   The FixedLengthClassBuilder has more constructors to set the
+        </li>
+        <li>The FixedLengthClassBuilder has more constructors to set the
             length of the fields in your instruction
-        -   Improved documentation. (Thanks Antoine and Matt)
-        -   [A lot of new examples check it out !!](examples.html)
-
-
+        </li>
+        <li>Improved documentation. (Thanks Antoine and Matt)
+        </li>
+        <li>[A lot of new examples check it out !!](examples.html)
+        </li>
+    </ul>
+</div>
+<!--
 
 -   [1.6.0 (Aug-2006)]
 
@@ -399,62 +466,62 @@ update the library in a more regular fashion.</p>
 
 -   [1.4.0 (17-Mar-2006)]
     -   Major changes:
-        -   DEL: ConverterKind.Custom was removed because it was
+        <li>DEL: ConverterKind.Custom was removed because it was
             irrelevant to use custom converters now the library uses
             [FieldConverter(typeof(YouConverter))]
-        -   DEL: Some Exceptions trying to simplify the Exception
+        <li>DEL: Some Exceptions trying to simplify the Exception
             handling and reducing the number of different exceptions.
             The deleted exceptions are **NullValueException,
             QuotedStringException and InternalException all replaced
             with the BadUsageException**.
-        -   FIX: The Async engines now uses the ErrorMode in all cases.
-        -   MOD: The MasterDetailEngine now takes the IgnoreFirst and
+        <li>FIX: The Async engines now uses the ErrorMode in all cases.
+        <li>MOD: The MasterDetailEngine now takes the IgnoreFirst and
             IgnoreLast options from the master record an not from the
             detail.
-        -   MOD: All methods in the FileHelpers Engines that **returned
+        <li>MOD: All methods in the FileHelpers Engines that **returned
             bool changed to void** because they was using error handling
             with exceptions and a bool result is redundant and useless,
             this provides a clearer OO design.
-        -   MOD: [LoadErrors](example_errorhandling.html) from the
+        <li>MOD: [LoadErrors](example_errorhandling.html) from the
             ErrorManager class now is static.
-        -   ADD: [The CommonEngine](example_commonengine.html): with
+        <li>ADD: [The CommonEngine](example_commonengine.html): with
             four static methods for the common operations.
-        -   ADD: [The progress notification
+        <li>ADD: [The progress notification
             feature](example_progress.html), with it you can get
             notified of the progress of each operation.
-        -   ADD: Full ExcelCSV support, a new parameter to the
+        <li>ADD: Full ExcelCSV support, a new parameter to the
             FieldQuoted attribute to indicate if the Quote is optional
             (like excel does with CSV)
-        -   NEWS: Full Subversion support in Sourceforge: now you can
+        <li>NEWS: Full Subversion support in Sourceforge: now you can
             help in the development using any subversion client and send
             me the patches with your changes.
             [https://svn.sourceforge.net/svnroot/filehelpers/trunk](https://svn.sourceforge.net/svnroot/filehelpers/trunk)
-        -   NEWS: [FileHelpers
+        <li>NEWS: [FileHelpers
             Forums](http://www.filehelpers.com/forums/) the main please
             for your feedback and discussions about the
             library.[](https://svn.sourceforge.net/svnroot/filehelpers/trunk)
 
     -   Minor changes:
-        -   DEL: Description property to the FieldBase this is really
+        <li>DEL: Description property to the FieldBase this is really
             old (from the beginning of the library.)
-        -   DEL: Demo zip file now is merged into the binary zip.
-        -   MOD: EngineBase.LineNum and ErrorInfo.LineNum now are
+        <li>DEL: Demo zip file now is merged into the binary zip.
+        <li>MOD: EngineBase.LineNum and ErrorInfo.LineNum now are
             **LineNumber**.
-        -   MOD: Enhanced exception messages.
-        -   MOD: SaveErrors can receive a header string to write into
+        <li>MOD: Enhanced exception messages.
+        <li>MOD: SaveErrors can receive a header string to write into
             the file.
-        -   MOD: ErrorManager.**LastErrors renamed
+        <li>MOD: ErrorManager.**LastErrors renamed
             to**ErrorManager.**Errors**
-        -   ADD: The ExcelStorage checks if Excel is installed, if not
+        <li>ADD: The ExcelStorage checks if Excel is installed, if not
             throws a BadUsageException
-        -   ADD: More [NUnit tests](testing.html) (more than 185)
-        -   ADD: A lot of new [Usage Examples](examples.html).
-        -   ADD: A new form in the demo app that shows how to use the
+        <li>ADD: More [NUnit tests](testing.html) (more than 185)
+        <li>ADD: A lot of new [Usage Examples](examples.html).
+        <li>ADD: A new form in the demo app that shows how to use the
             [ProgressNotification](example_progress.html).
-        -   ADD: Wizard: now use the [FireBall
+        <li>ADD: Wizard: now use the [FireBall
             CodeEditor](http://www.codeproject.com/KB/miscctrl/fireballcodeeditor.aspx)
             for syntax highlighting.
-        -   ADD: Wizard: a lot of new templates and fixes in others.
+        <li>ADD: Wizard: a lot of new templates and fixes in others.
 
 
 -   [1.3.5 (14-Feb-2006)]
@@ -505,19 +572,19 @@ update the library in a more regular fashion.</p>
     -   ADD: More [NUnit tests](testing.html) (now 137)
 
     -   ADD: This Release has **six new features**:
-        -   [FileHelpers Wizard](wizard.html) - An Simple UI to generate
+        <li>[FileHelpers Wizard](wizard.html) - An Simple UI to generate
             the record classes (RC1)
-        -   [.NET 2.0 Generics Support](generics.html) - A strong typed
+        <li>[.NET 2.0 Generics Support](generics.html) - A strong typed
             and cast less option.
-        -   [](generics.html)[](generics.html)[Master Detail
+        <li>[](generics.html)[](generics.html)[Master Detail
             Engine](FileHelpers.MasterDetail.MasterDetailEngine.html) (
             see the [example1](example_masterdetail.html) and
             [example2](example_masterdetail.html) )
-        -   [IgnoreLastAttribute](attributes.html) to discard the last
+        <li>[IgnoreLastAttribute](attributes.html) to discard the last
             **n** lines of a file or stream
-        -   [EnumConverter](example_enumconverter.html) to auto parse
+        <li>[EnumConverter](example_enumconverter.html) to auto parse
             and write enum values in the fields.
-        -   Full VB.NET Support: solved the previous versions issues.
+        <li>Full VB.NET Support: solved the previous versions issues.
 
     -   ADD. Four new [examples](examples.html) !!
     -   ADD: Some new [class diagrams](class_diagram.html) for the
@@ -543,10 +610,10 @@ update the library in a more regular fashion.</p>
     -   FIX: Documentation browsing (some see also topics was bad)
     -   MOD: A lot of name refactoring in the DataLinksto get the names
         shorts.
-        -   IDataLinkProvider -\> IDataStorage
-        -   DataBaseDataLinkProvider -\> DataBaseStorage
-        -   SqlServerDataLinkProvider -\> SqlServerStorage
-        -   AccessDataLinkProvider -\> AccessStorage
+        <li>IDataLinkProvider -\> IDataStorage
+        <li>DataBaseDataLinkProvider -\> DataBaseStorage
+        <li>SqlServerDataLinkProvider -\> SqlServerStorage
+        <li>AccessDataLinkProvider -\> AccessStorage
 
     -   MOD: DataLinkEngine now is GenericDataLink and does not need to
         be from/to file you can use all the implementations of the
@@ -585,14 +652,14 @@ update the library in a more regular fashion.</p>
     -   MOD: More complete NAnt build file.
     -   MOD: Enhanced Documentation Browsing.
     -   MOD: A lot of name Refactoring to use the new naming conventions
-        -   FixedLengthAttribute -\> FieldFixedLengthAttribute
-        -   DelimitedAttribute -\> FieldDelimiterAttribute
-        -   ConverterAttribute -\> FieldConverterAttribute
-        -   FieldAlign -\> AlignMode
-        -   AlignAttribute -\> FieldAlignAttribute
-        -   TrimAttribute -\> FieldTrimAttribute
-        -   NullValueAttribute -\> FieldNullValueAttribute
-        -   QuotedAttribute -\> FieldQuotedAttribute
+        <li>FixedLengthAttribute -\> FieldFixedLengthAttribute
+        <li>DelimitedAttribute -\> FieldDelimiterAttribute
+        <li>ConverterAttribute -\> FieldConverterAttribute
+        <li>FieldAlign -\> AlignMode
+        <li>AlignAttribute -\> FieldAlignAttribute
+        <li>TrimAttribute -\> FieldTrimAttribute
+        <li>NullValueAttribute -\> FieldNullValueAttribute
+        <li>QuotedAttribute -\> FieldQuotedAttribute
 
     -   ADD: New form in the demo for time and stress tests.
     -   ADD: New form in the demo for fixed length tests.
@@ -635,4 +702,6 @@ update the library in a more regular fashion.</p>
         and [Code
         Project](http://www.codeproject.com/KB/database/filehelpers.aspx)
         site.
+
+    -->
 </div>
