@@ -65,7 +65,15 @@
               <li class="bold"><a href="{{ site.baseurl }}/download/" class="waves-effect waves-cyan"><i class="mdi-file-file-download"></i> Download</a></li>
               <li class="bold"><a href="{{ site.baseurl }}/quickstart/" class="waves-effect waves-cyan"><i class="mdi-image-flash-on"></i> Quick Start</a></li>
               <li class="bold"><a href="{{ site.baseurl }}/mustread/" class="waves-effect waves-cyan"><i class="fa fa-bookmark-o"></i> Must Read</a></li>
-              <li class="bold"><a href="{{ site.baseurl }}/examples/" class="waves-effect waves-cyan"><i class="mdi-image-palette"></i> Examples</a></li>
+              <li class="bold"><a href="{{ site.baseurl }}/examples/" class="collapsible-header waves-effect waves-cyan"><i class="mdi-image-palette"></i> Examples</a></li>
+              <div class="collapsible-body"
+                {% if page.permalink contains '/example/' %}style="display: block;" {% else %} style="display: none;" {% endif %}
+              >
+                  <ul>
+                      {% include exampleslinks.html %}
+                  </ul>
+              </div>
+
               <li class="bold"><a href="{{ site.baseurl }}/contribute/" class="waves-effect waves-cyan"><i class="fa fa-info-circle"></i> Contribute</a></li>
               <li><a href="{{ site.baseurl }}/changelog"><i class="mdi-action-swap-vert-circle"></i> Changelog</a></li>
 
