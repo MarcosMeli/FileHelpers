@@ -76,6 +76,7 @@
     <Compile Include="Examples\12.Missing Values\10.MissingValuesFieldNullValue.cs" />
     <Compile Include="Examples\12.Missing Values\05.MissingValuesNullable.cs" />
     <Compile Include="Examples\15.Attributes\20.FieldOrder.cs" />
+    <Compile Include="Examples\18.Converters\60.CustomConverter.cs" />
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
