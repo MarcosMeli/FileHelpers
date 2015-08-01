@@ -693,7 +693,7 @@ namespace FileHelpers
                     from = string.Empty;
 
                 DateTime val;
-                if (!DateTime.TryParseExact(from.Trim(), mFormat, null, DateTimeStyles.None, out val)) {
+                if (!DateTime.TryParseExact(from.Trim(), mFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out val)) {
                     string extra;
 
                     if (from.Length > mFormat.Length)
