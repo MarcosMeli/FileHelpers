@@ -7,6 +7,7 @@
 <h3>ConverterKind.Date</h3>
 
 <p><b>Arg1:</b> A string with the DateTime format that the engine passes to the DateTime.Parse function.</p>
+<p><b>Arg2:</b> A string with the encoding used for string convertions</p>
 
 <p><b>Examples:</b></p>
 
@@ -31,15 +32,20 @@ public DateTime ShippedDate;
 [FieldConverter(ConverterKind.Date, "ddMMyyyy" )]
 public DateTime ShippedDate;
 
-// Parse these dates:  04012006   02302006
-[FieldConverter(ConverterKind.Date, "MMddyyyy" )]
+// Parse these dates:  04/January/2006   02/July/2006
+[FieldConverter(ConverterKind.Date, "dd/MMMM/yyyy", "en" )] // or "en-US"
+public DateTime ShippedDate;
+
+// Parse these dates:  04/Enero/2006   02/Julio/2006
+[FieldConverter(ConverterKind.Date, "dd/MMMM/yyyy", "es" )]
 public DateTime ShippedDate;
 
 {% endhighlight %}
 
 <p>You can check all the supported
         format strings check the MSDN docs for <a title="DateTime.ParseExact"
-        href="http://msdn2.microsoft.com/en-us/library/system.datetime.parseexact.aspx">DateTime.ParseExact</a>
+        href="http://msdn2.microsoft.com/en-us/library/system.datetime.parseexact.aspx">DateTime.ParseExact</a> <br/>
+        and <a href="https://msdn.microsoft.com/en-us/goglobal/bb896001.aspx">here all support cultures</a>
 </p>
 
 <h3>ConverterKind.Double, ConverterKind.Single and ConverterKind.Decimal</h3>

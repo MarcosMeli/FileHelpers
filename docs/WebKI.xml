@@ -1441,8 +1441,8 @@
   <HelpKINode Title="IgnoreCommentedLinesAttribute.CommentMarker property" Url="html/P_FileHelpers_IgnoreCommentedLinesAttribute_CommentMarker.htm" />
   <HelpKINode Title="IgnoreCommentedLinesAttribute.IgnoreCommentedLinesAttribute constructor" Url="html/Overload_FileHelpers_IgnoreCommentedLinesAttribute__ctor.htm" />
   <HelpKINode Title="IgnoreCommentInfo class">
-    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm" />
   </HelpKINode>
   <HelpKINode Title="IgnoreEmptyLines property">
     <HelpKINode Title="ClassBuilder.IgnoreEmptyLines Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_IgnoreEmptyLines.htm" />
@@ -1844,8 +1844,8 @@
     <HelpKINode Title="RecordOptions.RecordCondition Property " Url="html/P_FileHelpers_Options_RecordOptions_RecordCondition.htm" />
   </HelpKINode>
   <HelpKINode Title="RecordConditionInfo class">
-    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm" />
   </HelpKINode>
   <HelpKINode Title="RecordIndexer class">
     <HelpKINode Title="RecordIndexer Class" Url="html/T_FileHelpers_RecordIndexer.htm" />
