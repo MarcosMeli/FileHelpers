@@ -236,14 +236,14 @@ div.version > ul
     border-radius: 2px;
     overflow: hidden;
     position: relative;
-        margin-left: 30px;
+        margin-left: 3  |0px;
 }
 
 
 div.version > ul > li
 {
   background-color: #fff;
-  line-height: 0.8rem;
+  line-height: 0.9rem;
   padding: 10px 20px;
   margin: 0;
   border-bottom: 1px solid #e0e0e0;
