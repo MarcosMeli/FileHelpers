@@ -6,12 +6,12 @@
     <div class="collapsible-header">DataLink feature is outdated and will be rewritten</div>
     <div class="collapsible-body"><p>The support to interact with other datasources is from the old 1.1 or 2.0 days. We will be rewritting this feature for the next release using lambda expressions, Task and other advanced features of .Net</p></div>
   </li>
-         <li>
+  <li>
            <div class="collapsible-header">Excel Support is only for basic scenarios</div>
            <div class="collapsible-body"><p>The current implmented Excel support is only for basic scenarios, if you need custom formatting, charts, etc you must go for a custom
            code, is strongly recommended to direct use the <a href="https://npoi.codeplex.com/">NPOI library</a>
            </p></div>
-         </li>
+ </li>
 
        </ul>
 
@@ -21,6 +21,10 @@
          <li>
            <div class="collapsible-header">My file has headers, how can I ignore it ?</div>
            <div class="collapsible-body"><p>You must use the <span class="code">[IgnoreFirst]</span> attribute, for footer line you can use also <span class="code">[IgnoreLast]</span></p></div>
+         </li>
+         <li>
+           <div class="collapsible-header">I want to write a file with headers</div>
+           <div class="collapsible-body"><p>You must use <span class="code">engine.HeaderText = engine.GetFileHeader()</span> before you call WriteFile</p></div>
          </li>
          <li>
            <div class="collapsible-header">Not all the characters from the original file are read</div>
