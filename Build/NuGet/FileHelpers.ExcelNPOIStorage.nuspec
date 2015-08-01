@@ -19,7 +19,7 @@
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>        
         <dependencies>
-            <dependency id="FileHelpers" version="-VisibleVersion-" />
+            <dependency id="FileHelpers" version="3.1.1-rc2" />
         </dependencies>
     </metadata>
     <files>
