@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpTOC>
 
-  <HelpTOCNode Id="d51484f6-9fca-46a6-83e5-1d8d4e950263" Title="Main Index" Url="html/R_Project_FileHelpers.htm">
-    <HelpTOCNode Id="18ea61ad-412f-482a-9b3f-900e230982f8" Title="FileHelpers" Url="html/N_FileHelpers.htm">
+  <HelpTOCNode Id="051a7f8e-c51e-4af2-a843-fef3abb5dac3" Title="Main Index" Url="html/R_Project_FileHelpers.htm">
+    <HelpTOCNode Id="001233fe-4168-405c-920d-d5046357d8a2" Title="FileHelpers" Url="html/N_FileHelpers.htm">
       <HelpTOCNode Title="AlignMode Enumeration" Url="html/T_FileHelpers_AlignMode.htm" />
       <HelpTOCNode Title="BadUsageException Class" Url="html/T_FileHelpers_BadUsageException.htm" />
-      <HelpTOCNode Id="537eb8c6-6dfb-4fb0-b173-a986f72f1aed" Title="BigFileSorter Class" Url="html/T_FileHelpers_BigFileSorter.htm">
-        <HelpTOCNode Id="792452b7-682f-4506-90d1-1dda3a9a8ded" Title="BigFileSorter Constructor " Url="html/Overload_FileHelpers_BigFileSorter__ctor.htm">
+      <HelpTOCNode Id="216e7d5f-f65b-485a-b95c-8bd678bd9809" Title="BigFileSorter Class" Url="html/T_FileHelpers_BigFileSorter.htm">
+        <HelpTOCNode Id="0b827a6c-2c41-4b19-9ae8-d79c305a46e5" Title="BigFileSorter Constructor " Url="html/Overload_FileHelpers_BigFileSorter__ctor.htm">
           <HelpTOCNode Title="BigFileSorter Constructor " Url="html/M_FileHelpers_BigFileSorter__ctor.htm" />
           <HelpTOCNode Title="BigFileSorter Constructor (Comparison(String))" Url="html/M_FileHelpers_BigFileSorter__ctor_1.htm" />
           <HelpTOCNode Title="BigFileSorter Constructor (Int32)" Url="html/M_FileHelpers_BigFileSorter__ctor_4.htm" />
@@ -14,96 +14,96 @@
           <HelpTOCNode Title="BigFileSorter Constructor (Comparison(String), Int32)" Url="html/M_FileHelpers_BigFileSorter__ctor_2.htm" />
           <HelpTOCNode Title="BigFileSorter Constructor (Comparison(String), Encoding, Int32)" Url="html/M_FileHelpers_BigFileSorter__ctor_3.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="BigFileSorter Methods" Url="html/Methods_T_FileHelpers_BigFileSorter.htm" />
         <HelpTOCNode Title="BigFileSorter Properties" Url="html/Properties_T_FileHelpers_BigFileSorter.htm" />
+        <HelpTOCNode Title="BigFileSorter Methods" Url="html/Methods_T_FileHelpers_BigFileSorter.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b668a3e3-68cb-4446-8af7-3ff94e11e7eb" Title="BigFileSorter.SorterRecord Class" Url="html/T_FileHelpers_BigFileSorter_SorterRecord.htm">
+      <HelpTOCNode Id="249c1c68-8b02-4387-af11-fe265a255d3a" Title="BigFileSorter.SorterRecord Class" Url="html/T_FileHelpers_BigFileSorter_SorterRecord.htm">
         <HelpTOCNode Title="BigFileSorter.SorterRecord Constructor " Url="html/M_FileHelpers_BigFileSorter_SorterRecord__ctor.htm" />
-        <HelpTOCNode Id="0c048897-b475-4b00-bdb7-83cf782c4e20" Title="SorterRecord Methods" Url="html/Methods_T_FileHelpers_BigFileSorter_SorterRecord.htm">
+        <HelpTOCNode Id="61a6b4c8-cd77-4e84-bbfd-d7d543003d28" Title="SorterRecord Methods" Url="html/Methods_T_FileHelpers_BigFileSorter_SorterRecord.htm">
           <HelpTOCNode Title="CompareTo Method " Url="html/M_FileHelpers_BigFileSorter_SorterRecord_CompareTo.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="7184ef93-285b-4f5a-bdce-cf349ac02f56" Title="BigFileSorter(T) Class" Url="html/T_FileHelpers_BigFileSorter_1.htm">
-        <HelpTOCNode Id="6a22527a-b027-47ea-83cf-a974547a3edd" Title="BigFileSorter(T) Constructor " Url="html/Overload_FileHelpers_BigFileSorter_1__ctor.htm">
+      <HelpTOCNode Id="ea91218d-3b4d-4504-b244-a6dec5932e89" Title="BigFileSorter(T) Class" Url="html/T_FileHelpers_BigFileSorter_1.htm">
+        <HelpTOCNode Id="61f24b05-56ef-447a-a8f4-870fc7efa9a7" Title="BigFileSorter(T) Constructor " Url="html/Overload_FileHelpers_BigFileSorter_1__ctor.htm">
           <HelpTOCNode Title="BigFileSorter(T) Constructor " Url="html/M_FileHelpers_BigFileSorter_1__ctor.htm" />
           <HelpTOCNode Title="BigFileSorter(T) Constructor (Int32)" Url="html/M_FileHelpers_BigFileSorter_1__ctor_1.htm" />
           <HelpTOCNode Title="BigFileSorter(T) Constructor (Encoding)" Url="html/M_FileHelpers_BigFileSorter_1__ctor_2.htm" />
           <HelpTOCNode Title="BigFileSorter(T) Constructor (Encoding, Int32)" Url="html/M_FileHelpers_BigFileSorter_1__ctor_3.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="09acf51e-a05c-4363-80d0-885f83e058b9" Title="BigFileSorter(T) Methods" Url="html/Methods_T_FileHelpers_BigFileSorter_1.htm">
-          <HelpTOCNode Title="Sort Method " Url="html/M_FileHelpers_BigFileSorter_1_Sort.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="111d2fda-8a96-4c61-8e48-f454bf00ff52" Title="BigFileSorter(T) Properties" Url="html/Properties_T_FileHelpers_BigFileSorter_1.htm">
+        <HelpTOCNode Id="69e09eb3-79a5-4f55-8cb6-054e2da1751d" Title="BigFileSorter(T) Properties" Url="html/Properties_T_FileHelpers_BigFileSorter_1.htm">
           <HelpTOCNode Title="BlockFileSizeInBytes Property " Url="html/P_FileHelpers_BigFileSorter_1_BlockFileSizeInBytes.htm" />
           <HelpTOCNode Title="DeleteTempFiles Property " Url="html/P_FileHelpers_BigFileSorter_1_DeleteTempFiles.htm" />
           <HelpTOCNode Title="Encoding Property " Url="html/P_FileHelpers_BigFileSorter_1_Encoding.htm" />
           <HelpTOCNode Title="RunGcCollectForEachPart Property " Url="html/P_FileHelpers_BigFileSorter_1_RunGcCollectForEachPart.htm" />
           <HelpTOCNode Title="TempDirectory Property " Url="html/P_FileHelpers_BigFileSorter_1_TempDirectory.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="c5e8db59-4707-4e87-8028-e17cd0c47625" Title="BigFileSorter(T) Methods" Url="html/Methods_T_FileHelpers_BigFileSorter_1.htm">
+          <HelpTOCNode Title="Sort Method " Url="html/M_FileHelpers_BigFileSorter_1_Sort.htm" />
+        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="7cc252c0-502b-4dd8-b716-7664272d16ee" Title="CommonEngine Class" Url="html/T_FileHelpers_CommonEngine.htm">
-        <HelpTOCNode Id="e142d87e-89c2-4a7a-aed1-14b91ec4bded" Title="CommonEngine Methods" Url="html/Methods_T_FileHelpers_CommonEngine.htm">
-          <HelpTOCNode Id="fd620083-8662-495f-ad4b-59f9be30151d" Title="CsvToDataTable Method " Url="html/Overload_FileHelpers_CommonEngine_CsvToDataTable.htm">
+      <HelpTOCNode Id="a7c577f9-f8d6-46d1-87dc-de3052305d25" Title="CommonEngine Class" Url="html/T_FileHelpers_CommonEngine.htm">
+        <HelpTOCNode Id="a7bb710b-4328-454f-a6fc-db974d0e5aab" Title="CommonEngine Methods" Url="html/Methods_T_FileHelpers_CommonEngine.htm">
+          <HelpTOCNode Id="050d8b97-03ab-4c3c-aca0-8a16b8f4d39d" Title="CsvToDataTable Method " Url="html/Overload_FileHelpers_CommonEngine_CsvToDataTable.htm">
             <HelpTOCNode Title="CsvToDataTable Method (String, CsvOptions)" Url="html/M_FileHelpers_CommonEngine_CsvToDataTable.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, Char)" Url="html/M_FileHelpers_CommonEngine_CsvToDataTable_1.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, String, Char)" Url="html/M_FileHelpers_CommonEngine_CsvToDataTable_2.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, String, Char, Boolean)" Url="html/M_FileHelpers_CommonEngine_CsvToDataTable_3.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="6efebf71-c364-400a-8dc0-0147a1975fc5" Title="DataTableToCsv Method " Url="html/Overload_FileHelpers_CommonEngine_DataTableToCsv.htm">
+          <HelpTOCNode Id="75fd150c-25b0-4c2b-94da-e047b318afda" Title="DataTableToCsv Method " Url="html/Overload_FileHelpers_CommonEngine_DataTableToCsv.htm">
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String)" Url="html/M_FileHelpers_CommonEngine_DataTableToCsv.htm" />
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String, CsvOptions)" Url="html/M_FileHelpers_CommonEngine_DataTableToCsv_1.htm" />
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String, Char)" Url="html/M_FileHelpers_CommonEngine_DataTableToCsv_2.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="5bd81f58-56a9-4e14-aba2-f8a2dcee5d67" Title="MergeAndSortFile Method " Url="html/Overload_FileHelpers_CommonEngine_MergeAndSortFile.htm">
+          <HelpTOCNode Id="db531643-3e82-4f39-83ca-e60c39553005" Title="MergeAndSortFile Method " Url="html/Overload_FileHelpers_CommonEngine_MergeAndSortFile.htm">
             <HelpTOCNode Title="MergeAndSortFile Method (Type, String, String, String)" Url="html/M_FileHelpers_CommonEngine_MergeAndSortFile.htm" />
             <HelpTOCNode Title="MergeAndSortFile Method (Type, String, String, String, String)" Url="html/M_FileHelpers_CommonEngine_MergeAndSortFile_1.htm" />
             <HelpTOCNode Title="MergeAndSortFile Method (Type, String, String, String, String, Boolean)" Url="html/M_FileHelpers_CommonEngine_MergeAndSortFile_2.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="MergeFiles Method " Url="html/M_FileHelpers_CommonEngine_MergeFiles.htm" />
           <HelpTOCNode Title="RawReadFirstLines Method " Url="html/M_FileHelpers_CommonEngine_RawReadFirstLines.htm" />
-          <HelpTOCNode Id="03638fe2-421f-4600-8cfe-c7d1bb71a6ed" Title="RawReadFirstLinesArray Method " Url="html/Overload_FileHelpers_CommonEngine_RawReadFirstLinesArray.htm">
+          <HelpTOCNode Id="903b1e40-b638-45ee-a67d-efe1cf01b329" Title="RawReadFirstLinesArray Method " Url="html/Overload_FileHelpers_CommonEngine_RawReadFirstLinesArray.htm">
             <HelpTOCNode Title="RawReadFirstLinesArray Method (String, Int32)" Url="html/M_FileHelpers_CommonEngine_RawReadFirstLinesArray_1.htm" />
             <HelpTOCNode Title="RawReadFirstLinesArray Method (TextReader, Int32, Encoding)" Url="html/M_FileHelpers_CommonEngine_RawReadFirstLinesArray.htm" />
             <HelpTOCNode Title="RawReadFirstLinesArray Method (String, Int32, Encoding)" Url="html/M_FileHelpers_CommonEngine_RawReadFirstLinesArray_2.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="781f6d91-dc2f-4544-ad83-1e6e82700d29" Title="ReadCsv Method " Url="html/Overload_FileHelpers_CommonEngine_ReadCsv.htm">
+          <HelpTOCNode Id="7bc3532c-4826-4c77-bdfe-edd1676fa4d3" Title="ReadCsv Method " Url="html/Overload_FileHelpers_CommonEngine_ReadCsv.htm">
             <HelpTOCNode Title="ReadCsv Method (String)" Url="html/M_FileHelpers_CommonEngine_ReadCsv.htm" />
             <HelpTOCNode Title="ReadCsv Method (String, Char)" Url="html/M_FileHelpers_CommonEngine_ReadCsv_1.htm" />
             <HelpTOCNode Title="ReadCsv Method (String, Char, Int32)" Url="html/M_FileHelpers_CommonEngine_ReadCsv_2.htm" />
             <HelpTOCNode Title="ReadCsv Method (String, Char, Encoding)" Url="html/M_FileHelpers_CommonEngine_ReadCsv_4.htm" />
             <HelpTOCNode Title="ReadCsv Method (String, Char, Int32, Encoding)" Url="html/M_FileHelpers_CommonEngine_ReadCsv_3.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="40b508df-7a8a-4323-8422-dab8041d7bee" Title="ReadFile Method " Url="html/Overload_FileHelpers_CommonEngine_ReadFile.htm">
+          <HelpTOCNode Id="72546750-0d6b-481d-ad3f-0f35226437f2" Title="ReadFile Method " Url="html/Overload_FileHelpers_CommonEngine_ReadFile.htm">
             <HelpTOCNode Title="ReadFile(T) Method (String)" Url="html/M_FileHelpers_CommonEngine_ReadFile__1.htm" />
             <HelpTOCNode Title="ReadFile(T) Method (String, Int32)" Url="html/M_FileHelpers_CommonEngine_ReadFile__1_1.htm" />
             <HelpTOCNode Title="ReadFile Method (Type, String)" Url="html/M_FileHelpers_CommonEngine_ReadFile.htm" />
             <HelpTOCNode Title="ReadFile Method (Type, String, Int32)" Url="html/M_FileHelpers_CommonEngine_ReadFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="611feae7-5ec3-4f3a-8b47-1f0e7f46cba2" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_CommonEngine_ReadFileAsDT.htm">
+          <HelpTOCNode Id="df5051b1-9dcc-4fbb-80f8-f4456d525fa6" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_CommonEngine_ReadFileAsDT.htm">
             <HelpTOCNode Title="ReadFileAsDT Method (Type, String)" Url="html/M_FileHelpers_CommonEngine_ReadFileAsDT.htm" />
             <HelpTOCNode Title="ReadFileAsDT Method (Type, String, Int32)" Url="html/M_FileHelpers_CommonEngine_ReadFileAsDT_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="ReadSortedFile Method " Url="html/M_FileHelpers_CommonEngine_ReadSortedFile.htm" />
-          <HelpTOCNode Id="234ec893-1dfb-4623-add9-82ef40c60799" Title="ReadString Method " Url="html/Overload_FileHelpers_CommonEngine_ReadString.htm">
+          <HelpTOCNode Id="cd57579d-d5ca-46ee-bd5c-1d6900039d6f" Title="ReadString Method " Url="html/Overload_FileHelpers_CommonEngine_ReadString.htm">
             <HelpTOCNode Title="ReadString(T) Method (String)" Url="html/M_FileHelpers_CommonEngine_ReadString__1.htm" />
             <HelpTOCNode Title="ReadString Method (Type, String)" Url="html/M_FileHelpers_CommonEngine_ReadString.htm" />
             <HelpTOCNode Title="ReadString Method (Type, String, Int32)" Url="html/M_FileHelpers_CommonEngine_ReadString_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="ccd39731-04e8-438d-a1fb-f1df22467daa" Title="RecordsToDataTable Method " Url="html/Overload_FileHelpers_CommonEngine_RecordsToDataTable.htm">
+          <HelpTOCNode Id="476c5cd9-3a37-4a98-9550-9fa8875d6c3e" Title="RecordsToDataTable Method " Url="html/Overload_FileHelpers_CommonEngine_RecordsToDataTable.htm">
             <HelpTOCNode Title="RecordsToDataTable Method (ICollection)" Url="html/M_FileHelpers_CommonEngine_RecordsToDataTable.htm" />
             <HelpTOCNode Title="RecordsToDataTable Method (ICollection, Int32)" Url="html/M_FileHelpers_CommonEngine_RecordsToDataTable_1.htm" />
             <HelpTOCNode Title="RecordsToDataTable Method (ICollection, Type)" Url="html/M_FileHelpers_CommonEngine_RecordsToDataTable_2.htm" />
             <HelpTOCNode Title="RecordsToDataTable Method (ICollection, Type, Int32)" Url="html/M_FileHelpers_CommonEngine_RecordsToDataTable_3.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="RemoveDuplicateRecords(T) Method " Url="html/M_FileHelpers_CommonEngine_RemoveDuplicateRecords__1.htm" />
-          <HelpTOCNode Id="5e5c8d1e-7abf-4fdd-929b-20e0fb3607df" Title="SortBigFile Method " Url="html/Overload_FileHelpers_CommonEngine_SortBigFile.htm">
+          <HelpTOCNode Id="6641488b-94d1-41dd-841e-3e537e5bd525" Title="SortBigFile Method " Url="html/Overload_FileHelpers_CommonEngine_SortBigFile.htm">
             <HelpTOCNode Title="SortBigFile(T) Method (String, String)" Url="html/M_FileHelpers_CommonEngine_SortBigFile__1.htm" />
             <HelpTOCNode Title="SortBigFile(T) Method (Encoding, String, String)" Url="html/M_FileHelpers_CommonEngine_SortBigFile__1_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="SortFile Method " Url="html/M_FileHelpers_CommonEngine_SortFile.htm" />
           <HelpTOCNode Title="SortFileByField Method " Url="html/M_FileHelpers_CommonEngine_SortFileByField.htm" />
           <HelpTOCNode Title="SortRecords Method " Url="html/M_FileHelpers_CommonEngine_SortRecords.htm" />
-          <HelpTOCNode Id="0759fadf-1ab6-44fa-85ac-a9b997a7d1d6" Title="SortRecordsByField Method " Url="html/Overload_FileHelpers_CommonEngine_SortRecordsByField.htm">
+          <HelpTOCNode Id="b92928c1-6b03-4386-8c31-91370a4da7eb" Title="SortRecordsByField Method " Url="html/Overload_FileHelpers_CommonEngine_SortRecordsByField.htm">
             <HelpTOCNode Title="SortRecordsByField Method (Object[], String)" Url="html/M_FileHelpers_CommonEngine_SortRecordsByField.htm" />
             <HelpTOCNode Title="SortRecordsByField Method (Object[], String, Boolean)" Url="html/M_FileHelpers_CommonEngine_SortRecordsByField_1.htm" />
           </HelpTOCNode>
@@ -113,30 +113,30 @@
           <HelpTOCNode Title="WriteString(T) Method " Url="html/M_FileHelpers_CommonEngine_WriteString__1.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="0a6c7b90-e165-4802-901c-a16f08227a60" Title="ConditionalRecordAttribute Class" Url="html/T_FileHelpers_ConditionalRecordAttribute.htm">
+      <HelpTOCNode Id="8eb22234-13cb-44ac-9b29-ddb5959ba553" Title="ConditionalRecordAttribute Class" Url="html/T_FileHelpers_ConditionalRecordAttribute.htm">
         <HelpTOCNode Title="ConditionalRecordAttribute Constructor " Url="html/M_FileHelpers_ConditionalRecordAttribute__ctor.htm" />
-        <HelpTOCNode Id="2b2c7fba-12bb-4e7f-a388-00a6c2f8addb" Title="ConditionalRecordAttribute Properties" Url="html/Properties_T_FileHelpers_ConditionalRecordAttribute.htm">
+        <HelpTOCNode Id="36fd93fc-4509-4dac-bb08-899f33224381" Title="ConditionalRecordAttribute Properties" Url="html/Properties_T_FileHelpers_ConditionalRecordAttribute.htm">
           <HelpTOCNode Title="Condition Property " Url="html/P_FileHelpers_ConditionalRecordAttribute_Condition.htm" />
           <HelpTOCNode Title="ConditionSelector Property " Url="html/P_FileHelpers_ConditionalRecordAttribute_ConditionSelector.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="864bab44-4b1f-4fb7-ba08-e92bf6b08ade" Title="ConverterBase Class" Url="html/T_FileHelpers_ConverterBase.htm">
-        <HelpTOCNode Id="b6c41e44-02d9-4df1-982e-0471ed80201f" Title="ConverterBase Methods" Url="html/Methods_T_FileHelpers_ConverterBase.htm">
+      <HelpTOCNode Id="b154fbe9-fd72-4538-b4f9-9a810f5aad02" Title="ConverterBase Class" Url="html/T_FileHelpers_ConverterBase.htm">
+        <HelpTOCNode Id="eace788d-b542-4f4b-864e-3eccb934e6d2" Title="ConverterBase Properties" Url="html/Properties_T_FileHelpers_ConverterBase.htm">
+          <HelpTOCNode Title="DefaultDateTimeFormat Property " Url="html/P_FileHelpers_ConverterBase_DefaultDateTimeFormat.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="af14b417-771b-4316-96a0-3e2f421a2376" Title="ConverterBase Methods" Url="html/Methods_T_FileHelpers_ConverterBase.htm">
           <HelpTOCNode Title="FieldToString Method " Url="html/M_FileHelpers_ConverterBase_FieldToString.htm" />
           <HelpTOCNode Title="StringToField Method " Url="html/M_FileHelpers_ConverterBase_StringToField.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="78179a1e-0d69-409e-9fc2-271e0bca5e03" Title="ConverterBase Properties" Url="html/Properties_T_FileHelpers_ConverterBase.htm">
-          <HelpTOCNode Title="DefaultDateTimeFormat Property " Url="html/P_FileHelpers_ConverterBase_DefaultDateTimeFormat.htm" />
-        </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="ConverterKind Enumeration" Url="html/T_FileHelpers_ConverterKind.htm" />
-      <HelpTOCNode Id="6c3fae7c-b931-4d7f-838a-a35716a38256" Title="ConvertException Class" Url="html/T_FileHelpers_ConvertException.htm">
-        <HelpTOCNode Id="74f1304d-d521-4ae3-b5a3-919c6ffebf3d" Title="ConvertException Constructor " Url="html/Overload_FileHelpers_ConvertException__ctor.htm">
+      <HelpTOCNode Id="d385856b-670e-4957-8055-8524093bf612" Title="ConvertException Class" Url="html/T_FileHelpers_ConvertException.htm">
+        <HelpTOCNode Id="5dc1fcc3-d545-491f-b68d-5d69fea99fce" Title="ConvertException Constructor " Url="html/Overload_FileHelpers_ConvertException__ctor.htm">
           <HelpTOCNode Title="ConvertException Constructor (String, Type)" Url="html/M_FileHelpers_ConvertException__ctor.htm" />
           <HelpTOCNode Title="ConvertException Constructor (String, Type, String)" Url="html/M_FileHelpers_ConvertException__ctor_1.htm" />
           <HelpTOCNode Title="ConvertException Constructor (String, Type, String, Int32, Int32, String, Exception)" Url="html/M_FileHelpers_ConvertException__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="dd92c866-ba13-4bf1-8669-6d6a30796626" Title="ConvertException Properties" Url="html/Properties_T_FileHelpers_ConvertException.htm">
+        <HelpTOCNode Id="0ae26de7-928d-48aa-b44d-65ab9457780a" Title="ConvertException Properties" Url="html/Properties_T_FileHelpers_ConvertException.htm">
           <HelpTOCNode Title="ColumnNumber Property " Url="html/P_FileHelpers_ConvertException_ColumnNumber.htm" />
           <HelpTOCNode Title="FieldName Property " Url="html/P_FileHelpers_ConvertException_FieldName.htm" />
           <HelpTOCNode Title="FieldStringValue Property " Url="html/P_FileHelpers_ConvertException_FieldStringValue.htm" />
@@ -146,66 +146,63 @@
           <HelpTOCNode Title="MessageOriginal Property " Url="html/P_FileHelpers_ConvertException_MessageOriginal.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="80b9aa67-9b52-4a31-891d-54b8c49eaed8" Title="CsvEngine Class" Url="html/T_FileHelpers_CsvEngine.htm">
-        <HelpTOCNode Id="44f50146-b51d-4a65-aa38-6f64405941ca" Title="CsvEngine Constructor " Url="html/Overload_FileHelpers_CsvEngine__ctor.htm">
+      <HelpTOCNode Id="ce78f310-16ff-4c0a-8e19-6029d7808382" Title="CsvEngine Class" Url="html/T_FileHelpers_CsvEngine.htm">
+        <HelpTOCNode Id="b5b4cea0-0d99-416f-9b2b-9bd91f4ae3f9" Title="CsvEngine Constructor " Url="html/Overload_FileHelpers_CsvEngine__ctor.htm">
           <HelpTOCNode Title="CsvEngine Constructor (CsvOptions)" Url="html/M_FileHelpers_CsvEngine__ctor.htm" />
           <HelpTOCNode Title="CsvEngine Constructor (String, Char, Int32)" Url="html/M_FileHelpers_CsvEngine__ctor_1.htm" />
           <HelpTOCNode Title="CsvEngine Constructor (String, Char, String)" Url="html/M_FileHelpers_CsvEngine__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="ec0e382c-e74b-49f7-87eb-87d2fb97d5eb" Title="CsvEngine Methods" Url="html/Methods_T_FileHelpers_CsvEngine.htm">
-          <HelpTOCNode Id="f273b48b-99bc-4c22-a542-290b039dcf8f" Title="CsvToDataTable Method " Url="html/Overload_FileHelpers_CsvEngine_CsvToDataTable.htm">
+        <HelpTOCNode Title="CsvEngine Properties" Url="html/Properties_T_FileHelpers_CsvEngine.htm" />
+        <HelpTOCNode Id="b913dbd0-ee6e-4d6e-8d94-124898a73212" Title="CsvEngine Methods" Url="html/Methods_T_FileHelpers_CsvEngine.htm">
+          <HelpTOCNode Id="cd68116f-9615-4e77-b140-550240a8f4f7" Title="CsvToDataTable Method " Url="html/Overload_FileHelpers_CsvEngine_CsvToDataTable.htm">
             <HelpTOCNode Title="CsvToDataTable Method (String, CsvOptions)" Url="html/M_FileHelpers_CsvEngine_CsvToDataTable.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, Char)" Url="html/M_FileHelpers_CsvEngine_CsvToDataTable_1.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, String, Char)" Url="html/M_FileHelpers_CsvEngine_CsvToDataTable_2.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, String, Char, Boolean)" Url="html/M_FileHelpers_CsvEngine_CsvToDataTable_3.htm" />
             <HelpTOCNode Title="CsvToDataTable Method (String, String, Char, Boolean, Boolean)" Url="html/M_FileHelpers_CsvEngine_CsvToDataTable_4.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="f2f6acda-7044-4aaf-b4fa-b28b3925129c" Title="DataTableToCsv Method " Url="html/Overload_FileHelpers_CsvEngine_DataTableToCsv.htm">
+          <HelpTOCNode Id="46da14d2-3bd3-4a1e-8a24-0ac154710b8c" Title="DataTableToCsv Method " Url="html/Overload_FileHelpers_CsvEngine_DataTableToCsv.htm">
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String)" Url="html/M_FileHelpers_CsvEngine_DataTableToCsv.htm" />
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String, CsvOptions)" Url="html/M_FileHelpers_CsvEngine_DataTableToCsv_1.htm" />
             <HelpTOCNode Title="DataTableToCsv Method (DataTable, String, Char)" Url="html/M_FileHelpers_CsvEngine_DataTableToCsv_2.htm" />
           </HelpTOCNode>
         </HelpTOCNode>
-        <HelpTOCNode Title="CsvEngine Properties" Url="html/Properties_T_FileHelpers_CsvEngine.htm" />
         <HelpTOCNode Title="CsvEngine Events" Url="html/Events_T_FileHelpers_CsvEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0a06114d-2e26-4371-821c-37091f32dfa9" Title="DelimitedField Class" Url="html/T_FileHelpers_DelimitedField.htm">
-        <HelpTOCNode Title="DelimitedField Methods" Url="html/Methods_T_FileHelpers_DelimitedField.htm" />
+      <HelpTOCNode Id="19ddf671-2f9f-4819-95e8-3a7fa5949a5b" Title="DelimitedField Class" Url="html/T_FileHelpers_DelimitedField.htm">
         <HelpTOCNode Title="DelimitedField Properties" Url="html/Properties_T_FileHelpers_DelimitedField.htm" />
+        <HelpTOCNode Title="DelimitedField Methods" Url="html/Methods_T_FileHelpers_DelimitedField.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="d02271a1-0ee3-4374-8dcc-17ad36c4971f" Title="DelimitedFileEngine Class" Url="html/T_FileHelpers_DelimitedFileEngine.htm">
-        <HelpTOCNode Id="7aa100a5-2f1c-40f8-892a-e2dca6fe5967" Title="DelimitedFileEngine Constructor " Url="html/Overload_FileHelpers_DelimitedFileEngine__ctor.htm">
+      <HelpTOCNode Id="6fa028cf-3016-451d-a7a9-d04dc332dc89" Title="DelimitedFileEngine Class" Url="html/T_FileHelpers_DelimitedFileEngine.htm">
+        <HelpTOCNode Id="d8168bac-f339-49bb-b797-0503fb5469e3" Title="DelimitedFileEngine Constructor " Url="html/Overload_FileHelpers_DelimitedFileEngine__ctor.htm">
           <HelpTOCNode Title="DelimitedFileEngine Constructor (Type)" Url="html/M_FileHelpers_DelimitedFileEngine__ctor.htm" />
           <HelpTOCNode Title="DelimitedFileEngine Constructor (Type, Encoding)" Url="html/M_FileHelpers_DelimitedFileEngine__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="DelimitedFileEngine Methods" Url="html/Methods_T_FileHelpers_DelimitedFileEngine.htm" />
-        <HelpTOCNode Id="7dd1ee43-bdb0-4f5c-b41a-808080fb31f3" Title="DelimitedFileEngine Properties" Url="html/Properties_T_FileHelpers_DelimitedFileEngine.htm">
+        <HelpTOCNode Id="c5f57d67-4ab1-4ae2-a6ac-292404bb557b" Title="DelimitedFileEngine Properties" Url="html/Properties_T_FileHelpers_DelimitedFileEngine.htm">
           <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_DelimitedFileEngine_Options.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="DelimitedFileEngine Methods" Url="html/Methods_T_FileHelpers_DelimitedFileEngine.htm" />
         <HelpTOCNode Title="DelimitedFileEngine Events" Url="html/Events_T_FileHelpers_DelimitedFileEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="83110f58-77c1-4e2c-a7a2-82402af659aa" Title="DelimitedFileEngine(T) Class" Url="html/T_FileHelpers_DelimitedFileEngine_1.htm">
-        <HelpTOCNode Id="d2a29f9a-ef5b-48e8-901a-b4f4e31283b5" Title="DelimitedFileEngine(T) Constructor " Url="html/Overload_FileHelpers_DelimitedFileEngine_1__ctor.htm">
+      <HelpTOCNode Id="e737b46a-4666-4c56-ade3-89930379f891" Title="DelimitedFileEngine(T) Class" Url="html/T_FileHelpers_DelimitedFileEngine_1.htm">
+        <HelpTOCNode Id="ef1340f1-6c1f-44c3-9efa-9abc6b4c80f4" Title="DelimitedFileEngine(T) Constructor " Url="html/Overload_FileHelpers_DelimitedFileEngine_1__ctor.htm">
           <HelpTOCNode Title="DelimitedFileEngine(T) Constructor " Url="html/M_FileHelpers_DelimitedFileEngine_1__ctor.htm" />
           <HelpTOCNode Title="DelimitedFileEngine(T) Constructor (Encoding)" Url="html/M_FileHelpers_DelimitedFileEngine_1__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="DelimitedFileEngine(T) Methods" Url="html/Methods_T_FileHelpers_DelimitedFileEngine_1.htm" />
-        <HelpTOCNode Id="73b2d34f-0410-470f-91c1-67375c3586d3" Title="DelimitedFileEngine(T) Properties" Url="html/Properties_T_FileHelpers_DelimitedFileEngine_1.htm">
+        <HelpTOCNode Id="842625e2-8a90-4c29-8772-e88344890dd1" Title="DelimitedFileEngine(T) Properties" Url="html/Properties_T_FileHelpers_DelimitedFileEngine_1.htm">
           <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_DelimitedFileEngine_1_Options.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="DelimitedFileEngine(T) Methods" Url="html/Methods_T_FileHelpers_DelimitedFileEngine_1.htm" />
         <HelpTOCNode Title="DelimitedFileEngine(T) Events" Url="html/Events_T_FileHelpers_DelimitedFileEngine_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="7c4ac249-98a5-4a89-baaa-a2dc0218ff90" Title="DelimitedRecordAttribute Class" Url="html/T_FileHelpers_DelimitedRecordAttribute.htm">
+      <HelpTOCNode Id="88664f21-df28-42db-a6b0-cd6bcccafb55" Title="DelimitedRecordAttribute Class" Url="html/T_FileHelpers_DelimitedRecordAttribute.htm">
         <HelpTOCNode Title="DelimitedRecordAttribute Constructor " Url="html/M_FileHelpers_DelimitedRecordAttribute__ctor.htm" />
-        <HelpTOCNode Id="b8a85e9f-010d-4d56-acde-e3a2a0a9bedf" Title="DelimitedRecordAttribute Properties" Url="html/Properties_T_FileHelpers_DelimitedRecordAttribute.htm">
+        <HelpTOCNode Id="3b42525b-cfb9-4319-8bc2-df80d69fa842" Title="DelimitedRecordAttribute Properties" Url="html/Properties_T_FileHelpers_DelimitedRecordAttribute.htm">
           <HelpTOCNode Title="Separator Property " Url="html/P_FileHelpers_DelimitedRecordAttribute_Separator.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="1f20cd7f-88e6-4779-8b34-9d8fe71efb88" Title="EngineBase Class" Url="html/T_FileHelpers_EngineBase.htm">
-        <HelpTOCNode Id="5f0ec466-642c-410b-89be-4945fc26855c" Title="EngineBase Methods" Url="html/Methods_T_FileHelpers_EngineBase.htm">
-          <HelpTOCNode Title="GetFileHeader Method " Url="html/M_FileHelpers_EngineBase_GetFileHeader.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="06ff8b42-ffaf-485c-8901-950287a595a9" Title="EngineBase Properties" Url="html/Properties_T_FileHelpers_EngineBase.htm">
+      <HelpTOCNode Id="f2ab95f5-c5c4-4dd8-b258-0a047023b250" Title="EngineBase Class" Url="html/T_FileHelpers_EngineBase.htm">
+        <HelpTOCNode Id="656c644c-ce48-4c71-b56c-678b9fae78f5" Title="EngineBase Properties" Url="html/Properties_T_FileHelpers_EngineBase.htm">
           <HelpTOCNode Title="Encoding Property " Url="html/P_FileHelpers_EngineBase_Encoding.htm" />
           <HelpTOCNode Title="ErrorManager Property " Url="html/P_FileHelpers_EngineBase_ErrorManager.htm" />
           <HelpTOCNode Title="ErrorMode Property " Url="html/P_FileHelpers_EngineBase_ErrorMode.htm" />
@@ -216,78 +213,76 @@
           <HelpTOCNode Title="RecordType Property " Url="html/P_FileHelpers_EngineBase_RecordType.htm" />
           <HelpTOCNode Title="TotalRecords Property " Url="html/P_FileHelpers_EngineBase_TotalRecords.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="4110d7ec-d895-4190-ba45-7f74f767dfe9" Title="EngineBase Events" Url="html/Events_T_FileHelpers_EngineBase.htm">
+        <HelpTOCNode Id="b4e2c6ae-23fb-47b9-9ef6-b5dfe499ceb8" Title="EngineBase Methods" Url="html/Methods_T_FileHelpers_EngineBase.htm">
+          <HelpTOCNode Title="GetFileHeader Method " Url="html/M_FileHelpers_EngineBase_GetFileHeader.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="a9a2604e-0c32-4f13-8b7c-29f85fd5240e" Title="EngineBase Events" Url="html/Events_T_FileHelpers_EngineBase.htm">
           <HelpTOCNode Title="Progress Event" Url="html/E_FileHelpers_EngineBase_Progress.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="3e1797db-6a04-4d10-943d-a4fece507220" Title="ErrorInfo Class" Url="html/T_FileHelpers_ErrorInfo.htm">
-        <HelpTOCNode Id="2043dd6d-5849-4d16-8cf4-fe4955090529" Title="ErrorInfo Properties" Url="html/Properties_T_FileHelpers_ErrorInfo.htm">
+      <HelpTOCNode Id="0dcb0146-29b8-4fe1-b530-5d87bd502b45" Title="ErrorInfo Class" Url="html/T_FileHelpers_ErrorInfo.htm">
+        <HelpTOCNode Id="a7e288f7-9902-4b14-8753-19b0017f89c7" Title="ErrorInfo Properties" Url="html/Properties_T_FileHelpers_ErrorInfo.htm">
           <HelpTOCNode Title="ExceptionInfo Property " Url="html/P_FileHelpers_ErrorInfo_ExceptionInfo.htm" />
           <HelpTOCNode Title="LineNumber Property " Url="html/P_FileHelpers_ErrorInfo_LineNumber.htm" />
           <HelpTOCNode Title="RecordString Property " Url="html/P_FileHelpers_ErrorInfo_RecordString.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="09ce475f-70d1-4a95-adb8-ac8752dd2971" Title="ErrorManager Class" Url="html/T_FileHelpers_ErrorManager.htm">
-        <HelpTOCNode Id="516fe020-c804-434b-b9dd-76849c729348" Title="ErrorManager Constructor " Url="html/Overload_FileHelpers_ErrorManager__ctor.htm">
+      <HelpTOCNode Id="3caa0b31-d7b1-4ddc-88b1-f3ca7edc5ec8" Title="ErrorManager Class" Url="html/T_FileHelpers_ErrorManager.htm">
+        <HelpTOCNode Id="5355dd2f-237f-4dae-a3d0-fd96a962551b" Title="ErrorManager Constructor " Url="html/Overload_FileHelpers_ErrorManager__ctor.htm">
           <HelpTOCNode Title="ErrorManager Constructor " Url="html/M_FileHelpers_ErrorManager__ctor.htm" />
           <HelpTOCNode Title="ErrorManager Constructor (ErrorMode)" Url="html/M_FileHelpers_ErrorManager__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="40c19dc5-07db-44c6-aaab-0ff6a325d566" Title="ErrorManager Methods" Url="html/Methods_T_FileHelpers_ErrorManager.htm">
-          <HelpTOCNode Title="ClearErrors Method " Url="html/M_FileHelpers_ErrorManager_ClearErrors.htm" />
-          <HelpTOCNode Title="GetEnumerator Method " Url="html/M_FileHelpers_ErrorManager_GetEnumerator.htm" />
-          <HelpTOCNode Title="LoadErrors Method " Url="html/M_FileHelpers_ErrorManager_LoadErrors.htm" />
-          <HelpTOCNode Id="46a21a0f-835b-47a2-9684-a9184219beb7" Title="SaveErrors Method " Url="html/Overload_FileHelpers_ErrorManager_SaveErrors.htm">
-            <HelpTOCNode Title="SaveErrors Method (String)" Url="html/M_FileHelpers_ErrorManager_SaveErrors.htm" />
-            <HelpTOCNode Title="SaveErrors Method (String, String)" Url="html/M_FileHelpers_ErrorManager_SaveErrors_1.htm" />
-          </HelpTOCNode>
-        </HelpTOCNode>
-        <HelpTOCNode Id="499a9507-a859-467d-8e8b-00d51dbb198a" Title="ErrorManager Properties" Url="html/Properties_T_FileHelpers_ErrorManager.htm">
+        <HelpTOCNode Id="3d9b46f4-e46a-4bc7-a092-aa177c800f37" Title="ErrorManager Properties" Url="html/Properties_T_FileHelpers_ErrorManager.htm">
           <HelpTOCNode Title="ErrorCount Property " Url="html/P_FileHelpers_ErrorManager_ErrorCount.htm" />
           <HelpTOCNode Title="ErrorLimit Property " Url="html/P_FileHelpers_ErrorManager_ErrorLimit.htm" />
           <HelpTOCNode Title="ErrorMode Property " Url="html/P_FileHelpers_ErrorManager_ErrorMode.htm" />
           <HelpTOCNode Title="Errors Property " Url="html/P_FileHelpers_ErrorManager_Errors.htm" />
           <HelpTOCNode Title="HasErrors Property " Url="html/P_FileHelpers_ErrorManager_HasErrors.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="b0ae7b69-a79d-4c82-b2c9-a44c437db40f" Title="ErrorManager Methods" Url="html/Methods_T_FileHelpers_ErrorManager.htm">
+          <HelpTOCNode Title="ClearErrors Method " Url="html/M_FileHelpers_ErrorManager_ClearErrors.htm" />
+          <HelpTOCNode Title="GetEnumerator Method " Url="html/M_FileHelpers_ErrorManager_GetEnumerator.htm" />
+          <HelpTOCNode Title="LoadErrors Method " Url="html/M_FileHelpers_ErrorManager_LoadErrors.htm" />
+          <HelpTOCNode Id="92f17286-e8bc-48b2-a987-cab72170ed62" Title="SaveErrors Method " Url="html/Overload_FileHelpers_ErrorManager_SaveErrors.htm">
+            <HelpTOCNode Title="SaveErrors Method (String)" Url="html/M_FileHelpers_ErrorManager_SaveErrors.htm" />
+            <HelpTOCNode Title="SaveErrors Method (String, String)" Url="html/M_FileHelpers_ErrorManager_SaveErrors_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="ErrorMode Enumeration" Url="html/T_FileHelpers_ErrorMode.htm" />
-      <HelpTOCNode Id="38fca7f3-8ad9-4742-be61-ca2ec3a7a5c8" Title="EventEngineBase(T) Class" Url="html/T_FileHelpers_EventEngineBase_1.htm">
-        <HelpTOCNode Title="EventEngineBase(T) Methods" Url="html/Methods_T_FileHelpers_EventEngineBase_1.htm" />
+      <HelpTOCNode Id="ea5048c1-d315-4bb8-b8ab-e52b59f9df7b" Title="EventEngineBase(T) Class" Url="html/T_FileHelpers_EventEngineBase_1.htm">
         <HelpTOCNode Title="EventEngineBase(T) Properties" Url="html/Properties_T_FileHelpers_EventEngineBase_1.htm" />
-        <HelpTOCNode Id="680e07c8-6d4e-4e58-acf5-51a6dd96a6cc" Title="EventEngineBase(T) Events" Url="html/Events_T_FileHelpers_EventEngineBase_1.htm">
+        <HelpTOCNode Title="EventEngineBase(T) Methods" Url="html/Methods_T_FileHelpers_EventEngineBase_1.htm" />
+        <HelpTOCNode Id="482a698e-45ce-4c25-9144-b6aba67db7d1" Title="EventEngineBase(T) Events" Url="html/Events_T_FileHelpers_EventEngineBase_1.htm">
           <HelpTOCNode Title="AfterReadRecord Event" Url="html/E_FileHelpers_EventEngineBase_1_AfterReadRecord.htm" />
           <HelpTOCNode Title="AfterWriteRecord Event" Url="html/E_FileHelpers_EventEngineBase_1_AfterWriteRecord.htm" />
           <HelpTOCNode Title="BeforeReadRecord Event" Url="html/E_FileHelpers_EventEngineBase_1_BeforeReadRecord.htm" />
           <HelpTOCNode Title="BeforeWriteRecord Event" Url="html/E_FileHelpers_EventEngineBase_1_BeforeWriteRecord.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="026e33ed-fdb9-449d-baf8-1b03eff251a8" Title="FieldAlignAttribute Class" Url="html/T_FileHelpers_FieldAlignAttribute.htm">
-        <HelpTOCNode Id="e15a9c6e-5fdb-4211-b645-c4c51452f6ff" Title="FieldAlignAttribute Constructor " Url="html/Overload_FileHelpers_FieldAlignAttribute__ctor.htm">
+      <HelpTOCNode Id="a950bbbc-beea-4ffc-9579-653c5abb24dd" Title="FieldAlignAttribute Class" Url="html/T_FileHelpers_FieldAlignAttribute.htm">
+        <HelpTOCNode Id="dd6ecdba-8e98-4d62-b6f6-da89af3e3f0a" Title="FieldAlignAttribute Constructor " Url="html/Overload_FileHelpers_FieldAlignAttribute__ctor.htm">
           <HelpTOCNode Title="FieldAlignAttribute Constructor (AlignMode)" Url="html/M_FileHelpers_FieldAlignAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldAlignAttribute Constructor (AlignMode, Char)" Url="html/M_FileHelpers_FieldAlignAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="98f1462e-b50c-4938-8e01-bc966e598faa" Title="FieldAlignAttribute Properties" Url="html/Properties_T_FileHelpers_FieldAlignAttribute.htm">
+        <HelpTOCNode Id="e446869c-5c3c-4fb3-ae7b-0a635f5db189" Title="FieldAlignAttribute Properties" Url="html/Properties_T_FileHelpers_FieldAlignAttribute.htm">
           <HelpTOCNode Title="Align Property " Url="html/P_FileHelpers_FieldAlignAttribute_Align.htm" />
           <HelpTOCNode Title="AlignChar Property " Url="html/P_FileHelpers_FieldAlignAttribute_AlignChar.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="84952ce1-8274-4039-8d90-fa5c0a75ffb1" Title="FieldArrayLengthAttribute Class" Url="html/T_FileHelpers_FieldArrayLengthAttribute.htm">
-        <HelpTOCNode Id="3702bcb0-8fe7-4b7d-b526-1e4add52c9d4" Title="FieldArrayLengthAttribute Constructor " Url="html/Overload_FileHelpers_FieldArrayLengthAttribute__ctor.htm">
+      <HelpTOCNode Id="2c3458b3-5de9-4e99-8138-5eb05f8b200f" Title="FieldArrayLengthAttribute Class" Url="html/T_FileHelpers_FieldArrayLengthAttribute.htm">
+        <HelpTOCNode Id="f00ac791-50e0-497f-ba02-fe5e840fc689" Title="FieldArrayLengthAttribute Constructor " Url="html/Overload_FileHelpers_FieldArrayLengthAttribute__ctor.htm">
           <HelpTOCNode Title="FieldArrayLengthAttribute Constructor (Int32)" Url="html/M_FileHelpers_FieldArrayLengthAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldArrayLengthAttribute Constructor (Int32, Int32)" Url="html/M_FileHelpers_FieldArrayLengthAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="6d669c8e-d5fa-4726-ac0e-4fe5bacb3373" Title="FieldArrayLengthAttribute Properties" Url="html/Properties_T_FileHelpers_FieldArrayLengthAttribute.htm">
+        <HelpTOCNode Id="5fd6d1c0-c6ec-4a2e-b4ab-03138fc1c00b" Title="FieldArrayLengthAttribute Properties" Url="html/Properties_T_FileHelpers_FieldArrayLengthAttribute.htm">
           <HelpTOCNode Title="MaxLength Property " Url="html/P_FileHelpers_FieldArrayLengthAttribute_MaxLength.htm" />
           <HelpTOCNode Title="MinLength Property " Url="html/P_FileHelpers_FieldArrayLengthAttribute_MinLength.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="FieldAttribute Class" Url="html/T_FileHelpers_FieldAttribute.htm" />
-      <HelpTOCNode Id="76841a68-9650-41fb-a4b0-a094ba72c26d" Title="FieldBase Class" Url="html/T_FileHelpers_FieldBase.htm">
-        <HelpTOCNode Id="25805e6e-f597-44c4-bb68-986a841d3a71" Title="FieldBase Methods" Url="html/Methods_T_FileHelpers_FieldBase.htm">
-          <HelpTOCNode Title="Clone Method " Url="html/M_FileHelpers_FieldBase_Clone.htm" />
-          <HelpTOCNode Title="CreateField Method " Url="html/M_FileHelpers_FieldBase_CreateField.htm" />
-          <HelpTOCNode Title="CreateValueForField Method " Url="html/M_FileHelpers_FieldBase_CreateValueForField.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="4122f3b0-0483-480c-8d09-1e4761593d24" Title="FieldBase Properties" Url="html/Properties_T_FileHelpers_FieldBase.htm">
+      <HelpTOCNode Id="314663cd-2c1f-4430-8778-6f2ab8e13d84" Title="FieldBase Class" Url="html/T_FileHelpers_FieldBase.htm">
+        <HelpTOCNode Id="1b887b14-6f76-4646-a316-71e3f5372f00" Title="FieldBase Properties" Url="html/Properties_T_FileHelpers_FieldBase.htm">
           <HelpTOCNode Title="ArrayMaxLength Property " Url="html/P_FileHelpers_FieldBase_ArrayMaxLength.htm" />
           <HelpTOCNode Title="ArrayMinLength Property " Url="html/P_FileHelpers_FieldBase_ArrayMinLength.htm" />
           <HelpTOCNode Title="Converter Property " Url="html/P_FileHelpers_FieldBase_Converter.htm" />
@@ -298,9 +293,14 @@
           <HelpTOCNode Title="IsOptional Property " Url="html/P_FileHelpers_FieldBase_IsOptional.htm" />
           <HelpTOCNode Title="TrimMode Property " Url="html/P_FileHelpers_FieldBase_TrimMode.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="8e7f5f01-ca92-4838-95f0-efc94ed86fef" Title="FieldBase Methods" Url="html/Methods_T_FileHelpers_FieldBase.htm">
+          <HelpTOCNode Title="Clone Method " Url="html/M_FileHelpers_FieldBase_Clone.htm" />
+          <HelpTOCNode Title="CreateField Method " Url="html/M_FileHelpers_FieldBase_CreateField.htm" />
+          <HelpTOCNode Title="CreateValueForField Method " Url="html/M_FileHelpers_FieldBase_CreateValueForField.htm" />
+        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="69037920-6bea-47c8-82d0-ab092fb96205" Title="FieldConverterAttribute Class" Url="html/T_FileHelpers_FieldConverterAttribute.htm">
-        <HelpTOCNode Id="ab73dc4e-2b97-4b3a-b27c-117876408ef4" Title="FieldConverterAttribute Constructor " Url="html/Overload_FileHelpers_FieldConverterAttribute__ctor.htm">
+      <HelpTOCNode Id="18b982c9-8ffe-4cda-8b80-b69f139e776b" Title="FieldConverterAttribute Class" Url="html/T_FileHelpers_FieldConverterAttribute.htm">
+        <HelpTOCNode Id="3192eaa4-efe2-483c-9b01-7a5d15df7ba9" Title="FieldConverterAttribute Constructor " Url="html/Overload_FileHelpers_FieldConverterAttribute__ctor.htm">
           <HelpTOCNode Title="FieldConverterAttribute Constructor (Type)" Url="html/M_FileHelpers_FieldConverterAttribute__ctor_4.htm" />
           <HelpTOCNode Title="FieldConverterAttribute Constructor (ConverterKind)" Url="html/M_FileHelpers_FieldConverterAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldConverterAttribute Constructor (Type, Object[])" Url="html/M_FileHelpers_FieldConverterAttribute__ctor_5.htm" />
@@ -311,58 +311,58 @@
           <HelpTOCNode Title="FieldConverterAttribute Constructor (Type, String, String, String)" Url="html/M_FileHelpers_FieldConverterAttribute__ctor_8.htm" />
           <HelpTOCNode Title="FieldConverterAttribute Constructor (ConverterKind, String, String, String)" Url="html/M_FileHelpers_FieldConverterAttribute__ctor_3.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="90388094-a78b-4fcb-bc50-54ffe8e13107" Title="FieldConverterAttribute Properties" Url="html/Properties_T_FileHelpers_FieldConverterAttribute.htm">
+        <HelpTOCNode Id="b6b0f01c-d2de-48a4-8bcd-5115ddb61a13" Title="FieldConverterAttribute Properties" Url="html/Properties_T_FileHelpers_FieldConverterAttribute.htm">
           <HelpTOCNode Title="Converter Property " Url="html/P_FileHelpers_FieldConverterAttribute_Converter.htm" />
           <HelpTOCNode Title="Kind Property " Url="html/P_FileHelpers_FieldConverterAttribute_Kind.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="6a5f3bb8-6635-4f44-8959-48e7b747c0cf" Title="FieldDelimiterAttribute Class" Url="html/T_FileHelpers_FieldDelimiterAttribute.htm">
+      <HelpTOCNode Id="a9728c2c-a223-4325-9366-51b1a296f158" Title="FieldDelimiterAttribute Class" Url="html/T_FileHelpers_FieldDelimiterAttribute.htm">
         <HelpTOCNode Title="FieldDelimiterAttribute Constructor " Url="html/M_FileHelpers_FieldDelimiterAttribute__ctor.htm" />
-        <HelpTOCNode Id="59debef7-4578-4a31-8aa1-ad3857f88384" Title="FieldDelimiterAttribute Properties" Url="html/Properties_T_FileHelpers_FieldDelimiterAttribute.htm">
+        <HelpTOCNode Id="1e9c0888-9a23-457e-a6a5-8977259cf1c5" Title="FieldDelimiterAttribute Properties" Url="html/Properties_T_FileHelpers_FieldDelimiterAttribute.htm">
           <HelpTOCNode Title="Delimiter Property " Url="html/P_FileHelpers_FieldDelimiterAttribute_Delimiter.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="89f86ee8-1b75-437e-acaf-056f48cbe6fa" Title="FieldFixedLengthAttribute Class" Url="html/T_FileHelpers_FieldFixedLengthAttribute.htm">
+      <HelpTOCNode Id="5454cd11-5afc-453b-a66d-b81ab7ab6301" Title="FieldFixedLengthAttribute Class" Url="html/T_FileHelpers_FieldFixedLengthAttribute.htm">
         <HelpTOCNode Title="FieldFixedLengthAttribute Constructor " Url="html/M_FileHelpers_FieldFixedLengthAttribute__ctor.htm" />
-        <HelpTOCNode Id="b881563d-960d-4e2a-ab78-d444995f9a65" Title="FieldFixedLengthAttribute Properties" Url="html/Properties_T_FileHelpers_FieldFixedLengthAttribute.htm">
+        <HelpTOCNode Id="01bea8b0-c4c5-490d-bf9b-245b64e06226" Title="FieldFixedLengthAttribute Properties" Url="html/Properties_T_FileHelpers_FieldFixedLengthAttribute.htm">
           <HelpTOCNode Title="Length Property " Url="html/P_FileHelpers_FieldFixedLengthAttribute_Length.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="45c06f2c-1208-4b37-bd2a-1811717d46f4" Title="FieldHiddenAttribute Class" Url="html/T_FileHelpers_FieldHiddenAttribute.htm">
+      <HelpTOCNode Id="e7440a07-3345-4a0c-a970-f54173098dfe" Title="FieldHiddenAttribute Class" Url="html/T_FileHelpers_FieldHiddenAttribute.htm">
         <HelpTOCNode Title="FieldHiddenAttribute Constructor " Url="html/M_FileHelpers_FieldHiddenAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="6365ae95-e00c-496a-a18b-b8ea2c275b76" Title="FieldIgnoredAttribute Class" Url="html/T_FileHelpers_FieldIgnoredAttribute.htm">
+      <HelpTOCNode Id="122e8e01-749d-4b26-9429-b9d0d26f399d" Title="FieldIgnoredAttribute Class" Url="html/T_FileHelpers_FieldIgnoredAttribute.htm">
         <HelpTOCNode Title="FieldIgnoredAttribute Constructor " Url="html/M_FileHelpers_FieldIgnoredAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b2d3c7ab-944d-42fa-97cb-1e466cf752d9" Title="FieldInNewLineAttribute Class" Url="html/T_FileHelpers_FieldInNewLineAttribute.htm">
+      <HelpTOCNode Id="7dec09f3-6d5d-4347-ac91-c4ee38b95e98" Title="FieldInNewLineAttribute Class" Url="html/T_FileHelpers_FieldInNewLineAttribute.htm">
         <HelpTOCNode Title="FieldInNewLineAttribute Constructor " Url="html/M_FileHelpers_FieldInNewLineAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a33ca66b-3186-4a54-bcd1-66189658d7a7" Title="FieldNotEmptyAttribute Class" Url="html/T_FileHelpers_FieldNotEmptyAttribute.htm">
+      <HelpTOCNode Id="0325f87b-e2b3-4578-bd87-5563a48aa712" Title="FieldNotEmptyAttribute Class" Url="html/T_FileHelpers_FieldNotEmptyAttribute.htm">
         <HelpTOCNode Title="FieldNotEmptyAttribute Constructor " Url="html/M_FileHelpers_FieldNotEmptyAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="4b0c2e0e-c3a3-47da-8e92-29ea71100921" Title="FieldNotInFileAttribute Class" Url="html/T_FileHelpers_FieldNotInFileAttribute.htm">
+      <HelpTOCNode Id="a3698968-2b82-4abf-9db6-2c35b21f690a" Title="FieldNotInFileAttribute Class" Url="html/T_FileHelpers_FieldNotInFileAttribute.htm">
         <HelpTOCNode Title="FieldNotInFileAttribute Constructor " Url="html/M_FileHelpers_FieldNotInFileAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a91db24b-95a0-427c-b9f7-f239e8f0bc93" Title="FieldNullValueAttribute Class" Url="html/T_FileHelpers_FieldNullValueAttribute.htm">
-        <HelpTOCNode Id="82e422b3-d3ee-43b3-8097-8b19f28d72a0" Title="FieldNullValueAttribute Constructor " Url="html/Overload_FileHelpers_FieldNullValueAttribute__ctor.htm">
+      <HelpTOCNode Id="31017311-058b-4567-8777-7e9df141b89b" Title="FieldNullValueAttribute Class" Url="html/T_FileHelpers_FieldNullValueAttribute.htm">
+        <HelpTOCNode Id="510c98b9-89b7-4c3a-8f75-0bc2ac7a1641" Title="FieldNullValueAttribute Constructor " Url="html/Overload_FileHelpers_FieldNullValueAttribute__ctor.htm">
           <HelpTOCNode Title="FieldNullValueAttribute Constructor (Object)" Url="html/M_FileHelpers_FieldNullValueAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldNullValueAttribute Constructor (Type, String)" Url="html/M_FileHelpers_FieldNullValueAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="cd40e403-0fea-483b-b030-d53f37af459a" Title="FieldNullValueAttribute Properties" Url="html/Properties_T_FileHelpers_FieldNullValueAttribute.htm">
+        <HelpTOCNode Id="91e0c753-1092-4cb2-a41a-4c4bad5b499c" Title="FieldNullValueAttribute Properties" Url="html/Properties_T_FileHelpers_FieldNullValueAttribute.htm">
           <HelpTOCNode Title="NullValue Property " Url="html/P_FileHelpers_FieldNullValueAttribute_NullValue.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="9a9aa674-a0c1-4981-abc8-980bf404fce5" Title="FieldOptionalAttribute Class" Url="html/T_FileHelpers_FieldOptionalAttribute.htm">
+      <HelpTOCNode Id="0f628a6f-05f1-4748-b932-1fb60861e16b" Title="FieldOptionalAttribute Class" Url="html/T_FileHelpers_FieldOptionalAttribute.htm">
         <HelpTOCNode Title="FieldOptionalAttribute Constructor " Url="html/M_FileHelpers_FieldOptionalAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="c10da9ea-fc2d-4400-ba84-de1419313bc4" Title="FieldOrderAttribute Class" Url="html/T_FileHelpers_FieldOrderAttribute.htm">
+      <HelpTOCNode Id="71220a68-bfae-41cd-8bb3-b733335c6b82" Title="FieldOrderAttribute Class" Url="html/T_FileHelpers_FieldOrderAttribute.htm">
         <HelpTOCNode Title="FieldOrderAttribute Constructor " Url="html/M_FileHelpers_FieldOrderAttribute__ctor.htm" />
-        <HelpTOCNode Id="8f70645b-e051-4f81-8076-d4075414ebd0" Title="FieldOrderAttribute Properties" Url="html/Properties_T_FileHelpers_FieldOrderAttribute.htm">
+        <HelpTOCNode Id="848cc4da-422b-4681-9f08-52024605f26c" Title="FieldOrderAttribute Properties" Url="html/Properties_T_FileHelpers_FieldOrderAttribute.htm">
           <HelpTOCNode Title="Order Property " Url="html/P_FileHelpers_FieldOrderAttribute_Order.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="8824e339-e44d-49b3-8b33-f0d419887b24" Title="FieldQuotedAttribute Class" Url="html/T_FileHelpers_FieldQuotedAttribute.htm">
-        <HelpTOCNode Id="aed289ac-aae1-4e71-a415-3c80f0def19d" Title="FieldQuotedAttribute Constructor " Url="html/Overload_FileHelpers_FieldQuotedAttribute__ctor.htm">
+      <HelpTOCNode Id="69b560e6-9926-44a6-a10c-1f1d3bc8df9d" Title="FieldQuotedAttribute Class" Url="html/T_FileHelpers_FieldQuotedAttribute.htm">
+        <HelpTOCNode Id="8316732e-ac92-4675-a3b5-b032b666e688" Title="FieldQuotedAttribute Constructor " Url="html/Overload_FileHelpers_FieldQuotedAttribute__ctor.htm">
           <HelpTOCNode Title="FieldQuotedAttribute Constructor " Url="html/M_FileHelpers_FieldQuotedAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldQuotedAttribute Constructor (Char)" Url="html/M_FileHelpers_FieldQuotedAttribute__ctor_4.htm" />
           <HelpTOCNode Title="FieldQuotedAttribute Constructor (MultilineMode)" Url="html/M_FileHelpers_FieldQuotedAttribute__ctor_1.htm" />
@@ -371,64 +371,72 @@
           <HelpTOCNode Title="FieldQuotedAttribute Constructor (QuoteMode, MultilineMode)" Url="html/M_FileHelpers_FieldQuotedAttribute__ctor_3.htm" />
           <HelpTOCNode Title="FieldQuotedAttribute Constructor (Char, QuoteMode, MultilineMode)" Url="html/M_FileHelpers_FieldQuotedAttribute__ctor_6.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="8d3b36c3-4d8c-4df5-8d52-c191524b11f5" Title="FieldQuotedAttribute Properties" Url="html/Properties_T_FileHelpers_FieldQuotedAttribute.htm">
+        <HelpTOCNode Id="391ddbf4-f486-4588-b216-be5c0dfeb9f1" Title="FieldQuotedAttribute Properties" Url="html/Properties_T_FileHelpers_FieldQuotedAttribute.htm">
           <HelpTOCNode Title="QuoteChar Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteChar.htm" />
           <HelpTOCNode Title="QuoteMode Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteMode.htm" />
           <HelpTOCNode Title="QuoteMultiline Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteMultiline.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="e8bff7a4-fd48-4541-a8a8-7cf42b29fe2e" Title="FieldTrimAttribute Class" Url="html/T_FileHelpers_FieldTrimAttribute.htm">
-        <HelpTOCNode Id="13010d59-e85e-478c-bcd5-a0bc00b9b809" Title="FieldTrimAttribute Constructor " Url="html/Overload_FileHelpers_FieldTrimAttribute__ctor.htm">
+      <HelpTOCNode Id="273b4231-efe4-44fb-9e76-13989843dfc7" Title="FieldTrimAttribute Class" Url="html/T_FileHelpers_FieldTrimAttribute.htm">
+        <HelpTOCNode Id="a8873569-1b8d-4a15-8656-d4d503333ca9" Title="FieldTrimAttribute Constructor " Url="html/Overload_FileHelpers_FieldTrimAttribute__ctor.htm">
           <HelpTOCNode Title="FieldTrimAttribute Constructor (TrimMode)" Url="html/M_FileHelpers_FieldTrimAttribute__ctor.htm" />
           <HelpTOCNode Title="FieldTrimAttribute Constructor (TrimMode, Char[])" Url="html/M_FileHelpers_FieldTrimAttribute__ctor_1.htm" />
           <HelpTOCNode Title="FieldTrimAttribute Constructor (TrimMode, String)" Url="html/M_FileHelpers_FieldTrimAttribute__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="89bb6c57-d665-4e0c-80ac-cc93dc8bba05" Title="FieldTrimAttribute Properties" Url="html/Properties_T_FileHelpers_FieldTrimAttribute.htm">
+        <HelpTOCNode Id="f00fd0ed-086a-4286-9225-cfaa0dc700cd" Title="FieldTrimAttribute Properties" Url="html/Properties_T_FileHelpers_FieldTrimAttribute.htm">
           <HelpTOCNode Title="TrimChars Property " Url="html/P_FileHelpers_FieldTrimAttribute_TrimChars.htm" />
           <HelpTOCNode Title="TrimMode Property " Url="html/P_FileHelpers_FieldTrimAttribute_TrimMode.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="4738f340-8309-4fa5-8cf9-e8d2ab58fecc" Title="FieldValueDiscardedAttribute Class" Url="html/T_FileHelpers_FieldValueDiscardedAttribute.htm">
+      <HelpTOCNode Id="2f427523-9415-40d9-b127-deb05b6d910f" Title="FieldValueDiscardedAttribute Class" Url="html/T_FileHelpers_FieldValueDiscardedAttribute.htm">
         <HelpTOCNode Title="FieldValueDiscardedAttribute Constructor " Url="html/M_FileHelpers_FieldValueDiscardedAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="98271fb6-20a3-4335-8ea5-ed931a51ebbc" Title="FileDiffEngine(T) Class" Url="html/T_FileHelpers_FileDiffEngine_1.htm">
+      <HelpTOCNode Id="d00ad818-7661-4214-9398-293f8c8ffffc" Title="FileDiffEngine(T) Class" Url="html/T_FileHelpers_FileDiffEngine_1.htm">
         <HelpTOCNode Title="FileDiffEngine(T) Constructor " Url="html/M_FileHelpers_FileDiffEngine_1__ctor.htm" />
-        <HelpTOCNode Id="4ec507d4-6686-48f9-b6b5-74603fa19cf6" Title="FileDiffEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileDiffEngine_1.htm">
+        <HelpTOCNode Title="FileDiffEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileDiffEngine_1.htm" />
+        <HelpTOCNode Id="5da3c8dd-ff87-46fb-a77c-fa0e4b98b139" Title="FileDiffEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileDiffEngine_1.htm">
           <HelpTOCNode Title="OnlyDuplicatedRecords Method " Url="html/M_FileHelpers_FileDiffEngine_1_OnlyDuplicatedRecords.htm" />
           <HelpTOCNode Title="OnlyMissingRecords Method " Url="html/M_FileHelpers_FileDiffEngine_1_OnlyMissingRecords.htm" />
           <HelpTOCNode Title="OnlyNewRecords Method " Url="html/M_FileHelpers_FileDiffEngine_1_OnlyNewRecords.htm" />
           <HelpTOCNode Title="OnlyNoDuplicatedRecords Method " Url="html/M_FileHelpers_FileDiffEngine_1_OnlyNoDuplicatedRecords.htm" />
           <HelpTOCNode Title="WriteNewRecords Method " Url="html/M_FileHelpers_FileDiffEngine_1_WriteNewRecords.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="FileDiffEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileDiffEngine_1.htm" />
         <HelpTOCNode Title="FileDiffEngine(T) Events" Url="html/Events_T_FileHelpers_FileDiffEngine_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="31a399ca-8603-4edf-966a-3e566001cf73" Title="FileHelperAsyncEngine Class" Url="html/T_FileHelpers_FileHelperAsyncEngine.htm">
-        <HelpTOCNode Id="b5ee08e0-4c31-487c-a5a9-bb55b3aec2e6" Title="FileHelperAsyncEngine Constructor " Url="html/Overload_FileHelpers_FileHelperAsyncEngine__ctor.htm">
+      <HelpTOCNode Id="44130320-aebb-4f3d-8f5a-a5ffbd084590" Title="FileHelperAsyncEngine Class" Url="html/T_FileHelpers_FileHelperAsyncEngine.htm">
+        <HelpTOCNode Id="cd38609c-593f-41d4-b7b9-4be237f47316" Title="FileHelperAsyncEngine Constructor " Url="html/Overload_FileHelpers_FileHelperAsyncEngine__ctor.htm">
           <HelpTOCNode Title="FileHelperAsyncEngine Constructor (Type)" Url="html/M_FileHelpers_FileHelperAsyncEngine__ctor.htm" />
           <HelpTOCNode Title="FileHelperAsyncEngine Constructor (Type, Encoding)" Url="html/M_FileHelpers_FileHelperAsyncEngine__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="FileHelperAsyncEngine Methods" Url="html/Methods_T_FileHelpers_FileHelperAsyncEngine.htm" />
         <HelpTOCNode Title="FileHelperAsyncEngine Properties" Url="html/Properties_T_FileHelpers_FileHelperAsyncEngine.htm" />
+        <HelpTOCNode Title="FileHelperAsyncEngine Methods" Url="html/Methods_T_FileHelpers_FileHelperAsyncEngine.htm" />
         <HelpTOCNode Title="FileHelperAsyncEngine Events" Url="html/Events_T_FileHelpers_FileHelperAsyncEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0e963e35-b615-4db5-a2fd-2b728209f075" Title="FileHelperAsyncEngine(T) Class" Url="html/T_FileHelpers_FileHelperAsyncEngine_1.htm">
-        <HelpTOCNode Id="9accf2ac-57b7-49d7-96a0-c0b9c6631914" Title="FileHelperAsyncEngine(T) Constructor " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1__ctor.htm">
+      <HelpTOCNode Id="ef58d103-66ed-463d-8346-39808aa66228" Title="FileHelperAsyncEngine(T) Class" Url="html/T_FileHelpers_FileHelperAsyncEngine_1.htm">
+        <HelpTOCNode Id="acada13f-82c2-4fed-95db-aca0fb2f618c" Title="FileHelperAsyncEngine(T) Constructor " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1__ctor.htm">
           <HelpTOCNode Title="FileHelperAsyncEngine(T) Constructor " Url="html/M_FileHelpers_FileHelperAsyncEngine_1__ctor.htm" />
           <HelpTOCNode Title="FileHelperAsyncEngine(T) Constructor (Encoding)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="3ae504ec-7dd2-4466-8d91-f951945b5aa3" Title="FileHelperAsyncEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileHelperAsyncEngine_1.htm">
-          <HelpTOCNode Id="7f862fad-f7bf-40a3-9f27-de16d83120a7" Title="BeginAppendToFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginAppendToFile.htm">
+        <HelpTOCNode Id="66356d3b-2a04-4dec-ab55-4327c8d07c37" Title="FileHelperAsyncEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileHelperAsyncEngine_1.htm">
+          <HelpTOCNode Id="5c1a870e-a166-45cc-beae-f5aaa3dbfec9" Title="Item Property " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_Item.htm">
+            <HelpTOCNode Title="Item Property (Int32)" Url="html/P_FileHelpers_FileHelperAsyncEngine_1_Item.htm" />
+            <HelpTOCNode Title="Item Property (String)" Url="html/P_FileHelpers_FileHelperAsyncEngine_1_Item_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_FileHelperAsyncEngine_1_LastRecord.htm" />
+          <HelpTOCNode Title="LastRecordValues Property " Url="html/P_FileHelpers_FileHelperAsyncEngine_1_LastRecordValues.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="04cc6e91-4ba9-4181-9520-fbcc2a86371c" Title="FileHelperAsyncEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileHelperAsyncEngine_1.htm">
+          <HelpTOCNode Id="cc9e0cf1-ff59-41fd-b7bc-848548a8ae7a" Title="BeginAppendToFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginAppendToFile.htm">
             <HelpTOCNode Title="BeginAppendToFile Method (String)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginAppendToFile.htm" />
             <HelpTOCNode Title="BeginAppendToFile Method (String, Int32)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginAppendToFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="a92766b3-5943-4359-954d-5ab42e1b7262" Title="BeginReadFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginReadFile.htm">
+          <HelpTOCNode Id="a9fb311a-ae5e-4694-ac24-31464acbf7fd" Title="BeginReadFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginReadFile.htm">
             <HelpTOCNode Title="BeginReadFile Method (String)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginReadFile.htm" />
             <HelpTOCNode Title="BeginReadFile Method (String, Int32)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginReadFile_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="BeginReadStream Method " Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginReadStream.htm" />
           <HelpTOCNode Title="BeginReadString Method " Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginReadString.htm" />
-          <HelpTOCNode Id="0db12b1c-8f4c-4ebd-863d-088751dcc882" Title="BeginWriteFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginWriteFile.htm">
+          <HelpTOCNode Id="de25e91f-e2f1-49d2-81d9-e658ba862711" Title="BeginWriteFile Method " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_BeginWriteFile.htm">
             <HelpTOCNode Title="BeginWriteFile Method (String)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginWriteFile.htm" />
             <HelpTOCNode Title="BeginWriteFile Method (String, Int32)" Url="html/M_FileHelpers_FileHelperAsyncEngine_1_BeginWriteFile_1.htm" />
           </HelpTOCNode>
@@ -442,105 +450,86 @@
           <HelpTOCNode Title="WriteNexts Method " Url="html/M_FileHelpers_FileHelperAsyncEngine_1_WriteNexts.htm" />
           <HelpTOCNode Title="WriteNextValues Method " Url="html/M_FileHelpers_FileHelperAsyncEngine_1_WriteNextValues.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="120372f4-1e2c-4e5f-921a-b576e69eee35" Title="FileHelperAsyncEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileHelperAsyncEngine_1.htm">
-          <HelpTOCNode Id="714b2a7e-0180-454a-95db-37a8ac179aa6" Title="Item Property " Url="html/Overload_FileHelpers_FileHelperAsyncEngine_1_Item.htm">
-            <HelpTOCNode Title="Item Property (Int32)" Url="html/P_FileHelpers_FileHelperAsyncEngine_1_Item.htm" />
-            <HelpTOCNode Title="Item Property (String)" Url="html/P_FileHelpers_FileHelperAsyncEngine_1_Item_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_FileHelperAsyncEngine_1_LastRecord.htm" />
-          <HelpTOCNode Title="LastRecordValues Property " Url="html/P_FileHelpers_FileHelperAsyncEngine_1_LastRecordValues.htm" />
-        </HelpTOCNode>
         <HelpTOCNode Title="FileHelperAsyncEngine(T) Events" Url="html/Events_T_FileHelpers_FileHelperAsyncEngine_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="2d09661d-94a4-40e6-b6e2-fb63bd773615" Title="FileHelperEngine Class" Url="html/T_FileHelpers_FileHelperEngine.htm">
-        <HelpTOCNode Id="ebda5366-a3af-4785-aa5c-9a1025a5ea50" Title="FileHelperEngine Constructor " Url="html/Overload_FileHelpers_FileHelperEngine__ctor.htm">
+      <HelpTOCNode Id="469446d9-78fc-416b-a3bd-aaa66f180f47" Title="FileHelperEngine Class" Url="html/T_FileHelpers_FileHelperEngine.htm">
+        <HelpTOCNode Id="f529d668-26e4-4c61-8bb2-6a472a58654e" Title="FileHelperEngine Constructor " Url="html/Overload_FileHelpers_FileHelperEngine__ctor.htm">
           <HelpTOCNode Title="FileHelperEngine Constructor (Type)" Url="html/M_FileHelpers_FileHelperEngine__ctor.htm" />
           <HelpTOCNode Title="FileHelperEngine Constructor (Type, Encoding)" Url="html/M_FileHelpers_FileHelperEngine__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="FileHelperEngine Methods" Url="html/Methods_T_FileHelpers_FileHelperEngine.htm" />
         <HelpTOCNode Title="FileHelperEngine Properties" Url="html/Properties_T_FileHelpers_FileHelperEngine.htm" />
+        <HelpTOCNode Title="FileHelperEngine Methods" Url="html/Methods_T_FileHelpers_FileHelperEngine.htm" />
         <HelpTOCNode Title="FileHelperEngine Events" Url="html/Events_T_FileHelpers_FileHelperEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ee161c1e-aeb9-45c1-ab14-3cf5ffeef860" Title="FileHelperEngine(T) Class" Url="html/T_FileHelpers_FileHelperEngine_1.htm">
-        <HelpTOCNode Id="a1e1ffcd-1444-4781-89de-56ad926cdbd8" Title="FileHelperEngine(T) Constructor " Url="html/Overload_FileHelpers_FileHelperEngine_1__ctor.htm">
+      <HelpTOCNode Id="e2ded693-46c7-4bc1-bdbf-e71001608894" Title="FileHelperEngine(T) Class" Url="html/T_FileHelpers_FileHelperEngine_1.htm">
+        <HelpTOCNode Id="bf096233-57e2-4ca4-82c2-aa0032e1ce10" Title="FileHelperEngine(T) Constructor " Url="html/Overload_FileHelpers_FileHelperEngine_1__ctor.htm">
           <HelpTOCNode Title="FileHelperEngine(T) Constructor " Url="html/M_FileHelpers_FileHelperEngine_1__ctor.htm" />
           <HelpTOCNode Title="FileHelperEngine(T) Constructor (Encoding)" Url="html/M_FileHelpers_FileHelperEngine_1__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="d1116e36-8c7f-4d27-a9ad-54e40f567cc4" Title="FileHelperEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileHelperEngine_1.htm">
-          <HelpTOCNode Id="82c0575b-9689-4d6a-87a4-fab160159c63" Title="AppendToFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_AppendToFile.htm">
+        <HelpTOCNode Title="FileHelperEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileHelperEngine_1.htm" />
+        <HelpTOCNode Id="e5a62da6-da31-4c82-8c85-be84f979b22d" Title="FileHelperEngine(T) Methods" Url="html/Methods_T_FileHelpers_FileHelperEngine_1.htm">
+          <HelpTOCNode Id="a89e928c-6c6b-461b-a4fb-c6cbd654e934" Title="AppendToFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_AppendToFile.htm">
             <HelpTOCNode Title="AppendToFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_FileHelperEngine_1_AppendToFile.htm" />
             <HelpTOCNode Title="AppendToFile Method (String, T)" Url="html/M_FileHelpers_FileHelperEngine_1_AppendToFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="c073dc7f-1a28-41a8-a814-e918c53a3c97" Title="ReadFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFile.htm">
+          <HelpTOCNode Id="bb5d097d-c120-44d2-8899-c0dce4400fd5" Title="ReadFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFile.htm">
             <HelpTOCNode Title="ReadFile Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFile.htm" />
             <HelpTOCNode Title="ReadFile Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="7cf9b441-9466-47aa-997a-b5bbcd4370a1" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFileAsDT.htm">
+          <HelpTOCNode Id="af22b584-b4bc-44bf-8989-ec1fd4866d35" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFileAsDT.htm">
             <HelpTOCNode Title="ReadFileAsDT Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFileAsDT.htm" />
             <HelpTOCNode Title="ReadFileAsDT Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFileAsDT_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="fa190161-edab-4526-bbac-2c0bf5851dd8" Title="ReadFileAsList Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFileAsList.htm">
+          <HelpTOCNode Id="6a265928-6291-4241-95b1-237211cc2347" Title="ReadFileAsList Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadFileAsList.htm">
             <HelpTOCNode Title="ReadFileAsList Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFileAsList.htm" />
             <HelpTOCNode Title="ReadFileAsList Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadFileAsList_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="17610ebd-fe4d-4ce8-860a-d1eeba36c443" Title="ReadStream Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStream.htm">
+          <HelpTOCNode Id="0b700115-1200-4dd4-b859-24abeded9338" Title="ReadStream Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStream.htm">
             <HelpTOCNode Title="ReadStream Method (TextReader)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStream.htm" />
             <HelpTOCNode Title="ReadStream Method (TextReader, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStream_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="b27a356c-28ff-41cd-91e8-2527566284bd" Title="ReadStreamAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStreamAsDT.htm">
+          <HelpTOCNode Id="4a7a8198-7a5f-454f-9568-810aa4778a5a" Title="ReadStreamAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStreamAsDT.htm">
             <HelpTOCNode Title="ReadStreamAsDT Method (TextReader)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStreamAsDT.htm" />
             <HelpTOCNode Title="ReadStreamAsDT Method (TextReader, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStreamAsDT_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="ReadStreamAsList Method " Url="html/M_FileHelpers_FileHelperEngine_1_ReadStreamAsList.htm" />
-          <HelpTOCNode Id="ee304ceb-8b3a-48fd-95b5-45b1ca747d19" Title="ReadString Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadString.htm">
+          <HelpTOCNode Id="11051ccb-dd8c-4867-a956-9b4849b75a86" Title="ReadString Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadString.htm">
             <HelpTOCNode Title="ReadString Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadString.htm" />
             <HelpTOCNode Title="ReadString Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadString_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="0d3086e1-64f7-4e9d-8600-0823d7f1e69b" Title="ReadStringAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStringAsDT.htm">
+          <HelpTOCNode Id="16699dca-38e7-4eb5-9552-665b3bb7592b" Title="ReadStringAsDT Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStringAsDT.htm">
             <HelpTOCNode Title="ReadStringAsDT Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStringAsDT.htm" />
             <HelpTOCNode Title="ReadStringAsDT Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStringAsDT_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="e2f7193c-0f07-4434-bf51-9b419360a1aa" Title="ReadStringAsList Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStringAsList.htm">
+          <HelpTOCNode Id="b88e9589-7819-4c66-adc3-70ef5105f0ab" Title="ReadStringAsList Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_ReadStringAsList.htm">
             <HelpTOCNode Title="ReadStringAsList Method (String)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStringAsList.htm" />
             <HelpTOCNode Title="ReadStringAsList Method (String, Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_ReadStringAsList_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="bf1c5131-edf3-4474-9c2e-e26f331633d7" Title="WriteFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteFile.htm">
+          <HelpTOCNode Id="1070e0e0-42f8-43f2-afeb-850b4862fe23" Title="WriteFile Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteFile.htm">
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_FileHelperEngine_1_WriteFile.htm" />
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T), Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_WriteFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="a16198d9-0cfd-49b4-b5c6-de4e82e6f103" Title="WriteStream Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteStream.htm">
+          <HelpTOCNode Id="022f1fc0-7970-4689-a25c-ee6e0e3063d4" Title="WriteStream Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteStream.htm">
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T))" Url="html/M_FileHelpers_FileHelperEngine_1_WriteStream.htm" />
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T), Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_WriteStream_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="c047dda5-1d24-45c3-a01a-b912eeec2b7b" Title="WriteString Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteString.htm">
+          <HelpTOCNode Id="7806ea55-e8cd-4b1e-9c97-3bff82b7b14e" Title="WriteString Method " Url="html/Overload_FileHelpers_FileHelperEngine_1_WriteString.htm">
             <HelpTOCNode Title="WriteString Method (IEnumerable(T))" Url="html/M_FileHelpers_FileHelperEngine_1_WriteString.htm" />
             <HelpTOCNode Title="WriteString Method (IEnumerable(T), Int32)" Url="html/M_FileHelpers_FileHelperEngine_1_WriteString_1.htm" />
           </HelpTOCNode>
         </HelpTOCNode>
-        <HelpTOCNode Title="FileHelperEngine(T) Properties" Url="html/Properties_T_FileHelpers_FileHelperEngine_1.htm" />
         <HelpTOCNode Title="FileHelperEngine(T) Events" Url="html/Events_T_FileHelpers_FileHelperEngine_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ace96c34-8259-494a-9a34-dc1054e7fecb" Title="FileHelpersException Class" Url="html/T_FileHelpers_FileHelpersException.htm">
-        <HelpTOCNode Id="95152e43-9895-44ed-b2fa-88a8ea3f2d23" Title="FileHelpersException Constructor " Url="html/Overload_FileHelpers_FileHelpersException__ctor.htm">
+      <HelpTOCNode Id="ef4c2b88-17e5-4eb6-8819-43e159b5f601" Title="FileHelpersException Class" Url="html/T_FileHelpers_FileHelpersException.htm">
+        <HelpTOCNode Id="eb11945d-3589-4f16-8e2a-285224cd71be" Title="FileHelpersException Constructor " Url="html/Overload_FileHelpers_FileHelpersException__ctor.htm">
           <HelpTOCNode Title="FileHelpersException Constructor (String)" Url="html/M_FileHelpers_FileHelpersException__ctor_1.htm" />
           <HelpTOCNode Title="FileHelpersException Constructor (String, Exception)" Url="html/M_FileHelpers_FileHelpersException__ctor_2.htm" />
           <HelpTOCNode Title="FileHelpersException Constructor (Int32, Int32, String)" Url="html/M_FileHelpers_FileHelpersException__ctor.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="83acd4d4-b547-4613-9135-e2e077db549a" Title="FileTransformEngine(TSource, TDestination) Class" Url="html/T_FileHelpers_FileTransformEngine_2.htm">
+      <HelpTOCNode Id="18161f82-562c-4d10-b43a-74ad0a3d1d42" Title="FileTransformEngine(TSource, TDestination) Class" Url="html/T_FileHelpers_FileTransformEngine_2.htm">
         <HelpTOCNode Title="FileTransformEngine(TSource, TDestination) Constructor " Url="html/M_FileHelpers_FileTransformEngine_2__ctor.htm" />
-        <HelpTOCNode Id="9351e662-ce92-4739-9565-40951125c0b8" Title="FileTransformEngine(TSource, TDestination) Methods" Url="html/Methods_T_FileHelpers_FileTransformEngine_2.htm">
-          <HelpTOCNode Title="ReadAndTransformRecords Method " Url="html/M_FileHelpers_FileTransformEngine_2_ReadAndTransformRecords.htm" />
-          <HelpTOCNode Title="TransformFile Method " Url="html/M_FileHelpers_FileTransformEngine_2_TransformFile.htm" />
-          <HelpTOCNode Id="d753989b-7bf1-4235-a84c-6fb46cfae2ea" Title="TransformFileFast Method " Url="html/Overload_FileHelpers_FileTransformEngine_2_TransformFileFast.htm">
-            <HelpTOCNode Title="TransformFileFast Method (TextReader, StreamWriter)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast.htm" />
-            <HelpTOCNode Title="TransformFileFast Method (TextReader, String)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_1.htm" />
-            <HelpTOCNode Title="TransformFileFast Method (String, StreamWriter)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_2.htm" />
-            <HelpTOCNode Title="TransformFileFast Method (String, String)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_3.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="TransformRecords Method " Url="html/M_FileHelpers_FileTransformEngine_2_TransformRecords.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="cd133ead-446c-455d-a907-8e3bc7ce94bf" Title="FileTransformEngine(TSource, TDestination) Properties" Url="html/Properties_T_FileHelpers_FileTransformEngine_2.htm">
+        <HelpTOCNode Id="79570af2-9e13-40a8-9f67-12cad08746f8" Title="FileTransformEngine(TSource, TDestination) Properties" Url="html/Properties_T_FileHelpers_FileTransformEngine_2.htm">
           <HelpTOCNode Title="DestinationEncoding Property " Url="html/P_FileHelpers_FileTransformEngine_2_DestinationEncoding.htm" />
           <HelpTOCNode Title="DestinationErrorManager Property " Url="html/P_FileHelpers_FileTransformEngine_2_DestinationErrorManager.htm" />
           <HelpTOCNode Title="DestinationType Property " Url="html/P_FileHelpers_FileTransformEngine_2_DestinationType.htm" />
@@ -549,50 +538,74 @@
           <HelpTOCNode Title="SourceErrorManager Property " Url="html/P_FileHelpers_FileTransformEngine_2_SourceErrorManager.htm" />
           <HelpTOCNode Title="SourceType Property " Url="html/P_FileHelpers_FileTransformEngine_2_SourceType.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="8191533b-027e-4b1b-8fd1-12b420583a4f" Title="FileTransformEngine(TSource, TDestination) Methods" Url="html/Methods_T_FileHelpers_FileTransformEngine_2.htm">
+          <HelpTOCNode Title="ReadAndTransformRecords Method " Url="html/M_FileHelpers_FileTransformEngine_2_ReadAndTransformRecords.htm" />
+          <HelpTOCNode Title="TransformFile Method " Url="html/M_FileHelpers_FileTransformEngine_2_TransformFile.htm" />
+          <HelpTOCNode Id="2742bc7c-4735-4931-85cd-42f18b8e3e6d" Title="TransformFileFast Method " Url="html/Overload_FileHelpers_FileTransformEngine_2_TransformFileFast.htm">
+            <HelpTOCNode Title="TransformFileFast Method (TextReader, StreamWriter)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast.htm" />
+            <HelpTOCNode Title="TransformFileFast Method (TextReader, String)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_1.htm" />
+            <HelpTOCNode Title="TransformFileFast Method (String, StreamWriter)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_2.htm" />
+            <HelpTOCNode Title="TransformFileFast Method (String, String)" Url="html/M_FileHelpers_FileTransformEngine_2_TransformFileFast_3.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="TransformRecords Method " Url="html/M_FileHelpers_FileTransformEngine_2_TransformRecords.htm" />
+        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="2a000e8c-ed2d-4f4d-ae6d-30a90ae49042" Title="FixedFileEngine Class" Url="html/T_FileHelpers_FixedFileEngine.htm">
-        <HelpTOCNode Id="2904a4f2-2dc9-41fb-8c42-f3c192e4bbbf" Title="FixedFileEngine Constructor " Url="html/Overload_FileHelpers_FixedFileEngine__ctor.htm">
+      <HelpTOCNode Id="0f83a4a8-3d53-4131-afc1-d6af0a2c857d" Title="FixedFileEngine Class" Url="html/T_FileHelpers_FixedFileEngine.htm">
+        <HelpTOCNode Id="b51ade6a-6174-4736-8207-739b43ad0b36" Title="FixedFileEngine Constructor " Url="html/Overload_FileHelpers_FixedFileEngine__ctor.htm">
           <HelpTOCNode Title="FixedFileEngine Constructor (Type)" Url="html/M_FileHelpers_FixedFileEngine__ctor.htm" />
           <HelpTOCNode Title="FixedFileEngine Constructor (Type, Encoding)" Url="html/M_FileHelpers_FixedFileEngine__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="FixedFileEngine Methods" Url="html/Methods_T_FileHelpers_FixedFileEngine.htm" />
-        <HelpTOCNode Id="537348e1-764f-47c1-b558-b0e2ac908df1" Title="FixedFileEngine Properties" Url="html/Properties_T_FileHelpers_FixedFileEngine.htm">
+        <HelpTOCNode Id="de73cb61-1d11-4592-a01c-e8ad630c9ad8" Title="FixedFileEngine Properties" Url="html/Properties_T_FileHelpers_FixedFileEngine.htm">
           <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_FixedFileEngine_Options.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="FixedFileEngine Methods" Url="html/Methods_T_FileHelpers_FixedFileEngine.htm" />
         <HelpTOCNode Title="FixedFileEngine Events" Url="html/Events_T_FileHelpers_FixedFileEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b796e897-32eb-43d6-abaf-7784ac4bca8c" Title="FixedFileEngine(T) Class" Url="html/T_FileHelpers_FixedFileEngine_1.htm">
-        <HelpTOCNode Id="28b055ae-72ba-4861-b537-bbfcc561c4dd" Title="FixedFileEngine(T) Constructor " Url="html/Overload_FileHelpers_FixedFileEngine_1__ctor.htm">
+      <HelpTOCNode Id="3b557df4-491d-4054-bc0d-a9be02890f6e" Title="FixedFileEngine(T) Class" Url="html/T_FileHelpers_FixedFileEngine_1.htm">
+        <HelpTOCNode Id="7e4844fe-fbb7-4f43-99bb-8629484835f0" Title="FixedFileEngine(T) Constructor " Url="html/Overload_FileHelpers_FixedFileEngine_1__ctor.htm">
           <HelpTOCNode Title="FixedFileEngine(T) Constructor " Url="html/M_FileHelpers_FixedFileEngine_1__ctor.htm" />
           <HelpTOCNode Title="FixedFileEngine(T) Constructor (Encoding)" Url="html/M_FileHelpers_FixedFileEngine_1__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="FixedFileEngine(T) Methods" Url="html/Methods_T_FileHelpers_FixedFileEngine_1.htm" />
-        <HelpTOCNode Id="2362155f-bd3c-4601-8f3d-2bf6835c19e6" Title="FixedFileEngine(T) Properties" Url="html/Properties_T_FileHelpers_FixedFileEngine_1.htm">
+        <HelpTOCNode Id="a3e9b217-e12b-4ec6-93a0-142b51a267f3" Title="FixedFileEngine(T) Properties" Url="html/Properties_T_FileHelpers_FixedFileEngine_1.htm">
           <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_FixedFileEngine_1_Options.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="FixedFileEngine(T) Methods" Url="html/Methods_T_FileHelpers_FixedFileEngine_1.htm" />
         <HelpTOCNode Title="FixedFileEngine(T) Events" Url="html/Events_T_FileHelpers_FixedFileEngine_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="e7ed916b-9a9c-407a-9e02-ce2488553c23" Title="FixedLengthField Class" Url="html/T_FileHelpers_FixedLengthField.htm">
-        <HelpTOCNode Title="FixedLengthField Methods" Url="html/Methods_T_FileHelpers_FixedLengthField.htm" />
+      <HelpTOCNode Id="793872e2-4976-40b9-865c-2db06184da0a" Title="FixedLengthField Class" Url="html/T_FileHelpers_FixedLengthField.htm">
         <HelpTOCNode Title="FixedLengthField Properties" Url="html/Properties_T_FileHelpers_FixedLengthField.htm" />
+        <HelpTOCNode Title="FixedLengthField Methods" Url="html/Methods_T_FileHelpers_FixedLengthField.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="a69c254b-88c4-4b94-91a1-fd0d9dc989c0" Title="FixedLengthRecordAttribute Class" Url="html/T_FileHelpers_FixedLengthRecordAttribute.htm">
-        <HelpTOCNode Id="9f4819d3-057d-4e41-b811-23ae63139cee" Title="FixedLengthRecordAttribute Constructor " Url="html/Overload_FileHelpers_FixedLengthRecordAttribute__ctor.htm">
+      <HelpTOCNode Id="e7f69f01-8b31-4fd8-8d19-abcb647ecdc8" Title="FixedLengthRecordAttribute Class" Url="html/T_FileHelpers_FixedLengthRecordAttribute.htm">
+        <HelpTOCNode Id="ffdd51a8-ab3f-4e42-b7e1-6c1edc6b5fba" Title="FixedLengthRecordAttribute Constructor " Url="html/Overload_FileHelpers_FixedLengthRecordAttribute__ctor.htm">
           <HelpTOCNode Title="FixedLengthRecordAttribute Constructor " Url="html/M_FileHelpers_FixedLengthRecordAttribute__ctor.htm" />
           <HelpTOCNode Title="FixedLengthRecordAttribute Constructor (FixedMode)" Url="html/M_FileHelpers_FixedLengthRecordAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="c17ceb20-ecc8-4b55-a319-3f2f7d88177c" Title="FixedLengthRecordAttribute Properties" Url="html/Properties_T_FileHelpers_FixedLengthRecordAttribute.htm">
+        <HelpTOCNode Id="be4acfb0-73ee-4137-8833-547c24d7dd5f" Title="FixedLengthRecordAttribute Properties" Url="html/Properties_T_FileHelpers_FixedLengthRecordAttribute.htm">
           <HelpTOCNode Title="FixedMode Property " Url="html/P_FileHelpers_FixedLengthRecordAttribute_FixedMode.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="FixedMode Enumeration" Url="html/T_FileHelpers_FixedMode.htm" />
-      <HelpTOCNode Id="10d1f95a-48b3-4493-9878-ef32b674c43e" Title="IComparableRecord(T) Interface" Url="html/T_FileHelpers_IComparableRecord_1.htm">
-        <HelpTOCNode Id="24538fbb-6b85-4e9b-b6ba-3cbcdbeeeb63" Title="IComparableRecord(T) Methods" Url="html/Methods_T_FileHelpers_IComparableRecord_1.htm">
+      <HelpTOCNode Id="0cc39dde-bd48-4540-9ff6-95a24a8e1963" Title="IComparableRecord(T) Interface" Url="html/T_FileHelpers_IComparableRecord_1.htm">
+        <HelpTOCNode Id="35f7c68c-d86c-41ca-a167-54546a5f9665" Title="IComparableRecord(T) Methods" Url="html/Methods_T_FileHelpers_IComparableRecord_1.htm">
           <HelpTOCNode Title="IsEqualRecord Method " Url="html/M_FileHelpers_IComparableRecord_1_IsEqualRecord.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="4d456310-91be-4f5c-83b5-f10815b5ed24" Title="IFileHelperAsyncEngine(T) Interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm">
-        <HelpTOCNode Id="091867bd-c892-44bd-a45c-6743761a8405" Title="IFileHelperAsyncEngine(T) Methods" Url="html/Methods_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
+      <HelpTOCNode Id="2ef253ec-dd76-4468-9713-2d2279fab081" Title="IFileHelperAsyncEngine(T) Interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm">
+        <HelpTOCNode Id="6b7523f7-7fad-4061-bacc-bddbbcd9de48" Title="IFileHelperAsyncEngine(T) Properties" Url="html/Properties_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
+          <HelpTOCNode Title="Encoding Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_Encoding.htm" />
+          <HelpTOCNode Title="ErrorManager Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_ErrorManager.htm" />
+          <HelpTOCNode Title="ErrorMode Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_ErrorMode.htm" />
+          <HelpTOCNode Title="FooterText Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_FooterText.htm" />
+          <HelpTOCNode Title="HeaderText Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_HeaderText.htm" />
+          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LastRecord.htm" />
+          <HelpTOCNode Title="LastRecordValues Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LastRecordValues.htm" />
+          <HelpTOCNode Title="LineNumber Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LineNumber.htm" />
+          <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_Options.htm" />
+          <HelpTOCNode Title="RecordType Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_RecordType.htm" />
+          <HelpTOCNode Title="TotalRecords Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_TotalRecords.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b7ed3dce-4690-42d9-b72e-3bc144e0fbb9" Title="IFileHelperAsyncEngine(T) Methods" Url="html/Methods_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
           <HelpTOCNode Title="BeginAppendToFile Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_BeginAppendToFile.htm" />
           <HelpTOCNode Title="BeginReadFile Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_BeginReadFile.htm" />
           <HelpTOCNode Title="BeginReadStream Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_BeginReadStream.htm" />
@@ -608,20 +621,7 @@
           <HelpTOCNode Title="WriteNexts Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_WriteNexts.htm" />
           <HelpTOCNode Title="WriteNextValues Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_WriteNextValues.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="de14c9fc-49fa-4b1b-87a4-9ab160ec562c" Title="IFileHelperAsyncEngine(T) Properties" Url="html/Properties_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
-          <HelpTOCNode Title="Encoding Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_Encoding.htm" />
-          <HelpTOCNode Title="ErrorManager Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_ErrorManager.htm" />
-          <HelpTOCNode Title="ErrorMode Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_ErrorMode.htm" />
-          <HelpTOCNode Title="FooterText Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_FooterText.htm" />
-          <HelpTOCNode Title="HeaderText Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_HeaderText.htm" />
-          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LastRecord.htm" />
-          <HelpTOCNode Title="LastRecordValues Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LastRecordValues.htm" />
-          <HelpTOCNode Title="LineNumber Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_LineNumber.htm" />
-          <HelpTOCNode Title="Options Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_Options.htm" />
-          <HelpTOCNode Title="RecordType Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_RecordType.htm" />
-          <HelpTOCNode Title="TotalRecords Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_TotalRecords.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="39d075c9-3e00-46f7-bb1d-12661a445cce" Title="IFileHelperAsyncEngine(T) Events" Url="html/Events_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
+        <HelpTOCNode Id="9b5db892-dc17-4b35-bfbc-93248e03da20" Title="IFileHelperAsyncEngine(T) Events" Url="html/Events_T_FileHelpers_IFileHelperAsyncEngine_1.htm">
           <HelpTOCNode Title="AfterReadRecord Event" Url="html/E_FileHelpers_IFileHelperAsyncEngine_1_AfterReadRecord.htm" />
           <HelpTOCNode Title="AfterWriteRecord Event" Url="html/E_FileHelpers_IFileHelperAsyncEngine_1_AfterWriteRecord.htm" />
           <HelpTOCNode Title="BeforeReadRecord Event" Url="html/E_FileHelpers_IFileHelperAsyncEngine_1_BeforeReadRecord.htm" />
@@ -629,50 +629,8 @@
           <HelpTOCNode Title="Progress Event" Url="html/E_FileHelpers_IFileHelperAsyncEngine_1_Progress.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="e8b0b1a2-e8ec-4bb2-90b4-d777aa6717b5" Title="IFileHelperEngine(T) Interface" Url="html/T_FileHelpers_IFileHelperEngine_1.htm">
-        <HelpTOCNode Id="cafcc5b1-1abd-4f70-91be-7b929dacb8e0" Title="IFileHelperEngine(T) Methods" Url="html/Methods_T_FileHelpers_IFileHelperEngine_1.htm">
-          <HelpTOCNode Id="fd976ed7-1286-41c3-9e28-088fc9cbdbbe" Title="AppendToFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_AppendToFile.htm">
-            <HelpTOCNode Title="AppendToFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_AppendToFile.htm" />
-            <HelpTOCNode Title="AppendToFile Method (String, T)" Url="html/M_FileHelpers_IFileHelperEngine_1_AppendToFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="8e493c4d-4c8e-4dc2-a5d7-b644ce79dd28" Title="ReadFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFile.htm">
-            <HelpTOCNode Title="ReadFile Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFile.htm" />
-            <HelpTOCNode Title="ReadFile Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="152e9e03-5175-4131-bf1a-3ec4124a10c0" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFileAsDT.htm">
-            <HelpTOCNode Title="ReadFileAsDT Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFileAsDT.htm" />
-            <HelpTOCNode Title="ReadFileAsDT Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFileAsDT_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="8ee53070-ecf6-4224-bfe9-e839b02be10d" Title="ReadStream Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStream.htm">
-            <HelpTOCNode Title="ReadStream Method (TextReader)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStream.htm" />
-            <HelpTOCNode Title="ReadStream Method (TextReader, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStream_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="77990afb-1bc2-4453-b4c7-6987a05b48b9" Title="ReadStreamAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT.htm">
-            <HelpTOCNode Title="ReadStreamAsDT Method (TextReader)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT.htm" />
-            <HelpTOCNode Title="ReadStreamAsDT Method (TextReader, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="f86c3ea9-6059-4b96-8122-902a1a5f441e" Title="ReadString Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadString.htm">
-            <HelpTOCNode Title="ReadString Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadString.htm" />
-            <HelpTOCNode Title="ReadString Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadString_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="c7bcd730-e2c1-4b9a-b964-cf2654d60fa4" Title="ReadStringAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStringAsDT.htm">
-            <HelpTOCNode Title="ReadStringAsDT Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStringAsDT.htm" />
-            <HelpTOCNode Title="ReadStringAsDT Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStringAsDT_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="62590930-c2a6-4ac0-a665-4ddf8c25c63f" Title="WriteFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteFile.htm">
-            <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteFile.htm" />
-            <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="106a5411-2e26-4e8e-964b-552d88f4b3f6" Title="WriteStream Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteStream.htm">
-            <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteStream.htm" />
-            <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteStream_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="4f240c7b-be04-4ee8-ab06-31d7b33ed91c" Title="WriteString Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteString.htm">
-            <HelpTOCNode Title="WriteString Method (IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteString.htm" />
-            <HelpTOCNode Title="WriteString Method (IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteString_1.htm" />
-          </HelpTOCNode>
-        </HelpTOCNode>
-        <HelpTOCNode Id="405a958d-b29e-40b0-8751-0793325a3d6e" Title="IFileHelperEngine(T) Properties" Url="html/Properties_T_FileHelpers_IFileHelperEngine_1.htm">
+      <HelpTOCNode Id="cdb3e0ba-3577-48bd-a55e-acb80aa0605e" Title="IFileHelperEngine(T) Interface" Url="html/T_FileHelpers_IFileHelperEngine_1.htm">
+        <HelpTOCNode Id="f1b24838-bba0-4713-8f07-a2e76190826f" Title="IFileHelperEngine(T) Properties" Url="html/Properties_T_FileHelpers_IFileHelperEngine_1.htm">
           <HelpTOCNode Title="Encoding Property " Url="html/P_FileHelpers_IFileHelperEngine_1_Encoding.htm" />
           <HelpTOCNode Title="ErrorManager Property " Url="html/P_FileHelpers_IFileHelperEngine_1_ErrorManager.htm" />
           <HelpTOCNode Title="ErrorMode Property " Url="html/P_FileHelpers_IFileHelperEngine_1_ErrorMode.htm" />
@@ -683,7 +641,49 @@
           <HelpTOCNode Title="RecordType Property " Url="html/P_FileHelpers_IFileHelperEngine_1_RecordType.htm" />
           <HelpTOCNode Title="TotalRecords Property " Url="html/P_FileHelpers_IFileHelperEngine_1_TotalRecords.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="d99728dc-6ced-4e84-9ea3-6ecef72b52a4" Title="IFileHelperEngine(T) Events" Url="html/Events_T_FileHelpers_IFileHelperEngine_1.htm">
+        <HelpTOCNode Id="355af6b9-7251-45d0-9d31-047e37d5c861" Title="IFileHelperEngine(T) Methods" Url="html/Methods_T_FileHelpers_IFileHelperEngine_1.htm">
+          <HelpTOCNode Id="d31e1547-9d4b-4701-aa8f-264e0eea0dec" Title="AppendToFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_AppendToFile.htm">
+            <HelpTOCNode Title="AppendToFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_AppendToFile.htm" />
+            <HelpTOCNode Title="AppendToFile Method (String, T)" Url="html/M_FileHelpers_IFileHelperEngine_1_AppendToFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="0ae97d36-1129-4636-aa12-8836a215aec3" Title="ReadFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFile.htm">
+            <HelpTOCNode Title="ReadFile Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFile.htm" />
+            <HelpTOCNode Title="ReadFile Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="854e8c77-a532-43ca-bf20-cc49c9afdb5f" Title="ReadFileAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFileAsDT.htm">
+            <HelpTOCNode Title="ReadFileAsDT Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFileAsDT.htm" />
+            <HelpTOCNode Title="ReadFileAsDT Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadFileAsDT_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="af4e53ac-1f8b-404e-8c22-db49e423fab2" Title="ReadStream Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStream.htm">
+            <HelpTOCNode Title="ReadStream Method (TextReader)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStream.htm" />
+            <HelpTOCNode Title="ReadStream Method (TextReader, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStream_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="b6b973d2-b628-4256-a553-324f1f8a4b9a" Title="ReadStreamAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT.htm">
+            <HelpTOCNode Title="ReadStreamAsDT Method (TextReader)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT.htm" />
+            <HelpTOCNode Title="ReadStreamAsDT Method (TextReader, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStreamAsDT_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="ba79b109-907a-4a70-a02a-af7448ac5e1e" Title="ReadString Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadString.htm">
+            <HelpTOCNode Title="ReadString Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadString.htm" />
+            <HelpTOCNode Title="ReadString Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadString_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="152f6f03-46c3-414e-86c5-0dedb5454a0f" Title="ReadStringAsDT Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadStringAsDT.htm">
+            <HelpTOCNode Title="ReadStringAsDT Method (String)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStringAsDT.htm" />
+            <HelpTOCNode Title="ReadStringAsDT Method (String, Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_ReadStringAsDT_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="0d79992b-872f-473d-9335-9a635d2a143b" Title="WriteFile Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteFile.htm">
+            <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteFile.htm" />
+            <HelpTOCNode Title="WriteFile Method (String, IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="6ff278d9-3402-4979-bdfd-7933d1a6f8e7" Title="WriteStream Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteStream.htm">
+            <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteStream.htm" />
+            <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteStream_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="7603b300-85dc-4af4-8842-9e98f3161737" Title="WriteString Method " Url="html/Overload_FileHelpers_IFileHelperEngine_1_WriteString.htm">
+            <HelpTOCNode Title="WriteString Method (IEnumerable(T))" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteString.htm" />
+            <HelpTOCNode Title="WriteString Method (IEnumerable(T), Int32)" Url="html/M_FileHelpers_IFileHelperEngine_1_WriteString_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="873b0d07-556a-42df-9824-ec366a3dd56b" Title="IFileHelperEngine(T) Events" Url="html/Events_T_FileHelpers_IFileHelperEngine_1.htm">
           <HelpTOCNode Title="AfterReadRecord Event" Url="html/E_FileHelpers_IFileHelperEngine_1_AfterReadRecord.htm" />
           <HelpTOCNode Title="AfterWriteRecord Event" Url="html/E_FileHelpers_IFileHelperEngine_1_AfterWriteRecord.htm" />
           <HelpTOCNode Title="BeforeReadRecord Event" Url="html/E_FileHelpers_IFileHelperEngine_1_BeforeReadRecord.htm" />
@@ -691,72 +691,76 @@
           <HelpTOCNode Title="Progress Event" Url="html/E_FileHelpers_IFileHelperEngine_1_Progress.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="b0fb6389-104a-4a19-91e8-d768a34dc657" Title="IgnoreCommentedLinesAttribute Class" Url="html/T_FileHelpers_IgnoreCommentedLinesAttribute.htm">
-        <HelpTOCNode Id="ee44ac96-db28-4372-a473-9645251b9f7e" Title="IgnoreCommentedLinesAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreCommentedLinesAttribute__ctor.htm">
+      <HelpTOCNode Id="6ae9f31d-16cc-4bb6-b4a2-3d6a13d0c15e" Title="IgnoreCommentedLinesAttribute Class" Url="html/T_FileHelpers_IgnoreCommentedLinesAttribute.htm">
+        <HelpTOCNode Id="9f6c601f-e7a5-4986-ae86-30a7acc0027f" Title="IgnoreCommentedLinesAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreCommentedLinesAttribute__ctor.htm">
           <HelpTOCNode Title="IgnoreCommentedLinesAttribute Constructor (String)" Url="html/M_FileHelpers_IgnoreCommentedLinesAttribute__ctor.htm" />
           <HelpTOCNode Title="IgnoreCommentedLinesAttribute Constructor (String, Boolean)" Url="html/M_FileHelpers_IgnoreCommentedLinesAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="047e2bf5-12c6-40d2-9052-334f75f5c09e" Title="IgnoreCommentedLinesAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreCommentedLinesAttribute.htm">
+        <HelpTOCNode Id="47978801-7a48-465f-8314-0824bd0b2d98" Title="IgnoreCommentedLinesAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreCommentedLinesAttribute.htm">
           <HelpTOCNode Title="AnyPlace Property " Url="html/P_FileHelpers_IgnoreCommentedLinesAttribute_AnyPlace.htm" />
           <HelpTOCNode Title="CommentMarker Property " Url="html/P_FileHelpers_IgnoreCommentedLinesAttribute_CommentMarker.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="14497400-1aec-425a-8341-fb439b489367" Title="IgnoreEmptyLinesAttribute Class" Url="html/T_FileHelpers_IgnoreEmptyLinesAttribute.htm">
-        <HelpTOCNode Id="a07bf491-2452-422d-a1cf-cf2da9382c9d" Title="IgnoreEmptyLinesAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreEmptyLinesAttribute__ctor.htm">
+      <HelpTOCNode Id="8f812bf1-4655-4549-8a90-fe1f27c12325" Title="IgnoreEmptyLinesAttribute Class" Url="html/T_FileHelpers_IgnoreEmptyLinesAttribute.htm">
+        <HelpTOCNode Id="78f6a96d-204f-463c-a418-13284154f55d" Title="IgnoreEmptyLinesAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreEmptyLinesAttribute__ctor.htm">
           <HelpTOCNode Title="IgnoreEmptyLinesAttribute Constructor " Url="html/M_FileHelpers_IgnoreEmptyLinesAttribute__ctor.htm" />
           <HelpTOCNode Title="IgnoreEmptyLinesAttribute Constructor (Boolean)" Url="html/M_FileHelpers_IgnoreEmptyLinesAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="2c80b9ab-c884-4029-b935-3c4e5749100f" Title="IgnoreEmptyLinesAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreEmptyLinesAttribute.htm">
+        <HelpTOCNode Id="d880c4ec-d334-4761-bf43-7ec905eeda5e" Title="IgnoreEmptyLinesAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreEmptyLinesAttribute.htm">
           <HelpTOCNode Title="IgnoreSpaces Property " Url="html/P_FileHelpers_IgnoreEmptyLinesAttribute_IgnoreSpaces.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="631ce3b2-4d15-4c31-a22d-072b2a56c3b0" Title="IgnoreFirstAttribute Class" Url="html/T_FileHelpers_IgnoreFirstAttribute.htm">
-        <HelpTOCNode Id="16e1d493-7394-4662-a6d8-96988b1cfe92" Title="IgnoreFirstAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreFirstAttribute__ctor.htm">
+      <HelpTOCNode Id="f063c8d3-e69e-4261-a7f5-f335e3aafde1" Title="IgnoreFirstAttribute Class" Url="html/T_FileHelpers_IgnoreFirstAttribute.htm">
+        <HelpTOCNode Id="d9a8d259-0b6b-4ae8-86f8-fce7541d49bc" Title="IgnoreFirstAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreFirstAttribute__ctor.htm">
           <HelpTOCNode Title="IgnoreFirstAttribute Constructor " Url="html/M_FileHelpers_IgnoreFirstAttribute__ctor.htm" />
           <HelpTOCNode Title="IgnoreFirstAttribute Constructor (Int32)" Url="html/M_FileHelpers_IgnoreFirstAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="cca56bd9-e3db-4976-9414-5f9313b29f59" Title="IgnoreFirstAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreFirstAttribute.htm">
+        <HelpTOCNode Id="244cc134-72ce-4bb4-85a2-2687f7fa4903" Title="IgnoreFirstAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreFirstAttribute.htm">
           <HelpTOCNode Title="NumberOfLines Property " Url="html/P_FileHelpers_IgnoreFirstAttribute_NumberOfLines.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="f519444f-430d-411f-8c1b-f32c1d0cc510" Title="IgnoreInheritedClassAttribute Class" Url="html/T_FileHelpers_IgnoreInheritedClassAttribute.htm">
+      <HelpTOCNode Id="afebc9e7-8db1-4af9-b688-9b4a90dbb3c2" Title="IgnoreInheritedClassAttribute Class" Url="html/T_FileHelpers_IgnoreInheritedClassAttribute.htm">
         <HelpTOCNode Title="IgnoreInheritedClassAttribute Constructor " Url="html/M_FileHelpers_IgnoreInheritedClassAttribute__ctor.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0c957fa4-faff-483f-a930-7cfddf434dde" Title="IgnoreLastAttribute Class" Url="html/T_FileHelpers_IgnoreLastAttribute.htm">
-        <HelpTOCNode Id="fac9fba0-eabc-438c-84e5-bea759087c03" Title="IgnoreLastAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreLastAttribute__ctor.htm">
+      <HelpTOCNode Id="a29a2039-c5d6-4793-a69b-2d054879c372" Title="IgnoreLastAttribute Class" Url="html/T_FileHelpers_IgnoreLastAttribute.htm">
+        <HelpTOCNode Id="6d316842-bf53-49ab-81ea-0e26a60f9730" Title="IgnoreLastAttribute Constructor " Url="html/Overload_FileHelpers_IgnoreLastAttribute__ctor.htm">
           <HelpTOCNode Title="IgnoreLastAttribute Constructor " Url="html/M_FileHelpers_IgnoreLastAttribute__ctor.htm" />
           <HelpTOCNode Title="IgnoreLastAttribute Constructor (Int32)" Url="html/M_FileHelpers_IgnoreLastAttribute__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="f1e837f2-6c45-4e70-9d3a-c9ec05dd2bbc" Title="IgnoreLastAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreLastAttribute.htm">
+        <HelpTOCNode Id="87e2a3a0-e35d-4d52-9090-7aa2510df69c" Title="IgnoreLastAttribute Properties" Url="html/Properties_T_FileHelpers_IgnoreLastAttribute.htm">
           <HelpTOCNode Title="NumberOfLines Property " Url="html/P_FileHelpers_IgnoreLastAttribute_NumberOfLines.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="76024676-9b9b-4b0b-ad8a-bf2911338819" Title="IRecordReader Interface" Url="html/T_FileHelpers_IRecordReader.htm">
-        <HelpTOCNode Id="a2cabc39-525e-4bab-bcaf-a609132fc090" Title="IRecordReader Methods" Url="html/Methods_T_FileHelpers_IRecordReader.htm">
+      <HelpTOCNode Id="3c2c82a3-1254-4c08-aedc-f58ac5cd5ab2" Title="IRecordReader Interface" Url="html/T_FileHelpers_IRecordReader.htm">
+        <HelpTOCNode Id="5218fb33-57f4-4060-81c2-1969c9023b8d" Title="IRecordReader Methods" Url="html/Methods_T_FileHelpers_IRecordReader.htm">
           <HelpTOCNode Title="Close Method " Url="html/M_FileHelpers_IRecordReader_Close.htm" />
           <HelpTOCNode Title="ReadRecordString Method " Url="html/M_FileHelpers_IRecordReader_ReadRecordString.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="c5cca023-30fd-4ebf-adbb-97937f41d979" Title="ITransformable(T) Interface" Url="html/T_FileHelpers_ITransformable_1.htm">
-        <HelpTOCNode Id="4a61bc51-66b1-4813-bb86-f362a2f72cf7" Title="ITransformable(T) Methods" Url="html/Methods_T_FileHelpers_ITransformable_1.htm">
+      <HelpTOCNode Id="5aab0711-70bd-4c11-b236-cad1aa5b1397" Title="ITransformable(T) Interface" Url="html/T_FileHelpers_ITransformable_1.htm">
+        <HelpTOCNode Id="dbfb1a7b-9803-4c2c-a4e6-1f11e99eab03" Title="ITransformable(T) Methods" Url="html/Methods_T_FileHelpers_ITransformable_1.htm">
           <HelpTOCNode Title="TransformTo Method " Url="html/M_FileHelpers_ITransformable_1_TransformTo.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="LengthIndicatorType Enumeration" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
       <HelpTOCNode Title="MultilineMode Enumeration" Url="html/T_FileHelpers_MultilineMode.htm" />
-      <HelpTOCNode Id="ea5caa00-0049-44b6-b3fa-be95fcc17d4a" Title="MultiRecordEngine Class" Url="html/T_FileHelpers_MultiRecordEngine.htm">
-        <HelpTOCNode Id="ffb517e9-6805-4ffa-880c-f1252f690dcb" Title="MultiRecordEngine Constructor " Url="html/Overload_FileHelpers_MultiRecordEngine__ctor.htm">
+      <HelpTOCNode Id="9b5abc8c-d64c-427d-8282-9798c7759b57" Title="MultiRecordEngine Class" Url="html/T_FileHelpers_MultiRecordEngine.htm">
+        <HelpTOCNode Id="e36b96cd-1c28-4638-b740-f1dc77a8137c" Title="MultiRecordEngine Constructor " Url="html/Overload_FileHelpers_MultiRecordEngine__ctor.htm">
           <HelpTOCNode Title="MultiRecordEngine Constructor (Type[])" Url="html/M_FileHelpers_MultiRecordEngine__ctor_1.htm" />
           <HelpTOCNode Title="MultiRecordEngine Constructor (RecordTypeSelector, Type[])" Url="html/M_FileHelpers_MultiRecordEngine__ctor.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="78fff194-d7c8-4b0d-9c71-2b53fffee01f" Title="MultiRecordEngine Methods" Url="html/Methods_T_FileHelpers_MultiRecordEngine.htm">
-          <HelpTOCNode Id="0cd52221-3179-4f9b-960f-ffc47ee68e65" Title="AppendToFile Method " Url="html/Overload_FileHelpers_MultiRecordEngine_AppendToFile.htm">
+        <HelpTOCNode Id="36947c41-0520-4cab-887e-6966ec29831b" Title="MultiRecordEngine Properties" Url="html/Properties_T_FileHelpers_MultiRecordEngine.htm">
+          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_MultiRecordEngine_LastRecord.htm" />
+          <HelpTOCNode Title="RecordSelector Property " Url="html/P_FileHelpers_MultiRecordEngine_RecordSelector.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="0c2b6f3b-42c0-4f9f-a6ad-00672c550f38" Title="MultiRecordEngine Methods" Url="html/Methods_T_FileHelpers_MultiRecordEngine.htm">
+          <HelpTOCNode Id="b4a76283-b490-4fb2-a1bd-db84bff399a4" Title="AppendToFile Method " Url="html/Overload_FileHelpers_MultiRecordEngine_AppendToFile.htm">
             <HelpTOCNode Title="AppendToFile Method (String, IEnumerable)" Url="html/M_FileHelpers_MultiRecordEngine_AppendToFile.htm" />
             <HelpTOCNode Title="AppendToFile Method (String, Object)" Url="html/M_FileHelpers_MultiRecordEngine_AppendToFile_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="BeginAppendToFile Method " Url="html/M_FileHelpers_MultiRecordEngine_BeginAppendToFile.htm" />
           <HelpTOCNode Title="BeginReadFile Method " Url="html/M_FileHelpers_MultiRecordEngine_BeginReadFile.htm" />
-          <HelpTOCNode Id="8ab4dd44-475b-4597-95e7-6571e1e2e247" Title="BeginReadStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_BeginReadStream.htm">
+          <HelpTOCNode Id="710ed7bb-da9e-4367-8d3b-8cfa5c87b0a7" Title="BeginReadStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_BeginReadStream.htm">
             <HelpTOCNode Title="BeginReadStream Method (TextReader)" Url="html/M_FileHelpers_MultiRecordEngine_BeginReadStream_1.htm" />
             <HelpTOCNode Title="BeginReadStream Method (IRecordReader)" Url="html/M_FileHelpers_MultiRecordEngine_BeginReadStream.htm" />
           </HelpTOCNode>
@@ -768,29 +772,25 @@
           <HelpTOCNode Title="ReadFile Method " Url="html/M_FileHelpers_MultiRecordEngine_ReadFile.htm" />
           <HelpTOCNode Title="ReadNext Method " Url="html/M_FileHelpers_MultiRecordEngine_ReadNext.htm" />
           <HelpTOCNode Title="ReadNexts Method " Url="html/M_FileHelpers_MultiRecordEngine_ReadNexts.htm" />
-          <HelpTOCNode Id="6aa48098-2e5d-43c6-93dd-e836499bdb94" Title="ReadStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_ReadStream.htm">
+          <HelpTOCNode Id="d2f116a3-6ae1-493f-b187-c4138abd1ec3" Title="ReadStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_ReadStream.htm">
             <HelpTOCNode Title="ReadStream Method (TextReader)" Url="html/M_FileHelpers_MultiRecordEngine_ReadStream_1.htm" />
             <HelpTOCNode Title="ReadStream Method (IRecordReader)" Url="html/M_FileHelpers_MultiRecordEngine_ReadStream.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="ReadString Method " Url="html/M_FileHelpers_MultiRecordEngine_ReadString.htm" />
-          <HelpTOCNode Id="62fd0d35-78f1-49f0-8dc7-6359a80d143e" Title="WriteFile Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteFile.htm">
+          <HelpTOCNode Id="afad5810-41b9-4a21-a19e-b06658c5a242" Title="WriteFile Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteFile.htm">
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable)" Url="html/M_FileHelpers_MultiRecordEngine_WriteFile.htm" />
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable, Int32)" Url="html/M_FileHelpers_MultiRecordEngine_WriteFile_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="WriteNext Method " Url="html/M_FileHelpers_MultiRecordEngine_WriteNext.htm" />
           <HelpTOCNode Title="WriteNexts Method " Url="html/M_FileHelpers_MultiRecordEngine_WriteNexts.htm" />
-          <HelpTOCNode Id="4c724ea9-dce3-47e5-9961-0688ea99d3ae" Title="WriteStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteStream.htm">
+          <HelpTOCNode Id="ad5bdadd-5aad-4e83-a095-0b58602fe06c" Title="WriteStream Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteStream.htm">
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable)" Url="html/M_FileHelpers_MultiRecordEngine_WriteStream.htm" />
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable, Int32)" Url="html/M_FileHelpers_MultiRecordEngine_WriteStream_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="24c9427d-33bf-4719-9bf7-96b4b2fbd8f9" Title="WriteString Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteString.htm">
+          <HelpTOCNode Id="632e35cf-94a7-4c32-8fd0-8f1a061fadb0" Title="WriteString Method " Url="html/Overload_FileHelpers_MultiRecordEngine_WriteString.htm">
             <HelpTOCNode Title="WriteString Method (IEnumerable)" Url="html/M_FileHelpers_MultiRecordEngine_WriteString.htm" />
             <HelpTOCNode Title="WriteString Method (IEnumerable, Int32)" Url="html/M_FileHelpers_MultiRecordEngine_WriteString_1.htm" />
           </HelpTOCNode>
-        </HelpTOCNode>
-        <HelpTOCNode Id="9ad85f0d-0728-481d-a85a-a010a0571b3c" Title="MultiRecordEngine Properties" Url="html/Properties_T_FileHelpers_MultiRecordEngine.htm">
-          <HelpTOCNode Title="LastRecord Property " Url="html/P_FileHelpers_MultiRecordEngine_LastRecord.htm" />
-          <HelpTOCNode Title="RecordSelector Property " Url="html/P_FileHelpers_MultiRecordEngine_RecordSelector.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="MultiRecordEngine Events" Url="html/Events_T_FileHelpers_MultiRecordEngine.htm" />
       </HelpTOCNode>
@@ -799,8 +799,8 @@
       <HelpTOCNode Title="NullValueNotFoundException Class" Url="html/T_FileHelpers_NullValueNotFoundException.htm" />
       <HelpTOCNode Title="QuoteMode Enumeration" Url="html/T_FileHelpers_QuoteMode.htm" />
       <HelpTOCNode Title="RecordCondition Enumeration" Url="html/T_FileHelpers_RecordCondition.htm" />
-      <HelpTOCNode Id="ad3df6d4-b5dc-49f2-8a58-593eb8b4f107" Title="RecordIndexer Class" Url="html/T_FileHelpers_RecordIndexer.htm">
-        <HelpTOCNode Id="753e5588-b638-4697-ad96-1405ef52d98e" Title="RecordIndexer Properties" Url="html/Properties_T_FileHelpers_RecordIndexer.htm">
+      <HelpTOCNode Id="81630fc7-d4f9-46cd-893b-4e3305a242bd" Title="RecordIndexer Class" Url="html/T_FileHelpers_RecordIndexer.htm">
+        <HelpTOCNode Id="9a635f01-585f-499b-9500-4ab371a1d256" Title="RecordIndexer Properties" Url="html/Properties_T_FileHelpers_RecordIndexer.htm">
           <HelpTOCNode Title="FieldCount Property " Url="html/P_FileHelpers_RecordIndexer_FieldCount.htm" />
           <HelpTOCNode Title="Item Property " Url="html/P_FileHelpers_RecordIndexer_Item.htm" />
         </HelpTOCNode>
@@ -809,58 +809,10 @@
       <HelpTOCNode Title="TrimMode Enumeration" Url="html/T_FileHelpers_TrimMode.htm" />
       <HelpTOCNode Title="TypedRecordAttribute Class" Url="html/T_FileHelpers_TypedRecordAttribute.htm" />
     </HelpTOCNode>
-    <HelpTOCNode Id="39810db6-d845-4367-9f2a-4fbd640b10a3" Title="FileHelpers.Dynamic" Url="html/N_FileHelpers_Dynamic.htm">
-      <HelpTOCNode Id="e18f4e0d-0187-4b31-b46e-19c3f27dda76" Title="ClassBuilder Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder.htm">
-        <HelpTOCNode Id="1c4fe487-8353-4eeb-b612-ba3c30abf147" Title="ClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_ClassBuilder.htm">
-          <HelpTOCNode Id="7a515b1b-e1e9-4905-aa3e-306f260c9764" Title="ClassFromBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile.htm">
-            <HelpTOCNode Title="ClassFromBinaryFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile.htm" />
-            <HelpTOCNode Title="ClassFromBinaryFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_1.htm" />
-            <HelpTOCNode Title="ClassFromBinaryFile Method (String, String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_2.htm" />
-            <HelpTOCNode Title="ClassFromBinaryFile Method (String, String, NetLanguage, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_3.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="54fea812-d7b3-4018-89d1-328ca4b5c301" Title="ClassFromSourceFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile.htm">
-            <HelpTOCNode Title="ClassFromSourceFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile.htm" />
-            <HelpTOCNode Title="ClassFromSourceFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_1.htm" />
-            <HelpTOCNode Title="ClassFromSourceFile Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_2.htm" />
-            <HelpTOCNode Title="ClassFromSourceFile Method (String, String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_3.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="dd922725-fb5c-46df-ab7e-03942fdf14c3" Title="ClassFromString Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromString.htm">
-            <HelpTOCNode Title="ClassFromString Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString.htm" />
-            <HelpTOCNode Title="ClassFromString Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_1.htm" />
-            <HelpTOCNode Title="ClassFromString Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_2.htm" />
-            <HelpTOCNode Title="ClassFromString Method (String, String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_3.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="ClassFromXmlFile Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromXmlFile.htm" />
-          <HelpTOCNode Id="d7180ffc-2409-42d1-993c-59422147e9ce" Title="ClassToBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile.htm">
-            <HelpTOCNode Title="ClassToBinaryFile Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile.htm" />
-            <HelpTOCNode Title="ClassToBinaryFile Method (String, String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="ClearFields Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClearFields.htm" />
-          <HelpTOCNode Title="CreateRecordClass Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_CreateRecordClass.htm" />
-          <HelpTOCNode Title="FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_FieldByIndex.htm" />
-          <HelpTOCNode Title="GetClassBinaryCode Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_GetClassBinaryCode.htm" />
-          <HelpTOCNode Title="GetClassSourceCode Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_GetClassSourceCode.htm" />
-          <HelpTOCNode Id="6c896ece-821b-4bfa-a151-169a81c962bb" Title="LoadFromXml Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_LoadFromXml.htm">
-            <HelpTOCNode Title="LoadFromXml Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXml.htm" />
-            <HelpTOCNode Title="LoadFromXml Method (XmlDocument)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXml_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="LoadFromXmlString Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXmlString.htm" />
-          <HelpTOCNode Id="19421037-be3c-4964-bc4a-84b570d8c6fd" Title="SaveToBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile.htm">
-            <HelpTOCNode Title="SaveToBinaryFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile.htm" />
-            <HelpTOCNode Title="SaveToBinaryFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="91d0ab8b-59d4-4fb6-b494-1df2d4a9c297" Title="SaveToSourceFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile.htm">
-            <HelpTOCNode Title="SaveToSourceFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile.htm" />
-            <HelpTOCNode Title="SaveToSourceFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile_1.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Id="bfe4c7ad-693c-4cbf-9a1d-2690b7f1ce13" Title="SaveToXml Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToXml.htm">
-            <HelpTOCNode Title="SaveToXml Method (Stream)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml.htm" />
-            <HelpTOCNode Title="SaveToXml Method (TextWriter)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml_1.htm" />
-            <HelpTOCNode Title="SaveToXml Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml_2.htm" />
-          </HelpTOCNode>
-          <HelpTOCNode Title="SaveToXmlString Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXmlString.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="ded8e886-5ddb-4000-b3f3-770543553281" Title="ClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder.htm">
+    <HelpTOCNode Id="59f66d19-575e-44cc-9a83-17064aef0884" Title="FileHelpers.Dynamic" Url="html/N_FileHelpers_Dynamic.htm">
+      <HelpTOCNode Id="b04924d8-c45b-4263-ac70-45c2d5c55487" Title="ClassBuilder Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder.htm">
+        <HelpTOCNode Id="37b49095-e4e2-4ecb-83f5-12ac7a94fa30" Title="ClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder.htm">
+          <HelpTOCNode Title="AdditionalReferences Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_AdditionalReferences.htm" />
           <HelpTOCNode Title="ClassName Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_ClassName.htm" />
           <HelpTOCNode Title="CommentText Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_CommentText.htm" />
           <HelpTOCNode Title="FieldCount Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_FieldCount.htm" />
@@ -875,21 +827,70 @@
           <HelpTOCNode Title="SealedClass Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_SealedClass.htm" />
           <HelpTOCNode Title="Visibility Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_Visibility.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="49ab3ae8-70a8-406b-912d-e014515e5e62" Title="ClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_ClassBuilder.htm">
+          <HelpTOCNode Id="626364b5-489f-499a-afc0-23c6f6dbc20c" Title="ClassFromBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile.htm">
+            <HelpTOCNode Title="ClassFromBinaryFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile.htm" />
+            <HelpTOCNode Title="ClassFromBinaryFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_1.htm" />
+            <HelpTOCNode Title="ClassFromBinaryFile Method (String, String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_2.htm" />
+            <HelpTOCNode Title="ClassFromBinaryFile Method (String, String, NetLanguage, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile_3.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="a7f22a99-3b0d-4c84-a268-4f1704605124" Title="ClassFromSourceFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile.htm">
+            <HelpTOCNode Title="ClassFromSourceFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile.htm" />
+            <HelpTOCNode Title="ClassFromSourceFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_1.htm" />
+            <HelpTOCNode Title="ClassFromSourceFile Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_2.htm" />
+            <HelpTOCNode Title="ClassFromSourceFile Method (String, String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile_3.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="bb5c789a-5d8c-4ebc-942e-eeb456817b53" Title="ClassFromString Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromString.htm">
+            <HelpTOCNode Title="ClassFromString Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString.htm" />
+            <HelpTOCNode Title="ClassFromString Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_1.htm" />
+            <HelpTOCNode Title="ClassFromString Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_2.htm" />
+            <HelpTOCNode Title="ClassFromString Method (String, String, NetLanguage, List(Assembly))" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromString_3.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="ClassFromXmlFile Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassFromXmlFile.htm" />
+          <HelpTOCNode Id="59b32d66-2d60-4c88-abad-e4788da22dab" Title="ClassToBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile.htm">
+            <HelpTOCNode Title="ClassToBinaryFile Method (String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile.htm" />
+            <HelpTOCNode Title="ClassToBinaryFile Method (String, String, String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="ClearFields Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClearFields.htm" />
+          <HelpTOCNode Title="CreateRecordClass Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_CreateRecordClass.htm" />
+          <HelpTOCNode Title="FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_FieldByIndex.htm" />
+          <HelpTOCNode Title="GetClassBinaryCode Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_GetClassBinaryCode.htm" />
+          <HelpTOCNode Title="GetClassSourceCode Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_GetClassSourceCode.htm" />
+          <HelpTOCNode Id="4b8d9270-fe3c-414a-a7d4-fddeaa9c7e73" Title="LoadFromXml Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_LoadFromXml.htm">
+            <HelpTOCNode Title="LoadFromXml Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXml.htm" />
+            <HelpTOCNode Title="LoadFromXml Method (XmlDocument)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXml_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="LoadFromXmlString Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXmlString.htm" />
+          <HelpTOCNode Id="17ccd450-5e4c-4c74-8f37-2611c88df147" Title="SaveToBinaryFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile.htm">
+            <HelpTOCNode Title="SaveToBinaryFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile.htm" />
+            <HelpTOCNode Title="SaveToBinaryFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToBinaryFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="879f9e2a-0d9b-42ca-ad22-b1a1c9099981" Title="SaveToSourceFile Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile.htm">
+            <HelpTOCNode Title="SaveToSourceFile Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile.htm" />
+            <HelpTOCNode Title="SaveToSourceFile Method (String, NetLanguage)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToSourceFile_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="6a4712c9-5d3a-4947-a181-f6e081d5101a" Title="SaveToXml Method " Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_SaveToXml.htm">
+            <HelpTOCNode Title="SaveToXml Method (Stream)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml.htm" />
+            <HelpTOCNode Title="SaveToXml Method (TextWriter)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml_1.htm" />
+            <HelpTOCNode Title="SaveToXml Method (String)" Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXml_2.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="SaveToXmlString Method " Url="html/M_FileHelpers_Dynamic_ClassBuilder_SaveToXmlString.htm" />
+        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="470beb99-f3b1-471b-9487-f9675a8ffb81" Title="ClassBuilder.IgnoreCommentInfo Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm">
-        <HelpTOCNode Id="6fe9f81d-4b69-4e61-9242-ea389e37766d" Title="IgnoreCommentInfo Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm">
+      <HelpTOCNode Id="b663255b-2fe0-4168-b593-9d83a1867a26" Title="ClassBuilder.IgnoreCommentInfo Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm">
+        <HelpTOCNode Id="dee2695f-67db-4a7e-b1a4-88dfd3b34492" Title="IgnoreCommentInfo Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm">
           <HelpTOCNode Title="CommentMarker Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo_CommentMarker.htm" />
           <HelpTOCNode Title="InAnyPlace Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo_InAnyPlace.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="5e52b95a-2514-4cd2-b98c-48a1ce55dc8c" Title="ClassBuilder.RecordConditionInfo Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo.htm">
-        <HelpTOCNode Id="39cfa271-6655-4645-aff3-542e782723d9" Title="RecordConditionInfo Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo.htm">
+      <HelpTOCNode Id="dccb9417-4990-40d9-81e2-1954e9bfd30b" Title="ClassBuilder.RecordConditionInfo Class" Url="html/T_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo.htm">
+        <HelpTOCNode Id="3f7870c6-ac0e-4b1f-810d-bd228d7d4f49" Title="RecordConditionInfo Properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo.htm">
           <HelpTOCNode Title="Condition Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo_Condition.htm" />
           <HelpTOCNode Title="Selector Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_RecordConditionInfo_Selector.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="f1064f76-4700-46de-b1a1-ef2dd29e5159" Title="ConverterBuilder Class" Url="html/T_FileHelpers_Dynamic_ConverterBuilder.htm">
-        <HelpTOCNode Id="2160c2bf-96de-47a9-88e1-9776c884a30d" Title="ConverterBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_ConverterBuilder.htm">
+      <HelpTOCNode Id="e1808301-7309-4725-a95a-64998f96db37" Title="ConverterBuilder Class" Url="html/T_FileHelpers_Dynamic_ConverterBuilder.htm">
+        <HelpTOCNode Id="5ff45ab4-b139-40fd-ad91-11d7be26385e" Title="ConverterBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_ConverterBuilder.htm">
           <HelpTOCNode Title="Arg1 Property " Url="html/P_FileHelpers_Dynamic_ConverterBuilder_Arg1.htm" />
           <HelpTOCNode Title="Arg2 Property " Url="html/P_FileHelpers_Dynamic_ConverterBuilder_Arg2.htm" />
           <HelpTOCNode Title="Arg3 Property " Url="html/P_FileHelpers_Dynamic_ConverterBuilder_Arg3.htm" />
@@ -897,31 +898,36 @@
           <HelpTOCNode Title="TypeName Property " Url="html/P_FileHelpers_Dynamic_ConverterBuilder_TypeName.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="f2d8fcf1-18f5-42fd-80d4-93014208cbe5" Title="CsvClassBuilder Class" Url="html/T_FileHelpers_Dynamic_CsvClassBuilder.htm">
-        <HelpTOCNode Id="3fecc049-b042-41cf-84c7-1935828c190a" Title="CsvClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder__ctor.htm">
+      <HelpTOCNode Id="e7343490-6d0d-426a-984a-d16e396194bb" Title="CsvClassBuilder Class" Url="html/T_FileHelpers_Dynamic_CsvClassBuilder.htm">
+        <HelpTOCNode Id="6975f954-a8c4-4122-9939-c581c9ec5acc" Title="CsvClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder__ctor.htm">
           <HelpTOCNode Title="CsvClassBuilder Constructor (CsvOptions)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder__ctor.htm" />
           <HelpTOCNode Title="CsvClassBuilder Constructor (String, Char, Int32)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder__ctor_1.htm" />
           <HelpTOCNode Title="CsvClassBuilder Constructor (String, Char, String)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="b29ff2aa-8cac-4307-a20e-5ba0b576112d" Title="CsvClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_CsvClassBuilder.htm">
-          <HelpTOCNode Id="05cae756-1607-494d-8194-23695f2f139c" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder_AddField.htm">
+        <HelpTOCNode Title="CsvClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_CsvClassBuilder.htm" />
+        <HelpTOCNode Id="4cf791e1-c3fe-46fb-886f-99c0b731338a" Title="CsvClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_CsvClassBuilder.htm">
+          <HelpTOCNode Id="9d26345a-826e-461d-96bc-cf7c2d0d2d43" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder_AddField.htm">
             <HelpTOCNode Title="AddField Method (String, String)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder_AddField.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="27f9df3c-ce4d-47a2-81e1-71a96a44ea87" Title="AddFields Method " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder_AddFields.htm">
+          <HelpTOCNode Id="0065b0d3-4a1d-4d83-848b-679486f38308" Title="AddFields Method " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder_AddFields.htm">
             <HelpTOCNode Title="AddFields Method (Int32)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder_AddFields.htm" />
             <HelpTOCNode Title="AddFields Method (Int32, String)" Url="html/M_FileHelpers_Dynamic_CsvClassBuilder_AddFields_1.htm" />
           </HelpTOCNode>
         </HelpTOCNode>
-        <HelpTOCNode Title="CsvClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_CsvClassBuilder.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="05fc3c7e-cf8d-4286-9363-a43d840ab025" Title="DelimitedClassBuilder Class" Url="html/T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
-        <HelpTOCNode Id="51bbd7ae-6dc1-44c2-90a5-636423d1e886" Title="DelimitedClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_DelimitedClassBuilder__ctor.htm">
+      <HelpTOCNode Id="04da07c3-aa6a-45ea-97f0-9a3173a8c7d0" Title="DelimitedClassBuilder Class" Url="html/T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
+        <HelpTOCNode Id="8c9a491d-e8c8-43fe-b718-db87c282690c" Title="DelimitedClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_DelimitedClassBuilder__ctor.htm">
           <HelpTOCNode Title="DelimitedClassBuilder Constructor (String)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder__ctor.htm" />
           <HelpTOCNode Title="DelimitedClassBuilder Constructor (String, String)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder__ctor_1.htm" />
           <HelpTOCNode Title="DelimitedClassBuilder Constructor (String, String, DataTable)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="54af55be-3b0c-4189-bf95-fa0283532d4d" Title="DelimitedClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
-          <HelpTOCNode Id="98cb1f90-b7b5-4700-a2b2-7178c13de1b1" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_DelimitedClassBuilder_AddField.htm">
+        <HelpTOCNode Id="3d64511c-5928-47c1-93b5-46c60f4570b3" Title="DelimitedClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
+          <HelpTOCNode Title="Delimiter Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_Delimiter.htm" />
+          <HelpTOCNode Title="Fields Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_Fields.htm" />
+          <HelpTOCNode Title="LastField Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_LastField.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="1512b4f7-9698-4635-bc34-6ac8dde4882e" Title="DelimitedClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
+          <HelpTOCNode Id="63741aec-67db-4d96-97e2-7c243109fee8" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_DelimitedClassBuilder_AddField.htm">
             <HelpTOCNode Title="AddField Method (String)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_AddField_1.htm" />
             <HelpTOCNode Title="AddField Method (DelimitedFieldBuilder)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_AddField.htm" />
             <HelpTOCNode Title="AddField Method (String, String)" Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_AddField_2.htm" />
@@ -930,28 +936,23 @@
           <HelpTOCNode Title="AddFields Method " Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_AddFields.htm" />
           <HelpTOCNode Title="FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_FieldByIndex.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="ccf33a3c-c5c8-416e-a0ed-57cd23ae3cb0" Title="DelimitedClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_DelimitedClassBuilder.htm">
-          <HelpTOCNode Title="Delimiter Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_Delimiter.htm" />
-          <HelpTOCNode Title="Fields Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_Fields.htm" />
-          <HelpTOCNode Title="LastField Property " Url="html/P_FileHelpers_Dynamic_DelimitedClassBuilder_LastField.htm" />
-        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="a9d21f1e-9a5a-479e-b101-62ffc9182fb2" Title="DelimitedFieldBuilder Class" Url="html/T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm">
-        <HelpTOCNode Id="869ba13f-0746-4dc0-9366-cefe4e196e50" Title="DelimitedFieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm">
+      <HelpTOCNode Id="886b28de-0f98-4b0f-93bb-49722899331d" Title="DelimitedFieldBuilder Class" Url="html/T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm">
+        <HelpTOCNode Id="d1f7cbea-7c0a-424c-9f03-d252d0420a4d" Title="DelimitedFieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm">
           <HelpTOCNode Title="FieldQuoted Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_FieldQuoted.htm" />
           <HelpTOCNode Title="QuoteChar Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteChar.htm" />
           <HelpTOCNode Title="QuoteMode Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteMode.htm" />
           <HelpTOCNode Title="QuoteMultiline Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteMultiline.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="ec550b38-e981-4aa7-b5b7-5a08f89dc76e" Title="DynamicCompilationException Class" Url="html/T_FileHelpers_Dynamic_DynamicCompilationException.htm">
-        <HelpTOCNode Id="0f103c66-8dc0-4e0c-be77-b1cfebf1b7de" Title="DynamicCompilationException Properties" Url="html/Properties_T_FileHelpers_Dynamic_DynamicCompilationException.htm">
+      <HelpTOCNode Id="ba9df2c0-d204-4989-9d5e-025714b5d8d7" Title="DynamicCompilationException Class" Url="html/T_FileHelpers_Dynamic_DynamicCompilationException.htm">
+        <HelpTOCNode Id="79f89ed4-6ac8-442c-96e8-dfbf17edc417" Title="DynamicCompilationException Properties" Url="html/Properties_T_FileHelpers_Dynamic_DynamicCompilationException.htm">
           <HelpTOCNode Title="CompilerErrors Property " Url="html/P_FileHelpers_Dynamic_DynamicCompilationException_CompilerErrors.htm" />
           <HelpTOCNode Title="SourceCode Property " Url="html/P_FileHelpers_Dynamic_DynamicCompilationException_SourceCode.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="bed0fd00-f669-4b7d-bf45-cf6f108c38f4" Title="FieldBuilder Class" Url="html/T_FileHelpers_Dynamic_FieldBuilder.htm">
-        <HelpTOCNode Id="ef1fbfef-a183-4839-bd32-a84956f2dd26" Title="FieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FieldBuilder.htm">
+      <HelpTOCNode Id="ec2abe73-31c8-4ce1-b227-8c9bb2830c18" Title="FieldBuilder Class" Url="html/T_FileHelpers_Dynamic_FieldBuilder.htm">
+        <HelpTOCNode Id="e158412e-c584-4c95-a820-9731ebfb7136" Title="FieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FieldBuilder.htm">
           <HelpTOCNode Title="Converter Property " Url="html/P_FileHelpers_Dynamic_FieldBuilder_Converter.htm" />
           <HelpTOCNode Title="FieldHidden Property " Url="html/P_FileHelpers_Dynamic_FieldBuilder_FieldHidden.htm" />
           <HelpTOCNode Title="FieldIndex Property " Url="html/P_FileHelpers_Dynamic_FieldBuilder_FieldIndex.htm" />
@@ -967,22 +968,27 @@
           <HelpTOCNode Title="Visibility Property " Url="html/P_FileHelpers_Dynamic_FieldBuilder_Visibility.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="5df4e873-f099-4e4b-97c1-959ef467ef26" Title="FixedFieldBuilder Class" Url="html/T_FileHelpers_Dynamic_FixedFieldBuilder.htm">
-        <HelpTOCNode Id="52b1493b-90fd-4d2c-8ad7-ab13124599ce" Title="FixedFieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FixedFieldBuilder.htm">
+      <HelpTOCNode Id="03985989-cbf9-464c-93a8-4fa59674df50" Title="FixedFieldBuilder Class" Url="html/T_FileHelpers_Dynamic_FixedFieldBuilder.htm">
+        <HelpTOCNode Id="5d3475e0-a897-495e-9506-95fd850b30b7" Title="FixedFieldBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FixedFieldBuilder.htm">
           <HelpTOCNode Title="AlignChar Property " Url="html/P_FileHelpers_Dynamic_FixedFieldBuilder_AlignChar.htm" />
           <HelpTOCNode Title="AlignMode Property " Url="html/P_FileHelpers_Dynamic_FixedFieldBuilder_AlignMode.htm" />
           <HelpTOCNode Title="FieldLength Property " Url="html/P_FileHelpers_Dynamic_FixedFieldBuilder_FieldLength.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="2defd267-9528-4902-b267-5c10e2ffc2f3" Title="FixedLengthClassBuilder Class" Url="html/T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
-        <HelpTOCNode Id="f5c70fe2-09ef-4d47-896b-fda3f7c83982" Title="FixedLengthClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor.htm">
+      <HelpTOCNode Id="9c44214f-52fe-4205-86c2-2dc0fe68c8ab" Title="FixedLengthClassBuilder Class" Url="html/T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
+        <HelpTOCNode Id="6bf09bf9-fe44-4815-a193-4f5a64adf11b" Title="FixedLengthClassBuilder Constructor " Url="html/Overload_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor.htm">
           <HelpTOCNode Title="FixedLengthClassBuilder Constructor (String)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor.htm" />
           <HelpTOCNode Title="FixedLengthClassBuilder Constructor (String, FixedMode)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor_1.htm" />
           <HelpTOCNode Title="FixedLengthClassBuilder Constructor (String, Int32[])" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor_3.htm" />
           <HelpTOCNode Title="FixedLengthClassBuilder Constructor (String, DataTable, Int32)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="3291d880-5569-45d7-a48a-a5e48599baf6" Title="FixedLengthClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
-          <HelpTOCNode Id="c5c3f7ac-25f8-4dd4-9cdd-c4038fb148f4" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_FixedLengthClassBuilder_AddField.htm">
+        <HelpTOCNode Id="c5aeabdb-16b1-429b-91b3-972743659cd1" Title="FixedLengthClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
+          <HelpTOCNode Title="Fields Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_Fields.htm" />
+          <HelpTOCNode Title="FixedMode Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_FixedMode.htm" />
+          <HelpTOCNode Title="LastField Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_LastField.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="85ca38d8-b2ce-4c52-bdb2-1ec96fbf7611" Title="FixedLengthClassBuilder Methods" Url="html/Methods_T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
+          <HelpTOCNode Id="bc78d35e-d2b7-4fa9-b810-a834edc97a1e" Title="AddField Method " Url="html/Overload_FileHelpers_Dynamic_FixedLengthClassBuilder_AddField.htm">
             <HelpTOCNode Title="AddField Method (FixedFieldBuilder)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_AddField.htm" />
             <HelpTOCNode Title="AddField Method (String, Int32, String)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_AddField_1.htm" />
             <HelpTOCNode Title="AddField Method (String, Int32, Type)" Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_AddField_2.htm" />
@@ -990,78 +996,73 @@
           <HelpTOCNode Title="FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_FieldByIndex.htm" />
           <HelpTOCNode Title="SetFieldsLength Method " Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_SetFieldsLength.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="62bc4ea1-f255-4c1f-b1b7-4e96a8d53034" Title="FixedLengthClassBuilder Properties" Url="html/Properties_T_FileHelpers_Dynamic_FixedLengthClassBuilder.htm">
-          <HelpTOCNode Title="Fields Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_Fields.htm" />
-          <HelpTOCNode Title="FixedMode Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_FixedMode.htm" />
-          <HelpTOCNode Title="LastField Property " Url="html/P_FileHelpers_Dynamic_FixedLengthClassBuilder_LastField.htm" />
-        </HelpTOCNode>
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="2201ca86-6a78-4004-a3b5-07c34ed4a0cc" Title="FileHelpers.Events" Url="html/N_FileHelpers_Events.htm">
-      <HelpTOCNode Id="03943b0e-30cd-4212-b90e-37c6dcd73a90" Title="AfterReadEventArgs Class" Url="html/T_FileHelpers_Events_AfterReadEventArgs.htm">
+    <HelpTOCNode Id="bbfef680-4cfd-4db5-8acd-e62c13065cc7" Title="FileHelpers.Events" Url="html/N_FileHelpers_Events.htm">
+      <HelpTOCNode Id="16149856-8836-46b8-a020-d1277a8f4425" Title="AfterReadEventArgs Class" Url="html/T_FileHelpers_Events_AfterReadEventArgs.htm">
         <HelpTOCNode Title="AfterReadEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_AfterReadEventArgs.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="598ada1e-f843-4ab2-ab2d-3b944325e182" Title="AfterReadEventArgs(T) Class" Url="html/T_FileHelpers_Events_AfterReadEventArgs_1.htm">
-        <HelpTOCNode Id="8e4dc0e9-1645-4d69-b9f4-741ea2e56e12" Title="AfterReadEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_AfterReadEventArgs_1.htm">
+      <HelpTOCNode Id="77ea1604-f352-43a1-9d3c-09219aa16ea8" Title="AfterReadEventArgs(T) Class" Url="html/T_FileHelpers_Events_AfterReadEventArgs_1.htm">
+        <HelpTOCNode Id="07267657-21a9-4591-a388-774b5ac86c3e" Title="AfterReadEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_AfterReadEventArgs_1.htm">
           <HelpTOCNode Title="Record Property " Url="html/P_FileHelpers_Events_AfterReadEventArgs_1_Record.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="AfterReadHandler(T) Delegate" Url="html/T_FileHelpers_Events_AfterReadHandler_1.htm" />
-      <HelpTOCNode Id="93d449fd-e108-442b-a57e-6b4572e9e5f0" Title="AfterWriteEventArgs Class" Url="html/T_FileHelpers_Events_AfterWriteEventArgs.htm">
-        <HelpTOCNode Id="4fb05c55-075c-444f-85cb-ba315a8aaf99" Title="AfterWriteEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_AfterWriteEventArgs.htm">
+      <HelpTOCNode Id="75fdd454-4fe9-402b-bfe6-3a9592a3fba2" Title="AfterWriteEventArgs Class" Url="html/T_FileHelpers_Events_AfterWriteEventArgs.htm">
+        <HelpTOCNode Id="004d533a-cef9-493c-bed5-712c4db30804" Title="AfterWriteEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_AfterWriteEventArgs.htm">
           <HelpTOCNode Title="RecordLine Property " Url="html/P_FileHelpers_Events_AfterWriteEventArgs_RecordLine.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="dd914afe-3b0b-4aa5-ac3c-0fe42ee66cc3" Title="AfterWriteEventArgs(T) Class" Url="html/T_FileHelpers_Events_AfterWriteEventArgs_1.htm">
-        <HelpTOCNode Id="881ed5b7-e31c-4ae5-8d6e-55db0f1ea529" Title="AfterWriteEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_AfterWriteEventArgs_1.htm">
+      <HelpTOCNode Id="f0f08218-1596-44ea-b75b-eaafd09ce61d" Title="AfterWriteEventArgs(T) Class" Url="html/T_FileHelpers_Events_AfterWriteEventArgs_1.htm">
+        <HelpTOCNode Id="0608afb4-4194-4784-a003-e147b8fe2045" Title="AfterWriteEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_AfterWriteEventArgs_1.htm">
           <HelpTOCNode Title="Record Property " Url="html/P_FileHelpers_Events_AfterWriteEventArgs_1_Record.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="AfterWriteHandler(T) Delegate" Url="html/T_FileHelpers_Events_AfterWriteHandler_1.htm" />
-      <HelpTOCNode Id="74e02f19-bd38-4488-9756-a81f7607c7cc" Title="BeforeReadEventArgs Class" Url="html/T_FileHelpers_Events_BeforeReadEventArgs.htm">
+      <HelpTOCNode Id="7f2e107f-0165-4a2c-b4b1-850d2b5700ff" Title="BeforeReadEventArgs Class" Url="html/T_FileHelpers_Events_BeforeReadEventArgs.htm">
         <HelpTOCNode Title="BeforeReadEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_BeforeReadEventArgs.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="edbd1e45-889c-4152-9852-635734cc9642" Title="BeforeReadEventArgs(T) Class" Url="html/T_FileHelpers_Events_BeforeReadEventArgs_1.htm">
-        <HelpTOCNode Id="c8bfa31a-a811-4371-b076-76764d73aebe" Title="BeforeReadEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_BeforeReadEventArgs_1.htm">
+      <HelpTOCNode Id="a9c77182-17df-4090-8c54-be554f05ea09" Title="BeforeReadEventArgs(T) Class" Url="html/T_FileHelpers_Events_BeforeReadEventArgs_1.htm">
+        <HelpTOCNode Id="d8deab5f-9766-43c9-9aec-f040fb1d8394" Title="BeforeReadEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_BeforeReadEventArgs_1.htm">
           <HelpTOCNode Title="Record Property " Url="html/P_FileHelpers_Events_BeforeReadEventArgs_1_Record.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="BeforeReadHandler(T) Delegate" Url="html/T_FileHelpers_Events_BeforeReadHandler_1.htm" />
-      <HelpTOCNode Id="d47c2760-35e8-4e01-b1c5-c33045b54207" Title="BeforeWriteEventArgs Class" Url="html/T_FileHelpers_Events_BeforeWriteEventArgs.htm">
-        <HelpTOCNode Id="dd60cbc0-1c4e-4e3e-a6c6-67ac2f84fe8b" Title="BeforeWriteEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_BeforeWriteEventArgs.htm">
+      <HelpTOCNode Id="b354eefd-c882-4d9f-b946-b577e7d145c5" Title="BeforeWriteEventArgs Class" Url="html/T_FileHelpers_Events_BeforeWriteEventArgs.htm">
+        <HelpTOCNode Id="dbfebbce-3313-4d06-a4c1-5a5f4430ba3e" Title="BeforeWriteEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_BeforeWriteEventArgs.htm">
           <HelpTOCNode Title="SkipThisRecord Property " Url="html/P_FileHelpers_Events_BeforeWriteEventArgs_SkipThisRecord.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="c917bb0a-87e9-457e-90d0-c5cee4eaa483" Title="BeforeWriteEventArgs(T) Class" Url="html/T_FileHelpers_Events_BeforeWriteEventArgs_1.htm">
-        <HelpTOCNode Id="963b8021-eb93-444c-8e11-d6d297e6e8f7" Title="BeforeWriteEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_BeforeWriteEventArgs_1.htm">
+      <HelpTOCNode Id="8f2f2f9e-7eda-4a8c-af56-f71374cdc934" Title="BeforeWriteEventArgs(T) Class" Url="html/T_FileHelpers_Events_BeforeWriteEventArgs_1.htm">
+        <HelpTOCNode Id="387531a8-4262-4459-8d38-882edc6f8d09" Title="BeforeWriteEventArgs(T) Properties" Url="html/Properties_T_FileHelpers_Events_BeforeWriteEventArgs_1.htm">
           <HelpTOCNode Title="Record Property " Url="html/P_FileHelpers_Events_BeforeWriteEventArgs_1_Record.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
       <HelpTOCNode Title="BeforeWriteHandler(T) Delegate" Url="html/T_FileHelpers_Events_BeforeWriteHandler_1.htm" />
-      <HelpTOCNode Id="6c7c61fe-5b62-4608-a639-9bfd14d2ac82" Title="FileHelpersEventArgs Class" Url="html/T_FileHelpers_Events_FileHelpersEventArgs.htm">
-        <HelpTOCNode Id="c71f3803-f256-4d01-9d69-08b6313003f0" Title="FileHelpersEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_FileHelpersEventArgs.htm">
+      <HelpTOCNode Id="c90a889f-0a19-440a-8ff0-2ea30aea11bf" Title="FileHelpersEventArgs Class" Url="html/T_FileHelpers_Events_FileHelpersEventArgs.htm">
+        <HelpTOCNode Id="ec136792-c887-405f-b528-d01833f00978" Title="FileHelpersEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_FileHelpersEventArgs.htm">
           <HelpTOCNode Title="Engine Property " Url="html/P_FileHelpers_Events_FileHelpersEventArgs_Engine.htm" />
           <HelpTOCNode Title="LineNumber Property " Url="html/P_FileHelpers_Events_FileHelpersEventArgs_LineNumber.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="5dcd7365-3eab-4e3e-906a-2fd1c4acf3af" Title="INotifyRead Interface" Url="html/T_FileHelpers_Events_INotifyRead.htm">
-        <HelpTOCNode Id="c3457032-7719-4be6-b49c-33415d5c38cc" Title="INotifyRead Methods" Url="html/Methods_T_FileHelpers_Events_INotifyRead.htm">
+      <HelpTOCNode Id="9d696c62-7906-4373-a8ed-2b10032e7583" Title="INotifyRead Interface" Url="html/T_FileHelpers_Events_INotifyRead.htm">
+        <HelpTOCNode Id="34ee9f21-25ba-491d-af70-dd3f3d8cd4d3" Title="INotifyRead Methods" Url="html/Methods_T_FileHelpers_Events_INotifyRead.htm">
           <HelpTOCNode Title="AfterRead Method " Url="html/M_FileHelpers_Events_INotifyRead_AfterRead.htm" />
           <HelpTOCNode Title="BeforeRead Method " Url="html/M_FileHelpers_Events_INotifyRead_BeforeRead.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="564188fe-1ca9-43c5-ad9b-b3e27d3cb1dc" Title="INotifyWrite Interface" Url="html/T_FileHelpers_Events_INotifyWrite.htm">
-        <HelpTOCNode Id="19f4e0f4-551c-4eb4-99cf-708900b4a001" Title="INotifyWrite Methods" Url="html/Methods_T_FileHelpers_Events_INotifyWrite.htm">
+      <HelpTOCNode Id="bdde1ddb-b1d8-4422-a4c6-5abb198bed2f" Title="INotifyWrite Interface" Url="html/T_FileHelpers_Events_INotifyWrite.htm">
+        <HelpTOCNode Id="4c176d2b-f130-421e-afdc-48e4d0335a93" Title="INotifyWrite Methods" Url="html/Methods_T_FileHelpers_Events_INotifyWrite.htm">
           <HelpTOCNode Title="AfterWrite Method " Url="html/M_FileHelpers_Events_INotifyWrite_AfterWrite.htm" />
           <HelpTOCNode Title="BeforeWrite Method " Url="html/M_FileHelpers_Events_INotifyWrite_BeforeWrite.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="eaebbea1-ca79-4c58-9f57-3626c64f69b1" Title="ProgressEventArgs Class" Url="html/T_FileHelpers_Events_ProgressEventArgs.htm">
-        <HelpTOCNode Id="b17d259b-341e-4451-864e-1ad7e15ea05d" Title="ProgressEventArgs Constructor " Url="html/Overload_FileHelpers_Events_ProgressEventArgs__ctor.htm">
+      <HelpTOCNode Id="7dfca590-7ff6-410f-9496-ef2fafeafbec" Title="ProgressEventArgs Class" Url="html/T_FileHelpers_Events_ProgressEventArgs.htm">
+        <HelpTOCNode Id="4e1d6a36-362f-4288-bb75-b8bdb299c0f9" Title="ProgressEventArgs Constructor " Url="html/Overload_FileHelpers_Events_ProgressEventArgs__ctor.htm">
           <HelpTOCNode Title="ProgressEventArgs Constructor (Int32, Int32)" Url="html/M_FileHelpers_Events_ProgressEventArgs__ctor.htm" />
           <HelpTOCNode Title="ProgressEventArgs Constructor (Int32, Int32, Int64, Int64)" Url="html/M_FileHelpers_Events_ProgressEventArgs__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="ebe1ae55-0577-497b-816a-315267f37b95" Title="ProgressEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_ProgressEventArgs.htm">
+        <HelpTOCNode Id="11895d8a-de48-4a29-9f0f-6780f99f65b3" Title="ProgressEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_ProgressEventArgs.htm">
           <HelpTOCNode Title="CurrentBytes Property " Url="html/P_FileHelpers_Events_ProgressEventArgs_CurrentBytes.htm" />
           <HelpTOCNode Title="CurrentRecord Property " Url="html/P_FileHelpers_Events_ProgressEventArgs_CurrentRecord.htm" />
           <HelpTOCNode Title="Percent Property " Url="html/P_FileHelpers_Events_ProgressEventArgs_Percent.htm" />
@@ -1069,72 +1070,72 @@
           <HelpTOCNode Title="TotalRecords Property " Url="html/P_FileHelpers_Events_ProgressEventArgs_TotalRecords.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="0cb779d7-46e1-4545-b41e-f4e5f908c0f4" Title="ReadEventArgs Class" Url="html/T_FileHelpers_Events_ReadEventArgs.htm">
-        <HelpTOCNode Id="20749e05-3835-41c8-804a-4308b56e2797" Title="ReadEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_ReadEventArgs.htm">
+      <HelpTOCNode Id="806e8b4b-ca8c-4820-a62c-8bd64dec4de6" Title="ReadEventArgs Class" Url="html/T_FileHelpers_Events_ReadEventArgs.htm">
+        <HelpTOCNode Id="df2aa24f-ceab-4297-bdfb-3f5db765cd3e" Title="ReadEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_ReadEventArgs.htm">
           <HelpTOCNode Title="RecordLine Property " Url="html/P_FileHelpers_Events_ReadEventArgs_RecordLine.htm" />
           <HelpTOCNode Title="RecordLineChanged Property " Url="html/P_FileHelpers_Events_ReadEventArgs_RecordLineChanged.htm" />
           <HelpTOCNode Title="SkipThisRecord Property " Url="html/P_FileHelpers_Events_ReadEventArgs_SkipThisRecord.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="9cfb9c70-cb66-47fe-b428-28b20022912f" Title="WriteEventArgs Class" Url="html/T_FileHelpers_Events_WriteEventArgs.htm">
+      <HelpTOCNode Id="70f755f2-d58b-413a-bed9-7a9ded0a3832" Title="WriteEventArgs Class" Url="html/T_FileHelpers_Events_WriteEventArgs.htm">
         <HelpTOCNode Title="WriteEventArgs Properties" Url="html/Properties_T_FileHelpers_Events_WriteEventArgs.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="96f2d165-5d61-4c56-a213-9616e9ba75fd" Title="FileHelpers.MasterDetail" Url="html/N_FileHelpers_MasterDetail.htm">
+    <HelpTOCNode Id="fc902b0e-9b53-445d-8920-77bb2e249d2a" Title="FileHelpers.MasterDetail" Url="html/N_FileHelpers_MasterDetail.htm">
       <HelpTOCNode Title="CommonSelector Enumeration" Url="html/T_FileHelpers_MasterDetail_CommonSelector.htm" />
-      <HelpTOCNode Id="10dd385a-296a-4625-905f-1a5864fb37dd" Title="MasterDetailEngine Class" Url="html/T_FileHelpers_MasterDetail_MasterDetailEngine.htm">
-        <HelpTOCNode Id="9721a2e4-efae-41cc-9060-fa34a9f19fdb" Title="MasterDetailEngine Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine__ctor.htm">
+      <HelpTOCNode Id="c10f3bd9-5ea2-40e7-a09f-5de880750438" Title="MasterDetailEngine Class" Url="html/T_FileHelpers_MasterDetail_MasterDetailEngine.htm">
+        <HelpTOCNode Id="3c69f6b5-b69a-4c4e-9b64-0283892dfea0" Title="MasterDetailEngine Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine__ctor.htm">
           <HelpTOCNode Title="MasterDetailEngine Constructor (Type, Type)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine__ctor.htm" />
           <HelpTOCNode Title="MasterDetailEngine Constructor (Type, Type, MasterDetailSelector)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine__ctor_2.htm" />
           <HelpTOCNode Title="MasterDetailEngine Constructor (Type, Type, CommonSelector, String)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Title="MasterDetailEngine Methods" Url="html/Methods_T_FileHelpers_MasterDetail_MasterDetailEngine.htm" />
         <HelpTOCNode Title="MasterDetailEngine Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetailEngine.htm" />
+        <HelpTOCNode Title="MasterDetailEngine Methods" Url="html/Methods_T_FileHelpers_MasterDetail_MasterDetailEngine.htm" />
         <HelpTOCNode Title="MasterDetailEngine Events" Url="html/Events_T_FileHelpers_MasterDetail_MasterDetailEngine.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="e1ad4d13-a27e-42bd-b52a-e3cd4e9e80a9" Title="MasterDetailEngine(TMaster, TDetail) Class" Url="html/T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
-        <HelpTOCNode Id="91c8f69e-6ab7-442e-9b27-c4eeb1446cec" Title="MasterDetailEngine(TMaster, TDetail) Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor.htm">
+      <HelpTOCNode Id="e3e47cbd-625b-4f6f-91f1-b2e2c567571e" Title="MasterDetailEngine(TMaster, TDetail) Class" Url="html/T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
+        <HelpTOCNode Id="0078ef2f-fc11-4a11-b4a6-22bf00f012ec" Title="MasterDetailEngine(TMaster, TDetail) Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor.htm">
           <HelpTOCNode Title="MasterDetailEngine(TMaster, TDetail) Constructor " Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor.htm" />
           <HelpTOCNode Title="MasterDetailEngine(TMaster, TDetail) Constructor (MasterDetailSelector)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor_2.htm" />
           <HelpTOCNode Title="MasterDetailEngine(TMaster, TDetail) Constructor (CommonSelector, String)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="82b25eee-3d1e-490a-b0f4-270ebf258ad4" Title="MasterDetailEngine(TMaster, TDetail) Methods" Url="html/Methods_T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
-          <HelpTOCNode Id="dc9cc289-6ee0-4f8f-9a2e-b2a7ef55f204" Title="AppendToFile Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile.htm">
+        <HelpTOCNode Id="9cb2086d-c525-4fd9-8c16-635460cb5a61" Title="MasterDetailEngine(TMaster, TDetail) Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
+          <HelpTOCNode Title="MasterType Property " Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterType.htm" />
+          <HelpTOCNode Title="RecordSelector Property " Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_RecordSelector.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b5c282b8-207f-4f09-ae45-e7d32c59cd8a" Title="MasterDetailEngine(TMaster, TDetail) Methods" Url="html/Methods_T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
+          <HelpTOCNode Id="616990f4-6f74-402a-a8ac-d94bb3955026" Title="AppendToFile Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile.htm">
             <HelpTOCNode Title="AppendToFile Method (String, MasterDetails(TMaster, TDetail))" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile.htm" />
             <HelpTOCNode Title="AppendToFile Method (String, IEnumerable(MasterDetails(TMaster, TDetail)))" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile_1.htm" />
           </HelpTOCNode>
           <HelpTOCNode Title="ReadFile Method " Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadFile.htm" />
           <HelpTOCNode Title="ReadStream Method " Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadStream.htm" />
           <HelpTOCNode Title="ReadString Method " Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadString.htm" />
-          <HelpTOCNode Id="1b8ec461-31d8-4899-a230-c6d2519a924c" Title="WriteFile Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteFile.htm">
+          <HelpTOCNode Id="1450b23f-55a4-4a05-b400-0caa9d79543e" Title="WriteFile Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteFile.htm">
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable(MasterDetails(TMaster, TDetail)))" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteFile.htm" />
             <HelpTOCNode Title="WriteFile Method (String, IEnumerable(MasterDetails(TMaster, TDetail)), Int32)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteFile_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="053a5aeb-1575-4aca-b92e-c1327e3cf19e" Title="WriteStream Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteStream.htm">
+          <HelpTOCNode Id="24fbbc43-5ac5-4bb1-a5c9-660232dddd17" Title="WriteStream Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteStream.htm">
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(MasterDetails(TMaster, TDetail)))" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteStream.htm" />
             <HelpTOCNode Title="WriteStream Method (TextWriter, IEnumerable(MasterDetails(TMaster, TDetail)), Int32)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteStream_1.htm" />
           </HelpTOCNode>
-          <HelpTOCNode Id="0acee2ca-f2c3-4cbc-b4a3-33d08a7f0a29" Title="WriteString Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteString.htm">
+          <HelpTOCNode Id="7bc31254-c6b7-48fc-8d9d-05793b4e7383" Title="WriteString Method " Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteString.htm">
             <HelpTOCNode Title="WriteString Method (IEnumerable(MasterDetails(TMaster, TDetail)))" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteString.htm" />
             <HelpTOCNode Title="WriteString Method (IEnumerable(MasterDetails(TMaster, TDetail)), Int32)" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_WriteString_1.htm" />
           </HelpTOCNode>
         </HelpTOCNode>
-        <HelpTOCNode Id="2d84498b-0409-4086-8b0d-572f0890a700" Title="MasterDetailEngine(TMaster, TDetail) Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm">
-          <HelpTOCNode Title="MasterType Property " Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterType.htm" />
-          <HelpTOCNode Title="RecordSelector Property " Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_RecordSelector.htm" />
-        </HelpTOCNode>
         <HelpTOCNode Title="MasterDetailEngine(TMaster, TDetail) Events" Url="html/Events_T_FileHelpers_MasterDetail_MasterDetailEngine_2.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="b81fa6a5-c5b9-497e-ba2c-2c95ba4f6b6d" Title="MasterDetails Class" Url="html/T_FileHelpers_MasterDetail_MasterDetails.htm">
+      <HelpTOCNode Id="67a6b54c-4e6b-4a26-beb0-fd9ed5262bdf" Title="MasterDetails Class" Url="html/T_FileHelpers_MasterDetail_MasterDetails.htm">
         <HelpTOCNode Title="MasterDetails Constructor " Url="html/M_FileHelpers_MasterDetail_MasterDetails__ctor.htm" />
         <HelpTOCNode Title="MasterDetails Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetails.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="2a14fc69-8947-4988-96f6-6243057f5bc0" Title="MasterDetails(M, D) Class" Url="html/T_FileHelpers_MasterDetail_MasterDetails_2.htm">
-        <HelpTOCNode Id="90b7a231-bd0c-47ee-b426-e54ad0e1423f" Title="MasterDetails(M, D) Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetails_2__ctor.htm">
+      <HelpTOCNode Id="fe47ffb2-68be-4831-8273-ad2936dbb9e7" Title="MasterDetails(M, D) Class" Url="html/T_FileHelpers_MasterDetail_MasterDetails_2.htm">
+        <HelpTOCNode Id="d9c3888a-92c1-40e6-a817-7bea0858ebc1" Title="MasterDetails(M, D) Constructor " Url="html/Overload_FileHelpers_MasterDetail_MasterDetails_2__ctor.htm">
           <HelpTOCNode Title="MasterDetails(M, D) Constructor " Url="html/M_FileHelpers_MasterDetail_MasterDetails_2__ctor.htm" />
           <HelpTOCNode Title="MasterDetails(M, D) Constructor (M, D[])" Url="html/M_FileHelpers_MasterDetail_MasterDetails_2__ctor_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="dad1f125-52ef-4772-93ce-805a3a46787b" Title="MasterDetails(M, D) Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetails_2.htm">
+        <HelpTOCNode Id="1bbd064c-ec00-4a36-8881-e19e7ad69466" Title="MasterDetails(M, D) Properties" Url="html/Properties_T_FileHelpers_MasterDetail_MasterDetails_2.htm">
           <HelpTOCNode Title="Details Property " Url="html/P_FileHelpers_MasterDetail_MasterDetails_2_Details.htm" />
           <HelpTOCNode Title="Empty Property " Url="html/P_FileHelpers_MasterDetail_MasterDetails_2_Empty.htm" />
           <HelpTOCNode Title="Master Property " Url="html/P_FileHelpers_MasterDetail_MasterDetails_2_Master.htm" />
@@ -1143,15 +1144,15 @@
       <HelpTOCNode Title="MasterDetailSelector Delegate" Url="html/T_FileHelpers_MasterDetail_MasterDetailSelector.htm" />
       <HelpTOCNode Title="RecordAction Enumeration" Url="html/T_FileHelpers_MasterDetail_RecordAction.htm" />
     </HelpTOCNode>
-    <HelpTOCNode Id="2dc6e7cd-6fbd-406a-af21-c42f5a34cb60" Title="FileHelpers.Options" Url="html/N_FileHelpers_Options.htm">
-      <HelpTOCNode Id="9fab6584-1f5e-4c4a-899c-a3a614e38ccc" Title="CsvOptions Class" Url="html/T_FileHelpers_Options_CsvOptions.htm">
-        <HelpTOCNode Id="0a4db086-cfc0-48d8-b73f-915203865ce1" Title="CsvOptions Constructor " Url="html/Overload_FileHelpers_Options_CsvOptions__ctor.htm">
+    <HelpTOCNode Id="da97a308-3a72-428f-a0d4-c9b1bca8417b" Title="FileHelpers.Options" Url="html/N_FileHelpers_Options.htm">
+      <HelpTOCNode Id="16fd3cac-6fc7-4846-9367-a899605b6fd8" Title="CsvOptions Class" Url="html/T_FileHelpers_Options_CsvOptions.htm">
+        <HelpTOCNode Id="1ea83fe9-1662-41e5-a0c2-7c19996e914d" Title="CsvOptions Constructor " Url="html/Overload_FileHelpers_Options_CsvOptions__ctor.htm">
           <HelpTOCNode Title="CsvOptions Constructor (String, Char, Int32)" Url="html/M_FileHelpers_Options_CsvOptions__ctor_1.htm" />
           <HelpTOCNode Title="CsvOptions Constructor (String, Char, String)" Url="html/M_FileHelpers_Options_CsvOptions__ctor_3.htm" />
           <HelpTOCNode Title="CsvOptions Constructor (String, Char, Char, String)" Url="html/M_FileHelpers_Options_CsvOptions__ctor.htm" />
           <HelpTOCNode Title="CsvOptions Constructor (String, Char, Int32, Int32)" Url="html/M_FileHelpers_Options_CsvOptions__ctor_2.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="6572be57-8076-49d1-a311-b22bbd176271" Title="CsvOptions Properties" Url="html/Properties_T_FileHelpers_Options_CsvOptions.htm">
+        <HelpTOCNode Id="fb45d6d8-362e-4014-bac5-9b879308e655" Title="CsvOptions Properties" Url="html/Properties_T_FileHelpers_Options_CsvOptions.htm">
           <HelpTOCNode Title="DateFormat Property " Url="html/P_FileHelpers_Options_CsvOptions_DateFormat.htm" />
           <HelpTOCNode Title="DecimalSeparator Property " Url="html/P_FileHelpers_Options_CsvOptions_DecimalSeparator.htm" />
           <HelpTOCNode Title="Delimiter Property " Url="html/P_FileHelpers_Options_CsvOptions_Delimiter.htm" />
@@ -1165,26 +1166,22 @@
           <HelpTOCNode Title="SampleFileName Property " Url="html/P_FileHelpers_Options_CsvOptions_SampleFileName.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="f08c2e01-6b1d-4de5-b4ae-279dfe6da376" Title="DelimitedRecordOptions Class" Url="html/T_FileHelpers_Options_DelimitedRecordOptions.htm">
-        <HelpTOCNode Title="DelimitedRecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_DelimitedRecordOptions.htm" />
-        <HelpTOCNode Id="6c240b95-056c-4522-b7f4-a309a3c91fdc" Title="DelimitedRecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_DelimitedRecordOptions.htm">
+      <HelpTOCNode Id="fa20dfc6-309c-4894-b1b7-6a6a9d3a230e" Title="DelimitedRecordOptions Class" Url="html/T_FileHelpers_Options_DelimitedRecordOptions.htm">
+        <HelpTOCNode Id="be58350e-ba4a-47af-884c-3329953662df" Title="DelimitedRecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_DelimitedRecordOptions.htm">
           <HelpTOCNode Title="Delimiter Property " Url="html/P_FileHelpers_Options_DelimitedRecordOptions_Delimiter.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="DelimitedRecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_DelimitedRecordOptions.htm" />
       </HelpTOCNode>
       <HelpTOCNode Title="FieldBaseCollection Class" Url="html/T_FileHelpers_Options_FieldBaseCollection.htm" />
-      <HelpTOCNode Id="e331ac1f-d696-43f6-bacd-349e575dd43b" Title="FixedRecordOptions Class" Url="html/T_FileHelpers_Options_FixedRecordOptions.htm">
-        <HelpTOCNode Title="FixedRecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_FixedRecordOptions.htm" />
-        <HelpTOCNode Id="2fd5c3d5-14b1-4c84-92c7-e90e1f18c75e" Title="FixedRecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_FixedRecordOptions.htm">
+      <HelpTOCNode Id="ed5a393e-2628-4a31-b828-37a3b3758352" Title="FixedRecordOptions Class" Url="html/T_FileHelpers_Options_FixedRecordOptions.htm">
+        <HelpTOCNode Id="e202b73d-6d35-41ed-b2de-2a69985c0e34" Title="FixedRecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_FixedRecordOptions.htm">
           <HelpTOCNode Title="FixedMode Property " Url="html/P_FileHelpers_Options_FixedRecordOptions_FixedMode.htm" />
           <HelpTOCNode Title="RecordLength Property " Url="html/P_FileHelpers_Options_FixedRecordOptions_RecordLength.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Title="FixedRecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_FixedRecordOptions.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ce005c6e-a2be-48b7-9562-b66ec19b3819" Title="RecordOptions Class" Url="html/T_FileHelpers_Options_RecordOptions.htm">
-        <HelpTOCNode Id="86562dac-3816-431a-835a-acd8c31711c1" Title="RecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_RecordOptions.htm">
-          <HelpTOCNode Title="RecordToString Method " Url="html/M_FileHelpers_Options_RecordOptions_RecordToString.htm" />
-          <HelpTOCNode Title="RemoveField Method " Url="html/M_FileHelpers_Options_RecordOptions_RemoveField.htm" />
-        </HelpTOCNode>
-        <HelpTOCNode Id="7d9473f4-f68c-4992-95ea-b2b212579f4b" Title="RecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions.htm">
+      <HelpTOCNode Id="a479ea6a-4088-43ae-a2d7-78d789bda639" Title="RecordOptions Class" Url="html/T_FileHelpers_Options_RecordOptions.htm">
+        <HelpTOCNode Id="ed480f55-e365-48d5-b305-445dcd443c81" Title="RecordOptions Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions.htm">
           <HelpTOCNode Title="FieldCount Property " Url="html/P_FileHelpers_Options_RecordOptions_FieldCount.htm" />
           <HelpTOCNode Title="Fields Property " Url="html/P_FileHelpers_Options_RecordOptions_Fields.htm" />
           <HelpTOCNode Title="FieldsNames Property " Url="html/P_FileHelpers_Options_RecordOptions_FieldsNames.htm" />
@@ -1195,15 +1192,19 @@
           <HelpTOCNode Title="IgnoreLastLines Property " Url="html/P_FileHelpers_Options_RecordOptions_IgnoreLastLines.htm" />
           <HelpTOCNode Title="RecordCondition Property " Url="html/P_FileHelpers_Options_RecordOptions_RecordCondition.htm" />
         </HelpTOCNode>
+        <HelpTOCNode Id="b98b5bfb-7650-49ba-b233-ff4128e91323" Title="RecordOptions Methods" Url="html/Methods_T_FileHelpers_Options_RecordOptions.htm">
+          <HelpTOCNode Title="RecordToString Method " Url="html/M_FileHelpers_Options_RecordOptions_RecordToString.htm" />
+          <HelpTOCNode Title="RemoveField Method " Url="html/M_FileHelpers_Options_RecordOptions_RemoveField.htm" />
+        </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="74cb1935-3fe0-4168-9d85-a3f6d7c0f3cf" Title="RecordOptions.IgnoreCommentInfo Class" Url="html/T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm">
-        <HelpTOCNode Id="e5222395-363f-4722-82f8-ef5596cdfe3e" Title="IgnoreCommentInfo Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm">
+      <HelpTOCNode Id="44b780f4-a8a4-4588-adcf-5ebc55457652" Title="RecordOptions.IgnoreCommentInfo Class" Url="html/T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm">
+        <HelpTOCNode Id="199d42ac-1976-4160-a6a2-9ac085de6a48" Title="IgnoreCommentInfo Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm">
           <HelpTOCNode Title="CommentMarker Property " Url="html/P_FileHelpers_Options_RecordOptions_IgnoreCommentInfo_CommentMarker.htm" />
           <HelpTOCNode Title="InAnyPlace Property " Url="html/P_FileHelpers_Options_RecordOptions_IgnoreCommentInfo_InAnyPlace.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
-      <HelpTOCNode Id="541ca1c8-58e4-4ce5-845d-2d19fa157378" Title="RecordOptions.RecordConditionInfo Class" Url="html/T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm">
-        <HelpTOCNode Id="0892c298-a68b-47b8-818c-303782606656" Title="RecordConditionInfo Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm">
+      <HelpTOCNode Id="b13956b2-78f9-4db3-bf53-8556ceb526f2" Title="RecordOptions.RecordConditionInfo Class" Url="html/T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm">
+        <HelpTOCNode Id="28f35edc-0ab7-413d-a0fb-6cdd8ce94ae7" Title="RecordConditionInfo Properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_RecordConditionInfo.htm">
           <HelpTOCNode Title="Condition Property " Url="html/P_FileHelpers_Options_RecordOptions_RecordConditionInfo_Condition.htm" />
           <HelpTOCNode Title="Selector Property " Url="html/P_FileHelpers_Options_RecordOptions_RecordConditionInfo_Selector.htm" />
         </HelpTOCNode>

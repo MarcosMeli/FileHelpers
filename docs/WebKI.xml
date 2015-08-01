@@ -9,6 +9,7 @@
     <HelpKINode Title="CsvClassBuilder.AddFields Method " Url="html/Overload_FileHelpers_Dynamic_CsvClassBuilder_AddFields.htm" />
     <HelpKINode Title="DelimitedClassBuilder.AddFields Method " Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_AddFields.htm" />
   </HelpKINode>
+  <HelpKINode Title="AdditionalReferences property" Url="html/P_FileHelpers_Dynamic_ClassBuilder_AdditionalReferences.htm" />
   <HelpKINode Title="AfterRead method" Url="html/M_FileHelpers_Events_INotifyRead_AfterRead.htm" />
   <HelpKINode Title="AfterReadEventArgs class">
     <HelpKINode Title="AfterReadEventArgs Class" Url="html/T_FileHelpers_Events_AfterReadEventArgs.htm" />
@@ -227,6 +228,7 @@
     <HelpKINode Title="methods" Url="html/Methods_T_FileHelpers_Dynamic_ClassBuilder.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder.htm" />
   </HelpKINode>
+  <HelpKINode Title="ClassBuilder.AdditionalReferences property" Url="html/P_FileHelpers_Dynamic_ClassBuilder_AdditionalReferences.htm" />
   <HelpKINode Title="ClassBuilder.ClassFromBinaryFile method" Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromBinaryFile.htm" />
   <HelpKINode Title="ClassBuilder.ClassFromSourceFile method" Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromSourceFile.htm" />
   <HelpKINode Title="ClassBuilder.ClassFromString method" Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassFromString.htm" />
