@@ -8,6 +8,7 @@ namespace FileHelpers
     /// Used by the FileDiffEngine to compare records. Your record class must
     /// implement this interface if you like to work with it.
     /// </summary>
+    [Obsolete("Use IComparable<T> instead", true)]
     public interface IComparableRecord<T>
     {
         /// <summary>
