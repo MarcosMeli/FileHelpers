@@ -26,3 +26,11 @@ FileHelpers.sln.sdsettings
 FileHelpers.ExcelStorage/FileHelpers.ExcelStorage.xml
 FileHelpers.userprefs
 /.vs
+/FileHelpersAnalyzer/.vs
+/FileHelpersAnalyzer/packages
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer/bin
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer/obj
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer.Test/bin
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer.Test/obj
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer.Vsix/bin
+/FileHelpersAnalyzer/FileHelpersAnalyzer/FileHelpersAnalyzer.Vsix/obj
