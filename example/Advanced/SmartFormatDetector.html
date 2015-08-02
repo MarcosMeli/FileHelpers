@@ -1,0 +1,78 @@
+---
+layout: default
+title: Smart Format Detector
+permalink: /example/Advanced/SmartFormatDetector/
+editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Examples/Examples/50.Advanced/50.SmartFormatDetector.cs'
+---
+
+<div class='card-panel waves-effect waves-dark white' style='padding: 10px; text-align: right; float: right;'>
+    <span class=''>Auto generated from code, click in the <a href='{{ page.editlink }}'><i class='mdi-editor-mode-edit'></i> button</a> to edit it here</span>
+</div>
+
+<h4>Advanced: Smart Format Detector</h4>
+<div class='indent'>
+  <h5>Detect the format from a flat file</h5>
+  <div class='indent'>
+
+<div class='highlight-title example-input'> input.txt </div><div class='example-input-high'>
+{% highlight csharp %}
+ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+ANATR|Emparedados y Helados|Ana Trujillo|Owner|Avda. Constitución 2222|México D.F.|Mexico
+ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+BERGS|Berglunds snabbköp|Christina Berglund|Administrator|Berguvsvägen  8|Luleå|Sweden
+BLAUS|Blauer Delikatessen|Hanna Moos|Sales Rep|Forsterstr. 57|Mannheim|Germany
+BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spain
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+
+var detector = new FileHelpers.Detection.SmartFormatDetector();
+var formats = detector.DetectFileFormat("input.txt");
+
+foreach (var format in formats)
+{
+    Console.WriteLine("Format Detected, confidence:" + format.Confidence + "%");
+    var delimited = format.ClassBuilderAsDelimited;
+
+    Console.WriteLine("    Delimiter:" + delimited.Delimiter);
+    Console.WriteLine("    Fields:");
+
+    foreach (var field in delimited.Fields)
+    {
+       Console.WriteLine("        " + field.FieldName + ": " + field.FieldType);    
+    }
+    
+    
+}
+
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
+Format Detected, confidence:100%
+    Delimiter:|
+    Fields:
+        ALFKI: System.String
+        Alfreds_Futterkiste: System.String
+        Maria_Anders: System.String
+        Sales_Representative: System.String
+        Obere_Str_57: System.String
+        Berlin: System.String
+        Germany: System.String
+</pre>
+</div>
+</div>
+
+
+  </div>
+</div>
