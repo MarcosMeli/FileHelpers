@@ -13,13 +13,10 @@ _ReSharper.FileHelpers
 /*.ncrunchsolution
 /_ReSharper.FileHelpers.OnlyLib
 /FileHelpers.Tests/Data/*/~$*
-
 /FileHelpers.Benchmarks/Release
 /FileHelpers.Tests/Release
-
 /Release
 /FileHelpers.Tests/Data/temp.txt
-
 /packages
 /FileHelpers/FileHelpers.xml
 FileHelpers.sln.sdsettings
@@ -34,3 +31,4 @@ FileHelpers.userprefs
 /FileHelpers.Analyzer/FileHelpers.Analyzer/FileHelpers.Analyzer.Test/obj
 /FileHelpers.Analyzer/FileHelpers.Analyzer/FileHelpers.Analyzer.Vsix/bin
 /FileHelpers.Analyzer/FileHelpers.Analyzer/FileHelpers.Analyzer.Vsix/obj
+/FileHelpers.Examples/obj
