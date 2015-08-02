@@ -1,0 +1,95 @@
+---
+layout: default
+title: Autoproperties
+permalink: /example/QuickStart/Autoproperties/
+editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Examples/Examples/10.QuickStart/70.Autoproperties.cs'
+---
+
+<div class='card-panel waves-effect waves-dark white' style='padding: 10px; text-align: right; float: right;'>
+    <span class=''>Auto generated from code, click in the <a href='{{ page.editlink }}'><i class='mdi-editor-mode-edit'></i> button</a> to edit it here</span>
+</div>
+
+<h4>QuickStart: Autoproperties</h4>
+<div class='indent'>
+  <h5>You can use autoproperties instead of fields</h5>
+  <div class='indent'>
+
+<p>If you have a source file like this, separated by a |:</p>
+
+
+<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
+{% highlight csharp %}
+10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAS|08071996|65.83
+10251|VICTE|08071996|41.34
+{%  endhighlight %}
+</div>
+
+
+
+<p>You can use autoproperties but for the moment you can't use Converters</p>
+
+
+<div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+[DelimitedRecord("|")]
+public class Orders
+{
+    public int OrderID { get; set; }
+
+    public string CustomerID { get; set; }
+
+    public string OrderDate { get; set; }
+
+    public string Freight { get; set; }
+}
+
+
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+var engine = new FileHelperEngine<Orders>();
+var records = engine.ReadFile("Input.txt");
+
+foreach (var record in records)
+{
+    Console.WriteLine(record.CustomerID);
+    Console.WriteLine(record.OrderDate);
+    Console.WriteLine(record.Freight);
+}
+
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
+VINET
+04071996
+32.38
+TOMSP
+05071996
+11.61
+HANAS
+08071996
+65.83
+VICTE
+08071996
+41.34
+</pre>
+</div>
+</div>
+
+
+  </div>
+</div>

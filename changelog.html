@@ -7,22 +7,22 @@ permalink: /changelog/
     <div class="version">
     <h3>Version 3.1, July 2015</h3>
 
-<p>Hi everyone again!</p>
+<p>Hi everyone again !!</p>
 
 <p>The FileHelpers has reached a big Milestone today<br/>
-we are releasing the <b>3.1 version!</b>
-With full support for <b>.NET 4.0 and 4.5</b> and with a ton of news
-and enhancements. After some time off for different reasons we are now trying to
-update the library in a more regular fashion.</p>
+we are releasing the <b>3.1 version!</b></p>
+<p>Now with full support for <b>.NET 4.0, 4.5 and Mono</b> and with a ton of news
+and enhancements. </p>
+<p>After some time off for different reasons we are now trying to
+update the library in a more regular fashion. We redesigned the HomeSite with a <a target="_blank" href="http://themeforest.net/item/materialize-material-design-admin-template/11446068">Material Design Template from GeeksLabs</a></p>
 
 <h4>Main changes</h4>
 
 <ul>
-<li>The error messages have been made more meaningful. In all exceptions you get: FieldName, ColumnNumber, LineNumber etc.</li>
-<li>Docs rewritten thanks to the work of Ken Foskey.</li>
+<li>Docs rewritten thanks to the work of Ken Foskey and Matthias Cavigelli</li>
 <li>NEW: Full .NET 2.0, 4.0 & 4.5 support.</li>
+<li>NEW: Added support for <b>MONO</b> !!</li>
 <li>NEW: <a href="/example/Attributes/FieldOrder/">FieldOrder:</a> a new attribute to override the default order of fields.</li>
-<li>NEW: FieldNotEmpty: Indicates whether the target field needs to be populated with a non-empty value.</li>
 <li>NEW: Partial support to use Autoproperties.</li>
 <li>NEW: <a href="/example/QuickStart/ReadWriteRecordByRecord/">Async Methods returns IDisposable</a> to allow using() statements that autoclose files on ends or exception.</li>
 <li>NEW: Events for the Async engines.</li>
@@ -32,11 +32,15 @@ update the library in a more regular fashion.</p>
 <li>NEW: Better Delimited validations to make sure that the file contains the right number of fields</li>
 <li>NEW: FieldValueDiscarted: a new attribute to allow the value of a particular field to be read but not stored in the record class (this was a very requested feature)</li>
 <li>NEW: <a href="/example/Sorting/SortBigFiles/">BigFileSorter:</a> if you need to sort big files, you can use this feature that implements External Sorting</li>
+<li>MOD: The error messages have been made more meaningful. In all exceptions you get: FieldName, ColumnNumber, LineNumber etc.</li>
+<li>NEW: FieldNotEmpty: Indicates whether the target field needs to be populated with a non-empty value.</li>
 </ul>
 
 <h4>Breaking Changes</h4>
 <ul>
-<li> Removed support for .NET Compact Framework</li>
+<li>Removed support for .NET Compact Framework</li>
+<li>[FieldIgnored] => [FieldHidden]</li>
+<li>IComparableRecord&lt;T> => IComparable&lt;T></li>
 </ul>
 
 
@@ -301,7 +305,7 @@ update the library in a more regular fashion.</p>
     functionalities were one of the most requested features and also one
     of the hardest to implement features. A lot of effort was put into
     usability and a clear API, if you have any suggestion please post it
-    in the forums =)  
+    in the forums =)
      Other important news are the
     [CsvEngine](FileHelpers.CsvEngine.html) (for generic CSV files), the
     [FileDiffEngine](example_filediffengine.html), the
@@ -319,7 +323,7 @@ update the library in a more regular fashion.</p>
 
     -   ADD: The awaited RunTime Records thanks to the suggestion of
         Gerhardt Scriven to use RunTime Compilation. Supports for
-        classes written in C\# and VB.NET  
+        classes written in C\# and VB.NET
          There are a lot of features inside this new feature, [so take a
         look at the docs](runtime_classes.html)
     -   MOD: The **Record wizard** was completely rewritten to use the
@@ -327,7 +331,7 @@ update the library in a more regular fashion.</p>
         classes that you are building, in the future the wizard could
         help you discovering the record class based on a sample file
     -   ADD: Generic CSV files are now supported (for example Excel
-        generated ones)  
+        generated ones)
          Was a hard work but worth it because it can be used with any
         engine.
          In the next version I'll add the Excellent [Fast CSV
@@ -387,12 +391,12 @@ update the library in a more regular fashion.</p>
 
     -   Both DataStorage types: SqlServerStorage and AccessStorage
         completely changed, from now you don't need to override this
-        classes (in fact you can't because they are sealed)  
+        classes (in fact you can't because they are sealed)
          You can use these classes as client and provide the callbacks
         for the Insert and Fill record methods.([check the
         examples](examples.html))
     -   The FieldQuoted attribute was completely rewritten to support
-        optional quote for read, write or both.  
+        optional quote for read, write or both.
          So you need to use now the QuoteMode enum and not only a
         boolean. (For Excel generated CSV files you must use the
         QuoteMode.OptionalForBoth value) ([check the
