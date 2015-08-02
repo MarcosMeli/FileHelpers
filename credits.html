@@ -6,9 +6,13 @@ permalink: /credits/
 
 <h4>Contributors</h4>
 <div class="indent">
-<p>We have worked hard to get the library ready and updated, but couldn't have
+<p>I have worked hard to get the library ready and updated, but couldn't have
 done it without the help of a lot of people.</p>
+
+<p style="font-size: 20px;"><b>The best part of an open source project is that you meet great people and learn a lot from them.</b></p>
+
 <p><b>Thanks to all the people that sent us ideas, errors and suggestions.</b></p>
+
 
 <h5>Library Creator:</h5>
 <div class="indent">
@@ -21,11 +25,11 @@ done it without the help of a lot of people.</p>
   <h5>GitHub Commiters</h5>
 
 <div class="indent">
-  <p>The project starts as a sourceforge project in SVN so the commiters you see are the ones after the port to GitHub</p>
-      <ul id="contributors">
-      </ul>
+  <p>The project started in sourceforge with SVN so the commiters you see are the ones after the port to GitHub</p>
+      <div id="contributors" class="row" style="text-align: center">
+      </div>
 </div>
-      <h5>More contributors: (in order, below the most recent)</h5>
+      <h5>More contributors: (in chronological order)</h5>
 <div class="indent">
       <ul>
         <li><a href="http://www.larkware.com/">Mike Gunderloy</a></li>
@@ -42,7 +46,7 @@ done it without the help of a lot of people.</p>
         <li><a href="http://www.mohundro.com/blog/">David Mohundro</a></li>
         <li>Guillermo Montangie </li>
         <li><a href="http://weblogs.shockbyte.com.ar/rodolfof/">Rodolfo Finochietti</a></li>
-        <li><a href="http://www.clancrosby.com/">Josh Crosby</a></li>
+        <li>Josh Crosby</li>
 		    <li>Mark Raduenzel</li>
         <li>John Cardinal</li>
         <li>Scott D.W. Rankin</li>
@@ -52,7 +56,7 @@ done it without the help of a lot of people.</p>
         <li>Julian Turner</li>
         <li><a href="http://www.cnblogs.com/margiex">Margiex Cai</a></li>
         <li>Derek Fluker</li>
-        <li><a href="http://www.wheelmud.net">Hector Sosa</a></li>
+        <li><a href="https://github.com/WheelMud/WheelMUD">Hector Sosa</a></li>
         <li><a href="http://www.threetier.com">James McEachern</a></li>
         <li>Permjeet Pandha</li>
         <li>Matt Tracey</li>
@@ -71,7 +75,7 @@ done it without the help of a lot of people.</p>
         <li>Nicola Tufarelli</li>
 		<li>Aleksandar Lalic</li>
         <li>Preky</li>
-        <li><a href="http://www.mymacaronilife.com/">Frank Burcaw</a></li>
+        <li>Frank Burcaw</li>
         <li>Jarbas Ugarte</li>
       </ul>
         <p>If you are in the list and have a home page please send me the address to me and I'll add it.
@@ -96,7 +100,7 @@ dedicated the needed time to finish it. I want thank Mike for this.</p>
 
       $.getJSON(urlContributors, function(contributors) {
         $.each(contributors, function(i, contributor) {
-          $("#contributors").append("<li style='font-size: 14px;'><img src='https://avatars.githubusercontent.com/u/"+contributor.id+ "?v=3&s=96' width='96px' height='96px' /> " + contributor.login +  ": <b>" + contributor. contributions+"</b> commits </li>");
+          $("#contributors").append("<div class='col l2 m3 s6' style='font-size: 14px;padding:10px;'><div class='card-panel'><a target='_blank' href='https://github.com/"+contributor.login+"'><img src='https://avatars.githubusercontent.com/u/"+contributor.id+ "?v=3&s=128' width='128px' height='128px' /><br />" + contributor.login +  "</a><br /><b>" + contributor. contributions+"</b> commits </div></div>");
         });
       });
 
