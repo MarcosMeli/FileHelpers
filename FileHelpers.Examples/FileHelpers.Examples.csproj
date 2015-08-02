@@ -80,6 +80,8 @@
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Examples\20.Events And Notification\05.INotifyRead.cs" />
+    <Compile Include="Examples\20.Events And Notification\10.INotifyWrite.cs" />
     <Compile Include="Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs" />
     <Compile Include="Examples\25.ErrorHandling\30.ErrorMode.IgnoreAndContinue.cs" />
     <Compile Include="Examples\25.ErrorHandling\40.ErrorMode.SaveAndContinue.cs" />
@@ -114,7 +116,7 @@
     <Compile Include="Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs" />
     <Compile Include="Examples\15.Attributes\10.FieldTrim.cs" />
     <Compile Include="Examples\20.Events And Notification\30.WriteEvents.cs" />
-    <Compile Include="Examples\20.Events And Notification\10.ReadEvents.cs" />
+    <Compile Include="Examples\20.Events And Notification\20.ReadEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmExamples.resx">
