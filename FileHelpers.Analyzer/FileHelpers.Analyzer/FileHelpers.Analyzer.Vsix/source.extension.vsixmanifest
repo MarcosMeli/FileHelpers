@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="FileHelpersAnalyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="1.0" Language="en-US" Publisher="Marcos"/>
-    <DisplayName>FileHelpersAnalyzer.Vsix</DisplayName>
+    <Identity Id="FileHelpers.Analyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="0.2" Language="en-US" Publisher="Marcos"/>
+    <DisplayName>FileHelpers.Analyzer.Vsix</DisplayName>
     <Description xml:space="preserve">FileHelpers library Analyzer</Description>
   </Metadata>
   <Installation>
@@ -15,7 +15,7 @@
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5.2,)" />
   </Dependencies>
   <Assets>
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="FileHelpersAnalyzer" Path="|FileHelpersAnalyzer|"/>
-    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="FileHelpersAnalyzer" Path="|FileHelpersAnalyzer|"/>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="FileHelpers.Analyzer" Path="|FileHelpers.Analyzer|" />
+    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="FileHelpers.Analyzer" Path="|FileHelpers.Analyzer|" />
   </Assets>
 </PackageManifest>

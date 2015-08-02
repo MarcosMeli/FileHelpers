@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileHelpersAnalyzer</RootNamespace>
-    <AssemblyName>FileHelpersAnalyzer</AssemblyName>
+    <AssemblyName>FileHelpers.Analyzer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
@@ -53,8 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers.Analyzer\FileHelpers.Analyzer.csproj">
-      <Project>{BA017BD9-09E5-4536-AB3E-EEDD1582326F}</Project>
-      <Name>FileHelpersAnalyzer</Name>
+      <Project>{ba017bd9-09e5-4536-ab3e-eedd1582326f}</Project>
+      <Name>FileHelpers.Analyzer</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

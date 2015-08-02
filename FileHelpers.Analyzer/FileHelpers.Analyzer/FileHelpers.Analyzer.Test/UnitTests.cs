@@ -14,69 +14,95 @@ namespace FileHelpersAnalyzer.Test
 
         //No diagnostics expected to show up
         [TestMethod]
-        public void TestMethod1()
+        public void NoDiagnostics()
         {
             var test = @"";
 
             VerifyCSharpDiagnostic(test);
         }
 
-        //Diagnostic and CodeFix both triggered and checked for
         [TestMethod]
-        public void TestMethod2()
+        public void UsingGeneric()
         {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+            var test = @"using System;
+public class Test
+{
+  public void Run()
+{
+var engine = new FileHelperEngine(typeof(RecordClass));
+}
+}
+";
 
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-        }
-    }";
             var expected = new DiagnosticResult
             {
-                Id = "FileHelpersAnalyzer",
-                Message = String.Format("Type name '{0}' contains lowercase letters", "TypeName"),
+                Id = UseGenericEngineAnalyzer.DiagnosticId,
                 Severity = DiagnosticSeverity.Warning,
-                Locations =
-                    new[] {
-                            new DiagnosticResultLocation("Test0.cs", 11, 15)
-                        }
+                Locations = new []{new DiagnosticResultLocation("Test0.cs", 6,14), },
+                Message = "FileHelpers: You can use the generic engine"
             };
 
             VerifyCSharpDiagnostic(test, expected);
 
-            var fixtest = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+            var fixtest = @"using System;
+public class Test
+{
+  public void Run()
+{
+var engine = new FileHelperEngine<RecordClass>();
+}
+}
+";
 
-    namespace ConsoleApplication1
-    {
-        class TYPENAME
-        {   
+
+            VerifyCSharpFix(test, fixtest);
         }
-    }";
+
+        [TestMethod]
+        public void UsingGenericWithNameSpace()
+        {
+            var test = @"using System;
+public class Test
+{
+  public void Run()
+{
+var engine = new FileHelpers.FileHelperEngine(typeof(RecordClass));
+}
+}
+";
+
+            var expected = new DiagnosticResult
+            {
+                Id = UseGenericEngineAnalyzer.DiagnosticId,
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 6, 14), },
+                Message = "FileHelpers: You can use the generic engine"
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+
+            var fixtest = @"using System;
+public class Test
+{
+  public void Run()
+{
+var engine = new FileHelpers.FileHelperEngine<RecordClass>();
+}
+}
+";
+
+
             VerifyCSharpFix(test, fixtest);
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
-            return new FileHelpersAnalyzerCodeFixProvider();
+            return new UseGenericEngineCodeFixProvider();
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new FileHelpersAnalyzerAnalyzer();
+            return new UseGenericEngineAnalyzer();
         }
     }
 }

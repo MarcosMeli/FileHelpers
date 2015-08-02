@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileHelpersAnalyzer.Test</RootNamespace>
-    <AssemblyName>FileHelpersAnalyzer.Test</AssemblyName>
+    <AssemblyName>FileHelpers.Analyzer.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -115,14 +115,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileHelpers.Analyzer\FileHelpers.Analyzer.csproj">
-      <Project>{BA017BD9-09E5-4536-AB3E-EEDD1582326F}</Project>
-      <Name>FileHelpersAnalyzer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileHelpers.Analyzer\FileHelpers.Analyzer.csproj">
+      <Project>{ba017bd9-09e5-4536-ab3e-eedd1582326f}</Project>
+      <Name>FileHelpers.Analyzer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

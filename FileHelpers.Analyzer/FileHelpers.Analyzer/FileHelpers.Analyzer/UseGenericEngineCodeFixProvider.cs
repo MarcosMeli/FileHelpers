@@ -50,7 +50,7 @@ namespace FileHelpersAnalyzer
             context.RegisterCodeFix(
                 CodeAction.Create(
                     title, _ =>
-                    ChangeToGenericAsync(context, root, creation)), diagnostic);
+                    ChangeToGenericAsync(context, root, creation), null), diagnostic);
             
         }
 
