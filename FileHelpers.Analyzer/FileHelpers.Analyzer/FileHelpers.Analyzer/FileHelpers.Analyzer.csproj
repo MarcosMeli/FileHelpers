@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="UseGenericEngineCodeFixProvider.cs" />
-    <Compile Include="UseGenericEngineAnalyzer.cs" />
+    <Compile Include="UseGenericEngine\UseGenericEngineCodeFixProvider.cs" />
+    <Compile Include="UseGenericEngine\UseGenericEngineAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
