@@ -77,6 +77,7 @@ done it without the help of a lot of people.</p>
         <li>Preky</li>
         <li>Frank Burcaw</li>
         <li>Jarbas Ugarte</li>
+        <li>Ken Foskey</li>
       </ul>
         <p>If you are in the list and have a home page please send me the address to me and I'll add it.
         <br/>
@@ -100,7 +101,11 @@ dedicated the needed time to finish it. I want thank Mike for this.</p>
 
       $.getJSON(urlContributors, function(contributors) {
         $.each(contributors, function(i, contributor) {
-          $("#contributors").append("<div class='col l2 m3 s6' style='font-size: 14px;padding:10px;'><div class='card-panel'><a target='_blank' href='https://github.com/"+contributor.login+"'><img src='https://avatars.githubusercontent.com/u/"+contributor.id+ "?v=3&s=128' width='128px' height='128px' /><br />" + contributor.login +  "</a><br /><b>" + contributor. contributions+"</b> commits </div></div>");
+          var commits = "<b>" + contributor. contributions+"</b> commits";
+          if (contributor.contributions == 1)
+                commits = "<b>1</b> commit";
+
+          $("#contributors").append("<div class='col l2 m3 s6' style='font-size: 14px;padding:10px;'><div class='card-panel'><a target='_blank' href='https://github.com/"+contributor.login+"'><img src='https://avatars.githubusercontent.com/u/"+contributor.id+ "?v=3&s=128' width='128px' height='128px' /><br />" + contributor.login +  "</a><br />" + commits+"</div></div>");
         });
       });
 
