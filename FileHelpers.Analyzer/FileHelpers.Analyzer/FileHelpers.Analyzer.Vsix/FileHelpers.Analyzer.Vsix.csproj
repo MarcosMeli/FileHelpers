@@ -52,7 +52,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileHelpersAnalyzer\FileHelpersAnalyzer.csproj">
+    <ProjectReference Include="..\FileHelpers.Analyzer\FileHelpers.Analyzer.csproj">
       <Project>{BA017BD9-09E5-4536-AB3E-EEDD1582326F}</Project>
       <Name>FileHelpersAnalyzer</Name>
     </ProjectReference>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpersAnalyzer", "FileHelpersAnalyzer\FileHelpersAnalyzer\FileHelpersAnalyzer.csproj", "{BA017BD9-09E5-4536-AB3E-EEDD1582326F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Analyzer", "FileHelpers.Analyzer\FileHelpers.Analyzer\FileHelpers.Analyzer.csproj", "{BA017BD9-09E5-4536-AB3E-EEDD1582326F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpersAnalyzer.Test", "FileHelpersAnalyzer\FileHelpersAnalyzer.Test\FileHelpersAnalyzer.Test.csproj", "{2CC2B2A2-C0B8-4CE4-80E7-511AA47933E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Analyzer.Test", "FileHelpers.Analyzer\FileHelpers.Analyzer.Test\FileHelpers.Analyzer.Test.csproj", "{2CC2B2A2-C0B8-4CE4-80E7-511AA47933E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpersAnalyzer.Vsix", "FileHelpersAnalyzer\FileHelpersAnalyzer.Vsix\FileHelpersAnalyzer.Vsix.csproj", "{EED555AC-6872-4722-9F3E-EDB1B486D395}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Analyzer.Vsix", "FileHelpers.Analyzer\FileHelpers.Analyzer.Vsix\FileHelpers.Analyzer.Vsix.csproj", "{EED555AC-6872-4722-9F3E-EDB1B486D395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
