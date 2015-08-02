@@ -85,6 +85,7 @@
     <Compile Include="Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs" />
     <Compile Include="Examples\25.ErrorHandling\30.ErrorMode.IgnoreAndContinue.cs" />
     <Compile Include="Examples\25.ErrorHandling\40.ErrorMode.SaveAndContinue.cs" />
+    <Compile Include="Examples\50.Advanced\50.SmartFormatDetector.cs" />
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
     <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
     <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />

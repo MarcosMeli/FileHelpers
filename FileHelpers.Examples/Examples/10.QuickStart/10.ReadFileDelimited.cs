@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-// Done
-
 namespace ExamplesFx
 {
     //-> Name: Read Delimited File
