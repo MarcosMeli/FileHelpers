@@ -11,7 +11,7 @@ namespace ExamplesFx
     public class MultiRecordSample
         : ExampleBase
     {
-        //-> The idea of this engine is to parse files with different record types (this engine doesn't use any hierarical structure like the master-details, all the records are in linear relation for it).
+        //-> The idea of this engine is to parse files with different record types (this engine doesn't use any hierarchical structure like the master-details, all the records are in linear relation for it).
         //-> With the MultiRecordEngine you can parse also mixed delimited and fixed length records.
         //-> For example, you can parse this strange file:
 
