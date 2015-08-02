@@ -138,6 +138,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ExamplesGenerator.autogen.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
     <None Include="Resources\stop.png" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +185,9 @@
     <None Include="Resources\page_down.gif" />
     <None Include="Resources\page_up.gif" />
     <None Include="Resources\page_left.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\FileHelpers.Analyzer.0.2.0.0\analyzers\dotnet\cs\FileHelpers.Analyzer.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
