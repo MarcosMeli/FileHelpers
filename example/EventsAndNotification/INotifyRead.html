@@ -1,0 +1,112 @@
+---
+layout: default
+title: INotifyRead Interface
+permalink: /example/EventsAndNotification/INotifyRead/
+editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Examples/Examples/20.Events And Notification/05.INotifyRead.cs'
+---
+
+<div class='card-panel waves-effect waves-dark white' style='padding: 10px; text-align: right; float: right;'>
+    <span class=''>Auto generated from code, click in the <a href='{{ page.editlink }}'><i class='mdi-editor-mode-edit'></i> button</a> to edit it here</span>
+</div>
+
+<h4>Events And Notification: INotifyRead Interface</h4>
+<div class='indent'>
+  <h5>Get Before/After Read events with the INotifyRead interface</h5>
+  <div class='indent'>
+
+<p>Reads report.inp and skips all the records that are not detail records using a simple criteria</p>
+
+
+<div class='highlight-title example-input'> report.inp </div><div class='example-input-high'>
+{% highlight csharp %}
+
+-----------------------------------------------------
+              XXX Enterprise
+-----------------------------------------------------
+10249   TOMSP  05071996      11.61
+10250   HANAR  08071996      65.83
+10251   VICTE  08071996       0.00
+                                       Page 1
+-----------------------------------------------------
+              YYY Enterprise
+-----------------------------------------------------
+10269   TOMSP  05071996      11.61
+10230   HANAR  08071996       0.00
+10151   VICTE  08071996      41.34
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+
+      [FixedLengthRecord(FixedMode.AllowVariableLength)]
+[IgnoreEmptyLines]
+public class OrdersFixed
+          :INotifyRead
+{
+	[FieldFixedLength(7)]
+	public int OrderID;
+
+	[FieldFixedLength(8)]
+	public string CustomerID;
+
+	[FieldFixedLength(8)]
+	public DateTime OrderDate;
+
+	[FieldFixedLength(11)]
+	public decimal Freight;
+
+
+          public void BeforeRead(BeforeReadEventArgs e)
+          {
+              if (e.RecordLine.StartsWith(" ") ||
+                 e.RecordLine.StartsWith("-"))
+                  e.SkipThisRecord = true;
+          }
+
+          public void AfterRead(AfterReadEventArgs e)
+          {   
+              //  we want to drop all records with no freight
+              if (Freight == 0)
+                  e.SkipThisRecord = true;
+
+          }
+
+}
+
+
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
+{% highlight csharp %}
+
+
+var engine = new FileHelperEngine<OrdersFixed>();
+var result = engine.ReadFile("report.inp");
+
+foreach (var value in result)
+    Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
+
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-console'> Console </div>
+<div class='example-console-high'>
+<div class='highlight'>
+<pre>
+
+</pre>
+</div>
+</div>
+
+
+  </div>
+</div>
