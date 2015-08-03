@@ -18,7 +18,7 @@ namespace FileHelpersAnalyzer
 
         private static readonly string Title = "FileHelpers: You can use the generic engine";
         private static readonly string MessageFormat = "FileHelpers: You can use the generic engine";
-        private static readonly string Description = "Is recommended to use the generic version of the engine";
+        private static readonly string Description = "It is recommended to use the generic version of the engine";
         
         private const string Category = "Usage";
 
