@@ -40,18 +40,24 @@ namespace FileHelpersAnalyzer
             var creation = (ObjectCreationExpressionSyntax)context.Node;
 
             var engineType = creation.Type.ToString();
+            if (engineType.StartsWith("FileHelpers."))
+                engineType = engineType.Substring("FileHelpers.".Length);
 
             if (engineType == "FileHelperEngine" ||
-                engineType == "FileHelpers.FileHelperEngine" ||
-                engineType == "FileHelperAsyncEngine" ||
-                engineType == "FileHelpers.FileHelperAsyncEngine"
+                engineType == "FileHelperAsyncEngine"
                 )
             {
                 if (creation.ArgumentList.Arguments.Count > 0 &&
                     creation.ArgumentList.Arguments[0].Expression is TypeOfExpressionSyntax)
                 {
-                    var diagnostic = Diagnostic.Create(Rule, creation.GetLocation());
-                    context.ReportDiagnostic(diagnostic);
+                    var symbol = context.SemanticModel.GetTypeInfo(creation);
+                    if (symbol.Type != null &&
+                        symbol.Type.ContainingNamespace.Name == "FileHelpers" &&
+                        symbol.Type.ContainingAssembly.Name == "FileHelpers")
+                    {
+                        var diagnostic = Diagnostic.Create(Rule, creation.GetLocation());
+                        context.ReportDiagnostic(diagnostic);
+                    }
                 }
             }
         }

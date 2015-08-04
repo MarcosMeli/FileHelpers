@@ -45,16 +45,24 @@ namespace FileHelpersAnalyzer
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
             var attribute = (AttributeSyntax)context.Node;
-            
             var attributeName = attribute.Name.ToString();
+
+            if (attributeName.StartsWith("FileHelpers."))
+                attributeName = attributeName.Substring("FileHelpers.".Length);
 
             if (attributeName == "FieldNotInFile" ||
                 attributeName == "FieldNotInFileAttribute" ||
                 attributeName == "FieldIgnored" ||
                 attributeName == "FieldIgnoredAttribute")
             {
-                var diagnostic = Diagnostic.Create(Rule, attribute.GetLocation());
-                context.ReportDiagnostic(diagnostic);
+                var symbol = context.SemanticModel.GetTypeInfo(attribute);
+                if (symbol.Type != null &&
+                    symbol.Type.ContainingNamespace.Name == "FileHelpers" &&
+                    symbol.Type.ContainingAssembly.Name == "FileHelpers")
+                {
+                    var diagnostic = Diagnostic.Create(Rule, attribute.GetLocation());
+                    context.ReportDiagnostic(diagnostic);
+                }
             }
             
         }

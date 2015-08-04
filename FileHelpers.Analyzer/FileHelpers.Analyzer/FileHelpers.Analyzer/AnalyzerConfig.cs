@@ -6,6 +6,6 @@ namespace FileHelpersAnalyzer
 {
     internal static class AnalyzerConfig
     {
-        public const string CurrentVersion = "1.0.2";
+        public const string CurrentVersion = "1.0.5";
     }
 }
