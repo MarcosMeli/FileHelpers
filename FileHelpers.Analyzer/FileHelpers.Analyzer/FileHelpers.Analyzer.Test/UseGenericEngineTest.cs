@@ -9,14 +9,14 @@ using FileHelpersAnalyzer;
 namespace FileHelpersAnalyzer.Test
 {
     [TestClass]
-    public class UseGenericEngineAnalyzerTest : FileHelpersCodeFixVerifier
+    public class UseGenericEngineAnalyzerTest 
+        : FileHelpersCodeFixVerifier<UseGenericEngineAnalyzer, UseGenericEngineCodeFixProvider>
     {
-
         public UseGenericEngineAnalyzerTest()
             :base(UseGenericEngineAnalyzer.DiagnosticId)
         {
         }
-
+        
         //No diagnostics expected to show up
         [TestMethod]
         public void NoDiagnostics()
@@ -34,12 +34,11 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new []{new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -49,12 +48,11 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -64,12 +62,11 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperAsyncEngine<RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -79,12 +76,11 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperAsyncEngine<RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -94,12 +90,11 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperEngine<Namespace.RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -109,22 +104,27 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
                 Message = "FileHelpers: You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<Namespace.RecordClass>();";
 
-            VerifyWarningAndFix(test, expected, fixtest);
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new UseGenericEngineCodeFixProvider();
-        }
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
+        [TestMethod]
+        public void UsingGenericWithParams()
         {
-            return new UseGenericEngineAnalyzer();
+            var test = @"var engine = new FileHelperEngine(typeof(RecordClass), Encoding.UTF8);";
+
+            var expected = new DiagnosticResult
+            {
+                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
+                Message = "FileHelpers: You can use the generic engine"
+            };
+            var fixtest = @"var engine = new FileHelperEngine<RecordClass>(Encoding.UTF8);";
+
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
       

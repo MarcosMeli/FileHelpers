@@ -123,9 +123,6 @@ namespace TestHelper
                 {
                     if (actual.Location != Location.None)
                     {
-                        Assert.IsTrue(false,
-                            string.Format("Expected:\nA project diagnostic with No location\nActual:\n{0}",
-                            FormatDiagnostics(analyzer, actual)));
                     }
                 }
                 else

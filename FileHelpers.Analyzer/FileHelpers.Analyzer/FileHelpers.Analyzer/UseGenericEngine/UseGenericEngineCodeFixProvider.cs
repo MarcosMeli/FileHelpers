@@ -58,11 +58,11 @@ namespace FileHelpersAnalyzer
             var typeofSyntax = (TypeOfExpressionSyntax) creation.ArgumentList.Arguments[0].Expression;
             var type = typeofSyntax.Type;
             var originalEngine = creation.Type;
-            
 
             var newRoot = root.ReplaceNode(creation,
                 SyntaxFactory.ObjectCreationExpression(SyntaxFactory.Token(SyntaxKind.NewKeyword),
-                    SyntaxFactory.ParseTypeName(originalEngine + "<" + type + ">"), SyntaxFactory.ArgumentList(), null));
+                    SyntaxFactory.ParseTypeName(originalEngine + "<" + type + ">"),
+                    SyntaxFactory.ArgumentList(SyntaxFactory.SeparatedList(creation.ArgumentList.Arguments.Skip(1))), null));
 
             return context.Document.WithSyntaxRoot(newRoot);
 
