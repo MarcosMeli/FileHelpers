@@ -14,13 +14,13 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace FileHelpersAnalyzer
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UseGenericEngineCodeFixProvider)), Shared]
-    public class UseGenericEngineCodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UseFieldHiddenCodeFixProvider)), Shared]
+    public class UseFieldHiddenCodeFixProvider : CodeFixProvider
     {
-        
+     
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(UseGenericEngineAnalyzer.DiagnosticId); }
+            get { return ImmutableArray.Create(UseFieldHiddenAnalyzer.DiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -35,34 +35,26 @@ namespace FileHelpersAnalyzer
             if (context.CancellationToken.IsCancellationRequested)
                 return;
 
-
-            // TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
-
             var diagnostic = context.Diagnostics.First();
             var diagnosticSpan = diagnostic.Location.SourceSpan;
 
             // Find the type declaration identified by the diagnostic.
-
-            var creation = root.FindNode(diagnosticSpan) as ObjectCreationExpressionSyntax;
-
+            var attribute = root.FindNode(diagnosticSpan) as AttributeSyntax;
 
             context.RegisterCodeFix(
-                CodeAction.Create(title: UseGenericEngineAnalyzer.FixTitle, createChangedDocument: _ =>
-                    ChangeToGenericAsync(context, root, creation), equivalenceKey: null), diagnostic);
+                CodeAction.Create(
+                    UseFieldHiddenAnalyzer.FixTitle, _ =>
+
+                    ChangeToFieldHidden(context, root, attribute), null), diagnostic);
             
         }
 
-        private async Task<Document> ChangeToGenericAsync(CodeFixContext context, SyntaxNode root, ObjectCreationExpressionSyntax creation)
+        private async Task<Document> ChangeToFieldHidden(CodeFixContext context, SyntaxNode root, AttributeSyntax attribute)
         {
             // Compute new uppercase name.
-            var typeofSyntax = (TypeOfExpressionSyntax) creation.ArgumentList.Arguments[0].Expression;
-            var type = typeofSyntax.Type;
-            var originalEngine = creation.Type;
-            
 
-            var newRoot = root.ReplaceNode(creation,
-                SyntaxFactory.ObjectCreationExpression(SyntaxFactory.Token(SyntaxKind.NewKeyword),
-                    SyntaxFactory.ParseTypeName(originalEngine + "<" + type + ">"), SyntaxFactory.ArgumentList(), null));
+            var newRoot = root.ReplaceNode(attribute,
+                SyntaxFactory.Attribute(SyntaxFactory.ParseName("FieldHidden")));
 
             return context.Document.WithSyntaxRoot(newRoot);
 

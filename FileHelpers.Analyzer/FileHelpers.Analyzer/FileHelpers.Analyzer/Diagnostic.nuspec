@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FileHelpers.Analyzer</id>
-    <version>0.2.1</version>
+    <version>0.2.5</version>
     <title>FileHelpers.Analyzer</title>
     <description>Roslyn Analyzer for the FileHelpers Library www.filehelpers.net</description>
     <authors>Marcos Meli</authors>
@@ -14,6 +14,10 @@
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes> -->
     <copyright>Marcos Meli - Devoo</copyright>
     <tags>FileHelpers, Roslyn, FileHelpersAnalyzer, Analyzers, Analyzer</tags>
+    <dependencies>
+        <dependency id="FileHelpers" version="3.1.2" />
+    </dependencies>
+
   </metadata>
   
   <!-- The convention for analyzers is to put language agnostic dlls in analyzers\dotnet and language specific analyzers in either analyzers\dotnet\cs or analyzers\dotnet\vb -->
