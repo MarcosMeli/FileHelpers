@@ -1,0 +1,31 @@
+<h4>Best Practices Analyzer and Quick Fixes for the library</h4>
+
+<div class="indent">
+
+<p>
+This Roslyn Analyzer helps you to use the library in the right way.
+</p>
+<p>For example when you use a non generic engine the analyzer suggest you to use the generic version:</p>
+
+<img src="{{ site.baseurl }}/images/analyzer.gif" class="indent shadow" alt="add references" style="" />
+
+<h5>Global Install (available for all projects)</h5>
+<div class="indent">
+
+To Install the analyzer in Visual Studio Extensions:
+<a href="https://visualstudiogallery.msdn.microsoft.com/e222730d-371b-47d5-bafd-bbfcf4104be5" class="btn waves-effect waves-light indigo"><i class="fa fa-download"></i> Download from Visual Studio Gallery</a>
+
+</div>
+
+<h5>Local Install (per project installation)</h5>
+<div class="indent">
+Use the NuGet Package Version
+<a href="https://www.nuget.org/packages/FileHelpers.Analyzer/" class="btn waves-effect waves-light indigo"><i class="fa fa-download"></i> FileHelpers.Analyzer in NuGet</a>
+
+{% highlight PowerShell %}
+ Install-Package FileHelpers.Analyzer
+{% endhighlight %}
+
+</div>
+
+</div>

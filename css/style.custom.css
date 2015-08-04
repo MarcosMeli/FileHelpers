@@ -329,3 +329,7 @@ ul.issues li > span {
    font-family: "FontAwesome";
    opacity: 0.5;
   }
+
+  .btn, .btn-large, .btn-flat {
+      text-transform: none !important;
+  }
