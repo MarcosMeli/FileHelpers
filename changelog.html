@@ -20,19 +20,20 @@ update the library in a more regular fashion. We redesigned the HomeSite with a 
 <ul>
 <li>Docs rewritten thanks to the work of Ken Foskey and Matthias Cavigelli</li>
 <li>NEW: Full .NET 2.0, 4.0 & 4.5 support.</li>
+<li>NEW: <a href="/analyzer/">FileHelpers.Analyzer</a> is a Roslyn Analyzer with best practices and quicks fixes</li>
 <li>NEW: Added support for <b>MONO</b> !!</li>
-<li>NEW: <a href="/example/Attributes/FieldOrder/">FieldOrder:</a> a new attribute to override the default order of fields.</li>
 <li>NEW: Partial support to use <a href="/example/QuickStart/Autoproperties/">Autoproperties</a></li>
 <li>NEW: <a href="/example/QuickStart/ReadWriteRecordByRecord/">Async Methods returns IDisposable</a> to allow using() statements that autoclose files on ends or exception.</li>
 <li>NEW: Events for the Async engines.</li>
 <li>NEW: The events args now have TotalBytes and CurrentBytes to allow you show progress while reading or writing.</li>
 <li>NEW: FieldIndexers you can now get the values in the  AsyncEngine like in the DataReader of ADO.NET =) You can  access them via index or fieldName (at the moment case sensitive).  This also completes the RunTime records support </li>
+<li>NEW: <a href="/example/Sorting/SortBigFiles/">BigFileSorter:</a> if you need to sort big files, you can use this feature that implements External Sorting</li>
 <li>NEW: <a href="/example/Advanced/SmartFormatDetector/">SmartFormatDetector</a>: A class designed to discover the format of delimited and flat files based on sample files. It is integrated with the wizzard</li>
+<li>NEW: <a href="/example/Attributes/FieldOrder/">FieldOrder:</a> a new attribute to override the default order of fields.</li>
 <li>NEW: Better Delimited validations to make sure that the file contains the right number of fields</li>
 <li>NEW: FieldValueDiscarted: a new attribute to allow the value of a particular field to be read but not stored in the record class (this was a very requested feature)</li>
-<li>NEW: <a href="/example/Sorting/SortBigFiles/">BigFileSorter:</a> if you need to sort big files, you can use this feature that implements External Sorting</li>
 <li>MOD: The error messages have been made more meaningful. In all exceptions you get: FieldName, ColumnNumber, LineNumber etc.</li>
-<li>NEW: FieldNotEmpty: Indicates whether the target field needs to be populated with a non-empty value.</li>
+<li>NEW: [FieldNotEmpty]: Indicates whether the target field needs to be populated with a non-empty value.</li>
 </ul>
 
 <h4>Breaking Changes</h4>
