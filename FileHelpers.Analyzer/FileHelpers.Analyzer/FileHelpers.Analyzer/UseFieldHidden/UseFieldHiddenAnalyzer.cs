@@ -45,11 +45,13 @@ namespace FileHelpersAnalyzer
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
             var attribute = (AttributeSyntax)context.Node;
-
+            
             var attributeName = attribute.Name.ToString();
 
             if (attributeName == "FieldNotInFile" ||
-                attributeName == "FieldIgnored")
+                attributeName == "FieldNotInFileAttribute" ||
+                attributeName == "FieldIgnored" ||
+                attributeName == "FieldIgnoredAttribute")
             {
                 var diagnostic = Diagnostic.Create(Rule, attribute.GetLocation());
                 context.ReportDiagnostic(diagnostic);

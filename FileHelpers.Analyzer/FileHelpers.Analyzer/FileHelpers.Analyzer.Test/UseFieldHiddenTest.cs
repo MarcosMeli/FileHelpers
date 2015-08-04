@@ -35,7 +35,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You must use [FieldHidden]"
+                Message = "You must use [FieldHidden]"
             };
 
             var fixtest = @"[FieldHidden]
@@ -53,7 +53,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You must use [FieldHidden]"
+                Message = "You must use [FieldHidden]"
             };
 
             var fixtest = @"[FieldHidden]
@@ -62,6 +62,22 @@ namespace FileHelpersAnalyzer.Test
             VerifyWarningAndFixInClass(test, expected, fixtest);
         }
 
+        [TestMethod]
+        public void UsingFieldIgnored3()
+        {
+            var test = @"[FieldIgnoredAttribute]
+                         public int Field;";
+
+            var expected = new DiagnosticResult
+            {
+                Message = "You must use [FieldHidden]"
+            };
+
+            var fixtest = @"[FieldHidden]
+                         public int Field;";
+
+            VerifyWarningAndFixInClass(test, expected, fixtest);
+        }
 
 
 
@@ -73,7 +89,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You must use [FieldHidden]"
+                Message = "You must use [FieldHidden]"
             };
 
             var fixtest = @"[FieldHidden]
@@ -91,7 +107,25 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You must use [FieldHidden]"
+                Message = "You must use [FieldHidden]"
+            };
+
+            var fixtest = @"[FieldHidden]
+                         public int Field;";
+
+            VerifyWarningAndFixInClass(test, expected, fixtest);
+        }
+
+
+        [TestMethod]
+        public void UsingFieldNotInFile3()
+        {
+            var test = @"[FieldNotInFileAttribute]
+                         public int Field;";
+
+            var expected = new DiagnosticResult
+            {
+                Message = "You must use [FieldHidden]"
             };
 
             var fixtest = @"[FieldHidden]

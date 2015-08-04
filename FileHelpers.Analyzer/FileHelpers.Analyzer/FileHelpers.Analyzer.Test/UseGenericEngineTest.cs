@@ -34,7 +34,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>();";
 
@@ -48,7 +48,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<RecordClass>();";
 
@@ -62,7 +62,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperAsyncEngine<RecordClass>();";
 
@@ -76,7 +76,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperAsyncEngine<RecordClass>();";
 
@@ -90,7 +90,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperEngine<Namespace.RecordClass>();";
 
@@ -104,7 +104,7 @@ namespace FileHelpersAnalyzer.Test
 
             var expected = new DiagnosticResult
             {
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<Namespace.RecordClass>();";
 
@@ -113,20 +113,31 @@ namespace FileHelpersAnalyzer.Test
 
 
         [TestMethod]
-        public void UsingGenericWithParams()
+        public void UsingGenericWithParams1()
         {
             var test = @"var engine = new FileHelperEngine(typeof(RecordClass), Encoding.UTF8);";
 
             var expected = new DiagnosticResult
             {
-                Locations = new[] { new DiagnosticResultLocation("Test0.cs", 8, 18), },
-                Message = "FileHelpers: You can use the generic engine"
+                Message = "You can use the generic engine"
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>(Encoding.UTF8);";
 
             VerifyWarningAndFixInMethod(test, expected, fixtest);
         }
 
-      
+        [TestMethod]
+        public void UsingGenericWithParams2()
+        {
+            var test = @"var engine = new FileHelperEngine(typeof(RecordClass), new Encoding());";
+
+            var expected = new DiagnosticResult
+            {
+                Message = "You can use the generic engine"
+            };
+            var fixtest = @"var engine = new FileHelperEngine<RecordClass>(new Encoding());";
+
+            VerifyWarningAndFixInMethod(test, expected, fixtest);
+        }
     }
 }
