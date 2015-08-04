@@ -14,27 +14,18 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace FileHelpersAnalyzer
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UseGenericEngineCodeFixProvider)), Shared]
-    public class UseGenericEngineCodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, 
+        Name = nameof(UseGenericEngineCodeFixProvider)), Shared]
+    public class UseGenericEngineCodeFixProvider
+        : FileHelpersCodeFixProvider<UseGenericEngineAnalyzer>
     {
-        
-        public sealed override ImmutableArray<string> FixableDiagnosticIds
-        {
-            get { return ImmutableArray.Create(UseGenericEngineAnalyzer.DiagnosticId); }
-        }
-
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            return WellKnownFixAllProviders.BatchFixer;
-        }
-
+    
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
             if (context.CancellationToken.IsCancellationRequested)
                 return;
-
 
             // TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
 
@@ -47,7 +38,7 @@ namespace FileHelpersAnalyzer
 
 
             context.RegisterCodeFix(
-                CodeAction.Create(title: UseGenericEngineAnalyzer.FixTitle, createChangedDocument: _ =>
+                CodeAction.Create(title: Analyzer.FixTitle, createChangedDocument: _ =>
                     ChangeToGenericAsync(context, root, creation), equivalenceKey: null), diagnostic);
             
         }

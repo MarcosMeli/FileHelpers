@@ -3,7 +3,10 @@
   <Metadata>
     <Identity Id="FileHelpers.Analyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="1.0.2" Language="en-US" Publisher="Marcos Meli"/>
     <DisplayName>FileHelpers.Analyzer</DisplayName>
-    <Description xml:space="preserve">Analyzer for FileHelpers Library  www.filehelpers.net</Description>
+    <Description xml:space="preserve">Best Practices Analyzer and Quick Fixes for for FileHelpers Library  
+
+www.filehelpers.net
+</Description>
     <MoreInfo>http://www.filehelpers.net/analyzer/</MoreInfo>
     <Icon>filehelpers_box_analyzer.png</Icon>
     <PreviewImage>filehelpers_box_analyzer.png</PreviewImage>

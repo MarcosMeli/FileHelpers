@@ -12,13 +12,15 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace FileHelpersAnalyzer
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class UseGenericEngineAnalyzer : DiagnosticAnalyzer
+    public class UseGenericEngineAnalyzer : DiagnosticAnalyzer, IFileHelperAnalyzer
     {
-        public const string DiagnosticId = "UseGenericEngine";
+        public string Id => DiagnosticId;
+        public const string DiagnosticId = "FileHelpersUseGenericEngine";
 
-        public static readonly string Title = "FileHelpers: You can use the generic engine";
-        public static readonly string FixTitle = "FileHelpers: Use the generic engine";
-        private static readonly string MessageFormat = "FileHelpers: You can use the generic engine";
+        public static readonly string Title = "You can use the generic engine";
+        public string FixTitle => "Use the generic engine";
+
+        private static readonly string MessageFormat = "You can use the generic engine";
         private static readonly string Description = "It is recommended to use the generic version of the engine";
         
         private const string Category = "Usage";

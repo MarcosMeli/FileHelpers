@@ -32,6 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IFileHelperAnalyzer.cs" />
+    <Compile Include="FileHelpersCodeFixProvider.cs" />
     <Compile Include="UseFieldHidden\UseFieldHiddenAnalyzer.cs" />
     <Compile Include="UseFieldHidden\UseFieldHiddenCodeFixProvider.cs" />
     <Compile Include="AnalyzerConfig.cs" />

@@ -12,13 +12,15 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace FileHelpersAnalyzer
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class UseFieldHiddenAnalyzer : DiagnosticAnalyzer
+    public class UseFieldHiddenAnalyzer 
+        : DiagnosticAnalyzer, IFileHelperAnalyzer
     {
-        public const string DiagnosticId = "UseFieldHidden";
+        public string Id => DiagnosticId;
+        public const string DiagnosticId = "FileHelpersUseFieldHidden";
 
-        public static readonly string Title = "FileHelpers: You must use [FieldHidden]";
-        public static readonly string FixTitle = "FileHelpers: Use [FieldHidden] attribute";
-        private static readonly string MessageFormat = "FileHelpers: You must use [FieldHidden]";
+        public static readonly string Title = "You must use [FieldHidden]";
+        public string FixTitle => "Use [FieldHidden] attribute";
+        private static readonly string MessageFormat = "You must use [FieldHidden]";
         private static readonly string Description = "[FieldIgnored] and [FieldNotInFile] are obsolete";
         
         private const string Category = "Usage";
