@@ -4,27 +4,33 @@ title: FileHelpers Analyzer
 permalink: /analyzer/
 ---
 
-<h4>FileHelpers Roslyn Analyzer</h4>
+<h4>Best Practices Analyzer and Quick Fixes for the library</h4>
 
 <div class="indent">
 
+<p>
+This Roslyn Analyzer help you to use the library in the right way, an example when using non generic version of an Engine the library suggest you to use the recommended version:
+</p>
+
+<img src="{{ site.baseurl }}/images/analyzer.gif" class="indent shadow" alt="add references" style="" />
+
 <h5>Global Install</h5>
-
-To Install the analyzer in Visual Studio Extensions (will be available for all projects)<a href="">Download it from Visual Studio Gallery</a>
-
-<h5>Global Install</h5>
-
-To Install the analyzer in Visual Studio Extensions (will be available for all projects)<a href="">Download it from Visual Studio Gallery</a>
-
-<p><b>Manual install via Console</b> </p>
-
 <div class="indent">
+
+To Install the analyzer in Visual Studio Extensions (will be available for all projects)<a href="https://visualstudiogallery.msdn.microsoft.com/e222730d-371b-47d5-bafd-bbfcf4104be5">Download it from Visual Studio Gallery</a>
+
+</div>
+
+<h5>Local Install</h5>
+<div class="indent">
+Use the NuGet Package Version <a href="https://www.nuget.org/packages/FileHelpers.Analyzer/">FileHelpers.Analyzer</a>
+
 {% highlight PowerShell %}
- Install-Package FileHelpers
+ Install-Package FileHelpers.Analyzer
 {% endhighlight %}
-</div>
-</div>
-<div class="col s6">
-<p><b>or search for "FileHelpers" in the NuGet Package Manager in Visual Studio</b></p>
 
-<a href="https://www.nuget.org/packages/FileHelpers/"><img src="{{ site.baseurl }}/images/nuget.jpg" class="indent shadow" alt="add references" style="" /></a>
+</div>
+
+</div>
+
+
