@@ -30,36 +30,36 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 <div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-      [FixedLengthRecord]
+[FixedLengthRecord]
 [IgnoreEmptyLines]
 public class OrdersFixed
-          :INotifyWrite
+    :INotifyWrite
 {
-	[FieldFixedLength(7)]
-	public int OrderID;
+    [FieldFixedLength(7)]
+    public int OrderID;
 
-	[FieldFixedLength(8)]
-	public string CustomerID;
+    [FieldFixedLength(8)]
+    public string CustomerID;
 
-	[FieldFixedLength(8)]
-	public DateTime OrderDate;
+    [FieldFixedLength(8)]
+    public DateTime OrderDate;
 
-	[FieldFixedLength(11)]
-	public decimal Freight;
+    [FieldFixedLength(11)]
+    public decimal Freight;
 
-          public void BeforeWrite(BeforeWriteEventArgs e)
-          {  
-              //  We only want clients with large frieght values
-              if (Freight < 40)
-                  e.SkipThisRecord = true;
-          }
+    public void BeforeWrite(BeforeWriteEventArgs e)
+    {  
+        //  We only want clients with large frieght values
+        if (Freight < 40)
+            e.SkipThisRecord = true;
+    }
 
-          public void AfterWrite(AfterWriteEventArgs e)
-          {
-              //  Hide a line
-              if (CustomerID.Trim() == "HANAR")
-                  e.RecordLine = "-- Insufficient Access";
-          }
+    public void AfterWrite(AfterWriteEventArgs e)
+    {
+        //  Hide a line
+        if (CustomerID.Trim() == "HANAR")
+            e.RecordLine = "-- Insufficient Access";
+    }
 }
 
 

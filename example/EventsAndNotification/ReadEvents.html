@@ -42,21 +42,21 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 {% highlight csharp %}
 
 
-      [FixedLengthRecord(FixedMode.AllowVariableLength)]
+[FixedLengthRecord(FixedMode.AllowVariableLength)]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {
-	[FieldFixedLength(7)]
-	public int OrderID;
+    [FieldFixedLength(7)]
+    public int OrderID;
 
-	[FieldFixedLength(8)]
-	public string CustomerID;
+    [FieldFixedLength(8)]
+    public string CustomerID;
 
-	[FieldFixedLength(8)]
-	public DateTime OrderDate;
+    [FieldFixedLength(8)]
+    public DateTime OrderDate;
 
-	[FieldFixedLength(11)]
-	public decimal Freight;
+    [FieldFixedLength(11)]
+    public decimal Freight;
 }
 
 
@@ -68,40 +68,40 @@ public class OrdersFixed
 <div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-      public override void Run()
-      {
-          var engine = new FileHelperEngine<OrdersFixed>();
-          engine.BeforeReadRecord += BeforeEvent;
-	engine.AfterReadRecord += AfterEvent;
+public override void Run()
+{
+    var engine = new FileHelperEngine<OrdersFixed>();
+    engine.BeforeReadRecord += BeforeEvent;
+    engine.AfterReadRecord += AfterEvent;
 
-	var result = engine.ReadFile("report.inp");
+    var result = engine.ReadFile("report.inp");
 
-          foreach (var value in result)
-              Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
+    foreach (var value in result)
+        Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
 
-      }
+}
 
-      private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
-      {
-          if (e.RecordLine.StartsWith(" ") ||
-              e.RecordLine.StartsWith("-"))
-              e.SkipThisRecord = true;
+private void BeforeEvent(EngineBase engine, BeforeReadEventArgs<OrdersFixed> e)
+{
+    if (e.RecordLine.StartsWith(" ") ||
+        e.RecordLine.StartsWith("-"))
+        e.SkipThisRecord = true;
 
-          //  Sometimes changing the record line can be useful, for example to correct for
-          //  a bad data layout.  Here is an example of this, commented out for this example
+    //  Sometimes changing the record line can be useful, for example to correct for
+    //  a bad data layout.  Here is an example of this, commented out for this example
 
-          //if (e.RecordLine.StartsWith(" "))
-          //   e.RecordLine = "Be careful!";
-      }
+    //if (e.RecordLine.StartsWith(" "))
+    //   e.RecordLine = "Be careful!";
+}
 
 
 private void AfterEvent(EngineBase engine, AfterReadEventArgs<OrdersFixed> e)
 {
-	//  we want to drop all records with no freight
-	if (e.Record.Freight == 0)
-		e.SkipThisRecord = true;
+    //  we want to drop all records with no freight
+    if (e.Record.Freight == 0)
+        e.SkipThisRecord = true;
 }
-      
+
 {%  endhighlight %}
 </div>
 
@@ -129,21 +129,21 @@ Customer:  VICTE   Freight: 41,34
 
 public void RunLambda()
 {
-	var engine = new FileHelperEngine<OrdersFixed>();
-	engine.BeforeReadRecord += (eng, e) => {
-		if (e.RecordLine.StartsWith (" ") ||
-	        e.RecordLine.StartsWith ("-"))
-			e.SkipThisRecord = true;
-	};
-	engine.AfterReadRecord +=  (eng, e) => {
-		if (e.Record.Freight == 0)
-			e.SkipThisRecord = true;
-	};
+    var engine = new FileHelperEngine<OrdersFixed>();
+    engine.BeforeReadRecord += (eng, e) => {
+        if (e.RecordLine.StartsWith (" ") ||
+            e.RecordLine.StartsWith ("-"))
+            e.SkipThisRecord = true;
+    };
+    engine.AfterReadRecord +=  (eng, e) => {
+        if (e.Record.Freight == 0)
+            e.SkipThisRecord = true;
+    };
 
-	var result = engine.ReadFile("report.inp");
+    var result = engine.ReadFile("report.inp");
 
-	foreach (var value in result)
-		Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
+    foreach (var value in result)
+        Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
 
 }
 

@@ -34,21 +34,21 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 <div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-     [DelimitedRecord("|")]
-     public class Orders
-     {
-         public int OrderID;
+[DelimitedRecord("|")]
+public class Orders
+{
+    public int OrderID;
 
-         public string CustomerID;
+    public string CustomerID;
 
-         [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-         public DateTime OrderDate;
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    public DateTime OrderDate;
 
-[FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
-         public decimal Freight;
-     }
+    [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+    public decimal Freight;
+}
 
-     
+
 {%  endhighlight %}
 </div>
 

@@ -34,18 +34,18 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 [DelimitedRecord("|")]
 public class Orders
 {
-	public int OrderID;
+    public int OrderID;
 
-	public string CustomerID;
+    public string CustomerID;
 
-	[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
-	[FieldNullValue(typeof (DateTime), "1900-01-01")]
-	public DateTime OrderDate;
+    [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+    [FieldNullValue(typeof (DateTime), "1900-01-01")]
+    public DateTime OrderDate;
 
-	public decimal Freight;
+    public decimal Freight;
 }
 
-      
+
 {%  endhighlight %}
 </div>
 

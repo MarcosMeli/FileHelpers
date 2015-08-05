@@ -38,15 +38,15 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 [DelimitedRecord(",")]
 public class Customer
 {
-	public int CustId;
+    public int CustId;
 
-	public string Name;
+    public string Name;
 
-	[FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
-	public decimal Balance;
+    [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+    public decimal Balance;
 
-	[FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-	public DateTime AddedDate;
+    [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+    public DateTime AddedDate;
 
 }
 
@@ -66,30 +66,30 @@ var engine = new FileHelperAsyncEngine<Customer>();
 // Read
 using(engine.BeginReadFile("Input.txt"))
 {
-	// The engine is IEnumerable
-	foreach(Customer cust in engine)
-	{
-		// your code here
-		Console.WriteLine(cust.Name);
-	}
+    // The engine is IEnumerable
+    foreach(Customer cust in engine)
+    {
+        // your code here
+        Console.WriteLine(cust.Name);
+    }
 }
 
 
 // Write
 
 var arrayCustomers = new Customer[] {
-	new Customer { CustId = 1732, Name = "Juan Perez", Balance = 435.00m,
-		           AddedDate = new DateTime (2020, 5, 11) },
-	new Customer { CustId = 554, Name = "Pedro Gomez", Balance = 12342.30m,
-		           AddedDate = new DateTime (2004, 2, 6) },
+    new Customer { CustId = 1732, Name = "Juan Perez", Balance = 435.00m,
+                   AddedDate = new DateTime (2020, 5, 11) },
+    new Customer { CustId = 554, Name = "Pedro Gomez", Balance = 12342.30m,
+                   AddedDate = new DateTime (2004, 2, 6) },
 };
 
 using(engine.BeginWriteFile("TestOut.txt"))
 {
-	foreach(Customer cust in arrayCustomers)
-	{
-		engine.WriteNext(cust);
-	}
+    foreach(Customer cust in arrayCustomers)
+    {
+        engine.WriteNext(cust);
+    }
 }
 
 

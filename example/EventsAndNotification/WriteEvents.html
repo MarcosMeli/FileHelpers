@@ -30,21 +30,21 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
 <div class='highlight-title example-code'> Report layout.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-      [FixedLengthRecord]
+[FixedLengthRecord]
 [IgnoreEmptyLines]
 public class OrdersFixed
 {
-	[FieldFixedLength(7)]
-	public int OrderID;
+    [FieldFixedLength(7)]
+    public int OrderID;
 
-	[FieldFixedLength(8)]
-	public string CustomerID;
+    [FieldFixedLength(8)]
+    public string CustomerID;
 
-	[FieldFixedLength(8)]
-	public DateTime OrderDate;
+    [FieldFixedLength(8)]
+    public DateTime OrderDate;
 
-	[FieldFixedLength(11)]
-	public decimal Freight;
+    [FieldFixedLength(11)]
+    public decimal Freight;
 }
 
 
@@ -59,33 +59,33 @@ public class OrdersFixed
 <div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-      public override void Run()
-      {
-          var engine = new FileHelperEngine<OrdersFixed>();
+public override void Run()
+{
+    var engine = new FileHelperEngine<OrdersFixed>();
 
-          var result = engine.ReadFile("Input.txt");
+    var result = engine.ReadFile("Input.txt");
 
-          //  add our filter logic.
-          engine.BeforeWriteRecord += BeforeWriteEvent;
-	engine.AfterWriteRecord += AfterWriteEvent;
+    //  add our filter logic.
+    engine.BeforeWriteRecord += BeforeWriteEvent;
+    engine.AfterWriteRecord += AfterWriteEvent;
 
-          engine.WriteFile("output.txt", result);
-      }
+    engine.WriteFile("output.txt", result);
+}
 
-      private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixed> e)
-      {
-          //  We only want clients with large frieght values
-          if (e.Record.Freight < 40)
-              e.SkipThisRecord = true;
-      }
+private void BeforeWriteEvent(EngineBase engine, BeforeWriteEventArgs<OrdersFixed> e)
+{
+    //  We only want clients with large frieght values
+    if (e.Record.Freight < 40)
+        e.SkipThisRecord = true;
+}
 
 private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
 {
-	//  Hide a line
-	if (e.Record.CustomerID.Trim() == "HANAR")
-		e.RecordLine = "-- Insufficient Access";
+    //  Hide a line
+    if (e.Record.CustomerID.Trim() == "HANAR")
+        e.RecordLine = "-- Insufficient Access";
 }
-      
+
 {%  endhighlight %}
 </div>
 
@@ -109,21 +109,21 @@ private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed>
 
 public void RunLambda()
 {
-	var engine = new FileHelperEngine<OrdersFixed>();
+    var engine = new FileHelperEngine<OrdersFixed>();
 
-	var result = engine.ReadFile("Input.txt");
+    var result = engine.ReadFile("Input.txt");
 
-	//  add our filter logic.
-	engine.BeforeWriteRecord += (eng, e) => {
-		if (e.Record.Freight < 40)
-			e.SkipThisRecord = true;
-	};
-	engine.AfterWriteRecord += (eng, e) => {
-		if (e.Record.CustomerID == "HANAR")
-			e.RecordLine = "Insufficient Access";
-	};
+    //  add our filter logic.
+    engine.BeforeWriteRecord += (eng, e) => {
+        if (e.Record.Freight < 40)
+            e.SkipThisRecord = true;
+    };
+    engine.AfterWriteRecord += (eng, e) => {
+        if (e.Record.CustomerID == "HANAR")
+            e.RecordLine = "Insufficient Access";
+    };
 
-	engine.WriteFile("output.txt", result);
+    engine.WriteFile("output.txt", result);
 }
 
 
