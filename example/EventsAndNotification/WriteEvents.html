@@ -82,8 +82,8 @@ public class OrdersFixed
 private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
 {
 	//  Hide a line
-	if (e.Record.CustomerID == "HANAR")
-		e.RecordLine = "Insufficient Access";
+	if (e.Record.CustomerID.Trim() == "HANAR")
+		e.RecordLine = "-- Insufficient Access";
 }
       
 {%  endhighlight %}
@@ -93,9 +93,9 @@ private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed>
 
 <div class='highlight-title example-output'> output.txt </div><div class='example-output-high'>
 {% highlight csharp %}
-10251 VICTE  08071996      41.34
-10230 HANAR  08071996      65.83
-10151 VICTE  08071996      41.34
+  10251 VICTE  08071996      41.34
+-- Insufficient Access
+  10151 VICTE  08071996      41.34
 {%  endhighlight %}
 </div>
 
