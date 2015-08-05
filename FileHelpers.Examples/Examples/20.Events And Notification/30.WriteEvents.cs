@@ -68,8 +68,8 @@ namespace ExamplesFx
 		private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
 		{
 			//  Hide a line
-			if (e.Record.CustomerID == "HANAR")
-				e.RecordLine = "Insufficient Access";
+			if (e.Record.CustomerID.Trim() == "HANAR")
+				e.RecordLine = "-- Insufficient Access";
 		}
         //-> /File
 

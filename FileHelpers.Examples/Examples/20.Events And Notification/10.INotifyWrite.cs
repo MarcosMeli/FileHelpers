@@ -44,15 +44,15 @@ namespace ExamplesFx
             public void BeforeWrite(BeforeWriteEventArgs e)
             {  
                 //  We only want clients with large frieght values
-                if (this.Freight < 40)
+                if (Freight < 40)
                     e.SkipThisRecord = true;
             }
 
             public void AfterWrite(AfterWriteEventArgs e)
             {
                 //  Hide a line
-                if (this.CustomerID == "HANAR")
-                    e.RecordLine = "Insufficient Access";
+                if (CustomerID.Trim() == "HANAR")
+                    e.RecordLine = "-- Insufficient Access";
             }
 		}
 

@@ -15,7 +15,6 @@
     <copyright>Marcos Meli - Devoo</copyright>
     <tags>FileHelpers, Roslyn, FileHelpersAnalyzer, Analyzers, Analyzer</tags>
     <dependencies>
-        <dependency id="FileHelpers" version="3.1.2" />
     </dependencies>
 
   </metadata>
