@@ -159,7 +159,6 @@
     <Compile Include="Tests\Common\FieldValidate.cs" />
     <Compile Include="Tests\Common\FieldValidateIsNotEmpty.cs" />
     <Compile Include="Tests\Common\DynamicOptions.cs" />
-    <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Common\HeaderText.cs" />
     <Compile Include="Tests\Converters\DateFormatCulture.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
