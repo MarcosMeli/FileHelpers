@@ -62,7 +62,7 @@ permalink: /contribute/
 <script type="text/javascript">
   var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&sort=created&labels=Jump%20In";
 
-  $(document).ready(function() {
+   window.onload = function() {
     var md = new Remarkable({
     linkify:      true,        // Autoconvert URL-like text to links
    });
@@ -100,5 +100,5 @@ var issueUrl = "https://github.com/MarcosMeli/FileHelpers/issues/" + issue.numbe
 
 
 
-  });
+  }
 </script>

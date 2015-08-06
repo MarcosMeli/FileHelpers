@@ -97,7 +97,7 @@ dedicated the needed time to finish it. I want thank Mike for this.</p>
 <script type="text/javascript">
   var urlContributors  = "https://api.github.com/repos/MarcosMeli/FileHelpers/contributors";
 
-  $(document).ready(function() {
+  window.onload = function() {
 
       $.getJSON(urlContributors, function(contributors) {
         $.each(contributors, function(i, contributor) {
@@ -109,5 +109,6 @@ dedicated the needed time to finish it. I want thank Mike for this.</p>
         });
       });
 
-  });
+  }
+  
 </script>
