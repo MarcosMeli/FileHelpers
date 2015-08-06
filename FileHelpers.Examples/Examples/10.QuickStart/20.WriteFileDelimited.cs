@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using FileHelpers;
-
-// Done
 
 namespace ExamplesFx
 {
@@ -11,7 +10,7 @@ namespace ExamplesFx
     //-> Description:Example of how to write a Delimited File
     //-> AutoRun:true
 
-    public class WriteFile
+    public class WriteFileDelimited
         : ExampleBase
     {
         //-> To write an output file separated by a |:
@@ -33,12 +32,13 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
             public decimal Freight;
         }
 
         //-> /File
 
-        //-> Finally you must to instantiate a FileHelperEngine and write the file
+        //-> Instantiate a FileHelperEngine and write the file
 
 
         public override void Run()

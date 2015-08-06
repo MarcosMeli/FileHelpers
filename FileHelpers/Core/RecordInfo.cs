@@ -316,7 +316,7 @@ namespace FileHelpers
 
                 FieldBase prevField = resFields[i - 1];
 
-                prevField.NextIsOptional = currentField.IsOptional;
+                //prevField.NextIsOptional = currentField.IsOptional;
 
                 // Check for optional problems.  Previous is optional but current is not
                 if (prevField.IsOptional
@@ -484,24 +484,25 @@ namespace FileHelpers
         /// <returns>Deep copy of the RecordInfo class</returns>
         public object Clone()
         {
-            var res = new RecordInfo();
+            var res = new RecordInfo
+            {
+                CommentAnyPlace = CommentAnyPlace,
+                CommentMarker = CommentMarker,
+                IgnoreEmptyLines = IgnoreEmptyLines,
+                IgnoreEmptySpaces = IgnoreEmptySpaces,
+                IgnoreFirst = IgnoreFirst,
+                IgnoreLast = IgnoreLast,
+                NotifyRead = NotifyRead,
+                NotifyWrite = NotifyWrite,
+                RecordCondition = RecordCondition,
+                RecordConditionRegEx = RecordConditionRegEx,
+                RecordConditionSelector = RecordConditionSelector,
+                RecordType = RecordType,
+                SizeHint = SizeHint
+            };
 
-            res.CommentAnyPlace = CommentAnyPlace;
-            res.CommentMarker = CommentMarker;
-            res.IgnoreEmptyLines = IgnoreEmptyLines;
-            res.IgnoreEmptySpaces = IgnoreEmptySpaces;
-            res.IgnoreFirst = IgnoreFirst;
-            res.IgnoreLast = IgnoreLast;
-            res.NotifyRead = NotifyRead;
-            res.NotifyWrite = NotifyWrite;
             res.Operations = Operations.Clone(res);
-
-            res.RecordCondition = RecordCondition;
-            res.RecordConditionRegEx = RecordConditionRegEx;
-            res.RecordConditionSelector = RecordConditionSelector;
-            res.RecordType = RecordType;
-            res.SizeHint = SizeHint;
-
+            
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
                 res.Fields[i] = (FieldBase)Fields[i].Clone();

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-// Done
 
 namespace ExamplesFx
 {
@@ -24,7 +23,7 @@ namespace ExamplesFx
 99999 Berglunds snabbköp           02111999*/
         //-> /FileIn
 
-        //-> An simple example layout:
+        //-> We define the record layout:
         //-> File:RecordClass.cs
         [FixedLengthRecord()]
         public class Customer
@@ -43,6 +42,7 @@ namespace ExamplesFx
 
         //-> /File
 
+        //-> Read the values and write them to the Console
         public override void Run()
         {
             //-> File:Example.cs
@@ -54,8 +54,6 @@ namespace ExamplesFx
 
             //-> /File
         }
-
-        // ->Let see the result
 
         //-> Console
     }

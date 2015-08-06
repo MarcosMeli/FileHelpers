@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FileHelpers.Analyzer</id>
+    <version>1.1.0</version>
+    <title>FileHelpers.Analyzer</title>
+    <description>Roslyn Analyzer for the FileHelpers Library www.filehelpers.net</description>
+    <authors>Marcos Meli</authors>
+    <owners>Marcos Meli</owners>
+    <licenseUrl>http://www.filehelpers.net/#license</licenseUrl>
+    <projectUrl>http://www.filehelpers.net/analyzer/</projectUrl>
+    <iconUrl>http://www.filehelpers.net/images/filehelpers_box_analyzer.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes> -->
+    <copyright>Marcos Meli - Devoo</copyright>
+    <tags>FileHelpers, Roslyn, FileHelpersAnalyzer, Analyzers, Analyzer</tags>
+    <dependencies>
+    </dependencies>
+
+  </metadata>
+  
+  <!-- The convention for analyzers is to put language agnostic dlls in analyzers\dotnet and language specific analyzers in either analyzers\dotnet\cs or analyzers\dotnet\vb -->
+  <files>
+    <file src="*.dll" target="analyzers\dotnet\cs" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\System.Composition.*" />
+    <file src="tools\*.ps1" target="tools\" />
+  </files>
+</package>

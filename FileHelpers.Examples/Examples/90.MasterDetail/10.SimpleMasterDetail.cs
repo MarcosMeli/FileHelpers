@@ -6,13 +6,10 @@ using FileHelpers.MasterDetail;
 
 namespace ExamplesFx
 {
-    /// <summary>
-    /// Example of the Master Detail processing
-    /// </summary>
     public class SimpleMasterDetailSample
         : ExampleBase
     {
-        //-> Name:Simple Master Detail sample
+        //-> Name:Simple Master Detail
         //-> Description:Show how to implement Master detail reading using a selection subroutine
 
         //-> File:RunEngine.cs

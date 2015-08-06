@@ -27,9 +27,6 @@ namespace ExamplesFx
 
 
         //-> File:OrdersTab.cs
-        /// <summary>
-        /// Sample class that is delimited by tab
-        /// </summary>
         [DelimitedRecord("\t")]
         public class OrdersTab
             : IComparable<OrdersTab>

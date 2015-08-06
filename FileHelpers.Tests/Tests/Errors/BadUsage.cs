@@ -128,7 +128,7 @@ namespace FileHelpers.Tests.Errors
 
         #region  "  NoFields2"
 
-        [DelimitedRecord(",")]
+        [DelimitedRecord(",")] 
         public class NoFieldsClass2
         {
             [FieldHidden]
@@ -140,6 +140,38 @@ namespace FileHelpers.Tests.Errors
         {
             Assert.Throws<BadUsageException>(()
                 => new FileHelperEngine<NoFieldsClass2>());
+        }
+
+        [DelimitedRecord(",")]
+        public class NoFieldsClass2Obsoletes1
+        {
+#pragma warning disable 618
+            [FieldNotInFile]
+#pragma warning restore 618
+            public string MyField;
+        }
+
+        [Test]
+        public void NoFields2Obsoletes1()
+        {
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine<NoFieldsClass2Obsoletes1>());
+        }
+
+        [DelimitedRecord(",")]
+        public class NoFieldsClass2Obsoletes2
+        {
+#pragma warning disable 618
+            [FieldIgnored]
+#pragma warning restore 618
+            public string MyField;
+        }
+
+        [Test]
+        public void NoFields2Obsoletes2()
+        {
+            Assert.Throws<BadUsageException>(()
+                => new FileHelperEngine<NoFieldsClass2Obsoletes2>());
         }
 
         #endregion
