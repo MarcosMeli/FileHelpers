@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -151,9 +152,8 @@ namespace FileHelpers
                     if (IsLast && IsArray)
                         return new ExtractedInfo(line);
 
-					if (NextIsOptional == false)
-					{
-						string msg;
+                    if ( NextIsOptional == false) {
+                        string msg;
 
 						if (IsFirst && line.EmptyFromPos())
 							msg = string.Format("The line {0} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.", line.mReader.LineNumber);
