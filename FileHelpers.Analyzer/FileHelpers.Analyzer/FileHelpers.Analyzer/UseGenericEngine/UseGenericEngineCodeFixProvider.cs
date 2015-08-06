@@ -20,40 +20,22 @@ namespace FileHelpersAnalyzer
         : FileHelpersCodeFixProvider<UseGenericEngineAnalyzer>
     {
     
-        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
+        protected override async Task<Document> ApplyFix(CodeFixContext context, SyntaxNode root, Diagnostic diagnostic)
         {
-            var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-
-            if (context.CancellationToken.IsCancellationRequested)
-                return;
-
-            // TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
-
-            var diagnostic = context.Diagnostics.First();
             var diagnosticSpan = diagnostic.Location.SourceSpan;
 
-            // Find the type declaration identified by the diagnostic.
-
-            var creation = root.FindNode(diagnosticSpan) as ObjectCreationExpressionSyntax;
+            var node = root.FindNode(diagnosticSpan) as ObjectCreationExpressionSyntax;
 
 
-            context.RegisterCodeFix(
-                CodeAction.Create(title: Analyzer.FixTitle, createChangedDocument: _ =>
-                    ChangeToGenericAsync(context, root, creation), equivalenceKey: null), diagnostic);
-            
-        }
-
-        private async Task<Document> ChangeToGenericAsync(CodeFixContext context, SyntaxNode root, ObjectCreationExpressionSyntax creation)
-        {
             // Compute new uppercase name.
-            var typeofSyntax = (TypeOfExpressionSyntax) creation.ArgumentList.Arguments[0].Expression;
+            var typeofSyntax = (TypeOfExpressionSyntax)node.ArgumentList.Arguments[0].Expression;
             var type = typeofSyntax.Type;
-            var originalEngine = creation.Type;
+            var originalEngine = node.Type;
 
-            var newRoot = root.ReplaceNode(creation,
+            var newRoot = root.ReplaceNode(node,
                 SyntaxFactory.ObjectCreationExpression(SyntaxFactory.Token(SyntaxKind.NewKeyword),
                     SyntaxFactory.ParseTypeName(originalEngine + "<" + type + ">"),
-                    SyntaxFactory.ArgumentList(SyntaxFactory.SeparatedList(creation.ArgumentList.Arguments.Skip(1))), null));
+                    SyntaxFactory.ArgumentList(SyntaxFactory.SeparatedList(node.ArgumentList.Arguments.Skip(1))), null));
 
             return context.Document.WithSyntaxRoot(newRoot);
 

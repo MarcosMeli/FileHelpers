@@ -12,21 +12,8 @@ namespace FileHelpersAnalyzer.Test
     public class UseFieldHiddenTest 
         : FileHelpersCodeFixVerifier<UseFieldHiddenAnalyzer, UseFieldHiddenCodeFixProvider>
     {
-        public UseFieldHiddenTest()
-            :base(UseFieldHiddenAnalyzer.DiagnosticId)
-        {
-        }
+       
         
-        //No diagnostics expected to show up
-        [TestMethod]
-        public void NoDiagnostics()
-        {
-            var test = @"";
-
-            VerifyCSharpDiagnostic(test);
-        }
-
-
         [TestMethod]
         public void UsingFieldIgnored1()
         {
@@ -41,7 +28,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
 
@@ -59,7 +46,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -76,7 +63,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
 
@@ -95,7 +82,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
 
@@ -113,7 +100,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
 
@@ -131,7 +118,7 @@ namespace FileHelpersAnalyzer.Test
             var fixtest = @"[FieldHidden]
                          public int Field;";
 
-            VerifyWarningAndFixInClass(test, expected, fixtest);
+            VerifyWarningInClass(test, expected, fixtest);
         }
 
 

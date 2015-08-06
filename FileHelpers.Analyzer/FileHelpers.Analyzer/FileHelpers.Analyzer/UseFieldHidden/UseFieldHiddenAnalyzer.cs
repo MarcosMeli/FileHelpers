@@ -32,7 +32,8 @@ namespace FileHelpersAnalyzer
             Category,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true,
-            description: Description);
+            description: Description,
+            helpLinkUri: "http://www.filehelpers.net/analizer/");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -44,8 +45,9 @@ namespace FileHelpersAnalyzer
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            var attribute = (AttributeSyntax)context.Node;
-            var attributeName = attribute.Name.ToString();
+            var node = (AttributeSyntax)context.Node;
+
+            var attributeName = node.Name.ToString();
 
             if (attributeName.StartsWith("FileHelpers."))
                 attributeName = attributeName.Substring("FileHelpers.".Length);
@@ -55,12 +57,12 @@ namespace FileHelpersAnalyzer
                 attributeName == "FieldIgnored" ||
                 attributeName == "FieldIgnoredAttribute")
             {
-                var symbol = context.SemanticModel.GetTypeInfo(attribute);
+                var symbol = context.SemanticModel.GetTypeInfo(node);
                 if (symbol.Type != null &&
                     symbol.Type.ContainingNamespace.Name == "FileHelpers" &&
                     symbol.Type.ContainingAssembly.Name == "FileHelpers")
                 {
-                    var diagnostic = Diagnostic.Create(Rule, attribute.GetLocation());
+                    var diagnostic = Diagnostic.Create(Rule, node.GetLocation());
                     context.ReportDiagnostic(diagnostic);
                 }
             }

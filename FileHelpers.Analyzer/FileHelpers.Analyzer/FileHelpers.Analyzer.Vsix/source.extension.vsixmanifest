@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="FileHelpers.Analyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="1.0.5" Language="en-US" Publisher="Marcos Meli"/>
+    <Identity Id="FileHelpers.Analyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="1.1.0" Language="en-US" Publisher="Marcos Meli"/>
     <DisplayName>FileHelpers.Analyzer</DisplayName>
     <Description xml:space="preserve">Best Practices Analyzer and Quick Fixes for for FileHelpers Library  
 

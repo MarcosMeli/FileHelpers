@@ -32,11 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FixIComparableRecord\FixIComparableRecordAnalyzer .cs" />
+    <Compile Include="FixIComparableRecord\FixIComparableRecordCodeFixProvider.cs" />
     <Compile Include="IFileHelperAnalyzer.cs" />
     <Compile Include="FileHelpersCodeFixProvider.cs" />
+    <Compile Include="FixNamespaces\FixNamespaceCodeFixProvider.cs" />
     <Compile Include="UseFieldHidden\UseFieldHiddenAnalyzer.cs" />
     <Compile Include="UseFieldHidden\UseFieldHiddenCodeFixProvider.cs" />
     <Compile Include="AnalyzerConfig.cs" />
+    <Compile Include="FixNamespaces\FixNamespaceAnalyzer.cs" />
     <Compile Include="UseGenericEngine\UseGenericEngineCodeFixProvider.cs" />
     <Compile Include="UseGenericEngine\UseGenericEngineAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

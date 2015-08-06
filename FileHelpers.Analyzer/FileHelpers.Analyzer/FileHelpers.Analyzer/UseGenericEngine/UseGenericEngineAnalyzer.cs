@@ -25,7 +25,14 @@ namespace FileHelpersAnalyzer
         
         private const string Category = "Usage";
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, 
+            Title,
+            MessageFormat,
+            Category,
+            DiagnosticSeverity.Warning,
+            isEnabledByDefault: true, 
+            description: Description,
+            helpLinkUri: "http://www.filehelpers.net/analizer/");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -37,9 +44,9 @@ namespace FileHelpersAnalyzer
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            var creation = (ObjectCreationExpressionSyntax)context.Node;
+            var node = (ObjectCreationExpressionSyntax)context.Node;
 
-            var engineType = creation.Type.ToString();
+            var engineType = node.Type.ToString();
             if (engineType.StartsWith("FileHelpers."))
                 engineType = engineType.Substring("FileHelpers.".Length);
 
@@ -47,15 +54,15 @@ namespace FileHelpersAnalyzer
                 engineType == "FileHelperAsyncEngine"
                 )
             {
-                if (creation.ArgumentList.Arguments.Count > 0 &&
-                    creation.ArgumentList.Arguments[0].Expression is TypeOfExpressionSyntax)
+                if (node.ArgumentList.Arguments.Count > 0 &&
+                    node.ArgumentList.Arguments[0].Expression is TypeOfExpressionSyntax)
                 {
-                    var symbol = context.SemanticModel.GetTypeInfo(creation);
+                    var symbol = context.SemanticModel.GetTypeInfo(node);
                     if (symbol.Type != null &&
                         symbol.Type.ContainingNamespace.Name == "FileHelpers" &&
                         symbol.Type.ContainingAssembly.Name == "FileHelpers")
                     {
-                        var diagnostic = Diagnostic.Create(Rule, creation.GetLocation());
+                        var diagnostic = Diagnostic.Create(Rule, node.GetLocation());
                         context.ReportDiagnostic(diagnostic);
                     }
                 }

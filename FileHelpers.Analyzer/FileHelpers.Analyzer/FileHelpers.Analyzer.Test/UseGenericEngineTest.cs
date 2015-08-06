@@ -12,20 +12,7 @@ namespace FileHelpersAnalyzer.Test
     public class UseGenericEngineAnalyzerTest 
         : FileHelpersCodeFixVerifier<UseGenericEngineAnalyzer, UseGenericEngineCodeFixProvider>
     {
-        public UseGenericEngineAnalyzerTest()
-            :base(UseGenericEngineAnalyzer.DiagnosticId)
-        {
-        }
         
-        //No diagnostics expected to show up
-        [TestMethod]
-        public void NoDiagnostics()
-        {
-            var test = @"";
-
-            VerifyCSharpDiagnostic(test);
-        }
-
 
         [TestMethod]
         public void UsingGeneric()
@@ -38,7 +25,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -52,7 +39,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -66,7 +53,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelperAsyncEngine<RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -80,7 +67,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperAsyncEngine<RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -94,7 +81,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelperEngine<Namespace.RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -108,7 +95,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelpers.FileHelperEngine<Namespace.RecordClass>();";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
 
@@ -123,7 +110,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>(Encoding.UTF8);";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
 
         [TestMethod]
@@ -137,7 +124,7 @@ namespace FileHelpersAnalyzer.Test
             };
             var fixtest = @"var engine = new FileHelperEngine<RecordClass>(new Encoding());";
 
-            VerifyWarningAndFixInMethod(test, expected, fixtest);
+            VerifyWarningInMethod(test, expected, fixtest);
         }
     }
 }
