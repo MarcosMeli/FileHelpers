@@ -433,9 +433,9 @@ namespace FileHelpers.ExcelNPOIStorage
                 res = values[0].ToString();
 
             for (int i = 1; i < values.Length; i++) {
-                res += "," + values[i] == null
+                res += "," + (values[i] == null
                     ? String.Empty
-                    : values[i].ToString();
+                    : values[i].ToString());
             }
 
             return res;
