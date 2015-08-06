@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers</id>
         <version>3.0.5</version>
@@ -10,14 +10,15 @@
         <projectUrl>http://www.filehelpers.net</projectUrl>
         <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Open Source library for automatic formatted file read/write operations</description>
+        <description>Open Source library for automatic formatted file read/write operations www.filehelpers.net</description>
         <summary>Open Source library for automatic formatted file read/write operations</summary>
+        <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
         <copyright>Marcos Meli - Devoo</copyright>
-        <tags>Flat File CSV FixedLength Delimited Import Export</tags>
+        <tags>FileHelpers, Flat File, CSV, FixedLength, Fixed, Delimited, Import, Export, ETL, FileHelper</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
-        </frameworkAssemblies>        
+        </frameworkAssemblies>
     </metadata>
     <files>
         <file src="..\..\Release\Lib\net20\FileHelpers.dll" target="lib\net20\FileHelpers.dll" />
@@ -28,6 +29,6 @@
         <file src="..\..\Release\Lib\net40\FileHelpers.xml" target="lib\net40\FileHelpers.xml" />
         <file src="..\..\Release\Lib\net45\FileHelpers.dll" target="lib\net45\FileHelpers.dll" />
         <file src="..\..\Release\Lib\net45\FileHelpers.xml" target="lib\net45\FileHelpers.xml" />
-        <file src="Readme.txt" target="" />
+        <file src="Readme.txt" target="Readme.txt" />
     </files>
 </package>

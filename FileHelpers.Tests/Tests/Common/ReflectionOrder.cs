@@ -47,7 +47,7 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadFileBulk()
         {
             var temp = new ArrayList();
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 temp.Add(typeof (SampleType).GetField("Field2"));
                 temp.Add(typeof (SampleType).GetField("Field3"));
             }

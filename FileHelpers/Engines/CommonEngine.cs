@@ -628,7 +628,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="arr">The array with the records to be checked.</param>
         /// <returns>An array with the result of remove the duplicate records from the source array.</returns>
-        public static T[] RemoveDuplicateRecords<T>(T[] arr) where T : IComparableRecord<T>
+        public static T[] RemoveDuplicateRecords<T>(T[] arr) where T : IComparable<T>
         {
             if (arr == null ||
                 arr.Length <= 1)
@@ -640,7 +640,7 @@ namespace FileHelpers
                 bool isUnique = true;
 
                 for (int j = i + 1; j < arr.Length; j++) {
-                    if (arr[i].IsEqualRecord(arr[j])) {
+                    if (arr[i].CompareTo(arr[j]) == 0) {
                         isUnique = false;
                         break;
                     }

@@ -57,6 +57,7 @@ namespace FileHelpers.Tests.CommonTests
             var comp = new CompareObjects();
             comp.CompareChildren = true;
             comp.ElementsToIgnore.Add("Cache");
+            comp.ElementsToIgnore.Add("Parent");
             comp.ElementsToIgnore.Add("RecordType");
             comp.ElementsToIgnore.Add("FieldTypeInternal");
             comp.ElementsToIgnore.Add("FieldInfo");

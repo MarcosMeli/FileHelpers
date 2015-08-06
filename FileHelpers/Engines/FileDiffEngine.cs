@@ -14,7 +14,7 @@ namespace FileHelpers
         "FileDiffEngine for type: {RecordType.Name}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
         )]
     public sealed class FileDiffEngine<T> : EngineBase
-        where T : class, IComparableRecord<T>
+        where T : class, IComparable<T>
     {
         /// <summary>
         /// Creates a new <see cref="FileDiffEngine{T}"/>
@@ -123,7 +123,7 @@ namespace FileHelpers
                 T current = col1[i];
 
                 for (int j = i; j < col2.Length; j++) {
-                    if (current.IsEqualRecord(col2[j])) {
+                    if (current.CompareTo(col2[j]) == 0) {
                         isNew = true;
                         break;
                     }
@@ -132,7 +132,7 @@ namespace FileHelpers
 
                 if (isNew == false) {
                     for (int j = 0; j < Math.Min(i, col2.Length); j++) {
-                        if (current.IsEqualRecord(col2[j])) {
+                        if (current.CompareTo(col2[j]) == 0) {
                             isNew = true;
                             break;
                         }

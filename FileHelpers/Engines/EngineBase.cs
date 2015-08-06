@@ -261,6 +261,13 @@ namespace FileHelpers
                 Options = new DelimitedRecordOptions(RecordInfo);
             else
                 Options = new FixedRecordOptions(RecordInfo);
+
+            for (int index = 0; index < Options.Fields.Count; index++)
+            {
+                var field = Options.Fields[index];
+                field.Parent = Options;
+                field.ParentIndex = index;
+            }
         }
 
         /// <summary>

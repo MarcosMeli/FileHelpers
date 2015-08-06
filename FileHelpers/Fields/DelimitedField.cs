@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -164,7 +165,7 @@ namespace FileHelpers
                     if (IsLast && IsArray)
                         return new ExtractedInfo(line);
 
-                    if (NextIsOptional == false) {
+                    if ( NextIsOptional == false) {
                         string msg;
 
                         if (IsFirst && line.EmptyFromPos()) {

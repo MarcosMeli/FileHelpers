@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using FileHelpers;
 
 namespace ExamplesFx
@@ -11,16 +12,32 @@ namespace ExamplesFx
     public class MultipleDelimiters
         : ExampleBase
     {
-        //-> File:RunEngine.cs
-        /// <summary>
-        /// Run an example of writing a delimited file and 
-        /// changing the delimiter to show how it is done.
-        /// </summary>
+
+        //-> File:CustomersVerticalBar.cs
+        /// <summary> Sample class that is delimited by | default </summary>
+        [DelimitedRecord("|")]
+        public class CustomersVerticalBar
+        {
+            public string CustomerID;
+            public string CompanyName;
+            public string ContactName;
+            public string ContactTitle;
+            public string Address;
+            public string City;
+            public string Country;
+
+        }
+
+        //-> /File
+
+
         public override void Run()
         {
+            //-> File:RunEngine.cs
+
             var customers = CreateCustomers();
 
-            var engine = new DelimitedFileEngine<CustomersVerticalBar>();
+            var engine = new DelimitedFileEngine<CustomersVerticalBar>(Encoding.UTF8);
             //  write out customers using a vertical bar delimiter (default)
             engine.WriteFile("Out_Vertical.txt", customers);
 
@@ -31,15 +48,11 @@ namespace ExamplesFx
             // Change the delimiter to a tab and write that out
             engine.Options.Delimiter = "\t";
             engine.WriteFile("Out_Tab.txt", customers);
+
+            //-> /File
         }
 
-        //-> /File
 
-        //-> File:CreateCustomers.cs
-        /// <summary>
-        /// This routine reads the data and creates an array of Customers for our samples
-        /// </summary>
-        /// <returns>Array of customers</returns>
         private CustomersVerticalBar[] CreateCustomers()
         {
             //  6 records of sample data to parse
@@ -55,45 +68,11 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
             return CommonEngine.ReadString<CustomersVerticalBar>(tempCustomers);
         }
 
-        //-> /File
 
-        //-> File:CustomersVerticalBar.cs
-        /// <summary>
-        /// Sample class that is delimited by | default
-        /// </summary>
-        /// <remarks>
-        /// Order of fields in the class is the same as the order in the file
-        /// </remarks>
-        [DelimitedRecord("|")]
-        public class CustomersVerticalBar
-        {
-            public string CustomerID;
-            public string CompanyName;
-            public string ContactName;
-            public string ContactTitle;
-            public string Address;
-            public string City;
-            public string Country;
+        //-> FileOut: Out_Vertical.txt
 
-            //-> To display in the PropertyGrid.
-            public override string ToString()
-            {
-                return CustomerID + " - " + CompanyName + ", " + ContactName;
-            }
-        }
+        //-> FileOut: Out_SemiColon.txt
 
-        //-> /File
-
-        //-> File:example_delimited_engine.html
-        /*<h2>Delimited File Engine</h2>
-         *<p>With this cool feature you can simply change some of the record definitions at run time.</p>
-         *<p>Lets start with a simple example:</p>
-         *${CustomersVerticalBar.cs}
-         *<p>After working with this file for a while, and you need to export the
-         *data in this format <b>but delimited by ";" and "|"</b></p>
-         *<p>This is how easy its is:</p>
-         *${RunEngine.cs}
-         */
-        //-> /File
+        //-> FileOut: Out_Tab.txt
     }
 }

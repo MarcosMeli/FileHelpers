@@ -6,9 +6,7 @@ using FileHelpers.MasterDetail;
 
 namespace ExamplesFx
 {
-    /// <summary>
-    /// Example of the Master Detail processing
-    /// </summary>
+   
     public class SecondMasterDetailSample
         : ExampleBase
     {
