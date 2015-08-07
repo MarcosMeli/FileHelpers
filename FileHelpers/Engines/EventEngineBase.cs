@@ -100,7 +100,8 @@ namespace FileHelpers
             if (RecordInfo.NotifyRead)
                 ((INotifyRead)e.Record).BeforeRead(e);
 
-            BeforeReadRecord?.Invoke(this, e);
+            if (BeforeReadRecord != null)
+                BeforeReadRecord(this, e);
 
             return e.SkipThisRecord;
         }
@@ -120,7 +121,8 @@ namespace FileHelpers
             if (RecordInfo.NotifyRead)
                 ((INotifyRead) record).AfterRead(e);
 
-            AfterReadRecord?.Invoke(this, e);
+            if (AfterReadRecord != null)
+                AfterReadRecord(this, e);
 
             return e.SkipThisRecord;
         }
@@ -139,7 +141,8 @@ namespace FileHelpers
             if (RecordInfo.NotifyWrite)
                 ((INotifyWrite) record).BeforeWrite(e);
 
-            BeforeWriteRecord?.Invoke(this, e);
+            if (BeforeWriteRecord != null)
+                BeforeWriteRecord(this, e);
 
             return e.SkipThisRecord;
         }
@@ -157,7 +160,8 @@ namespace FileHelpers
             if (RecordInfo.NotifyWrite)
                 ((INotifyWrite) record).AfterWrite(e);
 
-            AfterWriteRecord?.Invoke(this, e);
+            if (AfterWriteRecord != null)
+                AfterWriteRecord.Invoke(this, e);
 
             return e.RecordLine;
         }
