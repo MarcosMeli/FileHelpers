@@ -3,10 +3,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta name="msapplication-tap-highlight" content="no">
-  <meta NAME="description"        content="{{ site.description }}" />
   <meta name="author"             content="Marcos Meli" />
   <meta NAME="keywords" Content="filehelpers,CSV,C#,free,opensource,Devoo.net,Delimited Files,Import/Export">
   <meta NAME="copyright" CONTENT="2005-{{ site.time | date: '%Y' }} to Devoo - Marcos Meli. All Rights Reserved.">
+{% if page.description %}
+  <meta NAME="description"        content="{{ page.description }}" />
+{% else %}
+  <meta NAME="description"        content="{{ site.description }}" />
+{% endif %}
 
 
   {% if page.redirect %}<meta http-equiv="refresh" content="0; url={{ page.redirect }}" /> {% endif %}
