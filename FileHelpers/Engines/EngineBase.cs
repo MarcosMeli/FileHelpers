@@ -257,18 +257,28 @@ namespace FileHelpers
 
         private void CreateRecordOptions()
         {
-            if (RecordInfo.IsDelimited)
-                Options = new DelimitedRecordOptions(RecordInfo);
-            else
-                Options = new FixedRecordOptions(RecordInfo);
+            Options = CreateRecordOptionsCore(RecordInfo);
+        }
 
-            for (int index = 0; index < Options.Fields.Count; index++)
+        internal static RecordOptions CreateRecordOptionsCore(IRecordInfo info)
+        {
+            RecordOptions options;
+
+            if (info.IsDelimited)
+                options = new DelimitedRecordOptions(info);
+            else
+                options = new FixedRecordOptions(info);
+
+            for (int index = 0; index < options.Fields.Count; index++)
             {
-                var field = Options.Fields[index];
-                field.Parent = Options;
+                var field = options.Fields[index];
+                field.Parent = options;
                 field.ParentIndex = index;
             }
+
+            return options;
         }
+
 
         /// <summary>
         /// Allows you to change some record layout options at runtime

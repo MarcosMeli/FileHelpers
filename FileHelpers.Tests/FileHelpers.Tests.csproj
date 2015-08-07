@@ -246,7 +246,8 @@
     <Compile Include="Tests\Common\MultiLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\MultiRecord.cs">
+    <Compile Include="Tests\Multirecord\MultiRecord2.cs" />
+    <Compile Include="Tests\Multirecord\MultiRecord.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\NullValues.cs">
