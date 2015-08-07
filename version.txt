@@ -1,4 +1,4 @@
-3.1.5|2015-08-6|https://github.com/MarcosMeli/FileHelpers/releases/tag/3.1.5|https://github.com/MarcosMeli/FileHelpers/releases/tag/3.1.5|
+3.1.5|2015-08-06|http://www.filehelpers.net/download/|http://www.filehelpers.net/download/|
 "3.1.5 Release"|"
  
 "
