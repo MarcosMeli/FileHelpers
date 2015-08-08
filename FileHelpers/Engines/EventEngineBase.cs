@@ -18,7 +18,7 @@ namespace FileHelpers
         where T : class
     {
         /// <summary>
-        /// Define an event based on an egine, based on a record
+        /// Define an event based on an engine, based on a record
         /// </summary>
         /// <param name="recordType">Type of the record</param>
         protected EventEngineBase(Type recordType)
