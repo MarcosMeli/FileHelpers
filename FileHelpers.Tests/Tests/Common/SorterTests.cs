@@ -29,7 +29,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void Sort6xthid()
         {
-            SortMb<OrdersTab>(4*MegaByte, 0.3*MegaByte);
+            SortMb<OrdersTab>(4*MegaByte, (int) (0.3*MegaByte));
         }
 
         [Test]
