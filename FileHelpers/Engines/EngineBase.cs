@@ -17,8 +17,9 @@ namespace FileHelpers
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class EngineBase
     {
-        internal const int DefaultReadBufferSize = 100*1024;
-        internal const int DefaultWriteBufferSize = 100*1024;
+        // The default is 4k we use 16k
+        internal const int DefaultReadBufferSize = 16 * 1024;
+        internal const int DefaultWriteBufferSize = 16 * 1024;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal IRecordInfo RecordInfo { get; private set; }
