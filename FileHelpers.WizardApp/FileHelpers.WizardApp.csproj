@@ -139,6 +139,7 @@
     <None Include="Resources\Union.png" />
     <None Include="Resources\LeftOnly.png" />
     <None Include="Resources\RightOnly.png" />
+    <None Include="Resources\donate1.jpg" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />

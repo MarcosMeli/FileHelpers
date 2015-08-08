@@ -13,7 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes> -->
     <copyright>Marcos Meli - Devoo</copyright>
-    <tags>FileHelpers, Roslyn, FileHelpersAnalyzer, Analyzers, Analyzer</tags>
+    <tags>FileHelpers, Roslyn, FileHelpersAnalyzer, Analyzers, Analyzer, FileHelper, QuickFix</tags>
     <dependencies>
     </dependencies>
 

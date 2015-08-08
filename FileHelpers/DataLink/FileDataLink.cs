@@ -12,9 +12,6 @@ namespace FileHelpers.DataLink
     /// </summary>
     /// <remarks>
     /// <para>Uses an <see cref="DataStorage"/> to accomplish this task.</para>
-    /// <para>See in the <a href="class_diagram.html">Class Diagram</a>
-    /// and in the <a href="example_datalink.html">DataLink Sample</a>
-    /// for more Info.</para>
     /// </remarks>
 
     public sealed class FileDataLink
