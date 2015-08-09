@@ -90,12 +90,12 @@
     <Compile Include="Examples\10.QuickStart\70.Autoproperties.cs" />
     <Compile Include="Examples\50.Advanced\50.SmartFormatDetector.cs" />
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
-    <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
+    <Compile Include="Examples\50.Advanced\30.MultiRecordEngine.cs" />
     <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
-    <Compile Include="Examples\90.MasterDetail\10.SimpleMasterDetail.cs" />
-    <Compile Include="Examples\90.MasterDetail\20.MasterDetailSample2.cs" />
+    <Compile Include="Examples\90.MasterDetail\10.MasterDetailCustomSelector.cs" />
+    <Compile Include="Examples\90.MasterDetail\20.MasterDetailCommonSelector.cs" />
     <Compile Include="Examples\ExamplesGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
