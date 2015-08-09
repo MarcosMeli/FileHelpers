@@ -12,13 +12,17 @@ breadcrumbtext2: ErrorHandling
 ---
 
 <div style='margin-top: -10px; opacity: 0.7;'>
-<div class='waves-effect waves-dark' style='float: left;'>
-    {% if 'ErrorMode.ThrowException' != '' %}<a href='/example/ErrorHandling/ErrorMode.ThrowException' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: ErrorMode.ThrowException</a> {% endif %}
-</div>
-<div class='waves-effect waves-dark' style='float: right;'>
-{% if 'ErrorMode SaveAndContinue' != '' %}<a href='/example/ErrorHandling/ErrorMode.SaveAndContinue' style='color: #EE6930;'>Next: ErrorMode SaveAndContinue <i class='fa fa-arrow-right'></i></a> {% endif %}
-</div>
+{% if 'ErrorMode.ThrowException' != '' %}
+  <div class='waves-effect waves-dark' style='float: left;'>
+    <a title='Previous Example' href='/example/ErrorHandling/ErrorMode.ThrowException' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: ErrorMode.ThrowException</a>
+  </div>
+{% endif %}
 
+{% if 'ErrorMode SaveAndContinue' != '' %}
+  <div class='waves-effect waves-dark' style='float: right;'>
+    <a title='Next Example' href='/example/ErrorHandling/ErrorMode.SaveAndContinue' style='color: #EE6930;'>Next: ErrorMode SaveAndContinue <i class='fa fa-arrow-right'></i></a>
+  </div>
+{% endif %}
 </div>
 
 <div class='waves-effect waves-dark' style='padding: 6px; text-align: right; float: right;clear: both; margin-bottom: -30px; margin-top:-70px;'>

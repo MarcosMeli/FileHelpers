@@ -12,13 +12,17 @@ breadcrumbtext2: Attributes
 ---
 
 <div style='margin-top: -10px; opacity: 0.7;'>
-<div class='waves-effect waves-dark' style='float: left;'>
-    {% if 'FieldOrder' != '' %}<a href='/example/Attributes/FieldOrder' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: FieldOrder</a> {% endif %}
-</div>
-<div class='waves-effect waves-dark' style='float: right;'>
-{% if 'Enum Converter' != '' %}<a href='/example/Converters/EnumConverter' style='color: #EE6930;'>Next: Enum Converter <i class='fa fa-arrow-right'></i></a> {% endif %}
-</div>
+{% if 'FieldOrder' != '' %}
+  <div class='waves-effect waves-dark' style='float: left;'>
+    <a title='Previous Example' href='/example/Attributes/FieldOrder' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: FieldOrder</a>
+  </div>
+{% endif %}
 
+{% if 'Enum Converter' != '' %}
+  <div class='waves-effect waves-dark' style='float: right;'>
+    <a title='Next Example' href='/example/Converters/EnumConverter' style='color: #EE6930;'>Next: Enum Converter <i class='fa fa-arrow-right'></i></a>
+  </div>
+{% endif %}
 </div>
 
 <div class='waves-effect waves-dark' style='padding: 6px; text-align: right; float: right;clear: both; margin-bottom: -30px; margin-top:-70px;'>

@@ -12,13 +12,17 @@ breadcrumbtext2: MasterDetail
 ---
 
 <div style='margin-top: -10px; opacity: 0.7;'>
-<div class='waves-effect waves-dark' style='float: left;'>
-    {% if 'Master Detail Custom Selector' != '' %}<a href='/example/MasterDetail/MasterDetailCustomSelector' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: Master Detail Custom Selector</a> {% endif %}
-</div>
-<div class='waves-effect waves-dark' style='float: right;'>
-{% if '' != '' %}<a href='' style='color: #EE6930;'>Next:  <i class='fa fa-arrow-right'></i></a> {% endif %}
-</div>
+{% if 'Master Detail Custom Selector' != '' %}
+  <div class='waves-effect waves-dark' style='float: left;'>
+    <a title='Previous Example' href='/example/MasterDetail/MasterDetailCustomSelector' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: Master Detail Custom Selector</a>
+  </div>
+{% endif %}
 
+{% if '' != '' %}
+  <div class='waves-effect waves-dark' style='float: right;'>
+    <a title='Next Example' href='' style='color: #EE6930;'>Next:  <i class='fa fa-arrow-right'></i></a>
+  </div>
+{% endif %}
 </div>
 
 <div class='waves-effect waves-dark' style='padding: 6px; text-align: right; float: right;clear: both; margin-bottom: -30px; margin-top:-70px;'>

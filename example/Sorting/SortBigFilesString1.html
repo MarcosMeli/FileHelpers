@@ -12,13 +12,17 @@ breadcrumbtext2: Sorting
 ---
 
 <div style='margin-top: -10px; opacity: 0.7;'>
-<div class='waves-effect waves-dark' style='float: left;'>
-    {% if 'Sort Big File with Record Class' != '' %}<a href='/example/Sorting/SortBigFiles' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: Sort Big File with Record Class</a> {% endif %}
-</div>
-<div class='waves-effect waves-dark' style='float: right;'>
-{% if 'Sort Big File without Record Class 2' != '' %}<a href='/example/Sorting/SortBigFilesString2' style='color: #EE6930;'>Next: Sort Big File without Record Class 2 <i class='fa fa-arrow-right'></i></a> {% endif %}
-</div>
+{% if 'Sort Big File with Record Class' != '' %}
+  <div class='waves-effect waves-dark' style='float: left;'>
+    <a title='Previous Example' href='/example/Sorting/SortBigFiles' style='color: #EE6930;'><i class='fa fa-arrow-left'></i> Previous: Sort Big File with Record Class</a>
+  </div>
+{% endif %}
 
+{% if 'Sort Big File without Record Class 2' != '' %}
+  <div class='waves-effect waves-dark' style='float: right;'>
+    <a title='Next Example' href='/example/Sorting/SortBigFilesString2' style='color: #EE6930;'>Next: Sort Big File without Record Class 2 <i class='fa fa-arrow-right'></i></a>
+  </div>
+{% endif %}
 </div>
 
 <div class='waves-effect waves-dark' style='padding: 6px; text-align: right; float: right;clear: both; margin-bottom: -30px; margin-top:-70px;'>
