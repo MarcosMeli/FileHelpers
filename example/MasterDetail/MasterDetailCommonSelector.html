@@ -1,42 +1,19 @@
 ---
 layout: default
-title: Master Detail sample
+title: Master Detail Common Selector
 description: Show how to implement Master detail reading where record contains characters
-permalink: /example/MasterDetail/MasterDetailSample2/
-editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Examples/Examples/90.MasterDetail/20.MasterDetailSample2.cs'
+permalink: /example/MasterDetail/MasterDetailCommonSelector/
+editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Examples/Examples/90.MasterDetail/20.MasterDetailCommonSelector.cs'
 ---
 
 <div class='card-panel waves-effect waves-dark white' style='padding: 10px; text-align: right; float: right;'>
     <span class=''>Auto generated from code, click in the <a href='{{ page.editlink }}'><i class='mdi-editor-mode-edit'></i> button</a> to edit it here</span>
 </div>
 
-<h4>MasterDetail: Master Detail sample</h4>
+<h4>MasterDetail: Master Detail Common Selector</h4>
 <div class='indent'>
   <h5>Show how to implement Master detail reading where record contains characters</h5>
   <div class='indent'>
-
-<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
-{% highlight csharp %}
-
-/// <summary>
-/// Run a record through engine using a Common selector where master contains a characrter to create a master detail input
-/// </summary>
-public override void Run()
-{
-    var engine = new MasterDetailEngine<Customers, Orders>
-        (CommonSelector.MasterIfContains, "@");
-    // to Read use:
-    var res = engine.ReadFile("Input.txt");
-
-    // to Write use:
-    engine.WriteFile("Output.txt", res);
-}
-
-
-{%  endhighlight %}
-</div>
-
-
 
 <div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
@@ -53,15 +30,18 @@ public override void Run()
 
 
 
-<div class='highlight-title example-output'> Output.txt </div><div class='example-output-high'>
+<div class='highlight-title example-code'> RunEngine.cs </div><div class='example-code-high'>
 {% highlight csharp %}
-@ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
-10248|ALFKI|5|04071996|01081996|16071996|3|32.38
-10249|ALFKI|6|05071996|16081996|10071996|1|11.61
-10251|ALFKI|3|08071996|05081996|15071996|1|41.34
-@ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
-10252|ANATR|4|09071996|06081996|11071996|2|51.3
-@ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
+
+var engine = new MasterDetailEngine<Customers, Orders>
+    (CommonSelector.MasterIfContains, "@");
+
+// to Read use:
+var res = engine.ReadFile("Input.txt");
+
+// to Write use:
+engine.WriteFile("Output.txt", res);
+
 {%  endhighlight %}
 </div>
 
@@ -112,6 +92,20 @@ public class Orders
 }
 
 
+{%  endhighlight %}
+</div>
+
+
+
+<div class='highlight-title example-output'> Output.txt </div><div class='example-output-high'>
+{% highlight csharp %}
+@ALFKI|Alfreds Futterkiste|Maria Anders|Sales Representative|Obere Str. 57|Berlin|Germany
+10248|ALFKI|5|04071996|01081996|16071996|3|32.38
+10249|ALFKI|6|05071996|16081996|10071996|1|11.61
+10251|ALFKI|3|08071996|05081996|15071996|1|41.34
+@ANATR|Ana Trujillo Emparedados y helados|Ana Trujillo|Owner|Avda. de la Constitución 2222|México D.F.|Mexico
+10252|ANATR|4|09071996|06081996|11071996|2|51.3
+@ANTON|Antonio Moreno Taquería|Antonio Moreno|Owner|Mataderos  2312|México D.F.|Mexico
 {%  endhighlight %}
 </div>
 

@@ -15,20 +15,22 @@ editlink:  'https://github.com/MarcosMeli/FileHelpers/edit/master/FileHelpers.Ex
   <h5>Shows how to sort a big file without a record class</h5>
   <div class='indent'>
 
+<p>Implements <a href="http://en.wikipedia.org/wiki/External_sorting">External Sorting (wikipedia)</a></p>
+
+
+<p>You don't need to declare a record class to sort a file, you can sort with a compare method</p>
+
+
 <div class='highlight-title example-code'> SortingWithoutRecord.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
-public override void Run()
-{
-    // Implements http://en.wikipedia.org/wiki/External_sorting
-    // Uses the comparison in the construct
 
-    // Sort comparing the raw lines
-    var sorter = new BigFileSorter((x, y) => x.CompareTo(y));
-    sorter.DeleteTempFiles = true;
-    sorter.Sort("unsorted.txt", "sorted.txt");
-}
+// Sort comparing the raw lines
+var sorter = new BigFileSorter((x, y) =>
+        string.Compare(x, y, StringComparison.Ordinal));
 
+
+sorter.Sort("unsorted.txt", "sorted.txt");
 
 {%  endhighlight %}
 </div>
