@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers</id>
-        <version>3.0.5</version>
+        <version>3.2.0</version>
         <title>FileHelpers</title>
         <authors>Marcos Meli and Contributors</authors>
         <owners>Marcos Meli</owners>

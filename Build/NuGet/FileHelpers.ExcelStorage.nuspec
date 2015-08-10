@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers.ExcelStorage</id>
-        <version>3.0.5</version>
+        <version>3.2.0</version>
         <title>FileHelpers.ExcelStorage</title>
         <authors>Marcos Meli and Contributors</authors>
         <owners>Marcos Meli</owners>
@@ -20,7 +20,7 @@
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>        
         <dependencies>
-            <dependency id="FileHelpers" version="-VisibleVersion-" />
+            <dependency id="FileHelpers" version="3.2.0" />
         </dependencies>
     </metadata>
     <files>
