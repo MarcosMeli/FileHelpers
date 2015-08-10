@@ -11,12 +11,30 @@ properties {
 task default -depends pack
 
 task version {
-    copy VersionInfo.cs ..\FileHelpers
-    exec { ..\Libs\FileReplace.exe "..\FileHelpers\VersionInfo.cs" "-CustomVersion-" "$FullCurrentVersion" }
-    exec { ..\Libs\FileReplace.exe "..\FileHelpers\VersionInfo.cs" "-VisibleVersion-" "$VisibleVersion" }
+    Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' ($AssemblyVersion+'.0') $FullCurrentVersion $VisibleVersion
     exec { ..\Libs\FileReplace.exe "..\Build\NuGet\FileHelpers.ExcelStorage.nuspec" "-VisibleVersion-" "$VisibleVersion" }
     exec { ..\Libs\FileReplace.exe "..\Build\NuGet\FileHelpers.ExcelNPOIStorage.nuspec" "-VisibleVersion-" "$VisibleVersion" }
 }
+
+function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $fileVersionNumber, [string] $informationalVersionNumber)
+{
+    $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $informationalVersionPattern = 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $assemblyVersion = 'AssemblyVersion("' + $assemblyVersionNumber + '")';
+    $fileVersion = 'AssemblyFileVersion("' + $fileVersionNumber + '")';
+    $informationalVersion = 'AssemblyInformationalVersion("' + $informationalVersionNumber + '")';
+    
+        Write-Host $filename
+        $filename + ' -> ' + $version
+    
+        (Get-Content $filename) | ForEach-Object {
+            % {$_ -replace $assemblyVersionPattern, $assemblyVersion } |
+            % {$_ -replace $fileVersionPattern, $fileVersion } |
+            % {$_ -replace $informationalVersionPattern, $informationalVersion }
+        } | Set-Content $filename
+}
+
 
 task common -depends version {
     "##teamcity[buildNumber '" + $VisibleVersion + "']"
