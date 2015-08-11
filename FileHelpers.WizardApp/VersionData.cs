@@ -52,8 +52,8 @@ namespace FileHelpers.WizardApp
             }
 
             VersionData[] versions = null;
-            FileHelperEngine engine = new FileHelperEngine(typeof (VersionData));
-            versions = (VersionData[]) engine.ReadString(dataString);
+            var engine = new FileHelperEngine<VersionData>();
+            versions = engine.ReadString(dataString);
 
             return versions[versions.Length - 1];
         }

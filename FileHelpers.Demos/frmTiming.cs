@@ -74,8 +74,6 @@ namespace FileHelpersSamples
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(362, 8);
-            this.pictureBox3.Name = "pictureBox3";
             // 
             // cmdCreateFile
             // 
@@ -289,7 +287,6 @@ namespace FileHelpersSamples
             this.Name = "frmTimming";
             this.Text = "FileHelpers Library - Time And Stress Tests";
             this.Closed += new System.EventHandler(this.frmTimming_Closed);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.cmdCreateFile, 0);
             this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.cmdRun, 0);

@@ -12,18 +12,22 @@ namespace ExamplesFx
     public class BigFileSortString1
         : ExampleBase
     {
-        //-> File:SortingWithoutRecord.cs
+        //-> Implements <a href="http://en.wikipedia.org/wiki/External_sorting">External Sorting (wikipedia)</a>
+
+        //-> You don't need to declare a record class to sort a file, you can sort with a compare method
+
         public override void Run()
         {
-            // Implements http://en.wikipedia.org/wiki/External_sorting
-            // Uses the comparison in the construct
+            //-> File:SortingWithoutRecord.cs
 
-			// Sort comparing the raw lines
-			var sorter = new BigFileSorter((x, y) => x.CompareTo(y));
-            sorter.DeleteTempFiles = true;
+            // Sort comparing the raw lines
+            var sorter = new BigFileSorter((x, y) =>
+                    string.Compare(x, y, StringComparison.Ordinal));
+
+
             sorter.Sort("unsorted.txt", "sorted.txt");
+            //-> /File
         }
 
-        //-> /File
     }
 }

@@ -65,11 +65,6 @@ namespace FileHelpersSamples
             this.txtSortedBy = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(552, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            // 
             // grid1
             // 
             this.grid1.CommandsVisibleIfAvailable = true;
@@ -241,7 +236,6 @@ namespace FileHelpersSamples
             this.Name = "frmSort";
             this.Text = "Sorting Example";
             this.Load += new System.EventHandler(this.frmSort_Load);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.grid1, 0);
             this.Controls.SetChildIndex(this.grid2, 0);
             this.Controls.SetChildIndex(this.cmdRun, 0);

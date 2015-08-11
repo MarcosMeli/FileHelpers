@@ -198,6 +198,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VersionData.cs" />
+    <None Include="Resources\donate.jpg" />
     <EmbeddedResource Include="frmDataLinkSample.resx">
       <DependentUpon>frmDataLinkSample.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using FileHelpers.Events;
+using FileHelpers.Options;
 
 namespace FileHelpers.MasterDetail
 {
@@ -78,6 +79,7 @@ namespace FileHelpers.MasterDetail
         {
             mMasterType = masterType;
             mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType);
+            MasterOptions = CreateRecordOptionsCore(mMasterInfo);
 
             var sel = new MasterDetailEngine<object, object>.CommonSelectorInternal(action,
                 selector,
@@ -86,6 +88,13 @@ namespace FileHelpers.MasterDetail
         }
 
         #endregion
+
+
+        /// <summary>
+        /// Allows you to change some record layout options at runtime
+        /// </summary>
+        public RecordOptions MasterOptions { get; private set; }
+
 
         #region CommonSelectorInternal
 

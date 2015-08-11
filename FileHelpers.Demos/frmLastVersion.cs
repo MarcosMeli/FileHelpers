@@ -82,8 +82,6 @@ namespace FileHelpersSamples
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(490, 7);
-            this.pictureBox3.Name = "pictureBox3";
             // 
             // txtHistory
             // 
@@ -275,7 +273,6 @@ namespace FileHelpersSamples
             this.Text = "FileHelpers - New Version Info";
             this.Load += new System.EventHandler(this.frmLastVersion_Load);
             this.Controls.SetChildIndex(this.txtHistory, 0);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.txtDescription, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);

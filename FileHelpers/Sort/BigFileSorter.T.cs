@@ -30,12 +30,12 @@ namespace FileHelpers
         /// <summary>
         /// Maximum block size,  50 meg
         /// </summary>
-        private const int MaxBufferSize = 50*1024*1024;
+        private const int MaxBufferSize = 40*1024*1024;
 
         /// <summary>
-        /// Minimum block size 2 meg
+        /// Minimum block size 0.5 meg
         /// </summary>
-        private const int MinBlockSize = 2*1024*1024;
+        private const int MinBlockSize = 1*1024*1024 / 2;
 
         /// <summary>
         /// Comparison operator for this sort

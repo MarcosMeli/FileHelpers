@@ -12,7 +12,7 @@ namespace ExamplesFx
         //-> Name:Before/After Write Event Handling
         //-> Description:Show how to implement write events
 
-		//-> File:Input.txt
+		//-> FileIn:Input.txt
 		/*10249   TOMSP  05071996      11.61
 10250   HANAR  08071996       0.00
 10251   VICTE  08071996      41.34
@@ -23,7 +23,7 @@ namespace ExamplesFx
 		//-> /File
 
 		//-> File:Report layout.cs
-		[FixedLengthRecord(FixedMode.AllowVariableLength)]
+        [FixedLengthRecord]
 		[IgnoreEmptyLines]
 		public class OrdersFixed
 		{
@@ -68,13 +68,12 @@ namespace ExamplesFx
 		private void AfterWriteEvent(EngineBase engine, AfterWriteEventArgs<OrdersFixed> e)
 		{
 			//  Hide a line
-			if (e.Record.CustomerID == "HANAR")
-				e.RecordLine = "Insufficient Access";
+			if (e.Record.CustomerID.Trim() == "HANAR")
+				e.RecordLine = "-- Insufficient Access";
 		}
         //-> /File
 
         //-> FileOut:output.txt
-        //-> /File
 
 		//-> <b>Important</b>You can use lambda expressions instead of event methods, for example:
 

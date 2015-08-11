@@ -68,7 +68,6 @@ namespace FileHelpersSamples
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(578, 7);
             // 
             // txtData
             // 
@@ -195,7 +194,6 @@ namespace FileHelpersSamples
             this.Controls.Add(this.textBox1);
             this.Name = "frmEasyToDataTable";
             this.Text = "FileHelpers - Read as DataTable";
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtData, 0);

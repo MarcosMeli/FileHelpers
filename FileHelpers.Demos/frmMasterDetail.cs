@@ -84,11 +84,6 @@ namespace FileHelpersSamples
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(640, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            // 
             // txtClass
             // 
             this.txtClass.Font = new System.Drawing.Font("Courier New",
@@ -342,7 +337,6 @@ public class Orders
             this.Controls.Add(this.label3);
             this.Name = "frmMasterDetail";
             this.Text = "FileHelpers - MasterDetail";
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtClass, 0);
             this.Controls.SetChildIndex(this.txtData, 0);

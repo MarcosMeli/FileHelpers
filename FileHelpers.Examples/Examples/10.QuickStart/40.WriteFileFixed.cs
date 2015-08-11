@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using FileHelpers;
 
-// Done
 
 namespace ExamplesFx
 {
@@ -14,11 +14,11 @@ namespace ExamplesFx
     public class WriteFileFixed
         : ExampleBase
     {
-		//-> To write a fixed length file like this:
+        //-> To write a fixed length file like this:
 
-		//-> FileOut: Output.txt
+        //-> FileOut: Output.txt
 
-		// You define the record mapping class
+        // You define the record mapping class
 
         //-> File:RecordClass.cs
         [FixedLengthRecord()]
@@ -38,7 +38,7 @@ namespace ExamplesFx
 
         //-> /File
 
-		//-> Now just create some records and write them with the Engine
+        //-> Now just create some records and write them with the Engine
 
         public override void Run()
         {

@@ -487,6 +487,14 @@ namespace FileHelpers.Tests
 
         public partial class Good
         {
+            public partial class Accounts : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "Accounts.txt");
+                }
+            }
+
             public partial class ArrayFields : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -716,6 +724,14 @@ namespace FileHelpers.Tests
                 protected override string GetFullPathName()
                 {
                     return System.IO.Path.Combine("Good", "CustomersVerticalBarOlds.txt");
+                }
+            }
+
+            public partial class CustomersVerticalBarOptions : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "CustomersVerticalBarOptions.txt");
                 }
             }
 
@@ -1874,6 +1890,13 @@ namespace FileHelpers.Tests
 
         public partial class Good
         {
+            private static ClassesFileTest.Good.Accounts mAccounts = new ClassesFileTest.Good.Accounts();
+
+            public static ClassesFileTest.Good.Accounts Accounts
+            {
+                get { return mAccounts; }
+            }
+
             private static ClassesFileTest.Good.ArrayFields mArrayFields = new ClassesFileTest.Good.ArrayFields();
 
             public static ClassesFileTest.Good.ArrayFields ArrayFields
@@ -2075,6 +2098,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.CustomersVerticalBarOlds CustomersVerticalBarOlds
             {
                 get { return mCustomersVerticalBarOlds; }
+            }
+
+            private static ClassesFileTest.Good.CustomersVerticalBarOptions mCustomersVerticalBarOptions = new ClassesFileTest.Good.CustomersVerticalBarOptions();
+
+            public static ClassesFileTest.Good.CustomersVerticalBarOptions CustomersVerticalBarOptions
+            {
+                get { return mCustomersVerticalBarOptions; }
             }
 
             private static ClassesFileTest.Good.DateFormat1 mDateFormat1 = new ClassesFileTest.Good.DateFormat1();

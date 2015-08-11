@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
+using FileHelpers.Options;
 
 namespace FileHelpers
 {
@@ -39,6 +40,7 @@ namespace FileHelpers
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IRecordInfo[] mMultiRecordInfo;
+        private readonly RecordOptions[] mMultiRecordOptions;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Hashtable mRecordInfoHash;
@@ -95,6 +97,8 @@ namespace FileHelpers
             mTypes = recordTypes;
             mMultiRecordInfo = new IRecordInfo[mTypes.Length];
             mRecordInfoHash = new Hashtable(mTypes.Length);
+            mMultiRecordOptions = new RecordOptions[mTypes.Length];
+
             for (int i = 0; i < mTypes.Length; i++) {
                 if (mTypes[i] == null)
                     throw new BadUsageException("The type at index " + i.ToString() + " is null.");
@@ -105,81 +109,16 @@ namespace FileHelpers
                 }
 
                 mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
+                mMultiRecordOptions[i] = CreateRecordOptionsCore(mMultiRecordInfo[i]);
+
                 mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+
             }
             mRecordSelector = recordSelector;
         }
 
         #endregion
-
-        #region "  Events  "
-
-        ///// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        //public event EventHandler<BeforeReadRecordEventArgs> BeforeReadRecord;
-        ///// <summary>Called in read operations just after the record was created from a record string.</summary>
-        //public event EventHandler<AfterReadRecordEventArgs> AfterReadRecord;
-        ///// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        //public event EventHandler<BeforeWriteRecordEventArgs> BeforeWriteRecord;
-        ///// <summary>Called in write operations just after the record was converted to a string.</summary>
-        //public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
-
-
-        //private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
-        //{
-        //    if (BeforeReadRecord != null)
-        //    {
-        //        BeforeReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private bool OnAfterReadRecord(string line, object record)
-        //{
-        //    if (mRecordInfo.NotifyRead)
-        //        ((INotifyRead)record).AfterRead(this, line);
-
-        //    if (AfterReadRecord != null)
-        //    {
-        //        AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
-        //        AfterReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-        //    return false;
-        //}
-
-
-        //private bool OnBeforeWriteRecord(object record)
-        //{
-        //    if (mRecordInfo.NotifyWrite)
-        //        ((INotifyWrite)record).BeforeWrite(this);
-
-        //    if (BeforeWriteRecord != null)
-        //    {
-        //        BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
-        //        BeforeWriteRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private string OnAfterWriteRecord(string line, object record)
-        //{
-        //    if (AfterWriteRecord != null)
-        //    {
-        //        AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-        //        AfterWriteRecord(this, e);
-        //        return e.RecordLine;
-        //    }
-        //    return line;
-        //}
-
-        #endregion
+        
 
         #region "  ReadFile  "
 
