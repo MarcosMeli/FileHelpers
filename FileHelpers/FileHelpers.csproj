@@ -172,7 +172,7 @@
     <Compile Include="Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\FileHelpersExtensions.cs" />
+    <Compile Include="Core\ExtensionsFileHelpers.cs" />
     <Compile Include="Core\RecordInfo.Factory.cs" />
     <Compile Include="Core\ExtractInfo.cs">
       <SubType>Code</SubType>

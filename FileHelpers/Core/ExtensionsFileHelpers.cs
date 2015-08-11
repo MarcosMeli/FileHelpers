@@ -7,9 +7,9 @@ namespace FileHelpers
 {
     /// <summary>
     /// Set of Extension methods to be exposed to end users 
-    /// of the FileHelper API.
+    /// of the FileHelpers API.
     /// </summary>
-    public static class FileHelpersExtensions
+    public static class ExtensionsFileHelpers
     {
         /// <summary>
         /// Generic extension method for arrays that returns the array records
