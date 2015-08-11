@@ -64,11 +64,6 @@ namespace FileHelpersSamples
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(568, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            // 
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)),
@@ -249,7 +244,6 @@ private void ProgressChange(ProgressEventArgs e)
             this.Controls.Add(this.cmdRun);
             this.Name = "frmProgressSample";
             this.Text = "FileHelpers - Progress Example";
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.cmdRun, 0);
             this.Controls.SetChildIndex(this.prog1, 0);
             this.Controls.SetChildIndex(this.prog3, 0);

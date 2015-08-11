@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers.ExcelStorage</id>
-        <version>3.0.5</version>
+        <version>3.2.0</version>
         <title>FileHelpers.ExcelStorage</title>
-        <authors>Marcos Meli</authors>
+        <authors>Marcos Meli and Contributors</authors>
         <owners>Marcos Meli</owners>
         <licenseUrl>http://www.filehelpers.net/#license</licenseUrl>
         <projectUrl>http://www.filehelpers.net</projectUrl>
         <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</description>
+        <description>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated) www.filehelpers.net</description>
         <summary>Extension for FileHelpers to support Excel read/write operations, using Interop Assemblies (deprecated)</summary>
+        <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
         <copyright>Marcos Meli - Devoo</copyright>
-                <tags>Excel Import Export</tags>
+        <tags>Excel, Import, Export, NPOI, FileHelpers, FileHelper</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>        
         <dependencies>
-            <dependency id="FileHelpers" version="-VisibleVersion-" />
+            <dependency id="FileHelpers" version="3.2.0" />
         </dependencies>
     </metadata>
     <files>

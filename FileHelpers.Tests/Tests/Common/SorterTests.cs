@@ -27,9 +27,9 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
-        public void Sort6x2()
+        public void Sort6xthid()
         {
-            SortMb<OrdersTab>(4*MegaByte, 2*MegaByte);
+            SortMb<OrdersTab>(4*MegaByte, (int) (0.3*MegaByte));
         }
 
         [Test]
@@ -44,12 +44,7 @@ namespace FileHelpers.Tests.CommonTests
             SortMb<OrdersTab>(4*MegaByte, 4*MegaByte);
         }
 
-        [Test]
-        public void Sort6x7()
-        {
-            SortMb<OrdersTab>(4*MegaByte, 7*MegaByte);
-        }
-
+      
         [Test]
         public void Sort6x20()
         {
@@ -58,7 +53,7 @@ namespace FileHelpers.Tests.CommonTests
 
         [Test]
         [Category("NotOnMono")]
-        public void Sort6x2Reverse()
+        public void Sort4x20Reverse()
         {
             SortMb<OrdersTab>(4*MegaByte, 20*MegaByte, false);
         }
@@ -173,7 +168,10 @@ namespace FileHelpers.Tests.CommonTests
                     var line1 = sr1.ReadLine();
                     var line2 = sr2.ReadLine();
 
-                    Check.That(line1).IsEqualTo(line2);
+                    if (line1 != line2)
+                    {
+                        Check.That(line1).IsEqualTo(line2);
+                    }
 
                     if (line1 == null)
                         break;

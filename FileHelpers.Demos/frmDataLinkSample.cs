@@ -56,11 +56,6 @@ namespace FileHelpersSamples
             this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(664, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            // 
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)),
@@ -173,7 +168,6 @@ private string GetInsertSql(object record)
             this.Name = "frmDataLinkSample";
             this.Text = "Example of the DataLink Feature";
             this.Load += new System.EventHandler(this.frmDataLinkSample_Load);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.cmdRun, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.richTextBox2, 0);

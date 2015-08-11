@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using FileHelpers;
 
-// Done
 
 namespace ExamplesFx
 {
@@ -43,7 +42,7 @@ namespace ExamplesFx
 
         //-> /File
 
-		//-> Read the values and write them to the Console
+        //-> Read the values and write them to the Console
         public override void Run()
         {
             //-> File:Example.cs
