@@ -487,6 +487,14 @@ namespace FileHelpers.Tests
 
         public partial class Good
         {
+            public partial class Accounts : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "Accounts.txt");
+                }
+            }
+
             public partial class ArrayFields : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -1882,6 +1890,13 @@ namespace FileHelpers.Tests
 
         public partial class Good
         {
+            private static ClassesFileTest.Good.Accounts mAccounts = new ClassesFileTest.Good.Accounts();
+
+            public static ClassesFileTest.Good.Accounts Accounts
+            {
+                get { return mAccounts; }
+            }
+
             private static ClassesFileTest.Good.ArrayFields mArrayFields = new ClassesFileTest.Good.ArrayFields();
 
             public static ClassesFileTest.Good.ArrayFields ArrayFields

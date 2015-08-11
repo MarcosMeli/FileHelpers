@@ -9,7 +9,7 @@ namespace FileHelpers
     /// Set of Extension methods to be exposed to end users 
     /// of the FileHelper API.
     /// </summary>
-    public static class FileHelperExtensions
+    public static class FileHelpersExtensions
     {
         /// <summary>
         /// Generic extension method for arrays that returns the array records
@@ -25,17 +25,5 @@ namespace FileHelpers
             return ri.Operations.RecordsToDataTable(records);
         }
     }
-}
-
-
-namespace System.Runtime.CompilerServices
-{
-    /// <summary>
-    /// This is needed per http://stackoverflow.com/questions/1522605/using-extension-methods-in-net-2-0
-    /// This is needed because of the target framework of the project being .NET 2.0. 
-    /// Remove this is the target framework is changed to a higher .NET version.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method)]
-    public sealed class ExtensionAttribute : Attribute { }
 }
 
