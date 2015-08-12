@@ -20,10 +20,15 @@
   		<p>There are a lot of changes from that version <a href="/changelog/">see changelog</a>
 
   		<p>The breaking changes are:</a>
-<div class="indent">
-<span class="code">[FieldIgnored] => [FieldHidden]</span>
 
-      <p>The attribute was renamed to align with the real meaning</a>
+<div class="indent">
+
+<h5 class="code">[FieldIgnored] => [FieldHidden]</h5>
+      <p class="indent">The attribute was renamed to align with the real meaning</a>
+
+<h5 class="code">IComparableRecord&lt;T> => IComparable&lt;T></h5>
+     <p class="indent">We will remove the custom compararer and use the framework one</a>
+
 
 </div>
   		</div>
@@ -35,15 +40,18 @@
       <p>This release has little breaking changes:</a>
 
 <div class="indent">
-<span class="code">[FieldNotInFile] => [FieldHidden]</span>
 
-      <p>The attribute was renamed to align with the real meaning</a>
+  <h5 class="code">[FieldIgnored] => [FieldHidden]</h5>
+        <p class="indent">The attribute was renamed to align with the real meaning</a>
 
-      <h6><span class="code">INotifyRead</span> and <span class="code">INotifyWrite</span> now are non generic</h6>
+  <h5 class="code">IComparableRecord&lt;T> => IComparable&lt;T></h5>
+       <p class="indent">We will remove the custom compararer and use the framework one</a>
+
+<h5><span class="code">INotifyRead</span> and <span class="code">INotifyWrite</span> now are non generic</h5>
       <p>In older versions when u implemented notifications via interfaces you must provide the same type of Record
         to get proper notification, from 3.1 you use them with out &lt;&gt; and the same is valid for the method signature:</a>
 
-        <p>Here the previous and new code</p>
+      <p>Check the example</p>
 
     </div>
       </div>

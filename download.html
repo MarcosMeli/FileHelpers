@@ -2,31 +2,42 @@
 layout: default
 title: Download Install
 permalink: /download/
+description: FileHelpers Download - Get the last version of the library
 ---
 
-<h4>Installation via NuGet (recommended)</h4>
+<h4>NuGet distribution (recommended)</h4>
 
 <div class="indent">
 
 <div class="row">
 
-<div class="col s12">
+<div class="col s6">
+
+<a href="https://www.nuget.org/packages/FileHelpers/">www.nuget.org/packages/FileHelpers/</a>
 
 <p><b>Manual install via Console</b> </p>
 
 <div class="indent">
 {% highlight PowerShell %}
- Install-Package FileHelpers -Version {{ site.libversion }} -Pre
+ Install-Package FileHelpers
+{% endhighlight %}
+
+<p>For Excel Storage</p>
+{% highlight PowerShell %}
+ Install-Package FileHelpers.ExcelNPOIStorage
+{% endhighlight %}
+
+<p>Legacy Support (try to use NPOI version instead)</p>
+{% highlight PowerShell %}
+ Install-Package FileHelpers.ExcelStorage
 {% endhighlight %}
 </div>
-
-<a href="https://www.nuget.org/packages/FileHelpers/3.1.0-rc2">https://www.nuget.org/packages/FileHelpers/3.1.0-rc2</a>
-
-<!--
+</div>
+<div class="col s6">
 <p><b>or search for "FileHelpers" in the NuGet Package Manager in Visual Studio</b></p>
 
-<a href="https://www.nuget.org/packages/FileHelpers/3.1.0-rc2"><img src="{{ site.baseurl }}/images/nuget.png" class="indent shadow" alt="add references" style="" /></a>
--->
+<a href="https://www.nuget.org/packages/FileHelpers/"><img src="{{ site.baseurl }}/images/nuget.jpg" class="indent shadow" alt="add references" style="" /></a>
+
 </div>
 </div>
 </div>
@@ -38,13 +49,20 @@ permalink: /download/
   <a href="https://github.com/MarcosMeli/FileHelpers/releases/tag/{{ site.libversion }}" class="btn waves-effect waves-light green">Download at GitHub {{ site.libversion }}</a>
 
 <p>You only need to add a reference in your project to the file: <strong>FileHelpers.dll</strong>.<br/>
-  Tip: remember to leave the <strong>FileHelpers.xml</strong> file to get Visual Studio Intellisense support.</p>
-
-<p>
-<img src="{{ site.baseurl }}/images/references.png" class="indent" width="103" height="53" alt="add references"/></p>
-</p>
+  Tip: remember to copy also the <strong>FileHelpers.xml</strong> file to get Intellisense support.</p>
 
 </div>
+
+
+<h4>Best Practices Analyzer and Quick Fixes</h4>
+
+<div class="indent">
+
+<p>
+We also recomend you to install our new <a href="/analyzer/">FileHelpers.Analyzer</a> to speed up your coding and learn from it
+</p>
+
+<a href="/analyzer/"><img src="{{ site.baseurl }}/images/analyzer.gif" class="indent shadow" alt="add references" style="" /></a>
 
 <!--
 <h4>Pre-release versions of the library</h4>

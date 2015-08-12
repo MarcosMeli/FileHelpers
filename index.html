@@ -6,7 +6,8 @@ showloader: true
 <div class="row">
 
   <div class="col s6 m4 l3" style="text-align:center">
-    <img src="{{ site.baseurl }}/images/filehelpers_box_150.png" />
+    <a href="{{ site.baseurl }}/download/"><img src="{{ site.baseurl }}/images/filehelpers_box_150.png" /></a><br/><br/>
+    <a href="{{ site.baseurl }}/download/" class="btn waves-effect waves-light green"><i class="mdi-file-file-download"></i> Download</a>
   </div>
   <div class="col s6 m7 l6">
 
@@ -23,13 +24,16 @@ showloader: true
 
     <p>The library also has support to import or export data from different data storage types like Excel, Access, SqlServer, etc.</p>
 
-  </div>
-</div>
-<div class="center">
-  <a href="{{ site.baseurl }}/download" class="btn waves-effect waves-light green"><i class="mdi-file-file-download"></i> Download</a>
-  <a href="{{ site.baseurl }}/quickstart" class="btn waves-effect waves-light indigo"><i class="mdi-image-flash-on"></i> Quick Start</a>
-  <a href="{{ site.baseurl }}/mustread" class="btn waves-effect waves-light indigo"><i class="fa fa-bookmark-o"></i> Must Read</a>
+    <div class="center">
 
+      <a href="{{ site.baseurl }}/quickstart/" class="btn waves-effect waves-light indigo"><i class="mdi-image-flash-on"></i> Quick Start</a>
+      <a href="{{ site.baseurl }}/mustread/" class="btn waves-effect waves-light indigo"><i class="fa fa-bookmark-o"></i> Must Read</a><br/><br/>
+      <a href="{{ site.baseurl }}/examples/" class="btn waves-effect waves-light indigo"><i class="mdi-image-palette"></i> Examples</a>
+      <a href="{{ site.baseurl }}/analyzer/" class="btn waves-effect waves-light indigo"><i class="fa fa-search"></i> Analyzer</a>
+
+    </div>
+
+  </div>
 </div>
 
 <div style="clear:both;">
@@ -63,60 +67,86 @@ showloader: true
       <div id="features">
         <div class="row">
           <div class="col s4">
-            <h4><i class="fa fa-thumbs-o-up"></i> Easy to use:</h4>
-            The FileHelpers library is straightforward to learn and use. (see <a href="example_easy.html">Easy Example</a>)
+            <h4><i class="fa fa-thumbs-o-up"></i> Easy to use</h4>
+            The FileHelpers library is straightforward to learn and use.<br/>
+            <a target="_blank" href="/quickstart/">Check the Examples</a>
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-magic"></i> Auto Converters:</h4>
-            The library has a set of converters for common types and can be easy extended to provide custom converters. (see&nbsp;<a href="FileHelpers.ConverterBase.html">
-ConverterBase</a> and <a href="example_customconv.html">Converter Example</a>)
+            <h4><i class="fa fa-magic"></i> Auto Converters</h4>
+            The library has a set of converters for common types and can be easy extended to provide custom converters.<br/>
+            <a target="_blank" href="/example/Converters/CustomConverter/">Check the Example</a>
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-bolt"></i> Event Support:</h4>
-            The engines of the library contain events to make it easier to extend the behavior of the library (see <a href="events.html">
-Example</a>
+            <h4><i class="fa fa-bolt"></i> Event Support</h4>
+            The engines of the library contain events to make it easier to extend the behavior of the library<br/>
+            Check the <a target="_blank" href="/example/EventsAndNotification/INotifyRead/">INotifyRead</a> and <a target="_blank" href="/example/EventsAndNotification/INotifyWrite/">INotifyWrite</a> Examples
           </div>
         </div>
         <div class="row">
           <div class="col s4">
-            <h4><i class="fa fa-rocket"></i> High Performance:</h4>
+            <h4><i class="fa fa-rocket"></i> High Performance</h4>
             The library doesn't use reflection to get or set the field values, it uses dynamic code generation
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-files-o"></i> BigFileSorter</h4>
-            You can use the library to sort files with millon of records
+            <h4><i class="fa fa-check-square-o"></i> Wide framework support</h4>
+            You can use the library in<br/>.NET <b>2.0</b>, <b>3.0</b>, <b>4.0</b>, <b>4.5</b>, <b>4.6</b> and <b>Mono</b> !!
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-compress"></i> FileDiffEngine</h4>
-            Provides the ability to compare files with the same record layout (see <a href="example_filediffengine.html">example</a>)
+            <h4><i class="fa fa-times"></i> Multiple Error Modes</h4>
+            You can configure the library to use different ErrorModes.<br/>
+            <a target="_blank" href="/example/ErrorHandling/ErrorMode.SaveAndContinue/">Check the example</a>
           </div>
         </div>
         <div class="row">
           <div class="col s4">
-            <h4><i class="fa fa-question"></i> Nullable Types:</h4>
-            The library supports Nullable types in the core (see <a href="example_nullable.html">example</a>)
+            <h4><i class="fa fa-sort-alpha-asc"></i> BigFileSorter</h4>
+            You can use the library to sort files with millon of records and MBs<br/>
+            <a target="_blank" href="/example/Sorting/SortBigFiles/">Check the Example</a>
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-list"></i> Asynchronous Mode:</h4>
-            You can use the library to read line by line and not the whole file.
+            <h4><i class="fa fa-cogs"></i> File Transform Engine</h4>
+            To convert files in one format to another (for example a file with CSV to a fixed length record format)<br/>
+            <a target="_blank" href="">Check the Example</a>
           </div>
           <div class="col s4">
-            <h4><i class="fa fa-cogs"></i> File Transform Engine:</h4>
-            To convert files in one format to another (for example a file with CSV to a fixed length record format) (see <a href="example_transform.html">example</a>)
+            <h4><i class="fa fa-compress"></i> FileDiffEngine</h4>
+            Provides the ability to compare files with the same record layout<br/>
+            <a target="_blank" href="">Check the Example</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <h4><i class="fa fa-files-o"></i> MasterDetailEngine</h4>
+            You can process hierarchical data with this engine<br/>
+            <a target="_blank" href="/example/MasterDetail/SimpleMasterDetail/">Check the Example</a>
+          </div>
+          <div class="col s4">
+            <h4><i class="fa fa-question"></i> Nullable Types</h4>
+            The library supports Nullable types in the core<br/>
+            <a target="_blank" href="/example/MissingValues/MissingValuesNullable/">Check the Example</a>
+          </div>
+          <div class="col s4">
+            <h4><i class="fa fa-list"></i> Record by Record Mode</h4>
+            You can use the library to read line by line and not the whole file.<br/>
+            <a target="_blank" href="/example/QuickStart/ReadWriteRecordByRecord/">Check the Example</a>
           </div>
         </div>
         <div class="row">
           <div class="col s4">
             <h4><i class="fa fa-github"></i> Open Source</h4>
-            The library is completely free to use in any kind of development
+            The library is completely free to use in any kind of development<br/><a href="https://github.com/MarcosMeli/FileHelpers">github.com/MarcosMeli/FileHelpers</a>
           </div>
           <div class="col s4">
             <h4><i class="fa fa-search"></i> Format Autodetection</h4>
-            The library has an smart feature that based in some sample files can deduce the Record Class
+            The library has an smart feature that based in some sample files can deduce the Record Class<br />
+            <a target="_blank" href="/example/Advanced/SmartFormatDetector/">Check the Example</a>
+
+
           </div>
           <div class="col s4">
             <h4><i class="fa fa-magic"></i> Wizard</h4>
-            We provide a Wizard app to help in the creation of the Record Class
+            We provide a Wizard app to help in the creation of the Record Class<br />
+            <a target="_blank" href="http://wizard.filehelpers.net">Check the Online Wizard</a>
           </div>
         </div>
       </div>
@@ -138,7 +168,7 @@ Framework Design Libraries</a>, a complete guide for design and programming of l
 
 
     <script>
-      $(function() {
+    window.onload = function() {
         $("#features .col").addClass("hoverable");
         /*
                 $("#features .col").mouseenter(function(event){
@@ -151,5 +181,6 @@ Framework Design Libraries</a>, a complete guide for design and programming of l
                     $("#features .col").css("opacity", 1)
                 })
         */
-      })
+      }
+
     </script>

@@ -1,0 +1,66 @@
+<h4>Best Practices Analyzer and Quick Fixes for the library</h4>
+
+<div class="indent">
+
+<p>
+This Roslyn Analyzer helps you to use the library in the right way.
+</p>
+<p>For example when you use a non generic engine the analyzer suggest you to use the generic version:</p>
+
+<img src="{{ site.baseurl }}/images/analyzer.gif" class="indent shadow" alt="add references" style="" />
+
+<h5>Quick Fixes</h5>
+<div class="indent">
+<ul class="collection">
+  <li class="collection-item"><i class="fa fa-check-square-o" style="color: green;"></i>
+    Recomends to use the generic version when you use an engine with a typeof() in the constructor
+  </li>
+  <li class="collection-item"><i class="fa fa-check-square-o" style="color: green;"></i>
+    Suggest to use [FieldHidden] instead of [FieldIgnored] or [FieldNotInFile]
+  </li>
+
+  <li class="collection-item"><i class="fa fa-check-square-o" style="color: green;"></i>
+    Use FileHelpers.Dynamic instead of FileHelpers.RunTime namespace
+  </li>
+
+  <li class="collection-item"><i class="fa fa-check-square-o" style="color: green;"></i>
+    Use IComparable<T> instead of the obsolete IComparableRecord<T>
+  </li>
+
+  <li class="collection-item"><i class="fa fa-square-o" style="color: red;"></i>
+    Check that record class contains valid record attributes
+  </li>
+
+  <li class="collection-item"><i class="fa fa-square-o" style="color: red;"></i>
+    Check that record class contains any field
+  </li>
+
+  <li class="collection-item"><i class="fa fa-square-o" style="color: red;"></i>
+    Convert engine.ReadFile in async version with foreach
+  </li>
+
+</ul>
+
+</div>
+<h5>Global Install</h5>
+<div class="indent">
+
+<p>Install the extension and it will be available for all projects:</p>
+<a href="https://visualstudiogallery.msdn.microsoft.com/e222730d-371b-47d5-bafd-bbfcf4104be5" class="btn waves-effect waves-light green"><i class="fa fa-download"></i> Download from Visual Studio Gallery</a>
+
+</div>
+
+<h5>NuGet Install</h5>
+<div class="indent">
+<p>Use the NuGet Package Version and it will work only in installed projects</p>
+
+{% highlight PowerShell %}
+ Install-Package FileHelpers.Analyzer
+{% endhighlight %}
+
+<a href="https://www.nuget.org/packages/FileHelpers.Analyzer/" class="btn waves-effect waves-light green">FileHelpers.Analyzer in NuGet</a>
+
+
+</div>
+
+</div>

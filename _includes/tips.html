@@ -6,12 +6,12 @@
     <div class="collapsible-header">DataLink feature is outdated and will be rewritten</div>
     <div class="collapsible-body"><p>The support to interact with other datasources is from the old 1.1 or 2.0 days. We will be rewritting this feature for the next release using lambda expressions, Task and other advanced features of .Net</p></div>
   </li>
-         <li>
+  <li>
            <div class="collapsible-header">Excel Support is only for basic scenarios</div>
            <div class="collapsible-body"><p>The current implmented Excel support is only for basic scenarios, if you need custom formatting, charts, etc you must go for a custom
            code, is strongly recommended to direct use the <a href="https://npoi.codeplex.com/">NPOI library</a>
            </p></div>
-         </li>
+ </li>
 
        </ul>
 
@@ -23,8 +23,12 @@
            <div class="collapsible-body"><p>You must use the <span class="code">[IgnoreFirst]</span> attribute, for footer line you can use also <span class="code">[IgnoreLast]</span></p></div>
          </li>
          <li>
+           <div class="collapsible-header">I want to write a file with headers</div>
+           <div class="collapsible-body"><p>You must use <span class="code">engine.HeaderText = engine.GetFileHeader()</span> before you call WriteFile</p></div>
+         </li>
+         <li>
            <div class="collapsible-header">Not all the characters from the original file are read</div>
-           <div class="collapsible-body"><p>Sure you have a problem with the Encoding of the file and the one that uses the engine, in all the engines of the library you can pass a custom Encoding</p></div>
+           <div class="collapsible-body"><p>Sure you have a problem with the Encoding, you can pass the encoding to the engines <span class="code">new FileHelperEngine<RecordClass>(Encoding.UTF8)</span></p></div>
          </li>
            <li>
            <div class="collapsible-header">How can I skip certain lines when reading a file</div>
@@ -36,7 +40,7 @@
              <span class="code">
              [FieldConverter(ConverterKind.Date, "M-d-yyyy" )]
            </span>
-              You must check in the Attribute params page for more info</p></div>
+              Check the Converters page for more info</p></div>
          </li>
        </ul>
 

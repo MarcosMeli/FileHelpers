@@ -2,21 +2,36 @@
 layout: default
 title: Contribute
 permalink: /contribute/
+description: Contribute - Help us to make the library better
 ---
 <h3>Ways to join in</h3>
 
-<p>There are a lot of areas to contribute to, here some of them</p>
+<p>There are a lot of areas to contribute to, below are some of them</p>
 <div class="indent">
   <h4>StackOverflow</h4>
   <div class="indent">
-    <p>The preffered support method for the library is to ask questions about it in <a href="http://stackoverflow.com/questions/tagged/filehelpers">StackOverflow</a></p>
+    <p>Help us answering questions in <a href="http://stackoverflow.com/questions/tagged/filehelpers">StackOverflow</a></p>
 
-    <p>You must use the <span class="code">FileHelpers</span> Tag to allow other users (and me) to found and answer your question</p>
+    <p>The questions contains the <span class="code">FileHelpers</span> tag that allows you to:</p>
+    
+    <ul>
+      <li >- Subscribe to new question notifications in the <a target="_blank" href="http://stackoverflow.com/questions/tagged/filehelpers">tag page</a>, move over the tag and click on subscribe: <br />  <img src="/images/filehelpersTag.png" /></li>
+<li>- Subscribe via rss: <a href="http://stackoverflow.com/feeds/tag/filehelpers">http://stackoverflow.com/feeds/tag/filehelpers</a></li>
 
+</ul>
     <a href="http://stackoverflow.com/questions/tagged/filehelpers">FileHelpers Questions in Stack Overflow</a>
   </div>
+
   <h4>Issues for Contributors</h4>
+
   <div class="indent">
+
+    <h6>GitHub Flow</h6>
+    <div class="indent">
+      <p>Before you take an issue you must understand how GitHub works and the recomended workflow: <a target="_blank" href="https://guides.github.com/introduction/flow/">check this 5mins reading</a></p>
+      <p><a target="_blank" href="https://guides.github.com/introduction/flow/"><img src="/images/githubflow.png"></img></a></p>
+    </div>
+
     <p>Here is a <a href="https://github.com/MarcosMeli/FileHelpers/labels/Jump%20In">list of issues</a> that any contributor can take and solve</p>
 
     <h5>Simple Tasks</h5>
@@ -45,16 +60,13 @@ permalink: /contribute/
 
 
   </div>
-  <h4>GitHub Flow</h4>
-  <div class="indent">
-    <p><a href="https://guides.github.com/introduction/flow/">Check this GitHub Flow explanation</a></p>
-  </div>
+
 </div>
 <script src="//cdn.jsdelivr.net/remarkable/1.6.0/remarkable.min.js"></script>
 <script type="text/javascript">
   var urlJumpInIssues = "https://api.github.com/repos/MarcosMeli/FileHelpers/issues?state=open&sort=created&labels=Jump%20In";
 
-  $(document).ready(function() {
+   window.onload = function() {
     var md = new Remarkable({
     linkify:      true,        // Autoconvert URL-like text to links
    });
@@ -92,5 +104,5 @@ var issueUrl = "https://github.com/MarcosMeli/FileHelpers/issues/" + issue.numbe
 
 
 
-  });
+  }
 </script>

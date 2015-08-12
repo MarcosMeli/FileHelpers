@@ -2,3 +2,12 @@
 "3.1.0-rc2 Release"|"
  
 "
+3.1.5|2015-08-06|http://www.filehelpers.net/download/|http://www.filehelpers.net/download/|
+"3.1.5 Release"|"Yes after a some hard months of work here the final 3.1 release !!
+
+Check out new redesigned Home Page www.filehelpers.net
+
+With ton of examples, tips, and updated docs
+
+This version is production ready and the recommended version
+"

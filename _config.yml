@@ -4,7 +4,7 @@ description: The FileHelpers are a free and easy to use .NET library to import/e
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.filehelpers.net" # the base hostname & protocol for your site
 github_username:  MarcosMeli
-libversion: "3.1.0-rc2"
+libversion: "3.1.5"
 libversionbig: "3.1"
 
 highlighter: pygments

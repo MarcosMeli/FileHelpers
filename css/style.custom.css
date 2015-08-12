@@ -220,6 +220,41 @@ ul.changelog > li {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
+div.version
+{
+   margin-left: 15px;
+}
+
+div.version > h4
+{
+   margin-left: 15px;
+}
+div.version > ul
+{
+     margin: 0.5rem 0 1rem 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+        margin-left: 30px;
+}
+
+
+div.version > ul > li
+{
+  background-color: #fff;
+  line-height: 0.9rem;
+  padding: 10px 20px;
+  margin: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+div.version > ul > li:hover
+{
+      background-color: #F7F4F1;
+}
+
+
 .example-description
 {
   color: #ADADAD;
@@ -293,4 +328,8 @@ ul.issues li > span {
    content: "\f064\f0f6";
    font-family: "FontAwesome";
    opacity: 0.5;
+  }
+
+  .btn, .btn-large, .btn-flat {
+      text-transform: none !important;
   }

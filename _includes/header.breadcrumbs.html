@@ -1,11 +1,11 @@
-{% unless true && page.breadcrumbhidden  %}
+{% if page.showbreadcrumb  %}
 
         <div id="breadcrumbs-wrapper" class="grey lighten-3">
           <div class="container">
             <div class="row">
               <div class="col s12 m12 l12">
                 <ol class="breadcrumb">
-                    <li><a href="{{ site.baseurl }}/">FileHelpers</a></li>
+                    <li><a href="{{ site.baseurl }}/{{ page.breadcrumblink1 }}">{{ page.breadcrumbtext1 }}</a></li>
 
     {% if page.breadcrumbtext2 %}
                     <li><a href="{{ site.baseurl }}/{{ page.breadcrumblink2 }}">{{ page.breadcrumbtext2 }}</a></li>
@@ -19,4 +19,4 @@
           </div>
         </div>
 
-{% endunless %}
+{% endif %}
