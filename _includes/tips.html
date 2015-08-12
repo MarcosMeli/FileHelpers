@@ -49,12 +49,12 @@
  <ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
           <li>
             <div class="collapsible-header">Try to use FileHelperAsyncEngine</div>
-            <div class="collapsible-body"><p>When reading or writing a large number of record, whenever is posible you must use FileHelperAsyncEngine,
+            <div class="collapsible-body"><p>When reading or writing a large number of records, we recommend using FileHelperAsyncEngine;
                it will work faster and use a ton less memory</p></div>
           </li>
           <li>
-            <div class="collapsible-header">Use FieldValueDiscarded for fields that you don't use</div>
-            <div class="collapsible-body"><p>If you record class has a lot of fields and you never use the value of some fields and the library can discard the value for the field apply that attribute</p></div>
+            <div class="collapsible-header">Use the FieldValueDiscarded attribute for fields that you don't use</div>
+            <div class="collapsible-body"><p>If your record class has some fields that are not used, the library will discard the value of fields marked by this attribute</p></div>
           </li>
         </ul>
 
@@ -63,7 +63,7 @@
         <ul class="collapsible popout collapsible-accordion indent" data-collapsible="accordion">
                  <li>
                    <div class="collapsible-header">Use all the values of the FileHelper Exceptions</div>
-                   <div class="collapsible-body"><p>We work hard to provide great context info in all exceptions, you can use it to understand what is wrong.
+                   <div class="collapsible-body"><p>We work hard to provide great context info in all exceptions to assist in debugging.
                      <span class="code"><a href="http://www.filehelpers.net/docs/html/T_FileHelpers_ConvertException.htm">ConvertException</a></span>
                  </li>
 
