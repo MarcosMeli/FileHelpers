@@ -14,7 +14,7 @@
         <summary>Extension for FileHelpers to support Excel read/write operations using NPOI Library</summary>
         <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
         <copyright>Marcos Meli - Devoo</copyright>
-        <tags>Excel, Import, Export, FileHelpers, FileHelper</tags>
+        <tags>Excel, Data, Import, Export, FileHelpers, FileHelper, .Net</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
