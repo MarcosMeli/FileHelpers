@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
+
+{$HEADER$}
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id="contentdiv">
+<h2>Run Time Record Class Examples</h2>
+<blockquote>
+<p>RuntimeRecords was one of the most requested features and was the most fun
+to write because I needed a clear API and an API that can be expanded in the
+future (for example XML backends, easy CSV records, etc).  </p>
+
+<p>I hope that you like the way that I have implemented the feature and of course
+all suggestions are welcome.</p>
+
+<p>A major feature of RunTimeRecords is that you have many ways to create or
+load your record class at runtime:</p>
+
+<ul>
+<li>Best of all: using <b>ClassBuilder</b>!</li>
+<li>From an XML file generated with the <a href="wizard.html">Wizard</a> or saved with the SaveXml method of the ClassBuilder</li>
+<li>From a string with the source of the class</li>
+<li>From a file with the source of the class</li>
+<li>From a encrypted file with the source of the class</li>
+<li>From a assembly loaded at runtime that contains the class (next version)</li>
+</ul>
+
+<p>Here are some examples of the basic methods:</p>
+
+<p class="note"> Note: Your need to import the namespace
+<b>FileHelpers.RunTime</b> and of course add the filehelpers.dll to your
+references.</p>
+
+<h3>Using CodeBuilder (FixedLength)</h3>
+
+<textarea name="code" class="c#" cols="80" rows="16">
+FixedClassBuilder cb = new FixedLengthClassBuilder("Customers");
+
+cb.AddField("BirthDate", 8, typeof(DateTime));
+cb.LastField.Converter.Kind = ConverterKind.Date;
+cb.LastField.Converter.Arg1 = "ddMMyyyy";
+cb.LastField.FieldNullValue = DateTime.Now;
+				
+cb.AddField("Name", 3, typeof(string));
+		
+cb.AddField("Age", 3, typeof(int));
+cb.LastField.TrimMode = TrimMode.Both;
+				
+engine = new FileHelperEngine(cb.CreateRecordClass());
+
+DataTable dt = engine.ReadFileAsDT("testCustomers.txt");
+</textarea>
+
+<h3>Using CodeBuilder (Delimited)</h3>
+
+<textarea name="code1" class="c#" cols="80" rows="18">
+DelimitedClassBuilder cb = new DelimitedClassBuilder("Customers", ",");
+cb.IgnoreFirstLines = 1;
+cb.IgnoreEmptyLines = true;
+		
+cb.AddField("BirthDate", typeof(DateTime));
+cb.LastField.TrimMode = TrimMode.Both;
+cb.LastField.FieldNullValue = DateTime.Today;
+
+cb.AddField("Name", typeof(string));
+cb.LastField.FieldQuoted = true;
+cb.LastField.QuoteChar = '"';
+
+cb.AddField("Age", typeof(int));
+		
+engine = new FileHelperEngine(cb.CreateRecordClass());
+
+DataTable dt = engine.ReadFileAsDT("testCustomers.txt");
+</textarea><h3>From an XML File generated with the Wizard or saved from ClassBuilder</h3>
+
+<textarea name="code" class="c#" cols="80" rows="9">
+ClassBuilder cb = ClassBuilder.LoadFromXml("Customers.fhw");
+engine = new FileHelperEngine(cb.CreateRecordClass());
+
+// Or
+engine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("Customers.fhw"));
+
+// Use it
+DataTable dt = engine.ReadFileAsDT("customers.txt");
+</textarea>
+
+<h3>From a string with the source of the record class.</h3>
+
+<textarea name="code" class="c#" cols="80" rows="20">
+// The class definition
+public string mClass =
+	@"	[DelimitedRecord("|")]
+		public class SampleType
+		{
+			[FieldConverter(ConverterKind.Date, ""ddMMyyyy"")]
+			public DateTime Field1;
+
+			public string Field2;
+
+			public int Field3;
+		}
+	";
+
+	Type t = ClassBuilder.ClassFromString(mClass);
+
+	FileHelperEngine engine = new FileHelperEngine(t);
+
+	DataTable = engine.ReadFileAsDT("test.txt");
+</textarea>
+
+<h3>From a file with the source of the record class.</h3>
+
+<textarea name="code" class="c#" cols="80" rows="6">
+	Type t = ClassBuilder.ClassFromFile("your_class.cs");
+		
+	FileHelperEngine engine = new FileHelperEngine(t);
+		
+	DataTable = engine.ReadFileAsDT("test.txt");
+</textarea>
+
+<h3>From a encrypted source file of the record class.</h3>
+
+<p>The idea of the encrypted file is <b>not security</b> (you can found the keyphrase in the code) <br />
+This only aims to <b>hide to end users</b> part of your code and so they don't touch it =)</p>
+
+<textarea name="code" class="c#" cols="80" rows="7">
+// .fhc stands for File Helper Class
+Type t = ClassBuilder.ClassFromBinaryFile("your_class.fhc");
+
+FileHelperEngine engine = new FileHelperEngine(t);
+
+DataTable = engine.ReadFileAsDT("test.txt");
+</textarea>
+
+</blockquote>
+{$FOOTER$}
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

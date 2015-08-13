@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
+{$HEADER$}
+
+<div id="contentdiv"> 
+<h2>Events Architecture</h2>
+  <blockquote>
+<p>Sometimes you need to ignore certain lines in files or you need to change a value after the record is filled, etc.</p>
+
+<p>To solve these problems I've added events to the FileHelperEngine (in the future to all the other engines) </p>
+
+<p>There are 4 events.  2 for read and 2 for write operations</p>
+          
+<blockquote>
+          <ul>
+			<li>BeforeReadRecord</li>
+			<li>AfterReadRecord</li>
+			<li>BeforeWriteRecord</li>
+			<li>AfterWriteRecord</li>			
+          </ul>
+</blockquote>
+
+<p>The names say it all right?</p>
+
+<h3>An Example</h3>
+
+<p>Suppose that you need to parse a txt report from a legacy system with this format:</p>
+
+<textarea class="c#:nogutter:nocontrols" name="code" rows="18" cols="60">
+-----------------------------------------------------
+              XXX Enterprise
+-----------------------------------------------------
+10249   TOMSP  05071996      11.61
+10250   HANAR  08071996      65.83
+10251   VICTE  08071996      41.34
+...............          
+                                       Page 1
+-----------------------------------------------------
+              XXX Enterprise
+-----------------------------------------------------
+10269   TOMSP  05071996      11.61
+10230   HANAR  08071996      65.83
+10151   VICTE  08071996      41.34
+...............          
+                                       Page 2
+And so on !!                                       
+</textarea>
+
+<p>You must declare a Record Mapping Class for the main record:</p>
+
+<textarea class="c#" name="code" rows="17" cols="80">
+ [FixedLengthRecord(FixedMode.AllowVariableLength)]
+ public class OrdersFixed
+ {
+   [FieldFixedLength(7)]
+   public int OrderID;
+   
+   [FieldFixedLength(8)]
+   public string CustomerID;
+
+   [FieldFixedLength(8)]
+   public DateTime OrderDate;
+
+   [FieldFixedLength(11)]
+   public decimal Freight;
+ }
+</textarea>
+
+<p class="note">YOu must include an extra using statement<br/>
+using FileHelpers.Events;
+</p>
+
+<p>When we instantiate the engine we also hook the events as follows:</p>
+
+<textarea class="c#" name="code" rows="6" cols="80">
+var engine = new FileHelperEngine&lt;OrdersFixed&gt;();
+engine.BeforeReadRecord += new BeforeReadHandler&lt;OrdersFixed&gt;(BeforeEvent);
+
+OrdersFixed[] res = engine.ReadFile("report.txt");
+
+</textarea>
+
+<p> So in the event method we ignore the lines that begin with spaces or a dash '-':</p>
+
+<textarea class="c#" name="code" rows="7" cols="80">
+private void BeforeEvent(EngineBase engine, BeforeReadEventArgs&lt;OrdersFixed&gt; e)
+{
+	if (e.RecordLine.StartsWith(" ")
+       	 || e.RecordLine.StartsWith("-"))
+		e.SkipThisRecord = true;
+}
+</textarea>
+
+<p class="note" style="width:550">
+<b>Note: Changing the RecordLine in the args the engine will use the changed value.
+<br/>This can be useful in some cases but you must be careful</b>
+</p>
+
+<textarea class="c#" name="code" rows="6" cols="80">
+private void BeforeEvent(EngineBase engine, BeforeReadEventArgs&lt;OrdersFixed&gt; e)
+{
+	if (e.RecordLine.StartsWith(" "))
+		e.RecordLine = "Be careful!";
+}
+</textarea>
+</blockquote>
+{$FOOTER$}
+</div>
+</body></html>

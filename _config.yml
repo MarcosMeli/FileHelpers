@@ -19,6 +19,7 @@ exclude:  [ '*.ts',
         	'Graphics',
         	'README.md',
         	'js/tsconfig.json',
+        	'oldpage',
         	'OnlineWizard',
         	'node_modules'
            ]

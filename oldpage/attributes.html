@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>FileHelpers Library - Marcos Meli</title>
+    <link href="/favicon.ico" rel="SHORTCUT ICON" />
+    <link href="global.css" type="text/css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css" />
+    <meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+    <meta name="Author" content="Marcos Meli" />
+    <meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export" />
+    <meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved." />
+</head>
+<body>
+    {$HEADER$}
+    <table width="100%" cellpadding="5" cellspacing="5">
+        <tr>
+            <td>
+                <h2>Attributes List </h2>
+                <p class="note">
+                    <strong>Note:</strong> VB.NET developers please look at <a href="vb_tips.html">
+                        Tips for
+                        VB.NET
+                    </a> first.
+                </p>
+                <h3>Attributes for the record mapping class</h3>
+                <ul>
+                    <li>
+                        <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>: Indicates a fixed length record file.<br />
+                        <textarea rows="4" cols="80" class="c#">
+                            [FixedLengthRecord]
+                            public class OrdersFixed
+                            { ...
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecord</a>: Indicates a delimited record file.<br />
+                        <textarea cols="80" rows="4" class="c#">
+                            [DelimitedRecord("|")]
+                            public class OrdersVerticalBar
+                            { ...
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreFirst</a>: Indicates the <strong>
+                            numbers of lines to be ignored at the beginning
+                        </strong> of a file or
+                        stream when the engine reads it.<br />
+                        <textarea rows="4" cols="80" class="c#">
+                            [IgnoreFirst(2)]
+                            public class OrdersVerticalBar
+                            { ...
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.IgnoreFirstAttribute.html">IgnoreLast</a>: Indicates the <strong>
+                            numbers of lines to be ignored at the end
+                        </strong> of a file or stream
+                        when the engine reads it.<br />
+                        <textarea cols="80" rows="4" class="c#">
+                            [IgnoreLast(2)]
+                            public class OrdersVerticalBar
+                            { ...
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.IgnoreEmptyLinesAttribute.html">IgnoreEmptyLines</a>:
+                        Indicates that the empty lines (only containing a NewLine) and must be ignored by the engine.<br />
+                        <textarea cols="80" rows="4" class="c#">
+                            [IgnoreEmptyLines()]
+                            public class NotEmptyPlease
+                            { ...
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.ConditionalRecordAttribute.html">ConditionalRecord</a>: Allows you to add some conditions to tell the library what records to
+                        process or not in a declarative way, using one of the <a href="FileHelpers.RecordCondition.html">
+                            RecordCondition
+                        </a>&nbsp;enumerations
+                        and a string selector. This is useful where you need to ignore
+                        commented lines.<br />
+                        <textarea cols="80" rows="10" class="c#">
+                            [DelimitedRecord(",")]
+                            [ConditionalRecord(RecordCondition.ExcludeIfBegins, "//")]
+                            public class ConditionalType1
+                            {
+                            // Example using Regular Expressions
+                            [DelimitedRecord(",")]
+                            [ConditionalRecord(RecordCondition.IncludeIfMatchRegex, ".*abc??")]
+                            public class ConditionalType3
+                            {
+                        </textarea>
+                    </li>
+                </ul>
+                <h3>Attributes for the fields inside the class</h3>
+                <p>
+                    The naming convention for all attributes that
+                    relate to fields is Field&lt;specific type&gt;.
+                    All these attributes are defined as follows:
+                </p>
+                <ul>
+                    <li>
+                        <a href="FileHelpers.FieldFixedLengthAttribute.html">FieldFixedLength</a>: Indicates the length of the record (only valid when the class has a <a href="FileHelpers.FixedLengthRecordAttribute.html">FixedLengthRecord</a>&nbsp;attribute)<br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldFixedLength(12)]
+                            public string CustomerID;
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldDelimiterAttribute.html">FieldDelimiter</a>:
+                        Indicates a different delimiter for this field (only valid when the class has a <a href="FileHelpers.DelimitedRecordAttribute.html">DelimitedRecord</a>&nbsp;attribute)<br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldDelimiter(",")]
+                            public string CustomerName;
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldConverterAttribute.html">FieldConverter</a>:
+                        Indicates that a field requires conversion to a specific
+                        type. In addition to the
+                        <a href="FileHelpers.ConverterKind.html"><span class="cs-keyword">ConverterKind</span></a>&nbsp;type
+                        an optional list of parameters can be supplied directly to the
+                        constructor of the converter. In the example, a string that represents
+                        a format of the Date field.<br />
+                        <textarea cols="80" rows="6" class="c#">
+                            [FieldConverter(ConverterKind.Date, "ddMMyyyy" )]
+                            public DateTime ShippedDate;
+                            [FieldConverter(typeof(YourCustomConverter)))]
+                            public YourType CustomTypeField;
+                        </textarea>
+                        <p>
+                            <b>Remember:</b> The default types are
+                            automatically converted, so these don't need the explicit
+                            [FieldConverter]. Use this attribute only when you need to pass them
+                            some argument. Please see the
+                            <a href="converter_args.html">Default Converters Arguments Page</a>.
+                            <br />
+                            For help on defining your own converters - see the
+                            <a href="example_customconv.html">Custom Converter Example</a>
+                        </p>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldQuotedAttribute.html">FieldQuoted</a>:
+                        Indicates that the field must be read and written like a Quoted String.
+                        (You can pass the quote character and can set if the quote is optional
+                        - like the Excel CSV format)<br />
+                        <textarea cols="80" rows="14" class="c#">
+                            [FieldQuoted()] // Quoted with "
+                            public string CustomerName
+                            [FieldQuoted('[')] // Quoted between [brackets]
+                            public string CustomerName
+                            // Optional quoted when read or write
+                            [FieldQuoted('"', QuoteMode.OptionalForBoth)]
+                            public string CustomerName
+                            // Indicates that the quoted string can span multiple lines
+                            [FieldQuoted('"', MultilineMode.AllowForBoth)]
+                            public string CustomerName
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldNullValueAttribute.html">FieldNullValue</a>: Indicates a default value if the field position is empty.<br />
+                        <textarea rows="3" cols="80" class="c#">
+                            [FieldNullValue(typeof(DateTime), "2005-1-1" )]
+                            public DateTime ShippedDate
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldTrimAttribute.html">FieldTrim</a>:
+                        Indicates what type of trimming must be performed after
+                        <strong>reading</strong> a field value (see
+                        <a href="FileHelpers.TrimMode.html">TrimMode</a>).
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldTrim(TrimMode.Both)]
+                            public string CustomerName
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldAlignAttribute.html">FieldAlign</a>:
+                        Indicates what type of alignment and align character that must be used
+                        before <strong>writing</strong> a field value (see
+                        <a href="FileHelpers.AlignMode.html">AlignMode</a>).<br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldAlign(AlignMode.Right, '0')]
+                            public int Going_to_the_Right
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldIgnoredAttribute.html">FieldIgnored</a>:
+                        Indicates that the target field is ignored by the engine. (the engine
+                        completely ignores it !!). This is useful when you need to add a field
+                        to your record class but it's not relevant for the mapping.<br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldIgnored()]
+                            public int Why_Ignore_Me
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldInNewLineAttribute.html">FieldInNewLine</a>:
+                        Indicates that the field value appears on a new line.<br /><b>
+                            If you use
+                            this attribute, the library requires that new line that not is
+                            optional.
+                        </b><br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldInNewLine()]
+                            public string I_Wanna_Stay_Alone
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldOptionalAttribute.html">FieldOptional</a>
+                        : Indicates whether the target field needs to be present in the
+                        file.<br /><b>
+                            When you apply this attribute to a field, you must apply
+                            it to all additional fields.
+                        </b><br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldOptional()]
+                            public string Maybe_I_be_there
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldNotEmptyAttribute.html">FieldNotEmpty</a>
+                        : Indicates whether the target field needs to be populated with a non-empty value.<br /><b>
+                            If an empty value is received for a column decorated with this attribute, a <a href="FileHelpers.ConvertException.html">ConvertException</a> is thrown.
+                        </b><br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldNotEmpty()]
+                            public string I_Must_Be_Populated
+                        </textarea>
+                    </li>
+                    <li>
+                        <a href="FileHelpers.FieldValueDiscardedAttribute.html">FieldValueDiscarded</a>:
+                        When reading the file, the data read is not updated back to the object
+                        record.<br />
+                        <textarea cols="80" rows="3" class="c#">
+                            [FieldValueDiscarded()]
+                            public string fixed_header_prefix
+                        </textarea>
+                    </li>
+                </ul>
+                {$FOOTER$}
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

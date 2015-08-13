@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
+
+{$HEADER$}
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td>
+<h2>Tips for VB.NET Developers <img src="vbnet.png" alt="Visual Basic"/></h2>
+<blockquote>
+<p>I come from the VB world, but in the .NET context I develop the libraries and
+controls in C# and the other layers in VB.NET.</p>
+
+<p>This library has nearly all the examples and snippets in C# in the future I
+plan to add the VB.NET examples. For now, I want to write some tips to
+translate the code and use of the library in VB.</p>
+</blockquote>
+    
+<br />
+<table width="500" align="center"class="note">
+<tr>
+	<td valign="middle" align="center" class="note">
+    <a href="http://blog.krisvandermast.com/VBNETCComparisonCheatSheets.aspx">Check out these excellent <b>VB.NET - C# comparison cheat sheets</b></a>
+	</td>
+	</tr>
+</table>
+
+<table width="500" align="center" class="note">
+<tr>
+<td valign="middle" align="center" class="note">
+You can use one of these excellent converters between C# &lt;-&gt; VB.Net <br/>
+<a href="http://www.developerfusion.co.uk/utilities/convertcsharptovb.aspx">Developer Fusion (online)</a><br />
+<a href="http://www.kamalpatel.net/ConvertCSharp2VB.aspx">KamalPatel.Net - Convert C# to VB .NET (online)</a><br />
+<a href="http://babelfish.altavista.com/babelfish/trurl_pagecontent?url=http%3A//myweb.hinet.net/home4/s630417/Convert.htm&lp=zt_en">Convert NET - Useful translation utility (standalone)</a>
+</td>
+</tr>
+</table>
+
+<blockquote>
+<h3>Tips</h3>
+<ol>
+	<li>The <span class="cs-keyword"><strong>using</strong></span> directive in
+	C# is the <span class="cs-keyword"> <strong>Imports</strong></span>
+	directive in VB.NET
+</li>
+<li><p>The <span class="cs-keyword"><strong>typeof()</strong></span> keyword in
+C# is the <span class="cs-keyword"> <strong>GetType()</strong></span> keyword
+in VB.NET</p></li>
+<li><p>One important difference between these two languages is the use in
+the Attributes.</p>
+<p>In C# the attributes are enclosed between <strong>[]</strong> while in
+VB.NET you need to use <strong>&lt;&gt;</strong></p>
+<h4>C# example:</h4>
+<blockquote>
+<code>
+<strong>[</strong> FixedLengthRecord <strong>];</strong><br />
+<span class="cs-keyword">public class</span> OrdersFixed
+</code>
+</blockquote>
+
+<h4>VB.NET example:</h4>
+<blockquote>
+<code>
+<strong>&lt;</strong> FixedLengthRecord <strong>&gt; _</strong><br/>
+<span class="vb-keyword">Public Class</span> OrdersFixed
+</code>
+</blockquote>
+
+<p><strong>Remember:</strong> to use the <strong>_</strong> (underscore) when
+you put the definition that continues onto the next line.</p>
+</li>
+
+<li>Other difference is the <strong>type conversion</strong> instruction.
+<p>In <strong>C#</strong> the cast is the destination type enclosed between ()</p>
+<h4>C# example</h4>
+<blockquote>
+<code>
+Orders[] res = <span class="cs-keyword">(Orders[])</span> engine.ReadFile(<span class="cs-string">@"Test.txt"</span>);<br />
+Orders[] res = engine.ReadFile(<span class="cs-string">@"Test.txt"</span>) <span class="cs-keyword">as Orders[]</span>;<br />
+</code>
+</blockquote>
+<p>In <strong>VB.NET</strong> we can use <span class="vb-keyword">DirectCast</span> or <span class="vb-keyword">CType</span> to do the same
+thing.</p>
+<h4>VB.Net example</h4>
+<blockquote>
+<code>
+<span class="vb-keyword">Dim</span> res <span class="vb-keyword">As</span> Orders() = <span class="vb-keyword">CType</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
+            <span class="vb-keyword">Orders()</span>)<br />
+            <br />
+<span class="vb-keyword">Dim</span> res <span class="vb-keyword">As</span> Orders() = <span class="vb-keyword">DirectCast</span>(engine.ReadFile(<span class="vb-string">"Test.txt"</span>),
+            <span class="vb-keyword">Orders()</span>)<br />
+            </code>
+</blockquote>
+<p><strong>Note:</strong> DirectCast has the less performance hit, but CType is
+clearer.</p></li>
+<li>The last difference is about generics<br />
+<p>In <strong>C#</strong> the generics class are defined:</p>
+<h4>C# example</h4>
+<blockquote>
+<code>
+FileHelperEngine<span class="cs-keyword">&lt;</span>Orders<span class="cs-keyword">&gt;</span> engine  <span class="cs-keyword">= new</span> FileHelperEngine&lt;Orders&gt;();<br />
+</code>
+</blockquote>
+<p>In <strong>VB.NET</strong> In this other way:</p>
+<h4>VB.Net example</h4>
+<blockquote>
+<code>
+<span class="vb-keyword">Dim</span> engine <span class="vb-keyword">As New</span> FileHelperEngine(Of Orders)()<br />
+</code>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+{$FOOTER$}
+</td>
+</tr>
+</table>
+</body>
+</html>

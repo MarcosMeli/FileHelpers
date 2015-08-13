@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>FileHelpers Library - Marcos Meli</title>
+<link href="/favicon.ico" rel="SHORTCUT ICON"/>
+<link href="global.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="SyntaxHighlighter.css"/>
+<meta name="Description" content="FileHelpers is an easy to use .NET library to read/write data from fixed length or delimited files or streams. It has support to import/export data from different data sources." />
+<meta name="Author" content="Marcos Meli" />
+<meta name="keywords" content="filehelpers,CSV,Marcos Meli,C#,free,opensource,Devoo.net,Delimited Files,Import/Export"/>
+<meta name="Copyright" content="Copyright 2005-10 to Marcos Meli - www.Devoo.net. All Rights Reserved."/>
+</head>
+<body>
+
+{$HEADER$}
+
+<table width="100%" cellpadding="5" cellspacing="5">
+<tr><td><div id="contentdiv"> 
+  <h2>Easy Example (using Generics)</h2>
+  <blockquote>
+<p>If you have a source file like this, separated by a |:</p>
+
+<textarea class="c#" name="code" rows="6" cols="30">
+10248|VINET|04071996|32.38
+10249|TOMSP|05071996|11.61
+10250|HANAR|08071996|65.83
+10251|VICTE|08071996|41.34
+...............
+</textarea>
+
+<p>You must declare a Record Mapping Class:</p>
+
+<textarea class="c#" name="code" rows="13" cols="80" readonly="readonly">
+[DelimitedRecord("|")]
+public class Orders
+{
+   public int OrderID;
+
+   public string CustomerID;
+
+   [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+   public DateTime OrderDate;
+
+   public decimal Freight;
+}
+</textarea>
+
+<p>Finally you must to instantiate a FileHelperEngine and read or write a file:</p>
+
+<textarea class="c#" name="code" rows="10" cols="80">
+FileHelperEngine&lt;Orders&gt; engine = new FileHelperEngine&lt;Orders&gt;();
+
+// to Read use:
+Orders[] res = engine.ReadFile("TestIn.txt");
+
+// to Write use:
+engine.WriteFile("TestOut.txt", res);
+</textarea>
+
+<p>Now you have an Orders array named res where every item in the array is an Order object. If you want to access one of the fields let the
+Visual Studio IntelliSense bring up the fields for you. </p>
+
+<blockquote>
+    <p><img height="93" src="vs_orders.png" width="165" alt="Orders intellisense"/></p>
+</blockquote>
+
+</blockquote>
+{$FOOTER$}
+</div></td>
+</tr>
+</table>
+</body></html>
