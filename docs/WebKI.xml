@@ -636,6 +636,13 @@
   <HelpKINode Title="ExcludeIfEnclosed enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
   <HelpKINode Title="ExcludeIfEnds enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
   <HelpKINode Title="ExcludeIfMatchRegex enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
+  <HelpKINode Title="ExtensionsFileHelpers class">
+    <HelpKINode Title="ExtensionsFileHelpers Class" Url="html/T_FileHelpers_ExtensionsFileHelpers.htm" />
+    <HelpKINode Title="about ExtensionsFileHelpers class" Url="html/T_FileHelpers_ExtensionsFileHelpers.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_FileHelpers_ExtensionsFileHelpers.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ExtensionsFileHelpers.ToDataTable(Of T) method" Url="html/M_FileHelpers_ExtensionsFileHelpers_ToDataTable__1.htm" />
+  <HelpKINode Title="ExtensionsFileHelpers.ToDataTable&lt;T&gt; method" Url="html/M_FileHelpers_ExtensionsFileHelpers_ToDataTable__1.htm" />
   <HelpKINode Title="FieldAlignAttribute class">
     <HelpKINode Title="FieldAlignAttribute Class" Url="html/T_FileHelpers_FieldAlignAttribute.htm" />
     <HelpKINode Title="about FieldAlignAttribute class" Url="html/T_FileHelpers_FieldAlignAttribute.htm" />
@@ -1044,6 +1051,7 @@
   <HelpKINode Title="FileHelpers.Events.ProgressEventArgs class" Url="html/T_FileHelpers_Events_ProgressEventArgs.htm" />
   <HelpKINode Title="FileHelpers.Events.ReadEventArgs class" Url="html/T_FileHelpers_Events_ReadEventArgs.htm" />
   <HelpKINode Title="FileHelpers.Events.WriteEventArgs class" Url="html/T_FileHelpers_Events_WriteEventArgs.htm" />
+  <HelpKINode Title="FileHelpers.ExtensionsFileHelpers class" Url="html/T_FileHelpers_ExtensionsFileHelpers.htm" />
   <HelpKINode Title="FileHelpers.FieldAlignAttribute class" Url="html/T_FileHelpers_FieldAlignAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldArrayLengthAttribute class" Url="html/T_FileHelpers_FieldArrayLengthAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldAttribute class" Url="html/T_FileHelpers_FieldAttribute.htm" />
@@ -1441,8 +1449,8 @@
   <HelpKINode Title="IgnoreCommentedLinesAttribute.CommentMarker property" Url="html/P_FileHelpers_IgnoreCommentedLinesAttribute_CommentMarker.htm" />
   <HelpKINode Title="IgnoreCommentedLinesAttribute.IgnoreCommentedLinesAttribute constructor" Url="html/Overload_FileHelpers_IgnoreCommentedLinesAttribute__ctor.htm" />
   <HelpKINode Title="IgnoreCommentInfo class">
-    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_Options_RecordOptions_IgnoreCommentInfo.htm" />
   </HelpKINode>
   <HelpKINode Title="IgnoreEmptyLines property">
     <HelpKINode Title="ClassBuilder.IgnoreEmptyLines Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_IgnoreEmptyLines.htm" />
@@ -1597,6 +1605,7 @@
   </HelpKINode>
   <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).AppendToFile method" Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile.htm" />
   <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).MasterDetailEngine constructor" Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor.htm" />
+  <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).MasterOptions property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterOptions.htm" />
   <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).MasterType property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterType.htm" />
   <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).ReadFile method" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadFile.htm" />
   <HelpKINode Title="MasterDetailEngine(Of TMaster, TDetail).ReadStream method" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadStream.htm" />
@@ -1616,6 +1625,7 @@
   </HelpKINode>
   <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.AppendToFile method" Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2_AppendToFile.htm" />
   <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.MasterDetailEngine constructor" Url="html/Overload_FileHelpers_MasterDetail_MasterDetailEngine_2__ctor.htm" />
+  <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.MasterOptions property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterOptions.htm" />
   <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.MasterType property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterType.htm" />
   <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.ReadFile method" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadFile.htm" />
   <HelpKINode Title="MasterDetailEngine&lt;TMaster, TDetail&gt;.ReadStream method" Url="html/M_FileHelpers_MasterDetail_MasterDetailEngine_2_ReadStream.htm" />
@@ -1656,6 +1666,7 @@
   <HelpKINode Title="MasterIfContains enumeration member" Url="html/T_FileHelpers_MasterDetail_CommonSelector.htm" />
   <HelpKINode Title="MasterIfEnclosed enumeration member" Url="html/T_FileHelpers_MasterDetail_CommonSelector.htm" />
   <HelpKINode Title="MasterIfEnds enumeration member" Url="html/T_FileHelpers_MasterDetail_CommonSelector.htm" />
+  <HelpKINode Title="MasterOptions property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterOptions.htm" />
   <HelpKINode Title="MasterType property" Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_MasterType.htm" />
   <HelpKINode Title="MaxLength property" Url="html/P_FileHelpers_FieldArrayLengthAttribute_MaxLength.htm" />
   <HelpKINode Title="MergeAndSortFile method" Url="html/Overload_FileHelpers_CommonEngine_MergeAndSortFile.htm" />
@@ -1947,6 +1958,8 @@
   <HelpKINode Title="StringToField method" Url="html/M_FileHelpers_ConverterBase_StringToField.htm" />
   <HelpKINode Title="TempDirectory property" Url="html/P_FileHelpers_BigFileSorter_1_TempDirectory.htm" />
   <HelpKINode Title="ThrowException enumeration member" Url="html/T_FileHelpers_ErrorMode.htm" />
+  <HelpKINode Title="ToDataTable(Of T) method" Url="html/M_FileHelpers_ExtensionsFileHelpers_ToDataTable__1.htm" />
+  <HelpKINode Title="ToDataTable&lt;T&gt; method" Url="html/M_FileHelpers_ExtensionsFileHelpers_ToDataTable__1.htm" />
   <HelpKINode Title="TotalBytes property" Url="html/P_FileHelpers_Events_ProgressEventArgs_TotalBytes.htm" />
   <HelpKINode Title="TotalRecords property">
     <HelpKINode Title="EngineBase.TotalRecords Property " Url="html/P_FileHelpers_EngineBase_TotalRecords.htm" />
