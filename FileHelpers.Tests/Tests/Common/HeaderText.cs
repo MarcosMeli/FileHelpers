@@ -17,7 +17,7 @@ namespace FileHelpers.Tests.CommonTests
             var records = engine.ReadFile(FileTest.Good.CustomersVerticalBarDemo.Path);
 
             Check.That(engine.GetFileHeader())
-                .IsEqualTo("CustomerID|CompanyName|ContactName|ContactTitle|Address|City|Country");
+                .IsEqualTo("Customer ID|Company Name|Contact Name|Contact Title|Address|City|Country");
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.HeaderText = engine.GetFileHeader();
             var result = engine.WriteString(records);
 
-            Check.That(result).StartsWith("CustomerID|CompanyName|ContactName|ContactTitle|Address|City|Country");
+            Check.That(result).StartsWith("Customer ID|Company Name|Contact Name|Contact Title|Address|City|Country");
             Check.That(result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length)
                 .IsEqualTo(records.Length + 1);
 

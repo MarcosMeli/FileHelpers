@@ -8,10 +8,18 @@ namespace FileHelpers.Tests
     public class CustomersVerticalBar
         : IComparable<CustomersVerticalBar>
     {
+        [FieldCaption("Customer ID")]
         public string CustomerID;
+
+        [FieldCaption("Company Name")]
         public string CompanyName;
+
+        [FieldCaption("Contact Name")]
         public string ContactName;
+
+        [FieldCaption("Contact Title")]
         public string ContactTitle;
+
         public string Address;
         public string City;
         public string Country;
