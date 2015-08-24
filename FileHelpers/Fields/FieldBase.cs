@@ -158,6 +158,11 @@ namespace FileHelpers
         /// </summary>
         public bool IsNotEmpty { get; set; }
 
+        /// <summary>
+        /// Caption of the field displayed in header row (see EngineBase.GetFileHeader)
+        /// </summary>
+        internal string FieldCaption { get; set; }
+
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
@@ -299,6 +304,9 @@ namespace FileHelpers
 
                 // FieldOrder
                 Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
+
+                // FieldCaption
+                Attributes.WorkWithFirst<FieldCaptionAttribute>(fi, x => res.FieldCaption = x.Caption);
 
                 // FieldOptional
                 res.IsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
@@ -909,6 +917,7 @@ namespace FileHelpers
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
             res.IsNotEmpty = IsNotEmpty;
+            res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;
             return res;

@@ -117,7 +117,7 @@ namespace FileHelpers
                     res.Append(delimiter);
 
                 var field = RecordInfo.Fields[i];
-                res.Append(field.FieldFriendlyName);
+                res.Append(field.FieldCaption ?? field.FieldFriendlyName);
             }
 
             return res.ToString();
