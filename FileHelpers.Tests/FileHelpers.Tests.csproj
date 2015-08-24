@@ -372,6 +372,7 @@
     <Compile Include="Types\Customers\CustomersVerticalBar.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\Customers\CustomersVerticalBarWithFieldCaption.cs" />
     <Compile Include="Types\Orders\OrdersFixed.cs">
       <SubType>Code</SubType>
     </Compile>
