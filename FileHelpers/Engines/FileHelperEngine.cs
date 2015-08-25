@@ -107,6 +107,7 @@ namespace FileHelpers
         }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
+        [Obsolete("Please use ReadFile(...).AsList() instead.")]
         public List<T> ReadFileAsList(string fileName)
         {
             return ReadFileAsList(fileName, int.MaxValue);
@@ -114,6 +115,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadFile/*'/>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+        [Obsolete("Please use ReadFile(...).AsList() instead.")]
         public List<T> ReadFileAsList(string fileName, int maxRecords)
         {
             using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
@@ -157,6 +159,7 @@ namespace FileHelpers
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadStream/*'/>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+        [Obsolete("You must use ReadStream(...).ToList() instead.")]
         public List<T> ReadStreamAsList(TextReader reader, int maxRecords)
         {
             var result = ReadStreamAsList(reader, maxRecords, null);
@@ -332,6 +335,7 @@ namespace FileHelpers
 
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
+        [Obsolete("You must use ReadString(...).ToList() instead.")]
         public List<T> ReadStringAsList(string source)
         {
             return ReadStringAsList(source, int.MaxValue);
@@ -339,6 +343,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/ReadString/*'/>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
+        [Obsolete("You must use ReadString(...).ToList() instead.")]
         public List<T> ReadStringAsList(string source, int maxRecords)
         {
             if (source == null)
@@ -584,6 +589,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="fileName">The file name.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadFile(...).ToDataTable<T>() instead.")]
         public DataTable ReadFileAsDT(string fileName)
         {
             return ReadFileAsDT(fileName, -1);
@@ -595,6 +601,7 @@ namespace FileHelpers
         /// <param name="fileName">The file name.</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadFile(...).ToDataTable<T>() instead.")]
         public DataTable ReadFileAsDT(string fileName, int maxRecords)
         {
             using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
@@ -612,6 +619,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="source">The source string with the records.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadString(...).ToDataTable<T>() instead.")]
         public DataTable ReadStringAsDT(string source)
         {
             return ReadStringAsDT(source, -1);
@@ -623,6 +631,7 @@ namespace FileHelpers
         /// <param name="source">The source string with the records.</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadString(...).ToDataTable<T>() instead.")]
         public DataTable ReadStringAsDT(string source, int maxRecords)
         {
             if (source == null)
@@ -641,6 +650,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="reader">The stream with the source records.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadStream(...).ToDataTable<T>() instead.")]
         public DataTable ReadStreamAsDT(TextReader reader)
         {
             return ReadStreamAsDT(reader, -1);
@@ -652,6 +662,7 @@ namespace FileHelpers
         /// <param name="reader">The stream with the source records.</param>
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         /// <returns>The DataTable with the read records.</returns>
+        [Obsolete("You must use ReadStream(...).ToDataTable<T>() instead.")]
         public DataTable ReadStreamAsDT(TextReader reader, int maxRecords)
         {
             DataTable dt = RecordInfo.Operations.CreateEmptyDataTable();
