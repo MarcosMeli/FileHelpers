@@ -3,7 +3,10 @@ skip_tags: true
 configuration: Debug
 platform: Any CPU
 install:
-- ps: nuget restore FileHelpers.sln
+- ps: >-
+    nuget install Build\.nuget\packages.config -OutputDirectory packages
+
+    nuget restore FileHelpers.sln
 build:
   project: FileHelpers.sln
   verbosity: minimal
