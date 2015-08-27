@@ -26,6 +26,22 @@ namespace FileHelpers.Tests.CommonTests
             
         }
 
+        [DelimitedRecord("|")]
+        public class CustomersVerticalBar2
+        {
+            public string CustomerID;
+            public string CompanyName;
+            public string ContactName;
+
+            public string ContactTitle;
+            public string Address;
+            public string City;
+            public string Country;
+
+            public string ToRemove;
+
+        }
+
         [Test]
         public void RemoveField()
         {
@@ -41,9 +57,34 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [Test]
+        public void RemoveFieldLast()
+        {
+            var engine = new FileHelperEngine<CustomersVerticalBar2>();
+
+            Check.That(engine.Options.FieldCount).IsEqualTo(8);
+            engine.Options.RemoveField("ToRemove");
+            Check.That(engine.Options.FieldCount).IsEqualTo(7);
+
+            var records = FileTest.Good.CustomersVerticalBar.ReadWithEngine(engine);
+            Check.That(records.Length).IsEqualTo(91);
+        }
+
+        [Test]
         public void SetAsOptionalField()
         {
             var engine = new FileHelperEngine<CustomersVerticalBar>();
+            engine.Options.RemoveField("ToRemove");
+            engine.Options.Fields[engine.Options.FieldCount - 1].IsOptional = true;
+
+            var records = FileTest.Good.CustomersVerticalBarOptions.ReadWithEngine(engine);
+
+            Check.That(records.Length).IsEqualTo(91);
+        }
+
+        [Test]
+        public void SetAsOptionalFieldLast()
+        {
+            var engine = new FileHelperEngine<CustomersVerticalBar2>();
             engine.Options.RemoveField("ToRemove");
             engine.Options.Fields[engine.Options.FieldCount - 1].IsOptional = true;
 
@@ -72,6 +113,21 @@ namespace FileHelpers.Tests.CommonTests
         public void SetTrimChar()
         {
             var engine = new FileHelperEngine<CustomersVerticalBar>();
+            engine.Options.RemoveField("ToRemove");
+            engine.Options.Fields[engine.Options.FieldCount - 1].IsOptional = true;
+
+            engine.Options.Fields[1].TrimMode = TrimMode.Both;
+            engine.Options.Fields[1].TrimChars = new char[] { '-' };
+
+            var records = FileTest.Good.CustomersVerticalBarOptions.ReadWithEngine(engine);
+            Check.That(records[2].CompanyName).IsEqualTo(records[2].CompanyName.Trim());
+
+        }
+
+        [Test]
+        public void SetTrimCharLast()
+        {
+            var engine = new FileHelperEngine<CustomersVerticalBar2>();
             engine.Options.RemoveField("ToRemove");
             engine.Options.Fields[engine.Options.FieldCount - 1].IsOptional = true;
 
