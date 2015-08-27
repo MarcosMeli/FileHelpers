@@ -35,7 +35,13 @@ namespace FileHelpers
         /// <summary>
         /// Number of extra characters used,  delimiters and quote characters
         /// </summary>
-        internal int CharsToDiscard { get; set; }
+        internal virtual int CharsToDiscard
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
         /// <summary>
         /// Field type of an array or it is just fieldType.
@@ -411,7 +417,6 @@ namespace FileHelpers
             NullValue = null;
             TrailingArray = false;
             IsArray = false;
-            CharsToDiscard = 0;
             IsNotEmpty = false;
         }
 
@@ -903,7 +908,6 @@ namespace FileHelpers
             var res = CreateClone();
 
             res.FieldType = FieldType;
-            res.CharsToDiscard = CharsToDiscard;
             res.Converter = this.Converter;
             res.FieldTypeInternal = FieldTypeInternal;
             res.IsArray = IsArray;

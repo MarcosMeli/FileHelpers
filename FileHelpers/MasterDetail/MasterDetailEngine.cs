@@ -66,6 +66,7 @@ namespace FileHelpers.MasterDetail
         {
             mMasterType = masterType;
             mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType); // Container.Resolve<IRecordInfo>(mMasterType);
+            MasterOptions = CreateRecordOptionsCore(mMasterInfo);
             mRecordSelector = recordSelector;
         }
 

@@ -40,23 +40,19 @@ namespace FileHelpers
 
         #region "  Properties  "
 
-        private string mSeparator;
-
         /// <summary>
         /// Set the separator string
         /// </summary>
         /// <remarks>Also sets the discard count</remarks>
-        internal string Separator
-        {
-            get { return mSeparator; }
-            set
-            {
-                mSeparator = value;
+        internal string Separator { get; set; }
 
+        internal override int CharsToDiscard {
+            get
+            {
                 if (IsLast && IsArray == false)
-                    CharsToDiscard = 0;
+                    return 0;
                 else
-                    CharsToDiscard = mSeparator.Length;
+                    return Separator.Length;
             }
         }
 
@@ -143,7 +139,7 @@ namespace FileHelpers
         private ExtractedInfo BasicExtractString(LineInfo line)
         {
             if (IsLast && !IsArray) {
-                var sepPos = line.IndexOf(mSeparator);
+                var sepPos = line.IndexOf(Separator);
 
                 if (sepPos == -1)
                     return new ExtractedInfo(line);
@@ -152,14 +148,14 @@ namespace FileHelpers
                 var msg =
                     string.Format(
                         "Delimiter '{0}' found after the last field '{1}' (the file is wrong or you need to add a field to the record class)",
-                        mSeparator,
+                        Separator,
                         this.FieldInfo.Name,
                         line.mReader.LineNumber);
 
                 throw new BadUsageException(line.mReader.LineNumber, line.mCurrentPos, msg);
             }
             else {
-                int sepPos = line.IndexOf(mSeparator);
+                int sepPos = line.IndexOf(Separator);
 
                 if (sepPos == -1) {
                     if (IsLast && IsArray)
@@ -178,7 +174,7 @@ namespace FileHelpers
                             msg =
                                 string.Format(
                                     "Delimiter '{0}' not found after field '{1}' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).",
-                                    mSeparator,
+                                    Separator,
                                     this.FieldInfo.Name,
                                     line.mReader.LineNumber);
                         }
@@ -222,13 +218,13 @@ namespace FileHelpers
                 (QuoteMode == QuoteMode.AlwaysQuoted ||
                  QuoteMode == QuoteMode.OptionalForRead ||
                  ((QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)
-                  && mCompare.IndexOf(field, mSeparator, CompareOptions.Ordinal) >= 0) || hasNewLine))
+                  && mCompare.IndexOf(field, Separator, CompareOptions.Ordinal) >= 0) || hasNewLine))
                 StringHelper.CreateQuotedString(sb, field, QuoteChar);
             else
                 sb.Append(field);
 
             if (isLast == false)
-                sb.Append(mSeparator);
+                sb.Append(Separator);
         }
 
         /// <summary>
@@ -239,7 +235,7 @@ namespace FileHelpers
         protected override FieldBase CreateClone()
         {
             var res = new DelimitedField {
-                mSeparator = mSeparator,
+                Separator = Separator,
                 QuoteChar = QuoteChar,
                 QuoteMode = QuoteMode,
                 QuoteMultiline = QuoteMultiline
