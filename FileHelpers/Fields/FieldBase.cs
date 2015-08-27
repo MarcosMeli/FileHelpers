@@ -889,7 +889,7 @@ namespace FileHelpers
         /// Copy the field object
         /// </summary>
         /// <returns>a complete copy of the Field object</returns>
-        public object Clone()
+        object ICloneable.Clone()
         {
             var res = CreateClone();
 
