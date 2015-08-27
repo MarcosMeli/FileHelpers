@@ -48,7 +48,7 @@ namespace FileHelpers
         /// </summary>
         public int FieldCount
         {
-            get { return this.Fields.Length; }
+            get { return Fields.Length; }
         }
 
         /// <summary>
@@ -269,11 +269,6 @@ namespace FileHelpers
             }
 
             SortFieldsByOrder(resFields);
-
-            if (resFields.Count > 0) {
-                resFields[0].IsFirst = true;
-                resFields[resFields.Count - 1].IsLast = true;
-            }
 
             CheckForOptionalAndArrayProblems(resFields);
 

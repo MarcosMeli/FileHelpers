@@ -65,17 +65,6 @@ namespace FileHelpers
         /// </summary>
         internal Type ArrayType { get; set; }
 
-
-        /// <summary>
-        /// Am I the first field in an array list
-        /// </summary>
-        internal bool IsFirst { get; set; }
-
-        /// <summary>
-        /// Am I the last field in the array list
-        /// </summary>
-        internal bool IsLast { get; set; }
-
         /// <summary>
         /// Do we process this field but not store the value
         /// </summary>
@@ -116,7 +105,8 @@ namespace FileHelpers
         /// </summary>
         public bool IsOptional
         {
-            get; set; }
+            get; set;
+        }
 
         /// <summary>
         /// The next field along is optional,  optimise processing next records
@@ -129,7 +119,28 @@ namespace FileHelpers
                     return Parent.Fields[ParentIndex + 1].IsOptional;
                 return false;
             }
-    }
+        }
+
+
+        /// <summary>
+        /// Am I the first field in an array list
+        /// </summary>
+        internal bool IsFirst
+        {
+            get
+            {
+                return ParentIndex == 0;
+            }
+        }
+
+        /// <summary>
+        /// Am I the last field in the array list
+        /// </summary>
+        internal bool IsLast
+        {
+            get { return ParentIndex == Parent.FieldCount - 1; }
+        }
+
 
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
@@ -399,8 +410,6 @@ namespace FileHelpers
             TrimChars = null;
             NullValue = null;
             TrailingArray = false;
-            IsLast = false;
-            IsFirst = false;
             IsArray = false;
             CharsToDiscard = 0;
             IsNotEmpty = false;
@@ -901,8 +910,6 @@ namespace FileHelpers
             res.ArrayType = ArrayType;
             res.ArrayMinLength = ArrayMinLength;
             res.ArrayMaxLength = ArrayMaxLength;
-            res.IsFirst = IsFirst;
-            res.IsLast = IsLast;
             res.TrailingArray = TrailingArray;
             res.NullValue = NullValue;
             res.IsStringField = IsStringField;
