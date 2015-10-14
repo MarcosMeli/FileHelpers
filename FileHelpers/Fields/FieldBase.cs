@@ -213,41 +213,59 @@ namespace FileHelpers
         /// <returns>Null if not used</returns>
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
+            FieldBase res = null;
+            MemberInfo mi = fi;
+            var memberName = "The field: '" + fi.Name;
+            Type fieldType = fi.FieldType;             
+            string fieldFriendlyName = AutoPropertyName(fi);
+            if (string.IsNullOrEmpty(fieldFriendlyName)==false)
+            {                
+                var prop = fi.DeclaringType.GetProperty(fieldFriendlyName);
+                if (prop != null)
+                {
+                    memberName = "The property: '" + prop.Name;
+                    mi = prop;
+                }
+                else
+                {
+                    fieldFriendlyName = null;
+                }
+            }
             // If ignored, return null
 #pragma warning disable 612,618 // disable obsole warning
-            if (fi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
-                fi.IsDefined(typeof (FieldIgnoredAttribute), true) ||
-                fi.IsDefined(typeof (FieldHiddenAttribute), true))
+            if (mi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
+                mi.IsDefined(typeof (FieldIgnoredAttribute), true) ||
+                mi.IsDefined(typeof (FieldHiddenAttribute), true))
 #pragma warning restore 612,618
                 return null;
 
-            FieldBase res = null;
             
-            var attributes = (FieldAttribute[]) fi.GetCustomAttributes(typeof (FieldAttribute), true);
+            
+            var attributes = (FieldAttribute[]) mi.GetCustomAttributes(typeof (FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
 
             // Fixed length record and no attributes at all
             if (recordAttribute is FixedLengthRecordAttribute &&
                 attributes.Length == 0) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                throw new BadUsageException(memberName +
                                             "' must be marked the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
             }
 
             if (attributes.Length > 1) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                throw new BadUsageException(memberName +
                                             "' has a FieldFixedLength and a FieldDelimiter attribute.");
             }
 
             if (recordAttribute is DelimitedRecordAttribute &&
-                fi.IsDefined(typeof (FieldAlignAttribute), false)) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                mi.IsDefined(typeof (FieldAlignAttribute), false)) {
+                throw new BadUsageException(memberName +
                                             "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpose.");
             }
 
-            if (fi.FieldType.IsArray == false &&
-                fi.IsDefined(typeof (FieldArrayLengthAttribute), false)) {
-                throw new BadUsageException("The field: '" + fi.Name +
+            if (fieldType.IsArray == false &&
+                mi.IsDefined(typeof (FieldArrayLengthAttribute), false)) {
+                throw new BadUsageException(memberName +
                                             "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
             }
 
@@ -258,12 +276,12 @@ namespace FileHelpers
                 if (fieldAttb is FieldFixedLengthAttribute) {
                     // Fixed Field
                     if (recordAttribute is DelimitedRecordAttribute) {
-                        throw new BadUsageException("The field: '" + fi.Name +
+                        throw new BadUsageException(memberName +
                                                     "' can't be marked with FieldFixedLength attribute, it is only for the FixedLengthRecords not for delimited ones.");
                     }
 
                     var attbFixedLength = (FieldFixedLengthAttribute) fieldAttb;
-                    var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(fi);
+                    var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(mi);
 
                     res = new FixedLengthField(fi, attbFixedLength.Length, attbAlign);
                     ((FixedLengthField) res).FixedMode = ((FixedLengthRecordAttribute) recordAttribute).FixedMode;
@@ -271,7 +289,7 @@ namespace FileHelpers
                 else if (fieldAttb is FieldDelimiterAttribute) {
                     // Delimited Field
                     if (recordAttribute is FixedLengthRecordAttribute) {
-                        throw new BadUsageException("The field: '" + fi.Name +
+                        throw new BadUsageException(memberName +
                                                     "' can't be marked with FieldDelimiter attribute, it is only for DelimitedRecords not for fixed ones.");
                     }
 
@@ -288,26 +306,28 @@ namespace FileHelpers
                 var delimitedRecordAttribute = recordAttribute as DelimitedRecordAttribute;
 
                 if (delimitedRecordAttribute != null)
+                {
                     res = new DelimitedField(fi, delimitedRecordAttribute.Separator);
+                }
             }
 
             if (res != null) {
                 // FieldDiscarded
-                res.Discarded = fi.IsDefined(typeof (FieldValueDiscardedAttribute), false);
+                res.Discarded = mi.IsDefined(typeof (FieldValueDiscardedAttribute), false);
 
                 // FieldTrim
-                Attributes.WorkWithFirst<FieldTrimAttribute>(fi,
+                Attributes.WorkWithFirst<FieldTrimAttribute>(mi,
                     (x) => {
                         res.TrimMode = x.TrimMode;
                         res.TrimChars = x.TrimChars;
                     });
 
                 // FieldQuoted
-                Attributes.WorkWithFirst<FieldQuotedAttribute>(fi,
+                Attributes.WorkWithFirst<FieldQuotedAttribute>(mi,
                     (x) => {
                         if (res is FixedLengthField) {
                             throw new BadUsageException(
-                                "The field: '" + fi.Name +
+                                memberName +
                                 "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
                         }
 
@@ -320,30 +340,30 @@ namespace FileHelpers
                     });
 
                 // FieldOrder
-                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
+                Attributes.WorkWithFirst<FieldOrderAttribute>(mi, x => res.FieldOrder = x.Order);
 
                 // FieldCaption
-                Attributes.WorkWithFirst<FieldCaptionAttribute>(fi, x => res.FieldCaption = x.Caption);
+                Attributes.WorkWithFirst<FieldCaptionAttribute>(mi, x => res.FieldCaption = x.Caption);
 
                 // FieldOptional
-                res.IsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
+                res.IsOptional = mi.IsDefined(typeof(FieldOptionalAttribute), false);
 
                 // FieldInNewLine
-                res.InNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
+                res.InNewLine = mi.IsDefined(typeof(FieldInNewLineAttribute), false);
 
                 // FieldNotEmpty
-                res.IsNotEmpty = fi.IsDefined(typeof(FieldNotEmptyAttribute), false);
+                res.IsNotEmpty = mi.IsDefined(typeof(FieldNotEmptyAttribute), false);
 
                 // FieldArrayLength
-                if (fi.FieldType.IsArray) {
+                if (fieldType.IsArray) {
                     res.IsArray = true;
-                    res.ArrayType = fi.FieldType.GetElementType();
+                    res.ArrayType = fieldType.GetElementType();
 
                     // MinValue indicates that there is no FieldArrayLength in the array
                     res.ArrayMinLength = int.MinValue;
                     res.ArrayMaxLength = int.MaxValue;
 
-                    Attributes.WorkWithFirst<FieldArrayLengthAttribute>(fi,
+                    Attributes.WorkWithFirst<FieldArrayLengthAttribute>(mi,
                         (x) => {
                             res.ArrayMinLength = x.MinLength;
                             res.ArrayMaxLength = x.MaxLength;
@@ -351,26 +371,10 @@ namespace FileHelpers
                             if (res.ArrayMaxLength < res.ArrayMinLength ||
                                 res.ArrayMinLength < 0 ||
                                 res.ArrayMaxLength <= 0) {
-                                throw new BadUsageException("The field: " + fi.Name +
+                                throw new BadUsageException(memberName +
                                                             " has invalid length values in the [FieldArrayLength] attribute.");
                             }
                         });
-                }
-            }
-
-            if (fi.IsDefined(typeof (CompilerGeneratedAttribute), false))
-            {
-                if (fi.Name.EndsWith("__BackingField") &&
-                    fi.Name.StartsWith("<") &&
-                    fi.Name.Contains(">"))
-
-                res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
-                res.IsAutoProperty = true;
-
-                var prop = fi.DeclaringType.GetProperty(res.FieldFriendlyName);
-                if (prop != null)
-                {
-                    Attributes.WorkWithFirst<FieldOrderAttribute>(prop, x => res.FieldOrder = x.Order);
                 }
             }
 
@@ -429,9 +433,23 @@ namespace FileHelpers
             : this()
         {
          
-
             FieldInfo = fi;
             FieldType = FieldInfo.FieldType;
+            MemberInfo attibuteTarget = fi;
+            this.FieldFriendlyName = AutoPropertyName(fi);
+            if (string.IsNullOrEmpty(FieldFriendlyName) == false)
+            {
+                var prop = fi.DeclaringType.GetProperty(this.FieldFriendlyName);
+                if (prop == null)
+                {
+                    this.FieldFriendlyName = null;
+                }
+                else
+                {
+                    this.IsAutoProperty = true;
+                    attibuteTarget = prop;
+                }
+            }
 
             if (FieldType.IsArray)
                 FieldTypeInternal = FieldType.GetElementType();
@@ -440,7 +458,7 @@ namespace FileHelpers
 
             IsStringField = FieldTypeInternal == typeof (string);
 
-            object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
+            object[] attribs = attibuteTarget.GetCustomAttributes(typeof (FieldConverterAttribute), true);
 
             if (attribs.Length > 0) {
                 var conv = (FieldConverterAttribute) attribs[0];
@@ -448,12 +466,12 @@ namespace FileHelpers
                 conv.ValidateTypes(FieldInfo);
             }
             else
-                this.Converter = ConvertHelpers.GetDefaultConverter(fi.Name, FieldType);
+                this.Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name, FieldType);
 
             if (this.Converter != null)
                 this.Converter.mDestinationType = FieldTypeInternal;
 
-            attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
+            attribs = attibuteTarget.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
             if (attribs.Length > 0) {
                 NullValue = ((FieldNullValueAttribute) attribs[0]).NullValue;
