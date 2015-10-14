@@ -9,7 +9,7 @@ namespace FileHelpers
     /// By default uses "" (double quotes)
     /// </summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldQuotedAttribute : Attribute
     {
         /// <summary>The char used to quote the string.</summary>
