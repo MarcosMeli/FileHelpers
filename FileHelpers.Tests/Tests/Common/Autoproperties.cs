@@ -123,7 +123,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AutopropertiesFieldFixedLength()
         {
-            var engine = new FileHelperEngine<AutoPropertiesFixedRecoedAttribute>();
+            var engine = new FileHelperEngine<AutoPropertiesFixedRecordAttribute>();
 
             Check.That(engine.Options.FieldCount).IsEqualTo(1);
 
@@ -137,7 +137,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AutopropertiesFieldFieldAlign()
         {
-            var engine = new FileHelperEngine<AutoPropertiesFixedRecoedAttribute>();
+            var engine = new FileHelperEngine<AutoPropertiesFixedRecordAttribute>();
 
             Check.That(engine.Options.FieldCount).IsEqualTo(1);
 
@@ -151,7 +151,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void AutopropertiesFieldCaption()
         {
-            var engine = new FileHelperEngine<AutoPropertiesFixedRecoedAttribute>();
+            var engine = new FileHelperEngine<AutoPropertiesFixedRecordAttribute>();
 
             Check.That(engine.Options.FieldCount).IsEqualTo(1);
 
@@ -318,7 +318,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [FixedLengthRecord]
-        class AutoPropertiesFixedRecoedAttribute
+        class AutoPropertiesFixedRecordAttribute
         {
             [FieldFixedLength(10)]
             [FieldAlign(AlignMode.Right)]
