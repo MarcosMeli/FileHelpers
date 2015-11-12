@@ -6,7 +6,7 @@ namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="TrimMode"/> used after reading to truncate the field. </summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldTrimAttribute : Attribute
     {
         /// <summary>A string of chars used to trim.</summary>
