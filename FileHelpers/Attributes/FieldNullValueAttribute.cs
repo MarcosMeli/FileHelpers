@@ -17,7 +17,7 @@ namespace FileHelpers
     /// information and examples of each one.
     /// </remarks>
 
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldNullValueAttribute : Attribute
     {
         /// <summary>Default value for a null value.</summary>
