@@ -120,29 +120,17 @@ namespace FileHelpers
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file. Only
         /// allows to set the delimiter.
+        /// If options.IncludeHeaderNames = true, add to the very first row of the CSV, the name of the columns
+        /// taken from DataTable
         /// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
         /// <param name="options">The options used to write the file</param>
         public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
         {
-        	DataTableToCsv(dt, filename, false, options);
-        }
-
-        
-        /// <summary>
-        /// Simply dumps the DataTable contents to a delimited file. Only
-        /// allows to set the delimiter and includeHeaders.
-        /// </summary>
-        /// <param name="dt">The source Data Table</param>
-        /// <param name="filename">The destination file.</param>
-        /// <param name="includeHeaders">True for include also DataTable columns on the first Csv row.</param>
-        /// <param name="options">The options used to write the file</param>
-        public static void DataTableToCsv(DataTable dt, string filename, bool includeHeaders, CsvOptions options)
-        {
             using (var fs = new StreamWriter(filename, false, options.Encoding, DefaultWriteBufferSize)) {
 		        // output header
-		        if( includeHeaders ){
+		        if( options.IncludeHeaderNames ){
 			        for (int i = 0; i < dt.Columns.Count; i++)
 			        {
 			        	if (i > 0)
@@ -169,6 +157,7 @@ namespace FileHelpers
                 fs.Close();
             }
         }
+        
         
 //		private static string ObjectString(CsvOptions options, object o)
 //		{

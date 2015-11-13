@@ -56,6 +56,7 @@ namespace FileHelpers.Options
         private char mDelimiter = ',';
         private char mHeaderDelimiter = char.MinValue;
         private int mHeaderLines = 1;
+        private bool mIncludeHeaderNames = false;
         private string mRecordClassName = string.Empty;
         private int mNumberOfFields = -1;
         private string mFieldsPrefix = "Field_";
@@ -111,6 +112,13 @@ namespace FileHelpers.Options
         {
             get { return mHeaderLines; }
             set { mHeaderLines = value; }
+        }
+        
+        /// <summary>If True, add to the first row the names of the columns taken from DataTable</summary>
+        public bool IncludeHeaderNames
+        {
+            get { return mIncludeHeaderNames; }
+            set { mIncludeHeaderNames = value; }
         }
 
         /// <summary>The DateFormat used to read and write DateTime values</summary>
