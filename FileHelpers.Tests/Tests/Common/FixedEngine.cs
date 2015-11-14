@@ -55,6 +55,17 @@ namespace FileHelpers.Tests.CommonTests
                 () => new FixedFileEngine(null));
         }
 
+        [Test]
+        public void SetFieldLengthAtRuntime()
+        {
+            var engine = new FixedFileEngine<CustomersFixed>();
+            engine.Options.FixedMode = FixedMode.AllowMoreChars;
+            ((FixedLengthField) engine.Options.Fields[0]).FieldLength -= 6;
+            ((FixedLengthField)engine.Options.Fields[1]).FieldLength += 6;
+            var customers = FileTest.Good.CustomersFixed.ReadWithEngine(engine);
+            Assert.AreEqual(91, customers.Length);
+        }
+
         [FixedLengthRecord]
         [ConditionalRecord(RecordCondition.IncludeIfBegins, "F")]
         public class CustomersFixed2
