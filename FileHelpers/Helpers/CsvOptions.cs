@@ -114,11 +114,20 @@ namespace FileHelpers.Options
             set { mHeaderLines = value; }
         }
         
-        /// <summary>If True, add to the first row the names of the columns taken from DataTable</summary>
+        /// <summary>
+        /// If True, add to the first row the names of the columns taken from DataTable and
+        /// also update the value of HeaderLines option to 1
+        /// </summary>
         public bool IncludeHeaderNames
         {
             get { return mIncludeHeaderNames; }
-            set { mIncludeHeaderNames = value; }
+            set { 
+            	mIncludeHeaderNames = value;
+            	
+            	if (value && HeaderLines == 0) {
+            		HeaderLines = 1;
+            	}
+            }
         }
 
         /// <summary>The DateFormat used to read and write DateTime values</summary>
