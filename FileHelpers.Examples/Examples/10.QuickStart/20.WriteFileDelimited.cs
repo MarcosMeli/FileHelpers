@@ -13,7 +13,7 @@ namespace ExamplesFx
     public class WriteFileDelimited
         : ExampleBase
     {
-        //-> To write an output file separated by a |:
+        //-> To write an output file (separated by a "|"):
 
         //-> FileOut: Output.txt
 
@@ -38,7 +38,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> Instantiate a FileHelperEngine and write the file.
+        //-> Instantiate a FileHelperEngine and write the file:
 
         public override void Run()
         {
