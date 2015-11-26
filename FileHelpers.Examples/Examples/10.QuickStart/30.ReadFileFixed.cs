@@ -13,7 +13,7 @@ namespace ExamplesFx
     public class ReadFixedFile
         : ExampleBase
     {
-        //-> Lets start with a simple file:
+        //-> Let's start with a simple file:
 
         //-> FileIn:Input.txt
         /*01010 Alfreds Futterkiste          13122005
