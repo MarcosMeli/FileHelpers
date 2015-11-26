@@ -18,7 +18,7 @@ namespace ExamplesFx
 
         //-> FileOut: Output.txt
 
-        // You define the record mapping class
+        // -> You define the Record Mapping class:
 
         //-> File:RecordClass.cs
         [FixedLengthRecord()]
@@ -38,7 +38,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> Now just create some records and write them with the Engine
+        //-> Now just create some records and write them with the Engine:
 
         public override void Run()
         {
