@@ -105,14 +105,14 @@ catch (Exception ex)
 <div class='highlight'>
 <pre>
 FileHelpers.ConvertException: Error Converting 'NotInEnum' to type: 'CustomerTitle'. The value NotInEnum is not present in the Enum.
-   at FileHelpers.EnumConverter.StringToField(String from)
-   at FileHelpers.FieldBase.AssignFromString(ExtractedInfo fieldString, LineInfo line)
-   at FileHelpers.FieldBase.ExtractFieldValue(LineInfo line)
-   at FileHelpers.RecordOperations.StringToRecord(Object record, LineInfo line, Object[] values)
-   at FileHelpers.FileHelperEngine`1.ReadStreamAsList(TextReader reader, Int32 maxRecords, DataTable dt)
-   at FileHelpers.FileHelperEngine`1.ReadStream(TextReader reader, Int32 maxRecords)
-   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName, Int32 maxRecords)
-   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName)
+   at FileHelpers.EnumConverter.StringToField(String from) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Converters\EnumConverter.cs:line 25
+   at FileHelpers.FieldBase.AssignFromString(ExtractedInfo fieldString, LineInfo line) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Fields\FieldBase.cs:line 711
+   at FileHelpers.FieldBase.ExtractFieldValue(LineInfo line) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Fields\FieldBase.cs:line 573
+   at FileHelpers.RecordOperations.StringToRecord(Object record, LineInfo line, Object[] values) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Core\RecordOperations.cs:line 87
+   at FileHelpers.FileHelperEngine`1.ReadStreamAsList(TextReader reader, Int32 maxRecords, DataTable dt) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Engines\FileHelperEngine.cs:line 282
+   at FileHelpers.FileHelperEngine`1.ReadStream(TextReader reader, Int32 maxRecords) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Engines\FileHelperEngine.cs:line 145
+   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName, Int32 maxRecords) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Engines\FileHelperEngine.cs:line 102
+   at FileHelpers.FileHelperEngine`1.ReadFile(String fileName) in D:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers\Engines\FileHelperEngine.cs:line 92
    at ExamplesFx.ErrorModeThrowException.Run()
 </pre>
 </div>

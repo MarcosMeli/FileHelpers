@@ -35,10 +35,10 @@ breadcrumbtext2: Advanced
   <h6 style='font-size: 120%;'>Read or write a file with many different layouts</h6>
   <div class='indent'>
 
-<p>The idea of this engine is to parse files with different record types (this engine doesn't use any hierarchical structure like the master-details; all the records are in linear relation for it).</p>
+<p>The idea of this engine is to parse files with different record types (this engine doesn't use any hierarchical structure like the master-details, all the records are in linear relation for it).</p>
 
 
-<p>With the MultiRecordEngine you can also parse mixed delimited and fixed length records.</p>
+<p>With the MultiRecordEngine you can parse also mixed delimited and fixed length records.</p>
 
 
 <p>For example, you can parse this strange file:</p>
@@ -63,7 +63,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
 
 
 
-<p>This file contains<b> three</b> record types: Customers(begins with letters, | delimited), Orders(begin with numbers, ';' delimited) and the sample type of the first example.</p>
+<p>This file contains<b> three</b> record types; Customers(begins with letters, | delimited), Orders(begin with numbers, ';' delimited) and the sample type of the first example.</p>
 
 
 <div class='highlight-title example-code'> Customer.cs </div><div class='example-code-high'>
