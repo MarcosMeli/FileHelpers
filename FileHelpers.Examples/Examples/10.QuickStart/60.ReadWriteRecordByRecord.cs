@@ -33,7 +33,7 @@ namespace ExamplesFx
 
             public string Name;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
             public decimal Balance;
 
             [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
