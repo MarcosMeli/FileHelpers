@@ -13,14 +13,14 @@ namespace ExamplesFx
     public class WriteFileDelimited
         : ExampleBase
     {
-        //-> To write an output file separated by a |:
+        //-> To write an output file, separated by a "|":
 
         //-> FileOut: Output.txt
 
         // -> You use the same Record Mapping Class as you would to read it:
         //-> File:RecordClass.cs
         /// <summary>
-        /// Layout for a file delimited by |
+        /// Layout for a file delimited by "|"
         /// </summary>
         [DelimitedRecord("|")]
         public class Orders
@@ -32,14 +32,13 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
             public decimal Freight;
         }
 
         //-> /File
 
-        //-> Instantiate a FileHelperEngine and write the file
-
+        //-> Instantiate a FileHelperEngine and write the file:
 
         public override void Run()
         {
@@ -69,6 +68,6 @@ namespace ExamplesFx
             Console.WriteLine(engine.WriteString(orders));
         }
 
-        //-> The classes you use could come from anywhere,  Linq to Entities, SQL database reads, or in this case classes created within an application
+        //-> The classes you use could come from anywhere,  LINQ to Entities, SQL database reads, or in this case classes created within an application.
     }
 }
