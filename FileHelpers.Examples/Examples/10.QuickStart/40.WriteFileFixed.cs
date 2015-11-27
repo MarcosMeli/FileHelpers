@@ -8,7 +8,7 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name:Write Fixed File
-    //-> Description:Example of how to write a Fixed Record File
+    //-> Description:Example of how to write a Fixed Record file
     //-> AutoRun:true
 
     public class WriteFileFixed
