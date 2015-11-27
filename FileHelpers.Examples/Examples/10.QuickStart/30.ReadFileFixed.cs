@@ -7,7 +7,7 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name:Read Fixed File
-    //-> Description:Example of how to read a Fixed Length layout file (eg Cobol output)
+    //-> Description:Example of how to read a Fixed Length layout file (eg COBOL output)
     //-> AutoRun:true
 
     public class ReadFixedFile
