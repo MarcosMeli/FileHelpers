@@ -68,6 +68,6 @@ namespace ExamplesFx
             Console.WriteLine(engine.WriteString(orders));
         }
 
-        //-> The classes you use could come from anywhere,  LINQ to Entities, SQL database reads, or in this case classes created within an application.
+        //-> The classes you use could come from anywhere: LINQ to Entities, SQL database reads, or in this case classes created within an application.
     }
 }
