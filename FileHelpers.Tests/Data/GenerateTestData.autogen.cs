@@ -639,6 +639,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class CustomersFixedWithFirst2FieldsSwitched : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "CustomersFixedWithFirst2FieldsSwitched.txt");
+                }
+            }
+
             public partial class CustomersFixedWithout1AndHalfFields : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -2021,6 +2029,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.CustomersFixedMoreVariable12Records CustomersFixedMoreVariable12Records
             {
                 get { return mCustomersFixedMoreVariable12Records; }
+            }
+
+            private static ClassesFileTest.Good.CustomersFixedWithFirst2FieldsSwitched mCustomersFixedWithFirst2FieldsSwitched = new ClassesFileTest.Good.CustomersFixedWithFirst2FieldsSwitched();
+
+            public static ClassesFileTest.Good.CustomersFixedWithFirst2FieldsSwitched CustomersFixedWithFirst2FieldsSwitched
+            {
+                get { return mCustomersFixedWithFirst2FieldsSwitched; }
             }
 
             private static ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields mCustomersFixedWithout1AndHalfFields = new ClassesFileTest.Good.CustomersFixedWithout1AndHalfFields();

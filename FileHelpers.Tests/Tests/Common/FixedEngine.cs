@@ -60,10 +60,22 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FixedFileEngine<CustomersFixed>();
             engine.Options.FixedMode = FixedMode.AllowMoreChars;
-            ((FixedLengthField) engine.Options.Fields[0]).FieldLength -= 6;
+            ((FixedLengthField)engine.Options.Fields[0]).FieldLength -= 6;
             ((FixedLengthField)engine.Options.Fields[1]).FieldLength += 6;
             var customers = FileTest.Good.CustomersFixed.ReadWithEngine(engine);
             Assert.AreEqual(91, customers.Length);
+        }
+
+        [Test]
+        public void SetFieldOrderAtRuntime()
+        {
+            var engine = new FixedFileEngine<CustomersFixed>();
+            engine.Options.FixedMode = FixedMode.AllowMoreChars;
+            ((FixedLengthField)engine.Options.Fields[0]).FieldOrder = 2;
+            ((FixedLengthField)engine.Options.Fields[1]).FieldOrder = 1;
+            var customers = FileTest.Good.CustomersFixedWithFirst2FieldsSwitched.ReadWithEngine(engine);
+            Assert.AreEqual(91, customers.Length);
+            Assert.AreEqual("ALFKI", customers[0].CustomerID);
         }
 
         [FixedLengthRecord]

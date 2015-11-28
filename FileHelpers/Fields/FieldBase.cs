@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,14 +14,17 @@ namespace FileHelpers
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     public abstract class FieldBase
-        : ICloneable
+        : ICloneable, INotifyPropertyChanged
     {
+
         #region "  Private & Internal Fields  "
 
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
         // --------------------------------------------------------------
+
+        private int? mFieldOrder;
 
         /// <summary>
         /// type of object to be created,  eg DateTime
@@ -157,7 +161,15 @@ namespace FileHelpers
         /// <summary>
         /// Order of the field in the file layout
         /// </summary>
-        internal int? FieldOrder { get; set; }
+        public int? FieldOrder
+        {
+            get { return mFieldOrder; }
+            set
+            {
+                mFieldOrder = value;
+                OnPropertyChanged(nameof(FieldOrder));
+            }
+        }
 
         /// <summary>
         /// Can null be assigned to this value type, for example not int or
@@ -320,7 +332,7 @@ namespace FileHelpers
                     });
 
                 // FieldOrder
-                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
+                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.mFieldOrder = x.Order);
 
                 // FieldCaption
                 Attributes.WorkWithFirst<FieldCaptionAttribute>(fi, x => res.FieldCaption = x.Caption);
@@ -370,7 +382,7 @@ namespace FileHelpers
                 var prop = fi.DeclaringType.GetProperty(res.FieldFriendlyName);
                 if (prop != null)
                 {
-                    Attributes.WorkWithFirst<FieldOrderAttribute>(prop, x => res.FieldOrder = x.Order);
+                    Attributes.WorkWithFirst<FieldOrderAttribute>(prop, x => res.mFieldOrder = x.Order);
                 }
             }
 
@@ -409,7 +421,7 @@ namespace FileHelpers
         {
             IsNullableType = false;
             TrimMode = TrimMode.None;
-            FieldOrder = null;
+            mFieldOrder = null;
             InNewLine = false;
             //NextIsOptional = false;
             IsOptional = false;
@@ -923,7 +935,7 @@ namespace FileHelpers
             res.IsOptional = IsOptional;
             //res.NextIsOptional = NextIsOptional;
             res.InNewLine = InNewLine;
-            res.FieldOrder = FieldOrder;
+            res.mFieldOrder = mFieldOrder;
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
@@ -931,6 +943,7 @@ namespace FileHelpers
             res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;
+            res.PropertyChanged = PropertyChanged;
             return res;
         }
 
@@ -939,5 +952,12 @@ namespace FileHelpers
         /// </summary>
         /// <returns>field clone of right type</returns>
         protected abstract FieldBase CreateClone();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

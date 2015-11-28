@@ -502,6 +502,7 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\CustomersFixedWithFirst2FieldsSwitched.txt" />
     <Content Include="Data\Good\CustomersVerticalBarOptions.txt" />
     <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldNotEmpty1.txt" />
