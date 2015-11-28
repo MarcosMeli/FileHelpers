@@ -63,6 +63,7 @@ namespace FileHelpers.Tests.CommonTests
             ((FixedLengthField)engine.Options.Fields[0]).FieldLength -= 6;
             ((FixedLengthField)engine.Options.Fields[1]).FieldLength += 6;
             var customers = FileTest.Good.CustomersFixed.ReadWithEngine(engine);
+            Assert.AreEqual("Maria Anders".PadRight(22), customers[0].ContactName);
             Assert.AreEqual(91, customers.Length);
         }
 
