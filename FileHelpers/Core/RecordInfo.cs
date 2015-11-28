@@ -280,11 +280,25 @@ namespace FileHelpers
 
         private void FieldOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == nameof(FieldBase.FieldOrder))
+            var field = sender as FieldBase;
+
+            if (field == null)
+                return;
+
+            if (propertyChangedEventArgs.PropertyName != "FieldOrder")
+                return;
+
+            if (field.FieldOrder == null)
+                return;
+
+            var firstInvalidField = Fields.FirstOrDefault(x => x.FieldOrder == null);
+            if (firstInvalidField != null)
             {
-                
-                Fields = SortFieldsByOrder(Fields).ToArray();
+                throw new BadUsageException(
+                    Messages.Errors.PartialFieldOrder.FieldName(firstInvalidField.FieldName).Text);
             }
+
+            Fields = SortFieldsByOrder(Fields).ToArray();
         }
 
         private static int SumOrder(List<FieldBase> fields)
@@ -352,7 +366,7 @@ namespace FileHelpers
         {
             var fieldList = resFields as List<FieldBase> ?? resFields.ToList();
 
-            if (fieldList.Count(x => x.FieldOrder.HasValue) > 0)
+            if (fieldList.Count(x => x.FieldOrder != null) > 0)
                 fieldList.Sort((x, y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
 
             return fieldList;
@@ -497,7 +511,10 @@ namespace FileHelpers
             
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
+            {
                 res.Fields[i] = (FieldBase) ((ICloneable) Fields[i]).Clone();
+                res.Fields[i].PropertyChanged += res.FieldOnPropertyChanged;
+            }
 
             return res;
         }

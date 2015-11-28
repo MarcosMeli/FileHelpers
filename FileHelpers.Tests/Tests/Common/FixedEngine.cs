@@ -76,7 +76,15 @@ namespace FileHelpers.Tests.CommonTests
             ((FixedLengthField)engine.Options.Fields[1]).FieldOrder = 1;
             var customers = FileTest.Good.CustomersFixedWithFirst2FieldsSwitched.ReadWithEngine(engine);
             Assert.AreEqual(91, customers.Length);
-            Assert.AreEqual("ALFKI", customers[0].CustomerID);
+            Assert.AreEqual("ALFKI".PadRight(11), customers[0].CustomerID);
+        }
+
+        [Test]
+        public void SetFieldOrderAtRuntimeWhenNotAllFieldsHaveFieldOrderAttribute()
+        {
+            var engine = new FixedFileEngine<CustomersFixed2>();
+            engine.Options.FixedMode = FixedMode.AllowMoreChars;
+            Assert.Throws<BadUsageException>(() => ((FixedLengthField)engine.Options.Fields[0]).FieldOrder = 2);
         }
 
         [FixedLengthRecord]

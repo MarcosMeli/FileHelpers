@@ -943,7 +943,6 @@ namespace FileHelpers
             res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;
-            res.PropertyChanged = PropertyChanged;
             return res;
         }
 
@@ -957,7 +956,8 @@ namespace FileHelpers
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
