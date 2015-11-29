@@ -7,7 +7,7 @@ namespace FileHelpers
     /// <summary>
     /// Allows you to set the length or bounds that the target array field must have.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldArrayLengthAttribute : Attribute
     {
         #region "  Constructors  "

@@ -425,7 +425,6 @@
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Data\FluentCode.cs" />
     <Compile Include="Data\FileTestBase.cs" />
     <Compile Include="Tests\Common\Autoproperties.cs" />
     <Compile Include="Tests\Common\SorterTests.cs" />
@@ -600,6 +599,7 @@
     <Content Include="Data\Good\ReadAsDataTable.txt" />
     <Content Include="Data\Good\RealCsvComma1.txt" />
     <Content Include="Data\Good\RealCsvComma2.txt" />
+    <Content Include="Data\Good\RealCsvCommaBlankLines1.txt" />
     <Content Include="Data\Good\RealCsvTab1.txt" />
     <Content Include="Data\Good\RealCsvTab2.txt" />
     <Content Include="Data\Good\RealCsvVerticalBar1.txt" />
