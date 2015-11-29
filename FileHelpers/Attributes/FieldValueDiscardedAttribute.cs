@@ -12,6 +12,6 @@ namespace FileHelpers
     /// information and examples of each one.
     /// </remarks>
 
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldValueDiscardedAttribute : Attribute {}
 }

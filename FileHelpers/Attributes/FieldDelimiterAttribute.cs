@@ -7,7 +7,7 @@ namespace FileHelpers
     /// <summary>Indicates a different delimiter for this field. </summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
 
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldDelimiterAttribute : FieldAttribute
     {
         /// <summary>

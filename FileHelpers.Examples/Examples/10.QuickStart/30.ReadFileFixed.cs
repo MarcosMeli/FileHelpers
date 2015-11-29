@@ -7,13 +7,13 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name:Read Fixed File
-    //-> Description:Example of how to read a Fixed Length layout file (eg Cobol output)
+    //-> Description:Example of how to read a Fixed Length layout file (eg COBOL output):
     //-> AutoRun:true
 
     public class ReadFixedFile
         : ExampleBase
     {
-        //-> Lets start with a simple file:
+        //-> Let's start with a simple file:
 
         //-> FileIn:Input.txt
         /*01010 Alfreds Futterkiste          13122005
@@ -42,7 +42,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> Read the values and write them to the Console
+        //-> Read the values and write them to the Console:
         public override void Run()
         {
             //-> File:Example.cs
