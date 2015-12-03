@@ -32,27 +32,18 @@ breadcrumbtext2: Attributes
 <div style='padding-top: 5px;clear: both;'>
 <h5>Attributes: FixedLengthRecord FixedMode.AllowLessChars</h5>
 <div class='indent'>
-  <h6 style='font-size: 120%;'>Options when working with fixed files and not all records have same length</h6>
+  <h6 style='font-size: 120%;'>Options when working with fixed files where not all records have same length:</h6>
   <div class='indent'>
-
-<div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
+    <div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
-
-var engine = new FixedFileEngine<Customer>();
-Customer[] result = engine.ReadFile("input.txt");
-
-foreach (var detail in result) {
-    Console.WriteLine(" Client: {0},  Date: {1}",
-        detail.CustId,
-        detail.AddedDate.ToString("dd-MM-yyyy"));
-}
-
-
+01010 Alfreds Futterkiste          13122005
+12399 Ana Trujillo Emparedados y   23012000
+00011 Antonio Moreno Taquería      042001
+51677 Around the Horn              13051998
+99999 Berglunds snabbköp           111999
 {%  endhighlight %}
 </div>
-
-
-
+//-> The Record Mapping class:
 <div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
@@ -70,24 +61,22 @@ public class Customer
     [FieldConverter(ConverterKind.DateMultiFormat, "ddMMyyyy", "MMyyyy")]
     public DateTime AddedDate;
 }
-
-
 {%  endhighlight %}
 </div>
-
-
-
-<div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
+//-> Iterating over the records:
+<div class='highlight-title example-code'>Example.cs</div><div class='example-code-high'>
 {% highlight csharp %}
-01010 Alfreds Futterkiste          13122005
-12399 Ana Trujillo Emparedados y   23012000
-00011 Antonio Moreno Taquería      042001
-51677 Around the Horn              13051998
-99999 Berglunds snabbköp           111999
+
+var engine = new FixedFileEngine<Customer>();
+Customer[] result = engine.ReadFile("input.txt");
+
+foreach (var detail in result) {
+    Console.WriteLine(" Client: {0},  Date: {1}",
+        detail.CustId,
+        detail.AddedDate.ToString("dd-MM-yyyy"));
+}
 {%  endhighlight %}
 </div>
-
-
 
 <div class='highlight-title example-console'> Console </div>
 <div class='example-console-high'>
