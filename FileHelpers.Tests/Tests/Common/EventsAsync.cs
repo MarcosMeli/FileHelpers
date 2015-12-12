@@ -8,34 +8,6 @@ using NUnit.Framework;
 namespace FileHelpers.Tests
 {
     [TestFixture]
-    public class AsyncEnumerator
-    {
-        private FileHelperAsyncEngine<SampleType> engine;
-
-        [DelimitedRecord(",")]
-        public class Record
-        {
-            public string Id;
-            public string Name;
-        }
-
-        [Test]
-        public void MoreCallsToMoveNext()
-        {
-            var engine = new FileHelperAsyncEngine<Record>();
-            string src = "first,line\nabc,JohnDoe";
-            using (engine.BeginReadString(src))
-            {
-                var enumerator = (engine as IEnumerable<Record>).GetEnumerator();
-                enumerator.MoveNext();
-                enumerator.MoveNext();
-                enumerator.MoveNext();
-                enumerator.MoveNext();
-            }
-        }
-    }
-
-    [TestFixture]
         public class EventsAsync
     {
         private FileHelperAsyncEngine<SampleType> engine;
