@@ -714,6 +714,9 @@ namespace FileHelpers
 
             public bool MoveNext()
             {
+                if (mEngine.State == EngineState.Closed)
+                    return false;
+
                 object res = mEngine.ReadNext();
 
                 if (res == null) {
