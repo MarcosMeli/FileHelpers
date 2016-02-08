@@ -151,11 +151,11 @@ namespace FileHelpers
         public object[] ReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+                throw new ArgumentNullException("reader", "The reader of the Stream canÂ´t be null");
 
             if (mRecordSelector == null) {
                 throw new BadUsageException(
-                    "The Recordselector can´t be null, please pass a not null Selector in the constructor.");
+                    "The Recordselector canÂ´t be null, please pass a not null Selector in the constructor.");
             }
 
             ResetFields();
@@ -478,7 +478,7 @@ namespace FileHelpers
                 throw new BadUsageException("An empty Type[] is not valid for the MultiRecordEngine.");
             else if (types.Length == 1) {
                 throw new BadUsageException(
-                    "You only provide one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
+                    "You only provided one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
             }
             else
                 return types[0];
@@ -527,7 +527,7 @@ namespace FileHelpers
         public void BeginReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("The TextReader can´t be null.");
+                throw new ArgumentNullException("The TextReader canÂ´t be null.");
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -830,7 +830,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (record == null)
-                throw new BadUsageException("The record to write can´t be null.");
+                throw new BadUsageException("The record to write canÂ´t be null.");
 
             WriteRecord(record);
         }
@@ -847,7 +847,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write canÂ´t be null.");
 
             int nro = 0;
             foreach (var rec in records) {
@@ -911,7 +911,7 @@ namespace FileHelpers
         public void BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
-                throw new ArgumentException("The TextWriter can´t be null.", "writer");
+                throw new ArgumentException("The TextWriter canÂ´t be null.", "writer");
 
             ResetFields();
             mAsyncWriter = writer;
