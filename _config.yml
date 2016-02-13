@@ -7,7 +7,7 @@ github_username:  MarcosMeli
 libversion: "3.1.5"
 libversionbig: "3.1"
 
-highlighter: pygments
+highlighter: rouge
 
 # Build settings
 markdown: kramdown
@@ -15,11 +15,11 @@ markdown: kramdown
 js_dest: js
 
 exclude:  [ '*.ts',
-			'*.bat',
-        	'Graphics',
-        	'README.md',
-        	'js/tsconfig.json',
-        	'oldpage',
-        	'OnlineWizard',
-        	'node_modules'
+            '*.bat',
+            'Graphics',
+            'README.md',
+            'js/tsconfig.json',
+            'oldpage',
+            'OnlineWizard',
+            'node_modules'
            ]
