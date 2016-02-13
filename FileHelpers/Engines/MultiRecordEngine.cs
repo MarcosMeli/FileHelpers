@@ -64,7 +64,6 @@ namespace FileHelpers
             return res;
         }
 
-
         /// <summary>
         /// The Selector used by the engine in Read operations to determine the Type to use.
         /// </summary>
@@ -73,7 +72,6 @@ namespace FileHelpers
             get { return mRecordSelector; }
             set { mRecordSelector = value; }
         }
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Type[] mTypes;
@@ -118,7 +116,6 @@ namespace FileHelpers
         }
 
         #endregion
-        
 
         #region "  ReadFile  "
 
@@ -184,7 +181,6 @@ namespace FileHelpers
                         mLineNumber++;
                     }
                 }
-
 
                 bool byPass = false;
 
@@ -255,7 +251,6 @@ namespace FileHelpers
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine
                                 };
-                                //							err.mColumnNumber = mColumnNum;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -340,10 +335,8 @@ namespace FileHelpers
                     writer.WriteLine(mHeaderText);
             }
 
-
             string currentLine = null;
 
-            //ConstructorInfo constr = mType.GetConstructor(new Type[] {});
             int max = maxRecords;
 
             if (records is IList) {
@@ -402,7 +395,6 @@ namespace FileHelpers
                                 mExceptionInfo = ex,
                                 mRecordString = currentLine
                             };
-                            //							err.mColumnNumber = mColumnNum;
                             mErrorManager.AddError(err);
                             break;
                     }
@@ -483,7 +475,6 @@ namespace FileHelpers
             else
                 return types[0];
         }
-
 
         // ASYNC METHODS --------------
 
@@ -654,7 +645,6 @@ namespace FileHelpers
                 mReader = mAsyncReader
             };
 
-
             while (true) {
                 if (currentLine != null) {
                     try {
@@ -698,7 +688,6 @@ namespace FileHelpers
                                     mExceptionInfo = ex,
                                     mRecordString = currentLine
                                 };
-                                //							err.mColumnNumber = mColumnNum;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -713,7 +702,6 @@ namespace FileHelpers
                 }
                 else {
                     mLastRecord = null;
-
 
                     if (RecordInfo.IgnoreLast > 0)
                         mFooterText = mAsyncReader.RemainingText;
@@ -859,7 +847,6 @@ namespace FileHelpers
                 WriteRecord(rec);
             }
         }
-
 
         private void WriteRecord(object record)
         {
