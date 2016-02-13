@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -48,22 +47,6 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordTypeSelector mRecordSelector;
 
-        private string ListTypes()
-        {
-            string res = string.Empty;
-            bool first = true;
-            foreach (Type t in mRecordInfoHash.Keys) {
-                if (first)
-                    first = false;
-                else
-                    res += ", ";
-
-                res += t.Name;
-            }
-
-            return res;
-        }
-
         /// <summary>
         /// The Selector used by the engine in Read operations to determine the Type to use.
         /// </summary>
@@ -99,7 +82,7 @@ namespace FileHelpers
 
             for (int i = 0; i < mTypes.Length; i++) {
                 if (mTypes[i] == null)
-                    throw new BadUsageException("The type at index " + i.ToString() + " is null.");
+                    throw new BadUsageException("The type at index " + i + " is null.");
 
                 if (mRecordInfoHash.Contains(mTypes[i])) {
                     throw new BadUsageException("The type '" + mTypes[i].Name +
@@ -196,7 +179,7 @@ namespace FileHelpers
                         line.ReLoad(currentLine);
 
                         var skip = false;
-                        Type currType = null;
+                        Type currType;
                         try {
                             currType = mRecordSelector(this, currentLine);
                         }
@@ -357,7 +340,7 @@ namespace FileHelpers
                     break;
                 try {
                     if (rec == null)
-                        throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
+                        throw new BadUsageException("The record at index " + recIndex + " is null.");
 
                     bool skip = false;
 
@@ -370,7 +353,7 @@ namespace FileHelpers
                     var info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
 
                     if (info == null) {
-                        throw new BadUsageException("The record at index " + recIndex.ToString() + " is of type '" +
+                        throw new BadUsageException("The record at index " + recIndex + " is of type '" +
                                                     rec.GetType().Name +
                                                     "' and the engine dont handle this type. You can add it to the constructor.");
                     }
@@ -440,7 +423,7 @@ namespace FileHelpers
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile1/*'/>
         public void AppendToFile(string fileName, object record)
         {
-            AppendToFile(fileName, new object[] {record});
+            AppendToFile(fileName, new[] {record});
         }
 
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
@@ -466,14 +449,13 @@ namespace FileHelpers
         {
             if (types == null)
                 throw new BadUsageException("A null Type[] is not valid for the MultiRecordEngine.");
-            else if (types.Length == 0)
+            if (types.Length == 0)
                 throw new BadUsageException("An empty Type[] is not valid for the MultiRecordEngine.");
-            else if (types.Length == 1) {
+            if (types.Length == 1) {
                 throw new BadUsageException(
                     "You only provided one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
             }
-            else
-                return types[0];
+            return types[0];
         }
 
         // ASYNC METHODS --------------
@@ -842,7 +824,7 @@ namespace FileHelpers
                 nro++;
 
                 if (rec == null)
-                    throw new BadUsageException("The record at index " + nro.ToString() + " is null.");
+                    throw new BadUsageException("The record at index " + nro + " is null.");
 
                 WriteRecord(rec);
             }
