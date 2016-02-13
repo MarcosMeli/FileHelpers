@@ -14,11 +14,11 @@ namespace FileHelpers
     #region "  Delegate  "
 
     /// <summary>
-    /// Delegate thats determines the Type of the current record (Master, Detail, Skip)
+    /// Delegate that determines the Type of the current record (Master, Detail, Skip)
     /// </summary>
     /// <param name="recordString">The string of the current record.</param>
     /// <param name="engine">The engine that calls the selector.</param>
-    /// <returns>the action used for the current record (Master, Detail, Skip)</returns>
+    /// <returns>The action used for the current record (Master, Detail, Skip)</returns>
     public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 
     #endregion
@@ -103,7 +103,7 @@ namespace FileHelpers
         #region "  ReadFile  "
 
         /// <summary>
-        /// Read a File and returns the records.
+        /// Reads a file and returns the records.
         /// </summary>
         /// <param name="fileName">The file with the records.</param>
         /// <returns>The read records of different types all mixed.</returns>
