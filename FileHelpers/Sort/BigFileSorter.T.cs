@@ -38,9 +38,19 @@ namespace FileHelpers
         private const int MinBlockSize = 1*1024*1024 / 2;
 
         /// <summary>
+        /// Ratio of file size to block size, used when auto assigning block size
+        /// </summary>
+        private const int AutoBlockSizeRatio = 10;
+
+        /// <summary>
         /// Comparison operator for this sort
         /// </summary>
         private readonly Comparison<T> mSorter;
+
+        /// <summary>
+        /// Indicates if the block size should be determined based on file size
+        /// </summary>
+        private bool AutoSetBlockSize = false;
 
         /// <summary>
         /// Sort big files using the External Sorting algorithm
@@ -80,7 +90,10 @@ namespace FileHelpers
         {
             mSorter = sorter;
             if (blockFileSizeInBytes <= 0)
+            {
                 blockFileSizeInBytes = DefaultBlockSize;
+                AutoSetBlockSize = true;
+            }
             else if (blockFileSizeInBytes < MinBlockSize)
                 blockFileSizeInBytes = MinBlockSize;
             else if (blockFileSizeInBytes > MaxBufferSize)
@@ -122,6 +135,7 @@ namespace FileHelpers
         /// <summary> Indicates if the Sorter run a GC.Collect() after sort and write each part. Default is true.</summary>
         public bool RunGcCollectForEachPart { get; set; }
 
+
         /// <summary>
         /// Sort a file from one filename to another filename
         /// </summary>
@@ -130,6 +144,7 @@ namespace FileHelpers
         /// <param name="destinationFile">File to write out</param>
         public void Sort(string sourceFile, string destinationFile)
         {
+            if (AutoSetBlockSize) BlockFileSizeInBytes = BlockSizeFromFileSize(sourceFile);
             var parts = new List<string>();
             var engine = SplitAndSortParts(sourceFile, parts);
             var queues = CreateQueues(parts);
@@ -199,6 +214,29 @@ namespace FileHelpers
 
             if (RunGcCollectForEachPart)
                 GC.Collect();
+        }
+
+        /// <summary>
+        /// Returns a block size based on the source file size
+        /// </summary>
+        /// <param name="sourceFile">Source file path</param>
+        /// <returns></returns>
+        private int BlockSizeFromFileSize(string sourceFile) {
+
+            int blockSize = DefaultBlockSize;
+
+            var fi = new FileInfo(sourceFile);
+            var fileSize = fi.Length;
+
+            var initialBlockSize = (int)(fileSize / AutoBlockSizeRatio);
+            if (initialBlockSize >= MinBlockSize && initialBlockSize <= MaxBufferSize)
+                blockSize = initialBlockSize;
+            else if (initialBlockSize < MinBlockSize)
+                blockSize = MinBlockSize;
+            else
+                blockSize = MaxBufferSize;
+
+            return blockSize;
         }
 
         /// <summary>
