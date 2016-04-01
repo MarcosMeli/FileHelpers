@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.DataLink
 {
     [TestFixture]
-    [Ignore]
+    [Ignore("Needs Sql Server Installed")]
     public class SqlServer
     {
         [Test]
@@ -142,7 +142,7 @@ namespace FileHelpers.Tests.DataLink
 
 
         [Test]
-        [Ignore]
+        [Ignore("Needs Sql Server Installed")]
         public void OrdersExtractBad3()
         {
             var storage = new SqlServerStorage(typeof (OrdersVerticalBar), "NEON-64", "Northwind");

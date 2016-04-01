@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Tests.DataLink
 {
     [TestFixture]
-    [Ignore]
+    [Ignore("Fails on linux")]
     [Category("Excel")]
     public class ExcelStorageNPOITests
     {
