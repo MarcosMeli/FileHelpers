@@ -5,6 +5,9 @@ using System.Text;
 
 namespace FileHelpers
 {
+
+#if DOTNET_4
+
     /// <summary>
     /// Set of Extension methods to be exposed to end users 
     /// of the FileHelpers API.
@@ -21,9 +24,10 @@ namespace FileHelpers
         public static DataTable ToDataTable<T>(this T[] records)
         {
             var ri = RecordInfo.Resolve(typeof(T));
-
             return ri.Operations.RecordsToDataTable(records);
         }
     }
-}
 
+#endif
+
+}

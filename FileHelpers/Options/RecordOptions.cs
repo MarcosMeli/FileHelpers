@@ -281,6 +281,16 @@ namespace FileHelpers.Options
         {
             return mRecordInfo.Operations.RecordToString(record);
         }
+
+        /// <summary>
+        /// Allows to get an object[] with the values of the fields in the <param name="record"></param>
+        /// </summary>
+        /// <param name="record">The record that will be transformed to object[]</param>
+        /// <returns>The object[] with the values of the fields in the current record</returns>
+        public object[] RecordToValues(object record)
+        {
+            return mRecordInfo.Operations.RecordToValues(record);
+        }
     }
 
     public sealed class FieldBaseCollection

@@ -7,6 +7,8 @@ using System.Data;
 
 namespace FileHelpers.Tests.CommonTests
 {
+#if DOTNET_4
+
     [TestFixture]
     public class ReadersAsDataTable
     {
@@ -70,4 +72,5 @@ namespace FileHelpers.Tests.CommonTests
             public int? Field3;
         }
     }
+#endif
 }
