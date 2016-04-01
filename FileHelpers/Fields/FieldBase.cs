@@ -232,7 +232,7 @@ namespace FileHelpers
                 }
             }
             // If ignored, return null
-#pragma warning disable 612,618 // disable obsole warning
+#pragma warning disable 612,618 // disable obsolete warning
             if (mi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
                 mi.IsDefined(typeof (FieldIgnoredAttribute), true) ||
                 mi.IsDefined(typeof (FieldHiddenAttribute), true))

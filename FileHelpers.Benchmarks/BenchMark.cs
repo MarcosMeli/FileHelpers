@@ -18,11 +18,12 @@ namespace FileHelpers.Benchmarks
         private static void Main()
         {
             string file = Path.GetTempFileName();
-            var records = 1000000;
+            var records = 250000; // 
 
             Console.WriteLine("Generating file with " + records + " records");
             CreateSampleFixedString(file, records);
-            var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
+
+            //var engine = new FileHelperAsyncEngine<FixedSampleRecord>();
             //TestFixedLengthRecord(engine, file);
 
             //engine.AfterReadRecord += new FileHelpers.Events.AfterReadHandler<FixedSampleRecord>(engine_AfterReadRecord);
@@ -35,19 +36,37 @@ namespace FileHelpers.Benchmarks
 
             Console.WriteLine("File generated, precaching...");
 
-            TestFixedLengthRecord(engine, file);
+            //TestFixedLengthRecord(engine, file);
+            
 
-            System.Threading.Thread.Sleep(2000);
+            //System.Threading.Thread.Sleep(2000);
 
-            Console.WriteLine("Start Test...");
-            long start = DateTime.Now.Ticks;
-            TestFixedLengthRecord(engine, file);
+            //Console.WriteLine("Start Test...");
+            //long start = DateTime.Now.Ticks;
+            //TestFixedLengthRecord(engine, file);
 
-            var ts = new TimeSpan(DateTime.Now.Ticks - start);
+            //var ts = new TimeSpan(DateTime.Now.Ticks - start);
 
-            Console.WriteLine("Records: " + records);
-            Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 3) + " seconds");
-            Console.WriteLine(Math.Round(ts.TotalMilliseconds/records, 3) + " ms per record");
+            //Console.WriteLine("Records: " + records);
+            //Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 3) + " seconds");
+            //Console.WriteLine(Math.Round(ts.TotalMilliseconds / records, 3) + " ms per record");
+
+            var fi = new FileInfo(file);
+            Console.WriteLine("Filesize: " + fi.Length + " Bytes | " + (fi.Length / (1024 * 1024)) + " MBytes");
+            Console.WriteLine();
+            Console.WriteLine("Start Test 1, Auto Block Size");
+            RunBigFileSortTest(file, file + "_test1", 0);
+            Console.WriteLine();
+            Console.WriteLine("Start Test 2, 0.5 MB Block Size");
+            RunBigFileSortTest(file, file + "_test2", (int)(0.5 * 1024 * 1024));
+            Console.WriteLine();
+            Console.WriteLine("Start Test 2, 10 MB Block Size");
+            RunBigFileSortTest(file, file + "_test2", (10 * 1024 * 1024));
+            Console.WriteLine();
+            Console.WriteLine("Start Test 2, 40 MB Block Size");
+            RunBigFileSortTest(file, file + "_test3", (40 * 1024 * 1024));
+            Console.WriteLine();
+            Console.WriteLine("Finished press any key to close");
 
             Console.ReadKey();
         }
@@ -65,6 +84,32 @@ namespace FileHelpers.Benchmarks
             FileHelpers.Events.AfterReadEventArgs<FixedSampleRecord> e) {}
 
         private static void engine_Progress(object sender, FileHelpers.Events.ProgressEventArgs e) {}
+
+
+        private static void RunBigFileSortTest(string inputFile, string outputFile, int requestedBlockSize) {
+
+            long start = DateTime.Now.Ticks;
+
+            var blockSize = TestBigFileSorter(inputFile, outputFile, requestedBlockSize); 
+
+            var ts = new TimeSpan(DateTime.Now.Ticks - start);
+
+            
+            Console.WriteLine("Block Size: " + blockSize + " Bytes | " + ((float)blockSize / (1024 * 1024)) + " MBytes");
+            Console.WriteLine("Total Time: " + Math.Round(ts.TotalSeconds, 3) + " seconds");
+        }
+
+        /// <summary>
+        /// Use BigFileSorter to sort the generated file 
+        /// </summary>
+        /// <param name="file">File to process</param>
+        private static int TestBigFileSorter(string inputFile, string outputFile, int blockSize)
+        {
+            var sorter = new BigFileSorter<FixedSampleRecordSortable>(blockSize); // 10 Mb blocks
+
+            sorter.Sort(inputFile, outputFile);
+            return sorter.BlockFileSizeInBytes;
+        }
 
         /// <summary>
         /// Use a simple loop mechanism to read a file sequentially
