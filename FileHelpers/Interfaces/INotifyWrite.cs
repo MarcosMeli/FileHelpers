@@ -12,11 +12,11 @@ namespace FileHelpers.Events
     /// private class SampleType: INotifyRead, INotifyWrite
     /// { ....
     /// 
-    ///		public void AfterRead(EngineBase engine, string line)
+    ///		public void AfterRead(BeforeWriteEventArgs e)
     ///		{
     ///			// Your Code Here
     ///		}
-    ///		public void BeforeWrite(EngineBase engine)
+    ///		public void BeforeWrite(AfterWriteEventArgs e)
     ///		{
     /// 		// Your Code Here
     ///		}
@@ -24,21 +24,20 @@ namespace FileHelpers.Events
     /// }
     /// </code>
     /// </example>
-    public interface INotifyWrite<T>
-        where T : class
+    public interface INotifyWrite
     {
         /// <summary>
         /// Method called by the engines before write a record to the
         /// destination stream.
         /// </summary>
         /// <param name="e">The Event Info</param>
-        void BeforeWrite(BeforeWriteEventArgs<T> e);
+        void BeforeWrite(BeforeWriteEventArgs e);
 
         /// <summary>
         /// Method called by the engines after write a record to the
         /// destination stream.
         /// </summary>
         /// <param name="e">The Event Info</param>
-        void AfterWrite(AfterWriteEventArgs<T> e);
+        void AfterWrite(AfterWriteEventArgs e);
     }
 }

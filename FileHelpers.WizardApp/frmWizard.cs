@@ -108,7 +108,6 @@ namespace FileHelpers.WizardApp
         private Label label13;
         private GroupBox groupBox4;
         private CheckBox chkCommentAnyPlace;
-        private CheckBox chkSealed;
         private ComboBox cboClassVisibility;
         private Label label8;
         private Label label21;
@@ -194,7 +193,6 @@ namespace FileHelpers.WizardApp
             this.panStep0 = new System.Windows.Forms.Panel();
             this.cboClassVisibility = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.chkSealed = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtClassName = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -249,11 +247,11 @@ namespace FileHelpers.WizardApp
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdBack = new System.Windows.Forms.Button();
             this.cmdNext = new System.Windows.Forms.Button();
+            this.picCurrent = new System.Windows.Forms.PictureBox();
+            this.picNewVersion = new System.Windows.Forms.PictureBox();
             this.cmdSaveToFile = new System.Windows.Forms.Button();
             this.cmdToClipboard = new System.Windows.Forms.Button();
             this.cmdAddField = new System.Windows.Forms.Button();
-            this.picCurrent = new System.Windows.Forms.PictureBox();
-            this.picNewVersion = new System.Windows.Forms.PictureBox();
             this.picDonate = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.cmdSaveClass = new System.Windows.Forms.Button();
@@ -758,7 +756,6 @@ namespace FileHelpers.WizardApp
             this.panStep0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panStep0.Controls.Add(this.cboClassVisibility);
             this.panStep0.Controls.Add(this.label8);
-            this.panStep0.Controls.Add(this.chkSealed);
             this.panStep0.Controls.Add(this.groupBox5);
             this.panStep0.Controls.Add(this.groupBox8);
             this.panStep0.Controls.Add(this.label18);
@@ -790,19 +787,6 @@ namespace FileHelpers.WizardApp
             this.label8.TabIndex = 1015;
             this.label8.Text = "Record Class Visibility";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // chkSealed
-            // 
-            this.chkSealed.Checked = true;
-            this.chkSealed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSealed.Location = new System.Drawing.Point(37, 331);
-            this.chkSealed.Name = "chkSealed";
-            this.chkSealed.Size = new System.Drawing.Size(168, 31);
-            this.chkSealed.TabIndex = 1013;
-            this.chkSealed.Text = "Mark the class as sealed\r\n(for better performance)";
-            this.toolTip1.SetToolTip(this.chkSealed, "Enhance the performance a bit with this option");
-            this.chkSealed.UseVisualStyleBackColor = true;
-            this.chkSealed.CheckedChanged += new System.EventHandler(this.chkSealed_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -1182,10 +1166,10 @@ namespace FileHelpers.WizardApp
             // 
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.panStep0);
             this.splitContainer1.Panel1.Controls.Add(this.panStep3);
             this.splitContainer1.Panel1.Controls.Add(this.panStep2);
             this.splitContainer1.Panel1.Controls.Add(this.panStep1);
-            this.splitContainer1.Panel1.Controls.Add(this.panStep0);
             // 
             // splitContainer1.Panel2
             // 
@@ -1472,6 +1456,32 @@ namespace FileHelpers.WizardApp
             this.cmdNext.UseVisualStyleBackColor = true;
             this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
             // 
+            // picCurrent
+            // 
+            this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCurrent.BackColor = System.Drawing.Color.Transparent;
+            this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
+            this.picCurrent.Location = new System.Drawing.Point(279, 388);
+            this.picCurrent.Name = "picCurrent";
+            this.picCurrent.Size = new System.Drawing.Size(146, 53);
+            this.picCurrent.TabIndex = 1011;
+            this.picCurrent.TabStop = false;
+            this.picCurrent.Visible = false;
+            // 
+            // picNewVersion
+            // 
+            this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
+            this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
+            this.picNewVersion.Location = new System.Drawing.Point(279, 388);
+            this.picNewVersion.Name = "picNewVersion";
+            this.picNewVersion.Size = new System.Drawing.Size(146, 53);
+            this.picNewVersion.TabIndex = 1012;
+            this.picNewVersion.TabStop = false;
+            this.picNewVersion.Visible = false;
+            this.picNewVersion.Click += new System.EventHandler(this.picNewVersion_Click);
+            // 
             // cmdSaveToFile
             // 
             this.cmdSaveToFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1516,45 +1526,18 @@ namespace FileHelpers.WizardApp
             this.cmdAddField.UseVisualStyleBackColor = true;
             this.cmdAddField.Click += new System.EventHandler(this.cmdAddField_Click);
             // 
-            // picCurrent
-            // 
-            this.picCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCurrent.BackColor = System.Drawing.Color.Transparent;
-            this.picCurrent.Image = ((System.Drawing.Image)(resources.GetObject("picCurrent.Image")));
-            this.picCurrent.Location = new System.Drawing.Point(279, 388);
-            this.picCurrent.Name = "picCurrent";
-            this.picCurrent.Size = new System.Drawing.Size(146, 53);
-            this.picCurrent.TabIndex = 1011;
-            this.picCurrent.TabStop = false;
-            this.picCurrent.Visible = false;
-            // 
-            // picNewVersion
-            // 
-            this.picNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.picNewVersion.BackColor = System.Drawing.Color.Transparent;
-            this.picNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picNewVersion.Image = ((System.Drawing.Image)(resources.GetObject("picNewVersion.Image")));
-            this.picNewVersion.Location = new System.Drawing.Point(279, 388);
-            this.picNewVersion.Name = "picNewVersion";
-            this.picNewVersion.Size = new System.Drawing.Size(146, 53);
-            this.picNewVersion.TabIndex = 1012;
-            this.picNewVersion.TabStop = false;
-            this.picNewVersion.Visible = false;
-            this.picNewVersion.Click += new System.EventHandler(this.picNewVersion_Click);
-            // 
             // picDonate
             // 
             this.picDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picDonate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picDonate.Image = ((System.Drawing.Image)(resources.GetObject("picDonate.Image")));
-            this.picDonate.Location = new System.Drawing.Point(230, 444);
+            this.picDonate.Image = global::FileHelpers.WizardApp.Properties.Resources.donate1;
+            this.picDonate.Location = new System.Drawing.Point(242, 439);
             this.picDonate.Name = "picDonate";
-            this.picDonate.Size = new System.Drawing.Size(100, 36);
+            this.picDonate.Size = new System.Drawing.Size(85, 40);
+            this.picDonate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picDonate.TabIndex = 1010;
             this.picDonate.TabStop = false;
-            this.toolTip1.SetToolTip(this.picDonate, "Is day by day harder to main the library.\r\nClick here to find out about\r\nhow you " +
-        "can donate to the project.\r\n\r\nSome money will help keep FileHelpers active\r\n\r\nTh" +
-        "anks");
+            this.toolTip1.SetToolTip(this.picDonate, "Invite us a beer");
             this.picDonate.Click += new System.EventHandler(this.picDonate_Click);
             // 
             // pictureBox4
@@ -1781,7 +1764,6 @@ namespace FileHelpers.WizardApp
                 mWizardInfo.FixedLengthBuilder.FixedMode = (FixedMode) cboFixedMode2.SelectedItem;
 
                 mWizardInfo.ClassBuilder.Visibility = (NetVisibility) cboClassVisibility.SelectedItem;
-                mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
 
                 mControlType = typeof (FieldFixedControl);
                 mFieldType = typeof (FixedFieldBuilder);
@@ -1802,7 +1784,7 @@ namespace FileHelpers.WizardApp
                     foreach (FieldBuilder f in ant.Fields) {
                         mWizardInfo.FixedLengthBuilder.AddField(f.FieldName, (int) txtFieldLength.Value, f.FieldType);
                         mWizardInfo.FixedLengthBuilder.LastField.FieldOptional = f.FieldOptional;
-                        mWizardInfo.FixedLengthBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
+                        mWizardInfo.FixedLengthBuilder.LastField.FieldHidden = f.FieldHidden;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldInNewLine = f.FieldInNewLine;
                         mWizardInfo.FixedLengthBuilder.LastField.FieldNullValue = f.FieldNullValue;
                         mWizardInfo.FixedLengthBuilder.LastField.TrimChars = f.TrimChars;
@@ -1850,7 +1832,7 @@ namespace FileHelpers.WizardApp
                     foreach (FieldBuilder f in ant.Fields) {
                         mWizardInfo.DelimitedBuilder.AddField(f.FieldName, f.FieldType);
                         mWizardInfo.DelimitedBuilder.LastField.FieldOptional = f.FieldOptional;
-                        mWizardInfo.DelimitedBuilder.LastField.FieldNotInFile = f.FieldNotInFile;
+                        mWizardInfo.DelimitedBuilder.LastField.FieldHidden = f.FieldHidden;
                         mWizardInfo.DelimitedBuilder.LastField.FieldInNewLine = f.FieldInNewLine;
                         mWizardInfo.DelimitedBuilder.LastField.FieldNullValue = f.FieldNullValue;
                         mWizardInfo.DelimitedBuilder.LastField.TrimChars = f.TrimChars;
@@ -2212,11 +2194,11 @@ width: 100% !important;*/
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
         {
-            try {
-                if (RegConfig.HasValue("WizardTemplatePath"))
-                    dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardTemplatePath", "");
-            }
-            catch {}
+            //try {
+            //    if (RegConfig.HasValue("WizardTemplatePath"))
+            //        dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardTemplatePath", "");
+            //}
+            //catch {}
 
             dlgSaveToFile.FilterIndex = cboLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = "TemplateOur";
@@ -2234,11 +2216,11 @@ width: 100% !important;*/
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
         {
-            try {
-                if (RegConfig.HasValue("WizardClassDir"))
-                    dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardClassDir", "");
-            }
-            catch {}
+            //try {
+            //    if (RegConfig.HasValue("WizardClassDir"))
+            //        dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardClassDir", "");
+            //}
+            //catch {}
 
             //  1 for C#,  2 for vb.
             dlgSaveToFile.FilterIndex = cboClassLanguage.SelectedIndex + 1;
@@ -2412,7 +2394,6 @@ width: 100% !important;*/
             cboRecordCondition.SelectedItem = mWizardInfo.ClassBuilder.RecordCondition.Condition;
             txtRecordConditionSelector.Text = mWizardInfo.ClassBuilder.RecordCondition.Selector;
 
-            chkSealed.Checked = mWizardInfo.ClassBuilder.SealedClass;
             chkProperties.Checked = mWizardInfo.ClassBuilder.GenerateProperties;
 
             txtCommentMarker.Text = mWizardInfo.ClassBuilder.IgnoreCommentedLines.CommentMarker;
@@ -2450,13 +2431,6 @@ width: 100% !important;*/
             }
         }
 
-        private void chkSealed_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mWizardInfo.ClassBuilder != null) {
-                mWizardInfo.ClassBuilder.SealedClass = chkSealed.Checked;
-                ReLoadPreview();
-            }
-        }
 
         private void txtIgnoreFirst_ValueChanged(object sender, EventArgs e)
         {
@@ -2496,14 +2470,12 @@ width: 100% !important;*/
 
         private void picDonate_Click(object sender, EventArgs e)
         {
-            frmDonate frm = new frmDonate();
-            frm.ShowDialog();
-            frm.Dispose();
+            Process.Start("explorer", "\"http://www.filehelpers.net/donate/\"");
         }
 
         private void linkHome_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("\"http://www.filehelpers.net\"");
             info.CreateNoWindow = false;
             info.UseShellExecute = true;
             Process.Start(info);
@@ -2718,4 +2690,5 @@ width: 100% !important;*/
             frm.ShowDialog();
         }
     }
+    
 }

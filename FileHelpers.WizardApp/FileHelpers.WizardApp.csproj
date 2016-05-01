@@ -139,6 +139,7 @@
     <None Include="Resources\Union.png" />
     <None Include="Resources\LeftOnly.png" />
     <None Include="Resources\RightOnly.png" />
+    <None Include="Resources\donate1.jpg" />
     <Content Include="WizardApp.ico" />
     <None Include="Resources\forward20g3.png" />
     <None Include="Resources\forward20g2.png" />
@@ -251,9 +252,6 @@
     <Compile Include="frmDataPreview.Designer.cs">
       <DependentUpon>frmDataPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDonate.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmFather.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +271,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RegConfig.cs" />
     <Compile Include="RulerControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -307,10 +306,6 @@
     <EmbeddedResource Include="frmDataPreview.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmDataPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDonate.resx">
-      <DependentUpon>frmDonate.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFather.resx">
       <DependentUpon>frmFather.cs</DependentUpon>
@@ -347,7 +342,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll"
 del "$(TargetDir)*.dll"

@@ -102,11 +102,6 @@ namespace FileHelpersSamples
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(588, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            // 
             // cmdEasy
             // 
             this.cmdEasy.BackColor = System.Drawing.Color.FromArgb(((System.Byte) (0)),
@@ -555,7 +550,6 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.pictureBox7, 0);
             this.Controls.SetChildIndex(this.pictureBox6, 0);
             this.Controls.SetChildIndex(this.pictureBox4, 0);
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.cmdEasy, 0);
             this.Controls.SetChildIndex(this.cmdDataLink, 0);
             this.Controls.SetChildIndex(this.button1, 0);
@@ -749,7 +743,7 @@ namespace FileHelpersSamples
 
         private void pictureBox8_Click(object sender, System.EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.net\"");
             Process.Start(info);
         }
 

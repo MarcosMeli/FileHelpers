@@ -47,7 +47,7 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("\t")]
         public class CustomersTabDiscardedFirst
         {
-            [FieldValueDiscarded()]
+            [FieldValueDiscarded]
             public string CustomerID;
 
             public string CompanyName;
@@ -64,7 +64,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             public string CustomerID;
 
-            [FieldValueDiscarded()]
+            [FieldValueDiscarded]
             public string CompanyName;
 
             public string ContactName;
@@ -82,7 +82,7 @@ namespace FileHelpers.Tests.CommonTests
             public string ContactName;
             public string ContactTitle;
 
-            [FieldValueDiscarded()]
+            [FieldValueDiscarded]
             public string Address;
 
             public string City;
@@ -99,7 +99,7 @@ namespace FileHelpers.Tests.CommonTests
             public string Address;
             public string City;
 
-            [FieldValueDiscarded()]
+            [FieldValueDiscarded]
             public string Country;
         }
 

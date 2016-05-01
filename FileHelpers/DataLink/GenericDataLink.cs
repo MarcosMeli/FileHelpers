@@ -13,11 +13,7 @@ namespace FileHelpers.DataLink
     /// <remarks>
     /// <para>Uses two <see cref="DataStorage"/> types to accomplish this task.</para>
     /// </remarks>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="class_diagram.html">Class Diagram</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    /// <seealso href="example_datalink.html">Example of the DataLink</seealso>
-    /// <seealso href="attributes.html">Attributes List</seealso>
+
     public sealed class GenericDataLink
     {
         #region "  Constructor  "
@@ -71,8 +67,8 @@ namespace FileHelpers.DataLink
             return res;
         }
 
-        private MethodInfo mConvert1to2 = null;
-        private MethodInfo mConvert2to1 = null;
+        //private MethodInfo mConvert1to2 = null;
+        //private MethodInfo mConvert2to1 = null;
 
 
         /// <summary>
@@ -102,42 +98,10 @@ namespace FileHelpers.DataLink
                 throw new BadUsageException("DataLink2 can't have a null RecordType.");
 
             if (DataStorage1.RecordType != DataStorage2.RecordType) {
-                mConvert1to2 = GetTransformMethod(DataStorage1.RecordType, DataStorage2.RecordType);
-                if (mConvert1to2 == null) {
-                    throw new BadUsageException("You must to define a method in the class " +
-                                                DataStorage1.RecordType.Name
-                                                + " with the attribute [TransfortToRecord(typeof(" +
-                                                DataStorage2.RecordType.Name + "))]");
+                    throw new BadUsageException("You can only use the same record type");
                 }
+       }
 
-                mConvert2to1 = GetTransformMethod(DataStorage2.RecordType, DataStorage1.RecordType);
-                if (mConvert2to1 == null) {
-                    throw new BadUsageException("You must to define a method in the class " +
-                                                DataStorage2.RecordType.Name
-                                                + " with the attribute [TransfortToRecord(typeof(" +
-                                                DataStorage1.RecordType.Name + "))]");
-                }
-            }
-        }
-
-        private MethodInfo GetTransformMethod(Type sourceType, Type destType)
-        {
-            MethodInfo[] methods =
-                sourceType.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance |
-                                      BindingFlags.NonPublic);
-//			foreach (MethodInfo m in methods)
-//			{
-//				if (m.IsDefined(typeof (TransformToRecordAttribute), false))
-//				{
-//					TransformToRecordAttribute ta = (TransformToRecordAttribute) m.GetCustomAttributes(typeof (TransformToRecordAttribute), false)[0];
-//					if (ta.TargetType == destType)
-//					{
-//						return m;
-//					}
-//				}
-//			}
-
-            return null;
-        }
+       
     }
 }

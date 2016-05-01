@@ -26,4 +26,5 @@ WELLINGTON 6N             LARIMER     5448  96  55   T     0.0   0   0.06
 FOR MORE PRECIPITATION DATA GO TO:
 http://ccc.atmos.colostate.edu/~hail/
 WIRSHBORN
-END OF REPORT
+END OF REPORT
+

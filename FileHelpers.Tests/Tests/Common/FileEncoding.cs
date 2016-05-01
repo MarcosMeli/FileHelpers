@@ -92,6 +92,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingANSI()
         {
             RunTests(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -106,16 +107,17 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingUnicode()
         {
-            RunTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            RunTests(Encoding.Unicode, "Good", "EncodingUnicode.bin");
         }
 
         [Test]
         public void EncodingAsyncUnicodeBig()
         {
-            RunAsyncTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
+            RunAsyncTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.bin");
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingAsyncANSI()
         {
             RunAsyncTests(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -130,17 +132,18 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingAsyncUnicode()
         {
-            RunAsyncTests(Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            RunAsyncTests(Encoding.Unicode, "Good", "EncodingUnicode.bin");
         }
 
         [Test]
         public void EncodingUnicodeBig()
         {
-            RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.txt");
+            RunTests(Encoding.BigEndianUnicode, "Good", "EncodingUnicodeBig.bin");
         }
 
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingAsyncANSIConstructor()
         {
             RunConstructor(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -155,10 +158,11 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingAsyncUnicodeConstructor()
         {
-            RunConstructor(Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            RunConstructor(Encoding.Unicode, "Good", "EncodingUnicode.bin");
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void EncodingANSIConstructorAsync()
         {
             RunAsyncConstructor(Encoding.Default, "Good", "EncodingANSI.txt");
@@ -173,7 +177,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void EncodingUnicodeConstructorAsync()
         {
-            RunAsyncConstructor(Encoding.Unicode, "Good", "EncodingUnicode.txt");
+            RunAsyncConstructor(Encoding.Unicode, "Good", "EncodingUnicode.bin");
         }
     }
 }

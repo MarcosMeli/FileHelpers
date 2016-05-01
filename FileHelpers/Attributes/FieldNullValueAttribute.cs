@@ -13,13 +13,11 @@ namespace FileHelpers
     /// You must specify a string and a converter that can be converted to the
     /// type or an object of the correct type to be directly assigned.
     /// <para/>
-    /// See the <a href="attributes.html">complete attributes list</a> for more
+    /// See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more
     /// information and examples of each one.
     /// </remarks>
-    /// <seealso href="attributes.html">Attributes List</seealso>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    [AttributeUsage(AttributeTargets.Field)]
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldNullValueAttribute : Attribute
     {
         /// <summary>Default value for a null value.</summary>

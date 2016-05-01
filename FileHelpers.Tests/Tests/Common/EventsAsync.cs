@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests
 {
     [TestFixture]
-    public class EventsAsync
+        public class EventsAsync
     {
         private FileHelperAsyncEngine<SampleType> engine;
 

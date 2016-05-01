@@ -12,7 +12,7 @@ namespace FileHelpers.Tests.Converters
         [Test]
         public void NullDateFormat()
         {
-            String data = "23/11/2010,24/11/2010\r\n,\r\n,\r\n";
+            String data = String.Format("23/11/2010,24/11/2010{0},{0},{0}", Environment.NewLine);
 
             var engine = new FileHelperEngine<NullDateFormatMulti>();
             NullDateFormatMulti[] result = engine.ReadString(data);

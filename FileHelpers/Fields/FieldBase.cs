@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using FileHelpers.Options;
 
 namespace FileHelpers
 {
@@ -34,7 +35,13 @@ namespace FileHelpers
         /// <summary>
         /// Number of extra characters used,  delimiters and quote characters
         /// </summary>
-        internal int CharsToDiscard { get; set; }
+        internal virtual int CharsToDiscard
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
         /// <summary>
         /// Field type of an array or it is just fieldType.
@@ -63,17 +70,6 @@ namespace FileHelpers
         /// for an array
         /// </summary>
         internal Type ArrayType { get; set; }
-
-
-        /// <summary>
-        /// Am I the first field in an array list
-        /// </summary>
-        internal bool IsFirst { get; set; }
-
-        /// <summary>
-        /// Am I the last field in the array list
-        /// </summary>
-        internal bool IsLast { get; set; }
 
         /// <summary>
         /// Do we process this field but not store the value
@@ -113,12 +109,44 @@ namespace FileHelpers
         /// <summary>
         /// The field may not be present on the input data (line not long enough)
         /// </summary>
-        public bool IsOptional { get; set; }
+        public bool IsOptional
+        {
+            get; set;
+        }
 
         /// <summary>
         /// The next field along is optional,  optimise processing next records
         /// </summary>
-        internal bool NextIsOptional { get; set; }
+        internal bool NextIsOptional
+        {
+            get
+            {
+                if (Parent.FieldCount > ParentIndex + 1)
+                    return Parent.Fields[ParentIndex + 1].IsOptional;
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Am I the first field in an array list
+        /// </summary>
+        internal bool IsFirst
+        {
+            get
+            {
+                return ParentIndex == 0;
+            }
+        }
+
+        /// <summary>
+        /// Am I the last field in the array list
+        /// </summary>
+        internal bool IsLast
+        {
+            get { return ParentIndex == Parent.FieldCount - 1; }
+        }
+
 
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
@@ -147,6 +175,11 @@ namespace FileHelpers
         /// </summary>
         public List<Interfaces.IFieldValidate> Validators { get; private set; }
 
+        /// <summary>
+        /// Caption of the field displayed in header row (see EngineBase.GetFileHeader)
+        /// </summary>
+        internal string FieldCaption { get; set; }
+
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
@@ -160,15 +193,12 @@ namespace FileHelpers
             get { return FieldInfo.Name; }
         }
 
-        // For performance add it here
-        /// <summary>
-        /// List the various whitespace characters in Unicode
-        /// </summary>
+		/*
         private static readonly char[] mWhitespaceChars = new[] {
             '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005',
             '\u2006', '\u2007', '\u2008',
             '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
-        };
+*/
 
         #endregion
 
@@ -183,40 +213,59 @@ namespace FileHelpers
         /// <returns>Null if not used</returns>
         public static FieldBase CreateField(FieldInfo fi, TypedRecordAttribute recordAttribute)
         {
+            FieldBase res = null;
+            MemberInfo mi = fi;
+            var memberName = "The field: '" + fi.Name;
+            Type fieldType = fi.FieldType;             
+            string fieldFriendlyName = AutoPropertyName(fi);
+            if (string.IsNullOrEmpty(fieldFriendlyName)==false)
+            {                
+                var prop = fi.DeclaringType.GetProperty(fieldFriendlyName);
+                if (prop != null)
+                {
+                    memberName = "The property: '" + prop.Name;
+                    mi = prop;
+                }
+                else
+                {
+                    fieldFriendlyName = null;
+                }
+            }
             // If ignored, return null
-#pragma warning disable 612,618 // disable obsole warning
-            if (fi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
-                fi.IsDefined(typeof (FieldIgnoredAttribute), true))
+#pragma warning disable 612,618 // disable obsolete warning
+            if (mi.IsDefined(typeof (FieldNotInFileAttribute), true) ||
+                mi.IsDefined(typeof (FieldIgnoredAttribute), true) ||
+                mi.IsDefined(typeof (FieldHiddenAttribute), true))
 #pragma warning restore 612,618
                 return null;
 
-            FieldBase res = null;
-
-            var attributes = (FieldAttribute[]) fi.GetCustomAttributes(typeof (FieldAttribute), true);
+            
+            
+            var attributes = (FieldAttribute[]) mi.GetCustomAttributes(typeof (FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
 
             // Fixed length record and no attributes at all
             if (recordAttribute is FixedLengthRecordAttribute &&
                 attributes.Length == 0) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                throw new BadUsageException(memberName +
                                             "' must be marked the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
             }
 
             if (attributes.Length > 1) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                throw new BadUsageException(memberName +
                                             "' has a FieldFixedLength and a FieldDelimiter attribute.");
             }
 
             if (recordAttribute is DelimitedRecordAttribute &&
-                fi.IsDefined(typeof (FieldAlignAttribute), false)) {
-                throw new BadUsageException("The field: '" + fi.Name +
+                mi.IsDefined(typeof (FieldAlignAttribute), false)) {
+                throw new BadUsageException(memberName +
                                             "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpose.");
             }
 
-            if (fi.FieldType.IsArray == false &&
-                fi.IsDefined(typeof (FieldArrayLengthAttribute), false)) {
-                throw new BadUsageException("The field: '" + fi.Name +
+            if (fieldType.IsArray == false &&
+                mi.IsDefined(typeof (FieldArrayLengthAttribute), false)) {
+                throw new BadUsageException(memberName +
                                             "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
             }
 
@@ -227,12 +276,12 @@ namespace FileHelpers
                 if (fieldAttb is FieldFixedLengthAttribute) {
                     // Fixed Field
                     if (recordAttribute is DelimitedRecordAttribute) {
-                        throw new BadUsageException("The field: '" + fi.Name +
+                        throw new BadUsageException(memberName +
                                                     "' can't be marked with FieldFixedLength attribute, it is only for the FixedLengthRecords not for delimited ones.");
                     }
 
                     var attbFixedLength = (FieldFixedLengthAttribute) fieldAttb;
-                    var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(fi);
+                    var attbAlign = Attributes.GetFirst<FieldAlignAttribute>(mi);
 
                     res = new FixedLengthField(fi, attbFixedLength.Length, attbAlign);
                     ((FixedLengthField) res).FixedMode = ((FixedLengthRecordAttribute) recordAttribute).FixedMode;
@@ -240,7 +289,7 @@ namespace FileHelpers
                 else if (fieldAttb is FieldDelimiterAttribute) {
                     // Delimited Field
                     if (recordAttribute is FixedLengthRecordAttribute) {
-                        throw new BadUsageException("The field: '" + fi.Name +
+                        throw new BadUsageException(memberName +
                                                     "' can't be marked with FieldDelimiter attribute, it is only for DelimitedRecords not for fixed ones.");
                     }
 
@@ -257,26 +306,28 @@ namespace FileHelpers
                 var delimitedRecordAttribute = recordAttribute as DelimitedRecordAttribute;
 
                 if (delimitedRecordAttribute != null)
+                {
                     res = new DelimitedField(fi, delimitedRecordAttribute.Separator);
+                }
             }
 
             if (res != null) {
                 // FieldDiscarded
-                res.Discarded = fi.IsDefined(typeof (FieldValueDiscardedAttribute), false);
+                res.Discarded = mi.IsDefined(typeof (FieldValueDiscardedAttribute), false);
 
                 // FieldTrim
-                Attributes.WorkWithFirst<FieldTrimAttribute>(fi,
+                Attributes.WorkWithFirst<FieldTrimAttribute>(mi,
                     (x) => {
                         res.TrimMode = x.TrimMode;
                         res.TrimChars = x.TrimChars;
                     });
 
                 // FieldQuoted
-                Attributes.WorkWithFirst<FieldQuotedAttribute>(fi,
+                Attributes.WorkWithFirst<FieldQuotedAttribute>(mi,
                     (x) => {
                         if (res is FixedLengthField) {
                             throw new BadUsageException(
-                                "The field: '" + fi.Name +
+                                memberName +
                                 "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
                         }
 
@@ -289,27 +340,30 @@ namespace FileHelpers
                     });
 
                 // FieldOrder
-                Attributes.WorkWithFirst<FieldOrderAttribute>(fi, x => res.FieldOrder = x.Order);
+                Attributes.WorkWithFirst<FieldOrderAttribute>(mi, x => res.FieldOrder = x.Order);
+
+                // FieldCaption
+                Attributes.WorkWithFirst<FieldCaptionAttribute>(mi, x => res.FieldCaption = x.Caption);
 
                 // FieldOptional
-                res.IsOptional = fi.IsDefined(typeof(FieldOptionalAttribute), false);
+                res.IsOptional = mi.IsDefined(typeof(FieldOptionalAttribute), false);
 
                 // FieldInNewLine
-                res.InNewLine = fi.IsDefined(typeof(FieldInNewLineAttribute), false);
+                res.InNewLine = mi.IsDefined(typeof(FieldInNewLineAttribute), false);
 
                 // FieldValidatorAttributes - for use in custom validation of fields
-                res.Validators = new List<Interfaces.IFieldValidate>((FieldValidateAttribute[])fi.GetCustomAttributes(typeof(FieldValidateAttribute), false));
+                res.Validators = new List<Interfaces.IFieldValidate>((FieldValidateAttribute[])mi.GetCustomAttributes(typeof(FieldValidateAttribute), false));
 
                 // FieldArrayLength
-                if (fi.FieldType.IsArray) {
+                if (fieldType.IsArray) {
                     res.IsArray = true;
-                    res.ArrayType = fi.FieldType.GetElementType();
+                    res.ArrayType = fieldType.GetElementType();
 
                     // MinValue indicates that there is no FieldArrayLength in the array
                     res.ArrayMinLength = int.MinValue;
                     res.ArrayMaxLength = int.MaxValue;
 
-                    Attributes.WorkWithFirst<FieldArrayLengthAttribute>(fi,
+                    Attributes.WorkWithFirst<FieldArrayLengthAttribute>(mi,
                         (x) => {
                             res.ArrayMinLength = x.MinLength;
                             res.ArrayMaxLength = x.MaxLength;
@@ -317,26 +371,10 @@ namespace FileHelpers
                             if (res.ArrayMaxLength < res.ArrayMinLength ||
                                 res.ArrayMinLength < 0 ||
                                 res.ArrayMaxLength <= 0) {
-                                throw new BadUsageException("The field: " + fi.Name +
+                                throw new BadUsageException(memberName +
                                                             " has invalid length values in the [FieldArrayLength] attribute.");
                             }
                         });
-                }
-            }
-
-            if (fi.IsDefined(typeof (CompilerGeneratedAttribute), false))
-            {
-                if (fi.Name.EndsWith("__BackingField") &&
-                    fi.Name.StartsWith("<") &&
-                    fi.Name.Contains(">"))
-
-                res.FieldFriendlyName = fi.Name.Substring(1, fi.Name.IndexOf(">") - 1);
-                res.IsAutoProperty = true;
-
-                var prop = fi.DeclaringType.GetProperty(res.FieldFriendlyName);
-                if (prop != null)
-                {
-                    Attributes.WorkWithFirst<FieldOrderAttribute>(prop, x => res.FieldOrder = x.Order);
                 }
             }
 
@@ -345,6 +383,9 @@ namespace FileHelpers
 
             return res;
         }
+
+        internal RecordOptions Parent { get; set; }
+        internal int ParentIndex { get; set; }
 
         internal static string AutoPropertyName(FieldInfo fi)
         {
@@ -374,15 +415,12 @@ namespace FileHelpers
             TrimMode = TrimMode.None;
             FieldOrder = null;
             InNewLine = false;
-            NextIsOptional = false;
+            //NextIsOptional = false;
             IsOptional = false;
             TrimChars = null;
             NullValue = null;
             TrailingArray = false;
-            IsLast = false;
-            IsFirst = false;
             IsArray = false;
-            CharsToDiscard = 0;
             Validators = null;
         }
 
@@ -395,9 +433,23 @@ namespace FileHelpers
             : this()
         {
          
-
             FieldInfo = fi;
             FieldType = FieldInfo.FieldType;
+            MemberInfo attibuteTarget = fi;
+            this.FieldFriendlyName = AutoPropertyName(fi);
+            if (string.IsNullOrEmpty(FieldFriendlyName) == false)
+            {
+                var prop = fi.DeclaringType.GetProperty(this.FieldFriendlyName);
+                if (prop == null)
+                {
+                    this.FieldFriendlyName = null;
+                }
+                else
+                {
+                    this.IsAutoProperty = true;
+                    attibuteTarget = prop;
+                }
+            }
 
             if (FieldType.IsArray)
                 FieldTypeInternal = FieldType.GetElementType();
@@ -406,7 +458,7 @@ namespace FileHelpers
 
             IsStringField = FieldTypeInternal == typeof (string);
 
-            object[] attribs = fi.GetCustomAttributes(typeof (FieldConverterAttribute), true);
+            object[] attribs = attibuteTarget.GetCustomAttributes(typeof (FieldConverterAttribute), true);
 
             if (attribs.Length > 0) {
                 var conv = (FieldConverterAttribute) attribs[0];
@@ -414,12 +466,12 @@ namespace FileHelpers
                 conv.ValidateTypes(FieldInfo);
             }
             else
-                this.Converter = ConvertHelpers.GetDefaultConverter(fi.Name, FieldType);
+                this.Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name, FieldType);
 
             if (this.Converter != null)
                 this.Converter.mDestinationType = FieldTypeInternal;
 
-            attribs = fi.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
+            attribs = attibuteTarget.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
             if (attribs.Length > 0) {
                 NullValue = ((FieldNullValueAttribute) attribs[0]).NullValue;
@@ -875,20 +927,17 @@ namespace FileHelpers
         /// Copy the field object
         /// </summary>
         /// <returns>a complete copy of the Field object</returns>
-        public object Clone()
+        object ICloneable.Clone()
         {
             var res = CreateClone();
 
             res.FieldType = FieldType;
-            res.CharsToDiscard = CharsToDiscard;
             res.Converter = this.Converter;
             res.FieldTypeInternal = FieldTypeInternal;
             res.IsArray = IsArray;
             res.ArrayType = ArrayType;
             res.ArrayMinLength = ArrayMinLength;
             res.ArrayMaxLength = ArrayMaxLength;
-            res.IsFirst = IsFirst;
-            res.IsLast = IsLast;
             res.TrailingArray = TrailingArray;
             res.NullValue = NullValue;
             res.IsStringField = IsStringField;
@@ -896,14 +945,16 @@ namespace FileHelpers
             res.TrimMode = TrimMode;
             res.TrimChars = TrimChars;
             res.IsOptional = IsOptional;
-            res.NextIsOptional = NextIsOptional;
+            //res.NextIsOptional = NextIsOptional;
             res.InNewLine = InNewLine;
             res.FieldOrder = FieldOrder;
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
             res.Validators = Validators;
-
+            res.FieldCaption = FieldCaption;
+            res.Parent = Parent;
+            res.ParentIndex = ParentIndex;
             return res;
         }
 

@@ -7,6 +7,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.DataLink
 {
     [TestFixture]
+    [Explicit]
     [Category("Advanced")]
     public class DataProviders
     {

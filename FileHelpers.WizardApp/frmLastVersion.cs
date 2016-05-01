@@ -52,8 +52,7 @@ namespace FileHelpers.WizardApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources =
-                new System.ComponentModel.ComponentResourceManager(typeof (frmLastVersion));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLastVersion));
             this.txtHistory = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,11 +67,7 @@ namespace FileHelpers.WizardApp
             // txtHistory
             // 
             this.txtHistory.BackColor = System.Drawing.Color.Ivory;
-            this.txtHistory.Font = new System.Drawing.Font("Tahoma",
-                9F,
-                System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.txtHistory.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHistory.Location = new System.Drawing.Point(123, 192);
             this.txtHistory.Multiline = true;
             this.txtHistory.Name = "txtHistory";
@@ -84,11 +79,7 @@ namespace FileHelpers.WizardApp
             // txtDescription
             // 
             this.txtDescription.BackColor = System.Drawing.Color.Ivory;
-            this.txtDescription.Font = new System.Drawing.Font("Tahoma",
-                9F,
-                System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Location = new System.Drawing.Point(123, 112);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -100,11 +91,7 @@ namespace FileHelpers.WizardApp
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma",
-                9.75F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Location = new System.Drawing.Point(11, 112);
             this.label1.Name = "label1";
@@ -116,11 +103,7 @@ namespace FileHelpers.WizardApp
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Tahoma",
-                9.75F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Location = new System.Drawing.Point(16, 192);
             this.label2.Name = "label2";
@@ -132,11 +115,7 @@ namespace FileHelpers.WizardApp
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma",
-                9.75F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
             this.label3.Location = new System.Drawing.Point(11, 64);
             this.label3.Name = "label3";
@@ -148,11 +127,7 @@ namespace FileHelpers.WizardApp
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma",
-                9.75F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gainsboro;
             this.label4.Location = new System.Drawing.Point(11, 88);
             this.label4.Name = "label4";
@@ -164,11 +139,7 @@ namespace FileHelpers.WizardApp
             // lblVersion
             // 
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
-            this.lblVersion.Font = new System.Drawing.Font("Tahoma",
-                12F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.Color.White;
             this.lblVersion.Location = new System.Drawing.Point(119, 64);
             this.lblVersion.Name = "lblVersion";
@@ -180,38 +151,28 @@ namespace FileHelpers.WizardApp
             // lblDate
             // 
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate.Font = new System.Drawing.Font("Tahoma",
-                12F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.lblDate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.White;
             this.lblDate.Location = new System.Drawing.Point(119, 88);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(100, 16);
+            this.lblDate.Size = new System.Drawing.Size(140, 21);
             this.lblDate.TabIndex = 11;
             this.lblDate.Text = "12/Jun/07";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cmdDownload
             // 
-            this.cmdDownload.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (0)))),
-                ((int) (((byte) (0)))),
-                ((int) (((byte) (110)))));
+            this.cmdDownload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(110)))));
             this.cmdDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdDownload.Font = new System.Drawing.Font("Tahoma",
-                11.25F,
-                System.Drawing.FontStyle.Bold,
-                System.Drawing.GraphicsUnit.Point,
-                ((byte) (0)));
+            this.cmdDownload.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDownload.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cmdDownload.Image = ((System.Drawing.Image) (resources.GetObject("cmdDownload.Image")));
+            this.cmdDownload.Image = ((System.Drawing.Image)(resources.GetObject("cmdDownload.Image")));
             this.cmdDownload.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdDownload.Location = new System.Drawing.Point(123, 382);
             this.cmdDownload.Name = "cmdDownload";
             this.cmdDownload.Size = new System.Drawing.Size(224, 40);
             this.cmdDownload.TabIndex = 12;
-            this.cmdDownload.Text = "Download Binaries";
+            this.cmdDownload.Text = "Open Download Page";
             this.cmdDownload.UseVisualStyleBackColor = false;
             this.cmdDownload.Click += new System.EventHandler(this.cmdDownload_Click);
             // 
@@ -242,6 +203,7 @@ namespace FileHelpers.WizardApp
             this.Controls.SetChildIndex(this.cmdDownload, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

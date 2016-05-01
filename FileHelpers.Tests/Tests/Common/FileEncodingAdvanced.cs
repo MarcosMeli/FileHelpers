@@ -67,7 +67,7 @@ namespace FileHelpers.Tests.CommonTests
         }
 
 
-        [FixedLengthRecord()]
+        [FixedLengthRecord]
         [IgnoreFirst(7)]
         [IgnoreLast(5)]
         public sealed class EncodingRecord

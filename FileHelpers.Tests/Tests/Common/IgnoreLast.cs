@@ -13,7 +13,7 @@ namespace FileHelpers.Tests.CommonTests
                                                          "with the FileHelperEngine.FooterText property" +
                                                          Environment.NewLine;
 
-        private readonly string expectedShortFooterText = "This is a new Footer....\r\n";
+        private readonly string expectedShortFooterText = "This is a new Footer...." + Environment.NewLine;
 
         [Test]
         public void DiscardLast1()
@@ -182,7 +182,7 @@ namespace FileHelpers.Tests.CommonTests
     }
 
     [FixedLengthRecord]
-    [IgnoreLast()]
+    [IgnoreLast]
     public class DiscardLastType1
     {
         [FieldFixedLength(8)]
@@ -198,8 +198,8 @@ namespace FileHelpers.Tests.CommonTests
     }
 
     [FixedLengthRecord]
-    [IgnoreFirst()]
-    [IgnoreLast()]
+    [IgnoreFirst]
+    [IgnoreLast]
     public class DiscardLastType1bis
     {
         [FieldFixedLength(8)]

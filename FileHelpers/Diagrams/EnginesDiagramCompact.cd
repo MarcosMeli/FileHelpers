@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="FileHelpers.EngineBase" Collapsed="true">
-    <Position X="1.5" Y="0.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <Members>
       <Method Name="EngineBase" Hidden="true" />
       <Field Name="mEncoding" Hidden="true" />
@@ -9,7 +9,6 @@
       <Field Name="mFooterText" Hidden="true" />
       <Field Name="mHeaderText" Hidden="true" />
       <Field Name="mLineNumber" Hidden="true" />
-      <Field Name="mRecordInfo" Hidden="true" />
       <Field Name="mRecordType" Hidden="true" />
       <Field Name="mTotalRecords" Hidden="true" />
       <Method Name="ResetFields" Hidden="true" />
@@ -20,7 +19,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAABAIAEAYAAAgAQAgLAAAAoEgAGAAAAQCCAAHAAAA=</HashCode>
+      <HashCode>AAQABAAAEAYAAAgAQAgLAAAAoEgAGAAAAQCCAAHAAAA=</HashCode>
       <FileName>Engines\EngineBase.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -28,61 +27,84 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="FileHelpers.FileHelperAsyncEngine" Collapsed="true">
-    <Position X="2.5" Y="1.75" Width="1.75" />
+    <Position X="4" Y="3.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Engines\FileHelperAsyncEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FileHelpers.FileHelperEngine" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.75" />
+    <Position X="1.5" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Engines\FileHelperEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FileHelpers.MasterDetail.MasterDetailEngine" Collapsed="true">
-    <Position X="6.75" Y="3" Width="1.75" />
+    <Position X="8.75" Y="2.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MasterDetail\MasterDetailEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FileHelpers.ErrorManager" Collapsed="true">
-    <Position X="4.5" Y="0.5" Width="1.75" />
+    <Position X="7" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AEAAAAABABAAARAAABAAAAIAAAgAAAAMAAAAAAAggAA=</HashCode>
+      <HashCode>AEAAAEABABAAARAAABAAAAIAAAiAAAAMAAAAAAAggAA=</HashCode>
       <FileName>ErrorHandling\ErrorManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="FileHelpers.FileDiffEngine&lt;T&gt;" Collapsed="true">
-    <Position X="4.75" Y="1.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>BACAAAAAAAAAAAAFAAAAAgQAAAAAAAgAAAAAAAQAAAA=</HashCode>
-      <FileName>Engines\FileDiffEngine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="FileHelpers.MultiRecordEngine" Collapsed="true">
-    <Position X="4.75" Y="3" Width="1.75" />
+    <Position X="6.5" Y="2.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAIBACDAAEQJAGAgCABBQAAAgAAQgEAoghCEKIAQE=</HashCode>
+      <HashCode>ABAAIBACDAAEQJAGAgCABBQAAAgAAQkEAoghCEKIAQE=</HashCode>
       <FileName>Engines\MultiRecordEngine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.454" />
   </Class>
   <Class Name="FileHelpers.DelimitedFileEngine" Collapsed="true">
-    <Position X="0.5" Y="3" Width="1.75" />
+    <Position X="0.5" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Engines\DelimitedFileEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FileHelpers.FixedFileEngine" Collapsed="true">
-    <Position X="2.5" Y="3" Width="1.75" />
+    <Position X="2.5" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Engines\FixedFileEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.EventEngineBase&lt;T&gt;" Collapsed="true">
+    <Position X="3.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAABAAIAAAAAAAAEAAAAAIAIAAAEAIAAAAEEAAAAA=</HashCode>
+      <FileName>Engines\EventEngineBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileHelpers.FileHelperEngine&lt;T&gt;" Collapsed="true">
+    <Position X="1.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAIAAgAAAAAQFIAAgAAAAACAAAAAQAEAAAACEAAAAE=</HashCode>
+      <FileName>Engines\FileHelperEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FileHelpers.FileHelperAsyncEngine&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAACDAAAAIAGCAAABQQAAAwAAAgEAAghBEKIAQY=</HashCode>
+      <FileName>Engines\FileHelperAsyncEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FileHelpers.MasterDetail.MasterDetailEngine&lt;TMaster, TDetail&gt;" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAABAAAABgQBAAAgAAAAAAAAAAAQIAAgAAiEAAAAA=</HashCode>
+      <FileName>MasterDetail\MasterDetailEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />

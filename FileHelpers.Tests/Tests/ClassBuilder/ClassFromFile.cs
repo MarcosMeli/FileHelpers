@@ -11,6 +11,7 @@ namespace FileHelpers.Tests
     public class ClassFromFile
     {
         [Test]
+		[Category("Dynamic")]
         public void ReadFile()
         {
             Type t = ClassBuilder.ClassFromSourceFile(TestCommon.GetPath("Classes", "ClassFromFile.cs"));

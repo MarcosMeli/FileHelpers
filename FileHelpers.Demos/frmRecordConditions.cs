@@ -72,8 +72,6 @@ namespace FileHelpersSamples
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(642, 8);
-            this.pictureBox3.Name = "pictureBox3";
             // 
             // txtClass
             // 
@@ -352,7 +350,6 @@ public class CustomersVerticalBar
             this.Controls.Add(this.label3);
             this.Name = "frmRecordConditions";
             this.Text = "FileHelpers - Record Conditions";
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtClass, 0);
             this.Controls.SetChildIndex(this.txtData, 0);

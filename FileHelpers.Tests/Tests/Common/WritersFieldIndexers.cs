@@ -9,11 +9,12 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class WritersFieldIndexers
     {
+		/*
         private readonly string data = "11121314901234" + Environment.NewLine +
                                        "10111314012345" + Environment.NewLine +
                                        "11101314123456" + Environment.NewLine +
                                        "10101314234567" + Environment.NewLine;
-
+*/
 
         [Test]
         public void AsyncFieldIndex1()

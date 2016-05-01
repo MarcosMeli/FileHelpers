@@ -18,10 +18,10 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord(",")]
     public class IsNotEmptyType 
     {
-        [FieldValidateIsNotEmpty()]
+        [FieldValidateIsNotEmpty]
         public int CustomerID;
 
-        [FieldValidateIsNotEmpty()]
+        [FieldValidateIsNotEmpty]
         public string CompanyName;
 
         public string ContactName;
@@ -29,7 +29,7 @@ namespace FileHelpers.Tests.CommonTests
         [FieldNullValue(true)]
         public bool IsActive;
 
-        [FieldValidateIsNotEmpty()]
+        [FieldValidateIsNotEmpty]
         public DateTime? CreatedDate;
     }
 }

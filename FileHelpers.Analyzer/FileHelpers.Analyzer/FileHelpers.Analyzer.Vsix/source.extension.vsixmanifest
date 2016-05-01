@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="FileHelpers.Analyzer.Vsix..1de2cc5c-2e38-41c0-9943-5da63e2e263a" Version="1.2.0" Language="en-US" Publisher="Marcos Meli"/>
+    <DisplayName>FileHelpers.Analyzer</DisplayName>
+    <Description xml:space="preserve">Best Practices Analyzer and Quick Fixes for for FileHelpers Library  
+
+www.filehelpers.net
+</Description>
+    <MoreInfo>http://www.filehelpers.net/analyzer/</MoreInfo>
+    <Icon>filehelpers_box_analyzer.png</Icon>
+    <PreviewImage>filehelpers_box_analyzer.png</PreviewImage>
+    <Tags>FileHelpers, Analyzer, Analyzers, Roslyn, Best Practices</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Version="[14.0,]" Id="Microsoft.VisualStudio.Pro" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5.2,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="FileHelpers.Analyzer" Path="|FileHelpers.Analyzer|" />
+    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="FileHelpers.Analyzer" Path="|FileHelpers.Analyzer|" />
+  </Assets>
+</PackageManifest>

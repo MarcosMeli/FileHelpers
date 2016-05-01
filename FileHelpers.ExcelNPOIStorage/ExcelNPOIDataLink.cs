@@ -4,5 +4,5 @@ using System.Text;
 
 namespace FileHelpers.ExcelNPOIStorage
 {
-    public class ExcelNPOIDataLink {}
+   // public class ExcelNPOIDataLink {}
 }

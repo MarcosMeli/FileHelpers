@@ -68,12 +68,10 @@ namespace FileHelpersSamples
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(576, 8);
             // 
             // txtClass
             // 
@@ -231,7 +229,6 @@ namespace FileHelpersSamples
             this.Controls.Add(this.label3);
             this.Name = "frmEasySampleDelimited";
             this.Text = "FileHelpers - Easy Example";
-            this.Controls.SetChildIndex(this.pictureBox3, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtClass, 0);
             this.Controls.SetChildIndex(this.txtData, 0);
@@ -241,7 +238,6 @@ namespace FileHelpersSamples
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);
-            ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }

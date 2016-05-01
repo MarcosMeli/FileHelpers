@@ -3,7 +3,7 @@
   <Choose>
     <When Condition=" '$(TargetFrameworkVersion)'=='' ">
       <PropertyGroup>
-        <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
       </PropertyGroup>
     </When>
   </Choose>
@@ -106,7 +106,9 @@
     <Compile Include="Attributes\FieldAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\FieldCaptionAttribute.cs" />
     <Compile Include="Attributes\FieldValidateIsNotEmptyAttribute.cs" />
+    <Compile Include="Attributes\FieldHiddenAttribute.cs" />
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />
     <Compile Include="Attributes\FieldOrderAttribute.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Converters\EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\ExtensionsFileHelpers.cs" />
     <Compile Include="Core\RecordInfo.Factory.cs" />
     <Compile Include="Core\ExtractInfo.cs">
       <SubType>Code</SubType>
@@ -294,7 +297,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
-    <Compile Include="ErrorHandling\RunTimeCompilationException.cs">
+    <Compile Include="ErrorHandling\DynamicCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\BeforeReadEventArgs.cs" />
@@ -390,9 +393,8 @@
     <Compile Include="Streams\StreamInfoProvider.cs" />
     <Compile Include="Streams\InternalStreamReader.cs" />
     <Compile Include="VersionInfo.cs" />
-    <None Include="Diagrams\EnginesDiagram.cd" />
     <None Include="Diagrams\EnginesDiagramCompact.cd" />
-    <None Include="Diagrams\RunTimeRecords.cd" />
+    <None Include="Diagrams\DynamicRecords.cd" />
     <None Include="FileHelpers.snk" />
     <None Include="Messages\Errors.msg" />
     <None Include="Messages\GenerateMessages.tt">

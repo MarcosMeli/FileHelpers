@@ -120,6 +120,25 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        public void DiscardFirstReport()
+        {
+            var engine = new FileHelperEngine<DiscardReportType>();
+            var res = engine.ReadFile(FileTest.Good.DiscardFirstReport.Path);
+
+            Assert.AreEqual(2, res.Length);
+            Assert.AreEqual(123, res[0].FirstColumn);
+            Assert.AreEqual(456, res[1].FirstColumn);
+            Assert.AreEqual("HEADER TEXT", engine.HeaderText.Trim());
+
+        }
+
+        [DelimitedRecord(";"), IgnoreFirst]
+        public class DiscardReportType
+        {
+            public int FirstColumn;
+        }
+
+        [Test]
         public void DiscardWriteRead()
         {
             var engine = new FileHelperEngine<DiscardType1>();
@@ -174,6 +193,18 @@ namespace FileHelpers.Tests.CommonTests
             if (File.Exists("tempo.txt"))
                 File.Delete("tempo.txt");
         }
+
+		[Test]
+		public void DiscardFirstAndQuoted()
+		{
+			var engine = new FileHelperEngine<Account>();
+
+			var res = TestCommon.ReadTest(engine, "Good", "Accounts.txt");
+
+			Assert.AreEqual(2, res.Length);
+			Assert.AreEqual ("def", res [1].Extra);
+		}
+
     }
 
     [FixedLengthRecord]
@@ -193,7 +224,7 @@ namespace FileHelpers.Tests.CommonTests
     }
 
     [FixedLengthRecord]
-    [IgnoreFirst()]
+    [IgnoreFirst]
     public class DiscardType1
     {
         [FieldFixedLength(8)]
@@ -243,7 +274,7 @@ namespace FileHelpers.Tests.CommonTests
 
     [FixedLengthRecord]
     [IgnoreFirst(800000)]
-    [IgnoreLast()]
+    [IgnoreLast]
     public class DiscardType3
     {
         [FieldFixedLength(8)]
@@ -273,4 +304,18 @@ namespace FileHelpers.Tests.CommonTests
         [FieldConverter(ConverterKind.Int32)]
         public int Field3;
     }
+
+	[IgnoreFirst(1)]
+	[DelimitedRecord(",")]
+	[IgnoreEmptyLines()]
+	public class Account
+	{
+		[FieldQuoted('"', QuoteMode.OptionalForBoth, MultilineMode.NotAllow)]
+		public string AccountName;
+
+		[FieldQuoted('"', QuoteMode.OptionalForBoth, MultilineMode.NotAllow)]
+		public string Extra;
+	}
+
+
 }

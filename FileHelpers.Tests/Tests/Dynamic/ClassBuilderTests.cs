@@ -9,7 +9,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Dynamic
 {
     [TestFixture]
-    public class ClassBuilderTests
+	[Category("Dynamic")]
+	public class ClassBuilderTests
     {
         private FileHelperEngine mEngine;
         private FileHelperAsyncEngine mAsyncEngine;
@@ -180,6 +181,7 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void ReadFileClassInFileEnc()
         {
             var t = ClassBuilder.ClassFromBinaryFile(FileTest.Classes.SampleBinaryClass.Path);

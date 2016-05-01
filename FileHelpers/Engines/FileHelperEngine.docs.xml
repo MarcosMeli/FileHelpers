@@ -12,16 +12,16 @@
 		 <para>You can set the <see cref="ErrorManager.ErrorMode"/> of this class when found an error, and can
 			 retrieve them with the <see cref="ErrorManager.Errors"/>
 			 property.</para>
-		 <para>See in the <a href="class_diagram.html">Class Diagram</a> and in the
-			<a href="quick_start.html">Quick Start Guide</a> for more Info.</para>
-		 <para>Or you can browse the <a href="examples.html">Examples section</a> for more code.</para>
+		 <para>See in the <a href="http://www.filehelpers.net/diagrams">Class Diagram</a> and in the
+			<a href="http://www.filehelpers.net/quickstart/">Quick Start Guide</a> for more Info.</para>
+		 <para>Or you can browse the <a href="http://www.filehelpers.net/examples/">Examples section</a> for more code.</para>
 		 <para>Engines Diagram:</para>
-		 <para><center><img src="diag_engines.gif" /></center></para>
+		 <para><center><img src="/images/diag_engines.png" /></center></para>
 		</remarks>
-		<seealso href="quick_start.html">Quick Start Guide</seealso>
-		<seealso href="class_diagram.html">Class Diagram</seealso>
-		<seealso href="examples.html">Examples of Use</seealso>
-		<seealso href="attributes.html">Attributes List</seealso>
+		<seealso href="http://www.filehelpers.net/quickstart/">Quick Start Guide</seealso>
+		<seealso href="http://www.filehelpers.net/diagrams">Class Diagram</seealso>
+		<seealso href="http://www.filehelpers.net/examples/">Examples of Use</seealso>
+		<seealso href="http://www.filehelpers.net/mustread">Attributes List</seealso>
 	</FileHelperEngine>
 
 

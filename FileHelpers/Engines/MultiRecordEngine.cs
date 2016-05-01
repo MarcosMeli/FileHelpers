@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
+using FileHelpers.Options;
 
 namespace FileHelpers
 {
@@ -14,11 +14,11 @@ namespace FileHelpers
     #region "  Delegate  "
 
     /// <summary>
-    /// Delegate thats determines the Type of the current record (Master, Detail, Skip)
+    /// Delegate that determines the Type of the current record (Master, Detail, Skip)
     /// </summary>
     /// <param name="recordString">The string of the current record.</param>
     /// <param name="engine">The engine that calls the selector.</param>
-    /// <returns>the action used for the current record (Master, Detail, Skip)</returns>
+    /// <returns>The action used for the current record (Master, Detail, Skip)</returns>
     public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 
     #endregion
@@ -28,10 +28,6 @@ namespace FileHelpers
     /// records of different types and that are in a linear relationship</para>
     /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
     /// </summary>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="class_diagram.html">Class Diagram</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    /// <seealso href="attributes.html">Attributes List</seealso>
     [DebuggerDisplay(
         "MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
         )]
@@ -43,29 +39,13 @@ namespace FileHelpers
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IRecordInfo[] mMultiRecordInfo;
+        private readonly RecordOptions[] mMultiRecordOptions;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Hashtable mRecordInfoHash;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordTypeSelector mRecordSelector;
-
-        private string ListTypes()
-        {
-            string res = string.Empty;
-            bool first = true;
-            foreach (Type t in mRecordInfoHash.Keys) {
-                if (first)
-                    first = false;
-                else
-                    res += ", ";
-
-                res += t.Name;
-            }
-
-            return res;
-        }
-
 
         /// <summary>
         /// The Selector used by the engine in Read operations to determine the Type to use.
@@ -75,7 +55,6 @@ namespace FileHelpers
             get { return mRecordSelector; }
             set { mRecordSelector = value; }
         }
-
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Type[] mTypes;
@@ -99,9 +78,11 @@ namespace FileHelpers
             mTypes = recordTypes;
             mMultiRecordInfo = new IRecordInfo[mTypes.Length];
             mRecordInfoHash = new Hashtable(mTypes.Length);
+            mMultiRecordOptions = new RecordOptions[mTypes.Length];
+
             for (int i = 0; i < mTypes.Length; i++) {
                 if (mTypes[i] == null)
-                    throw new BadUsageException("The type at index " + i.ToString() + " is null.");
+                    throw new BadUsageException("The type at index " + i + " is null.");
 
                 if (mRecordInfoHash.Contains(mTypes[i])) {
                     throw new BadUsageException("The type '" + mTypes[i].Name +
@@ -109,86 +90,20 @@ namespace FileHelpers
                 }
 
                 mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
+                mMultiRecordOptions[i] = CreateRecordOptionsCore(mMultiRecordInfo[i]);
+
                 mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+
             }
             mRecordSelector = recordSelector;
         }
 
         #endregion
 
-        #region "  Events  "
-
-        ///// <summary>Called in read operations just before the record string is translated to a record.</summary>
-        //public event EventHandler<BeforeReadRecordEventArgs> BeforeReadRecord;
-        ///// <summary>Called in read operations just after the record was created from a record string.</summary>
-        //public event EventHandler<AfterReadRecordEventArgs> AfterReadRecord;
-        ///// <summary>Called in write operations just before the record is converted to a string to write it.</summary>
-        //public event EventHandler<BeforeWriteRecordEventArgs> BeforeWriteRecord;
-        ///// <summary>Called in write operations just after the record was converted to a string.</summary>
-        //public event EventHandler<AfterWriteRecordEventArgs> AfterWriteRecord;
-
-
-        //private bool OnBeforeReadRecord(BeforeReadRecordEventArgs e)
-        //{
-        //    if (BeforeReadRecord != null)
-        //    {
-        //        BeforeReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private bool OnAfterReadRecord(string line, object record)
-        //{
-        //    if (mRecordInfo.NotifyRead)
-        //        ((INotifyRead)record).AfterRead(this, line);
-
-        //    if (AfterReadRecord != null)
-        //    {
-        //        AfterReadRecordEventArgs e = new AfterReadRecordEventArgs(line, record, LineNumber);
-        //        AfterReadRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-        //    return false;
-        //}
-
-
-        //private bool OnBeforeWriteRecord(object record)
-        //{
-        //    if (mRecordInfo.NotifyWrite)
-        //        ((INotifyWrite)record).BeforeWrite(this);
-
-        //    if (BeforeWriteRecord != null)
-        //    {
-        //        BeforeWriteRecordEventArgs e = new BeforeWriteRecordEventArgs(record, LineNumber);
-        //        BeforeWriteRecord(this, e);
-
-        //        return e.SkipThisRecord;
-        //    }
-
-        //    return false;
-        //}
-
-        //private string OnAfterWriteRecord(string line, object record)
-        //{
-        //    if (AfterWriteRecord != null)
-        //    {
-        //        AfterWriteRecordEventArgs e = new AfterWriteRecordEventArgs(record, LineNumber, line);
-        //        AfterWriteRecord(this, e);
-        //        return e.RecordLine;
-        //    }
-        //    return line;
-        //}
-
-        #endregion
-
         #region "  ReadFile  "
 
         /// <summary>
-        /// Read a File and returns the records.
+        /// Reads a file and returns the records.
         /// </summary>
         /// <param name="fileName">The file with the records.</param>
         /// <returns>The read records of different types all mixed.</returns>
@@ -216,11 +131,11 @@ namespace FileHelpers
         public object[] ReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+                throw new ArgumentNullException("reader", "The reader of the Stream canÂ´t be null");
 
             if (mRecordSelector == null) {
                 throw new BadUsageException(
-                    "The Recordselector can´t be null, please pass a not null Selector in the constructor.");
+                    "The Recordselector canÂ´t be null, please pass a not null Selector in the constructor.");
             }
 
             ResetFields();
@@ -250,7 +165,6 @@ namespace FileHelpers
                     }
                 }
 
-
                 bool byPass = false;
 
                 var line = new LineInfo(currentLine) {
@@ -265,7 +179,7 @@ namespace FileHelpers
                         line.ReLoad(currentLine);
 
                         var skip = false;
-                        Type currType = null;
+                        Type currType;
                         try {
                             currType = mRecordSelector(this, currentLine);
                         }
@@ -320,7 +234,6 @@ namespace FileHelpers
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine
                                 };
-                                //							err.mColumnNumber = mColumnNum;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -405,10 +318,8 @@ namespace FileHelpers
                     writer.WriteLine(mHeaderText);
             }
 
-
             string currentLine = null;
 
-            //ConstructorInfo constr = mType.GetConstructor(new Type[] {});
             int max = maxRecords;
 
             if (records is IList) {
@@ -429,7 +340,7 @@ namespace FileHelpers
                     break;
                 try {
                     if (rec == null)
-                        throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
+                        throw new BadUsageException("The record at index " + recIndex + " is null.");
 
                     bool skip = false;
 
@@ -442,7 +353,7 @@ namespace FileHelpers
                     var info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
 
                     if (info == null) {
-                        throw new BadUsageException("The record at index " + recIndex.ToString() + " is of type '" +
+                        throw new BadUsageException("The record at index " + recIndex + " is of type '" +
                                                     rec.GetType().Name +
                                                     "' and the engine dont handle this type. You can add it to the constructor.");
                     }
@@ -467,7 +378,6 @@ namespace FileHelpers
                                 mExceptionInfo = ex,
                                 mRecordString = currentLine
                             };
-                            //							err.mColumnNumber = mColumnNum;
                             mErrorManager.AddError(err);
                             break;
                     }
@@ -513,7 +423,7 @@ namespace FileHelpers
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile1/*'/>
         public void AppendToFile(string fileName, object record)
         {
-            AppendToFile(fileName, new object[] {record});
+            AppendToFile(fileName, new[] {record});
         }
 
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
@@ -539,16 +449,14 @@ namespace FileHelpers
         {
             if (types == null)
                 throw new BadUsageException("A null Type[] is not valid for the MultiRecordEngine.");
-            else if (types.Length == 0)
+            if (types.Length == 0)
                 throw new BadUsageException("An empty Type[] is not valid for the MultiRecordEngine.");
-            else if (types.Length == 1) {
+            if (types.Length == 1) {
                 throw new BadUsageException(
-                    "You only provide one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
+                    "You only provided one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
             }
-            else
-                return types[0];
+            return types[0];
         }
-
 
         // ASYNC METHODS --------------
 
@@ -592,7 +500,7 @@ namespace FileHelpers
         public void BeginReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("The TextReader can´t be null.");
+                throw new ArgumentNullException("The TextReader canÂ´t be null.");
 
             ResetFields();
             mHeaderText = String.Empty;
@@ -692,7 +600,10 @@ namespace FileHelpers
         // DIFFERENT FROM THE ASYNC ENGINE
 
         #region "  ReadNext  "
-
+        /// <summary>
+        /// Reads the next record from the source
+        /// </summary>
+        /// <returns>The record just read</returns>
         public object ReadNext()
         {
             if (mAsyncReader == null)
@@ -715,7 +626,6 @@ namespace FileHelpers
             var line = new LineInfo(currentLine) {
                 mReader = mAsyncReader
             };
-
 
             while (true) {
                 if (currentLine != null) {
@@ -760,7 +670,6 @@ namespace FileHelpers
                                     mExceptionInfo = ex,
                                     mRecordString = currentLine
                                 };
-                                //							err.mColumnNumber = mColumnNum;
 
                                 mErrorManager.AddError(err);
                                 break;
@@ -776,7 +685,6 @@ namespace FileHelpers
                 else {
                     mLastRecord = null;
 
-
                     if (RecordInfo.IgnoreLast > 0)
                         mFooterText = mAsyncReader.RemainingText;
 
@@ -789,7 +697,11 @@ namespace FileHelpers
                 }
             }
         }
-
+        /// <summary>
+        /// Read a defined number of records from the source
+        /// </summary>
+        /// <param name="numberOfRecords">The count of records to read</param>
+        /// <returns>An Array with all the read record objects</returns>
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
@@ -888,7 +800,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (record == null)
-                throw new BadUsageException("The record to write can´t be null.");
+                throw new BadUsageException("The record to write canÂ´t be null.");
 
             WriteRecord(record);
         }
@@ -905,19 +817,18 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("The record to write can´t be null.");
+                throw new ArgumentNullException("records", "The record to write canÂ´t be null.");
 
             int nro = 0;
             foreach (var rec in records) {
                 nro++;
 
                 if (rec == null)
-                    throw new BadUsageException("The record at index " + nro.ToString() + " is null.");
+                    throw new BadUsageException("The record at index " + nro + " is null.");
 
                 WriteRecord(rec);
             }
         }
-
 
         private void WriteRecord(object record)
         {
@@ -969,7 +880,7 @@ namespace FileHelpers
         public void BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
-                throw new ArgumentException("The TextWriter can´t be null.", "writer");
+                throw new ArgumentException("The TextWriter canÂ´t be null.", "writer");
 
             ResetFields();
             mAsyncWriter = writer;

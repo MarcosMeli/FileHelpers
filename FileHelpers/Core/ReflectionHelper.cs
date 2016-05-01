@@ -206,7 +206,7 @@ namespace FileHelpers
                 MethodAttributes.Static | MethodAttributes.Public,
                 CallingConventions.Standard,
                 typeof (object),
-                new[] {typeof (object[])},
+				new Type[] {},
                 recordType,
                 true);
 

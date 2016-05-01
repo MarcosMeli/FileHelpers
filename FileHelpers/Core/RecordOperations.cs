@@ -212,7 +212,18 @@ namespace FileHelpers
         public object ValuesToRecord(object[] values)
         {
             for (int i = 0; i < RecordInfo.FieldCount; i++)
-                values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
+            {
+                try
+                {
+                    values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
+                }
+                catch (ConvertException ex)
+                {
+                    ex.FieldName = RecordInfo.Fields[i].FieldName;
+                    ex.ColumnNumber = i + 1;
+                    throw;
+                }
+            }
 
             // Assign all values via dynamic method that creates an object and assign values
             return CreateHandler(values);

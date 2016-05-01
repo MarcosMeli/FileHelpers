@@ -41,7 +41,7 @@ namespace FileHelpers.Tests
         {
             Check.That(StringHelper.IsNullOrWhiteSpace ("     ")).IsEqualTo(true);
             Check.That(StringHelper.IsNullOrWhiteSpace (null)).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace (String.Empty)).IsEqualTo(true);
+            Check.That(StringHelper.IsNullOrWhiteSpace ("")).IsEqualTo(true);
             Check.That(StringHelper.IsNullOrWhiteSpace (" test ")).IsEqualTo(false);
             Check.That(StringHelper.IsNullOrWhiteSpace("test")).IsEqualTo(false);
         }
@@ -49,7 +49,7 @@ namespace FileHelpers.Tests
         [Test (Description = "String StartsWithIgnoringWhiteSpaces help method tests")]
         public void StartsWithIgnoringWhiteSpaces ()
         {
-            Check.That(StringHelper.StartsWithIgnoringWhiteSpaces(String.Empty, String.Empty, StringComparison.Ordinal)).IsTrue();
+            Check.That(StringHelper.StartsWithIgnoringWhiteSpaces("", "", StringComparison.Ordinal)).IsTrue();
             Check.That(StringHelper.StartsWithIgnoringWhiteSpaces("", "test", StringComparison.Ordinal)).IsFalse();
             Check.That(StringHelper.StartsWithIgnoringWhiteSpaces(" ", "test", StringComparison.Ordinal)).IsFalse();
             Check.That(StringHelper.StartsWithIgnoringWhiteSpaces("  test  ", "test", StringComparison.Ordinal)).IsTrue();

@@ -2,13 +2,12 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ProjectGuid>{3731CD63-3236-47FB-A27C-146D37DE88AC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>FileHelpers.Tests</AssemblyName>
@@ -25,15 +24,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FileHelpers.Tests</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <SignAssembly>true</SignAssembly>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -55,66 +52,70 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
     <NoWarn>0649</NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoWarn>0649,0219</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>Release\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>
-    </DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>0649</NoWarn>
-    <Optimize>true</Optimize>
+    <Test>
+      <Test Path="">
+        <Options EnableFilter="True" Exclude="True" ctype="NUnitCategoryOptions">
+          <Categories>
+            <Category>Dynamic</Category>
+          </Categories>
+        </Options>
+      </Test>
+    </Test>
+    <ErrorReport>prompt</ErrorReport>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningLevel>4</WarningLevel>
-    <DebugType>none</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0649</NoWarn>
+    <Optimize>true</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Moq, Version=4.2.1409.1722, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NFluent, Version=1.3.1.0, Culture=neutral, PublicKeyToken=18828b37b84b1437, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -129,6 +130,12 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="NFluent">
+      <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -148,11 +155,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\ArrayFields.cs" />
+    <Compile Include="Tests\Common\AsyncEnumerator.cs" />
     <Compile Include="Tests\Common\ChineseSupport.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Common\DynamicOptions.cs" />
     <Compile Include="Tests\Common\FieldValidate.cs" />
     <Compile Include="Tests\Common\FieldValidateIsNotEmpty.cs" />
+    <Compile Include="Tests\Common\HeaderText.cs" />
+    <Compile Include="Tests\Converters\DateFormatCulture.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
@@ -163,7 +174,7 @@
     <Compile Include="Tests\Dynamic\DelimitedClassBuilderTests.cs" />
     <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
-    <Compile Include="Tests\Common\RunTimeClassFiles.cs" />
+    <Compile Include="Tests\Common\DynamicClassFiles.cs" />
     <Compile Include="Tests\Common\ReflectionOrder.cs" />
     <Compile Include="Tests\Common\FastReadCsv.cs" />
     <Compile Include="Tests\Common\WritersFieldIndexers.cs" />
@@ -211,7 +222,7 @@
     <Compile Include="Tests\Common\FieldDelimited.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\FieldNotInFileTests.cs">
+    <Compile Include="Tests\Common\FieldHiddenTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\IgnoreEmpty.cs">
@@ -239,7 +250,8 @@
     <Compile Include="Tests\Common\MultiLine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\MultiRecord.cs">
+    <Compile Include="Tests\Multirecord\MultiRecord2.cs" />
+    <Compile Include="Tests\Multirecord\MultiRecord.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\NullValues.cs">
@@ -275,7 +287,7 @@
     <Compile Include="Tests\Dynamic\FixedLengthClassBuilderTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Common\RunTimeClassExtra.cs">
+    <Compile Include="Tests\Common\DynamicClassExtra.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Sort.cs">
@@ -365,6 +377,7 @@
     <Compile Include="Types\Customers\CustomersVerticalBar.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Types\Customers\CustomersVerticalBarWithFieldCaption.cs" />
     <Compile Include="Types\Orders\OrdersFixed.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -389,7 +402,12 @@
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
     <None Include="FileHelpers.snk" />
+    <None Include="Data\Good\EncodingChinese.bin" />
     <None Include="packages.config" />
+    <Compile Include="Tests\Detector\HeaderDetection.cs" />
+    <Compile Include="Tests\Detector\MultipleFiles.cs" />
+    <Content Include="Data\Detection\CustomersTab2.txt" />
+    <Content Include="Data\Good\Accounts.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Bad\IntWithDot.txt" />
@@ -490,6 +508,8 @@
     <Content Include="Data\Good\ConditionalRecords4.txt" />
     <Content Include="Data\Good\ConverterDecimals1.txt" />
     <Content Include="Data\Good\ConverterDecimals2.txt" />
+    <Content Include="Data\Good\CustomersVerticalBarOptions.txt" />
+    <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldValidate1.txt" />
     <Content Include="Data\Good\FieldValidate2.txt" />
     <Content Include="Data\Good\FieldValidateIsNotEmpty1.txt" />
@@ -531,16 +551,15 @@
     <Content Include="Data\Good\EncodingAdv2.txt" />
     <Content Include="Data\Good\EncodingAdv3.txt" />
     <Content Include="Data\Good\EncodingANSI.txt" />
-    <Content Include="Data\Good\EncodingChinese.txt" />
-    <Content Include="Data\Good\EncodingUnicode.txt" />
-    <Content Include="Data\Good\EncodingUnicodeBig.txt" />
+    <None Include="Data\Good\EncodingUnicode.bin" />
+    <None Include="Data\Good\EncodingUnicodeBig.bin" />
     <Content Include="Data\Good\EncodingUTF8.txt" />
     <Content Include="Data\Good\EnumConverter1.txt" />
     <Content Include="Data\Good\EnumConverter2.txt" />
     <Content Include="Data\Good\EnumConverter3.txt" />
     <Content Include="Data\Good\ExcelCsv1.txt" />
     <Content Include="Data\Good\ExcelCsv2.txt" />
-    <Content Include="Data\Good\FieldIgnoredAdvanced.txt" />
+    <Content Include="Data\Good\FieldHiddenAdvanced.txt" />
     <Content Include="Data\Good\IgnoreComments1.txt" />
     <Content Include="Data\Good\IgnoreComments2.txt" />
     <Content Include="Data\Good\IgnoreEmpty1.txt" />
@@ -589,6 +608,7 @@
     <Content Include="Data\Good\ReadAsDataTable.txt" />
     <Content Include="Data\Good\RealCsvComma1.txt" />
     <Content Include="Data\Good\RealCsvComma2.txt" />
+    <Content Include="Data\Good\RealCsvCommaBlankLines1.txt" />
     <Content Include="Data\Good\RealCsvTab1.txt" />
     <Content Include="Data\Good\RealCsvTab2.txt" />
     <Content Include="Data\Good\RealCsvVerticalBar1.txt" />
@@ -600,7 +620,7 @@
     <Content Include="Data\Good\Transform1.txt" />
     <Content Include="Data\Good\Transform2.txt" />
     <Content Include="Data\Good\Trim1.txt" />
-    <Content Include="Data\RunTime\VendorImport.xml" />
+    <Content Include="Data\Dynamic\VendorImport.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\CoreUnitTests\" />
@@ -629,7 +649,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj">
-      <Project>{beb0d823-6a7e-47fd-a275-1b3314f8412d}</Project>
+      <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
       <Name>FileHelpers.ExcelNPOIStorage</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj">
@@ -638,6 +658,15 @@
     </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{eb8633ff-ceed-40ee-8d1a-ca1bf5678c42}</Project>
+      <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
+      <Name>FileHelpers.ExcelNPOIStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj">
+      <Project>{B3F2B976-73D5-49C7-BEAA-BF62E233132A}</Project>
+      <Name>FileHelpers.ExcelStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
+      <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
       <Name>FileHelpers</Name>
     </ProjectReference>
   </ItemGroup>
@@ -648,11 +677,4 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
 </Project>

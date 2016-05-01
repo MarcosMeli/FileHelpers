@@ -32,6 +32,7 @@ namespace FileHelpers.WizardApp
             this.dgPreview = new System.Windows.Forms.DataGridView();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.browserCode = new System.Windows.Forms.WebBrowser();
             this.cboClassLanguage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -50,7 +51,6 @@ namespace FileHelpers.WizardApp
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.dlgOpenTest = new System.Windows.Forms.OpenFileDialog();
-            this.browserCode = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dgPreview)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -82,7 +82,7 @@ namespace FileHelpers.WizardApp
             this.dgPreview.ReadOnly = true;
             this.dgPreview.RowHeadersVisible = false;
             this.dgPreview.ShowEditingIcon = false;
-            this.dgPreview.Size = new System.Drawing.Size(620, 210);
+            this.dgPreview.Size = new System.Drawing.Size(620, 211);
             this.dgPreview.TabIndex = 0;
             // 
             // toolStripContainer1
@@ -124,6 +124,15 @@ namespace FileHelpers.WizardApp
             this.splitContainer1.SplitterIncrement = 4;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // browserCode
+            // 
+            this.browserCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserCode.Location = new System.Drawing.Point(0, 30);
+            this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browserCode.Name = "browserCode";
+            this.browserCode.Size = new System.Drawing.Size(379, 406);
+            this.browserCode.TabIndex = 1014;
             // 
             // cboClassLanguage
             // 
@@ -290,7 +299,7 @@ namespace FileHelpers.WizardApp
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(463, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(494, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
@@ -345,15 +354,6 @@ namespace FileHelpers.WizardApp
             this.dlgOpenTest.FileName = "openFileDialog1";
             this.dlgOpenTest.Filter = "Text Files (*.txt) |*.txt";
             this.dlgOpenTest.Title = "Load a Test File";
-            // 
-            // browserCode
-            // 
-            this.browserCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browserCode.Location = new System.Drawing.Point(0, 30);
-            this.browserCode.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browserCode.Name = "browserCode";
-            this.browserCode.Size = new System.Drawing.Size(379, 406);
-            this.browserCode.TabIndex = 1014;
             // 
             // frmDataPreview
             // 

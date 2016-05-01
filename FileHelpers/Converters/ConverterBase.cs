@@ -25,7 +25,7 @@ namespace FileHelpers
             set
             {
                 try {
-                    var temp = DateTime.Now.ToString(value);
+                    DateTime.Now.ToString(value);
                 }
                 catch {
                     throw new BadUsageException("The format: '" + value + " is invalid for the DateTime Converter.");

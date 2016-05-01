@@ -8,7 +8,8 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.Dynamic
 {
     [TestFixture]
-    public class FixedLengthClassBuilderTests
+	[Category("Dynamic")]
+	public class FixedLengthClassBuilderTests
     {
         private const string TempClassFile = "tempclass.cs";
         private FileHelperEngine mEngine;
@@ -52,6 +53,7 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void SaveLoadSourceFileVbNet()
         {
             ClassBuilder cb = CommonCreate();
@@ -68,6 +70,7 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
+        [Category("NotOnMono")]
         public void SaveLoadBinaryFileVbNet()
         {
             ClassBuilder cb = CommonCreate();
@@ -96,9 +99,9 @@ namespace FileHelpers.Tests.Dynamic
             cb.LastField.AlignChar = '0';
             cb.LastField.TrimMode = TrimMode.Both;
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            var loaded = (FixedLengthClassBuilder) ClassBuilder.LoadFromXml(@"runtime.xml");
+            var loaded = (FixedLengthClassBuilder)ClassBuilder.LoadFromXml(@"dynamic.xml");
 
             Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
             Assert.AreEqual("FieldSecond", loaded.FieldByIndex(1).FieldName);
@@ -137,9 +140,9 @@ namespace FileHelpers.Tests.Dynamic
             cb.LastField.AlignChar = '0';
             cb.LastField.TrimMode = TrimMode.Both;
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("dynamic.xml"));
 
             Assert.AreEqual("Customers", mEngine.RecordType.Name);
             Assert.AreEqual(3, mEngine.RecordType.GetFields().Length);

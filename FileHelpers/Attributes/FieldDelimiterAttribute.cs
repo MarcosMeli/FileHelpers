@@ -5,11 +5,9 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Indicates a different delimiter for this field. </summary>
-    /// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
-    /// <seealso href="attributes.html">Attributes list</seealso>
-    /// <seealso href="quick_start.html">Quick start guide</seealso>
-    /// <seealso href="examples.html">Examples of use</seealso>
-    [AttributeUsage(AttributeTargets.Field)]
+    /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldDelimiterAttribute : FieldAttribute
     {
         /// <summary>

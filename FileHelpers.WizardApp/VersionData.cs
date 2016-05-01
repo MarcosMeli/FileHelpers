@@ -47,13 +47,13 @@ namespace FileHelpers.WizardApp
         {
             string dataString;
             using (WebClient webClient = new WebClient()) {
-                byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
+                byte[] data = webClient.DownloadData("http://www.filehelpers.net/version.txt");
                 dataString = System.Text.Encoding.Default.GetString(data);
             }
 
             VersionData[] versions = null;
-            FileHelperEngine engine = new FileHelperEngine(typeof (VersionData));
-            versions = (VersionData[]) engine.ReadString(dataString);
+            var engine = new FileHelperEngine<VersionData>();
+            versions = engine.ReadString(dataString);
 
             return versions[versions.Length - 1];
         }

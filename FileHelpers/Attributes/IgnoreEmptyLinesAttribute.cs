@@ -5,10 +5,8 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Indicates that the engine will ignore the empty lines while reading.</summary>
-    /// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
-    /// <seealso href="attributes.html">Attributes List</seealso>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
+    /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
+
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class IgnoreEmptyLinesAttribute : Attribute
     {

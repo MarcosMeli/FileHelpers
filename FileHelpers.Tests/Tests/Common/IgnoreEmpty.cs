@@ -152,7 +152,9 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [FixedLengthRecord]
+#pragma warning disable CS0618 // Type or member is obsolete
         [IgnoreCommentedLines("//")]
+#pragma warning restore CS0618 // Type or member is obsolete
         public class IgnoreCommentsType
         {
             [FieldFixedLength(8)]
@@ -168,7 +170,9 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [FixedLengthRecord]
+#pragma warning disable CS0618 // Type or member is obsolete
         [IgnoreCommentedLines("//", false)]
+#pragma warning restore CS0618 // Type or member is obsolete
         public class IgnoreCommentsType2
         {
             [FieldFixedLength(8)]
@@ -185,7 +189,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [FixedLengthRecord]
-        [IgnoreEmptyLines()]
+        [IgnoreEmptyLines]
         public class IgnoreEmptyType1
         {
             [FieldFixedLength(8)]
@@ -218,7 +222,7 @@ namespace FileHelpers.Tests.CommonTests
 
 
         [DelimitedRecord("|")]
-        [IgnoreEmptyLines()]
+        [IgnoreEmptyLines]
         public class IgnoreEmptyType2
         {
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]

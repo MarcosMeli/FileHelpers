@@ -197,7 +197,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns>True if they are equal</returns>
         public bool Compare(object object1, object object2)
         {
-            string defaultBreadCrumb = string.Empty;
+            string defaultBreadCrumb = "";
 
             Differences.Clear();
             Compare(object1, object2, defaultBreadCrumb);
@@ -298,8 +298,8 @@ namespace KellermanSoftware.CompareNetObjects
                     continue;
 
                 string currentBreadCrumb = AddBreadCrumb(breadCrumb,
-                    string.Empty,
-                    string.Empty,
+                    "",
+                    "",
                     dataRow1.Table.Columns[i].ColumnName);
 
                 //Check if one of them is null
@@ -362,7 +362,7 @@ namespace KellermanSoftware.CompareNetObjects
             }
 
             for (int i = 0; i < dataTable1.Rows.Count; i++) {
-                string currentBreadCrumb = AddBreadCrumb(breadCrumb, "Rows", string.Empty, i);
+                string currentBreadCrumb = AddBreadCrumb(breadCrumb, "Rows", "", i);
 
                 CompareDataRow(dataTable1.Rows[i], dataTable2.Rows[i], currentBreadCrumb);
 
@@ -397,7 +397,7 @@ namespace KellermanSoftware.CompareNetObjects
             for (int i = 0; i < dataSet1.Tables.Count; i++) {
                 string currentBreadCrumb = AddBreadCrumb(breadCrumb,
                     "Tables",
-                    string.Empty,
+                    "",
                     dataSet1.Tables[i].TableName);
 
                 CompareDataTable(dataSet1.Tables[i], dataSet2.Tables[i], currentBreadCrumb);
@@ -512,7 +512,7 @@ namespace KellermanSoftware.CompareNetObjects
         private void CompareEnum(object object1, object object2, string breadCrumb)
         {
             if (object1.ToString() != object2.ToString()) {
-                string currentBreadCrumb = AddBreadCrumb(breadCrumb, object1.GetType().Name, string.Empty, -1);
+                string currentBreadCrumb = AddBreadCrumb(breadCrumb, object1.GetType().Name, "", -1);
                 Differences.Add(string.Format("object1{0} != object2{0} ({1},{2})", currentBreadCrumb, object1, object2));
             }
         }
@@ -557,7 +557,7 @@ namespace KellermanSoftware.CompareNetObjects
                 if (!ValidStructSubType(item.FieldType))
                     continue;
 
-                currentCrumb = AddBreadCrumb(breadCrumb, item.Name, string.Empty, -1);
+                currentCrumb = AddBreadCrumb(breadCrumb, item.Name, "", -1);
 
                 Compare(item.GetValue(object1), item.GetValue(object2), currentCrumb);
 
@@ -644,7 +644,7 @@ namespace KellermanSoftware.CompareNetObjects
                     (object1IsParent || object2IsParent))
                     continue;
 
-                currentCrumb = AddBreadCrumb(breadCrumb, item.Name, string.Empty, -1);
+                currentCrumb = AddBreadCrumb(breadCrumb, item.Name, "", -1);
 
                 Compare(objectValue1, objectValue2, currentCrumb);
 
@@ -719,7 +719,7 @@ namespace KellermanSoftware.CompareNetObjects
                     (object1IsParent && object2IsParent))
                     continue;
 
-                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, string.Empty, -1);
+                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, "", -1);
 
                 Compare(objectValue1, objectValue2, currentCrumb);
 
@@ -758,7 +758,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             //Indexers must be the same length
             if (indexerCount1 != indexerCount2) {
-                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, string.Empty, -1);
+                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, "", -1);
                 Differences.Add(string.Format("object1{0}.Count != object2{0}.Count ({1},{2})",
                     currentCrumb,
                     indexerCount1,
@@ -770,7 +770,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             // Run on indexer
             for (int i = 0; i < indexerCount1; i++) {
-                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, string.Empty, i);
+                currentCrumb = AddBreadCrumb(breadCrumb, info.Name, "", i);
                 object objectValue1 = info.GetValue(object1, new object[] {i});
                 object objectValue2 = info.GetValue(object2, new object[] {i});
                 Compare(objectValue1, objectValue2, currentCrumb);
@@ -817,14 +817,14 @@ namespace KellermanSoftware.CompareNetObjects
 
                 while (enumerator1.MoveNext() &&
                        enumerator2.MoveNext()) {
-                    string currentBreadCrumb = AddBreadCrumb(breadCrumb, "Key", string.Empty, -1);
+                    string currentBreadCrumb = AddBreadCrumb(breadCrumb, "Key", "", -1);
 
                     Compare(enumerator1.Key, enumerator2.Key, currentBreadCrumb);
 
                     if (Differences.Count >= MaxDifferences)
                         return;
 
-                    currentBreadCrumb = AddBreadCrumb(breadCrumb, "Value", string.Empty, -1);
+                    currentBreadCrumb = AddBreadCrumb(breadCrumb, "Value", "", -1);
 
                     Compare(enumerator1.Value, enumerator2.Value, currentBreadCrumb);
 
@@ -855,7 +855,7 @@ namespace KellermanSoftware.CompareNetObjects
                 return obj.ToString();
             }
             catch {
-                return string.Empty;
+                return "";
             }
         }
 
@@ -898,7 +898,7 @@ namespace KellermanSoftware.CompareNetObjects
 
                 while (enumerator1.MoveNext() &&
                        enumerator2.MoveNext()) {
-                    string currentBreadCrumb = AddBreadCrumb(breadCrumb, string.Empty, string.Empty, count);
+                    string currentBreadCrumb = AddBreadCrumb(breadCrumb, "", "", count);
 
                     Compare(enumerator1.Current, enumerator2.Current, currentBreadCrumb);
 

@@ -44,7 +44,7 @@ namespace FileHelpers.Tests.CommonTests
             engine.Options.RecordCondition.Selector = "F";
             var engine2 = new FileHelperEngine<SampleType>();
             engine.Options.RecordCondition.Condition = RecordCondition.None;
-            engine.Options.RecordCondition.Selector = string.Empty;
+            engine.Options.RecordCondition.Selector = "";
 
             Check.That(engine.RecordInfo).IsDistinctFrom(engine2.RecordInfo);
 
@@ -57,6 +57,7 @@ namespace FileHelpers.Tests.CommonTests
             var comp = new CompareObjects();
             comp.CompareChildren = true;
             comp.ElementsToIgnore.Add("Cache");
+            comp.ElementsToIgnore.Add("Parent");
             comp.ElementsToIgnore.Add("RecordType");
             comp.ElementsToIgnore.Add("FieldTypeInternal");
             comp.ElementsToIgnore.Add("FieldInfo");

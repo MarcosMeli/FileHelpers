@@ -1,29 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers.ExcelNPOIStorage</id>
-        <version>3.0.5</version>
+        <version>3.2.6</version>
         <title>FileHelpers.ExcelNPOIStorage</title>
-        <authors>Marcos Meli</authors>
+        <authors>Marcos Meli and Contributors</authors>
         <owners>Marcos Meli</owners>
-        <licenseUrl>https://github.com/MarcosMeli/FileHelpers#license</licenseUrl>
-        <projectUrl>http://www.filehelpers.com</projectUrl>
-        <iconUrl>http://www.filehelpers.com/filehelpers_box_small.png</iconUrl>
+        <licenseUrl>http://www.filehelpers.net/#license</licenseUrl>
+        <projectUrl>http://www.filehelpers.net</projectUrl>
+        <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Extension for FileHelpers to support Excel read/write operations using NPOI Library</description>
+        <description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</description>
         <summary>Extension for FileHelpers to support Excel read/write operations using NPOI Library</summary>
+        <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
         <copyright>Marcos Meli - Devoo</copyright>
-        <tags>Excel Import Export</tags>
+        <tags>Excel, Data, Import, Export, FileHelpers, FileHelper, .Net</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>        
         <dependencies>
-            <dependency id="FileHelpers" version="3.0" />
+            <dependency id="FileHelpers" version="3.2.6" />
         </dependencies>
     </metadata>
     <files>
         <file src="..\..\Release\Lib\net40\FileHelpers.ExcelNPOIStorage.dll" target="lib\net40\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="..\..\Release\Lib\net40\FileHelpers.ExcelNPOIStorage.xml" target="lib\net40\FileHelpers.ExcelNPOIStorage.xml" />
         <file src="..\..\Release\Lib\net45\FileHelpers.ExcelNPOIStorage.dll" target="lib\net45\FileHelpers.ExcelNPOIStorage.dll" />
+        <file src="..\..\Release\Lib\net45\FileHelpers.ExcelNPOIStorage.xml" target="lib\net45\FileHelpers.ExcelNPOIStorage.xml" />
     </files>
 </package>

@@ -5,11 +5,8 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="TrimMode"/> used after reading to truncate the field. </summary>
-    /// <remarks>See the <a href="attributes.html">complete attributes list</a> for more information and examples of each one.</remarks>
-    /// <seealso href="attributes.html">Attributes List</seealso>
-    /// <seealso href="quick_start.html">Quick Start Guide</seealso>
-    /// <seealso href="examples.html">Examples of Use</seealso>
-    [AttributeUsage(AttributeTargets.Field)]
+    /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldTrimAttribute : Attribute
     {
         /// <summary>A string of chars used to trim.</summary>
@@ -17,20 +14,13 @@ namespace FileHelpers
 
         /// <summary>The TrimMode used after read.</summary>
         public TrimMode TrimMode { get; private set; }
-
-
-        private static readonly char[] WhitespaceChars = new char[] {
-            '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005',
-            '\u2006', '\u2007', '\u2008',
-            '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
-        };
-
+        
         #region "  Constructors  "
 
         /// <summary>Indicates the <see cref="TrimMode"/> used after read to truncate the field. By default trims the blank spaces and tabs.</summary>
         /// <param name="mode">The <see cref="TrimMode"/> used after read.</param>
         public FieldTrimAttribute(TrimMode mode)
-            : this(mode, WhitespaceChars) {}
+            : this(mode, LineInfo.WhitespaceChars) {}
 
         /// <summary>Indicates the <see cref="TrimMode"/> used after read to truncate the field. </summary>
         /// <param name="mode">The <see cref="TrimMode"/> used after read.</param>

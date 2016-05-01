@@ -48,7 +48,7 @@ namespace FileHelpers
         /// </summary>
         public int FieldCount
         {
-            get { return this.Fields.Length; }
+            get { return Fields.Length; }
         }
 
         /// <summary>
@@ -172,7 +172,9 @@ namespace FileHelpers
                 });
 
 
+#pragma warning disable CS0618 // Type or member is obsolete
             Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
+#pragma warning restore CS0618 // Type or member is obsolete
                 RecordType,
                 a => {
                     IgnoreEmptyLines = true;
@@ -195,10 +197,10 @@ namespace FileHelpers
                     }
                 });
 
-            if (CheckGenericInterface(RecordType, typeof (INotifyRead<>), RecordType))
+            if (CheckInterface(RecordType, typeof (INotifyRead)))
                 NotifyRead = true;
 
-            if (CheckGenericInterface(RecordType, typeof (INotifyWrite<>), RecordType))
+            if (CheckInterface(RecordType, typeof (INotifyWrite)))
                 NotifyWrite = true;
 
             // Create fields
@@ -268,11 +270,6 @@ namespace FileHelpers
 
             SortFieldsByOrder(resFields);
 
-            if (resFields.Count > 0) {
-                resFields[0].IsFirst = true;
-                resFields[resFields.Count - 1].IsLast = true;
-            }
-
             CheckForOptionalAndArrayProblems(resFields);
 
             return resFields.ToArray();
@@ -305,7 +302,7 @@ namespace FileHelpers
 
                 FieldBase prevField = resFields[i - 1];
 
-                prevField.NextIsOptional = currentField.IsOptional;
+                //prevField.NextIsOptional = currentField.IsOptional;
 
                 // Check for optional problems.  Previous is optional but current is not
                 if (prevField.IsOptional
@@ -463,61 +460,67 @@ namespace FileHelpers
         /// <returns>Deep copy of the RecordInfo class</returns>
         public object Clone()
         {
-            var res = new RecordInfo();
+            var res = new RecordInfo
+            {
+                CommentAnyPlace = CommentAnyPlace,
+                CommentMarker = CommentMarker,
+                IgnoreEmptyLines = IgnoreEmptyLines,
+                IgnoreEmptySpaces = IgnoreEmptySpaces,
+                IgnoreFirst = IgnoreFirst,
+                IgnoreLast = IgnoreLast,
+                NotifyRead = NotifyRead,
+                NotifyWrite = NotifyWrite,
+                RecordCondition = RecordCondition,
+                RecordConditionRegEx = RecordConditionRegEx,
+                RecordConditionSelector = RecordConditionSelector,
+                RecordType = RecordType,
+                SizeHint = SizeHint
+            };
 
-            res.CommentAnyPlace = CommentAnyPlace;
-            res.CommentMarker = CommentMarker;
-            res.IgnoreEmptyLines = IgnoreEmptyLines;
-            res.IgnoreEmptySpaces = IgnoreEmptySpaces;
-            res.IgnoreFirst = IgnoreFirst;
-            res.IgnoreLast = IgnoreLast;
-            res.NotifyRead = NotifyRead;
-            res.NotifyWrite = NotifyWrite;
             res.Operations = Operations.Clone(res);
-
-            res.RecordCondition = RecordCondition;
-            res.RecordConditionRegEx = RecordConditionRegEx;
-            res.RecordConditionSelector = RecordConditionSelector;
-            res.RecordType = RecordType;
-            res.SizeHint = SizeHint;
-
+            
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
-                res.Fields[i] = (FieldBase) Fields[i].Clone();
+                res.Fields[i] = (FieldBase) ((ICloneable) Fields[i]).Clone();
 
             return res;
         }
+
+        //internal static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
+        //{
+        //    foreach (var inteImp in type.GetInterfaces()) {
+        //        if (inteImp.IsGenericType &&
+        //            inteImp.GetGenericTypeDefinition() == interfaceType) {
+        //            var args = inteImp.GetGenericArguments();
+
+        //            if (args.Length == genericsArgs.Length) {
+        //                bool fail = false;
+        //                for (int i = 0; i < args.Length; i++) {
+        //                    if (args[i] != genericsArgs[i]) {
+        //                        fail = true;
+        //                        break;
+        //                    }
+        //                }
+        //                if (!fail)
+        //                    return true;
+        //            }
+        //            throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
+        //                                        interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
+        //        }
+        //    }
+        //    return false;
+        //}
+
 
         /// <summary>
         /// Check whether the type implements the INotifyRead or INotifyWrite interfaces
         /// </summary>
         /// <param name="type">Type to check interface</param>
         /// <param name="interfaceType">Interface generic type we are checking for eg INotifyRead&lt;&gt;</param>
-        /// <param name="genericsArgs">Arguments to pass</param>
         /// <returns>Whether we found interface</returns>
-        public static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
+        internal static bool CheckInterface(Type type, Type interfaceType)
         {
-            foreach (var inteImp in type.GetInterfaces()) {
-                if (inteImp.IsGenericType &&
-                    inteImp.GetGenericTypeDefinition() == interfaceType) {
-                    var args = inteImp.GetGenericArguments();
-
-                    if (args.Length == genericsArgs.Length) {
-                        bool fail = false;
-                        for (int i = 0; i < args.Length; i++) {
-                            if (args[i] != genericsArgs[i]) {
-                                fail = true;
-                                break;
-                            }
-                        }
-                        if (!fail)
-                            return true;
-                    }
-                    throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
-                                                interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
-                }
-            }
-            return false;
+            return type.GetInterface(interfaceType.FullName) != null;
         }
     }
 }

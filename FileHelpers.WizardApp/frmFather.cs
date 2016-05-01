@@ -127,17 +127,16 @@ namespace FileHelpers.WizardApp
             this.linkLabel1.Size = new System.Drawing.Size(125, 18);
             this.linkLabel1.TabIndex = 101;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "www.filehelpers.com";
+            this.linkLabel1.Text = "www.filehelpers.net";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(532, 10);
+            this.pictureBox3.Image = global::FileHelpers.WizardApp.Properties.Resources.donate1;
+            this.pictureBox3.Location = new System.Drawing.Point(339, 6);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(151, 32);
+            this.pictureBox3.Size = new System.Drawing.Size(85, 40);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -221,7 +220,7 @@ namespace FileHelpers.WizardApp
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.com\"");
+            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"http://www.filehelpers.net\"");
             info.CreateNoWindow = false;
             info.UseShellExecute = true;
             Process.Start(info);
@@ -229,8 +228,7 @@ namespace FileHelpers.WizardApp
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo("explorer",
-                "\"mailto:marcos@filehelpers.com?subject=FileHelpersFeedback\"");
+            ProcessStartInfo info = new ProcessStartInfo("explorer", "\"https://github.com/MarcosMeli/FileHelpers/issues/new\"");
 
             info.CreateNoWindow = true;
             info.UseShellExecute = true;
@@ -243,7 +241,7 @@ namespace FileHelpers.WizardApp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (DateTime.Now > mLastOpen.AddSeconds(10)) {
-                Process.Start("explorer", "\"http://www.filehelpers.com\"");
+                Process.Start("explorer", "\"http://www.filehelpers.net\"");
                 mLastOpen = DateTime.Now;
             }
         }
@@ -251,7 +249,7 @@ namespace FileHelpers.WizardApp
         private void pictureBox3_Click(object sender, System.EventArgs e)
         {
             Process.Start("explorer",
-                "\"http://www.amazon.com/gp/registry/wishlist/20HRDZWS0NJ6C/104-5286383-8923129?reveal=unpurchased&filter=all&sort=priority&layout=standard&x=10&y=9\"");
+                "\"http://www.filehelpers.net/donate/\"");
         }
 
         private bool mExitOnEsc = true;

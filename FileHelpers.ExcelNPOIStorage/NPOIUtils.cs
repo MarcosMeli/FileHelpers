@@ -7,8 +7,16 @@ using System.Diagnostics;
 
 namespace FileHelpers.ExcelNPOIStorage
 {
+    /// <summary>
+    /// Helper class for NPOI work
+    /// </summary>
     public static class NPOIUtils
     {
+        /// <summary>
+        /// Get a cell value
+        /// </summary>
+        /// <param name="cell">The cell object</param>
+        /// <returns>The value of the cell</returns>
         public static object GetCellValue(ICell cell)
         {
             switch (cell.CellType) {
@@ -31,7 +39,11 @@ namespace FileHelpers.ExcelNPOIStorage
                     return string.Concat("=", cell.CellFormula);
             }
         }
-
+        /// <summary>
+        /// Sets a cell value
+        /// </summary>
+        /// <param name="cell">The cell</param>
+        /// <param name="value">The value to be assigned to the cell</param>
         public static void SetCellValue(ICell cell, object value)
         {
             if (value == null)
@@ -46,12 +58,11 @@ namespace FileHelpers.ExcelNPOIStorage
                 cell.SetCellValue((bool) value);
 
             else if (value is DateTime) {
-                //// Fuck this shit
-                //var wb = cell.Sheet.Workbook;
-                //var cellStyle = wb.CreateCellStyle();
-                //// Can only be created once for each custom format, the code below is wrong
-                //cellStyle.DataFormat = cell.Sheet.Workbook.GetCreationHelper().CreateDataFormat().GetFormat("dd/mm/yyyy" );
-                //cell.CellStyle = cellStyle;
+                //It works
+                var wb = cell.Sheet.Workbook;
+                var cellStyle = wb.CreateCellStyle();
+                cellStyle.DataFormat = cell.Sheet.Workbook.GetCreationHelper().CreateDataFormat().GetFormat("dd/mm/yyyy" );
+                cell.CellStyle = cellStyle;                
                 cell.SetCellValue((DateTime) value);
             }
 

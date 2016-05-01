@@ -343,53 +343,53 @@ test150@test.com";
     }
 
 
-    [IgnoreFirst()]
+    [IgnoreFirst]
     [DelimitedRecord(",")]
     public class RecipientImport
     {
         [FieldQuoted('"', QuoteMode.OptionalForBoth)]
         public string Email;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string FirstName;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string MiddleName;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string LastName;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string Title;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string Company;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string WorkPhone;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string HomePhone;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string Address1;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string Address2;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string City;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string State;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string ZIP;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string Country;
 
-        [FieldOptional()]
+        [FieldOptional]
         public string FileName;
     }
 }

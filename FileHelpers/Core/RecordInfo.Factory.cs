@@ -46,6 +46,16 @@ namespace FileHelpers
             var index = GetFieldIndex(fieldname);
             Fields[index] = null;
             Fields = Array.FindAll(Fields, x => x != null);
+
+            AdjustParentIndex();
+        }
+
+        internal void AdjustParentIndex()
+        {
+            for (int i = 0; i < Fields.Length; i++)
+            {
+                Fields[i].ParentIndex = i;
+            }
         }
     }
 }

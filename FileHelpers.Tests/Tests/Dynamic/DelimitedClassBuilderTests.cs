@@ -13,6 +13,7 @@ namespace FileHelpers.Tests.Dynamic
         private FileHelperEngine mEngine;
 
         [Test]
+		[Category("Dynamic")]
         public void FullClassBuilding()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
@@ -48,7 +49,8 @@ namespace FileHelpers.Tests.Dynamic
 
         
         [Test]
-        public void TestingNameAndTypes()
+		[Category("Dynamic")]
+		public void TestingNameAndTypes()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
             cb.IgnoreFirstLines = 1;
@@ -97,9 +99,9 @@ namespace FileHelpers.Tests.Dynamic
 
             cb.AddField("Field333", typeof(int));
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            var loaded = (DelimitedClassBuilder)ClassBuilder.LoadFromXml(@"runtime.xml");
+            var loaded = (DelimitedClassBuilder)ClassBuilder.LoadFromXml(@"dynamic.xml");
 
             Assert.AreEqual("Field1", loaded.FieldByIndex(0).FieldName);
             Assert.AreEqual("FieldTwo", loaded.FieldByIndex(1).FieldName);
@@ -117,7 +119,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void SaveLoadXmlFileDelimited2()
+		[Category("Dynamic")]
+		public void SaveLoadXmlFileDelimited2()
         {
             var cb = new DelimitedClassBuilder("Customers", ",");
             cb.IgnoreFirstLines = 1;
@@ -134,9 +137,9 @@ namespace FileHelpers.Tests.Dynamic
 
             cb.AddField("Field333", typeof(int));
 
-            cb.SaveToXml(@"runtime.xml");
+            cb.SaveToXml(@"dynamic.xml");
 
-            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("runtime.xml"));
+            mEngine = new FileHelperEngine(ClassBuilder.ClassFromXmlFile("dynamic.xml"));
 
             Assert.AreEqual("Customers", mEngine.RecordType.Name);
             Assert.AreEqual(3, mEngine.RecordType.GetFields().Length);
@@ -161,10 +164,10 @@ namespace FileHelpers.Tests.Dynamic
             cbOrig.IgnoreLastLines = 456;
 
             cbOrig.SealedClass = false;
-            cbOrig.SaveToXml(@"runtime.xml");
-            cbOrig.SaveToXml(@"runtime.xml");
+            cbOrig.SaveToXml(@"dynamic.xml");
+            cbOrig.SaveToXml(@"dynamic.xml");
 
-            ClassBuilder cb2 = ClassBuilder.LoadFromXml("runtime.xml");
+            ClassBuilder cb2 = ClassBuilder.LoadFromXml("dynamic.xml");
 
             Assert.AreEqual("Customers", cb2.ClassName);
             Assert.AreEqual(2, cb2.FieldCount);
@@ -240,7 +243,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void ReadAsDataTableWithCustomConverter()
+		[Category("Dynamic")]
+		public void ReadAsDataTableWithCustomConverter()
         {
             var fields = new[] {
                 "FirstName",
@@ -252,6 +256,8 @@ namespace FileHelpers.Tests.Dynamic
                 "State",
             };
             var cb = new DelimitedClassBuilder("ImportContact", ",");
+            // Add assembly reference
+            cb.AdditionalReferences.Add(typeof(MyCustomConverter).Assembly);
 
             foreach (var f in fields)
             {
@@ -279,7 +285,8 @@ namespace FileHelpers.Tests.Dynamic
         }
 
         [Test]
-        public void LoopingFields()
+		[Category("Dynamic")]
+		public void LoopingFields()
         {
             var cb = new DelimitedClassBuilder("MyClass", ",");
 

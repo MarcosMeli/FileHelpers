@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -12,8 +10,6 @@
     <AssemblyName>FileHelpers.Examples</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>
-    </StartupObject>
     <NoWin32Manifest>true</NoWin32Manifest>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -40,7 +36,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Debug\</OutputPath>
+    <OutputPath>Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,7 +45,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\</OutputPath>
+    <OutputPath>Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,53 +55,47 @@
     <ApplicationIcon>Demos.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devoo.WinForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="ExamplesFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\References\Devoo\ExamplesFx.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="Devoo.WinForms">
+      <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ExamplesFx">
+      <HintPath>..\Libs\References\Devoo\ExamplesFx.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\FileHelpers\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Examples\10.Basic\10.ReadFileDelimited.cs" />
-    <Compile Include="Examples\10.Basic\20.WriteFileDelimited.cs" />
-    <Compile Include="Examples\10.Basic\30.ReadFileFixed.cs" />
-    <Compile Include="Examples\10.Basic\40.WriteFileFixed.cs" />
-    <Compile Include="Examples\12.Empty Values\20.ReadFileNullable.cs" />
-    <Compile Include="Examples\12.Empty Values\10.ReadFileFieldNullValue.cs" />
-    <Compile Include="Examples\12.Empty Values\05.ReadFileMissingValue.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\10.DelimitedRecord.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\30.FixedLengthRecord.cs" />
-    <Compile Include="Examples\15.Attributes Record Class\31.FixedLengthRecordLastVariable.cs" />
-    <Compile Include="Examples\16.Attributes Fields\10.FieldLength.cs" />
+    <Compile Include="Examples\10.QuickStart\10.ReadFileDelimited.cs" />
+    <Compile Include="Examples\10.QuickStart\30.ReadFileFixed.cs" />
+    <Compile Include="Examples\10.QuickStart\40.WriteFileFixed.cs" />
+    <Compile Include="Examples\12.Missing Values\10.MissingValuesFieldNullValue.cs" />
+    <Compile Include="Examples\12.Missing Values\05.MissingValuesNullable.cs" />
+    <Compile Include="Examples\15.Attributes\20.FieldOrder.cs" />
+    <Compile Include="Examples\18.Converters\60.CustomConverter.cs" />
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Examples\20.Events\10.ReadBeforeEvent.cs" />
-    <Compile Include="Examples\20.Events\20.ReadAfterEventSample.cs" />
-    <Compile Include="Examples\20.Events\30.WriteBeforeEventSample.cs" />
-    <Compile Include="Examples\20.Events\40.WriteAfterEventSample.cs" />
-    <Compile Include="Examples\25.ErrorHandling\10.ErrorHandling.cs" />
-    <Compile Include="Examples\25.ErrorHandling\20.ErrorHandlingErrorMode.cs" />
-    <Compile Include="Examples\25.ErrorHandling\30.ErrorHandlingIgnoreMode.cs" />
-    <Compile Include="Examples\25.ErrorHandling\40.ErrorHandlingErrorModeSave.cs" />
+    <Compile Include="Examples\20.Events And Notification\05.INotifyRead.cs" />
+    <Compile Include="Examples\20.Events And Notification\10.INotifyWrite.cs" />
+    <Compile Include="Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs" />
+    <Compile Include="Examples\25.ErrorHandling\30.ErrorMode.IgnoreAndContinue.cs" />
+    <Compile Include="Examples\25.ErrorHandling\40.ErrorMode.SaveAndContinue.cs" />
+    <Compile Include="Examples\10.QuickStart\70.Autoproperties.cs" />
+    <Compile Include="Examples\50.Advanced\50.SmartFormatDetector.cs" />
     <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
-    <Compile Include="Examples\50.Advanced\30.MultiRecordSample.cs" />
+    <Compile Include="Examples\50.Advanced\30.MultiRecordEngine.cs" />
     <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
     <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
-    <Compile Include="Examples\60.Sorting\20.SortBigFilesString.cs" />
     <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
-    <Compile Include="Examples\90.MasterDetail\10.SimpleMasterDetail.cs" />
-    <Compile Include="Examples\90.MasterDetail\20.MasterDetailSample2.cs" />
+    <Compile Include="Examples\90.MasterDetail\10.MasterDetailCustomSelector.cs" />
+    <Compile Include="Examples\90.MasterDetail\20.MasterDetailCommonSelector.cs" />
     <Compile Include="Examples\ExamplesGenerator.autogen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -124,6 +114,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
+    <Compile Include="Examples\10.QuickStart\60.ReadWriteRecordByRecord.cs" />
+    <Compile Include="Examples\60.Sorting\20.SortBigFilesString1.cs" />
+    <Compile Include="Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs" />
+    <Compile Include="Examples\15.Attributes\10.FieldTrim.cs" />
+    <Compile Include="Examples\20.Events And Notification\30.WriteEvents.cs" />
+    <Compile Include="Examples\20.Events And Notification\20.ReadEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmExamples.resx">
@@ -134,12 +131,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
-      <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
-      <Name>FileHelpers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Examples\ExamplesGenerator.Config.tt" />
@@ -194,13 +185,19 @@
     <None Include="Resources\page_up.gif" />
     <None Include="Resources\page_left.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
+      <Project>{eb8633ff-ceed-40ee-8d1a-ca1bf5678c42}</Project>
+      <Name>FileHelpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /allowDup /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll"  "$(TargetDir)ExamplesFx.dll"  "$(TargetDir)Devoo.WinForms.dll"
 del "$(TargetDir)*.dll"

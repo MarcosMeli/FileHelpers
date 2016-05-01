@@ -21,11 +21,9 @@
 
 	public void ReadExample()
 	{
-		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		var engine = new FileHelperEngine&lt;SampleType>());
 
-		SampleType[] records;	
-		
-		records = (SampleType[]) engine.ReadFile("source.txt");
+		var records = engine.ReadFile("source.txt");
 		
 		// Now "records" array contains all the records in the
 		// sourcefile and can be acceded like this:
@@ -36,7 +34,7 @@
 	
 	public void WriteExample()
 	{
-		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		var engine = new FileHelperEngine&lt;SampleType>();
 		
 		SampleType[] records = new SampleType[1];
 
@@ -82,7 +80,7 @@
 
 	public void WriteExample()
 	{
-		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		var engine = new FileHelperEngine&lt;SampleType>();
 		
 		SampleType[] records = new SampleType[1];
 
@@ -126,7 +124,7 @@
 
 	public void AppendExample()
 	{
-		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		var engine = new FileHelperEngine&lt;SampleType>();
 		
 		SampleType[] records = new SampleType[1];
 
@@ -169,11 +167,9 @@
 
 	public void ReadExample()
 	{
-		FileHelperEngine engine = new FileHelperEngine(typeof(SampleType));
+		var engine = new FileHelperEngine&lt;SampleType>();
 
-		SampleType[] records;	
-		
-		records = (SampleType[]) engine.ReadFile("source.txt");
+		var records = engine.ReadFile("source.txt");
 		
 		// Now "records" array contains all the records in the
 		// sourcefile and can be acceded like this:
@@ -213,20 +209,16 @@
 	{
 		SampleType record;	
 
-		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+		var engine = new FileHelperAsyncEngine&lt;SampleType>();
 
-	    engine.BeginReadFile("source.txt");
-	    
-	    while( engine.ReadNext() != null )
+	    using(engine.BeginReadFile("source.txt"))
 	    {
-	       record = (SampleType) engine.LastRecord;
-	       
-	       // put your code here !!!!
-	       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
-	    
+		    foreach(var record in engine)
+		    {
+		       // put your code here !!!!
+		       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
+		    }
 	    }
-	    
-	    engine.Close();
 	}
 
 	
@@ -234,19 +226,18 @@
 	{
 		SampleType record;	
 
-		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+		var engine = new FileHelperAsyncEngine&lt;SampleType>();
 
-	    engine.BeginWriteFile("source.txt");
-	    
-	    record.Field1 = "Primer Registro";
-	    record.Field2 = 1;
-	    engine.WriteNext(record);
-	    
-	    record.Field1 = "Segundo Registro";
-	    record.Field2 = 2;
-	    engine.WriteNext(record);
-
-	    engine.Close();
+	    using(engine.BeginWriteFile("source.txt"))
+	    {
+		    record.Field1 = "Primer Registro";
+		    record.Field2 = 1;
+		    engine.WriteNext(record);
+		    
+		    record.Field1 = "Segundo Registro";
+		    record.Field2 = 2;
+		    engine.WriteNext(record);
+	    }
 	}
 
 
@@ -276,19 +267,19 @@
 	{
 		SampleType record;	
 
-		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+		var engine = new FileHelperAsyncEngine&lt;SampleType>();
 
-	    engine.BeginWriteFile("source.txt");
-	    
-	    record.Field1 = "Primer Registro";
-	    record.Field2 = 1;
-	    engine.WriteNext(record);
-	    
-	    record.Field1 = "Segundo Registro";
-	    record.Field2 = 2;
-	    engine.WriteNext(record);
+	    using(engine.BeginWriteFile("source.txt"))
+	    {
+		    record.Field1 = "Primer Registro";
+		    record.Field2 = 1;
+		    engine.WriteNext(record);
+		    
+		    record.Field1 = "Segundo Registro";
+		    record.Field2 = 2;
+		    engine.WriteNext(record);
+	    }
 
-	    engine.Close();
 	}
 
 
@@ -322,20 +313,18 @@
 	{
 		SampleType record;	
 
-		FileHelperAsyncEngine engine = new FileHelperAsyncEngine(typeof(SampleType));
+		var engine = new FileHelperAsyncEngine&lt;SampleType>();
 
-	    engine.BeginReadFile("source.txt");
-	    
-	    while( engine.ReadNext() != null )
+	    using(engine.BeginReadFile("source.txt"))
 	    {
-	       record = (SampleType) engine.LastRecord;
-	       
-	       // put your code here !!!!
-	       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
-	    
-	    }
-	    
-	    engine.Close();
+		    foreach(var record in engine)
+		    {
+		       
+		       // put your code here !!!!
+		       Console.WriteLine("Data " + record.Field1 + " , " + record.Field2.ToString());
+		    
+		    }
+		}
 	}
 
 

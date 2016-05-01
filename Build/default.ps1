@@ -11,12 +11,52 @@ properties {
 task default -depends pack
 
 task version {
-    copy VersionInfo.cs ..\FileHelpers
-    exec { ..\Libs\FileReplace.exe "..\FileHelpers\VersionInfo.cs" "-CustomVersion-" "$FullCurrentVersion" }
+    Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' ($AssemblyVersion+'.0') $FullCurrentVersion $VisibleVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelStorage.nuspec' $VisibleVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $VisibleVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.nuspec' $VisibleVersion
 }
 
+function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $fileVersionNumber, [string] $informationalVersionNumber)
+{
+    $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $informationalVersionPattern = 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $assemblyVersion = 'AssemblyVersion("' + $assemblyVersionNumber + '")';
+    $fileVersion = 'AssemblyFileVersion("' + $fileVersionNumber + '")';
+    $informationalVersion = 'AssemblyInformationalVersion("' + $informationalVersionNumber + '")';
+    
+        Write-Host $filename
+        $filename + ' -> ' + $assemblyVersionNumber
+    
+        (Get-Content $filename) | ForEach-Object {
+            % {$_ -replace $assemblyVersionPattern, $assemblyVersion } |
+            % {$_ -replace $fileVersionPattern, $fileVersion } |
+            % {$_ -replace $informationalVersionPattern, $informationalVersion }
+        } | Set-Content $filename
+}
+
+function Update-NuGetVersion ([string] $filename, [string] $versionNumber)
+{
+    $versionPattern = '\<version\>[0-9]+(\.([0-9]+|\*)){1,3}\<\/version\>'
+    $version = '<version>' + $versionNumber + '</version>';
+
+    $dependenceVersionPattern = 'id="FileHelpers" version=\"[0-9]+(\.([0-9]+|\*)){1,3}\"'
+    $dependenceVersion = 'id="FileHelpers" version="' + $versionNumber + '"';
+    
+    Write-Host $filename
+    $filename + ' -> ' + $assemblyVersionNumber
+    
+        (Get-Content $filename) | ForEach-Object {
+            % {$_ -replace $versionPattern, $version } |
+            % {$_ -replace $dependenceVersionPattern, $dependenceVersion }
+        } | Set-Content $filename
+}
+
+
+
 task common -depends version {
-    "##teamcity[buildNumber '" + $CurrentVersion + "']"
+    "##teamcity[buildNumber '" + $VisibleVersion + "']"
 
      Delete-Make-Directory ..\$config
      Delete-Make-Directory "..\Output"
@@ -26,12 +66,12 @@ task common -depends version {
 task compile -depends common {
     "Compiling " + $config
     
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "2.0" "Lib\net20"
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "2.0" "Lib\net20" ""
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "3.5" "Lib\net35" ""
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40" "DOTNET_4"
 
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
-
-    Compile-Sln "..\FileHelpers.sln" "4.0"
+    Compile-Sln "..\FileHelpers.sln" "4.5"
 
     $delFiles = "..\" + $config + "\*.config"
     del $delFiles
@@ -44,7 +84,7 @@ task compiledebug -depends common {
     $config = "Debug"
     "Compiling Debug"
     
-    Compile-Sln "..\FileHelpers.sln" "4.0"
+    Compile-Sln "..\FileHelpers.sln" "4.5"
 }
 
 task docs -depends compile {
@@ -61,7 +101,6 @@ task pack -depends compile, docs {
     "Packing"
 
     copy "Home Page.url" ..\$config\
-    copy "..\Readme.md" ..\$config\Readme.txt
 
     $zipName = "Output\FileHelpers_" + $CurrentVersion + "_Build.zip"
     Create-Zip $config $zipName
@@ -100,9 +139,9 @@ function Compile-Sln($path, $targetFramework)
     exec { msbuild $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config  /nologo /verbosity:minimal }
 }
 
-function Compile-Sln-With-Deploy($path, $targetFramework, $deploy)
+function Compile-Sln-With-Deploy($path, $targetFramework, $deploy, $conditionals)
 {
-   Compile-Sln $path $targetFramework
+   Compile-Sln $path $targetFramework $conditionals
    $deployDir = "..\" + $config + "\" + $deploy 
    Make-Directory $deployDir
  

@@ -8,6 +8,7 @@ using NUnit.Framework;
 namespace FileHelpers.Tests.DataLink
 {
     [TestFixture]
+    [Explicit]
     [Category("Advanced")]
     public class DataLinks
     {
@@ -199,7 +200,7 @@ namespace FileHelpers.Tests.DataLink
         #endregion
 
         [Test]
-        [Ignore]
+        [Ignore("Needs Access Installed")]
         public void OrdersFileToDb()
         {
             var storage = new AccessStorage(typeof (OrdersFixed), @"..\data\TestData.mdb");

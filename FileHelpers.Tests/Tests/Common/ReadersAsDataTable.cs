@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using System.Data;
+
 
 namespace FileHelpers.Tests.CommonTests
 {
+#if DOTNET_4
+
     [TestFixture]
     public class ReadersAsDataTable
     {
@@ -12,26 +16,30 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadFile()
         {
             var engine = new FileHelperEngine<SampleType>();
-            var dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            var records = engine.ReadFile(FileTest.Good.Test1.Path);
+
+            var dt = records.ToDataTable<SampleType>();
 
             Assert.AreEqual(4, dt.Rows.Count);
             Assert.AreEqual(4, engine.TotalRecords);
             Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
-            Assert.AreEqual(new DateTime(1314, 12, 11), (DateTime) dt.Rows[0]["Field1"]);
-            Assert.AreEqual("901", (string) dt.Rows[0]["Field2"]);
-            Assert.AreEqual(234, (int) dt.Rows[0]["Field3"]);
+            Assert.AreEqual(new DateTime(1314, 12, 11), (DateTime)dt.Rows[0]["Field1"]);
+            Assert.AreEqual("901", (string)dt.Rows[0]["Field2"]);
+            Assert.AreEqual(234, (int)dt.Rows[0]["Field3"]);
 
-            Assert.AreEqual(new DateTime(1314, 11, 10), (DateTime) dt.Rows[1]["Field1"]);
-            Assert.AreEqual("012", (string) dt.Rows[1]["Field2"]);
-            Assert.AreEqual(345, (int) dt.Rows[1]["Field3"]);
+            Assert.AreEqual(new DateTime(1314, 11, 10), (DateTime)dt.Rows[1]["Field1"]);
+            Assert.AreEqual("012", (string)dt.Rows[1]["Field2"]);
+            Assert.AreEqual(345, dt.Rows[1]["Field3"]);
         }
 
         [Test]
         public void ReadNullableTypes()
         {
             var engine = new FileHelperEngine<NullableType>();
-            var res = engine.ReadFileAsDT(FileTest.Good.NullableTypes1.Path);
+            var records = engine.ReadFile(FileTest.Good.NullableTypes1.Path);
+
+            var res = records.ToDataTable<NullableType>();
 
             Assert.AreEqual(4, res.Rows.Count);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -64,4 +72,5 @@ namespace FileHelpers.Tests.CommonTests
             public int? Field3;
         }
     }
+#endif
 }

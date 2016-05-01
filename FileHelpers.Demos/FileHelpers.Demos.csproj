@@ -138,9 +138,6 @@
     <Compile Include="frmDataLinkSample.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDonate.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmEasyMultiDelimited.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,12 +198,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VersionData.cs" />
+    <None Include="Resources\donate.jpg" />
     <EmbeddedResource Include="frmDataLinkSample.resx">
       <DependentUpon>frmDataLinkSample.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDonate.resx">
-      <DependentUpon>frmDonate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEasyMultiDelimited.resx">
@@ -291,7 +285,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">if $(ConfigurationName) == Debug goto :exit
 move "$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe"
 "$(SolutionDir)Libs\ILMerge\ilmerge" /ndebug /targetplatform:$(TargetFrameworkVersion.Substring(0, 2)) /out:"$(TargetDir)$(TargetName).exe" "$(TargetDir)$(TargetName).ToMerge.exe" "$(TargetDir)FileHelpers.dll" "$(TargetDir)Framework.Controls.ProgressBar.dll"
 del "$(TargetDir)*.dll"
