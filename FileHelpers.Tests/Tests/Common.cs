@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests
 {
@@ -11,17 +10,21 @@ namespace FileHelpers.Tests
     /// </summary>
     public static class TestCommon
     {
-        //private static string mAssemblyLocation = "";
+        /// <summary>
+        /// Returns the "Data" directory where test cases reside.
+        /// </summary>
+        /// <remarks>..\.. takes it back from bin, Data is forward to data area</remarks>
+        public static string DataDirectory { get; } = Path.GetFullPath(Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, "..\\..", "Data"));
+
         /// <summary>
         /// Create a path to a directory or file given a list of directories
         /// to get there.  Goes from project directory
         /// </summary>
-        /// <remarks>.. takes it back from bin, Data is forward to data area</remarks>
         /// <param name="pathElements">list of directories to navigate with optional filename</param>
         /// <returns>Path to Data area</returns>
         public static string GetPath(params string[] pathElements)
         {
-            var result = Path.GetFullPath(Path.Combine("..", "Data"));
+            var result = DataDirectory;
 
             foreach (var element in pathElements)
                 result = Path.Combine(result, element);
