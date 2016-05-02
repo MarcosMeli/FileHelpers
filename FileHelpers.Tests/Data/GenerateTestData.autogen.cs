@@ -1407,6 +1407,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class RealCsvCommaBlankLines1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "RealCsvCommaBlankLines1.txt");
+                }
+            }
+
             public partial class RealCsvTab1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -2725,6 +2733,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.RealCsvComma2 RealCsvComma2
             {
                 get { return mRealCsvComma2; }
+            }
+
+            private static ClassesFileTest.Good.RealCsvCommaBlankLines1 mRealCsvCommaBlankLines1 = new ClassesFileTest.Good.RealCsvCommaBlankLines1();
+
+            public static ClassesFileTest.Good.RealCsvCommaBlankLines1 RealCsvCommaBlankLines1
+            {
+                get { return mRealCsvCommaBlankLines1; }
             }
 
             private static ClassesFileTest.Good.RealCsvTab1 mRealCsvTab1 = new ClassesFileTest.Good.RealCsvTab1();
