@@ -6,7 +6,7 @@ namespace FileHelpers
 {
     /// <summary>Base class for custom user validation attributes and <see cref="FieldValidateIsNotEmptyAttribute"/>.</summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">complete attributes list</a> for more information and examples of each one.</remarks>
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class FieldValidateAttribute : Attribute, IFieldValidate
     {
