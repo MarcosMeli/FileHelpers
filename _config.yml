@@ -18,7 +18,7 @@ js_dest: js
 gems:
   - jekyll-seo-tag
 
-logo: /images/filehelpers_box_150.png
+logo: /images/filehelpers_box_small.png
 
 twitter:
   username: FileHelpers
