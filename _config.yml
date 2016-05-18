@@ -19,6 +19,7 @@ gems:
   - jekyll-seo-tag
 
 logo: /images/filehelpers_box_small.png
+image: /images/filehelpers_box_small.png
 
 twitter:
   username: FileHelpers
