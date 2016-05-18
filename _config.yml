@@ -6,6 +6,7 @@ url: "http://www.filehelpers.net" # the base hostname & protocol for your site
 github_username:  MarcosMeli
 libversion: "3.1.5"
 libversionbig: "3.1"
+author: Marcos Meli
 
 highlighter: rouge
 
@@ -16,6 +17,11 @@ js_dest: js
 
 gems:
   - jekyll-seo-tag
+
+logo: /images/filehelpers_box_150.png
+
+twitter:
+  username: FileHelpers
   
 exclude:  [ '*.ts',
             '*.bat',
