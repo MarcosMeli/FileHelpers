@@ -1,0 +1,37 @@
+private object[] RowValues(int rowNum, int startCol, int numberOfCols)
+        {
+            if (mSheet == null)
+                return null;
+
+            if (numberOfCols == 1) {
+                IRow row = mSheet.GetRow(rowNum);
+
+                ICell cell = HSSFCellUtil.GetCell(row, startCol);
+                return new object[] {NPOIUtils.GetCellValue(cell)};
+            }
+            else {
+                //TO:DO
+                for (int i = startCol; i < startCol + numberOfCols; i++)
+                {
+                    IRow row = mSheet.GetRow(rowNum);
+                    ICell cell = HSSFCellUtil.GetCell(row, i);
+                    if (NPOIUtils.GetCellValue(cell) == null) {
+                        cell.SetCellValue (" ");
+                    }
+                }
+
+                CellRangeAddress range = new CellRangeAddress(rowNum, rowNum, startCol, startCol + numberOfCols - 1);
+
+                CellWalk cw = new CellWalk(mSheet, range);
+
+                //cw.IsTraverseEmptyCells();
+
+                cw.SetTraverseEmptyCells(true);
+
+                CellExtractor ce = new CellExtractor();
+
+                cw.Traverse(ce);
+
+                return ce.CellValues;
+            }
+        }
