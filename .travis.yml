@@ -4,9 +4,9 @@ solution: FileHelpers.sln
 install:
   - nuget restore FileHelpers.sln
 #  - nuget restore FileHelpers.Analyzer/FileHelpers.Analyzer.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 3.4.0 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Debug FileHelpers.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll -exclude=NotOnMono
+  - mono ./testrunner/NUnit.ConsoleRunner.3.4.0/tools/nunit3-console.exe ./FileHelpers.Tests/Release/FileHelpers.Tests.dll -exclude=NotOnMono
 #  - xbuild /p:Configuration=Debug FileHelpers.Analyzer/FileHelpers.Analyzer.sln
 #  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./FileHelpers.Analyzer/FileHelpers.Analyzer/FileHelpers.Analyzer.Test/Debug/FileHelpers.Analyzer.Test.dll

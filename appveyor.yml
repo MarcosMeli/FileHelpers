@@ -1,4 +1,4 @@
-version: 3.1.0.{build}
+version: 3.2.0.{build}
 skip_tags: true
 configuration: Debug
 platform: Any CPU
@@ -12,6 +12,6 @@ build:
   verbosity: minimal
 test_script:
 - ps: >-
-    .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe -register:user -target:nunit-console.exe -register:user "-targetargs:""FileHelpers.Tests\Release\FileHelpers.Tests.dll"" /noshadow" -filter:"" -output:opencoverCoverage.xml
+    .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:nunit-console.exe -register:user "-targetargs:""FileHelpers.Tests\Release\FileHelpers.Tests.dll"" /noshadow" -filter:"" -output:opencoverCoverage.xml
 
     .\packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
