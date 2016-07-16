@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
 
@@ -17,17 +16,13 @@ namespace FileHelpers
         protected abstract string GetFullPathName();
 
         /// <summary>
-        /// This returns the complete path reading for reading 
+        /// This returns the complete path reading for reading (relative to Data directory).
         /// </summary>
-        /// <remarks>
-        /// steps back from bin to the Data directory
-        /// </remarks>
         public string Path
         {
             get
             {
-                return System.IO.Path.Combine(System.IO.Path.GetFullPath(System.IO.Path.Combine("..", "Data")),
-                    GetFullPathName());
+                return System.IO.Path.Combine(Tests.TestCommon.DataDirectory, GetFullPathName());
             }
         }
 

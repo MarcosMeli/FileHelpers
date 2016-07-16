@@ -171,9 +171,9 @@ namespace FileHelpers
         internal string FieldFriendlyName { get; set; }
 
         /// <summary>
-        /// The field must be not be empty
+        /// The validations that the field must pass to import successfully.
         /// </summary>
-        public bool IsNotEmpty { get; set; }
+        public List<Interfaces.IFieldValidate> Validators { get; private set; }
 
         /// <summary>
         /// Caption of the field displayed in header row (see EngineBase.GetFileHeader)
@@ -188,7 +188,7 @@ namespace FileHelpers
         /// <summary>
         /// Fieldname of the field we are storing
         /// </summary>
-        internal string FieldName
+        public string FieldName
         {
             get { return FieldInfo.Name; }
         }
@@ -351,8 +351,8 @@ namespace FileHelpers
                 // FieldInNewLine
                 res.InNewLine = mi.IsDefined(typeof(FieldInNewLineAttribute), false);
 
-                // FieldNotEmpty
-                res.IsNotEmpty = mi.IsDefined(typeof(FieldNotEmptyAttribute), false);
+                // FieldValidatorAttributes - for use in custom validation of fields
+                res.Validators = new List<Interfaces.IFieldValidate>((FieldValidateAttribute[])mi.GetCustomAttributes(typeof(FieldValidateAttribute), false));
 
                 // FieldArrayLength
                 if (fieldType.IsArray) {
@@ -421,7 +421,7 @@ namespace FileHelpers
             NullValue = null;
             TrailingArray = false;
             IsArray = false;
-            IsNotEmpty = false;
+            Validators = null;
         }
 
         /// <summary>
@@ -657,9 +657,15 @@ namespace FileHelpers
             var extractedString = fieldString.ExtractedString();
 
             try {
-                if (IsNotEmpty && String.IsNullOrEmpty(extractedString)) {
-                    throw new InvalidOperationException("The value is empty and must be populated.");
-                } else if (this.Converter == null) {
+                if (Validators != null && Validators.Count > 0) {
+                    foreach (Interfaces.IFieldValidate validator in Validators) {
+                        if ((validator.ValidateNullValue || !string.IsNullOrEmpty(extractedString)) && !validator.Validate(extractedString)) {
+                            throw new InvalidOperationException(validator.Message);
+                        }
+                    }
+                } 
+                
+                if (this.Converter == null) {
                     if (IsStringField)
                         val = TrimString(extractedString);
                     else {
@@ -945,7 +951,7 @@ namespace FileHelpers
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
-            res.IsNotEmpty = IsNotEmpty;
+            res.Validators = Validators;
             res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;

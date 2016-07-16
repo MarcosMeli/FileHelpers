@@ -184,27 +184,43 @@ namespace FileHelpers.Tests
                 }
             }
 
-            public partial class FieldNotEmpty1 : FileTestBase
+            public partial class FieldValidate1 : FileTestBase
             {
                 protected override string GetFullPathName()
                 {
-                    return System.IO.Path.Combine("Bad", "FieldNotEmpty1.txt");
+                    return System.IO.Path.Combine("Bad", "FieldValidate1.txt");
                 }
             }
 
-            public partial class FieldNotEmpty2 : FileTestBase
+            public partial class FieldValidate2 : FileTestBase
             {
                 protected override string GetFullPathName()
                 {
-                    return System.IO.Path.Combine("Bad", "FieldNotEmpty2.txt");
+                    return System.IO.Path.Combine("Bad", "FieldValidate2.txt");
                 }
             }
 
-            public partial class FieldNotEmpty3 : FileTestBase
+            public partial class FieldValidateIsNotEmpty1 : FileTestBase
             {
                 protected override string GetFullPathName()
                 {
-                    return System.IO.Path.Combine("Bad", "FieldNotEmpty3.txt");
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty1.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty2.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty3 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Bad", "FieldValidateIsNotEmpty3.txt");
                 }
             }
 
@@ -967,11 +983,27 @@ namespace FileHelpers.Tests
                 }
             }
 
-            public partial class FieldNotEmpty1 : FileTestBase
+            public partial class FieldValidate1 : FileTestBase
             {
                 protected override string GetFullPathName()
                 {
-                    return System.IO.Path.Combine("Good", "FieldNotEmpty1.txt");
+                    return System.IO.Path.Combine("Good", "FieldValidate1.txt");
+                }
+            }
+
+            public partial class FieldValidate2 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "FieldValidate2.txt");
+                }
+            }
+
+            public partial class FieldValidateIsNotEmpty1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "FieldValidateIsNotEmpty1.txt");
                 }
             }
 
@@ -1375,6 +1407,14 @@ namespace FileHelpers.Tests
                 }
             }
 
+            public partial class RealCsvCommaBlankLines1 : FileTestBase
+            {
+                protected override string GetFullPathName()
+                {
+                    return System.IO.Path.Combine("Good", "RealCsvCommaBlankLines1.txt");
+                }
+            }
+
             public partial class RealCsvTab1 : FileTestBase
             {
                 protected override string GetFullPathName()
@@ -1623,25 +1663,39 @@ namespace FileHelpers.Tests
                 get { return mEmptyLineInTheMiddle; }
             }
 
-            private static ClassesFileTest.Bad.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Bad.FieldNotEmpty1();
+            private static ClassesFileTest.Bad.FieldValidate1 mFieldValidate1 = new ClassesFileTest.Bad.FieldValidate1();
 
-            public static ClassesFileTest.Bad.FieldNotEmpty1 FieldNotEmpty1
+            public static ClassesFileTest.Bad.FieldValidate1 FieldValidate1
             {
-                get { return mFieldNotEmpty1; }
+                get { return mFieldValidate1; }
             }
 
-            private static ClassesFileTest.Bad.FieldNotEmpty2 mFieldNotEmpty2 = new ClassesFileTest.Bad.FieldNotEmpty2();
+            private static ClassesFileTest.Bad.FieldValidate2 mFieldValidate2 = new ClassesFileTest.Bad.FieldValidate2();
 
-            public static ClassesFileTest.Bad.FieldNotEmpty2 FieldNotEmpty2
+            public static ClassesFileTest.Bad.FieldValidate2 FieldValidate2
             {
-                get { return mFieldNotEmpty2; }
+                get { return mFieldValidate2; }
             }
 
-            private static ClassesFileTest.Bad.FieldNotEmpty3 mFieldNotEmpty3 = new ClassesFileTest.Bad.FieldNotEmpty3();
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty1 mFieldValidateIsNotEmpty1 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty1();
 
-            public static ClassesFileTest.Bad.FieldNotEmpty3 FieldNotEmpty3
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty1 FieldValidateIsNotEmpty1
             {
-                get { return mFieldNotEmpty3; }
+                get { return mFieldValidateIsNotEmpty1; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty2 mFieldValidateIsNotEmpty2 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty2();
+
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty2 FieldValidateIsNotEmpty2
+            {
+                get { return mFieldValidateIsNotEmpty2; }
+            }
+
+            private static ClassesFileTest.Bad.FieldValidateIsNotEmpty3 mFieldValidateIsNotEmpty3 = new ClassesFileTest.Bad.FieldValidateIsNotEmpty3();
+
+            public static ClassesFileTest.Bad.FieldValidateIsNotEmpty3 FieldValidateIsNotEmpty3
+            {
+                get { return mFieldValidateIsNotEmpty3; }
             }
 
             private static ClassesFileTest.Bad.InNewLine3 mInNewLine3 = new ClassesFileTest.Bad.InNewLine3();
@@ -2310,11 +2364,25 @@ namespace FileHelpers.Tests
                 get { return mFieldHiddenAdvanced; }
             }
 
-            private static ClassesFileTest.Good.FieldNotEmpty1 mFieldNotEmpty1 = new ClassesFileTest.Good.FieldNotEmpty1();
+            private static ClassesFileTest.Good.FieldValidate1 mFieldValidate1 = new ClassesFileTest.Good.FieldValidate1();
 
-            public static ClassesFileTest.Good.FieldNotEmpty1 FieldNotEmpty1
+            public static ClassesFileTest.Good.FieldValidate1 FieldValidate1
             {
-                get { return mFieldNotEmpty1; }
+                get { return mFieldValidate1; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidate2 mFieldValidate2 = new ClassesFileTest.Good.FieldValidate2();
+
+            public static ClassesFileTest.Good.FieldValidate2 FieldValidate2
+            {
+                get { return mFieldValidate2; }
+            }
+
+            private static ClassesFileTest.Good.FieldValidateIsNotEmpty1 mFieldValidateIsNotEmpty1 = new ClassesFileTest.Good.FieldValidateIsNotEmpty1();
+
+            public static ClassesFileTest.Good.FieldValidateIsNotEmpty1 FieldValidateIsNotEmpty1
+            {
+                get { return mFieldValidateIsNotEmpty1; }
             }
 
             private static ClassesFileTest.Good.IgnoreComments1 mIgnoreComments1 = new ClassesFileTest.Good.IgnoreComments1();
@@ -2665,6 +2733,13 @@ namespace FileHelpers.Tests
             public static ClassesFileTest.Good.RealCsvComma2 RealCsvComma2
             {
                 get { return mRealCsvComma2; }
+            }
+
+            private static ClassesFileTest.Good.RealCsvCommaBlankLines1 mRealCsvCommaBlankLines1 = new ClassesFileTest.Good.RealCsvCommaBlankLines1();
+
+            public static ClassesFileTest.Good.RealCsvCommaBlankLines1 RealCsvCommaBlankLines1
+            {
+                get { return mRealCsvCommaBlankLines1; }
             }
 
             private static ClassesFileTest.Good.RealCsvTab1 mRealCsvTab1 = new ClassesFileTest.Good.RealCsvTab1();

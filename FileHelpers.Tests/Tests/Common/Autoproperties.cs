@@ -188,8 +188,7 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.FieldCount).IsEqualTo(5);
 
-            Check.That(engine.Options.Fields[3].IsNotEmpty)
-                .IsEqualTo(true);
+            Check.That(engine.Options.Fields[3].Validators.Any(x => x is FieldValidateIsNotEmptyAttribute));
         }
 
         [Test]
@@ -308,7 +307,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldDelimiter(";")]
             public string CustomDelimiter { get; set; }
             [FieldNullValue("nobody")]
-            [FieldNotEmpty]
+            [FieldValidateIsNotEmpty]
             [FieldQuoted('\'')]
             [FieldTrim(TrimMode.Both)]                                    
             [FieldValueDiscarded()]
