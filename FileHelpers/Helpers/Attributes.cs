@@ -59,5 +59,14 @@ namespace FileHelpers
 
             action((T) attribs[0]);
         }
+
+        public static void WorkWithAll<T>(MemberInfo type, Action<T[]> action) where T : Attribute
+        {
+            var attribs = type.GetCustomAttributes(typeof(T), false);
+            if (attribs.Length == 0)
+                return;
+
+            action(Array.ConvertAll(attribs, x => (T)x));
+        }
     }
 }

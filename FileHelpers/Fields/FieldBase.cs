@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -193,6 +194,8 @@ namespace FileHelpers
             get { return FieldInfo.Name; }
         }
 
+        internal Dictionary<string, string> FieldDictionary { get; private set; }
+
 		/*
         private static readonly char[] mWhitespaceChars = new[] {
             '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005',
@@ -376,6 +379,8 @@ namespace FileHelpers
                             }
                         });
                 }
+
+                Attributes.WorkWithAll<FieldKeyValueAttribute>(mi, x => res.FieldDictionary = x.Select( y => y.KeyValue).ToDictionary(y => y.Key, y => y.Value));
             }
 
             if (string.IsNullOrEmpty(res.FieldFriendlyName))
@@ -661,18 +666,34 @@ namespace FileHelpers
                     throw new InvalidOperationException("The value is empty and must be populated.");
                 } else if (this.Converter == null) {
                     if (IsStringField)
+                    {
                         val = TrimString(extractedString);
+
+                        if (FieldDictionary != null && FieldDictionary.ContainsKey(extractedString))
+                        {
+                            val = FieldDictionary[val.ToString()];
+                        }
+                    }
                     else {
                         extractedString = extractedString.Trim();
 
-                        if (extractedString.Length == 0) {
-                            return new AssignResult {
+                        if (extractedString.Length == 0)
+                        {
+                            return new AssignResult
+                            {
                                 Value = GetNullValue(line),
                                 NullValueUsed = true
                             };
                         }
                         else
+                        {
+                            if (FieldDictionary != null && FieldDictionary.ContainsKey(extractedString))
+                            {
+                                extractedString = FieldDictionary[extractedString];
+                            }
+
                             val = Convert.ChangeType(extractedString, FieldTypeInternal, null);
+                        }
                     }
                 }
                 else {
@@ -687,9 +708,23 @@ namespace FileHelpers
                     }
                     else {
                         if (TrimMode == TrimMode.Both)
+                        {
+                            if (FieldDictionary != null && FieldDictionary.ContainsKey(trimmedString))
+                            {
+                                trimmedString = FieldDictionary[trimmedString];
+                            }
+
                             val = this.Converter.StringToField(trimmedString);
+                        }
                         else
+                        {
+                            if (FieldDictionary != null && FieldDictionary.ContainsKey(extractedString))
+                            {
+                                extractedString = FieldDictionary[extractedString];
+                            }
+
                             val = this.Converter.StringToField(TrimString(extractedString));
+                        }
 
                         if (val == null) {
                             return new AssignResult {
@@ -949,6 +984,7 @@ namespace FileHelpers
             res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;
+            res.FieldDictionary = FieldDictionary;
             return res;
         }
 
