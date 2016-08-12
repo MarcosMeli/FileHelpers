@@ -36,7 +36,7 @@ namespace ExamplesFx
             public string CompanyName;
             public string ContactName;
             
-            // Notice last feild is our enumerator
+            // Notice last field is our enumerator
             public CustomerTitle ContactTitle;
         }
 
