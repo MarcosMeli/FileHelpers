@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using NUnit.Framework;
 
 namespace FileHelpers
 {
@@ -26,7 +27,7 @@ namespace FileHelpers
         {
             get
             {
-                return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "Data",
+                return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "Data",
                     GetFullPathName());
             }
         }
