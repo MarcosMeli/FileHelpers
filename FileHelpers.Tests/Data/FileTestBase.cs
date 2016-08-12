@@ -26,7 +26,7 @@ namespace FileHelpers
         {
             get
             {
-                return System.IO.Path.Combine(System.IO.Path.GetFullPath(System.IO.Path.Combine("..", "Data")),
+                return System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "Data",
                     GetFullPathName());
             }
         }
