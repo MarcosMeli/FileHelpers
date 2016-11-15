@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using NFluent;
 using NUnit.Framework;
 
@@ -42,6 +41,22 @@ namespace FileHelpers.Tests.CommonTests
 
         }
 
+        [DelimitedRecord("|")]
+        public class CustomersVerticalBarAutoProperty
+        {
+            public string CustomerID { get; set; }
+            public string CompanyName { get; set; }
+            public string ContactName { get; set; }
+
+            public string ToRemove { get; set; }
+            
+            public string ContactTitle { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+            public string Country { get; set; }
+
+        }
+
         [Test]
         public void RemoveField()
         {
@@ -55,6 +70,16 @@ namespace FileHelpers.Tests.CommonTests
             Check.That(records.Length).IsEqualTo(91);
         }
 
+        [Test]
+        public void RemoveAutoPropertyMultipleFields()
+        {
+            var engine = new FileHelperEngine<CustomersVerticalBarAutoProperty>();
+
+            Check.That(engine.Options.FieldCount).IsEqualTo(8);
+            engine.Options.RemoveField("ToRemove");
+            engine.Options.RemoveField("ContactTitle");
+            Assert.That(engine.Options.Fields.Cast<FieldBase>().Select(f => f.FieldName), Has.No.Member("ContactTitle"));
+        }
 
         [Test]
         public void RemoveFieldLast()

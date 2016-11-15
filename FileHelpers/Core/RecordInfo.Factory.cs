@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FileHelpers
 {
@@ -43,7 +44,7 @@ namespace FileHelpers
 
         public void RemoveField(string fieldname)
         {
-            var index = GetFieldIndex(fieldname);
+            var index = Fields.ToList().IndexOf(Fields.Single(f => f.FieldFriendlyName == fieldname));
             Fields[index] = null;
             Fields = Array.FindAll(Fields, x => x != null);
 
