@@ -171,11 +171,21 @@ namespace FileHelpers.Detection
         {
             if (format.ClassBuilder is FixedLengthClassBuilder)
                 return;
+
+            // TODO: Add FieldQuoted
         }
 
-        private void DetectTypes(RecordFormatInfo format, string[][] data) {}
+        private void DetectTypes(RecordFormatInfo format, string[][] data)
+        {
 
-        private void DetectOptionals(RecordFormatInfo option, string[][] data) {}
+            // TODO: Try to detect posible formats (mostly numbers or dates)
+        }
+
+        private void DetectOptionals(RecordFormatInfo option, string[][] data)
+        {
+            // TODO: Try to detect optional fields
+
+        }
 
         #endregion
 

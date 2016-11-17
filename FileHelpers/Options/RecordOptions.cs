@@ -40,11 +40,6 @@ namespace FileHelpers.Options
         public void RemoveField(string fieldname)
         {
             mRecordInfo.RemoveField(fieldname);
-            //for (int i = 0; i < Fields.Count; i++)
-            //{
-            //    var field = Fields[i];
-            //    field.ParentIndex = i;
-            //}
         }
 
         /// <summary>
@@ -283,7 +278,7 @@ namespace FileHelpers.Options
         }
 
         /// <summary>
-        /// Allows to get an object[] with the values of the fields in the <param name="record"></param>
+        /// Allows to get an object[] with the values of the fields in the <paramref name="record"/>
         /// </summary>
         /// <param name="record">The record that will be transformed to object[]</param>
         /// <returns>The object[] with the values of the fields in the current record</returns>
