@@ -255,60 +255,7 @@ namespace FileHelpers
             return RecordsToDataTable(records, -1);
         }
 
-        /// <summary>
-        /// Create a data table containing at most maxRecords (-1 is unlimitted)
-        /// </summary>
-        /// <param name="records">Records to add to datatable</param>
-        /// <param name="maxRecords">Maximum number of records (-1 is all)</param>
-        /// <returns>Datatable based on record</returns>
-        public DataTable RecordsToDataTable(ICollection records, int maxRecords)
-        {
-            DataTable res = CreateEmptyDataTable();
-
-            res.BeginLoadData();
-
-            res.MinimumCapacity = records.Count;
-
-            if (maxRecords == -1) {
-                foreach (var r in records)
-                    res.Rows.Add(RecordToValues(r));
-            }
-            else {
-                int i = 0;
-                foreach (var r in records) {
-                    if (i == maxRecords)
-                        break;
-
-                    res.Rows.Add(RecordToValues(r));
-                    i++;
-                }
-            }
-
-            res.EndLoadData();
-            return res;
-        }
-
-        /// <summary>
-        /// Create an empty datatable based upon the record layout
-        /// </summary>
-        /// <returns>Datatable defined based on the record definition</returns>
-        public DataTable CreateEmptyDataTable()
-        {
-            var res = new DataTable();
-
-            foreach (var f in RecordInfo.Fields) {
-                DataColumn column1;
-                if (f.IsNullableType) {
-                    column1 = res.Columns.Add(f.FieldInfo.Name, Nullable.GetUnderlyingType(f.FieldInfo.FieldType));
-                    column1.AllowDBNull = true;
-                }
-                else
-                    column1 = res.Columns.Add(f.FieldInfo.Name, f.FieldInfo.FieldType);
-
-                column1.ReadOnly = true;
-            }
-            return res;
-        }
+       
 
         #endregion
 

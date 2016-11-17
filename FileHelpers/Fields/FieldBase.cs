@@ -578,7 +578,7 @@ namespace FileHelpers
 
                 int i = 0;
 
-                var res = new ArrayList(Math.Max(ArrayMinLength, 10));
+                var res = new List<object>(Math.Max(ArrayMinLength, 10));
 
                 while (line.mCurrentPos - CharsToDiscard < line.mLineStr.Length &&
                        i < ArrayMaxLength) {

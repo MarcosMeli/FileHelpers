@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Base class for all the library Exceptions.</summary>
-    [Serializable]
+    
     public class FileHelpersException : Exception
     {
         /// <summary>Basic constructor of the exception.</summary>

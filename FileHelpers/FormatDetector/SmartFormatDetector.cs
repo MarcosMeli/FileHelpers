@@ -104,13 +104,13 @@ namespace FileHelpers.Detection
             var readers = new List<TextReader>();
             foreach (var file in files)
             {
-                readers.Add(new StreamReader(file, Encoding));
+                readers.Add(new StreamReader(new FileStream(file, FileMode.Open), Encoding));
             }
             var res = DetectFileFormat(readers);
 
             foreach (var reader in readers)
             {
-                reader.Close();
+                reader.Dispose();
             }
 
             return res;

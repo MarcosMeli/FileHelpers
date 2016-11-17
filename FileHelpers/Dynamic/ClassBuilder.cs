@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Security.Cryptography;
+//using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 
@@ -444,7 +444,7 @@ namespace FileHelpers.Dynamic
         /// List of all the fields in the class
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal ArrayList mFields = new ArrayList();
+        internal List<object> mFields = new List<object>();
 
         /// <summary>
         /// Add a field to the class

@@ -142,7 +142,7 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            var resArray = new ArrayList();
+            var resArray = new List<object>();
 
             using (var freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast)) {
                 freader.DiscardForward = true;
@@ -707,7 +707,7 @@ namespace FileHelpers
             if (mAsyncReader == null)
                 throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
 
-            var arr = new ArrayList(numberOfRecords);
+            var arr = new List<object>(numberOfRecords);
 
             for (int i = 0; i < numberOfRecords; i++) {
                 ReadNextRecord();
@@ -810,7 +810,7 @@ namespace FileHelpers
         /// <see cref="BeginWriteFile" />, <see cref="BeginWriteStream" /> or
         /// <see cref="BeginAppendToFile" /> method.
         /// </summary>
-        /// <param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+        /// <param name="records">The records to write (Can be an array, List<object>, etc)</param>
         public void WriteNexts(IEnumerable records)
         {
             if (mAsyncWriter == null)

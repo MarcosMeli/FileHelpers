@@ -8,7 +8,7 @@ namespace FileHelpers.Dynamic
     /// <summary>
     /// Exception with error information of the run time compilation.
     /// </summary>
-    [Serializable]
+    
     public sealed class DynamicCompilationException : FileHelpersException
     {
         /// <summary>

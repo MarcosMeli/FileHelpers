@@ -10,7 +10,7 @@ namespace FileHelpers
     /// Encapsulate stream reader provide some extra caching, and byte by byte
     /// read
     /// </summary>
-    [Serializable]
+    
     internal sealed class InternalStreamReader : TextReader
     {
         // Fields

@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml;
 
 namespace FileHelpers.Dynamic
@@ -21,7 +22,7 @@ namespace FileHelpers.Dynamic
         /// <summary>Returns the current fields of the class.</summary>
         public new FixedFieldBuilder[] Fields
         {
-            get { return (FixedFieldBuilder[]) mFields.ToArray(typeof (FixedFieldBuilder)); }
+            get { return mFields.Cast<FixedFieldBuilder>().ToArray(); }
         }
 
         /// <summary>Used to create classes that maps to Fixed Length records.</summary>
@@ -43,16 +44,16 @@ namespace FileHelpers.Dynamic
                 AddField("Field" + ((i + 1).ToString()), lengths[i], typeof (string));
         }
 
-        /// <summary>Used to create classes that maps to Fixed Length records with the same structure than a DataTable.</summary>
-        /// <param name="className">A valid class name.</param>
-        /// <param name="dt">The DataTable from where to get the field names and types</param>
-        /// <param name="defaultLength">The initial length of all fields</param>
-        public FixedLengthClassBuilder(string className, DataTable dt, int defaultLength)
-            : this(className)
-        {
-            foreach (DataColumn dc in dt.Columns)
-                AddField(StringHelper.ToValidIdentifier(dc.ColumnName), defaultLength, dc.DataType);
-        }
+        ///// <summary>Used to create classes that maps to Fixed Length records with the same structure than a DataTable.</summary>
+        ///// <param name="className">A valid class name.</param>
+        ///// <param name="dt">The DataTable from where to get the field names and types</param>
+        ///// <param name="defaultLength">The initial length of all fields</param>
+        //public FixedLengthClassBuilder(string className, DataTable dt, int defaultLength)
+        //    : this(className)
+        //{
+        //    foreach (DataColumn dc in dt.Columns)
+        //        AddField(StringHelper.ToValidIdentifier(dc.ColumnName), defaultLength, dc.DataType);
+        //}
 
         /// <summary>Used to create classes that maps to Fixed Length records.</summary>
         /// <param name="className">A valid class name.</param>

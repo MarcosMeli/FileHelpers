@@ -174,13 +174,9 @@ namespace FileHelpers
 
         private void CreateConverter(Type convType, object[] args)
         {
-            if (typeof (ConverterBase).IsAssignableFrom(convType)) {
+            if (typeof (ConverterBase). IsAssignableFrom(convType)) {
                 ConstructorInfo constructor;
-                constructor = convType.GetConstructor(
-                    BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
-                    null,
-                    ArgsToTypes(args),
-                    null);
+                constructor = convType.GetConstructor(ArgsToTypes(args));
 
                 if (constructor == null) {
                     if (args.Length == 0) {
@@ -257,10 +253,8 @@ namespace FileHelpers
 
             Type fieldType = fi.FieldType;
 
-            if (fieldType.IsValueType &&
-                fieldType.IsGenericType &&
-                fieldType.GetGenericTypeDefinition() == typeof (Nullable<>))
-                fieldType = fieldType.GetGenericArguments()[0];
+            if (fieldType.GetGenericTypeDefinition() == typeof (Nullable<>))
+                fieldType = fieldType.GenericTypeArguments[0];
 
             switch (Kind) {
                 case ConverterKind.None:

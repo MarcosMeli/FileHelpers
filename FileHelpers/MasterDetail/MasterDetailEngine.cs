@@ -236,7 +236,7 @@ namespace FileHelpers.MasterDetail
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            var resArray = new ArrayList();
+            var resArray = new List<object>();
 
             using (var freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast)) {
                 freader.DiscardForward = true;
@@ -263,7 +263,7 @@ namespace FileHelpers.MasterDetail
                 bool byPass = false;
 
                 MasterDetails<TMaster, TDetail> record = null;
-                var tmpDetails = new ArrayList();
+                var tmpDetails = new List<object>();
 
                 var line = new LineInfo(currentLine) {
                     mReader = freader

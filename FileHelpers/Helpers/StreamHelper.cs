@@ -94,7 +94,7 @@ namespace FileHelpers
                 }
             }
             else
-                res = new StreamWriter(fileName, true, encode, bufferSize);
+                res = new StreamWriter(new FileStream(fileName, FileMode.Append));
             return res;
         }
     }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FileHelpers
 {
     /// <summary>Indicates the wrong usage of the library.</summary>
-    [Serializable]
+    
     public class BadUsageException : FileHelpersException
     {
         /// <summary>Creates an instance of an BadUsageException.</summary>

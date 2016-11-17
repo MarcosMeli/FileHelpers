@@ -9,7 +9,7 @@ namespace FileHelpers
     /// <summary>
     /// Enable reading a string as a stream
     /// </summary>
-    [Serializable]
+    
     internal sealed class InternalStringReader : TextReader
     {
         /// <summary>

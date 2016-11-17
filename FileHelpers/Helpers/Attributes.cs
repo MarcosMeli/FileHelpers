@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace FileHelpers
@@ -38,11 +39,8 @@ namespace FileHelpers
         /// <returns>Attribute found or null</returns>
         private static T GetFirstCore<T>(MemberInfo type, bool inherited) where T : Attribute
         {
-            var attribs = type.GetCustomAttributes(typeof (T), inherited);
-            if (attribs.Length == 0)
-                return null;
-            else
-                return (T) attribs[0];
+            return type.GetCustomAttributes<T>(inherited).FirstOrDefault();
+            
         }
 
         /// <summary>

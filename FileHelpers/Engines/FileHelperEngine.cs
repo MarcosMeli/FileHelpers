@@ -188,7 +188,7 @@ namespace FileHelpers
             IList result;
 
             if (mObjectEngine)
-                result = new ArrayList();
+                result = new List<object>();
             else
                 result = new List<T>();
 
