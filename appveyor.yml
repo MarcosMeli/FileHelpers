@@ -1,17 +1,14 @@
-version: 3.2.0.{build}
-skip_tags: true
-configuration: Debug
+version: '1.0.{build}'
+configuration:
+- Debug
+- Release
 platform: Any CPU
-install:
-- ps: >-
-    nuget install Build\.nuget\packages.config -OutputDirectory packages
-
-    nuget restore FileHelpers.sln
-build:
-  project: FileHelpers.sln
-  verbosity: minimal
-test_script:
-- ps: >-
-    .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:nunit-console.exe -register:user "-targetargs:""FileHelpers.Tests\Release\FileHelpers.Tests.dll"" /noshadow" -filter:"" -output:opencoverCoverage.xml
-
-    .\packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
+environment:
+  # Don't report back to the mothership
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+before_build:
+- appveyor-retry dotnet restore -v Minimal
+build_script:
+- dotnet build "FileHelpers" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
