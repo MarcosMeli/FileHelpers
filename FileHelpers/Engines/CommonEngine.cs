@@ -44,32 +44,7 @@ namespace FileHelpers
             var engine = new FileHelperEngine(recordClass);
             return engine.ReadFile(fileName, maxRecords);
         }
-
-        /// <summary>
-        /// Used to read a file as a DataTable without instantiating the engine.<br />
-        /// <b>This method has limited features.  We recommend using the non static methods.</b>
-        /// </summary>
-        /// <param name="recordClass">The record class.</param>
-        /// <param name="fileName">The file name</param>
-        /// <returns>The DataTable representing all the read records.</returns>
-        public static DataTable ReadFileAsDT(Type recordClass, string fileName)
-        {
-            return ReadFileAsDT(recordClass, fileName, -1);
-        }
-
-        /// <summary>
-        /// Used to read a file as a DataTable without instantiating the engine.<br />
-        /// <b>This method has limited features.  We recommend using the non static methods.</b>
-        /// </summary>
-        /// <param name="recordClass">The record class.</param>
-        /// <param name="fileName">The file name</param>
-        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-        /// <returns>The DataTable representing all the read records.</returns>
-        public static DataTable ReadFileAsDT(Type recordClass, string fileName, int maxRecords)
-        {
-            var engine = new FileHelperEngine(recordClass);
-            return engine.ReadFileAsDT(fileName, maxRecords);
-        }
+        
 
         /// <summary>
         /// Used to read a file without instantiating the engine.<br />
@@ -365,72 +340,7 @@ namespace FileHelpers
 
         #endregion
 
-
-        /// <summary>
-        /// Converts any collection of records to a DataTable using reflection.
-        /// WARNING: this methods returns null if the number of records is 0,
-        /// pass the Type of the records to get an empty DataTable.
-        /// </summary>
-        /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The DataTable containing the records as DataRows</returns>
-        public static DataTable RecordsToDataTable(ICollection records)
-        {
-            return RecordsToDataTable(records, -1);
-        }
-
-        /// <summary>
-        /// Converts any collection of records to a DataTable using reflection.
-        /// WARNING: this methods returns null if the number of records is 0,
-        /// pass the Type of the records to get an empty DataTable.
-        /// </summary>
-        /// <param name="records">The records to be converted to a DataTable</param>
-        /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
-        /// <returns>The DataTable containing the records as DataRows</returns>
-        public static DataTable RecordsToDataTable(ICollection records, int maxRecords)
-        {
-            IRecordInfo ri = null;
-            foreach (var obj in records) {
-                if (obj != null) {
-                    ri = RecordInfo.Resolve(obj.GetType());
-                    break;
-                }
-            }
-
-            if (ri == null)
-                return new DataTable();
-
-            return ri.Operations.RecordsToDataTable(records, maxRecords);
-        }
-
-        /// <summary>
-        /// Converts any collection of records to a DataTable using reflection.
-        /// If the number of records is 0 this methods returns an empty
-        /// DataTable with the columns based on the fields of the
-        /// Type.
-        /// </summary>
-        /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The DataTable containing the records as DataRows</returns>
-        /// <param name="recordType">The type of the inner records.</param>
-        public static DataTable RecordsToDataTable(ICollection records, Type recordType)
-        {
-            return RecordsToDataTable(records, recordType, -1);
-        }
-
-        /// <summary>
-        /// Converts any collection of records to a DataTable using reflection.
-        /// If the number of records is 0 this methods returns an empty
-        /// DataTable with the columns based on the fields of the
-        /// Type.
-        /// </summary>
-        /// <param name="records">The records to be converted to a DataTable</param>
-        /// <returns>The DataTable containing the records as DataRows</returns>
-        /// <param name="maxRecords">The max number of records to add to the DataTable. -1 for all.</param>
-        /// <param name="recordType">The type of the inner records.</param>
-        public static DataTable RecordsToDataTable(ICollection records, Type recordType, int maxRecords)
-        {
-            IRecordInfo ri = RecordInfo.Resolve(recordType);
-            return ri.Operations.RecordsToDataTable(records, maxRecords);
-        }
+        
 
         /// <summary>
         /// Reads the file1 and file2 using the recordType and write it to
@@ -540,86 +450,7 @@ namespace FileHelpers
             return res;
         }
 
-
-        /// <summary>
-        /// Simply dumps the DataTable contents to a delimited file using a ','
-        /// as delimiter.
-        /// </summary>
-        /// <param name="dt">The source Data Table</param>
-        /// <param name="filename">The destination file.</param>
-        public static void DataTableToCsv(DataTable dt, string filename)
-        {
-            CsvEngine.DataTableToCsv(dt, filename);
-        }
-
-
-        /// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
-        /// <param name="dt">The source Data Table</param>
-        /// <param name="filename">The destination file.</param>
-        /// <param name="delimiter">The delimiter used to write the file</param>
-        public static void DataTableToCsv(DataTable dt, string filename, char delimiter)
-        {
-            CsvEngine.DataTableToCsv(dt, filename, new CsvOptions("Tempo", delimiter, dt.Columns.Count));
-        }
-
-
-        /// <summary>
-        /// Simply dumps the DataTable contents to a delimited file. Only
-        /// allows to set the delimiter.
-        /// </summary>
-        /// <param name="dt">The source Data Table</param>
-        /// <param name="filename">The destination file.</param>
-        /// <param name="options">The options used to write the file</param>
-        public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
-        {
-            CsvEngine.DataTableToCsv(dt, filename, options);
-        }
-
-        /// <summary>
-        /// Reads a CSV File and return their contents as DataTable (The file
-        /// must have the field names in the first row)
-        /// </summary>
-        /// <param name="delimiter">The delimiter for each field</param>
-        /// <param name="filename">The file to read.</param>
-        /// <returns>The contents of the file as a DataTable</returns>
-        public static DataTable CsvToDataTable(string filename, char delimiter)
-        {
-            return CsvEngine.CsvToDataTable(filename, delimiter);
-        }
-
-        /// <summary>
-        /// Reads a CSV File and return their contents as DataTable (The file
-        /// must have the field names in the first row)
-        /// </summary>
-        /// <param name="classname">The name of the record class</param>
-        /// <param name="delimiter">The delimiter for each field</param>
-        /// <param name="filename">The file to read.</param>
-        /// <returns>The contents of the file as a DataTable</returns>
-        public static DataTable CsvToDataTable(string filename, string classname, char delimiter)
-        {
-            return CsvEngine.CsvToDataTable(filename, classname, delimiter);
-        }
-
-
-        /// <summary>Reads a Csv File and return their contents as DataTable</summary>
-        /// <param name="classname">The name of the record class</param>
-        /// <param name="delimiter">The delimiter for each field</param>
-        /// <param name="filename">The file to read.</param>
-        /// <param name="hasHeader">Indicates if the file contains a header with the field names.</param>
-        /// <returns>The contents of the file as a DataTable</returns>
-        public static DataTable CsvToDataTable(string filename, string classname, char delimiter, bool hasHeader)
-        {
-            return CsvEngine.CsvToDataTable(filename, classname, delimiter, hasHeader);
-        }
-
-        /// <summary>Reads a Csv File and return their contents as DataTable</summary>
-        /// <param name="filename">The file to read.</param>
-        /// <param name="options">The options used to create the record mapping class.</param>
-        /// <returns>The contents of the file as a DataTable</returns>
-        public static DataTable CsvToDataTable(string filename, CsvOptions options)
-        {
-            return CsvEngine.CsvToDataTable(filename, options);
-        }
+        
 
         #region "  RemoveDuplicateRecords  "
 
