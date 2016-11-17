@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using System.Linq;
+using System.Reflection;
 
 namespace FileHelpers
 {
@@ -99,10 +100,8 @@ namespace FileHelpers
             using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
                 T[] tempRes;
 
-                tempRes = ReadStream(fs, maxRecords);
-                fs.Close();
-
-                return tempRes;
+                return ReadStream(fs, maxRecords);
+        
             }
         }
 
@@ -119,9 +118,8 @@ namespace FileHelpers
         public List<T> ReadFileAsList(string fileName, int maxRecords)
         {
             using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
-                var res = ReadStreamAsList(fs, maxRecords);
-                fs.Close();
-                return res;
+                return ReadStreamAsList(fs, maxRecords);
+            
             }
         }
 
@@ -323,9 +321,8 @@ namespace FileHelpers
                 source = string.Empty;
 
             using (var reader = new InternalStringReader(source)) {
-                var res = ReadStream(reader, maxRecords);
-                reader.Close();
-                return res;
+                return ReadStream(reader, maxRecords);
+               
             }
         }
 
@@ -346,9 +343,8 @@ namespace FileHelpers
                 source = string.Empty;
 
             using (var reader = new InternalStringReader(source)) {
-                var res = ReadStreamAsList(reader, maxRecords);
-                reader.Close();
-                return res;
+               return ReadStreamAsList(reader, maxRecords);
+                
             }
         }
 
@@ -386,7 +382,7 @@ namespace FileHelpers
         {
             using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize)) {
                 WriteStream(fs, records, maxRecords);
-                fs.Close();
+             
             }
         }
 
@@ -473,7 +469,7 @@ namespace FileHelpers
 
                     if (first) {
                         first = false;
-                        if (RecordInfo.RecordType.IsInstanceOfType(rec) == false) {
+                        if (RecordInfo.RecordType.GetTypeInfo().IsInstanceOfType(rec) == false) {
                             throw new BadUsageException("This engine works with record of type " +
                                                         RecordInfo.RecordType.Name + " and you use records of type " +
                                                         rec.GetType().Name);

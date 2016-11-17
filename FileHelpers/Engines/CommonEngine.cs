@@ -178,7 +178,7 @@ namespace FileHelpers
         /// <param name="fileName">The file to read.</param>
         public static object[] ReadSortedFile(Type recordClass, string fileName)
         {
-            if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+            if (typeof (IComparable).GetTypeInfo().IsAssignableFrom(recordClass) == false) {
                 throw new BadUsageException(
                     "The record class must implement the interface IComparable to use the Sort feature.");
             }
@@ -204,7 +204,7 @@ namespace FileHelpers
         /// <param name="sortedFile">The destination File.</param>
         public static void SortFile(Type recordClass, string sourceFile, string sortedFile)
         {
-            if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+            if (typeof (IComparable).GetTypeInfo().IsAssignableFrom(recordClass) == false) {
                 throw new BadUsageException(
                     "The record class must implement the interface IComparable to use the Sort feature.");
             }
@@ -292,7 +292,7 @@ namespace FileHelpers
                 records[0] != null) {
                 Type recordClass = records[0].GetType();
 
-                if (typeof (IComparable).IsAssignableFrom(recordClass) == false) {
+                if (typeof (IComparable).GetTypeInfo().IsAssignableFrom(recordClass) == false) {
                     throw new BadUsageException(
                         "The record class must implement the interface IComparable to use the Sort feature.");
                 }
@@ -317,7 +317,7 @@ namespace FileHelpers
                 mAscending = asc
                     ? 1
                     : -1;
-                if (typeof (IComparable).IsAssignableFrom(mFieldInfo.FieldType) == false) {
+                if (typeof (IComparable).GetTypeInfo().IsAssignableFrom(mFieldInfo.FieldType) == false) {
                     throw new BadUsageException("The field " + mFieldInfo.Name +
                                                 " needs to implement the interface IComparable");
                 }

@@ -220,7 +220,7 @@ namespace FileHelpers
             string fieldFriendlyName = AutoPropertyName(fi);
             if (string.IsNullOrEmpty(fieldFriendlyName)==false)
             {                
-                var prop = fi.DeclaringType.GetProperty(fieldFriendlyName);
+                var prop = fi.DeclaringType.GetTypeInfo().GetProperty(fieldFriendlyName);
                 if (prop != null)
                 {
                     memberName = "The property: '" + prop.Name;
@@ -439,7 +439,7 @@ namespace FileHelpers
             this.FieldFriendlyName = AutoPropertyName(fi);
             if (string.IsNullOrEmpty(FieldFriendlyName) == false)
             {
-                var prop = fi.DeclaringType.GetProperty(this.FieldFriendlyName);
+                var prop = fi.DeclaringType.GetTypeInfo().GetProperty(this.FieldFriendlyName);
                 if (prop == null)
                 {
                     this.FieldFriendlyName = null;
@@ -478,7 +478,7 @@ namespace FileHelpers
                 //				mNullValueOnWrite = ((FieldNullValueAttribute) attribs[0]).NullValueOnWrite;
 
                 if (NullValue != null) {
-                    if (!FieldTypeInternal.IsAssignableFrom(NullValue.GetType())) {
+                    if (!FieldTypeInternal.GetTypeInfo().IsAssignableFrom(NullValue.GetType())) {
                         throw new BadUsageException("The NullValue is of type: " + NullValue.GetType().Name +
                                                     " that is not asignable to the field " + FieldInfo.Name +
                                                     " of type: " +
@@ -487,8 +487,8 @@ namespace FileHelpers
                 }
             }
 
-            IsNullableType = FieldTypeInternal.IsValueType &&
-                             FieldTypeInternal.IsGenericType &&
+            IsNullableType = FieldTypeInternal.GetTypeInfo().IsValueType &&
+                             FieldTypeInternal.GetTypeInfo().IsGenericType &&
                              FieldTypeInternal.GetGenericTypeDefinition() == typeof (Nullable<>);
         }
 
@@ -791,7 +791,7 @@ namespace FileHelpers
         private object GetDiscardedNullValue()
         {
             if (NullValue == null) {
-                if (FieldTypeInternal.IsValueType) {
+                if (FieldTypeInternal.GetTypeInfo().IsValueType) {
                     if (IsNullableType)
                         return null;
 
@@ -825,7 +825,7 @@ namespace FileHelpers
 
             if (fieldValue == null) {
                 if (NullValue == null) {
-                    if (FieldTypeInternal.IsValueType &&
+                    if (FieldTypeInternal.GetTypeInfo().IsValueType &&
                         Nullable.GetUnderlyingType(FieldTypeInternal) == null) {
                         throw new BadUsageException(
                             "Null Value found. You must specify a FieldNullValueAttribute in the " + FieldInfo.Name +

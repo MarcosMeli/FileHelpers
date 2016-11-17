@@ -52,7 +52,7 @@ namespace FileHelpers
                 // Occurs when a custom converter returns an invalid value for the field.
                 for (int i = 0; i < RecordInfo.FieldCount; i++) {
                     if (values[i] != null &&
-                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
+                        !RecordInfo.Fields[i].FieldTypeInternal.GetTypeInfo().IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
                             RecordInfo.Fields[i].FieldTypeInternal,
                             RecordInfo.Fields[i].FieldInfo.Name,
@@ -95,7 +95,7 @@ namespace FileHelpers
                 // Occurs when a custom converter returns an invalid value for the field.
                 for (int i = 0; i < RecordInfo.FieldCount; i++) {
                     if (values[i] != null &&
-                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
+                        !RecordInfo.Fields[i].FieldTypeInternal.GetTypeInfo().IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
                             RecordInfo.Fields[i].FieldTypeInternal,
                             RecordInfo.Fields[i].FieldInfo.Name,

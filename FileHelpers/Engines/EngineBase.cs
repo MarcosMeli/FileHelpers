@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
+using System.Reflection;
 
 //using Container=FileHelpers.Container;
 
@@ -45,7 +46,7 @@ namespace FileHelpers
             if (recordType == null)
                 throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
 
-            if (recordType.IsValueType) {
+            if (recordType.GetTypeInfo().IsValueType) {
                 throw new BadUsageException(Messages.Errors.StructRecordClass
                     .RecordType(recordType.Name)
                     .Text);
