@@ -151,7 +151,7 @@
 		<summary>
 			Write the next records to a file or stream opened.
 		</summary>
-		<param name="records">The records to write (Can be an array, ArrayList, etc)</param>
+		<param name="records">The records to write (Can be an array, List<object>, etc)</param>
 	</WriteNexts>
 
 </doc>

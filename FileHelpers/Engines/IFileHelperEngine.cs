@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+
 using System.IO;
 using System.Text;
 using FileHelpers.Events;
@@ -66,51 +66,7 @@ namespace FileHelpers
         /// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
         void AppendToFile(string fileName, IEnumerable<T> records);
 
-        /// <summary>
-        /// Read the records of the file and fill a DataTable with them
-        /// </summary>
-        /// <param name="fileName">The file name.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadFileAsDT(string fileName);
-
-        /// <summary>
-        /// Read the records of the file and fill a DataTable with them
-        /// </summary>
-        /// <param name="fileName">The file name.</param>
-        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadFileAsDT(string fileName, int maxRecords);
-
-        /// <summary>
-        /// Read the records of a string and fill a DataTable with them.
-        /// </summary>
-        /// <param name="source">The source string with the records.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadStringAsDT(string source);
-
-        /// <summary>
-        /// Read the records of a string and fill a DataTable with them.
-        /// </summary>
-        /// <param name="source">The source string with the records.</param>
-        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadStringAsDT(string source, int maxRecords);
-
-        /// <summary>
-        /// Read the records of the stream and fill a DataTable with them
-        /// </summary>
-        /// <param name="reader">The stream with the source records.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadStreamAsDT(TextReader reader);
-
-        /// <summary>
-        /// Read the records of the stream and fill a DataTable with them
-        /// </summary>
-        /// <param name="reader">The stream with the source records.</param>
-        /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
-        /// <returns>The DataTable with the read records.</returns>
-        DataTable ReadStreamAsDT(TextReader reader, int maxRecords);
-
+     
         /// <summary>Called in read operations just before the record string is translated to a record.</summary>
         event BeforeReadHandler<T> BeforeReadRecord;
 

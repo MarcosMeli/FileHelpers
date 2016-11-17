@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
+
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -516,9 +516,9 @@ namespace FileHelpers
         /// <param name="file">The file name</param>
         /// <param name="lines">The number of lines to read.</param>
         /// <returns>The first n lines of the file.</returns>
-        public static string[] RawReadFirstLinesArray(string file, int lines)
+        internal static string[] RawReadFirstLinesArray(string file, int lines)
         {
-            return RawReadFirstLinesArray(file, lines, Encoding.Default);
+            return RawReadFirstLinesArray(file, lines, Encoding.UTF8);
         }
 
         /// <summary>
@@ -601,7 +601,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines)
         {
-            return ReadCsv(filename, delimiter, headerLines, Encoding.Default);
+            return ReadCsv(filename, delimiter, headerLines, Encoding.UTF8);
         }
 
         /// <summary>

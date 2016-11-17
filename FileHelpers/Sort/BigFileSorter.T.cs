@@ -19,7 +19,7 @@ namespace FileHelpers
         /// </summary>
         static BigFileSorter()
         {
-            DefaultEncoding = Encoding.Default;
+            DefaultEncoding = Encoding.UTF8;
         }
 
         /// <summary>

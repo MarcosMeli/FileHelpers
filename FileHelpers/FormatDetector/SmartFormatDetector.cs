@@ -53,7 +53,7 @@ namespace FileHelpers.Detection
             set { mMaxSampleLines = value; }
         }
 
-        private Encoding mEncoding = Encoding.Default;
+        private Encoding mEncoding = Encoding.UTF8;
 
         /// <summary>The encoding to Read and Write the streams.</summary>
         /// <remarks>Default is the system's current ANSI code page.</remarks>

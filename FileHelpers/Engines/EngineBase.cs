@@ -33,7 +33,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="recordType">Class to base engine on</param>
         internal EngineBase(Type recordType)
-            : this(recordType, Encoding.Default) {}
+            : this(recordType, Encoding.UTF8) {}
 
         /// <summary>
         /// Create and engine on type with specified encoding
@@ -174,7 +174,7 @@ namespace FileHelpers
         /// Default is the system's current ANSI code page.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        protected Encoding mEncoding = Encoding.Default;
+        protected Encoding mEncoding = Encoding.UTF8;
 
         /// <summary>
         /// The encoding to Read and Write the streams. 
