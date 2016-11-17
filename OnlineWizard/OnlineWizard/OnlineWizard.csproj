@@ -22,7 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>1.5</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,6 +64,9 @@
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -146,6 +149,7 @@
     <Content Include="Scripts\dropzone\dropzone.js" />
     <Content Include="Scripts\dropzone\dropzone.min.css" />
     <Content Include="Scripts\dropzone\dropzone.min.js" />
+    <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Wizard.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -167,6 +171,7 @@
     <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="Results\" />
+    <Folder Include="Scripts\typings\jquery" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -181,11 +186,12 @@
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\wizard.filehelpers.net - Web Deploy.pubxml" />
     <Content Include="Views\Home\CompareTools.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\Wizard.ts" />
     <TypeScriptCompile Include="Scripts\CompareTools.ts" />
     <TypeScriptCompile Include="Scripts\typings\dropzone\dropzone.d.ts" />
