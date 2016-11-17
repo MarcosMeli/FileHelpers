@@ -13,7 +13,7 @@ namespace FileHelpers
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     public abstract class FieldBase
-        : ICloneable
+        
     {
         #region "  Private & Internal Fields  "
 
@@ -715,7 +715,7 @@ namespace FileHelpers
             }
             catch (Exception ex) {
                 if (this.Converter == null ||
-                    this.Converter.GetType().Assembly == typeof (FieldBase).Assembly) {
+                    this.Converter.GetType().GetTypeInfo().Assembly == typeof (FieldBase).GetTypeInfo().Assembly) {
                     throw new ConvertException(extractedString,
                         FieldTypeInternal,
                         FieldInfo.Name,
@@ -766,7 +766,7 @@ namespace FileHelpers
         private object GetNullValue(LineInfo line)
         {
             if (NullValue == null) {
-                if (FieldTypeInternal.IsValueType) {
+                if (FieldTypeInternal.GetTypeInfo().IsValueType) {
                     if (IsNullableType)
                         return null;
 
@@ -921,7 +921,7 @@ namespace FileHelpers
         /// Copy the field object
         /// </summary>
         /// <returns>a complete copy of the Field object</returns>
-        object ICloneable.Clone()
+        FieldBase Clone()
         {
             var res = CreateClone();
 

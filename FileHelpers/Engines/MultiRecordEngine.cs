@@ -439,7 +439,7 @@ namespace FileHelpers
                 mFooterText = String.Empty;
 
                 WriteStream(writer, records);
-                writer.Close();
+              
             }
         }
 

@@ -21,9 +21,7 @@ namespace FileHelpers
         /// <returns>An object[] of the values in the fields.</returns>
         object[] RecordToValues(object record);
 
-        DataTable RecordsToDataTable(ICollection records);
-        DataTable RecordsToDataTable(ICollection records, int maxRecords);
-        DataTable CreateEmptyDataTable();
+        
 
         IRecordOperations Clone(RecordInfo ri);
     }
