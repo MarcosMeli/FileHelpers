@@ -85,13 +85,6 @@ namespace FileHelpers
         }
 
 
-        /// <summary>
-        /// Close the stream, cleanup
-        /// </summary>
-        public override void Close()
-        {
-            this.Dispose(true);
-        }
 
         private void CompressBuffer(int n)
         {
@@ -172,7 +165,7 @@ namespace FileHelpers
             try {
                 if ((this.Closable && disposing) &&
                     (this.mStream != null))
-                    this.mStream.Close();
+                    this.mStream.Dispose();
             }
             finally {
                 if (this.Closable &&

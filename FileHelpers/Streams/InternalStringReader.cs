@@ -39,13 +39,7 @@ namespace FileHelpers
         /// </summary>
         internal int Position { get; private set; }
 
-        /// <summary>
-        /// Close the stream
-        /// </summary>
-        public override void Close()
-        {
-            this.Dispose(true);
-        }
+       
 
         /// <summary>
         /// Close the stream and release resources

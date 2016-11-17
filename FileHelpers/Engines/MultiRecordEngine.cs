@@ -7,6 +7,7 @@ using System.Text;
 using FileHelpers.Events;
 using FileHelpers.MasterDetail;
 using FileHelpers.Options;
+using System.Collections.Generic;
 
 namespace FileHelpers
 {
@@ -42,7 +43,7 @@ namespace FileHelpers
         private readonly RecordOptions[] mMultiRecordOptions;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Hashtable mRecordInfoHash;
+        private readonly Dictionary<Type, RecordInfo> mRecordInfoHash;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordTypeSelector mRecordSelector;
@@ -77,14 +78,14 @@ namespace FileHelpers
         {
             mTypes = recordTypes;
             mMultiRecordInfo = new IRecordInfo[mTypes.Length];
-            mRecordInfoHash = new Hashtable(mTypes.Length);
+            mRecordInfoHash = new Dictionary<Type, RecordInfo>(mTypes.Length);
             mMultiRecordOptions = new RecordOptions[mTypes.Length];
 
             for (int i = 0; i < mTypes.Length; i++) {
                 if (mTypes[i] == null)
                     throw new BadUsageException("The type at index " + i + " is null.");
 
-                if (mRecordInfoHash.Contains(mTypes[i])) {
+                if (mRecordInfoHash.ContainsKey(mTypes[i])) {
                     throw new BadUsageException("The type '" + mTypes[i].Name +
                                                 " is already in the engine. You can't pass the same type twice to the constructor.");
                 }
@@ -261,10 +262,10 @@ namespace FileHelpers
         /// <include file='MultiRecordEngine.docs.xml' path='doc/ReadString/*'/>
         public object[] ReadString(string source)
         {
-            var reader = new InternalStringReader(source);
-            object[] res = ReadStream(reader);
-            reader.Close();
-            return res;
+            using (var reader = new InternalStringReader(source))
+            {
+                return ReadStream(reader);
+            }
         }
 
         #endregion
@@ -282,7 +283,7 @@ namespace FileHelpers
         {
             using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize)) {
                 WriteStream(fs, records, maxRecords);
-                fs.Close();
+              
             }
         }
 
@@ -409,11 +410,11 @@ namespace FileHelpers
         public string WriteString(IEnumerable records, int maxRecords)
         {
             var sb = new StringBuilder();
-            var writer = new StringWriter(sb);
-            WriteStream(writer, records, maxRecords);
-            string res = writer.ToString();
-            writer.Close();
-            return res;
+            using (var writer = new StringWriter(sb))
+            {
+                WriteStream(writer, records, maxRecords);
+                return writer.ToString();
+            }
         }
 
         #endregion
@@ -588,7 +589,7 @@ namespace FileHelpers
                             mAsyncWriter.WriteLine(mFooterText);
                     }
 
-                    mAsyncWriter.Close();
+                    mAsyncWriter.Dispose();
                     mAsyncWriter = null;
                 }
             }

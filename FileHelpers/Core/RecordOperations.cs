@@ -243,21 +243,7 @@ namespace FileHelpers
 
         #endregion
 
-        #region "  RecordsToDataTable  "
-
-        /// <summary>
-        /// Create a datatable based on a collection of records
-        /// </summary>
-        /// <param name="records">Collection of records to process</param>
-        /// <returns>datatable representing all records in collection</returns>
-        public DataTable RecordsToDataTable(ICollection records)
-        {
-            return RecordsToDataTable(records, -1);
-        }
-
-       
-
-        #endregion
+      
 
         #region "  Lightweight code generation (NET 2.0)  "
 
