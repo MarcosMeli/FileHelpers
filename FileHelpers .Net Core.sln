@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.25914.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FileHelpers .Net Core", "FileHelpers\FileHelpers .Net Core.xproj", "{5D6A79BE-4CB0-4DAE-AF08-44BB42E2E8B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5D6A79BE-4CB0-4DAE-AF08-44BB42E2E8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D6A79BE-4CB0-4DAE-AF08-44BB42E2E8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D6A79BE-4CB0-4DAE-AF08-44BB42E2E8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D6A79BE-4CB0-4DAE-AF08-44BB42E2E8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
