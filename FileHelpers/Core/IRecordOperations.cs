@@ -3,11 +3,12 @@ using System.Data;
 
 namespace FileHelpers
 {
-    internal interface IRecordOperations
+    public interface IRecordOperations
     {
         CreateObjectDelegate CreateRecordHandler { get; }
 
-        object StringToRecord(LineInfo line, object[] values);
+        object StringToRecord(ILineInfo line, object[] values);
+        bool StringToRecord(object record, ILineInfo line, object[] values);
         string RecordToString(object record);
         string RecordValuesToString(object[] recordValues);
 
@@ -25,6 +26,6 @@ namespace FileHelpers
         DataTable RecordsToDataTable(ICollection records, int maxRecords);
         DataTable CreateEmptyDataTable();
 
-        IRecordOperations Clone(RecordInfo ri);
+        IRecordOperations Clone(IRecordInfo ri);
     }
 }

@@ -31,7 +31,7 @@ namespace FileHelpers
     /// Create an object (function created based upon a type)
     /// </summary>
     /// <returns>New object</returns>
-    internal delegate object CreateObjectDelegate();
+    public delegate object CreateObjectDelegate();
 
     /// <summary>
     /// Creates a series of functions that directly access

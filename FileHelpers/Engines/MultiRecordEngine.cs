@@ -167,7 +167,7 @@ namespace FileHelpers
 
                 bool byPass = false;
 
-                var line = new LineInfo(currentLine) {
+                ILineInfo line = new LineInfo(currentLine) {
                     mReader = freader
                 };
 

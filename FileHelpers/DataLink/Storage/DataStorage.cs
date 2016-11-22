@@ -29,7 +29,7 @@ namespace FileHelpers.DataLink
         }
 
         private Type mRecordType;
-        internal IRecordInfo mRecordInfo;
+        protected internal IRecordInfo mRecordInfo;
 
         /// <summary>
         /// Returns the class that represent the records in the file.

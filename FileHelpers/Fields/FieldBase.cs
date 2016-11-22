@@ -168,7 +168,7 @@ namespace FileHelpers
         /// <summary>
         /// Name of the field without extra characters (eg property)
         /// </summary>
-        internal string FieldFriendlyName { get; set; }
+        public string FieldFriendlyName { get; set; }
 
         /// <summary>
         /// The field must be not be empty
@@ -538,39 +538,40 @@ namespace FileHelpers
         /// </summary>
         /// <param name="line">Line handler containing text</param>
         /// <returns></returns>
-        internal object ExtractFieldValue(LineInfo line)
+        internal object ExtractFieldValue(ILineInfo line)
         {
             //-> extract only what I need
+            var castedLine = (LineInfo)line;
 
             if (InNewLine) {
                 // Any trailing characters, terminate
-                if (line.EmptyFromPos() == false) {
-                    throw new BadUsageException(line,
-                        "Text '" + line.CurrentString +
+                if (castedLine.EmptyFromPos() == false) {
+                    throw new BadUsageException(castedLine,
+                        "Text '" + castedLine.CurrentString +
                         "' found before the new line of the field: " + FieldInfo.Name +
                         " (this is not allowed when you use [FieldInNewLine])");
                 }
 
-                line.ReLoad(line.mReader.ReadNextLine());
+                castedLine.ReLoadAsNextLine();
 
-                if (line.mLineStr == null) {
-                    throw new BadUsageException(line,
+                if (castedLine.mLineStr == null) {
+                    throw new BadUsageException(castedLine,
                         "End of stream found parsing the field " + FieldInfo.Name +
                         ". Please check the class record.");
                 }
             }
 
             if (IsArray == false) {
-                ExtractedInfo info = ExtractFieldString(line);
+                ExtractedInfo info = ExtractFieldString(castedLine);
                 if (info.mCustomExtractedString == null)
-                    line.mCurrentPos = info.ExtractedTo + 1;
+                    castedLine.mCurrentPos = info.ExtractedTo + 1;
 
-                line.mCurrentPos += CharsToDiscard; //total;
+                castedLine.mCurrentPos += CharsToDiscard; //total;
 
                 if (Discarded)
                     return GetDiscardedNullValue();
                 else
-                    return AssignFromString(info, line).Value;
+                    return AssignFromString(info, castedLine).Value;
             }
             else {
                 if (ArrayMinLength <= 0)
@@ -580,20 +581,20 @@ namespace FileHelpers
 
                 var res = new ArrayList(Math.Max(ArrayMinLength, 10));
 
-                while (line.mCurrentPos - CharsToDiscard < line.mLineStr.Length &&
+                while (castedLine.mCurrentPos - CharsToDiscard < castedLine.mLineStr.Length &&
                        i < ArrayMaxLength) {
-                    ExtractedInfo info = ExtractFieldString(line);
+                    ExtractedInfo info = ExtractFieldString(castedLine);
                     if (info.mCustomExtractedString == null)
-                        line.mCurrentPos = info.ExtractedTo + 1;
+                        castedLine.mCurrentPos = info.ExtractedTo + 1;
 
-                    line.mCurrentPos += CharsToDiscard;
+                    castedLine.mCurrentPos += CharsToDiscard;
 
                     try {
-                        var value = AssignFromString(info, line);
+                        var value = AssignFromString(info, castedLine);
 
                         if (value.NullValueUsed &&
                             i == 0 &&
-                            line.IsEOL())
+                            castedLine.IsEOL())
                             break;
 
                         res.Add(value.Value);
@@ -611,18 +612,18 @@ namespace FileHelpers
                     throw new InvalidOperationException(
                         string.Format(
                             "Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}",
-                            line.mReader.LineNumber.ToString(),
-                            line.mCurrentPos.ToString(),
+                            castedLine.mReader.LineNumber.ToString(),
+                            castedLine.mCurrentPos.ToString(),
                             FieldInfo.Name,
                             res.Count,
                             ArrayMinLength));
                 }
-                else if (IsLast && line.IsEOL() == false) {
+                else if (IsLast && castedLine.IsEOL() == false) {
                     throw new InvalidOperationException(
                         string.Format(
                             "Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}",
-                            line.mReader.LineNumber,
-                            line.mCurrentPos,
+                            castedLine.mReader.LineNumber,
+                            castedLine.mCurrentPos,
                             FieldInfo.Name,
                             ArrayMaxLength));
                 }
