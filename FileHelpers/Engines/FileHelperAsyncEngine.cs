@@ -490,9 +490,9 @@ namespace FileHelpers
         /// <param name="bufferSize">Size of the write buffer</param>
         public IDisposable BeginWriteFile(string fileName, int bufferSize)
         {
-            BeginWriteStream(new StreamWriter(fileName, false, mEncoding, bufferSize));
-
-            return this;
+            var f = new StreamWriter (fileName, false, mEncoding, bufferSize);
+            f.AutoFlush = true;
+            return BeginWriteStream (f);
         }
 
         #endregion
