@@ -445,7 +445,6 @@
     <Compile Include="Helpers\CompareObjects.cs" />
     <Compile Include="TempFileFactory.cs" />
     <Compile Include="Tests\Helpers\MessagesTests.cs" />
-    <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
     <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />
     <Compile Include="Tests\Errors\BadDelimited.cs" />
     <Compile Include="Tests\Mocking\FileHelperEngineTests.cs" />
