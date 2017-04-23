@@ -195,7 +195,7 @@ namespace FileHelpers
         /// Default is the system's newline setting (System.Environment.NewLine).
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        protected String mNewLineForWrite = Environment.NewLine;
+        private string mNewLineForWrite = Environment.NewLine;
 
         /// <summary>
         /// Newline string to be used when engine writes to file. 
@@ -205,7 +205,12 @@ namespace FileHelpers
         public string NewLineForWrite
         {
             get { return mNewLineForWrite; }
-            set { mNewLineForWrite = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("NewLine string must not be null or empty");
+                mNewLineForWrite = value;
+            }
         }
 
         #endregion
