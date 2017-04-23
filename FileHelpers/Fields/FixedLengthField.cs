@@ -17,7 +17,7 @@ namespace FileHelpers
         /// <summary>
         /// Field length of this field in the record
         /// </summary>
-        internal int FieldLength { get; private set; }
+        public int FieldLength { get; set; }
 
         /// <summary>
         /// Alignment of this record

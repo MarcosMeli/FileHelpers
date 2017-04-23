@@ -1,6 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -235,7 +236,7 @@ namespace FileHelpers
         /// <param name="fields">Complete list of fields in class</param>
         /// <param name="recordAttribute">Type of record, fixed or delimited</param>
         /// <returns>List of fields we are extracting</returns>
-        private static FieldBase[] CreateCoreFields(IList<FieldInfo> fields, TypedRecordAttribute recordAttribute)
+        private FieldBase[] CreateCoreFields(IList<FieldInfo> fields, TypedRecordAttribute recordAttribute)
         {
             var resFields = new List<FieldBase>();
 
@@ -248,6 +249,8 @@ namespace FileHelpers
                 FieldBase currentField = FieldBase.CreateField(fields[i], recordAttribute);
                 if (currentField == null)
                     continue;
+
+                currentField.PropertyChanged += FieldOnPropertyChanged;
 
                 if (currentField.FieldInfo.IsDefined(typeof (CompilerGeneratedAttribute), false))
                     automaticFields++;
@@ -268,11 +271,34 @@ namespace FileHelpers
                     .Text);
             }
 
-            SortFieldsByOrder(resFields);
+            resFields = SortFieldsByOrder(resFields).ToList();
 
             CheckForOptionalAndArrayProblems(resFields);
 
             return resFields.ToArray();
+        }
+
+        private void FieldOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            var field = sender as FieldBase;
+
+            if (field == null)
+                return;
+
+            if (propertyChangedEventArgs.PropertyName != "FieldOrder")
+                return;
+
+            if (field.FieldOrder == null)
+                return;
+
+            var firstInvalidField = Fields.FirstOrDefault(x => x.FieldOrder == null);
+            if (firstInvalidField != null)
+            {
+                throw new BadUsageException(
+                    Messages.Errors.PartialFieldOrder.FieldName(firstInvalidField.FieldName).Text);
+            }
+
+            Fields = SortFieldsByOrder(Fields).ToArray();
         }
 
         private static int SumOrder(List<FieldBase> fields)
@@ -336,10 +362,14 @@ namespace FileHelpers
         /// Sort fields by the order if supplied
         /// </summary>
         /// <param name="resFields">List of fields to use</param>
-        private static void SortFieldsByOrder(List<FieldBase> resFields)
+        private IEnumerable<FieldBase> SortFieldsByOrder(IEnumerable<FieldBase> resFields)
         {
-            if (resFields.FindAll(x => x.FieldOrder.HasValue).Count > 0)
-                resFields.Sort((x, y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
+            var fieldList = resFields as List<FieldBase> ?? resFields.ToList();
+
+            if (fieldList.Count(x => x.FieldOrder != null) > 0)
+                fieldList.Sort((x, y) => x.FieldOrder.Value.CompareTo(y.FieldOrder.Value));
+
+            return fieldList;
         }
 
         /// <summary>
@@ -481,7 +511,10 @@ namespace FileHelpers
             
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
+            {
                 res.Fields[i] = (FieldBase) ((ICloneable) Fields[i]).Clone();
+                res.Fields[i].PropertyChanged += res.FieldOnPropertyChanged;
+            }
 
             return res;
         }

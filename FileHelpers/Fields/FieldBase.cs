@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,14 +14,17 @@ namespace FileHelpers
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     public abstract class FieldBase
-        : ICloneable
+        : ICloneable, INotifyPropertyChanged
     {
+
         #region "  Private & Internal Fields  "
 
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
         // --------------------------------------------------------------
+
+        private int? mFieldOrder;
 
         /// <summary>
         /// type of object to be created,  eg DateTime
@@ -157,7 +161,15 @@ namespace FileHelpers
         /// <summary>
         /// Order of the field in the file layout
         /// </summary>
-        internal int? FieldOrder { get; set; }
+        public int? FieldOrder
+        {
+            get { return mFieldOrder; }
+            set
+            {
+                mFieldOrder = value;
+                OnPropertyChanged(nameof(FieldOrder));
+            }
+        }
 
         /// <summary>
         /// Can null be assigned to this value type, for example not int or
@@ -413,7 +425,7 @@ namespace FileHelpers
         {
             IsNullableType = false;
             TrimMode = TrimMode.None;
-            FieldOrder = null;
+            mFieldOrder = null;
             InNewLine = false;
             //NextIsOptional = false;
             IsOptional = false;
@@ -941,7 +953,7 @@ namespace FileHelpers
             res.IsOptional = IsOptional;
             //res.NextIsOptional = NextIsOptional;
             res.InNewLine = InNewLine;
-            res.FieldOrder = FieldOrder;
+            res.mFieldOrder = mFieldOrder;
             res.IsNullableType = IsNullableType;
             res.Discarded = Discarded;
             res.FieldFriendlyName = FieldFriendlyName;
@@ -957,5 +969,13 @@ namespace FileHelpers
         /// </summary>
         /// <returns>field clone of right type</returns>
         protected abstract FieldBase CreateClone();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
