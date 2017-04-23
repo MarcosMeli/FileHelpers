@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Attributes\FieldCaptionAttribute.cs" />
     <Compile Include="Attributes\FieldHiddenAttribute.cs" />
+    <Compile Include="Attributes\FieldKeyValueAttribute.cs" />
     <Compile Include="Attributes\FieldNotEmptyAttribute.cs" />
     <Compile Include="Attributes\FieldValueDiscardedAttribute.cs" />
     <Compile Include="Attributes\FieldIgnoredAttribute.cs" />

@@ -161,6 +161,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\DynamicOptions.cs" />
+    <Compile Include="Tests\Common\FieldKeyValue.cs" />
     <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Common\HeaderText.cs" />
     <Compile Include="Tests\Converters\DateFormatCulture.cs" />
@@ -614,6 +615,7 @@
     <Content Include="Data\Good\TestEmpty.txt" />
     <Content Include="Data\Good\Transform1.txt" />
     <Content Include="Data\Good\Transform2.txt" />
+    <Content Include="Data\Good\FieldKeyValue.txt" />
     <Content Include="Data\Good\Trim1.txt" />
     <Content Include="Data\Dynamic\VendorImport.xml" />
   </ItemGroup>
