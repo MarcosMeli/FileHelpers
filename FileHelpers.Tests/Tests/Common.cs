@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using NUnit.Framework;
 using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
 
 namespace FileHelpers.Tests
@@ -19,12 +20,12 @@ namespace FileHelpers.Tests
         /// <returns>Path to Data area</returns>
         public static string GetPath(params string[] pathElements)
         {
-            var result = Path.GetFullPath(Path.Combine("..", "Data"));
+            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "Data");
 
             foreach (var element in pathElements)
-                result = Path.Combine(result, element);
+                dataDirectory = Path.Combine(dataDirectory, element);
 
-            return result;
+            return dataDirectory;
         }
 
         /// <summary>
