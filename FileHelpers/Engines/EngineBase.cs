@@ -189,6 +189,32 @@ namespace FileHelpers
 
         #endregion
 
+        #region "  NewLineForWrite  "
+        /// <summary>
+        /// Newline string to be used when engine writes to file. 
+        /// Default is the system's newline setting (System.Environment.NewLine).
+        /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string mNewLineForWrite = Environment.NewLine;
+
+        /// <summary>
+        /// Newline string to be used when engine writes to file. 
+        /// Default is the system's newline setting (System.Environment.NewLine).
+        /// </summary>
+        /// <value>Default is the system's newline setting.</value>
+        public string NewLineForWrite
+        {
+            get { return mNewLineForWrite; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("NewLine string must not be null or empty");
+                mNewLineForWrite = value;
+            }
+        }
+
+        #endregion
+
         #region "  ErrorManager"
 
         /// <summary>This is a common class that manage the errors of the library.</summary>
