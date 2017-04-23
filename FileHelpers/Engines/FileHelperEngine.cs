@@ -440,10 +440,10 @@ namespace FileHelpers
 
             ResetFields();
 
-            writer.NewLine = mNewLineForWrite;
+            writer.NewLine = NewLineForWrite;
 
             if (!string.IsNullOrEmpty(mHeaderText)) {
-                if (mHeaderText.EndsWith(mNewLineForWrite))
+                if (mHeaderText.EndsWith(NewLineForWrite))
                     writer.Write(mHeaderText);
                 else
                     writer.WriteLine(mHeaderText);
@@ -526,7 +526,7 @@ namespace FileHelpers
             mTotalRecords = recIndex;
 
             if (!string.IsNullOrEmpty(mFooterText)) {
-                if (mFooterText.EndsWith(mNewLineForWrite))
+                if (mFooterText.EndsWith(NewLineForWrite))
                     writer.Write(mFooterText);
                 else
                     writer.WriteLine(mFooterText);
