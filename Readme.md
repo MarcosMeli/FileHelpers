@@ -14,11 +14,9 @@ www.filehelpers.net
 
 ### Build Status
 
-TeamCity: master: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersMaster.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersMaster) stable: [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=FileHelpersStable)  Coverage: [![TeamCity CodeBetter Coverage](https://img.shields.io/teamcity/coverage/FileHelpersStable.svg)](http://teamcity.codebetter.com/viewLog.html?buildId=lastSuccessful&buildTypeId=FileHelpersStable&tab=coverage_dotnet)
-
 Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)
 
-AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master)   [![Coverage Status](https://coveralls.io/repos/MarcosMeli/FileHelpers/badge.svg?branch=master&service=github)](https://coveralls.io/github/MarcosMeli/FileHelpers?branch=master)
+AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
 
 ### [Download Page](http://www.filehelpers.net/download/)
 
@@ -43,11 +41,8 @@ AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd
 
 ### Sponsors
 
- Our build server is kindly provided by [CodeBetter](http://codebetter.com/) at [FileHelpers Builds](http://teamcity.codebetter.com/project.html?tab=projectOverview&projectId=FileHelpers).
-
- We have also the awesome .Net tools from [JetBrains](http://www.jetbrains.com/).
+ We have the awesome .NET tools from [JetBrains](http://www.jetbrains.com/).
 
 [![Resharper](http://www.filehelpers.net/images/tools_resharper.gif)](http://www.jetbrains.com/resharper/)
-[![TeamCity](http://www.filehelpers.net//images/tools_teamcity.gif)](http://www.jetbrains.com/teamcity/)
 [![dotCover](http://www.filehelpers.net//images/tools_dotcover.gif)](http://www.jetbrains.com/dotcover/)
 [![dotTrace](http://www.filehelpers.net//images/tools_dottrace.gif)](http://www.jetbrains.com/dottrace/)
