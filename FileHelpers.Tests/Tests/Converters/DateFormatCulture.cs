@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using NFluent;
 using NUnit.Framework;
 
@@ -12,19 +9,18 @@ namespace FileHelpers.Tests.Converters
     {
 
         [DelimitedRecord(",")]
-        private class OnlyOneDateFormatEnglish1
+        private class OnlyOneDateFormatEnglish
         {
             [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "en")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
-        private class OnlyOneDateFormatEnglish2
+        private class OnlyOneDateFormatAmericanEnglish
         {
             [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "en-US")]
             public DateTime Fecha;
         }
-
 
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatEnglishBadCulture
@@ -34,20 +30,20 @@ namespace FileHelpers.Tests.Converters
         }
 
         [DelimitedRecord(",")]
-        private class OnlyOneDateFormatSpanish1
+        private class OnlyOneDateFormatSpanish
         {
             [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "es")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
-        private class OnlyOneDateFormatSpanish2
+        private class OnlyOneDateFormatArgentinianSpanish
         {
             [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "es-AR")]
             public DateTime Fecha;
         }
 
-        private void CheckDates<T>(string[] dates) where T : class
+        private static void CheckDates<T>(string[] dates) where T : class
         {
             var dateString = string.Join(Environment.NewLine, dates) + Environment.NewLine;
             var engine = new FileHelperEngine<T>();
@@ -64,16 +60,13 @@ namespace FileHelpers.Tests.Converters
             Check.That(writtenString.ToLower()).IsEqualTo(expected);
         }
 
-
-
-
         [Test]
         public void SpanishMonthFormatParsing1()
         {
             var dates = new[]
                 {"16/Julio/96", "10/Diciembre/96", "12/Julio/96", "15/Enero/96", "11/Julio/96", "16/Agosto/96"};
 
-            CheckDates<OnlyOneDateFormatSpanish1>(dates);
+            CheckDates<OnlyOneDateFormatSpanish>(dates);
         }
 
         [Test]
@@ -82,7 +75,7 @@ namespace FileHelpers.Tests.Converters
             var dates = new[]
                 {"16/Julio/96", "10/Diciembre/96", "12/Julio/96", "15/Enero/96", "11/Julio/96", "16/Agosto/96"};
 
-            CheckDates<OnlyOneDateFormatSpanish2>(dates);
+            CheckDates<OnlyOneDateFormatArgentinianSpanish>(dates);
         }
 
         [Test]
@@ -91,7 +84,7 @@ namespace FileHelpers.Tests.Converters
             var dates = new[]
                 {"16/July/96", "10/December/96", "12/July/96", "15/January/96", "11/July/96", "16/August/96"};
 
-            CheckDates<OnlyOneDateFormatEnglish1>(dates);
+            CheckDates<OnlyOneDateFormatEnglish>(dates);
         }
 
         [Test]
@@ -100,10 +93,8 @@ namespace FileHelpers.Tests.Converters
             var dates = new[]
                 {"16/July/96", "10/December/96", "12/July/96", "15/January/96", "11/July/96", "16/August/96"};
 
-            CheckDates<OnlyOneDateFormatEnglish2>(dates);
+            CheckDates<OnlyOneDateFormatAmericanEnglish>(dates);
         }
-        
-
 
         [Test]
         public void EnglishBadCulture()
@@ -113,7 +104,6 @@ namespace FileHelpers.Tests.Converters
 
             Check.ThatCode(() =>
                 CheckDates<OnlyOneDateFormatEnglishBadCulture>(dates)).Throws<ConvertException>();
-
         }
     }
 }
