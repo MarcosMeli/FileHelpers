@@ -218,31 +218,6 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Create a function to get the field name from the object
-        /// </summary>
-        /// <param name="fi">Field information</param>
-        /// <returns>Function to directly get field</returns>
-        public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
-        {
-            var dm = new DynamicMethod("FileHelpersDynamic_GetValue" + fi.Name,
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                typeof (object),
-                new[] {typeof (object)},
-                fi.DeclaringType,
-                true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, fi.DeclaringType);
-            generator.Emit(OpCodes.Ldfld, fi);
-            generator.Emit(OpCodes.Ret);
-
-            return (GetFieldValueCallback) dm.CreateDelegate(typeof (GetFieldValueCallback));
-        }
-
-        /// <summary>
         /// Get all the FieldInfo details from the class and optionally it's parents
         /// </summary>
         /// <param name="currentType">Type we are interrogating</param>
