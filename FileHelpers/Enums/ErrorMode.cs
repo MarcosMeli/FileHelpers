@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace FileHelpers
 {
     /// <summary>Indicates the behavior when the engine classes like <see cref="FileHelperEngine"/> class found an error.</summary>

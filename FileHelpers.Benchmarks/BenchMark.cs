@@ -1,8 +1,5 @@
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
-using FileHelpers;
 
 namespace FileHelpers.Benchmarks
 {

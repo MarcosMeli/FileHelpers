@@ -2,7 +2,6 @@
 
 using System.IO;
 using System.Text;
-using ExamplesFx.ColorCode.Formatting;
 using ExamplesFx.ColorCode.Common;
 using ExamplesFx.ColorCode.Compilation;
 using ExamplesFx.ColorCode.Parsing;

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web;
-using ExamplesFx.ColorCode.Styling;
 using ExamplesFx.ColorCode.Common;
 using ExamplesFx.ColorCode.Parsing;
 

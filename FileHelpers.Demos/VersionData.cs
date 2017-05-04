@@ -1,6 +1,5 @@
 using System;
 using FileHelpers;
-using System.Text;
 using System.Net;
 
 namespace FileHelpersSamples

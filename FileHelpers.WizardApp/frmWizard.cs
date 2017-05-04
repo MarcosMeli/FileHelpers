@@ -1,16 +1,13 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
-using System.Data;
 using System.IO;
 using ExamplesFx.ColorCode;
 using FileHelpers.Dynamic;
-using System.Xml.Serialization;
 using System.Diagnostics;
 using FileHelpers.Detection;
 

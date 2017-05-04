@@ -1,8 +1,6 @@
-﻿using System; 
-
-namespace FileHelpers
+﻿namespace FileHelpers
 {
-internal class Messages
+    internal class Messages
 {
 internal class Errors
 {

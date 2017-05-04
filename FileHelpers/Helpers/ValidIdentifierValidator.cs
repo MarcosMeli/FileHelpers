@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace FileHelpers
+﻿namespace FileHelpers
 {
     /// <summary>
     /// Validate that the identifier is valid for the language

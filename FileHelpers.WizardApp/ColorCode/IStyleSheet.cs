@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using ExamplesFx.ColorCode.Styling;
 
 namespace ExamplesFx.ColorCode
 {

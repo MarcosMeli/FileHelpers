@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 namespace FileHelpers
 {
     /// <summary>Indicates the visibility of a member.</summary>

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 using NFluent;

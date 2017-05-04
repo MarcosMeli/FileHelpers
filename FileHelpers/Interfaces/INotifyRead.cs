@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace FileHelpers.Events
+﻿namespace FileHelpers.Events
 {
     /// <summary>
     /// Interface used to provide In record notification of read operations.

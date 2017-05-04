@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace FileHelpers.Events
+﻿namespace FileHelpers.Events
 {
 
     /// <summary>Arguments for the <see cref="BeforeReadHandler{T}"/></summary>

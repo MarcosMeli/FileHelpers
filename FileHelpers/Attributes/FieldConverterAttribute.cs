@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">Complete attributes list</a> for more information and examples of each one.</remarks>
-    
+
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldConverterAttribute : Attribute
     {
