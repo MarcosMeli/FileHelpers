@@ -205,7 +205,7 @@ namespace FileHelpers
                 MethodAttributes.Static | MethodAttributes.Public,
                 CallingConventions.Standard,
                 typeof (object),
-				new Type[] {},
+                new Type[] {},
                 recordType,
                 true);
 
@@ -235,7 +235,6 @@ namespace FileHelpers
                 yield break;
 
             FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
-
 
             foreach (var fi in currentType.GetFields(BindingFlags.Public |
                                                      BindingFlags.NonPublic |

@@ -192,7 +192,6 @@ namespace FileHelpers
             return engine.TransformFile(sourceFile, destFile);
         }
 
-
         /// <summary>
         /// Read the contents of a file and sort the records.
         /// </summary>
@@ -331,7 +330,7 @@ namespace FileHelpers
         /// <summary>
         /// Compare one field to another
         /// </summary>
-        internal class FieldComparer : IComparer
+        private class FieldComparer : IComparer
         {
             private readonly FieldInfo mFieldInfo;
             private readonly int mAscending;
@@ -356,15 +355,12 @@ namespace FileHelpers
             /// <returns>0 if equal, -1 if x &lt; y, 1 otherwise</returns>
             public int Compare(object x, object y)
             {
-				var xv = mFieldInfo.GetValue(x) as IComparable;
-				return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
+                var xv = mFieldInfo.GetValue(x) as IComparable;
+                return xv.CompareTo(mFieldInfo.GetValue(y)) * mAscending;
             }
-
-            //private GetFieldValueCallback mGetFieldValueHandler;
         }
 
         #endregion
-
 
         /// <summary>
         /// Converts any collection of records to a DataTable using reflection.
@@ -540,7 +536,6 @@ namespace FileHelpers
             return res;
         }
 
-
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file using a ','
         /// as delimiter.
@@ -552,7 +547,6 @@ namespace FileHelpers
             CsvEngine.DataTableToCsv(dt, filename);
         }
 
-
         /// <summary>Simply dumps the DataTable contents to a delimited file. Only allows to set the delimiter.</summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
@@ -561,7 +555,6 @@ namespace FileHelpers
         {
             CsvEngine.DataTableToCsv(dt, filename, new CsvOptions("Tempo", delimiter, dt.Columns.Count));
         }
-
 
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file. Only
@@ -599,7 +592,6 @@ namespace FileHelpers
         {
             return CsvEngine.CsvToDataTable(filename, classname, delimiter);
         }
-
 
         /// <summary>Reads a Csv File and return their contents as DataTable</summary>
         /// <param name="classname">The name of the record class</param>
@@ -810,8 +802,6 @@ namespace FileHelpers
 
         #endregion
 
-
-
         /// <summary>
         /// A fast way to sort a big file. For more options you need to
         /// instantiate the BigFileSorter class instead of using static methods
@@ -833,6 +823,5 @@ namespace FileHelpers
             var sorter = new BigFileSorter<T>(encoding);
             sorter.Sort(source, destination);
         }
-
     }
 }
