@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
+using System.Collections.Generic;
 
 //using Container=FileHelpers.Container;
 
@@ -78,10 +79,28 @@ namespace FileHelpers
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal int mTotalRecords;
 
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal Dictionary<int, int> realLineNumbers = new Dictionary<int, int>();
+
         /// <include file='FileHelperEngine.docs.xml' path='doc/LineNum/*'/>
         public int LineNumber
         {
             get { return mLineNumber; }
+        }
+
+
+        /// <summary>
+        /// Allow te retrieve the real line number of a record in the file
+        /// </summary>
+        /// <param name="recordPosition">The position of the record in the List/Datatable</param>
+        /// <returns>the line number of the record or zero</returns>
+        public int GetRealLineNumber(int recordPosition)
+        {
+            var realLine = 0;
+
+            realLineNumbers.TryGetValue(recordPosition, out realLine);
+
+            return realLine;
         }
 
         #endregion

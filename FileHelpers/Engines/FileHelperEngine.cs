@@ -226,6 +226,7 @@ namespace FileHelpers
                 };
 
                 var values = new object[RecordInfo.FieldCount];
+                var totalObject = 0;
 
                 while (currentLine != null &&
                        currentRecord < maxRecords) {
@@ -267,6 +268,7 @@ namespace FileHelpers
 
                                 if (skip == false) {
 
+                                    realLineNumbers[++totalObject] = LineNumber;
                                     if (dt == null)
                                         result.Add(record);
                                     else
