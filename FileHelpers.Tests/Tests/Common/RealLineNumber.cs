@@ -22,7 +22,6 @@ namespace FileHelpers.Tests.CommonTests
             var res = TestCommon.ReadTest(engine, "Good", "IgnoreEmpty1.txt");
 
             Assert.AreEqual(4, res.Length);
-
             Assert.AreEqual(2, recordToLineNumber[0]);
             Assert.AreEqual(4, recordToLineNumber[1]);
             Assert.AreEqual(6, recordToLineNumber[2]);
@@ -44,12 +43,6 @@ namespace FileHelpers.Tests.CommonTests
             var res = engine.ReadFile(FileTest.Good.DiscardFirst2.Path);
 
             Assert.AreEqual(4, res.Length);
-            Assert.AreEqual(0, engine.GetRealLineNumber(0));
-            Assert.AreEqual(3, engine.GetRealLineNumber(1));
-            Assert.AreEqual(4, engine.GetRealLineNumber(2));
-            Assert.AreEqual(5, engine.GetRealLineNumber(3));
-            Assert.AreEqual(6, engine.GetRealLineNumber(4));
-
             Assert.AreEqual(3, recordToLineNumber[0]);
             Assert.AreEqual(4, recordToLineNumber[1]);
             Assert.AreEqual(5, recordToLineNumber[2]);
@@ -71,13 +64,6 @@ namespace FileHelpers.Tests.CommonTests
             var res = TestCommon.ReadTest(engine, "Good", "DiscardLast1.txt");
 
             Assert.AreEqual(4, res.Length);
-            Assert.AreEqual(0, engine.GetRealLineNumber(0));
-            Assert.AreEqual(1, engine.GetRealLineNumber(1));
-            Assert.AreEqual(2, engine.GetRealLineNumber(2));
-            Assert.AreEqual(3, engine.GetRealLineNumber(3));
-            Assert.AreEqual(4, engine.GetRealLineNumber(4));
-            Assert.AreEqual(0, engine.GetRealLineNumber(5));
-
             Assert.AreEqual(1, recordToLineNumber[0]);
             Assert.AreEqual(2, recordToLineNumber[1]);
             Assert.AreEqual(3, recordToLineNumber[2]);
