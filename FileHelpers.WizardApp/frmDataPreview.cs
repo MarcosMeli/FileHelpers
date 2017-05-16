@@ -149,13 +149,6 @@ width: 100% !important;*/
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             dlgOpenTest.FileName = "";
-
-            //try {
-            //    if (RegConfig.HasValue("WizardOpenTest"))
-            //        dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
-            //}
-            //catch {}
-
             dlgOpenTest.Title = "Open FileHelpers Class";
             dlgOpenTest.Filter = "Dynamic Record File (*.fhw;*.xml)|*.fhw;*.xml|All Files|*.*";
 
@@ -174,16 +167,8 @@ width: 100% !important;*/
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             dlgOpenTest.FileName = "";
-
-            //try {
-            //    if (RegConfig.HasValue("WizardOpenTest"))
-            //        dlgOpenTest.InitialDirectory = RegConfig.GetStringValue("WizardOpenTest", "");
-            //}
-            //catch {}
-
             dlgOpenTest.Title = "Open Class Source Code";
             dlgOpenTest.Filter = "Class source code files (*.cs;*.vb;*.txt)|*.txt;*.cs;*.vb|All Files|*.*";
-
 
             if (dlgOpenTest.ShowDialog() != DialogResult.OK)
                 return;

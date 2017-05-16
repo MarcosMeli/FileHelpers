@@ -2191,12 +2191,6 @@ width: 100% !important;*/
 
         private void cmdSaveToFile_Click(object sender, EventArgs e)
         {
-            //try {
-            //    if (RegConfig.HasValue("WizardTemplatePath"))
-            //        dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardTemplatePath", "");
-            //}
-            //catch {}
-
             dlgSaveToFile.FilterIndex = cboLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = "TemplateOur";
 
@@ -2213,12 +2207,6 @@ width: 100% !important;*/
 
         private void cmdSaveClass_Click(object sender, EventArgs e)
         {
-            //try {
-            //    if (RegConfig.HasValue("WizardClassDir"))
-            //        dlgSaveToFile.InitialDirectory = RegConfig.GetStringValue("WizardClassDir", "");
-            //}
-            //catch {}
-
             //  1 for C#,  2 for vb.
             dlgSaveToFile.FilterIndex = cboClassLanguage.SelectedIndex + 1;
             dlgSaveToFile.FileName = txtClassName.Text;
