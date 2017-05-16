@@ -21,7 +21,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine(Type recordType)
-            : this(recordType, Encoding.Default) {}
+            : this(recordType, Encoding.GetEncoding(0)) {}
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="recordType">The record mapping class.</param>
@@ -54,7 +54,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine()
-            : this(Encoding.Default) {}
+            : this(Encoding.GetEncoding(0)) {}
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="encoding">The Encoding used by the engine.</param>

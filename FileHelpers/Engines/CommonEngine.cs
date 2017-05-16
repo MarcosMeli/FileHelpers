@@ -679,7 +679,7 @@ namespace FileHelpers
         /// <returns>The first n lines of the file.</returns>
         public static string[] RawReadFirstLinesArray(string file, int lines)
         {
-            return RawReadFirstLinesArray(file, lines, Encoding.Default);
+            return RawReadFirstLinesArray(file, lines, Encoding.GetEncoding(0));
         }
 
         /// <summary>
@@ -762,7 +762,7 @@ namespace FileHelpers
         /// <returns>An enumeration of <see cref="RecordIndexer"/></returns>
         public static IEnumerable<RecordIndexer> ReadCsv(string filename, char delimiter, int headerLines)
         {
-            return ReadCsv(filename, delimiter, headerLines, Encoding.Default);
+            return ReadCsv(filename, delimiter, headerLines, Encoding.GetEncoding(0));
         }
 
         /// <summary>
