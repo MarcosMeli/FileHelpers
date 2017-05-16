@@ -59,7 +59,7 @@ namespace FileHelpers.Options
         private string mFieldsPrefix = "Field_";
         private string mDateFormat = "dd/MM/yyyy";
         private string mDecimalSeparator = ".";
-        private Encoding mEncoding = Encoding.Default;
+        private Encoding mEncoding = Encoding.GetEncoding(0);
         private bool mIgnoreEmptyLines = false;
 
         /// <summary>A sample file from where to read the field names and number.</summary>
