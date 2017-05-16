@@ -172,7 +172,7 @@ namespace FileHelpers
 
         private void CreateConverter(Type convType, object[] args)
         {
-            if (typeof (ConverterBase).IsAssignableFrom(convType)) {
+            if (typeof(ConverterBase).IsAssignableFrom(convType)) {
                 ConstructorInfo constructor;
                 constructor = convType.GetConstructor(
                     BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
@@ -193,14 +193,17 @@ namespace FileHelpers
                 }
 
                 try {
-                    Converter = (ConverterBase) constructor.Invoke(args);
+                    Converter = (ConverterBase)constructor.Invoke(args);
                 }
                 catch (TargetInvocationException ex) {
                     throw ex.InnerException;
                 }
             }
             else if (convType.IsEnum)
-                Converter = new EnumConverter(convType);
+                if (args.Length == 0)
+                    Converter = new EnumConverter(convType);
+                else
+                    Converter = new EnumConverter(convType, args[0] as string);
 
             else
                 throw new BadUsageException("The custom converter must inherit from ConverterBase");
