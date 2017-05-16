@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using FileHelpers;
 
 namespace ExamplesFx
 {
     //-> Name: Handle Missing Values With FieldNullValue
     //-> Description: How to read a file with some missing values and use the <b>FieldNullValue</b> attribute
-    
 
     public class ReadFileFieldNullValue
         : ExampleBase

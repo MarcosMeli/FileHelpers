@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using FileHelpers;
+﻿using FileHelpers;
 
 namespace ExamplesFx
 {
@@ -36,9 +33,9 @@ namespace ExamplesFx
             public string CompanyName;
             public string ContactName;
 
-            // Notice last field is our enumerator
+            // Notice last field is our enumeration
             // argument "s" means converting to string representation of enum value
-            // argument "n" means converting as integer represenattion of enum value
+            // argument "n" means converting as integer representation of enum value
             // omitting FieldConverterAttribute means that enum members will be written
             //   as their string representation
             // Note: this attribute makes sense only when writing records - when reading, 
