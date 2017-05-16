@@ -61,6 +61,9 @@ namespace ExamplesFx
                 OrderDate = new DateTime(2009, 05, 02)
             });
 
+            //engine now supports custom EOL for writing
+            engine.NewLineForWrite = "\n";
+
             engine.WriteFile("Output.Txt", orders);
 
             //-> /File
