@@ -70,6 +70,46 @@ namespace FileHelpers.Tests.Converters
             Assert.AreEqual(Enum2.Three, res[2].EnumValue);
             Assert.AreEqual(Enum2.Three, res[3].EnumValue);
         }
+
+        [Test]
+        public void EnumString()
+        {
+            var engine = new FileHelperEngine<EnumType4>();
+
+            using (var temp = new TempFileFactory())
+            {
+                EnumType4[] data = new EnumType4[] { new EnumType4() { EnumValue = Enum2.One } };
+
+                //write data to file using approprppriate conversion style
+                engine.WriteFile(temp.FileName, data);
+
+                //read data back
+                data = engine.ReadFile(temp.FileName);
+
+                Assert.IsAssignableFrom(typeof(EnumType4), data[0]);
+                Assert.AreEqual(data[0].EnumValue, Enum2.One);
+
+            }
+        }
+
+        [Test]
+        public void EnumNumeric()
+        {
+            var engine = new FileHelperEngine<EnumType5>();
+            using (var temp = new TempFileFactory())
+            {
+                EnumType5[] data = new EnumType5[] { new EnumType5() { EnumValue = Enum2.One } };
+
+                //write data to file using approprppriate conversion style
+                engine.WriteFile(temp.FileName, data);
+
+                //read data back
+                data = engine.ReadFile(temp.FileName);
+
+                Assert.IsAssignableFrom(typeof(EnumType5), data[0]);
+                Assert.AreEqual(data[0].EnumValue, Enum2.One);
+            }
+        }
     }
 
 
@@ -105,4 +145,20 @@ namespace FileHelpers.Tests.Converters
         [FieldConverter(typeof (Enum2))]
         public Enum2 EnumValue;
     }
+
+    [DelimitedRecord(",")]
+    public class EnumType4
+    {
+        [FieldConverter(typeof(Enum2),"s")]
+        public Enum2 EnumValue;
+    }
+
+    [DelimitedRecord(",")]
+    public class EnumType5
+    {
+        [FieldConverter(typeof(Enum2), "n")]
+        public Enum2 EnumValue;
+    }
+
+
 }

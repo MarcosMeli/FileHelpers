@@ -11,7 +11,7 @@ namespace FileHelpers
         /// <summary>
         /// whether to output enum as string or as integer
         /// </summary>
-        private enum EnumFormat
+        internal enum EnumFormat
         {
             /// <summary>
             /// as string
@@ -24,32 +24,17 @@ namespace FileHelpers
             Number,
         }
 
-        public EnumConverter(Type sourceEnum)
-
-            : this(sourceEnum, "s")
-        { }
-           
-
-        public EnumConverter(Type sourceEnum, string format)
+        public EnumConverter(Type sourceEnum, EnumFormat format = EnumFormat.String)
         {
             if (sourceEnum.IsEnum == false)
                 throw new BadUsageException("The Input sourceType must be an Enum but is of type " + sourceEnum.Name);
-
             mEnumType = sourceEnum;
-            switch (format.Trim())
-            {
-                case "s":
-                case "S":
-                    mFormat = EnumFormat.String;
-                    break;
-                case "n":
-                case "N":
-                    mFormat = EnumFormat.Number;
-                    break;
-                default:
-                    throw new BadUsageException("The format parameter must be either \"s\" (converts enum to string) or \"n\" (converts enum to number).");
+            mFormat = format;
+        }
 
-            }
+
+        public EnumConverter(Type sourceEnum, string format) : this(sourceEnum, GetEnumFormat(format))
+        {
         }
 
         public override object StringToField(string from)
@@ -69,14 +54,30 @@ namespace FileHelpers
             if (from == null)
                 return string.Empty;
 
-            switch(mFormat)
+            switch (mFormat)
             {
                 case EnumFormat.String:
                     return from.ToString();
                 default:
-                    return Convert.ToInt32(from).ToString();
+                    {
+                        int data = (int)from;
+                        return data.ToString();
+                    }
             }
+        }
 
+        private static EnumFormat GetEnumFormat(string format)
+        {
+            switch (format.Trim().ToLower())
+            {
+                case "n":
+                    return EnumFormat.Number;
+                case "s":
+                    return EnumFormat.String;
+                default:
+                    throw new BadUsageException("The format parameter must be either \"s\" (converts enum to string) or \"n\" (converts enum to number).");
+
+            }
         }
     }
 }
