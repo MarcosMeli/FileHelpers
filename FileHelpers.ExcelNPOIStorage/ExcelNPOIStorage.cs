@@ -105,15 +105,7 @@ namespace FileHelpers.ExcelNPOIStorage
             
             using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                var extension = Path.GetExtension(filename);
-                if (extension.ToLowerInvariant() == ".xlsx" || extension.ToLowerInvariant() == ".xlsm")
-                {
-                    mWorkbook = new XSSFWorkbook(file);
-                }
-                else
-                {
-                    mWorkbook = new HSSFWorkbook(file);
-                }
+                mWorkbook = WorkbookFactory.Create(file);
                 
                 if (String.IsNullOrEmpty(SheetName))
                 {
