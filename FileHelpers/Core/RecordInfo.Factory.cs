@@ -21,16 +21,22 @@ namespace FileHelpers
             {
                 lock (type) {
                     RecordInfo res;
-                    lock (mRecordInfoCache) {
+                    lock (mRecordInfoCache)
+                    {
                         if (mRecordInfoCache.TryGetValue(type, out res))
-                            return (IRecordInfo) res.Clone();
+                        {
+                            return (IRecordInfo)res.Clone();
+                        }
                     }
 
                     // class check cache / lock / check cache  and create if null algorythm
                     res = new RecordInfo(type);
-                    lock (mRecordInfoCache) {
+                    lock (mRecordInfoCache)
+                    {
                         if (!mRecordInfoCache.ContainsKey(type))
+                        {
                             mRecordInfoCache.Add(type, res);
+                        }
                     }
 
                     return (IRecordInfo) res.Clone();

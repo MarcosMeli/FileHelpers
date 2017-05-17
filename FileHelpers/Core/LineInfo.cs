@@ -14,7 +14,7 @@ namespace FileHelpers
     /// to read data sequentially.
     /// </remarks>
     [DebuggerDisplay("{DebuggerDisplayStr()}")]
-    internal sealed class LineInfo
+    internal sealed class LineInfo : ILineInfo
     {
         //public static readonly LineInfo Empty = new LineInfo(string.Empty);
 
@@ -79,23 +79,30 @@ namespace FileHelpers
         #endregion
 
         /// <summary>
-        /// Debugger display string
-        /// </summary>
-        /// <returns></returns>
-        private string DebuggerDisplayStr()
-        {
-            if (IsEOL())
-                return "<EOL>";
-            else
-                return CurrentString;
-        }
-
-        /// <summary>
         /// Extract a single field from the system
         /// </summary>
         public string CurrentString
         {
-            get { return mLineStr.Substring(mCurrentPos, mLineStr.Length - mCurrentPos); }
+            get { return LineString.Substring(mCurrentPos, mLineStr.Length - mCurrentPos); }
+        }
+        
+        /// <summary>
+        /// Extract the whole system
+        /// </summary>
+        public string LineString
+        {
+            get { return mLineStr; }
+        }
+
+        public int Number
+        {
+            get { return mReader.LineNumber; }
+        }
+
+        public int CurrentPos
+        {
+            get { return mCurrentPos; }
+            set { mCurrentPos = value; }
         }
 
         /// <summary>
@@ -126,9 +133,16 @@ namespace FileHelpers
             int pos = mCurrentPos;
             while (pos < length &&
                    Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
+            {
                 pos++;
+            }
 
             return pos >= length;
+        }
+
+        public void ReLoadAsNextLine()
+        {
+            ReLoad(mReader.ReadNextLine());
         }
 
         /// <summary>
@@ -160,15 +174,20 @@ namespace FileHelpers
 
             while (mCurrentPos < length &&
                    Array.BinarySearch(toTrim, mLineStr[mCurrentPos]) >= 0)
+            {
                 mCurrentPos++;
+            }
         }
 
         public bool StartsWith(string str)
         {
             // Returns true if the string begin with str
             if (mCurrentPos >= mLineStr.Length)
+            {
                 return false;
-            else {
+            }
+            else
+            {
                 return
                     mCompare.Compare(mLineStr,
                         mCurrentPos,
@@ -192,7 +211,9 @@ namespace FileHelpers
 
             while (pos < length &&
                    Array.BinarySearch(WhitespaceChars, mLineStr[pos]) >= 0)
+            {
                 pos++;
+            }
 
 
             return mCompare.Compare(mLineStr, pos, str, 0, CompareOptions.OrdinalIgnoreCase) == 0;
@@ -246,7 +267,7 @@ namespace FileHelpers
         /// </summary>
         /// <remarks>If the input is multi line, this will read next record and remove the original data</remarks>
         /// <param name="line">Line to use</param>
-        internal void ReLoad(string line)
+        public void ReLoad(string line)
         {
             //mLine = line == null ? mEmptyChars : line.ToCharArray();
             mLineStr = line;

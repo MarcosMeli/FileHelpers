@@ -21,7 +21,7 @@ namespace FileHelpers
         /// <summary>Creates an instance of an BadUsageException.</summary>
         /// <param name="message">The exception Message</param>
         /// <param name="line">Line to display in message</param>
-        internal BadUsageException(LineInfo line, string message)
-            : this(line.mReader.LineNumber, line.mCurrentPos, message) {}
+        internal BadUsageException(ILineInfo line, string message)
+            : this(line.Number, line.CurrentPos, message) {}
     }
 }

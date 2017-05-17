@@ -21,6 +21,7 @@ _ReSharper.FileHelpers
 /FileHelpers/FileHelpers.xml
 FileHelpers.sln.sdsettings
 FileHelpers.ExcelStorage/FileHelpers.ExcelStorage.xml
+FileHelpers.ExcelNPOIStorage/Test
 FileHelpers.userprefs
 /.vs
 /FileHelpers.Analyzer/.vs

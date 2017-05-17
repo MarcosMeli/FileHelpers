@@ -95,7 +95,7 @@ namespace FileHelpers
         /// Operations are the functions that perform creation or extraction of data from objects
         /// these are created dynamically from the record conditions
         /// </summary>
-        public RecordOperations Operations { get; private set; }
+        public IRecordOperations Operations { get; private set; }
 
         private Dictionary<string, int> mMapFieldIndex;
 

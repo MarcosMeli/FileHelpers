@@ -7,7 +7,7 @@ namespace FileHelpers
     /// <summary>
     /// Record information,  whether it is delimited or other details
     /// </summary>
-    internal interface IRecordInfo
+    public interface IRecordInfo
         : ICloneable
     {
         /// <summary>
@@ -107,7 +107,7 @@ namespace FileHelpers
         /// <summary>
         /// Cache of routines to handle various operations on the record
         /// </summary>
-        RecordOperations Operations { get; }
+        IRecordOperations Operations { get; }
 
         void RemoveField(string fieldname);
     }

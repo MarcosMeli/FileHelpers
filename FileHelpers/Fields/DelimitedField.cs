@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -46,9 +47,13 @@ namespace FileHelpers
             get
             {
                 if (IsLast && IsArray == false)
+                {
                     return 0;
+                }
                 else
+                {
                     return Separator.Length;
+                }
             }
         }
 
@@ -80,14 +85,21 @@ namespace FileHelpers
         internal override ExtractedInfo ExtractFieldString(LineInfo line)
         {
             if (IsOptional && line.IsEOL())
+            {
                 return ExtractedInfo.Empty;
+            }
 
             if (QuoteChar == '\0')
+            {
                 return BasicExtractString(line);
-            else {
+            }
+            else
+            {
                 if (TrimMode == TrimMode.Both ||
                     TrimMode == TrimMode.Left)
+                {
                     line.TrimStart(TrimChars);
+                }
 
                 string quotedStr = QuoteChar.ToString();
                 if (line.StartsWith(quotedStr)) {
@@ -97,7 +109,9 @@ namespace FileHelpers
 
                     if (TrimMode == TrimMode.Both ||
                         TrimMode == TrimMode.Right)
+                    {
                         line.TrimStart(TrimChars);
+                    }
 
                     if (!IsLast &&
                         !line.StartsWith(Separator) &&
@@ -111,8 +125,11 @@ namespace FileHelpers
                 else {
                     if (QuoteMode == QuoteMode.OptionalForBoth ||
                         QuoteMode == QuoteMode.OptionalForRead)
+                    {
                         return BasicExtractString(line);
-                    else if (line.StartsWithTrim(quotedStr)) {
+                    }
+                    else if (line.StartsWithTrim(quotedStr))
+                    {
                         throw new BadUsageException(
                             string.Format(
                                 "The field '{0}' has spaces before the QuotedChar at line {1}. Use the TrimAttribute to by pass this error. Field String: {2}",
@@ -138,7 +155,9 @@ namespace FileHelpers
                 var sepPos = line.IndexOf(Separator);
 
                 if (sepPos == -1)
+                {
                     return new ExtractedInfo(line);
+                }
 
                 // Now check for one extra separator
                 var msg =
@@ -153,11 +172,14 @@ namespace FileHelpers
             else {
                 int sepPos = line.IndexOf(Separator);
 
-                if (sepPos == -1) {
+                if (sepPos == -1)
+                {
                     if (IsLast && IsArray)
+                    {
                         return new ExtractedInfo(line);
+                    }
 
-                    if ( NextIsOptional == false) {
+                    if (NextIsOptional == false) {
                         string msg;
 
                         if (IsFirst && line.EmptyFromPos()) {
@@ -178,7 +200,9 @@ namespace FileHelpers
                         throw new FileHelpersException(line.mReader.LineNumber, line.mCurrentPos, msg);
                     }
                     else
+                    {
                         sepPos = line.mLineStr.Length;
+                    }
                 }
 
                 return new ExtractedInfo(line, sepPos);
@@ -215,12 +239,18 @@ namespace FileHelpers
                  QuoteMode == QuoteMode.OptionalForRead ||
                  ((QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)
                   && mCompare.IndexOf(field, Separator, CompareOptions.Ordinal) >= 0) || hasNewLine))
+            {
                 StringHelper.CreateQuotedString(sb, field, QuoteChar);
+            }
             else
+            {
                 sb.Append(field);
+            }
 
             if (isLast == false)
+            {
                 sb.Append(Separator);
+            }
         }
 
         /// <summary>
