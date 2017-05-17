@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using FileHelpers;
 
 namespace ExamplesFx
@@ -60,6 +58,9 @@ namespace ExamplesFx
                 Freight = 12.22M,
                 OrderDate = new DateTime(2009, 05, 02)
             });
+
+            //engine now supports custom EOL for writing
+            engine.NewLineForWrite = "\n";
 
             engine.WriteFile("Output.Txt", orders);
 

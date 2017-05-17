@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-namespace FileHelpers
+﻿namespace FileHelpers
 {
 
 #if DOTNET_4

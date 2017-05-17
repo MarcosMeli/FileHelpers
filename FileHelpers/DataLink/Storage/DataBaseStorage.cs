@@ -136,6 +136,21 @@ namespace FileHelpers.DataLink
 
         #endregion
 
+        #region Commands
+
+        private int mCommandTimeout = 30;
+
+        /// <summary>
+        /// Get or set the SQL CommandTimeout used to get and insert the records.
+        /// </summary>
+        public int CommandTimeout
+        {
+            get { return mCommandTimeout; }
+            set { mCommandTimeout = value; }
+        }
+
+        #endregion
+
         #region "  SelectRecords  "
 
         /// <summary>
@@ -155,6 +170,7 @@ namespace FileHelpers.DataLink
                 IDbCommand command = mConn.CreateCommand();
                 command.Connection = mConn;
                 command.CommandText = GetSelectSql();
+                command.CommandTimeout = mCommandTimeout;
 
                 IDataReader reader = command.ExecuteReader();
 
@@ -277,6 +293,7 @@ namespace FileHelpers.DataLink
             IDbCommand command = mConn.CreateCommand();
             command.Connection = mConn;
             command.CommandText = sql;
+            command.CommandTimeout = mCommandTimeout;
 
             return command.ExecuteNonQuery();
         }
@@ -294,6 +311,7 @@ namespace FileHelpers.DataLink
                 IDbCommand command = mConn.CreateCommand();
                 command.Connection = mConn;
                 command.CommandText = sql;
+                command.CommandTimeout = mCommandTimeout;
 
                 res = command.ExecuteNonQuery();
             }

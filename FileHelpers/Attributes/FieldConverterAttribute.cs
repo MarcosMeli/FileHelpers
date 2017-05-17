@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace FileHelpers
 {
     /// <summary>Indicates the <see cref="ConverterKind"/> used for read/write operations.</summary>
     /// <remarks>See the <a href="http://www.filehelpers.net/mustread">Complete attributes list</a> for more information and examples of each one.</remarks>
-    
+
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public sealed class FieldConverterAttribute : Attribute
     {
@@ -174,7 +172,7 @@ namespace FileHelpers
 
         private void CreateConverter(Type convType, object[] args)
         {
-            if (typeof (ConverterBase).IsAssignableFrom(convType)) {
+            if (typeof(ConverterBase).IsAssignableFrom(convType)) {
                 ConstructorInfo constructor;
                 constructor = convType.GetConstructor(
                     BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic,
@@ -195,14 +193,17 @@ namespace FileHelpers
                 }
 
                 try {
-                    Converter = (ConverterBase) constructor.Invoke(args);
+                    Converter = (ConverterBase)constructor.Invoke(args);
                 }
                 catch (TargetInvocationException ex) {
                     throw ex.InnerException;
                 }
             }
             else if (convType.IsEnum)
-                Converter = new EnumConverter(convType);
+                if (args.Length == 0)
+                    Converter = new EnumConverter(convType);
+                else
+                    Converter = new EnumConverter(convType, args[0] as string);
 
             else
                 throw new BadUsageException("The custom converter must inherit from ConverterBase");

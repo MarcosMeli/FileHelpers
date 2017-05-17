@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -206,7 +205,7 @@ namespace FileHelpers
                 MethodAttributes.Static | MethodAttributes.Public,
                 CallingConventions.Standard,
                 typeof (object),
-				new Type[] {},
+                new Type[] {},
                 recordType,
                 true);
 
@@ -216,31 +215,6 @@ namespace FileHelpers
             generator.Emit(OpCodes.Ret);
 
             return (CreateObjectDelegate) dm.CreateDelegate(typeof (CreateObjectDelegate));
-        }
-
-        /// <summary>
-        /// Create a function to get the field name from the object
-        /// </summary>
-        /// <param name="fi">Field information</param>
-        /// <returns>Function to directly get field</returns>
-        public static GetFieldValueCallback CreateGetFieldMethod(FieldInfo fi)
-        {
-            var dm = new DynamicMethod("FileHelpersDynamic_GetValue" + fi.Name,
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                typeof (object),
-                new[] {typeof (object)},
-                fi.DeclaringType,
-                true);
-
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, fi.DeclaringType);
-            generator.Emit(OpCodes.Ldfld, fi);
-            generator.Emit(OpCodes.Ret);
-
-            return (GetFieldValueCallback) dm.CreateDelegate(typeof (GetFieldValueCallback));
         }
 
         /// <summary>
@@ -261,7 +235,6 @@ namespace FileHelpers
                 yield break;
 
             FieldInfoCacheManipulator.ResetFieldInfoCache(currentType);
-
 
             foreach (var fi in currentType.GetFields(BindingFlags.Public |
                                                      BindingFlags.NonPublic |

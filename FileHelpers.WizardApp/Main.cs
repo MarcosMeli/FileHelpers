@@ -1,5 +1,4 @@
 using System;
-using FileHelpers;
 using System.Windows.Forms;
 
 namespace FileHelpers.WizardApp

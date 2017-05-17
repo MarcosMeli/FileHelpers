@@ -1,8 +1,4 @@
-﻿using FileHelpers;
-using System.Diagnostics;
-using System;
-
-namespace FileHelpers.Tests
+﻿namespace FileHelpers.Tests
 {
     public partial class ClassesFileTest
     {

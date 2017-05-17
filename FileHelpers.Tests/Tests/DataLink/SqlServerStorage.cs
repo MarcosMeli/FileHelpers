@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using FileHelpers.DataLink;
@@ -148,21 +146,6 @@ namespace FileHelpers.Tests.DataLink
             var storage = new SqlServerStorage(typeof (OrdersVerticalBar), "NEON-64", "Northwind");
 
             storage.SelectSql = "SELECT TOP 100 * FROM Orders";
-
-            //try
-            //{
-            //    storage.ExtractRecords();
-            //}
-            //catch(SqlException ex)
-            //{
-            //    if (ex.Number == 208)
-            //        Assert.Ignore("You dont have this tables in your SqlServer");
-
-            //    if (ex.Number == 6)
-            //        Assert.Ignore("SqlServer not found, skipping this test.");
-
-            //    Assert.Ignore(ex.ToString());
-            //}
         }
 
         [Test]

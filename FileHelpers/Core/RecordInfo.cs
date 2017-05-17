@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -9,7 +8,6 @@ using FileHelpers.Events;
 namespace FileHelpers
 {
     /// <summary>An internal class used to store information about the Record Type.</summary>
-    /// <remarks>Is public to provide extensibility of DataStorage from outside the library.</remarks>
     internal sealed partial class RecordInfo
         : IRecordInfo
     {
@@ -46,10 +44,7 @@ namespace FileHelpers
         /// <summary>
         /// Number of fields we are processing
         /// </summary>
-        public int FieldCount
-        {
-            get { return Fields.Length; }
-        }
+        public int FieldCount => Fields.Length;
 
         /// <summary>
         /// List of fields and the extraction details
@@ -107,10 +102,7 @@ namespace FileHelpers
         /// <summary>
         /// Is this record layout delimited
         /// </summary>
-        public bool IsDelimited
-        {
-            get { return Fields[0] is DelimitedField; }
-        }
+        public bool IsDelimited => Fields[0] is DelimitedField;
 
         #endregion
 
@@ -140,7 +132,6 @@ namespace FileHelpers
         /// </summary>
         private void InitRecordFields()
         {
-            //Debug.Assert(false, "TODO: Add RecordFilter to the engine.");
             var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
 
             if (recordAttribute == null) {
@@ -148,7 +139,6 @@ namespace FileHelpers
                     .ClassName(RecordType.Name)
                     .Text);
             }
-
 
             if (ReflectionHelper.GetDefaultConstructor(RecordType) == null) {
                 throw new BadUsageException(Messages.Errors.ClassWithOutDefaultConstructor
@@ -171,7 +161,6 @@ namespace FileHelpers
                     IgnoreEmptySpaces = a.IgnoreSpaces;
                 });
 
-
 #pragma warning disable CS0618 // Type or member is obsolete
             Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -181,7 +170,6 @@ namespace FileHelpers
                     CommentMarker = a.CommentMarker;
                     CommentAnyPlace = a.AnyPlace;
                 });
-
 
             Attributes.WorkWithFirst<ConditionalRecordAttribute>(
                 RecordType,
@@ -205,7 +193,6 @@ namespace FileHelpers
 
             // Create fields
             // Search for cached fields
-
             var fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
 
             Fields = CreateCoreFields(fields, recordAttribute);
@@ -301,8 +288,6 @@ namespace FileHelpers
                     continue;
 
                 FieldBase prevField = resFields[i - 1];
-
-                //prevField.NextIsOptional = currentField.IsOptional;
 
                 // Check for optional problems.  Previous is optional but current is not
                 if (prevField.IsOptional
@@ -409,7 +394,6 @@ namespace FileHelpers
                     if (Fields[i].FieldInfo.Name != Fields[i].FieldFriendlyName)
                         mMapFieldIndex.Add(Fields[i].FieldFriendlyName, i);
                 }
-                
             }
 
             int res;
@@ -486,39 +470,13 @@ namespace FileHelpers
             return res;
         }
 
-        //internal static bool CheckGenericInterface(Type type, Type interfaceType, params Type[] genericsArgs)
-        //{
-        //    foreach (var inteImp in type.GetInterfaces()) {
-        //        if (inteImp.IsGenericType &&
-        //            inteImp.GetGenericTypeDefinition() == interfaceType) {
-        //            var args = inteImp.GetGenericArguments();
-
-        //            if (args.Length == genericsArgs.Length) {
-        //                bool fail = false;
-        //                for (int i = 0; i < args.Length; i++) {
-        //                    if (args[i] != genericsArgs[i]) {
-        //                        fail = true;
-        //                        break;
-        //                    }
-        //                }
-        //                if (!fail)
-        //                    return true;
-        //            }
-        //            throw new BadUsageException("The class: " + type.Name + " must implement the interface " +
-        //                                        interfaceType.MakeGenericType(genericsArgs) + " and not " + inteImp);
-        //        }
-        //    }
-        //    return false;
-        //}
-
-
         /// <summary>
         /// Check whether the type implements the INotifyRead or INotifyWrite interfaces
         /// </summary>
         /// <param name="type">Type to check interface</param>
         /// <param name="interfaceType">Interface generic type we are checking for eg INotifyRead&lt;&gt;</param>
         /// <returns>Whether we found interface</returns>
-        internal static bool CheckInterface(Type type, Type interfaceType)
+        private static bool CheckInterface(Type type, Type interfaceType)
         {
             return type.GetInterface(interfaceType.FullName) != null;
         }

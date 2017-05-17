@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using MasterDetails = FileHelpers.MasterDetail.MasterDetails<object, object>;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests
 {
@@ -11,7 +10,6 @@ namespace FileHelpers.Tests
     /// </summary>
     public static class TestCommon
     {
-        //private static string mAssemblyLocation = "";
         /// <summary>
         /// Create a path to a directory or file given a list of directories
         /// to get there.  Goes from project directory
@@ -21,12 +19,12 @@ namespace FileHelpers.Tests
         /// <returns>Path to Data area</returns>
         public static string GetPath(params string[] pathElements)
         {
-            var result = Path.GetFullPath(Path.Combine("..", "Data"));
+            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "Data");
 
             foreach (var element in pathElements)
-                result = Path.Combine(result, element);
+                dataDirectory = Path.Combine(dataDirectory, element);
 
-            return result;
+            return dataDirectory;
         }
 
         /// <summary>
@@ -37,18 +35,6 @@ namespace FileHelpers.Tests
         public static string GetTempFile(string fileName)
         {
             return Path.Combine(Path.GetTempPath(), fileName);
-        }
-
-        /// <summary>
-        /// Use an engine to read an array of objects
-        /// </summary>
-        /// <param name="engine">Engine to read file</param>
-        /// <param name="pathElements">List of directories and a filename in Data area</param>
-        /// <returns>objects from file</returns>
-        [Obsolete("Use ReadTest<T> instead")]
-        public static object[] ReadTest(FileHelperEngine engine, params string[] pathElements)
-        {
-            return engine.ReadFile(GetPath(pathElements));
         }
 
         /// <summary>

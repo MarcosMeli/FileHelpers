@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using FileHelpers.Detection;
+﻿using FileHelpers.Detection;
 using NUnit.Framework;
 
 

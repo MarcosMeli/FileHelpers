@@ -21,7 +21,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine(Type recordType)
-            : this(recordType, Encoding.Default) {}
+            : this(recordType, Encoding.GetEncoding(0)) {}
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="recordType">The record mapping class.</param>
@@ -54,7 +54,7 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine()
-            : this(Encoding.Default) {}
+            : this(Encoding.GetEncoding(0)) {}
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="encoding">The Encoding used by the engine.</param>
@@ -440,8 +440,10 @@ namespace FileHelpers
 
             ResetFields();
 
+            writer.NewLine = NewLineForWrite;
+
             if (!string.IsNullOrEmpty(mHeaderText)) {
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
+                if (mHeaderText.EndsWith(NewLineForWrite))
                     writer.Write(mHeaderText);
                 else
                     writer.WriteLine(mHeaderText);
@@ -524,7 +526,7 @@ namespace FileHelpers
             mTotalRecords = recIndex;
 
             if (!string.IsNullOrEmpty(mFooterText)) {
-                if (mFooterText.EndsWith(StringHelper.NewLine))
+                if (mFooterText.EndsWith(NewLineForWrite))
                     writer.Write(mFooterText);
                 else
                     writer.WriteLine(mFooterText);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -19,7 +18,7 @@ namespace FileHelpers
         /// </summary>
         static BigFileSorter()
         {
-            DefaultEncoding = Encoding.Default;
+            DefaultEncoding = Encoding.GetEncoding(0);
         }
 
         /// <summary>

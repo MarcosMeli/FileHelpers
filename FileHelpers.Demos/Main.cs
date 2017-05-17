@@ -1,6 +1,3 @@
-using System;
-using FileHelpers;
-
 namespace FileHelpersSamples
 {
     public class MainClass

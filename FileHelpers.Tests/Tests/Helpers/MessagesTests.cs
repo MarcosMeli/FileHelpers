@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using FileHelpers.Dynamic;
+﻿using FileHelpers.Dynamic;
 using NUnit.Framework;
 using NFluent;
 

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -8,8 +6,6 @@ namespace FileHelpers.Tests
     [TestFixture]
     public class AsyncEnumerator
     {
-        private FileHelperAsyncEngine<SampleType> engine;
-
         [DelimitedRecord(",")]
         public class Record
         {

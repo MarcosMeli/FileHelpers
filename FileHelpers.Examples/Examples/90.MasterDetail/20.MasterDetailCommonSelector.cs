@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using FileHelpers;
 using FileHelpers.MasterDetail;
 
 namespace ExamplesFx
 {
-   
+
     public class SecondMasterDetailSample
         : ExampleBase
     {

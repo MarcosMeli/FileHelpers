@@ -1,7 +1,4 @@
 using System;
-using FileHelpers;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
 
 namespace FileHelpers.WizardApp
@@ -48,7 +45,7 @@ namespace FileHelpers.WizardApp
             string dataString;
             using (WebClient webClient = new WebClient()) {
                 byte[] data = webClient.DownloadData("http://www.filehelpers.net/version.txt");
-                dataString = System.Text.Encoding.Default.GetString(data);
+                dataString = System.Text.Encoding.GetEncoding(0).GetString(data);
             }
 
             VersionData[] versions = null;

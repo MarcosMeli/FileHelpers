@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -32,10 +31,10 @@ namespace FileHelpers
        // private static object[] mEmptyArray = new object[] {};
 		
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Encoding mSourceEncoding = Encoding.Default;
+        private Encoding mSourceEncoding = Encoding.GetEncoding(0);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Encoding mDestinationEncoding = Encoding.Default;
+        private Encoding mDestinationEncoding = Encoding.GetEncoding(0);
 
         private ErrorMode mErrorMode;
 

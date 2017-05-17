@@ -138,9 +138,6 @@
     <Reference Include="NFluent">
       <HintPath>..\packages\NFluent.1.3.1.0\lib\net40\NFluent.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
@@ -166,6 +163,7 @@
     <Compile Include="Tests\Common\DynamicOptions.cs" />
     <Compile Include="Tests\Common\FieldNotEmpty.cs" />
     <Compile Include="Tests\Common\HeaderText.cs" />
+    <Compile Include="Tests\Common\RealLineNumber.cs" />
     <Compile Include="Tests\Converters\DateFormatCulture.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
@@ -448,7 +446,6 @@
     <Compile Include="Helpers\CompareObjects.cs" />
     <Compile Include="TempFileFactory.cs" />
     <Compile Include="Tests\Helpers\MessagesTests.cs" />
-    <Compile Include="Tests\Helpers\ReflectionHelperTests.cs" />
     <Compile Include="Tests\Helpers\ForwardReaderTests.cs" />
     <Compile Include="Tests\Errors\BadDelimited.cs" />
     <Compile Include="Tests\Mocking\FileHelperEngineTests.cs" />

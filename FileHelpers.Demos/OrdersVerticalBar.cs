@@ -1,4 +1,3 @@
-using System;
 using FileHelpers;
 
 namespace FileHelpersSamples

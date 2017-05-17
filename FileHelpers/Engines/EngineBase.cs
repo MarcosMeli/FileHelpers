@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -33,7 +31,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="recordType">Class to base engine on</param>
         internal EngineBase(Type recordType)
-            : this(recordType, Encoding.Default) {}
+            : this(recordType, Encoding.GetEncoding(0)) {}
 
         /// <summary>
         /// Create and engine on type with specified encoding
@@ -174,7 +172,7 @@ namespace FileHelpers
         /// Default is the system's current ANSI code page.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        protected Encoding mEncoding = Encoding.Default;
+        protected Encoding mEncoding = Encoding.GetEncoding(0);
 
         /// <summary>
         /// The encoding to Read and Write the streams. 
@@ -185,6 +183,32 @@ namespace FileHelpers
         {
             get { return mEncoding; }
             set { mEncoding = value; }
+        }
+
+        #endregion
+
+        #region "  NewLineForWrite  "
+        /// <summary>
+        /// Newline string to be used when engine writes to file. 
+        /// Default is the system's newline setting (System.Environment.NewLine).
+        /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string mNewLineForWrite = Environment.NewLine;
+
+        /// <summary>
+        /// Newline string to be used when engine writes to file. 
+        /// Default is the system's newline setting (System.Environment.NewLine).
+        /// </summary>
+        /// <value>Default is the system's newline setting.</value>
+        public string NewLineForWrite
+        {
+            get { return mNewLineForWrite; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("NewLine string must not be null or empty");
+                mNewLineForWrite = value;
+            }
         }
 
         #endregion

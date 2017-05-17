@@ -1,6 +1,5 @@
 using System;
 using FileHelpers;
-using System.Text;
 using System.Net;
 
 namespace FileHelpersSamples
@@ -85,7 +84,7 @@ namespace FileHelpersSamples
             string dataString;
             using (WebClient webClient = new WebClient()) {
                 byte[] data = webClient.DownloadData("http://filehelpers.sourceforge.net/version.txt");
-                dataString = System.Text.Encoding.Default.GetString(data);
+                dataString = System.Text.Encoding.GetEncoding(0).GetString(data);
             }
 
             VersionData[] versions = null;

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using FileHelpers.Dynamic;
@@ -12,9 +10,6 @@ namespace FileHelpers.Tests.Dynamic
 	[Category("Dynamic")]
 	public class ClassBuilderTests
     {
-        private FileHelperEngine mEngine;
-        private FileHelperAsyncEngine mAsyncEngine;
-
         private const string Class =
             @"	[FixedLengthRecord(FixedMode.AllowVariableLength)]
 			public class SampleType
@@ -61,13 +56,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromString(Class);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -87,13 +82,13 @@ namespace FileHelpers.Tests.Dynamic
             Type t = ClassBuilder.ClassFromString(Class);
             Environment.CurrentDirectory = oldDir;
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -109,13 +104,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromString(ClassVbNet, NetLanguage.VbNet);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -131,13 +126,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromString(Class, "SampleType");
 
-            mAsyncEngine = new FileHelperAsyncEngine(t);
+            var asyncEngine = new FileHelperAsyncEngine(t);
 
-            object[] res = TestCommon.ReadAllAsync(mAsyncEngine, "Good", "Test1.txt");
+            object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
             Assert.AreEqual(4, res.Length);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, asyncEngine.TotalRecords);
+            Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
         }
 
         [Test]
@@ -145,13 +140,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromString(ClassVbNet, "SampleType", NetLanguage.VbNet);
 
-            mAsyncEngine = new FileHelperAsyncEngine(t);
+            var asyncEngine = new FileHelperAsyncEngine(t);
 
-            object[] res = TestCommon.ReadAllAsync(mAsyncEngine, "Good", "Test1.txt");
+            object[] res = TestCommon.ReadAllAsync(asyncEngine, "Good", "Test1.txt");
 
             Assert.AreEqual(4, res.Length);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, asyncEngine.TotalRecords);
+            Assert.AreEqual(0, asyncEngine.ErrorManager.ErrorCount);
         }
 
         [Test]
@@ -163,13 +158,13 @@ namespace FileHelpers.Tests.Dynamic
             Type t = ClassBuilder.ClassFromBinaryFile(tempFile);
             File.Delete(tempFile);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -186,13 +181,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             var t = ClassBuilder.ClassFromBinaryFile(FileTest.Classes.SampleBinaryClass.Path);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -208,13 +203,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassCS.Path);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
@@ -230,13 +225,13 @@ namespace FileHelpers.Tests.Dynamic
         {
             Type t = ClassBuilder.ClassFromSourceFile(FileTest.Classes.SampleClassVB.Path, NetLanguage.VbNet);
 
-            mEngine = new FileHelperEngine(t);
+            var engine = new FileHelperEngine(t);
 
-            DataTable dt = mEngine.ReadFileAsDT(FileTest.Good.Test1.Path);
+            DataTable dt = engine.ReadFileAsDT(FileTest.Good.Test1.Path);
 
             Assert.AreEqual(4, dt.Rows.Count);
-            Assert.AreEqual(4, mEngine.TotalRecords);
-            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual(new DateTime(1314, 12, 11), dt.Rows[0][0]);
             Assert.AreEqual("901", dt.Rows[0][1]);
