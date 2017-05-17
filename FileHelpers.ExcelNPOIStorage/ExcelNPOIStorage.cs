@@ -156,14 +156,7 @@ namespace FileHelpers.ExcelNPOIStorage
         {
             var extension = Path.GetExtension(filename);
             
-            if (extension.ToLowerInvariant() == ".xlsx")
-            {
-                mWorkbook = new XSSFWorkbook();
-            }
-            else if (extension.ToLowerInvariant() == ".xls")
-            {
-                mWorkbook = new HSSFWorkbook();
-            }
+            mWorkbook = WorkbookFactory.Create(filename);
             mSheet = mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }

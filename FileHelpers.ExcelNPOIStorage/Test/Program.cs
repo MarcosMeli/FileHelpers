@@ -35,11 +35,12 @@ namespace OurTest
             cb.LastField.FieldQuoted = true;
             cb.LastField.QuoteChar = '"';
 
-            cb.AddField("Age", typeof(int));           
+            cb.AddField("Age", typeof(int));
 
             var providerWithDynamicRecord = new ExcelNPOIStorage(cb.CreateRecordClass())
-            {                
-                FileName =Directory.GetCurrentDirectory()+@"\testDynamicRecords.xlsx"
+            {
+                TemplateFile = BuildFileName( @"\test.xlsx"),
+                FileName = BuildFileName( @"\testDynamicRecords.xlsx")
             };
 
             providerWithDynamicRecord.StartRow = 1;
@@ -59,12 +60,13 @@ namespace OurTest
 
             var columnsHeaders = ((System.Reflection.TypeInfo)(dynamicRecord.GetType())).DeclaredFields.Select(x => x.Name).ToList();
             providerWithDynamicRecord.ColumnsHeaders = columnsHeaders;
-            providerWithDynamicRecord.InsertRecords(valuesList.ToArray());            
+            providerWithDynamicRecord.InsertRecords(valuesList.ToArray());
 
             //General export of excel with date time columns
-            var provider = new ExcelNPOIStorage(typeof (RaRecord))
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = Directory.GetCurrentDirectory() + @"\test.xlsx"
+                TemplateFile = BuildFileName( @"\testDynamicRecords.xlsx"),
+                FileName = BuildFileName( @"\test.xlsx")
             };
 
             provider.StartRow = 0;
@@ -93,34 +95,20 @@ namespace OurTest
                 Project = "too many",
                 Startdate = DateTime.Now,
                 ListOfIds = string.Join(",", values.Select(n => n.ToString(CultureInfo.InvariantCulture)).ToArray())
-            });            
-            
+            });
+
             provider.HeaderRows = 4;
-                       
+
             provider.InsertRecords(records.ToArray());
 
             var res = (RaRecord[])provider.ExtractRecords();
 
         }
 
-//        static void Main(string[] args)
-//        {
-//            var provider = new ExcelStorage(typeof(RaRecord));
-//
-//            provider.StartRow = 2;
-//            //provider.StartColumn = 2;
-//
-//            provider.FileName = "test.new.xlsx";
-//            provider.TemplateFile = "test.xlsx";
-//            provider.SheetName = "TEST";
-//            var records = new RaRecord[] {
-//                new RaRecord{Level = 1, Name = "Bavo", Project = "Eandis"}, 
-//                new RaRecord{Name = "Michiel", Project = "Eandis", Startdate = DateTime.Now}, 
-//                new RaRecord{Name = "", Startdate = DateTime.Now.AddDays(10)}, 
-//            };
-//
-//            provider.InsertRecords(records);
-//        }
+        private static string BuildFileName(string fileName)
+        {
+            return Directory.GetCurrentDirectory() + fileName;
+        }
     }
     
     [DelimitedRecord("|")]
