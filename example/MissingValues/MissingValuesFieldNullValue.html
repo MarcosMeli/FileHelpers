@@ -35,8 +35,7 @@ breadcrumbtext2: Missing Values
   <h6 style='font-size: 120%;'>How to read a file with some missing values and use the <b>FieldNullValue</b> attribute</h6>
   <div class='indent'>
 
-<p>If your files contain a field that can be empty</p>
-
+<p>If your files contain a field that can be empty:</p>
 
 <div class='highlight-title example-input'> Input.txt </div><div class='example-input-high'>
 {% highlight csharp %}
@@ -47,7 +46,7 @@ breadcrumbtext2: Missing Values
 {%  endhighlight %}
 </div>
 
-
+<p>Create a Record Mapping class:</p>
 
 <div class='highlight-title example-code'> RecordClass.cs </div><div class='example-code-high'>
 {% highlight csharp %}
@@ -66,12 +65,10 @@ public class Orders
     public decimal Freight;
 }
 
-
 {%  endhighlight %}
 </div>
 
-
-
+<p>Using the FileEngineHelper, iterate over the records:</p>
 <div class='highlight-title example-code'> Example.cs </div><div class='example-code-high'>
 {% highlight csharp %}
 
@@ -89,8 +86,6 @@ foreach (var record in records) {
 
 {%  endhighlight %}
 </div>
-
-
 
 <div class='highlight-title example-console'> Console </div>
 <div class='example-console-high'>
@@ -111,7 +106,5 @@ VICTE
 </pre>
 </div>
 </div>
-
-
    </div> </div>
 </div>
