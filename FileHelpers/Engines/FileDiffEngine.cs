@@ -21,7 +21,6 @@ namespace FileHelpers
         public FileDiffEngine()
             : base(typeof (T)) {}
 
-
         /// <summary>Returns the records in newFile that not are in the sourceFile</summary>
         /// <param name="sourceFile">The file with the old records.</param>
         /// <param name="newFile">The file with the new records.</param>
@@ -41,7 +40,6 @@ namespace FileHelpers
             return news.ToArray();
         }
 
-
         /// <summary>Returns the records in newFile that not are in the sourceFile</summary>
         /// <param name="sourceFile">The file with the old records.</param>
         /// <param name="newFile">The file with the new records.</param>
@@ -51,10 +49,10 @@ namespace FileHelpers
             FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
             T[] olds = engine.ReadFile(sourceFile);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
 
             T[] currents = engine.ReadFile(newFile);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
 
             var news = new List<T>();
 
@@ -66,15 +64,14 @@ namespace FileHelpers
         private FileHelperEngine<T> CreateEngineAndClearErrors()
         {
             var engine = new FileHelperEngine<T> {
-                Encoding = this.Encoding
+                Encoding = Encoding
             };
 
             ErrorManager.ClearErrors();
-            engine.ErrorManager.ErrorMode = this.ErrorManager.ErrorMode;
+            engine.ErrorManager.ErrorMode = ErrorManager.ErrorMode;
 
             return engine;
         }
-
 
         /// <summary>
         /// Returns the duplicated records in both files.
@@ -87,9 +84,9 @@ namespace FileHelpers
             FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
             T[] olds = engine.ReadFile(file1);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
             T[] currents = engine.ReadFile(file2);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
 
             var news = new List<T>();
 
@@ -128,7 +125,6 @@ namespace FileHelpers
                     }
                 }
 
-
                 if (isNew == false) {
                     for (int j = 0; j < Math.Min(i, col2.Length); j++) {
                         if (current.CompareTo(col2[j]) == 0) {
@@ -156,9 +152,9 @@ namespace FileHelpers
             FileHelperEngine<T> engine = CreateEngineAndClearErrors();
 
             T[] olds = engine.ReadFile(file1);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
             T[] currents = engine.ReadFile(file2);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
 
             var news = new List<T>();
 
@@ -184,7 +180,7 @@ namespace FileHelpers
             T[] res = OnlyNewRecords(sourceFile, newFile);
 
             engine.WriteFile(destFile, res);
-            this.ErrorManager.AddErrors(engine.ErrorManager);
+            ErrorManager.AddErrors(engine.ErrorManager);
             return res;
         }
     }
