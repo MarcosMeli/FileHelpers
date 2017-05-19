@@ -347,9 +347,6 @@
     </Compile>
     <Compile Include="Interfaces\INotifyRead.cs" />
     <Compile Include="Interfaces\ITransformable.cs" />
-    <Compile Include="Interfaces\IComparableRecord.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Interfaces\INotifyWrite.cs">
       <SubType>Code</SubType>
     </Compile>

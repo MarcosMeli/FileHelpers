@@ -6,7 +6,7 @@ namespace FileHelpers
 {
     /// <summary>
     /// Engine used to create diff files based on the
-    /// <see cref="IComparableRecord{T}"/> interface.
+    /// <see cref="IComparable{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The record type.</typeparam>
     [DebuggerDisplay(
