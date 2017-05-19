@@ -296,7 +296,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
-    <Compile Include="ErrorHandling\DynamicCompilationException.cs">
+    <Compile Include="Dynamic\DynamicCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\BeforeReadEventArgs.cs" />
