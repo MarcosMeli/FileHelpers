@@ -132,14 +132,6 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// delete leading whitespace from record
-        /// </summary>
-        public void TrimStart()
-        {
-            TrimStartSorted(WhitespaceChars);
-        }
-
-        /// <summary>
         /// Delete any of these characters from beginning of the record
         /// </summary>
         /// <param name="toTrim"></param>
