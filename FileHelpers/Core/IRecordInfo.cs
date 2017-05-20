@@ -8,7 +8,6 @@ namespace FileHelpers
     /// Record information,  whether it is delimited or other details
     /// </summary>
     internal interface IRecordInfo
-        : ICloneable
     {
         /// <summary>
         /// Is the input delimited or fixed length
@@ -110,5 +109,7 @@ namespace FileHelpers
         RecordOperations Operations { get; }
 
         void RemoveField(string fieldname);
+
+        object Clone();
     }
 }

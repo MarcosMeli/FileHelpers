@@ -12,7 +12,6 @@ namespace FileHelpers
     /// Implements all the basic functionality of a field in a typed file.
     /// </summary>
     public abstract class FieldBase
-        : ICloneable
     {
         #region "  Private & Internal Fields  "
 
@@ -920,7 +919,7 @@ namespace FileHelpers
         /// Copy the field object
         /// </summary>
         /// <returns>a complete copy of the Field object</returns>
-        object ICloneable.Clone()
+        internal FieldBase Clone()
         {
             var res = CreateClone();
 
