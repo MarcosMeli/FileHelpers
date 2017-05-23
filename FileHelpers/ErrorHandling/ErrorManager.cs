@@ -128,7 +128,7 @@ namespace FileHelpers
             else
                 header = "FileHelpers - NO Errors Found ";
 
-            header += "at " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+            header += "at " + DateTime.Now.ToString("D") + " " + DateTime.Now.ToString("T");
             header += StringHelper.NewLine + "LineNumber | LineString |ErrorDescription";
 
             SaveErrors(fileName, header);

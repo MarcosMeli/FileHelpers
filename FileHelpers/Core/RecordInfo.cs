@@ -465,7 +465,7 @@ namespace FileHelpers
             
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
-                res.Fields[i] = (FieldBase) ((ICloneable) Fields[i]).Clone();
+                res.Fields[i] = Fields[i].Clone();
 
             return res;
         }
