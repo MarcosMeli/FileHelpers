@@ -109,7 +109,5 @@ namespace FileHelpers
         RecordOperations Operations { get; }
 
         void RemoveField(string fieldname);
-
-        object Clone();
     }
 }

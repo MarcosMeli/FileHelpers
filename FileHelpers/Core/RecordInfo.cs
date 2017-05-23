@@ -442,7 +442,7 @@ namespace FileHelpers
         /// Create an new instance of the record information
         /// </summary>
         /// <returns>Deep copy of the RecordInfo class</returns>
-        public object Clone()
+        private IRecordInfo Clone()
         {
             var res = new RecordInfo
             {
