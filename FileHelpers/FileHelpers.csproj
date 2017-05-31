@@ -296,7 +296,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
-    <Compile Include="ErrorHandling\DynamicCompilationException.cs">
+    <Compile Include="Dynamic\DynamicCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\BeforeReadEventArgs.cs" />
@@ -347,9 +347,6 @@
     </Compile>
     <Compile Include="Interfaces\INotifyRead.cs" />
     <Compile Include="Interfaces\ITransformable.cs" />
-    <Compile Include="Interfaces\IComparableRecord.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Interfaces\INotifyWrite.cs">
       <SubType>Code</SubType>
     </Compile>

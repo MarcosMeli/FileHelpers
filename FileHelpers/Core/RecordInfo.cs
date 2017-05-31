@@ -442,7 +442,7 @@ namespace FileHelpers
         /// Create an new instance of the record information
         /// </summary>
         /// <returns>Deep copy of the RecordInfo class</returns>
-        public object Clone()
+        private IRecordInfo Clone()
         {
             var res = new RecordInfo
             {
@@ -465,7 +465,7 @@ namespace FileHelpers
             
             res.Fields = new FieldBase[Fields.Length];
             for (int i = 0; i < Fields.Length; i++)
-                res.Fields[i] = (FieldBase) ((ICloneable) Fields[i]).Clone();
+                res.Fields[i] = Fields[i].Clone();
 
             return res;
         }

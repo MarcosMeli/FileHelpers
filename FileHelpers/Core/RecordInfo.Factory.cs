@@ -23,7 +23,7 @@ namespace FileHelpers
                     RecordInfo res;
                     lock (mRecordInfoCache) {
                         if (mRecordInfoCache.TryGetValue(type, out res))
-                            return (IRecordInfo) res.Clone();
+                            return res.Clone();
                     }
 
                     // class check cache / lock / check cache  and create if null algorythm
@@ -33,7 +33,7 @@ namespace FileHelpers
                             mRecordInfoCache.Add(type, res);
                     }
 
-                    return (IRecordInfo) res.Clone();
+                    return res.Clone();
                 }
             }
         }

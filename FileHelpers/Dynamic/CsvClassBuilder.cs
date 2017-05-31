@@ -40,19 +40,16 @@ namespace FileHelpers.Dynamic
                 else {
                     int fieldsNbr = firstLine.Split(options.Delimiter).Length;
                     for (int i = 0; i < fieldsNbr; i++)
-                        AddField(options.FieldsPrefix + i.ToString());
+                        AddField(options.FieldsPrefix + i);
                 }
             }
             else if (options.NumberOfFields > 0)
                 AddFields(options.NumberOfFields, options.FieldsPrefix);
             else {
                 throw new BadUsageException(
-                    "You must provide a SampleFileName or a NumberOfFields to parse a genric CSV file.");
+                    "You must provide a SampleFileName or a NumberOfFields to parse a generic CSV file.");
             }
         }
-
-        //private static Regex mRemoveBlanks = new Regex(@"\W", System.Text.RegularExpressions.RegexOptions.Compiled);
-
 
         /// <summary>Add a new Delimited field to the current class.</summary>
         /// <param name="fieldName">The Name of the field.</param>
@@ -71,7 +68,6 @@ namespace FileHelpers.Dynamic
 
             return LastField;
         }
-
 
         /// <summary>
         /// Adds to the class the specified number of fields.
@@ -93,7 +89,7 @@ namespace FileHelpers.Dynamic
 
             for (int i = 0; i < number; i++) {
                 int current = i + initFields + 1;
-                AddField(prefix + (current).ToString());
+                AddField(prefix + current);
             }
         }
     }

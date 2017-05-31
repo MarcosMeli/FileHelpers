@@ -8,7 +8,6 @@ namespace FileHelpers
     /// Record information,  whether it is delimited or other details
     /// </summary>
     public interface IRecordInfo
-        : ICloneable
     {
         /// <summary>
         /// Is the input delimited or fixed length
