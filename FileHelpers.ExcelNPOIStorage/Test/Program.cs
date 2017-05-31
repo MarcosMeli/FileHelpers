@@ -6,6 +6,7 @@ using System.Linq;
 using FileHelpers;
 using FileHelpers.Dynamic;
 using FileHelpers.ExcelNPOIStorage;
+using NPOI.XSSF.UserModel;
 
 namespace OurTest
 {  
@@ -101,6 +102,28 @@ namespace OurTest
 
             var res = (RaRecord[])provider.ExtractRecords();
 
+            TestBlankFields();
+        }
+
+        private static void TestBlankFields()
+        {
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
+            {
+                FileName = Directory.GetCurrentDirectory() + @"\testBlankFields.xlsx",
+                StartColumn = 0
+            };
+
+            var workbook = new XSSFWorkbook(provider.FileName);
+            var row = workbook.GetSheet("Sheet2").GetRow(0);
+            var firstLineFields = row.Cells.Select(c => c.StringCellValue.Trim());
+            var unusedPropertyNames = provider.FieldNames.Except(firstLineFields).ToList();
+            
+            foreach (var propertyName in unusedPropertyNames)
+            {
+                provider.RemoveField(propertyName);
+            }
+            
+            var res = (RaRecord[])provider.ExtractRecords();
         }
 
 //        static void Main(string[] args)
@@ -134,7 +157,7 @@ namespace OurTest
         [FieldConverter(ConverterKind.Decimal)]
         public decimal? Level;
         [FieldOrder(4)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")] 
+        [FieldConverter(ConverterKind.Date, "dd-MMM-yyyy")] 
         public DateTime? Startdate;
         [FieldOrder(5)]
         public string ListOfIds;

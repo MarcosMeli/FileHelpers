@@ -33,3 +33,7 @@ FileHelpers.userprefs
 /FileHelpers.Analyzer/FileHelpers.Analyzer/FileHelpers.Analyzer.Vsix/obj
 /FileHelpers.Examples/obj
 /FileHelpers.Examples/Release
+/FileHelpers.ExcelNPOIStorage/Test/test.txt
+/FileHelpers.ExcelNPOIStorage/Test/tempclass.cs
+/FileHelpers.ExcelNPOIStorage/Test/myMDfile.txt
+/FileHelpers.ExcelNPOIStorage/Test/dynamic.xml

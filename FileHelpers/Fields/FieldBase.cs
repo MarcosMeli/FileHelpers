@@ -167,7 +167,7 @@ namespace FileHelpers
         /// <summary>
         /// Name of the field without extra characters (eg property)
         /// </summary>
-        internal string FieldFriendlyName { get; set; }
+        public string FieldFriendlyName { get; set; }
 
         /// <summary>
         /// The field must be not be empty

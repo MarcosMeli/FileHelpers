@@ -7,7 +7,7 @@ namespace FileHelpers
     /// <summary>
     /// Record information,  whether it is delimited or other details
     /// </summary>
-    internal interface IRecordInfo
+    public interface IRecordInfo
         : ICloneable
     {
         /// <summary>

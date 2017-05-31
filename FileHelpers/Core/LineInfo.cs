@@ -14,7 +14,7 @@ namespace FileHelpers
     /// to read data sequentially.
     /// </remarks>
     [DebuggerDisplay("{DebuggerDisplayStr()}")]
-    internal sealed class LineInfo
+    public sealed class LineInfo
     {
         //public static readonly LineInfo Empty = new LineInfo(string.Empty);
 

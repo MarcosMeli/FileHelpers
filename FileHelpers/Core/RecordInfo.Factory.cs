@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace FileHelpers
 {
-    /// <summary>An internal class used to store information about the Record Type.</summary>
-    internal sealed partial class RecordInfo
+    /// <summary>A class used to store information about the Record Type.</summary>
+    public sealed partial class RecordInfo
     {
         private static class RecordInfoFactory
         {
