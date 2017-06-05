@@ -1421,11 +1421,54 @@ public class Orders
     public decimal Freight;
 }
 ";
-file.Language = NetLanguage.CSharp;
-example.Files.Add(file);
+            file.Language = NetLanguage.CSharp;
+            example.Files.Add(file);
 
-		
-           return examples;
+            //example = new ExampleCode(new ReadExcel(), "Read excel example", "Excel", @"d:\Desarrollo\Devoo\GitHub\FileHelpers\FileHelpers.Examples\Examples\13.Excel\10.ReadExcel.cs");
+            example = new ExampleCode(new ReadExcel(), "Create workbook and Insert records ", "Excel", @"C:\Users\marko\git\open-source\file-helper\FileHelpers\FileHelpers.Examples\Examples\13.Excel\10.ReadExcel.cs");
+            example.Description = @"Shows how to read from excel file";
+            example.Runnable = true;
+            examples.Add(example);
+            file = new ExampleFile("ExcelExample.cs");
+            file.Language = NetLanguage.CSharp;
+            file.Contents = @"public override void Run()
+        {
+
+            // Create excel file
+            ExcelStorage storage = new ExcelStorage(typeof(int));
+            storage.FileName = ""ExcelTest"";
+
+            int count = 5;
+            object[] data = new object[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                data[i] = i;
+            }
+
+            // Auto save file
+            storage.InsertRecords(data);
+        }
+";
+            example.Files.Add(file);
+            file = new ExampleFile("ExcelTest.xlsx");
+            file.Contents = @"";
+            file.Status = ExampleFile.FileType.OutputFile;
+            example.Files.Add(file);
+
+            file = new ExampleFile("Customer.cs");
+            file.Language = NetLanguage.CSharp;
+            file.Contents = @"[DelimitedRecord("""")]
+    public class Customer
+        {
+            public int CustId;
+
+            [FieldTrim(TrimMode.Both)]
+            public string Name;
+    }
+";
+            example.Files.Add(file);
+            return examples;
         }
     }
 }

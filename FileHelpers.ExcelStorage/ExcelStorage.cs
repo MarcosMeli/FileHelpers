@@ -215,8 +215,9 @@ namespace FileHelpers.DataLink
 		    }
 		    else
 		    {
-		        this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
-		    }
+                //this.mBook.Save();
+                this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
+            }
 		}
 
 	    #endregion
