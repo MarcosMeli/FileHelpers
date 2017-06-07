@@ -36,7 +36,7 @@ namespace ExamplesFx
 
             students[0].StudentNumber = 420;
             Console.WriteLine("\nStudent {0} edited.", students[0].FullName);
-            students[1].Course = "Jui jitsu";
+            students[1].Course = "Jiu-Jitsu";
             Console.WriteLine("\nStudent {0} edited.", students[0].FullName);
 
             Console.WriteLine("\t\tEdited students:\n");

@@ -37,20 +37,9 @@ namespace ExamplesFx
             int count = 3;
             Student[] students = new Student[count];
 
-            students[0] = new Student();
-            students[0].StudentNumber = 0;
-            students[0].FullName = "Chuck Norris";
-            students[0].Course = "Karate";
-
-            students[1] = new Student();
-            students[1].StudentNumber = 1;
-            students[1].FullName = "Steven Seagal";
-            students[1].Course = "Aikido";
-
-            students[2] = new Student();
-            students[2].StudentNumber = 2;
-            students[2].FullName = "Dennis Ritchie";
-            students[2].Course = "Programming";
+            students[0] = CreateStudent(0, "Chuck Norris", "Karate");
+            students[1] = CreateStudent(0, "Steven Seagal", "Aikido");
+            students[2] = CreateStudent(0, "Dennis Ritchie", "Programming");
 
             // Insert students to excel storage
             // This method will save out excel file
@@ -70,6 +59,21 @@ namespace ExamplesFx
 
             public string Course { get; set; }
         }
+        //-> /File
+
+        
+        //-> File: CreateStudent.cs
+        /// <summary>
+        /// Create new student
+        /// </summary>
+        /// <returns>Student object</returns>
+        public static Student CreateStudent(int studentNumber, string fullName, string course)
+            => new Student()
+            {
+                StudentNumber = studentNumber,
+                FullName = fullName,
+                Course = course
+            };
         //-> /File
 
         //-> File:ExcelTest.xlsx
