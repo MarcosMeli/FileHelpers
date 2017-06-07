@@ -38,8 +38,8 @@ namespace ExamplesFx
             Student[] students = new Student[count];
 
             students[0] = CreateStudent(0, "Chuck Norris", "Karate");
-            students[1] = CreateStudent(0, "Steven Seagal", "Aikido");
-            students[2] = CreateStudent(0, "Dennis Ritchie", "Programming");
+            students[1] = CreateStudent(1, "Steven Seagal", "Aikido");
+            students[2] = CreateStudent(2, "Dennis Ritchie", "Programming");
 
             // Insert students to excel storage
             // This method will save out excel file
