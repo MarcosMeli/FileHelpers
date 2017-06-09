@@ -93,7 +93,7 @@ namespace FileHelpers.DataLink
 		{
 			try
 			{
-				this.mApp = new ApplicationClass();
+                mApp = new ApplicationClass();
 			}
 			catch (System.Runtime.InteropServices.COMException ex)
 			{
@@ -104,14 +104,14 @@ namespace FileHelpers.DataLink
 			}
 
 
-                this.mBook = null;
-                this.mSheet = null;
-                this.mApp.Visible = false;
-                this.mApp.AlertBeforeOverwriting = false;
-                this.mApp.ScreenUpdating = false;
-                this.mApp.DisplayAlerts = false;
-                this.mApp.EnableAnimations = false;
-                this.mApp.Interactive = false;
+            mBook = null;
+            mSheet = null;
+            mApp.Visible = false;
+            mApp.AlertBeforeOverwriting = false;
+            mApp.ScreenUpdating = false;
+            mApp.DisplayAlerts = false;
+            mApp.EnableAnimations = false;
+            mApp.Interactive = false;
 
 		}
 
@@ -121,27 +121,27 @@ namespace FileHelpers.DataLink
 
 		private void CloseAndCleanUp()
 		{
-			if (this.mSheet != null)
+			if (mSheet != null)
 			{
 				DisposeCOMObject(mSheet);
 				mSheet = null;
 			}
 
-			if (this.mBook != null)
+			if (mBook != null)
 			{
-				this.mBook.Close(false, mv, mv);
+                mBook.Close(false, mv, mv);
 				DisposeCOMObject(mBook);
-				this.mBook = null;
+                mBook = null;
 			}
 			
 			//Thread.Sleep(100);
 			
-			if (this.mApp != null)
+			if (mApp != null)
 			{
-				//this.mApp.Interactive = true;
-				this.mApp.Quit();
+                //this.mApp.Interactive = true;
+                mApp.Quit();
 				DisposeCOMObject(mApp);
-				this.mApp = null;
+                mApp = null;
 			}
 		}
 
@@ -163,16 +163,16 @@ namespace FileHelpers.DataLink
 			if (info.Exists == false)
 				throw new FileNotFoundException("Excel File '" + filename + "' not found.", filename);
 
-            this.mBook = this.mApp.Workbooks.Open(info.FullName, (int) UpdateLinks, 
+            mBook = mApp.Workbooks.Open(info.FullName, (int) UpdateLinks, 
                 mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
 			if (SheetName == null || SheetName == string.Empty)
-				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
+                mSheet = (Worksheet)mBook.ActiveSheet;
 			else
 			{
 				try
 				{
-					this.mSheet = (Worksheet) this.mBook.Sheets[SheetName];
+                    mSheet = (Worksheet)mBook.Sheets[SheetName];
 				}
 				catch
 				{
@@ -196,8 +196,8 @@ namespace FileHelpers.DataLink
 
 		private void CreateWorkbook()
 		{
-			this.mBook = this.mApp.Workbooks.Add(mv);
-			this.mSheet = (Worksheet) this.mBook.ActiveSheet;
+            mBook = mApp.Workbooks.Add(mv);
+            mSheet = (Worksheet)mBook.ActiveSheet;
 		}
 
 		#endregion
@@ -206,16 +206,16 @@ namespace FileHelpers.DataLink
 
 		private void SaveWorkbook(string filename)
 		{
-		    if (this.mBook == null) 
+		    if (mBook == null) 
                 return;
 
 		    if (File.Exists(filename))
 		    {
-		        this.mBook.Save();
+                mBook.Save();
 		    }
 		    else
 		    {
-		        this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
+                mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
 		    }
 		}
 
@@ -230,12 +230,12 @@ namespace FileHelpers.DataLink
         /// <param name="col">Column index (1-based)</param>
         protected override string CellAsString(object row, object col)
 		{
-			if (this.mSheet == null)
+			if (mSheet == null)
 			{
 				return null;
 			}
 			Range r;
-			r = (Range) this.mSheet.Cells[row, col];
+			r = (Range)mSheet.Cells[row, col];
 			object res = r.Value;
 			DisposeCOMObject(r);
 			return Convert.ToString(res);
@@ -269,7 +269,7 @@ namespace FileHelpers.DataLink
 
 		private object[] RowValues(int row, int startCol, int numberOfCols)
 		{
-			if (this.mSheet == null)
+			if (mSheet == null)
 			{
 				return null;
 			}
@@ -306,10 +306,10 @@ namespace FileHelpers.DataLink
 
 		private void WriteRowValues(object[] values, int row, int startCol)
 		{
-			if (this.mSheet == null)
+			if (mSheet == null)
 				return;
 
-			Range r = this.mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + values.Length - 1) + row.ToString());
+			Range r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + values.Length - 1) + row.ToString());
 
 			r.Value = values;
 		}
@@ -332,7 +332,7 @@ namespace FileHelpers.DataLink
 		        int recordNumber = 0;
                 OnProgress(new ProgressEventArgs(0, records.Length));
 
-		            this.InitExcel();
+                InitExcel();
 
 		            if (OverrideFile && File.Exists(FileName))
 		                File.Delete(FileName);
@@ -346,7 +346,7 @@ namespace FileHelpers.DataLink
 		                    File.Copy(TemplateFile, FileName, true);
 		            }
 
-		            this.OpenOrCreateWorkbook(FileName);
+                OpenOrCreateWorkbook(FileName);
 
 		            for (int i = 0; i < records.Length; i++)
 		            {
@@ -394,8 +394,8 @@ namespace FileHelpers.DataLink
 
                 object[] colValues = new object[RecordFieldCount];
 
-                    this.InitExcel();
-                    this.OpenWorkbook(this.FileName);
+                InitExcel();
+                OpenWorkbook(FileName);
 
                     while (ShouldStopOnRow(cRow) == false)
                     {
@@ -441,7 +441,7 @@ namespace FileHelpers.DataLink
                 Thread.CurrentThread.CurrentCulture = oldCulture;
             }
 
-			return (object[]) res.ToArray(this.RecordType);
+			return (object[]) res.ToArray(RecordType);
 		}
 
 		#endregion
@@ -453,7 +453,7 @@ namespace FileHelpers.DataLink
 			InitExcel();
 			OpenWorkbook(FileName);
 
-			foreach (Worksheet sheet in this.mBook.Worksheets)
+			foreach (Worksheet sheet in mBook.Worksheets)
 				mSheets.Add(sheet.Name);
 		}
 
