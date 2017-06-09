@@ -166,7 +166,7 @@ namespace FileHelpers.DataLink
             mBook = mApp.Workbooks.Open(info.FullName, (int) UpdateLinks, 
                 mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
-			if (SheetName == null || SheetName == string.Empty)
+			if (string.IsNullOrEmpty(SheetName))
                 mSheet = (Worksheet)mBook.ActiveSheet;
 			else
 			{
@@ -234,8 +234,7 @@ namespace FileHelpers.DataLink
 			{
 				return null;
 			}
-			Range r;
-			r = (Range)mSheet.Cells[row, col];
+		    var r = (Range)mSheet.Cells[row, col];
 			object res = r.Value;
 			DisposeCOMObject(r);
 			return Convert.ToString(res);
@@ -358,11 +357,7 @@ namespace FileHelpers.DataLink
 
 		            SaveWorkbook(FileName);
 		    }
-		    catch
-		    {
-		        throw;
-		    }
-		    finally
+            finally
 		    {
 		        CloseAndCleanUp();
                 Thread.CurrentThread.CurrentCulture = oldCulture;
@@ -431,11 +426,7 @@ namespace FileHelpers.DataLink
                         }
                     }
             }
-            catch
-            {
-                throw;
-            }
-			finally
+            finally
 			{
 				CloseAndCleanUp();
                 Thread.CurrentThread.CurrentCulture = oldCulture;
@@ -471,7 +462,7 @@ namespace FileHelpers.DataLink
 				if (values[i] == null)
 					res += ",";
 				else
-					res += "," + values[i].ToString();
+					res += "," + values[i];
 			}
 			
 			return res;
