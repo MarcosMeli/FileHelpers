@@ -118,6 +118,8 @@ namespace FileHelpers
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file. Only
         /// allows to set the delimiter.
+        /// If options.IncludeHeaderNames = true, add to the very first row of the CSV, the name of the columns
+        /// taken from DataTable
         /// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
@@ -125,6 +127,20 @@ namespace FileHelpers
         public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
         {
             using (var fs = new StreamWriter(filename, false, options.Encoding, DefaultWriteBufferSize)) {
+		        // output header
+		        if( options.IncludeHeaderNames ){
+			        for (int i = 0; i < dt.Columns.Count; i++)
+			        {
+			        	if (i > 0)
+		                {
+		                    fs.Write(options.Delimiter);
+		                }
+			        	fs.Write(options.ValueToString(dt.Columns[i].ColumnName));
+			        }
+			        fs.Write(StringHelper.NewLine);
+		        }
+        		        		
+        		//output rows
                 foreach (DataRow dr in dt.Rows) {
                     object[] fields = dr.ItemArray;
 
@@ -139,7 +155,8 @@ namespace FileHelpers
                 fs.Close();
             }
         }
-
+        
+        
 //		private static string ObjectString(CsvOptions options, object o)
 //		{
 //		}
