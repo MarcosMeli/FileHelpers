@@ -49,7 +49,7 @@ namespace ExamplesFx
         }
 
 
-        //-> File: Customer.cs
+        //-> File: Student.cs
         [DelimitedRecord("")]
         public class Student
         {
@@ -67,16 +67,13 @@ namespace ExamplesFx
         /// Create new student
         /// </summary>
         /// <returns>Student object</returns>
-        public static Student CreateStudent(int studentNumber, string fullName, string course)
+        private static Student CreateStudent(int studentNumber, string fullName, string course)
             => new Student()
             {
                 StudentNumber = studentNumber,
                 FullName = fullName,
                 Course = course
             };
-        //-> /File
-
-        //-> File:ExcelTest.xlsx
         //-> /File
     }
 }

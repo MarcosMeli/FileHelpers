@@ -28,18 +28,19 @@ namespace ExamplesFx
             // Read from excel file
             Student[] students = storage.ExtractRecords() as Student[];
 
-            Console.WriteLine("\t\tStudents from file:\n");
+            Console.WriteLine("\t\tStudents from file:");
             foreach (Student s in students)
             {
                 Console.WriteLine(s);
             }
 
+            // Make some changes
             students[0].StudentNumber = 420;
-            Console.WriteLine("\nStudent {0} edited.", students[0].FullName);
+            Console.WriteLine(Environment.NewLine + "Student {0} edited.", students[0].FullName);
             students[1].Course = "Jiu-Jitsu";
-            Console.WriteLine("\nStudent {0} edited.", students[0].FullName);
+            Console.WriteLine("Student {0} edited.", students[1].FullName);
 
-            Console.WriteLine("\t\tEdited students:\n");
+            Console.WriteLine(Environment.NewLine + "\t\tEdited students:");
             foreach (Student s in students)
             {
                 Console.WriteLine(s);
@@ -48,13 +49,13 @@ namespace ExamplesFx
             // Insert students to excel storage
             // This method will save out excel file
             storage.InsertRecords(students);
-            Console.WriteLine("Changes saved.");
+            Console.WriteLine(Environment.NewLine + "Changes saved.");
 
             //-> /File
         }
 
 
-        //-> File: Customer.cs
+        //-> File: Student.cs
         [DelimitedRecord("")]
         public class Student
         {
