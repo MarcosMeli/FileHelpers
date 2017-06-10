@@ -133,7 +133,7 @@ namespace FileHelpers.DataLink
             }
         }
 
-        private void DisposeCOMObject(object comObject)
+        private static void DisposeCOMObject(object comObject)
         {
             while (System.Runtime.InteropServices.Marshal.ReleaseComObject(comObject) > 1)
             { }
@@ -232,7 +232,7 @@ namespace FileHelpers.DataLink
 
         #region "  ColLeter  "
 
-        string _ColLetter(int col /* 0 origin */)
+        private static string _ColLetter(int col /* 0 origin */)
         {
             // col = [0...25] 
             if (col >= 0 && col <= 25)
@@ -240,7 +240,7 @@ namespace FileHelpers.DataLink
             return "";
         }
 
-        string ColLetter(int col /* 1 Origin */)
+        private static string ColLetter(int col /* 1 Origin */)
         {
             if (col < 1 || col > 256)
                 throw new ExcelBadUsageException("Column out of range; must be between 1 and 256"); // Excel limits 
@@ -432,7 +432,7 @@ namespace FileHelpers.DataLink
                 mSheets.Add(sheet.Name);
         }
 
-        private string ColumnsToValues(object[] values)
+        private static string ColumnsToValues(object[] values)
         {
             if (values == null || values.Length == 0)
                 return string.Empty;
