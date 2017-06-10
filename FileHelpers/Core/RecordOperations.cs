@@ -9,7 +9,7 @@ namespace FileHelpers
     /// <summary>
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
-    internal sealed class RecordOperations
+    public sealed class RecordOperations
         //: IRecordOperations
     {
         /// <summary>

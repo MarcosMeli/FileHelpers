@@ -6,6 +6,7 @@ using System.Linq;
 using FileHelpers;
 using FileHelpers.Dynamic;
 using FileHelpers.ExcelNPOIStorage;
+using NPOI.XSSF.UserModel;
 
 namespace OurTest
 {  
@@ -13,13 +14,6 @@ namespace OurTest
     {
         private static void Main(string[] args)
         {
-            /*var provider = new ExcelStorage(typeof(RaRecord)) {
-                StartRow = 2,
-                StartColumn = 1,
-                SheetName = "Sheet2",
-                FileName = "test.xlsx"
-            };*/
-
             //Dynamic Records
             var cb = new DelimitedClassBuilder("Customer", "|")
             {
@@ -101,26 +95,29 @@ namespace OurTest
 
             var res = (RaRecord[])provider.ExtractRecords();
 
+            TestBlankFields();
         }
 
-//        static void Main(string[] args)
-//        {
-//            var provider = new ExcelStorage(typeof(RaRecord));
-//
-//            provider.StartRow = 2;
-//            //provider.StartColumn = 2;
-//
-//            provider.FileName = "test.new.xlsx";
-//            provider.TemplateFile = "test.xlsx";
-//            provider.SheetName = "TEST";
-//            var records = new RaRecord[] {
-//                new RaRecord{Level = 1, Name = "Bavo", Project = "Eandis"}, 
-//                new RaRecord{Name = "Michiel", Project = "Eandis", Startdate = DateTime.Now}, 
-//                new RaRecord{Name = "", Startdate = DateTime.Now.AddDays(10)}, 
-//            };
-//
-//            provider.InsertRecords(records);
-//        }
+        private static void TestBlankFields()
+        {
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
+            {
+                FileName = Directory.GetCurrentDirectory() + @"\testBlankFields.xlsx",
+                StartColumn = 0
+            };
+
+            var workbook = new XSSFWorkbook(provider.FileName);
+            var row = workbook.GetSheet("Sheet2").GetRow(0);
+            var firstLineFields = row.Cells.Select(c => c.StringCellValue.Trim());
+            var unusedPropertyNames = provider.FieldNames.Except(firstLineFields).ToList();
+            
+            foreach (var propertyName in unusedPropertyNames)
+            {
+                provider.RemoveField(propertyName);
+            }
+            
+            var res = (RaRecord[])provider.ExtractRecords();
+        }
     }
     
     [DelimitedRecord("|")]
@@ -134,7 +131,7 @@ namespace OurTest
         [FieldConverter(ConverterKind.Decimal)]
         public decimal? Level;
         [FieldOrder(4)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")] 
+        [FieldConverter(ConverterKind.Date, "dd-MMM-yyyy")] 
         public DateTime? Startdate;
         [FieldOrder(5)]
         public string ListOfIds;

@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using FileHelpers.DataLink;
-using NPOI.HSSF.UserModel;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using NPOI.HSSF.UserModel;
+using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
-using NPOI.HSSF.Util;
 using NPOI.SS.Util.CellWalk;
-using System.Threading;
-using FileHelpers.Events;
-using System.Globalization;
-using System.Collections;
 using NPOI.XSSF.UserModel;
+using FileHelpers.DataLink;
+using FileHelpers.Events;
 
 namespace FileHelpers.ExcelNPOIStorage
 {
@@ -57,6 +58,12 @@ namespace FileHelpers.ExcelNPOIStorage
         #endregion
 
         #region "  Public Properties  "
+
+        /// <summary>Returns the human-readable names of the storage fields.</summary>
+        public IEnumerable<string> FieldNames
+        {
+            get { return base.mRecordInfo.Fields.Select(f => f.FieldFriendlyName); }
+        }
 
         #endregion
 
@@ -437,6 +444,12 @@ namespace FileHelpers.ExcelNPOIStorage
             }
 
             return res;
+        }
+
+        /// <summary>Dynamically removes a field from consideration when extracting records.</summary>
+        public void RemoveField(string fieldName)
+        {
+            base.mRecordInfo.RemoveField(fieldName);
         }
 
         private class CellExtractor : ICellHandler
