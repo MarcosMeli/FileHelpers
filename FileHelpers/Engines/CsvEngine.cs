@@ -5,7 +5,6 @@ using System.IO;
 using FileHelpers.Dynamic;
 using FileHelpers.Options;
 
-
 namespace FileHelpers
 {
     /// <summary>A class to read generic CSV files delimited for any char.</summary>
@@ -36,7 +35,6 @@ namespace FileHelpers
         {
             return CsvToDataTable(filename, classname, delimiter, true);
         }
-
 
         /// <summary>
         /// Reads a CSV File and return their contents as DataTable
@@ -89,7 +87,6 @@ namespace FileHelpers
             return engine.ReadFileAsDT(filename);
         }
 
-
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file
         /// using a ',' as delimiter.
@@ -101,10 +98,9 @@ namespace FileHelpers
             DataTableToCsv(dt, filename, new CsvOptions("Tempo1", ',', dt.Columns.Count));
         }
 
-
         /// <summary>
-        /// Simply dumps the DataTable contents to a delimited file using a ','
-        /// as delimiter.
+        /// Simply dumps the DataTable contents to a delimited file using
+        /// <paramref name="delimiter"/> as delimiter.
         /// </summary>
         /// <param name="dt">The source Data Table</param>
         /// <param name="filename">The destination file.</param>
@@ -113,7 +109,6 @@ namespace FileHelpers
         {
             DataTableToCsv(dt, filename, new CsvOptions("Tempo1", delimiter, dt.Columns.Count));
         }
-
 
         /// <summary>
         /// Simply dumps the DataTable contents to a delimited file. Only
@@ -139,10 +134,6 @@ namespace FileHelpers
                 fs.Close();
             }
         }
-
-//		private static string ObjectString(CsvOptions options, object o)
-//		{
-//		}
 
         #endregion
 
