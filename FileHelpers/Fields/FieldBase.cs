@@ -33,19 +33,13 @@ namespace FileHelpers
         /// <summary>
         /// Number of extra characters used,  delimiters and quote characters
         /// </summary>
-        internal virtual int CharsToDiscard
-        {
-            get
-            {
-                return 0;
-            }
-        }
+        internal virtual int CharsToDiscard => 0;
 
         /// <summary>
         /// Field type of an array or it is just fieldType.
         /// What actual object will be created
         /// </summary>
-        internal Type FieldTypeInternal { get; set; }
+        internal Type FieldTypeInternal { get; private set; }
 
         /// <summary>
         /// Is this field an array?
@@ -67,7 +61,7 @@ namespace FileHelpers
         /// Seems to be duplicate of FieldTypeInternal except it is ONLY set
         /// for an array
         /// </summary>
-        internal Type ArrayType { get; set; }
+        private Type ArrayType { get; set; }
 
         /// <summary>
         /// Do we process this field but not store the value
@@ -75,24 +69,19 @@ namespace FileHelpers
         public bool Discarded { get; set; }
 
         /// <summary>
-        /// Unused!
-        /// </summary>
-        internal bool TrailingArray { get; set; }
-
-        /// <summary>
         /// Value to use if input is null or empty
         /// </summary>
-        internal object NullValue { get; set; }
+        internal object NullValue { get; private set; }
 
         /// <summary>
         /// Are we a simple string field we can just assign to
         /// </summary>
-        internal bool IsStringField { get; set; }
+        private bool IsStringField { get; set; }
 
         /// <summary>
         /// Details about the extraction criteria
         /// </summary>
-        internal FieldInfo FieldInfo { get; set; }
+        internal FieldInfo FieldInfo { get; private set; }
 
         /// <summary>
         /// indicates whether we trim leading and/or trailing whitespace
@@ -125,37 +114,26 @@ namespace FileHelpers
             }
         }
 
-
         /// <summary>
         /// Am I the first field in an array list
         /// </summary>
-        internal bool IsFirst
-        {
-            get
-            {
-                return ParentIndex == 0;
-            }
-        }
+        internal bool IsFirst => ParentIndex == 0;
 
         /// <summary>
         /// Am I the last field in the array list
         /// </summary>
-        internal bool IsLast
-        {
-            get { return ParentIndex == Parent.FieldCount - 1; }
-        }
-
+        internal bool IsLast => ParentIndex == Parent.FieldCount - 1;
 
         /// <summary>
         /// Set from the FieldInNewLIneAtribute.  This field begins on a new
         /// line of the file
         /// </summary>
-        internal bool InNewLine { get; set; }
+        internal bool InNewLine { get; private set; }
 
         /// <summary>
         /// Order of the field in the file layout
         /// </summary>
-        internal int? FieldOrder { get; set; }
+        internal int? FieldOrder { get; private set; }
 
         /// <summary>
         /// Can null be assigned to this value type, for example not int or
@@ -166,7 +144,7 @@ namespace FileHelpers
         /// <summary>
         /// Name of the field without extra characters (eg property)
         /// </summary>
-        internal string FieldFriendlyName { get; set; }
+        internal string FieldFriendlyName { get; private set; }
 
         /// <summary>
         /// The field must be not be empty
@@ -176,7 +154,7 @@ namespace FileHelpers
         /// <summary>
         /// Caption of the field displayed in header row (see EngineBase.GetFileHeader)
         /// </summary>
-        internal string FieldCaption { get; set; }
+        internal string FieldCaption { get; private set; }
 
         // --------------------------------------------------------------
         // WARNING !!!
@@ -186,17 +164,7 @@ namespace FileHelpers
         /// <summary>
         /// Fieldname of the field we are storing
         /// </summary>
-        internal string FieldName
-        {
-            get { return FieldInfo.Name; }
-        }
-
-		/*
-        private static readonly char[] mWhitespaceChars = new[] {
-            '\t', '\n', '\v', '\f', '\r', ' ', '\x00a0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005',
-            '\u2006', '\u2007', '\u2008',
-            '\u2009', '\u200a', '\u200b', '\u3000', '\ufeff'
-*/
+        internal string FieldName => FieldInfo.Name;
 
         #endregion
 
@@ -214,7 +182,7 @@ namespace FileHelpers
             FieldBase res = null;
             MemberInfo mi = fi;
             var memberName = "The field: '" + fi.Name;
-            Type fieldType = fi.FieldType;             
+            Type fieldType = fi.FieldType;
             string fieldFriendlyName = AutoPropertyName(fi);
             if (string.IsNullOrEmpty(fieldFriendlyName)==false)
             {                
@@ -237,8 +205,6 @@ namespace FileHelpers
 #pragma warning restore 612,618
                 return null;
 
-            
-            
             var attributes = (FieldAttribute[]) mi.GetCustomAttributes(typeof (FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
@@ -382,8 +348,8 @@ namespace FileHelpers
             return res;
         }
 
-        internal RecordOptions Parent { get; set; }
-        internal int ParentIndex { get; set; }
+        internal RecordOptions Parent { private get; set; }
+        internal int ParentIndex { private get; set; }
 
         internal static string AutoPropertyName(FieldInfo fi)
         {
@@ -398,8 +364,6 @@ namespace FileHelpers
             return "";
         }
 
-        internal bool IsAutoProperty { get; set; }
-
         #endregion
 
         #region "  Constructor  "
@@ -413,11 +377,9 @@ namespace FileHelpers
             TrimMode = TrimMode.None;
             FieldOrder = null;
             InNewLine = false;
-            //NextIsOptional = false;
             IsOptional = false;
             TrimChars = null;
             NullValue = null;
-            TrailingArray = false;
             IsArray = false;
             IsNotEmpty = false;
         }
@@ -434,17 +396,16 @@ namespace FileHelpers
             FieldInfo = fi;
             FieldType = FieldInfo.FieldType;
             MemberInfo attibuteTarget = fi;
-            this.FieldFriendlyName = AutoPropertyName(fi);
+            FieldFriendlyName = AutoPropertyName(fi);
             if (string.IsNullOrEmpty(FieldFriendlyName) == false)
             {
-                var prop = fi.DeclaringType.GetProperty(this.FieldFriendlyName);
+                var prop = fi.DeclaringType.GetProperty(FieldFriendlyName);
                 if (prop == null)
                 {
-                    this.FieldFriendlyName = null;
+                    FieldFriendlyName = null;
                 }
                 else
                 {
-                    this.IsAutoProperty = true;
                     attibuteTarget = prop;
                 }
             }
@@ -460,20 +421,19 @@ namespace FileHelpers
 
             if (attribs.Length > 0) {
                 var conv = (FieldConverterAttribute) attribs[0];
-                this.Converter = conv.Converter;
+                Converter = conv.Converter;
                 conv.ValidateTypes(FieldInfo);
             }
             else
-                this.Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name, FieldType);
+                Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name, FieldType);
 
-            if (this.Converter != null)
-                this.Converter.mDestinationType = FieldTypeInternal;
+            if (Converter != null)
+                Converter.mDestinationType = FieldTypeInternal;
 
             attribs = attibuteTarget.GetCustomAttributes(typeof (FieldNullValueAttribute), true);
 
             if (attribs.Length > 0) {
                 NullValue = ((FieldNullValueAttribute) attribs[0]).NullValue;
-                //				mNullValueOnWrite = ((FieldNullValueAttribute) attribs[0]).NullValueOnWrite;
 
                 if (NullValue != null) {
                     if (!FieldTypeInternal.IsAssignableFrom(NullValue.GetType())) {
@@ -517,14 +477,14 @@ namespace FileHelpers
         /// <returns>String representation of field</returns>
         internal string CreateFieldString(object fieldValue)
         {
-            if (this.Converter == null) {
+            if (Converter == null) {
                 if (fieldValue == null)
                     return string.Empty;
                 else
                     return fieldValue.ToString();
             }
             else
-                return this.Converter.FieldToString(fieldValue);
+                return Converter.FieldToString(fieldValue);
         }
 
         #endregion
@@ -650,14 +610,13 @@ namespace FileHelpers
         /// <returns>Object to assign to field</returns>
         private AssignResult AssignFromString(ExtractedInfo fieldString, LineInfo line)
         {
-            object val;
-
             var extractedString = fieldString.ExtractedString();
 
             try {
+                object val;
                 if (IsNotEmpty && String.IsNullOrEmpty(extractedString)) {
                     throw new InvalidOperationException("The value is empty and must be populated.");
-                } else if (this.Converter == null) {
+                } else if (Converter == null) {
                     if (IsStringField)
                         val = TrimString(extractedString);
                     else {
@@ -676,7 +635,7 @@ namespace FileHelpers
                 else {
                     var trimmedString = extractedString.Trim();
 
-                    if (this.Converter.CustomNullHandling == false &&
+                    if (Converter.CustomNullHandling == false &&
                         trimmedString.Length == 0) {
                         return new AssignResult {
                             Value = GetNullValue(line),
@@ -685,9 +644,9 @@ namespace FileHelpers
                     }
                     else {
                         if (TrimMode == TrimMode.Both)
-                            val = this.Converter.StringToField(trimmedString);
+                            val = Converter.StringToField(trimmedString);
                         else
-                            val = this.Converter.StringToField(TrimString(extractedString));
+                            val = Converter.StringToField(TrimString(extractedString));
 
                         if (val == null) {
                             return new AssignResult {
@@ -712,8 +671,8 @@ namespace FileHelpers
                 throw;
             }
             catch (Exception ex) {
-                if (this.Converter == null ||
-                    this.Converter.GetType().Assembly == typeof (FieldBase).Assembly) {
+                if (Converter == null ||
+                    Converter.GetType().Assembly == typeof (FieldBase).Assembly) {
                     throw new ConvertException(extractedString,
                         FieldTypeInternal,
                         FieldInfo.Name,
@@ -728,7 +687,7 @@ namespace FileHelpers
                         FieldInfo.Name,
                         line.mReader.LineNumber,
                         fieldString.ExtractedFrom + 1,
-                        "Your custom converter: " + this.Converter.GetType().Name + " throws an " + ex.GetType().Name +
+                        "Your custom converter: " + Converter.GetType().Name + " throws an " + ex.GetType().Name +
                         " with the message: " + ex.Message,
                         ex);
                 }
@@ -793,7 +752,6 @@ namespace FileHelpers
                     if (IsNullableType)
                         return null;
 
-
                     string msg = "The field: '" + FieldInfo.Name + "' Class: '" +
                                  FieldInfo.DeclaringType.Name +
                                  "' is from a value type: " + FieldInfo.FieldType.Name +
@@ -819,7 +777,7 @@ namespace FileHelpers
         /// <returns>converted value</returns>
         public object CreateValueForField(object fieldValue)
         {
-            object val = null;
+            object val;
 
             if (fieldValue == null) {
                 if (NullValue == null) {
@@ -838,7 +796,7 @@ namespace FileHelpers
             else if (FieldTypeInternal == fieldValue.GetType())
                 val = fieldValue;
             else {
-                if (this.Converter == null)
+                if (Converter == null)
                     val = Convert.ChangeType(fieldValue, FieldTypeInternal, null);
                 else {
                     try {
@@ -871,12 +829,12 @@ namespace FileHelpers
         /// <param name="fieldValue">value to convert</param>
         internal void AssignToString(StringBuilder sb, object fieldValue)
         {
-            if (this.InNewLine == true)
+            if (InNewLine)
                 sb.Append(StringHelper.NewLine);
 
             if (IsArray) {
                 if (fieldValue == null) {
-                    if (0 < this.ArrayMinLength) {
+                    if (0 < ArrayMinLength) {
                         throw new InvalidOperationException(
                             string.Format("Field: {0}. The array is null, but the minimum length is {1}",
                                 FieldInfo.Name,
@@ -888,7 +846,7 @@ namespace FileHelpers
 
                 var array = (IList) fieldValue;
 
-                if (array.Count < this.ArrayMinLength) {
+                if (array.Count < ArrayMinLength) {
                     throw new InvalidOperationException(
                         string.Format("Field: {0}. The array has {1} values, but the minimum length is {2}",
                             FieldInfo.Name,
@@ -896,7 +854,7 @@ namespace FileHelpers
                             ArrayMinLength));
                 }
 
-                if (array.Count > this.ArrayMaxLength) {
+                if (array.Count > ArrayMaxLength) {
                     throw new InvalidOperationException(
                         string.Format("Field: {0}. The array has {1} values, but the maximum length is {2}",
                             FieldInfo.Name,
@@ -924,20 +882,18 @@ namespace FileHelpers
             var res = CreateClone();
 
             res.FieldType = FieldType;
-            res.Converter = this.Converter;
+            res.Converter = Converter;
             res.FieldTypeInternal = FieldTypeInternal;
             res.IsArray = IsArray;
             res.ArrayType = ArrayType;
             res.ArrayMinLength = ArrayMinLength;
             res.ArrayMaxLength = ArrayMaxLength;
-            res.TrailingArray = TrailingArray;
             res.NullValue = NullValue;
             res.IsStringField = IsStringField;
             res.FieldInfo = FieldInfo;
             res.TrimMode = TrimMode;
             res.TrimChars = TrimChars;
             res.IsOptional = IsOptional;
-            //res.NextIsOptional = NextIsOptional;
             res.InNewLine = InNewLine;
             res.FieldOrder = FieldOrder;
             res.IsNullableType = IsNullableType;
