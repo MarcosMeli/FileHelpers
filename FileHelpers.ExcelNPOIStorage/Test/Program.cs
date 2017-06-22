@@ -9,10 +9,10 @@ using FileHelpers.ExcelNPOIStorage;
 using NPOI.XSSF.UserModel;
 
 namespace OurTest
-{  
+{
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             //Dynamic Records
             var cb = new DelimitedClassBuilder("Customer", "|")
@@ -29,15 +29,14 @@ namespace OurTest
             cb.LastField.FieldQuoted = true;
             cb.LastField.QuoteChar = '"';
 
-            cb.AddField("Age", typeof(int));           
+            cb.AddField("Age", typeof(int));
 
             var providerWithDynamicRecord = new ExcelNPOIStorage(cb.CreateRecordClass())
-            {                
-                FileName =Directory.GetCurrentDirectory()+@"\testDynamicRecords.xlsx"
+            {
+                FileName = Directory.GetCurrentDirectory() + @"\testDynamicRecords.xlsx",
+                StartRow = 1,
+                StartColumn = 1
             };
-
-            providerWithDynamicRecord.StartRow = 1;
-            providerWithDynamicRecord.StartColumn = 1;
 
             dynamic dynamicRecord = Activator.CreateInstance(providerWithDynamicRecord.RecordType);
 
@@ -53,25 +52,25 @@ namespace OurTest
 
             var columnsHeaders = ((System.Reflection.TypeInfo)(dynamicRecord.GetType())).DeclaredFields.Select(x => x.Name).ToList();
             providerWithDynamicRecord.ColumnsHeaders = columnsHeaders;
-            providerWithDynamicRecord.InsertRecords(valuesList.ToArray());            
+            providerWithDynamicRecord.InsertRecords(valuesList.ToArray());
 
             //General export of excel with date time columns
-            var provider = new ExcelNPOIStorage(typeof (RaRecord))
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = Directory.GetCurrentDirectory() + @"\test.xlsx"
+                FileName = Directory.GetCurrentDirectory() + @"\test.xlsx",
+                StartRow = 0,
+                StartColumn = 0
             };
 
-            provider.StartRow = 0;
-            provider.StartColumn = 0;
-
-            var records = new List<RaRecord>();
-
-            records.Add(new RaRecord()
+            var records = new List<RaRecord>
             {
-                Level = 123.123m,
-                Name = "Dickie",
-                Startdate = DateTime.Now
-            });
+                new RaRecord()
+                {
+                    Level = 123.123m,
+                    Name = "Dickie",
+                    Startdate = DateTime.Now
+                }
+            };
 
             var values = new List<int>
             {
@@ -87,10 +86,9 @@ namespace OurTest
                 Project = "too many",
                 Startdate = DateTime.Now,
                 ListOfIds = string.Join(",", values.Select(n => n.ToString(CultureInfo.InvariantCulture)).ToArray())
-            });            
-            
+            });
+
             provider.HeaderRows = 4;
-                       
             provider.InsertRecords(records.ToArray());
 
             var res = (RaRecord[])provider.ExtractRecords();
@@ -110,28 +108,28 @@ namespace OurTest
             var row = workbook.GetSheet("Sheet2").GetRow(0);
             var firstLineFields = row.Cells.Select(c => c.StringCellValue.Trim());
             var unusedPropertyNames = provider.FieldFriendlyNames.Except(firstLineFields).ToList();
-            
+
             foreach (var propertyName in unusedPropertyNames)
             {
                 provider.RemoveField(propertyName);
             }
-            
+
             var res = (RaRecord[])provider.ExtractRecords();
         }
     }
-    
+
     [DelimitedRecord("|")]
     public class RaRecord
     {
-        [FieldOrder(1)]        
+        [FieldOrder(1)]
         public string Name;
-        [FieldOrder(2)]        
+        [FieldOrder(2)]
         public string Project;
-        [FieldOrder(3)]  
+        [FieldOrder(3)]
         [FieldConverter(ConverterKind.Decimal)]
         public decimal? Level;
         [FieldOrder(4)]
-        [FieldConverter(ConverterKind.Date, "dd-MMM-yyyy")] 
+        [FieldConverter(ConverterKind.Date, "dd-MMM-yyyy")]
         public DateTime? Startdate;
         [FieldOrder(5)]
         public string ListOfIds;
