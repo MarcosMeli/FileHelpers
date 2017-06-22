@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using FileHelpers.Events;
 
 //using Container=FileHelpers.Container;
@@ -60,6 +62,17 @@ namespace FileHelpers.DataLink
         /// <param name="records">Records to insert.</param>
         public abstract void InsertRecords(object[] records);
 
+        /// <summary>Returns the human-readable names of the storage fields.</summary>
+        public IEnumerable<string> FieldFriendlyNames
+        {
+            get { return mRecordInfo.Fields.Select(f => f.FieldFriendlyName); }
+        }
+
+        /// <summary>Dynamically removes a field from consideration when extracting records.</summary>
+        public void RemoveField(string fieldName)
+        {
+            mRecordInfo.RemoveField(fieldName);
+        }
 
         /// <summary>
         /// The Object responsible for managing the errors.
