@@ -12,4 +12,4 @@ build:
   verbosity: minimal
 test_script:
 - ps: >-
-    nunit3-console.exe FileHelpers.Tests\Release\FileHelpers.Tests.dll
+    nunit3-console.exe Debug\FileHelpers.Tests.dll
