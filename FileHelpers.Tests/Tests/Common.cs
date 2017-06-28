@@ -19,7 +19,7 @@ namespace FileHelpers.Tests
         /// <returns>Path to Data area</returns>
         public static string GetPath(params string[] pathElements)
         {
-            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "Data");
+            var dataDirectory = Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "FileHelpers.Tests", "Data");
 
             foreach (var element in pathElements)
                 dataDirectory = Path.Combine(dataDirectory, element);

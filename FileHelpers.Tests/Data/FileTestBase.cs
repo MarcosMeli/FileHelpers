@@ -26,7 +26,7 @@ namespace FileHelpers
         {
             get
             {
-                return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "Data",
+                return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "FileHelpers.Tests", "Data",
                     GetFullPathName());
             }
         }
