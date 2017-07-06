@@ -65,11 +65,10 @@ task common -depends version {
 
 task compile -depends common {
     "Compiling " + $config
-    
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "2.0" "Lib\net20" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "3.5" "Lib\net35" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
+
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "3.5" "Lib\net35" ""
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40" "DOTNET_4"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
 
     Compile-Sln "..\FileHelpers.sln" "4.5"
 
