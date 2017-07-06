@@ -136,7 +136,7 @@ function Make-Directory($path)
 
 function Compile-Sln($path, $targetFramework)
 {
-    exec { msbuild $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config  /nologo /verbosity:minimal }
+     & 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe' $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
 }
 
 function Compile-Sln-With-Deploy($path, $targetFramework, $deploy, $conditionals)
