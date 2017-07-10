@@ -1,6 +1,6 @@
 version: 3.2.0.{build}
 
-build_script:
+test_script:
 - ps: >-
     cd Build
 
