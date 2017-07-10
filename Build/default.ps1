@@ -107,12 +107,8 @@ task pack -depends compile, docs {
 
 task test -depends compile{
     "Testing"
-    
-    New-Item $build_dir\local\artifacts -Type directory -Force > $null
-    
-    cd $package_dir\xunit.runners*\tools\
-    
-    exec { & .\xunit.console.clr4 $base_dir\tests.xunit }
+
+    ./../packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ../Release/FileHelpers.Tests.dll
 }
 
 #functions ----------------------------------------------------
