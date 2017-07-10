@@ -1,15 +1,6 @@
 version: 3.2.0.{build}
-skip_tags: true
-configuration: Debug
-platform: Any CPU
-install:
-- ps: >-
-    nuget install Build\.nuget\packages.config -OutputDirectory packages
 
-    nuget restore FileHelpers.sln
-build:
-  project: FileHelpers.sln
-  verbosity: minimal
-test_script:
+build_script:
 - ps: >-
-    nunit3-console.exe Debug\FileHelpers.Tests.dll
+  cd build
+  ./build.ps1
