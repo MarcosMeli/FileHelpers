@@ -2,5 +2,6 @@ version: 3.2.0.{build}
 
 build_script:
 - ps: >-
-  cd build
-  ./build.ps1
+    cd Build
+
+    ./build.ps1
