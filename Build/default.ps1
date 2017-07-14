@@ -65,11 +65,10 @@ task common -depends version {
 
 task compile -depends common {
     "Compiling " + $config
-    
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "2.0" "Lib\net20" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "3.5" "Lib\net35" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
+
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "3.5" "Lib\net35" ""
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40" "DOTNET_4"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
 
     Compile-Sln "..\FileHelpers.sln" "4.5"
 
@@ -108,12 +107,8 @@ task pack -depends compile, docs {
 
 task test -depends compile{
     "Testing"
-    
-    New-Item $build_dir\local\artifacts -Type directory -Force > $null
-    
-    cd $package_dir\xunit.runners*\tools\
-    
-    exec { & .\xunit.console.clr4 $base_dir\tests.xunit }
+
+    ./../packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ../Release/FileHelpers.Tests.dll
 }
 
 #functions ----------------------------------------------------
@@ -136,7 +131,7 @@ function Make-Directory($path)
 
 function Compile-Sln($path, $targetFramework)
 {
-    exec { msbuild $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config  /nologo /verbosity:minimal }
+     & 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe' $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
 }
 
 function Compile-Sln-With-Deploy($path, $targetFramework, $deploy, $conditionals)
