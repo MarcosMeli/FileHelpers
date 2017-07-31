@@ -53,15 +53,10 @@ function Update-NuGetVersion ([string] $filename, [string] $versionNumber)
         } | Set-Content $filename
 }
 
-
-
 task common -depends version {
-    "##teamcity[buildNumber '" + $VisibleVersion + "']"
-
      Delete-Make-Directory ..\$config
      Delete-Make-Directory "..\Output"
 }
-
 
 task compile -depends common {
     "Compiling " + $config
@@ -77,7 +72,6 @@ task compile -depends common {
 
     Delete-Directory ..\$config\bin
 }
-
 
 task compiledebug -depends common {
     $config = "Debug"
