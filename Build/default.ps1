@@ -62,8 +62,8 @@ task compile -depends common {
     "Compiling " + $config
 
     Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "3.5" "Lib\net35" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40" "DOTNET_4"
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45" "DOTNET_4"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
+    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
 
     Compile-Sln "..\FileHelpers.sln" "4.5"
 
@@ -128,9 +128,9 @@ function Compile-Sln($path, $targetFramework)
      & 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe' $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
 }
 
-function Compile-Sln-With-Deploy($path, $targetFramework, $deploy, $conditionals)
+function Compile-Sln-With-Deploy($path, $targetFramework, $deploy)
 {
-   Compile-Sln $path $targetFramework $conditionals
+   Compile-Sln $path $targetFramework
    $deployDir = "..\" + $config + "\" + $deploy 
    Make-Directory $deployDir
  
