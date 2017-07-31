@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using System.Data;
-
 
 namespace FileHelpers.Tests.CommonTests
 {
-#if DOTNET_4
-
     [TestFixture]
     public class ReadersAsDataTable
     {
@@ -18,7 +12,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<SampleType>();
             var records = engine.ReadFile(FileTest.Good.Test1.Path);
 
-            var dt = records.ToDataTable<SampleType>();
+            var dt = records.ToDataTable();
 
             Assert.AreEqual(4, dt.Rows.Count);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -39,7 +33,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<NullableType>();
             var records = engine.ReadFile(FileTest.Good.NullableTypes1.Path);
 
-            var res = records.ToDataTable<NullableType>();
+            var res = records.ToDataTable();
 
             Assert.AreEqual(4, res.Rows.Count);
             Assert.AreEqual(4, engine.TotalRecords);
@@ -52,7 +46,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(DBNull.Value, res.Rows[1]["Field1"]);
             Assert.AreEqual("012", (string) res.Rows[1]["Field2"]);
             Assert.AreEqual(345, (int) res.Rows[1]["Field3"]);
-
 
             Assert.AreNotEqual(DBNull.Value, res.Rows[2]["Field1"]);
         }
@@ -72,5 +65,4 @@ namespace FileHelpers.Tests.CommonTests
             public int? Field3;
         }
     }
-#endif
 }
