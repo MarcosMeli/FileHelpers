@@ -54,13 +54,10 @@ task docs -depends compile {
     copy ..\Help\FileHelpers.chm ..\$config\Docs\FilHelpers.chm
 }
 
-task pack -depends compile, docs {
-    "Packing"
+task pack -depends compile {
+    "Creating NuGet packages"
 
-    copy "Home Page.url" ..\$config\
-
-    $zipName = "Output\FileHelpers_" + $CurrentVersion + "_Build.zip"
-    Create-Zip $config $zipName
+    ./.nuget/NuGet.exe pack ./Nuget/FileHelpers.nuspec -OutputDirectory ../Output
 }
 
 task test -depends compile{
