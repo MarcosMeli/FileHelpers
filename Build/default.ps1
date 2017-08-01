@@ -142,8 +142,7 @@ function Update-NuGetVersion ([string] $filename, [string] $versionNumber)
     $dependenceVersionPattern = 'id="FileHelpers" version=\"[0-9]+(\.([0-9]+|\*)){1,3}\"'
     $dependenceVersion = 'id="FileHelpers" version="' + $versionNumber + '"';
 
-    Write-Host $filename
-    $filename + ' -> ' + $assemblyVersionNumber
+    $filename + ' -> ' + $versionNumber
 
     (Get-Content $filename) | ForEach-Object {
          % {$_ -replace $versionPattern, $version } |
@@ -160,7 +159,6 @@ function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionN
     $fileVersion = 'AssemblyFileVersion("' + $fileVersionNumber + '")';
     $informationalVersion = 'AssemblyInformationalVersion("' + $informationalVersionNumber + '")';
 
-    Write-Host $filename
     $filename + ' -> ' + $assemblyVersionNumber
 
     (Get-Content $filename) | ForEach-Object {
