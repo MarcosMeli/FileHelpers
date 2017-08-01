@@ -11,10 +11,10 @@ properties {
 task default -depends pack
 
 task version {
-    Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' ($AssemblyVersion+'.0') $FullCurrentVersion $VisibleVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelStorage.nuspec' $VisibleVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $VisibleVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.nuspec' $VisibleVersion
+    Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' $AssemblyVersion $SemanticVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelStorage.nuspec' $SemanticVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $SemanticVersion
+    Update-NuGetVersion '..\Build\NuGet\FileHelpers.nuspec' $SemanticVersion
 }
 
 task common -depends version {
@@ -150,13 +150,13 @@ function Update-NuGetVersion ([string] $filename, [string] $versionNumber)
     } | Set-Content $filename
 }
 
-function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $fileVersionNumber, [string] $informationalVersionNumber)
+function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $informationalVersionNumber)
 {
     $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
     $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
-    $informationalVersionPattern = 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
+    $informationalVersionPattern = 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,3}(-[a-z]*)?"\)'
     $assemblyVersion = 'AssemblyVersion("' + $assemblyVersionNumber + '")';
-    $fileVersion = 'AssemblyFileVersion("' + $fileVersionNumber + '")';
+    $fileVersion = 'AssemblyFileVersion("' + $assemblyVersionNumber + '")';
     $informationalVersion = 'AssemblyInformationalVersion("' + $informationalVersionNumber + '")';
 
     $filename + ' -> ' + $assemblyVersionNumber
