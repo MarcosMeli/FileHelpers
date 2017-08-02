@@ -1,5 +1,9 @@
 version: 3.2.0.{build}
 
+nuget:
+
+  project_feed: true
+
 build: off
 
 test_script:
@@ -7,3 +11,7 @@ test_script:
     cd Build
 
     ./build.ps1
+
+artifacts:
+
+- path: Output/*.nupkg
