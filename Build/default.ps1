@@ -58,6 +58,7 @@ task pack -depends compile {
     "Creating NuGet packages"
 
     ./.nuget/NuGet.exe pack ./Nuget/FileHelpers.nuspec -OutputDirectory ../Output
+    ./.nuget/NuGet.exe pack ./Nuget/FileHelpers.ExcelNPOIStorage.nuspec -OutputDirectory ../Output
 }
 
 task test -depends compile{
