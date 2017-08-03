@@ -21,6 +21,8 @@
         </frameworkAssemblies>
         <dependencies>
             <dependency id="FileHelpers" version="3.2.6" />
+            <dependency id="NPOI" version="2.2.1" />
+            <dependency id="SharpZipLib" version="0.86.0" />
         </dependencies>
     </metadata>
     <files>
