@@ -12,26 +12,19 @@ www.filehelpers.net
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams.
 
-### Build Status
+### Continuous Integration
 
-Travis: master: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)  stable: [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=stable)](https://travis-ci.org/MarcosMeli/FileHelpers/branches)
+AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master)
 
-AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master) 
+Travis [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)
 
-### [Download Page](http://www.filehelpers.net/download/)
+### Prerelease NuGet Packages
 
-### [Quick Start Examples](http://www.filehelpers.net/quickstart/)
+NuGet feed
 
-### [More Examples ](http://www.filehelpers.net/examples/)
+    https://ci.appveyor.com/nuget/filehelpers-8wdesx5ke29u)
 
-### Who needs the File Helpers Library?
-
-  In almost every project, there is a need to read/write data from/to a file of a specified format. Examples of this
-  would be: log parsing, data warehousing, OLAP applications, communication between systems and file format
-  transformations (such as converting from a fixed length file to CSV).
-
-  This library aims to provide an easy and reliable way to accomplish this task.
-
+[Manual download](https://ci.appveyor.com/project/marcosmeli/filehelpers/build/artifacts)
 
 ### License
 
