@@ -12,6 +12,10 @@ test_script:
 
     ./build.ps1
 
+    # see https://www.appveyor.com/docs/running-tests/#uploading-xml-test-results
+    $wc = New-Object 'System.Net.WebClient'
+    $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./Release/FileHelpers.Tests.dll))
+
 artifacts:
 
 - path: Output/*.nupkg
