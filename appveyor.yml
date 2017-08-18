@@ -13,16 +13,14 @@ test_script:
     ./build.ps1
     
     
-    $testFile = '.\TestResult.xml'
-    $path = Resolve-Path($testFile)
+    $testFile = '.\TestResult.xml';
+    $path = Resolve-Path($testFile);
     
+    $url = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)";
     
-    $url = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)"
-    
-    
-    Write-Host "Uploading '$path' to '$url'"
-    $wc = New-Object 'System.Net.WebClient'
-    $wc.UploadFile($url, $path)
+    Write-Host "Uploading '$path' to '$url'";
+    $wc = New-Object 'System.Net.WebClient';
+    $wc.UploadFile($url, $path);
 
 artifacts:
 
