@@ -22,7 +22,7 @@ Travis [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=
 
 NuGet feed
 
-    https://ci.appveyor.com/nuget/filehelpers-8wdesx5ke29u
+    https://ci.appveyor.com/nuget/filehelpers
 
 [Manual download](https://ci.appveyor.com/project/marcosmeli/filehelpers/build/artifacts)
 
