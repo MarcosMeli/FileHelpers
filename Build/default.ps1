@@ -1,6 +1,6 @@
-Include("CurrentVersion.ps1")
-
 properties {
+    $AssemblyVersion = "3.2.6"
+    $SemanticVersion = $AssemblyVersion + "-alpha"   #for stable version, set postfix to empty
     $base_dir = resolve-path .
     $package_dir = "$base_dir\..\packages"
     $config = "Release"
