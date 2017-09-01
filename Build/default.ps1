@@ -17,7 +17,7 @@ task version {
     Update-NuGetVersion '..\Build\NuGet\FileHelpers.nuspec' $SemanticVersion
 }
 
-task common -depends version {
+task common {
      Delete-Make-Directory ..\$config
      Delete-Make-Directory "..\Output"
 }
