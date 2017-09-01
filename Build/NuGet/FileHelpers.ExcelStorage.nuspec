@@ -21,6 +21,7 @@
         </frameworkAssemblies>
         <dependencies>
             <dependency id="FileHelpers" version="3.2.6" />
+            <dependency id="Microsoft.Office.Interop.Excel" version="15.0.4795.1000" />
         </dependencies>
     </metadata>
     <files>
