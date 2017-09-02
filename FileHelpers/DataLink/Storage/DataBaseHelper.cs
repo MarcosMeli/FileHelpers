@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.DataLink
 {
     /// <summary>
     ///Create a database connector
