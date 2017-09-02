@@ -120,7 +120,21 @@ namespace FileHelpers
         public static void DataTableToCsv(DataTable dt, string filename, CsvOptions options)
         {
             using (var fs = new StreamWriter(filename, false, options.Encoding, DefaultWriteBufferSize)) {
-                foreach (DataRow dr in dt.Rows) {
+                // output header 
+                if (options.IncludeHeaderNames)
+                {
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        if (i > 0)
+                        {
+                            fs.Write(options.Delimiter);
+                        }
+                        fs.Write(options.ValueToString(dt.Columns[i].ColumnName));
+                    }
+                    fs.Write(Environment.NewLine);
+                }
+                foreach (DataRow dr in dt.Rows)
+                {
                     object[] fields = dr.ItemArray;
 
                     for (int i = 0; i < fields.Length; i++) {

@@ -1,4 +1,5 @@
 using System.Data;
+using System.IO;
 using FileHelpers.Options;
 using NUnit.Framework;
 
@@ -75,6 +76,58 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        public void GivenDataTableWithColumns_WhenHeaderExportOptionIsOn_ThenHeaderIsInFile()
+        {
+            DataTable presidents = TwoPresidents();
+
+            var optionsWithHeader = new CsvOptions("Temp", ',', 2)
+            {
+                IncludeHeaderNames = true
+            };
+
+            string path = TestCommon.GetPath("Good", "presidents.txt");
+            CsvEngine.DataTableToCsv(presidents, path, optionsWithHeader);
+
+            string[] lines = File.ReadAllLines(path);
+            Assert.That(lines.Length, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void GivenFileWithHeader_WhenImportingWithExportHeaders_ThenImportWillSkipFirstLine()
+        {
+            // Arrange
+            DataTable presidents = TwoPresidents();
+            var optionsWithHeader = new CsvOptions("Temp", ',', 2)
+            {
+                IncludeHeaderNames = true
+            };
+            string path = TestCommon.GetPath("Good", "presidents.txt");
+            CsvEngine.DataTableToCsv(presidents, path, optionsWithHeader);
+
+            // Act
+            DataTable freshPresidents = CsvEngine.CsvToDataTable(path, optionsWithHeader);
+
+            // Assert
+            Assert.That(freshPresidents.Columns.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GivenDataTableWithColumns_WhenHeaderExportOptionIsOff_ThenOnlyDataIsInFile()
+        {
+            DataTable presidents = TwoPresidents();
+            var optionsWithHeader = new CsvOptions("Temp", ',', 2)
+            {
+                IncludeHeaderNames = false
+            };
+
+            string path = TestCommon.GetPath("Good", "presidents.txt");
+            CsvEngine.DataTableToCsv(presidents, path, optionsWithHeader);
+
+            var lines = File.ReadAllLines(path);
+            Assert.That(lines.Length, Is.EqualTo(2));
+        }
+
+        [Test]
         public void ReadFileVerticalBar()
         {
             string file = TestCommon.GetPath("Good", "RealCsvVerticalBar1.txt");
@@ -126,6 +179,16 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(20, dt.Rows.Count);
 
             Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
+
+        private static DataTable TwoPresidents()
+        {
+            var data = new DataTable("Presidents");
+            data.Columns.Add("Firstname");
+            data.Columns.Add("Lastname");
+            data.Rows.Add("Angela", "Merkel");
+            data.Rows.Add("Theresa", "May");
+            return data;
         }
 
         private static void RunTest(string file, char delimiter, string classname)
