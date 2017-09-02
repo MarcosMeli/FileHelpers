@@ -19,16 +19,6 @@ namespace FileHelpers.DataLink
             @"Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Registry Path=;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Database Password=<PASSWORD>;Data Source=""<BASE>"";Password=;Jet OLEDB:Engine Type=5;Jet OLEDB:Global Bulk Transactions=1;Provider=""Microsoft.Jet.OLEDB.4.0"";Jet OLEDB:System database=;Jet OLEDB:SFP=False;Extended Properties=;Mode=Share Deny None;Jet OLEDB:New Database Password=;Jet OLEDB:Create System Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;User ID=Admin;Jet OLEDB:Encrypt Database=False";
 
         /// <summary>
-        /// Connect to a database with no password required
-        /// </summary>
-        /// <param name="db">Database we want to connect to</param>
-        /// <returns>connection string</returns>
-        public static string GetAccessConnection(string db)
-        {
-            return GetAccessConnection(db, "");
-        }
-
-        /// <summary>
         /// Connect to an access database with a password
         /// </summary>
         /// <param name="db">database we want to connect to</param>
@@ -48,17 +38,6 @@ namespace FileHelpers.DataLink
         #region "  SqlConnectionString  "
 
         private static string AppName = "FileHelpers"; //<- For display in SqlServer
-
-        /// <summary>
-        /// connect to SQL server without userid and password
-        /// </summary>
-        /// <param name="server">SQL server connection</param>
-        /// <param name="dbName">database name to connect to</param>
-        /// <returns>SQL server connection string</returns>
-        public static string SqlConnectionString(string server, string dbName)
-        {
-            return SqlConnectionString(server, dbName, "", "");
-        }
 
         /// <summary>
         /// connect to SQL server with userid and password
