@@ -17,7 +17,6 @@ namespace FileHelpers.Tests.CommonTests
             RunTest(file, delimiter, classname);
         }
 
-
         [Test]
         public void ReadFileHeader1()
         {
@@ -97,39 +96,6 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
-        public void DualEngine()
-        {
-            string file = TestCommon.GetPath("Good", "RealCsvVerticalBar2.txt");
-            string classname = "CustomerVerticalBar";
-            char delimiter = '|';
-
-            var engine = new CsvEngine(classname, delimiter, file);
-            var engine2 = new CsvEngine(classname, delimiter, file);
-        }
-
-        private void RunTest(string file, char delimiter, string classname)
-        {
-            RunTest(file, delimiter, delimiter, classname);
-        }
-
-        private void RunTest(string file, char delimiter, char delimiterHdr, string classname)
-        {
-            var options = new CsvOptions(classname, delimiter, file);
-            options.HeaderDelimiter = delimiterHdr;
-            var engine = new CsvEngine(options);
-
-            Assert.AreEqual(classname, engine.RecordType.Name);
-
-            DataTable dt = engine.ReadFileAsDT(file);
-
-            Assert.AreEqual(20, dt.Rows.Count);
-            Assert.AreEqual(20, engine.TotalRecords);
-            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
-
-            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
-        }
-
-        [Test]
         public void BadName()
         {
             Assert.Throws<FileHelpersException>(
@@ -158,6 +124,30 @@ namespace FileHelpers.Tests.CommonTests
 
             DataTable dt = CsvEngine.CsvToDataTable(file, classname, delimiter, true, ignoreEmptyLines: true);
             Assert.AreEqual(20, dt.Rows.Count);
+
+            Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
+        }
+
+        private static void RunTest(string file, char delimiter, string classname)
+        {
+            RunTest(file, delimiter, delimiter, classname);
+        }
+
+        private static void RunTest(string file, char delimiter, char delimiterHdr, string classname)
+        {
+            var options = new CsvOptions(classname, delimiter, file)
+            {
+                HeaderDelimiter = delimiterHdr
+            };
+            var engine = new CsvEngine(options);
+
+            Assert.AreEqual(classname, engine.RecordType.Name);
+
+            DataTable dt = engine.ReadFileAsDT(file);
+
+            Assert.AreEqual(20, dt.Rows.Count);
+            Assert.AreEqual(20, engine.TotalRecords);
+            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
 
             Assert.AreEqual("CustomerID", dt.Columns[0].ColumnName);
         }
