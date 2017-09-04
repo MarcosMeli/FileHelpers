@@ -112,7 +112,18 @@ namespace FileHelpers
             using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
                 return ReadStream(fs);
         }
-
+        
+        /// <summary>
+        /// Read a uncommitted File and returns the records.
+        /// </summary>
+        /// <param name="fileName">The file with the records.</param>
+        /// <returns>The read records of different types all mixed.</returns>
+        public object[] ReadFileUncommitted(string fileName)
+        {
+            FileStream f = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            using (var fs = new StreamReader(f, mEncoding, true, DefaultReadBufferSize))
+                return ReadStream(fs);
+        }
         #endregion
 
         #region "  ReadStream  "
