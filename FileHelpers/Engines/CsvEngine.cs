@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using FileHelpers.Dynamic;
 using FileHelpers.Options;
 
@@ -123,27 +125,17 @@ namespace FileHelpers
                 // output header 
                 if (options.IncludeHeaderNames)
                 {
-                    for (int i = 0; i < dt.Columns.Count; i++)
+                    var columnNames = new List<object>();
+                    foreach (DataColumn dataColumn in dt.Columns)
                     {
-                        if (i > 0)
-                        {
-                            fs.Write(options.Delimiter);
-                        }
-                        fs.Write(options.ValueToString(dt.Columns[i].ColumnName));
+                        columnNames.Add(dataColumn.ColumnName);
                     }
-                    fs.Write(Environment.NewLine);
+                    Append(fs, options, columnNames);
                 }
                 foreach (DataRow dr in dt.Rows)
                 {
                     object[] fields = dr.ItemArray;
-
-                    for (int i = 0; i < fields.Length; i++) {
-                        if (i > 0)
-                            fs.Write(options.Delimiter);
-
-                        fs.Write(options.ValueToString(fields[i]));
-                    }
-                    fs.Write(StringHelper.NewLine);
+                    Append(fs, options, fields);
                 }
                 fs.Close();
             }
@@ -187,6 +179,19 @@ namespace FileHelpers
         {
             var cb = new CsvClassBuilder(options);
             return cb.CreateRecordClass();
+        }
+
+        private static void Append(TextWriter fs, CsvOptions options, IList<object> fields)
+        {
+            for (int i = 0; i < fields.Count; i++)
+            {
+                if (i > 0)
+                {
+                    fs.Write(options.Delimiter);
+                }
+                fs.Write(options.ValueToString(fields[i]));
+            }
+            fs.Write(Environment.NewLine);
         }
     }
 }
