@@ -1,6 +1,6 @@
 using System;
 
-namespace FileHelpers
+namespace FileHelpers.Helpers
 {
     /// <summary>
     /// add validation exceptions

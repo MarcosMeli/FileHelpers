@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.Helpers
 {
 
     internal static class StreamHelper

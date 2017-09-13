@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FileHelpers.Dynamic;
 using System.IO;
+using FileHelpers.Helpers;
 
 namespace FileHelpers.Detection
 {

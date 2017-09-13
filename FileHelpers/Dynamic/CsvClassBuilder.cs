@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using FileHelpers.Helpers;
 using FileHelpers.Options;
 
 namespace FileHelpers.Dynamic

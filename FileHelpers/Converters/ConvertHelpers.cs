@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using FileHelpers.Helpers;
 
 namespace FileHelpers
 {

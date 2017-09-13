@@ -1,4 +1,4 @@
-﻿namespace FileHelpers
+﻿namespace FileHelpers.Helpers
 {
     /// <summary>
     /// Validate that the identifier is valid for the language

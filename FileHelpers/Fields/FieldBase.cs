@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using FileHelpers.Helpers;
 using FileHelpers.Options;
 
 namespace FileHelpers

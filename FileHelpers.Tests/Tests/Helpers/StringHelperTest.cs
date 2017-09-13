@@ -1,11 +1,12 @@
 ﻿using System;
+using FileHelpers.Helpers;
 using NUnit.Framework;
 using NFluent;
 
 namespace FileHelpers.Tests
 {
     /// <summary>
-    /// FileHelpers Helpers  STringHelper tests
+    /// FileHelpers Helpers  StringHelper tests
     /// </summary>
     [TestFixture]
     internal class StringHelperTest
@@ -34,18 +35,18 @@ namespace FileHelpers.Tests
             Check.That(StringHelper.RemoveBlanks("     + 41")).IsEqualTo("+41");
         }
 
-        [Test (Description = "String IsNullOrWhiteSpace help method tests")]
-         public void IsNullOrWhiteSpace ()
+        [Test(Description = "String IsNullOrWhiteSpace help method tests")]
+        public void IsNullOrWhiteSpace()
         {
-            Check.That(StringHelper.IsNullOrWhiteSpace ("     ")).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace (null)).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace ("")).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace (" test ")).IsEqualTo(false);
+            Check.That(StringHelper.IsNullOrWhiteSpace("     ")).IsEqualTo(true);
+            Check.That(StringHelper.IsNullOrWhiteSpace(null)).IsEqualTo(true);
+            Check.That(StringHelper.IsNullOrWhiteSpace("")).IsEqualTo(true);
+            Check.That(StringHelper.IsNullOrWhiteSpace(" test ")).IsEqualTo(false);
             Check.That(StringHelper.IsNullOrWhiteSpace("test")).IsEqualTo(false);
         }
 
-        [Test (Description = "String StartsWithIgnoringWhiteSpaces help method tests")]
-        public void StartsWithIgnoringWhiteSpaces ()
+        [Test(Description = "String StartsWithIgnoringWhiteSpaces help method tests")]
+        public void StartsWithIgnoringWhiteSpaces()
         {
             Check.That(StringHelper.StartsWithIgnoringWhiteSpaces("", "", StringComparison.Ordinal)).IsTrue();
             Check.That(StringHelper.StartsWithIgnoringWhiteSpaces("", "test", StringComparison.Ordinal)).IsFalse();

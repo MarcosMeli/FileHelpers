@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.Helpers
 {
     /// <summary>
     /// Helper classes for strings

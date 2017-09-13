@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace FileHelpers
+namespace FileHelpers.Helpers
 {
     internal static class Attributes
     {
