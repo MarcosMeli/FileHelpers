@@ -4,19 +4,9 @@ using System.Text;
 
 namespace FileHelpers
 {
-    internal enum LineEnd
-    {
-        Dos,
-        Unix,
-        Macintosh,
-        Other
-    }
-
 
     internal static class StreamHelper
     {
-
-
         /// <summary>
         /// open a stream with optional trim extra blank lines
         /// </summary>
@@ -49,31 +39,14 @@ namespace FileHelpers
                         fs.Seek(offset, SeekOrigin.Begin);
                         int value = fs.ReadByte();
                         if (value == '\r') {
-                            // Console.Write("\\r");
-                            //CarriageReturn = true;
                         }
                         else if (value == '\n') {
-                            // Console.Write("\\n");
-                            //LineFeed = true;
                         }
                         else
                             break;
                     }
                     if (offset >= 0) // read something else other than line ends...
                     {
-                        //LineEnd ending;
-
-                        //if( CarriageReturn )
-                        //    if( LineFeed )
-                        //        ending = LineEnd.Dos;
-                        //    else
-                        //        ending=LineEnd.Macintosh;
-                        //else
-                        //    if( LineFeed )
-                        //        ending=LineEnd.Unix;
-                        //else
-                        //        ending=LineEnd.other;
-
                         var newline = new byte[StringHelper.NewLine.Length];
                         int count = 0;
                         foreach (var ch in StringHelper.NewLine) {
