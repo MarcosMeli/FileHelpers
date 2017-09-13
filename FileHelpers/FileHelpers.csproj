@@ -208,6 +208,9 @@
     <Compile Include="Dynamic\FixedFieldBuilder.cs" />
     <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
     <Compile Include="Dynamic\XmlHelper.cs" />
+    <Compile Include="Engines\CsvEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Engines\EventEngineBase.cs" />
     <Compile Include="Engines\IFileHelperAsyncEngine.cs" />
     <Compile Include="Engines\IFileHelperEngine.cs" />
@@ -221,9 +224,6 @@
     </Compile>
     <Compile Include="Csv\RecordIndexer.cs" />
     <Compile Include="Engines\CommonEngine.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Engines\CsvEngine.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engines\DelimitedFileEngine.cs">
@@ -332,7 +332,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\TypeHelper.cs" />
-    <Compile Include="Helpers\CsvOptions.cs">
+    <Compile Include="Options\CsvOptions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\ExHelper.cs">
