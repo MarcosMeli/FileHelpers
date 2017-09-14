@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace FileHelpers
+namespace FileHelpers.Streams
 {
     /// <summary>
     /// Encapsulate stream reader provide some extra caching, and byte by byte

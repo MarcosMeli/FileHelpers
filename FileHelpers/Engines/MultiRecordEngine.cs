@@ -8,6 +8,7 @@ using FileHelpers.Events;
 using FileHelpers.Helpers;
 using FileHelpers.MasterDetail;
 using FileHelpers.Options;
+using FileHelpers.Streams;
 
 namespace FileHelpers
 {

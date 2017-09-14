@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FileHelpers
+namespace FileHelpers.Streams
 {
     /// <summary>
     /// Calculate statistics on stream,  position and total size
