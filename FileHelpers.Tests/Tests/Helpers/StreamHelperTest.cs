@@ -16,49 +16,47 @@ namespace FileHelpers.Tests.Helpers
         [Test(Description = "A basic Windows windows CR/LF file")]
         public void TestDosFile()
         {
-            var testdata = new SimpleData() {
+            var testdata = new SimpleData {
                 Record = "one record only"
             };
 
             var engine = new DelimitedFileEngine<SimpleData>();
             using (var filename = new TempFileFactory()) {
-                String twoRecords = testdata.Record + StringHelper.NewLine + testdata.Record + StringHelper.NewLine;
+                string twoRecords = testdata.Record + Environment.NewLine + testdata.Record + Environment.NewLine;
 
-                ProcessAppend(testdata, engine, filename, twoRecords, "\r\n\r\n", "Dos");
-                ProcessAppend(testdata, engine, filename, twoRecords, "\n\n\n", "Unix");
-                ProcessAppend(testdata, engine, filename, twoRecords, "\r\r\r", "Macintosh");
+                ProcessAppend(testdata, engine, filename, twoRecords, "\r\n\r\n");
+                ProcessAppend(testdata, engine, filename, twoRecords, "\n\n\n");
+                ProcessAppend(testdata, engine, filename, twoRecords, "\r\r\r");
 
                 GC.Collect(); //  Clean up the loose file stream from the testing
             }
         }
 
         private static void ProcessAppend(SimpleData testdata,
-            DelimitedFileEngine<SimpleData> engine,
-            String filename,
-            String twoRecords,
-            string LineEnds,
-            string testname)
+            IFileHelperEngine<SimpleData> engine,
+            string filename,
+            string twoRecords,
+            string lineEnds)
         {
             using (var fs = new StreamWriter(filename)) {
                 fs.Write(testdata.Record);
-                fs.Write(LineEnds); // lots of blanks lines to trim
+                fs.Write(lineEnds); // lots of blanks lines to trim
                 fs.Close();
             }
 
             engine.AppendToFile(filename, testdata);
 
             using (var input = new StreamReader(filename)) {
-                String result = input.ReadToEnd();
+                string result = input.ReadToEnd();
                 Check.That(result).IsEqualTo(twoRecords);
                 input.Close();
             }
         }
 
-
         [DelimitedRecord(";")]
         private class SimpleData
         {
-            internal String Record;
+            internal string Record;
         }
     }
 }
