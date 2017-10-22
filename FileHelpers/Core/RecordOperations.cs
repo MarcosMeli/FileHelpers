@@ -11,12 +11,11 @@ namespace FileHelpers
     /// Collection of operations that we perform on a type, cached for reuse
     /// </summary>
     internal sealed class RecordOperations
-        //: IRecordOperations
     {
         /// <summary>
         /// Record Info we use to parse the record and generate an object instance
         /// </summary>
-        public IRecordInfo RecordInfo { get; private set; }
+        private readonly IRecordInfo mRecordInfo;
 
         /// <summary>
         /// Create a set of operations for a particular type
@@ -24,7 +23,7 @@ namespace FileHelpers
         /// <param name="recordInfo">Record details we create objects off</param>
         public RecordOperations(IRecordInfo recordInfo)
         {
-            RecordInfo = recordInfo;
+            mRecordInfo = recordInfo;
         }
 
         #region "  StringToRecord  "
@@ -41,8 +40,8 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return null;
 
-            for (int i = 0; i < RecordInfo.FieldCount; i++)
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+            for (int i = 0; i < mRecordInfo.FieldCount; i++)
+                values[i] = mRecordInfo.Fields[i].ExtractFieldValue(line);
 
             try {
                 // Assign all values via dynamic method that creates an object and assign values
@@ -50,18 +49,18 @@ namespace FileHelpers
             }
             catch (InvalidCastException ex) {
                 // Occurs when a custom converter returns an invalid value for the field.
-                for (int i = 0; i < RecordInfo.FieldCount; i++) {
+                for (int i = 0; i < mRecordInfo.FieldCount; i++) {
                     if (values[i] != null &&
-                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
+                        !mRecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
-                            RecordInfo.Fields[i].FieldTypeInternal,
-                            RecordInfo.Fields[i].FieldInfo.Name,
+                            mRecordInfo.Fields[i].FieldTypeInternal,
+                            mRecordInfo.Fields[i].FieldInfo.Name,
                             line.mReader.LineNumber,
                             -1,
                             Messages.Errors.WrongConverter
-                                .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
+                                .FieldName(mRecordInfo.Fields[i].FieldInfo.Name)
                                 .ConverterReturnedType(values[i].GetType().Name)
-                                .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
+                                .FieldType(mRecordInfo.Fields[i].FieldInfo.FieldType.Name)
                                 .Text
                             ,
                             ex);
@@ -83,8 +82,8 @@ namespace FileHelpers
             if (MustIgnoreLine(line.mLineStr))
                 return false;
 
-            for (int i = 0; i < RecordInfo.FieldCount; i++)
-                values[i] = RecordInfo.Fields[i].ExtractFieldValue(line);
+            for (int i = 0; i < mRecordInfo.FieldCount; i++)
+                values[i] = mRecordInfo.Fields[i].ExtractFieldValue(line);
 
             try {
                 // Assign all values via dynamic method that
@@ -93,18 +92,18 @@ namespace FileHelpers
             }
             catch (InvalidCastException ex) {
                 // Occurs when a custom converter returns an invalid value for the field.
-                for (int i = 0; i < RecordInfo.FieldCount; i++) {
+                for (int i = 0; i < mRecordInfo.FieldCount; i++) {
                     if (values[i] != null &&
-                        !RecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
+                        !mRecordInfo.Fields[i].FieldTypeInternal.IsInstanceOfType(values[i])) {
                         throw new ConvertException(null,
-                            RecordInfo.Fields[i].FieldTypeInternal,
-                            RecordInfo.Fields[i].FieldInfo.Name,
+                            mRecordInfo.Fields[i].FieldTypeInternal,
+                            mRecordInfo.Fields[i].FieldInfo.Name,
                             line.mReader.LineNumber,
                             -1,
                             Messages.Errors.WrongConverter
-                                .FieldName(RecordInfo.Fields[i].FieldInfo.Name)
+                                .FieldName(mRecordInfo.Fields[i].FieldInfo.Name)
                                 .ConverterReturnedType(values[i].GetType().Name)
-                                .FieldType(RecordInfo.Fields[i].FieldInfo.FieldType.Name)
+                                .FieldType(mRecordInfo.Fields[i].FieldInfo.FieldType.Name)
                                 .Text
                             ,
                             ex);
@@ -121,45 +120,45 @@ namespace FileHelpers
         /// <returns>True if line is skipped</returns>
         private bool MustIgnoreLine(string line)
         {
-            if (RecordInfo.IgnoreEmptyLines) {
-                if ((RecordInfo.IgnoreEmptySpaces && StringHelper.IsNullOrWhiteSpace(line)) ||
+            if (mRecordInfo.IgnoreEmptyLines) {
+                if ((mRecordInfo.IgnoreEmptySpaces && StringHelper.IsNullOrWhiteSpace(line)) ||
                     line.Length == 0)
                     return true;
             }
 
-            if (!String.IsNullOrEmpty(RecordInfo.CommentMarker)) {
-                if ((RecordInfo.CommentAnyPlace && StringHelper.StartsWithIgnoringWhiteSpaces(line, RecordInfo.CommentMarker, StringComparison.Ordinal)) ||
-                    line.StartsWith(RecordInfo.CommentMarker, StringComparison.Ordinal))
+            if (!String.IsNullOrEmpty(mRecordInfo.CommentMarker)) {
+                if ((mRecordInfo.CommentAnyPlace && StringHelper.StartsWithIgnoringWhiteSpaces(line, mRecordInfo.CommentMarker, StringComparison.Ordinal)) ||
+                    line.StartsWith(mRecordInfo.CommentMarker, StringComparison.Ordinal))
                     return true;
             }
 
-            if (RecordInfo.RecordCondition != RecordCondition.None) {
-                switch (RecordInfo.RecordCondition) {
+            if (mRecordInfo.RecordCondition != RecordCondition.None) {
+                switch (mRecordInfo.RecordCondition) {
                     case RecordCondition.ExcludeIfBegins:
-                        return ConditionHelper.BeginsWith(line, RecordInfo.RecordConditionSelector);
+                        return ConditionHelper.BeginsWith(line, mRecordInfo.RecordConditionSelector);
                     case RecordCondition.IncludeIfBegins:
-                        return !ConditionHelper.BeginsWith(line, RecordInfo.RecordConditionSelector);
+                        return !ConditionHelper.BeginsWith(line, mRecordInfo.RecordConditionSelector);
 
                     case RecordCondition.ExcludeIfContains:
-                        return ConditionHelper.Contains(line, RecordInfo.RecordConditionSelector);
+                        return ConditionHelper.Contains(line, mRecordInfo.RecordConditionSelector);
                     case RecordCondition.IncludeIfContains:
-                        return !ConditionHelper.Contains(line, RecordInfo.RecordConditionSelector);
+                        return !ConditionHelper.Contains(line, mRecordInfo.RecordConditionSelector);
 
                     case RecordCondition.ExcludeIfEnclosed:
-                        return ConditionHelper.Enclosed(line, RecordInfo.RecordConditionSelector);
+                        return ConditionHelper.Enclosed(line, mRecordInfo.RecordConditionSelector);
                     case RecordCondition.IncludeIfEnclosed:
-                        return !ConditionHelper.Enclosed(line, RecordInfo.RecordConditionSelector);
+                        return !ConditionHelper.Enclosed(line, mRecordInfo.RecordConditionSelector);
 
                     case RecordCondition.ExcludeIfEnds:
-                        return ConditionHelper.EndsWith(line, RecordInfo.RecordConditionSelector);
+                        return ConditionHelper.EndsWith(line, mRecordInfo.RecordConditionSelector);
                     case RecordCondition.IncludeIfEnds:
-                        return !ConditionHelper.EndsWith(line, RecordInfo.RecordConditionSelector);
+                        return !ConditionHelper.EndsWith(line, mRecordInfo.RecordConditionSelector);
 
                     case RecordCondition.ExcludeIfMatchRegex:
-                        return RecordInfo.RecordConditionRegEx.IsMatch(line);
+                        return mRecordInfo.RecordConditionRegEx.IsMatch(line);
 
                     case RecordCondition.IncludeIfMatchRegex:
-                        return !RecordInfo.RecordConditionRegEx.IsMatch(line);
+                        return !mRecordInfo.RecordConditionRegEx.IsMatch(line);
                 }
             }
 
@@ -177,12 +176,12 @@ namespace FileHelpers
         /// <returns>String representing the object</returns>
         public string RecordToString(object record)
         {
-            var sb = new StringBuilder(RecordInfo.SizeHint);
+            var sb = new StringBuilder(mRecordInfo.SizeHint);
 
             var values = ObjectToValuesHandler(record);
 
-            for (int f = 0; f < RecordInfo.FieldCount; f++)
-                RecordInfo.Fields[f].AssignToString(sb, values[f]);
+            for (int f = 0; f < mRecordInfo.FieldCount; f++)
+                mRecordInfo.Fields[f].AssignToString(sb, values[f]);
 
             return sb.ToString();
         }
@@ -194,10 +193,10 @@ namespace FileHelpers
         /// <returns>String representing values</returns>
         public string RecordValuesToString(object[] recordValues)
         {
-            var sb = new StringBuilder(RecordInfo.SizeHint);
+            var sb = new StringBuilder(mRecordInfo.SizeHint);
 
-            for (int f = 0; f < RecordInfo.FieldCount; f++)
-                RecordInfo.Fields[f].AssignToString(sb, recordValues[f]);
+            for (int f = 0; f < mRecordInfo.FieldCount; f++)
+                mRecordInfo.Fields[f].AssignToString(sb, recordValues[f]);
 
             return sb.ToString();
         }
@@ -211,15 +210,15 @@ namespace FileHelpers
         /// <returns>A record formed with the passed values.</returns>
         public object ValuesToRecord(object[] values)
         {
-            for (int i = 0; i < RecordInfo.FieldCount; i++)
+            for (int i = 0; i < mRecordInfo.FieldCount; i++)
             {
                 try
                 {
-                    values[i] = RecordInfo.Fields[i].CreateValueForField(values[i]);
+                    values[i] = mRecordInfo.Fields[i].CreateValueForField(values[i]);
                 }
                 catch (ConvertException ex)
                 {
-                    ex.FieldName = RecordInfo.Fields[i].FieldName;
+                    ex.FieldName = mRecordInfo.Fields[i].FieldName;
                     ex.ColumnNumber = i + 1;
                     throw;
                 }
@@ -296,7 +295,7 @@ namespace FileHelpers
         {
             var res = new DataTable();
 
-            foreach (var f in RecordInfo.Fields) {
+            foreach (var f in mRecordInfo.Fields) {
                 DataColumn column1;
                 if (f.IsNullableType) {
                     column1 = res.Columns.Add(f.FieldInfo.Name, Nullable.GetUnderlyingType(f.FieldInfo.FieldType));
@@ -330,7 +329,7 @@ namespace FileHelpers
             {
                 return mObjectToValuesHandler ??
                        (mObjectToValuesHandler =
-                           ReflectionHelper.ObjectToValuesMethod(RecordInfo.RecordType, GetFieldInfoArray()));
+                           ReflectionHelper.ObjectToValuesMethod(mRecordInfo.RecordType, GetFieldInfoArray()));
             }
         }
 
@@ -342,7 +341,7 @@ namespace FileHelpers
             get
             {
                 if (mCreateHandler == null) {
-                    mCreateHandler = ReflectionHelper.CreateAndAssignValuesMethod(RecordInfo.RecordType,
+                    mCreateHandler = ReflectionHelper.CreateAndAssignValuesMethod(mRecordInfo.RecordType,
                         GetFieldInfoArray());
                 }
                 return mCreateHandler;
@@ -357,7 +356,7 @@ namespace FileHelpers
             get
             {
                 if (mAssignHandler == null)
-                    mAssignHandler = ReflectionHelper.AssignValuesMethod(RecordInfo.RecordType, GetFieldInfoArray());
+                    mAssignHandler = ReflectionHelper.AssignValuesMethod(mRecordInfo.RecordType, GetFieldInfoArray());
                 return mAssignHandler;
             }
         }
@@ -370,7 +369,7 @@ namespace FileHelpers
             get
             {
                 if (mFastConstructor == null)
-                    mFastConstructor = ReflectionHelper.CreateFastConstructor(RecordInfo.RecordType);
+                    mFastConstructor = ReflectionHelper.CreateFastConstructor(mRecordInfo.RecordType);
                 return mFastConstructor;
             }
         }
@@ -383,10 +382,10 @@ namespace FileHelpers
         /// <returns>array of fieldInfo</returns>
         private FieldInfo[] GetFieldInfoArray()
         {
-            var res = new FieldInfo[RecordInfo.Fields.Length];
+            var res = new FieldInfo[mRecordInfo.Fields.Length];
 
-            for (int i = 0; i < RecordInfo.Fields.Length; i++)
-                res[i] = RecordInfo.Fields[i].FieldInfo;
+            for (int i = 0; i < mRecordInfo.Fields.Length; i++)
+                res[i] = mRecordInfo.Fields[i].FieldInfo;
             return res;
         }
 
@@ -397,10 +396,12 @@ namespace FileHelpers
         /// <returns>Copy of the handlers class is using</returns>
         public RecordOperations Clone(RecordInfo ri)
         {
-            var res = new RecordOperations(ri);
-            res.mCreateHandler = mCreateHandler;
-            res.mFastConstructor = mFastConstructor;
-            res.mObjectToValuesHandler = mObjectToValuesHandler;
+            var res = new RecordOperations(ri)
+            {
+                mCreateHandler = mCreateHandler,
+                mFastConstructor = mFastConstructor,
+                mObjectToValuesHandler = mObjectToValuesHandler
+            };
             return res;
         }
     }
