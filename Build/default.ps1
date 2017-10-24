@@ -105,27 +105,6 @@ function Compile-Sln-With-Deploy($path, $targetFramework, $deploy)
     Delete-Directory $fromDir
 }
 
-function Get-AssemblyInformationalVersion($path)
-{
-    $line = Get-Content $path | where {$_.Contains("AssemblyInformationalVersion")}
-    $line.Split('"')[1]
-}
-
-function Update-AssemblyInformationalVersion
-{
-    if ($preReleaseVersion -ne $null)
-    {
-        $version = ([string]$input).Split('-')[0]
-        $date = Get-Date
-        $parsed = $preReleaseVersion.Replace("{date}", $date.ToString("yyMMdd"))
-        return "$version-$parsed"
-    }
-    else
-    {
-        return $input
-    }
-}
-
 function Create-Zip($sourcePath, $destinationFile)
 {
     cd $package_dir\SharpZipLib.*\lib\20\
