@@ -4,9 +4,10 @@
     <!-- NOTE: Update the version number in the path to match the package version -->
     <SHFBROOT Condition=" '$(SHFBROOT)' == '' ">$(MSBuildThisFileDirectory)..\packages\EWSoftware.SHFB.2015.7.25.0\Tools\</SHFBROOT>
     <CopyrightHref>http://www.filehelpers.net</CopyrightHref>
-    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <HelpFileVersion>3.2.0.0</HelpFileVersion>
     <FooterText>
     </FooterText>
+    <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
   </PropertyGroup>
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which
@@ -29,8 +30,8 @@
       <DocumentationSource sourceFile="..\Release\Lib\net40\FileHelpers.dll" />
       <DocumentationSource sourceFile="..\Release\Lib\net40\FileHelpers.xml" />
     </DocumentationSources>
-    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
-    <HelpTitle>FileHelpers 3.1 API</HelpTitle>
+    <HelpFileFormat>Website</HelpFileFormat>
+    <HelpTitle>FileHelpers 3.2 API</HelpTitle>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FileHelpers" isDocumented="True">The &lt;b&gt;main namespace&lt;/b&gt; of the library.&lt;br /&gt;You must import always this namespace to work with the FileHelpers.&lt;br /&gt;&lt;br /&gt;Go directly to the Engine classes &lt;a href="T_FileHelpers_FileHelperEngine_1.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; and &lt;a href="T_FileHelpers_FileHelperAsyncEngine_1.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileHelperAsyncEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. You can also check the &lt;a href="T_FileHelpers_CommonEngine.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;CommonEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt; for shortcuts to the common operations.&lt;br /&gt;&lt;br /&gt;You can also check the advanced engines &lt;a href="T_FileHelpers_MultiRecordEngine.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;MultiRecordEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, &lt;a href="T_FileHelpers_FileTransformEngine.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileTransformEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;, the &lt;a href="T_FileHelpers_FileDiffEngine.htm"&gt;&lt;b&gt;&lt;span style="font-size: 10pt"&gt;FileDiffEngine&lt;/span&gt;&lt;/b&gt;&lt;/a&gt;. &lt;br /&gt;Engines Diagram:&lt;br /&gt;
 &lt;center&gt;&lt;img src="http://www.filehelpers.net/images/diag_engines.png" border="0" /&gt;&lt;/center&gt;</NamespaceSummaryItem>
@@ -46,7 +47,7 @@ The idea is pretty simple:
 
 You can strong type your flat file %28fixed or delimited%29 simply describing a class that maps to each record and later read/write your file as an strong typed .NET array
 
-The Library also has support for import/export data from differents storages like Excel, Access, SqlServer, etc. 
+. The Library also has support for import/export data from differents storages like Excel, Access, SqlServer, etc. 
 </ProjectSummary>
     <PresentationStyle>VS2013</PresentationStyle>
     <VisibleItems>InheritedMembers</VisibleItems>
