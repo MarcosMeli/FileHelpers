@@ -87,7 +87,6 @@
   <HelpKINode Title="Arg3 property" Url="html/P_FileHelpers_Dynamic_ConverterBuilder_Arg3.htm" />
   <HelpKINode Title="ArrayMaxLength property" Url="html/P_FileHelpers_FieldBase_ArrayMaxLength.htm" />
   <HelpKINode Title="ArrayMinLength property" Url="html/P_FileHelpers_FieldBase_ArrayMinLength.htm" />
-  <HelpKINode Title="ASCII enumeration member" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
   <HelpKINode Title="BadUsageException class">
     <HelpKINode Title="BadUsageException Class" Url="html/T_FileHelpers_BadUsageException.htm" />
     <HelpKINode Title="about BadUsageException class" Url="html/T_FileHelpers_BadUsageException.htm" />
@@ -220,6 +219,7 @@
   <HelpKINode Title="Boolean enumeration member" Url="html/T_FileHelpers_ConverterKind.htm" />
   <HelpKINode Title="Both enumeration member" Url="html/T_FileHelpers_TrimMode.htm" />
   <HelpKINode Title="Byte enumeration member" Url="html/T_FileHelpers_ConverterKind.htm" />
+  <HelpKINode Title="Caption property" Url="html/P_FileHelpers_FieldCaptionAttribute_Caption.htm" />
   <HelpKINode Title="Center enumeration member" Url="html/T_FileHelpers_AlignMode.htm" />
   <HelpKINode Title="Char enumeration member" Url="html/T_FileHelpers_ConverterKind.htm" />
   <HelpKINode Title="ClassBuilder class">
@@ -278,7 +278,6 @@
   <HelpKINode Title="ClassToBinaryFile method" Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_ClassToBinaryFile.htm" />
   <HelpKINode Title="ClearErrors method" Url="html/M_FileHelpers_ErrorManager_ClearErrors.htm" />
   <HelpKINode Title="ClearFields method" Url="html/M_FileHelpers_Dynamic_ClassBuilder_ClearFields.htm" />
-  <HelpKINode Title="Clone method" Url="html/M_FileHelpers_FieldBase_Clone.htm" />
   <HelpKINode Title="Close method">
     <HelpKINode Title="FileHelperAsyncEngine(T).Close Method " Url="html/M_FileHelpers_FileHelperAsyncEngine_1_Close.htm" />
     <HelpKINode Title="IFileHelperAsyncEngine(T).Close Method " Url="html/M_FileHelpers_IFileHelperAsyncEngine_1_Close.htm" />
@@ -301,8 +300,6 @@
   <HelpKINode Title="CommonEngine.DataTableToCsv method" Url="html/Overload_FileHelpers_CommonEngine_DataTableToCsv.htm" />
   <HelpKINode Title="CommonEngine.MergeAndSortFile method" Url="html/Overload_FileHelpers_CommonEngine_MergeAndSortFile.htm" />
   <HelpKINode Title="CommonEngine.MergeFiles method" Url="html/M_FileHelpers_CommonEngine_MergeFiles.htm" />
-  <HelpKINode Title="CommonEngine.RawReadFirstLines method" Url="html/M_FileHelpers_CommonEngine_RawReadFirstLines.htm" />
-  <HelpKINode Title="CommonEngine.RawReadFirstLinesArray method" Url="html/Overload_FileHelpers_CommonEngine_RawReadFirstLinesArray.htm" />
   <HelpKINode Title="CommonEngine.ReadCsv method" Url="html/Overload_FileHelpers_CommonEngine_ReadCsv.htm" />
   <HelpKINode Title="CommonEngine.ReadFile method" Url="html/Overload_FileHelpers_CommonEngine_ReadFile.htm" />
   <HelpKINode Title="CommonEngine.ReadFileAsDT method" Url="html/Overload_FileHelpers_CommonEngine_ReadFileAsDT.htm" />
@@ -421,6 +418,7 @@
   <HelpKINode Title="CsvOptions.HeaderDelimiter property" Url="html/P_FileHelpers_Options_CsvOptions_HeaderDelimiter.htm" />
   <HelpKINode Title="CsvOptions.HeaderLines property" Url="html/P_FileHelpers_Options_CsvOptions_HeaderLines.htm" />
   <HelpKINode Title="CsvOptions.IgnoreEmptyLines property" Url="html/P_FileHelpers_Options_CsvOptions_IgnoreEmptyLines.htm" />
+  <HelpKINode Title="CsvOptions.IncludeHeaderNames property" Url="html/P_FileHelpers_Options_CsvOptions_IncludeHeaderNames.htm" />
   <HelpKINode Title="CsvOptions.NumberOfFields property" Url="html/P_FileHelpers_Options_CsvOptions_NumberOfFields.htm" />
   <HelpKINode Title="CsvOptions.RecordClassName property" Url="html/P_FileHelpers_Options_CsvOptions_RecordClassName.htm" />
   <HelpKINode Title="CsvOptions.SampleFileName property" Url="html/P_FileHelpers_Options_CsvOptions_SampleFileName.htm" />
@@ -461,6 +459,9 @@
     <HelpKINode Title="methods" Url="html/Methods_T_FileHelpers_DelimitedField.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_DelimitedField.htm" />
   </HelpKINode>
+  <HelpKINode Title="DelimitedField.QuoteChar property" Url="html/P_FileHelpers_DelimitedField_QuoteChar.htm" />
+  <HelpKINode Title="DelimitedField.QuoteMode property" Url="html/P_FileHelpers_DelimitedField_QuoteMode.htm" />
+  <HelpKINode Title="DelimitedField.QuoteMultiline property" Url="html/P_FileHelpers_DelimitedField_QuoteMultiline.htm" />
   <HelpKINode Title="DelimitedFieldBuilder class">
     <HelpKINode Title="DelimitedFieldBuilder Class" Url="html/T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm" />
     <HelpKINode Title="about DelimitedFieldBuilder class" Url="html/T_FileHelpers_Dynamic_DelimitedFieldBuilder.htm" />
@@ -562,6 +563,7 @@
   <HelpKINode Title="EngineBase.GetFileHeader method" Url="html/M_FileHelpers_EngineBase_GetFileHeader.htm" />
   <HelpKINode Title="EngineBase.HeaderText property" Url="html/P_FileHelpers_EngineBase_HeaderText.htm" />
   <HelpKINode Title="EngineBase.LineNumber property" Url="html/P_FileHelpers_EngineBase_LineNumber.htm" />
+  <HelpKINode Title="EngineBase.NewLineForWrite property" Url="html/P_FileHelpers_EngineBase_NewLineForWrite.htm" />
   <HelpKINode Title="EngineBase.Options property" Url="html/P_FileHelpers_EngineBase_Options.htm" />
   <HelpKINode Title="EngineBase.Progress event" Url="html/E_FileHelpers_EngineBase_Progress.htm" />
   <HelpKINode Title="EngineBase.RecordType property" Url="html/P_FileHelpers_EngineBase_RecordType.htm" />
@@ -673,7 +675,6 @@
   </HelpKINode>
   <HelpKINode Title="FieldBase.ArrayMaxLength property" Url="html/P_FileHelpers_FieldBase_ArrayMaxLength.htm" />
   <HelpKINode Title="FieldBase.ArrayMinLength property" Url="html/P_FileHelpers_FieldBase_ArrayMinLength.htm" />
-  <HelpKINode Title="FieldBase.Clone method" Url="html/M_FileHelpers_FieldBase_Clone.htm" />
   <HelpKINode Title="FieldBase.Converter property" Url="html/P_FileHelpers_FieldBase_Converter.htm" />
   <HelpKINode Title="FieldBase.CreateField method" Url="html/M_FileHelpers_FieldBase_CreateField.htm" />
   <HelpKINode Title="FieldBase.CreateValueForField method" Url="html/M_FileHelpers_FieldBase_CreateValueForField.htm" />
@@ -710,6 +711,14 @@
     <HelpKINode Title="DelimitedClassBuilder.FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_DelimitedClassBuilder_FieldByIndex.htm" />
     <HelpKINode Title="FixedLengthClassBuilder.FieldByIndex Method " Url="html/M_FileHelpers_Dynamic_FixedLengthClassBuilder_FieldByIndex.htm" />
   </HelpKINode>
+  <HelpKINode Title="FieldCaptionAttribute class">
+    <HelpKINode Title="FieldCaptionAttribute Class" Url="html/T_FileHelpers_FieldCaptionAttribute.htm" />
+    <HelpKINode Title="about FieldCaptionAttribute class" Url="html/T_FileHelpers_FieldCaptionAttribute.htm" />
+    <HelpKINode Title="constructor" Url="html/M_FileHelpers_FieldCaptionAttribute__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_FileHelpers_FieldCaptionAttribute.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FieldCaptionAttribute.Caption property" Url="html/P_FileHelpers_FieldCaptionAttribute_Caption.htm" />
+  <HelpKINode Title="FieldCaptionAttribute.FieldCaptionAttribute constructor" Url="html/M_FileHelpers_FieldCaptionAttribute__ctor.htm" />
   <HelpKINode Title="FieldConverterAttribute class">
     <HelpKINode Title="FieldConverterAttribute Class" Url="html/T_FileHelpers_FieldConverterAttribute.htm" />
     <HelpKINode Title="about FieldConverterAttribute class" Url="html/T_FileHelpers_FieldConverterAttribute.htm" />
@@ -1056,6 +1065,7 @@
   <HelpKINode Title="FileHelpers.FieldArrayLengthAttribute class" Url="html/T_FileHelpers_FieldArrayLengthAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldAttribute class" Url="html/T_FileHelpers_FieldAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldBase class" Url="html/T_FileHelpers_FieldBase.htm" />
+  <HelpKINode Title="FileHelpers.FieldCaptionAttribute class" Url="html/T_FileHelpers_FieldCaptionAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldConverterAttribute class" Url="html/T_FileHelpers_FieldConverterAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldDelimiterAttribute class" Url="html/T_FileHelpers_FieldDelimiterAttribute.htm" />
   <HelpKINode Title="FileHelpers.FieldFixedLengthAttribute class" Url="html/T_FileHelpers_FieldFixedLengthAttribute.htm" />
@@ -1087,8 +1097,6 @@
   <HelpKINode Title="FileHelpers.FixedLengthField class" Url="html/T_FileHelpers_FixedLengthField.htm" />
   <HelpKINode Title="FileHelpers.FixedLengthRecordAttribute class" Url="html/T_FileHelpers_FixedLengthRecordAttribute.htm" />
   <HelpKINode Title="FileHelpers.FixedMode enumeration" Url="html/T_FileHelpers_FixedMode.htm" />
-  <HelpKINode Title="FileHelpers.IComparableRecord(Of T) interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
-  <HelpKINode Title="FileHelpers.IComparableRecord&lt;T&gt; interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
   <HelpKINode Title="FileHelpers.IFileHelperAsyncEngine(Of T) interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm" />
   <HelpKINode Title="FileHelpers.IFileHelperAsyncEngine&lt;T&gt; interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm" />
   <HelpKINode Title="FileHelpers.IFileHelperEngine(Of T) interface" Url="html/T_FileHelpers_IFileHelperEngine_1.htm" />
@@ -1101,7 +1109,6 @@
   <HelpKINode Title="FileHelpers.IRecordReader interface" Url="html/T_FileHelpers_IRecordReader.htm" />
   <HelpKINode Title="FileHelpers.ITransformable(Of T) interface" Url="html/T_FileHelpers_ITransformable_1.htm" />
   <HelpKINode Title="FileHelpers.ITransformable&lt;T&gt; interface" Url="html/T_FileHelpers_ITransformable_1.htm" />
-  <HelpKINode Title="FileHelpers.LengthIndicatorType enumeration" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
   <HelpKINode Title="FileHelpers.MasterDetail namespace" Url="html/N_FileHelpers_MasterDetail.htm" />
   <HelpKINode Title="FileHelpers.MasterDetail.CommonSelector enumeration" Url="html/T_FileHelpers_MasterDetail_CommonSelector.htm" />
   <HelpKINode Title="FileHelpers.MasterDetail.MasterDetailEngine class" Url="html/T_FileHelpers_MasterDetail_MasterDetailEngine.htm" />
@@ -1286,18 +1293,6 @@
     <HelpKINode Title="IFileHelperAsyncEngine(T).HeaderText Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_HeaderText.htm" />
     <HelpKINode Title="IFileHelperEngine(T).HeaderText Property " Url="html/P_FileHelpers_IFileHelperEngine_1_HeaderText.htm" />
   </HelpKINode>
-  <HelpKINode Title="IComparableRecord(Of T) interface">
-    <HelpKINode Title="IComparableRecord(T) Interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
-    <HelpKINode Title="about IComparableRecord(Of T) interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
-    <HelpKINode Title="methods" Url="html/Methods_T_FileHelpers_IComparableRecord_1.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IComparableRecord(Of T).IsEqualRecord method" Url="html/M_FileHelpers_IComparableRecord_1_IsEqualRecord.htm" />
-  <HelpKINode Title="IComparableRecord&lt;T&gt; interface">
-    <HelpKINode Title="IComparableRecord(T) Interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
-    <HelpKINode Title="about IComparableRecord&lt;T&gt; interface" Url="html/T_FileHelpers_IComparableRecord_1.htm" />
-    <HelpKINode Title="methods" Url="html/Methods_T_FileHelpers_IComparableRecord_1.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IComparableRecord&lt;T&gt;.IsEqualRecord method" Url="html/M_FileHelpers_IComparableRecord_1_IsEqualRecord.htm" />
   <HelpKINode Title="IFileHelperAsyncEngine(Of T) interface">
     <HelpKINode Title="IFileHelperAsyncEngine(T) Interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm" />
     <HelpKINode Title="about IFileHelperAsyncEngine(Of T) interface" Url="html/T_FileHelpers_IFileHelperAsyncEngine_1.htm" />
@@ -1390,6 +1385,7 @@
   <HelpKINode Title="IFileHelperEngine(Of T).FooterText property" Url="html/P_FileHelpers_IFileHelperEngine_1_FooterText.htm" />
   <HelpKINode Title="IFileHelperEngine(Of T).HeaderText property" Url="html/P_FileHelpers_IFileHelperEngine_1_HeaderText.htm" />
   <HelpKINode Title="IFileHelperEngine(Of T).LineNumber property" Url="html/P_FileHelpers_IFileHelperEngine_1_LineNumber.htm" />
+  <HelpKINode Title="IFileHelperEngine(Of T).NewLineForWrite property" Url="html/P_FileHelpers_IFileHelperEngine_1_NewLineForWrite.htm" />
   <HelpKINode Title="IFileHelperEngine(Of T).Options property" Url="html/P_FileHelpers_IFileHelperEngine_1_Options.htm" />
   <HelpKINode Title="IFileHelperEngine(Of T).Progress event" Url="html/E_FileHelpers_IFileHelperEngine_1_Progress.htm" />
   <HelpKINode Title="IFileHelperEngine(Of T).ReadFile method" Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFile.htm" />
@@ -1421,6 +1417,7 @@
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.FooterText property" Url="html/P_FileHelpers_IFileHelperEngine_1_FooterText.htm" />
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.HeaderText property" Url="html/P_FileHelpers_IFileHelperEngine_1_HeaderText.htm" />
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.LineNumber property" Url="html/P_FileHelpers_IFileHelperEngine_1_LineNumber.htm" />
+  <HelpKINode Title="IFileHelperEngine&lt;T&gt;.NewLineForWrite property" Url="html/P_FileHelpers_IFileHelperEngine_1_NewLineForWrite.htm" />
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.Options property" Url="html/P_FileHelpers_IFileHelperEngine_1_Options.htm" />
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.Progress event" Url="html/E_FileHelpers_IFileHelperEngine_1_Progress.htm" />
   <HelpKINode Title="IFileHelperEngine&lt;T&gt;.ReadFile method" Url="html/Overload_FileHelpers_IFileHelperEngine_1_ReadFile.htm" />
@@ -1500,6 +1497,7 @@
     <HelpKINode Title="ClassBuilder.IgnoreCommentInfo.InAnyPlace Property " Url="html/P_FileHelpers_Dynamic_ClassBuilder_IgnoreCommentInfo_InAnyPlace.htm" />
     <HelpKINode Title="RecordOptions.IgnoreCommentInfo.InAnyPlace Property " Url="html/P_FileHelpers_Options_RecordOptions_IgnoreCommentInfo_InAnyPlace.htm" />
   </HelpKINode>
+  <HelpKINode Title="IncludeHeaderNames property" Url="html/P_FileHelpers_Options_CsvOptions_IncludeHeaderNames.htm" />
   <HelpKINode Title="IncludeIfBegins enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
   <HelpKINode Title="IncludeIfContains enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
   <HelpKINode Title="IncludeIfEnclosed enumeration member" Url="html/T_FileHelpers_RecordCondition.htm" />
@@ -1531,7 +1529,6 @@
   <HelpKINode Title="IRecordReader.Close method" Url="html/M_FileHelpers_IRecordReader_Close.htm" />
   <HelpKINode Title="IRecordReader.ReadRecordString method" Url="html/M_FileHelpers_IRecordReader_ReadRecordString.htm" />
   <HelpKINode Title="IsArray property" Url="html/P_FileHelpers_FieldBase_IsArray.htm" />
-  <HelpKINode Title="IsEqualRecord method" Url="html/M_FileHelpers_IComparableRecord_1_IsEqualRecord.htm" />
   <HelpKINode Title="IsNotEmpty property" Url="html/P_FileHelpers_FieldBase_IsNotEmpty.htm" />
   <HelpKINode Title="IsOptional property" Url="html/P_FileHelpers_FieldBase_IsOptional.htm" />
   <HelpKINode Title="Item property">
@@ -1572,7 +1569,6 @@
     <HelpKINode Title="TrimMode Enumeration" Url="html/T_FileHelpers_TrimMode.htm" />
   </HelpKINode>
   <HelpKINode Title="Length property" Url="html/P_FileHelpers_FieldFixedLengthAttribute_Length.htm" />
-  <HelpKINode Title="LengthIndicatorType enumeration" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
   <HelpKINode Title="LineNumber property">
     <HelpKINode Title="ConvertException.LineNumber Property " Url="html/P_FileHelpers_ConvertException_LineNumber.htm" />
     <HelpKINode Title="EngineBase.LineNumber Property " Url="html/P_FileHelpers_EngineBase_LineNumber.htm" />
@@ -1584,7 +1580,6 @@
   <HelpKINode Title="LoadErrors method" Url="html/M_FileHelpers_ErrorManager_LoadErrors.htm" />
   <HelpKINode Title="LoadFromXml method" Url="html/Overload_FileHelpers_Dynamic_ClassBuilder_LoadFromXml.htm" />
   <HelpKINode Title="LoadFromXmlString method" Url="html/M_FileHelpers_Dynamic_ClassBuilder_LoadFromXmlString.htm" />
-  <HelpKINode Title="LSB enumeration member" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
   <HelpKINode Title="Master enumeration member" Url="html/T_FileHelpers_MasterDetail_RecordAction.htm" />
   <HelpKINode Title="Master property" Url="html/P_FileHelpers_MasterDetail_MasterDetails_2_Master.htm" />
   <HelpKINode Title="MasterDetailEngine class">
@@ -1674,7 +1669,6 @@
   <HelpKINode Title="MessageExtra property" Url="html/P_FileHelpers_ConvertException_MessageExtra.htm" />
   <HelpKINode Title="MessageOriginal property" Url="html/P_FileHelpers_ConvertException_MessageOriginal.htm" />
   <HelpKINode Title="MinLength property" Url="html/P_FileHelpers_FieldArrayLengthAttribute_MinLength.htm" />
-  <HelpKINode Title="MSB enumeration member" Url="html/T_FileHelpers_LengthIndicatorType.htm" />
   <HelpKINode Title="MultilineMode enumeration" Url="html/T_FileHelpers_MultilineMode.htm" />
   <HelpKINode Title="MultiRecordEngine class">
     <HelpKINode Title="MultiRecordEngine Class" Url="html/T_FileHelpers_MultiRecordEngine.htm" />
@@ -1709,6 +1703,10 @@
   <HelpKINode Title="Namespace property" Url="html/P_FileHelpers_Dynamic_ClassBuilder_Namespace.htm" />
   <HelpKINode Title="NetLanguage enumeration" Url="html/T_FileHelpers_NetLanguage.htm" />
   <HelpKINode Title="NetVisibility enumeration" Url="html/T_FileHelpers_NetVisibility.htm" />
+  <HelpKINode Title="NewLineForWrite property">
+    <HelpKINode Title="EngineBase.NewLineForWrite Property " Url="html/P_FileHelpers_EngineBase_NewLineForWrite.htm" />
+    <HelpKINode Title="IFileHelperEngine(T).NewLineForWrite Property " Url="html/P_FileHelpers_IFileHelperEngine_1_NewLineForWrite.htm" />
+  </HelpKINode>
   <HelpKINode Title="None enumeration member">
     <HelpKINode Title="ConverterKind Enumeration" Url="html/T_FileHelpers_ConverterKind.htm" />
     <HelpKINode Title="RecordCondition Enumeration" Url="html/T_FileHelpers_RecordCondition.htm" />
@@ -1765,20 +1763,21 @@
   <HelpKINode Title="Protected enumeration member" Url="html/T_FileHelpers_NetVisibility.htm" />
   <HelpKINode Title="Public enumeration member" Url="html/T_FileHelpers_NetVisibility.htm" />
   <HelpKINode Title="QuoteChar property">
+    <HelpKINode Title="DelimitedField.QuoteChar Property " Url="html/P_FileHelpers_DelimitedField_QuoteChar.htm" />
     <HelpKINode Title="DelimitedFieldBuilder.QuoteChar Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteChar.htm" />
     <HelpKINode Title="FieldQuotedAttribute.QuoteChar Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteChar.htm" />
   </HelpKINode>
   <HelpKINode Title="QuoteMode enumeration" Url="html/T_FileHelpers_QuoteMode.htm" />
   <HelpKINode Title="QuoteMode property">
+    <HelpKINode Title="DelimitedField.QuoteMode Property " Url="html/P_FileHelpers_DelimitedField_QuoteMode.htm" />
     <HelpKINode Title="DelimitedFieldBuilder.QuoteMode Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteMode.htm" />
     <HelpKINode Title="FieldQuotedAttribute.QuoteMode Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteMode.htm" />
   </HelpKINode>
   <HelpKINode Title="QuoteMultiline property">
+    <HelpKINode Title="DelimitedField.QuoteMultiline Property " Url="html/P_FileHelpers_DelimitedField_QuoteMultiline.htm" />
     <HelpKINode Title="DelimitedFieldBuilder.QuoteMultiline Property " Url="html/P_FileHelpers_Dynamic_DelimitedFieldBuilder_QuoteMultiline.htm" />
     <HelpKINode Title="FieldQuotedAttribute.QuoteMultiline Property " Url="html/P_FileHelpers_FieldQuotedAttribute_QuoteMultiline.htm" />
   </HelpKINode>
-  <HelpKINode Title="RawReadFirstLines method" Url="html/M_FileHelpers_CommonEngine_RawReadFirstLines.htm" />
-  <HelpKINode Title="RawReadFirstLinesArray method" Url="html/Overload_FileHelpers_CommonEngine_RawReadFirstLinesArray.htm" />
   <HelpKINode Title="ReadAndTransformRecords method" Url="html/M_FileHelpers_FileTransformEngine_2_ReadAndTransformRecords.htm" />
   <HelpKINode Title="ReadCsv method" Url="html/Overload_FileHelpers_CommonEngine_ReadCsv.htm" />
   <HelpKINode Title="ReadEventArgs class">
@@ -1899,6 +1898,7 @@
   <HelpKINode Title="RecordOptions.RecordConditionInfo.Condition property" Url="html/P_FileHelpers_Options_RecordOptions_RecordConditionInfo_Condition.htm" />
   <HelpKINode Title="RecordOptions.RecordConditionInfo.Selector property" Url="html/P_FileHelpers_Options_RecordOptions_RecordConditionInfo_Selector.htm" />
   <HelpKINode Title="RecordOptions.RecordToString method" Url="html/M_FileHelpers_Options_RecordOptions_RecordToString.htm" />
+  <HelpKINode Title="RecordOptions.RecordToValues method" Url="html/M_FileHelpers_Options_RecordOptions_RecordToValues.htm" />
   <HelpKINode Title="RecordOptions.RemoveField method" Url="html/M_FileHelpers_Options_RecordOptions_RemoveField.htm" />
   <HelpKINode Title="RecordSelector property">
     <HelpKINode Title="MasterDetailEngine(TMaster, TDetail).RecordSelector Property " Url="html/P_FileHelpers_MasterDetail_MasterDetailEngine_2_RecordSelector.htm" />
@@ -1907,6 +1907,7 @@
   <HelpKINode Title="RecordsToDataTable method" Url="html/Overload_FileHelpers_CommonEngine_RecordsToDataTable.htm" />
   <HelpKINode Title="RecordString property" Url="html/P_FileHelpers_ErrorInfo_RecordString.htm" />
   <HelpKINode Title="RecordToString method" Url="html/M_FileHelpers_Options_RecordOptions_RecordToString.htm" />
+  <HelpKINode Title="RecordToValues method" Url="html/M_FileHelpers_Options_RecordOptions_RecordToValues.htm" />
   <HelpKINode Title="RecordType property">
     <HelpKINode Title="EngineBase.RecordType Property " Url="html/P_FileHelpers_EngineBase_RecordType.htm" />
     <HelpKINode Title="IFileHelperAsyncEngine(T).RecordType Property " Url="html/P_FileHelpers_IFileHelperAsyncEngine_1_RecordType.htm" />
