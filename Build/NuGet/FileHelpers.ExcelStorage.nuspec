@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>FileHelpers.ExcelStorage</id>
-        <version>3.2.6-alpha</version>
+        <version>3.2.6</version>
         <title>FileHelpers.ExcelStorage</title>
         <authors>Marcos Meli and Contributors</authors>
         <owners>Marcos Meli</owners>
@@ -20,7 +20,7 @@
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>
         <dependencies>
-            <dependency id="FileHelpers" version="3.2.6-alpha" />
+            <dependency id="FileHelpers" version="3.2.6" />
             <dependency id="Microsoft.Office.Interop.Excel" version="12.0.4518.1014" />
         </dependencies>
     </metadata>
