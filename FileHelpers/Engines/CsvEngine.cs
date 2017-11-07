@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using FileHelpers.Dynamic;
 using FileHelpers.Options;
 
@@ -133,6 +135,17 @@ namespace FileHelpers
                 }
                 foreach (DataRow dr in dt.Rows)
                 {
+                    if (options.IgnoreSpecialCharacters)
+                    {
+                        var separators = @"[;,\t\r\n]";
+                        for (int i = 0; i < dt.Columns.Count; i++)
+                        {
+                            if (dt.Columns[i].DataType == typeof(string) && dr[i] != DBNull.Value)
+                            {
+                                dr[i] = Regex.Replace((string)dr[i], separators, " ");
+                            }
+                        }
+                    }
                     object[] fields = dr.ItemArray;
                     Append(fs, options, fields);
                 }
