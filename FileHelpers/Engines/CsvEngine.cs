@@ -140,7 +140,7 @@ namespace FileHelpers
                         var separators = @"[;,\t\r\n]";
                         for (int i = 0; i < dt.Columns.Count; i++)
                         {
-                            if (dt.Columns[i].DataType == typeof(string))
+                            if (dt.Columns[i].DataType == typeof(string) && dr[i] != DBNull.Value)
                             {
                                 dr[i] = Regex.Replace((string)dr[i], separators, " ");
                             }
