@@ -1,6 +1,6 @@
 properties {
-    $AssemblyVersion = "3.2.7"
-    $SemanticVersion = $AssemblyVersion + ""   #for stable version, set postfix to empty
+    $AssemblyVersion = "3.2.8"
+    $SemanticVersion = $AssemblyVersion + "-alpha"   #for stable version, set postfix to empty
     $base_dir = resolve-path .
     $package_dir = "$base_dir\..\packages"
     $config = "Release"
