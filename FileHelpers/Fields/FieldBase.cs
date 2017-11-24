@@ -728,7 +728,7 @@ namespace FileHelpers
                     if (IsNullableType)
                         return null;
 
-                    string msg = "Not value found for the value type field: '" + FieldInfo.Name + "' Class: '" +
+                    string msg = "No value found for the value type field: '" + FieldInfo.Name + "' Class: '" +
                                  FieldInfo.DeclaringType.Name + "'. " + Environment.NewLine
                                  +
                                  "You must use the [FieldNullValue] attribute because this is a value type and can't be null or use a Nullable Type instead of the current type.";
