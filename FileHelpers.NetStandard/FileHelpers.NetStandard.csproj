@@ -1,0 +1,197 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Messages\GenerateMessages.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\FileHelpers\Attributes\ConditionalRecordAttribute.cs" Link="Attributes\ConditionalRecordAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\DelimitedRecordAttribute.cs" Link="Attributes\DelimitedRecordAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldAlignAttribute.cs" Link="Attributes\FieldAlignAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldArrayLength.cs" Link="Attributes\FieldArrayLength.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldAttribute.cs" Link="Attributes\FieldAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldCaptionAttribute.cs" Link="Attributes\FieldCaptionAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldConverterAttribute.cs" Link="Attributes\FieldConverterAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldDelimiterAttribute.cs" Link="Attributes\FieldDelimiterAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldFixedLengthAttribute.cs" Link="Attributes\FieldFixedLengthAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldHiddenAttribute.cs" Link="Attributes\FieldHiddenAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldIgnoredAttribute.cs" Link="Attributes\FieldIgnoredAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldInNewLineAttribute.cs" Link="Attributes\FieldInNewLineAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldNotEmptyAttribute.cs" Link="Attributes\FieldNotEmptyAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldNotInFileAttribute.cs" Link="Attributes\FieldNotInFileAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldNullValueAttribute.cs" Link="Attributes\FieldNullValueAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldOptionalAttribute.cs" Link="Attributes\FieldOptionalAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldOrderAttribute.cs" Link="Attributes\FieldOrderAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldQuotedAttribute.cs" Link="Attributes\FieldQuotedAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldTrimAttribute.cs" Link="Attributes\FieldTrimAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FieldValueDiscardedAttribute.cs" Link="Attributes\FieldValueDiscardedAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\FixedLengthRecordAttribute.cs" Link="Attributes\FixedLengthRecordAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\IgnoreCommentedLinesAttribute.cs" Link="Attributes\IgnoreCommentedLinesAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\IgnoreEmptyLinesAttribute.cs" Link="Attributes\IgnoreEmptyLinesAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\IgnoreFirstAttribute.cs" Link="Attributes\IgnoreFirstAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\IgnoreInheritedClassAttribute.cs" Link="Attributes\IgnoreInheritedClassAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\IgnoreLastAttribute.cs" Link="Attributes\IgnoreLastAttribute.cs" />
+    <Compile Include="..\FileHelpers\Attributes\TypedRecordAttribute.cs" Link="Attributes\TypedRecordAttribute.cs" />
+    <Compile Include="..\FileHelpers\Converters\ConverterBase.cs" Link="Converters\ConverterBase.cs" />
+    <Compile Include="..\FileHelpers\Converters\ConvertHelpers.cs" Link="Converters\ConvertHelpers.cs" />
+    <Compile Include="..\FileHelpers\Converters\EnumConverter.cs" Link="Converters\EnumConverter.cs" />
+    <Compile Include="..\FileHelpers\Core\ExtensionsFileHelpers.cs" Link="Core\ExtensionsFileHelpers.cs" />
+    <Compile Include="..\FileHelpers\Core\ExtractInfo.cs" Link="Core\ExtractInfo.cs" />
+    <Compile Include="..\FileHelpers\Core\FieldInfoCacheManipulator.cs" Link="Core\FieldInfoCacheManipulator.cs" />
+    <Compile Include="..\FileHelpers\Core\ForwardReader.cs" Link="Core\ForwardReader.cs" />
+    <Compile Include="..\FileHelpers\Core\IRecordInfo.cs" Link="Core\IRecordInfo.cs" />
+    <Compile Include="..\FileHelpers\Core\IRecordReader.cs" Link="Core\IRecordReader.cs" />
+    <Compile Include="..\FileHelpers\Core\LineInfo.cs" Link="Core\LineInfo.cs" />
+    <Compile Include="..\FileHelpers\Core\NewLineDelimitedRecordReader.cs" Link="Core\NewLineDelimitedRecordReader.cs" />
+    <Compile Include="..\FileHelpers\Core\RecordInfo.cs" Link="Core\RecordInfo.cs" />
+    <Compile Include="..\FileHelpers\Core\RecordInfo.Factory.cs" Link="Core\RecordInfo.Factory.cs" />
+    <Compile Include="..\FileHelpers\Core\RecordOperations.cs" Link="Core\RecordOperations.cs" />
+    <Compile Include="..\FileHelpers\Core\ReflectionHelper.cs" Link="Core\ReflectionHelper.cs" />
+    <Compile Include="..\FileHelpers\Csv\RecordIndexer.cs" Link="Csv\RecordIndexer.cs" />
+    <Compile Include="..\FileHelpers\DataLink\ExcelStorageBase.cs" Link="DataLink\ExcelStorageBase.cs" />
+    <Compile Include="..\FileHelpers\DataLink\FileDataLink.cs" Link="DataLink\FileDataLink.cs" />
+    <Compile Include="..\FileHelpers\DataLink\GenericDataLink.cs" Link="DataLink\GenericDataLink.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataBaseHelper.cs" Link="DataLink\Storage\DataBaseHelper.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataBaseStorage.cs" Link="DataLink\Storage\DataBaseStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataStorage.cs" Link="DataLink\Storage\DataStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\FileStorage.cs" Link="DataLink\Storage\FileStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\GenericDatabaseStorage.cs" Link="DataLink\Storage\GenericDatabaseStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\SqlServerStorage.cs" Link="DataLink\Storage\SqlServerStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\TransactionMode.cs" Link="DataLink\TransactionMode.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\AttributesBuilder.cs" Link="Dynamic\AttributesBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\ConverterBuilder.cs" Link="Dynamic\ConverterBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\CsvClassBuilder.cs" Link="Dynamic\CsvClassBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\DelimitedClassBuilder.cs" Link="Dynamic\DelimitedClassBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\DelimitedFieldBuilder.cs" Link="Dynamic\DelimitedFieldBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\FieldBuilder.cs" Link="Dynamic\FieldBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\FixedFieldBuilder.cs" Link="Dynamic\FixedFieldBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\FixedLengthClassBuilder.cs" Link="Dynamic\FixedLengthClassBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\XmlHelper.cs" Link="Dynamic\XmlHelper.cs" />
+    <Compile Include="..\FileHelpers\Engines\CommonEngine.cs" Link="Engines\CommonEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\CsvEngine.cs" Link="Engines\CsvEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\DelimitedFileEngine.cs" Link="Engines\DelimitedFileEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\EngineBase.cs" Link="Engines\EngineBase.cs" />
+    <Compile Include="..\FileHelpers\Engines\EventEngineBase.cs" Link="Engines\EventEngineBase.cs" />
+    <Compile Include="..\FileHelpers\Engines\FileDiffEngine.cs" Link="Engines\FileDiffEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\FileHelperAsyncEngine.cs" Link="Engines\FileHelperAsyncEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\FileHelperEngine.cs" Link="Engines\FileHelperEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\FileTransformEngine.cs" Link="Engines\FileTransformEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\FixedFileEngine.cs" Link="Engines\FixedFileEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\IFileHelperAsyncEngine.cs" Link="Engines\IFileHelperAsyncEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\IFileHelperEngine.cs" Link="Engines\IFileHelperEngine.cs" />
+    <Compile Include="..\FileHelpers\Engines\MultiRecordEngine.cs" Link="Engines\MultiRecordEngine.cs" />
+    <Compile Include="..\FileHelpers\Enums\AlignMode.cs" Link="Enums\AlignMode.cs" />
+    <Compile Include="..\FileHelpers\Enums\ConverterKind.cs" Link="Enums\ConverterKind.cs" />
+    <Compile Include="..\FileHelpers\Enums\ErrorMode.cs" Link="Enums\ErrorMode.cs" />
+    <Compile Include="..\FileHelpers\Enums\FixedMode.cs" Link="Enums\FixedMode.cs" />
+    <Compile Include="..\FileHelpers\Enums\MultilineMode.cs" Link="Enums\MultilineMode.cs" />
+    <Compile Include="..\FileHelpers\Enums\NetLanguage.cs" Link="Enums\NetLanguage.cs" />
+    <Compile Include="..\FileHelpers\Enums\NetVisibility.cs" Link="Enums\NetVisibility.cs" />
+    <Compile Include="..\FileHelpers\Enums\QuoteMode.cs" Link="Enums\QuoteMode.cs" />
+    <Compile Include="..\FileHelpers\Enums\RecordCondition.cs" Link="Enums\RecordCondition.cs" />
+    <Compile Include="..\FileHelpers\Enums\TrimMode.cs" Link="Enums\TrimMode.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\BadUsageException.cs" Link="ErrorHandling\BadUsageException.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\ConvertException.cs" Link="ErrorHandling\ConvertException.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\ErrorInfo.cs" Link="ErrorHandling\ErrorInfo.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\ErrorManager.cs" Link="ErrorHandling\ErrorManager.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\FileHelpersException.cs" Link="ErrorHandling\FileHelpersException.cs" />
+    <Compile Include="..\FileHelpers\ErrorHandling\NullValueNotFoundException.cs" Link="ErrorHandling\NullValueNotFoundException.cs" />
+    <Compile Include="..\FileHelpers\Events\AfterReadEventArgs.cs" Link="Events\AfterReadEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\AfterWriteEventArgs.cs" Link="Events\AfterWriteEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\BeforeReadEventArgs.cs" Link="Events\BeforeReadEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\BeforeWriteEventArgs.cs" Link="Events\BeforeWriteEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\Delegates.cs" Link="Events\Delegates.cs" />
+    <Compile Include="..\FileHelpers\Events\FileHelpersEventArgs.cs" Link="Events\FileHelpersEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\ProgressEventArgs.cs" Link="Events\ProgressEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\ReadEventArgs.cs" Link="Events\ReadEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Events\WriteEventArgs.cs" Link="Events\WriteEventArgs.cs" />
+    <Compile Include="..\FileHelpers\Fields\DelimitedField.cs" Link="Fields\DelimitedField.cs" />
+    <Compile Include="..\FileHelpers\Fields\FieldBase.cs" Link="Fields\FieldBase.cs" />
+    <Compile Include="..\FileHelpers\Fields\FixedLengthField.cs" Link="Fields\FixedLengthField.cs" />
+    <Compile Include="..\FileHelpers\FormatDetector\DelimiterInfo.cs" Link="FormatDetector\DelimiterInfo.cs" />
+    <Compile Include="..\FileHelpers\FormatDetector\FormatHint.cs" Link="FormatDetector\FormatHint.cs" />
+    <Compile Include="..\FileHelpers\FormatDetector\QuoteHelper.cs" Link="FormatDetector\QuoteHelper.cs" />
+    <Compile Include="..\FileHelpers\FormatDetector\RecordFormatInfo.cs" Link="FormatDetector\RecordFormatInfo.cs" />
+    <Compile Include="..\FileHelpers\FormatDetector\SmartFormatDetector.cs" Link="FormatDetector\SmartFormatDetector.cs" />
+    <Compile Include="..\FileHelpers\Helpers\Attributes.cs" Link="Helpers\Attributes.cs" />
+    <Compile Include="..\FileHelpers\Helpers\ConditionHelper.cs" Link="Helpers\ConditionHelper.cs" />
+    <Compile Include="..\FileHelpers\Helpers\ExHelper.cs" Link="Helpers\ExHelper.cs" />
+    <Compile Include="..\FileHelpers\Helpers\StreamHelper.cs" Link="Helpers\StreamHelper.cs" />
+    <Compile Include="..\FileHelpers\Helpers\StringHelper.cs" Link="Helpers\StringHelper.cs" />
+    <Compile Include="..\FileHelpers\Helpers\TypeHelper.cs" Link="Helpers\TypeHelper.cs" />
+    <Compile Include="..\FileHelpers\Helpers\ValidIdentifierValidator.cs" Link="Helpers\ValidIdentifierValidator.cs" />
+    <Compile Include="..\FileHelpers\Interfaces\INotifyRead.cs" Link="Interfaces\INotifyRead.cs" />
+    <Compile Include="..\FileHelpers\Interfaces\INotifyWrite.cs" Link="Interfaces\INotifyWrite.cs" />
+    <Compile Include="..\FileHelpers\Interfaces\ITransformable.cs" Link="Interfaces\ITransformable.cs" />
+    <Compile Include="..\FileHelpers\MasterDetail\Common.cs" Link="MasterDetail\Common.cs" />
+    <Compile Include="..\FileHelpers\MasterDetail\MasterDetailEngine.cs" Link="MasterDetail\MasterDetailEngine.cs" />
+    <Compile Include="..\FileHelpers\MasterDetail\MasterDetails.cs" Link="MasterDetail\MasterDetails.cs" />
+    <Compile Include="..\FileHelpers\MasterDetail\RecordAction.cs" Link="MasterDetail\RecordAction.cs" />
+    <Compile Include="..\FileHelpers\Messages\GenerateMessages1.autogen.cs" Link="Messages\GenerateMessages1.autogen.cs" />
+    <Compile Include="..\FileHelpers\Messages\MessageBase.cs" Link="Messages\MessageBase.cs" />
+    <Compile Include="..\FileHelpers\Options\CsvOptions.cs" Link="Options\CsvOptions.cs" />
+    <Compile Include="..\FileHelpers\Options\DelimitedRecordOptions.cs" Link="Options\DelimitedRecordOptions.cs" />
+    <Compile Include="..\FileHelpers\Options\FixedRecordOptions.cs" Link="Options\FixedRecordOptions.cs" />
+    <Compile Include="..\FileHelpers\Options\RecordOptions.cs" Link="Options\RecordOptions.cs" />
+    <Compile Include="..\FileHelpers\Sort\BigFileSorter.cs" Link="Sort\BigFileSorter.cs" />
+    <Compile Include="..\FileHelpers\Sort\BigFileSorter.T.cs" Link="Sort\BigFileSorter.T.cs" />
+    <Compile Include="..\FileHelpers\Sort\SortQueue.T.cs" Link="Sort\SortQueue.T.cs" />
+    <Compile Include="..\FileHelpers\Streams\InternalStreamReader.cs" Link="Streams\InternalStreamReader.cs" />
+    <Compile Include="..\FileHelpers\Streams\InternalStringReader.cs" Link="Streams\InternalStringReader.cs" />
+    <Compile Include="..\FileHelpers\Streams\StreamInfoProvider.cs" Link="Streams\StreamInfoProvider.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="2.7.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.0.4" />
+    <PackageReference Include="Microsoft.VisualBasic" Version="10.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.2" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Dynamic\DynamicCompilationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Core\" />
+    <Folder Include="Csv\" />
+    <Folder Include="DataLink\Storage\" />
+    <Folder Include="Engines\" />
+    <Folder Include="Enums\" />
+    <Folder Include="ErrorHandling\" />
+    <Folder Include="Events\" />
+    <Folder Include="Fields\" />
+    <Folder Include="FormatDetector\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="MasterDetail\" />
+    <Folder Include="Messages\" />
+    <Folder Include="Options\" />
+    <Folder Include="Sort\" />
+    <Folder Include="Streams\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\FileHelpers\Messages\Errors.msg" Link="Messages\Errors.msg" />
+  </ItemGroup>
+
+</Project>
