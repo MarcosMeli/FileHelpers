@@ -1,6 +1,6 @@
 # FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-<a href="http://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
+<a href="https://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
 
 www.filehelpers.net
 
@@ -36,6 +36,6 @@ NuGet feed
 
  We have the awesome .NET tools from [JetBrains](http://www.jetbrains.com/).
 
-[![Resharper](http://www.filehelpers.net/images/tools_resharper.gif)](http://www.jetbrains.com/resharper/)
-[![dotCover](http://www.filehelpers.net//images/tools_dotcover.gif)](http://www.jetbrains.com/dotcover/)
-[![dotTrace](http://www.filehelpers.net//images/tools_dottrace.gif)](http://www.jetbrains.com/dottrace/)
+[![Resharper](https://www.filehelpers.net/images/tools_resharper.gif)](http://www.jetbrains.com/resharper/)
+[![dotCover](https://www.filehelpers.net//images/tools_dotcover.gif)](http://www.jetbrains.com/dotcover/)
+[![dotTrace](https://www.filehelpers.net//images/tools_dottrace.gif)](http://www.jetbrains.com/dottrace/)
