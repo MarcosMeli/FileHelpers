@@ -98,6 +98,8 @@ namespace FileHelpers.ExcelNPOIStorage
                 else
                     mWorkbook = new HSSFWorkbook(file);
 
+                mWorkbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
+
                 if (String.IsNullOrEmpty(SheetName))
                     mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);  
                 else {
