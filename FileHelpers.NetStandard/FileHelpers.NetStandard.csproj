@@ -1,17 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461;net462</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net46;net461;net462;netstandard2.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <AssemblyName>FileHelpers</AssemblyName>
+    <RootNamespace>FileHelpers</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="DataLink\**" />
-    <EmbeddedResource Remove="DataLink\**" />
-    <None Remove="DataLink\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Messages\GenerateMessages.tt" />
@@ -61,6 +57,18 @@
     <Compile Include="..\FileHelpers\Core\RecordOperations.cs" Link="Core\RecordOperations.cs" />
     <Compile Include="..\FileHelpers\Core\ReflectionHelper.cs" Link="Core\ReflectionHelper.cs" />
     <Compile Include="..\FileHelpers\Csv\RecordIndexer.cs" Link="Csv\RecordIndexer.cs" />
+    <Compile Include="..\FileHelpers\DataLink\ExcelStorageBase.cs" Link="DataLink\ExcelStorageBase.cs" />
+    <Compile Include="..\FileHelpers\DataLink\FileDataLink.cs" Link="DataLink\FileDataLink.cs" />
+    <Compile Include="..\FileHelpers\DataLink\GenericDataLink.cs" Link="DataLink\GenericDataLink.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\AccessStorage.cs" Link="DataLink\Storage\AccessStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataBaseHelper.cs" Link="DataLink\Storage\DataBaseHelper.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataBaseStorage.cs" Link="DataLink\Storage\DataBaseStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\DataStorage.cs" Link="DataLink\Storage\DataStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\FileStorage.cs" Link="DataLink\Storage\FileStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\GenericDatabaseStorage.cs" Link="DataLink\Storage\GenericDatabaseStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\OleDbStorage.cs" Link="DataLink\Storage\OleDbStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\Storage\SqlServerStorage.cs" Link="DataLink\Storage\SqlServerStorage.cs" />
+    <Compile Include="..\FileHelpers\DataLink\TransactionMode.cs" Link="DataLink\TransactionMode.cs" />
     <Compile Include="..\FileHelpers\Dynamic\AttributesBuilder.cs" Link="Dynamic\AttributesBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\ConverterBuilder.cs" Link="Dynamic\ConverterBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\CsvClassBuilder.cs" Link="Dynamic\CsvClassBuilder.cs" />
@@ -145,16 +153,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="2.7.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.0.4" />
-    <PackageReference Include="Microsoft.VisualBasic" Version="10.2.0" />
-    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Dynamic\DynamicCompilationException.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,6 +167,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Core\" />
     <Folder Include="Csv\" />
+    <Folder Include="DataLink\Storage\" />
     <Folder Include="Engines\" />
     <Folder Include="Enums\" />
     <Folder Include="ErrorHandling\" />
@@ -186,6 +185,87 @@
 
   <ItemGroup>
     <None Include="..\FileHelpers\Messages\Errors.msg" Link="Messages\Errors.msg" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Loader">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyModel">
+      <Version>2.0.4</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Loader">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Loader">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>4.3.0</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

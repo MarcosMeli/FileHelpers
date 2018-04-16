@@ -1,18 +1,18 @@
-
-
 using System;
 using System.Data;
-using System.Data.OleDb;
 
 namespace FileHelpers.DataLink
 {
+#if !NETSTANDARD2_0
+	using System.Data.OleDb;
+
     /// <summary>
     /// This is a base class that implements the <see cref="DataStorage"/> for
     /// Microsoft Access Files.
     /// </summary>
     public sealed class OleDbStorage : DatabaseStorage
     {
-        #region "  Constructors  "
+	#region "  Constructors  "
 
         /// <summary>
         /// Create a new OleDbStorage based in the record type and in the connection string.
@@ -25,9 +25,9 @@ namespace FileHelpers.DataLink
             ConnectionString = oleDbConnString;
         }
 
-        #endregion
+	#endregion
 
-        #region "  Create Connection and Command  "
+	#region "  Create Connection and Command  "
 
         /// <summary>Must create an abstract connection object.</summary>
         /// <returns>An Abstract Connection Object.</returns>
@@ -39,7 +39,7 @@ namespace FileHelpers.DataLink
             return new OleDbConnection(ConnectionString);
         }
 
-        #endregion
+	#endregion
     }
+#endif
 }
-
