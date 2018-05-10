@@ -88,7 +88,9 @@ function Make-Directory($path)
 
 function Compile-Sln($path, $targetFramework)
 {
-    & 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe' $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
+    # found http://nichesoftware.co.nz/2017/08/05/finding-msbuild-psake-build.html
+    $msbuild15 = resolve-path "C:\Program Files (x86)\Microsoft Visual Studio\*\*\MSBuild\*\Bin\MSBuild.exe"
+    & $msbuild15.Path $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
 }
 
 function Compile-Sln-With-Deploy($path, $targetFramework, $deploy)
