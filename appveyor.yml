@@ -1,7 +1,10 @@
 version: 3.2.0.{build}
+install:
+- ps: >-
+    nuget install Build\.nuget\packages.config -OutputDirectory packages
 
+    nuget restore FileHelpers.sln
 nuget:
-
   project_feed: true
 
 build: off
@@ -11,7 +14,6 @@ test_script:
     cd Build
     
     ./build.ps1
-    
     
     $testFile = '.\TestResult.xml';
     $path = Resolve-Path($testFile);
