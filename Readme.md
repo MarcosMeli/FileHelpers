@@ -6,7 +6,6 @@ www.filehelpers.net
 
 [![GitHub license](https://img.shields.io/github/license/MarcosMeli/FileHelpers.svg)](https://github.com/MarcosMeli/FileHelpers#license)
 [![NuGet](https://img.shields.io/nuget/vpre/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/) [![NuGet](https://img.shields.io/nuget/dt/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/)
-[![Stories in Backlog](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=backlog&title=Issues+Pending)](https://waffle.io/MarcosMeli/FileHelpers)
 [![Stories in Ready](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=ready&title=Issues+Ready)](https://waffle.io/MarcosMeli/FileHelpers)
 [![Stories in progress](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=in%20progress&title=Issues+In%20Progress)](https://waffle.io/MarcosMeli/FileHelpers)
 
