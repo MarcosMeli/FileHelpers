@@ -3,7 +3,7 @@ using System.Data;
 
 namespace FileHelpers.DataLink
 {
-#if !NETSTANDARD2_0
+#if !NETCOREAPP2_0
 	using System.Data.OleDb;
 
     /// <summary>

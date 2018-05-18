@@ -2,7 +2,7 @@ using System;
 
 namespace FileHelpers.Dynamic
 {
-#if !NETSTANDARD2_0
+#if !NETCOREAPP2_0
 	using System.CodeDom.Compiler;
 
 	/// <summary>

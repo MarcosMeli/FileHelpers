@@ -13,7 +13,7 @@ using FileHelpers.Helpers;
 
 namespace FileHelpers.Dynamic
 {
-#if !NETSTANDARD2_0
+#if !NETCOREAPP2_0
 	using System.CodeDom.Compiler;
 
 	/// <summary>The MAIN class to work with runtime defined records.</summary>
@@ -1326,13 +1326,13 @@ namespace FileHelpers.Dynamic
 
             code.Append(classStr);
 
-	        var compileTimeReferences = from library in DependencyContext.Default.CompileLibraries
+			var compileTimeReferences = from library in DependencyContext.Default.CompileLibraries
 		        from path in library.ResolveReferencePaths()
 		        select AssemblyMetadata.CreateFromFile(path)
 		        into metadata
 		        select metadata.GetReference();
 
-	        // Assumption: there is no need to distinguish System.Data and System.Xml in .NET Standard,
+	        // Assumption: there is no need to distinguish System.Data and System.Xml in .NET Core,
 	        //             as they are all part of the same pile. Instead we'll rely on the existing compile-time
 	        //             references, and we'll only add FileHelpers itself to dynamic compilation
 

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.NetStandard", "FileHelpers.NetStandard\FileHelpers.NetStandard.csproj", "{526363E2-E477-4F83-B47A-145C7A407DCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.NetCore", "FileHelpers.NetStandard\FileHelpers.NetCore.csproj", "{526363E2-E477-4F83-B47A-145C7A407DCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
