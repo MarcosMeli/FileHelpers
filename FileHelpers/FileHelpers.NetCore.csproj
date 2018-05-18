@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AssemblyInfo.cs" />
+    <Compile Remove="VersionInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FileHelpers.xml" />
     <None Remove="Messages\GenerateMessages.tt" />
   </ItemGroup>
 
