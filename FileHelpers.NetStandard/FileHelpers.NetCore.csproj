@@ -70,10 +70,12 @@
     <Compile Include="..\FileHelpers\DataLink\Storage\SqlServerStorage.cs" Link="DataLink\Storage\SqlServerStorage.cs" />
     <Compile Include="..\FileHelpers\DataLink\TransactionMode.cs" Link="DataLink\TransactionMode.cs" />
     <Compile Include="..\FileHelpers\Dynamic\AttributesBuilder.cs" Link="Dynamic\AttributesBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\ClassBuilder.cs" Link="Dynamic\ClassBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\ConverterBuilder.cs" Link="Dynamic\ConverterBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\CsvClassBuilder.cs" Link="Dynamic\CsvClassBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\DelimitedClassBuilder.cs" Link="Dynamic\DelimitedClassBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\DelimitedFieldBuilder.cs" Link="Dynamic\DelimitedFieldBuilder.cs" />
+    <Compile Include="..\FileHelpers\Dynamic\DynamicCompilationException.cs" Link="Dynamic\DynamicCompilationException.cs" />
     <Compile Include="..\FileHelpers\Dynamic\FieldBuilder.cs" Link="Dynamic\FieldBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\FixedFieldBuilder.cs" Link="Dynamic\FixedFieldBuilder.cs" />
     <Compile Include="..\FileHelpers\Dynamic\FixedLengthClassBuilder.cs" Link="Dynamic\FixedLengthClassBuilder.cs" />
@@ -150,12 +152,6 @@
     <Compile Include="..\FileHelpers\Streams\InternalStreamReader.cs" Link="Streams\InternalStreamReader.cs" />
     <Compile Include="..\FileHelpers\Streams\InternalStringReader.cs" Link="Streams\InternalStringReader.cs" />
     <Compile Include="..\FileHelpers\Streams\StreamInfoProvider.cs" Link="Streams\StreamInfoProvider.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Dynamic\DynamicCompilationException.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
