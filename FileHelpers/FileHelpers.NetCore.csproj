@@ -9,6 +9,14 @@
     <RootNamespace>FileHelpers</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
+    <OutputPath>..\Debug\Bin\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp2.0|AnyCPU'">
+    <OutputPath>..\Release\Bin\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="DataLink\**" />
     <Compile Remove="Dynamic\**" />

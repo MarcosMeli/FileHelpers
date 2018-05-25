@@ -25,11 +25,13 @@ task common {
 task compile -depends common {
     "Compiling " + $config
 
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyMainLib.sln" "3.5" "Lib\net35" ""
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
-    Compile-Sln-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
+    Compile-MSBuild-With-Deploy "..\FileHelpers\FileHelpers.csproj" "3.5" "Lib\net35"
+    Compile-MSBuild-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
+    Compile-MSBuild-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
 
-    Compile-Sln "..\FileHelpers.sln" "4.5"
+    Compile-MSBuild "..\FileHelpers.sln" "4.5"
+
+    Compile-DotNet "..\FileHelpers\FileHelpers.NetCore.csproj" "Lib\netcoreapp20"
 
     $delFiles = "..\" + $config + "\*.config"
     del $delFiles
@@ -86,16 +88,26 @@ function Make-Directory($path)
     md $path -ErrorAction SilentlyContinue | out-null
 }
 
-function Compile-Sln($path, $targetFramework)
+function Compile-DotNet($path, $deploy)
+{
+    & 'dotnet.exe' build $path -c $config
+    MoveIt($deploy)
+}
+
+function Compile-MSBuild($path, $targetFramework)
 {
     # found http://nichesoftware.co.nz/2017/08/05/finding-msbuild-psake-build.html
     $msbuild15 = resolve-path "C:\Program Files (x86)\Microsoft Visual Studio\*\*\MSBuild\*\Bin\MSBuild.exe"
     & $msbuild15.Path $path /p:TargetFrameworkVersion=v$targetFramework /t:rebuild /p:Configuration=$config /nologo /verbosity:minimal
 }
 
-function Compile-Sln-With-Deploy($path, $targetFramework, $deploy)
+function Compile-MSBuild-With-Deploy($path, $targetFramework, $deploy)
 {
-    Compile-Sln $path $targetFramework
+    Compile-MSBuild $path $targetFramework
+    MoveIt $deploy
+}
+
+function MoveIt($deploy) {
     $deployDir = "..\" + $config + "\" + $deploy 
     Make-Directory $deployDir
 
