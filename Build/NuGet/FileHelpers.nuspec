@@ -14,13 +14,15 @@
         <summary>Open Source library for automatic formatted file read/write operations</summary>
         <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
         <copyright>Marcos Meli - Devoo</copyright>
-        <tags>FileHelpers, Data, Flat File, CSV, FixedLength, Fixed, Delimited, Import, Export, ETL, FileHelper, .Net</tags>
+        <tags>FileHelpers, Data, Flat File, CSV, FixedLength, Fixed, Delimited, Import, Export, ETL, FileHelper, .NET, .NET Core</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Data" targetFramework="" />
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>
     </metadata>
     <files>
+        <file src="..\..\Release\Lib\netcoreapp2.0\netcoreapp2.0\FileHelpers.dll" target="lib\netcoreapp2.0\FileHelpers.dll" />
+        <file src="..\..\Release\Lib\netcoreapp2.0\netcoreapp2.0\FileHelpers.dll" target="lib\netcoreapp2.0\FileHelpers.deps.json" />
         <file src="..\..\Release\Lib\net35\FileHelpers.dll" target="lib\net35\FileHelpers.dll" />
         <file src="..\..\Release\Lib\net35\FileHelpers.xml" target="lib\net35\FileHelpers.xml" />
         <file src="..\..\Release\Lib\net40\FileHelpers.dll" target="lib\net40\FileHelpers.dll" />

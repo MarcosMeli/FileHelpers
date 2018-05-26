@@ -31,7 +31,7 @@ task compile -depends common {
 
     Compile-MSBuild "..\FileHelpers.sln" "4.5"
 
-    Compile-DotNet "..\FileHelpers\FileHelpers.NetCore.csproj" "Lib\netcoreapp20"
+    Compile-DotNet "..\FileHelpers\FileHelpers.NetCore.csproj" "Lib\netcoreapp2.0"
 
     $delFiles = "..\" + $config + "\*.config"
     del $delFiles
@@ -114,7 +114,7 @@ function MoveIt($deploy) {
     $fromDir = "..\" + $config + "\Bin"
     $fromFiles = $fromDir + "\*.*"
 
-    copy $fromFiles $deployDir
+    copy $fromFiles $deployDir -Recurse
 
     Delete-Directory $fromDir
 }
