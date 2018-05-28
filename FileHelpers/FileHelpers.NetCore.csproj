@@ -7,6 +7,12 @@
     <DelaySign>false</DelaySign>
     <AssemblyName>FileHelpers</AssemblyName>
     <RootNamespace>FileHelpers</RootNamespace>
+    <Version>3.2.8-alpha</Version>
+    <Description>A free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams</Description>
+    <Company>Devoo</Company>
+    <Product>FileHelpers http://www.filehelpers.net</Product>
+    <Authors></Authors>
+    <Copyright>Copyright 2005-2015. Marcos Meli</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp2.0|AnyCPU'">
