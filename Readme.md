@@ -13,13 +13,17 @@ www.filehelpers.net
 
 ### Current support for .NET Core
 
-In the current **alpha** releases is **support** for **.NET Core**! These releases are available in the appveyor NuGet repository (see below).
+Support for .NET Core is available through .NET Standard
 
-.NET Core support is directly available, not via .NET Standard. That means there is a dll directly targeting
-.NET Core 2.0 in the FileHelpers NuGet package.
+### Current support for .NET Standard
 
-The **.NET Core FileHelpers** dll is a **subset** of the **.NET Framework FileHelpers** dll.
-The .NET Core FileHelpers dll contains:
+In the current **alpha** releases is **support** for **.NET Standard 2.0**! These releases
+are available in the appveyor NuGet repository (see below).
+
+There is a FileHelpers dll targeting .NET Standard 2.0 in the FileHelpers NuGet package.
+
+The **.NET Standard FileHelpers** dll is a **subset** of the **.NET Framework FileHelpers** dll.
+The .NET Standard FileHelpers dll contains:
 * FileHelperEngine
 * MasterDetailEngine
 * Attributes
@@ -28,10 +32,10 @@ The .NET Core FileHelpers dll contains:
 * ErrorManager
 * Sorting of big files
 
-It currently does **not** contain the following features:
+The .NET Standard FileHelpers dll currently does **not** contain the following features:
 * Dynamic: ClassBuilder and CsvClassBuilder. ClassBuilder is difficult to maintain and a rewrite in
-  .NET Core as is, would require reference three NuGet packages. There must be better ways
-  to write record structures at runtime.
+  .NET Core / Standard as is, would require to reference three NuGet packages. There must be better
+  ways to write record structures at runtime.
 * SmartFormatDetector: depends on ClassBuilder (Dynamic).
 * DataLink: code was very old and seemed not worth maintaining.
 
