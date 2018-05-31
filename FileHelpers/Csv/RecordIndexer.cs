@@ -18,7 +18,7 @@ namespace FileHelpers
         internal RecordIndexer() {}
 
         [FieldQuoted(QuoteMode.OptionalForRead, MultilineMode.AllowForRead)]
-        private readonly string[] values = null;
+        private string[] values = null;
 
         /// <summary>
         /// The number of fields in the record

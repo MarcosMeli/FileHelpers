@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace FileHelpers
 {
@@ -48,47 +49,18 @@ namespace FileHelpers
         /// <returns>Delegate to convert object to fields</returns>
         public static ObjectToValuesDelegate ObjectToValuesMethod(Type recordType, FieldInfo[] fields)
         {
-            var dm = new DynamicMethod("FileHelpersDynamic_GetAllValues",
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                typeof (object[]),
-                new[] {typeof (object)},
-                recordType,
-                true);
+            var recordParam = Expression.Parameter(typeof(object));
+            var record = Expression.Convert(recordParam, recordType);
 
-            ILGenerator generator = dm.GetILGenerator();
+            var fieldAccessors = fields
+                .Select(x => Expression.Field(record, x))
+                .Select(x => Expression.Convert(x, typeof(object)))
+                .Cast<Expression>()
+                .ToArray();
 
-            generator.DeclareLocal(typeof (object[]));
-            generator.DeclareLocal(recordType);
+            var newArray = Expression.NewArrayInit(typeof(object), fieldAccessors);
 
-            generator.Emit(OpCodes.Ldc_I4, fields.Length);
-            generator.Emit(OpCodes.Newarr, typeof (object));
-            generator.Emit(OpCodes.Stloc_0);
-
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, recordType);
-            generator.Emit(OpCodes.Stloc_1);
-
-            for (int i = 0; i < fields.Length; i++) {
-                FieldInfo field = fields[i];
-
-                generator.Emit(OpCodes.Ldloc_0);
-                generator.Emit(OpCodes.Ldc_I4, i);
-                generator.Emit(OpCodes.Ldloc_1);
-
-                generator.Emit(OpCodes.Ldfld, field);
-
-                if (field.FieldType.IsValueType)
-                    generator.Emit(OpCodes.Box, field.FieldType);
-
-                generator.Emit(OpCodes.Stelem_Ref);
-            }
-
-            // return the value
-            generator.Emit(OpCodes.Ldloc_0);
-            generator.Emit(OpCodes.Ret);
-
-            return (ObjectToValuesDelegate) dm.CreateDelegate(typeof (ObjectToValuesDelegate));
+            return Expression.Lambda<ObjectToValuesDelegate>(newArray, recordParam).Compile();
         }
 
         /// <summary>
@@ -113,41 +85,24 @@ namespace FileHelpers
         /// <returns>Function to create object and perform assignment</returns>
         public static CreateAndAssignDelegate CreateAndAssignValuesMethod(Type recordType, FieldInfo[] fields)
         {
-            var dm = new DynamicMethod("FileHelpersDynamicCreateAndAssign",
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                typeof (object),
-                new[] {typeof (object[])},
-                recordType,
-                true);
+            var valuesParam = Expression.Parameter(typeof(object[]));
 
-            ILGenerator generator = dm.GetILGenerator();
+            var bindings = new MemberBinding[fields.Length];
 
-            generator.DeclareLocal(recordType);
-            generator.Emit(OpCodes.Newobj, GetDefaultConstructor(recordType));
-            generator.Emit(OpCodes.Stloc_0);
+            for (var i = 0; i < fields.Length; i++)
+            {
+                var field = fields[i];
 
-            for (int i = 0; i < fields.Length; i++) {
-                FieldInfo field = fields[i];
+                var arrayItem = Expression.ArrayAccess(valuesParam, Expression.Constant(i));
+                var castItem = Expression.Convert(arrayItem, field.FieldType);
 
-                generator.Emit(OpCodes.Ldloc_0);
-                generator.Emit(OpCodes.Ldarg_0);
-                generator.Emit(OpCodes.Ldc_I4, i);
-                generator.Emit(OpCodes.Ldelem_Ref);
-
-                if (field.FieldType.IsValueType)
-                    generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-                else
-                    generator.Emit(OpCodes.Castclass, field.FieldType);
-
-                generator.Emit(OpCodes.Stfld, field);
+                bindings[i] = Expression.Bind(field, castItem);
             }
 
-            // return the value
-            generator.Emit(OpCodes.Ldloc_0);
-            generator.Emit(OpCodes.Ret);
+            var newExpression = Expression.New(GetDefaultConstructor(recordType));
+            var binder = Expression.MemberInit(newExpression, bindings);
 
-            return (CreateAndAssignDelegate) dm.CreateDelegate(typeof (CreateAndAssignDelegate));
+            return Expression.Lambda<CreateAndAssignDelegate>(binder, valuesParam).Compile();
         }
 
         /// <summary>
@@ -158,40 +113,32 @@ namespace FileHelpers
         /// <returns>function that assigns only</returns>
         public static AssignDelegate AssignValuesMethod(Type recordType, FieldInfo[] fields)
         {
-            var dm = new DynamicMethod("FileHelpersDynamic_Assign",
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                null,
-                new[] {typeof (object), typeof (object[])},
-                recordType,
-                true);
+            var recordParam = Expression.Parameter(typeof(object));
+            var valuesParam = Expression.Parameter(typeof(object[]));
+            
+            var localRecord = Expression.Variable(recordType);
+            var recordAssign = Expression.Assign(localRecord, Expression.Convert(recordParam, recordType));
 
-            var generator = dm.GetILGenerator();
+            var fieldSetters = new Expression[fields.Length];
 
-            generator.DeclareLocal(recordType);
-            generator.Emit(OpCodes.Ldarg_0);
-            generator.Emit(OpCodes.Castclass, recordType);
-            generator.Emit(OpCodes.Stloc_0);
-
-            for (int i = 0; i < fields.Length; i++) {
+            for (var i = 0; i < fields.Length; i++)
+            {
                 var field = fields[i];
 
-                generator.Emit(OpCodes.Ldloc_0);
-                generator.Emit(OpCodes.Ldarg_1);
-                generator.Emit(OpCodes.Ldc_I4, i);
-                generator.Emit(OpCodes.Ldelem_Ref);
+                var valueGetter = Expression.ArrayAccess(valuesParam, Expression.Constant(i));
+                var castValue = Expression.Convert(valueGetter, field.FieldType);
 
-                if (field.FieldType.IsValueType)
-                    generator.Emit(OpCodes.Unbox_Any, field.FieldType);
-                else
-                    generator.Emit(OpCodes.Castclass, field.FieldType);
+                var fieldSetter = Expression.Field(localRecord, field);
 
-                generator.Emit(OpCodes.Stfld, field);
+                fieldSetters[i] = Expression.Assign(fieldSetter, castValue);
             }
 
-            generator.Emit(OpCodes.Ret);
+            var body = Expression.Block(
+                new[] { localRecord },
+                recordAssign,
+                Expression.Block(fieldSetters));
 
-            return (AssignDelegate) dm.CreateDelegate(typeof (AssignDelegate));
+            return Expression.Lambda<AssignDelegate>(body, recordParam, valuesParam).Compile();
         }
 
         /// <summary>
@@ -201,20 +148,9 @@ namespace FileHelpers
         /// <returns>Function to create an instance</returns>
         public static CreateObjectDelegate CreateFastConstructor(Type recordType)
         {
-            var dm = new DynamicMethod("FileHelpersDynamicCreateRecordFast",
-                MethodAttributes.Static | MethodAttributes.Public,
-                CallingConventions.Standard,
-                typeof (object),
-                new Type[] {},
-                recordType,
-                true);
+            var expression = Expression.New(GetDefaultConstructor(recordType));
 
-            ILGenerator generator = dm.GetILGenerator();
-
-            generator.Emit(OpCodes.Newobj, GetDefaultConstructor(recordType));
-            generator.Emit(OpCodes.Ret);
-
-            return (CreateObjectDelegate) dm.CreateDelegate(typeof (CreateObjectDelegate));
+            return Expression.Lambda<CreateObjectDelegate>(expression, null).Compile();
         }
 
         /// <summary>
