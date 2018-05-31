@@ -115,7 +115,7 @@ namespace FileHelpers
         {
             var recordParam = Expression.Parameter(typeof(object));
             var valuesParam = Expression.Parameter(typeof(object[]));
-            
+
             var localRecord = Expression.Variable(recordType);
             var recordAssign = Expression.Assign(localRecord, Expression.Convert(recordParam, recordType));
 
