@@ -23,8 +23,6 @@
     <files>
         <file src="..\..\Release\Lib\netcoreapp2.0\netcoreapp2.0\FileHelpers.dll" target="lib\netcoreapp2.0\FileHelpers.dll" />
         <file src="..\..\Release\Lib\netcoreapp2.0\netcoreapp2.0\FileHelpers.dll" target="lib\netcoreapp2.0\FileHelpers.deps.json" />
-        <file src="..\..\Release\Lib\net35\FileHelpers.dll" target="lib\net35\FileHelpers.dll" />
-        <file src="..\..\Release\Lib\net35\FileHelpers.xml" target="lib\net35\FileHelpers.xml" />
         <file src="..\..\Release\Lib\net40\FileHelpers.dll" target="lib\net40\FileHelpers.dll" />
         <file src="..\..\Release\Lib\net40\FileHelpers.xml" target="lib\net40\FileHelpers.xml" />
         <file src="..\..\Release\Lib\net45\FileHelpers.dll" target="lib\net45\FileHelpers.dll" />

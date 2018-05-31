@@ -25,7 +25,6 @@ task common {
 task compile -depends common {
     "Compiling " + $config
 
-    Compile-MSBuild-With-Deploy "..\FileHelpers\FileHelpers.csproj" "3.5" "Lib\net35"
     Compile-MSBuild-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.0" "Lib\net40"
     Compile-MSBuild-With-Deploy "..\FileHelpers.OnlyLibs.sln" "4.5" "Lib\net45"
 
