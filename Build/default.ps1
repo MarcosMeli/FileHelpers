@@ -30,7 +30,7 @@ task compile -depends common {
 
     Compile-MSBuild "..\FileHelpers.sln" "4.5"
 
-    Compile-DotNet "..\FileHelpers\FileHelpers.NetCore.csproj" "Lib\netcoreapp2.0"
+    Compile-DotNet "..\FileHelpers\FileHelpers.NetStandard.csproj" "Lib\netstandard2.0"
 
     $delFiles = "..\" + $config + "\*.config"
     del $delFiles
