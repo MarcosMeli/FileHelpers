@@ -33,6 +33,5 @@
     <file src="..\..\Release\Lib\net40\FileHelpers.xml" target="lib\net40\FileHelpers.xml" />
     <file src="..\..\Release\Lib\net45\FileHelpers.dll" target="lib\net45\FileHelpers.dll" />
     <file src="..\..\Release\Lib\net45\FileHelpers.xml" target="lib\net45\FileHelpers.xml" />
-    <file src="Readme.txt" target="Readme.txt" />
   </files>
 </package>
