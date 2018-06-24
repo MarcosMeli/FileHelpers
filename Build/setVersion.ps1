@@ -18,6 +18,17 @@ function Update-NuGetVersion ([string] $filename, [string] $versionNumber){
     $xmlDoc.Save($path.Path)
 }
 
+function Update-StandardProject([string] $filename, [string] $versionNumber){
+    $content = Get-Content $filename
+    $xmlDoc = [xml]$content
+
+    # set own version
+    $xmlDoc.Project.PropertyGroup[0].Version = $versionNumber
+
+    $path = Resolve-Path $filename
+    $xmlDoc.Save($path.Path)
+}
+
 function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $informationalVersionNumber){
     $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
     $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
@@ -36,6 +47,7 @@ function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionN
 }
 
 Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' $AssemblyVersion $SemanticVersion
+Update-StandardProject '..\FileHelpers\FileHelpers.NetStandard.csproj' $SemanticVersion
 Update-NuGetVersion '.\NuGet\FileHelpers.ExcelStorage.nuspec' $SemanticVersion
 Update-NuGetVersion '.\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $SemanticVersion
 Update-NuGetVersion '.\NuGet\FileHelpers.nuspec' $SemanticVersion
