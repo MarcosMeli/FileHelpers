@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
@@ -7,22 +6,20 @@
     <DelaySign>false</DelaySign>
     <AssemblyName>FileHelpers</AssemblyName>
     <RootNamespace>FileHelpers</RootNamespace>
-    <Version>3.2.8-alpha</Version>
+    <Version>3.2.8-beta</Version>
     <Description>A free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>
-    <Authors></Authors>
+    <Authors>
+    </Authors>
     <Copyright>Copyright 2005-2015. Marcos Meli</Copyright>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <OutputPath>..\Debug\Bin\</OutputPath>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <OutputPath>..\Release\Bin\</OutputPath>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="DataLink\**" />
     <Compile Remove="Dynamic\**" />
@@ -56,7 +53,6 @@
     <Folder Include="Sort\" />
     <Folder Include="Streams\" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="..\FileHelpers\Messages\Errors.msg" Link="Messages\Errors.msg" />
   </ItemGroup>
