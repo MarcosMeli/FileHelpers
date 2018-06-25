@@ -10,13 +10,6 @@ properties {
 
 task default -depends pack
 
-task version {
-    Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' $AssemblyVersion $SemanticVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelStorage.nuspec' $SemanticVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $SemanticVersion
-    Update-NuGetVersion '..\Build\NuGet\FileHelpers.nuspec' $SemanticVersion
-}
-
 task common {
      Delete-Make-Directory ..\$config
      Delete-Make-Directory "..\Output"
@@ -126,38 +119,4 @@ function Create-Zip($sourcePath, $destinationFile)
 
     $zip = New-Object ICSharpCode.SharpZipLib.Zip.FastZip
     $zip.CreateZip("$destinationFile", "$sourcePath", $true, $null)
-}
-
-function Update-NuGetVersion ([string] $filename, [string] $versionNumber)
-{
-    $versionPattern = '\<version\>[0-9]+(\.([0-9]+|\*)){1,3}\<\/version\>'
-    $version = '<version>' + $versionNumber + '</version>';
-
-    $dependenceVersionPattern = 'id="FileHelpers" version=\"[0-9]+(\.([0-9]+|\*)){1,3}\"'
-    $dependenceVersion = 'id="FileHelpers" version="' + $versionNumber + '"';
-
-    $filename + ' -> ' + $versionNumber
-
-    (Get-Content $filename) | ForEach-Object {
-         % {$_ -replace $versionPattern, $version } |
-         % {$_ -replace $dependenceVersionPattern, $dependenceVersion }
-    } | Set-Content $filename
-}
-
-function Update-AssemblyInfoFile ([string] $filename, [string] $assemblyVersionNumber, [string] $informationalVersionNumber)
-{
-    $assemblyVersionPattern = 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
-    $fileVersionPattern = 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)'
-    $informationalVersionPattern = 'AssemblyInformationalVersion\("[0-9]+(\.([0-9]+|\*)){1,3}(-[a-z]*)?"\)'
-    $assemblyVersion = 'AssemblyVersion("' + $assemblyVersionNumber + '")';
-    $fileVersion = 'AssemblyFileVersion("' + $assemblyVersionNumber + '")';
-    $informationalVersion = 'AssemblyInformationalVersion("' + $informationalVersionNumber + '")';
-
-    $filename + ' -> ' + $assemblyVersionNumber
-
-    (Get-Content $filename) | ForEach-Object {
-        % {$_ -replace $assemblyVersionPattern, $assemblyVersion } |
-        % {$_ -replace $fileVersionPattern, $fileVersion } |
-        % {$_ -replace $informationalVersionPattern, $informationalVersion }
-    } | Set-Content $filename
 }
