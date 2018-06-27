@@ -374,6 +374,9 @@ namespace FileHelpers.Dynamic
 
 		#endregion
 
+		/// <summary>
+		/// Additional references that are required to compile the type built with this instance.
+		/// </summary>
 		public List<Assembly> AdditionalReferences { get; private set; }
 
 		#region SaveToFile

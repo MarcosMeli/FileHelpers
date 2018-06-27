@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using FileHelpers.Helpers;
 
 namespace FileHelpers.Options
@@ -30,12 +31,18 @@ namespace FileHelpers.Options
             mIgnoreCommentInfo = new IgnoreCommentInfo(info);
         }
 
-
+        /// <summary>
+        /// Copies the fields in the current recordinfo.
+        /// </summary>
+        [Pure]
         public FieldBaseCollection Fields
         {
             get { return new FieldBaseCollection(mRecordInfo.Fields); }
         }
 
+        /// <summary>
+        /// Removes the filed from the underlying <seealso cref="IRecordInfo"/>.
+        /// </summary>
         public void RemoveField(string fieldname)
         {
             mRecordInfo.RemoveField(fieldname);
@@ -287,6 +294,7 @@ namespace FileHelpers.Options
         }
     }
 
+    /// <summary>An amount of <seealso cref="FieldBase"/>.</summary>
     public sealed class FieldBaseCollection
         : List<FieldBase>
     {
