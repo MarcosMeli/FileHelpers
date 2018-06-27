@@ -67,7 +67,9 @@ namespace FileHelpers
         public static DataTable ReadFileAsDT(Type recordClass, string fileName, int maxRecords)
         {
             var engine = new FileHelperEngine(recordClass);
+#pragma warning disable 618
             return engine.ReadFileAsDT(fileName, maxRecords);
+#pragma warning restore 618
         }
 
         /// <summary>
@@ -497,8 +499,10 @@ namespace FileHelpers
         {
             var engine = new FileHelperEngine(recordType);
 
+#pragma warning disable 618
             var list = engine.ReadFileAsList(file1);
             list.AddRange(engine.ReadFileAsList(file2));
+#pragma warning restore 618
 
             var res = list.ToArray();
             list = null; // <- better performance (memory)
@@ -523,8 +527,10 @@ namespace FileHelpers
         {
             var engine = new FileHelperEngine(recordType);
 
+#pragma warning disable 618
             var list = engine.ReadFileAsList(file1);
             list.AddRange(engine.ReadFileAsList(file2));
+#pragma warning restore 618
 
             var res = list.ToArray();
             list = null; // <- better performance (memory)

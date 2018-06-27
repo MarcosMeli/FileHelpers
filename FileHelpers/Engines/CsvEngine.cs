@@ -85,7 +85,9 @@ namespace FileHelpers
         public static DataTable CsvToDataTable(string filename, CsvOptions options)
         {
             var engine = new CsvEngine(options);
+#pragma warning disable 618
             return engine.ReadFileAsDT(filename);
+#pragma warning restore 618
         }
 
         /// <summary>
