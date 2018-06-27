@@ -12,11 +12,6 @@ namespace FileHelpers.WizardApp
     /// </summary>
     public partial class frmDataPreview : Form
     {
-        #region Work areas and parameters
-
-        private WizardInfo info = new WizardInfo();
-
-        #endregion
 
         public frmDataPreview(string data, NetLanguage language)
         {
