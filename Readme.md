@@ -11,14 +11,10 @@ www.filehelpers.net
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams.
 
-### Current support for .NET Core
+### Current support for .NET Standard / .NET Core
 
-Support for .NET Core is available through .NET Standard
-
-### Current support for .NET Standard
-
-In the current **alpha** releases is **support** for **.NET Standard 2.0**! These releases
-are available in the appveyor NuGet repository (see below).
+Support for .NET Core is available through .NET Standard.
+Since version 3.3.0 **support** for **.NET Standard 2.0** is available!
 
 There is a FileHelpers dll targeting .NET Standard 2.0 in the FileHelpers NuGet package.
 
