@@ -12,4 +12,16 @@ namespace FileHelpers
         /// <summary>Aligns the field to the right.</summary>
         Right
     }
+
+    /// <summary>
+    /// Indicates padding mode when field writes the record.
+    /// </summary>
+    public enum PaddingMode
+    {
+        /// <summary>Padding field to the left.</summary>
+        Left,
+
+        /// <summary>Padding field to the right.</summary>
+        Right
+    }
 }

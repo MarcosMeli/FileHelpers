@@ -958,7 +958,7 @@ namespace FileHelpers
 
         #endregion
 
-        #region "  GUID, Char, String Converters  "
+        #region "  GUID, Char, String, Padding Converters  "
 
         #region "  Convert Classes  "
 
@@ -1213,6 +1213,98 @@ namespace FileHelpers
         //            return String.Format(mFormat, from);
         //    }
         //}
+
+        /// <summary>
+        /// Convert a numeric value with separators into a value
+        /// </summary>
+        internal sealed class PaddingConverter
+            : ConverterBase
+        {
+            /// <summary>
+            /// Total length of the field when written
+            /// </summary>
+            private readonly int totalLength;
+
+            /// <summary>
+            /// Padding to left or right
+            /// </summary>
+            private readonly PaddingMode paddingMode;
+
+            /// <summary>
+            /// Character to pad with
+            /// </summary>
+            private readonly Char paddingChar;
+
+            /// <summary>
+            /// Padding Converter with Length and option Padding Mode and Padding character
+            /// </summary>
+            /// <param name="TotalLength">Total length of the field when written</param>
+            /// <param name="PaddingMode">Whether to pad left or right</param>
+            /// /// <param name="PaddingCharacter">Character to pad with</param>
+            public PaddingConverter(Int32 TotalLength, PaddingMode PaddingMode = PaddingMode.Left, char PaddingCharacter = ' ')
+            {
+                totalLength = TotalLength;
+                paddingMode = PaddingMode;
+                paddingChar = PaddingCharacter;
+            }
+
+            /// <summary>
+            /// Convert a string to object for the record object
+            /// </summary>
+            /// <param name="from">String representation of the object</param>
+            /// <returns>object or empty</returns>
+            public override object StringToField(string from)
+            {
+                if (String.IsNullOrEmpty(from))
+                    return string.Empty;
+
+                try
+                {
+                    return from;
+                }
+                catch
+                {
+                    throw new ConvertException(from, typeof(string));
+                }
+            }
+
+            /// <summary>
+            /// Convert a object to padded string
+            /// </summary>
+            /// <param name="from">Object to convert</param>
+            /// <returns>String converted to</returns>
+            public override string FieldToString(object from)
+            {
+                string paddedString = "";
+                try
+                {
+                    paddedString = from.ToString();
+
+                    if (paddedString.Length < totalLength)
+                    {
+                        int paddingLength = totalLength - paddedString.Length;
+                        string strPadding = new string(paddingChar, paddingLength);
+                        if (paddingMode == PaddingMode.Right)
+                        {
+                            return string.Concat(paddedString, strPadding);
+                        }
+                        else
+                        {
+                            return string.Concat(strPadding, paddedString);
+                        }
+                    }
+
+                    return paddedString;
+                }
+                catch
+                {
+
+                    throw new ConvertException(paddedString, from.GetType(), "Padding failed");
+                }
+                
+            }
+
+        }
 
         #endregion
 
