@@ -38,18 +38,20 @@ namespace FileHelpers
             : this(converter, new string[] {arg1, arg2, arg3}) {}
 
         /// <summary>
-        /// Indicates the <see cref="ConverterKind"/> used for read/write operations. 
+        /// Padding used for write operations. 
         /// </summary>
-        /// <param name="converter">The <see cref="ConverterKind"/> used for the transformations.</param>
-        /// <param name="args">An array of parameters passed directly to the Converter</param>
-        public FieldConverterAttribute(ConverterKind converter, params object[] args)
+        /// <param name="converter">Converter - The padding converter</param>
+        /// <param name="TotalPaddedLength">The total length of padded text</param>
+        /// <param name="PaddingMode">Whether to pad left or right</param>
+        /// <param name="PaddingCharacter">Character to pad with</param>
+        public FieldConverterAttribute(ConverterKind converter, int TotalPaddedLength, PaddingMode PaddingMode, Char PaddingCharacter)
         {
             Kind = converter;
 
-            Type convType = GetConverter(converter);
+            Type convType = typeof(ConvertHelpers.PaddingConverter);
             //mType = type;
 
-            CreateConverter(convType, args);
+            CreateConverter(convType, new object[] { TotalPaddedLength, PaddingMode, PaddingCharacter });
         }
 
  
