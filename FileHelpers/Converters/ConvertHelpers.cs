@@ -67,8 +67,9 @@ namespace FileHelpers
         /// </summary>
         /// <param name="fieldName">Field name to check</param>
         /// <param name="fieldType">Type of the field to check</param>
+        /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
         /// <returns>Converter for this particular field</returns>
-        internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType)
+        internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType, string defaultCultureName=null)
         {
             if (fieldType.IsArray)
             {
@@ -98,40 +99,40 @@ namespace FileHelpers
             if (fieldType == typeof(string))
                 return null;
             if (fieldType == typeof(Int16))
-                return new Int16Converter();
+                return new Int16Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(Int32))
-                return new Int32Converter();
+                return new Int32Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(Int64))
-                return new Int64Converter();
+                return new Int64Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(SByte))
-                return new SByteConverter();
+                return new SByteConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(UInt16))
-                return new UInt16Converter();
+                return new UInt16Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(UInt32))
-                return new UInt32Converter();
+                return new UInt32Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(UInt64))
-                return new UInt64Converter();
+                return new UInt64Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(byte))
-                return new ByteConverter();
+                return new ByteConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(decimal))
-                return new DecimalConverter();
+                return new DecimalConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(double))
-                return new DoubleConverter();
+                return new DoubleConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(Single))
-                return new SingleConverter();
+                return new SingleConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(DateTime))
-                return new DateTimeConverter();
+                return new DateTimeConverter(ConverterBase.DefaultDateTimeFormat, defaultCultureName);
 
             if (fieldType == typeof(bool))
                 return new BooleanConverter();
