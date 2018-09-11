@@ -42,8 +42,8 @@ namespace FileHelpers
         /// <param name="fi">Field definitions</param>
         /// <param name="length">Length of this field</param>
         /// <param name="align">Alignment, left or right</param>
-        internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align)
-            : base(fi)
+        internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align, string defaultCultureName=null)
+            : base(fi, defaultCultureName)
         {
             FixedMode = FixedMode.ExactLength;
             Align = new FieldAlignAttribute(AlignMode.Left, ' ');

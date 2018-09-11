@@ -23,74 +23,74 @@ namespace FileHelpers
 
         /// <summary>
         /// <para>Convert from or to <b>Byte</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Byte,
 
         /// <summary>
         /// <para>Convert from or to <b>Int16 or short</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Int16,
 
         /// <summary>
         /// <para>Convert from or to <b>Int32 or int</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Int32,
 
         /// <summary>
         /// <para>Convert from or to <b>Int64 or long</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Int64,
 
         /// <summary>
         /// <para>Convert from or to <b>Decimal</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Decimal,
 
         /// <summary>
         /// <para>Convert from or to <b>Double</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Double,
         //Added by Shreyas Narasimhan (17 March 2010)
         /// <summary>
         /// <para>Convert from or to <b>Double</b> values. Understands Percent '%' symbol 
         /// and if present returns number /100 only while reading</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         PercentDouble,
 
         /// <summary>
         /// <para>Convert from or to <b>Single</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         Single,
 
         /// <summary>
         /// <para>Convert from or to <b>Byte</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         SByte,
 
         /// <summary>
         /// <para>Convert from or to <b>UInt16 or unsigned short</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         UInt16,
 
         /// <summary>
         /// <para>Convert from or to <b>UInt32 or unsigned int</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         UInt32,
 
         /// <summary>
         /// <para>Convert from or to <b>UInt64 or unsigned long</b> values.</para>
-        /// <para>Params: arg1 is the <b>decimal separator</b>, by default '.'</para>
+        /// <para>Params: arg1 is either a <b>decimal separator</b>, by default '.', or a culture name (eg. "en-US", "fr-FR")</para>
         /// </summary>
         UInt64,
 
