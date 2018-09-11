@@ -26,7 +26,46 @@ namespace FileHelpers.Tests.Converters
             CheckDecimal((decimal) 81.91, res[9]);
         }
 
+        [DelimitedRecord("|")]
+        public class DecimalTypeWithFrenchConversion
+        {
+            [FieldConverter(ConverterKind.Int32,"fr-FR")]
+            public int    IntField;
+            [FieldConverter(ConverterKind.Single,"fr-FR")]
+            public float  FloatField;
+            [FieldConverter(ConverterKind.Double,"fr-FR")]
+            public double DoubleField;
+            [FieldConverter(ConverterKind.Decimal,"fr-FR")]
+            public decimal DecimalField;
+        }
+
+        [Test]
+        public void DecimalsWithFrenchCulture()
+        {
+            var engine = new FileHelperEngine<DecimalTypeWithFrenchConversion>();
+            var res = TestCommon.ReadTest<DecimalTypeWithFrenchConversion>(engine, "Good", "NumberFormatFrench.txt");
+
+            Assert.AreEqual(3, res.Length);
+
+            Assert.AreEqual(10248, res[0].IntField);
+            CheckDecimal((decimal) 32.38, res[0]);
+
+            Assert.AreEqual(10249, res[1].IntField);
+            CheckDecimal((decimal) 1011.61, res[1]);
+
+            Assert.AreEqual(10250, res[2].IntField);
+            CheckDecimal((decimal) 1165.83, res[2]);
+        }
+
+
         private static void CheckDecimal(decimal dec, DecimalType res)
+        {
+            Assert.AreEqual((decimal) dec, res.DecimalField);
+            Assert.AreEqual((double) dec, res.DoubleField);
+            Assert.AreEqual((float) dec, res.FloatField);
+        }
+
+        private static void CheckDecimal(decimal dec, DecimalTypeWithFrenchConversion res)
         {
             Assert.AreEqual((decimal) dec, res.DecimalField);
             Assert.AreEqual((double) dec, res.DoubleField);
@@ -65,10 +104,13 @@ namespace FileHelpers.Tests.Converters
             public decimal DecimalField;
         }
 
+       
+
         [Test]
         public void DecimalsWithExponents()
         {
             var engine = new FileHelperEngine<DecimalType>();
+            
 
             DecimalType[] res;
             res = TestCommon.ReadTest<DecimalType>(engine, "Good", "NumberFormat2.txt");

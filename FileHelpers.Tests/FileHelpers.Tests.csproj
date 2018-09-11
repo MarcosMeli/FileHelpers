@@ -509,6 +509,7 @@
     <Content Include="Data\Good\DiscardFirstReport.txt" />
     <Content Include="Data\Good\FieldNotEmpty1.txt" />
     <Content Include="Data\Good\InNewLineAfterOptional1.txt" />
+    <Content Include="Data\Good\NumberFormatFrench.txt" />
     <Content Include="Data\Good\OrdersSmallVerticalBar.txt" />
     <Content Include="Data\Good\CustomersFixedWithout1AndHalfFields.txt" />
     <Content Include="Data\Good\CustomersFixedWithout2Fields.txt" />
