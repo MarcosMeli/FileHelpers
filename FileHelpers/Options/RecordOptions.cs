@@ -46,6 +46,10 @@ namespace FileHelpers.Options
         public void RemoveField(string fieldname)
         {
             mRecordInfo.RemoveField(fieldname);
+            
+            // After removing the fields, ensure we clear the field names
+            // so the next query will reflect only those fields now present
+            mFieldNames = null;
         }
 
         /// <summary>
