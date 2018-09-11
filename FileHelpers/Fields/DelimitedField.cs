@@ -25,6 +25,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="fi">field info structure</param>
         /// <param name="sep">field separator</param>
+        /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
         internal DelimitedField(FieldInfo fi, string sep, string defaultCultureName=null)
             : base(fi,defaultCultureName)
         {

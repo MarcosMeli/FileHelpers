@@ -415,6 +415,7 @@ namespace FileHelpers
         /// Verify the settings against the actual field to ensure it will work.
         /// </summary>
         /// <param name="fi">Field Info Object</param>
+        /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
         internal FieldBase(FieldInfo fi, string defaultCultureName = null)
             : this()
         {
