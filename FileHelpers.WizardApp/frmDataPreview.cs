@@ -98,9 +98,10 @@ width: 100% !important;*/
                     dt.Columns.Add ("LineNumber");
                     dt.Columns.Add ("ExceptionInfo");
                     dt.Columns.Add ("RecordString");
+                    dt.Columns.Add("RecordTypeName");
                     foreach (var e in engine.ErrorManager.Errors)
                     {
-                        dt.Rows.Add (e.LineNumber, e.ExceptionInfo.Message, e.RecordString);
+                        dt.Rows.Add (e.LineNumber, e.ExceptionInfo.Message, e.RecordString, e.RecordTypeName);
                     }
                     dgPreview.DataSource = dt;
 
