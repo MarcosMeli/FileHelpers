@@ -398,7 +398,7 @@ namespace FileHelpers.ExcelNPOIStorage
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                AddError(cRow, ex, ColumnsToValues(colValues));
+                                AddError(cRow, ex, ColumnsToValues(colValues), RecordType.Name);
                                 break;
                         }
                     }

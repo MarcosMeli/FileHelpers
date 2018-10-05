@@ -328,7 +328,8 @@ namespace FileHelpers
                                 var err = new ErrorInfo {
                                     mLineNumber = mAsyncReader.LineNumber,
                                     mExceptionInfo = ex,
-                                    mRecordString = currentLine
+                                    mRecordString = currentLine,
+                                    mRecordTypeName = RecordInfo.RecordType.Name
                                 };
                                 //							err.mColumnNumber = mColumnNum;
 
@@ -585,7 +586,8 @@ namespace FileHelpers
                         var err = new ErrorInfo {
                             mLineNumber = mLineNumber,
                             mExceptionInfo = ex,
-                            mRecordString = currentLine
+                            mRecordString = currentLine,
+                            mRecordTypeName = RecordInfo.RecordType.Name
                         };
                         //							err.mColumnNumber = mColumnNum;
                         mErrorManager.AddError(err);
@@ -654,7 +656,8 @@ namespace FileHelpers
                         var err = new ErrorInfo {
                             mLineNumber = mLineNumber,
                             mExceptionInfo = ex,
-                            mRecordString = currentLine
+                            mRecordString = currentLine,
+                            mRecordTypeName = RecordInfo.RecordType.Name
                         };
                         //							err.mColumnNumber = mColumnNum;
                         mErrorManager.AddError(err);

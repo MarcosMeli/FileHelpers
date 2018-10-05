@@ -93,13 +93,17 @@ namespace FileHelpers.DataLink
         /// <param name="lineNumber">The line when the error occurs.</param>
         /// <param name="ex">The exception thrown, can be null.</param>
         /// <param name="recordLine">The record values</param>
-        protected void AddError(int lineNumber, Exception ex, string recordLine)
+        /// <param name="recordTypeName">The name of the record type</param>
+        protected void AddError(int lineNumber, Exception ex, string recordLine, string recordTypeName)
         {
-            ErrorInfo e = new ErrorInfo();
-            e.mLineNumber = lineNumber;
-//			e.mColumnNumber = colNum;
-            e.mExceptionInfo = ex;
-            e.mRecordString = recordLine;
+            ErrorInfo e = new ErrorInfo
+            {
+                mLineNumber = lineNumber,
+                //.mColumnNumber = colNum;
+                mExceptionInfo = ex,
+                mRecordString = recordLine,
+                mRecordTypeName = recordTypeName
+            };
 
             mErrorManager.AddError(e);
         }
