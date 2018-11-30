@@ -427,7 +427,7 @@ namespace FileHelpers
                     var writer = mAsyncWriter;
                     if (writer != null) {
                         if (!string.IsNullOrEmpty(mFooterText)) {
-                            if (mFooterText.EndsWith(StringHelper.NewLine))
+                            if (mFooterText.EndsWith (NewLineForWrite))
                                 writer.Write(mFooterText);
                             else
                                 writer.WriteLine(mFooterText);
@@ -457,6 +457,9 @@ namespace FileHelpers
 
             State = EngineState.Writing;
             ResetFields();
+
+            writer.NewLine = NewLineForWrite;
+
             mAsyncWriter = writer;
             WriteHeader();
             mStreamInfo = new StreamInfoProvider(mAsyncWriter);
@@ -471,7 +474,7 @@ namespace FileHelpers
         private void WriteHeader()
         {
             if (!string.IsNullOrEmpty(mHeaderText)) {
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
+                if (mHeaderText.EndsWith (NewLineForWrite))
                     mAsyncWriter.Write(mHeaderText);
                 else
                     mAsyncWriter.WriteLine(mHeaderText);

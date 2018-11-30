@@ -42,6 +42,9 @@ namespace FileHelpers
         /// <summary>The read footer in the last read operation. If any.</summary>
         string FooterText { get; set; }
 
+        /// <summary>Newline char or string to be used when engine writes records.</summary>
+        string NewLineForWrite { get; set; }
+
         /// <summary>
         /// The encoding to Read and Write the streams.
         /// Default is the system's current ANSI code page.
