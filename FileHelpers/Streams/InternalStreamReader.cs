@@ -279,56 +279,6 @@ namespace FileHelpers.Streams
             }
         }
 
-        //public override int Read([In, Out] char[] buffer, int index, int count)
-        //{
-        //    if (this.stream == null)
-        //    {
-        //        throw new ObjectDisposedException(null, "The reader is closed");
-        //    }
-        //    if (buffer == null)
-        //    {
-        //        throw new ArgumentNullException("buffer", "buffer cant be null");
-        //    }
-        //    if ((index < 0) || (count < 0))
-        //    {
-        //        throw new ArgumentOutOfRangeException((index < 0) ? "index" : "count");
-        //    }
-        //    if ((buffer.Length - index) < count)
-        //    {
-        //        throw new ArgumentException("Invalid Offlen");
-        //    }
-        //    int num = 0;
-        //    bool readToUserBuffer = false;
-        //    while (count > 0)
-        //    {
-        //        int num2 = this.charLen - this.charPos;
-        //        if (num2 == 0)
-        //        {
-        //            num2 = this.ReadBuffer(buffer, index + num, count, out readToUserBuffer);
-        //        }
-        //        if (num2 == 0)
-        //        {
-        //            return num;
-        //        }
-        //        if (num2 > count)
-        //        {
-        //            num2 = count;
-        //        }
-        //        if (!readToUserBuffer)
-        //        {
-        //            Buffer.InternalBlockCopy(this.charBuffer, this.charPos * 2, buffer, (index + num) * 2, num2 * 2);
-        //            this.charPos += num2;
-        //        }
-        //        num += num2;
-        //        count -= num2;
-        //        if (this._isBlocked)
-        //        {
-        //            return num;
-        //        }
-        //    }
-        //    return num;
-        //}
-
         private int ReadBuffer()
         {
             mCharLen = 0;
@@ -370,72 +320,6 @@ namespace FileHelpers.Streams
             } while (mCharLen == 0);
             return mCharLen;
         }
-
-        //private int ReadBuffer(char[] userBuffer, int userOffset, int desiredChars, out bool readToUserBuffer)
-        //{
-        //    this.charLen = 0;
-        //    this.charPos = 0;
-        //    if (!this._checkPreamble)
-        //    {
-        //        this.byteLen = 0;
-        //    }
-        //    int charIndex = 0;
-        //    readToUserBuffer = desiredChars >= this._maxCharsPerBuffer;
-        //    do
-        //    {
-        //        if (this._checkPreamble)
-        //        {
-        //            int num2 = this.stream.Read(this.byteBuffer, this.bytePos, this.byteBuffer.Length - this.bytePos);
-        //            if (num2 == 0)
-        //            {
-        //                if (this.byteLen > 0)
-        //                {
-        //                    if (readToUserBuffer)
-        //                    {
-        //                        charIndex += this.decoder.GetChars(this.byteBuffer, 0, this.byteLen, userBuffer, userOffset + charIndex);
-        //                        this.charLen = 0;
-        //                        return charIndex;
-        //                    }
-        //                    charIndex = this.decoder.GetChars(this.byteBuffer, 0, this.byteLen, this.charBuffer, charIndex);
-        //                    this.charLen += charIndex;
-        //                }
-        //                return charIndex;
-        //            }
-        //            this.byteLen += num2;
-        //        }
-        //        else
-        //        {
-        //            this.byteLen = this.stream.Read(this.byteBuffer, 0, this.byteBuffer.Length);
-        //            if (this.byteLen == 0)
-        //            {
-        //                return charIndex;
-        //            }
-        //        }
-        //        this._isBlocked = this.byteLen < this.byteBuffer.Length;
-        //        if (!this.IsPreamble())
-        //        {
-        //            if (this._detectEncoding && (this.byteLen >= 2))
-        //            {
-        //                this.DetectEncoding();
-        //                readToUserBuffer = desiredChars >= this._maxCharsPerBuffer;
-        //            }
-        //            this.charPos = 0;
-        //            if (readToUserBuffer)
-        //            {
-        //                charIndex += this.decoder.GetChars(this.byteBuffer, 0, this.byteLen, userBuffer, userOffset + charIndex);
-        //                this.charLen = 0;
-        //            }
-        //            else
-        //            {
-        //                charIndex = this.decoder.GetChars(this.byteBuffer, 0, this.byteLen, this.charBuffer, charIndex);
-        //                this.charLen += charIndex;
-        //            }
-        //        }
-        //    }
-        //    while (charIndex == 0);
-        //    this._isBlocked &= charIndex < desiredChars;
-        //    return charIndex;
-        //}
 
         public override string ReadLine()
         {
