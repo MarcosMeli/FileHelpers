@@ -5,8 +5,6 @@ using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
 
-//using Container=FileHelpers.Container;
-
 namespace FileHelpers
 {
     /// <summary>Abstract Base class for the engines of the library: 

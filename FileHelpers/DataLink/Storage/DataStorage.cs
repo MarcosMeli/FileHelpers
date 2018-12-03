@@ -4,8 +4,6 @@ using System.Data;
 using System.Linq;
 using FileHelpers.Events;
 
-//using Container=FileHelpers.Container;
-
 namespace FileHelpers.DataLink
 {
     /// <summary>
