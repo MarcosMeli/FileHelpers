@@ -493,19 +493,4 @@ namespace FileHelpers.ExcelNPOIStorage
             #endregion
         }
     }
-
-    /// <summary>
-    /// Specifies the way links in the file are updated.
-    /// </summary>
-    public enum ExcelUpdateLinksMode
-    {
-        /// <summary>User specifies how links will be updated</summary>
-        UserPrompted = 1,
-
-        /// <summary>Never update links for this workbook on opening</summary>
-        NeverUpdate = 2,
-
-        /// <summary>Always update links for this workbook on opening</summary>
-        AlwaysUpdate = 3
-    }
 }
