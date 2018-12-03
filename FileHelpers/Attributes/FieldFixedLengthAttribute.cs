@@ -16,7 +16,7 @@ namespace FileHelpers
         public FieldFixedLengthAttribute(int length)
         {
             if (length > 0)
-                this.Length = length;
+                Length = length;
             else
                 throw new BadUsageException("The FieldFixedLength attribute must be > 0");
         }

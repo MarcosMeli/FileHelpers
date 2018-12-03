@@ -311,7 +311,7 @@ namespace FileHelpers.Helpers
         /// <param name="value">The string to compare.</param>
         /// <param name="comparisonType">string comparison type.</param>
         /// <returns></returns>
-        public static bool StartsWithIgnoringWhiteSpaces (string source, string value, System.StringComparison comparisonType)
+        public static bool StartsWithIgnoringWhiteSpaces (string source, string value, StringComparison comparisonType)
         {
             if (value == null)
             {

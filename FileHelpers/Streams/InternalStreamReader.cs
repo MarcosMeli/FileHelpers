@@ -79,7 +79,7 @@ namespace FileHelpers.Streams
                 FileShare.Read,
                 bufferSize,
                 FileOptions.SequentialScan);
-            this.Init(stream, encoding, detectEncodingFromByteOrderMarks, bufferSize);
+            Init(stream, encoding, detectEncodingFromByteOrderMarks, bufferSize);
         }
 
 
@@ -88,15 +88,15 @@ namespace FileHelpers.Streams
         /// </summary>
         public override void Close()
         {
-            this.Dispose(true);
+            Dispose(true);
         }
 
         private void CompressBuffer(int n)
         {
             for (int i = 0; i < mByteLen - n; i++)
-                this.mByteBuffer[i] = this.mByteBuffer[i + n];
+                mByteBuffer[i] = mByteBuffer[i + n];
 
-            this.mByteLen -= n;
+            mByteLen -= n;
         }
 
         /// <summary>
@@ -105,46 +105,46 @@ namespace FileHelpers.Streams
         /// </summary>
         private void DetectEncoding()
         {
-            if (this.mByteLen >= 2) {
-                this.mDetectEncoding = false;
+            if (mByteLen >= 2) {
+                mDetectEncoding = false;
                 bool flag = false;
-                if ((this.mByteBuffer[0] == 0xfe) &&
-                    (this.mByteBuffer[1] == 0xff)) {
-                    this.mEncoding = new UnicodeEncoding(true, true);
+                if ((mByteBuffer[0] == 0xfe) &&
+                    (mByteBuffer[1] == 0xff)) {
+                    mEncoding = new UnicodeEncoding(true, true);
                     CompressBuffer(2);
                     flag = true;
                 }
-                else if ((this.mByteBuffer[0] == 0xff) &&
-                         (this.mByteBuffer[1] == 0xfe)) {
-                    if (((this.mByteLen >= 4) && (this.mByteBuffer[2] == 0)) &&
-                        (this.mByteBuffer[3] == 0)) {
-                        this.mEncoding = new UTF32Encoding(false, true);
-                        this.CompressBuffer(4);
+                else if ((mByteBuffer[0] == 0xff) &&
+                         (mByteBuffer[1] == 0xfe)) {
+                    if (((mByteLen >= 4) && (mByteBuffer[2] == 0)) &&
+                        (mByteBuffer[3] == 0)) {
+                        mEncoding = new UTF32Encoding(false, true);
+                        CompressBuffer(4);
                     }
                     else {
-                        this.mEncoding = new UnicodeEncoding(false, true);
-                        this.CompressBuffer(2);
+                        mEncoding = new UnicodeEncoding(false, true);
+                        CompressBuffer(2);
                     }
                     flag = true;
                 }
-                else if (((this.mByteLen >= 3) && (this.mByteBuffer[0] == 0xef)) &&
-                         ((this.mByteBuffer[1] == 0xbb) && (this.mByteBuffer[2] == 0xbf))) {
-                    this.mEncoding = Encoding.UTF8;
-                    this.CompressBuffer(3);
+                else if (((mByteLen >= 3) && (mByteBuffer[0] == 0xef)) &&
+                         ((mByteBuffer[1] == 0xbb) && (mByteBuffer[2] == 0xbf))) {
+                    mEncoding = Encoding.UTF8;
+                    CompressBuffer(3);
                     flag = true;
                 }
-                else if ((((this.mByteLen >= 4) && (this.mByteBuffer[0] == 0)) &&
-                          ((this.mByteBuffer[1] == 0) && (this.mByteBuffer[2] == 0xfe))) &&
-                         (this.mByteBuffer[3] == 0xff)) {
-                    this.mEncoding = new UTF32Encoding(true, true);
+                else if ((((mByteLen >= 4) && (mByteBuffer[0] == 0)) &&
+                          ((mByteBuffer[1] == 0) && (mByteBuffer[2] == 0xfe))) &&
+                         (mByteBuffer[3] == 0xff)) {
+                    mEncoding = new UTF32Encoding(true, true);
                     flag = true;
                 }
-                else if (this.mByteLen == 2)
-                    this.mDetectEncoding = true;
+                else if (mByteLen == 2)
+                    mDetectEncoding = true;
                 if (flag) {
-                    this.mDecoder = this.mEncoding.GetDecoder();
-                    this.mMaxCharsPerBuffer = this.mEncoding.GetMaxCharCount(this.mByteBuffer.Length);
-                    this.mCharBuffer = new char[this.mMaxCharsPerBuffer];
+                    mDecoder = mEncoding.GetDecoder();
+                    mMaxCharsPerBuffer = mEncoding.GetMaxCharCount(mByteBuffer.Length);
+                    mCharBuffer = new char[mMaxCharsPerBuffer];
                 }
             }
         }
@@ -154,11 +154,11 @@ namespace FileHelpers.Streams
         /// </summary>
         public void DiscardBufferedData()
         {
-            this.mByteLen = 0;
-            this.mCharLen = 0;
-            this.mCharPos = 0;
-            this.mDecoder = this.mEncoding.GetDecoder();
-            this.mIsBlocked = false;
+            mByteLen = 0;
+            mCharLen = 0;
+            mCharPos = 0;
+            mDecoder = mEncoding.GetDecoder();
+            mIsBlocked = false;
         }
 
         /// <summary>
@@ -168,20 +168,20 @@ namespace FileHelpers.Streams
         protected override void Dispose(bool disposing)
         {
             try {
-                if ((this.Closable && disposing) &&
-                    (this.mStream != null))
-                    this.mStream.Close();
+                if ((Closable && disposing) &&
+                    (mStream != null))
+                    mStream.Close();
             }
             finally {
-                if (this.Closable &&
-                    (this.mStream != null)) {
-                    this.mStream = null;
-                    this.mEncoding = null;
-                    this.mDecoder = null;
-                    this.mByteBuffer = null;
-                    this.mCharBuffer = null;
-                    this.mCharPos = 0;
-                    this.mCharLen = 0;
+                if (Closable &&
+                    (mStream != null)) {
+                    mStream = null;
+                    mEncoding = null;
+                    mDecoder = null;
+                    mByteBuffer = null;
+                    mCharBuffer = null;
+                    mCharPos = 0;
+                    mCharLen = 0;
                     base.Dispose(disposing);
                 }
             }
@@ -189,50 +189,50 @@ namespace FileHelpers.Streams
 
         private void Init(Stream stream, Encoding encoding, bool detectEncodingFromByteOrderMarks, int bufferSize)
         {
-            this.mStream = stream;
-            this.mEncoding = encoding;
-            this.mDecoder = encoding.GetDecoder();
+            mStream = stream;
+            mEncoding = encoding;
+            mDecoder = encoding.GetDecoder();
 
             if (bufferSize < MinBufferSize)
                 bufferSize = MinBufferSize;
 
-            this.mByteBuffer = new byte[bufferSize];
-            this.mMaxCharsPerBuffer = encoding.GetMaxCharCount(bufferSize);
-            this.mCharBuffer = new char[this.mMaxCharsPerBuffer];
-            this.mByteLen = 0;
-            this.mBytePos = 0;
-            this.mDetectEncoding = detectEncodingFromByteOrderMarks;
-            this.mPreamble = encoding.GetPreamble();
-            this.mCheckPreamble = this.mPreamble.Length > 0;
-            this.mIsBlocked = false;
-            this.mClosable = true;
+            mByteBuffer = new byte[bufferSize];
+            mMaxCharsPerBuffer = encoding.GetMaxCharCount(bufferSize);
+            mCharBuffer = new char[mMaxCharsPerBuffer];
+            mByteLen = 0;
+            mBytePos = 0;
+            mDetectEncoding = detectEncodingFromByteOrderMarks;
+            mPreamble = encoding.GetPreamble();
+            mCheckPreamble = mPreamble.Length > 0;
+            mIsBlocked = false;
+            mClosable = true;
         }
 
         private bool IsPreamble()
         {
-            if (this.mCheckPreamble) {
-                int num = (this.mByteLen >= this.mPreamble.Length)
-                    ? (this.mPreamble.Length - this.mBytePos)
-                    : (this.mByteLen - this.mBytePos);
+            if (mCheckPreamble) {
+                int num = (mByteLen >= mPreamble.Length)
+                    ? (mPreamble.Length - mBytePos)
+                    : (mByteLen - mBytePos);
                 int num2 = 0;
                 while (num2 < num) {
-                    if (this.mByteBuffer[this.mBytePos] != this.mPreamble[this.mBytePos]) {
-                        this.mBytePos = 0;
-                        this.mCheckPreamble = false;
+                    if (mByteBuffer[mBytePos] != mPreamble[mBytePos]) {
+                        mBytePos = 0;
+                        mCheckPreamble = false;
                         break;
                     }
                     num2++;
-                    this.mBytePos++;
+                    mBytePos++;
                 }
-                if (this.mCheckPreamble &&
-                    (this.mBytePos == this.mPreamble.Length)) {
-                    this.CompressBuffer(this.mPreamble.Length);
-                    this.mBytePos = 0;
-                    this.mCheckPreamble = false;
-                    this.mDetectEncoding = false;
+                if (mCheckPreamble &&
+                    (mBytePos == mPreamble.Length)) {
+                    CompressBuffer(mPreamble.Length);
+                    mBytePos = 0;
+                    mCheckPreamble = false;
+                    mDetectEncoding = false;
                 }
             }
-            return this.mCheckPreamble;
+            return mCheckPreamble;
         }
 
         /// <summary>
@@ -241,11 +241,11 @@ namespace FileHelpers.Streams
         /// <returns>byte at current position or -1 on error</returns>
         public override int Peek()
         {
-            if (this.mStream == null)
+            if (mStream == null)
                 throw new ObjectDisposedException(null, "The reader is closed");
-            if ((this.mCharPos != this.mCharLen) ||
-                (!this.mIsBlocked && (this.ReadBuffer() != 0)))
-                return this.mCharBuffer[this.mCharPos];
+            if ((mCharPos != mCharLen) ||
+                (!mIsBlocked && (ReadBuffer() != 0)))
+                return mCharBuffer[mCharPos];
             return -1;
         }
 
@@ -255,15 +255,15 @@ namespace FileHelpers.Streams
         /// <returns></returns>
         public override int Read()
         {
-            if (this.mStream == null)
+            if (mStream == null)
                 throw new ObjectDisposedException(null, "The reader is closed");
 
-            if ((this.mCharPos == this.mCharLen) &&
-                (this.ReadBuffer() == 0))
+            if ((mCharPos == mCharLen) &&
+                (ReadBuffer() == 0))
                 return -1;
 
-            int num = this.mCharBuffer[this.mCharPos];
-            this.mCharPos++;
+            int num = mCharBuffer[mCharPos];
+            mCharPos++;
             return num;
         }
 
@@ -331,44 +331,44 @@ namespace FileHelpers.Streams
 
         private int ReadBuffer()
         {
-            this.mCharLen = 0;
-            this.mCharPos = 0;
-            if (!this.mCheckPreamble)
-                this.mByteLen = 0;
+            mCharLen = 0;
+            mCharPos = 0;
+            if (!mCheckPreamble)
+                mByteLen = 0;
 
             do {
-                if (this.mCheckPreamble) {
-                    int num = this.mStream.Read(this.mByteBuffer, this.mBytePos, this.mByteBuffer.Length - this.mBytePos);
+                if (mCheckPreamble) {
+                    int num = mStream.Read(mByteBuffer, mBytePos, mByteBuffer.Length - mBytePos);
                     if (num == 0) {
-                        if (this.mByteLen > 0) {
-                            this.mCharLen += this.mDecoder.GetChars(this.mByteBuffer,
+                        if (mByteLen > 0) {
+                            mCharLen += mDecoder.GetChars(mByteBuffer,
                                 0,
-                                this.mByteLen,
-                                this.mCharBuffer,
-                                this.mCharLen);
+                                mByteLen,
+                                mCharBuffer,
+                                mCharLen);
                         }
-                        return this.mCharLen;
+                        return mCharLen;
                     }
-                    this.mByteLen += num;
+                    mByteLen += num;
                 }
                 else {
-                    this.mByteLen = this.mStream.Read(this.mByteBuffer, 0, this.mByteBuffer.Length);
-                    if (this.mByteLen == 0)
-                        return this.mCharLen;
+                    mByteLen = mStream.Read(mByteBuffer, 0, mByteBuffer.Length);
+                    if (mByteLen == 0)
+                        return mCharLen;
                 }
-                this.mIsBlocked = this.mByteLen < this.mByteBuffer.Length;
-                if (!this.IsPreamble()) {
-                    if (this.mDetectEncoding &&
-                        (this.mByteLen >= 2))
-                        this.DetectEncoding();
-                    this.mCharLen += this.mDecoder.GetChars(this.mByteBuffer,
+                mIsBlocked = mByteLen < mByteBuffer.Length;
+                if (!IsPreamble()) {
+                    if (mDetectEncoding &&
+                        (mByteLen >= 2))
+                        DetectEncoding();
+                    mCharLen += mDecoder.GetChars(mByteBuffer,
                         0,
-                        this.mByteLen,
-                        this.mCharBuffer,
-                        this.mCharLen);
+                        mByteLen,
+                        mCharBuffer,
+                        mCharLen);
                 }
-            } while (this.mCharLen == 0);
-            return this.mCharLen;
+            } while (mCharLen == 0);
+            return mCharLen;
         }
 
         //private int ReadBuffer(char[] userBuffer, int userOffset, int desiredChars, out bool readToUserBuffer)
@@ -439,41 +439,41 @@ namespace FileHelpers.Streams
 
         public override string ReadLine()
         {
-            if (this.mStream == null)
+            if (mStream == null)
                 throw new ObjectDisposedException(null, "The reader is closed");
 
-            if ((this.mCharPos == this.mCharLen) &&
-                (this.ReadBuffer() == 0))
+            if ((mCharPos == mCharLen) &&
+                (ReadBuffer() == 0))
                 return null;
             StringBuilder builder = null;
             do {
-                int currentCharPos = this.mCharPos;
+                int currentCharPos = mCharPos;
                 do {
-                    char ch = this.mCharBuffer[currentCharPos];
+                    char ch = mCharBuffer[currentCharPos];
                     switch (ch) {
                         case '\r':
                         case '\n':
                             string str;
                             if (builder != null) {
-                                builder.Append(this.mCharBuffer, this.mCharPos, currentCharPos - this.mCharPos);
+                                builder.Append(mCharBuffer, mCharPos, currentCharPos - mCharPos);
                                 //str = new string(charBuffer, this.charPos, currentCharPos - this.charPos);
                                 str = builder.ToString();
                             }
                             else
-                                str = new string(this.mCharBuffer, this.mCharPos, currentCharPos - this.mCharPos);
-                            this.mCharPos = currentCharPos + 1;
-                            if (((ch == '\r') && ((this.mCharPos < this.mCharLen) || (this.ReadBuffer() > 0))) &&
-                                (this.mCharBuffer[this.mCharPos] == '\n'))
-                                this.mCharPos++;
+                                str = new string(mCharBuffer, mCharPos, currentCharPos - mCharPos);
+                            mCharPos = currentCharPos + 1;
+                            if (((ch == '\r') && ((mCharPos < mCharLen) || (ReadBuffer() > 0))) &&
+                                (mCharBuffer[mCharPos] == '\n'))
+                                mCharPos++;
                             return str;
                     }
                     currentCharPos++;
-                } while (currentCharPos < this.mCharLen);
-                currentCharPos = this.mCharLen - this.mCharPos;
+                } while (currentCharPos < mCharLen);
+                currentCharPos = mCharLen - mCharPos;
                 if (builder == null)
                     builder = new StringBuilder(currentCharPos + 80);
-                builder.Append(this.mCharBuffer, this.mCharPos, currentCharPos);
-            } while (this.ReadBuffer() > 0);
+                builder.Append(mCharBuffer, mCharPos, currentCharPos);
+            } while (ReadBuffer() > 0);
             return builder.ToString();
         }
 
@@ -482,7 +482,7 @@ namespace FileHelpers.Streams
         /// </summary>
         internal bool Closable
         {
-            get { return this.mClosable; }
+            get { return mClosable; }
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace FileHelpers.Streams
         /// </summary>
         public Encoding CurrentEncoding
         {
-            get { return this.mEncoding; }
+            get { return mEncoding; }
         }
 
         /// <summary>
@@ -498,7 +498,7 @@ namespace FileHelpers.Streams
         /// </summary>
         public Stream BaseStream
         {
-            get { return this.mStream; }
+            get { return mStream; }
         }
 
         /// <summary>
@@ -508,11 +508,11 @@ namespace FileHelpers.Streams
         {
             get
             {
-                if (this.mStream == null)
+                if (mStream == null)
                     throw new ObjectDisposedException(null, "The reader is closed");
-                if (this.mCharPos < this.mCharLen)
+                if (mCharPos < mCharLen)
                     return false;
-                return (this.ReadBuffer() == 0);
+                return (ReadBuffer() == 0);
             }
         }
     }

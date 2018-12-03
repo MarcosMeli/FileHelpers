@@ -179,7 +179,7 @@ namespace FileHelpers.ExcelNPOIStorage
             var rowO = mSheet.GetRow((int) row);
             return rowO == null
                 ? null
-                : this.CellAsString(rowO, (int) col);
+                : CellAsString(rowO, (int) col);
         }
 
         private string CellAsString(IRow row, int col)

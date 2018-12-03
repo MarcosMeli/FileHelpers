@@ -22,7 +22,7 @@ namespace FileHelpers
                     "The separator parameter of the FieldDelimiter attribute can't be null or empty");
             }
             else
-                this.Delimiter = separator;
+                Delimiter = separator;
         }
     }
 }

@@ -1075,22 +1075,22 @@ namespace FileHelpers.Dynamic
 			WriteHeaderElement(xml);
 
 			xml.WriteElement("ClassName", ClassName);
-			xml.WriteElement("Namespace", this.Namespace, "");
+			xml.WriteElement("Namespace", Namespace, "");
 
-			xml.WriteElement("SealedClass", this.SealedClass);
-			xml.WriteElement("Visibility", this.Visibility.ToString(), "Public");
+			xml.WriteElement("SealedClass", SealedClass);
+			xml.WriteElement("Visibility", Visibility.ToString(), "Public");
 
-			xml.WriteElement("IgnoreEmptyLines", this.IgnoreEmptyLines);
-			xml.WriteElement("IgnoreFirstLines", this.IgnoreFirstLines.ToString(), "0");
-			xml.WriteElement("IgnoreLastLines", this.IgnoreLastLines.ToString(), "0");
+			xml.WriteElement("IgnoreEmptyLines", IgnoreEmptyLines);
+			xml.WriteElement("IgnoreFirstLines", IgnoreFirstLines.ToString(), "0");
+			xml.WriteElement("IgnoreLastLines", IgnoreLastLines.ToString(), "0");
 
-			xml.WriteElement("CommentMarker", this.IgnoreCommentedLines.CommentMarker, "");
+			xml.WriteElement("CommentMarker", IgnoreCommentedLines.CommentMarker, "");
 			xml.WriteElement("CommentInAnyPlace",
-				this.IgnoreCommentedLines.InAnyPlace.ToString().ToLower(),
+				IgnoreCommentedLines.InAnyPlace.ToString().ToLower(),
 				true.ToString().ToLower());
 
-			xml.WriteElement("RecordCondition", this.RecordCondition.Condition.ToString(), "None");
-			xml.WriteElement("RecordConditionSelector", this.RecordCondition.Selector, "");
+			xml.WriteElement("RecordCondition", RecordCondition.Condition.ToString(), "None");
+			xml.WriteElement("RecordConditionSelector", RecordCondition.Selector, "");
 
 			WriteExtraElements(xml);
 

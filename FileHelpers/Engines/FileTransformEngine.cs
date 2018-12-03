@@ -198,7 +198,7 @@ namespace FileHelpers
         public TDestination[] ReadAndTransformRecords(string sourceFile)
         {
             var engine = new FileHelperAsyncEngine<TSource>(mSourceEncoding) {
-                ErrorMode = this.ErrorMode
+                ErrorMode = ErrorMode
             };
             mSourceErrorManager = engine.ErrorManager;
             mDestinationErrorManager = new ErrorManager(ErrorMode);
@@ -220,8 +220,8 @@ namespace FileHelpers
             var sourceEngine = new FileHelperEngine<TSource>(mSourceEncoding);
             var destEngine = new FileHelperEngine<TDestination>(mDestinationEncoding);
 
-            sourceEngine.ErrorMode = this.ErrorMode;
-            destEngine.ErrorManager.ErrorMode = this.ErrorMode;
+            sourceEngine.ErrorMode = ErrorMode;
+            destEngine.ErrorManager.ErrorMode = ErrorMode;
 
             mSourceErrorManager = sourceEngine.ErrorManager;
             mDestinationErrorManager = destEngine.ErrorManager;
@@ -272,8 +272,8 @@ namespace FileHelpers
             var sourceEngine = new FileHelperAsyncEngine<TSource>();
             var destEngine = new FileHelperAsyncEngine<TDestination>();
 
-            sourceEngine.ErrorMode = this.ErrorMode;
-            destEngine.ErrorMode = this.ErrorMode;
+            sourceEngine.ErrorMode = ErrorMode;
+            destEngine.ErrorMode = ErrorMode;
 
             mSourceErrorManager = sourceEngine.ErrorManager;
             mDestinationErrorManager = destEngine.ErrorManager;

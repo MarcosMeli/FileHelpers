@@ -104,7 +104,7 @@ namespace FileHelpers
                         !line.StartsWith(Separator) &&
                         !line.IsEOL()) {
                         throw new BadUsageException(line,
-                            "The field " + this.FieldInfo.Name + " is quoted but the quoted char: " + quotedStr +
+                            "The field " + FieldInfo.Name + " is quoted but the quoted char: " + quotedStr +
                             " not is just before the separator (You can use [FieldTrim] to avoid this error)");
                     }
                     return res;
@@ -146,7 +146,7 @@ namespace FileHelpers
                     string.Format(
                         "Delimiter '{0}' found after the last field '{1}' (the file is wrong or you need to add a field to the record class)",
                         Separator,
-                        this.FieldInfo.Name,
+                        FieldInfo.Name,
                         line.mReader.LineNumber);
 
                 throw new BadUsageException(line.mReader.LineNumber, line.mCurrentPos, msg);
@@ -172,7 +172,7 @@ namespace FileHelpers
                                 string.Format(
                                     "Delimiter '{0}' not found after field '{1}' (the record has less fields, the delimiter is wrong or the next field must be marked as optional).",
                                     Separator,
-                                    this.FieldInfo.Name,
+                                    FieldInfo.Name,
                                     line.mReader.LineNumber);
                         }
 
@@ -202,7 +202,7 @@ namespace FileHelpers
             if (hasNewLine &&
                 (QuoteMultiline == MultilineMode.AllowForRead ||
                  QuoteMultiline == MultilineMode.NotAllow)) {
-                throw new BadUsageException("One value for the field " + this.FieldInfo.Name +
+                throw new BadUsageException("One value for the field " + FieldInfo.Name +
                                             " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
             }
 

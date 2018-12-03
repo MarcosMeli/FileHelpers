@@ -60,7 +60,7 @@ namespace ExamplesFx
 
             public int CompareTo(OrdersTab other)
             {
-                return this.OrderID.CompareTo(other.OrderID);
+                return OrderID.CompareTo(other.OrderID);
             }
 
             #endregion

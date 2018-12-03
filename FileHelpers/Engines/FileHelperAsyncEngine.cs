@@ -640,7 +640,7 @@ namespace FileHelpers
                 mLineNumber++;
                 mTotalRecords++;
 
-                currentLine = RecordInfo.Operations.RecordValuesToString(this.mLastRecordValues);
+                currentLine = RecordInfo.Operations.RecordValuesToString(mLastRecordValues);
                 mAsyncWriter.WriteLine(currentLine);
             }
             catch (Exception ex) {

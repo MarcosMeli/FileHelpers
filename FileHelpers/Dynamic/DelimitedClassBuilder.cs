@@ -148,7 +148,7 @@ namespace FileHelpers.Dynamic
         {
             writer.Writer.WriteStartElement("DelimitedClass");
             writer.Writer.WriteStartAttribute("Delimiter", "");
-            writer.Writer.WriteString(this.Delimiter);
+            writer.Writer.WriteString(Delimiter);
             writer.Writer.WriteEndAttribute();
         }
 

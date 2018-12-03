@@ -17,7 +17,7 @@ namespace FileHelpers
         /// <param name="caption">The string used for the field in the header row.</param>
         public FieldCaptionAttribute(string caption)
         {
-            this.Caption = caption;
+            Caption = caption;
         }
     }
 }

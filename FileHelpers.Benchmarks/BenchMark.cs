@@ -69,18 +69,18 @@ namespace FileHelpers.Benchmarks
         }
 
         private static void engine_BeforeWriteRecord(EngineBase engine,
-            FileHelpers.Events.BeforeWriteEventArgs<FixedSampleRecord> e) {}
+            Events.BeforeWriteEventArgs<FixedSampleRecord> e) {}
 
         private static void engine_AfterWriteRecord(EngineBase engine,
-            FileHelpers.Events.AfterWriteEventArgs<FixedSampleRecord> e) {}
+            Events.AfterWriteEventArgs<FixedSampleRecord> e) {}
 
         private static void engine_BeforeReadRecord(EngineBase engine,
-            FileHelpers.Events.BeforeReadEventArgs<FixedSampleRecord> e) {}
+            Events.BeforeReadEventArgs<FixedSampleRecord> e) {}
 
         private static void engine_AfterReadRecord(EngineBase engine,
-            FileHelpers.Events.AfterReadEventArgs<FixedSampleRecord> e) {}
+            Events.AfterReadEventArgs<FixedSampleRecord> e) {}
 
-        private static void engine_Progress(object sender, FileHelpers.Events.ProgressEventArgs e) {}
+        private static void engine_Progress(object sender, Events.ProgressEventArgs e) {}
 
 
         private static void RunBigFileSortTest(string inputFile, string outputFile, int requestedBlockSize) {

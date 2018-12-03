@@ -47,10 +47,10 @@ namespace FileHelpers
         {
             FixedMode = FixedMode.ExactLength;
             Align = new FieldAlignAttribute(AlignMode.Left, ' ');
-            this.FieldLength = length;
+            FieldLength = length;
 
             if (align != null)
-                this.Align = align;
+                Align = align;
             else {
                 if (TypeHelper.IsNumericType(fi.FieldType))
                     Align = new FieldAlignAttribute(AlignMode.Right, ' ');
@@ -81,7 +81,7 @@ namespace FileHelpers
 
             //ExtractedInfo res;
 
-            if (line.CurrentLength < this.FieldLength) {
+            if (line.CurrentLength < FieldLength) {
                 if (FixedMode == FixedMode.AllowLessChars ||
                     FixedMode == FixedMode.AllowVariableLength)
                     return new ExtractedInfo(line);

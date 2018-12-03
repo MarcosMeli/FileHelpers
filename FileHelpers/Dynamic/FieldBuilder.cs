@@ -351,13 +351,13 @@ namespace FileHelpers.Dynamic
 
             Converter.WriteXml(writer);
 
-            writer.WriteElement("Visibility", this.Visibility.ToString(), "Public");
-            writer.WriteElement("FieldHidden", this.FieldHidden);
-            writer.WriteElement("FieldOptional", this.FieldOptional);
-            writer.WriteElement("FieldValueDiscarded", this.FieldValueDiscarded);
-            writer.WriteElement("FieldInNewLine", this.FieldInNewLine);
-            writer.WriteElement("TrimChars", this.TrimChars, " \t");
-            writer.WriteElement("TrimMode", this.TrimMode.ToString(), "None");
+            writer.WriteElement("Visibility", Visibility.ToString(), "Public");
+            writer.WriteElement("FieldHidden", FieldHidden);
+            writer.WriteElement("FieldOptional", FieldOptional);
+            writer.WriteElement("FieldValueDiscarded", FieldValueDiscarded);
+            writer.WriteElement("FieldInNewLine", FieldInNewLine);
+            writer.WriteElement("TrimChars", TrimChars, " \t");
+            writer.WriteElement("TrimMode", TrimMode.ToString(), "None");
 
             if (FieldNullValue != null) {
                 writer.Writer.WriteStartElement("FieldNullValue");

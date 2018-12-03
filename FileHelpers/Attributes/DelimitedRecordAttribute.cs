@@ -16,7 +16,7 @@ namespace FileHelpers
         public DelimitedRecordAttribute(string delimiter)
         {
             if (Separator != String.Empty)
-                this.Separator = delimiter;
+                Separator = delimiter;
             else
                 throw new ArgumentException("Given delimiter cannot be <> \"\"", "delimiter");
         }

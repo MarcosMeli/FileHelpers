@@ -20,7 +20,7 @@ namespace FileHelpers.Benchmarks
 
         public int CompareTo(FixedSampleRecordSortable other)
         {
-            return this.Cuit.CompareTo(other.Cuit);
+            return Cuit.CompareTo(other.Cuit);
         }
 
 

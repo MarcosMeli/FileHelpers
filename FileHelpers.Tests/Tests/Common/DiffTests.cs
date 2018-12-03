@@ -137,7 +137,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public int CompareTo(DiffOrdersFixed other)
             {
-                return this.OrderID.CompareTo(other.OrderID);
+                return OrderID.CompareTo(other.OrderID);
             }
         }
     }

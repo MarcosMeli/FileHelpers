@@ -214,7 +214,7 @@ namespace FileHelpers.DataLink
         /// <param name="cRow">The current row index (1-based)</param>
         protected bool ShouldStopOnRow(int cRow)
         {
-            switch (this.ExcelReadStopBehavior) {
+            switch (ExcelReadStopBehavior) {
                 case ExcelReadStopBehavior.StopOnEmptyFirstCell:
                     return CellIsEmpty(cRow, StartColumn);
 
@@ -235,7 +235,7 @@ namespace FileHelpers.DataLink
 
                 default:
                     throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " +
-                                                          this.ExcelReadStopBehavior);
+                                                          ExcelReadStopBehavior);
             }
         }
 
@@ -245,7 +245,7 @@ namespace FileHelpers.DataLink
         /// <param name="cRow">The current row index (1-based)</param>
         protected bool ShouldReadRowData(int cRow)
         {
-            switch (this.ExcelReadStopBehavior) {
+            switch (ExcelReadStopBehavior) {
                 case ExcelReadStopBehavior.StopOnEmptyFirstCell:
                 {
                     // we already checked in ShouldStopOnRow()
@@ -260,7 +260,7 @@ namespace FileHelpers.DataLink
 
                 default:
                     throw new ArgumentOutOfRangeException("Need to support new ExcelReadStopBehavior: " +
-                                                          this.ExcelReadStopBehavior);
+                                                          ExcelReadStopBehavior);
             }
         }
 
