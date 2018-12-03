@@ -400,7 +400,7 @@ namespace FileHelpers.DataLink
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                AddError(cRow, ex, ColumnsToValues(colValues));
+                                AddError(cRow, ex, ColumnsToValues(colValues), RecordType.Name);
                                 break;
                         }
                     }

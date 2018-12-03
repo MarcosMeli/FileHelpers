@@ -40,6 +40,17 @@ namespace FileHelpers
             get { return mRecordString; }
         }
 
+        /// <summary>The name of the record type being used.</summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [FieldQuoted(QuoteMode.OptionalForBoth)]
+        internal string mRecordTypeName = string.Empty;
+
+        /// <summary>>The name of the record type being used.</summary>
+        public string RecordTypeName
+        {
+            get { return mRecordTypeName; }
+        }
+
         /// <summary>The exception that indicates the error.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [FieldConverter(typeof (ExceptionConverter))]

@@ -54,6 +54,7 @@ namespace ExamplesFx
             foreach (var err in engine.ErrorManager.Errors) {
                 Console.WriteLine();
                 Console.WriteLine("Error on Line number: {0}", err.LineNumber);
+                Console.WriteLine("Using record type: {0}", err.RecordTypeName);
                 Console.WriteLine("Record causing the problem: {0}", err.RecordString);
                 Console.WriteLine("Complete exception information: {0}", err.ExceptionInfo.ToString());
             }

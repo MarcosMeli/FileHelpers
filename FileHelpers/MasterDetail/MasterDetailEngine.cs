@@ -329,7 +329,8 @@ namespace FileHelpers.MasterDetail
                                 var err = new ErrorInfo {
                                     mLineNumber = mLineNumber,
                                     mExceptionInfo = ex,
-                                    mRecordString = completeLine
+                                    mRecordString = completeLine,
+                                    mRecordTypeName = RecordInfo.RecordType.Name
                                 };
                                 //							err.mColumnNumber = mColumnNum;
 
@@ -465,7 +466,8 @@ namespace FileHelpers.MasterDetail
                             var err = new ErrorInfo {
                                 mLineNumber = mLineNumber,
                                 mExceptionInfo = ex,
-                                mRecordString = currentLine
+                                mRecordString = currentLine,
+                                mRecordTypeName = RecordInfo.RecordType.Name
                             };
                             //							err.mColumnNumber = mColumnNum;
                             mErrorManager.AddError(err);

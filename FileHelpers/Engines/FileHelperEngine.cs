@@ -271,6 +271,7 @@ namespace FileHelpers
                                     mLineNumber = freader.LineNumber,
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine,
+                                    mRecordTypeName = RecordInfo.RecordType.Name
                                 };
 
                                 mErrorManager.AddError(err);
@@ -448,7 +449,8 @@ namespace FileHelpers
                             var err = new ErrorInfo {
                                 mLineNumber = mLineNumber,
                                 mExceptionInfo = ex,
-                                mRecordString = currentLine
+                                mRecordString = currentLine,
+                                mRecordTypeName = RecordInfo.RecordType.Name
                             };
                             mErrorManager.AddError(err);
                             break;
