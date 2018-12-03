@@ -97,7 +97,6 @@ namespace FileHelpers.DataLink
             ErrorInfo e = new ErrorInfo
             {
                 mLineNumber = lineNumber,
-                //.mColumnNumber = colNum;
                 mExceptionInfo = ex,
                 mRecordString = recordLine,
                 mRecordTypeName = recordTypeName

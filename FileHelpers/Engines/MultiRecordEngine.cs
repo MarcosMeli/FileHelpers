@@ -866,7 +866,6 @@ namespace FileHelpers
                             mRecordString = currentLine,
                             mRecordTypeName = RecordInfo.RecordType.Name
                         };
-                        //							err.mColumnNumber = mColumnNum;
                         mErrorManager.AddError(err);
                         break;
                 }

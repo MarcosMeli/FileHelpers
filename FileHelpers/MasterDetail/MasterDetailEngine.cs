@@ -332,8 +332,6 @@ namespace FileHelpers.MasterDetail
                                     mRecordString = completeLine,
                                     mRecordTypeName = RecordInfo.RecordType.Name
                                 };
-                                //							err.mColumnNumber = mColumnNum;
-
                                 mErrorManager.AddError(err);
                                 break;
                         }
@@ -469,7 +467,6 @@ namespace FileHelpers.MasterDetail
                                 mRecordString = currentLine,
                                 mRecordTypeName = RecordInfo.RecordType.Name
                             };
-                            //							err.mColumnNumber = mColumnNum;
                             mErrorManager.AddError(err);
                             break;
                     }
