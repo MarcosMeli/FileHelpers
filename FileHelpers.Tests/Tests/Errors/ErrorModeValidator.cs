@@ -6,20 +6,20 @@ namespace FileHelpers.Tests.Errors
     [TestFixture]
     public class ErrorModeValidator
     {
-        private FileHelperEngine<SampleType> engine;
+        private FileHelperEngine<SampleType> mEngine;
 
         [SetUp]
         public void Setup()
         {
-            engine = new FileHelperEngine<SampleType>();
+            mEngine = new FileHelperEngine<SampleType>();
         }
 
         [Test]
         public void IgnoreAndContinue()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
-            TestCommon.ReadTest<SampleType>(engine, "Bad", "BadDate1.txt");
-            Assert.AreEqual(0, engine.ErrorManager.ErrorCount);
+            mEngine.ErrorManager.ErrorMode = ErrorMode.IgnoreAndContinue;
+            TestCommon.ReadTest(mEngine, "Bad", "BadDate1.txt");
+            Assert.AreEqual(0, mEngine.ErrorManager.ErrorCount);
         }
 
         [Test]
@@ -43,16 +43,16 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void SaveAndContinue()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1.txt").Length);
+            Assert.AreEqual(3, TestCommon.ReadTest(mEngine, "Bad", "BadDate1.txt").Length);
 
-            Assert.AreEqual(4, engine.TotalRecords);
+            Assert.AreEqual(4, mEngine.TotalRecords);
 
-            Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
+            Assert.AreEqual(1, mEngine.ErrorManager.ErrorCount);
 
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
-            Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(2, mEngine.ErrorManager.Errors[0].LineNumber);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace FileHelpers.Tests.Errors
 
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            Assert.AreEqual(3, TestCommon.ReadTest<SampleTypeIgnoreFirst>(engine, "Bad", "BadDate1Ignore.txt").Length);
+            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1Ignore.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -81,7 +81,7 @@ namespace FileHelpers.Tests.Errors
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
             Assert.AreEqual(3,
-                TestCommon.ReadTest<SampleTypeIgnoreFirstLast>(engine, "Bad", "BadDate1IgnoreLast.txt").Length);
+                TestCommon.ReadTest(engine, "Bad", "BadDate1IgnoreLast.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -99,7 +99,7 @@ namespace FileHelpers.Tests.Errors
             engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
             Assert.AreEqual(3,
-                TestCommon.ReadTest<SampleTypeIgnoreFirstLast>(engine, "Bad", "BadDate1IgnoreLast2.txt").Length);
+                TestCommon.ReadTest(engine, "Bad", "BadDate1IgnoreLast2.txt").Length);
 
             Assert.AreEqual(4, engine.TotalRecords);
 
@@ -112,97 +112,97 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void ThrowException()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.ThrowException;
+            mEngine.ErrorManager.ErrorMode = ErrorMode.ThrowException;
             Assert.Throws<ConvertException>(()
-                => TestCommon.ReadTest(engine, "Bad", "BadDate1.txt"));
+                => TestCommon.ReadTest(mEngine, "Bad", "BadDate1.txt"));
         }
 
         [Test]
         public void AllBad()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(0, TestCommon.ReadTest(engine, "Bad", "BadAll1.txt").Length);
-            Assert.AreEqual(4, engine.ErrorManager.Errors.Length);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(0, TestCommon.ReadTest(mEngine, "Bad", "BadAll1.txt").Length);
+            Assert.AreEqual(4, mEngine.ErrorManager.Errors.Length);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
         }
 
         [Test]
         public void ErrorManagerEnumerable()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(0, TestCommon.ReadTest(engine, "Bad", "BadAll1.txt").Length);
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(0, TestCommon.ReadTest(mEngine, "Bad", "BadAll1.txt").Length);
 
             int i = 0;
-            foreach (ErrorInfo info in engine.ErrorManager) {
+            foreach (ErrorInfo info in mEngine.ErrorManager) {
                 i++;
                 Assert.IsNotNull(info);
             }
             Assert.AreEqual(4, i);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
         }
 
         [Test]
         public void ErrorsOrder()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(0, TestCommon.ReadTest(engine, "Bad", "BadAll1.txt").Length);
-            Assert.AreEqual(4, engine.ErrorManager.ErrorCount);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(0, TestCommon.ReadTest(mEngine, "Bad", "BadAll1.txt").Length);
+            Assert.AreEqual(4, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 
-            Assert.AreEqual(1, engine.ErrorManager.Errors[0].LineNumber);
-            Assert.AreEqual(2, engine.ErrorManager.Errors[1].LineNumber);
-            Assert.AreEqual(3, engine.ErrorManager.Errors[2].LineNumber);
-            Assert.AreEqual(4, engine.ErrorManager.Errors[3].LineNumber);
+            Assert.AreEqual(1, mEngine.ErrorManager.Errors[0].LineNumber);
+            Assert.AreEqual(2, mEngine.ErrorManager.Errors[1].LineNumber);
+            Assert.AreEqual(3, mEngine.ErrorManager.Errors[2].LineNumber);
+            Assert.AreEqual(4, mEngine.ErrorManager.Errors[3].LineNumber);
         }
 
         [Test]
         public void RecordString()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(0, TestCommon.ReadTest(engine, "Bad", "BadAll1.txt").Length);
-            Assert.AreEqual(4, engine.ErrorManager.ErrorCount);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(0, TestCommon.ReadTest(mEngine, "Bad", "BadAll1.txt").Length);
+            Assert.AreEqual(4, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
 
 
-            Assert.AreEqual("30022005001234", engine.ErrorManager.Errors[0].RecordString);
-            Assert.AreEqual("01012005001abc", engine.ErrorManager.Errors[1].RecordString);
-            Assert.AreEqual("99999999123456", engine.ErrorManager.Errors[2].RecordString);
-            Assert.AreEqual("00002005234567", engine.ErrorManager.Errors[3].RecordString);
+            Assert.AreEqual("30022005001234", mEngine.ErrorManager.Errors[0].RecordString);
+            Assert.AreEqual("01012005001abc", mEngine.ErrorManager.Errors[1].RecordString);
+            Assert.AreEqual("99999999123456", mEngine.ErrorManager.Errors[2].RecordString);
+            Assert.AreEqual("00002005234567", mEngine.ErrorManager.Errors[3].RecordString);
         }
 
         [Test]
         public void SaveToFile()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1.txt").Length);
-            Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
-            Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(3, TestCommon.ReadTest(mEngine, "Bad", "BadDate1.txt").Length);
+            Assert.AreEqual(1, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(2, mEngine.ErrorManager.Errors[0].LineNumber);
 
             var filename = TestCommon.GetTempFile("SavedErrors.txt");
 
-            engine.ErrorManager.SaveErrors(filename);
+            mEngine.ErrorManager.SaveErrors(filename);
 
             var e2 = new FileHelperEngine<ErrorInfo>();
 
             ErrorInfo[] errors = e2.ReadFile(filename);
 
-            Assert.AreEqual(engine.ErrorManager.ErrorCount, errors.Length);
+            Assert.AreEqual(mEngine.ErrorManager.ErrorCount, errors.Length);
             File.Delete(filename);
         }
 
         [Test]
         public void SaveToFile2()
         {
-            engine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
-            Assert.AreEqual(3, TestCommon.ReadTest(engine, "Bad", "BadDate1.txt").Length);
-            Assert.AreEqual(1, engine.ErrorManager.ErrorCount);
-            Assert.AreEqual(typeof (ConvertException), engine.ErrorManager.Errors[0].ExceptionInfo.GetType());
-            Assert.AreEqual(2, engine.ErrorManager.Errors[0].LineNumber);
+            mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            Assert.AreEqual(3, TestCommon.ReadTest(mEngine, "Bad", "BadDate1.txt").Length);
+            Assert.AreEqual(1, mEngine.ErrorManager.ErrorCount);
+            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(2, mEngine.ErrorManager.Errors[0].LineNumber);
 
             var filename = TestCommon.GetTempFile("SavedErrors.txt");
-            engine.ErrorManager.SaveErrors(filename);
-            Assert.AreEqual(engine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(filename).Length);
+            mEngine.ErrorManager.SaveErrors(filename);
+            Assert.AreEqual(mEngine.ErrorManager.ErrorCount, ErrorManager.LoadErrors(filename).Length);
             File.Delete(filename);
         }
     }
