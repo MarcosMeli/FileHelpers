@@ -132,13 +132,15 @@ namespace FileHelpers.Tests.Errors
             mEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
             Assert.AreEqual(0, TestCommon.ReadTest(mEngine, "Bad", "BadAll1.txt").Length);
 
-            int i = 0;
+            var errorCount = 0;
             foreach (ErrorInfo info in mEngine.ErrorManager) {
-                i++;
+                errorCount++;
                 Assert.IsNotNull(info);
             }
-            Assert.AreEqual(4, i);
-            Assert.AreEqual(typeof (ConvertException), mEngine.ErrorManager.Errors[0].ExceptionInfo.GetType());
+            Assert.AreEqual(4, errorCount);
+            ErrorInfo firstError = mEngine.ErrorManager.Errors[0];
+            Assert.AreEqual(typeof (ConvertException), firstError.ExceptionInfo.GetType());
+            Assert.AreEqual(nameof(SampleType), firstError.RecordTypeName);
         }
 
         [Test]
