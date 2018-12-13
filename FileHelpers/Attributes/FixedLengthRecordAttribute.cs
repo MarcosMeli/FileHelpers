@@ -23,7 +23,8 @@ namespace FileHelpers
         /// specified variable length record behavior.
         /// </summary>
         /// <param name="fixedMode">The <see cref="FileHelpers.FixedMode"/> used for variable length records. By Default is FixedMode.ExactLength</param>
-        public FixedLengthRecordAttribute(FixedMode fixedMode)
+        /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
+        public FixedLengthRecordAttribute(FixedMode fixedMode, string defaultCultureName = null) : base(defaultCultureName: defaultCultureName)
         {
             FixedMode = fixedMode;
         }

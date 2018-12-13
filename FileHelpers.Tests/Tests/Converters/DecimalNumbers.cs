@@ -26,6 +26,10 @@ namespace FileHelpers.Tests.Converters
             CheckDecimal((decimal) 81.91, res[9]);
         }
 
+        
+
+
+
         private static void CheckDecimal(decimal dec, DecimalType res)
         {
             Assert.AreEqual((decimal) dec, res.DecimalField);
@@ -33,6 +37,7 @@ namespace FileHelpers.Tests.Converters
             Assert.AreEqual((float) dec, res.FloatField);
         }
 
+      
 
         [Test]
         public void NegativeNumbers()
@@ -65,10 +70,13 @@ namespace FileHelpers.Tests.Converters
             public decimal DecimalField;
         }
 
+       
+
         [Test]
         public void DecimalsWithExponents()
         {
             var engine = new FileHelperEngine<DecimalType>();
+            
 
             DecimalType[] res;
             res = TestCommon.ReadTest<DecimalType>(engine, "Good", "NumberFormat2.txt");

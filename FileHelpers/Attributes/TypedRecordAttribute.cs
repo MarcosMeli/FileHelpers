@@ -10,10 +10,19 @@ namespace FileHelpers
     public abstract class TypedRecordAttribute
         : Attribute
     {
+        /// <summary>
+        /// Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.
+        /// </summary>
+        public string DefaultCultureName { get; private set; }
+
+
         #region "  Constructors  "
 
         /// <summary>Abstract class, see inheritors.</summary>
-        protected TypedRecordAttribute() {}
+        protected TypedRecordAttribute(string defaultCultureName)
+        {
+            this.DefaultCultureName = defaultCultureName;
+        }
 
         #endregion
     }
