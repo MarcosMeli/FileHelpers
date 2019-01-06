@@ -133,7 +133,7 @@ namespace FileHelpers
         public object[] ReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+                throw new ArgumentNullException(nameof(reader), "The reader of the Stream can´t be null");
 
             if (mRecordSelector == null) {
                 throw new BadUsageException(
@@ -307,10 +307,10 @@ namespace FileHelpers
         public void WriteStream(TextWriter writer, IEnumerable records, int maxRecords)
         {
             if (writer == null)
-                throw new ArgumentNullException("writer", "The writer of the Stream can be null");
+                throw new ArgumentNullException(nameof(writer), "The writer of the Stream can be null");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
+                throw new ArgumentNullException(nameof(records), "The records can be null. Try with an empty array.");
 
             ResetFields();
 
@@ -822,7 +822,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The record to write can´t be null.");
+                throw new ArgumentNullException(nameof(records), "The record to write can´t be null.");
 
             int nro = 0;
             foreach (var rec in records) {
@@ -885,7 +885,7 @@ namespace FileHelpers
         public void BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
-                throw new ArgumentException("The TextWriter can´t be null.", "writer");
+                throw new ArgumentException("The TextWriter can´t be null.", nameof(writer));
 
             ResetFields();
             mAsyncWriter = writer;

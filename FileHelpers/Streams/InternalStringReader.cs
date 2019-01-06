@@ -22,7 +22,7 @@ namespace FileHelpers.Streams
         public InternalStringReader(string s)
         {
             if (s == null)
-                throw new ArgumentNullException("s");
+                throw new ArgumentNullException(nameof(s));
             mS = s;
             Length = s.Length;
         }
@@ -100,11 +100,11 @@ namespace FileHelpers.Streams
         public override int Read([In, Out] char[] buffer, int index, int count)
         {
             if (buffer == null)
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             if (index < 0)
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (count < 0)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
             if ((buffer.Length - index) < count)
                 throw new ArgumentException("offset");
             if (mS == null)

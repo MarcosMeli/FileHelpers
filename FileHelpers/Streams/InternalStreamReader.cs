@@ -70,9 +70,9 @@ namespace FileHelpers.Streams
                     : "encoding");
             }
             if (path.Length == 0)
-                throw new ArgumentException("Empty path", "path");
+                throw new ArgumentException("Empty path", nameof(path));
             if (bufferSize <= 0)
-                throw new ArgumentOutOfRangeException("bufferSize", "bufferSize must be positive");
+                throw new ArgumentOutOfRangeException(nameof(bufferSize), "bufferSize must be positive");
             var stream = new FileStream(path,
                 FileMode.Open,
                 FileAccess.Read,

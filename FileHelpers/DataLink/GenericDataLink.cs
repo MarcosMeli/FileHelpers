@@ -25,12 +25,12 @@ namespace FileHelpers.DataLink
         public GenericDataLink(DataStorage provider1, DataStorage provider2)
         {
             if (provider1 == null)
-                throw new ArgumentException("provider1 can't be null", "provider1");
+                throw new ArgumentException("provider1 can't be null", nameof(provider1));
             else
                 mDataStorage1 = provider1;
 
             if (provider2 == null)
-                throw new ArgumentException("provider2 can't be null", "provider2");
+                throw new ArgumentException("provider2 can't be null", nameof(provider2));
             else
                 mDataStorage2 = provider2;
 

@@ -163,7 +163,7 @@ namespace FileHelpers
         {
 
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream can´t be null");
+                throw new ArgumentNullException(nameof(reader), "The reader of the Stream can´t be null");
             var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
@@ -374,10 +374,10 @@ namespace FileHelpers
         public void WriteStream(TextWriter writer, IEnumerable<T> records, int maxRecords)
         {
             if (writer == null)
-                throw new ArgumentNullException("writer", "The writer of the Stream can be null");
+                throw new ArgumentNullException(nameof(writer), "The writer of the Stream can be null");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
+                throw new ArgumentNullException(nameof(records), "The records can be null. Try with an empty array.");
 
             ResetFields();
 

@@ -136,7 +136,7 @@ namespace FileHelpers.Dynamic
                     else
                         return "\"" + delimiter + "\"";
                 default:
-                    throw new ArgumentOutOfRangeException("lang");
+                    throw new ArgumentOutOfRangeException(nameof(lang));
             }
         }
 

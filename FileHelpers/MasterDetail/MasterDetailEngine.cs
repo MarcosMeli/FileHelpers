@@ -226,7 +226,7 @@ namespace FileHelpers.MasterDetail
         public MasterDetails<TMaster, TDetail>[] ReadStream(TextReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The reader of the Stream can't be null");
+                throw new ArgumentNullException(nameof(reader), "The reader of the Stream can't be null");
 
             if (RecordSelector == null)
                 throw new BadUsageException("The RecordSelector can't be null on read operations.");
@@ -402,10 +402,10 @@ namespace FileHelpers.MasterDetail
         public void WriteStream(TextWriter writer, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
         {
             if (writer == null)
-                throw new ArgumentNullException("writer", "The writer of the Stream can be null");
+                throw new ArgumentNullException(nameof(writer), "The writer of the Stream can be null");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The records can be null. Try with an empty array.");
+                throw new ArgumentNullException(nameof(records), "The records can be null. Try with an empty array.");
 
             ResetFields();
 

@@ -181,7 +181,7 @@ namespace FileHelpers
         public IDisposable BeginReadStream(TextReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("reader", "The TextReader can't be null.");
+                throw new ArgumentNullException(nameof(reader), "The TextReader can't be null.");
 
             if (mAsyncWriter != null)
                 throw new BadUsageException("You can't start to read while you are writing.");
@@ -600,7 +600,7 @@ namespace FileHelpers
                 throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
-                throw new ArgumentNullException("records", "The record to write can't be null.");
+                throw new ArgumentNullException(nameof(records), "The record to write can't be null.");
 
             bool first = true;
 
