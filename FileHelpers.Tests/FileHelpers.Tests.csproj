@@ -653,10 +653,6 @@
       <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
       <Name>FileHelpers.ExcelNPOIStorage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileHelpers.ExcelStorage\FileHelpers.ExcelStorage.csproj">
-      <Project>{B3F2B976-73D5-49C7-BEAA-BF62E233132A}</Project>
-      <Name>FileHelpers.ExcelStorage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
       <Name>FileHelpers</Name>
