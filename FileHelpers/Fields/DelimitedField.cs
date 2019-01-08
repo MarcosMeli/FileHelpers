@@ -116,19 +116,11 @@ namespace FileHelpers
                         return BasicExtractString(line);
                     else if (line.StartsWithTrim(quotedStr)) {
                         throw new BadUsageException(
-                            string.Format(
-                                "The field '{0}' has spaces before the QuotedChar at line {1}. Use the TrimAttribute to by pass this error. Field String: {2}",
-                                FieldInfo.Name,
-                                line.mReader.LineNumber,
-                                line.CurrentString));
+                            $"The field '{FieldInfo.Name}' has spaces before the QuotedChar at line {line.mReader.LineNumber}. Use the TrimAttribute to by pass this error. Field String: {line.CurrentString}");
                     }
                     else {
                         throw new BadUsageException(
-                            string.Format(
-                                "The field '{0}' does not begin with the QuotedChar at line {1}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field. Field String: {2}",
-                                FieldInfo.Name,
-                                line.mReader.LineNumber,
-                                line.CurrentString));
+                            $"The field '{FieldInfo.Name}' does not begin with the QuotedChar at line {line.mReader.LineNumber}. You can use FieldQuoted(QuoteMode.OptionalForRead) to allow optional quoted field. Field String: {line.CurrentString}");
                     }
                 }
             }
@@ -164,9 +156,7 @@ namespace FileHelpers
 
                         if (IsFirst && line.EmptyFromPos()) {
                             msg =
-                                string.Format(
-                                    "The line {0} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.",
-                                    line.mReader.LineNumber);
+                                $"The line {line.mReader.LineNumber} is empty. Maybe you need to use the attribute [IgnoreEmptyLines] in your record class.";
                         }
                         else {
                             msg =

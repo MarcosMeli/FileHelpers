@@ -140,9 +140,8 @@ namespace FileHelpers
                 }
                 else {
                     if (!RecordInfo.Fields[fieldIndex].FieldType.IsInstanceOfType(value)) {
-                        throw new BadUsageException(string.Format("Invalid type: {0}. Expected: {1}",
-                            value.GetType().Name,
-                            RecordInfo.Fields[fieldIndex].FieldType.Name));
+                        throw new BadUsageException(
+                            $"Invalid type: {value.GetType().Name}. Expected: {RecordInfo.Fields[fieldIndex].FieldType.Name}");
                     }
 
                     mLastRecordValues[fieldIndex] = value;

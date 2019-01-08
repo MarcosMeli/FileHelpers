@@ -406,7 +406,7 @@ namespace FileHelpers
                 mLineNumber++;
                 try {
                     if (rec == null)
-                        throw new BadUsageException(string.Format("The record at index {0} is null.", recIndex));
+                        throw new BadUsageException($"The record at index {recIndex} is null.");
 
                     if (first) {
                         first = false;

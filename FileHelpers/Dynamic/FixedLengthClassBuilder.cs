@@ -141,10 +141,7 @@ namespace FileHelpers.Dynamic
         {
             if (lengths.Length != mFields.Count) {
                 throw new BadUsageException(
-                    string.Format(
-                        "The number of elements is {0} and you pass {1}. This method require the same number of values than fields",
-                        mFields.Count,
-                        lengths.Length));
+                    $"The number of elements is {mFields.Count} and you pass {lengths.Length}. This method require the same number of values than fields");
             }
 
             for (int i = 0; i < mFields.Count; i++)

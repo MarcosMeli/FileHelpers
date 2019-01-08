@@ -611,23 +611,12 @@ namespace FileHelpers
                 if (res.Count < ArrayMinLength)
                 {
                     throw new InvalidOperationException(
-                        string.Format(
-                            "Line: {0} Column: {1} Field: {2}. The array has only {3} values, less than the minimum length of {4}",
-                            line.mReader.LineNumber.ToString(),
-                            line.mCurrentPos.ToString(),
-                            FieldInfo.Name,
-                            res.Count,
-                            ArrayMinLength));
+                        $"Line: {line.mReader.LineNumber.ToString()} Column: {line.mCurrentPos.ToString()} Field: {FieldInfo.Name}. The array has only {res.Count} values, less than the minimum length of {ArrayMinLength}");
                 }
                 else if (IsLast && line.IsEOL() == false)
                 {
                     throw new InvalidOperationException(
-                        string.Format(
-                            "Line: {0} Column: {1} Field: {2}. The array has more values than the maximum length of {3}",
-                            line.mReader.LineNumber,
-                            line.mCurrentPos,
-                            FieldInfo.Name,
-                            ArrayMaxLength));
+                        $"Line: {line.mReader.LineNumber} Column: {line.mCurrentPos} Field: {FieldInfo.Name}. The array has more values than the maximum length of {ArrayMaxLength}");
                 }
 
                 // TODO:   is there a reason we go through all the array processing then discard it
@@ -915,9 +904,7 @@ namespace FileHelpers
                     if (0 < ArrayMinLength)
                     {
                         throw new InvalidOperationException(
-                            string.Format("Field: {0}. The array is null, but the minimum length is {1}",
-                                FieldInfo.Name,
-                                ArrayMinLength));
+                            $"Field: {FieldInfo.Name}. The array is null, but the minimum length is {ArrayMinLength}");
                     }
 
                     return;
@@ -928,19 +915,13 @@ namespace FileHelpers
                 if (array.Count < ArrayMinLength)
                 {
                     throw new InvalidOperationException(
-                        string.Format("Field: {0}. The array has {1} values, but the minimum length is {2}",
-                            FieldInfo.Name,
-                            array.Count,
-                            ArrayMinLength));
+                        $"Field: {FieldInfo.Name}. The array has {array.Count} values, but the minimum length is {ArrayMinLength}");
                 }
 
                 if (array.Count > ArrayMaxLength)
                 {
                     throw new InvalidOperationException(
-                        string.Format("Field: {0}. The array has {1} values, but the maximum length is {2}",
-                            FieldInfo.Name,
-                            array.Count,
-                            ArrayMaxLength));
+                        $"Field: {FieldInfo.Name}. The array has {array.Count} values, but the maximum length is {ArrayMaxLength}");
                 }
 
                 for (int i = 0; i < array.Count; i++)
