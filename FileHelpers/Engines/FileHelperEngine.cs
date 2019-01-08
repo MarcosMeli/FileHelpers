@@ -180,12 +180,10 @@ namespace FileHelpers
             using (var freader = new ForwardReader(recordReader, RecordInfo.IgnoreLast)) {
                 freader.DiscardForward = true;
 
-                string currentLine, completeLine;
-
                 mLineNumber = 1;
 
-                completeLine = freader.ReadNextLine();
-                currentLine = completeLine;
+                string completeLine = freader.ReadNextLine();
+                string currentLine = completeLine;
 
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
@@ -536,8 +534,7 @@ namespace FileHelpers
         public DataTable ReadFileAsDT(string fileName, int maxRecords)
         {
             using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
-                DataTable res;
-                res = ReadStreamAsDT(fs, maxRecords);
+                DataTable res = ReadStreamAsDT(fs, maxRecords);
                 fs.Close();
 
                 return res;
@@ -566,8 +563,7 @@ namespace FileHelpers
                 source = string.Empty;
 
             using (var reader = new InternalStringReader(source)) {
-                DataTable res;
-                res = ReadStreamAsDT(reader, maxRecords);
+                DataTable res = ReadStreamAsDT(reader, maxRecords);
                 reader.Close();
                 return res;
             }
