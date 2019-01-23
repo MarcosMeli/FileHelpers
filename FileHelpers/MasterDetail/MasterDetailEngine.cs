@@ -489,13 +489,7 @@ namespace FileHelpers.MasterDetail
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText))
-            {
-                if (mFooterText.EndsWith(StringHelper.NewLine))
-                    writer.Write(mFooterText);
-                else
-                    writer.WriteLine(mFooterText);
-            }
+            WriteFooter(writer);
         }
 
         #endregion

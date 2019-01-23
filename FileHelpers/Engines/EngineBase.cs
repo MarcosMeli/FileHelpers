@@ -151,6 +151,17 @@ namespace FileHelpers
             set { mFooterText = value; }
         }
 
+        internal void WriteFooter(TextWriter writer)
+        {
+            if (!string.IsNullOrEmpty(mFooterText))
+            {
+                if (mFooterText.EndsWith(NewLineForWrite))
+                    writer.Write(mFooterText);
+                else
+                    writer.WriteLine(mFooterText);
+            }
+        }
+
         #endregion
 
         #region "  Encoding  "

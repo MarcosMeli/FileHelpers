@@ -449,13 +449,7 @@ namespace FileHelpers
                     var writer = mAsyncWriter;
                     if (writer != null)
                     {
-                        if (!string.IsNullOrEmpty(mFooterText))
-                        {
-                            if (mFooterText.EndsWith(NewLineForWrite))
-                                writer.Write(mFooterText);
-                            else
-                                writer.WriteLine(mFooterText);
-                        }
+                        WriteFooter(writer);
 
                         writer.Close();
                         mAsyncWriter = null;

@@ -415,13 +415,7 @@ namespace FileHelpers
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText))
-            {
-                if (mFooterText.EndsWith(StringHelper.NewLine))
-                    writer.Write(mFooterText);
-                else
-                    writer.WriteLine(mFooterText);
-            }
+            WriteFooter(writer);
         }
 
         #endregion
@@ -618,13 +612,8 @@ namespace FileHelpers
             {
                 if (mAsyncWriter != null)
                 {
-                    if (!string.IsNullOrEmpty(mFooterText))
-                    {
-                        if (mFooterText.EndsWith(StringHelper.NewLine))
-                            mAsyncWriter.Write(mFooterText);
-                        else
-                            mAsyncWriter.WriteLine(mFooterText);
-                    }
+
+                    WriteFooter(mAsyncWriter);
 
                     mAsyncWriter.Close();
                     mAsyncWriter = null;

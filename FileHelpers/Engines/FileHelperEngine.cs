@@ -480,13 +480,7 @@ namespace FileHelpers
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText))
-            {
-                if (mFooterText.EndsWith(NewLineForWrite))
-                    writer.Write(mFooterText);
-                else
-                    writer.WriteLine(mFooterText);
-            }
+            WriteFooter(writer);
         }
 
         #endregion
