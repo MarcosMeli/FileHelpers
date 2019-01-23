@@ -18,9 +18,7 @@ namespace FileHelpers
         internal const int DefaultWriteBufferSize = 16 * 1024;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal IRecordInfo RecordInfo { get; private set; }
-
-        //private readonly IRecordInfo mRecordInfo;
+        internal IRecordInfo RecordInfo { get; }
 
         #region "  Constructor  "
 
