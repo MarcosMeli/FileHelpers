@@ -29,27 +29,19 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Length of the field
-        /// </summary>
-        public int Length
-        {
-            get { return ExtractedTo - ExtractedFrom + 1; }
-        }
-
-        /// <summary>
         /// Contains the line of data read
         /// </summary>
-        public LineInfo mLine;
+        private readonly LineInfo mLine;
 
         /// <summary>
         /// Position of first character of the field in mLine.mLine
         /// </summary>
-        public int ExtractedFrom;
+        public readonly int ExtractedFrom;
 
         /// <summary>
         /// Position of last character of the field in mLine.mLine
         /// </summary>
-        public int ExtractedTo;
+        public readonly int ExtractedTo;
 
         /// <summary>
         /// Extract the rest of the line into my variable
