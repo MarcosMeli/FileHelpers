@@ -22,13 +22,13 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine(Type recordType)
-            : this(recordType, Encoding.GetEncoding(0)) {}
+            : this(recordType, Encoding.GetEncoding(0)) { }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="recordType">The record mapping class.</param>
         /// <param name="encoding">The Encoding used by the engine.</param>
         public FileHelperEngine(Type recordType, Encoding encoding)
-            : base(recordType, encoding) {}
+            : base(recordType, encoding) { }
 
         #endregion
     }
@@ -50,14 +50,14 @@ namespace FileHelpers
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         public FileHelperEngine()
-            : this(Encoding.GetEncoding(0)) {}
+            : this(Encoding.GetEncoding(0)) { }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
         /// <param name="encoding">The Encoding used by the engine.</param>
         public FileHelperEngine(Encoding encoding)
-            : base(typeof (T), encoding)
+            : base(typeof(T), encoding)
         {
-            mObjectEngine = typeof (T) == typeof (object);
+            mObjectEngine = typeof(T) == typeof(object);
         }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/FileHelperEngineCtr/*'/>
@@ -66,7 +66,7 @@ namespace FileHelpers
         protected FileHelperEngine(Type recordType, Encoding encoding)
             : base(recordType, encoding)
         {
-            mObjectEngine = typeof (T) == typeof (object);
+            mObjectEngine = typeof(T) == typeof(object);
         }
 
         #endregion
@@ -83,7 +83,8 @@ namespace FileHelpers
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         public T[] ReadFile(string fileName, int maxRecords)
         {
-            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            {
                 T[] tempRes;
 
                 tempRes = ReadStream(fs, maxRecords);
@@ -103,7 +104,8 @@ namespace FileHelpers
         /// <param name="maxRecords">The max number of records to read. Int32.MaxValue or -1 to read all records.</param>
         public List<T> ReadFileAsList(string fileName, int maxRecords)
         {
-            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            {
                 var res = ReadStreamAsList(fs, maxRecords);
                 fs.Close();
                 return res;
@@ -129,9 +131,9 @@ namespace FileHelpers
             var result = ReadStreamAsList(reader, maxRecords, null);
 
             if (mObjectEngine)
-                return (T[]) ((ArrayList) result).ToArray(RecordInfo.RecordType);
+                return (T[])((ArrayList)result).ToArray(RecordInfo.RecordType);
             else
-                return ((List<T>) result).ToArray();
+                return ((List<T>)result).ToArray();
         }
 
         private void ReadStream(TextReader reader, int maxRecords, DataTable dt)
@@ -146,14 +148,15 @@ namespace FileHelpers
         {
             var result = ReadStreamAsList(reader, maxRecords, null);
 
-            if (mObjectEngine) {
+            if (mObjectEngine)
+            {
                 var res = new List<T>(result.Count);
                 for (int i = 0; i < result.Count; i++)
-                    res.Add((T) result[i]);
+                    res.Add((T)result[i]);
                 return res;
             }
             else
-                return (List<T>) result;
+                return (List<T>)result;
         }
 
         private IList ReadStreamAsList(TextReader reader, int maxRecords, DataTable dt)
@@ -177,7 +180,8 @@ namespace FileHelpers
             int currentRecord = 0;
 
             var streamInfo = new StreamInfoProvider(reader);
-            using (var freader = new ForwardReader(recordReader, RecordInfo.IgnoreLast)) {
+            using (var freader = new ForwardReader(recordReader, RecordInfo.IgnoreLast))
+            {
                 freader.DiscardForward = true;
 
                 mLineNumber = 1;
@@ -188,8 +192,10 @@ namespace FileHelpers
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(0, -1, streamInfo.Position, streamInfo.TotalBytes));
 
-                if (RecordInfo.IgnoreFirst > 0) {
-                    for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++) {
+                if (RecordInfo.IgnoreFirst > 0)
+                {
+                    for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++)
+                    {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
@@ -201,18 +207,21 @@ namespace FileHelpers
                 if (maxRecords < 0)
                     maxRecords = int.MaxValue;
 
-                var line = new LineInfo(currentLine) {
+                var line = new LineInfo(currentLine)
+                {
                     mReader = freader
                 };
 
                 var values = new object[RecordInfo.FieldCount];
 
                 while (currentLine != null &&
-                       currentRecord < maxRecords) {
+                       currentRecord < maxRecords)
+                {
 
-                    completeLine = currentLine; 
+                    completeLine = currentLine;
 
-                    try {
+                    try
+                    {
                         mTotalRecords++;
                         currentRecord++;
 
@@ -220,7 +229,7 @@ namespace FileHelpers
 
                         var skip = false;
 
-                        var record = (T) RecordInfo.Operations.CreateRecordHandler();
+                        var record = (T)RecordInfo.Operations.CreateRecordHandler();
 
                         if (MustNotifyProgress) // Avoid object creation
                         {
@@ -231,20 +240,24 @@ namespace FileHelpers
                         }
 
                         BeforeReadEventArgs<T> e = null;
-                        if (MustNotifyRead) {
+                        if (MustNotifyRead)
+                        {
                             e = new BeforeReadEventArgs<T>(this, record, currentLine, LineNumber);
                             skip = OnBeforeReadRecord(e);
                             if (e.RecordLineChanged)
                                 line.ReLoad(e.RecordLine);
                         }
 
-                        if (skip == false) {
-                            if (RecordInfo.Operations.StringToRecord(record, line, values)) {
+                        if (skip == false)
+                        {
+                            if (RecordInfo.Operations.StringToRecord(record, line, values))
+                            {
 
                                 if (MustNotifyRead) // Avoid object creation
                                     skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
 
-                                if (skip == false) {
+                                if (skip == false)
+                                {
 
                                     if (dt == null)
                                         result.Add(record);
@@ -254,15 +267,18 @@ namespace FileHelpers
                             }
                         }
                     }
-                    catch (Exception ex) {
-                        switch (mErrorManager.ErrorMode) {
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
                             case ErrorMode.ThrowException:
                                 byPass = true;
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo {
+                                var err = new ErrorInfo
+                                {
                                     mLineNumber = freader.LineNumber,
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine,
@@ -273,8 +289,10 @@ namespace FileHelpers
                                 break;
                         }
                     }
-                    finally {
-                        if (byPass == false) {
+                    finally
+                    {
+                        if (byPass == false)
+                        {
                             currentLine = freader.ReadNextLine();
                             mLineNumber++;
                         }
@@ -305,7 +323,8 @@ namespace FileHelpers
             if (source == null)
                 source = string.Empty;
 
-            using (var reader = new InternalStringReader(source)) {
+            using (var reader = new InternalStringReader(source))
+            {
                 var res = ReadStream(reader, maxRecords);
                 reader.Close();
                 return res;
@@ -325,7 +344,8 @@ namespace FileHelpers
             if (source == null)
                 source = string.Empty;
 
-            using (var reader = new InternalStringReader(source)) {
+            using (var reader = new InternalStringReader(source))
+            {
                 var res = ReadStreamAsList(reader, maxRecords);
                 reader.Close();
                 return res;
@@ -345,7 +365,8 @@ namespace FileHelpers
         /// <include file='FileHelperEngine.docs.xml' path='doc/WriteFile2/*'/>
         public void WriteFile(string fileName, IEnumerable<T> records, int maxRecords)
         {
-            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize)) {
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
+            {
                 WriteStream(fs, records, maxRecords);
                 fs.Close();
             }
@@ -376,7 +397,8 @@ namespace FileHelpers
 
             writer.NewLine = NewLineForWrite;
 
-            if (!string.IsNullOrEmpty(mHeaderText)) {
+            if (!string.IsNullOrEmpty(mHeaderText))
+            {
                 if (mHeaderText.EndsWith(NewLineForWrite))
                     writer.Write(mHeaderText);
                 else
@@ -386,11 +408,12 @@ namespace FileHelpers
             string currentLine = null;
 
             int max = maxRecords;
-            if (records is IList) {
+            if (records is IList)
+            {
                 max = Math.Min(max < 0
                     ? int.MaxValue
                     : max,
-                    ((IList) records).Count);
+                    ((IList)records).Count);
             }
 
             if (MustNotifyProgress) // Avoid object creation
@@ -399,18 +422,22 @@ namespace FileHelpers
             int recIndex = 0;
 
             bool first = true;
-            foreach (var rec in records) {
+            foreach (var rec in records)
+            {
                 if (recIndex == maxRecords)
                     break;
 
                 mLineNumber++;
-                try {
+                try
+                {
                     if (rec == null)
                         throw new BadUsageException($"The record at index {recIndex} is null.");
 
-                    if (first) {
+                    if (first)
+                    {
                         first = false;
-                        if (RecordInfo.RecordType.IsInstanceOfType(rec) == false) {
+                        if (RecordInfo.RecordType.IsInstanceOfType(rec) == false)
+                        {
                             throw new BadUsageException("This engine works with record of type " +
                                                         RecordInfo.RecordType.Name + " and you use records of type " +
                                                         rec.GetType().Name);
@@ -425,21 +452,25 @@ namespace FileHelpers
                     if (MustNotifyWrite)
                         skip = OnBeforeWriteRecord(rec, LineNumber);
 
-                    if (skip == false) {
+                    if (skip == false)
+                    {
                         currentLine = RecordInfo.Operations.RecordToString(rec);
                         if (MustNotifyWrite)
                             currentLine = OnAfterWriteRecord(currentLine, rec);
                         writer.WriteLine(currentLine);
                     }
                 }
-                catch (Exception ex) {
-                    switch (mErrorManager.ErrorMode) {
+                catch (Exception ex)
+                {
+                    switch (mErrorManager.ErrorMode)
+                    {
                         case ErrorMode.ThrowException:
                             throw;
                         case ErrorMode.IgnoreAndContinue:
                             break;
                         case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo {
+                            var err = new ErrorInfo
+                            {
                                 mLineNumber = mLineNumber,
                                 mExceptionInfo = ex,
                                 mRecordString = currentLine,
@@ -455,7 +486,8 @@ namespace FileHelpers
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText)) {
+            if (!string.IsNullOrEmpty(mFooterText))
+            {
                 if (mFooterText.EndsWith(NewLineForWrite))
                     writer.Write(mFooterText);
                 else
@@ -477,7 +509,8 @@ namespace FileHelpers
         public string WriteString(IEnumerable<T> records, int maxRecords)
         {
             var sb = new StringBuilder();
-            using (var writer = new StringWriter(sb)) {
+            using (var writer = new StringWriter(sb))
+            {
                 WriteStream(writer, records, maxRecords);
                 string res = writer.ToString();
                 return res;
@@ -491,7 +524,7 @@ namespace FileHelpers
         /// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile1/*'/>
         public void AppendToFile(string fileName, T record)
         {
-            AppendToFile(fileName, new T[] {record});
+            AppendToFile(fileName, new T[] { record });
         }
 
         /// <include file='FileHelperEngine.docs.xml' path='doc/AppendToFile2/*'/>
@@ -502,7 +535,8 @@ namespace FileHelpers
                     mEncoding,
                     true,
                     false,
-                    DefaultWriteBufferSize)) {
+                    DefaultWriteBufferSize))
+            {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;
 
@@ -533,7 +567,8 @@ namespace FileHelpers
         /// <returns>The DataTable with the read records.</returns>
         public DataTable ReadFileAsDT(string fileName, int maxRecords)
         {
-            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
+            using (var fs = new InternalStreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            {
                 DataTable res = ReadStreamAsDT(fs, maxRecords);
                 fs.Close();
 
@@ -562,7 +597,8 @@ namespace FileHelpers
             if (source == null)
                 source = string.Empty;
 
-            using (var reader = new InternalStringReader(source)) {
+            using (var reader = new InternalStringReader(source))
+            {
                 DataTable res = ReadStreamAsDT(reader, maxRecords);
                 reader.Close();
                 return res;

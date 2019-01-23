@@ -66,7 +66,7 @@ namespace FileHelpers
         /// <summary>Create a new instance of the MultiRecordEngine</summary>
         /// <param name="recordTypes">The Types of the records that this engine can handle.</param>
         public MultiRecordEngine(params Type[] recordTypes)
-            : this(null, recordTypes) {}
+            : this(null, recordTypes) { }
 
         /// <summary>Create a new instance of the MultiRecordEngine</summary>
         /// <param name="recordTypes">The Types of the records that this engine can handle.</param>
@@ -82,11 +82,13 @@ namespace FileHelpers
             mRecordInfoHash = new Hashtable(mTypes.Length);
             mMultiRecordOptions = new RecordOptions[mTypes.Length];
 
-            for (int i = 0; i < mTypes.Length; i++) {
+            for (int i = 0; i < mTypes.Length; i++)
+            {
                 if (mTypes[i] == null)
                     throw new BadUsageException("The type at index " + i + " is null.");
 
-                if (mRecordInfoHash.Contains(mTypes[i])) {
+                if (mRecordInfoHash.Contains(mTypes[i]))
+                {
                     throw new BadUsageException("The type '" + mTypes[i].Name +
                                                 " is already in the engine. You can't pass the same type twice to the constructor.");
                 }
@@ -135,7 +137,8 @@ namespace FileHelpers
             if (reader == null)
                 throw new ArgumentNullException(nameof(reader), "The reader of the Stream can´t be null");
 
-            if (mRecordSelector == null) {
+            if (mRecordSelector == null)
+            {
                 throw new BadUsageException(
                     "The Recordselector can´t be null, please pass a not null Selector in the constructor.");
             }
@@ -146,7 +149,8 @@ namespace FileHelpers
 
             var resArray = new ArrayList();
 
-            using (var freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast)) {
+            using (var freader = new ForwardReader(reader, mMultiRecordInfo[0].IgnoreLast))
+            {
                 freader.DiscardForward = true;
 
                 mLineNumber = 1;
@@ -159,8 +163,10 @@ namespace FileHelpers
 
                 int currentRecord = 0;
 
-                if (mMultiRecordInfo[0].IgnoreFirst > 0) {
-                    for (int i = 0; i < mMultiRecordInfo[0].IgnoreFirst && currentLine != null; i++) {
+                if (mMultiRecordInfo[0].IgnoreFirst > 0)
+                {
+                    for (int i = 0; i < mMultiRecordInfo[0].IgnoreFirst && currentLine != null; i++)
+                    {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
@@ -169,12 +175,15 @@ namespace FileHelpers
 
                 bool byPass = false;
 
-                var line = new LineInfo(currentLine) {
+                var line = new LineInfo(currentLine)
+                {
                     mReader = freader
                 };
 
-                while (currentLine != null) {
-                    try {
+                while (currentLine != null)
+                {
+                    try
+                    {
                         mTotalRecords++;
                         currentRecord++;
 
@@ -182,22 +191,25 @@ namespace FileHelpers
 
                         var skip = false;
                         Type currType;
-                        try {
+                        try
+                        {
                             currType = mRecordSelector(this, currentLine);
                         }
-                        catch (Exception ex) {
+                        catch (Exception ex)
+                        {
                             throw new Exception("Selector failed to process correctly", ex);
                         }
 
-                        if (currType != null) {
-                            var info = (RecordInfo) mRecordInfoHash[currType];
-                            if (info == null) {
+                        if (currType != null)
+                        {
+                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            if (info == null)
+                            {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
                             }
 
                             var record = info.Operations.CreateRecordHandler();
-
 
                             if (MustNotifyProgress) // Avoid object creation
                                 OnProgress(new ProgressEventArgs(currentRecord, -1));
@@ -211,9 +223,11 @@ namespace FileHelpers
                                     line.ReLoad(e.RecordLine);
                             }
 
-                            if (skip == false) {
+                            if (skip == false)
+                            {
                                 var values = new object[info.FieldCount];
-                                if (info.Operations.StringToRecord(record, line, values)) {
+                                if (info.Operations.StringToRecord(record, line, values))
+                                {
                                     if (MustNotifyRead) // Avoid object creation
                                         skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
 
@@ -223,15 +237,18 @@ namespace FileHelpers
                             }
                         }
                     }
-                    catch (Exception ex) {
-                        switch (mErrorManager.ErrorMode) {
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
                             case ErrorMode.ThrowException:
                                 byPass = true;
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo {
+                                var err = new ErrorInfo
+                                {
                                     mLineNumber = freader.LineNumber,
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine,
@@ -242,8 +259,10 @@ namespace FileHelpers
                                 break;
                         }
                     }
-                    finally {
-                        if (byPass == false) {
+                    finally
+                    {
+                        if (byPass == false)
+                        {
                             currentLine = freader.ReadNextLine();
                             completeLine = currentLine;
                             mLineNumber = freader.LineNumber;
@@ -283,7 +302,8 @@ namespace FileHelpers
         /// <include file='MultiRecordEngine.docs.xml' path='doc/WriteFile2/*'/>
         public void WriteFile(string fileName, IEnumerable records, int maxRecords)
         {
-            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize)) {
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
+            {
                 WriteStream(fs, records, maxRecords);
                 fs.Close();
             }
@@ -314,7 +334,8 @@ namespace FileHelpers
 
             ResetFields();
 
-            if (!string.IsNullOrEmpty(mHeaderText)) {
+            if (!string.IsNullOrEmpty(mHeaderText))
+            {
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     writer.Write(mHeaderText);
                 else
@@ -325,23 +346,25 @@ namespace FileHelpers
 
             int max = maxRecords;
 
-            if (records is IList) {
+            if (records is IList)
+            {
                 max = Math.Min(max < 0
                     ? int.MaxValue
                     : max,
-                    ((IList) records).Count);
+                    ((IList)records).Count);
             }
-
 
             if (MustNotifyProgress) // Avoid object creation
                 OnProgress(new ProgressEventArgs(0, max));
 
             int recIndex = 0;
 
-            foreach (var rec in records) {
+            foreach (var rec in records)
+            {
                 if (recIndex == maxRecords)
                     break;
-                try {
+                try
+                {
                     if (rec == null)
                         throw new BadUsageException("The record at index " + recIndex + " is null.");
 
@@ -353,15 +376,17 @@ namespace FileHelpers
                     if (MustNotifyWrite)
                         skip = OnBeforeWriteRecord(rec, LineNumber);
 
-                    var info = (IRecordInfo) mRecordInfoHash[rec.GetType()];
+                    var info = (IRecordInfo)mRecordInfoHash[rec.GetType()];
 
-                    if (info == null) {
+                    if (info == null)
+                    {
                         throw new BadUsageException("The record at index " + recIndex + " is of type '" +
                                                     rec.GetType().Name +
                                                     "' and the engine dont handle this type. You can add it to the constructor.");
                     }
 
-                    if (skip == false) {
+                    if (skip == false)
+                    {
                         currentLine = info.Operations.RecordToString(rec);
 
                         if (MustNotifyWrite)
@@ -369,14 +394,17 @@ namespace FileHelpers
                         writer.WriteLine(currentLine);
                     }
                 }
-                catch (Exception ex) {
-                    switch (mErrorManager.ErrorMode) {
+                catch (Exception ex)
+                {
+                    switch (mErrorManager.ErrorMode)
+                    {
                         case ErrorMode.ThrowException:
                             throw;
                         case ErrorMode.IgnoreAndContinue:
                             break;
                         case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo {
+                            var err = new ErrorInfo
+                            {
                                 mLineNumber = mLineNumber,
                                 mExceptionInfo = ex,
                                 mRecordString = currentLine,
@@ -391,7 +419,8 @@ namespace FileHelpers
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText)) {
+            if (!string.IsNullOrEmpty(mFooterText))
+            {
                 if (mFooterText.EndsWith(StringHelper.NewLine))
                     writer.Write(mFooterText);
                 else
@@ -427,7 +456,7 @@ namespace FileHelpers
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile1/*'/>
         public void AppendToFile(string fileName, object record)
         {
-            AppendToFile(fileName, new[] {record});
+            AppendToFile(fileName, new[] { record });
         }
 
         /// <include file='MultiRecordEngine.docs.xml' path='doc/AppendToFile2/*'/>
@@ -438,7 +467,8 @@ namespace FileHelpers
                     mEncoding,
                     true,
                     false,
-                    DefaultWriteBufferSize)) {
+                    DefaultWriteBufferSize))
+            {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;
 
@@ -455,7 +485,8 @@ namespace FileHelpers
                 throw new BadUsageException("A null Type[] is not valid for the MultiRecordEngine.");
             if (types.Length == 0)
                 throw new BadUsageException("An empty Type[] is not valid for the MultiRecordEngine.");
-            if (types.Length == 1) {
+            if (types.Length == 1)
+            {
                 throw new BadUsageException(
                     "You only provided one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
             }
@@ -510,8 +541,10 @@ namespace FileHelpers
             mHeaderText = String.Empty;
             mFooterText = String.Empty;
 
-            if (RecordInfo.IgnoreFirst > 0) {
-                for (int i = 0; i < RecordInfo.IgnoreFirst; i++) {
+            if (RecordInfo.IgnoreFirst > 0)
+            {
+                for (int i = 0; i < RecordInfo.IgnoreFirst; i++)
+                {
                     string temp = reader.ReadRecordString();
                     mLineNumber++;
                     if (temp != null)
@@ -521,7 +554,8 @@ namespace FileHelpers
                 }
             }
 
-            mAsyncReader = new ForwardReader(reader, RecordInfo.IgnoreLast, mLineNumber) {
+            mAsyncReader = new ForwardReader(reader, RecordInfo.IgnoreLast, mLineNumber)
+            {
                 DiscardForward = true
             };
         }
@@ -575,17 +609,21 @@ namespace FileHelpers
         /// </summary>
         public void Close()
         {
-            try {
+            try
+            {
                 if (mAsyncReader != null)
                     mAsyncReader.Close();
 
                 mAsyncReader = null;
             }
-            catch {}
+            catch { }
 
-            try {
-                if (mAsyncWriter != null) {
-                    if (!string.IsNullOrEmpty(mFooterText)) {
+            try
+            {
+                if (mAsyncWriter != null)
+                {
+                    if (!string.IsNullOrEmpty(mFooterText))
+                    {
                         if (mFooterText.EndsWith(StringHelper.NewLine))
                             mAsyncWriter.Write(mFooterText);
                         else
@@ -596,7 +634,7 @@ namespace FileHelpers
                     mAsyncWriter = null;
                 }
             }
-            catch {}
+            catch { }
         }
 
         #endregion
@@ -627,13 +665,17 @@ namespace FileHelpers
 
             mLastRecord = null;
 
-            var line = new LineInfo(currentLine) {
+            var line = new LineInfo(currentLine)
+            {
                 mReader = mAsyncReader
             };
 
-            while (true) {
-                if (currentLine != null) {
-                    try {
+            while (true)
+            {
+                if (currentLine != null)
+                {
+                    try
+                    {
                         mTotalRecords++;
 
                         Type currType = mRecordSelector(this, currentLine);
@@ -642,8 +684,9 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            var info = (RecordInfo) mRecordInfoHash[currType];
-                            if (info == null) {
+                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            if (info == null)
+                            {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
                             }
@@ -655,21 +698,25 @@ namespace FileHelpers
                                 OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
                             }
 
-                            if (mLastRecord != null) {
+                            if (mLastRecord != null)
+                            {
                                 byPass = true;
                                 return;
                             }
                         }
                     }
-                    catch (Exception ex) {
-                        switch (mErrorManager.ErrorMode) {
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
                             case ErrorMode.ThrowException:
                                 byPass = true;
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo {
+                                var err = new ErrorInfo
+                                {
                                     mLineNumber = mAsyncReader.LineNumber,
                                     mExceptionInfo = ex,
                                     mRecordString = currentLine,
@@ -680,23 +727,27 @@ namespace FileHelpers
                                 break;
                         }
                     }
-                    finally {
-                        if (byPass == false) {
+                    finally
+                    {
+                        if (byPass == false)
+                        {
                             currentLine = mAsyncReader.ReadNextLine();
                             mLineNumber = mAsyncReader.LineNumber;
                         }
                     }
                 }
-                else {
+                else
+                {
                     mLastRecord = null;
 
                     if (RecordInfo.IgnoreLast > 0)
                         mFooterText = mAsyncReader.RemainingText;
 
-                    try {
+                    try
+                    {
                         mAsyncReader.Close();
                     }
-                    catch {}
+                    catch { }
 
                     return;
                 }
@@ -714,7 +765,8 @@ namespace FileHelpers
 
             var arr = new ArrayList(numberOfRecords);
 
-            for (int i = 0; i < numberOfRecords; i++) {
+            for (int i = 0; i < numberOfRecords; i++)
+            {
                 ReadNextRecord();
                 if (mLastRecord != null)
                     arr.Add(mLastRecord);
@@ -751,7 +803,8 @@ namespace FileHelpers
             {
                 object res = mEngine.ReadNext();
 
-                if (res == null) {
+                if (res == null)
+                {
                     mEngine.Close();
                     return false;
                 }
@@ -825,7 +878,8 @@ namespace FileHelpers
                 throw new ArgumentNullException(nameof(records), "The record to write can´t be null.");
 
             int nro = 0;
-            foreach (var rec in records) {
+            foreach (var rec in records)
+            {
                 nro++;
 
                 if (rec == null)
@@ -839,13 +893,15 @@ namespace FileHelpers
         {
             string currentLine = null;
 
-            try {
+            try
+            {
                 mLineNumber++;
                 mTotalRecords++;
 
-                var info = (IRecordInfo) mRecordInfoHash[record.GetType()];
+                var info = (IRecordInfo)mRecordInfoHash[record.GetType()];
 
-                if (info == null) {
+                if (info == null)
+                {
                     throw new BadUsageException("A record is of type '" + record.GetType().Name +
                                                 "' and the engine dont handle this type. You can add it to the constructor.");
                 }
@@ -853,14 +909,17 @@ namespace FileHelpers
                 currentLine = info.Operations.RecordToString(record);
                 mAsyncWriter.WriteLine(currentLine);
             }
-            catch (Exception ex) {
-                switch (mErrorManager.ErrorMode) {
+            catch (Exception ex)
+            {
+                switch (mErrorManager.ErrorMode)
+                {
                     case ErrorMode.ThrowException:
                         throw;
                     case ErrorMode.IgnoreAndContinue:
                         break;
                     case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo {
+                        var err = new ErrorInfo
+                        {
                             mLineNumber = mLineNumber,
                             mExceptionInfo = ex,
                             mRecordString = currentLine,
@@ -894,7 +953,8 @@ namespace FileHelpers
 
         private void WriteHeader()
         {
-            if (!string.IsNullOrEmpty(mHeaderText)) {
+            if (!string.IsNullOrEmpty(mHeaderText))
+            {
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     mAsyncWriter.Write(mHeaderText);
                 else
@@ -940,5 +1000,3 @@ namespace FileHelpers
         #endregion
     }
 }
-
-//#endif

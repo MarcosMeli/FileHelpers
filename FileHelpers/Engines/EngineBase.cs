@@ -29,7 +29,7 @@ namespace FileHelpers
         /// </summary>
         /// <param name="recordType">Class to base engine on</param>
         internal EngineBase(Type recordType)
-            : this(recordType, Encoding.GetEncoding(0)) {}
+            : this(recordType, Encoding.GetEncoding(0)) { }
 
         /// <summary>
         /// Create and engine on type with specified encoding
@@ -41,14 +41,15 @@ namespace FileHelpers
             if (recordType == null)
                 throw new BadUsageException(Messages.Errors.NullRecordClass.Text);
 
-            if (recordType.IsValueType) {
+            if (recordType.IsValueType)
+            {
                 throw new BadUsageException(Messages.Errors.StructRecordClass
                     .RecordType(recordType.Name)
                     .Text);
             }
 
             mRecordType = recordType;
-            RecordInfo = FileHelpers.RecordInfo.Resolve(recordType); // Container.Resolve<IRecordInfo>(recordType);
+            RecordInfo = FileHelpers.RecordInfo.Resolve(recordType);
             mEncoding = encoding;
 
             CreateRecordOptions();
@@ -105,10 +106,11 @@ namespace FileHelpers
             var delimiter = "\t";
 
             if (RecordInfo.IsDelimited)
-                delimiter = ((DelimitedRecordOptions) Options).Delimiter;
+                delimiter = ((DelimitedRecordOptions)Options).Delimiter;
 
             var res = new StringBuilder();
-            for (int i = 0; i < RecordInfo.Fields.Length; i++) {
+            for (int i = 0; i < RecordInfo.Fields.Length; i++)
+            {
                 if (i > 0)
                     res.Append(delimiter);
 
@@ -228,7 +230,6 @@ namespace FileHelpers
             get { return mErrorManager; }
         }
 
-
         /// <summary>
         /// Indicates the behavior of the engine when it finds an error.
         /// {Shortcut for <seealso cref="FileHelpers.ErrorManager.ErrorMode"/>)
@@ -255,7 +256,6 @@ namespace FileHelpers
 
         #endregion
 
-
         /// <summary>Event handler called to notify progress.</summary>
         public event EventHandler<ProgressEventArgs> Progress;
 
@@ -278,7 +278,6 @@ namespace FileHelpers
 
             Progress(this, e);
         }
-
 
         private void CreateRecordOptions()
         {
@@ -303,7 +302,6 @@ namespace FileHelpers
 
             return options;
         }
-
 
         /// <summary>
         /// Allows you to change some record layout options at runtime

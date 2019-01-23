@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,14 +20,14 @@ namespace FileHelpers.MasterDetail
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
         public MasterDetailEngine(Type masterType, Type detailType)
-            : this(masterType, detailType, null) {}
+            : this(masterType, detailType, null) { }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
         /// <param name="masterType">The master record class.</param>
 		/// <param name="detailType">The detail record class.</param>
 		/// <param name="recordSelector">The <see cref="MasterDetailSelector" /> to get the <see cref="RecordAction" /> (only for read operations)</param>
         public MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
-            : base(masterType, detailType, recordSelector) {}
+            : base(masterType, detailType, recordSelector) { }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr/*'/>
         /// <param name="masterType">The master record class.</param>
@@ -36,7 +35,7 @@ namespace FileHelpers.MasterDetail
 		/// <param name="action">The <see cref="CommonSelector" /> used by the engine (only for read operations)</param>
 		/// <param name="selector">The string passed as the selector.</param>
         public MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
-            : base(masterType, detailType, action, selector) {}
+            : base(masterType, detailType, action, selector) { }
 
         #endregion
     }
@@ -54,26 +53,25 @@ namespace FileHelpers.MasterDetail
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine()
-            : this(null) {}
-
+            : this(null) { }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         public MasterDetailEngine(MasterDetailSelector recordSelector)
-            : this(typeof (TMaster), typeof (TDetail), recordSelector) {}
+            : this(typeof(TMaster), typeof(TDetail), recordSelector) { }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr1/*'/>
         internal MasterDetailEngine(Type masterType, Type detailType, MasterDetailSelector recordSelector)
             : base(detailType)
         {
             mMasterType = masterType;
-            mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType); // Container.Resolve<IRecordInfo>(mMasterType);
+            mMasterInfo = FileHelpers.RecordInfo.Resolve(mMasterType);
             MasterOptions = CreateRecordOptionsCore(mMasterInfo);
             mRecordSelector = recordSelector;
         }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         public MasterDetailEngine(CommonSelector action, string selector)
-            : this(typeof (TMaster), typeof (TDetail), action, selector) {}
+            : this(typeof(TMaster), typeof(TDetail), action, selector) { }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/MasterDetailEngineCtr2/*'/>
         internal MasterDetailEngine(Type masterType, Type detailType, CommonSelector action, string selector)
@@ -91,12 +89,10 @@ namespace FileHelpers.MasterDetail
 
         #endregion
 
-
         /// <summary>
         /// Allows you to change some record layout options at runtime
         /// </summary>
         public RecordOptions MasterOptions { get; private set; }
-
 
         #region CommonSelectorInternal
 
@@ -105,7 +101,6 @@ namespace FileHelpers.MasterDetail
             private readonly CommonSelector mAction;
             private readonly string mSelector;
             private readonly bool mIgnoreEmpty = false;
-
 
             internal CommonSelectorInternal(CommonSelector action, string selector, bool ignoreEmpty)
             {
@@ -119,7 +114,8 @@ namespace FileHelpers.MasterDetail
                 if (mIgnoreEmpty && recordString == string.Empty)
                     return RecordAction.Skip;
 
-                switch (mAction) {
+                switch (mAction)
+                {
                     case CommonSelector.DetailIfContains:
                         if (recordString.IndexOf(mSelector) >= 0)
                             return RecordAction.Detail;
@@ -183,7 +179,6 @@ namespace FileHelpers.MasterDetail
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private MasterDetailSelector mRecordSelector;
 
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Type mMasterType;
 
@@ -209,7 +204,8 @@ namespace FileHelpers.MasterDetail
         /// <include file='MasterDetailEngine.docs.xml' path='doc/ReadFile/*'/>
         public MasterDetails<TMaster, TDetail>[] ReadFile(string fileName)
         {
-            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize)) {
+            using (var fs = new StreamReader(fileName, mEncoding, true, DefaultReadBufferSize))
+            {
                 MasterDetails<TMaster, TDetail>[] tempRes;
                 tempRes = ReadStream(fs);
                 fs.Close();
@@ -239,7 +235,8 @@ namespace FileHelpers.MasterDetail
 
             var resArray = new ArrayList();
 
-            using (var freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast)) {
+            using (var freader = new ForwardReader(recordReader, mMasterInfo.IgnoreLast))
+            {
                 freader.DiscardForward = true;
 
                 mLineNumber = 1;
@@ -252,30 +249,33 @@ namespace FileHelpers.MasterDetail
 
                 int currentRecord = 0;
 
-                if (mMasterInfo.IgnoreFirst > 0) {
-                    for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++) {
+                if (mMasterInfo.IgnoreFirst > 0)
+                {
+                    for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++)
+                    {
                         mHeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }
                 }
 
-
                 bool byPass = false;
 
                 MasterDetails<TMaster, TDetail> record = null;
                 var tmpDetails = new ArrayList();
 
-                var line = new LineInfo(currentLine) {
+                var line = new LineInfo(currentLine)
+                {
                     mReader = freader
                 };
-
 
                 var valuesMaster = new object[mMasterInfo.FieldCount];
                 var valuesDetail = new object[RecordInfo.FieldCount];
 
-                while (currentLine != null) {
-                    try {
+                while (currentLine != null)
+                {
+                    try
+                    {
                         currentRecord++;
 
                         line.ReLoad(currentLine);
@@ -283,24 +283,28 @@ namespace FileHelpers.MasterDetail
                         if (MustNotifyProgress) // Avoid object creation
                             OnProgress(new ProgressEventArgs(currentRecord, -1));
                         var action = RecordAction.Skip;
-                        try {
+                        try
+                        {
                             action = RecordSelector(currentLine);
                         }
-                        catch (Exception ex) {
+                        catch (Exception ex)
+                        {
                             throw new Exception("Supplied Record selector failed to process record", ex);
                         }
 
-                        switch (action) {
+                        switch (action)
+                        {
                             case RecordAction.Master:
-                                if (record != null) {
-                                    record.Details = (TDetail[]) tmpDetails.ToArray(typeof (TDetail));
+                                if (record != null)
+                                {
+                                    record.Details = (TDetail[])tmpDetails.ToArray(typeof(TDetail));
                                     resArray.Add(record);
                                 }
 
                                 mTotalRecords++;
                                 record = new MasterDetails<TMaster, TDetail>();
                                 tmpDetails.Clear();
-                                var lastMaster = (TMaster) mMasterInfo.Operations.StringToRecord(line, valuesMaster);
+                                var lastMaster = (TMaster)mMasterInfo.Operations.StringToRecord(line, valuesMaster);
 
                                 if (lastMaster != null)
                                     record.Master = lastMaster;
@@ -308,7 +312,7 @@ namespace FileHelpers.MasterDetail
                                 break;
 
                             case RecordAction.Detail:
-                                var lastChild = (TDetail) RecordInfo.Operations.StringToRecord(line, valuesDetail);
+                                var lastChild = (TDetail)RecordInfo.Operations.StringToRecord(line, valuesDetail);
 
                                 if (lastChild != null)
                                     tmpDetails.Add(lastChild);
@@ -318,15 +322,18 @@ namespace FileHelpers.MasterDetail
                                 break;
                         }
                     }
-                    catch (Exception ex) {
-                        switch (mErrorManager.ErrorMode) {
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
                             case ErrorMode.ThrowException:
                                 byPass = true;
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
                                 break;
                             case ErrorMode.SaveAndContinue:
-                                var err = new ErrorInfo {
+                                var err = new ErrorInfo
+                                {
                                     mLineNumber = mLineNumber,
                                     mExceptionInfo = ex,
                                     mRecordString = completeLine,
@@ -336,8 +343,10 @@ namespace FileHelpers.MasterDetail
                                 break;
                         }
                     }
-                    finally {
-                        if (byPass == false) {
+                    finally
+                    {
+                        if (byPass == false)
+                        {
                             currentLine = freader.ReadNextLine();
                             completeLine = currentLine;
                             mLineNumber = freader.LineNumber;
@@ -345,15 +354,16 @@ namespace FileHelpers.MasterDetail
                     }
                 }
 
-                if (record != null) {
-                    record.Details = (TDetail[]) tmpDetails.ToArray(typeof (TDetail));
+                if (record != null)
+                {
+                    record.Details = (TDetail[])tmpDetails.ToArray(typeof(TDetail));
                     resArray.Add(record);
                 }
 
                 if (mMasterInfo.IgnoreLast > 0)
                     mFooterText = freader.RemainingText;
             }
-            return (MasterDetails<TMaster, TDetail>[]) resArray.ToArray(typeof (MasterDetails<TMaster, TDetail>));
+            return (MasterDetails<TMaster, TDetail>[])resArray.ToArray(typeof(MasterDetails<TMaster, TDetail>));
         }
 
         #endregion
@@ -382,7 +392,8 @@ namespace FileHelpers.MasterDetail
         /// <include file='MasterDetailEngine.docs.xml' path='doc/WriteFile2/*'/>
         public void WriteFile(string fileName, IEnumerable<MasterDetails<TMaster, TDetail>> records, int maxRecords)
         {
-            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize)) {
+            using (var fs = new StreamWriter(fileName, false, mEncoding, DefaultWriteBufferSize))
+            {
                 WriteStream(fs, records, maxRecords);
                 fs.Close();
             }
@@ -409,7 +420,8 @@ namespace FileHelpers.MasterDetail
 
             ResetFields();
 
-            if (!string.IsNullOrEmpty(mHeaderText)) {
+            if (!string.IsNullOrEmpty(mHeaderText))
+            {
                 if (mHeaderText.EndsWith(StringHelper.NewLine))
                     writer.Write(mHeaderText);
                 else
@@ -420,11 +432,12 @@ namespace FileHelpers.MasterDetail
             string currentLine = null;
 
             int max = maxRecords;
-            if (records is IList) {
+            if (records is IList)
+            {
                 max = Math.Min(max < 0
                     ? int.MaxValue
                     : max,
-                    ((IList) records).Count);
+                    ((IList)records).Count);
             }
 
             if (MustNotifyProgress) // Avoid object creation
@@ -437,7 +450,8 @@ namespace FileHelpers.MasterDetail
                 if (recIndex == maxRecords)
                     break;
 
-                try {
+                try
+                {
                     if (rec == null)
                         throw new BadUsageException("The record at index " + recIndex.ToString() + " is null.");
 
@@ -447,21 +461,26 @@ namespace FileHelpers.MasterDetail
                     currentLine = mMasterInfo.Operations.RecordToString(rec.Master);
                     writer.WriteLine(currentLine);
 
-                    if (rec.Details != null) {
-                        for (int d = 0; d < rec.Details.Length; d++) {
+                    if (rec.Details != null)
+                    {
+                        for (int d = 0; d < rec.Details.Length; d++)
+                        {
                             currentLine = RecordInfo.Operations.RecordToString(rec.Details[d]);
                             writer.WriteLine(currentLine);
                         }
                     }
                 }
-                catch (Exception ex) {
-                    switch (mErrorManager.ErrorMode) {
+                catch (Exception ex)
+                {
+                    switch (mErrorManager.ErrorMode)
+                    {
                         case ErrorMode.ThrowException:
                             throw;
                         case ErrorMode.IgnoreAndContinue:
                             break;
                         case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo {
+                            var err = new ErrorInfo
+                            {
                                 mLineNumber = mLineNumber,
                                 mExceptionInfo = ex,
                                 mRecordString = currentLine,
@@ -475,7 +494,8 @@ namespace FileHelpers.MasterDetail
 
             mTotalRecords = recIndex;
 
-            if (!string.IsNullOrEmpty(mFooterText)) {
+            if (!string.IsNullOrEmpty(mFooterText))
+            {
                 if (mFooterText.EndsWith(StringHelper.NewLine))
                     writer.Write(mFooterText);
                 else
@@ -511,7 +531,7 @@ namespace FileHelpers.MasterDetail
         /// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile1/*'/>
         public void AppendToFile(string fileName, MasterDetails<TMaster, TDetail> record)
         {
-            AppendToFile(fileName, new MasterDetails<TMaster, TDetail>[] {record});
+            AppendToFile(fileName, new MasterDetails<TMaster, TDetail>[] { record });
         }
 
         /// <include file='MasterDetailEngine.docs.xml' path='doc/AppendToFile2/*'/>
@@ -522,7 +542,8 @@ namespace FileHelpers.MasterDetail
                     mEncoding,
                     true,
                     false,
-                    DefaultWriteBufferSize)) {
+                    DefaultWriteBufferSize))
+            {
                 mHeaderText = String.Empty;
                 mFooterText = String.Empty;
 
