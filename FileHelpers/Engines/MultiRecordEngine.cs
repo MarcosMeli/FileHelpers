@@ -334,13 +334,9 @@ namespace FileHelpers
 
             ResetFields();
 
-            if (!string.IsNullOrEmpty(mHeaderText))
-            {
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
-                    writer.Write(mHeaderText);
-                else
-                    writer.WriteLine(mHeaderText);
-            }
+            writer.NewLine = NewLineForWrite;
+
+            WriteHeader(writer);
 
             string currentLine = null;
 
@@ -948,18 +944,10 @@ namespace FileHelpers
 
             ResetFields();
             mAsyncWriter = writer;
-            WriteHeader();
-        }
 
-        private void WriteHeader()
-        {
-            if (!string.IsNullOrEmpty(mHeaderText))
-            {
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
-                    mAsyncWriter.Write(mHeaderText);
-                else
-                    mAsyncWriter.WriteLine(mHeaderText);
-            }
+            writer.NewLine = NewLineForWrite;
+
+            WriteHeader(writer);
         }
 
         #endregion
