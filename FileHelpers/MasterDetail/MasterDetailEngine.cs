@@ -420,14 +420,9 @@ namespace FileHelpers.MasterDetail
 
             ResetFields();
 
-            if (!string.IsNullOrEmpty(mHeaderText))
-            {
-                if (mHeaderText.EndsWith(StringHelper.NewLine))
-                    writer.Write(mHeaderText);
-                else
-                    writer.WriteLine(mHeaderText);
-            }
+            writer.NewLine = NewLineForWrite;
 
+            WriteHeader(writer);
 
             string currentLine = null;
 
