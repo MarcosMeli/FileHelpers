@@ -484,7 +484,7 @@ namespace FileHelpers
             writer.NewLine = NewLineForWrite;
 
             mAsyncWriter = writer;
-            WriteHeader();
+            WriteHeader(mAsyncWriter);
             mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;
 
@@ -492,17 +492,6 @@ namespace FileHelpers
                 OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
             return this;
-        }
-
-        private void WriteHeader()
-        {
-            if (!string.IsNullOrEmpty(mHeaderText))
-            {
-                if (mHeaderText.EndsWith(NewLineForWrite))
-                    mAsyncWriter.Write(mHeaderText);
-                else
-                    mAsyncWriter.WriteLine(mHeaderText);
-            }
         }
 
         #endregion

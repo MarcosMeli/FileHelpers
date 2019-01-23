@@ -397,13 +397,7 @@ namespace FileHelpers
 
             writer.NewLine = NewLineForWrite;
 
-            if (!string.IsNullOrEmpty(mHeaderText))
-            {
-                if (mHeaderText.EndsWith(NewLineForWrite))
-                    writer.Write(mHeaderText);
-                else
-                    writer.WriteLine(mHeaderText);
-            }
+            WriteHeader(writer);
 
             string currentLine = null;
 

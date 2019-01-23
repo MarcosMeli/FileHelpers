@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using FileHelpers.Events;
 using FileHelpers.Options;
@@ -305,5 +306,16 @@ namespace FileHelpers
         /// Allows you to change some record layout options at runtime
         /// </summary>
         public RecordOptions Options { get; private set; }
+
+        internal void WriteHeader(TextWriter textWriter)
+        {
+            if (!string.IsNullOrEmpty(mHeaderText))
+            {
+                if (mHeaderText.EndsWith(NewLineForWrite))
+                    textWriter.Write(mHeaderText);
+                else
+                    textWriter.WriteLine(mHeaderText);
+            }
+        }
     }
 }
