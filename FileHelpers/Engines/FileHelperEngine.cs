@@ -167,7 +167,7 @@ namespace FileHelpers
             var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
-            mHeaderText = String.Empty;
+            HeaderText = String.Empty;
             mFooterText = String.Empty;
 
             IList result;
@@ -196,7 +196,7 @@ namespace FileHelpers
                 {
                     for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        mHeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }
@@ -531,7 +531,7 @@ namespace FileHelpers
                     false,
                     DefaultWriteBufferSize))
             {
-                mHeaderText = String.Empty;
+                HeaderText = String.Empty;
                 mFooterText = String.Empty;
 
                 WriteStream(writer, records);

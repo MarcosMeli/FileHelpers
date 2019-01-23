@@ -133,19 +133,8 @@ namespace FileHelpers
             get { return mRecordType; }
         }
 
-        #endregion
-
-        #region "  HeaderText  "
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal string mHeaderText = String.Empty;
-
         /// <summary>The Read Header in the last Read operation. If any.</summary>
-        public string HeaderText
-        {
-            get { return mHeaderText; }
-            set { mHeaderText = value; }
-        }
+        public string HeaderText { get; set; } = string.Empty;
 
         #endregion
 
@@ -309,12 +298,12 @@ namespace FileHelpers
 
         internal void WriteHeader(TextWriter textWriter)
         {
-            if (!string.IsNullOrEmpty(mHeaderText))
+            if (!string.IsNullOrEmpty(HeaderText))
             {
-                if (mHeaderText.EndsWith(NewLineForWrite))
-                    textWriter.Write(mHeaderText);
+                if (HeaderText.EndsWith(NewLineForWrite))
+                    textWriter.Write(HeaderText);
                 else
-                    textWriter.WriteLine(mHeaderText);
+                    textWriter.WriteLine(HeaderText);
             }
         }
     }

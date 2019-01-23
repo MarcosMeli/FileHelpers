@@ -144,7 +144,7 @@ namespace FileHelpers
             }
 
             ResetFields();
-            mHeaderText = String.Empty;
+            HeaderText = String.Empty;
             mFooterText = String.Empty;
 
             var resArray = new ArrayList();
@@ -167,7 +167,7 @@ namespace FileHelpers
                 {
                     for (int i = 0; i < mMultiRecordInfo[0].IgnoreFirst && currentLine != null; i++)
                     {
-                        mHeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }
@@ -465,7 +465,7 @@ namespace FileHelpers
                     false,
                     DefaultWriteBufferSize))
             {
-                mHeaderText = String.Empty;
+                HeaderText = String.Empty;
                 mFooterText = String.Empty;
 
                 WriteStream(writer, records);
@@ -534,7 +534,7 @@ namespace FileHelpers
                 throw new ArgumentNullException("The TextReader can´t be null.");
 
             ResetFields();
-            mHeaderText = String.Empty;
+            HeaderText = String.Empty;
             mFooterText = String.Empty;
 
             if (RecordInfo.IgnoreFirst > 0)
@@ -544,7 +544,7 @@ namespace FileHelpers
                     string temp = reader.ReadRecordString();
                     mLineNumber++;
                     if (temp != null)
-                        mHeaderText += temp + StringHelper.NewLine;
+                        HeaderText += temp + StringHelper.NewLine;
                     else
                         break;
                 }
@@ -981,7 +981,7 @@ namespace FileHelpers
         public void BeginAppendToFile(string fileName)
         {
             mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, DefaultWriteBufferSize);
-            mHeaderText = String.Empty;
+            HeaderText = String.Empty;
             mFooterText = String.Empty;
         }
 

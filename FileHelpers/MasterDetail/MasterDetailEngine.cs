@@ -230,7 +230,7 @@ namespace FileHelpers.MasterDetail
             var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
-            mHeaderText = String.Empty;
+            HeaderText = String.Empty;
             mFooterText = String.Empty;
 
             var resArray = new ArrayList();
@@ -253,7 +253,7 @@ namespace FileHelpers.MasterDetail
                 {
                     for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        mHeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + StringHelper.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }
@@ -539,7 +539,7 @@ namespace FileHelpers.MasterDetail
                     false,
                     DefaultWriteBufferSize))
             {
-                mHeaderText = String.Empty;
+                HeaderText = String.Empty;
                 mFooterText = String.Empty;
 
                 WriteStream(writer, records);
