@@ -13,15 +13,14 @@ namespace FileHelpers
     /// All the engines and DataStorage utilities contains an ErrorManager.
     /// </remarks>
     [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
-    public sealed class ErrorManager
-        : IEnumerable
+    public sealed class ErrorManager : IEnumerable
     {
         private int mErrorLimit = 10000;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorManager"/> class.
         /// </summary>
-        public ErrorManager() {}
+        public ErrorManager() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorManager"/> class.
@@ -64,10 +63,8 @@ namespace FileHelpers
             get { return mErrorsArray.ToArray(); }
         }
 
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private ErrorMode mErrorMode = ErrorMode.ThrowException;
-
 
         /// <summary>
         /// Indicates the behavior of the <see cref="FileHelperEngine"/>
@@ -79,7 +76,6 @@ namespace FileHelpers
             get { return mErrorMode; }
             set { mErrorMode = value; }
         }
-
 
         /// <summary>Number of contained errors.</summary>
         public int ErrorCount
@@ -114,11 +110,6 @@ namespace FileHelpers
                 mErrorsArray.AddRange(errors.mErrorsArray);
         }
 
-//		public void ProcessError(Exception ex, string line)
-//		{
-//		}
-
-
         /// <summary>Saves the contained errors to the specified file.</summary>
         /// <param name="fileName">The file that contains the errors.</param>
         public void SaveErrors(string fileName)
@@ -140,7 +131,7 @@ namespace FileHelpers
         /// <param name="header">The header line of the errors file.</param>
         public void SaveErrors(string fileName, string header)
         {
-            var engine = new FileHelperEngine(typeof (ErrorInfo));
+            var engine = new FileHelperEngine(typeof(ErrorInfo));
 
             if (header.IndexOf(StringHelper.NewLine) == header.LastIndexOf(StringHelper.NewLine))
                 header += StringHelper.NewLine;
@@ -153,8 +144,8 @@ namespace FileHelpers
         /// <param name="fileName">The file that contains the errors.</param>
         public static ErrorInfo[] LoadErrors(string fileName)
         {
-            var engine = new FileHelperEngine(typeof (ErrorInfo));
-            return (ErrorInfo[]) engine.ReadFile(fileName);
+            var engine = new FileHelperEngine(typeof(ErrorInfo));
+            return (ErrorInfo[])engine.ReadFile(fileName);
         }
 
         ///<summary>
