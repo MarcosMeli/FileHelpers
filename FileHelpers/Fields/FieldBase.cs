@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -387,8 +388,16 @@ namespace FileHelpers
 
             }
 
-            if (fi.Name.EndsWith("@"))
-                return fi.Name.Substring(0, fi.Name.Length - 1);
+            if (fi.IsDefined(typeof(DebuggerBrowsableAttribute), false))
+            {
+                if (fi.Name.EndsWith("@") && !fi.IsPublic)
+                {
+                    var name = fi.Name.Substring(0, fi.Name.Length - 1);
+
+                    if (fi.DeclaringType?.GetProperty(name) != null)
+                        return name;
+                }
+            }
 
             return "";
         }
