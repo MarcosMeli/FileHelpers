@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelNPOIStorag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelNPOIStorage.Test", "FileHelpers.ExcelNPOIStorage\Test\FileHelpers.ExcelNPOIStorage.Test.csproj", "{A145DFC9-D4DA-4350-8D24-8474D3B33B40}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FileHelpers.Tests.FSharp", "FileHelpers.Tests.FSharp\FileHelpers.Tests.FSharp.fsproj", "{82ADC2D3-3CA7-4F57-93B7-3826CD84EE44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{A145DFC9-D4DA-4350-8D24-8474D3B33B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A145DFC9-D4DA-4350-8D24-8474D3B33B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A145DFC9-D4DA-4350-8D24-8474D3B33B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82ADC2D3-3CA7-4F57-93B7-3826CD84EE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ADC2D3-3CA7-4F57-93B7-3826CD84EE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82ADC2D3-3CA7-4F57-93B7-3826CD84EE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82ADC2D3-3CA7-4F57-93B7-3826CD84EE44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

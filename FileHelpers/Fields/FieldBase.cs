@@ -387,6 +387,9 @@ namespace FileHelpers
 
             }
 
+            if (fi.Name.EndsWith("@"))
+                return fi.Name.Substring(0, fi.Name.Length - 1);
+
             return "";
         }
 

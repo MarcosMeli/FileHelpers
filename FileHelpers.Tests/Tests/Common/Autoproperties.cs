@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using NFluent;
 using System.Linq;
+using FileHelpers.Tests.FSharp;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -226,6 +228,17 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.Fields[4].IsOptional)
                 .IsEqualTo(true);
+        }
+
+        [Test]
+        public void AutoPropertiesFromFSharpAreHandled()
+        {
+            var engine = new FileHelperEngine<SampleFSharpType>();
+
+            Check.That(engine.Options.FieldCount).IsEqualTo(3);
+            
+            Check.That(engine.Options.Fields[0].Converter).IsInstanceOf<ConvertHelpers.DateTimeConverter>();
+            Check.That(engine.Options.Fields[2].IsOptional).IsEqualTo(true);
         }
         
         [DelimitedRecord("|")]

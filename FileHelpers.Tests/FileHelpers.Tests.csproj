@@ -648,6 +648,10 @@
       <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
       <Name>FileHelpers.ExcelNPOIStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileHelpers.Tests.FSharp\FileHelpers.Tests.FSharp.fsproj">
+      <Project>{82adc2d3-3ca7-4f57-93b7-3826cd84ee44}</Project>
+      <Name>FileHelpers.Tests.FSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{eb8633ff-ceed-40ee-8d1a-ca1bf5678c42}</Project>
       <Project>{BEB0D823-6A7E-47FD-A275-1B3314F8412D}</Project>
