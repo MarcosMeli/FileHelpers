@@ -93,34 +93,36 @@ namespace FileHelpers.ExcelNPOIStorage
 
             using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read)) {
                 var extension = Path.GetExtension(filename);
-                if (extension.ToLowerInvariant() == ".xlsx" || extension.ToLowerInvariant() == ".xlsm")
-                    mWorkbook = new XSSFWorkbook(file);
-                else
-                    mWorkbook = new HSSFWorkbook(file);
+                OpenWorkbook(file, extension);
+            }
+        }
 
-                if (String.IsNullOrEmpty(SheetName))
-                    mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);  
-                else {
-                    try {
-                        mSheet = mWorkbook.GetSheet(SheetName);
-                        if (mSheet == null) {
-                            throw new ExcelBadUsageException(string.Concat("The sheet '",
-                                SheetName,
-                                "' was not found in the workbook."));
-                        }
+        private void OpenWorkbook(Stream stream, string knownFileExtension = null)
+        {
+            mWorkbook = WorkbookFactory.Create(stream);
 
-                        var sheetIndex = mWorkbook.GetSheetIndex(mSheet);
-                        mWorkbook.SetActiveSheet(sheetIndex);
-                    }
-                    catch {
+            if (String.IsNullOrEmpty(SheetName))
+                mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
+            else {
+                try {
+                    mSheet = mWorkbook.GetSheet(SheetName);
+                    if (mSheet == null) {
                         throw new ExcelBadUsageException(string.Concat("The sheet '",
                             SheetName,
                             "' was not found in the workbook."));
                     }
+
+                    var sheetIndex = mWorkbook.GetSheetIndex(mSheet);
+                    mWorkbook.SetActiveSheet(sheetIndex);
+                }
+                catch {
+                    throw new ExcelBadUsageException(string.Concat("The sheet '",
+                        SheetName,
+                        "' was not found in the workbook."));
                 }
             }
         }
-
+        
         #endregion
 
         #region "  CreateWorkbook methods  "
@@ -364,6 +366,26 @@ namespace FileHelpers.ExcelNPOIStorage
             if (String.IsNullOrEmpty(FileName))
                 throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
+            return TryGetRecordsFromWorkbook(() => OpenWorkbook(FileName));
+
+            var res = new ArrayList();
+            return (object[]) res.ToArray(RecordType);
+        }
+
+        /// <summary>Returns the records extracted from Excel stream.</summary>
+        /// <returns>The extracted records.</returns>
+        public object[] ExtractRecords(Stream stream)
+        {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+
+            return TryGetRecordsFromWorkbook(() => OpenWorkbook(stream));
+        }
+
+        private object[] TryGetRecordsFromWorkbook(Action workbookOpenerProvider)
+        {
             var res = new ArrayList();
 
             CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
@@ -377,7 +399,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 var colValues = new object[RecordFieldCount];
 
                 InitExcel();
-                OpenWorkbook(FileName);
+                workbookOpenerProvider();
 
                 while (ShouldStopOnRow(cRow) == false) {
                     try {

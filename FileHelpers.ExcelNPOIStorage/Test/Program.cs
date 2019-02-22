@@ -94,6 +94,7 @@ namespace OurTest
             var res = (RaRecord[])provider.ExtractRecords();
 
             TestBlankFields();
+            TestExtractRecordsUsingStream();
         }
 
         private static void TestBlankFields()
@@ -115,6 +116,16 @@ namespace OurTest
             }
 
             var res = (RaRecord[])provider.ExtractRecords();
+        }
+
+        private static void TestExtractRecordsUsingStream()
+        {
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
+            {
+                StartColumn = 0
+            };
+            var stream = new FileStream(Directory.GetCurrentDirectory() + @"\test.xlsx", FileMode.Open, FileAccess.Read);
+            var res = provider.ExtractRecords(stream).Cast<RaRecord>();
         }
     }
 
