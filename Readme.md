@@ -41,8 +41,6 @@ We do not have any plans to port the FileHelpers.ExcelNPOIStorage nor FileHelper
 
 AppVeyor [![Build status](https://ci.appveyor.com/api/projects/status/pi6ipa7wd4vqws35/branch/master?svg=true)](https://ci.appveyor.com/project/MarcosMeli/filehelpers/branch/master)
 
-Travis [![Build Status](https://travis-ci.org/MarcosMeli/FileHelpers.svg?branch=master)](https://travis-ci.org/MarcosMeli/FileHelpers)
-
 ### Prerelease NuGet Packages
 
 NuGet feed
