@@ -709,7 +709,6 @@ namespace FileHelpers
         ///<returns>
         ///An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
         ///</returns>
-        ///<filterpriority>2</filterpriority>
         IEnumerator IEnumerable.GetEnumerator()
         {
             if (mAsyncReader == null)
