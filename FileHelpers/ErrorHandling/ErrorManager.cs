@@ -15,8 +15,6 @@ namespace FileHelpers
     [DebuggerDisplay("{ErrorsDescription()}. ErrorMode: {ErrorMode.ToString()}")]
     public sealed class ErrorManager : IEnumerable
     {
-        private int mErrorLimit = 10000;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorManager"/> class.
         /// </summary>
@@ -29,65 +27,45 @@ namespace FileHelpers
         /// <param name="mode">Indicates the error behavior of the class.</param>
         public ErrorManager(ErrorMode mode)
         {
-            mErrorMode = mode;
+            ErrorMode = mode;
         }
 
         /// <summary>Maximum number of recorded errors. After this limit is reached, successive errors are ignored.</summary>
         /// <remarks>Default error limit is 10000.</remarks>
-        public int ErrorLimit
-        {
-            get { return mErrorLimit; }
-            set { mErrorLimit = value; }
-        }
+        public int ErrorLimit { get; set; } = 10000;
 
         private string ErrorsDescription()
         {
             if (ErrorCount == 1)
-                return ErrorCount.ToString() + " Error";
+                return ErrorCount + " Error";
             else if (ErrorCount == 0)
                 return "No Errors";
             else
-                return ErrorCount.ToString() + " Errors";
+                return ErrorCount + " Errors";
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private List<ErrorInfo> mErrorsArray = new List<ErrorInfo>();
+        private readonly List<ErrorInfo> mErrorsArray = new List<ErrorInfo>();
 
         /// <summary>
         /// Is an array of <see cref="ErrorInfo"/> that contains the
         /// errors of the last operation in this class.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public ErrorInfo[] Errors
-        {
-            get { return mErrorsArray.ToArray(); }
-        }
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private ErrorMode mErrorMode = ErrorMode.ThrowException;
+        public ErrorInfo[] Errors => mErrorsArray.ToArray();
 
         /// <summary>
         /// Indicates the behavior of the <see cref="FileHelperEngine"/>
         /// when it found an error.
         /// </summary>
         /// <remarks>Default error mode is ThrowException.</remarks>
-        public ErrorMode ErrorMode
-        {
-            get { return mErrorMode; }
-            set { mErrorMode = value; }
-        }
+        public ErrorMode ErrorMode { get; set; } = ErrorMode.ThrowException;
 
         /// <summary>Number of contained errors.</summary>
-        public int ErrorCount
-        {
-            get { return mErrorsArray.Count; }
-        }
+        public int ErrorCount => mErrorsArray.Count;
 
         /// <summary>Indicates if contains one or more errors.</summary>
-        public bool HasErrors
-        {
-            get { return mErrorsArray.Count > 0; }
-        }
+        public bool HasErrors => mErrorsArray.Count > 0;
 
         /// <summary>Clears the error collection.</summary>
         public void ClearErrors()
@@ -99,14 +77,14 @@ namespace FileHelpers
         /// <param name="error"></param>
         internal void AddError(ErrorInfo error)
         {
-            if (mErrorsArray.Count <= mErrorLimit)
+            if (mErrorsArray.Count <= ErrorLimit)
                 mErrorsArray.Add(error);
         }
 
         /// <summary>Add the specified ErrorInfo to the contained collection.</summary>
         internal void AddErrors(ErrorManager errors)
         {
-            if (mErrorsArray.Count <= mErrorLimit)
+            if (mErrorsArray.Count <= ErrorLimit)
                 mErrorsArray.AddRange(errors.mErrorsArray);
         }
 
