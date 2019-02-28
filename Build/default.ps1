@@ -59,6 +59,7 @@ task test -depends compile{
     "Testing"
 
     ./../packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ../Release/FileHelpers.Tests.dll
+    ./../packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ../Release/FileHelpers.FSharp.Tests.dll
 }
 
 #functions ----------------------------------------------------
