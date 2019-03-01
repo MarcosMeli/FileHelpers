@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 
 [assembly : AssemblyCompany("Devoo")]
 [assembly : AssemblyTrademark("FileHelpers")]
-[assembly : AssemblyCopyright("Copyright 2005-2018. Marcos Meli")]
+[assembly : AssemblyCopyright("Copyright 2005-2019. Marcos Meli")]
 [assembly : AssemblyCulture("")]
 [assembly : AssemblyConfiguration("")]
 [assembly : ComVisible(false)]
