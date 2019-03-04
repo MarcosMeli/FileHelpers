@@ -367,9 +367,6 @@ namespace FileHelpers.ExcelNPOIStorage
                 throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
             return TryGetRecordsFromWorkbook(() => OpenWorkbook(FileName));
-
-            var res = new ArrayList();
-            return (object[]) res.ToArray(RecordType);
         }
 
         /// <summary>Returns the records extracted from Excel stream.</summary>
