@@ -33,7 +33,7 @@ namespace OurTest
 
             var providerWithDynamicRecord = new ExcelNPOIStorage(cb.CreateRecordClass())
             {
-                FileName = Directory.GetCurrentDirectory() + @"\testDynamicRecords.xlsx",
+                FileName = GetTestFileName(@"\testDynamicRecords.xlsx"),
                 StartRow = 1,
                 StartColumn = 1
             };
@@ -57,7 +57,7 @@ namespace OurTest
             //General export of excel with date time columns
             var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = Directory.GetCurrentDirectory() + @"\test.xlsx",
+                FileName = GetDefaultTestFileName(),
                 StartRow = 0,
                 StartColumn = 0
             };
@@ -94,13 +94,24 @@ namespace OurTest
             var res = (RaRecord[])provider.ExtractRecords();
 
             TestBlankFields();
+            TestExtractRecordsUsingStream();
+        }
+
+        private static string GetTestFileName(string fileName)
+        {
+            return Directory.GetCurrentDirectory() + fileName;
+        }
+
+        private static string GetDefaultTestFileName()
+        {
+            return GetTestFileName(@"\test.xlsx");
         }
 
         private static void TestBlankFields()
         {
             var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = Directory.GetCurrentDirectory() + @"\testBlankFields.xlsx",
+                FileName = GetTestFileName(@"\testBlankFields.xlsx"),
                 StartColumn = 0
             };
 
@@ -115,6 +126,16 @@ namespace OurTest
             }
 
             var res = (RaRecord[])provider.ExtractRecords();
+        }
+
+        private static void TestExtractRecordsUsingStream()
+        {
+            var provider = new ExcelNPOIStorage(typeof(RaRecord))
+            {
+                StartColumn = 0
+            };
+            var stream = new FileStream(GetDefaultTestFileName(), FileMode.Open, FileAccess.Read);
+            var res = provider.ExtractRecords(stream).Cast<RaRecord>();
         }
     }
 
