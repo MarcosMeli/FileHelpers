@@ -92,16 +92,17 @@ namespace FileHelpers.ExcelNPOIStorage
                 throw new FileNotFoundException(string.Concat("Excel File '", filename, "' not found."), filename);
 
             using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read)) {
-                OpenWorkbook(file);
+                var extension = Path.GetExtension(filename);
+                OpenWorkbook(file, extension);
             }
         }
 
-        private void OpenWorkbook(Stream stream)
+        private void OpenWorkbook(Stream stream, string knownFileExtension = null)
         {
             mWorkbook = WorkbookFactory.Create(stream);
 
-            if (string.IsNullOrEmpty(SheetName))
-                mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);  
+            if (String.IsNullOrEmpty(SheetName))
+                mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
             else {
                 try {
                     mSheet = mWorkbook.GetSheet(SheetName);
@@ -121,7 +122,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 }
             }
         }
-
+        
         #endregion
 
         #region "  CreateWorkbook methods  "
@@ -180,7 +181,7 @@ namespace FileHelpers.ExcelNPOIStorage
             var rowO = mSheet.GetRow((int) row);
             return rowO == null
                 ? null
-                : this.CellAsString(rowO, (int) col);
+                : CellAsString(rowO, (int) col);
         }
 
         private string CellAsString(IRow row, int col)
@@ -362,81 +363,78 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <returns>The extracted records.</returns>
         public override object[] ExtractRecords()
         {
-            if (string.IsNullOrEmpty(FileName))
+            if (String.IsNullOrEmpty(FileName))
                 throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
             return TryGetRecordsFromWorkbook(() => OpenWorkbook(FileName));
-        }
-
-        private object[] TryGetRecordsFromWorkbook(Action WorkbookOpenerProvider)
-        {
-            CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            try {
-                return (object[])GetRecordsFromWorkbook(WorkbookOpenerProvider).ToArray(RecordType);
-            }
-            finally {
-                CloseAndCleanUp();
-                Thread.CurrentThread.CurrentCulture = oldCulture;
-            }
-        }
-
-        private ArrayList GetRecordsFromWorkbook(Action WorkbookOpenerProvider)
-        {
-            var res = new ArrayList();
-
-            CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            int cRow = StartRow;
-
-            int recordNumber = 0;
-            OnProgress(new ProgressEventArgs(recordNumber, -1));
-
-            var colValues = new object[RecordFieldCount];
-
-            InitExcel();
-            WorkbookOpenerProvider();
-
-            while (ShouldStopOnRow(cRow) == false) {
-                try {
-                    if (ShouldReadRowData(cRow)) {
-                        recordNumber++;
-                        OnProgress(new ProgressEventArgs(recordNumber, -1));
-
-                        colValues = RowValues(cRow, StartColumn, RecordFieldCount);
-
-                        object record = ValuesToRecord(colValues);
-                        res.Add(record);
-                    }
-                }
-                catch (Exception ex) {
-                    switch (mErrorManager.ErrorMode) {
-                        case ErrorMode.ThrowException:
-                            throw;
-                        case ErrorMode.IgnoreAndContinue:
-                            break;
-                        case ErrorMode.SaveAndContinue:
-                            AddError(cRow, ex, ColumnsToValues(colValues));
-                            break;
-                    }
-                }
-                finally {
-                    cRow++;
-                }
-            }
-
-            return res;
         }
 
         /// <summary>Returns the records extracted from Excel stream.</summary>
         /// <returns>The extracted records.</returns>
         public object[] ExtractRecords(Stream stream)
         {
-            if (stream == null) {
+            if (stream == null)
+            {
                 throw new ArgumentNullException("stream");
             }
 
             return TryGetRecordsFromWorkbook(() => OpenWorkbook(stream));
+        }
+
+        private object[] TryGetRecordsFromWorkbook(Action workbookOpenerProvider)
+        {
+            var res = new ArrayList();
+
+            CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            try {
+                int cRow = StartRow;
+
+                int recordNumber = 0;
+                OnProgress(new ProgressEventArgs(recordNumber, -1));
+
+                var colValues = new object[RecordFieldCount];
+
+                InitExcel();
+                workbookOpenerProvider();
+
+                while (ShouldStopOnRow(cRow) == false) {
+                    try {
+                        if (ShouldReadRowData(cRow)) {
+                            recordNumber++;
+                            OnProgress(new ProgressEventArgs(recordNumber, -1));
+
+                            colValues = RowValues(cRow, StartColumn, RecordFieldCount);
+
+                            object record = ValuesToRecord(colValues);
+                            res.Add(record);
+                        }
+                    }
+                    catch (Exception ex) {
+                        switch (mErrorManager.ErrorMode) {
+                            case ErrorMode.ThrowException:
+                                throw;
+                            case ErrorMode.IgnoreAndContinue:
+                                break;
+                            case ErrorMode.SaveAndContinue:
+                                AddError(cRow, ex, ColumnsToValues(colValues), RecordType.Name);
+                                break;
+                        }
+                    }
+                    finally {
+                        cRow++;
+                    }
+                }
+            }
+            catch {
+                throw;
+            }
+            finally {
+                CloseAndCleanUp();
+                Thread.CurrentThread.CurrentCulture = oldCulture;
+            }
+
+            return (object[]) res.ToArray(RecordType);
         }
 
         #endregion
@@ -513,20 +511,5 @@ namespace FileHelpers.ExcelNPOIStorage
 
             #endregion
         }
-    }
-
-    /// <summary>
-    /// Specifies the way links in the file are updated.
-    /// </summary>
-    public enum ExcelUpdateLinksMode
-    {
-        /// <summary>User specifies how links will be updated</summary>
-        UserPrompted = 1,
-
-        /// <summary>Never update links for this workbook on opening</summary>
-        NeverUpdate = 2,
-
-        /// <summary>Always update links for this workbook on opening</summary>
-        AlwaysUpdate = 3
     }
 }

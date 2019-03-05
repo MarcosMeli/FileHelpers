@@ -33,7 +33,7 @@ namespace OurTest
 
             var providerWithDynamicRecord = new ExcelNPOIStorage(cb.CreateRecordClass())
             {
-                FileName = GetTestFileName(@"\testDynamicRecords.xlsx"),
+                FileName = Directory.GetCurrentDirectory() + @"\testDynamicRecords.xlsx",
                 StartRow = 1,
                 StartColumn = 1
             };
@@ -57,7 +57,7 @@ namespace OurTest
             //General export of excel with date time columns
             var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = GetDefaultTestFileName(),
+                FileName = Directory.GetCurrentDirectory() + @"\test.xlsx",
                 StartRow = 0,
                 StartColumn = 0
             };
@@ -97,21 +97,11 @@ namespace OurTest
             TestExtractRecordsUsingStream();
         }
 
-        private static string GetTestFileName(string fileName)
-        {
-            return Directory.GetCurrentDirectory() + fileName;
-        }
-
-        private static string GetDefaultTestFileName()
-        {
-            return GetTestFileName(@"\test.xlsx");
-        }
-
         private static void TestBlankFields()
         {
             var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {
-                FileName = GetTestFileName(@"\testBlankFields.xlsx"),
+                FileName = Directory.GetCurrentDirectory() + @"\testBlankFields.xlsx",
                 StartColumn = 0
             };
 
@@ -134,7 +124,7 @@ namespace OurTest
             {
                 StartColumn = 0
             };
-            var stream = new FileStream(GetDefaultTestFileName(), FileMode.Open, FileAccess.Read);
+            var stream = new FileStream(Directory.GetCurrentDirectory() + @"\test.xlsx", FileMode.Open, FileAccess.Read);
             var res = provider.ExtractRecords(stream).Cast<RaRecord>();
         }
     }
