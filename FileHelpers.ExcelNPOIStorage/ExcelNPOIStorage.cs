@@ -29,14 +29,14 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <summary>Create a new ExcelStorage to work with the specified type</summary>
         /// <param name="recordType">The type of records.</param>
         public ExcelNPOIStorage(Type recordType)
-            : base(recordType) {}
+            : base(recordType) { }
 
         /// <summary>Create a new ExcelStorage to work with the specified type</summary>
         /// <param name="recordType">The type of records.</param>
         /// <param name="startRow">The row of the first data cell. Begining in 1.</param>
         /// <param name="startCol">The column of the first data cell. Begining in 1.</param>
         public ExcelNPOIStorage(Type recordType, int startRow, int startCol)
-            : base(recordType, startRow, startCol) {}
+            : base(recordType, startRow, startCol) { }
 
         /// <summary>Create a new ExcelStorage to work with the specified type</summary>
         /// <param name="recordType">The type of records.</param>
@@ -44,7 +44,7 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <param name="startCol">The column of the first data cell. Begining in 1.</param>
         /// <param name="fileName">The file path to work with.</param>
         public ExcelNPOIStorage(Type recordType, string fileName, int startRow, int startCol)
-            : base(recordType, fileName, startRow, startCol) {}
+            : base(recordType, fileName, startRow, startCol) { }
 
         #endregion
 
@@ -91,7 +91,8 @@ namespace FileHelpers.ExcelNPOIStorage
             if (info.Exists == false)
                 throw new FileNotFoundException(string.Concat("Excel File '", filename, "' not found."), filename);
 
-            using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read)) {
+            using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
                 var extension = Path.GetExtension(filename);
                 OpenWorkbook(file, extension);
             }
@@ -103,10 +104,13 @@ namespace FileHelpers.ExcelNPOIStorage
 
             if (String.IsNullOrEmpty(SheetName))
                 mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
-            else {
-                try {
+            else
+            {
+                try
+                {
                     mSheet = mWorkbook.GetSheet(SheetName);
-                    if (mSheet == null) {
+                    if (mSheet == null)
+                    {
                         throw new ExcelBadUsageException(string.Concat("The sheet '",
                             SheetName,
                             "' was not found in the workbook."));
@@ -115,14 +119,15 @@ namespace FileHelpers.ExcelNPOIStorage
                     var sheetIndex = mWorkbook.GetSheetIndex(mSheet);
                     mWorkbook.SetActiveSheet(sheetIndex);
                 }
-                catch {
+                catch
+                {
                     throw new ExcelBadUsageException(string.Concat("The sheet '",
                         SheetName,
                         "' was not found in the workbook."));
                 }
             }
         }
-        
+
         #endregion
 
         #region "  CreateWorkbook methods  "
@@ -143,7 +148,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 mWorkbook = new XSSFWorkbook();
             else if (extension.ToLowerInvariant() == ".xls")
                 mWorkbook = new HSSFWorkbook();
-            mSheet =  mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
+            mSheet = mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }
 
@@ -178,10 +183,10 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <returns>Cell Value as string</returns>
         protected override string CellAsString(object row, object col)
         {
-            var rowO = mSheet.GetRow((int) row);
+            var rowO = mSheet.GetRow((int)row);
             return rowO == null
                 ? null
-                : CellAsString(rowO, (int) col);
+                : CellAsString(rowO, (int)col);
         }
 
         private string CellAsString(IRow row, int col)
@@ -222,13 +227,15 @@ namespace FileHelpers.ExcelNPOIStorage
             if (mSheet == null)
                 return null;
 
-            if (numberOfCols == 1) {
+            if (numberOfCols == 1)
+            {
                 IRow row = mSheet.GetRow(rowNum);
 
                 ICell cell = HSSFCellUtil.GetCell(row, startCol);
-                return new object[] {NPOIUtils.GetCellValue(cell)};
+                return new object[] { NPOIUtils.GetCellValue(cell) };
             }
-            else {
+            else
+            {
                 CellRangeAddress range = new CellRangeAddress(rowNum, rowNum, startCol, startCol + numberOfCols - 1);
 
                 CellWalk cw = new CellWalk(mSheet, range);
@@ -251,11 +258,12 @@ namespace FileHelpers.ExcelNPOIStorage
             {
                 rowNum++;
             }
-            
+
             var row = mSheet.GetRow(rowNum);
             if (row == null)
                 row = mSheet.CreateRow(rowNum);
-            for (int i = 0; i <= startCol + values.Length; i++) {
+            for (int i = 0; i <= startCol + values.Length; i++)
+            {
                 var cell = row.GetCell(i);
                 if (cell == null)
                     row.CreateCell(i);
@@ -271,13 +279,13 @@ namespace FileHelpers.ExcelNPOIStorage
             cw.Traverse(ci);
         }
 
-        private void AddHeaderColumns(int startCol,int rowNum)
-        {       
-             if (ColumnsHeaders.Count != 0)
+        private void AddHeaderColumns(int startCol, int rowNum)
+        {
+            if (ColumnsHeaders.Count != 0)
             {
                 if (mSheet == null)
                     return;
-                
+
                 var row = mSheet.GetRow(rowNum);
                 if (row == null)
                     row = mSheet.CreateRow(rowNum);
@@ -287,19 +295,19 @@ namespace FileHelpers.ExcelNPOIStorage
                     if (cell == null)
                         row.CreateCell(i);
                 }
-    
+
                 CellRangeAddress range = new CellRangeAddress(StartRow == 0
                         ? 0
                         : StartRow, StartRow == 0
                         ? 0
                         : StartRow, startCol, startCol + ColumnsHeaders.ToArray().Length - 1);
-    
+
                 CellWalk cw = new CellWalk(mSheet, range);
                 cw.SetTraverseEmptyCells(true);
-    
+
                 CellInserter ci = new CellInserter(new List<object>(ColumnsHeaders));
-    
-                cw.Traverse(ci);            
+
+                cw.Traverse(ci);
             }
         }
         #endregion
@@ -316,7 +324,8 @@ namespace FileHelpers.ExcelNPOIStorage
 
             CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            try {
+            try
+            {
                 int recordNumber = 0;
                 OnProgress(new ProgressEventArgs(0, records.Length));
 
@@ -325,7 +334,8 @@ namespace FileHelpers.ExcelNPOIStorage
                 if (OverrideFile && File.Exists(FileName))
                     File.Delete(FileName);
 
-                if (!String.IsNullOrEmpty(TemplateFile)) {
+                if (!String.IsNullOrEmpty(TemplateFile))
+                {
                     if (File.Exists(TemplateFile) == false)
                         throw new ExcelBadUsageException(string.Concat("Template file not found: '", TemplateFile, "'"));
 
@@ -334,10 +344,11 @@ namespace FileHelpers.ExcelNPOIStorage
                 }
 
                 OpenOrCreateWorkbook(FileName);
-                
+
                 AddHeaderColumns(StartColumn, StartRow);
-                
-                for (int i = 0; i < records.Length; i++) {
+
+                for (int i = 0; i < records.Length; i++)
+                {
                     recordNumber++;
                     OnProgress(new ProgressEventArgs(recordNumber, records.Length));
 
@@ -346,10 +357,12 @@ namespace FileHelpers.ExcelNPOIStorage
 
                 SaveWorkbook(FileName);
             }
-            catch {
+            catch
+            {
                 throw;
             }
-            finally {
+            finally
+            {
                 CloseAndCleanUp();
                 Thread.CurrentThread.CurrentCulture = oldCulture;
             }
@@ -387,7 +400,8 @@ namespace FileHelpers.ExcelNPOIStorage
 
             CultureInfo oldCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            try {
+            try
+            {
                 int cRow = StartRow;
 
                 int recordNumber = 0;
@@ -398,9 +412,12 @@ namespace FileHelpers.ExcelNPOIStorage
                 InitExcel();
                 workbookOpenerProvider();
 
-                while (ShouldStopOnRow(cRow) == false) {
-                    try {
-                        if (ShouldReadRowData(cRow)) {
+                while (ShouldStopOnRow(cRow) == false)
+                {
+                    try
+                    {
+                        if (ShouldReadRowData(cRow))
+                        {
                             recordNumber++;
                             OnProgress(new ProgressEventArgs(recordNumber, -1));
 
@@ -410,8 +427,10 @@ namespace FileHelpers.ExcelNPOIStorage
                             res.Add(record);
                         }
                     }
-                    catch (Exception ex) {
-                        switch (mErrorManager.ErrorMode) {
+                    catch (Exception ex)
+                    {
+                        switch (mErrorManager.ErrorMode)
+                        {
                             case ErrorMode.ThrowException:
                                 throw;
                             case ErrorMode.IgnoreAndContinue:
@@ -421,20 +440,23 @@ namespace FileHelpers.ExcelNPOIStorage
                                 break;
                         }
                     }
-                    finally {
+                    finally
+                    {
                         cRow++;
                     }
                 }
             }
-            catch {
+            catch
+            {
                 throw;
             }
-            finally {
+            finally
+            {
                 CloseAndCleanUp();
                 Thread.CurrentThread.CurrentCulture = oldCulture;
             }
 
-            return (object[]) res.ToArray(RecordType);
+            return (object[])res.ToArray(RecordType);
         }
 
         #endregion
@@ -449,7 +471,8 @@ namespace FileHelpers.ExcelNPOIStorage
             if (values[0] != null)
                 res = values[0].ToString();
 
-            for (int i = 1; i < values.Length; i++) {
+            for (int i = 1; i < values.Length; i++)
+            {
                 res += "," + (values[i] == null
                     ? String.Empty
                     : values[i].ToString());
