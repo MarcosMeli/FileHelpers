@@ -58,6 +58,5 @@ function Update-AppVeyorBuildFile([string]$filename, [string] $assemblyVersionNu
 Update-AppVeyorBuildFile '..\appveyor.yml' $AssemblyVersion
 Update-AssemblyInfoFile '..\FileHelpers\VersionInfo.cs' $AssemblyVersion $SemanticVersion
 Update-StandardProject '..\FileHelpers\FileHelpers.NetStandard.csproj' $SemanticVersion
-Update-NuGetVersion '.\NuGet\FileHelpers.ExcelStorage.nuspec' $SemanticVersion
 Update-NuGetVersion '.\NuGet\FileHelpers.ExcelNPOIStorage.nuspec' $SemanticVersion
 Update-NuGetVersion '.\NuGet\FileHelpers.nuspec' $SemanticVersion
