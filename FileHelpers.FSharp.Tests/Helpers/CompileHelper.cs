@@ -32,9 +32,12 @@ namespace FileHelpers.FSharp.Tests.Helpers
                 FSharpOption<Tuple<TextWriter, TextWriter>>.None, 
                 FSharpOption<string>.None);
 
-            var (compilationErrors, exitCode, assembly) = FSharpAsync
+            Tuple<FSharpErrorInfo[], int, FSharpOption<Assembly>> compileResult = FSharpAsync
                 .StartAsTask(action, FSharpOption<TaskCreationOptions>.None, FSharpOption<CancellationToken>.None)
                 .Result;
+
+            int exitCode = compileResult.Item2;
+            FSharpErrorInfo[] compilationErrors = compileResult.Item1;
 
             if (compilationErrors.Any() && exitCode != 0)
             {
@@ -48,7 +51,8 @@ namespace FileHelpers.FSharp.Tests.Helpers
                 throw new InvalidOperationException($"Cannot compile fsharp: {errors}");
             }
 
-            return assembly.Value;
+            Assembly assembly = compileResult.Item3.Value;
+            return assembly;
         }
     }
 }
