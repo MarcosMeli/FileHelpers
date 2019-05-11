@@ -6,7 +6,7 @@
     <DelaySign>false</DelaySign>
     <AssemblyName>FileHelpers</AssemblyName>
     <RootNamespace>FileHelpers</RootNamespace>
-    <Version>3.4.0</Version>
+    <Version>3.4.1</Version>
     <Description>A free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>
