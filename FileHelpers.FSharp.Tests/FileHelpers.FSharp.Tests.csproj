@@ -39,7 +39,7 @@
       <HintPath>..\packages\FSharp.Core.4.5.2\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="NFluent">
-      <HintPath>..\packages\NFluent.2.4.0\lib\net40\NFluent.dll</HintPath>
+      <HintPath>..\packages\NFluent.2.5.0\lib\net45\NFluent.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>

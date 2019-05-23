@@ -116,6 +116,9 @@
       <HintPath>..\packages\Moq.4.5.10\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NFluent">
+      <HintPath>..\packages\NFluent.2.5.0\lib\net45\NFluent.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -132,9 +135,6 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
-    </Reference>
-    <Reference Include="NFluent">
-      <HintPath>..\packages\NFluent.2.4.0\lib\net40\NFluent.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
