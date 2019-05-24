@@ -6,7 +6,7 @@ using NFluent;
 namespace FileHelpers.Tests
 {
     /// <summary>
-    /// FileHelpers Helpers  StringHelper tests
+    /// FileHelpers Helpers StringHelper tests
     /// </summary>
     [TestFixture]
     internal class StringHelperTest
@@ -33,16 +33,6 @@ namespace FileHelpers.Tests
         public void RemoveTrailingBlanks()
         {
             Check.That(StringHelper.RemoveBlanks("     + 41")).IsEqualTo("+41");
-        }
-
-        [Test(Description = "String IsNullOrWhiteSpace help method tests")]
-        public void IsNullOrWhiteSpace()
-        {
-            Check.That(StringHelper.IsNullOrWhiteSpace("     ")).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace(null)).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace("")).IsEqualTo(true);
-            Check.That(StringHelper.IsNullOrWhiteSpace(" test ")).IsEqualTo(false);
-            Check.That(StringHelper.IsNullOrWhiteSpace("test")).IsEqualTo(false);
         }
 
         [Test(Description = "String StartsWithIgnoringWhiteSpaces help method tests")]

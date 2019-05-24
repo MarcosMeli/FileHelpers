@@ -181,7 +181,7 @@ namespace FileHelpers.Helpers
         /// <param name="oldValue">Value to replace</param>
         /// <param name="newValue">value to replace with</param>
         /// <returns>String with all multiple occurrences replaced</returns>
-        internal static string ReplaceRecursive(string original, string oldValue, string newValue)
+        private static string ReplaceRecursive(string original, string oldValue, string newValue)
         {
             const int maxTries = 1000;
 
@@ -244,19 +244,7 @@ namespace FileHelpers.Helpers
         /// <returns>string with values replaced</returns>
         public static string ReplaceIgnoringCase(string original, string oldValue, string newValue)
         {
-            return Replace(original, oldValue, newValue, StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
-        /// String replace with a comparison function, eg OridinalIgnoreCase
-        /// </summary>
-        /// <param name="original">Original string</param>
-        /// <param name="oldValue">Value to be replaced</param>
-        /// <param name="newValue">value to replace with</param>
-        /// <param name="comparisionType">Comparison type (enum)</param>
-        /// <returns>String with values replaced</returns>
-        public static string Replace(string original, string oldValue, string newValue, StringComparison comparisionType)
-        {
+            StringComparison comparisionType = StringComparison.OrdinalIgnoreCase;
             string result = original;
 
             if (!string.IsNullOrEmpty(oldValue))
@@ -279,27 +267,6 @@ namespace FileHelpers.Helpers
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Indicates whether a specified string is null, empty, or consists only of white-space characters.
-        /// </summary>
-        /// <param name="value">The string to test.</param>
-        /// <returns>true if the parameter is null, empty, or consists only of white-space characters.</returns>
-        public static bool IsNullOrWhiteSpace(string value)
-        {
-            if (value == null)
-            {
-                return true;
-            }
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (!char.IsWhiteSpace(value[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         /// <summary>

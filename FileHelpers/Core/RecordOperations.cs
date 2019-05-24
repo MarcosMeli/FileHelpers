@@ -121,7 +121,7 @@ namespace FileHelpers
         private bool MustIgnoreLine(string line)
         {
             if (mRecordInfo.IgnoreEmptyLines) {
-                if ((mRecordInfo.IgnoreEmptySpaces && StringHelper.IsNullOrWhiteSpace(line)) ||
+                if ((mRecordInfo.IgnoreEmptySpaces && string.IsNullOrWhiteSpace(line)) ||
                     line.Length == 0)
                     return true;
             }
