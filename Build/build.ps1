@@ -34,6 +34,7 @@ function Test-Projects() {
     "Testing"
 
     ./../packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ../Release/FileHelpers.Tests.dll ../Release/FileHelpers.FSharp.Tests.dll
+    Ensure-CleanExit
 }
 
 function Recreate-Directory($path)
