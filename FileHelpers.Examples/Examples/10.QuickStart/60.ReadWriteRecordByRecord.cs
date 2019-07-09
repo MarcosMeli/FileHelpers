@@ -12,7 +12,7 @@ namespace ExamplesFx
         : ExampleBase
     {
 
-        //-> If you have a source file like this, separated by a |:
+        //-> If you have a source file like this, separated by a "|":
 
         //-> FileIn:Input.txt
         /*1732,Juan Perez,435.00,11-05-2002
@@ -22,7 +22,7 @@ namespace ExamplesFx
         //-> /FileIn
 
 
-        //-> You first declare a Record Mapping Class:
+        //-> You first declare a Record Mapping class:
 
         //-> File:RecordClass.cs
 
@@ -33,7 +33,7 @@ namespace ExamplesFx
 
             public string Name;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
             public decimal Balance;
 
             [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]

@@ -11,14 +11,14 @@ namespace ExamplesFx
     public class WriteFileDelimited
         : ExampleBase
     {
-        //-> To write an output file (separated by a "|"):
+        //-> To write an output file, separated by a "|":
 
         //-> FileOut: Output.txt
 
         // -> You use the same Record Mapping Class as you would to read it:
         //-> File:RecordClass.cs
         /// <summary>
-        /// Layout for a file delimited by |
+        /// Layout for a file delimited by "|"
         /// </summary>
         [DelimitedRecord("|")]
         public class Orders
@@ -30,7 +30,7 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
             public decimal Freight;
         }
 

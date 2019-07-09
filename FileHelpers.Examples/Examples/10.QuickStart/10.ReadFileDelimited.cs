@@ -11,7 +11,7 @@ namespace ExamplesFx
         : ExampleBase
     {
       
-        //-> If you have a source file like this, separated by a |:
+        //-> If you have a source file like this, separated by a "|":
       
         //-> FileIn:Input.txt
 /*10248|VINET|04071996|32.38
@@ -21,7 +21,7 @@ namespace ExamplesFx
         //-> /FileIn
 
 
-        //-> You first declare a Record Mapping Class:
+        //-> You first declare a Record Mapping class:
 
         //-> File:RecordClass.cs
         [DelimitedRecord("|")]
@@ -34,7 +34,7 @@ namespace ExamplesFx
             [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is .
+            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
             public decimal Freight;
         }
 

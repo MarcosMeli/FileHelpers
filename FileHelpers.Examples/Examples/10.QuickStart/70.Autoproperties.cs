@@ -3,13 +3,13 @@
 namespace ExamplesFx
 {
     //-> Name: Autoproperties
-    //-> Description: You can use autoproperties instead of fields
+    //-> Description: You can use autoproperties instead of fields:
 
     public class AutopropertiesSample
         : ExampleBase
     {
       
-        //-> If you have a source file like this, separated by a |:
+        //-> If you have a source file like this, separated by a "|":
       
         //-> FileIn:Input.txt
 /*10248|VINET|04071996|32.38
@@ -19,7 +19,7 @@ namespace ExamplesFx
         //-> /FileIn
 
 
-        //-> You can use autoproperties but for the moment you can't use Converters
+        //-> You can use autoproperties but for the moment you can't use Converters:
 
         //-> File:RecordClass.cs
         [DelimitedRecord("|")]
@@ -35,7 +35,7 @@ namespace ExamplesFx
         }
 
         //-> /File
-
+        //-> Instantiate the FileHelperEngine and iterate over the records:
         public override void Run()
         {
             //-> File:Example.cs

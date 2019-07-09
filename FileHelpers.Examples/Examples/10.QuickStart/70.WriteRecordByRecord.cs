@@ -8,17 +8,17 @@ using FileHelpers;
 namespace ExamplesFx
 {
     //-> Name:Write Delimited File
-    //-> Description:Example of how to write a Delimited File
+    //-> Description:Example of how to write a delimited file
     //-> AutoRun:true
 
     public class WriteFile
         : ExampleBase
     {
-        //-> To write an output file separated by a |:
+        //-> To write an output file, separated by a "|":
 
         //-> FileOut: Output.txt
 
-        // -> You use the same Record Mapping Class as you would to read it:
+        // -> You use the same Record Mapping class as you would to read it:
         //-> File:RecordClass.cs
         /// <summary>
         /// Layout for a file delimited by |
@@ -38,8 +38,7 @@ namespace ExamplesFx
 
         //-> /File
 
-        //-> Instantiate a FileHelperEngine and write the file
-
+        //-> Instantiate a FileHelperEngine and write the file:
 
         public override void Run()
         {
@@ -69,6 +68,6 @@ namespace ExamplesFx
             Console.WriteLine(engine.WriteString(orders));
         }
 
-        //-> The classes you use could come from anywhere,  Linq to Entities, SQL database reads, or in this case classes created within an application
+        //-> The classes you use could come from anywhere: LINQ to Entities, SQL database reads, or in this case classes created within an application.
     }
 }
