@@ -10,6 +10,7 @@ namespace FileHelpers.DataLink
     /// Base class for all the Storage classes of the library or the custom
     /// Storage classes.
     /// </summary>
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public abstract class DataStorage
     {
         /// <summary>Called to notify progress.</summary>

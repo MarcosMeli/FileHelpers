@@ -12,7 +12,7 @@ namespace FileHelpers.DataLink
     /// <remarks>
     /// <para>Uses two <see cref="DataStorage"/> types to accomplish this task.</para>
     /// </remarks>
-
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public sealed class GenericDataLink
     {
         #region "  Constructor  "

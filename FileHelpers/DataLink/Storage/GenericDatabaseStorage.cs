@@ -8,6 +8,7 @@ namespace FileHelpers.DataLink
     /// ADO.NET support.
     /// </summary>
     /// <typeparam name="ConnectionClass">The ADO.NET connection class</typeparam>
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public sealed class GenericDatabaseStorage<ConnectionClass> : DatabaseStorage
         where ConnectionClass : IDbConnection, new()
     {

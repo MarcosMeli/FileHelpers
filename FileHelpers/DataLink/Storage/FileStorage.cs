@@ -6,6 +6,7 @@ namespace FileHelpers.DataLink
     /// This class implements the <see cref="DataStorage"/>
     /// for plain text files.
     /// </summary>
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public sealed class FileStorage : DataStorage
     {
         /// <summary>

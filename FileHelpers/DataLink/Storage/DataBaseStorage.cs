@@ -34,6 +34,7 @@ namespace FileHelpers.DataLink
     /// class for Data Base storages.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public abstract class DatabaseStorage : DataStorage
     {
         #region Constructors

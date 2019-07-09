@@ -10,6 +10,7 @@ namespace FileHelpers.DataLink
     /// This is a base class that implements the <see cref="DataStorage"/> for
     /// Microsoft Access Files.
     /// </summary>
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
     public sealed class OleDbStorage : DatabaseStorage
     {
 	#region "  Constructors  "

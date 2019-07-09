@@ -11,7 +11,8 @@ namespace FileHelpers.DataLink
 	/// This is a base class that implements the <see cref="DataStorage"/> for
 	/// Microsoft SqlServer.
 	/// </summary>
-	public sealed class SqlServerStorage : DatabaseStorage
+    [Obsolete("Datalink feature is outdated and will be rewritten, see https://www.filehelpers.net/mustread/")]
+    public sealed class SqlServerStorage : DatabaseStorage
     {
 	#region "  Constructors  "
 

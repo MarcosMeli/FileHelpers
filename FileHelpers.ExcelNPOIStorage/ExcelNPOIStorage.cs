@@ -20,7 +20,9 @@ namespace FileHelpers.ExcelNPOIStorage
     /// <para><b>To use this class you need to reference the FileHelpers.ExcelNPOIStorage.dll file.</b></para>
     /// </summary>
     /// <remarks><b>This class is contained in the FileHelpers.ExcelNPOIStorage.dll and need the NPOI.dll to work correctly.</b></remarks>
+#pragma warning disable 618
     public sealed class ExcelNPOIStorage : ExcelStorageBase
+#pragma warning restore 618
     {
         //private readonly Missing mv = Missing.Value;
 
