@@ -5,7 +5,6 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.filehelpers.net" # the base hostname & protocol for your site
 github_username:  MarcosMeli
 libversion: "3.3.0"
-libversionbig: "3.3"
 author: Marcos Meli
 
 highlighter: rouge
