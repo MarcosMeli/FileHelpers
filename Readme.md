@@ -1,4 +1,4 @@
-# FileHelpers [![Join the chat at https://gitter.im/MarcosMeli/FileHelpers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarcosMeli/FileHelpers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# FileHelpers
 
 <a href="https://www.filehelpers.net"><img src="http://www.filehelpers.net/images/homepage.jpg"  /></a>
 
@@ -6,8 +6,6 @@ www.filehelpers.net
 
 [![GitHub license](https://img.shields.io/github/license/MarcosMeli/FileHelpers.svg)](https://github.com/MarcosMeli/FileHelpers#license)
 [![NuGet](https://img.shields.io/nuget/vpre/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/) [![NuGet](https://img.shields.io/nuget/dt/FileHelpers.svg)](https://www.nuget.org/packages/FileHelpers/)
-[![Stories in Ready](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=ready&title=Issues+Ready)](https://waffle.io/MarcosMeli/FileHelpers)
-[![Stories in progress](https://badge.waffle.io/MarcosMeli/FileHelpers.png?label=in%20progress&title=Issues+In%20Progress)](https://waffle.io/MarcosMeli/FileHelpers)
 
   The FileHelpers are a **free and easy to use** .NET library to read/write data from fixed length or delimited records in files, strings or streams.
 
@@ -15,7 +13,6 @@ www.filehelpers.net
 
 Support for .NET Core is available through .NET Standard.
 Since version 3.3.0 **support** for **.NET Standard 2.0** is available!
-
 There is a FileHelpers dll targeting .NET Standard 2.0 in the FileHelpers NuGet package.
 
 The **.NET Standard FileHelpers** dll is a **subset** of the **.NET Framework FileHelpers** dll.
@@ -52,7 +49,6 @@ NuGet feed
 ### License
 
  The FileHelpers are released under the **MIT License**.
-
  FileHelpers Library source and binaries are **completely free for commercial and non commercial use**.
 
 ### Sponsors
