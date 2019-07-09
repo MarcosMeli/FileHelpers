@@ -1,5 +1,5 @@
 @echo off
-RMDIR ..\packages\psake.4.3.2 /s /q
+RMDIR ..\packages\psake.4.8.0 /s /q
 SET EnableNuGetPackageRestore=true
 .nuget\NuGet.exe install .nuget\packages.config -OutputDirectory ..\packages
 .nuget\NuGet.exe restore ..\FileHelpers.sln
