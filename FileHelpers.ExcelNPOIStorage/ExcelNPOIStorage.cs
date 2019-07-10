@@ -103,9 +103,12 @@ namespace FileHelpers.ExcelNPOIStorage
         private void OpenWorkbook(Stream stream, string knownFileExtension = null)
         {
             mWorkbook = WorkbookFactory.Create(stream);
+            mWorkbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
 
             if (String.IsNullOrEmpty(SheetName))
+            {
                 mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
+            }
             else
             {
                 try
