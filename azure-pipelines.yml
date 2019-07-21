@@ -23,7 +23,7 @@ steps:
 
 - task: VSBuild@1
   inputs:
-    solution: '$(solution)'
+    solution: 'FileHelpers.sln'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
