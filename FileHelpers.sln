@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.WizardApp", "Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Demos", "FileHelpers.Demos\FileHelpers.Demos.csproj", "{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Tests", "FileHelpers.Tests\FileHelpers.Tests.csproj", "{3731CD63-3236-47FB-A27C-146D37DE88AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.Benchmarks", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
@@ -43,10 +41,6 @@ Global
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,7 +70,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{944A90EE-3AF2-476D-8C3D-ECE453ECF4AA} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 		{5F35893D-806D-4587-BC55-27E18B913B02} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 		{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 	EndGlobalSection
