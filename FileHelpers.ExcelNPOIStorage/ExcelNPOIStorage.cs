@@ -24,8 +24,6 @@ namespace FileHelpers.ExcelNPOIStorage
     public sealed class ExcelNPOIStorage : ExcelStorageBase
 #pragma warning restore 618
     {
-        //private readonly Missing mv = Missing.Value;
-
         #region "  Constructors  "
 
         /// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -85,7 +83,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         #endregion
 
-        #region "  OpenWorkbook  "
+        #region "  OpenWorkbookFromStream  "
 
         private void OpenWorkbook(string filename)
         {
@@ -95,12 +93,11 @@ namespace FileHelpers.ExcelNPOIStorage
 
             using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                var extension = Path.GetExtension(filename);
-                OpenWorkbook(file, extension);
+                OpenWorkbookFromStream(file);
             }
         }
 
-        private void OpenWorkbook(Stream stream, string knownFileExtension = null)
+        private void OpenWorkbookFromStream(Stream stream)
         {
             mWorkbook = WorkbookFactory.Create(stream);
             mWorkbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
@@ -362,10 +359,6 @@ namespace FileHelpers.ExcelNPOIStorage
 
                 SaveWorkbook(FileName);
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 CloseAndCleanUp();
@@ -396,7 +389,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 throw new ArgumentNullException("stream");
             }
 
-            return TryGetRecordsFromWorkbook(() => OpenWorkbook(stream));
+            return TryGetRecordsFromWorkbook(() => OpenWorkbookFromStream(stream));
         }
 
         private object[] TryGetRecordsFromWorkbook(Action workbookOpenerProvider)
@@ -451,10 +444,6 @@ namespace FileHelpers.ExcelNPOIStorage
                     }
                 }
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 CloseAndCleanUp();
@@ -488,7 +477,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         private class CellExtractor : ICellHandler
         {
-            private List<object> _cells;
+            private readonly List<object> _cells;
 
             /// <summary>
             /// Initializes a new instance of the CellExtractor class.
@@ -515,7 +504,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         private class CellInserter : ICellHandler
         {
-            private List<object> _cells = null;
+            private readonly List<object> _cells;
             private List<object>.Enumerator _valuesEnumerator;
 
             /// <summary>
