@@ -8,7 +8,7 @@ namespace FileHelpers
     public sealed class FieldTrimAttribute : Attribute
     {
         /// <summary>A string of chars used to trim.</summary>
-        public Char[] TrimChars { get; private set; }
+        public char[] TrimChars { get; private set; }
 
         /// <summary>The TrimMode used after read.</summary>
         public TrimMode TrimMode { get; private set; }

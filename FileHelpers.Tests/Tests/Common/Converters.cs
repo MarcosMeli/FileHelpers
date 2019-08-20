@@ -37,40 +37,40 @@ namespace FileHelpers.Tests.CommonTests
         public DateTime Field2;
 
         [FieldConverter(ConverterKind.Byte)]
-        public Byte Field3;
+        public byte Field3;
 
         [FieldConverter(ConverterKind.SByte)]
-        public SByte Field4;
+        public sbyte Field4;
 
         [FieldConverter(ConverterKind.Int16)]
-        public Int16 Field5;
+        public short Field5;
 
         [FieldConverter(ConverterKind.Int32)]
-        public Int32 Field6;
+        public int Field6;
 
         [FieldConverter(ConverterKind.Int64)]
-        public Int64 Field7;
+        public long Field7;
 
         [FieldConverter(ConverterKind.UInt16)]
-        public UInt16 Field8;
+        public ushort Field8;
 
         [FieldConverter(ConverterKind.UInt32)]
-        public UInt32 Field9;
+        public uint Field9;
 
         [FieldConverter(ConverterKind.UInt64)]
-        public UInt64 Field10;
+        public ulong Field10;
 
         [FieldConverter(ConverterKind.Decimal)]
-        public Decimal Field11;
+        public decimal Field11;
 
         [FieldConverter(ConverterKind.Double)]
-        public Double Field12;
+        public double Field12;
 
         [FieldConverter(ConverterKind.Single)]
-        public Single Field13;
+        public float Field13;
 
         [FieldConverter(ConverterKind.Boolean)]
-        public Boolean Field14;
+        public bool Field14;
     }
 
     // NUNIT TESTS

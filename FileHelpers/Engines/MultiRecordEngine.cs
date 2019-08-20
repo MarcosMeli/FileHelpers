@@ -144,8 +144,8 @@ namespace FileHelpers
             }
 
             ResetFields();
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
 
             var resArray = new ArrayList();
 
@@ -459,8 +459,8 @@ namespace FileHelpers
                     false,
                     DefaultWriteBufferSize))
             {
-                HeaderText = String.Empty;
-                mFooterText = String.Empty;
+                HeaderText = string.Empty;
+                mFooterText = string.Empty;
 
                 WriteStream(writer, records);
                 writer.Close();
@@ -528,8 +528,8 @@ namespace FileHelpers
                 throw new ArgumentNullException("The TextReader can´t be null.");
 
             ResetFields();
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
 
             if (RecordInfo.IgnoreFirst > 0)
             {
@@ -574,7 +574,7 @@ namespace FileHelpers
         public void BeginReadString(string sourceData)
         {
             if (sourceData == null)
-                sourceData = String.Empty;
+                sourceData = string.Empty;
 
             BeginReadStream(new InternalStringReader(sourceData));
         }
@@ -970,8 +970,8 @@ namespace FileHelpers
         public void BeginAppendToFile(string fileName)
         {
             mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, DefaultWriteBufferSize);
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
         }
 
         #endregion

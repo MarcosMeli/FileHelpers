@@ -24,11 +24,11 @@ namespace FileHelpers.Tests.CommonTests
         private class SOXLog
         {
             [FieldDelimiter(": ")]
-            internal String DummyField;
+            internal string DummyField;
 
             public ActionEnum ActionType;
-            public String TimeStamp;
-            public String FileName;
+            public string TimeStamp;
+            public string FileName;
         }
 
         /// <summary> 

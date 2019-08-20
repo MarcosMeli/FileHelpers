@@ -195,7 +195,7 @@ private string GetInsertSql(object record)
             CustomersVerticalBar obj = (CustomersVerticalBar) record;
 
             return
-                String.Format(
+                string.Format(
                     "INSERT INTO Customers (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
                     " VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\"  ); ",
                     obj.Address,

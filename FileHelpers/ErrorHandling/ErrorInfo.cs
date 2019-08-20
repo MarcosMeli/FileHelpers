@@ -76,7 +76,7 @@ namespace FileHelpers
             public override string FieldToString(object from)
             {
                 if (from == null)
-                    return String.Empty;
+                    return string.Empty;
                 else {
                     if (from is ConvertException) {
                         return "In the field '" + ((ConvertException) from).FieldName + "': " +

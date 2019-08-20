@@ -276,7 +276,7 @@ namespace FileHelpers.Tests.DataLink
             var obj = (CustomersVerticalBar) record;
 
             return
-                String.Format(
+                string.Format(
                     "INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
                     " VALUES ( '{0}' , '{1}' , '{2}' , '{3}' , '{4}' , '{5}' , '{6}'  ); ",
                     obj.Address.Replace("'", "\""),
@@ -294,7 +294,7 @@ namespace FileHelpers.Tests.DataLink
         {
             var obj = (OrdersVerticalBar) record;
 
-            return String.Format("INSERT INTO OrdersTemp (CustomerId, OrderDate) " +
+            return string.Format("INSERT INTO OrdersTemp (CustomerId, OrderDate) " +
                                  " VALUES ('{0}' , '{1}'); ",
                 obj.CustomerID,
                 obj.OrderDate.ToShortDateString()

@@ -119,7 +119,7 @@ namespace FileHelpers
         private RecordInfo(Type recordType)
         {
             SizeHint = 32;
-            RecordConditionSelector = String.Empty;
+            RecordConditionSelector = string.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
             RecordType = recordType;
@@ -303,7 +303,7 @@ namespace FileHelpers
 
                 // Check for an array array in the middle of a record that is not a fixed length
                 if (prevField.IsArray) {
-                    if (prevField.ArrayMinLength == Int32.MinValue) {
+                    if (prevField.ArrayMinLength == int.MinValue) {
                         throw new BadUsageException(Messages.Errors.MissingFieldArrayLenghtInNotLastField
                             .FieldName(prevField.FieldInfo.Name)
                             .Text);

@@ -57,7 +57,7 @@ namespace KellermanSoftware.CompareNetObjects
     {
         #region Class Variables
 
-        private List<String> _differences = new List<String>();
+        private List<string> _differences = new List<string>();
         private readonly List<object> _parents = new List<object>();
         private List<string> _elementsToIgnore = new List<string>();
         private bool _comparePrivateProperties = false;
@@ -155,7 +155,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <summary>
         /// The differences found during the compare
         /// </summary>
-        public List<String> Differences
+        public List<string> Differences
         {
             get { return _differences; }
             set { _differences = value; }
@@ -736,11 +736,11 @@ namespace KellermanSoftware.CompareNetObjects
                 return false;
             else if (indexers.Length > 1)
                 throw new Exception("Cannot compare objects with more than one indexer for object " + breadCrumb);
-            else if (indexers[0].ParameterType != typeof (Int32))
+            else if (indexers[0].ParameterType != typeof (int))
                 throw new Exception("Cannot compare objects with a non integer indexer for object " + breadCrumb);
             else if (info.ReflectedType.GetProperty("Count") == null)
                 throw new Exception("Indexer must have a corresponding Count property for object " + breadCrumb);
-            else if (info.ReflectedType.GetProperty("Count").PropertyType != typeof (Int32)) {
+            else if (info.ReflectedType.GetProperty("Count").PropertyType != typeof (int)) {
                 throw new Exception("Indexer must have a corresponding Count property that is an integer for object " +
                                     breadCrumb);
             }
@@ -925,7 +925,7 @@ namespace KellermanSoftware.CompareNetObjects
         /// <returns></returns>
         private string AddBreadCrumb(string existing, string name, string extra, string index)
         {
-            bool useIndex = !String.IsNullOrEmpty(index);
+            bool useIndex = !string.IsNullOrEmpty(index);
             bool useName = name.Length > 0;
             var sb = new StringBuilder();
 
@@ -940,7 +940,7 @@ namespace KellermanSoftware.CompareNetObjects
 
             if (useIndex) {
                 int result = -1;
-                if (Int32.TryParse(index, out result))
+                if (int.TryParse(index, out result))
                     sb.AppendFormat("[{0}]", index);
                 else
                     sb.AppendFormat("[\"{0}\"]", index);

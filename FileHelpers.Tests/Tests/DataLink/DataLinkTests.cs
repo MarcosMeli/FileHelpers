@@ -119,7 +119,7 @@ namespace FileHelpers.Tests.DataLink
             var obj = (CustomersVerticalBar) record;
 
             return
-                String.Format(
+                string.Format(
                     "INSERT INTO CustomersTemp (Address, City, CompanyName, ContactName, ContactTitle, Country, CustomerID) " +
                     " VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\"  ); ",
                     obj.Address,
@@ -181,7 +181,7 @@ namespace FileHelpers.Tests.DataLink
             var obj = (OrdersFixed) record;
 
             return
-                String.Format(
+                string.Format(
                     "INSERT INTO OrdersTemp (CustomerID, EmployeeID, Freight, OrderDate, OrderID, RequiredDate, ShippedDate, ShipVia) " +
                     " VALUES ( \"{0}\" , \"{1}\" , \"{2}\" , \"{3}\" , \"{4}\" , \"{5}\" , \"{6}\" , \"{7}\"  ) ",
                     obj.CustomerID,

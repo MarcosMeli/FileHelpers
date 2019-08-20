@@ -31,34 +31,34 @@ namespace FileHelpers.Tests.Converters
         private class AllTypesClass
         {
             [FieldConverter(ConverterKind.Boolean, "1", "0")]
-            public Boolean fldBoolean;
+            public bool fldBoolean;
 
-            public Byte fldByte;
+            public byte fldByte;
 
-            public SByte fldSByte;
+            public sbyte fldSByte;
 
-            public Int16 fldInt16;
+            public short fldInt16;
 
-            public UInt16 fldUInt16;
+            public ushort fldUInt16;
 
-            public Int32 fldInt32;
+            public int fldInt32;
 
-            public UInt32 fldUInt32;
+            public uint fldUInt32;
 
-            public Int64 fldInt64;
+            public long fldInt64;
 
-            public UInt64 fldUInt64;
+            public ulong fldUInt64;
 
-            public Single fldSingle;
+            public float fldSingle;
 
-            public Double fldDouble;
+            public double fldDouble;
 
-            public Decimal fldDecimal;
+            public decimal fldDecimal;
 
             [FieldConverter(ConverterKind.Date, "dd.MM.yyyy HH:mm:ss")]
             public DateTime fldDateTime;
 
-            public Char fldChar;
+            public char fldChar;
 
             [FieldConverter(ConverterKind.Guid, "D")]
             public Guid fldGuid;

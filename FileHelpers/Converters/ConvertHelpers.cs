@@ -98,25 +98,25 @@ namespace FileHelpers
             // Try to assign a default Converter
             if (fieldType == typeof(string))
                 return null;
-            if (fieldType == typeof(Int16))
+            if (fieldType == typeof(short))
                 return new Int16Converter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(Int32))
+            if (fieldType == typeof(int))
                 return new Int32Converter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(Int64))
+            if (fieldType == typeof(long))
                 return new Int64Converter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(SByte))
+            if (fieldType == typeof(sbyte))
                 return new SByteConverter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(UInt16))
+            if (fieldType == typeof(ushort))
                 return new UInt16Converter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(UInt32))
+            if (fieldType == typeof(uint))
                 return new UInt32Converter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(UInt64))
+            if (fieldType == typeof(ulong))
                 return new UInt64Converter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(byte))
@@ -128,7 +128,7 @@ namespace FileHelpers
             if (fieldType == typeof(double))
                 return new DoubleConverter(defaultCultureName ?? DefaultDecimalSep);
 
-            if (fieldType == typeof(Single))
+            if (fieldType == typeof(float))
                 return new SingleConverter(defaultCultureName ?? DefaultDecimalSep);
 
             if (fieldType == typeof(DateTime))
@@ -225,7 +225,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">decimal separator to use '.' or ','</param>
             public ByteConverter(string decimalSepOrCultureName)
-                : base(typeof(Byte), decimalSepOrCultureName) { }
+                : base(typeof(byte), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to a byte value
@@ -257,7 +257,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">Decimal separator</param>
             public UInt16Converter(string decimalSepOrCultureName)
-                : base(typeof(UInt16), decimalSepOrCultureName) { }
+                : base(typeof(ushort), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Parse a string to a short integer
@@ -268,7 +268,7 @@ namespace FileHelpers
             {
                 ushort res;
                 if (
-                    !UInt16.TryParse(StringHelper.RemoveBlanks(from),
+                    !ushort.TryParse(StringHelper.RemoveBlanks(from),
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -293,7 +293,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for to separate decimal</param>
             public UInt32Converter(string decimalSepOrCultureName)
-                : base(typeof(UInt32), decimalSepOrCultureName) { }
+                : base(typeof(uint), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to a unsigned integer value
@@ -304,7 +304,7 @@ namespace FileHelpers
             {
                 uint res;
                 if (
-                    !UInt32.TryParse(StringHelper.RemoveBlanks(from),
+                    !uint.TryParse(StringHelper.RemoveBlanks(from),
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -329,7 +329,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for separator</param>
             public UInt64Converter(string decimalSepOrCultureName)
-                : base(typeof(UInt64), decimalSepOrCultureName) { }
+                : base(typeof(ulong), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to an unsigned integer long
@@ -340,7 +340,7 @@ namespace FileHelpers
             {
                 ulong res;
                 if (
-                    !UInt64.TryParse(StringHelper.RemoveBlanks(from),
+                    !ulong.TryParse(StringHelper.RemoveBlanks(from),
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -369,7 +369,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for separator</param>
             public SByteConverter(string decimalSepOrCultureName)
-                : base(typeof(SByte), decimalSepOrCultureName) { }
+                : base(typeof(sbyte), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to an signed byte
@@ -379,7 +379,7 @@ namespace FileHelpers
             protected override object ParseString(string from)
             {
                 sbyte res;
-                if (!SByte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
+                if (!sbyte.TryParse(StringHelper.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
                     throw new ConvertException(from, mType);
                 return res;
             }
@@ -554,7 +554,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for separator</param>
             public SingleConverter(string decimalSepOrCultureName)
-                : base(typeof(Single), decimalSepOrCultureName) { }
+                : base(typeof(float), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to an single precision floating point
@@ -565,7 +565,7 @@ namespace FileHelpers
             {
                 float res;
                 if (
-                    !Single.TryParse(StringHelper.RemoveBlanks(from),
+                    !float.TryParse(StringHelper.RemoveBlanks(from),
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -590,7 +590,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for separator</param>
             public DoubleConverter(string decimalSepOrCultureName)
-                : base(typeof(Double), decimalSepOrCultureName) { }
+                : base(typeof(double), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to an floating point
@@ -601,7 +601,7 @@ namespace FileHelpers
             {
                 double res;
                 if (
-                    !Double.TryParse(StringHelper.RemoveBlanks(from),
+                    !double.TryParse(StringHelper.RemoveBlanks(from),
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -629,7 +629,7 @@ namespace FileHelpers
             /// </summary>
             /// <param name="decimalSepOrCultureName">dot or comma for separator</param>
             public PercentDoubleConverter(string decimalSepOrCultureName)
-                : base(typeof(Double), decimalSepOrCultureName) { }
+                : base(typeof(double), decimalSepOrCultureName) { }
 
             /// <summary>
             /// Convert a string to an floating point from percentage
@@ -643,7 +643,7 @@ namespace FileHelpers
                 if (blanksRemoved.EndsWith("%"))
                 {
                     if (
-                        !Double.TryParse(blanksRemoved,
+                        !double.TryParse(blanksRemoved,
                             NumberStyles.Number | NumberStyles.AllowExponent,
                             mCulture,
                             out res))
@@ -653,7 +653,7 @@ namespace FileHelpers
                 else
                 {
                     if (
-                        !Double.TryParse(blanksRemoved,
+                        !double.TryParse(blanksRemoved,
                             NumberStyles.Number | NumberStyles.AllowExponent,
                             mCulture,
                             out res))
@@ -792,7 +792,7 @@ namespace FileHelpers
                 for (int i = 0; i < formats.Length; i++)
                 {
                     if (formats[i] == null ||
-                        formats[i] == String.Empty)
+                        formats[i] == string.Empty)
                         throw new BadUsageException("The format of the DateTime Converter can be null or empty.");
 
                     try
@@ -1071,7 +1071,7 @@ namespace FileHelpers
             public override object StringToField(string from)
             {
                 if (string.IsNullOrEmpty(from))
-                    return Char.MinValue;
+                    return char.MinValue;
 
                 try
                 {
@@ -1088,13 +1088,13 @@ namespace FileHelpers
 
                         default:
                             throw new ConvertException(from,
-                                typeof(Char),
+                                typeof(char),
                                 "Unknown char convert flag " + mFormat.ToString());
                     }
                 }
                 catch
                 {
-                    throw new ConvertException(from, typeof(Char), "Upper or lower case of input string failed");
+                    throw new ConvertException(from, typeof(char), "Upper or lower case of input string failed");
                 }
             }
 
@@ -1117,7 +1117,7 @@ namespace FileHelpers
                         return char.ToUpper(Convert.ToChar(from)).ToString();
 
                     default:
-                        throw new ConvertException("", typeof(Char), "Unknown char convert flag " + mFormat.ToString());
+                        throw new ConvertException("", typeof(char), "Unknown char convert flag " + mFormat.ToString());
                 }
             }
         }
@@ -1146,7 +1146,7 @@ namespace FileHelpers
             /// <param name="format">Format code for GUID</param>
             public GuidConverter(string format)
             {
-                if (String.IsNullOrEmpty(format))
+                if (string.IsNullOrEmpty(format))
                     format = "D";
 
                 format = format.Trim().ToUpper();
@@ -1164,7 +1164,7 @@ namespace FileHelpers
             /// <returns>GUID object or GUID empty</returns>
             public override object StringToField(string from)
             {
-                if (String.IsNullOrEmpty(from))
+                if (string.IsNullOrEmpty(from))
                     return Guid.Empty;
 
                 try
@@ -1185,7 +1185,7 @@ namespace FileHelpers
             public override string FieldToString(object from)
             {
                 if (from == null)
-                    return String.Empty;
+                    return string.Empty;
                 return ((Guid)from).ToString(mFormat);
             }
         }

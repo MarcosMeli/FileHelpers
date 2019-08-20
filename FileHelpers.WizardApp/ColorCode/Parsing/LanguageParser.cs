@@ -118,7 +118,7 @@ namespace ExamplesFx.ColorCode.Parsing
                 string styleName = compiledLanguage.Captures[i];
 
                 if (regexGroup.Length == 0 ||
-                    String.IsNullOrEmpty(styleName))
+                    string.IsNullOrEmpty(styleName))
                     continue;
                 else {
                     foreach (Capture regexCapture in regexGroup.Captures)

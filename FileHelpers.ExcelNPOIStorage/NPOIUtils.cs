@@ -46,11 +46,11 @@ namespace FileHelpers.ExcelNPOIStorage
                 cell.SetCellValue(null as string);
 
             else if (value is string ||
-                     value is String)
+                     value is string)
                 cell.SetCellValue(value as string);
 
             else if (value is bool ||
-                     value is Boolean)
+                     value is bool)
                 cell.SetCellValue((bool) value);
 
             else if (value is DateTime) {

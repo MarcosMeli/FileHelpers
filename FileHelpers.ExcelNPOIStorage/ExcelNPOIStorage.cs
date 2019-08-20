@@ -102,7 +102,7 @@ namespace FileHelpers.ExcelNPOIStorage
             mWorkbook = WorkbookFactory.Create(stream);
             mWorkbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
 
-            if (String.IsNullOrEmpty(SheetName))
+            if (string.IsNullOrEmpty(SheetName))
             {
                 mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
             }
@@ -150,7 +150,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 mWorkbook = new XSSFWorkbook();
             else if (extension.ToLowerInvariant() == ".xls")
                 mWorkbook = new HSSFWorkbook();
-            mSheet = mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
+            mSheet = mSheet = string.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }
 
@@ -336,12 +336,12 @@ namespace FileHelpers.ExcelNPOIStorage
                 if (OverrideFile && File.Exists(FileName))
                     File.Delete(FileName);
 
-                if (!String.IsNullOrEmpty(TemplateFile))
+                if (!string.IsNullOrEmpty(TemplateFile))
                 {
                     if (File.Exists(TemplateFile) == false)
                         throw new ExcelBadUsageException(string.Concat("Template file not found: '", TemplateFile, "'"));
 
-                    if (String.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0)
+                    if (string.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0)
                         File.Copy(TemplateFile, FileName, true);
                 }
 
@@ -374,7 +374,7 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <returns>The extracted records.</returns>
         public override object[] ExtractRecords()
         {
-            if (String.IsNullOrEmpty(FileName))
+            if (string.IsNullOrEmpty(FileName))
                 throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
             return TryGetRecordsFromWorkbook(() => OpenWorkbook(FileName));
@@ -468,7 +468,7 @@ namespace FileHelpers.ExcelNPOIStorage
             for (int i = 1; i < values.Length; i++)
             {
                 res += "," + (values[i] == null
-                    ? String.Empty
+                    ? string.Empty
                     : values[i].ToString());
             }
 

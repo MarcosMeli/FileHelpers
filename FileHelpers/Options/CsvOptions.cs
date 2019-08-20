@@ -184,11 +184,11 @@ namespace FileHelpers.Options
                 return string.Empty;
             else if (o is DateTime)
                 return mDateConv.FieldToString(o);
-            else if (o is Decimal)
+            else if (o is decimal)
                 return mDecimalConv.FieldToString(o);
-            else if (o is Double)
+            else if (o is double)
                 return mDoubleConv.FieldToString(o);
-            else if (o is Single)
+            else if (o is float)
                 return mSingleConv.FieldToString(o);
             else
                 return o.ToString();

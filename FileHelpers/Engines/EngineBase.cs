@@ -142,7 +142,7 @@ namespace FileHelpers
 
         /// <summary>The Read Footer in the last Read operation. If any.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        protected string mFooterText = String.Empty;
+        protected string mFooterText = string.Empty;
 
         /// <summary>The Read Footer in the last Read operation. If any.</summary>
         public string FooterText

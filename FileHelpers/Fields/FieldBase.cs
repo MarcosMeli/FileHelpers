@@ -661,7 +661,7 @@ namespace FileHelpers
             try
             {
                 object val;
-                if (IsNotEmpty && String.IsNullOrEmpty(extractedString))
+                if (IsNotEmpty && string.IsNullOrEmpty(extractedString))
                 {
                     throw new InvalidOperationException("The value is empty and must be populated.");
                 }
@@ -759,7 +759,7 @@ namespace FileHelpers
             }
         }
 
-        private String TrimString(string extractedString)
+        private string TrimString(string extractedString)
         {
             switch (TrimMode)
             {

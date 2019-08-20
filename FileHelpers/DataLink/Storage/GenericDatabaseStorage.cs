@@ -48,7 +48,7 @@ namespace FileHelpers.DataLink
         /// <returns>Database connection object</returns>
         protected override sealed IDbConnection CreateConnection()
         {
-            if (String.IsNullOrEmpty(ConnectionString))
+            if (string.IsNullOrEmpty(ConnectionString))
                 //throw new FileHelpersException( "The connection cannot open because connection string is null or empty." );
                 throw new Exception("The connection cannot open because connection string is null or empty.");
 

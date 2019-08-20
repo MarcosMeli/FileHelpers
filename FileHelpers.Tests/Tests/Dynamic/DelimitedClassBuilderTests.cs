@@ -228,7 +228,7 @@ namespace FileHelpers.Tests.Dynamic
                 if (from == "NaN")
                     return null;
                 else
-                    return Convert.ToInt32(Int32.Parse(from));
+                    return Convert.ToInt32(int.Parse(from));
             }
 
             public override string FieldToString(object fieldValue)

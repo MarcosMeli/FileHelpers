@@ -377,7 +377,7 @@ public class Orders
 
         private RecordAction ExampleSelector(string record)
         {
-            if (Char.IsLetter(record[0]))
+            if (char.IsLetter(record[0]))
                 return RecordAction.Master;
             else
                 return RecordAction.Detail;

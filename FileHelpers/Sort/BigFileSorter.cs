@@ -31,7 +31,7 @@ namespace FileHelpers
             /// <returns>Comparison</returns>
             public int CompareTo(SorterRecord other)
             {
-                return String.Compare(Value, other.Value, StringComparison.Ordinal);
+                return string.Compare(Value, other.Value, StringComparison.Ordinal);
             }
         }
 
