@@ -45,7 +45,7 @@ namespace ExamplesFx
         {
             public override object StringToField(string from)
             {
-                return Convert.ToDecimal(Decimal.Parse(from) / 100);
+                return Convert.ToDecimal(decimal.Parse(from) / 100);
             }
 
             public override string FieldToString(object fieldValue)

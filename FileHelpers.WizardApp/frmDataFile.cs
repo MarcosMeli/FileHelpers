@@ -10,7 +10,7 @@ namespace FileHelpers.WizardApp
             InitializeComponent();
         }
 
-        public static void ShowData(String txt)
+        public static void ShowData(string txt)
         {
             frmDataFile frm = new frmDataFile();
 

@@ -193,8 +193,8 @@ namespace FileHelpers
             var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
 
             if (RecordInfo.IgnoreFirst > 0)
             {
@@ -245,7 +245,7 @@ namespace FileHelpers
         public IDisposable BeginReadString(string sourceData)
         {
             if (sourceData == null)
-                sourceData = String.Empty;
+                sourceData = string.Empty;
 
             BeginReadStream(new InternalStringReader(sourceData));
             return this;
@@ -529,8 +529,8 @@ namespace FileHelpers
                 throw new BadUsageException("You can't start to write while you are reading.");
 
             mAsyncWriter = StreamHelper.CreateFileAppender(fileName, mEncoding, false, true, bufferSize);
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
             State = EngineState.Writing;
             mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;

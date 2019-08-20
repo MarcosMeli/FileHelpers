@@ -16,7 +16,7 @@ namespace FileHelpers
         /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
         public DelimitedRecordAttribute(string delimiter, string defaultCultureName = null) : base(defaultCultureName: defaultCultureName)
         {
-            if (Separator != String.Empty)
+            if (Separator != string.Empty)
                 Separator = delimiter;
             else
                 throw new ArgumentException("Given delimiter cannot be <> \"\"", nameof(delimiter));

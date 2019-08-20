@@ -73,7 +73,7 @@ namespace FileHelpers.Tests.CommonTests
             {
                 public override object StringToField(string from)
                 {
-                    Byte[] bitmapData;
+                    byte[] bitmapData;
                     bitmapData = Convert.FromBase64String(from);
                     var streamBitmap = new MemoryStream(bitmapData);
                     return Image.FromStream(streamBitmap);

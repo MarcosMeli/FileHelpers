@@ -128,12 +128,12 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord(",")]
         public sealed class OptionalForReadOnEmptyFieldsClass
         {
-            public Int32 Id;
+            public int Id;
 
             [FieldQuoted('"', QuoteMode.OptionalForRead, MultilineMode.NotAllow)]
             public string Text;
 
-            public Int32? Number;
+            public int? Number;
         }
     }
 }

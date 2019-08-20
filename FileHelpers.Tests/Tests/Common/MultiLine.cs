@@ -21,70 +21,70 @@ namespace FileHelpers.Tests.CommonTests
         public sealed class FHClient
         {
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String Name;
+            public string Name;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String MailAddress;
+            public string MailAddress;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String MailCity;
+            public string MailCity;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String MailStateProvince;
+            public string MailStateProvince;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String MailCountry;
+            public string MailCountry;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String MailPostal;
+            public string MailPostal;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String DeliveryAddress;
+            public string DeliveryAddress;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String DeliveryCity;
+            public string DeliveryCity;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String DeliveryStateProvince;
+            public string DeliveryStateProvince;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String DeliveryCountry;
+            public string DeliveryCountry;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String DeliveryPostal;
+            public string DeliveryPostal;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String ContactFirstName;
+            public string ContactFirstName;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String ContactLastName;
+            public string ContactLastName;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String PrimaryPhone;
+            public string PrimaryPhone;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String Fax;
+            public string Fax;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String AltPhone;
+            public string AltPhone;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String EmailAddress;
+            public string EmailAddress;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String AccountNumber;
+            public string AccountNumber;
 
             [FieldTrim(TrimMode.Both), FieldQuoted]
-            public String WebSite;
+            public string WebSite;
 
             [FieldTrim(TrimMode.Both), FieldQuoted(MultilineMode.AllowForBoth)]
-            public String GeneralNotes;
+            public string GeneralNotes;
 
             [FieldTrim(TrimMode.Both), FieldQuoted(MultilineMode.AllowForRead)]
-            public String TechNotes;
+            public string TechNotes;
 
             [FieldTrim(TrimMode.Both), FieldQuoted(MultilineMode.AllowForBoth)]
-            public String PopupNotes;
+            public string PopupNotes;
         }
     }
 }

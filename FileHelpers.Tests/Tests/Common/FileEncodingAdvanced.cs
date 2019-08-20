@@ -71,10 +71,10 @@ namespace FileHelpers.Tests.CommonTests
         public sealed class EncodingRecord
         {
             [FieldFixedLength(26)]
-            public String Location;
+            public string Location;
 
             [FieldFixedLength(12)]
-            public String County;
+            public string County;
 
             [FieldFixedLength(5)]
             public int Elev;

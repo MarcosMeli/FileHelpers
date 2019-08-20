@@ -60,7 +60,7 @@ namespace FileHelpers.Tests.Converters
         [Test]
         public void NullDateFormat()
         {
-            String data = "23/11/2010,24/11/2010\n,\n          ,          \n";
+            string data = "23/11/2010,24/11/2010\n,\n          ,          \n";
 
             var engine = new FileHelperEngine<NullDateFormat>();
             NullDateFormat[] result = engine.ReadString(data);

@@ -126,7 +126,7 @@ namespace FileHelpers
                     return true;
             }
 
-            if (!String.IsNullOrEmpty(mRecordInfo.CommentMarker)) {
+            if (!string.IsNullOrEmpty(mRecordInfo.CommentMarker)) {
                 if ((mRecordInfo.CommentAnyPlace && StringHelper.StartsWithIgnoringWhiteSpaces(line, mRecordInfo.CommentMarker, StringComparison.Ordinal)) ||
                     line.StartsWith(mRecordInfo.CommentMarker, StringComparison.Ordinal))
                     return true;

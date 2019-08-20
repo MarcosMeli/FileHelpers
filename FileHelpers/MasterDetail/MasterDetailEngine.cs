@@ -230,8 +230,8 @@ namespace FileHelpers.MasterDetail
             var recordReader = new NewLineDelimitedRecordReader(reader);
 
             ResetFields();
-            HeaderText = String.Empty;
-            mFooterText = String.Empty;
+            HeaderText = string.Empty;
+            mFooterText = string.Empty;
 
             var resArray = new ArrayList();
 
@@ -533,8 +533,8 @@ namespace FileHelpers.MasterDetail
                     false,
                     DefaultWriteBufferSize))
             {
-                HeaderText = String.Empty;
-                mFooterText = String.Empty;
+                HeaderText = string.Empty;
+                mFooterText = string.Empty;
 
                 WriteStream(writer, records);
                 writer.Close();

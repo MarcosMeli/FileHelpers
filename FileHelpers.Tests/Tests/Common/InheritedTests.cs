@@ -142,14 +142,14 @@ namespace FileHelpers.Tests.CommonTests
 
                 public override string FieldToString(object from)
                 {
-                    Decimal v = Convert.ToDecimal(from);
+                    decimal v = Convert.ToDecimal(from);
                     v *= (10 ^ DECIMAL_PLACES);
                     return Convert.ToInt64(v).ToString();
                 }
 
                 public override object StringToField(string from)
                 {
-                    return Convert.ToDecimal(Decimal.Parse(from)/(10 ^ DECIMAL_PLACES));
+                    return Convert.ToDecimal(decimal.Parse(from)/(10 ^ DECIMAL_PLACES));
                 }
             }
 

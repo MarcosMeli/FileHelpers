@@ -58,8 +58,8 @@ namespace FileHelpers.DataLink
 
         #region "  Private Fields  "
 
-        private string mSheetName = String.Empty;
-        private string mFileName = String.Empty;
+        private string mSheetName = string.Empty;
+        private string mFileName = string.Empty;
 
         private int mStartRow = 1;
         private int mStartColumn = 1;

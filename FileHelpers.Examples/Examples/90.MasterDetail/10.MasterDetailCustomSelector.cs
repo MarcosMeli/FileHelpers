@@ -38,7 +38,7 @@ namespace ExamplesFx
             if (record.Length < 2)
                 return RecordAction.Skip;
 
-            if (Char.IsLetter(record[0]))
+            if (char.IsLetter(record[0]))
                 return RecordAction.Master;
             else
                 return RecordAction.Detail;

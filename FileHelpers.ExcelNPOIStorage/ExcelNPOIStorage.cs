@@ -24,8 +24,6 @@ namespace FileHelpers.ExcelNPOIStorage
     public sealed class ExcelNPOIStorage : ExcelStorageBase
 #pragma warning restore 618
     {
-        //private readonly Missing mv = Missing.Value;
-
         #region "  Constructors  "
 
         /// <summary>Create a new ExcelStorage to work with the specified type</summary>
@@ -85,7 +83,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         #endregion
 
-        #region "  OpenWorkbook  "
+        #region "  OpenWorkbookFromStream  "
 
         private void OpenWorkbook(string filename)
         {
@@ -95,17 +93,19 @@ namespace FileHelpers.ExcelNPOIStorage
 
             using (FileStream file = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                var extension = Path.GetExtension(filename);
-                OpenWorkbook(file, extension);
+                OpenWorkbookFromStream(file);
             }
         }
 
-        private void OpenWorkbook(Stream stream, string knownFileExtension = null)
+        private void OpenWorkbookFromStream(Stream stream)
         {
             mWorkbook = WorkbookFactory.Create(stream);
+            mWorkbook.MissingCellPolicy = MissingCellPolicy.CREATE_NULL_AS_BLANK;
 
-            if (String.IsNullOrEmpty(SheetName))
+            if (string.IsNullOrEmpty(SheetName))
+            {
                 mSheet = mWorkbook.GetSheetAt(mWorkbook.ActiveSheetIndex);
+            }
             else
             {
                 try
@@ -150,7 +150,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 mWorkbook = new XSSFWorkbook();
             else if (extension.ToLowerInvariant() == ".xls")
                 mWorkbook = new HSSFWorkbook();
-            mSheet = mSheet = String.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
+            mSheet = mSheet = string.IsNullOrEmpty(SheetName) ? mWorkbook.CreateSheet() : mWorkbook.CreateSheet(SheetName);
             mWorkbook.SetActiveSheet(0);
         }
 
@@ -336,12 +336,12 @@ namespace FileHelpers.ExcelNPOIStorage
                 if (OverrideFile && File.Exists(FileName))
                     File.Delete(FileName);
 
-                if (!String.IsNullOrEmpty(TemplateFile))
+                if (!string.IsNullOrEmpty(TemplateFile))
                 {
                     if (File.Exists(TemplateFile) == false)
                         throw new ExcelBadUsageException(string.Concat("Template file not found: '", TemplateFile, "'"));
 
-                    if (String.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0)
+                    if (string.Compare(TemplateFile, FileName, StringComparison.OrdinalIgnoreCase) != 0)
                         File.Copy(TemplateFile, FileName, true);
                 }
 
@@ -359,10 +359,6 @@ namespace FileHelpers.ExcelNPOIStorage
 
                 SaveWorkbook(FileName);
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 CloseAndCleanUp();
@@ -378,7 +374,7 @@ namespace FileHelpers.ExcelNPOIStorage
         /// <returns>The extracted records.</returns>
         public override object[] ExtractRecords()
         {
-            if (String.IsNullOrEmpty(FileName))
+            if (string.IsNullOrEmpty(FileName))
                 throw new ExcelBadUsageException("You need to specify the WorkBookFile of the ExcelDataLink.");
 
             return TryGetRecordsFromWorkbook(() => OpenWorkbook(FileName));
@@ -393,7 +389,7 @@ namespace FileHelpers.ExcelNPOIStorage
                 throw new ArgumentNullException("stream");
             }
 
-            return TryGetRecordsFromWorkbook(() => OpenWorkbook(stream));
+            return TryGetRecordsFromWorkbook(() => OpenWorkbookFromStream(stream));
         }
 
         private object[] TryGetRecordsFromWorkbook(Action workbookOpenerProvider)
@@ -448,10 +444,6 @@ namespace FileHelpers.ExcelNPOIStorage
                     }
                 }
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 CloseAndCleanUp();
@@ -476,7 +468,7 @@ namespace FileHelpers.ExcelNPOIStorage
             for (int i = 1; i < values.Length; i++)
             {
                 res += "," + (values[i] == null
-                    ? String.Empty
+                    ? string.Empty
                     : values[i].ToString());
             }
 
@@ -485,7 +477,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         private class CellExtractor : ICellHandler
         {
-            private List<object> _cells;
+            private readonly List<object> _cells;
 
             /// <summary>
             /// Initializes a new instance of the CellExtractor class.
@@ -512,7 +504,7 @@ namespace FileHelpers.ExcelNPOIStorage
 
         private class CellInserter : ICellHandler
         {
-            private List<object> _cells = null;
+            private readonly List<object> _cells;
             private List<object>.Enumerator _valuesEnumerator;
 
             /// <summary>

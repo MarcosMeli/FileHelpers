@@ -42,35 +42,35 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class NoChangeCharClass
         {
-            public Char fldChar;
-            public Char fldChar2;
+            public char fldChar;
+            public char fldChar2;
         }
 
         [DelimitedRecord(";")]
         private class LowerCharClass
         {
             [FieldConverter(ConverterKind.Char, "x")]
-            public Char fldChar;
+            public char fldChar;
 
             [FieldConverter(ConverterKind.Char, "lower")]
-            public Char fldChar2;
+            public char fldChar2;
         }
 
         [DelimitedRecord(";")]
         private class UpperCharClass
         {
             [FieldConverter(ConverterKind.Char, "X")]
-            public Char fldChar;
+            public char fldChar;
 
             [FieldConverter(ConverterKind.Char, "upper")]
-            public Char fldChar2;
+            public char fldChar2;
         }
 
         [DelimitedRecord(";")]
         private class IAmBadCharClass
         {
             [FieldConverter(ConverterKind.Char, "Rubbish")]
-            public Char fldChar;
+            public char fldChar;
         }
     }
 }

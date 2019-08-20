@@ -137,7 +137,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
             if (recordLine.Length == 0)
                 return null;
 
-            if (Char.IsLetter(recordLine[0]))
+            if (char.IsLetter(recordLine[0]))
                 return typeof (Customer);
             else if (recordLine.Length == 14)
                 return typeof (SampleType);

@@ -186,7 +186,7 @@ namespace FileHelpers.Tests
 
         private Type CustomSelector(MultiRecordEngine engine, string record)
         {
-            if (Char.IsLetter(record[0]))
+            if (char.IsLetter(record[0]))
                 return typeof (CustomersSemiColon);
             else if (record.Length == 14)
                 return typeof (SampleType);
@@ -196,7 +196,7 @@ namespace FileHelpers.Tests
 
         private Type CustomSelectorReturningBadType(MultiRecordEngine engine, string record)
         {
-            return typeof (String);
+            return typeof (string);
         }
     }
 }

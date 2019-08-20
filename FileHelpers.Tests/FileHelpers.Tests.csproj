@@ -386,6 +386,7 @@
     <Content Include="Data\Excel\ExcelWithNoEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithOneEmptyRows.xlsx" />
     <Content Include="Data\Excel\ExcelWithTwoEmptyRows.xlsx" />
+    <None Include="Data\Excel\ExcelWithEmptyCells.xlsx" />
     <None Include="FileHelpers.snk" />
     <None Include="Data\Good\EncodingChinese.bin" />
     <Compile Include="Tests\Detector\HeaderDetection.cs" />
