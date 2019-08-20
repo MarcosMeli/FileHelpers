@@ -3,8 +3,6 @@
 namespace FileHelpers.Tests.Tests.DataLink
 {
     [TestFixture]
-    [Ignore("Fails on linux")]
-    [Category("Excel")]
     public class ExcelStorageNPOITests
     {
         [Test]
@@ -67,7 +65,6 @@ namespace FileHelpers.Tests.Tests.DataLink
             Assert.AreEqual("Test, 2", res[1].TestField);
             Assert.AreEqual(" Test 3", res[2].TestField);
             Assert.AreEqual(null, res[3].TestField);
-
 
             Assert.AreEqual(11, res[0].Id);
             Assert.AreEqual(null, res[1].Id);
