@@ -6,12 +6,12 @@
     <title>FileHelpers</title>
     <authors>Marcos Meli and Contributors</authors>
     <owners>Marcos Meli</owners>
-    <licenseUrl>http://www.filehelpers.net/#license</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>http://www.filehelpers.net</projectUrl>
-    <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
+    <repository type="git" url="https://github.com/MarcosMeli/FileHelpers.git" branch="master" />
+    <icon>http://www.filehelpers.net/images/filehelpers_box_small.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Open Source library for automatic formatted file read/write operations www.filehelpers.net</description>
-    <summary>Open Source library for automatic formatted file read/write operations</summary>
     <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
     <copyright>Marcos Meli - Devoo</copyright>
     <tags>FileHelpers, Data, Flat File, CSV, FixedLength, Fixed, Delimited, Import, Export, ETL, FileHelper, .NET, .NET Core</tags>
