@@ -258,6 +258,7 @@ namespace FileHelpers
 
                     res = new FixedLengthField(fi,
                         attbFixedLength.Length,
+                        attbFixedLength.OverflowMode,
                         attbAlign,
                         recordAttribute.DefaultCultureName);
                     ((FixedLengthField)res).FixedMode = ((FixedLengthRecordAttribute)recordAttribute).FixedMode;
