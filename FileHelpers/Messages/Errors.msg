@@ -45,7 +45,7 @@
   </ExpectingFieldOptional>
 
   <SameFieldOrder>
-    The field: $FieldName1$ has the same FieldOrder as: $FieldName2$ you must use different values
+    The field: $FieldName1$ has the same FieldOrder as: $FieldName2$. You must use different values
   </SameFieldOrder>
 
   <PartialFieldOrder>
