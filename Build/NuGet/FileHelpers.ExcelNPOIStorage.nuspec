@@ -6,12 +6,11 @@
     <title>FileHelpers.ExcelNPOIStorage</title>
     <authors>Marcos Meli and Contributors</authors>
     <owners>Marcos Meli</owners>
-    <licenseUrl>http://www.filehelpers.net/#license</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>http://www.filehelpers.net</projectUrl>
-    <iconUrl>http://www.filehelpers.net/images/filehelpers_box_small.png</iconUrl>
+    <repository type="git" url="https://github.com/MarcosMeli/FileHelpers.git" branch="master" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</description>
-    <summary>Extension for FileHelpers to support Excel read/write operations using NPOI Library</summary>
     <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
     <copyright>Marcos Meli - Devoo</copyright>
     <tags>Excel, Data, Import, Export, FileHelpers, FileHelper, .Net</tags>
