@@ -1,7 +1,6 @@
 image: Visual Studio 2019
 version: 3.4.1.{build}
 install:
-- appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 - ps: >-
     nuget install Build\.nuget\packages.config -OutputDirectory packages
 
