@@ -9,7 +9,6 @@
     <license type="expression">MIT</license>
     <projectUrl>http://www.filehelpers.net</projectUrl>
     <repository type="git" url="https://github.com/MarcosMeli/FileHelpers.git" branch="master" />
-    <icon>http://www.filehelpers.net/images/filehelpers_box_small.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</description>
     <releaseNotes>www.filehelpers.net/changelog</releaseNotes>
