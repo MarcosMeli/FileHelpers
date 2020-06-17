@@ -27,7 +27,7 @@ namespace FileHelpers.Helpers
             if (line.IsEOL())
             {
                 throw new BadUsageException(
-                    "An empty String found. This can not be parsed like a QuotedString try to use SafeExtractQuotedString");
+                    "An empty String found. This cannot be parsed like a QuotedString - try to use SafeExtractQuotedString");
             }
 
             if (line.mLineStr[line.mCurrentPos] != quoteChar)
@@ -88,7 +88,7 @@ namespace FileHelpers.Helpers
                 }
             }
 
-            throw new BadUsageException("The current field has an unclosed quoted string. Complete Filed String: " +
+            throw new BadUsageException("The current field has an unclosed quoted string. Complete Field String: " +
                                         res);
         }
 

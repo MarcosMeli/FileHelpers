@@ -146,7 +146,7 @@ namespace FileHelpers
                 return new EnumConverter(fieldType);
 
             throw new BadUsageException("The field: '" + fieldName + "' has the type: " + fieldType.Name +
-                                        " that is not a system type, so this field need a CustomConverter ( Please Check the docs for more Info).");
+                                        " which is not a system type, so this field needs a CustomConverter (please check the docs for more info).");
         }
 
         #endregion
