@@ -106,7 +106,7 @@ namespace FileHelpers
                         !line.IsEOL()) {
                         throw new BadUsageException(line,
                             "The field " + FieldInfo.Name + " is quoted but the quoted char: " + quotedStr +
-                            " not is just before the separator (You can use [FieldTrim] to avoid this error)");
+                            " is not just before the separator (You can use [FieldTrim] to avoid this error)");
                     }
                     return res;
                 }
@@ -116,7 +116,7 @@ namespace FileHelpers
                         return BasicExtractString(line);
                     else if (line.StartsWithTrim(quotedStr)) {
                         throw new BadUsageException(
-                            $"The field '{FieldInfo.Name}' has spaces before the QuotedChar at line {line.mReader.LineNumber}. Use the TrimAttribute to by pass this error. Field String: {line.CurrentString}");
+                            $"The field '{FieldInfo.Name}' has spaces before the QuotedChar at line {line.mReader.LineNumber}. Use the TrimAttribute to bypass this error. Field String: {line.CurrentString}");
                     }
                     else {
                         throw new BadUsageException(
@@ -139,8 +139,7 @@ namespace FileHelpers
                     string.Format(
                         "Delimiter '{0}' found after the last field '{1}' (the file is wrong or you need to add a field to the record class)",
                         Separator,
-                        FieldInfo.Name,
-                        line.mReader.LineNumber);
+                        FieldInfo.Name);
 
                 throw new BadUsageException(line.mReader.LineNumber, line.mCurrentPos, msg);
             }
@@ -194,7 +193,7 @@ namespace FileHelpers
                 (QuoteMultiline == MultilineMode.AllowForRead ||
                  QuoteMultiline == MultilineMode.NotAllow)) {
                 throw new BadUsageException("One value for the field " + FieldInfo.Name +
-                                            " has a new line inside. To allow write this value you must add a FieldQuoted attribute with the multiline option in true.");
+                                            " has a new line inside. To allow this value to be written you must add a FieldQuoted attribute with the multiline option set.");
             }
 
             // Add Quotes If:

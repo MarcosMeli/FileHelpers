@@ -34,7 +34,7 @@ namespace FileHelpers
         {
             if (RecordInfo.IsDelimited) {
                 throw new BadUsageException(
-                    "The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
+                    "The FixedFileEngine only accepts Record Types marked with the FixedLengthRecord attribute");
             }
         }
 
@@ -88,7 +88,7 @@ namespace FileHelpers
         {
             if (RecordInfo.IsDelimited) {
                 throw new BadUsageException(
-                    "The FixedFileEngine only accepts Record Types marked with FixedLengthRecord attribute");
+                    "The FixedFileEngine only accepts Record Types marked with the FixedLengthRecord attribute");
             }
         }
 

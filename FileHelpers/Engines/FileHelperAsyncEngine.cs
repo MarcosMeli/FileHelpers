@@ -259,7 +259,7 @@ namespace FileHelpers
         public T ReadNext()
         {
             if (mAsyncReader == null)
-                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+                throw new BadUsageException("Before calling ReadNext you must call BeginReadFile or BeginReadStream.");
 
             ReadNextRecord();
 
@@ -393,7 +393,7 @@ namespace FileHelpers
         public T[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
-                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+                throw new BadUsageException("Before calling ReadNext you must call BeginReadFile or BeginReadStream.");
 
             var arr = new List<T>(numberOfRecords);
 
@@ -549,7 +549,7 @@ namespace FileHelpers
         public void WriteNext(T record)
         {
             if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+                throw new BadUsageException("Before calling WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (record == null)
                 throw new BadUsageException("The record to write can't be null.");
@@ -613,7 +613,7 @@ namespace FileHelpers
         public void WriteNexts(IEnumerable<T> records)
         {
             if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+                throw new BadUsageException("Before calling WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
                 throw new ArgumentNullException(nameof(records), "The record to write can't be null.");
@@ -645,12 +645,12 @@ namespace FileHelpers
         public void WriteNextValues()
         {
             if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+                throw new BadUsageException("Before calling WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (mLastRecordValues == null)
             {
                 throw new BadUsageException(
-                    "You must set some values of the record before call this method, or use the overload that has a record as argument.");
+                    "You must set some values of the record before calling this method, or use the overload that has a record as argument.");
             }
 
             string currentLine = null;

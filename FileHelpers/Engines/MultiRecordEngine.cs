@@ -135,12 +135,12 @@ namespace FileHelpers
         public object[] ReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException(nameof(reader), "The reader of the Stream can´t be null");
+                throw new ArgumentNullException(nameof(reader), "The reader of the Stream can't be null");
 
             if (mRecordSelector == null)
             {
                 throw new BadUsageException(
-                    "The Recordselector can´t be null, please pass a not null Selector in the constructor.");
+                    "The RecordSelector can't be null, please pass a non-null Selector in the constructor.");
             }
 
             ResetFields();
@@ -378,7 +378,7 @@ namespace FileHelpers
                     {
                         throw new BadUsageException("The record at index " + recIndex + " is of type '" +
                                                     rec.GetType().Name +
-                                                    "' and the engine dont handle this type. You can add it to the constructor.");
+                                                    "' and the engine doesn't handle this type. You can add it to the constructor.");
                     }
 
                     if (skip == false)
@@ -478,7 +478,7 @@ namespace FileHelpers
             if (types.Length == 1)
             {
                 throw new BadUsageException(
-                    "You only provided one type to the engine constructor. You need 2 or more types, for one type you can use the FileHelperEngine.");
+                    "You only provided one type to the engine constructor. You need 2 or more types. For one type you can use the FileHelperEngine.");
             }
             return types[0];
         }
@@ -634,7 +634,7 @@ namespace FileHelpers
         public object ReadNext()
         {
             if (mAsyncReader == null)
-                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+                throw new BadUsageException("Before calling ReadNext you must call BeginReadFile or BeginReadStream.");
 
             ReadNextRecord();
 
@@ -746,7 +746,7 @@ namespace FileHelpers
         public object[] ReadNexts(int numberOfRecords)
         {
             if (mAsyncReader == null)
-                throw new BadUsageException("Before call ReadNext you must call BeginReadFile or BeginReadStream.");
+                throw new BadUsageException("Before calling ReadNext you must call BeginReadFile or BeginReadStream.");
 
             var arr = new ArrayList(numberOfRecords);
 
@@ -840,10 +840,10 @@ namespace FileHelpers
         public void WriteNext(object record)
         {
             if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+                throw new BadUsageException("Before calling WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (record == null)
-                throw new BadUsageException("The record to write can´t be null.");
+                throw new BadUsageException("The record to write can't be null.");
 
             WriteRecord(record);
         }
@@ -857,7 +857,7 @@ namespace FileHelpers
         public void WriteNexts(IEnumerable records)
         {
             if (mAsyncWriter == null)
-                throw new BadUsageException("Before call WriteNext you must call BeginWriteFile or BeginWriteStream.");
+                throw new BadUsageException("Before calling WriteNext you must call BeginWriteFile or BeginWriteStream.");
 
             if (records == null)
                 throw new ArgumentNullException(nameof(records), "The record to write can´t be null.");
@@ -888,7 +888,7 @@ namespace FileHelpers
                 if (info == null)
                 {
                     throw new BadUsageException("A record is of type '" + record.GetType().Name +
-                                                "' and the engine dont handle this type. You can add it to the constructor.");
+                                                "' and the engine doesn't handle this type. You can add it to the constructor.");
                 }
 
                 currentLine = info.Operations.RecordToString(record);

@@ -217,7 +217,7 @@ namespace FileHelpers
         {
             if (args == null) {
                 throw new BadUsageException(
-                    "The args to the constructor can be null, if you do not want to pass anything into them.");
+                    "The args to the constructor can be null if you do not want to pass anything into them.");
             }
 
             var res = new Type[args.Length];
