@@ -670,7 +670,6 @@ namespace FileHelpers.Dynamic
 
         private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] iv)
         {
-            byte[] encryptedData = null;
             using (var ms = new MemoryStream())
             {
                 Rijndael alg = Rijndael.Create();
@@ -679,7 +678,7 @@ namespace FileHelpers.Dynamic
                 using (var cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write))
                 {
                     cs.Write(clearData, 0, clearData.Length);
-                    encryptedData = ms.ToArray();
+                    byte[] encryptedData = ms.ToArray();
                     return encryptedData;
                 }
             }
