@@ -668,7 +668,6 @@ namespace FileHelpers.Dynamic
 
         #region "  EncDec  "
 
- 
         private static byte[] Encrypt(byte[] clearData, byte[] key, byte[] iv)
         {
             byte[] encryptedData = null;
@@ -685,11 +684,11 @@ namespace FileHelpers.Dynamic
                 }
             }
         }
- 
+
         private static string Encrypt(string clearText, string Password)
         {
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
- 
+
             using (var pdb = new PasswordDeriveBytes(Password,
                 new byte[] {
                     0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d,
@@ -703,8 +702,7 @@ namespace FileHelpers.Dynamic
                 return Convert.ToBase64String(encryptedData);
             }
         }
- 
- 
+
         // Decrypt a byte array into a byte array using a key and an IV 
         private static byte[] Decrypt(byte[] cipherData, byte[] key, byte[] iv)
         {
@@ -713,12 +711,12 @@ namespace FileHelpers.Dynamic
                 Rijndael alg = Rijndael.Create();
                 alg.Key = key;
                 alg.IV = iv;
- 
+
                 using (var cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write))
                 {
                     cs.Write(cipherData, 0, cipherData.Length);
                     var decryptedData = ms.ToArray();
- 
+
                     return decryptedData;
                 }
             }
@@ -737,7 +735,6 @@ namespace FileHelpers.Dynamic
                 return Encoding.Unicode.GetString(decryptedData);
             }
         }
- 
 
         #endregion
 
