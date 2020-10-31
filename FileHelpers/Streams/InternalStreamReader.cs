@@ -30,7 +30,7 @@ namespace FileHelpers.Streams
         private Stream mStream;
 
         /// <summary>
-        /// Open a file for reading allowing encoding,  detecting type and buffersize
+        /// Open a file for reading allowing encoding, detecting type and buffer size
         /// </summary>
         /// <param name="path">Filename to read</param>
         /// <param name="encoding">Encoding of file,  eg UTF8</param>
