@@ -25,31 +25,9 @@ namespace FileHelpers.Streams
         private int mCharLen;
         private int mCharPos;
         private Decoder mDecoder;
-        private const int DefaultBufferSize = 0x400;
-        private const int DefaultFileStreamBufferSize = 0x1000;
         private Encoding mEncoding;
         private const int MinBufferSize = 0x80;
         private Stream mStream;
-
-        /// <summary>
-        /// Create stream reader to be initialised later
-        /// </summary>
-        internal InternalStreamReader() {}
-
-        /// <summary>
-        /// Create a stream reader on a text file (assume UTF8)
-        /// </summary>
-        /// <param name="path">filename to reader</param>
-        public InternalStreamReader(string path)
-            : this(path, Encoding.UTF8) {}
-
-        /// <summary>
-        /// Create a stream reader specifying path and encoding
-        /// </summary>
-        /// <param name="path">path to the filename</param>
-        /// <param name="encoding">encoding of the file</param>
-        public InternalStreamReader(string path, Encoding encoding)
-            : this(path, encoding, true, DefaultBufferSize) {}
 
         /// <summary>
         /// Open a file for reading allowing encoding,  detecting type and buffersize
