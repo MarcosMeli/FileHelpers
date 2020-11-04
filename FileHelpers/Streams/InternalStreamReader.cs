@@ -54,7 +54,7 @@ namespace FileHelpers.Streams
             var stream = new FileStream(path,
                 FileMode.Open,
                 FileAccess.Read,
-                FileShare.Read,
+                FileShare.ReadWrite,
                 bufferSize,
                 FileOptions.SequentialScan);
             Init(stream, encoding, detectEncodingFromByteOrderMarks, bufferSize);
