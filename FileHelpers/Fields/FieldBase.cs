@@ -158,6 +158,12 @@ namespace FileHelpers
         /// </summary>
         internal string FieldCaption { get; private set; }
 
+        internal char? DelimitedFieldPaddingChar { get; private set; }
+
+        internal AlignMode DelimitedFieldAlignMode { get; private set; }
+
+        internal int DelimitedTotalLength { get; private set; }
+
         // --------------------------------------------------------------
         // WARNING !!!
         //    Remember to add each of these fields to the clone method !!
@@ -207,6 +213,8 @@ namespace FileHelpers
 #pragma warning restore 612,618
                 return null;
 
+            
+
             var attributes = (FieldAttribute[])mi.GetCustomAttributes(typeof(FieldAttribute), true);
 
             // CHECK USAGE ERRORS !!!
@@ -237,6 +245,14 @@ namespace FileHelpers
             {
                 throw new BadUsageException(memberName +
                                             "' can't be marked with the FieldArrayLength attribute - it is only valid for array fields.");
+            }
+
+            if(!(recordAttribute is DelimitedRecordAttribute) 
+                && mi.IsDefined(typeof(DelimitedFieldPaddingAttribute), false))
+            {
+                throw new BadUsageException(memberName +
+                                            "' can't be marked with the PaddingConverterAttribute attribute - it is only valid for delimited files.");
+
             }
 
             // PROCESS IN NORMAL CONDITIONS
@@ -298,6 +314,8 @@ namespace FileHelpers
             {
                 // FieldDiscarded
                 res.Discarded = mi.IsDefined(typeof(FieldValueDiscardedAttribute), false);
+
+                
 
                 // FieldTrim
                 Attributes.WorkWithFirst<FieldTrimAttribute>(mi,
@@ -371,6 +389,16 @@ namespace FileHelpers
             if (string.IsNullOrEmpty(res.FieldFriendlyName))
                 res.FieldFriendlyName = res.FieldName;
 
+            //PaddingConverter
+            Attributes.WorkWithFirst<DelimitedFieldPaddingAttribute>(mi,
+                   (x) =>
+                   {
+                       res.DelimitedFieldAlignMode = x.AlignMode;
+                       res.DelimitedFieldPaddingChar = x.PaddingChar;
+                       res.DelimitedTotalLength = x.TotalLength;
+                   });
+
+            
             return res;
         }
 
@@ -420,6 +448,9 @@ namespace FileHelpers
             NullValue = null;
             IsArray = false;
             IsNotEmpty = false;
+            DelimitedFieldPaddingChar = null;
+            DelimitedFieldAlignMode = AlignMode.Left;
+            DelimitedTotalLength = 0;
         }
 
         /// <summary>
@@ -889,6 +920,8 @@ namespace FileHelpers
                 }
             }
 
+            
+
             return val;
         }
 
@@ -978,6 +1011,9 @@ namespace FileHelpers
             res.FieldCaption = FieldCaption;
             res.Parent = Parent;
             res.ParentIndex = ParentIndex;
+            res.DelimitedFieldAlignMode = DelimitedFieldAlignMode;
+            res.DelimitedFieldPaddingChar = DelimitedFieldPaddingChar;
+            res.DelimitedTotalLength = DelimitedTotalLength;
             return res;
         }
 

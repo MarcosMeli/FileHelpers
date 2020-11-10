@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -186,6 +187,10 @@ namespace FileHelpers
         {
             string field = base.CreateFieldString(fieldValue);
 
+            
+            if (this.DelimitedFieldPaddingChar.HasValue && this.DelimitedTotalLength > 0 && field != null && field.Length < this.DelimitedTotalLength)
+                field = this.applyDelimitedFieldPadding(field);
+
             bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
 
             // If have a new line and this is not allowed.  We throw an exception
@@ -212,6 +217,54 @@ namespace FileHelpers
 
             if (isLast == false)
                 sb.Append(Separator);
+        }
+
+        private string applyDelimitedFieldPadding(string baseFieldValue)
+        {
+
+            string safeFieldValue = baseFieldValue ?? String.Empty;  
+
+            string formattedOutput = null;
+
+            
+
+            if (baseFieldValue != null && this.DelimitedTotalLength > 0 && baseFieldValue.Length < this.DelimitedTotalLength && this.DelimitedFieldPaddingChar.HasValue)
+            {
+                switch (this.DelimitedFieldAlignMode)
+                {
+                    case AlignMode.Left:
+                        formattedOutput = safeFieldValue.PadRight(this.DelimitedTotalLength, this.DelimitedFieldPaddingChar.Value);
+                        break;
+
+                    case AlignMode.Right:
+                        formattedOutput = safeFieldValue.PadLeft(this.DelimitedTotalLength, this.DelimitedFieldPaddingChar.Value);
+                        break;
+
+                    case AlignMode.Center:
+                        formattedOutput = this.padCenter(safeFieldValue);
+                        break;
+
+
+                }
+
+            }
+            else
+                formattedOutput = baseFieldValue;
+
+
+            return formattedOutput;
+        }
+
+        private string padCenter(string baseFieldValue)
+        {
+            if (baseFieldValue == null)
+                throw new NullReferenceException("baseFieldValue");
+
+            int totalPaddingCount = this.DelimitedTotalLength - baseFieldValue.Length;
+
+            int padLeftCount = totalPaddingCount / 2 + baseFieldValue.Length;
+
+            return baseFieldValue.PadLeft(padLeftCount, this.DelimitedFieldPaddingChar.GetValueOrDefault()).PadRight(this.DelimitedTotalLength, this.DelimitedFieldPaddingChar.GetValueOrDefault());
         }
 
         /// <summary>
