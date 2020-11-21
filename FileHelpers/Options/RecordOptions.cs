@@ -112,15 +112,6 @@ namespace FileHelpers.Options
             }
         }
 
-//        /// <summary>Returns the type of the field at the specified index</summary>
-//        /// <returns>The type of the field.</returns>
-//        /// <param name="index">The index of the field</param>
-//        public Type GetFieldType(int index)
-//        {
-//            return mRecordInfo.mFields[index].mFieldInfo.FieldType;
-//        }
-
-
         /// <summary>
         /// Indicates the number of first lines to be discarded.
         /// </summary>

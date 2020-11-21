@@ -211,26 +211,6 @@ namespace FileHelpers
         /// <returns>Position of the next one</returns>
         public int IndexOf(string foundThis)
         {
-            // Bad performance with custom IndexOf
-            //			if (foundThis.Length == 1)
-            //			{
-            //				char delimiter = foundThis[0];
-            //				int pos = mCurrentPos;
-            //				int length = mLine.Length;
-            //			
-            //				while (pos < length)
-            //				{
-            //					if (mLine[pos] == delimiter)
-            //						return pos;
-            //				
-            //					pos++;
-            //				}
-            //				return -1;
-            //			}
-            //			else
-//			if (mLineStr == null)
-//				return -1;
-//			else
             return mCompare.IndexOf(mLineStr, foundThis, mCurrentPos, CompareOptions.Ordinal);
         }
 

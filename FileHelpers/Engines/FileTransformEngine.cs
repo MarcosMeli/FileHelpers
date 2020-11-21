@@ -170,15 +170,6 @@ namespace FileHelpers
 
         #endregion
 
-//		public string TransformString(string sourceData)
-//		{
-//			if (mConvert1to2 == null)
-//				throw new BadUsageException("You must define a method in the class " + SourceType.Name + " with the attribute [TransfortToRecord(typeof(" + DestinationType.Name + "))] that return an object of type " + DestinationType.Name);
-//
-//			return CoreTransformAsync(sourceFile, destFile, mSourceType, mDestinationType, mConvert1to2);
-//		}
-
-
         /// <summary>
         /// Transforms an array of records from the source type to the destination type
         /// </summary>

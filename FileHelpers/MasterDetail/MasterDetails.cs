@@ -1,8 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-//using System.ComponentModel.TypeConverter;
-
 namespace FileHelpers.MasterDetail
 {
     /// <summary>

@@ -139,8 +139,6 @@ namespace FileHelpers
                 sb.Append(Align.AlignChar, middle);
                 sb.Append(field);
                 sb.Append(Align.AlignChar, FieldLength - field.Length - middle);
-//				if (middle > 0)
-//					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
             }
         }
 
