@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FileHelpers</id>
-    <version>3.4.2</version>
+    <version>3.4.3-alpha</version>
     <title>FileHelpers</title>
     <authors>Marcos Meli and Contributors</authors>
     <owners>Marcos Meli</owners>
