@@ -507,20 +507,21 @@ namespace FileHelpers
         /// <returns>Slightly processed string from the data</returns>
         internal abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
+        private void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
+        {
+            string field = ConvertToString(fieldValue);
+            CreateFieldString(sb, field, isLast);
+        }
+
         /// <summary>
         /// Create a text block containing the field from definition
         /// </summary>
         /// <param name="sb">Append string to output</param>
-        /// <param name="fieldValue">Field we are adding</param>
+        /// <param name="field">Field we are adding</param>
         /// <param name="isLast">Indicates if we are processing last field</param>
-        internal abstract void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast);
+        protected abstract void CreateFieldString(StringBuilder sb, string field, bool isLast);
 
-        /// <summary>
-        /// Convert a field value to a string representation
-        /// </summary>
-        /// <param name="fieldValue">Object containing data</param>
-        /// <returns>String representation of field</returns>
-        internal string CreateFieldString(object fieldValue)
+        private string ConvertToString(object fieldValue)
         {
             if (Converter == null)
             {

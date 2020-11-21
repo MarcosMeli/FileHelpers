@@ -115,12 +115,10 @@ namespace FileHelpers
         /// Create a fixed length string representation (pad it out or truncate it)
         /// </summary>
         /// <param name="sb">buffer to add field to</param>
-        /// <param name="fieldValue">value we are updating with</param>
+        /// <param name="field">value we are updating with</param>
         /// <param name="isLast">Indicates if we are processing last field</param>
-        internal override void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
+        protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            string field = base.CreateFieldString(fieldValue);
-
             // Discard longer field values
             if (field.Length > FieldLength)
                 field = field.Substring(0, FieldLength);

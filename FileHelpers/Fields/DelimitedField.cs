@@ -180,12 +180,10 @@ namespace FileHelpers
         /// Output the field string adding delimiters and any required quotes
         /// </summary>
         /// <param name="sb">buffer to add field to</param>
-        /// <param name="fieldValue">value object to add</param>
+        /// <param name="field">value to add</param>
         /// <param name="isLast">Indicates if we are processing last field</param>
-        internal override void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
+        protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            string field = base.CreateFieldString(fieldValue);
-
             bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
 
             // If have a new line and this is not allowed.  We throw an exception
