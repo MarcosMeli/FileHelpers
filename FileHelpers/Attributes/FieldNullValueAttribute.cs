@@ -21,9 +21,6 @@ namespace FileHelpers
         /// <summary>Default value for a null value.</summary>
         public object NullValue { get; private set; }
 
-//		internal bool NullValueOnWrite = false;
-
-
         /// <summary>
         /// Defines the default in event of a null value.
         /// Object must be of the correct type
@@ -32,20 +29,7 @@ namespace FileHelpers
         public FieldNullValueAttribute(object nullValue)
         {
             NullValue = nullValue;
-//			NullValueOnWrite = useOnWrite;
         }
-
-//		/// <summary>Defines the default for a null value.</summary>
-//		/// <param name="nullValue">The value to assign in the "NULL" case.</param>
-//		public FieldNullValueAttribute(object nullValue): this(nullValue, false)
-//		{}
-
-//		/// <summary>Indicates a type and a string to be converted to that type.</summary>
-//		/// <param name="type">The type of the null value.</param>
-//		/// <param name="nullValue">The string to be converted to the specified type.</param>
-//		/// <param name="useOnWrite">Indicates that if the field has that value when the library writes, then the engine use an empty string.</param>
-//		public FieldNullValueAttribute(Type type, string nullValue, bool useOnWrite):this(Convert.ChangeType(nullValue, type, null), useOnWrite)
-//		{}
 
         /// <summary>Indicates a type and a string to be converted to that type.</summary>
         /// <param name="type">The type of the null value.</param>

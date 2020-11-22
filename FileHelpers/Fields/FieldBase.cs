@@ -216,7 +216,7 @@ namespace FileHelpers
                 attributes.Length == 0)
             {
                 throw new BadUsageException(memberName +
-                                            "' must be marked the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
+                                            "' must be marked with the FieldFixedLength attribute because the record class is marked with FixedLengthRecord.");
             }
 
             if (attributes.Length > 1)
@@ -229,14 +229,14 @@ namespace FileHelpers
                 mi.IsDefined(typeof(FieldAlignAttribute), false))
             {
                 throw new BadUsageException(memberName +
-                                            "' can't be marked with FieldAlign attribute, it is only valid for fixed length records and are used only for write purpose.");
+                                            "' can't be marked with the FieldAlign attribute - it is only valid for fixed length records and are used only for writing.");
             }
 
             if (fieldType.IsArray == false &&
                 mi.IsDefined(typeof(FieldArrayLengthAttribute), false))
             {
                 throw new BadUsageException(memberName +
-                                            "' can't be marked with FieldArrayLength attribute is only valid for array fields.");
+                                            "' can't be marked with the FieldArrayLength attribute - it is only valid for array fields.");
             }
 
             // PROCESS IN NORMAL CONDITIONS
@@ -316,7 +316,7 @@ namespace FileHelpers
                         {
                             throw new BadUsageException(
                                 memberName +
-                                "' can't be marked with FieldQuoted attribute, it is only for the delimited records.");
+                                "' can't be marked with FieldQuoted attribute, it is only for delimited records.");
                         }
 
                         ((DelimitedField)res).QuoteChar =
@@ -508,20 +508,21 @@ namespace FileHelpers
         /// <returns>Slightly processed string from the data</returns>
         internal abstract ExtractedInfo ExtractFieldString(LineInfo line);
 
+        private void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
+        {
+            string field = ConvertToString(fieldValue);
+            CreateFieldString(sb, field, isLast);
+        }
+
         /// <summary>
         /// Create a text block containing the field from definition
         /// </summary>
         /// <param name="sb">Append string to output</param>
-        /// <param name="fieldValue">Field we are adding</param>
+        /// <param name="field">Field we are adding</param>
         /// <param name="isLast">Indicates if we are processing last field</param>
-        internal abstract void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast);
+        protected abstract void CreateFieldString(StringBuilder sb, string field, bool isLast);
 
-        /// <summary>
-        /// Convert a field value to a string representation
-        /// </summary>
-        /// <param name="fieldValue">Object containing data</param>
-        /// <returns>String representation of field</returns>
-        internal string CreateFieldString(object fieldValue)
+        private string ConvertToString(object fieldValue)
         {
             if (Converter == null)
             {

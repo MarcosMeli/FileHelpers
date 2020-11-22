@@ -2,7 +2,7 @@
 
 namespace FileHelpers
 {
-    internal class Messages
+internal class Messages
 {
 internal class Errors
 {
@@ -342,7 +342,7 @@ internal PartialFieldOrderInAutoPropertyClass(): base(@"The auto property: $Prop
 }internal class SameFieldOrderClass: MessageBase
 {
 
-internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder that: $FieldName2$ you must use different values") {}
+internal SameFieldOrderClass(): base(@"The field: $FieldName1$ has the same FieldOrder as: $FieldName2$. You must use different values") {}
  private string mFieldName1 = null;
  internal SameFieldOrderClass FieldName1(string value)
 {

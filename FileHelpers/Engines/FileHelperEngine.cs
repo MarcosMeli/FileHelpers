@@ -432,7 +432,7 @@ namespace FileHelpers
                         first = false;
                         if (RecordInfo.RecordType.IsInstanceOfType(rec) == false)
                         {
-                            throw new BadUsageException("This engine works with record of type " +
+                            throw new BadUsageException("This engine works with records of type " +
                                                         RecordInfo.RecordType.Name + " and you use records of type " +
                                                         rec.GetType().Name);
                         }

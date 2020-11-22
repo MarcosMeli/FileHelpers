@@ -3,9 +3,9 @@ using System;
 namespace FileHelpers.Benchmarks
 {
     /// <summary>
-    /// Sample fixed length record for testing
+    ///     Sample fixed length record for testing
     /// </summary>
-    [FixedLengthRecord()]
+    [FixedLengthRecord]
     public class FixedSampleRecordSortable : IComparable<FixedSampleRecordSortable>
     {
         [FieldFixedLength(11)]
@@ -22,7 +22,6 @@ namespace FileHelpers.Benchmarks
         {
             return Cuit.CompareTo(other.Cuit);
         }
-
 
         public void AfterRead(EngineBase engine, string line)
         {

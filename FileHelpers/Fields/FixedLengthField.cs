@@ -124,12 +124,10 @@ namespace FileHelpers
         /// Create a fixed length string representation (pad it out or truncate it)
         /// </summary>
         /// <param name="sb">buffer to add field to</param>
-        /// <param name="fieldValue">value we are updating with</param>
+        /// <param name="field">value we are updating with</param>
         /// <param name="isLast">Indicates if we are processing last field</param>
-        internal override void CreateFieldString(StringBuilder sb, object fieldValue, bool isLast)
+        protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            string field = base.CreateFieldString(fieldValue);
-
             field = GetActualValueBasedOnFieldConfiguration(field);
 
             if (Align.Align == AlignMode.Left) {
@@ -146,8 +144,6 @@ namespace FileHelpers
                 sb.Append(Align.AlignChar, middle);
                 sb.Append(field);
                 sb.Append(Align.AlignChar, FieldLength - field.Length - middle);
-//				if (middle > 0)
-//					res = res.PadLeft(mFieldLength - middle, mAlign.AlignChar).PadRight(mFieldLength, mAlign.AlignChar);
             }
         }
 

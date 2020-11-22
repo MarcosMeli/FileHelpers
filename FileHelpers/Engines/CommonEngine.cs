@@ -262,7 +262,7 @@ namespace FileHelpers
             FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
             if (fi == null)
-                throw new BadUsageException("The record class not contains the field " + fieldName);
+                throw new BadUsageException("The record class does not contain the field " + fieldName);
 
             object[] res = engine.ReadFile(sourceFile);
 
@@ -298,7 +298,7 @@ namespace FileHelpers
                 FieldInfo fi = engine.RecordInfo.GetFieldInfo(fieldName);
 
                 if (fi == null)
-                    throw new BadUsageException("The record class not contains the field " + fieldName);
+                    throw new BadUsageException("The record class does not contain the field " + fieldName);
 
                 IComparer comparer = new FieldComparer(fi, ascending);
 

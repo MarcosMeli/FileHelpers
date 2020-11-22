@@ -1,5 +1,5 @@
-image: Visual Studio 2017
-version: 3.4.1.{build}
+image: Visual Studio 2019
+version: 3.4.3.{build}
 install:
 - ps: >-
     nuget install Build\.nuget\packages.config -OutputDirectory packages
