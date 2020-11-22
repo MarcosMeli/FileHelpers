@@ -32,7 +32,7 @@ namespace FileHelpers
         /// <summary>
         /// How an overflowing field value is handled
         /// </summary>
-        internal OverflowMode OverflowMode { get; set; }
+        private OverflowMode OverflowMode { get; set; }
 
         #endregion
 
@@ -130,11 +130,7 @@ namespace FileHelpers
         {
             string field = base.CreateFieldString(fieldValue);
 
-            // Discard longer field values
-            if (field.Length > FieldLength)
-            {
-                field = GetValueForOverflowingField(field);
-            }
+            field = GetActualValueBasedOnFieldConfiguration(field);
 
             if (Align.Align == AlignMode.Left) {
                 sb.Append(field);
@@ -155,16 +151,24 @@ namespace FileHelpers
             }
         }
 
-        private string GetValueForOverflowingField(string field)
+        private string GetActualValueBasedOnFieldConfiguration(string field)
         {
-            switch (OverflowMode)
+            // Discard longer field values
+            if (field.Length > FieldLength)
             {
-                case OverflowMode.Error:
-                    throw new ConvertException(field, FieldType, $"Field value is too large for the field length ({FieldLength}) and field OverflowMode is set to {OverflowMode}.");
-                case OverflowMode.DiscardEnd:
-                default:
-                    return field.Substring(0, FieldLength);
+                switch (OverflowMode)
+                {
+                    case OverflowMode.Error:
+                        throw new ConvertException(field,
+                            FieldType,
+                            $"Field value is too large for the field length ({FieldLength}) and field OverflowMode is set to {OverflowMode}.");
+                    case OverflowMode.DiscardEnd:
+                    default:
+                        return field.Substring(0, FieldLength);
+                }
             }
+
+            return field;
         }
 
         /// <summary>
