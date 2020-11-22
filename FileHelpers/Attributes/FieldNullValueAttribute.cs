@@ -26,7 +26,7 @@ namespace FileHelpers
 
         /// <summary>
         /// Defines the default in event of a null value.
-        /// Object must be of teh correct type
+        /// Object must be of the correct type
         /// </summary>
         /// <param name="nullValue">The value to assign the case of a NULL value.</param>
         public FieldNullValueAttribute(object nullValue)
