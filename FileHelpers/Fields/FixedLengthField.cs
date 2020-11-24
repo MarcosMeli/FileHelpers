@@ -1,5 +1,7 @@
+using System;
 using System.Reflection;
 using System.Text;
+using FileHelpers.Enums;
 using FileHelpers.Helpers;
 
 namespace FileHelpers
@@ -27,6 +29,11 @@ namespace FileHelpers
         /// </summary>
         internal FixedMode FixedMode { get; set; }
 
+        /// <summary>
+        /// How an overflowing field value is handled
+        /// </summary>
+        private OverflowMode OverflowMode { get; set; }
+
         #endregion
 
         #region "  Constructor  "
@@ -41,12 +48,14 @@ namespace FileHelpers
         /// </summary>
         /// <param name="fi">Field definitions</param>
         /// <param name="length">Length of this field</param>
+        /// <param name="overflowMode">Overflow mode of this field</param>
         /// <param name="align">Alignment, left or right</param>
         /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
-        internal FixedLengthField(FieldInfo fi, int length, FieldAlignAttribute align, string defaultCultureName=null)
+        internal FixedLengthField(FieldInfo fi, int length, OverflowMode overflowMode, FieldAlignAttribute align, string defaultCultureName=null)
             : base(fi, defaultCultureName)
         {
             FixedMode = FixedMode.ExactLength;
+            OverflowMode = overflowMode;
             Align = new FieldAlignAttribute(AlignMode.Left, ' ');
             FieldLength = length;
 
@@ -119,9 +128,7 @@ namespace FileHelpers
         /// <param name="isLast">Indicates if we are processing last field</param>
         protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            // Discard longer field values
-            if (field.Length > FieldLength)
-                field = field.Substring(0, FieldLength);
+            field = GetActualValueBasedOnFieldConfiguration(field);
 
             if (Align.Align == AlignMode.Left) {
                 sb.Append(field);
@@ -140,6 +147,26 @@ namespace FileHelpers
             }
         }
 
+        private string GetActualValueBasedOnFieldConfiguration(string field)
+        {
+            // Discard longer field values
+            if (field.Length > FieldLength)
+            {
+                switch (OverflowMode)
+                {
+                    case OverflowMode.Error:
+                        throw new ConvertException(field,
+                            FieldType,
+                            $"Field value is too large for the field length ({FieldLength}) and field OverflowMode is set to {OverflowMode}.");
+                    case OverflowMode.DiscardEnd:
+                    default:
+                        return field.Substring(0, FieldLength);
+                }
+            }
+
+            return field;
+        }
+
         /// <summary>
         /// Create a clone of the fixed length record ready to get updated by
         /// the base settings
@@ -151,6 +178,7 @@ namespace FileHelpers
             var res = new FixedLengthField {
                 Align = Align,
                 FieldLength = FieldLength,
+                OverflowMode = OverflowMode,
                 FixedMode = FixedMode
             };
             return res;

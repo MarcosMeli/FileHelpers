@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Enums;
 
 namespace FileHelpers
 {
@@ -10,6 +11,12 @@ namespace FileHelpers
     {
         /// <summary>Length of this Fixed Length field.</summary>
         public int Length { get; private set; }
+
+        /// <summary>
+        /// Overflow behavior for this Fixed Length field.
+        /// By default uses <code>OverflowMode.DiscardEnd</code>.
+        /// </summary>
+        public OverflowMode OverflowMode { get; set; } = OverflowMode.DiscardEnd;
 
         /// <summary>Indicates the length of a Fixed Length field.</summary>
         /// <param name="length">The length of the field.</param>

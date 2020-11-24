@@ -41,7 +41,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
-	<CopyNuGetImplementations>false</CopyNuGetImplementations>
+    <CopyNuGetImplementations>false</CopyNuGetImplementations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Debug\Bin\</OutputPath>
@@ -55,7 +55,8 @@
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
-    <NoWarn></NoWarn>
+    <NoWarn>
+    </NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
@@ -271,6 +272,7 @@
     <Compile Include="Enums\NetVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\OverflowMode.cs" />
     <Compile Include="Enums\QuoteMode.cs">
       <SubType>Code</SubType>
     </Compile>
