@@ -117,6 +117,14 @@ namespace FileHelpers
         /// <para>   "B" ->  {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx} </para>
         /// <para>   "P" ->  (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) </para>
         /// </summary>
-        Guid
+        Guid,
+        // Added by Jimmy Mathai 2018.08.15
+        /// <summary>
+        /// <para>Add fixed <b>Padding</b> to Any types</para>
+        /// <para>Params: arg1 is an <b>integer</b>. This is the total length for writing.</para>
+        /// <para>Params: arg2 is a <b>Align</b> weather to padd left or right. Default is left</para>
+        /// <para>Params: arg3 is a <b>Char</b>. The character to padd with. Default is space.</para>
+        /// </summary>
+        Padding
     }
 }

@@ -37,7 +37,24 @@ namespace FileHelpers
         public FieldConverterAttribute(ConverterKind converter, string arg1, string arg2, string arg3)
             : this(converter, new string[] {arg1, arg2, arg3}) {}
 
+        /// <summary>
+        /// Padding used for write operations. 
+        /// </summary>
+        /// <param name="converter">Converter - The padding converter</param>
+        /// <param name="TotalPaddedLength">The total length of padded text</param>
+        /// <param name="PaddingMode">Whether to pad left or right</param>
+        /// <param name="PaddingCharacter">Character to pad with</param>
+        public FieldConverterAttribute(ConverterKind converter, int TotalPaddedLength, PaddingMode PaddingMode, Char PaddingCharacter)
+        {
+            Kind = converter;
 
+            Type convType = typeof(ConvertHelpers.PaddingConverter);
+            //mType = type;
+
+            CreateConverter(convType, new object[] { TotalPaddedLength, PaddingMode, PaddingCharacter });
+        }
+
+ 
         /// <summary>
         /// Indicates the <see cref="ConverterKind"/> used for read/write operations. 
         /// </summary>
@@ -47,73 +64,7 @@ namespace FileHelpers
         {
             Kind = converter;
 
-            Type convType;
-
-            switch (converter) {
-                case ConverterKind.Date:
-                    convType = typeof (ConvertHelpers.DateTimeConverter);
-                    break;
-
-                case ConverterKind.DateMultiFormat:
-                    convType = typeof (ConvertHelpers.DateTimeMultiFormatConverter);
-                    break;
-
-                case ConverterKind.Byte:
-                    convType = typeof (ConvertHelpers.ByteConverter);
-                    break;
-
-                case ConverterKind.SByte:
-                    convType = typeof (ConvertHelpers.SByteConverter);
-                    break;
-
-                case ConverterKind.Int16:
-                    convType = typeof (ConvertHelpers.Int16Converter);
-                    break;
-                case ConverterKind.Int32:
-                    convType = typeof (ConvertHelpers.Int32Converter);
-                    break;
-                case ConverterKind.Int64:
-                    convType = typeof (ConvertHelpers.Int64Converter);
-                    break;
-
-                case ConverterKind.UInt16:
-                    convType = typeof (ConvertHelpers.UInt16Converter);
-                    break;
-                case ConverterKind.UInt32:
-                    convType = typeof (ConvertHelpers.UInt32Converter);
-                    break;
-                case ConverterKind.UInt64:
-                    convType = typeof (ConvertHelpers.UInt64Converter);
-                    break;
-
-                case ConverterKind.Decimal:
-                    convType = typeof (ConvertHelpers.DecimalConverter);
-                    break;
-                case ConverterKind.Double:
-                    convType = typeof (ConvertHelpers.DoubleConverter);
-                    break;
-                    // Added by Shreyas Narasimhan 17 March 2010
-                case ConverterKind.PercentDouble:
-                    convType = typeof (ConvertHelpers.PercentDoubleConverter);
-                    break;
-                case ConverterKind.Single:
-                    convType = typeof (ConvertHelpers.SingleConverter);
-                    break;
-                case ConverterKind.Boolean:
-                    convType = typeof (ConvertHelpers.BooleanConverter);
-                    break;
-                    // Added by Alexander Obolonkov 2007.11.08
-                case ConverterKind.Char:
-                    convType = typeof (ConvertHelpers.CharConverter);
-                    break;
-                    // Added by Alexander Obolonkov 2007.11.08
-                case ConverterKind.Guid:
-                    convType = typeof (ConvertHelpers.GuidConverter);
-                    break;
-                default:
-                    throw new BadUsageException("Converter '" + converter.ToString() +
-                                                "' not found, you must specify a valid converter.");
-            }
+            Type convType = GetConverter(converter);
             //mType = type;
 
             CreateConverter(convType, args);
@@ -211,6 +162,84 @@ namespace FileHelpers
 
         #endregion
 
+        #region " Get ConverterType "
+        private Type GetConverter(ConverterKind converter)
+        {
+            Type convType;
+
+            switch (converter)
+            {
+                case ConverterKind.Date:
+                    convType = typeof(ConvertHelpers.DateTimeConverter);
+                    break;
+
+                case ConverterKind.DateMultiFormat:
+                    convType = typeof(ConvertHelpers.DateTimeMultiFormatConverter);
+                    break;
+
+                case ConverterKind.Byte:
+                    convType = typeof(ConvertHelpers.ByteConverter);
+                    break;
+
+                case ConverterKind.SByte:
+                    convType = typeof(ConvertHelpers.SByteConverter);
+                    break;
+
+                case ConverterKind.Int16:
+                    convType = typeof(ConvertHelpers.Int16Converter);
+                    break;
+                case ConverterKind.Int32:
+                    convType = typeof(ConvertHelpers.Int32Converter);
+                    break;
+                case ConverterKind.Int64:
+                    convType = typeof(ConvertHelpers.Int64Converter);
+                    break;
+
+                case ConverterKind.UInt16:
+                    convType = typeof(ConvertHelpers.UInt16Converter);
+                    break;
+                case ConverterKind.UInt32:
+                    convType = typeof(ConvertHelpers.UInt32Converter);
+                    break;
+                case ConverterKind.UInt64:
+                    convType = typeof(ConvertHelpers.UInt64Converter);
+                    break;
+
+                case ConverterKind.Decimal:
+                    convType = typeof(ConvertHelpers.DecimalConverter);
+                    break;
+                case ConverterKind.Double:
+                    convType = typeof(ConvertHelpers.DoubleConverter);
+                    break;
+                // Added by Shreyas Narasimhan 17 March 2010
+                case ConverterKind.PercentDouble:
+                    convType = typeof(ConvertHelpers.PercentDoubleConverter);
+                    break;
+                case ConverterKind.Single:
+                    convType = typeof(ConvertHelpers.SingleConverter);
+                    break;
+                case ConverterKind.Boolean:
+                    convType = typeof(ConvertHelpers.BooleanConverter);
+                    break;
+                // Added by Alexander Obolonkov 2007.11.08
+                case ConverterKind.Char:
+                    convType = typeof(ConvertHelpers.CharConverter);
+                    break;
+                // Added by Alexander Obolonkov 2007.11.08
+                case ConverterKind.Guid:
+                    convType = typeof(ConvertHelpers.GuidConverter);
+                    break;
+                case ConverterKind.Padding:
+                    convType = typeof(ConvertHelpers.PaddingConverter);
+                    break;
+                default:
+                    throw new BadUsageException("Converter '" + converter.ToString() +
+                                                "' not found, you must specify a valid converter.");
+            }
+            return convType;
+        }
+        #endregion
+
         #region "  ArgsToTypes  "
 
         private static Type[] ArgsToTypes(object[] args)
@@ -265,6 +294,7 @@ namespace FileHelpers
 
             switch (Kind) {
                 case ConverterKind.None:
+                case ConverterKind.Padding:
                     valid = true;
                     break;
 

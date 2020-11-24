@@ -84,6 +84,7 @@
     <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Examples\18.Converters\70.PaddingConverter.cs" />
     <Compile Include="Examples\20.Events And Notification\05.INotifyRead.cs" />
     <Compile Include="Examples\20.Events And Notification\10.INotifyWrite.cs" />
     <Compile Include="Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs" />
