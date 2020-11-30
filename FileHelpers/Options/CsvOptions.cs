@@ -63,6 +63,8 @@ namespace FileHelpers.Options
         private Encoding mEncoding = Encoding.GetEncoding(0);
         private bool mIgnoreEmptyLines = false;
         private bool mIncludeHeaderNames;
+        private bool mIgnoreSpecialCharacters;
+        private string mSeparators = @"[;,\t\r\n]";
 
         /// <summary>A sample file from where to read the field names and number.</summary>
         public string SampleFileName
@@ -159,6 +161,19 @@ namespace FileHelpers.Options
         {
             get { return mIgnoreEmptyLines; }
             set { mIgnoreEmptyLines = value; }
+        }
+
+        /// <summary>Remove special caracters like ;,\t\r\n from string records </summary>
+        public bool IgnoreSpecialCharacters
+        {
+            get { return mIgnoreSpecialCharacters; }
+            set { mIgnoreSpecialCharacters = value; }
+        }
+
+        public string Separators
+        {
+            get { return mSeparators; }
+            set { mSeparators = value; }
         }
 
         private ConvertHelpers.DecimalConverter mDecimalConv;
