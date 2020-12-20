@@ -1,5 +1,5 @@
 using System;
-
+using FileHelpers.Converters;
 
 namespace FileHelpers
 {
@@ -8,6 +8,7 @@ namespace FileHelpers
     /// Field - String conversion.
     /// </summary>
     public abstract class ConverterBase
+        : IConverter
     {
         private static string mDefaultDateTimeFormat = "ddMMyyyy";
 

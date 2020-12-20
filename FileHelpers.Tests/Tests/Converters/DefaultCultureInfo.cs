@@ -1,3 +1,4 @@
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Converters
@@ -65,7 +66,7 @@ namespace FileHelpers.Tests.Converters
         }
 
         #region Helpers
-        private static void AssertCanConvertEnglishNumbers(ConverterBase decimalConverter)
+        private static void AssertCanConvertEnglishNumbers(IConverter decimalConverter)
         {
             Assert.AreEqual(123.12,
                 decimalConverter.StringToField("123.12"),
@@ -75,7 +76,7 @@ namespace FileHelpers.Tests.Converters
                 "If no culture is specified, the group separator should be a comma");
         }
 
-        private static void AssertCanConvertFrenchNumbers(ConverterBase decimalConverterWithoutCulture)
+        private static void AssertCanConvertFrenchNumbers(IConverter decimalConverterWithoutCulture)
         {
             Assert.AreEqual(1.23, decimalConverterWithoutCulture.StringToField("1,23"), "If a culture is specified, the decimal separator should be the specified culture decimal separator");
             Assert.AreEqual(1234.12, decimalConverterWithoutCulture.StringToField("1 234,12"), "If a culture is specified, the group separator should be the specified culture group separator");
