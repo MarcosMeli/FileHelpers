@@ -692,8 +692,7 @@ namespace FileHelpers
                 {
                     var trimmedString = extractedString.Trim();
 
-                    if (Converter.CustomNullHandling == false &&
-                        trimmedString.Length == 0)
+                    if (trimmedString.Length == 0)
                     {
                         return new AssignResult
                         {
