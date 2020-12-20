@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using FileHelpers.Converters;
 using FileHelpers.Helpers;
 using FileHelpers.Options;
 
