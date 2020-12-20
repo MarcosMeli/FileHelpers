@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using FileHelpers.Converters;
 
 namespace FileHelpers
 {
@@ -51,64 +52,64 @@ namespace FileHelpers
 
             switch (converter) {
                 case ConverterKind.Date:
-                    convType = typeof (ConvertHelpers.DateTimeConverter);
+                    convType = typeof (DateTimeConverter);
                     break;
 
                 case ConverterKind.DateMultiFormat:
-                    convType = typeof (ConvertHelpers.DateTimeMultiFormatConverter);
+                    convType = typeof (DateTimeMultiFormatConverter);
                     break;
 
                 case ConverterKind.Byte:
-                    convType = typeof (ConvertHelpers.ByteConverter);
+                    convType = typeof (ByteConverter);
                     break;
 
                 case ConverterKind.SByte:
-                    convType = typeof (ConvertHelpers.SByteConverter);
+                    convType = typeof (SByteConverter);
                     break;
 
                 case ConverterKind.Int16:
-                    convType = typeof (ConvertHelpers.Int16Converter);
+                    convType = typeof (Int16Converter);
                     break;
                 case ConverterKind.Int32:
-                    convType = typeof (ConvertHelpers.Int32Converter);
+                    convType = typeof (Int32Converter);
                     break;
                 case ConverterKind.Int64:
-                    convType = typeof (ConvertHelpers.Int64Converter);
+                    convType = typeof (Int64Converter);
                     break;
 
                 case ConverterKind.UInt16:
-                    convType = typeof (ConvertHelpers.UInt16Converter);
+                    convType = typeof (UInt16Converter);
                     break;
                 case ConverterKind.UInt32:
-                    convType = typeof (ConvertHelpers.UInt32Converter);
+                    convType = typeof (UInt32Converter);
                     break;
                 case ConverterKind.UInt64:
-                    convType = typeof (ConvertHelpers.UInt64Converter);
+                    convType = typeof (UInt64Converter);
                     break;
 
                 case ConverterKind.Decimal:
-                    convType = typeof (ConvertHelpers.DecimalConverter);
+                    convType = typeof (DecimalConverter);
                     break;
                 case ConverterKind.Double:
-                    convType = typeof (ConvertHelpers.DoubleConverter);
+                    convType = typeof (DoubleConverter);
                     break;
                     // Added by Shreyas Narasimhan 17 March 2010
                 case ConverterKind.PercentDouble:
-                    convType = typeof (ConvertHelpers.PercentDoubleConverter);
+                    convType = typeof (PercentDoubleConverter);
                     break;
                 case ConverterKind.Single:
-                    convType = typeof (ConvertHelpers.SingleConverter);
+                    convType = typeof (SingleConverter);
                     break;
                 case ConverterKind.Boolean:
-                    convType = typeof (ConvertHelpers.BooleanConverter);
+                    convType = typeof (BooleanConverter);
                     break;
                     // Added by Alexander Obolonkov 2007.11.08
                 case ConverterKind.Char:
-                    convType = typeof (ConvertHelpers.CharConverter);
+                    convType = typeof (CharConverter);
                     break;
                     // Added by Alexander Obolonkov 2007.11.08
                 case ConverterKind.Guid:
-                    convType = typeof (ConvertHelpers.GuidConverter);
+                    convType = typeof (GuidConverter);
                     break;
                 default:
                     throw new BadUsageException("Converter '" + converter.ToString() +

@@ -38,7 +38,7 @@ type SampleFSharpType =
             var type = assembly.GetType("FileHelpers.SampleFSharpType");
 
             var fileHelpersAssembly = typeof(EngineBase).Assembly;
-            var dateConverterType = fileHelpersAssembly.GetType("FileHelpers.ConvertHelpers+DateTimeConverter");
+            var dateConverterType = fileHelpersAssembly.GetType("FileHelpers.Converters.DateTimeConverter");
 
             var engine = new FileHelperEngine(type);
 

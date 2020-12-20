@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using FileHelpers.Converters;
 using FileHelpers.Helpers;
 
 namespace FileHelpers.Options
@@ -161,10 +162,10 @@ namespace FileHelpers.Options
             set { mIgnoreEmptyLines = value; }
         }
 
-        private ConvertHelpers.DecimalConverter mDecimalConv;
-        private ConvertHelpers.DoubleConverter mDoubleConv;
-        private ConvertHelpers.SingleConverter mSingleConv;
-        private ConvertHelpers.DateTimeConverter mDateConv;
+        private DecimalConverter mDecimalConv;
+        private DoubleConverter mDoubleConv;
+        private SingleConverter mSingleConv;
+        private DateTimeConverter mDateConv;
 
         /// <summary>
         /// Convert a field to a string
@@ -174,10 +175,10 @@ namespace FileHelpers.Options
         internal string ValueToString(object o)
         {
             if (mDecimalConv == null) {
-                mDecimalConv = new ConvertHelpers.DecimalConverter(DecimalSeparator);
-                mDoubleConv = new ConvertHelpers.DoubleConverter(DecimalSeparator);
-                mSingleConv = new ConvertHelpers.SingleConverter(DecimalSeparator);
-                mDateConv = new ConvertHelpers.DateTimeConverter(DateFormat);
+                mDecimalConv = new DecimalConverter(DecimalSeparator);
+                mDoubleConv = new DoubleConverter(DecimalSeparator);
+                mSingleConv = new SingleConverter(DecimalSeparator);
+                mDateConv = new DateTimeConverter(DateFormat);
             }
 
             if (o == null)
