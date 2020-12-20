@@ -56,17 +56,16 @@ namespace FileHelpers
                 return from.ToString();
         }
 
-        internal Type mDestinationType;
-
         /// <summary>
         /// Throws a ConvertException with the passed values
         /// </summary>
         /// <param name="from">The source string.</param>
+        /// <param name="destinationType">Type which would be created.</param>
         /// <param name="errorMsg" >The custom error msg.</param>
         /// <exception cref="ConvertException">Throw exception with values</exception>
-        protected void ThrowConvertException(string from, string errorMsg)
+        protected void ThrowConvertException(string from, Type destinationType, string errorMsg)
         {
-            throw new ConvertException(from, mDestinationType, errorMsg);
+            throw new ConvertException(from, destinationType, errorMsg);
         }
     }
 }

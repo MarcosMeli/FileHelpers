@@ -471,9 +471,6 @@ namespace FileHelpers
                     FieldType,
                     defaultCultureName: defaultCultureName);
 
-            if (Converter != null)
-                Converter.mDestinationType = FieldTypeInternal;
-
             attribs = attibuteTarget.GetCustomAttributes(typeof(FieldNullValueAttribute), true);
 
             if (attribs.Length > 0)
