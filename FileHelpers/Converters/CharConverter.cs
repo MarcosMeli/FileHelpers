@@ -75,8 +75,8 @@ namespace FileHelpers.Converters
         /// <returns>Character (may be upper or lower case)</returns>
         public override object StringToField(string from)
         {
-            if (String.IsNullOrEmpty(@from))
-                return Char.MinValue;
+            if (string.IsNullOrEmpty(@from))
+                return char.MinValue;
 
             try
             {
@@ -86,10 +86,10 @@ namespace FileHelpers.Converters
                         return @from[0];
 
                     case CharFormat.Lower:
-                        return Char.ToLower(@from[0]);
+                        return char.ToLower(@from[0]);
 
                     case CharFormat.Upper:
-                        return Char.ToUpper(@from[0]);
+                        return char.ToUpper(@from[0]);
 
                     default:
                         throw new ConvertException(@from,
@@ -116,10 +116,10 @@ namespace FileHelpers.Converters
                     return Convert.ToChar(@from).ToString();
 
                 case CharFormat.Lower:
-                    return Char.ToLower(Convert.ToChar(@from)).ToString();
+                    return char.ToLower(Convert.ToChar(@from)).ToString();
 
                 case CharFormat.Upper:
-                    return Char.ToUpper(Convert.ToChar(@from)).ToString();
+                    return char.ToUpper(Convert.ToChar(@from)).ToString();
 
                 default:
                     throw new ConvertException("", typeof(char), "Unknown char convert flag " + mFormat.ToString());

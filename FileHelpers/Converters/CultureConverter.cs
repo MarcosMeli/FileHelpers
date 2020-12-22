@@ -39,7 +39,7 @@ namespace FileHelpers.Converters
         public sealed override string FieldToString(object from)
         {
             if (@from == null)
-                return String.Empty;
+                return string.Empty;
 
             return ((IConvertible)@from).ToString(mCulture);
         }

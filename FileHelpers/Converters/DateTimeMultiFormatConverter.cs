@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
@@ -34,7 +32,7 @@ namespace FileHelpers.Converters
             for (int i = 0; i < formats.Length; i++)
             {
                 if (formats[i] == null ||
-                    formats[i] == String.Empty)
+                    formats[i] == string.Empty)
                     throw new BadUsageException("The format of the DateTime Converter can be null or empty.");
 
                 try
@@ -59,7 +57,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             if (@from == null)
-                @from = String.Empty;
+                @from = string.Empty;
 
             DateTime val;
             if (!DateTime.TryParseExact(@from.Trim(), mFormats, null, DateTimeStyles.None, out val))
@@ -97,7 +95,7 @@ namespace FileHelpers.Converters
         public override string FieldToString(object from)
         {
             if (@from == null)
-                return String.Empty;
+                return string.Empty;
 
             return Convert.ToDateTime(@from).ToString(mFormats[0]);
         }

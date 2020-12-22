@@ -35,7 +35,7 @@ namespace FileHelpers.Converters
             if (blanksRemoved.EndsWith("%"))
             {
                 if (
-                    !Double.TryParse(blanksRemoved,
+                    !double.TryParse(blanksRemoved,
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
@@ -45,7 +45,7 @@ namespace FileHelpers.Converters
             else
             {
                 if (
-                    !Double.TryParse(blanksRemoved,
+                    !double.TryParse(blanksRemoved,
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))

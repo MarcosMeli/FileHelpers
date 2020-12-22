@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace FileHelpers.Converters
 {
@@ -28,7 +26,7 @@ namespace FileHelpers.Converters
         /// <param name="format">Format code for GUID</param>
         public GuidConverter(string format)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "D";
 
             format = format.Trim().ToUpper();
@@ -46,7 +44,7 @@ namespace FileHelpers.Converters
         /// <returns>GUID object or GUID empty</returns>
         public override object StringToField(string from)
         {
-            if (String.IsNullOrEmpty(@from))
+            if (string.IsNullOrEmpty(@from))
                 return Guid.Empty;
 
             try
@@ -67,7 +65,7 @@ namespace FileHelpers.Converters
         public override string FieldToString(object from)
         {
             if (@from == null)
-                return String.Empty;
+                return string.Empty;
             return ((Guid)@from).ToString(mFormat);
         }
     }
