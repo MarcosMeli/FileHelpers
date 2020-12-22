@@ -23,14 +23,6 @@ namespace FileHelpers.Tests.CommonTests
 
     // TEST CLASS
     [DelimitedRecord("|")]
-    public sealed class BadConverter
-    {
-        [FieldConverter(ConverterKind.Double)]
-        public decimal DecimalField;
-    }
-
-    // TEST CLASS
-    [DelimitedRecord("|")]
     public sealed class AllConvertersType
     {
         [FieldConverter(ConverterKind.Date)]
@@ -77,13 +69,6 @@ namespace FileHelpers.Tests.CommonTests
     [TestFixture]
     public class ConvertersStuff
     {
-        [Test]
-        public void BadConverterOver()
-        {
-            Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<BadConverter>());
-        }
-
         [Test]
         public void AllConverters()
         {

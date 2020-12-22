@@ -46,8 +46,6 @@ namespace FileHelpers
         /// <param name="args">An array of parameters passed directly to the Converter</param>
         private FieldConverterAttribute(ConverterKind converter, params string[] args)
         {
-            Kind = converter;
-
             Type convType;
 
             switch (converter) {
@@ -164,9 +162,6 @@ namespace FileHelpers
         /// <summary>The final concrete converter used for FieldToString and StringToField operations </summary>
         public ConverterBase Converter { get; private set; }
 
-        /// <summary>The <see cref="ConverterKind"/> if a default converter is used </summary>
-        public ConverterKind Kind { get; private set; }
-
         #endregion
 
         #region "  CreateConverter  "
@@ -252,54 +247,5 @@ namespace FileHelpers
         }
 
         #endregion
-
-        internal void ValidateTypes(FieldInfo fi)
-        {
-            bool valid = false;
-
-            Type fieldType = fi.FieldType;
-
-            if (fieldType.IsValueType &&
-                fieldType.IsGenericType &&
-                fieldType.GetGenericTypeDefinition() == typeof (Nullable<>))
-                fieldType = fieldType.GetGenericArguments()[0];
-
-            switch (Kind) {
-                case ConverterKind.None:
-                    valid = true;
-                    break;
-
-                case ConverterKind.Date:
-                case ConverterKind.DateMultiFormat:
-                    valid = typeof (DateTime) == fieldType;
-                    break;
-
-                case ConverterKind.Byte:
-                case ConverterKind.SByte:
-                case ConverterKind.Int16:
-                case ConverterKind.Int32:
-                case ConverterKind.Int64:
-                case ConverterKind.UInt16:
-                case ConverterKind.UInt32:
-                case ConverterKind.UInt64:
-                case ConverterKind.Decimal:
-                case ConverterKind.Double:
-                case ConverterKind.Single:
-                case ConverterKind.Boolean:
-                case ConverterKind.Char:
-                case ConverterKind.Guid:
-                    valid = Kind.ToString() == fieldType.UnderlyingSystemType.Name;
-                    break;
-                case ConverterKind.PercentDouble:
-                    valid = typeof (double) == fieldType;
-                    break;
-            }
-
-            if (valid == false) {
-                throw new BadUsageException(
-                    "The converter of the field: '" + fi.Name + "' is wrong. The field is of Type: " + fieldType.Name +
-                    " and the converter is for type: " + Kind.ToString());
-            }
-        }
     }
 }

@@ -464,7 +464,6 @@ namespace FileHelpers
             {
                 var conv = (FieldConverterAttribute)attribs[0];
                 Converter = conv.Converter;
-                conv.ValidateTypes(FieldInfo);
             }
             else
                 Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name,
