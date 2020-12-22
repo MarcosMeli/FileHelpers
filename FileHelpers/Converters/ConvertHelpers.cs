@@ -17,49 +17,6 @@ namespace FileHelpers
     {
         private const string DefaultDecimalSep = ".";
 
-        /// <summary>
-        /// Array of all allowed decimal separators
-        /// </summary>
-        private static readonly string[] mAllowedDecimalSeparators = { ".", "," };
-
-        #region "  CreateCulture  "
-
-        /// <summary>
-        /// Return culture information for with comma decimal separator or comma decimal separator
-        /// </summary>
-        /// <param name="decimalSepOrCultureName">Decimal separator string or culture name</param>
-        /// <returns>Cultural information based on separator</returns>
-        private static CultureInfo CreateCulture(string decimalSepOrCultureName)
-        {
-            CultureInfo ci;
-
-            if (mAllowedDecimalSeparators.Contains(decimalSepOrCultureName))
-            {
-                ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
-
-                if (decimalSepOrCultureName == ".")
-                {
-                    ci.NumberFormat.NumberDecimalSeparator = ".";
-                    ci.NumberFormat.NumberGroupSeparator = ",";
-                }
-                else if (decimalSepOrCultureName == ",")
-                {
-                    ci.NumberFormat.NumberDecimalSeparator = ",";
-                    ci.NumberFormat.NumberGroupSeparator = ".";
-                }
-                else
-                    throw new BadUsageException("You can only use '.' or ',' as decimal or group separators");
-            }
-            else
-            {
-                ci = CultureInfo.GetCultureInfo(decimalSepOrCultureName);
-            }
-
-            return ci;
-        }
-
-        #endregion
-
         #region "  GetDefaultConverter  "
 
         /// <summary>
@@ -207,6 +164,43 @@ namespace FileHelpers
             /// <param name="from">Value to convert (string)</param>
             /// <returns>Converted object</returns>
             protected abstract object ParseString(string from);
+
+            /// <summary>
+            /// Return culture information for with comma decimal separator or comma decimal separator
+            /// </summary>
+            /// <param name="decimalSepOrCultureName">Decimal separator string or culture name</param>
+            /// <returns>Cultural information based on separator</returns>
+            private static CultureInfo CreateCulture(string decimalSepOrCultureName)
+            {
+                // Array of all allowed decimal separators
+                string[] allowedDecimalSeparators = { ".", "," };
+
+                CultureInfo ci;
+
+                if (allowedDecimalSeparators.Contains(decimalSepOrCultureName))
+                {
+                    ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
+
+                    if (decimalSepOrCultureName == ".")
+                    {
+                        ci.NumberFormat.NumberDecimalSeparator = ".";
+                        ci.NumberFormat.NumberGroupSeparator = ",";
+                    }
+                    else if (decimalSepOrCultureName == ",")
+                    {
+                        ci.NumberFormat.NumberDecimalSeparator = ",";
+                        ci.NumberFormat.NumberGroupSeparator = ".";
+                    }
+                    else
+                        throw new BadUsageException("You can only use '.' or ',' as decimal or group separators");
+                }
+                else
+                {
+                    ci = CultureInfo.GetCultureInfo(decimalSepOrCultureName);
+                }
+
+                return ci;
+            }
         }
 
         /// <summary>
