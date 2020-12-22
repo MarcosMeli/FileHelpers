@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using FileHelpers.Converters;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
 

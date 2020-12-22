@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests

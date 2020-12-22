@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using FileHelpers.Converters;
 using FileHelpers.Helpers;
 
 namespace FileHelpers

@@ -1,7 +1,6 @@
 using System;
-using FileHelpers.Converters;
 
-namespace FileHelpers
+namespace FileHelpers.Converters
 {
     /// <summary>
     /// Base class to provide bi-directional

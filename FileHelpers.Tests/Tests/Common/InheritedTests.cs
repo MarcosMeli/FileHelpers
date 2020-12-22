@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
