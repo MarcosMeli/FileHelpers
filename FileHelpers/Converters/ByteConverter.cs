@@ -28,8 +28,8 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             byte res;
-            if (!byte.TryParse(ConvertHelpers.RemoveBlanks(@from), NumberStyles.Number, mCulture, out res))
-                throw new ConvertException(@from, mType);
+            if (!byte.TryParse(ConvertHelpers.RemoveBlanks(from), NumberStyles.Number, mCulture, out res))
+                throw new ConvertException(from, mType);
             return res;
         }
     }

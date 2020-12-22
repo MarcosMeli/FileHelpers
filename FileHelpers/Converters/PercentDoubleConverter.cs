@@ -31,7 +31,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             double res;
-            var blanksRemoved = ConvertHelpers.RemoveBlanks(@from);
+            var blanksRemoved = ConvertHelpers.RemoveBlanks(from);
             if (blanksRemoved.EndsWith("%"))
             {
                 if (
@@ -39,7 +39,7 @@ namespace FileHelpers.Converters
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
-                    throw new ConvertException(@from, mType);
+                    throw new ConvertException(from, mType);
                 return res / 100.0;
             }
             else
@@ -49,7 +49,7 @@ namespace FileHelpers.Converters
                         NumberStyles.Number | NumberStyles.AllowExponent,
                         mCulture,
                         out res))
-                    throw new ConvertException(@from, mType);
+                    throw new ConvertException(from, mType);
                 return res;
             }
         }

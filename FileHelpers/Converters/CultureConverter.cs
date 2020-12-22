@@ -38,10 +38,10 @@ namespace FileHelpers.Converters
         /// <returns>string representation</returns>
         public sealed override string FieldToString(object from)
         {
-            if (@from == null)
+            if (from == null)
                 return string.Empty;
 
-            return ((IConvertible)@from).ToString(mCulture);
+            return ((IConvertible)from).ToString(mCulture);
         }
 
         /// <summary>

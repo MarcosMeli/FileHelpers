@@ -30,11 +30,11 @@ namespace FileHelpers.Converters
         {
             short res;
             if (
-                !short.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !short.TryParse(ConvertHelpers.RemoveBlanks(from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))
-                throw new ConvertException(@from, mType);
+                throw new ConvertException(from, mType);
             return res;
         }
     }

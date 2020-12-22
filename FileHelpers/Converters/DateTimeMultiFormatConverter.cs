@@ -56,14 +56,14 @@ namespace FileHelpers.Converters
         /// <returns>string DateTime value</returns>
         public override object StringToField(string from)
         {
-            if (@from == null)
-                @from = string.Empty;
+            if (from == null)
+                from = string.Empty;
 
             DateTime val;
-            if (!DateTime.TryParseExact(@from.Trim(), mFormats, null, DateTimeStyles.None, out val))
+            if (!DateTime.TryParseExact(from.Trim(), mFormats, null, DateTimeStyles.None, out val))
             {
                 string extra = " does not match any of the given formats: " + CreateFormats();
-                throw new ConvertException(@from, typeof(DateTime), extra);
+                throw new ConvertException(from, typeof(DateTime), extra);
             }
             return val;
         }
@@ -94,10 +94,10 @@ namespace FileHelpers.Converters
         /// <returns>string DateTime value</returns>
         public override string FieldToString(object from)
         {
-            if (@from == null)
+            if (from == null)
                 return string.Empty;
 
-            return Convert.ToDateTime(@from).ToString(mFormats[0]);
+            return Convert.ToDateTime(from).ToString(mFormats[0]);
         }
     }
 }

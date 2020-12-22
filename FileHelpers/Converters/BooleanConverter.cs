@@ -38,7 +38,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             object val;
-            string testTo = @from.ToLower();
+            string testTo = from.ToLower();
 
             if (mTrueString == null)
             {
@@ -64,9 +64,9 @@ namespace FileHelpers.Converters
                         break;
 
                     default:
-                        throw new ConvertException(@from,
+                        throw new ConvertException(from,
                             typeof(bool),
-                            "The string: " + @from
+                            "The string: " + from
                                            + " can't be recognized as boolean using default true/false values.");
                 }
             }
@@ -87,9 +87,9 @@ namespace FileHelpers.Converters
                         val = false;
                     else
                     {
-                        throw new ConvertException(@from,
+                        throw new ConvertException(from,
                             typeof(bool),
-                            "The string: " + @from
+                            "The string: " + from
                                            + " can't be recognized as boolean using the true/false values: " + mTrueString + "/" +
                                            mFalseString);
                     }
@@ -104,7 +104,7 @@ namespace FileHelpers.Converters
         /// </summary>
         public override string FieldToString(object from)
         {
-            bool b = Convert.ToBoolean(@from);
+            bool b = Convert.ToBoolean(from);
             if (b)
             {
                 if (mTrueString == null)

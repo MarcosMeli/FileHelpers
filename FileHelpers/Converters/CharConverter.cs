@@ -75,7 +75,7 @@ namespace FileHelpers.Converters
         /// <returns>Character (may be upper or lower case)</returns>
         public override object StringToField(string from)
         {
-            if (string.IsNullOrEmpty(@from))
+            if (string.IsNullOrEmpty(from))
                 return char.MinValue;
 
             try
@@ -83,23 +83,23 @@ namespace FileHelpers.Converters
                 switch (mFormat)
                 {
                     case CharFormat.NoChange:
-                        return @from[0];
+                        return from[0];
 
                     case CharFormat.Lower:
-                        return char.ToLower(@from[0]);
+                        return char.ToLower(from[0]);
 
                     case CharFormat.Upper:
-                        return char.ToUpper(@from[0]);
+                        return char.ToUpper(from[0]);
 
                     default:
-                        throw new ConvertException(@from,
+                        throw new ConvertException(from,
                             typeof(char),
                             "Unknown char convert flag " + mFormat.ToString());
                 }
             }
             catch
             {
-                throw new ConvertException(@from, typeof(char), "Upper or lower case of input string failed");
+                throw new ConvertException(from, typeof(char), "Upper or lower case of input string failed");
             }
         }
 
@@ -113,13 +113,13 @@ namespace FileHelpers.Converters
             switch (mFormat)
             {
                 case CharFormat.NoChange:
-                    return Convert.ToChar(@from).ToString();
+                    return Convert.ToChar(from).ToString();
 
                 case CharFormat.Lower:
-                    return char.ToLower(Convert.ToChar(@from)).ToString();
+                    return char.ToLower(Convert.ToChar(from)).ToString();
 
                 case CharFormat.Upper:
-                    return char.ToUpper(Convert.ToChar(@from)).ToString();
+                    return char.ToUpper(Convert.ToChar(from)).ToString();
 
                 default:
                     throw new ConvertException("", typeof(char), "Unknown char convert flag " + mFormat.ToString());
