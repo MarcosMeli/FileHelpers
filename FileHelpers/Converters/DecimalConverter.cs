@@ -29,11 +29,11 @@ namespace FileHelpers.Converters
         {
             decimal res;
             if (
-                !decimal.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !decimal.TryParse(ConvertHelpers.RemoveBlanks(from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))
-                throw new ConvertException(@from, mType);
+                throw new ConvertException(from, mType);
             return res;
         }
     }

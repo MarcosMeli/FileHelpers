@@ -29,11 +29,11 @@ namespace FileHelpers.Converters
         {
             ulong res;
             if (
-                !ulong.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !ulong.TryParse(ConvertHelpers.RemoveBlanks(from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))
-                throw new ConvertException(@from, mType);
+                throw new ConvertException(from, mType);
             return res;
         }
     }

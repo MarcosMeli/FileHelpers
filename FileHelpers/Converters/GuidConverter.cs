@@ -44,16 +44,16 @@ namespace FileHelpers.Converters
         /// <returns>GUID object or GUID empty</returns>
         public override object StringToField(string from)
         {
-            if (string.IsNullOrEmpty(@from))
+            if (string.IsNullOrEmpty(from))
                 return Guid.Empty;
 
             try
             {
-                return new Guid(@from);
+                return new Guid(from);
             }
             catch
             {
-                throw new ConvertException(@from, typeof(Guid));
+                throw new ConvertException(from, typeof(Guid));
             }
         }
 
@@ -64,9 +64,9 @@ namespace FileHelpers.Converters
         /// <returns>GUID as a string depending on format</returns>
         public override string FieldToString(object from)
         {
-            if (@from == null)
+            if (from == null)
                 return string.Empty;
-            return ((Guid)@from).ToString(mFormat);
+            return ((Guid)from).ToString(mFormat);
         }
     }
 }
