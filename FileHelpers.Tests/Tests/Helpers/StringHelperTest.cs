@@ -9,32 +9,8 @@ namespace FileHelpers.Tests
     /// FileHelpers Helpers StringHelper tests
     /// </summary>
     [TestFixture]
-    internal class StringHelperTest
+    public class StringHelperTest
     {
-        [Test(Description = "String without spaces into RemoveBlanks")]
-        public void RemoveNoBlanks()
-        {
-            Check.That(StringHelper.RemoveBlanks("+41")).IsEqualTo("+41");
-        }
-
-        [Test(Description = "String with leading blanks into RemoveBlanks")]
-        public void RemoveLeadingBlanks()
-        {
-            Check.That(StringHelper.RemoveBlanks("     +41")).IsEqualTo("     +41");
-        }
-
-        [Test(Description = "String with blanks after sign logic into RemoveBlanks")]
-        public void RemoveBlanksAfterSign()
-        {
-            Check.That(StringHelper.RemoveBlanks("     + 41")).IsEqualTo("+41");
-        }
-
-        [Test(Description = "String with trailing blank into RemoveBlanks")]
-        public void RemoveTrailingBlanks()
-        {
-            Check.That(StringHelper.RemoveBlanks("     + 41")).IsEqualTo("+41");
-        }
-
         [Test(Description = "String StartsWithIgnoringWhiteSpaces help method tests")]
         public void StartsWithIgnoringWhiteSpaces()
         {

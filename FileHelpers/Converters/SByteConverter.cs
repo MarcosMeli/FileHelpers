@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Converters
 {
@@ -30,7 +29,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             sbyte res;
-            if (!SByte.TryParse(StringHelper.RemoveBlanks(@from), NumberStyles.Number, mCulture, out res))
+            if (!SByte.TryParse(ConvertHelpers.RemoveBlanks(@from), NumberStyles.Number, mCulture, out res))
                 throw new ConvertException(@from, mType);
             return res;
         }

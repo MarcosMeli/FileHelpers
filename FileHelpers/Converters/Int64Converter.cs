@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Converters
 {
@@ -31,7 +30,7 @@ namespace FileHelpers.Converters
         {
             long res;
             if (
-                !Int64.TryParse(StringHelper.RemoveBlanks(@from),
+                !Int64.TryParse(ConvertHelpers.RemoveBlanks(@from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))

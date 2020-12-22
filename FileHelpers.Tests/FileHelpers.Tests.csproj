@@ -152,6 +152,7 @@
     <Compile Include="Tests\Common\OverflowModeTests.cs" />
     <Compile Include="Tests\Common\HeaderText.cs" />
     <Compile Include="Tests\Common\RealLineNumber.cs" />
+    <Compile Include="Tests\Converters\ConverterHelperTest.cs" />
     <Compile Include="Tests\Converters\DateFormatCulture.cs" />
     <Compile Include="Tests\Converters\DefaultCultureInfo.cs" />
     <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />

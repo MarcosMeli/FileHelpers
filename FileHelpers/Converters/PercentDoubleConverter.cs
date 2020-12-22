@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Converters
 {
@@ -32,7 +31,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             double res;
-            var blanksRemoved = StringHelper.RemoveBlanks(@from);
+            var blanksRemoved = ConvertHelpers.RemoveBlanks(@from);
             if (blanksRemoved.EndsWith("%"))
             {
                 if (
