@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 
 namespace FileHelpers.Converters
@@ -30,7 +29,7 @@ namespace FileHelpers.Converters
         {
             float res;
             if (
-                !Single.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !float.TryParse(ConvertHelpers.RemoveBlanks(@from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))

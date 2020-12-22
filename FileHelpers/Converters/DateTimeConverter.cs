@@ -33,7 +33,7 @@ namespace FileHelpers.Converters
         /// <param name="culture">The culture used to parse the Dates</param>
         public DateTimeConverter(string format, string culture)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 throw new BadUsageException("The format of the DateTime Converter cannot be null or empty.");
 
             try
@@ -57,7 +57,7 @@ namespace FileHelpers.Converters
         public override object StringToField(string from)
         {
             if (@from == null)
-                @from = String.Empty;
+                @from = string.Empty;
 
             DateTime val;
             if (!DateTime.TryParseExact(@from.Trim(), mFormat, mCulture, DateTimeStyles.None, out val))
@@ -85,7 +85,7 @@ namespace FileHelpers.Converters
         public override string FieldToString(object from)
         {
             if (@from == null)
-                return String.Empty;
+                return string.Empty;
 
             return Convert.ToDateTime(@from).ToString(mFormat, mCulture);
         }

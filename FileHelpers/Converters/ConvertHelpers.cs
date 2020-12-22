@@ -116,12 +116,12 @@ namespace FileHelpers.Converters
             int i = 0;
 
             while (i < source.Length &&
-                   Char.IsWhiteSpace(source[i]))
+                   char.IsWhiteSpace(source[i]))
                 i++;
 
             // Only whitespace return an empty string
             if (i >= source.Length)
-                return String.Empty;
+                return string.Empty;
 
             // we are looking for a gap after the sign, if not found then
             // trim off the front of the string and return
@@ -129,7 +129,7 @@ namespace FileHelpers.Converters
                 source[i] == '-')
             {
                 i++;
-                if (!Char.IsWhiteSpace(source[i]))
+                if (!char.IsWhiteSpace(source[i]))
                     return source; //  sign is followed by text so just return it
 
                 // start out with the sign
@@ -137,7 +137,7 @@ namespace FileHelpers.Converters
 
                 i++; // I am on whitespace so skip it
                 while (i < source.Length &&
-                       Char.IsWhiteSpace(source[i]))
+                       char.IsWhiteSpace(source[i]))
                     i++;
                 if (i < source.Length)
                     sb.Append(source.Substring(i));

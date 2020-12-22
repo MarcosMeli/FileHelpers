@@ -30,7 +30,7 @@ namespace FileHelpers.Converters
         {
             int res;
             if (
-                !Int32.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !int.TryParse(ConvertHelpers.RemoveBlanks(@from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))

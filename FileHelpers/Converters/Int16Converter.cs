@@ -30,7 +30,7 @@ namespace FileHelpers.Converters
         {
             short res;
             if (
-                !Int16.TryParse(ConvertHelpers.RemoveBlanks(@from),
+                !short.TryParse(ConvertHelpers.RemoveBlanks(@from),
                     NumberStyles.Number | NumberStyles.AllowExponent,
                     mCulture,
                     out res))
