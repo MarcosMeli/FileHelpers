@@ -27,7 +27,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">string representing short integer</param>
         /// <returns>short integer value</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             ushort res;
             if (

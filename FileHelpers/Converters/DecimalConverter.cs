@@ -27,7 +27,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">String value to convert</param>
         /// <returns>decimal value</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             decimal res;
             if (

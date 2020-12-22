@@ -27,7 +27,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">String value to parse</param>
         /// <returns>Unsigned integer object</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             uint res;
             if (
