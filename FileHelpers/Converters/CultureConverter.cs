@@ -45,23 +45,6 @@ namespace FileHelpers.Converters
         }
 
         /// <summary>
-        /// Convert a string to the object type
-        /// </summary>
-        /// <param name="from">String to convert</param>
-        /// <returns>Object converted to</returns>
-        public sealed override object StringToField(string from)
-        {
-            return ParseString(@from);
-        }
-
-        /// <summary>
-        /// Convert a string into the return object required
-        /// </summary>
-        /// <param name="from">Value to convert (string)</param>
-        /// <returns>Converted object</returns>
-        protected abstract object ParseString(string from);
-
-        /// <summary>
         /// Return culture information for with comma decimal separator or comma decimal separator
         /// </summary>
         /// <param name="decimalSepOrCultureName">Decimal separator string or culture name</param>

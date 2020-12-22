@@ -27,7 +27,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">String value to convert</param>
         /// <returns>Single floating point value</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             float res;
             if (

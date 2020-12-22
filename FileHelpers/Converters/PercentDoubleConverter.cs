@@ -29,7 +29,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">String value to convert</param>
         /// <returns>floating point value</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             double res;
             var blanksRemoved = StringHelper.RemoveBlanks(@from);

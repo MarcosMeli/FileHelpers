@@ -27,7 +27,7 @@ namespace FileHelpers.Converters
         /// </summary>
         /// <param name="from">string to parse</param>
         /// <returns>byte value</returns>
-        protected override object ParseString(string from)
+        public override object StringToField(string from)
         {
             byte res;
             if (!Byte.TryParse(StringHelper.RemoveBlanks(@from), NumberStyles.Number, mCulture, out res))
