@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{0ED20BF1-AC76-443E-9CA2-004A15B452A3}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{0ED20BF1-A
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples - Demos", "Examples - Demos", "{747EBEDD-59D1-4F54-A2DE-DCA768339C9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.WizardApp", "FileHelpers.WizardApp\FileHelpers.WizardApp.csproj", "{8997A588-1D83-4211-980D-28D8BF0CDA8E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}"
 EndProject
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8997A588-1D83-4211-980D-28D8BF0CDA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8997A588-1D83-4211-980D-28D8BF0CDA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8997A588-1D83-4211-980D-28D8BF0CDA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8997A588-1D83-4211-980D-28D8BF0CDA8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
