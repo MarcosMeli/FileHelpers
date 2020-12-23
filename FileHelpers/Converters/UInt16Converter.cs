@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a string to a short integer
     /// </summary>
-    internal sealed class UInt16Converter : CultureConverter
+    public sealed class UInt16Converter : CultureConverter
     {
         /// <summary>
         /// Convert a number to a short integer

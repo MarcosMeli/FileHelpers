@@ -6,7 +6,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a value to a date time value
     /// </summary>
-    internal sealed class DateTimeConverter : ConverterBase
+    public sealed class DateTimeConverter : ConverterBase
     {
         private readonly string mFormat;
         private readonly CultureInfo mCulture;

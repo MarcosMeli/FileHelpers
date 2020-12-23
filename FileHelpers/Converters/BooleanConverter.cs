@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert an input value to a boolean,  allows for true false values
     /// </summary>
-    internal sealed class BooleanConverter : ConverterBase
+    public sealed class BooleanConverter : ConverterBase
     {
         private readonly string mTrueString;
         private readonly string mFalseString;

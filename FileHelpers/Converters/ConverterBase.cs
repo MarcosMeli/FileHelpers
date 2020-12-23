@@ -7,7 +7,7 @@ namespace FileHelpers.Converters
     /// Field - String conversion.
     /// </summary>
     public abstract class ConverterBase
-        : IConverter
+        : Attribute, IConverter
     {
         private static string mDefaultDateTimeFormat = "ddMMyyyy";
 

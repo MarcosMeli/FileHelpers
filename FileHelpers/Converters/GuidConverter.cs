@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     ///  Convert a GUID to and from a field value
     /// </summary>
-    internal sealed class GuidConverter : ConverterBase
+    public sealed class GuidConverter : ConverterBase
     {
         /// <summary>
         /// D or N or B or P (default is D: see Guid.ToString(string format))

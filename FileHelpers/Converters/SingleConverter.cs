@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a value to a single floating point
     /// </summary>
-    internal sealed class SingleConverter : CultureConverter
+    public sealed class SingleConverter : CultureConverter
     {
         /// <summary>
         /// Convert a value to a single floating point

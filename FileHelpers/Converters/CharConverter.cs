@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Allow characters to be converted to upper and lower case automatically.
     /// </summary>
-    internal sealed class CharConverter : ConverterBase
+    public sealed class CharConverter : ConverterBase
     {
         /// <summary>
         /// whether we upper or lower case the character on input
