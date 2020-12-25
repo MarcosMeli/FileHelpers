@@ -100,15 +100,6 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
-        public void AutoRemoveQuotes()
-        {
-            var eng = new CsvEngine(new CsvOptions("YourClass", ',', 2, 0));
-            DataTable dt = eng.ReadFileAsDT(TestCommon.GetPath("Good", "QuoteMode1.txt"));
-
-            Assert.AreEqual("VINET", dt.Rows[0][1]);
-        }
-
-        [Test]
         public void OptionalForReadOnEmptyFields()
         {
             var eng = new FileHelperEngine<OptionalForReadOnEmptyFieldsClass>();

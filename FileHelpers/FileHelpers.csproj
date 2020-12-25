@@ -229,9 +229,6 @@
     <Compile Include="Dynamic\FixedFieldBuilder.cs" />
     <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
     <Compile Include="Dynamic\XmlHelper.cs" />
-    <Compile Include="Engines\CsvEngine.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Engines\EventEngineBase.cs" />
     <Compile Include="Engines\IFileHelperAsyncEngine.cs" />
     <Compile Include="Engines\IFileHelperEngine.cs" />

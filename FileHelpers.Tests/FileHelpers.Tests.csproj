@@ -174,9 +174,6 @@
     <Compile Include="Tests\Common\FixedEngine.cs" />
     <Compile Include="Tests\Common\DelimitedEngine.cs" />
     <Compile Include="Tests\Common\EventsGenerics.cs" />
-    <Compile Include="Tests\Common\CsvEngineTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Tests\Common\CustomConverter1.cs">
       <SubType>Code</SubType>
     </Compile>
