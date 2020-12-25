@@ -318,7 +318,6 @@
     <Compile Include="Tests\DataLink\SqlServerStorage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Detector\BasicDetection.cs" />
     <Compile Include="Tests\Errors\BadFormat.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -345,7 +344,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\FileHelpers\DelimitedFieldTests.cs" />
-    <Compile Include="Tests\Helpers\QuoteHelperTests.cs" />
     <Compile Include="Tests\Helpers\StreamHelperTest.cs" />
     <Compile Include="Tests\Helpers\StringHelperTest.cs" />
     <Compile Include="Tests\MasterDetail\MasterDetail.cs">
@@ -391,8 +389,6 @@
     <None Include="Data\Excel\ExcelWithEmptyCells.xlsx" />
     <None Include="FileHelpers.snk" />
     <None Include="Data\Good\EncodingChinese.bin" />
-    <Compile Include="Tests\Detector\HeaderDetection.cs" />
-    <Compile Include="Tests\Detector\MultipleFiles.cs" />
     <Content Include="Data\Detection\CustomersTab2.txt" />
     <Content Include="Data\Good\Accounts.txt" />
   </ItemGroup>
