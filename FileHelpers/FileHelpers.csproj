@@ -219,16 +219,6 @@
     <Compile Include="DataLink\Storage\OleDbStorage.cs" />
     <Compile Include="DataLink\Storage\SqlServerStorage.cs" />
     <Compile Include="DataLink\TransactionMode.cs" />
-    <Compile Include="Dynamic\AttributesBuilder.cs" />
-    <Compile Include="Dynamic\ClassBuilder.cs" />
-    <Compile Include="Dynamic\ConverterBuilder.cs" />
-    <Compile Include="Dynamic\CsvClassBuilder.cs" />
-    <Compile Include="Dynamic\DelimitedClassBuilder.cs" />
-    <Compile Include="Dynamic\DelimitedFieldBuilder.cs" />
-    <Compile Include="Dynamic\FieldBuilder.cs" />
-    <Compile Include="Dynamic\FixedFieldBuilder.cs" />
-    <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
-    <Compile Include="Dynamic\XmlHelper.cs" />
     <Compile Include="Engines\EventEngineBase.cs" />
     <Compile Include="Engines\IFileHelperAsyncEngine.cs" />
     <Compile Include="Engines\IFileHelperEngine.cs" />
@@ -314,9 +304,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\NullValueNotFoundException.cs" />
-    <Compile Include="Dynamic\DynamicCompilationException.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Events\BeforeReadEventArgs.cs" />
     <Compile Include="Events\BeforeWriteEventArgs.cs" />
     <Compile Include="Events\Delegates.cs">

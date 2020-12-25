@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using FileHelpers;
-using FileHelpers.Dynamic;
 using FileHelpers.ExcelNPOIStorage;
 using NPOI.XSSF.UserModel;
 
@@ -14,46 +13,6 @@ namespace OurTest
     {
         private static void Main()
         {
-            //Dynamic Records
-            var cb = new DelimitedClassBuilder("Customer", "|")
-            {
-                IgnoreFirstLines = 1,
-                IgnoreEmptyLines = true
-            };
-
-            cb.AddField("BirthDate", typeof(DateTime));
-            cb.LastField.TrimMode = TrimMode.Both;
-            cb.LastField.FieldNullValue = DateTime.Today;
-
-            cb.AddField("Name", typeof(string));
-            cb.LastField.FieldQuoted = true;
-            cb.LastField.QuoteChar = '"';
-
-            cb.AddField("Age", typeof(int));
-
-            var providerWithDynamicRecord = new ExcelNPOIStorage(cb.CreateRecordClass())
-            {
-                FileName = Directory.GetCurrentDirectory() + @"\testDynamicRecords.xlsx",
-                StartRow = 1,
-                StartColumn = 1
-            };
-
-            dynamic dynamicRecord = Activator.CreateInstance(providerWithDynamicRecord.RecordType);
-
-            dynamicRecord.Name = "Jonh";
-            dynamicRecord.Age = 1;
-            dynamicRecord.BirthDate = DateTime.Now;
-
-            var valuesList = new List<dynamic>
-            {
-                dynamicRecord,
-                dynamicRecord
-            };
-
-            var columnsHeaders = ((System.Reflection.TypeInfo)(dynamicRecord.GetType())).DeclaredFields.Select(x => x.Name).ToList();
-            providerWithDynamicRecord.ColumnsHeaders = columnsHeaders;
-            providerWithDynamicRecord.InsertRecords(valuesList.ToArray());
-
             //General export of excel with date time columns
             var provider = new ExcelNPOIStorage(typeof(RaRecord))
             {

@@ -135,7 +135,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateTestData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tests\ClassBuilder\ClassFromFile.cs" />
     <Compile Include="Tests\Common.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -155,17 +154,14 @@
     <Compile Include="Tests\Converters\ConverterHelperTest.cs" />
     <Compile Include="Tests\Converters\DateFormatCulture.cs" />
     <Compile Include="Tests\Converters\DefaultCultureInfo.cs" />
-    <Compile Include="Tests\Dynamic\ClassBuilderTests.cs" />
     <Compile Include="Tests\Common\ConditionalRecords.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Converters.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tests\Dynamic\DelimitedClassBuilderTests.cs" />
     <Compile Include="Tests\Common\MultiThreading.cs" />
     <Compile Include="Tests\Common\ReadersAsDataTable.cs" />
-    <Compile Include="Tests\Common\DynamicClassFiles.cs" />
     <Compile Include="Tests\Common\ReflectionOrder.cs" />
     <Compile Include="Tests\Common\FastReadCsv.cs" />
     <Compile Include="Tests\Common\WritersFieldIndexers.cs" />
@@ -270,12 +266,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\ReadersGeneric.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\Dynamic\FixedLengthClassBuilderTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\Common\DynamicClassExtra.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Common\Sort.cs">
