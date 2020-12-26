@@ -18,14 +18,14 @@ namespace FileHelpers.Tests.Converters
             public decimal DecimalFieldWithoutCulture;
 
 
-            [FieldConverter(ConverterKind.Decimal, "en-US")]
+            [DecimalConverter("en-US")]
             public decimal DecimalFieldWithEnglishCulture;
         }
 
         [DelimitedRecord("|")]
         public class RecordWithFieldCulture
         {
-            [FieldConverter(ConverterKind.Decimal, "fr-FR")]
+            [DecimalConverter("fr-FR")]
             public decimal DecimalFieldWithFrenchCulture;
 
             public decimal DecimalFieldWithoutCulture;
@@ -96,13 +96,13 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord("|")]
         public class DecimalTypeWithFrenchConversion
         {
-            [FieldConverter(ConverterKind.Int32, "fr-FR")]
+            [Int32Converter("fr-FR")]
             public int IntField;
-            [FieldConverter(ConverterKind.Single, "fr-FR")]
+            [SingleConverter("fr-FR")]
             public float FloatField;
-            [FieldConverter(ConverterKind.Double, "fr-FR")]
+            [DoubleConverter("fr-FR")]
             public double DoubleField;
-            [FieldConverter(ConverterKind.Decimal, "fr-FR")]
+            [DecimalConverter("fr-FR")]
             public decimal DecimalField;
         }
 

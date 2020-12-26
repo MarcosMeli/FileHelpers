@@ -37,7 +37,7 @@ namespace FileHelpers.Tests.CommonTests
     {
         public string Country;
 
-        [FieldConverter(typeof (NameConverter))]
+        [NameConverter]
         public NameField Names;
 
         public int Age;

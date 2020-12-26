@@ -54,7 +54,7 @@ namespace FileHelpers
 
         /// <summary>The exception that indicates the error.</summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [FieldConverter(typeof (ExceptionConverter))]
+        [ExceptionConverter]
         [FieldQuoted(QuoteMode.OptionalForBoth)]
         internal Exception mExceptionInfo;
 

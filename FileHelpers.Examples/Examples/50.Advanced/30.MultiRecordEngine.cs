@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 namespace ExamplesFx
 {
@@ -57,7 +58,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
         public class SampleType
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]

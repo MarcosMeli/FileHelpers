@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests.Converters
 {
@@ -139,21 +140,21 @@ namespace FileHelpers.Tests.Converters
     [DelimitedRecord(",")]
     public class EnumType3
     {
-        [FieldConverter(typeof (Enum2))]
+        [global::FileHelpers.Converters.EnumConverter(typeof (Enum2))]
         public Enum2 EnumValue;
     }
 
     [DelimitedRecord(",")]
     public class EnumType4
     {
-        [FieldConverter(typeof(Enum2),"s")]
+        [global::FileHelpers.Converters.EnumConverter(typeof(Enum2),"s")]
         public Enum2 EnumValue;
     }
 
     [DelimitedRecord(",")]
     public class EnumType5
     {
-        [FieldConverter(typeof(Enum2), "n")]
+        [global::FileHelpers.Converters.EnumConverter(typeof(Enum2), "n")]
         public Enum2 EnumValue;
     }
 

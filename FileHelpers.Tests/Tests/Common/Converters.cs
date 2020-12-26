@@ -11,13 +11,13 @@ namespace FileHelpers.Tests.CommonTests
         public float FloatField;
         public decimal DecimalField;
 
-        [FieldConverter(ConverterKind.Double, ",")]
+        [global::FileHelpers.Converters.DoubleConverter(",")]
         public double DoubleField2;
 
-        [FieldConverter(ConverterKind.Single, ",")]
+        [global::FileHelpers.Converters.SingleConverter(",")]
         public float FloatField2;
 
-        [FieldConverter(ConverterKind.Decimal, ",")]
+        [global::FileHelpers.Converters.DecimalConverter(",")]
         public decimal DecimalField2;
     }
 
@@ -25,43 +25,43 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public sealed class AllConvertersType
     {
-        [FieldConverter(ConverterKind.Date)]
+        [global::FileHelpers.Converters.DateTimeConverter]
         public DateTime Field2;
 
-        [FieldConverter(ConverterKind.Byte)]
+        [global::FileHelpers.Converters.ByteConverter]
         public byte Field3;
 
-        [FieldConverter(ConverterKind.SByte)]
+        [global::FileHelpers.Converters.SByteConverter]
         public sbyte Field4;
 
-        [FieldConverter(ConverterKind.Int16)]
+        [global::FileHelpers.Converters.Int16Converter]
         public short Field5;
 
-        [FieldConverter(ConverterKind.Int32)]
+        [global::FileHelpers.Converters.Int32Converter]
         public int Field6;
 
-        [FieldConverter(ConverterKind.Int64)]
+        [global::FileHelpers.Converters.Int64Converter]
         public long Field7;
 
-        [FieldConverter(ConverterKind.UInt16)]
+        [global::FileHelpers.Converters.UInt16Converter]
         public ushort Field8;
 
-        [FieldConverter(ConverterKind.UInt32)]
+        [global::FileHelpers.Converters.UInt32Converter]
         public uint Field9;
 
-        [FieldConverter(ConverterKind.UInt64)]
+        [global::FileHelpers.Converters.UInt64Converter]
         public ulong Field10;
 
-        [FieldConverter(ConverterKind.Decimal)]
+        [global::FileHelpers.Converters.DecimalConverter]
         public decimal Field11;
 
-        [FieldConverter(ConverterKind.Double)]
+        [global::FileHelpers.Converters.DecimalConverter]
         public double Field12;
 
-        [FieldConverter(ConverterKind.Single)]
+        [global::FileHelpers.Converters.SingleConverter]
         public float Field13;
 
-        [FieldConverter(ConverterKind.Boolean)]
+        [global::FileHelpers.Converters.BooleanConverter]
         public bool Field14;
     }
 
@@ -108,11 +108,11 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("|")]
         public sealed class DecimalConvType2
         {
-            [FieldConverter(ConverterKind.Double, ".")]
+            [global::FileHelpers.Converters.DoubleConverter(".")]
             [FieldNullValue(double.NaN)]
             public double DoubleField1;
 
-            [FieldConverter(ConverterKind.Double, ",")]
+            [global::FileHelpers.Converters.DoubleConverter(",")]
             [FieldNullValue(double.NaN)]
             public double DoubleField2;
         }

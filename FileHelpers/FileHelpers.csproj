@@ -121,9 +121,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\FieldArrayLength.cs" />
-    <Compile Include="Attributes\FieldConverterAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Attributes\FieldDelimiterAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -258,9 +255,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\AlignMode.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Enums\ConverterKind.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\ErrorMode.cs">

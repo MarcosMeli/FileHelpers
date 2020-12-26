@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 namespace ExamplesFx
 {
@@ -31,10 +32,10 @@ namespace ExamplesFx
 
             public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
+            [DecimalConverter(".")] // The decimal separator is "."
             public decimal Freight;
         }
 

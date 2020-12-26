@@ -458,12 +458,11 @@ namespace FileHelpers
 
             IsStringField = FieldTypeInternal == typeof(string);
 
-            object[] attribs = attibuteTarget.GetCustomAttributes(typeof(FieldConverterAttribute), true);
+            object[] attribs = attibuteTarget.GetCustomAttributes(typeof(ConverterBase), true);
 
             if (attribs.Length > 0)
             {
-                var conv = (FieldConverterAttribute)attribs[0];
-                Converter = conv.Converter;
+                Converter = (ConverterBase)attribs[0];
             }
             else
                 Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name,

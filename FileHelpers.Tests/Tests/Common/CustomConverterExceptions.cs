@@ -8,7 +8,7 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class CustomConvType
     {
-        [FieldConverter(typeof (VeryBadConverter))]
+        [VeryBadConverter]
         public decimal PriceList;
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 
 namespace ExamplesFx
@@ -34,7 +35,7 @@ namespace ExamplesFx
             public string Name;
 
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime AddedDate;
         }
 

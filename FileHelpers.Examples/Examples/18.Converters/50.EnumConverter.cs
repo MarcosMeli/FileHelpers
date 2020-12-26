@@ -1,4 +1,5 @@
 ﻿using FileHelpers;
+using FileHelpers.Converters;
 
 namespace ExamplesFx
 {
@@ -41,7 +42,7 @@ namespace ExamplesFx
             // Note: this attribute makes sense only when writing records - when reading, 
             //   converter automatically supports both string and integer representation
             //   of enum members
-            [FieldConverter(typeof(CustomerTitle),"s")]
+            [EnumConverter(typeof(CustomerTitle),"s")]
             public CustomerTitle ContactTitle;
         }
 

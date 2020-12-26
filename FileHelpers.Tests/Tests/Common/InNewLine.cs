@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -263,10 +264,10 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord(",")]
         private sealed class InNewLineType0
         {
-            [FieldConverter(ConverterKind.Date, "dd-MM hh:mm:ss yyyy")]
+            [DateTimeConverter("dd-MM hh:mm:ss yyyy")]
             public DateTime Date1;
 
-            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy hh:mm:ss")]
+            [DateTimeConverter("dd-MM-yyyy hh:mm:ss")]
             public DateTime Date2;
 
             public byte Field1;

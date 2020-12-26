@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 using NFluent;
 
@@ -157,7 +158,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime OrderDate;
 
             public decimal Freight;
@@ -174,7 +175,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldValueDiscarded]
             public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             [FieldValueDiscarded]
             [FieldNullValue(typeof (DateTime), "2000-01-02")]
             public DateTime OrderDate;
@@ -194,7 +195,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldValueDiscarded]
             public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             [FieldValueDiscarded]
             [FieldNullValue(typeof (DateTime), "2000-01-02")]
             public DateTime OrderDate;
@@ -212,7 +213,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldValueDiscarded]
             public string CustomerID;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime OrderDate;
 
             public decimal Freight;

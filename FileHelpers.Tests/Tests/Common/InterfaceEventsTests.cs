@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using FileHelpers.Converters;
 using FileHelpers.Events;
 using NUnit.Framework;
 
@@ -105,7 +106,7 @@ namespace FileHelpers.Tests.CommonTests
         public class SampleType : INotifyRead, INotifyWrite
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]

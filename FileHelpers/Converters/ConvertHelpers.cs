@@ -7,9 +7,6 @@ namespace FileHelpers.Converters
     /// Class that provides static methods that returns a default 
     /// <see cref="ConverterBase">Converter</see> to the basic types.
     /// </summary>
-    /// <remarks>
-    ///     Used by the <see cref="FieldConverterAttribute"/>.
-    /// </remarks>
     internal static class ConvertHelpers
     {
         internal const string DefaultDecimalSep = ".";

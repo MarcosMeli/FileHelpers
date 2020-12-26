@@ -302,7 +302,7 @@ namespace FileHelpers.Tests.CommonTests
             [FieldHidden()]
             public int Tag { get; set; }
             public string Usuario { get; set; }
-            [FieldConverter(ConverterKind.Date)]
+            [DateTimeConverter]
             public DateTime DateTime { get; set; }
             [FieldDelimiter(";")]
             public string CustomDelimiter { get; set; }

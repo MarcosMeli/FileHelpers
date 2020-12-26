@@ -67,7 +67,7 @@ namespace FileHelpers.Tests.CommonTests
 
             // the library only serializes fields not properties, so you are saving the string. 
 
-            [FieldConverter(typeof (ImageConverter))]
+            [ImageConverter]
             public Image MyImage;
 
             public class ImageConverter : ConverterBase

@@ -1,9 +1,9 @@
 <FixedLengthRecord> _
 Public Class SampleType
 
-	<FieldFixedLength(8), _
-	 FieldConverter(ConverterKind.Date, "ddMMyyyy") > _
-	public Field1 As DateTime
+	<FieldFixedLength(8),
+	 DateTimeConverter("ddMMyyyy")>
+	Public Field1 As DateTime
 
 	<FieldFixedLength(3), _
 	 FieldAlign(AlignMode.Left, " "c), _

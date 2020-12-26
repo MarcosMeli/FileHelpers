@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using FileHelpers;
+using FileHelpers.Converters;
 using FileHelpers.ExcelNPOIStorage;
 using NPOI.XSSF.UserModel;
 
@@ -96,10 +97,10 @@ namespace OurTest
         [FieldOrder(2)]
         public string Project;
         [FieldOrder(3)]
-        [FieldConverter(ConverterKind.Decimal)]
+        [SingleConverter]
         public decimal? Level;
         [FieldOrder(4)]
-        [FieldConverter(ConverterKind.Date, "dd-MMM-yyyy")]
+        [DateTimeConverter("dd-MMM-yyyy")]
         public DateTime? Startdate;
         [FieldOrder(5)]
         public string ListOfIds;

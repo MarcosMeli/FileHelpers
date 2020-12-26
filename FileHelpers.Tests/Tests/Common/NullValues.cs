@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 using NFluent;
 
@@ -137,7 +138,7 @@ namespace FileHelpers.Tests.CommonTests
         public class NullableType
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime? Field1;
 
             [FieldFixedLength(3)]
@@ -155,7 +156,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public DateTime? OrderDate;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime? RequiredDate;
 
             public int? ShipVia;

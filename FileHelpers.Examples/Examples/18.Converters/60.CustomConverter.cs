@@ -30,11 +30,11 @@ namespace ExamplesFx
             public int ProductId;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof(MoneyConverter))]
+            [MoneyConverter]
             public decimal PriceList;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof(MoneyConverter))]
+            [MoneyConverter]
             public decimal PriceEach;
         }
 
