@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using NFluent;
 using System.Linq;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -100,7 +101,7 @@ namespace FileHelpers.Tests.CommonTests
 
             Check.That(engine.Options.FieldCount).IsEqualTo(5);
 
-            Check.That(engine.Options.Fields[1].Converter is ConvertHelpers.DateTimeConverter)
+            Check.That(engine.Options.Fields[1].Converter is DateTimeConverter)
                 .IsEqualTo(true);
         }
 

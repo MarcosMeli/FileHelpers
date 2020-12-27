@@ -1,5 +1,5 @@
 using System;
-
+using FileHelpers.Converters;
 
 namespace FileHelpers
 {
@@ -8,6 +8,7 @@ namespace FileHelpers
     /// Field - String conversion.
     /// </summary>
     public abstract class ConverterBase
+        : IConverter
     {
         private static string mDefaultDateTimeFormat = "ddMMyyyy";
 
@@ -59,6 +60,7 @@ namespace FileHelpers
         /// If the class returns false the engines don't pass null values to the converter. 
         /// If true the engines pass all the values to the converter.
         /// </summary>
+        [Obsolete("This option will be removed: Please prepare your converter to accept null as input")]
         protected internal virtual bool CustomNullHandling
         {
             get { return false; }
