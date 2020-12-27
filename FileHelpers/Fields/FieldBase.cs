@@ -31,7 +31,7 @@ namespace FileHelpers
         /// <summary>
         /// Provider to convert to and from text
         /// </summary>
-        public ConverterBase Converter { get; private set; }
+        public IConverter Converter { get; private set; }
 
         /// <summary>
         /// Number of extra characters used,  delimiters and quote characters
