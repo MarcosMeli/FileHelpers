@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 using NFluent;
 
@@ -250,7 +251,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime RequiredDate;
 
             [FieldNullValue(typeof (DateTime), "2005-1-1")]

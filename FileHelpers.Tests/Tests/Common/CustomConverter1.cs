@@ -1,4 +1,5 @@
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -36,7 +37,7 @@ namespace FileHelpers.Tests.CommonTests
     {
         public string Country;
 
-        [FieldConverter(typeof (NameConverter))]
+        [NameConverter]
         public NameField Names;
 
         public int Age;

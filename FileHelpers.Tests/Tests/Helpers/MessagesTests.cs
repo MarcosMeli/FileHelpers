@@ -1,5 +1,4 @@
-﻿using FileHelpers.Dynamic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NFluent;
 
 
@@ -23,19 +22,6 @@ namespace FileHelpers.Tests
                 .Field("FieldForTest")
                 .ToString()
                 ).IsEqualTo(final);
-        }
-
-
-        [Test]
-        public void MessageForExeptions()
-        {
-            try {
-                new DelimitedClassBuilder("", "\t");
-                Assert.Fail("No exception :(");
-            }
-            catch (FileHelpersException ex) {
-                Check.That(ex.Message).IsEqualTo("The string '' not is a valid .NET identifier");
-            }
         }
 
         [Test]

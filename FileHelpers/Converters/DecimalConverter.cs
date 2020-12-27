@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a value to a decimal value
     /// </summary>
-    internal sealed class DecimalConverter : CultureConverter
+    public sealed class DecimalConverter : CultureConverter
     {
         /// <summary>
         /// Convert a value to a decimal value

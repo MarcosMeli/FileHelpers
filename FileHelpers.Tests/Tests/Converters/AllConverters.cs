@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Converters
@@ -30,7 +31,7 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class AllTypesClass
         {
-            [FieldConverter(ConverterKind.Boolean, "1", "0")]
+            [BooleanConverter("1", "0")]
             public bool fldBoolean;
 
             public byte fldByte;
@@ -55,12 +56,12 @@ namespace FileHelpers.Tests.Converters
 
             public decimal fldDecimal;
 
-            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy HH:mm:ss")]
+            [DateTimeConverter("dd.MM.yyyy HH:mm:ss")]
             public DateTime fldDateTime;
 
             public char fldChar;
 
-            [FieldConverter(ConverterKind.Guid, "D")]
+            [GuidConverter("D")]
             public Guid fldGuid;
         }
     }

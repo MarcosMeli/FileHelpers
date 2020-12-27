@@ -7,7 +7,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a numeric value with separators into a value
     /// </summary>
-    internal abstract class CultureConverter
+    public abstract class CultureConverter
         : ConverterBase
     {
         /// <summary>

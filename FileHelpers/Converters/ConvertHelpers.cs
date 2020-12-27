@@ -7,9 +7,6 @@ namespace FileHelpers.Converters
     /// Class that provides static methods that returns a default 
     /// <see cref="ConverterBase">Converter</see> to the basic types.
     /// </summary>
-    /// <remarks>
-    ///     Used by the <see cref="FieldConverterAttribute"/>.
-    /// </remarks>
     internal static class ConvertHelpers
     {
         internal const string DefaultDecimalSep = ".";
@@ -21,7 +18,7 @@ namespace FileHelpers.Converters
         /// <param name="fieldType">Type of the field to check</param>
         /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
         /// <returns>Converter for this particular field</returns>
-        internal static ConverterBase GetDefaultConverter(string fieldName, Type fieldType, string defaultCultureName=null)
+        internal static IConverter GetDefaultConverter(string fieldName, Type fieldType, string defaultCultureName=null)
         {
             if (fieldType.IsArray)
             {

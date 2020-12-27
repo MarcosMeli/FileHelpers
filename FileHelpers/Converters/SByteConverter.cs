@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Signed byte converter (8 bit signed integer)
     /// </summary>
-    internal sealed class SByteConverter : CultureConverter
+    public sealed class SByteConverter : CultureConverter
     {
         /// <summary>
         /// Signed byte converter (8 bit signed integer)

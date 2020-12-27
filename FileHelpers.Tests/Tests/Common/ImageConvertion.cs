@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -66,7 +67,7 @@ namespace FileHelpers.Tests.CommonTests
 
             // the library only serializes fields not properties, so you are saving the string. 
 
-            [FieldConverter(typeof (ImageConverter))]
+            [ImageConverter]
             public Image MyImage;
 
             public class ImageConverter : ConverterBase

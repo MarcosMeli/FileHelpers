@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -156,14 +157,14 @@ namespace FileHelpers.Tests.CommonTests
         public class IgnoreCommentsType
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter( "ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
             public string Field2;
 
             [FieldFixedLength(3)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             public int Field3;
         }
 
@@ -174,14 +175,14 @@ namespace FileHelpers.Tests.CommonTests
         public class IgnoreCommentsType2
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter( "ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
             public string Field2;
 
             [FieldFixedLength(3)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             public int Field3;
         }
 
@@ -191,14 +192,14 @@ namespace FileHelpers.Tests.CommonTests
         public class IgnoreEmptyType1
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter( "ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
             public string Field2;
 
             [FieldFixedLength(3)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             public int Field3;
         }
 
@@ -207,14 +208,14 @@ namespace FileHelpers.Tests.CommonTests
         public class IgnoreEmptyType1Spaces
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter( "ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
             public string Field2;
 
             [FieldFixedLength(3)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             public int Field3;
         }
 
@@ -223,7 +224,7 @@ namespace FileHelpers.Tests.CommonTests
         [IgnoreEmptyLines]
         public class IgnoreEmptyType2
         {
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter( "ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]

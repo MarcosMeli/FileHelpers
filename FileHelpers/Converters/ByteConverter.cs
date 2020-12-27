@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a string into a byte value
     /// </summary>
-    internal sealed class ByteConverter : CultureConverter
+    public sealed class ByteConverter : CultureConverter
     {
         /// <summary>
         /// Convert a string to a byte value using the default decimal separator

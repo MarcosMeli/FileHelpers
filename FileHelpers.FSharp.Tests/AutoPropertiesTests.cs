@@ -14,12 +14,13 @@ namespace FileHelpers
 
 open System
 open FileHelpers
+open FileHelpers.Converters
 
 [<CLIMutable>]
 [<FixedLengthRecord>]
 type SampleFSharpType = 
     { [<FieldFixedLength(8)>]
-      [<FieldConverter(ConverterKind.Date, ""ddMMyyyy"")>]
+      [<DateTimeConverter(""ddMMyyyy"")>]
       Field1: DateTime
 
       [<FieldFixedLength(3)>]

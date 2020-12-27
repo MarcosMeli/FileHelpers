@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -7,7 +8,7 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class CustomConvType
     {
-        [FieldConverter(typeof (VeryBadConverter))]
+        [VeryBadConverter]
         public decimal PriceList;
     }
 

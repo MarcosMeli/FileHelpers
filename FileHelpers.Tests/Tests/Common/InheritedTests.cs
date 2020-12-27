@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -73,7 +74,7 @@ namespace FileHelpers.Tests.CommonTests
         public class SampleBase
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
@@ -105,7 +106,7 @@ namespace FileHelpers.Tests.CommonTests
         public class DelimitedSampleBase
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]
@@ -186,12 +187,12 @@ namespace FileHelpers.Tests.CommonTests
             public string BatchNumber;
 
             [FieldFixedLength(AmexFieldLengths.DateOfCharge)]
-            [FieldConverter(ConverterKind.Date, "MMddyy")]
+            [DateTimeConverter("MMddyy")]
             public DateTime DateOfCharge;
 
             [FieldFixedLength(AmexFieldLengths.LocalCurrencyAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof (MoneyConverter))]
+            [MoneyConverter]
             public decimal LocalCurrencyAmount;
 
             [FieldFixedLength(AmexFieldLengths.CurrencyCode)]
@@ -201,26 +202,26 @@ namespace FileHelpers.Tests.CommonTests
             public string CaptureDate;
 
             [FieldFixedLength(AmexFieldLengths.ProcessDate)]
-            [FieldConverter(ConverterKind.Date, "MMddyy")]
+            [DateTimeConverter("MMddyy")]
             public DateTime ProcessDate;
 
             [FieldFixedLength(AmexFieldLengths.BillingDate)]
-            [FieldConverter(ConverterKind.Date, "MMddyy")]
+            [DateTimeConverter("MMddyy")]
             public DateTime BillingDate;
 
             [FieldFixedLength(AmexFieldLengths.BillingAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof (MoneyConverter))]
+            [MoneyConverter]
             public decimal BillingAmount;
 
             [FieldFixedLength(AmexFieldLengths.SalesTaxAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof (MoneyConverter))]
+            [MoneyConverter]
             public decimal SalesTaxAmount;
 
             [FieldFixedLength(AmexFieldLengths.TipAmount)]
             [FieldAlign(AlignMode.Right, '0')]
-            [FieldConverter(typeof (MoneyConverter))]
+            [MoneyConverter]
             public decimal TipAmount;
 
             [FieldFixedLength(AmexFieldLengths.CardmemberName)]
@@ -249,12 +250,12 @@ namespace FileHelpers.Tests.CommonTests
             public string SICCode;
 
             [FieldFixedLength(AmexFieldLengths.CostCenter)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             [FieldAlign(AlignMode.Right, ' ')]
             public int CostCenter;
 
             [FieldFixedLength(AmexFieldLengths.EmployeeID)]
-            [FieldConverter(ConverterKind.Int32)]
+            [Int32Converter]
             [FieldAlign(AlignMode.Right, ' ')]
             public int EmployeeID;
 
@@ -509,7 +510,7 @@ namespace FileHelpers.Tests.CommonTests
             : CollectionBase
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             [FieldFixedLength(3)]

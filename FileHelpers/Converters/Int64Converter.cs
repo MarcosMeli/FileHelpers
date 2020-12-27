@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 
 namespace FileHelpers.Converters
@@ -6,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Convert a value to a long integer
     /// </summary>
-    internal sealed class Int64Converter : CultureConverter
+    public sealed class Int64Converter : CultureConverter
     {
         /// <summary>
         /// Convert a value to a long integer

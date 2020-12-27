@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using NUnit.Framework;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests.CommonTests
 {
@@ -54,7 +55,7 @@ A987654321台北市民權東東路5號           20061008");
             public string chino;
 
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "yyyyMMdd")]
+            [DateTimeConverter("yyyyMMdd")]
             public DateTime fecha;
         }
     }

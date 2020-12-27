@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Unsigned long converter
     /// </summary>
-    internal sealed class UInt64Converter : CultureConverter
+    public sealed class UInt64Converter : CultureConverter
     {
         /// <summary>
         /// Unsigned long converter

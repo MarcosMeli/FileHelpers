@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -58,7 +59,7 @@ namespace FileHelpers.Tests.CommonTests
         [ConditionalRecord(RecordCondition.ExcludeIfBegins, "//")]
         public class ConditionalType1
         {
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             public string Field2;
@@ -69,7 +70,7 @@ namespace FileHelpers.Tests.CommonTests
         [ConditionalRecord(RecordCondition.ExcludeIfEnds, "$")]
         public class ConditionalType2
         {
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             public string Field2;
@@ -80,7 +81,7 @@ namespace FileHelpers.Tests.CommonTests
         [ConditionalRecord(RecordCondition.IncludeIfMatchRegex, "ab*c")]
         public class ConditionalType3
         {
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             public string Field2;
@@ -91,7 +92,7 @@ namespace FileHelpers.Tests.CommonTests
         [ConditionalRecord(RecordCondition.IncludeIfContains, "$")]
         public class ConditionalType4
         {
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime Field1;
 
             public string Field2;

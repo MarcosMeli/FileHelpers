@@ -1,4 +1,5 @@
 ﻿using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 using NFluent;
 
@@ -49,27 +50,27 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(";")]
         private class LowerCharClass
         {
-            [FieldConverter(ConverterKind.Char, "x")]
+            [CharConverter("x")]
             public char fldChar;
 
-            [FieldConverter(ConverterKind.Char, "lower")]
+            [CharConverter("lower")]
             public char fldChar2;
         }
 
         [DelimitedRecord(";")]
         private class UpperCharClass
         {
-            [FieldConverter(ConverterKind.Char, "X")]
+            [CharConverter("X")]
             public char fldChar;
 
-            [FieldConverter(ConverterKind.Char, "upper")]
+            [CharConverter("upper")]
             public char fldChar2;
         }
 
         [DelimitedRecord(";")]
         private class IAmBadCharClass
         {
-            [FieldConverter(ConverterKind.Char, "Rubbish")]
+            [CharConverter("Rubbish")]
             public char fldChar;
         }
     }

@@ -1,3 +1,4 @@
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -63,7 +64,7 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class AddressConvClass
     {
-        [FieldConverter(typeof (AddressConverter))]
+        [AddressConverter]
         public AddressField Address;
 
         public int Age;
@@ -73,7 +74,7 @@ namespace FileHelpers.Tests.CommonTests
     [DelimitedRecord("|")]
     public class AddressConvClass2
     {
-        [FieldConverter(typeof (AddressConverter2), ",", "-")]
+        [AddressConverter2(",", "-")]
         public AddressField Address;
 
         public int Age;
@@ -134,70 +135,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("Chilesito", res[3].Address.City);
             Assert.AreEqual("Pololo", res[3].Address.Street);
             Assert.AreEqual("5421", res[3].Address.Number);
-        }
-
-        // TEST CLASS
-        [DelimitedRecord("|")]
-        public class AddressBadClass1
-        {
-            [FieldConverter(typeof (AddressConverter2), ",")]
-            public AddressField Address;
-
-            public int Age;
-        }
-
-        [DelimitedRecord("|")]
-        public class AddressBadClass2
-        {
-            [FieldConverter(typeof (AddressConverter2))]
-            public AddressField Address;
-
-            public int Age;
-        }
-
-        [DelimitedRecord("|")]
-        public class AddressBadClass3
-        {
-            [FieldConverter(typeof (AddressConverter2), 3, 58.25)]
-            public AddressField Address;
-
-            public int Age;
-        }
-
-        [Test]
-        public void NameConverterBad1()
-        {
-            var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<AddressBadClass1>());
-
-            Assert.AreEqual(
-                "Constructor for converter: AddressConverter2 with these arguments: (String) was not found. You must add a constructor with this signature (can be public or private)"
-                ,
-                ex.Message);
-        }
-
-        [Test]
-        public void NameConverterBad2()
-        {
-            var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<AddressBadClass2>());
-
-            Assert.AreEqual(
-                "Empty constructor for converter: AddressConverter2 was not found. You must add a constructor without args (can be public or private)"
-                ,
-                ex.Message);
-        }
-
-        [Test]
-        public void NameConverterBad3()
-        {
-            var ex = Assert.Throws<BadUsageException>(
-                () => new FileHelperEngine<AddressBadClass3>());
-
-            Assert.AreEqual(
-                "Constructor for converter: AddressConverter2 with these arguments: (Int32, Double) was not found. You must add a constructor with this signature (can be public or private)"
-                ,
-                ex.Message);
         }
     }
 }

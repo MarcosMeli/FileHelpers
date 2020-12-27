@@ -31,7 +31,7 @@ namespace FileHelpers
         /// <summary>
         /// Provider to convert to and from text
         /// </summary>
-        public ConverterBase Converter { get; private set; }
+        public IConverter Converter { get; private set; }
 
         /// <summary>
         /// Number of extra characters used,  delimiters and quote characters
@@ -458,21 +458,16 @@ namespace FileHelpers
 
             IsStringField = FieldTypeInternal == typeof(string);
 
-            object[] attribs = attibuteTarget.GetCustomAttributes(typeof(FieldConverterAttribute), true);
+            object[] attribs = attibuteTarget.GetCustomAttributes(typeof(ConverterBase), true);
 
             if (attribs.Length > 0)
             {
-                var conv = (FieldConverterAttribute)attribs[0];
-                Converter = conv.Converter;
-                conv.ValidateTypes(FieldInfo);
+                Converter = (ConverterBase)attribs[0];
             }
             else
                 Converter = ConvertHelpers.GetDefaultConverter(FieldFriendlyName ?? fi.Name,
                     FieldType,
                     defaultCultureName: defaultCultureName);
-
-            if (Converter != null)
-                Converter.mDestinationType = FieldTypeInternal;
 
             attribs = attibuteTarget.GetCustomAttributes(typeof(FieldNullValueAttribute), true);
 
@@ -692,8 +687,7 @@ namespace FileHelpers
                 {
                     var trimmedString = extractedString.Trim();
 
-                    if (Converter.CustomNullHandling == false &&
-                        trimmedString.Length == 0)
+                    if (trimmedString.Length == 0)
                     {
                         return new AssignResult
                         {

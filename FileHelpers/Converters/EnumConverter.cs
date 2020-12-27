@@ -1,15 +1,15 @@
 using System;
 
-namespace FileHelpers
+namespace FileHelpers.Converters
 {
-    internal sealed class EnumConverter : ConverterBase
+    public sealed class EnumConverter : ConverterBase
     {
         private readonly Type mEnumType;
         private readonly EnumFormat mFormat;
         /// <summary>
         /// whether to output enum as string or as integer
         /// </summary>
-        internal enum EnumFormat
+        public enum EnumFormat
         {
             /// <summary>
             /// as string

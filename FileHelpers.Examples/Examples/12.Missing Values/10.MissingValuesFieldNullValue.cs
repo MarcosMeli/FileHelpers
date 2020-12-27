@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 namespace ExamplesFx
 {
@@ -27,7 +28,7 @@ namespace ExamplesFx
 
 			public string CustomerID;
 
-			[FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+			[DateTimeConverter("ddMMyyyy")]
 			[FieldNullValue(typeof (DateTime), "1900-01-01")]
 			public DateTime OrderDate;
 

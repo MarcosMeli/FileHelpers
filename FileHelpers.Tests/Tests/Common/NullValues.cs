@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using FileHelpers.Dynamic;
+using FileHelpers.Converters;
 using NUnit.Framework;
 using NFluent;
 
@@ -138,7 +138,7 @@ namespace FileHelpers.Tests.CommonTests
         public class NullableType
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime? Field1;
 
             [FieldFixedLength(3)]
@@ -156,7 +156,7 @@ namespace FileHelpers.Tests.CommonTests
 
             public DateTime? OrderDate;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime? RequiredDate;
 
             public int? ShipVia;
@@ -188,37 +188,6 @@ namespace FileHelpers.Tests.CommonTests
             Assert.IsNull(res[0].OrderDate);
             Assert.IsNull(res[1].RequiredDate);
             Assert.IsNull(res[0].ShipVia);
-        }
-
-
-        [Test]
-        public void RunTimeEmptyGuidProperties()
-        {
-            var builder = new DelimitedClassBuilder("EntityWithGuid", "\t");
-            builder.AddField("Name", typeof (string));
-            builder.AddField("Id", typeof (Guid));
-            builder.LastField.FieldNullValue = Guid.Empty;
-
-            var engine = new FileHelperEngine(builder.CreateRecordClass()) {
-                Options = {
-                    IgnoreFirstLines = 1
-                }
-            };
-
-            const string inputValue = @"Name	Id
-first	
-second	";
-
-            var records = engine.ReadString(inputValue);
-            Check.That(records.Length).IsEqualTo(2);
-
-            dynamic record = records[0];
-            Check.That(((Guid) record.Id)).IsEqualTo(Guid.Empty);
-            Check.That(((string) record.Name)).IsEqualTo("first");
-
-            record = records[1];
-            Check.That(((Guid) record.Id)).IsEqualTo(Guid.Empty);
-            Check.That(((string)record.Name)).IsEqualTo("second");
         }
     }
 }

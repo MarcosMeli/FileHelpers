@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NFluent;
 using NUnit.Framework;
 
@@ -11,35 +12,35 @@ namespace FileHelpers.Tests.Converters
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatEnglish
         {
-            [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "en")]
+            [DateTimeConverter("dd/MMMM/yy", "en")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatAmericanEnglish
         {
-            [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "en-US")]
+            [DateTimeConverter("dd/MMMM/yy", "en-US")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatEnglishBadCulture
         {
-            [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "es")]
+            [DateTimeConverter("dd/MMMM/yy", "es")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatSpanish
         {
-            [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "es")]
+            [DateTimeConverter("dd/MMMM/yy", "es")]
             public DateTime Fecha;
         }
 
         [DelimitedRecord(",")]
         private class OnlyOneDateFormatArgentinianSpanish
         {
-            [FieldConverter(ConverterKind.Date, "dd/MMMM/yy", "es-AR")]
+            [DateTimeConverter("dd/MMMM/yy", "es-AR")]
             public DateTime Fecha;
         }
 

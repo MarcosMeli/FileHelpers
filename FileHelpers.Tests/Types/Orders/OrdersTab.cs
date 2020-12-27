@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests
 {
@@ -14,7 +15,7 @@ namespace FileHelpers.Tests
 
         public DateTime OrderDate;
 
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime RequiredDate;
 
         [FieldNullValue(typeof (DateTime), "2005-1-1")]

@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 
 namespace ExamplesFx
@@ -33,10 +34,10 @@ namespace ExamplesFx
 
             public string Name;
 
-            [FieldConverter(ConverterKind.Decimal, ".")] // The decimal separator is "."
+            [DecimalConverter(".")] // The decimal separator is "."
             public decimal Balance;
 
-            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            [DateTimeConverter("dd-MM-yyyy")]
             public DateTime AddedDate;
 
         }

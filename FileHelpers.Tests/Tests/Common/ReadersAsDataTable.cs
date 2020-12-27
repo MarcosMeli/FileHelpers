@@ -1,4 +1,5 @@
 ﻿using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -54,7 +55,7 @@ namespace FileHelpers.Tests.CommonTests
         public class NullableType
         {
             [FieldFixedLength(8)]
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime? Field1;
 
             [FieldFixedLength(3)]

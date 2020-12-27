@@ -1,3 +1,4 @@
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -67,13 +68,13 @@ namespace FileHelpers.Tests.CommonTests
         [DelimitedRecord("|")]
         private class SampleIntegerTypeDefined
         {
-            [FieldConverter(ConverterKind.Int32, ",")]
+            [Int32Converter(",")]
             public int Field1;
 
-            [FieldConverter(ConverterKind.Int16, ".")]
+            [Int16Converter(".")]
             public short Field2;
 
-            [FieldConverter(ConverterKind.Int64, ",")]
+            [Int64Converter(",")]
             public long Field3;
         }
 

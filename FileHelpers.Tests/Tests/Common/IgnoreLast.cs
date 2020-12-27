@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -169,14 +170,14 @@ namespace FileHelpers.Tests.CommonTests
     public class DiscardLastType0
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
         public string Field2;
 
         [FieldFixedLength(3)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 
@@ -185,14 +186,14 @@ namespace FileHelpers.Tests.CommonTests
     public class DiscardLastType1
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
         public string Field2;
 
         [FieldFixedLength(3)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 
@@ -202,14 +203,14 @@ namespace FileHelpers.Tests.CommonTests
     public class DiscardLastType1bis
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
         public string Field2;
 
         [FieldFixedLength(3)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 
@@ -218,14 +219,14 @@ namespace FileHelpers.Tests.CommonTests
     public class DiscardLastType11
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
         public string Field2;
 
         [FieldFixedLength(3)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 
@@ -234,14 +235,14 @@ namespace FileHelpers.Tests.CommonTests
     public class DiscardLastType2
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
         public string Field2;
 
         [FieldFixedLength(3)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Errors
@@ -230,67 +231,6 @@ namespace FileHelpers.Tests.Errors
             }
         }
 
-
-        [DelimitedRecord(",")]
-        public class NoConstructorConvClass
-        {
-            [FieldConverter(typeof (ConvClass))]
-            public string Field1;
-        }
-
-        [Test]
-        public void NoConstructorConverter()
-        {
-            Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine<NoConstructorConvClass>());
-        }
-
-
-        [DelimitedRecord(",")]
-        public class NoConstructorConvClass2
-        {
-            [FieldConverter(typeof (ConvClass), "hola")]
-            public string Field1;
-        }
-
-        [Test]
-        public void NoConstructorConverter2()
-        {
-            Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine<NoConstructorConvClass2>());
-        }
-
-
-        [DelimitedRecord(",")]
-        public class NoConstructorConvClass3
-        {
-            [FieldConverter(typeof (ConvClass), 123)]
-            public string Field1;
-        }
-
-        [Test]
-        public void NoConstructorConverter3()
-        {
-            Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine<NoConstructorConvClass3>());
-        }
-
-        [DelimitedRecord(",")]
-        public class NoConstructorConvClass4
-        {
-            [FieldConverter(typeof (FakeConverter), 123)]
-            public string Field1;
-
-            private class FakeConverter {}
-        }
-
-        [Test]
-        public void NoConstructorConverter4()
-        {
-            Assert.Throws<BadUsageException>(()
-                => new FileHelperEngine<NoConstructorConvClass4>());
-        }
-
         #endregion
 
         #region  "  DateFormat  "
@@ -298,21 +238,21 @@ namespace FileHelpers.Tests.Errors
         [DelimitedRecord("|")]
         public class DateFormat1Class
         {
-            [FieldConverter(ConverterKind.Date, null)]
+            [DateTimeConverter(null)]
             public DateTime DateField;
         }
 
         [DelimitedRecord("|")]
         public class DateFormat2Class
         {
-            [FieldConverter(ConverterKind.Date, "")]
+            [DateTimeConverter("")]
             public DateTime DateField;
         }
 
         [DelimitedRecord("|")]
         public class DateFormat3Class
         {
-            [FieldConverter(ConverterKind.Date, "d€€#|||??¡¡3&&...dddMMyyyy")]
+            [DateTimeConverter("d€€#|||??¡¡3&&...dddMMyyyy")]
             public DateTime DateField;
         }
 

@@ -1,14 +1,13 @@
 using System;
-using FileHelpers.Converters;
 
-namespace FileHelpers
+namespace FileHelpers.Converters
 {
     /// <summary>
     /// Base class to provide bi-directional
     /// Field - String conversion.
     /// </summary>
     public abstract class ConverterBase
-        : IConverter
+        : Attribute, IConverter
     {
         private static string mDefaultDateTimeFormat = "ddMMyyyy";
 
@@ -57,26 +56,15 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// If the class returns false the engines don't pass null values to the converter. 
-        /// If true the engines pass all the values to the converter.
-        /// </summary>
-        [Obsolete("This option will be removed: Please prepare your converter to accept null as input")]
-        protected internal virtual bool CustomNullHandling
-        {
-            get { return false; }
-        }
-
-        internal Type mDestinationType;
-
-        /// <summary>
         /// Throws a ConvertException with the passed values
         /// </summary>
         /// <param name="from">The source string.</param>
+        /// <param name="destinationType">Type which would be created.</param>
         /// <param name="errorMsg" >The custom error msg.</param>
         /// <exception cref="ConvertException">Throw exception with values</exception>
-        protected void ThrowConvertException(string from, string errorMsg)
+        protected void ThrowConvertException(string from, Type destinationType, string errorMsg)
         {
-            throw new ConvertException(from, mDestinationType, errorMsg);
+            throw new ConvertException(from, destinationType, errorMsg);
         }
     }
 }

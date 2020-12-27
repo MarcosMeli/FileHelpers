@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests
 {
@@ -6,7 +7,7 @@ namespace FileHelpers.Tests
     public class SampleType
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
@@ -25,7 +26,7 @@ namespace FileHelpers.Tests
     public class SampleTypeIgnoreFirst
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
@@ -36,7 +37,7 @@ namespace FileHelpers.Tests
         [FieldFixedLength(3)]
         [FieldAlign(AlignMode.Right, '0')]
         [FieldTrim(TrimMode.Both)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 
@@ -46,7 +47,7 @@ namespace FileHelpers.Tests
     public class SampleTypeIgnoreFirstLast
     {
         [FieldFixedLength(8)]
-        [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+        [DateTimeConverter("ddMMyyyy")]
         public DateTime Field1;
 
         [FieldFixedLength(3)]
@@ -57,7 +58,7 @@ namespace FileHelpers.Tests
         [FieldFixedLength(3)]
         [FieldAlign(AlignMode.Right, '0')]
         [FieldTrim(TrimMode.Both)]
-        [FieldConverter(ConverterKind.Int32)]
+        [Int32Converter]
         public int Field3;
     }
 

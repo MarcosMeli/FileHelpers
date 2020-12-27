@@ -1,5 +1,6 @@
 ﻿using System;
 using FileHelpers;
+using FileHelpers.Converters;
 
 namespace ExamplesFx
 {
@@ -46,7 +47,7 @@ namespace ExamplesFx
 
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
+            [DateTimeConverter("ddMMyyyy")]
             public DateTime RequiredDate;
 
             [FieldNullValue(typeof (DateTime), "2005-1-1")]

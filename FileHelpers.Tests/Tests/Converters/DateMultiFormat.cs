@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using FileHelpers.Converters;
 
 namespace FileHelpers.Tests.Converters
 {
@@ -32,10 +33,10 @@ namespace FileHelpers.Tests.Converters
     [DelimitedRecord(",")]
     public class NullDateFormatMulti
     {
-        [FieldConverter(ConverterKind.DateMultiFormat, "dd/MM/yyyy", "d/M/yyyy")]
+        [DateTimeMultiFormatConverter("dd/MM/yyyy", "d/M/yyyy")]
         public DateTime? OrderDate;
 
-        [FieldConverter(ConverterKind.DateMultiFormat, "dd/MM/yyyy", "d/M/yyyy")]
+        [DateTimeMultiFormatConverter("dd/MM/yyyy", "d/M/yyyy")]
         public Nullable<DateTime> ShipDate;
     }
 }

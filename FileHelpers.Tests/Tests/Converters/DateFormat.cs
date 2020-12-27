@@ -1,4 +1,5 @@
 using System;
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.Converters
@@ -81,10 +82,10 @@ namespace FileHelpers.Tests.Converters
     [DelimitedRecord(",")]
     public class NullDateFormat
     {
-        [FieldConverter(ConverterKind.Date, "dd/MM/yyyy")]
+        [DateTimeConverter("dd/MM/yyyy")]
         public DateTime? OrderDate;
 
-        [FieldConverter(ConverterKind.Date, "dd/MM/yyyy")]
+        [DateTimeConverter("dd/MM/yyyy")]
         public Nullable<DateTime> ShipDate;
     }
 
@@ -94,12 +95,12 @@ namespace FileHelpers.Tests.Converters
         public int OrderID;
         public int EmployeeID;
 
-        [FieldConverter(ConverterKind.Date, "d-M-yyyy")]
+        [DateTimeConverter("d-M-yyyy")]
         public DateTime OrderDate;
 
         public DateTime RequiredDate;
 
-        [FieldConverter(ConverterKind.Date, "d/M/yy")]
+        [DateTimeConverter("d/M/yy")]
         public DateTime ShippedDate;
     }
 
@@ -109,13 +110,13 @@ namespace FileHelpers.Tests.Converters
         public int OrderID;
         public int EmployeeID;
 
-        [FieldConverter(ConverterKind.Date, "M-d-yyyy")]
+        [DateTimeConverter("M-d-yyyy")]
         public DateTime OrderDate;
 
-        [FieldConverter(ConverterKind.Date, "MMddyyyy")]
+        [DateTimeConverter("MMddyyyy")]
         public DateTime RequiredDate;
 
-        [FieldConverter(ConverterKind.Date, "M/d/yy")]
+        [DateTimeConverter("M/d/yy")]
         public DateTime ShippedDate;
     }
 }

@@ -5,7 +5,7 @@ namespace FileHelpers.Converters
     /// <summary>
     /// Unsigned integer converter
     /// </summary>
-    internal sealed class UInt32Converter : CultureConverter
+    public sealed class UInt32Converter : CultureConverter
     {
         /// <summary>
         /// Unsigned integer converter

@@ -1,3 +1,4 @@
+using FileHelpers.Converters;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -28,11 +29,11 @@ namespace FileHelpers.Tests.CommonTests
             public int ProductId;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof (BadConverter))]
+            [BadConverter]
             public decimal PriceList;
 
             [FieldFixedLength(8)]
-            [FieldConverter(typeof (BadConverter))]
+            [BadConverter]
             public decimal PriceOnePay;
         }
 
