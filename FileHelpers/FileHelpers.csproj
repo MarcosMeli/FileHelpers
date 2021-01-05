@@ -276,7 +276,7 @@
     <Compile Include="Attributes\ConverterKind.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\ErrorMode.cs">
+    <Compile Include="ErrorHandling\ErrorMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\FixedMode.cs">
