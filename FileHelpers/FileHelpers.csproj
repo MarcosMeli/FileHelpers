@@ -295,7 +295,7 @@
     <Compile Include="Enums\QuoteMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\RecordCondition.cs">
+    <Compile Include="Core\RecordCondition.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\TrimMode.cs">
