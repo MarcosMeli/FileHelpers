@@ -229,7 +229,7 @@
     <Compile Include="Dynamic\FixedFieldBuilder.cs" />
     <Compile Include="Dynamic\FixedLengthClassBuilder.cs" />
     <Compile Include="Dynamic\XmlHelper.cs" />
-    <Compile Include="Engines\CsvEngine.cs">
+    <Compile Include="Dynamic\CsvEngine.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engines\EventEngineBase.cs" />
@@ -270,35 +270,35 @@
     <Compile Include="Engines\MultiRecordEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\AlignMode.cs">
+    <Compile Include="Fields\AlignMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\ConverterKind.cs">
+    <Compile Include="Attributes\ConverterKind.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\ErrorMode.cs">
+    <Compile Include="ErrorHandling\ErrorMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\FixedMode.cs">
+    <Compile Include="Fields\FixedMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\MultilineMode.cs">
+    <Compile Include="Fields\MultilineMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\NetLanguage.cs">
+    <Compile Include="Dynamic\NetLanguage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\NetVisibility.cs">
+    <Compile Include="Dynamic\NetVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\OverflowMode.cs" />
-    <Compile Include="Enums\QuoteMode.cs">
+    <Compile Include="Fields\OverflowMode.cs" />
+    <Compile Include="Fields\QuoteMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\RecordCondition.cs">
+    <Compile Include="Core\RecordCondition.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\TrimMode.cs">
+    <Compile Include="Fields\TrimMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\BadUsageException.cs">
@@ -444,6 +444,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
