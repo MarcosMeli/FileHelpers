@@ -270,7 +270,7 @@
     <Compile Include="Engines\MultiRecordEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\AlignMode.cs">
+    <Compile Include="Fields\AlignMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\ConverterKind.cs">
@@ -279,10 +279,10 @@
     <Compile Include="ErrorHandling\ErrorMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\FixedMode.cs">
+    <Compile Include="Fields\FixedMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\MultilineMode.cs">
+    <Compile Include="Fields\MultilineMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dynamic\NetLanguage.cs">
@@ -291,14 +291,14 @@
     <Compile Include="Dynamic\NetVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\OverflowMode.cs" />
-    <Compile Include="Enums\QuoteMode.cs">
+    <Compile Include="Fields\OverflowMode.cs" />
+    <Compile Include="Fields\QuoteMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\RecordCondition.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\TrimMode.cs">
+    <Compile Include="Fields\TrimMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ErrorHandling\BadUsageException.cs">
@@ -444,6 +444,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
