@@ -285,10 +285,10 @@
     <Compile Include="Enums\MultilineMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\NetLanguage.cs">
+    <Compile Include="Dynamic\NetLanguage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\NetVisibility.cs">
+    <Compile Include="Dynamic\NetVisibility.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\OverflowMode.cs" />
