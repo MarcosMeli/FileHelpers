@@ -273,7 +273,7 @@
     <Compile Include="Enums\AlignMode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\ConverterKind.cs">
+    <Compile Include="Attributes\ConverterKind.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\ErrorMode.cs">
