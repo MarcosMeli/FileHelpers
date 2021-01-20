@@ -21,7 +21,7 @@ function Pack-Packages () {
 function Test-Projects() {
     "Testing"
 
-    & 'dotnet.exe' test "..\FileHelpers.sln" -c $config
+    & 'dotnet.exe' test "..\FileHelpers.sln" -c $config --logger:Appveyor
     Ensure-CleanExit
 }
 
