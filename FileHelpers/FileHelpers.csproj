@@ -5,10 +5,19 @@
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <Version>3.4.3-alpha</Version>
-    <Description>A free and easy to use .NET library to read/write data from fixed length or delimited records in files, strings or streams</Description>
+    <Description>Open Source library for automatic formatted file read/write operations www.filehelpers.net</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>
-    <Copyright>Copyright 2005-2015. Marcos Meli</Copyright>
+    <Copyright>Marcos Meli - Devoo</Copyright>
+    <Authors>Marcos Meli and Contributors</Authors>
+    <Owners>Marcos Meli</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>http://www.filehelpers.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MarcosMeli/FileHelpers.git</RepositoryUrl>
+    <RepositoryBranch>master</RepositoryBranch>
+    <PackageReleaseNotes>www.filehelpers.net/changelog</PackageReleaseNotes>
+    <PackageTags>FileHelpers;Data;Flat File;CSV;FixedLength;Fixed;Delimited;Import;Export;ETL;FileHelper;.NET;.NET Core</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
