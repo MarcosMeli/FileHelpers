@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 
 namespace FileHelpers.Detection
@@ -50,3 +51,4 @@ namespace FileHelpers.Detection
         }
     }
 }
+#endif

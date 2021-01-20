@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using FileHelpers.Dynamic;
 using NUnit.Framework;
@@ -24,3 +25,4 @@ namespace FileHelpers.Tests
         }
     }
 }
+#endif

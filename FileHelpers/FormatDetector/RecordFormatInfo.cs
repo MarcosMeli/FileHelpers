@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using FileHelpers.Dynamic;
 
 namespace FileHelpers.Detection
@@ -47,3 +48,4 @@ namespace FileHelpers.Detection
         }
     }
 }
+#endif

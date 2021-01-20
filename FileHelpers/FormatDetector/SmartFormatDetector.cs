@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -769,3 +770,4 @@ namespace FileHelpers.Detection
         #endregion
     }
 }
+#endif

@@ -91,6 +91,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(10, res.Length);
         }
 
+#if !NETCOREAPP
         [Test]
         public void RemoveDuplicatedRecords()
         {
@@ -102,7 +103,7 @@ namespace FileHelpers.Tests.CommonTests
             res = (DiffOrdersFixed[]) CommonEngine.RemoveDuplicateRecords(res);
             Assert.AreEqual(4, res.Length);
         }
-
+#endif
 
         [FixedLengthRecord]
         private class DiffOrdersFixed

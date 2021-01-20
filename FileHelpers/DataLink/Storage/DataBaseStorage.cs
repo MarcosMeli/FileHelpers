@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -445,3 +446,4 @@ namespace FileHelpers.DataLink
         }
     }
 }
+#endif

@@ -10,7 +10,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardFirst()
         {
-            var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedFirst>();
+            var res = (CustomersTabDiscardedFirst[]) FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedFirst>();
 
             Check.That(res.Length).IsEqualTo(Array.FindAll(res,
                 (x) => x.CustomerID == null).Length);
@@ -20,7 +20,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardSecond()
         {
-            var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedSecond>();
+            var res = (CustomersTabDiscardedSecond[]) FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedSecond>();
 
             Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.CompanyName == null).Length);
         }
@@ -28,7 +28,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardMiddle()
         {
-            var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedMiddle>();
+            var res = (CustomersTabDiscardedMiddle[]) FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedMiddle>();
 
             Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.Address == null).Length);
         }
@@ -37,7 +37,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void DiscardLast()
         {
-            var res = FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedLast>();
+            var res = (CustomersTabDiscardedLast[]) FileTest.Good.CustomersTab.ReadWithEngine<CustomersTabDiscardedLast>();
 
             Check.That(res.Length).IsEqualTo(Array.FindAll(res, (x) => x.Country == null).Length);
         }
@@ -113,7 +113,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void OrdersAllDiscarded()
         {
-            var res = FileTest.Good.OrdersSmallVerticalBar
+            var res = (OrdersAllDiscard[]) FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersAllDiscard>();
 
             Check.That(Array.FindAll(res,
@@ -126,7 +126,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void OrdersLastNotDiscarded()
         {
-            var res = FileTest.Good.OrdersSmallVerticalBar
+            var res = (OrdersLastNotDiscard[]) FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersLastNotDiscard>();
 
             Check.That(Array.FindAll(res,
@@ -139,7 +139,7 @@ namespace FileHelpers.Tests.CommonTests
         [Test]
         public void OrdersLastTwoNotDiscarded()
         {
-            var res = FileTest.Good.OrdersSmallVerticalBar
+            var res = (OrdersLastTwoNotDiscard[]) FileTest.Good.OrdersSmallVerticalBar
                 .ReadWithEngine<OrdersLastTwoNotDiscard>();
 
             Check.That(Array.FindAll(res,

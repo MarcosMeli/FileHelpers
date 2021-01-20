@@ -33,7 +33,8 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadEventsNonGeneric()
         {
             var engine = new FileHelperEngine(typeof(SampleType));
-            var res = engine.ReadFile(FileTest.Good.Test1.Path).Cast<SampleType>().ToArray();
+            var items = (object[]) engine.ReadFile(FileTest.Good.Test1.Path);
+            var res = items.Cast<SampleType>().ToArray();
 
             Assert.AreEqual(4, res.Length);
             Assert.AreEqual(4, engine.TotalRecords);

@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using System.Data.OleDb;
 using FileHelpers.DataLink;
@@ -244,4 +245,4 @@ namespace FileHelpers.Tests.DataLink
         }
     }
 }
-
+#endif

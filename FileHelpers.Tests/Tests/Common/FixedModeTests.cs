@@ -82,7 +82,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerExact>();
             engine.ErrorMode = ErrorMode.IgnoreAndContinue;
 
-            var res = FileTest.Good.CustomersFixedExact
+            var res = (CustomerExact[]) FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(91);
@@ -109,7 +109,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerLess>();
             engine.ErrorMode = ErrorMode.IgnoreAndContinue;
 
-            var res = FileTest.Good.CustomersFixedExact
+            var res = (CustomerLess[]) FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(91);
@@ -137,7 +137,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerMore>();
             engine.ErrorMode = ErrorMode.IgnoreAndContinue;
 
-            var res = FileTest.Good.CustomersFixedExact
+            var res = (CustomerMore[]) FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(91);
@@ -165,7 +165,7 @@ namespace FileHelpers.Tests.CommonTests
             var engine = new FileHelperEngine<CustomerVariable>();
             engine.ErrorMode = ErrorMode.IgnoreAndContinue;
 
-            var res = FileTest.Good.CustomersFixedExact
+            var res = (CustomerVariable[]) FileTest.Good.CustomersFixedExact
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(91);
@@ -221,7 +221,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
-            var res = FileTest.Good.CustomersFixedWithoutLastField
+            var res = (CustomerLessLast2Optional[]) FileTest.Good.CustomersFixedWithoutLastField
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(2);
@@ -232,7 +232,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
-            var res = FileTest.Good.CustomersFixedWithout2Fields
+            var res = (CustomerLessLast2Optional[]) FileTest.Good.CustomersFixedWithout2Fields
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(2);
@@ -243,7 +243,7 @@ namespace FileHelpers.Tests.CommonTests
         {
             var engine = new FileHelperEngine<CustomerLessLast2Optional>();
 
-            var res = FileTest.Good.CustomersFixedWithout1AndHalfFields
+            var res = (CustomerLessLast2Optional[]) FileTest.Good.CustomersFixedWithout1AndHalfFields
                 .ReadWithEngine(engine);
 
             Check.That(res.Length).IsEqualTo(2);

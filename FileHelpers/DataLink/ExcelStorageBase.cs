@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NETSTANDARD
+using System;
 using System.Collections.Generic;
 
 namespace FileHelpers.DataLink
@@ -295,3 +296,4 @@ namespace FileHelpers.DataLink
         StopOnEmptyRow = 0,
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using NUnit.Framework;
 
@@ -113,3 +114,4 @@ namespace FileHelpers.Tests.CommonTests
         }
     }
 }
+#endif

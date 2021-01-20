@@ -23,6 +23,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(6, res.Length);
         }
 
+#if !NETCOREAPP
         [Test]
         public void CsvToFixedLengthCommon()
         {
@@ -50,7 +51,7 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(6, res.Length);
         }
-
+#endif
 
         [Test]
         public void CsvToFixedLength2()
@@ -96,6 +97,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(6, res.Length);
         }
 
+#if !NETCOREAPP
         [Test]
         public void CsvToDelimitedCommon()
         {
@@ -123,6 +125,7 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual(6, res.Length);
         }
+#endif
 
         [Test]
         public void CsvToDelimited2()

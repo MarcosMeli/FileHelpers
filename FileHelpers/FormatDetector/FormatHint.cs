@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 namespace FileHelpers.Detection
 {
     /// <summary>
@@ -25,3 +26,4 @@ namespace FileHelpers.Detection
         DelimitedBySemicolon
     }
 }
+#endif

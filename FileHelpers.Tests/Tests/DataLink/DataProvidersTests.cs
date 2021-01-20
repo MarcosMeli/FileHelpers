@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using FileHelpers.DataLink;
 using NUnit.Framework;
@@ -67,3 +68,4 @@ namespace FileHelpers.Tests.DataLink
         }
     }
 }
+#endif

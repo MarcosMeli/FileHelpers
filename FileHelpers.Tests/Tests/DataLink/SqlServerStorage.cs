@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using System.Data.SqlClient;
 using System.IO;
@@ -304,3 +305,4 @@ namespace FileHelpers.Tests.DataLink
         #endregion
     }
 }
+#endif
