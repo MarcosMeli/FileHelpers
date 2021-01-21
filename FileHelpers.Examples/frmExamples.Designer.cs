@@ -62,8 +62,6 @@ namespace ExamplesFx
             this.reflectionHeader1.Header.ReflectionLevel = ((byte)(100));
             this.reflectionHeader1.Header.ReflectionOpacity = ((byte)(200));
             this.reflectionHeader1.Header.Text = "FileHelpers Examples";
-            this.reflectionHeader1.Images.AddRange(new Devoo.WinForms.ImageShape[] {
-            new Devoo.WinForms.ImageShape(((System.Drawing.Bitmap)(resources.GetObject("reflectionHeader1.Images"))), true, ((byte)(255)), new System.Drawing.Point(3, 1), ((byte)(0)), 0)});
             this.reflectionHeader1.Location = new System.Drawing.Point(0, 0);
             this.reflectionHeader1.Name = "reflectionHeader1";
             this.reflectionHeader1.Size = new System.Drawing.Size(934, 85);
@@ -81,21 +79,7 @@ namespace ExamplesFx
             // 
             // imgTreeView
             // 
-            this.imgTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTreeView.ImageStream")));
             this.imgTreeView.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgTreeView.Images.SetKeyName(0, "application_cascade.png");
-            this.imgTreeView.Images.SetKeyName(1, "application_double.png");
-            this.imgTreeView.Images.SetKeyName(2, "application_form.png");
-            this.imgTreeView.Images.SetKeyName(3, "application_osx_terminal.png");
-            this.imgTreeView.Images.SetKeyName(4, "demo");
-            this.imgTreeView.Images.SetKeyName(5, "application_view_xp_terminal.png");
-            this.imgTreeView.Images.SetKeyName(6, "application2.png");
-            this.imgTreeView.Images.SetKeyName(7, "folder.png");
-            this.imgTreeView.Images.SetKeyName(8, "folder");
-            this.imgTreeView.Images.SetKeyName(9, "note.png");
-            this.imgTreeView.Images.SetKeyName(10, "projection_screen.png");
-            this.imgTreeView.Images.SetKeyName(11, "projection_screen_present.png");
-            this.imgTreeView.Images.SetKeyName(12, "wand.png");
             // 
             // examplesContainer
             // 
@@ -113,7 +97,6 @@ namespace ExamplesFx
             this.Controls.Add(this.examplesContainer);
             this.Controls.Add(this.reflectionHeader1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmExamples";
             this.Text = "FileHelpers Examples";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
