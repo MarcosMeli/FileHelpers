@@ -9,7 +9,9 @@ namespace FileHelpers.Tests
         [OneTimeSetUp]
         public void RegisterCodePages()
         {
+#if  NETCOREAPP
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
         }
     }
 }
