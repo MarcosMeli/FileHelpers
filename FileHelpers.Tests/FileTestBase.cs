@@ -10,11 +10,11 @@ namespace FileHelpers
     /// </summary>
     public class FileTestBase
     {
-        private string path;
+        private string relativePath;
 
-        public FileTestBase(string path)
+        public FileTestBase(string relativePath)
         {
-            this.path = path;
+            this.relativePath = relativePath;
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace FileHelpers
         {
             get
             {
-                return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "Data", path);
+                return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "Data", relativePath);
             }
         }
 
