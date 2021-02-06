@@ -12,7 +12,7 @@ build_script:
   - ps: dotnet pack FileHelpers.sln --configuration Release --no-restore --no-build --output Output /p:Version=$env:GitVersion_SemVer
 
 test_script:
-  - ps: dotnet test FileHelpers.sln
+  - ps: dotnet test FileHelpers.sln --logger:Appveyor
 
 artifacts:
   - path: Output/*.nupkg
