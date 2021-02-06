@@ -1,20 +1,18 @@
 image: Visual Studio 2019
 
-install:
-- ps: >-
-    gitversion /l console /output buildserver
-
 nuget:
   project_feed: true
 
 before_build:
-- ps: >-
-    nuget restore FileHelpers.sln
+  - ps: gitversion /l console /output buildserver
 
 build_script:
-- ps: >-
-    cd Build    
-    ./build.ps1
+  - ps: dotnet restore FileHelpers.sln
+  - ps: dotnet build FileHelpers.sln --no-restore --configuration Release /p:Version=$env:GitVersion_SemVer
+  - ps: dotnet pack FileHelpers.sln --configuration Release --no-restore --no-build --output Output /p:Version=$env:GitVersion_SemVer
+
+test_script:
+  - ps: dotnet test FileHelpers.sln
 
 artifacts:
-- path: Output/*.nupkg
+  - path: Output/*.nupkg
