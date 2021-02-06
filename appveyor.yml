@@ -11,7 +11,7 @@ before_build:
 - ps: >-
     nuget restore FileHelpers.sln
 
-build:
+build_script:
 - ps: >-
     cd Build    
     ./build.ps1
