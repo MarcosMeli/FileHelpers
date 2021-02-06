@@ -1,21 +1,20 @@
 image: Visual Studio 2019
-version: 3.4.3.{build}
+
 install:
 - ps: >-
-    nuget install Build\.nuget\packages.config -OutputDirectory packages
+    gitversion /l console /output buildserver
 
-    nuget restore FileHelpers.sln
 nuget:
   project_feed: true
 
-build: off
-
-test_script:
+before_build:
 - ps: >-
-    cd Build
-    
+    nuget restore FileHelpers.sln
+
+build:
+- ps: >-
+    cd Build    
     ./build.ps1
 
 artifacts:
-
 - path: Output/*.nupkg

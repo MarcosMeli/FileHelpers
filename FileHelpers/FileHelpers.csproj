@@ -4,7 +4,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Version>3.4.3-alpha</Version>
+    <Version>0.1.0</Version>
     <Description>Open Source library for automatic formatted file read/write operations www.filehelpers.net</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>

@@ -7,14 +7,14 @@ function Create-Folders() {
 function Compile-Solutions() {
     "Compiling " + $config
 
-    & 'dotnet.exe' build "..\FileHelpers.sln" -c $config
+    & 'dotnet.exe' build "..\FileHelpers.sln" -c $config "/p:Version=$env:GitVersion_SemVer"
     Ensure-CleanExit
 }
 
 function Pack-Packages () {
     "Creating NuGet packages"
 
-    & 'dotnet.exe' pack "..\FileHelpers.sln" -c $config --output "../Output"
+    & 'dotnet.exe' pack "..\FileHelpers.sln" -c $config --output "../Output" "/p:Version=$env:GitVersion_SemVer"
     Ensure-CleanExit
 }
 
