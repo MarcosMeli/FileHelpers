@@ -1,17 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40;net45</TargetFrameworks>
-    <Version>0.1.0</Version>
+    <Version>3.4.3-alpha</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NPOI" Version="2.2.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj" />
   </ItemGroup>

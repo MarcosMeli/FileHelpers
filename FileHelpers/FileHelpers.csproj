@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Version>0.1.0</Version>
+    <Version>3.4.3-alpha</Version>
     <Description>Open Source library for automatic formatted file read/write operations www.filehelpers.net</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>
@@ -19,14 +19,12 @@
     <PackageTags>FileHelpers;Data;Flat File;CSV;FixedLength;Fixed;Delimited;Import;Export;ETL;FileHelper;.NET;.NET Core</PackageTags>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="InternalsVisibleTo.MSBuild" Version="1.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <InternalsVisibleTo Include="FileHelpers.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010071634CEBD8DEBAE05841DF6D97B134B335B019F771467C700C64DE1A31EBE92784AA4EEE76C8E23D495622FFE910727BC2F24C41B7E46C61B88BF659B25034D58F685E533BC45F5CC26FB07AAAE85E86A931E97016DEA5D9D920E1C623433A45828BDAA5216F5FDE854673F26B6DEFAF7AA55706301CC94AF9B03BA3943288C5" />
   </ItemGroup>
