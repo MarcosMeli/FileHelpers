@@ -7,14 +7,14 @@ function Create-Folders() {
 function Compile-Solutions() {
     "Compiling " + $config
 
-    & 'dotnet.exe' build "..\FileHelpers.sln" -c $config "/p:Version=$env:GitVersion_SemVer"
+    & 'dotnet.exe' build "..\FileHelpers.sln" -c $config
     Ensure-CleanExit
 }
 
 function Pack-Packages () {
     "Creating NuGet packages"
 
-    & 'dotnet.exe' pack "..\FileHelpers.sln" -c $config --output "../Output" "/p:Version=$env:GitVersion_SemVer"
+    & 'dotnet.exe' pack "..\FileHelpers.sln" -c $config --output "../Output"
     Ensure-CleanExit
 }
 
@@ -22,7 +22,7 @@ function Test-Projects() {
     "Testing"
 
     & 'dotnet.exe' test "..\FileHelpers.sln" -c $config --logger:Appveyor
-    Ensure-CleanExit
+#    Ensure-CleanExit
 }
 
 function Recreate-Directory($path)

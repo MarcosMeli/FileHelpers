@@ -1,15 +1,13 @@
 image: Visual Studio 2019
+version: 3.4.3.{build}
 
 nuget:
   project_feed: true
 
-before_build:
-  - ps: gitversion /l console /output buildserver
-
 build_script:
   - ps: dotnet restore FileHelpers.sln
-  - ps: dotnet build FileHelpers.sln --no-restore --configuration Release /p:Version=$env:GitVersion_SemVer
-  - ps: dotnet pack FileHelpers.sln --configuration Release --no-restore --no-build --output Output /p:Version=$env:GitVersion_SemVer
+  - ps: dotnet build FileHelpers.sln --no-restore --configuration Release
+  - ps: dotnet pack FileHelpers.sln --configuration Release --no-restore --no-build --output Output
 
 test_script:
   - ps: dotnet test FileHelpers.sln --logger:Appveyor
