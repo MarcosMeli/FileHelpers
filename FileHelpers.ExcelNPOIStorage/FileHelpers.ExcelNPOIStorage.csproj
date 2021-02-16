@@ -6,6 +6,18 @@
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<Description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</Description>
+    <Company>Devoo</Company>
+    <Product>FileHelpers http://www.filehelpers.net</Product>
+    <Copyright>Marcos Meli - Devoo</Copyright>
+    <Authors>Marcos Meli and Contributors</Authors>
+    <Owners>Marcos Meli</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>http://www.filehelpers.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MarcosMeli/FileHelpers.git</RepositoryUrl>
+    <RepositoryBranch>master</RepositoryBranch>
+    <PackageReleaseNotes>www.filehelpers.net/changelog</PackageReleaseNotes>
+    <PackageTags>Excel, Data, Import, Export, FileHelpers, FileHelper, .Net</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NPOI" Version="2.2.1" />
