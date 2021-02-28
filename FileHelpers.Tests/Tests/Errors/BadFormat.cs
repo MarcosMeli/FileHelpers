@@ -57,7 +57,7 @@ namespace FileHelpers.Tests.Errors
         [Test]
         public void NoPendingNullValue()
         {
-            var res = FileTest.Bad.NoBadNullvalue.ReadWithEngine<SampleType>();
+            var res = (SampleType[]) FileTest.Bad.NoBadNullvalue.ReadWithEngine<SampleType>();
             Check.That(res.Length).IsEqualTo(4);
         }
     }

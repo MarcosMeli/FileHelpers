@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 namespace FileHelpers.DataLink
 {
     /// <summary>
@@ -28,3 +29,4 @@ namespace FileHelpers.DataLink
         UseSerializable
     }
 }
+#endif

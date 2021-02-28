@@ -1,30 +1,16 @@
 image: Visual Studio 2019
 version: 3.4.3.{build}
-install:
-- ps: >-
-    nuget install Build\.nuget\packages.config -OutputDirectory packages
 
-    nuget restore FileHelpers.sln
 nuget:
   project_feed: true
 
-build: off
+build_script:
+  - ps: dotnet restore FileHelpers.sln
+  - ps: dotnet build FileHelpers.sln --no-restore --configuration Release
+  - ps: dotnet pack FileHelpers.sln --configuration Release --no-restore --no-build --output Output
 
 test_script:
-- ps: >-
-    cd Build
-    
-    ./build.ps1
-    
-    $testFile = '.\TestResult.xml';
-    $path = Resolve-Path($testFile);
-    
-    $url = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)";
-    
-    Write-Host "Uploading '$path' to '$url'";
-    $wc = New-Object 'System.Net.WebClient';
-    $wc.UploadFile($url, $path);
+  - ps: dotnet test FileHelpers.sln --logger:Appveyor
 
 artifacts:
-
-- path: Output/*.nupkg
+  - path: Output/*.nupkg

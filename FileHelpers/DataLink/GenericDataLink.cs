@@ -1,7 +1,9 @@
+#if !NETSTANDARD
 using System;
 
 namespace FileHelpers.DataLink
 {
+
     /// <summary>
     /// This class has the responsibility to enable the two directional
     /// transformation.
@@ -104,3 +106,4 @@ namespace FileHelpers.DataLink
        
     }
 }
+#endif

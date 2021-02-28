@@ -1,9 +1,9 @@
+#if !NETSTANDARD
 using System;
 using System.Data;
 
 namespace FileHelpers.DataLink
 {
-#if !NETCOREAPP2_0
 	using System.Data.OleDb;
 
     /// <summary>
@@ -42,5 +42,5 @@ namespace FileHelpers.DataLink
 
 	#endregion
     }
-#endif
 }
+#endif

@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System.ComponentModel;
 
 namespace FileHelpers
@@ -14,3 +15,4 @@ namespace FileHelpers
         VbNet
     }
 }
+#endif

@@ -1,212 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38971F6D-4C12-4C0D-8B79-D1C80DDC69D8}</ProjectGuid>
+    <TargetFrameworks>net40</TargetFrameworks>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExamplesFramework</RootNamespace>
-    <AssemblyName>FileHelpers.Examples</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NoWin32Manifest>true</NoWin32Manifest>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>x86</Platforms>
     <ApplicationIcon>Demos.ico</ApplicationIcon>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
+    <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj" />
+    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Devoo.WinForms">
       <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="ExamplesFx">
       <HintPath>..\Libs\References\Devoo\ExamplesFx.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\FileHelpers\VersionInfo.cs">
-      <Link>VersionInfo.cs</Link>
-    </Compile>
-    <Compile Include="Examples\10.QuickStart\10.ReadFileDelimited.cs" />
-    <Compile Include="Examples\10.QuickStart\30.ReadFileFixed.cs" />
-    <Compile Include="Examples\10.QuickStart\40.WriteFileFixed.cs" />
-    <Compile Include="Examples\12.Missing Values\10.MissingValuesFieldNullValue.cs" />
-    <Compile Include="Examples\12.Missing Values\05.MissingValuesNullable.cs" />
-    <Compile Include="Examples\13.Excel\10.ExcelCreateAndSave.cs" />
-    <Compile Include="Examples\13.Excel\20.ExportAndEdit.cs" />
-    <Compile Include="Examples\15.Attributes\20.FieldOrder.cs" />
-    <Compile Include="Examples\18.Converters\60.CustomConverter.cs" />
-    <Compile Include="Examples\18.Converters\50.EnumConverter.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Examples\20.Events And Notification\05.INotifyRead.cs" />
-    <Compile Include="Examples\20.Events And Notification\10.INotifyWrite.cs" />
-    <Compile Include="Examples\25.ErrorHandling\10.ErrorMode.ThrowException.cs" />
-    <Compile Include="Examples\25.ErrorHandling\30.ErrorMode.IgnoreAndContinue.cs" />
-    <Compile Include="Examples\25.ErrorHandling\40.ErrorMode.SaveAndContinue.cs" />
-    <Compile Include="Examples\10.QuickStart\70.Autoproperties.cs" />
-    <Compile Include="Examples\50.Advanced\50.SmartFormatDetector.cs" />
-    <Compile Include="Examples\50.Advanced\10.MultipleDelimiters.cs" />
-    <Compile Include="Examples\50.Advanced\30.MultiRecordEngine.cs" />
-    <Compile Include="Examples\50.Advanced\05.DynamicChangeOptions.cs" />
-    <Compile Include="Examples\60.Sorting\10.SortBigFiles.cs" />
-    <Compile Include="Examples\60.Sorting\30.SortBigFilesString2.cs" />
-    <Compile Include="Examples\90.MasterDetail\10.MasterDetailCustomSelector.cs" />
-    <Compile Include="Examples\90.MasterDetail\20.MasterDetailCommonSelector.cs" />
-    <Compile Include="Examples\ExamplesGenerator.autogen.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExamplesGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="frmExamples.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmExamples.Designer.cs">
-      <DependentUpon>frmExamples.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Examples\10.QuickStart\20.WriteFileDelimited.cs" />
-    <Compile Include="Examples\10.QuickStart\60.ReadWriteRecordByRecord.cs" />
-    <Compile Include="Examples\60.Sorting\20.SortBigFilesString1.cs" />
-    <Compile Include="Examples\15.Attributes\31.FixedLengthRecordLastVariable.cs" />
-    <Compile Include="Examples\15.Attributes\10.FieldTrim.cs" />
-    <Compile Include="Examples\20.Events And Notification\30.WriteEvents.cs" />
-    <Compile Include="Examples\20.Events And Notification\20.ReadEvents.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="frmExamples.resx">
-      <DependentUpon>frmExamples.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Examples\ExamplesGenerator.Config.tt" />
-    <None Include="Examples\ExamplesGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExamplesGenerator.autogen.cs</LastGenOutput>
-    </None>
-    <None Include="Resources\stop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\wait.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\plugin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\projection_screen_present.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\projection_screen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\arrow_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Examples\80.DynamicRecords\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Demos.ico" />
-    <None Include="Resources\page_down.gif" />
-    <None Include="Resources\page_up.gif" />
-    <None Include="Resources\page_left.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj">
-      <Project>{beb0d823-6a7e-47fd-a275-1b3314f8412d}</Project>
-      <Name>FileHelpers.ExcelNPOIStorage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
-      <Project>{eb8633ff-ceed-40ee-8d1a-ca1bf5678c42}</Project>
-      <Name>FileHelpers</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

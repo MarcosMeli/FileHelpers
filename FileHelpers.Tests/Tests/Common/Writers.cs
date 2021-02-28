@@ -34,7 +34,7 @@ namespace FileHelpers.Tests.CommonTests
                 File.Delete(@"prueba.txt");
         }
 
-
+#if !NETCOREAPP
         [Test]
         public void WriteFileStatic()
         {
@@ -56,7 +56,7 @@ namespace FileHelpers.Tests.CommonTests
             if (File.Exists(@"prueba.txt"))
                 File.Delete(@"prueba.txt");
         }
-
+#endif
 
         [Test]
         public void WriteStream()
@@ -109,6 +109,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
         }
 
+#if !NETCOREAPP
         [Test]
         public void WriteStringStatic()
         {
@@ -130,7 +131,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(14 + newLineLen + 14 + newLineLen, resStr.Length);
             Assert.AreEqual(resStr.Substring(0, 8), DateTime.Now.AddDays(1).ToString("ddMMyyyy"));
         }
-
+#endif
 
         [Test]
         public void WriteStringNullableGuid()

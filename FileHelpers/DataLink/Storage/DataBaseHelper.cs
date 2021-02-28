@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System.Text;
 
 namespace FileHelpers.DataLink
@@ -73,4 +74,4 @@ namespace FileHelpers.DataLink
         #endregion
     }
 }
-
+#endif

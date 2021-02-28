@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -429,3 +430,4 @@ namespace FileHelpers.Dynamic
         internal abstract void ReadFieldInternal(XmlNode node);
     }
 }
+#endif

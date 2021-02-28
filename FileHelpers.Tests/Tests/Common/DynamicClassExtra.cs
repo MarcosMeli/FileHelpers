@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -160,3 +161,4 @@ namespace FileHelpers.Tests
         }
     }
 }
+#endif

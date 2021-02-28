@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -750,3 +751,4 @@ namespace FileHelpers
         }
     }
 }
+#endif

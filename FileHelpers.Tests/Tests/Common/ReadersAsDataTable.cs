@@ -10,7 +10,7 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadFile()
         {
             var engine = new FileHelperEngine<SampleType>();
-            var records = engine.ReadFile(FileTest.Good.Test1.Path);
+            var records = (SampleType[]) engine.ReadFile(FileTest.Good.Test1.Path);
 
             var dt = records.ToDataTable();
 
@@ -31,7 +31,7 @@ namespace FileHelpers.Tests.CommonTests
         public void ReadNullableTypes()
         {
             var engine = new FileHelperEngine<NullableType>();
-            var records = engine.ReadFile(FileTest.Good.NullableTypes1.Path);
+            var records = (NullableType[]) engine.ReadFile(FileTest.Good.NullableTypes1.Path);
 
             var res = records.ToDataTable();
 

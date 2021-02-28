@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System;
 using System.Data;
 using FileHelpers.Dynamic;
@@ -342,3 +343,4 @@ namespace FileHelpers.Tests.Dynamic
         }
     }
 }
+#endif

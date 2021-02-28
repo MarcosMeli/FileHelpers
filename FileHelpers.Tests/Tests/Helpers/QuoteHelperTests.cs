@@ -1,4 +1,5 @@
-﻿using FileHelpers.Detection;
+﻿#if !NETCOREAPP
+using FileHelpers.Detection;
 using NUnit.Framework;
 
 
@@ -27,3 +28,4 @@ namespace FileHelpers.Tests
         }
     }
 }
+#endif

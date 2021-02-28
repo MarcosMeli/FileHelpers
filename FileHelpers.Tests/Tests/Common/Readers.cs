@@ -31,7 +31,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(345, res[1].Field3);
         }
 
-
+#if !NETCOREAPP
         [Test]
         public void ReadFileStatic()
         {
@@ -48,7 +48,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("012", res[1].Field2);
             Assert.AreEqual(345, res[1].Field3);
         }
-
+#endif
 
         [Test]
         public void AsyncRead()
@@ -240,7 +240,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual(345, res[1].Field3);
         }
 
-
+#if !NETCOREAPP
         [Test]
         public void ReadStringStatic()
         {
@@ -262,7 +262,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.AreEqual("012", res[1].Field2);
             Assert.AreEqual(345, res[1].Field3);
         }
-
+#endif
 
         [Test]
         public void ReadEmpty()

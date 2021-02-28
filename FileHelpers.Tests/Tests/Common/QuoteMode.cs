@@ -99,6 +99,7 @@ namespace FileHelpers.Tests.CommonTests
             public string CustomerName;
         }
 
+#if !NETCOREAPP
         [Test]
         public void AutoRemoveQuotes()
         {
@@ -107,6 +108,7 @@ namespace FileHelpers.Tests.CommonTests
 
             Assert.AreEqual("VINET", dt.Rows[0][1]);
         }
+#endif
 
         [Test]
         public void OptionalForReadOnEmptyFields()

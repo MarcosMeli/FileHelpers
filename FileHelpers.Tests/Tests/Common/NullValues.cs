@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+#if !NETCOREAPP
 using FileHelpers.Dynamic;
+#endif
 using NUnit.Framework;
 using NFluent;
 
@@ -190,7 +192,7 @@ namespace FileHelpers.Tests.CommonTests
             Assert.IsNull(res[0].ShipVia);
         }
 
-
+#if !NETCOREAPP
         [Test]
         public void RunTimeEmptyGuidProperties()
         {
@@ -220,5 +222,6 @@ second	";
             Check.That(((Guid) record.Id)).IsEqualTo(Guid.Empty);
             Check.That(((string)record.Name)).IsEqualTo("second");
         }
+#endif
     }
 }

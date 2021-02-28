@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -84,3 +85,4 @@ namespace FileHelpers.Tests.CommonTests
         }
     }
 }
+#endif

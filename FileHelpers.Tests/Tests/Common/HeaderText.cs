@@ -32,7 +32,7 @@ namespace FileHelpers.Tests.CommonTests
         public void CheckItWritesToFile()
         {
             var engine = new FileHelperEngine<CustomersVerticalBar>();
-            var records = engine.ReadFile(FileTest.Good.CustomersVerticalBarDemo.Path);
+            var records = (CustomersVerticalBar[]) engine.ReadFile(FileTest.Good.CustomersVerticalBarDemo.Path);
 
             engine.HeaderText = engine.GetFileHeader();
             var result = engine.WriteString(records);
@@ -47,7 +47,7 @@ namespace FileHelpers.Tests.CommonTests
         public void CheckItWritesToFileWithCaption()
         {
             var engine = new FileHelperEngine<CustomersVerticalBarWithFieldCaption>();
-            var records = engine.ReadFile(FileTest.Good.CustomersVerticalBarDemo.Path);
+            var records = (CustomersVerticalBarWithFieldCaption[]) engine.ReadFile(FileTest.Good.CustomersVerticalBarDemo.Path);
 
             engine.HeaderText = engine.GetFileHeader();
             var result = engine.WriteString(records);

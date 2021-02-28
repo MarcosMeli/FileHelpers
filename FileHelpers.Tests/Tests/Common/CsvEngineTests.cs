@@ -1,3 +1,4 @@
+#if !NETCOREAPP
 using System.Data;
 using System.IO;
 using FileHelpers.Options;
@@ -216,3 +217,4 @@ namespace FileHelpers.Tests.CommonTests
         }
     }
 }
+#endif

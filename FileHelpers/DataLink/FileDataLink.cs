@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.IO;
 
@@ -167,3 +168,4 @@ namespace FileHelpers.DataLink
         }
     }
 }
+#endif

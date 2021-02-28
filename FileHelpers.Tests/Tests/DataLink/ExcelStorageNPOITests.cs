@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿#if !NETCOREAPP
+using NUnit.Framework;
 
 namespace FileHelpers.Tests.Tests.DataLink
 {
@@ -118,3 +119,4 @@ namespace FileHelpers.Tests.Tests.DataLink
         }
     }
 }
+#endif

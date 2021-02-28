@@ -14,7 +14,7 @@ namespace FileHelpers.Tests
 
             //var engine = new FileHelperEngine<ChineseRecord>(Encoding.GetEncoding(950));
             var engine = new FileHelperEngine<ChineseRecord>();
-            var res = FileTest.Good.EncodingChinese.ReadWithEngine(engine);
+            var res = (ChineseRecord[]) FileTest.Good.EncodingChinese.ReadWithEngine(engine);
 
             Check.That(res[0].rname).IsEqualTo("孫悟空                                                      ");
             Check.That(res[0].sname).IsEqualTo("台灣省大法師公會南天門辦事處                                ");

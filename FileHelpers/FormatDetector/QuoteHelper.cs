@@ -1,4 +1,5 @@
-﻿namespace FileHelpers.Detection
+﻿#if !NETSTANDARD
+namespace FileHelpers.Detection
 {
     /// <summary>
     /// Find the number of delimiters in a class
@@ -56,3 +57,4 @@
         }
     }
 }
+#endif

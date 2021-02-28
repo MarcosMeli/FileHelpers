@@ -1,3 +1,4 @@
+#if !NETSTANDARD
 using System;
 using System.Data;
 using System.Diagnostics;
@@ -195,3 +196,4 @@ namespace FileHelpers.Dynamic
         }
     }
 }
+#endif
