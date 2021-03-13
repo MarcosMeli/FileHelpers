@@ -11,9 +11,9 @@ namespace ExamplesFx
         : ExampleBase
     {
 
-        //-> Reads report.inp and skips all the records that are not detail records using a simple criteria
+        //-> Reads input.txt and skips all the records that are not detail records using a simple criteria
 
-        //-> FileIn:report.inp
+        //-> FileIn:input.txt
         /*-----------------------------------------------------
         *              XXX Enterprise
         *-----------------------------------------------------
@@ -76,7 +76,7 @@ namespace ExamplesFx
             //-> File:RunEngine.cs
 
             var engine = new FileHelperEngine<OrdersFixed>();
-            var result = engine.ReadFile("report.inp");
+            var result = engine.ReadFile("input.txt");
 
             foreach (var value in result)
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);

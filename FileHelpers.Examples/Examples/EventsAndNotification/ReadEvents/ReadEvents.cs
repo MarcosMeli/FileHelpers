@@ -11,9 +11,9 @@ namespace ExamplesFx
         : ExampleBase
     {
 
-        //-> Reads report.inp and skips all the records that are not detail records using a simple criteria
+        //-> Reads input.txt and skips all the records that are not detail records using a simple criteria
 
-        //-> FileIn:report.inp
+        //-> FileIn:input.txt
         /*-----------------------------------------------------
         *              XXX Enterprise
         *-----------------------------------------------------
@@ -60,7 +60,7 @@ namespace ExamplesFx
             engine.BeforeReadRecord += BeforeEvent;
 			engine.AfterReadRecord += AfterEvent;
 
-			var result = engine.ReadFile("report.inp");
+			var result = engine.ReadFile("input.txt");
 
             foreach (var value in result)
                 Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
@@ -107,7 +107,7 @@ namespace ExamplesFx
 					e.SkipThisRecord = true;
 			};
 
-			var result = engine.ReadFile("report.inp");
+			var result = engine.ReadFile("input.txt");
 
 			foreach (var value in result)
 				Console.WriteLine("Customer: {0} Freight: {1}", value.CustomerID, value.Freight);
