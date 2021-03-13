@@ -39,7 +39,7 @@ namespace FileHelpers.Examples.QuickStart.WriteRecordByRecord
 
         //-> Instantiate a FileHelperEngine and write the file:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();

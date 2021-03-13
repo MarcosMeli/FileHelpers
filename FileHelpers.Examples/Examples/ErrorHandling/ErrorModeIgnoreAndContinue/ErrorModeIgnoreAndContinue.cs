@@ -41,7 +41,7 @@ namespace FileHelpers.Examples.ErrorHandling.ErrorModeIgnoreAndContinue
 
         //-> /File
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
             var engine = new DelimitedFileEngine<Customer>();

@@ -38,7 +38,7 @@ namespace FileHelpers.Examples.QuickStart.WriteFileDelimited
 
         //-> Instantiate a FileHelperEngine and write the file:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();

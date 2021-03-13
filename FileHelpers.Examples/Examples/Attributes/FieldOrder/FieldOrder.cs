@@ -41,7 +41,7 @@ namespace FileHelpers.Examples.Attributes.FieldOrder
         //-> /File
 
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();

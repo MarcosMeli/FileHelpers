@@ -59,7 +59,7 @@ namespace FileHelpers.Examples.EventsAndNotification.INotifyWrite
 
 		//-> Run a record through engine using the write event to filter out unwanted details
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
 

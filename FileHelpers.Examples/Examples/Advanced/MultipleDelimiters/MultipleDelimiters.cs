@@ -30,7 +30,7 @@ namespace FileHelpers.Examples.Advanced.MultipleDelimiters
         //-> /File
 
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
 

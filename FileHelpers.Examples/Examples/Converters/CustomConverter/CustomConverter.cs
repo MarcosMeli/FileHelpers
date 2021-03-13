@@ -61,7 +61,7 @@ namespace FileHelpers.Examples.Converters.CustomConverter
 
         //-> Done !! You actually parse the file with:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
             var engine = new FileHelperEngine<PriceRecord>();

@@ -41,7 +41,7 @@ namespace FileHelpers.Examples.QuickStart.ReadFileFixed
         //-> /File
 
         //-> Read the values and write them to the Console:
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FixedFileEngine<Customer>();

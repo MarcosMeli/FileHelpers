@@ -44,7 +44,7 @@ namespace FileHelpers.Examples.EventsAndNotification.WriteEvents
 		//-> Run a record through engine using the write event to filter out unwanted details
 
         //-> File:RunEngine.cs
-        public override void Run()
+        protected override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
 

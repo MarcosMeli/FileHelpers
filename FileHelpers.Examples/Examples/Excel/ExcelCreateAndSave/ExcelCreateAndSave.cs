@@ -11,7 +11,7 @@ namespace FileHelpers.Examples.Excel.ExcelCreateAndSave
     public class ExcelCreateAndSave :
     ExampleBase
     {
-        public override void Run()
+        protected override void Run()
         {
             //-> File: ExcelExample.cs
 

@@ -23,7 +23,7 @@ namespace FileHelpers.Examples.MasterDetail.MasterDetailCommonSelector
         */
         //-> /File
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
             var engine = new MasterDetailEngine<Customers, Orders>

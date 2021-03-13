@@ -111,7 +111,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
 
         //-> To work with this engine you must create one instance of it in this way:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
 

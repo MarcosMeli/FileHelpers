@@ -37,7 +37,7 @@ namespace FileHelpers.Examples.QuickStart.WriteFileFixed
 
         //-> Now just create some records and write them with the Engine:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Customer>();

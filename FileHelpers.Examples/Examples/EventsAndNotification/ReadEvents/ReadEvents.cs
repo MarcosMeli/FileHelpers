@@ -55,7 +55,7 @@ namespace FileHelpers.Examples.EventsAndNotification.ReadEvents
 
 
 		//-> File:RunEngine.cs
-        public override void Run()
+        protected override void Run()
         {
             var engine = new FileHelperEngine<OrdersFixed>();
             engine.BeforeReadRecord += BeforeEvent;

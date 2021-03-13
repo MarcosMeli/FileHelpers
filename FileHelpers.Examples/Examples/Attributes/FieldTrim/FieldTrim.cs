@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.Attributes.FieldTrim
 {
@@ -40,8 +41,7 @@ namespace FileHelpers.Examples.Attributes.FieldTrim
 
         //-> /File
 
-
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
 

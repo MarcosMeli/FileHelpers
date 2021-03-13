@@ -10,6 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj" />
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj" />
+
+    <PackageReference Include="NUnit" Version="3.13.0" />
   </ItemGroup>
 
 </Project>

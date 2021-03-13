@@ -15,7 +15,7 @@ namespace FileHelpers.Examples.Sorting.SortBigFilesString2
 
         //-> You can use any sort you want, for example sorting by line length
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:SortingWithoutRecord.cs
 

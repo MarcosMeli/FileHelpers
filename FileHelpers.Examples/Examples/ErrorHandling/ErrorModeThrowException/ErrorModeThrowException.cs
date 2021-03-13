@@ -46,7 +46,7 @@ namespace FileHelpers.Examples.ErrorHandling.ErrorModeThrowException
 
         //-> /File
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             try

@@ -18,7 +18,7 @@ namespace FileHelpers.Examples.Sorting.SortBigFiles
 
         //-> The Sorter will split the file in blocks, write them to temp files, and finally join all in a sorted file
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:SortingWithRecord.cs
 

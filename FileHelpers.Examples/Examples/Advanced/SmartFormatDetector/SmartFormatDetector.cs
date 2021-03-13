@@ -22,7 +22,7 @@ BOLID|Bólido Comidas preparadas|Martín Sommer|Owner|C/ Araquil, 67|Madrid|Spai
         //-> /File
 
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
 

@@ -11,7 +11,7 @@ namespace FileHelpers.Examples.Excel.ExportAndEdit
     public class ExportAndEdit :
     ExampleBase
     {
-        public override void Run()
+        protected override void Run()
         {
             //-> File: ExcelExample.cs
 

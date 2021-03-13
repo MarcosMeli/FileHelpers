@@ -43,7 +43,7 @@ namespace FileHelpers.Examples.ErrorHandling.ErrorModeSaveAndContinue
 
         //-> File:RunEngine.cs
 
-        public override void Run()
+        protected override void Run()
         {
             var engine = new DelimitedFileEngine<Customer>();
 

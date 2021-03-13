@@ -50,7 +50,7 @@ namespace FileHelpers.Examples.Converters.EnumConverter
         //-> /File
 
         //-> File:RunEngine.cs
-        public override void Run()
+        protected override void Run()
         {
             var engine = new DelimitedFileEngine<Customer>();
 

@@ -38,7 +38,7 @@ namespace FileHelpers.Examples.MissingValues.MissingValuesNullable
         //-> /File
 
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();

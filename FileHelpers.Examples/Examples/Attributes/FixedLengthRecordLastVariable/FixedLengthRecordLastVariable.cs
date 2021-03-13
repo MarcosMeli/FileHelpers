@@ -10,7 +10,7 @@ namespace FileHelpers.Examples.Attributes.FixedLengthRecordLastVariable
     public class FixedLengthRecordLastVariableExample
         : ExampleBase
     {
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FixedFileEngine<Customer>();

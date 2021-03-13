@@ -72,7 +72,7 @@ namespace FileHelpers.Examples.EventsAndNotification.INotifyRead
 		//-> /File
 
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:RunEngine.cs
 

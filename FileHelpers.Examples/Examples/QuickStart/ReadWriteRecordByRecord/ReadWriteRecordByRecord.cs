@@ -44,7 +44,7 @@ namespace FileHelpers.Examples.QuickStart.ReadWriteRecordByRecord
 
         //->  Instantiate a FileHelperAsyncEngine and read or write files:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperAsyncEngine<Customer>();

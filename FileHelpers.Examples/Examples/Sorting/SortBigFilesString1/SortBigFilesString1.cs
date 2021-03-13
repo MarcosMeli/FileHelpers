@@ -15,7 +15,7 @@ namespace FileHelpers.Examples.Sorting.SortBigFilesString1
 
         //-> You don't need to declare a record class to sort a file, you can sort with a compare method
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:SortingWithoutRecord.cs
 

@@ -15,7 +15,7 @@ namespace FileHelpers.Examples.MasterDetail.MasterDetailCustomSelector
         /// <summary>
         /// Run a record through engine using a selector to create a master detail input
         /// </summary>
-        public override void Run()
+        protected override void Run()
         {
             var engine = new MasterDetailEngine<Customers, Orders>(new MasterDetailSelector(ExampleSelector));
 

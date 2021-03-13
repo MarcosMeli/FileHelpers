@@ -43,7 +43,7 @@ namespace FileHelpers.Examples.QuickStart.ReadFileDelimited
 
         //->  Instantiate a FileHelperEngine and read or write files:
 
-        public override void Run()
+        protected override void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();
