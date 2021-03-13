@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Attributes.FixedLengthRecordLastVariable
 {
     //-> Name: FixedLengthRecord FixedMode.AllowLessChars
     //-> Description: Options when working with fixed files and not all records have same length

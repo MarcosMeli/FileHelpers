@@ -1,6 +1,8 @@
-﻿using FileHelpers;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.Autoproperties
 {
     //-> Name: Autoproperties
     //-> Description: You can use autoproperties instead of fields:

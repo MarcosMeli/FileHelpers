@@ -1,8 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.ReadFileFixed
 {
     //-> Name:Read Fixed File
     //-> Description:Example of how to read a Fixed Length layout file (eg COBOL output)

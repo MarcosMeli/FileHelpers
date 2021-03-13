@@ -4,6 +4,7 @@
     <OutputType>Library</OutputType>
     <Platforms>AnyCPU</Platforms>
     <IsPackable>false</IsPackable>
+    <RootNamespace>FileHelpers</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

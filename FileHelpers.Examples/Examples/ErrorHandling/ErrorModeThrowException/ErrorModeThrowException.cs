@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.ErrorHandling.ErrorModeThrowException
 {
     /// <summary>
     /// Simple class with try catch and a value not in the enumerator

@@ -1,8 +1,9 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.MasterDetail;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.MasterDetail.MasterDetailCustomSelector
 {
     public class SimpleMasterDetailSample
         : ExampleBase

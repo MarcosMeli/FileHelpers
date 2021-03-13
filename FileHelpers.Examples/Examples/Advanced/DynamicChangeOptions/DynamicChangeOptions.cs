@@ -1,6 +1,8 @@
-﻿using FileHelpers;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Advanced.DynamicChangeOptions
 {
     //-> Name: Dynamic Engine Options
     //-> Description: Change the options of the engines at run time

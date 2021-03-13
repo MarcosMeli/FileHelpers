@@ -1,8 +1,9 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.EventsAndNotification.INotifyRead
 {
     //-> Name: INotifyRead Interface
     //-> Description: Get Before/After Read events with the INotifyRead interface
@@ -36,7 +37,7 @@ namespace ExamplesFx
         [FixedLengthRecord(FixedMode.AllowVariableLength)]
 		[IgnoreEmptyLines]
 		public class OrdersFixed
-            :INotifyRead
+            :FileHelpers.Events.INotifyRead
 		{
 			[FieldFixedLength(7)]
 			public int OrderID;

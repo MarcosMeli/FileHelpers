@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Advanced.MultiRecordEngine
 {
     //-> Name: Multi Record Processing
     //-> Description: Read or write a file with many different layouts
@@ -114,7 +115,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
         {
             //-> File:RunEngine.cs
 
-            var engine = new MultiRecordEngine(typeof (Orders),
+            var engine = new FileHelpers.MultiRecordEngine(typeof (Orders),
                 typeof (Customer),
                 typeof (SampleType));
 
@@ -132,7 +133,7 @@ BERGS;Berglunds snabbköp;Christina Berglund;Order Administrator;Berguvsvägen  
         //-> This is the selector that determines the record type based on whatever criteria you write
 
         //-> File:Selector.cs
-        private Type CustomSelector(MultiRecordEngine engine, string recordLine)
+        private Type CustomSelector(FileHelpers.MultiRecordEngine engine, string recordLine)
         {
             if (recordLine.Length == 0)
                 return null;

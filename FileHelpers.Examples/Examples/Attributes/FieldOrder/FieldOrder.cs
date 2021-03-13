@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Attributes.FieldOrder
 {
     //-> Name: FieldOrder
     //-> Description: Force field order with [FieldOrder] attribute

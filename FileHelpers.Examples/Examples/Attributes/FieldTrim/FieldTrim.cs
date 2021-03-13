@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Attributes.FieldTrim
 {
     //-> Name: FieldTrim
     //-> Description: How to use the [FieldTrim] attribute (useful for fixed length records)

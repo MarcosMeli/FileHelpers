@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.MissingValues.MissingValuesNullable
 {
     //-> Name: Handle Missing Values with Nullable
     //-> Description: Using Nullable<T> for missing values

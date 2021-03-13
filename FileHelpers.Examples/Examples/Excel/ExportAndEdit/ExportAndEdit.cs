@@ -1,11 +1,8 @@
-﻿using FileHelpers;
-using FileHelpers.ExcelNPOIStorage;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Excel.ExportAndEdit
 {
     //-> Name: Open excel file, edit and save it
     //-> Runnable: true
@@ -20,7 +17,7 @@ namespace ExamplesFx
 
             // Create an excel storage for specific class
             // startRow = 2 & startColumn = 1 -> for skipping column header names
-            ExcelNPOIStorage storage = new ExcelNPOIStorage(typeof(Student), 2, 1);
+            ExcelNPOIStorage.ExcelNPOIStorage storage = new ExcelNPOIStorage.ExcelNPOIStorage(typeof(Student), 2, 1);
 
             // Set storage file name -> represents the excel file name we want to read
             storage.FileName = "Students.xlsx";

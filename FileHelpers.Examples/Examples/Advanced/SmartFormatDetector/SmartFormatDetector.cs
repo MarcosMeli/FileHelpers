@@ -1,4 +1,8 @@
-﻿namespace ExamplesFx
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace FileHelpers.Examples.Advanced.SmartFormatDetector
 {
     //-> Name: Smart Format Detector
     //-> Description: Detect the format from a flat file

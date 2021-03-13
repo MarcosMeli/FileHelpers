@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using FileHelpers;
 
-
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.WriteFileFixed
 {
     //-> Name:Write Fixed File
     //-> Description:Example of how to write a Fixed Record file

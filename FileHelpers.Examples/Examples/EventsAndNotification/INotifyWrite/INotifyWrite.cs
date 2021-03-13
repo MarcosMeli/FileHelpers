@@ -1,8 +1,9 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.EventsAndNotification.INotifyWrite
 {
     //-> Name: INotifyWrite Interface
     //-> Description: Get Before/After Write events with the INotifyWrite interface
@@ -25,7 +26,7 @@ namespace ExamplesFx
         [FixedLengthRecord]
 		[IgnoreEmptyLines]
 		public class OrdersFixed
-            :INotifyWrite
+            :FileHelpers.Events.INotifyWrite
 		{
 			[FieldFixedLength(7)]
 			public int OrderID;

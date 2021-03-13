@@ -1,6 +1,8 @@
-﻿using FileHelpers;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.ErrorHandling.ErrorModeIgnoreAndContinue
 {
     /// <summary>
     /// Simple class with use the error mode for a value not in the enumerator

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers
 {
     /// <summary>
     ///     Idea is copied from

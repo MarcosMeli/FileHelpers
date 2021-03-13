@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Sorting.SortBigFiles
 {
     //-> Name:Sort Big File with Record Class
     //-> Runnable:false

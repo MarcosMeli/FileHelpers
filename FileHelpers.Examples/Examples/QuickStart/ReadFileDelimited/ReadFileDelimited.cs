@@ -1,7 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.ReadFileDelimited
 {
     //-> Name: Read Delimited File
     //-> Description: How to read a Delimited File

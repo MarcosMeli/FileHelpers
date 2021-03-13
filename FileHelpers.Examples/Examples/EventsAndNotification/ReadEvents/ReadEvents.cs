@@ -1,8 +1,9 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.EventsAndNotification.ReadEvents
 {
     //-> Name: Before/After Read Event Handling
     //-> Description:Show how to implement read events

@@ -1,12 +1,8 @@
-﻿using FileHelpers;
-using FileHelpers.DataLink;
-using FileHelpers.ExcelNPOIStorage;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Excel.ExcelCreateAndSave
 {
     //-> Name: Create excel storage and save it.
     //-> Runnable: true
@@ -21,7 +17,7 @@ namespace ExamplesFx
 
             // Create an excel storage for specific class
             // By default start row/column is 2/B (index 1)
-            ExcelNPOIStorage storage = new ExcelNPOIStorage(typeof(Student));
+            ExcelNPOIStorage.ExcelNPOIStorage storage = new ExcelNPOIStorage.ExcelNPOIStorage(typeof(Student));
 
             // Set storage file name -> that will be excel output file name
             // Extension must be .xlsx or .xls

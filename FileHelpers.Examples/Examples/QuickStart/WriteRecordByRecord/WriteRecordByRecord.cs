@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using FileHelpers;
 
 // Done
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.WriteRecordByRecord
 {
     //-> Name:Write Delimited File
     //-> Description:Example of how to write a delimited file

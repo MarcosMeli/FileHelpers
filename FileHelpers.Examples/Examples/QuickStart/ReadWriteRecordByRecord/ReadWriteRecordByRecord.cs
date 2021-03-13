@@ -1,8 +1,8 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 
-
-namespace ExamplesFx
+namespace FileHelpers.Examples.QuickStart.ReadWriteRecordByRecord
 {
     //-> Name:Read or Write Record by Record
     //-> Description:Using the FileHelperAsynEngine to work record by record

@@ -1,8 +1,9 @@
 ﻿using System;
-using FileHelpers;
+using System.Collections;
+using System.Collections.Generic;
 using FileHelpers.Events;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.EventsAndNotification.WriteEvents
 {
     public class WriteEvents
         : ExampleBase

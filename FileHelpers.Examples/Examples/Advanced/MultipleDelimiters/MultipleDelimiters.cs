@@ -1,7 +1,9 @@
-﻿using System.Text;
-using FileHelpers;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ExamplesFx
+namespace FileHelpers.Examples.Advanced.MultipleDelimiters
 {
     //-> Name:Multiple Delimiters
     //-> Description:Write a file with different delimiters using the same record
