@@ -1,10 +1,11 @@
-﻿using FileHelpers.FSharp.Tests.Helpers;
+﻿#if NETCOREAPP
+using FileHelpers.Tests.Helpers;
 using NFluent;
 using NUnit.Framework;
 
-namespace FileHelpers.FSharp.Tests
+namespace FileHelpers.Tests.FileHelpers
 {
-    public class AutoPropertiesTests
+    public class FSharpAutoPropertiesTests
     {
         [Test]
         public void AutoPropertiesFromFSharpAreHandled()
@@ -34,7 +35,7 @@ type SampleFSharpType =
       Field3: int }
 ";
 
-            var assembly = CompileHelper.Compile(source);
+            var assembly = FSharpHelper.Compile(source);
             var type = assembly.GetType("FileHelpers.SampleFSharpType");
 
             var fileHelpersAssembly = typeof(EngineBase).Assembly;
@@ -49,3 +50,4 @@ type SampleFSharpType =
         }
     }
 }
+#endif

@@ -18,8 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.Benchmarks", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.ExcelNPOIStorage", "FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj", "{BEB0D823-6A7E-47FD-A275-1B3314F8412D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.FSharp.Tests", "FileHelpers.FSharp.Tests\FileHelpers.FSharp.Tests.csproj", "{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.ExcelNPOIStorage.Tests", "FileHelpers.ExcelNPOIStorage.Tests\FileHelpers.ExcelNPOIStorage.Tests.csproj", "{F14D7DE4-0DCA-4316-AE4C-CD1D06FF1D32}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.Examples", "FileHelpers.Examples\FileHelpers.Examples.csproj", "{CF51E633-CB40-49F4-939F-5E9A858A0F91}"
@@ -64,14 +62,6 @@ Global
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Release|x86.ActiveCfg = Release|Any CPU
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Release|x86.Build.0 = Release|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Debug|x86.Build.0 = Debug|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Release|x86.ActiveCfg = Release|Any CPU
-		{84897773-77C3-4A98-A2E4-E3C2AF2C6D35}.Release|x86.Build.0 = Release|Any CPU
 		{F14D7DE4-0DCA-4316-AE4C-CD1D06FF1D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F14D7DE4-0DCA-4316-AE4C-CD1D06FF1D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F14D7DE4-0DCA-4316-AE4C-CD1D06FF1D32}.Debug|x86.ActiveCfg = Debug|Any CPU
