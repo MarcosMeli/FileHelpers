@@ -42,7 +42,7 @@ namespace FileHelpers.Tests.Helpers
             var compileResult = FSharpAsync
                 .StartAsTask(action, FSharpOption<TaskCreationOptions>.None, FSharpOption<CancellationToken>.None)
                 .Result;
-            
+
             var exitCode = compileResult.Item2;
             var compilationErrors = compileResult.Item1;
 
