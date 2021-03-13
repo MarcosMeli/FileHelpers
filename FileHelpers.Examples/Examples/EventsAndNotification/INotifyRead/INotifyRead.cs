@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using FileHelpers.Events;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.EventsAndNotification.INotifyRead
 {
     //-> Name: INotifyRead Interface
     //-> Description: Get Before/After Read events with the INotifyRead interface
 
+    [Ignore("Unclear at the moment")]
     public class NotifyReadSample
         : ExampleBase
     {

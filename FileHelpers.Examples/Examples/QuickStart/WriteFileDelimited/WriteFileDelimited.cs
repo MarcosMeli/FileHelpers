@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.QuickStart.WriteFileDelimited
 {
     //-> Name:Write Delimited File
     //-> Description:Example of how to write a Delimited File
     //-> AutoRun:true
-
+    [Ignore("Does not have input")]
     public class WriteFileDelimited
         : ExampleBase
     {

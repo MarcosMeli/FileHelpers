@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.Excel.ExportAndEdit
 {
     //-> Name: Open excel file, edit and save it
     //-> Runnable: true
     //-> Description: Shows how to load excel file to storage, edit it and save again
-
+    [Ignore("Does not have input")]
     public class ExportAndEdit :
     ExampleBase
     {

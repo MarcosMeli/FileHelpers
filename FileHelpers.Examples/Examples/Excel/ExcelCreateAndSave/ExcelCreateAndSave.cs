@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.Excel.ExcelCreateAndSave
 {
     //-> Name: Create excel storage and save it.
     //-> Runnable: true
     //-> Description: Shows how to create excel storage, fill it with object data and save
-
+    [Ignore("Does not have input")]
     public class ExcelCreateAndSave :
     ExampleBase
     {

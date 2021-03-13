@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.Sorting.SortBigFilesString1
 {
     //-> Name:Sort Big File without Record Class 1
     //-> Runnable:false
     //-> Description:Shows how to sort a big file without a record class
-
+    [Ignore("Does not have input")]
     public class BigFileSortString1
         : ExampleBase
     {

@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.Advanced.MultipleDelimiters
 {
     //-> Name:Multiple Delimiters
     //-> Description:Write a file with different delimiters using the same record
 
+    [Ignore("Does not have input")]
     public class MultipleDelimiters
         : ExampleBase
     {

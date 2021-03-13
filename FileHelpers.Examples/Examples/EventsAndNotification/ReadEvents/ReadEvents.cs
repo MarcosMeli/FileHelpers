@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using FileHelpers.Events;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.EventsAndNotification.ReadEvents
 {
     //-> Name: Before/After Read Event Handling
     //-> Description:Show how to implement read events
-
+    [Ignore("Unclear at the moment")]
     public class ReadBeforeEventSample
         : ExampleBase
     {

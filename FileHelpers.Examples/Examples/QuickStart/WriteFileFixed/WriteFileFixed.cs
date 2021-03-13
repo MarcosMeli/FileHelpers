@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace FileHelpers.Examples.QuickStart.WriteFileFixed
 {
     //-> Name:Write Fixed File
     //-> Description:Example of how to write a Fixed Record file
     //-> AutoRun:true
-
+    [Ignore("Does not have input")]
     public class WriteFileFixed
         : ExampleBase
     {
