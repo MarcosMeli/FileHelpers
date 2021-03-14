@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NETCOREAPP
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,34 +11,40 @@ using FSharp.Compiler.SourceCodeServices;
 using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
 
-namespace FileHelpers.FSharp.Tests.Helpers
+namespace FileHelpers.Tests.Helpers
 {
-    public static class CompileHelper
+    public static class FSharpHelper
     {
         public static Assembly Compile(string source)
         {
             var fileHelpersAssembly = typeof(EngineBase).Assembly;
 
-            var checker = FSharpChecker.Create(FSharpOption<int>.None,
+            var checker = FSharpChecker.Create(
+                FSharpOption<int>.None,
                 FSharpOption<bool>.None,
                 FSharpOption<bool>.None,
-                FSharpOption<ReferenceResolver.Resolver>.None,
-                FSharpOption<FSharpFunc<Tuple<string, DateTime>, FSharpOption<Tuple<object, IntPtr, int>>>>.None);
+                FSharpOption<LegacyReferenceResolver>.None,
+                FSharpOption<FSharpFunc<Tuple<string, DateTime>, FSharpOption<Tuple<object, IntPtr, int>>>>.None,
+                FSharpOption<bool>.None,
+                FSharpOption<bool>.None,
+                FSharpOption<bool>.None,
+                FSharpOption<bool>.None);
 
             var file = Path.GetTempFileName();
 
             File.WriteAllText(file + ".fs", source);
 
-            var action = checker.CompileToDynamicAssembly(new[] {"-o", file + ".dll", "-a", file + ".fs", "--reference:" + fileHelpersAssembly.Location},
+            var action = checker.CompileToDynamicAssembly(
+                new[] {"-o", file + ".dll", "-a", file + ".fs", "--reference:" + fileHelpersAssembly.Location},
                 FSharpOption<Tuple<TextWriter, TextWriter>>.None, 
                 FSharpOption<string>.None);
 
-            Tuple<FSharpErrorInfo[], int, FSharpOption<Assembly>> compileResult = FSharpAsync
+            var compileResult = FSharpAsync
                 .StartAsTask(action, FSharpOption<TaskCreationOptions>.None, FSharpOption<CancellationToken>.None)
                 .Result;
 
-            int exitCode = compileResult.Item2;
-            FSharpErrorInfo[] compilationErrors = compileResult.Item1;
+            var exitCode = compileResult.Item2;
+            var compilationErrors = compileResult.Item1;
 
             if (compilationErrors.Any() && exitCode != 0)
             {
@@ -51,8 +58,8 @@ namespace FileHelpers.FSharp.Tests.Helpers
                 throw new InvalidOperationException($"Cannot compile fsharp: {errors}");
             }
 
-            Assembly assembly = compileResult.Item3.Value;
-            return assembly;
+            return compileResult.Item3.Value;
         }
     }
 }
+#endif
