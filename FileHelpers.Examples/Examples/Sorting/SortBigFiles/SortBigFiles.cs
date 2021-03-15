@@ -6,9 +6,7 @@ using NUnit.Framework;
 namespace FileHelpers.Examples.Sorting.SortBigFiles
 {
     //-> Name:Sort Big File with Record Class
-    //-> Runnable:false
     //-> Description:Shows how to sort a big file using a record class
-    [Ignore("Does not have input")]
     public class BigFileSort
         : ExampleBase
     {
@@ -28,7 +26,7 @@ namespace FileHelpers.Examples.Sorting.SortBigFiles
             // We recommend to split in blocks between 1 and 40 Mb
             var sorter = new BigFileSorter<OrdersTab>(10*1024*1024); // 10 Mb blocks
 
-            sorter.Sort("unsorted.txt", "sorted.txt");
+            sorter.Sort("input.txt", "sorted.txt");
 
             //-> /File
         }
@@ -36,33 +34,24 @@ namespace FileHelpers.Examples.Sorting.SortBigFiles
 
 
         //-> File:OrdersTab.cs
-        [DelimitedRecord("\t")]
+        [DelimitedRecord(",")]
         public class OrdersTab
             : IComparable<OrdersTab>
         {
-            public int OrderID;
+            public int OrderId;
 
-            public string CustomerID;
+            public string CustomerId;
 
-            public int EmployeeID;
-
+            [FieldConverter(ConverterKind.Date, "d-M-yyyy")]
             public DateTime OrderDate;
 
-            [FieldConverter(ConverterKind.Date, "ddMMyyyy")]
             public DateTime RequiredDate;
-
-            [FieldNullValue(typeof (DateTime), "2005-1-1")]
-            public DateTime ShippedDate;
-
-            public int ShipVia;
-
-            public decimal Freight;
 
             #region IComparable<OrdersTab> Members
 
             public int CompareTo(OrdersTab other)
             {
-                return OrderID.CompareTo(other.OrderID);
+                return OrderId.CompareTo(other.OrderId);
             }
 
             #endregion
