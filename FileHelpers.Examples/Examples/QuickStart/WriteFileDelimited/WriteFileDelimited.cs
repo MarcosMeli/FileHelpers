@@ -7,10 +7,7 @@ namespace FileHelpers.Examples.QuickStart.WriteFileDelimited
 {
     //-> Name:Write Delimited File
     //-> Description:Example of how to write a Delimited File
-    //-> AutoRun:true
-    [Ignore("Does not have input")]
-    public class WriteFileDelimited
-        : ExampleBase
+    public class WriteFileDelimited : OutputBase
     {
         //-> To write an output file, separated by a "|":
 
@@ -39,7 +36,8 @@ namespace FileHelpers.Examples.QuickStart.WriteFileDelimited
 
         //-> Instantiate a FileHelperEngine and write the file:
 
-        protected override void Run()
+        [Test]
+        public void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Orders>();

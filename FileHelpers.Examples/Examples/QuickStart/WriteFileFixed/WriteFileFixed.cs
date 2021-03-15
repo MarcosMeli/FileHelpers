@@ -7,10 +7,7 @@ namespace FileHelpers.Examples.QuickStart.WriteFileFixed
 {
     //-> Name:Write Fixed File
     //-> Description:Example of how to write a Fixed Record file
-    //-> AutoRun:true
-    [Ignore("Does not have input")]
-    public class WriteFileFixed
-        : ExampleBase
+    public class WriteFileFixed : OutputBase
     {
         //-> To write a fixed length file like this:
 
@@ -38,7 +35,8 @@ namespace FileHelpers.Examples.QuickStart.WriteFileFixed
 
         //-> Now just create some records and write them with the Engine:
 
-        protected override void Run()
+        [Test]
+        public void Run()
         {
             //-> File:Example.cs
             var engine = new FileHelperEngine<Customer>();
