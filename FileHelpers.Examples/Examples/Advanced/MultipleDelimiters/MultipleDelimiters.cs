@@ -9,9 +9,7 @@ namespace FileHelpers.Examples.Advanced.MultipleDelimiters
     //-> Name:Multiple Delimiters
     //-> Description:Write a file with different delimiters using the same record
 
-    [Ignore("Does not have input")]
-    public class MultipleDelimiters
-        : ExampleBase
+    public class MultipleDelimiters : OutputBase
     {
 
         //-> File:CustomersVerticalBar.cs
@@ -31,8 +29,8 @@ namespace FileHelpers.Examples.Advanced.MultipleDelimiters
 
         //-> /File
 
-
-        protected override void Run()
+        [Test]
+        public void Run()
         {
             //-> File:RunEngine.cs
 
