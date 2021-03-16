@@ -8,7 +8,6 @@ namespace FileHelpers.Examples.EventsAndNotification.ReadEvents
 {
     //-> Name: Before/After Read Event Handling
     //-> Description:Show how to implement read events
-    [Ignore("Unclear at the moment")]
     public class ReadBeforeEventSample
         : ExampleBase
     {
