@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace FileHelpers
 {
-    [TestFixture]
+    /// <summary>This is a base for examples that do not have input files.</summary>
     public class OutputBase
     {
         /// <summary><see cref="ExampleBase.Console"/></summary>
