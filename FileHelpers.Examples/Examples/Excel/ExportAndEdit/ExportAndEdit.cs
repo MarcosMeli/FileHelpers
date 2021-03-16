@@ -6,13 +6,12 @@ using NUnit.Framework;
 namespace FileHelpers.Examples.Excel.ExportAndEdit
 {
     //-> Name: Open excel file, edit and save it
-    //-> Runnable: true
     //-> Description: Shows how to load excel file to storage, edit it and save again
-    [Ignore("Does not have input")]
-    public class ExportAndEdit :
-    ExampleBase
+    [TestFixture]
+    public class ExportAndEdit : OutputBase
     {
-        protected override void Run()
+        [Test]
+        public void Run()
         {
             //-> File: ExcelExample.cs
 

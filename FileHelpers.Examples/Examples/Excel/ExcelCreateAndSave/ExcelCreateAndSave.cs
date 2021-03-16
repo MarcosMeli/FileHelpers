@@ -6,13 +6,12 @@ using NUnit.Framework;
 namespace FileHelpers.Examples.Excel.ExcelCreateAndSave
 {
     //-> Name: Create excel storage and save it.
-    //-> Runnable: true
     //-> Description: Shows how to create excel storage, fill it with object data and save
-    [Ignore("Does not have input")]
-    public class ExcelCreateAndSave :
-    ExampleBase
+    [TestFixture]
+    public class ExcelCreateAndSave : OutputBase
     {
-        protected override void Run()
+        [Test]
+        public void Run()
         {
             //-> File: ExcelExample.cs
 
