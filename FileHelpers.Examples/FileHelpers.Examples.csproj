@@ -1,39 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40</TargetFrameworks>
-    <OutputType>WinExe</OutputType>
-    <UseWindowsForms>true</UseWindowsForms>
-    <Platforms>x86</Platforms>
-    <ApplicationIcon>Demos.ico</ApplicationIcon>
+    <OutputType>Library</OutputType>
+    <Platforms>AnyCPU</Platforms>
     <IsPackable>false</IsPackable>
+    <RootNamespace>FileHelpers</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj" />
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj" />
+
+    <PackageReference Include="NUnit" Version="3.13.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Devoo.WinForms">
-      <HintPath>..\Libs\References\Devoo\Devoo.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="ExamplesFx">
-      <HintPath>..\Libs\References\Devoo\ExamplesFx.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>
