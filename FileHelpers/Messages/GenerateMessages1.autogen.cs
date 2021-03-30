@@ -7,9 +7,6 @@ internal class Messages
 internal class Errors
 {
 
-private static readonly TypesOfMessages.Errors.FieldOptionalClass mFieldOptional = new TypesOfMessages.Errors.FieldOptionalClass();
-internal static TypesOfMessages.Errors.FieldOptionalClass FieldOptional
-{ get { return  mFieldOptional; } }
 private static readonly TypesOfMessages.Errors.InvalidIdentifierClass mInvalidIdentifier = new TypesOfMessages.Errors.InvalidIdentifierClass();
 internal static TypesOfMessages.Errors.InvalidIdentifierClass InvalidIdentifier
 { get { return  mInvalidIdentifier; } }
