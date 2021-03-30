@@ -36,7 +36,7 @@
 
   
   <ClassWithOutFields>
-    The record class $ClassName$ don't contains any field
+    The record class $ClassName$ doesn't contain any fields
   </ClassWithOutFields>
 
   
