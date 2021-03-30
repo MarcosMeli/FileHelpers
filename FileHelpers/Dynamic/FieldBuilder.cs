@@ -28,9 +28,7 @@ namespace FileHelpers.Dynamic
             fieldName = fieldName.Trim();
 
             if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false) {
-                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
-                    .Identifier(fieldName)
-                    .Text);
+                throw new FileHelpersException($"The string '{fieldName}' not is a valid .NET identifier");
             }
 
             mFieldName = fieldName;
@@ -47,15 +45,11 @@ namespace FileHelpers.Dynamic
             fieldName = fieldName.Trim();
 
             if (ValidIdentifierValidator.ValidIdentifier(fieldName) == false) {
-                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
-                    .Identifier(fieldName)
-                    .Text);
+                throw new FileHelpersException($"The string '{fieldName}' not is a valid .NET identifier");
             }
 
             if (ValidIdentifierValidator.ValidIdentifier(fieldType, true) == false) {
-                throw new FileHelpersException(Messages.Errors.InvalidIdentifier
-                    .Identifier(fieldType)
-                    .Text);
+                throw new FileHelpersException($"The string '{fieldName}' not is a valid .NET identifier");
             }
 
             mFieldName = fieldName;

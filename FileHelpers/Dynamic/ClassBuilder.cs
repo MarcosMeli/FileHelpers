@@ -426,11 +426,9 @@ namespace FileHelpers.Dynamic
 		{
 			className = className.Trim();
 			if (ValidIdentifierValidator.ValidIdentifier(className) == false)
-			{
-				throw new FileHelpersException(Messages.Errors.InvalidIdentifier
-					.Identifier(className)
-					.Text);
-			}
+            {
+                throw new FileHelpersException($"The string '{className}' not is a valid .NET identifier");
+            }
 
 			mClassName = className;
 			AdditionalReferences = new List<Assembly>();
@@ -638,22 +636,18 @@ namespace FileHelpers.Dynamic
 		private void ValidateClass()
 		{
 			if (ClassName.Trim().Length == 0)
-				throw new FileHelpersException(Messages.Errors.EmptyClassName.Text);
+				throw new FileHelpersException("The ClassName can't be empty");
 
 			for (int i = 0; i < mFields.Count; i++)
 			{
 				if (((FieldBuilder)mFields[i]).FieldName.Trim().Length == 0)
 				{
-					throw new FileHelpersException(Messages.Errors.EmptyFieldName
-						.Position((i + 1).ToString())
-						.Text);
-				}
+					throw new FileHelpersException($"The {i + 1}th field name can't be empty");
+                }
 
 				if (((FieldBuilder)mFields[i]).FieldType.Trim().Length == 0)
 				{
-					throw new FileHelpersException(Messages.Errors.EmptyFieldType
-						.Position((i + 1).ToString())
-						.Text);
+					throw new FileHelpersException($"The {i + 1}th field type can't be empty");
 				}
 			}
 		}
