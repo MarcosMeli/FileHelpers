@@ -57,11 +57,7 @@ namespace FileHelpers
                             mRecordInfo.Fields[i].FieldInfo.Name,
                             line.mReader.LineNumber,
                             -1,
-                            Messages.Errors.WrongConverter
-                                .FieldName(mRecordInfo.Fields[i].FieldInfo.Name)
-                                .ConverterReturnedType(values[i].GetType().Name)
-                                .FieldType(mRecordInfo.Fields[i].FieldInfo.FieldType.Name)
-                                .Text
+                            $"The converter for the field: {mRecordInfo.Fields[i].FieldInfo.Name} returns an object of Type: {values[i].GetType().Name} and the field is of type: {mRecordInfo.Fields[i].FieldInfo.FieldType.Name}"
                             ,
                             ex);
                     }
@@ -100,11 +96,7 @@ namespace FileHelpers
                             mRecordInfo.Fields[i].FieldInfo.Name,
                             line.mReader.LineNumber,
                             -1,
-                            Messages.Errors.WrongConverter
-                                .FieldName(mRecordInfo.Fields[i].FieldInfo.Name)
-                                .ConverterReturnedType(values[i].GetType().Name)
-                                .FieldType(mRecordInfo.Fields[i].FieldInfo.FieldType.Name)
-                                .Text
+                            $"The converter for the field: {mRecordInfo.Fields[i].FieldInfo.Name} returns an object of Type: {values[i].GetType().Name} and the field is of type: {mRecordInfo.Fields[i].FieldInfo.FieldType.Name}"
                             ,
                             ex);
                     }
