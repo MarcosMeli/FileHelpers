@@ -136,15 +136,11 @@ namespace FileHelpers
             var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
 
             if (recordAttribute == null) {
-                throw new BadUsageException(Messages.Errors.ClassWithOutRecordAttribute
-                    .ClassName(RecordType.Name)
-                    .Text);
+                throw new BadUsageException($"The record class {RecordType.Name} must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute");
             }
 
             if (ReflectionHelper.GetDefaultConstructor(RecordType) == null) {
-                throw new BadUsageException(Messages.Errors.ClassWithOutDefaultConstructor
-                    .ClassName(RecordType.Name)
-                    .Text);
+                throw new BadUsageException($"The record class {RecordType.Name} needs a constructor with no args (public or private)");
             }
 
             Attributes.WorkWithFirst<IgnoreFirstAttribute>(
@@ -199,9 +195,7 @@ namespace FileHelpers
             Fields = CreateCoreFields(fields, recordAttribute);
 
             if (FieldCount == 0) {
-                throw new BadUsageException(Messages.Errors.ClassWithOutFields
-                    .ClassName(RecordType.Name)
-                    .Text);
+                throw new BadUsageException($"The record class {RecordType.Name} doesn't contain any fields");
             }
 
             if (recordAttribute is FixedLengthRecordAttribute) {
@@ -250,10 +244,10 @@ namespace FileHelpers
             }
 
             if (automaticFields > 0 &&
-                genericFields > 0 && SumOrder(resFields) == 0) {
-                throw new BadUsageException(Messages.Errors.MixOfStandardAndAutoPropertiesFields
-                    .ClassName(resFields[0].FieldInfo.DeclaringType.Name)
-                    .Text);
+                genericFields > 0 && SumOrder(resFields) == 0)
+            {
+                throw new BadUsageException(
+                    $"You can mix standard fields and automatic properties only if you use [FieldOrder()] over the fields and properties in the {resFields[0].FieldInfo.DeclaringType.Name} class.");
             }
 
             SortFieldsByOrder(resFields);
@@ -296,23 +290,18 @@ namespace FileHelpers
                     currentField.IsOptional == false
                     &&
                     currentField.InNewLine == false) {
-                    throw new BadUsageException(Messages.Errors.ExpectingFieldOptional
-                        .FieldName(prevField.FieldInfo.Name)
-                        .Text);
+                    throw new BadUsageException($"The field: {prevField.FieldInfo.Name} must be marked as optional because the previous field is marked as optional. (Try adding [FieldOptional] to {prevField.FieldInfo.Name})");
                 }
 
                 // Check for an array array in the middle of a record that is not a fixed length
                 if (prevField.IsArray) {
                     if (prevField.ArrayMinLength == int.MinValue) {
-                        throw new BadUsageException(Messages.Errors.MissingFieldArrayLenghtInNotLastField
-                            .FieldName(prevField.FieldInfo.Name)
-                            .Text);
+                        throw new BadUsageException($"The field: {prevField.FieldInfo.Name} is of an array type and must contain a [FieldArrayLength] attribute because it is not the last field");
                     }
 
-                    if (prevField.ArrayMinLength != prevField.ArrayMaxLength) {
-                        throw new BadUsageException(Messages.Errors.SameMinMaxLengthForArrayNotLastField
-                            .FieldName(prevField.FieldInfo.Name)
-                            .Text);
+                    if (prevField.ArrayMinLength != prevField.ArrayMaxLength)
+                    {
+                        throw new BadUsageException($"The array field: {prevField.FieldInfo.Name} must be of a fixed length because it is not the last field of the class, i.e. the min and max length of the [FieldArrayLength] attribute must be the same.");
                     }
                 }
             }
@@ -338,10 +327,9 @@ namespace FileHelpers
             if (currentField.FieldOrder.HasValue) {
                 // If one field has order number set, all others must also have an order number
                 var fieldWithoutOrder = resFields.Find(x => x.FieldOrder.HasValue == false);
-                if (fieldWithoutOrder != null) {
-                    throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                        .FieldName(fieldWithoutOrder.FieldInfo.Name)
-                        .Text);
+                if (fieldWithoutOrder != null)
+                {
+                    throw new BadUsageException($"The field: {fieldWithoutOrder.FieldInfo.Name} must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.");
                 }
 
                 // No other field should have the same order number
@@ -350,10 +338,7 @@ namespace FileHelpers
 
                 if (fieldWithSameOrder != null)
                 {
-                    throw new BadUsageException(Messages.Errors.SameFieldOrder
-                        .FieldName1(currentField.FieldInfo.Name)
-                        .FieldName2(fieldWithSameOrder.FieldInfo.Name)
-                        .Text);
+                    throw new BadUsageException($"The field: {currentField.FieldInfo.Name} has the same FieldOrder as: {fieldWithSameOrder.FieldInfo.Name}. You must use different values");
                 }
             }
             else {
@@ -364,13 +349,10 @@ namespace FileHelpers
                     var autoPropertyName = FieldBase.AutoPropertyName(currentField.FieldInfo);
 
                     if (string.IsNullOrEmpty(autoPropertyName))
-                        throw new BadUsageException(Messages.Errors.PartialFieldOrder
-                            .FieldName(currentField.FieldInfo.Name)
-                            .Text);
+                        throw new BadUsageException($"The field: {currentField.FieldInfo.Name} must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.");
                     else
-                        throw new BadUsageException(Messages.Errors.PartialFieldOrderInAutoProperty
-                            .PropertyName(autoPropertyName)
-                            .Text);
+                        throw new BadUsageException(
+                            $"The auto property: {autoPropertyName} must be marked with FieldOrder because if you use this attribute in one field you must also use it on all of them.");
                 }
             }
         }
@@ -398,11 +380,9 @@ namespace FileHelpers
             }
 
             int res;
-            if (!mMapFieldIndex.TryGetValue(fieldName, out res)) {
-                throw new BadUsageException(Messages.Errors.FieldNotFound
-                    .FieldName(fieldName)
-                    .ClassName(RecordType.Name)
-                    .Text);
+            if (!mMapFieldIndex.TryGetValue(fieldName, out res))
+            {
+                throw new BadUsageException($"The field: {fieldName} was not found in the class: {RecordType.Name}. Remember that this option is case sensitive");
             }
 
             return res;
