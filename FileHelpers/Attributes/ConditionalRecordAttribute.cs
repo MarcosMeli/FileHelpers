@@ -34,7 +34,18 @@ namespace FileHelpers
         {
             Condition = condition;
             ConditionSelector = conditionSelector;
-            ExHelper.CheckNullOrEmpty(conditionSelector, "conditionSelector");
+            CheckNullOrEmpty(conditionSelector, "conditionSelector");
+        }
+
+        /// <summary>
+        /// Check the string is null or empty and throw an exception
+        /// </summary>
+        /// <param name="val">value to test</param>
+        /// <param name="paramName">name of parameter to check</param>
+        private static void CheckNullOrEmpty(string val, string paramName)
+        {
+            if (string.IsNullOrEmpty(val))
+                throw new ArgumentNullException(paramName, "Value can't be null or empty");
         }
     }
 }

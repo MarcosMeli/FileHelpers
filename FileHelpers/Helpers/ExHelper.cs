@@ -7,16 +7,6 @@ namespace FileHelpers.Helpers
     /// </summary>
     internal static class ExHelper
     {
-        /// <summary>
-        /// Check the string is null or empty and throw an exception
-        /// </summary>
-        /// <param name="val">value to test</param>
-        /// <param name="paramName">name of parameter to check</param>
-        public static void CheckNullOrEmpty(string val, string paramName)
-        {
-            if (string.IsNullOrEmpty(val))
-                throw new ArgumentNullException(paramName, "Value can't be null or empty");
-        }
 
         /// <summary>
         /// Check that parameter is not null or empty and throw an exception
@@ -53,16 +43,6 @@ namespace FileHelpers.Helpers
                 throw new ArgumentException(param1Name + " can't be the same as " + param2Name,
                     param1Name + " and " + param2Name);
             }
-        }
-
-        /// <summary>
-        /// Check an integer value is positive (0 or greater)
-        /// </summary>
-        /// <param name="val">Integer to test</param>
-        public static void PositiveValue(int val)
-        {
-            if (val < 0)
-                throw new ArgumentException("The value must be greater than or equal to 0.");
         }
     }
 }
