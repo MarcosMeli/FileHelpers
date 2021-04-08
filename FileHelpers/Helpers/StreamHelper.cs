@@ -47,9 +47,10 @@ namespace FileHelpers.Helpers
                     }
                     if (offset >= 0) // read something else other than line ends...
                     {
-                        var newline = new byte[StringHelper.NewLine.Length];
+                        var newLine = Environment.NewLine;
+                        var newline = new byte[newLine.Length];
                         int count = 0;
-                        foreach (var ch in StringHelper.NewLine) {
+                        foreach (var ch in newLine) {
                             newline[count] = Convert.ToByte(ch);
                             count++;
                         }

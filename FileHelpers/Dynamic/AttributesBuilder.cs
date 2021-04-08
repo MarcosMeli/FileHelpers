@@ -1,4 +1,5 @@
 #if !NETSTANDARD
+using System;
 using System.Text;
 using FileHelpers.Helpers;
 
@@ -43,6 +44,7 @@ namespace FileHelpers.Dynamic
             if (string.IsNullOrEmpty(attribute))
                 return;
 
+            var newLine = Environment.NewLine;
             if (mFirst) {
                 switch (mLang) {
                     case NetLanguage.CSharp:
@@ -58,7 +60,7 @@ namespace FileHelpers.Dynamic
                 switch (mLang) {
                     case NetLanguage.VbNet:
                         mSb.Append(", _"); //  new line continuation
-                        mSb.Append(StringHelper.NewLine);
+                        mSb.Append(newLine);
                         mSb.Append(" ");
                         break;
                     case NetLanguage.CSharp:
@@ -72,7 +74,7 @@ namespace FileHelpers.Dynamic
             switch (mLang) {
                 case NetLanguage.CSharp:
                     mSb.Append("]");
-                    mSb.Append(StringHelper.NewLine);
+                    mSb.Append(newLine);
                     break;
                 case NetLanguage.VbNet:
                     break;
@@ -91,7 +93,7 @@ namespace FileHelpers.Dynamic
             switch (mLang) {
                 case NetLanguage.VbNet:
                     mSb.Append("> _");
-                    mSb.Append(StringHelper.NewLine);
+                    mSb.Append(Environment.NewLine);
                     break;
             }
 

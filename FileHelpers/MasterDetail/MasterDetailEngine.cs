@@ -253,7 +253,7 @@ namespace FileHelpers.MasterDetail
                 {
                     for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        HeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + Environment.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }

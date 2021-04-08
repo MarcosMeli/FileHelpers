@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
@@ -184,7 +185,7 @@ namespace FileHelpers
         /// <param name="isLast">Indicates if we are processing last field</param>
         protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
+            bool hasNewLine = mCompare.IndexOf(field, Environment.NewLine, CompareOptions.Ordinal) >= 0;
 
             // If have a new line and this is not allowed.  We throw an exception
             if (hasNewLine &&

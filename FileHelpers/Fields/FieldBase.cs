@@ -910,7 +910,7 @@ namespace FileHelpers
         internal void AssignToString(StringBuilder sb, object fieldValue)
         {
             if (InNewLine)
-                sb.Append(StringHelper.NewLine);
+                sb.Append(Environment.NewLine);
 
             if (IsArray)
             {

@@ -199,7 +199,7 @@ namespace FileHelpers.Dynamic
 			if (cr.Errors.HasErrors)
 			{
 				var error = new StringBuilder();
-				error.Append("Error Compiling Expression: " + StringHelper.NewLine);
+				error.Append("Error Compiling Expression: " + Environment.NewLine);
 				foreach (CompilerError err in cr.Errors)
 					error.AppendFormat("Line {0}: {1}\n", err.Line, err.ErrorText);
 				throw new DynamicCompilationException(error.ToString(), classStr, cr.Errors);
@@ -593,30 +593,31 @@ namespace FileHelpers.Dynamic
 
 			sb.Append(attbs.GetAttributesCode());
 
-			switch (lang)
+            var newLine = Environment.NewLine;
+            switch (lang)
 			{
 				case NetLanguage.VbNet:
 					sb.Append(GetVisibility(lang, mVisibility) + GetSealed(lang) + "Class " + mClassName);
-					sb.Append(StringHelper.NewLine);
+					sb.Append(newLine);
 					break;
 				case NetLanguage.CSharp:
 					sb.Append(GetVisibility(lang, mVisibility) + GetSealed(lang) + "class " + mClassName);
-					sb.Append(StringHelper.NewLine);
+					sb.Append(newLine);
 					sb.Append("{");
 					break;
 			}
 
-			sb.Append(StringHelper.NewLine);
-			sb.Append(StringHelper.NewLine);
+			sb.Append(newLine);
+			sb.Append(newLine);
 
 			foreach (FieldBuilder field in mFields)
 			{
 				sb.Append(field.GetFieldCode(lang));
-				sb.Append(StringHelper.NewLine);
+				sb.Append(newLine);
 			}
 
 
-			sb.Append(StringHelper.NewLine);
+			sb.Append(newLine);
 
 			switch (lang)
 			{
@@ -861,23 +862,24 @@ namespace FileHelpers.Dynamic
 			if (mNamespace == "")
 				return;
 
-			switch (lang)
+            var newLine = Environment.NewLine;
+            switch (lang)
 			{
 				case NetLanguage.CSharp:
 					sb.Append("namespace ");
 					sb.Append(mNamespace);
-					sb.Append(StringHelper.NewLine);
+					sb.Append(newLine);
 					sb.Append("{");
 					break;
 
 				case NetLanguage.VbNet:
 					sb.Append("Namespace ");
 					sb.Append(mNamespace);
-					sb.Append(StringHelper.NewLine);
+					sb.Append(newLine);
 					break;
 			}
 
-			sb.Append(StringHelper.NewLine);
+			sb.Append(newLine);
 		}
 
 		/// <summary>
@@ -890,7 +892,7 @@ namespace FileHelpers.Dynamic
 			if (mNamespace == "")
 				return;
 
-			sb.Append(StringHelper.NewLine);
+			sb.Append(Environment.NewLine);
 
 			switch (lang)
 			{

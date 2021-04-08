@@ -77,13 +77,15 @@ namespace FileHelpers
             {
                 if (from == null)
                     return string.Empty;
-                else {
+                else
+                {
+                    var newLine = Environment.NewLine;
                     if (from is ConvertException) {
                         return "In the field '" + ((ConvertException) from).FieldName + "': " +
-                               ((ConvertException) from).Message.Replace(StringHelper.NewLine, " -> ");
+                               ((ConvertException) from).Message.Replace(newLine, " -> ");
                     }
                     else
-                        return ((Exception) from).Message.Replace(StringHelper.NewLine, " -> ");
+                        return ((Exception) from).Message.Replace(newLine, " -> ");
                 }
             }
 

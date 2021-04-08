@@ -196,7 +196,7 @@ namespace FileHelpers
                 {
                     for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        HeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + Environment.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }

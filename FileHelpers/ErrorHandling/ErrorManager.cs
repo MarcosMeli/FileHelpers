@@ -99,7 +99,7 @@ namespace FileHelpers
                 header = "FileHelpers - NO Errors Found ";
 
             header += "at " + DateTime.Now.ToString("D") + " " + DateTime.Now.ToString("T");
-            header += StringHelper.NewLine + "LineNumber | LineString |ErrorDescription";
+            header += Environment.NewLine + "LineNumber | LineString |ErrorDescription";
 
             SaveErrors(fileName, header);
         }
@@ -111,8 +111,9 @@ namespace FileHelpers
         {
             var engine = new FileHelperEngine(typeof(ErrorInfo));
 
-            if (header.IndexOf(StringHelper.NewLine) == header.LastIndexOf(StringHelper.NewLine))
-                header += StringHelper.NewLine;
+            var newLine = Environment.NewLine;
+            if (header.IndexOf(newLine) == header.LastIndexOf(newLine))
+                header += newLine;
 
             engine.HeaderText = header;
             engine.WriteFile(fileName, Errors);

@@ -10,11 +10,6 @@ namespace FileHelpers.Helpers
     internal static class StringHelper
     {
         /// <summary>
-        /// New line variable
-        /// </summary>
-        internal static readonly string NewLine = Environment.NewLine;
-
-        /// <summary>
         /// Extract a string from a quoted string, allows for doubling the quotes
         /// for example 'o''clock'
         /// </summary>
@@ -82,7 +77,7 @@ namespace FileHelpers.Helpers
                     }
 
                     line.ReadNextLine();
-                    res.Append(NewLine);
+                    res.Append(Environment.NewLine);
                     //lines++;
                     i = 0;
                 }
