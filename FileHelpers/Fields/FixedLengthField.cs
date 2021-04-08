@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Text;
 using FileHelpers.Enums;
+using FileHelpers.Fields;
 using FileHelpers.Helpers;
 
 namespace FileHelpers
