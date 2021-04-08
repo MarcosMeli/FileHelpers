@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FileHelpers.Engines;
 using FileHelpers.Events;
 using FileHelpers.Helpers;
 using FileHelpers.Options;
