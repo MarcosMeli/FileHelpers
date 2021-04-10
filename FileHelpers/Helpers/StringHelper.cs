@@ -68,34 +68,5 @@ namespace FileHelpers.Helpers
 
             return identifier;
         }
-
-        /// <summary>
-        /// Determines whether the beginning of this string instance matches the specified string ignoring white spaces at the start.
-        /// </summary>
-        /// <param name="source">source string.</param>
-        /// <param name="value">The string to compare.</param>
-        /// <param name="comparisonType">string comparison type.</param>
-        /// <returns></returns>
-        public static bool StartsWithIgnoringWhiteSpaces(string source, string value, StringComparison comparisonType)
-        {
-            if (value == null)
-            {
-                return false;
-            }
-            // find lower bound
-            int i = 0;
-            int sz = source.Length;
-            while (i < sz && char.IsWhiteSpace(source[i]))
-            {
-                i++;
-            }
-            // adjust upper bound
-            sz = sz - i;
-            if (sz < value.Length)
-                return false;
-            sz = value.Length;
-            // search
-            return source.IndexOf(value, i, sz, comparisonType) == i;
-        }
     }
 }
