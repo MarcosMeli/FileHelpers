@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using FileHelpers.Core;
 using FileHelpers.Helpers;
 
 namespace FileHelpers
@@ -14,7 +15,7 @@ namespace FileHelpers
     {
         #region "  Constructor  "
 
-        private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
+        private static readonly CompareInfo mCompare = ComparerCache.CreateComparer();
 
         /// <summary>
         /// Create an empty delimited field structure

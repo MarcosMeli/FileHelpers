@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.Text;
 
 namespace FileHelpers.Helpers
@@ -9,21 +8,6 @@ namespace FileHelpers.Helpers
     /// </summary>
     internal static class StringHelper
     {
-        
-        private static CultureInfo mCulture;
-
-        /// <summary>
-        /// Create an invariant culture comparison operator
-        /// </summary>
-        /// <returns>Comparison operations</returns>
-        internal static CompareInfo CreateComparer()
-        {
-            if (mCulture == null)
-                mCulture = CultureInfo.InvariantCulture; // new CultureInfo("en-us");
-
-            return mCulture.CompareInfo;
-        }
-
         /// <summary>
         /// replace the one string with another, and keep doing it
         /// </summary>
