@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using FileHelpers.Engines;
 using FileHelpers.Events;
-using FileHelpers.Helpers;
 using FileHelpers.MasterDetail;
 using FileHelpers.Options;
 using FileHelpers.Streams;

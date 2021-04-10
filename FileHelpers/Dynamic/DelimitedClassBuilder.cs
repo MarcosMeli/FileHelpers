@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Diagnostics;
 using System.Xml;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Dynamic
 {

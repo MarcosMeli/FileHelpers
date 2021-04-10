@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 using FileHelpers.Converters;
-using FileHelpers.Helpers;
+using FileHelpers.Dynamic;
 
 namespace FileHelpers.Options
 {

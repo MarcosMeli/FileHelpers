@@ -1,5 +1,4 @@
 ﻿using System;
-using FileHelpers.Helpers;
 using NUnit.Framework;
 using NFluent;
 

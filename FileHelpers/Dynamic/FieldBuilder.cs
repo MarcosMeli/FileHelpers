@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Xml;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Dynamic
 {

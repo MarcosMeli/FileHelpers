@@ -1,7 +1,6 @@
 #if !NETSTANDARD
 using System;
 using System.Text;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Dynamic
 {

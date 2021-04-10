@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using FileHelpers.Core;
 using FileHelpers.Events;
-using FileHelpers.Helpers;
 
 namespace FileHelpers
 {

@@ -4,7 +4,6 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 using FileHelpers.Core;
-using FileHelpers.Helpers;
 
 namespace FileHelpers
 {

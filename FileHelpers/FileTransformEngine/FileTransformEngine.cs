@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using FileHelpers.FileTransformEngine;
-using FileHelpers.Helpers;
 using FileHelpers.Streams;
 
 namespace FileHelpers

@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Options
 {

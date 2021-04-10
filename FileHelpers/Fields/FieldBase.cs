@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using FileHelpers.Converters;
 using FileHelpers.Core;
-using FileHelpers.Helpers;
 using FileHelpers.Options;
 
 namespace FileHelpers
