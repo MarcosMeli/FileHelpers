@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using FileHelpers.Helpers;
+using FileHelpers.FileTransformEngine;
 using FileHelpers.Streams;
 
 namespace FileHelpers

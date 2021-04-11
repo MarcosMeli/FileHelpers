@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using FileHelpers.Helpers;
 
 namespace FileHelpers
 {
@@ -135,7 +134,7 @@ namespace FileHelpers
                 var sb = new StringBuilder(100);
 
                 for (int i = 0; i < mRemainingLines + 1; i++)
-                    sb.Append(mFowardStrings[(mForwardIndex + i)%(mFowardLines + 1)] + StringHelper.NewLine);
+                    sb.Append(mFowardStrings[(mForwardIndex + i)%(mFowardLines + 1)] + Environment.NewLine);
 
                 return sb.ToString();
             }

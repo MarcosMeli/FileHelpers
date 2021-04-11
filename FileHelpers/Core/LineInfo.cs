@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using FileHelpers.Helpers;
+using FileHelpers.Core;
 
 namespace FileHelpers
 {
@@ -202,7 +202,7 @@ namespace FileHelpers
             mCurrentPos = 0;
         }
 
-        private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
+        private static readonly CompareInfo mCompare = ComparerCache.CreateComparer();
 
         /// <summary>
         /// Find the location of the next string in record

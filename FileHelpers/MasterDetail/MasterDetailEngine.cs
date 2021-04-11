@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FileHelpers.Engines;
 using FileHelpers.Events;
-using FileHelpers.Helpers;
 using FileHelpers.Options;
 
 namespace FileHelpers.MasterDetail
@@ -253,7 +253,7 @@ namespace FileHelpers.MasterDetail
                 {
                     for (int i = 0; i < mMasterInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        HeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + Environment.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }

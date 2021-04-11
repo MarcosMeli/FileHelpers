@@ -1,7 +1,8 @@
+using System;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
-using FileHelpers.Helpers;
+using FileHelpers.Core;
 
 namespace FileHelpers
 {
@@ -13,7 +14,7 @@ namespace FileHelpers
     {
         #region "  Constructor  "
 
-        private static readonly CompareInfo mCompare = StringHelper.CreateComparer();
+        private static readonly CompareInfo mCompare = ComparerCache.CreateComparer();
 
         /// <summary>
         /// Create an empty delimited field structure
@@ -93,7 +94,7 @@ namespace FileHelpers
 
                 string quotedStr = QuoteChar.ToString();
                 if (line.StartsWith(quotedStr)) {
-                    var res = StringHelper.ExtractQuotedString(line,
+                    var res = ExtractQuotedString(line,
                         QuoteChar,
                         QuoteMultiline == MultilineMode.AllowForBoth || QuoteMultiline == MultilineMode.AllowForRead);
 
@@ -124,6 +125,84 @@ namespace FileHelpers
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Extract a string from a quoted string, allows for doubling the quotes
+        /// for example 'o''clock'
+        /// </summary>
+        /// <param name="line">Line to extract from (with extra info)</param>
+        /// <param name="quoteChar">Quote char to remove</param>
+        /// <param name="allowMultiline">can we have a new line in middle of string</param>
+        /// <returns>Extracted information</returns>
+        private static ExtractedInfo ExtractQuotedString(LineInfo line, char quoteChar, bool allowMultiline)
+        {
+            if (line.IsEOL())
+            {
+                throw new BadUsageException(
+                    "An empty String found. This cannot be parsed like a QuotedString - try to use SafeExtractQuotedString");
+            }
+
+            if (line.mLineStr[line.mCurrentPos] != quoteChar)
+                throw new BadUsageException("The source string does not begin with the quote char: " + quoteChar);
+
+            var res = new StringBuilder(32);
+
+            bool firstFound = false;
+
+            int i = line.mCurrentPos + 1;
+
+            while (line.mLineStr != null)
+            {
+                while (i < line.mLineStr.Length)
+                {
+                    if (line.mLineStr[i] == quoteChar)
+                    {
+                        if (firstFound)
+                        {
+                            // Is an escaped quoted char
+                            res.Append(quoteChar);
+                            firstFound = false;
+                        }
+                        else
+                            firstFound = true;
+                    }
+                    else
+                    {
+                        if (firstFound)
+                        {
+                            // This was the end of the string
+                            line.mCurrentPos = i;
+                            return new ExtractedInfo(res.ToString());
+                        }
+                        else
+                            res.Append(line.mLineStr[i]);
+                    }
+                    i++;
+                }
+
+                if (firstFound)
+                {
+                    line.mCurrentPos = i;
+                    return new ExtractedInfo(res.ToString());
+                }
+                else
+                {
+                    if (allowMultiline == false)
+                    {
+                        throw new BadUsageException("The current field has an unclosed quoted string. Complete line: " +
+                                                    res);
+                    }
+
+                    line.ReadNextLine();
+                    res.Append(Environment.NewLine);
+                    //lines++;
+                    i = 0;
+                }
+            }
+
+            throw new BadUsageException("The current field has an unclosed quoted string. Complete Field String: " +
+                                        res);
         }
 
         private ExtractedInfo BasicExtractString(LineInfo line)
@@ -184,7 +263,7 @@ namespace FileHelpers
         /// <param name="isLast">Indicates if we are processing last field</param>
         protected override void CreateFieldString(StringBuilder sb, string field, bool isLast)
         {
-            bool hasNewLine = mCompare.IndexOf(field, StringHelper.NewLine, CompareOptions.Ordinal) >= 0;
+            bool hasNewLine = mCompare.IndexOf(field, Environment.NewLine, CompareOptions.Ordinal) >= 0;
 
             // If have a new line and this is not allowed.  We throw an exception
             if (hasNewLine &&
@@ -204,12 +283,32 @@ namespace FileHelpers
                  QuoteMode == QuoteMode.OptionalForRead ||
                  ((QuoteMode == QuoteMode.OptionalForWrite || QuoteMode == QuoteMode.OptionalForBoth)
                   && mCompare.IndexOf(field, Separator, CompareOptions.Ordinal) >= 0) || hasNewLine))
-                StringHelper.CreateQuotedString(sb, field, QuoteChar);
+                CreateQuotedString(sb, field, QuoteChar);
             else
                 sb.Append(field);
 
             if (isLast == false)
                 sb.Append(Separator);
+        }
+
+        /// <summary>
+        /// Convert a string to a string with quotes around it,
+        /// if the quote appears within the string it is doubled
+        /// </summary>
+        /// <param name="sb">Where string is added</param>
+        /// <param name="source">String to be added</param>
+        /// <param name="quoteChar">quote character to use, eg "</param>
+        private static void CreateQuotedString(StringBuilder sb, string source, char quoteChar)
+        {
+            if (source == null)
+                source = string.Empty;
+
+            string quotedCharStr = quoteChar.ToString();
+            string escapedString = source.Replace(quotedCharStr, quotedCharStr + quotedCharStr);
+
+            sb.Append(quoteChar);
+            sb.Append(escapedString);
+            sb.Append(quoteChar);
         }
 
         /// <summary>

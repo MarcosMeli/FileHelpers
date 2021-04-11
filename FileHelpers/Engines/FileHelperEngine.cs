@@ -6,8 +6,8 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FileHelpers.Engines;
 using FileHelpers.Events;
-using FileHelpers.Helpers;
 using FileHelpers.Streams;
 
 namespace FileHelpers
@@ -196,7 +196,7 @@ namespace FileHelpers
                 {
                     for (int i = 0; i < RecordInfo.IgnoreFirst && currentLine != null; i++)
                     {
-                        HeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + Environment.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }

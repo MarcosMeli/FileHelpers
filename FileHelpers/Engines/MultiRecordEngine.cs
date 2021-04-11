@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using FileHelpers.Engines;
 using FileHelpers.Events;
-using FileHelpers.Helpers;
 using FileHelpers.MasterDetail;
 using FileHelpers.Options;
 using FileHelpers.Streams;
@@ -167,7 +167,7 @@ namespace FileHelpers
                 {
                     for (int i = 0; i < mMultiRecordInfo[0].IgnoreFirst && currentLine != null; i++)
                     {
-                        HeaderText += currentLine + StringHelper.NewLine;
+                        HeaderText += currentLine + Environment.NewLine;
                         currentLine = freader.ReadNextLine();
                         mLineNumber++;
                     }
@@ -538,7 +538,7 @@ namespace FileHelpers
                     string temp = reader.ReadRecordString();
                     mLineNumber++;
                     if (temp != null)
-                        HeaderText += temp + StringHelper.NewLine;
+                        HeaderText += temp + Environment.NewLine;
                     else
                         break;
                 }

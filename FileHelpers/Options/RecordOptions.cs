@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Options
 {
@@ -120,7 +119,7 @@ namespace FileHelpers.Options
             get { return mRecordInfo.IgnoreFirst; }
             set
             {
-                ExHelper.PositiveValue(value);
+                PositiveValue(value);
                 mRecordInfo.IgnoreFirst = value;
             }
         }
@@ -133,7 +132,7 @@ namespace FileHelpers.Options
             get { return mRecordInfo.IgnoreLast; }
             set
             {
-                ExHelper.PositiveValue(value);
+                PositiveValue(value);
                 mRecordInfo.IgnoreLast = value;
             }
         }
@@ -282,6 +281,16 @@ namespace FileHelpers.Options
         public object[] RecordToValues(object record)
         {
             return mRecordInfo.Operations.RecordToValues(record);
+        }
+
+        /// <summary>
+        /// Check an integer value is positive (0 or greater)
+        /// </summary>
+        /// <param name="val">Integer to test</param>
+        private static void PositiveValue(int val)
+        {
+            if (val < 0)
+                throw new ArgumentException("The value must be greater than or equal to 0.");
         }
     }
 

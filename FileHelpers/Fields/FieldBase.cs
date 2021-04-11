@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using FileHelpers.Converters;
-using FileHelpers.Helpers;
+using FileHelpers.Core;
 using FileHelpers.Options;
 
 namespace FileHelpers
@@ -910,7 +910,7 @@ namespace FileHelpers
         internal void AssignToString(StringBuilder sb, object fieldValue)
         {
             if (InNewLine)
-                sb.Append(StringHelper.NewLine);
+                sb.Append(Environment.NewLine);
 
             if (IsArray)
             {

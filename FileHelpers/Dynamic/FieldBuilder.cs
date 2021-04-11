@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Xml;
-using FileHelpers.Helpers;
 
 namespace FileHelpers.Dynamic
 {
@@ -208,46 +207,47 @@ namespace FileHelpers.Dynamic
                     break;
             }
 
-            sb.Append(StringHelper.NewLine);
+            var newLine = Environment.NewLine;
+            sb.Append(newLine);
 
             if (mClassBuilder.GenerateProperties) {
-                sb.Append(StringHelper.NewLine);
+                sb.Append(newLine);
 
                 switch (lang) {
                     case NetLanguage.VbNet:
                         sb.Append("Public Property " + mFieldName + " As " + mFieldType);
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   Get");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("      Return m" + mFieldName);
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   End Get");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   Set (value As " + mFieldType + ")");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("      m" + mFieldName + " = value");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   End Set");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("End Property");
                         break;
                     case NetLanguage.CSharp:
                         sb.Append("public " + mFieldType + " " + mFieldName);
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("{");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   get { return m" + mFieldName + "; }");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("   set { m" + mFieldName + " = value; }");
-                        sb.Append(StringHelper.NewLine);
+                        sb.Append(newLine);
                         sb.Append("}");
                         break;
                     default:
                         break;
                 }
 
-                sb.Append(StringHelper.NewLine);
-                sb.Append(StringHelper.NewLine);
+                sb.Append(newLine);
+                sb.Append(newLine);
             }
 
             return sb.ToString();
