@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 
@@ -8,122 +9,120 @@ namespace FileHelpers.Tests
     [TestFixture]
     public class MultiRecords
     {
-        private MultiRecordEngine engine;
+        private MultiRecordEngine mEngine;
 
         [Test]
-        public void MultpleRecordsFile()
+        public void MultipleRecordsFile()
         {
-            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector),
-                typeof (OrdersVerticalBar),
-                typeof (CustomersSemiColon),
-                typeof (SampleType));
+            mEngine = new MultiRecordEngine(CustomSelector,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
-            object[] res = engine.ReadFile(FileTest.Good.MultiRecord1.Path);
+            object[] res = mEngine.ReadFile(FileTest.Good.MultiRecord1.Path);
 
             Assert.AreEqual(12, res.Length);
-            Assert.AreEqual(12, engine.TotalRecords);
+            Assert.AreEqual(12, mEngine.TotalRecords);
 
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[0].GetType());
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[1].GetType());
-            Assert.AreEqual(typeof (CustomersSemiColon), res[2].GetType());
-            Assert.AreEqual(typeof (SampleType), res[5].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+            Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+            Assert.AreEqual(typeof(SampleType), res[5].GetType());
         }
 
         [Test]
-        public void MultpleRecordsFileAsync()
+        public void MultipleRecordsFileAsync()
         {
-            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector),
-                typeof (OrdersVerticalBar),
-                typeof (CustomersSemiColon),
-                typeof (SampleType));
+            mEngine = new MultiRecordEngine(CustomSelector,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
             var res = new ArrayList();
-            engine.BeginReadFile(FileTest.Good.MultiRecord1.Path);
-            foreach (var o in engine)
+            mEngine.BeginReadFile(FileTest.Good.MultiRecord1.Path);
+            foreach (var o in mEngine)
                 res.Add(o);
 
             Assert.AreEqual(12, res.Count);
-            Assert.AreEqual(12, engine.TotalRecords);
+            Assert.AreEqual(12, mEngine.TotalRecords);
 
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[0].GetType());
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[1].GetType());
-            Assert.AreEqual(typeof (CustomersSemiColon), res[2].GetType());
-            Assert.AreEqual(typeof (SampleType), res[5].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+            Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+            Assert.AreEqual(typeof(SampleType), res[5].GetType());
         }
 
-
         [Test]
-        public void MultpleRecordsWriteAsync()
+        public void MultipleRecordsWriteAsync()
         {
-            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelector),
-                typeof (OrdersVerticalBar),
-                typeof (CustomersSemiColon),
-                typeof (SampleType));
+            mEngine = new MultiRecordEngine(CustomSelector,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
-            object[] records = engine.ReadFile(FileTest.Good.MultiRecord1.Path);
+            object[] records = mEngine.ReadFile(FileTest.Good.MultiRecord1.Path);
 
-            engine.BeginWriteFile("tempoMulti.txt");
+            mEngine.BeginWriteFile("tempoMulti.txt");
             foreach (var o in records)
-                engine.WriteNext(o);
-            engine.Close();
+                mEngine.WriteNext(o);
+            mEngine.Close();
             File.Delete("tempoMulti.txt");
 
-
-            object[] res = engine.ReadFile(FileTest.Good.MultiRecord1.Path);
+            object[] res = mEngine.ReadFile(FileTest.Good.MultiRecord1.Path);
 
             Assert.AreEqual(12, res.Length);
-            Assert.AreEqual(12, engine.TotalRecords);
+            Assert.AreEqual(12, mEngine.TotalRecords);
 
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[0].GetType());
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[1].GetType());
-            Assert.AreEqual(typeof (CustomersSemiColon), res[2].GetType());
-            Assert.AreEqual(typeof (SampleType), res[5].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+            Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+            Assert.AreEqual(typeof(SampleType), res[5].GetType());
         }
 
-
         [Test]
-        public void MultpleRecordsFileAsyncBad()
+        public void MultipleRecordsFileAsyncBad()
         {
-            engine = new MultiRecordEngine(typeof (OrdersVerticalBar), typeof (CustomersSemiColon), typeof (SampleType));
-            engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+            mEngine = new MultiRecordEngine(CustomSelector,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
             Assert.Throws<FileHelpersException>(
-                () => {
-                    foreach (var o in engine)
+                () =>
+                {
+                    foreach (var o in mEngine)
                         o.ToString();
                 });
         }
 
         [Test]
-        public void MultpleRecordsFileRW()
+        public void MultipleRecordsFileReadWrite()
         {
-            engine = new MultiRecordEngine(typeof (OrdersVerticalBar), typeof (CustomersSemiColon), typeof (SampleType));
-            engine.RecordSelector = new RecordTypeSelector(CustomSelector);
+            mEngine = new MultiRecordEngine(CustomSelector, typeof(OrdersVerticalBar), typeof(CustomersSemiColon), typeof(SampleType));
 
-            object[] res2 = engine.ReadFile(FileTest.Good.MultiRecord1.Path);
+            object[] res2 = mEngine.ReadFile(FileTest.Good.MultiRecord1.Path);
 
             Assert.AreEqual(12, res2.Length);
-            Assert.AreEqual(12, engine.TotalRecords);
+            Assert.AreEqual(12, mEngine.TotalRecords);
 
-            engine.WriteFile("tempMR.txt", res2);
-            object[] res = engine.ReadFile("tempMR.txt");
+            mEngine.WriteFile("tempMR.txt", res2);
+            var res = mEngine.ReadFile("tempMR.txt");
             File.Delete("tempMR.txt");
 
             Assert.AreEqual(12, res.Length);
-            Assert.AreEqual(12, engine.TotalRecords);
+            Assert.AreEqual(12, mEngine.TotalRecords);
 
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[0].GetType());
-            Assert.AreEqual(typeof (OrdersVerticalBar), res[1].GetType());
-            Assert.AreEqual(typeof (CustomersSemiColon), res[2].GetType());
-            Assert.AreEqual(typeof (SampleType), res[5].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[0].GetType());
+            Assert.AreEqual(typeof(OrdersVerticalBar), res[1].GetType());
+            Assert.AreEqual(typeof(CustomersSemiColon), res[2].GetType());
+            Assert.AreEqual(typeof(SampleType), res[5].GetType());
         }
-
 
         [Test]
         public void NoTypes()
         {
             Assert.Throws<BadUsageException>(() =>
-                new MultiRecordEngine(new Type[] {}));
+                new MultiRecordEngine());
         }
 
         [Test]
@@ -136,67 +135,67 @@ namespace FileHelpers.Tests
         [Test]
         public void NoSelector()
         {
-            engine = new MultiRecordEngine(typeof (CustomersVerticalBar), typeof (CustomersTab));
+            mEngine = new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersTab));
         }
 
         [Test]
         public void TwiceSameType()
         {
             Assert.Throws<BadUsageException>(()
-                => new MultiRecordEngine(typeof (CustomersVerticalBar), typeof (CustomersVerticalBar)));
+                => new MultiRecordEngine(typeof(CustomersVerticalBar), typeof(CustomersVerticalBar)));
         }
 
         [Test]
         public void OneType()
         {
             Assert.Throws<BadUsageException>(()
-                => new MultiRecordEngine(typeof (CustomersVerticalBar)));
+                => new MultiRecordEngine(typeof(CustomersVerticalBar)));
         }
 
         [Test]
         public void NullTypes()
         {
             Assert.Throws<BadUsageException>(()
-                => new MultiRecordEngine(typeof (CustomersVerticalBar), null));
+                => new MultiRecordEngine(typeof(CustomersVerticalBar), null));
         }
 
         [Test]
         public void WhenSelectorReturnsTypeThatIsNotInEngine_ShouldThrowBadUsageException_WhenReadingFileAtATime()
         {
-            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelectorReturningBadType),
-                typeof (OrdersVerticalBar),
-                typeof (CustomersSemiColon),
-                typeof (SampleType));
+            mEngine = new MultiRecordEngine(CustomSelectorReturningBadType,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
-            Assert.Throws<BadUsageException>(() => engine.ReadFile(FileTest.Good.MultiRecord1.Path));
+            Assert.Throws<BadUsageException>(() => mEngine.ReadFile(FileTest.Good.MultiRecord1.Path));
         }
 
         [Test]
         public void WhenSelectorReturnsTypeThatIsNotInEngine_ShouldThrowBadUsageException_WhenReadingRecordAtATime()
         {
-            engine = new MultiRecordEngine(new RecordTypeSelector(CustomSelectorReturningBadType),
-                typeof (OrdersVerticalBar),
-                typeof (CustomersSemiColon),
-                typeof (SampleType));
+            mEngine = new MultiRecordEngine(CustomSelectorReturningBadType,
+                typeof(OrdersVerticalBar),
+                typeof(CustomersSemiColon),
+                typeof(SampleType));
 
-            engine.BeginReadFile(FileTest.Good.MultiRecord1.Path);
+            mEngine.BeginReadFile(FileTest.Good.MultiRecord1.Path);
 
-            Assert.Throws<BadUsageException>(() => engine.ReadNext());
+            Assert.Throws<BadUsageException>(() => mEngine.ReadNext());
         }
 
-        private Type CustomSelector(MultiRecordEngine engine, string record)
+        private static Type CustomSelector(MultiRecordEngine engine, string record)
         {
             if (char.IsLetter(record[0]))
-                return typeof (CustomersSemiColon);
+                return typeof(CustomersSemiColon);
             else if (record.Length == 14)
-                return typeof (SampleType);
+                return typeof(SampleType);
             else
-                return typeof (OrdersVerticalBar);
+                return typeof(OrdersVerticalBar);
         }
 
-        private Type CustomSelectorReturningBadType(MultiRecordEngine engine, string record)
+        private static Type CustomSelectorReturningBadType(MultiRecordEngine engine, string record)
         {
-            return typeof (string);
+            return typeof(string);
         }
     }
 }
