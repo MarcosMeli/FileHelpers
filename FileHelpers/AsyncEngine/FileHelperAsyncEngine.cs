@@ -575,14 +575,14 @@ namespace FileHelpers
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
 
-                if (MustNotifyWrite)
+                if (MustNotifyWriteForRecord(RecordInfo))
                     skip = OnBeforeWriteRecord(record, LineNumber);
 
                 if (skip == false)
                 {
                     currentLine = RecordInfo.Operations.RecordToString(record);
 
-                    if (MustNotifyWrite)
+                    if (MustNotifyWriteForRecord(RecordInfo))
                         currentLine = OnAfterWriteRecord(currentLine, record);
                     mAsyncWriter.WriteLine(currentLine);
                 }

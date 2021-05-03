@@ -369,9 +369,6 @@ namespace FileHelpers
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
-                    if (MustNotifyWrite)
-                        skip = OnBeforeWriteRecord(rec, LineNumber);
-
                     var info = (IRecordInfo)mRecordInfoHash[rec.GetType()];
 
                     if (info == null)
@@ -381,11 +378,14 @@ namespace FileHelpers
                                                     "' and the engine doesn't handle this type. You can add it to the constructor.");
                     }
 
+                    if (MustNotifyWriteForRecord(info))
+                        skip = OnBeforeWriteRecord(rec, LineNumber);
+
                     if (skip == false)
                     {
                         currentLine = info.Operations.RecordToString(rec);
 
-                        if (MustNotifyWrite)
+                        if (MustNotifyWriteForRecord(info))
                             currentLine = OnAfterWriteRecord(currentLine, rec);
                         writer.WriteLine(currentLine);
                     }
