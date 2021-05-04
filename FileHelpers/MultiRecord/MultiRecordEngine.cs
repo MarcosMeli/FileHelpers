@@ -845,7 +845,7 @@ namespace FileHelpers
             if (record == null)
                 throw new BadUsageException("The record to write can't be null.");
 
-            WriteRecord(record);
+            WriteRecord(record, 0, 1);
         }
 
         /// <summary>
@@ -862,6 +862,11 @@ namespace FileHelpers
             if (records == null)
                 throw new ArgumentNullException(nameof(records), "The record to write can´t be null.");
 
+            int max = -1;
+            if (records is IList)
+            {
+                max = ((IList)records).Count;
+            }
             int nro = 0;
             foreach (var rec in records)
             {
@@ -870,11 +875,11 @@ namespace FileHelpers
                 if (rec == null)
                     throw new BadUsageException("The record at index " + nro + " is null.");
 
-                WriteRecord(rec);
+                WriteRecord(rec, nro - 1, max);
             }
         }
 
-        private void WriteRecord(object record)
+        private void WriteRecord(object record, int recordIndex, int totalRecord)
         {
             string currentLine = null;
 
@@ -882,6 +887,9 @@ namespace FileHelpers
             {
                 mLineNumber++;
                 mTotalRecords++;
+
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(recordIndex + 1, totalRecord));
 
                 var info = (IRecordInfo)mRecordInfoHash[record.GetType()];
 
@@ -891,8 +899,18 @@ namespace FileHelpers
                                                 "' and the engine doesn't handle this type. You can add it to the constructor.");
                 }
 
-                currentLine = info.Operations.RecordToString(record);
-                mAsyncWriter.WriteLine(currentLine);
+                bool skip = false;
+                if (MustNotifyWriteForRecord(info))
+                    skip = OnBeforeWriteRecord(record, LineNumber);
+
+                if (skip == false)
+                {
+                    currentLine = info.Operations.RecordToString(record);
+
+                    if (MustNotifyWriteForRecord(info))
+                        currentLine = OnAfterWriteRecord(currentLine, record);
+                    mAsyncWriter.WriteLine(currentLine);
+                }
             }
             catch (Exception ex)
             {

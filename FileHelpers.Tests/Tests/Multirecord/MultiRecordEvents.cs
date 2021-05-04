@@ -31,6 +31,20 @@ namespace FileHelpers.Tests
             Assert.AreEqual(2, mCityEventCount);
         }
 
+        [Test]
+        public void GivenStreaming_EventIsRaised()
+        {
+            var lobamba = new NotifyCity {Name = "Lobamba", Population = 11000};
+            var rhine = new River {Name = "Rhine", LengthKilometers = 1230};
+            var geography = new object[] {lobamba, rhine};
+
+            var cityRiverEngine = new MultiRecordEngine(typeof(NotifyCity), typeof(River));
+            cityRiverEngine.BeginWriteFile("geography.txt");
+            cityRiverEngine.WriteNexts(geography);
+
+            Assert.AreEqual(2, mCityEventCount);
+        }
+
         private static int mCityEventCount;
 
         [DelimitedRecord("|")]
