@@ -88,9 +88,9 @@ namespace FileHelpers
                 }
 
                 mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(recordType);
-                RecordOptions recordOption = CreateRecordOptionsCore(mMultiRecordInfo[i]);
+                CreateRecordOptionsCore(mMultiRecordInfo[i]);
 
-                mRecordInfoHash.Add(recordType, recordOption);
+                mRecordInfoHash.Add(recordType, mMultiRecordInfo[i]);
 
             }
             mRecordSelector = recordSelector;
