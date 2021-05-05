@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -16,11 +17,11 @@ namespace FileHelpers
     #region "  Delegate  "
 
     /// <summary>
-    /// Delegate that determines the Type of the current record (Master, Detail, Skip)
+    /// Delegate that determines the Type of the current record
     /// </summary>
     /// <param name="recordString">The string of the current record.</param>
     /// <param name="engine">The engine that calls the selector.</param>
-    /// <returns>The action used for the current record (Master, Detail, Skip)</returns>
+    /// <returns>The type used for the current record</returns>
     public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 
     #endregion
@@ -30,9 +31,7 @@ namespace FileHelpers
     /// records of different types and that are in a linear relationship</para>
     /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
     /// </summary>
-    [DebuggerDisplay(
-        "MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
-        )]
+    [DebuggerDisplay("ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class MultiRecordEngine
         :
             EventEngineBase<object>,
@@ -41,10 +40,9 @@ namespace FileHelpers
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IRecordInfo[] mMultiRecordInfo;
-        private readonly RecordOptions[] mMultiRecordOptions;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Hashtable mRecordInfoHash;
+        private readonly Dictionary<Type, IRecordInfo> mRecordInfoTable;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordTypeSelector mRecordSelector;
@@ -57,9 +55,6 @@ namespace FileHelpers
             get { return mRecordSelector; }
             set { mRecordSelector = value; }
         }
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Type[] mTypes;
 
         #region "  Constructor  "
 
@@ -77,26 +72,26 @@ namespace FileHelpers
         public MultiRecordEngine(RecordTypeSelector recordSelector, params Type[] recordTypes)
             : base(GetFirstType(recordTypes))
         {
-            mTypes = recordTypes;
-            mMultiRecordInfo = new IRecordInfo[mTypes.Length];
-            mRecordInfoHash = new Hashtable(mTypes.Length);
-            mMultiRecordOptions = new RecordOptions[mTypes.Length];
+            int recordTypesLength = recordTypes.Length;
+            mMultiRecordInfo = new IRecordInfo[recordTypesLength];
+            mRecordInfoTable = new Dictionary<Type, IRecordInfo>();
 
-            for (int i = 0; i < mTypes.Length; i++)
+            for (int i = 0; i < recordTypesLength; i++)
             {
-                if (mTypes[i] == null)
+                Type recordType = recordTypes[i];
+                if (recordType == null)
                     throw new BadUsageException("The type at index " + i + " is null.");
 
-                if (mRecordInfoHash.Contains(mTypes[i]))
+                if (mRecordInfoTable.ContainsKey(recordType))
                 {
-                    throw new BadUsageException("The type '" + mTypes[i].Name +
+                    throw new BadUsageException("The type '" + recordType.Name +
                                                 " is already in the engine. You can't pass the same type twice to the constructor.");
                 }
 
-                mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
-                mMultiRecordOptions[i] = CreateRecordOptionsCore(mMultiRecordInfo[i]);
+                mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(recordType);
+                CreateRecordOptionsCore(mMultiRecordInfo[i]);
 
-                mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+                mRecordInfoTable.Add(recordType, mMultiRecordInfo[i]);
 
             }
             mRecordSelector = recordSelector;
@@ -202,7 +197,7 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            mRecordInfoTable.TryGetValue(currType, out IRecordInfo info);
                             if (info == null)
                             {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -338,8 +333,6 @@ namespace FileHelpers
 
             WriteHeader(writer);
 
-            string currentLine = null;
-
             int max = maxRecords;
 
             if (records is IList)
@@ -359,57 +352,9 @@ namespace FileHelpers
             {
                 if (recIndex == maxRecords)
                     break;
-                try
-                {
-                    if (rec == null)
-                        throw new BadUsageException("The record at index " + recIndex + " is null.");
 
-                    bool skip = false;
+                WriteRecord(rec, recIndex, max, writer);
 
-                    if (MustNotifyProgress) // Avoid object creation
-                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
-
-                    if (MustNotifyWrite)
-                        skip = OnBeforeWriteRecord(rec, LineNumber);
-
-                    var info = (IRecordInfo)mRecordInfoHash[rec.GetType()];
-
-                    if (info == null)
-                    {
-                        throw new BadUsageException("The record at index " + recIndex + " is of type '" +
-                                                    rec.GetType().Name +
-                                                    "' and the engine doesn't handle this type. You can add it to the constructor.");
-                    }
-
-                    if (skip == false)
-                    {
-                        currentLine = info.Operations.RecordToString(rec);
-
-                        if (MustNotifyWrite)
-                            currentLine = OnAfterWriteRecord(currentLine, rec);
-                        writer.WriteLine(currentLine);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    switch (mErrorManager.ErrorMode)
-                    {
-                        case ErrorMode.ThrowException:
-                            throw;
-                        case ErrorMode.IgnoreAndContinue:
-                            break;
-                        case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo
-                            {
-                                mLineNumber = mLineNumber,
-                                mExceptionInfo = ex,
-                                mRecordString = currentLine,
-                                mRecordTypeName = RecordInfo.RecordType.Name
-                            };
-                            mErrorManager.AddError(err);
-                            break;
-                    }
-                }
                 recIndex++;
             }
 
@@ -525,7 +470,7 @@ namespace FileHelpers
         public void BeginReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("The TextReader can´t be null.");
+                throw new ArgumentNullException(nameof(reader));
 
             ResetFields();
             HeaderText = string.Empty;
@@ -669,7 +614,7 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            mRecordInfoTable.TryGetValue(currType, out IRecordInfo info);
                             if (info == null)
                             {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -845,7 +790,7 @@ namespace FileHelpers
             if (record == null)
                 throw new BadUsageException("The record to write can't be null.");
 
-            WriteRecord(record);
+            WriteRecord(record, 0, 1, mAsyncWriter);
         }
 
         /// <summary>
@@ -862,6 +807,11 @@ namespace FileHelpers
             if (records == null)
                 throw new ArgumentNullException(nameof(records), "The record to write can´t be null.");
 
+            int max = -1;
+            if (records is IList)
+            {
+                max = ((IList)records).Count;
+            }
             int nro = 0;
             foreach (var rec in records)
             {
@@ -870,29 +820,44 @@ namespace FileHelpers
                 if (rec == null)
                     throw new BadUsageException("The record at index " + nro + " is null.");
 
-                WriteRecord(rec);
+                WriteRecord(rec, nro - 1, max, mAsyncWriter);
             }
         }
 
-        private void WriteRecord(object record)
+        private void WriteRecord(object record, int recordIndex, int totalRecord, TextWriter textWriter)
         {
             string currentLine = null;
 
             try
             {
+                if (record == null)
+                    throw new BadUsageException("The record at index " + recordIndex + " is null.");
+
                 mLineNumber++;
                 mTotalRecords++;
 
-                var info = (IRecordInfo)mRecordInfoHash[record.GetType()];
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(recordIndex + 1, totalRecord));
 
+                mRecordInfoTable.TryGetValue(record.GetType(), out IRecordInfo info);
                 if (info == null)
                 {
                     throw new BadUsageException("A record is of type '" + record.GetType().Name +
                                                 "' and the engine doesn't handle this type. You can add it to the constructor.");
                 }
 
-                currentLine = info.Operations.RecordToString(record);
-                mAsyncWriter.WriteLine(currentLine);
+                bool skip = false;
+                if (MustNotifyWriteForRecord(info))
+                    skip = OnBeforeWriteRecord(record, LineNumber);
+
+                if (skip == false)
+                {
+                    currentLine = info.Operations.RecordToString(record);
+
+                    if (MustNotifyWriteForRecord(info))
+                        currentLine = OnAfterWriteRecord(currentLine, record);
+                    textWriter.WriteLine(currentLine);
+                }
             }
             catch (Exception ex)
             {

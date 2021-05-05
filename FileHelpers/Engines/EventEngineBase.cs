@@ -74,18 +74,17 @@ namespace FileHelpers
         }
 
         /// <summary>
-        /// Determine whether we have to run notify write on every iteration
+        /// Determine whether we have to run notify write on every iteration.
         /// </summary>
-        protected bool MustNotifyWrite
-        {
-            get
-            {
-                return BeforeWriteRecord != null ||
-                       AfterWriteRecord != null ||
-                       RecordInfo.NotifyWrite;
-            }
-        }
+        [Obsolete("Caution: It checks the property RecordInfo, which might not be updated in a multi record scenario.")]
+        protected bool MustNotifyWrite => MustNotifyWriteForRecord(RecordInfo);
 
+        internal bool MustNotifyWriteForRecord(IRecordInfo rec)
+        {
+            return BeforeWriteRecord != null ||
+                   AfterWriteRecord != null ||
+                   rec.NotifyWrite;
+        }
 
         /// <summary>
         /// Provide a hook to preprocess a record

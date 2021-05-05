@@ -443,13 +443,13 @@ namespace FileHelpers
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
-                    if (MustNotifyWrite)
+                    if (MustNotifyWriteForRecord(RecordInfo))
                         skip = OnBeforeWriteRecord(rec, LineNumber);
 
                     if (skip == false)
                     {
                         currentLine = RecordInfo.Operations.RecordToString(rec);
-                        if (MustNotifyWrite)
+                        if (MustNotifyWriteForRecord(RecordInfo))
                             currentLine = OnAfterWriteRecord(currentLine, rec);
                         writer.WriteLine(currentLine);
                     }
