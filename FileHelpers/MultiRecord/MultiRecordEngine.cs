@@ -845,7 +845,7 @@ namespace FileHelpers
             if (record == null)
                 throw new BadUsageException("The record to write can't be null.");
 
-            WriteRecord(record, 0, 1);
+            WriteRecord(record, 0, 1, mAsyncWriter);
         }
 
         /// <summary>
@@ -875,11 +875,11 @@ namespace FileHelpers
                 if (rec == null)
                     throw new BadUsageException("The record at index " + nro + " is null.");
 
-                WriteRecord(rec, nro - 1, max);
+                WriteRecord(rec, nro - 1, max, mAsyncWriter);
             }
         }
 
-        private void WriteRecord(object record, int recordIndex, int totalRecord)
+        private void WriteRecord(object record, int recordIndex, int totalRecord, TextWriter textWriter)
         {
             string currentLine = null;
 
@@ -909,7 +909,7 @@ namespace FileHelpers
 
                     if (MustNotifyWriteForRecord(info))
                         currentLine = OnAfterWriteRecord(currentLine, record);
-                    mAsyncWriter.WriteLine(currentLine);
+                    textWriter.WriteLine(currentLine);
                 }
             }
             catch (Exception ex)
