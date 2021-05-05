@@ -16,11 +16,11 @@ namespace FileHelpers
     #region "  Delegate  "
 
     /// <summary>
-    /// Delegate that determines the Type of the current record (Master, Detail, Skip)
+    /// Delegate that determines the Type of the current record
     /// </summary>
     /// <param name="recordString">The string of the current record.</param>
     /// <param name="engine">The engine that calls the selector.</param>
-    /// <returns>The action used for the current record (Master, Detail, Skip)</returns>
+    /// <returns>The type used for the current record</returns>
     public delegate Type RecordTypeSelector(MultiRecordEngine engine, string recordString);
 
     #endregion
@@ -30,9 +30,7 @@ namespace FileHelpers
     /// records of different types and that are in a linear relationship</para>
     /// <para>(for Master-Detail check the <see cref="MasterDetailEngine"/>)</para>
     /// </summary>
-    [DebuggerDisplay(
-        "MultiRecordEngine for types: {ListTypes()}. ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}"
-        )]
+    [DebuggerDisplay("ErrorMode: {ErrorManager.ErrorMode.ToString()}. Encoding: {Encoding.EncodingName}")]
     public sealed class MultiRecordEngine
         :
             EventEngineBase<object>,
@@ -475,7 +473,7 @@ namespace FileHelpers
         public void BeginReadStream(IRecordReader reader)
         {
             if (reader == null)
-                throw new ArgumentNullException("The TextReader can´t be null.");
+                throw new ArgumentNullException(nameof(reader));
 
             ResetFields();
             HeaderText = string.Empty;

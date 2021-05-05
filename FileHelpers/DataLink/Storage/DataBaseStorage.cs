@@ -372,7 +372,7 @@ namespace FileHelpers.DataLink
             set
             {
                 if (value < 1)
-                    throw new ArgumentException("ExecuteInBatchSize", "ExecuteInBatchSize must be >= 1");
+                    throw new ArgumentException( "ExecuteInBatchSize must be >= 1", nameof(ExecuteInBatchSize));
 
                 mExecuteInBatchSize = value;
             }

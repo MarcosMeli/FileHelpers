@@ -467,7 +467,7 @@ namespace FileHelpers
         public IDisposable BeginWriteStream(TextWriter writer)
         {
             if (writer == null)
-                throw new ArgumentException("writer", "The TextWriter can't be null.");
+                throw new ArgumentException("The TextWriter can't be null.", nameof(writer));
 
             if (mAsyncReader != null)
                 throw new BadUsageException("You can't start to write while you are reading.");
