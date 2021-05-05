@@ -338,8 +338,6 @@ namespace FileHelpers
 
             WriteHeader(writer);
 
-            string currentLine = null;
-
             int max = maxRecords;
 
             if (records is IList)
@@ -359,57 +357,9 @@ namespace FileHelpers
             {
                 if (recIndex == maxRecords)
                     break;
-                try
-                {
-                    if (rec == null)
-                        throw new BadUsageException("The record at index " + recIndex + " is null.");
 
-                    bool skip = false;
+                WriteRecord(rec, recIndex, max, writer);
 
-                    if (MustNotifyProgress) // Avoid object creation
-                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
-
-                    var info = (IRecordInfo)mRecordInfoHash[rec.GetType()];
-
-                    if (info == null)
-                    {
-                        throw new BadUsageException("The record at index " + recIndex + " is of type '" +
-                                                    rec.GetType().Name +
-                                                    "' and the engine doesn't handle this type. You can add it to the constructor.");
-                    }
-
-                    if (MustNotifyWriteForRecord(info))
-                        skip = OnBeforeWriteRecord(rec, LineNumber);
-
-                    if (skip == false)
-                    {
-                        currentLine = info.Operations.RecordToString(rec);
-
-                        if (MustNotifyWriteForRecord(info))
-                            currentLine = OnAfterWriteRecord(currentLine, rec);
-                        writer.WriteLine(currentLine);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    switch (mErrorManager.ErrorMode)
-                    {
-                        case ErrorMode.ThrowException:
-                            throw;
-                        case ErrorMode.IgnoreAndContinue:
-                            break;
-                        case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo
-                            {
-                                mLineNumber = mLineNumber,
-                                mExceptionInfo = ex,
-                                mRecordString = currentLine,
-                                mRecordTypeName = RecordInfo.RecordType.Name
-                            };
-                            mErrorManager.AddError(err);
-                            break;
-                    }
-                }
                 recIndex++;
             }
 
@@ -885,6 +835,9 @@ namespace FileHelpers
 
             try
             {
+                if (record == null)
+                    throw new BadUsageException("The record at index " + recordIndex + " is null.");
+
                 mLineNumber++;
                 mTotalRecords++;
 
