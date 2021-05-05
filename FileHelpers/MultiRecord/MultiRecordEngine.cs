@@ -39,7 +39,6 @@ namespace FileHelpers
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IRecordInfo[] mMultiRecordInfo;
-        private readonly RecordOptions[] mMultiRecordOptions;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Hashtable mRecordInfoHash;
@@ -55,9 +54,6 @@ namespace FileHelpers
             get { return mRecordSelector; }
             set { mRecordSelector = value; }
         }
-
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Type[] mTypes;
 
         #region "  Constructor  "
 
@@ -75,26 +71,26 @@ namespace FileHelpers
         public MultiRecordEngine(RecordTypeSelector recordSelector, params Type[] recordTypes)
             : base(GetFirstType(recordTypes))
         {
-            mTypes = recordTypes;
-            mMultiRecordInfo = new IRecordInfo[mTypes.Length];
-            mRecordInfoHash = new Hashtable(mTypes.Length);
-            mMultiRecordOptions = new RecordOptions[mTypes.Length];
+            int recordTypesLength = recordTypes.Length;
+            mMultiRecordInfo = new IRecordInfo[recordTypesLength];
+            mRecordInfoHash = new Hashtable(recordTypesLength);
 
-            for (int i = 0; i < mTypes.Length; i++)
+            for (int i = 0; i < recordTypesLength; i++)
             {
-                if (mTypes[i] == null)
+                Type recordType = recordTypes[i];
+                if (recordType == null)
                     throw new BadUsageException("The type at index " + i + " is null.");
 
-                if (mRecordInfoHash.Contains(mTypes[i]))
+                if (mRecordInfoHash.Contains(recordType))
                 {
-                    throw new BadUsageException("The type '" + mTypes[i].Name +
+                    throw new BadUsageException("The type '" + recordType.Name +
                                                 " is already in the engine. You can't pass the same type twice to the constructor.");
                 }
 
-                mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(mTypes[i]);
-                mMultiRecordOptions[i] = CreateRecordOptionsCore(mMultiRecordInfo[i]);
+                mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(recordType);
+                RecordOptions recordOption = CreateRecordOptionsCore(mMultiRecordInfo[i]);
 
-                mRecordInfoHash.Add(mTypes[i], mMultiRecordInfo[i]);
+                mRecordInfoHash.Add(recordType, recordOption);
 
             }
             mRecordSelector = recordSelector;
