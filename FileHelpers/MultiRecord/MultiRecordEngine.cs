@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -41,7 +42,7 @@ namespace FileHelpers
         private readonly IRecordInfo[] mMultiRecordInfo;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Hashtable mRecordInfoHash;
+        private readonly Dictionary<Type, IRecordInfo> mRecordInfoTable;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private RecordTypeSelector mRecordSelector;
@@ -73,7 +74,7 @@ namespace FileHelpers
         {
             int recordTypesLength = recordTypes.Length;
             mMultiRecordInfo = new IRecordInfo[recordTypesLength];
-            mRecordInfoHash = new Hashtable(recordTypesLength);
+            mRecordInfoTable = new Dictionary<Type, IRecordInfo>();
 
             for (int i = 0; i < recordTypesLength; i++)
             {
@@ -81,7 +82,7 @@ namespace FileHelpers
                 if (recordType == null)
                     throw new BadUsageException("The type at index " + i + " is null.");
 
-                if (mRecordInfoHash.Contains(recordType))
+                if (mRecordInfoTable.ContainsKey(recordType))
                 {
                     throw new BadUsageException("The type '" + recordType.Name +
                                                 " is already in the engine. You can't pass the same type twice to the constructor.");
@@ -90,7 +91,7 @@ namespace FileHelpers
                 mMultiRecordInfo[i] = FileHelpers.RecordInfo.Resolve(recordType);
                 CreateRecordOptionsCore(mMultiRecordInfo[i]);
 
-                mRecordInfoHash.Add(recordType, mMultiRecordInfo[i]);
+                mRecordInfoTable.Add(recordType, mMultiRecordInfo[i]);
 
             }
             mRecordSelector = recordSelector;
@@ -196,7 +197,7 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            mRecordInfoTable.TryGetValue(currType, out IRecordInfo info);
                             if (info == null)
                             {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -613,7 +614,7 @@ namespace FileHelpers
 
                         if (currType != null)
                         {
-                            var info = (RecordInfo)mRecordInfoHash[currType];
+                            mRecordInfoTable.TryGetValue(currType, out IRecordInfo info);
                             if (info == null)
                             {
                                 throw new BadUsageException("A record is of type '" + currType.Name +
@@ -838,8 +839,7 @@ namespace FileHelpers
                 if (MustNotifyProgress) // Avoid object creation
                     OnProgress(new ProgressEventArgs(recordIndex + 1, totalRecord));
 
-                var info = (IRecordInfo)mRecordInfoHash[record.GetType()];
-
+                mRecordInfoTable.TryGetValue(record.GetType(), out IRecordInfo info);
                 if (info == null)
                 {
                     throw new BadUsageException("A record is of type '" + record.GetType().Name +
