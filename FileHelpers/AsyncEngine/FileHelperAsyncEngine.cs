@@ -554,57 +554,8 @@ namespace FileHelpers
 
             if (RecordType.IsAssignableFrom(record.GetType()) == false)
                 throw new BadUsageException("The record must be of type: " + RecordType.Name);
-
-            WriteRecord(record);
-        }
-
-        private void WriteRecord(T record)
-        {
-            string currentLine = null;
-
-            try
-            {
-                mLineNumber++;
-                mTotalRecords++;
-                mCurrentRecord++;
-
-                bool skip = false;
-
-                if (MustNotifyProgress) // Avoid object creation
-                    OnProgress(new ProgressEventArgs(mCurrentRecord, -1));
-
-                if (MustNotifyWriteForRecord(RecordInfo))
-                    skip = OnBeforeWriteRecord(record, LineNumber);
-
-                if (skip == false)
-                {
-                    currentLine = RecordInfo.Operations.RecordToString(record);
-
-                    if (MustNotifyWriteForRecord(RecordInfo))
-                        currentLine = OnAfterWriteRecord(currentLine, record);
-                    mAsyncWriter.WriteLine(currentLine);
-                }
-            }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
-                    case ErrorMode.ThrowException:
-                        throw;
-                    case ErrorMode.IgnoreAndContinue:
-                        break;
-                    case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo
-                        {
-                            mLineNumber = mLineNumber,
-                            mExceptionInfo = ex,
-                            mRecordString = currentLine,
-                            mRecordTypeName = RecordInfo.RecordType.Name
-                        };
-                        mErrorManager.AddError(err);
-                        break;
-                }
-            }
+            mCurrentRecord++;
+            WriteRecord(record, mCurrentRecord, -1, mAsyncWriter, RecordInfo);
         }
 
         /// <include file='FileHelperAsyncEngine.docs.xml' path='doc/WriteNexts/*'/>
@@ -616,19 +567,11 @@ namespace FileHelpers
             if (records == null)
                 throw new ArgumentNullException(nameof(records), "The record to write can't be null.");
 
-            bool first = true;
-
-
             foreach (var rec in records)
             {
-                if (first)
-                {
-                    if (RecordType.IsAssignableFrom(rec.GetType()) == false)
-                        throw new BadUsageException("The record must be of type: " + RecordType.Name);
-                    first = false;
-                }
 
-                WriteRecord(rec);
+                mCurrentRecord++;
+                WriteRecord(rec, mCurrentRecord, -1, mAsyncWriter, RecordInfo);
             }
         }
 
