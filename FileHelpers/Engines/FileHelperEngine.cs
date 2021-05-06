@@ -399,8 +399,6 @@ namespace FileHelpers
 
             WriteHeader(writer);
 
-            string currentLine = null;
-
             int max = maxRecords;
             if (records is IList)
             {
@@ -415,66 +413,12 @@ namespace FileHelpers
 
             int recIndex = 0;
 
-            bool first = true;
             foreach (var rec in records)
             {
                 if (recIndex == maxRecords)
                     break;
 
-                mLineNumber++;
-                try
-                {
-                    if (rec == null)
-                        throw new BadUsageException($"The record at index {recIndex} is null.");
-
-                    if (first)
-                    {
-                        first = false;
-                        if (RecordInfo.RecordType.IsInstanceOfType(rec) == false)
-                        {
-                            throw new BadUsageException("This engine works with records of type " +
-                                                        RecordInfo.RecordType.Name + " and you use records of type " +
-                                                        rec.GetType().Name);
-                        }
-                    }
-
-                    bool skip = false;
-
-                    if (MustNotifyProgress) // Avoid object creation
-                        OnProgress(new ProgressEventArgs(recIndex + 1, max));
-
-                    if (MustNotifyWriteForRecord(RecordInfo))
-                        skip = OnBeforeWriteRecord(rec, LineNumber);
-
-                    if (skip == false)
-                    {
-                        currentLine = RecordInfo.Operations.RecordToString(rec);
-                        if (MustNotifyWriteForRecord(RecordInfo))
-                            currentLine = OnAfterWriteRecord(currentLine, rec);
-                        writer.WriteLine(currentLine);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    switch (mErrorManager.ErrorMode)
-                    {
-                        case ErrorMode.ThrowException:
-                            throw;
-                        case ErrorMode.IgnoreAndContinue:
-                            break;
-                        case ErrorMode.SaveAndContinue:
-                            var err = new ErrorInfo
-                            {
-                                mLineNumber = mLineNumber,
-                                mExceptionInfo = ex,
-                                mRecordString = currentLine,
-                                mRecordTypeName = RecordInfo.RecordType.Name
-                            };
-                            mErrorManager.AddError(err);
-                            break;
-                    }
-                }
-
+                WriteRecord(rec, recIndex, max, writer, RecordInfo);
                 recIndex++;
             }
 
