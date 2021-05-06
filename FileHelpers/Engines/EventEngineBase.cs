@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using FileHelpers.Events;
 
@@ -162,6 +163,60 @@ namespace FileHelpers
             return e.RecordLine;
         }
 
+        internal void WriteRecord(T record, int recordIndex, int totalRecord, TextWriter textWriter, IRecordInfo info)
+        {
+            string currentLine = null;
 
+            try
+            {
+                if (record == null)
+                    throw new BadUsageException("The record at index " + recordIndex + " is null.");
+
+                mLineNumber++;
+                mTotalRecords++;
+
+                if (MustNotifyProgress) // Avoid object creation
+                    OnProgress(new ProgressEventArgs(recordIndex + 1, totalRecord));
+
+                if (info == null)
+                {
+                    throw new BadUsageException("A record is of type '" + record.GetType().Name +
+                                                "' and the engine doesn't handle this type. You can add it to the constructor.");
+                }
+
+                bool skip = false;
+                if (MustNotifyWriteForRecord(info))
+                    skip = OnBeforeWriteRecord(record, LineNumber);
+
+                if (skip == false)
+                {
+                    currentLine = info.Operations.RecordToString(record);
+
+                    if (MustNotifyWriteForRecord(info))
+                        currentLine = OnAfterWriteRecord(currentLine, record);
+                    textWriter.WriteLine(currentLine);
+                }
+            }
+            catch (Exception ex)
+            {
+                switch (mErrorManager.ErrorMode)
+                {
+                    case ErrorMode.ThrowException:
+                        throw;
+                    case ErrorMode.IgnoreAndContinue:
+                        break;
+                    case ErrorMode.SaveAndContinue:
+                        var err = new ErrorInfo
+                        {
+                            mLineNumber = mLineNumber,
+                            mExceptionInfo = ex,
+                            mRecordString = currentLine,
+                            mRecordTypeName = RecordInfo.RecordType.Name
+                        };
+                        mErrorManager.AddError(err);
+                        break;
+                }
+            }
+        }
     }
 }

@@ -352,8 +352,8 @@ namespace FileHelpers
             {
                 if (recIndex == maxRecords)
                     break;
-
-                WriteRecord(rec, recIndex, max, writer);
+                mRecordInfoTable.TryGetValue(rec.GetType(), out IRecordInfo info);
+                WriteRecord(rec, recIndex, max, writer, info);
 
                 recIndex++;
             }
@@ -790,7 +790,8 @@ namespace FileHelpers
             if (record == null)
                 throw new BadUsageException("The record to write can't be null.");
 
-            WriteRecord(record, 0, 1, mAsyncWriter);
+            mRecordInfoTable.TryGetValue(record.GetType(), out IRecordInfo info);
+            WriteRecord(record, 0, 1, mAsyncWriter, info);
         }
 
         /// <summary>
@@ -820,64 +821,8 @@ namespace FileHelpers
                 if (rec == null)
                     throw new BadUsageException("The record at index " + nro + " is null.");
 
-                WriteRecord(rec, nro - 1, max, mAsyncWriter);
-            }
-        }
-
-        private void WriteRecord(object record, int recordIndex, int totalRecord, TextWriter textWriter)
-        {
-            string currentLine = null;
-
-            try
-            {
-                if (record == null)
-                    throw new BadUsageException("The record at index " + recordIndex + " is null.");
-
-                mLineNumber++;
-                mTotalRecords++;
-
-                if (MustNotifyProgress) // Avoid object creation
-                    OnProgress(new ProgressEventArgs(recordIndex + 1, totalRecord));
-
-                mRecordInfoTable.TryGetValue(record.GetType(), out IRecordInfo info);
-                if (info == null)
-                {
-                    throw new BadUsageException("A record is of type '" + record.GetType().Name +
-                                                "' and the engine doesn't handle this type. You can add it to the constructor.");
-                }
-
-                bool skip = false;
-                if (MustNotifyWriteForRecord(info))
-                    skip = OnBeforeWriteRecord(record, LineNumber);
-
-                if (skip == false)
-                {
-                    currentLine = info.Operations.RecordToString(record);
-
-                    if (MustNotifyWriteForRecord(info))
-                        currentLine = OnAfterWriteRecord(currentLine, record);
-                    textWriter.WriteLine(currentLine);
-                }
-            }
-            catch (Exception ex)
-            {
-                switch (mErrorManager.ErrorMode)
-                {
-                    case ErrorMode.ThrowException:
-                        throw;
-                    case ErrorMode.IgnoreAndContinue:
-                        break;
-                    case ErrorMode.SaveAndContinue:
-                        var err = new ErrorInfo
-                        {
-                            mLineNumber = mLineNumber,
-                            mExceptionInfo = ex,
-                            mRecordString = currentLine,
-                            mRecordTypeName = RecordInfo.RecordType.Name
-                        };
-                        mErrorManager.AddError(err);
-                        break;
-                }
+                mRecordInfoTable.TryGetValue(rec.GetType(), out IRecordInfo info);
+                WriteRecord(rec, nro - 1, max, mAsyncWriter, info);
             }
         }
 
