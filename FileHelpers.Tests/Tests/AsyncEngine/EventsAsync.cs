@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using FileHelpers.Events;
 using NUnit.Framework;
@@ -6,43 +8,43 @@ using NUnit.Framework;
 namespace FileHelpers.Tests
 {
     [TestFixture]
-        public class EventsAsync
+    public class EventsAsync
     {
-        private FileHelperAsyncEngine<SampleType> engine;
+        private FileHelperAsyncEngine<SampleType> mEngine;
+        private int mBefore;
+        private int mAfter;
+
+        [SetUp]
+        public void Setup()
+        {
+            mBefore = 0;
+            mAfter = 0;
+            mEngine = new FileHelperAsyncEngine<SampleType>();
+        }
 
         [Test]
         public void ReadEvents()
         {
-            before = 0;
-            after = 0;
+            mEngine.BeforeReadRecord += BeforeEvent;
+            mEngine.AfterReadRecord += AfterEvent;
 
-            engine = new FileHelperAsyncEngine<SampleType>();
-            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent);
-            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent);
+            mEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
-            engine.BeginReadFile(FileTest.Good.Test1.Path);
-
-            int count = 0;
-            foreach (var t in engine)
+            var count = 0;
+            foreach (var t in mEngine)
                 count++;
 
             Assert.AreEqual(4, count);
-            Assert.AreEqual(4, engine.TotalRecords);
-            Assert.AreEqual(4, before);
-            Assert.AreEqual(4, after);
+            Assert.AreEqual(4, mEngine.TotalRecords);
+            Assert.AreEqual(4, mBefore);
+            Assert.AreEqual(4, mAfter);
         }
-
 
         [Test]
         public void WriteEvents()
         {
-            before = 0;
-            after = 0;
-
-            engine = new FileHelperAsyncEngine<SampleType>();
-
-            engine.BeforeWriteRecord += new BeforeWriteHandler<SampleType>(engine_BeforeWriteRecord);
-            engine.AfterWriteRecord += new AfterWriteHandler<SampleType>(engine_AfterWriteRecord);
+            mEngine.BeforeWriteRecord += BeforeWriteRecord;
+            mEngine.AfterWriteRecord += AfterWriteRecord;
 
             var res = new SampleType[2];
 
@@ -57,82 +59,66 @@ namespace FileHelpers.Tests
             res[1].Field2 = "ho";
             res[1].Field3 = 2;
 
-            engine.BeginWriteFile("tempEvent.txt");
-            engine.WriteNexts(res);
-            engine.Close();
+            mEngine.BeginWriteFile("tempEvent.txt");
+            mEngine.WriteNexts(res);
+            mEngine.Close();
 
             File.Delete("tempEvent.txt");
-            Assert.AreEqual(2, engine.TotalRecords);
-            Assert.AreEqual(2, before);
-            Assert.AreEqual(2, after);
+            Assert.AreEqual(2, mEngine.TotalRecords);
+            Assert.AreEqual(2, mBefore);
+            Assert.AreEqual(2, mAfter);
         }
-
 
         [Test]
         public void ReadEventsCancelAfter()
         {
-            before = 0;
-            after = 0;
+            mEngine.AfterReadRecord += AfterEvent2;
 
-            engine = new FileHelperAsyncEngine<SampleType>();
-            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent2);
+            mEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
-            engine.BeginReadFile(FileTest.Good.Test1.Path);
-
-            int count = 0;
-            foreach (var t in engine)
+            var count = 0;
+            foreach (var t in mEngine)
                 count++;
 
             Assert.AreEqual(0, count);
-            Assert.AreEqual(4, engine.TotalRecords);
-            Assert.AreEqual(0, before);
-            Assert.AreEqual(4, after);
+            Assert.AreEqual(4, mEngine.TotalRecords);
+            Assert.AreEqual(0, mBefore);
+            Assert.AreEqual(4, mAfter);
         }
 
         [Test]
         public void ReadEventsCancelBefore()
         {
-            before = 0;
-            after = 0;
+            mEngine.BeforeReadRecord += BeforeEvent2;
 
-            engine = new FileHelperAsyncEngine<SampleType>();
-            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent2);
+            mEngine.BeginReadFile(FileTest.Good.Test1.Path);
 
-            engine.BeginReadFile(FileTest.Good.Test1.Path);
-
-            int count = 0;
-            foreach (var t in engine)
+            var count = 0;
+            foreach (var t in mEngine)
                 count++;
 
             Assert.AreEqual(0, count);
-            Assert.AreEqual(4, engine.TotalRecords);
-            Assert.AreEqual(4, before);
-            Assert.AreEqual(0, after);
+            Assert.AreEqual(4, mEngine.TotalRecords);
+            Assert.AreEqual(4, mBefore);
+            Assert.AreEqual(0, mAfter);
         }
 
         [Test]
         public void ReadEventsCancelAll()
         {
-            before = 0;
-            after = 0;
+            mEngine.BeforeReadRecord += BeforeEvent2;
+            mEngine.AfterReadRecord += AfterEvent2;
 
-            engine = new FileHelperAsyncEngine<SampleType>();
-            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEvent2);
-            engine.AfterReadRecord += new AfterReadHandler<SampleType>(AfterEvent2);
-
-            engine.BeginReadFile(FileTest.Good.Test1.Path);
-            int count = 0;
-            foreach (var t in engine)
+            mEngine.BeginReadFile(FileTest.Good.Test1.Path);
+            var count = 0;
+            foreach (var t in mEngine)
                 count++;
 
             Assert.AreEqual(0, count);
-            Assert.AreEqual(4, engine.TotalRecords);
-            Assert.AreEqual(4, before);
-            Assert.AreEqual(0, after);
+            Assert.AreEqual(4, mEngine.TotalRecords);
+            Assert.AreEqual(4, mBefore);
+            Assert.AreEqual(0, mAfter);
         }
-
-        private int before = 0;
-        private int after = 0;
 
         private void BeforeEvent(EngineBase sender, BeforeReadEventArgs<SampleType> e)
         {
@@ -140,46 +126,45 @@ namespace FileHelpers.Tests
                 e.RecordLine.StartsWith("-"))
                 e.SkipThisRecord = true;
 
-            before++;
+            mBefore++;
         }
 
         private void AfterEvent(EngineBase sender, AfterReadEventArgs<SampleType> e)
         {
-            after++;
+            mAfter++;
         }
 
-        private void engine_BeforeWriteRecord(EngineBase sender, BeforeWriteEventArgs<SampleType> e)
+        private void BeforeWriteRecord(EngineBase sender, BeforeWriteEventArgs<SampleType> e)
         {
-            before++;
+            mBefore++;
         }
 
-        private void engine_AfterWriteRecord(EngineBase sender, AfterWriteEventArgs<SampleType> e)
+        private void AfterWriteRecord(EngineBase sender, AfterWriteEventArgs<SampleType> e)
         {
-            after++;
+            mAfter++;
         }
 
         private void AfterEvent2(EngineBase sender, AfterReadEventArgs<SampleType> e)
         {
             e.SkipThisRecord = true;
-            after++;
+            mAfter++;
         }
 
         private void BeforeEvent2(EngineBase sender, BeforeReadEventArgs<SampleType> e)
         {
             e.SkipThisRecord = true;
-            before++;
+            mBefore++;
         }
-
 
         [Test(Description = "3 empty lines as input and the events give the original line")]
         public void ChangeLineInEvent()
         {
-            string input = "\n\n\n";
-            engine = new FileHelperAsyncEngine<SampleType>();
-            engine.BeforeReadRecord += new BeforeReadHandler<SampleType>(BeforeEventChange);
+            var input = "\n\n\n";
+            mEngine = new FileHelperAsyncEngine<SampleType>();
+            mEngine.BeforeReadRecord += BeforeEventChange;
 
-            engine.BeginReadString(input);
-            var res = (SampleType[]) engine.ReadNexts(3);
+            mEngine.BeginReadString(input);
+            var res = mEngine.ReadNexts(3);
 
             Assert.AreEqual(3, res.Length);
             Assert.AreEqual(new DateTime(1314, 12, 11), res[0].Field1);
