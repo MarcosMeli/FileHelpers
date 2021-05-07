@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using NUnit.Framework;
 using NFluent;
+using NUnit.Framework;
 
 namespace FileHelpers.Tests.Sort
 {
@@ -9,119 +11,28 @@ namespace FileHelpers.Tests.Sort
     [Category("BigSorter")]
     public class SorterTests
     {
-        private const int MegaByte = 1024*1024;
-
+        private const int MegaByte = 1024 * 1024;
 
         [Test]
-        public void Sort6xhalf()
+        public void Sort4x1()
         {
-            SortMb<OrdersTab>(4*MegaByte, (int) (0.5*MegaByte));
+            SortMb<OrdersTab>(4 * MegaByte, 1 * MegaByte);
         }
 
         [Test]
-        public void Sort6x1()
-        {
-            SortMb<OrdersTab>(4*MegaByte, 1*MegaByte);
-        }
-
-        [Test]
-        public void Sort6xthid()
-        {
-            SortMb<OrdersTab>(4*MegaByte, (int) (0.3*MegaByte));
-        }
-
-        [Test]
-        public void Sort6x35()
-        {
-            SortMb<OrdersTab>(4*MegaByte, (int) (3.5*MegaByte));
-        }
-
-        [Test]
-        public void Sort6x6()
-        {
-            SortMb<OrdersTab>(4*MegaByte, 4*MegaByte);
-        }
-
-      
-        [Test]
-        public void Sort6x20()
-        {
-            SortMb<OrdersTab>(4*MegaByte, 20*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
         public void Sort4x20Reverse()
         {
-            SortMb<OrdersTab>(4*MegaByte, 20*MegaByte, false);
+            SortMb<OrdersTab>(4 * MegaByte, 20 * MegaByte, false);
         }
 
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6xhalfHeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, (int) (0.5*MegaByte));
-        }
-
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x1HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 1*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x2HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 2*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x35HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, (int) (3.5*MegaByte));
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x6HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 4*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x7HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 4*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x20HeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 20*MegaByte);
-        }
-
-        [Test]
-        [Category("NotOnMono")]
-        public void Sort6x2ReverseHeaderFooter()
-        {
-            SortMb<OrdersTabHeaderFooter>(4*MegaByte, 20*MegaByte, false);
-        }
-
-
-        private void SortMb<T>(int totalSize, int blockSize, bool ascending)
+        private static void SortMb<T>(int totalSize, int blockSize, bool ascending)
             where T : class, IComparable<T>
         {
             using (var temp = new TempFileFactory())
             using (var temp2 = new TempFileFactory())
-            using (var temp3 = new TempFileFactory()) {
-                if (typeof (T) == typeof (OrdersTab))
+            using (var temp3 = new TempFileFactory())
+            {
+                if (typeof(T) == typeof(OrdersTab))
                     CreateTempFile(totalSize, temp, ascending);
                 else
                     CreateTempFileHeaderFooter(totalSize, temp, ascending);
@@ -140,20 +51,20 @@ namespace FileHelpers.Tests.Sort
             }
         }
 
-        private void ReverseFile(string temp)
+        private static void ReverseFile(string temp)
         {
             var data = File.ReadAllLines(temp);
             Array.Sort(data);
             File.WriteAllLines(temp, data);
         }
 
-        public void SortMb<T>(int totalSize, int blockSize) where T : class, IComparable<T>
+        private void SortMb<T>(int totalSize, int blockSize)
+            where T : class, IComparable<T>
         {
             SortMb<T>(totalSize, blockSize, true);
         }
 
-
-        private void AssertSameFile(string temp, string temp2)
+        private static void AssertSameFile(string temp, string temp2)
         {
             var fi1 = new FileInfo(temp);
             var fi2 = new FileInfo(temp2);
@@ -161,15 +72,15 @@ namespace FileHelpers.Tests.Sort
             Check.That(fi1.Length).IsEqualTo(fi2.Length);
 
             using (var sr1 = new StreamReader(temp))
-            using (var sr2 = new StreamReader(temp)) {
-                while (true) {
+            using (var sr2 = new StreamReader(temp))
+            {
+                while (true)
+                {
                     var line1 = sr1.ReadLine();
                     var line2 = sr2.ReadLine();
 
                     if (line1 != line2)
-                    {
                         Check.That(line1).IsEqualTo(line2);
-                    }
 
                     if (line1 == null)
                         break;
@@ -177,20 +88,24 @@ namespace FileHelpers.Tests.Sort
             }
         }
 
-        private void CreateTempFile(int sizeOfFile, string fileName, bool ascending)
+        private static void CreateTempFile(int sizeOfFile, string fileName, bool ascending)
         {
-            int size = 0;
+            var size = 0;
             var engine = new FileHelperAsyncEngine<OrdersTab>();
             engine.AfterWriteRecord += (sender, e) => size += e.RecordLine.Length;
 
-            using (engine.BeginWriteFile(fileName)) {
+            using (engine.BeginWriteFile(fileName))
+            {
                 var i = 1;
-                while (size < sizeOfFile) {
-                    var order = new OrdersTab();
-                    order.CustomerID = "sdads";
-                    order.EmployeeID = 123;
-                    order.Freight = 123;
-                    order.OrderDate = new DateTime(2009, 10, 23);
+                while (size < sizeOfFile)
+                {
+                    var order = new OrdersTab
+                    {
+                        CustomerID = "sdads",
+                        EmployeeID = 123,
+                        Freight = 123,
+                        OrderDate = new DateTime(2009, 10, 23)
+                    };
                     if (ascending)
                         order.OrderID = 1000000 + i;
                     else
@@ -205,23 +120,26 @@ namespace FileHelpers.Tests.Sort
             }
         }
 
-
-        private void CreateTempFileHeaderFooter(int sizeOfFile, string fileName, bool ascending)
+        private static void CreateTempFileHeaderFooter(int sizeOfFile, string fileName, bool ascending)
         {
-            int size = 0;
+            var size = 0;
             var engine = new FileHelperAsyncEngine<OrdersTabHeaderFooter>();
             engine.AfterWriteRecord += (sender, e) => size += e.RecordLine.Length;
 
             engine.HeaderText = "Test Header, Test Header \r\nAnotherLine";
             engine.FooterText = "Footer Text";
-            using (engine.BeginWriteFile(fileName)) {
+            using (engine.BeginWriteFile(fileName))
+            {
                 var i = 1;
-                while (size < sizeOfFile) {
-                    var order = new OrdersTabHeaderFooter();
-                    order.CustomerID = "sdads";
-                    order.EmployeeID = 123;
-                    order.Freight = 123;
-                    order.OrderDate = new DateTime(2009, 10, 23);
+                while (size < sizeOfFile)
+                {
+                    var order = new OrdersTabHeaderFooter
+                    {
+                        CustomerID = "sdads",
+                        EmployeeID = 123,
+                        Freight = 123,
+                        OrderDate = new DateTime(2009, 10, 23)
+                    };
                     if (ascending)
                         order.OrderID = 1000000 + i;
                     else
