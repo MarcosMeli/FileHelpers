@@ -479,11 +479,10 @@ namespace FileHelpers
 
             mAsyncWriter = writer;
             WriteHeader(mAsyncWriter);
-            mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;
 
             if (MustNotifyProgress) // Avoid object creation
-                OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+                OnProgress(new ProgressEventArgs(0, -1));
 
             return this;
         }
@@ -532,11 +531,10 @@ namespace FileHelpers
             HeaderText = string.Empty;
             mFooterText = string.Empty;
             State = EngineState.Writing;
-            mStreamInfo = new StreamInfoProvider(mAsyncWriter);
             mCurrentRecord = 0;
 
             if (MustNotifyProgress) // Avoid object creation
-                OnProgress(new ProgressEventArgs(0, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+                OnProgress(new ProgressEventArgs(0, -1));
 
             return this;
         }
@@ -573,7 +571,7 @@ namespace FileHelpers
                 bool skip = false;
 
                 if (MustNotifyProgress) // Avoid object creation
-                    OnProgress(new ProgressEventArgs(mCurrentRecord, -1, mStreamInfo.Position, mStreamInfo.TotalBytes));
+                    OnProgress(new ProgressEventArgs(mCurrentRecord, -1));
 
                 if (MustNotifyWriteForRecord(RecordInfo))
                     skip = OnBeforeWriteRecord(record, LineNumber);
