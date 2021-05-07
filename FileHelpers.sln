@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers", "FileHelpers\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.Tests", "FileHelpers.Tests\FileHelpers.Tests.csproj", "{3731CD63-3236-47FB-A27C-146D37DE88AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.Benchmarks", "FileHelpers.Benchmarks\FileHelpers.Benchmarks.csproj", "{5F35893D-806D-4587-BC55-27E18B913B02}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.ExcelNPOIStorage", "FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj", "{BEB0D823-6A7E-47FD-A275-1B3314F8412D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileHelpers.ExcelNPOIStorage.Tests", "FileHelpers.ExcelNPOIStorage.Tests\FileHelpers.ExcelNPOIStorage.Tests.csproj", "{F14D7DE4-0DCA-4316-AE4C-CD1D06FF1D32}"
@@ -46,14 +44,6 @@ Global
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Release|x86.ActiveCfg = Release|Any CPU
 		{3731CD63-3236-47FB-A27C-146D37DE88AC}.Release|x86.Build.0 = Release|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Debug|x86.Build.0 = Debug|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|x86.ActiveCfg = Release|Any CPU
-		{5F35893D-806D-4587-BC55-27E18B913B02}.Release|x86.Build.0 = Release|Any CPU
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEB0D823-6A7E-47FD-A275-1B3314F8412D}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -83,7 +73,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5F35893D-806D-4587-BC55-27E18B913B02} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 		{CF51E633-CB40-49F4-939F-5E9A858A0F91} = {747EBEDD-59D1-4F54-A2DE-DCA768339C9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
