@@ -184,16 +184,28 @@ namespace FileHelpers
                                                 "' and the engine doesn't handle this type. You can add it to the constructor.");
                 }
 
+                if (info.RecordType.IsInstanceOfType(record) == false)
+                {
+                    throw new BadUsageException("This engine works with records of type " +
+                                                info.RecordType.Name + " and you use records of type " +
+                                                record.GetType().Name);
+                }
+
                 bool skip = false;
-                if (MustNotifyWriteForRecord(info))
+                bool mustNotifyWriteForRecord = MustNotifyWriteForRecord(info);
+                if (mustNotifyWriteForRecord)
+                {
                     skip = OnBeforeWriteRecord(record, LineNumber);
+                }
 
                 if (skip == false)
                 {
                     currentLine = info.Operations.RecordToString(record);
 
-                    if (MustNotifyWriteForRecord(info))
+                    if (mustNotifyWriteForRecord)
+                    {
                         currentLine = OnAfterWriteRecord(currentLine, record);
+                    }
                     textWriter.WriteLine(currentLine);
                 }
             }
