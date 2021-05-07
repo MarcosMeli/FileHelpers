@@ -54,23 +54,6 @@ namespace FileHelpers.Streams
         }
 
         /// <summary>
-        /// Provide as much information about the output stream as we can,
-        /// size and position
-        /// </summary>
-        /// <param name="writer">writer we are analysing</param>
-        public StreamInfoProvider(TextWriter writer)
-        {
-            var streamWriter = writer as StreamWriter;
-            if (streamWriter == null)
-                return;
-
-            var stream = streamWriter.BaseStream;
-            if (stream.CanSeek)
-                mLength = stream.Length;
-            mPositionCalculator = () => stream.Position;
-        }
-
-        /// <summary>
         /// Position within the stream
         /// </summary>
         public long Position
