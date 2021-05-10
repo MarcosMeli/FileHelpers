@@ -210,7 +210,7 @@ namespace FileHelpers
                                 OnProgress(new ProgressEventArgs(currentRecord, -1));
 
                             BeforeReadEventArgs<object> e = null;
-                            if (MustNotifyRead) // Avoid object creation
+                            if (info.NotifyRead) // Avoid object creation
                             {
                                 e = new BeforeReadEventArgs<object>(this, record, currentLine, LineNumber);
                                 skip = OnBeforeReadRecord(e);
@@ -223,7 +223,7 @@ namespace FileHelpers
                                 var values = new object[info.FieldCount];
                                 if (info.Operations.StringToRecord(record, line, values))
                                 {
-                                    if (MustNotifyRead) // Avoid object creation
+                                    if (info.NotifyRead) // Avoid object creation
                                         skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
 
                                     if (skip == false)
@@ -623,7 +623,7 @@ namespace FileHelpers
                             var values = new object[info.FieldCount];
                             mLastRecord = info.Operations.StringToRecord(line, values);
 
-                            if (MustNotifyRead)
+                            if (info.NotifyRead)
                             {
                                 OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
                             }
