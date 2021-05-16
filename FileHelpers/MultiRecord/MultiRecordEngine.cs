@@ -184,51 +184,29 @@ namespace FileHelpers
 
                         line.ReLoad(currentLine);
 
-                        var skip = false;
-                        Type currType;
+                        Type currentType;
                         try
                         {
-                            currType = mRecordSelector(this, currentLine);
+                            currentType = mRecordSelector(this, currentLine);
                         }
                         catch (Exception ex)
                         {
                             throw new Exception("Selector failed to process correctly", ex);
                         }
 
-                        if (currType != null)
+                        if (currentType != null)
                         {
-                            mRecordInfoTable.TryGetValue(currType, out IRecordInfo info);
+                            mRecordInfoTable.TryGetValue(currentType, out IRecordInfo info);
                             if (info == null)
                             {
-                                throw new BadUsageException("A record is of type '" + currType.Name +
+                                throw new BadUsageException("A record is of type '" + currentType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
                             }
 
-                            var record = info.Operations.CreateRecordHandler();
-
-                            if (MustNotifyProgress) // Avoid object creation
-                                OnProgress(new ProgressEventArgs(currentRecord, -1));
-
-                            BeforeReadEventArgs<object> e = null;
-                            if (info.NotifyRead) // Avoid object creation
+                            object record = ReadRecord(info, currentRecord, line);
+                            if (record != null)
                             {
-                                e = new BeforeReadEventArgs<object>(this, record, currentLine, LineNumber);
-                                skip = OnBeforeReadRecord(e);
-                                if (e.RecordLineChanged)
-                                    line.ReLoad(e.RecordLine);
-                            }
-
-                            if (skip == false)
-                            {
-                                var values = new object[info.FieldCount];
-                                if (info.Operations.StringToRecord(record, line, values))
-                                {
-                                    if (info.NotifyRead) // Avoid object creation
-                                        skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
-
-                                    if (skip == false)
-                                        resArray.Add(record);
-                                }
+                                resArray.Add(record);
                             }
                         }
                     }
@@ -620,14 +598,8 @@ namespace FileHelpers
                                 throw new BadUsageException("A record is of type '" + currType.Name +
                                                             "' which this engine is not configured to handle. Try adding this type to the constructor.");
                             }
-                            var values = new object[info.FieldCount];
-                            mLastRecord = info.Operations.StringToRecord(line, values);
 
-                            if (info.NotifyRead)
-                            {
-                                OnAfterReadRecord(currentLine, mLastRecord, false, LineNumber);
-                            }
-
+                            mLastRecord = ReadRecord(info, LineNumber, line);
                             if (mLastRecord != null)
                             {
                                 byPass = true;
