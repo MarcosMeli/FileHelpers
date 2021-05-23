@@ -64,6 +64,7 @@ namespace FileHelpers
         /// <summary>
         /// Check whether we need to notify the read to anyone
         /// </summary>
+        [Obsolete("Caution: It checks the property RecordInfo, which might not be updated in a multi record scenario.")]
         protected bool MustNotifyRead
         {
             get
@@ -80,11 +81,18 @@ namespace FileHelpers
         [Obsolete("Caution: It checks the property RecordInfo, which might not be updated in a multi record scenario.")]
         protected bool MustNotifyWrite => MustNotifyWriteForRecord(RecordInfo);
 
-        internal bool MustNotifyWriteForRecord(IRecordInfo rec)
+        private bool MustNotifyWriteForRecord(IRecordInfo rec)
         {
             return BeforeWriteRecord != null ||
                    AfterWriteRecord != null ||
                    rec.NotifyWrite;
+        }
+
+        internal bool MustNotifyReadForRecord(IRecordInfo rec)
+        {
+            return BeforeReadRecord != null ||
+                   AfterReadRecord != null ||
+                   rec.NotifyRead;
         }
 
         /// <summary>
@@ -229,6 +237,43 @@ namespace FileHelpers
                         break;
                 }
             }
+        }
+
+        internal object ReadRecord(
+            IRecordInfo recordInfo,
+            int currentRecord,
+            LineInfo line)
+        {
+            T record = (T)recordInfo.Operations.CreateRecordHandler();
+
+            if (MustNotifyProgress) // Avoid object creation
+                OnProgress(new ProgressEventArgs(currentRecord, -1));
+
+            var skip = false;
+            BeforeReadEventArgs<T> e = null;
+            bool notifyRead = MustNotifyReadForRecord(recordInfo);
+            if (notifyRead)
+            {
+                e = new BeforeReadEventArgs<T>(this, record, line.mLineStr, LineNumber);
+                skip = OnBeforeReadRecord(e);
+                if (e.RecordLineChanged)
+                    line.ReLoad(e.RecordLine);
+            }
+
+            if (skip == false)
+            {
+                var values = new object[recordInfo.FieldCount];
+                if (recordInfo.Operations.StringToRecord(record, line, values))
+                {
+                    if (notifyRead)
+                        skip = OnAfterReadRecord(line.mLineStr, record, e.RecordLineChanged, LineNumber);
+
+                    if (skip == false)
+                        return record;
+                }
+            }
+
+            return null;
         }
     }
 }
