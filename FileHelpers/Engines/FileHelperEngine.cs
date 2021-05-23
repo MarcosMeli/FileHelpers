@@ -240,7 +240,8 @@ namespace FileHelpers
                         }
 
                         BeforeReadEventArgs<T> e = null;
-                        if (MustNotifyRead)
+                        bool mustNotifyReadForRecord = MustNotifyReadForRecord(RecordInfo);
+                        if (mustNotifyReadForRecord)
                         {
                             e = new BeforeReadEventArgs<T>(this, record, currentLine, LineNumber);
                             skip = OnBeforeReadRecord(e);
@@ -252,8 +253,7 @@ namespace FileHelpers
                         {
                             if (RecordInfo.Operations.StringToRecord(record, line, values))
                             {
-
-                                if (MustNotifyRead) // Avoid object creation
+                                if (mustNotifyReadForRecord) // Avoid object creation
                                     skip = OnAfterReadRecord(currentLine, record, e.RecordLineChanged, LineNumber);
 
                                 if (skip == false)
