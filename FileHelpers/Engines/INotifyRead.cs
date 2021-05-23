@@ -3,6 +3,7 @@
     /// <summary>
     /// Interface used to provide In record notification of read operations.
     /// </summary>
+    /// <remarks>INotifyRead and INotifyWrite will only be executed from engines that derive from <see cref="EventEngineBase{T}" />.</remarks>
     /// <example>
     /// <code>
     /// private class SampleType: INotifyRead, INotifyWrite

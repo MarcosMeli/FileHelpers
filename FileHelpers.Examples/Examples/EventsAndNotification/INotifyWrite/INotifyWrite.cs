@@ -6,7 +6,7 @@ using FileHelpers.Events;
 namespace FileHelpers.Examples.EventsAndNotification.INotifyWrite
 {
     //-> Name: INotifyWrite Interface
-    //-> Description: Get Before/After Write events with the INotifyWrite interface
+    //-> Description: Get Before/After Write events with the INotifyWrite interface. INotifyRead and INotifyWrite will only be executed from engines that derive from <see cref="EventEngineBase" />.
 
     public class NotifyWriteSample
         : ExampleBase

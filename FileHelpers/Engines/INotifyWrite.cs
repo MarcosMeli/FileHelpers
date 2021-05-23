@@ -3,6 +3,7 @@ namespace FileHelpers.Events
     /// <summary>
     /// Interface used to provide <b>In record notification of write operations.</b>
     /// </summary>
+    /// <remarks>INotifyRead and INotifyWrite will only be executed from engines that derive from <see cref="EventEngineBase{T}" />.</remarks>
     /// <example>
     /// <code>
     /// private class SampleType: INotifyRead, INotifyWrite

@@ -12,7 +12,7 @@ namespace FileHelpers.Examples.EventsAndNotification.INotifyRead
         : ExampleBase
     {
 
-        //-> Reads input.txt and skips all the records that are not detail records using a simple criteria
+        //-> Reads input.txt and skips all the records that are not detail records using a simple criteria. INotifyRead and INotifyWrite will only be executed from engines that derive from <see cref="EventEngineBase" />.
 
         //-> FileIn:input.txt
         /*-----------------------------------------------------
