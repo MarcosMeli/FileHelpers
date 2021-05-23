@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40;net45</TargetFrameworks>
-    <Version>3.4.3-alpha</Version>
+    <Version>3.5.0</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	<Description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</Description>
+    <Description>Extension for FileHelpers to support Excel read/write operations using NPOI Library www.filehelpers.net</Description>
     <Company>Devoo</Company>
     <Product>FileHelpers http://www.filehelpers.net</Product>
     <Copyright>Marcos Meli - Devoo</Copyright>
