@@ -1,7 +1,4 @@
-﻿// // Copyright (c) 2020-2021, Atos AG
-// // All rights reserved.
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using FileHelpers.Events;
