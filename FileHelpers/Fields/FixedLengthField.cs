@@ -158,6 +158,8 @@ namespace FileHelpers
                         throw new ConvertException(field,
                             FieldType,
                             $"Field value is too large for the field length ({FieldLength}) and field OverflowMode is set to {OverflowMode}.");
+                    case OverflowMode.DiscardStart:
+                        return field.Substring(field.Length - FieldLength);
                     case OverflowMode.DiscardEnd:
                     default:
                         return field.Substring(0, FieldLength);

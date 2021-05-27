@@ -11,6 +11,10 @@
         /// </summary>
         DiscardEnd,
         /// <summary>
+        /// Discard overflowing characters at the start
+        /// </summary>
+        DiscardStart,
+        /// <summary>
         /// Throw an exception
         /// </summary>
         Error
