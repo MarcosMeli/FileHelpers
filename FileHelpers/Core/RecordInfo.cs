@@ -118,12 +118,14 @@ namespace FileHelpers
         /// <param name="recordType">Class we are analysing</param>
         private RecordInfo(Type recordType)
         {
-            SizeHint = 32;
             RecordConditionSelector = string.Empty;
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
             RecordType = recordType;
-            InitRecordFields();
+            InitRecordFields(recordType);
+            TypedRecordAttribute record = GetRecordAttribute(recordType);
+            Fields = CreateCoreFields(record, recordType);
+            SizeHint = GetSizeHint(record, Fields);
             Operations = new RecordOperations(this);
         }
 
@@ -131,28 +133,23 @@ namespace FileHelpers
         /// Create a list of fields we are extracting and set
         /// the size hint for record I/O
         /// </summary>
-        private void InitRecordFields()
+        /// <param name="recordType"></param>
+        private void InitRecordFields(Type recordType)
         {
-            var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
-
-            if (recordAttribute == null) {
-                throw new BadUsageException($"The record class {RecordType.Name} must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute");
-            }
-
-            if (ReflectionHelper.GetDefaultConstructor(RecordType) == null) {
-                throw new BadUsageException($"The record class {RecordType.Name} needs a constructor with no args (public or private)");
+            if (ReflectionHelper.GetDefaultConstructor(recordType) == null) {
+                throw new BadUsageException($"The record class {recordType.Name} needs a constructor with no args (public or private)");
             }
 
             Attributes.WorkWithFirst<IgnoreFirstAttribute>(
-                RecordType,
+                recordType,
                 a => IgnoreFirst = a.NumberOfLines);
 
             Attributes.WorkWithFirst<IgnoreLastAttribute>(
-                RecordType,
+                recordType,
                 a => IgnoreLast = a.NumberOfLines);
 
             Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(
-                RecordType,
+                recordType,
                 a => {
                     IgnoreEmptyLines = true;
                     IgnoreEmptySpaces = a.IgnoreSpaces;
@@ -161,7 +158,7 @@ namespace FileHelpers
 #pragma warning disable CS0618 // Type or member is obsolete
             Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
 #pragma warning restore CS0618 // Type or member is obsolete
-                RecordType,
+                recordType,
                 a => {
                     IgnoreEmptyLines = true;
                     CommentMarker = a.CommentMarker;
@@ -169,7 +166,7 @@ namespace FileHelpers
                 });
 
             Attributes.WorkWithFirst<ConditionalRecordAttribute>(
-                RecordType,
+                recordType,
                 a => {
                     RecordCondition = a.Condition;
                     RecordConditionSelector = a.ConditionSelector;
@@ -182,43 +179,37 @@ namespace FileHelpers
                     }
                 });
 
-            if (CheckInterface(RecordType, typeof (INotifyRead)))
+            if (CheckInterface(recordType, typeof (INotifyRead)))
                 NotifyRead = true;
 
-            if (CheckInterface(RecordType, typeof (INotifyWrite)))
+            if (CheckInterface(recordType, typeof (INotifyWrite)))
                 NotifyWrite = true;
-
-            // Create fields
-            // Search for cached fields
-            var fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(RecordType));
-
-            Fields = CreateCoreFields(fields, recordAttribute);
-
-            if (FieldCount == 0) {
-                throw new BadUsageException($"The record class {RecordType.Name} doesn't contain any fields");
-            }
-
-            if (recordAttribute is FixedLengthRecordAttribute) {
-                // Defines the initial size of the StringBuilder
-                SizeHint = 0;
-                for (int i = 0; i < FieldCount; i++)
-                    SizeHint += ((FixedLengthField) Fields[i]).FieldLength;
-            }
         }
 
-        #endregion
+        private static TypedRecordAttribute GetRecordAttribute(MemberInfo recordType)
+        {
+            var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(recordType);
 
-        #region "  CreateFields  "
+            if (recordAttribute == null)
+            {
+                throw new BadUsageException(
+                    $"The record class {recordType.Name} must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute");
+            }
+
+            return recordAttribute;
+        }
 
         /// <summary>
         /// Parse the attributes on the class and create an ordered list of
-        /// fields we are extracting from the record
+        /// fields we are extracting from the record.
         /// </summary>
-        /// <param name="fields">Complete list of fields in class</param>
         /// <param name="recordAttribute">Type of record, fixed or delimited</param>
+        /// <param name="currentType">Used to detect the Fields</param>
         /// <returns>List of fields we are extracting</returns>
-        private static FieldBase[] CreateCoreFields(IList<FieldInfo> fields, TypedRecordAttribute recordAttribute)
+        private static FieldBase[] CreateCoreFields(TypedRecordAttribute recordAttribute, Type currentType)
         {
+            var fields = new List<FieldInfo>(ReflectionHelper.RecursiveGetFields(currentType));
+
             var resFields = new List<FieldBase>();
 
             // count of Properties
@@ -226,8 +217,8 @@ namespace FileHelpers
 
             // count of normal fields
             var genericFields = 0;
-            for (int i = 0; i < fields.Count; i++) {
-                FieldBase currentField = FieldBase.CreateField(fields[i], recordAttribute);
+            for (int i = 0; i < ((IList<FieldInfo>) fields).Count; i++) {
+                FieldBase currentField = FieldBase.CreateField(((IList<FieldInfo>) fields)[i], recordAttribute);
                 if (currentField == null)
                     continue;
 
@@ -253,9 +244,32 @@ namespace FileHelpers
             SortFieldsByOrder(resFields);
 
             CheckForOptionalAndArrayProblems(resFields);
+            FieldBase[] coreFields = resFields.ToArray();
 
-            return resFields.ToArray();
+            if (coreFields.Length == 0)
+            {
+                throw new BadUsageException($"The record class {currentType.Name} doesn't contain any fields");
+            }
+
+            return coreFields;
         }
+
+        // Defines the initial size of the StringBuilder
+        private static int GetSizeHint(TypedRecordAttribute recordAttribute, FieldBase[] fields)
+        {
+            int sizeHint = 0;
+            if (recordAttribute is FixedLengthRecordAttribute)
+            {
+                for (int i = 0; i < fields.Length; i++)
+                    sizeHint += ((FixedLengthField) fields[i]).FieldLength;
+            }
+
+            return sizeHint;
+        }
+
+        #endregion
+
+        #region "  CreateFields  "
 
         private static int SumOrder(List<FieldBase> fields)
         {
