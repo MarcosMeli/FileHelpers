@@ -122,20 +122,6 @@ namespace FileHelpers
             RecordCondition = RecordCondition.None;
             CommentAnyPlace = true;
             RecordType = recordType;
-            InitRecordFields(recordType);
-            TypedRecordAttribute record = GetRecordAttribute(recordType);
-            Fields = CreateCoreFields(record, recordType);
-            SizeHint = GetSizeHint(record, Fields);
-            Operations = new RecordOperations(this);
-        }
-
-        /// <summary>
-        /// Create a list of fields we are extracting and set
-        /// the size hint for record I/O
-        /// </summary>
-        /// <param name="recordType"></param>
-        private void InitRecordFields(Type recordType)
-        {
             if (ReflectionHelper.GetDefaultConstructor(recordType) == null) {
                 throw new BadUsageException($"The record class {recordType.Name} needs a constructor with no args (public or private)");
             }
@@ -184,6 +170,11 @@ namespace FileHelpers
 
             if (CheckInterface(recordType, typeof (INotifyWrite)))
                 NotifyWrite = true;
+
+            TypedRecordAttribute record = GetRecordAttribute(recordType);
+            Fields = CreateCoreFields(record, recordType);
+            SizeHint = GetSizeHint(record, Fields);
+            Operations = new RecordOperations(this);
         }
 
         private static TypedRecordAttribute GetRecordAttribute(MemberInfo recordType)
