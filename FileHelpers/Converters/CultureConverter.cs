@@ -58,7 +58,7 @@ namespace FileHelpers.Converters
 
             if (allowedDecimalSeparators.Contains(decimalSepOrCultureName))
             {
-                ci = new CultureInfo(CultureInfo.CurrentCulture.LCID);
+                ci = new CultureInfo(CultureInfo.CurrentCulture.Name);
 
                 if (decimalSepOrCultureName == ".")
                 {
