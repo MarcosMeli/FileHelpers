@@ -24,7 +24,7 @@ namespace FileHelpers
         /// Read a Record handler forward,  optionally skipping n lines and starting at a record number > 0
         /// </summary>
         /// <param name="reader">Reader to get records</param>
-        /// <param name="forwardLines">NUmber of lines to skip before reading</param>
+        /// <param name="forwardLines">Number of lines to skip before reading</param>
         internal ForwardReader(IRecordReader reader, int forwardLines)
             : this(reader, forwardLines, 0) {}
 
