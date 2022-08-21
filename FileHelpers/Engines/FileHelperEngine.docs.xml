@@ -48,7 +48,7 @@
 		Read a Stream and return an array of the contained records.
 		</summary>
 		<remarks>
-		This method only uses the stream and does not close them after using it, you must do it.
+		This method uses the stream and closes it after using it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/ReadFile/*'/>
 		<param name="reader">The reader of the source stream.</param>
@@ -129,7 +129,7 @@
 		Write an array of records to the specified Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and don't close them after use it, you must do it.
+		This method only uses the stream and does not close it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
@@ -142,7 +142,7 @@
 		Write the specified number of records in the array to the Stream.
 		</summary>
 		<remarks>
-		This method only uses the stream and does not close the stream after using it, you must do it.
+		This method only uses the stream and does not close it, you must do it.
 		</remarks>
 		<include file='Examples.xml' path='doc/examples/WriteFile/*'/>
 		<param name="writer">The writer of the source stream.</param>
