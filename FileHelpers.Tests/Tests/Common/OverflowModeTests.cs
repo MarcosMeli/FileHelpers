@@ -9,9 +9,16 @@ namespace FileHelpers.Tests.CommonTests
     public class OverflowModeTests
     {
         [FixedLengthRecord]
-        public class DiscardCustomer
+        public class DiscardEndCustomer
         {
             [FieldFixedLength(10, OverflowMode = OverflowMode.DiscardEnd)]
+            public string mCustomerID;
+        }
+
+        [FixedLengthRecord]
+        public class DiscardStartCustomer
+        {
+            [FieldFixedLength(10, OverflowMode = OverflowMode.DiscardStart)]
             public string mCustomerID;
         }
 
@@ -26,10 +33,23 @@ namespace FileHelpers.Tests.CommonTests
         [TestCase("0123456789A", "0123456789")]
         [TestCase("0123456789", "0123456789")]
         [TestCase("012345678", "012345678 ")]
-        public void Discard(string originalValue, string expectedValue)
+        public void DiscardEnd(string originalValue, string expectedValue)
         {
-            var engine = new FixedFileEngine<DiscardCustomer>();
-            var customer = new DiscardCustomer {mCustomerID = originalValue};
+            var engine = new FixedFileEngine<DiscardEndCustomer>();
+            var customer = new DiscardEndCustomer {mCustomerID = originalValue};
+            var res = engine.WriteString(new[] {customer});
+
+            Check.That(res).IsEqualTo($"{expectedValue}{Environment.NewLine}");
+        }
+
+        [TestCase("0123456789ABC", "3456789ABC")]
+        [TestCase("0123456789A", "123456789A")]
+        [TestCase("0123456789", "0123456789")]
+        [TestCase("012345678", "012345678 ")]
+        public void DiscardStart(string originalValue, string expectedValue)
+        {
+            var engine = new FixedFileEngine<DiscardStartCustomer>();
+            var customer = new DiscardStartCustomer {mCustomerID = originalValue};
             var res = engine.WriteString(new[] {customer});
 
             Check.That(res).IsEqualTo($"{expectedValue}{Environment.NewLine}");
