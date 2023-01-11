@@ -208,7 +208,7 @@ namespace FileHelpers
 
                 if (skip == false)
                 {
-                    currentLine = info.Operations.RecordToString(record);
+                    currentLine = info.Operations.RecordToString(record, Options.ObjectToValuesHandler);
 
                     if (mustNotifyWriteForRecord)
                     {

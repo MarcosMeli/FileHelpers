@@ -453,14 +453,14 @@ namespace FileHelpers.MasterDetail
                     if (MustNotifyProgress) // Avoid object creation
                         OnProgress(new ProgressEventArgs(recIndex + 1, max));
 
-                    currentLine = mMasterInfo.Operations.RecordToString(rec.Master);
+                    currentLine = mMasterInfo.Operations.RecordToString(rec.Master, Options.ObjectToValuesHandler);
                     writer.WriteLine(currentLine);
 
                     if (rec.Details != null)
                     {
                         for (int d = 0; d < rec.Details.Length; d++)
                         {
-                            currentLine = RecordInfo.Operations.RecordToString(rec.Details[d]);
+                            currentLine = RecordInfo.Operations.RecordToString(rec.Details[d], Options.ObjectToValuesHandler);
                             writer.WriteLine(currentLine);
                         }
                     }

@@ -159,6 +159,17 @@ namespace FileHelpers.Options
             get { return mRecordConditionInfo; }
         }
 
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private ObjectToValuesDelegate mObjectToValuesHandler;
+
+		/// <summary>
+		/// Used to provide custom logic for getting the values of fields.
+		/// marker.
+		/// </summary>
+		public ObjectToValuesDelegate ObjectToValuesHandler {
+			get { return mObjectToValuesHandler; }
+			set { mObjectToValuesHandler = value; }
+		}
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IgnoreCommentInfo mIgnoreCommentInfo;
@@ -270,7 +281,7 @@ namespace FileHelpers.Options
         /// <returns>The string representation of the current record</returns>
         public string RecordToString(object record)
         {
-            return mRecordInfo.Operations.RecordToString(record);
+            return mRecordInfo.Operations.RecordToString(record, ObjectToValuesHandler);
         }
 
         /// <summary>

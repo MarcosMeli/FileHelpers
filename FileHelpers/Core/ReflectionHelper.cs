@@ -25,7 +25,7 @@ namespace FileHelpers
     /// </summary>
     /// <param name="record">instance to extract from</param>
     /// <returns>Values from the instance</returns>
-    internal delegate object[] ObjectToValuesDelegate(object record);
+    public delegate object[] ObjectToValuesDelegate(object record);
 
     /// <summary>
     /// Create an object (function created based upon a type)
