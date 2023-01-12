@@ -79,4 +79,18 @@ namespace FileHelpers.Tests
     {
         public Guid? Field1;
     }
+
+    [DelimitedRecord(",")]
+    public class SampleTypeCustomAttribute
+    {
+        [AddOne]
+        public int One;
+        [AddOne]
+        [Negative]
+        public int Two;
+    }
+
+    public class AddOneAttribute : Attribute, ICustomAttribute { }
+    public class NegativeAttribute : Attribute, ICustomAttribute { }
+    public interface ICustomAttribute { }
 }

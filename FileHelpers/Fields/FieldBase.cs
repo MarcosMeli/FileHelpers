@@ -84,7 +84,7 @@ namespace FileHelpers
         /// <summary>
         /// Details about the extraction criteria
         /// </summary>
-        internal FieldInfo FieldInfo { get; private set; }
+        public FieldInfo FieldInfo { get; private set; }
 
         /// <summary>
         /// indicates whether we trim leading and/or trailing whitespace

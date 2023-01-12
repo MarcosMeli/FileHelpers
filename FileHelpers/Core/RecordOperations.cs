@@ -166,11 +166,11 @@ namespace FileHelpers
         /// </summary>
         /// <param name="record">Object to convert</param>
         /// <returns>String representing the object</returns>
-        public string RecordToString(object record)
+        public string RecordToString(object record, ObjectToValuesDelegate objectToValuesHandler)
         {
             var sb = new StringBuilder(mRecordInfo.SizeHint);
 
-            var values = ObjectToValuesHandler(record);
+            var values = objectToValuesHandler?.Invoke(record) ?? ObjectToValuesHandler(record);
 
             for (int f = 0; f < mRecordInfo.FieldCount; f++)
                 mRecordInfo.Fields[f].AssignToString(sb, values[f]);
