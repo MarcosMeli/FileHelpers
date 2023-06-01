@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1;net6.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FileHelpers.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -23,6 +23,12 @@
     <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	<PackageReference Include="FSharp.Compiler.Service" Version="39.0.0" />
+	<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+	<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\FileHelpers.ExcelNPOIStorage\FileHelpers.ExcelNPOIStorage.csproj" />
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj" />
@@ -37,5 +43,9 @@
     <Content Include="Data\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Good\OrdersFixedOffset.txt" />
   </ItemGroup>
 </Project>
