@@ -13,6 +13,11 @@ namespace FileHelpers
         public int Length { get; private set; }
 
         /// <summary>
+        /// Length to offset the field by.
+        /// </summary>
+        public int Offset { get; set; }
+
+        /// <summary>
         /// Overflow behavior for this Fixed Length field.
         /// By default uses <code>OverflowMode.DiscardEnd</code>.
         /// </summary>

@@ -1,3 +1,4 @@
+using FileHelpers.Tests.Types.Orders;
 using NUnit.Framework;
 
 namespace FileHelpers.Tests.CommonTests
@@ -20,6 +21,12 @@ namespace FileHelpers.Tests.CommonTests
         public void Fixed()
         {
             RunTests<OrdersFixed>("Good", "OrdersFixed.txt");
+        }
+
+        [Test]
+        public void Offset()
+        {
+            RunTests<OrdersFixedOffset>("Good", "OrdersFixedOffset.txt");
         }
 
         [Test]

@@ -133,7 +133,7 @@ namespace FileHelpers
         /// </summary>
         private void InitRecordFields()
         {
-            var recordAttribute = Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
+            var recordAttribute = Core.Attributes.GetFirstInherited<TypedRecordAttribute>(RecordType);
 
             if (recordAttribute == null) {
                 throw new BadUsageException($"The record class {RecordType.Name} must be marked with the [DelimitedRecord] or [FixedLengthRecord] Attribute");
@@ -143,15 +143,15 @@ namespace FileHelpers
                 throw new BadUsageException($"The record class {RecordType.Name} needs a constructor with no args (public or private)");
             }
 
-            Attributes.WorkWithFirst<IgnoreFirstAttribute>(
+            Core.Attributes.WorkWithFirst<IgnoreFirstAttribute>(
                 RecordType,
                 a => IgnoreFirst = a.NumberOfLines);
 
-            Attributes.WorkWithFirst<IgnoreLastAttribute>(
+            Core.Attributes.WorkWithFirst<IgnoreLastAttribute>(
                 RecordType,
                 a => IgnoreLast = a.NumberOfLines);
 
-            Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(
+            Core.Attributes.WorkWithFirst<IgnoreEmptyLinesAttribute>(
                 RecordType,
                 a => {
                     IgnoreEmptyLines = true;
@@ -159,7 +159,7 @@ namespace FileHelpers
                 });
 
 #pragma warning disable CS0618 // Type or member is obsolete
-            Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
+            Core.Attributes.WorkWithFirst<IgnoreCommentedLinesAttribute>(
 #pragma warning restore CS0618 // Type or member is obsolete
                 RecordType,
                 a => {
@@ -168,7 +168,7 @@ namespace FileHelpers
                     CommentAnyPlace = a.AnyPlace;
                 });
 
-            Attributes.WorkWithFirst<ConditionalRecordAttribute>(
+            Core.Attributes.WorkWithFirst<ConditionalRecordAttribute>(
                 RecordType,
                 a => {
                     RecordCondition = a.Condition;

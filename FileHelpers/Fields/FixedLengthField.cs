@@ -19,6 +19,12 @@ namespace FileHelpers
         /// </summary>
         internal int FieldLength { get; private set; }
 
+
+        /// <summary>
+        /// Length to offset this field in the record
+        /// </summary>
+        internal int FieldOffset { get; private set; }
+
         /// <summary>
         /// Alignment of this record
         /// </summary>
@@ -51,12 +57,13 @@ namespace FileHelpers
         /// <param name="overflowMode">Overflow mode of this field</param>
         /// <param name="align">Alignment, left or right</param>
         /// <param name="defaultCultureName">Default culture name used for each properties if no converter is specified otherwise. If null, the default decimal separator (".") will be used.</param>
-        internal FixedLengthField(FieldInfo fi, int length, OverflowMode overflowMode, FieldAlignAttribute align, string defaultCultureName=null)
+        internal FixedLengthField(FieldInfo fi, int length, OverflowMode overflowMode, FieldAlignAttribute align, int offset, string defaultCultureName=null)
             : base(fi, defaultCultureName)
         {
             FixedMode = FixedMode.ExactLength;
             OverflowMode = overflowMode;
             Align = new FieldAlignAttribute(AlignMode.Left, ' ');
+            FieldOffset = offset;
             FieldLength = length;
 
             if (align != null)
@@ -117,7 +124,10 @@ namespace FileHelpers
                                             ").You can use the [FixedLengthRecord(FixedMode.AllowMoreChars)] to avoid this problem.");
             }
             else
+            {
+                line.mCurrentPos = line.mCurrentPos + FieldOffset;
                 return new ExtractedInfo(line, line.mCurrentPos + FieldLength);
+            }
         }
 
         /// <summary>
@@ -130,6 +140,7 @@ namespace FileHelpers
         {
             field = GetActualValueBasedOnFieldConfiguration(field);
 
+            sb.Append(' ', FieldOffset);
             if (Align.Align == AlignMode.Left) {
                 sb.Append(field);
                 sb.Append(Align.AlignChar, FieldLength - field.Length);
@@ -178,6 +189,7 @@ namespace FileHelpers
             var res = new FixedLengthField {
                 Align = Align,
                 FieldLength = FieldLength,
+                FieldOffset = FieldOffset,
                 OverflowMode = OverflowMode,
                 FixedMode = FixedMode
             };
