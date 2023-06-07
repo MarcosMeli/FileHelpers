@@ -23,6 +23,18 @@ namespace FileHelpers.Tests.CommonTests
         }
 
         [Test]
+        public void Offset()
+        {
+            RunTests<CustomersFixedOffset>("Good", "CustomersFixedOffset.txt");
+        }
+
+        [Test]
+        public void OffsetExact()
+        {
+            RunTests<CustomersFixedOffset>("Good", "CustomersFixedOffsetExact.txt");
+        }
+
+        [Test]
         public void Tab()
         {
             RunTests<CustomersTab>("Good", "CustomersTab.txt");

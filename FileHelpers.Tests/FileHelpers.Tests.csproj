@@ -46,6 +46,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\Good\CustomersFixedOffset.txt" />
+    <None Remove="Data\Good\CustomersFixedOffsetExact.txt" />
     <None Remove="Data\Good\OrdersFixedOffset.txt" />
   </ItemGroup>
 </Project>
